@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CONFIG, PRESETS } from "./config";
+import {
+  LEGACY_DEFAULT_CONFIG as DEFAULT_CONFIG,
+  LEGACY_PRESETS as PRESETS,
+} from "./config";
 import {
   FRAME_HEIGHT,
   FRAME_WIDTH,
@@ -46,7 +49,7 @@ describe("original pixel generator", () => {
     const second = generateCharacter(JSON.parse(JSON.stringify(config)));
     expect(first.pixels).toEqual(second.pixels);
     expect(first.manifest).toEqual(second.manifest);
-    expect(first.manifest.generator).toBe(pixelGenerator.id);
+    expect(first.manifest.generator).toBe("gathria-original-pixels-v1");
     expect(config).toEqual(DEFAULT_CONFIG);
   });
 

@@ -27,10 +27,13 @@ import {
   CLOTHING_COLORS,
   DEFAULT_CONFIG,
   HAIR_COLORS,
+  LEGACY_PRESETS,
+  OUTFIT_PRESETS,
   PRESETS,
   SKIN_TONES,
   configToJson,
   parseCharacterConfig,
+  upgradeToArtV2,
 } from "../core/config";
 import { generateCharacter } from "../core/generator";
 import {
@@ -39,7 +42,12 @@ import {
   pixelsToPng,
   safeFilename,
 } from "../core/pack";
-import type { AnimationName, CharacterConfig, Facing } from "../core/types";
+import type {
+  AnimationName,
+  CharacterConfig,
+  FaceVariant,
+  Facing,
+} from "../core/types";
 import { CharacterPreview, Filmstrip } from "./Preview";
 
 function PixelMark() {
@@ -188,8 +196,15 @@ export default function App() {
       }),
     [config],
   );
+  const activePresets = config.schemaVersion === 1 ? LEGACY_PRESETS : PRESETS;
+  const sequence = generated.manifest.animations[animation];
+  const drawingCount = new Set(sequence.frames).size;
+  const loopSeconds = Number(
+    (sequence.frames.length / sequence.fps).toFixed(2),
+  );
   const preset =
-    PRESETS.find((item) => item.id === selectedPreset) ?? PRESETS[0];
+    activePresets.find((item) => item.id === selectedPreset) ??
+    activePresets[0];
   function update<K extends keyof CharacterConfig>(
     key: K,
     value: CharacterConfig[K],
@@ -198,10 +213,22 @@ export default function App() {
     setNotice(null);
   }
   function choosePreset(id: string) {
-    const item = PRESETS.find((p) => p.id === id)!;
+    const item = activePresets.find((p) => p.id === id)!;
     setSelectedPreset(id);
     setConfig({ ...item.config });
     setNotice(null);
+  }
+  function createArtV2Copy() {
+    try {
+      const face = PRESETS.find((item) => item.id === selectedPreset)!.config
+        .faceVariant;
+      setConfig(upgradeToArtV2(config, face));
+      setNotice({
+        text: "Art V2 copy created. Save it as a new configuration to keep both designs.",
+      });
+    } catch (error) {
+      showError(error);
+    }
   }
   function saveConfig() {
     try {
@@ -246,7 +273,10 @@ export default function App() {
       const next = parseCharacterConfig(value);
       setConfig(next);
       setNotice({
-        text: `Opened ${next.name}. Every detail is ready to edit.`,
+        text:
+          next.schemaVersion === 1
+            ? `Opened ${next.name} in the original Art V1 style. Your saved design is preserved.`
+            : `Opened ${next.name}. Every detail is ready to edit.`,
       });
     } catch (error) {
       showError(error);
@@ -370,7 +400,7 @@ export default function App() {
             <section className="preset-section">
               <span className="control-label">Start with someone</span>
               <div className="preset-grid">
-                {PRESETS.map((item) => (
+                {activePresets.map((item) => (
                   <button
                     type="button"
                     className={`preset-card ${selectedPreset === item.id ? "selected" : ""}`}
@@ -402,7 +432,35 @@ export default function App() {
                 placeholder="Give them a name"
               />
             </div>
+            {config.schemaVersion === 1 && (
+              <div className="legacy-art-notice">
+                <strong>Art V1 · original</strong>
+                <p>Your saved artwork stays in its original style.</p>
+                <button type="button" onClick={createArtV2Copy}>
+                  <Sparkles size={13} /> Create Art V2 copy
+                </button>
+              </div>
+            )}
             <Section number="01" title="The essentials">
+              {config.schemaVersion === 2 && (
+                <SelectControl
+                  label="Face shape"
+                  value={config.faceVariant}
+                  options={[
+                    ["heart", "Soft heart"],
+                    ["oval", "Gentle oval"],
+                    ["round", "Round cheeks"],
+                  ]}
+                  onChange={(value) => {
+                    setConfig((current) =>
+                      current.schemaVersion === 2
+                        ? { ...current, faceVariant: value as FaceVariant }
+                        : current,
+                    );
+                    setNotice(null);
+                  }}
+                />
+              )}
               <Swatches
                 label="Skin tone"
                 value={config.skinTone}
@@ -430,6 +488,37 @@ export default function App() {
               />
             </Section>
             <Section number="02" title="A little style">
+              {config.schemaVersion === 2 && (
+                <div className="outfit-field">
+                  <span className="control-label">Outfit starting points</span>
+                  <div
+                    className="outfit-presets"
+                    role="group"
+                    aria-label="Outfits"
+                  >
+                    {OUTFIT_PRESETS.map(({ id, label, appearance }) => (
+                      <button
+                        type="button"
+                        key={id}
+                        aria-pressed={Object.entries(appearance).every(
+                          ([key, value]) =>
+                            config[key as keyof CharacterConfig] === value,
+                        )}
+                        onClick={() => {
+                          setConfig((current) =>
+                            current.schemaVersion === 2
+                              ? { ...current, ...appearance }
+                              : current,
+                          );
+                          setNotice(null);
+                        }}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
               <SelectControl
                 label="Upper clothing"
                 value={config.upperClothing}
@@ -437,6 +526,12 @@ export default function App() {
                   ["tee", "Everyday tee"],
                   ["hoodie", "Cozy hoodie"],
                   ["jacket", "Open jacket"],
+                  ...(config.schemaVersion === 2
+                    ? ([
+                        ["suit", "Suit jacket"],
+                        ["bodice", "Formal bodice"],
+                      ] as [string, string][])
+                    : []),
                 ]}
                 onChange={(value) =>
                   update(
@@ -458,6 +553,9 @@ export default function App() {
                   ["trousers", "Trousers"],
                   ["shorts", "Shorts"],
                   ["skirt", "Skirt"],
+                  ...(config.schemaVersion === 2
+                    ? ([["dress", "Long dress skirt"]] as [string, string][])
+                    : []),
                 ]}
                 onChange={(value) =>
                   update(
@@ -517,7 +615,11 @@ export default function App() {
                 className={`preview-stage ${checkerboard ? "checkerboard" : "plain-stage"}`}
               >
                 <div className="stage-corner">
-                  <span>ORIGINAL PIXEL ART</span>
+                  <span>
+                    {config.schemaVersion === 1
+                      ? "ART V1 · ORIGINAL"
+                      : "CHARACTER ART V2"}
+                  </span>
                   <span>100% browser-made</span>
                 </div>
                 <div className="canvas-position">
@@ -566,14 +668,14 @@ export default function App() {
                       <Play size={15} fill="currentColor" />
                     )}
                   </button>
-                  <span>
+                  <span
+                    title="Animation timing step"
+                    aria-label={`Timing step ${frame} of ${sequence.frames.length}`}
+                  >
                     {String(frame).padStart(2, "0")}
                     <span>
                       {" "}
-                      /{" "}
-                      {String(
-                        generated.manifest.animations[animation].frames.length,
-                      ).padStart(2, "0")}
+                      / {String(sequence.frames.length).padStart(2, "0")}
                     </span>
                   </span>
                 </div>
@@ -633,13 +735,14 @@ export default function App() {
                 <div>
                   <h2>Every step of the story</h2>
                   <p>
-                    {animation === "idle"
-                      ? "A quiet moment, in four frames."
-                      : "An eight-frame stride, ready to loop."}
+                    {drawingCount} drawings
+                    {drawingCount !== sequence.frames.length &&
+                      ` · ${sequence.frames.length} timing steps`}
+                    {` · ${loopSeconds}s loop`}
                   </p>
                 </div>
                 <span className="subtle-pill">
-                  {generated.manifest.animations[animation].fps} FPS · LOOP
+                  {sequence.fps} FPS · {sequence.loop ? "LOOP" : "ONCE"}
                 </span>
               </div>
               <Filmstrip

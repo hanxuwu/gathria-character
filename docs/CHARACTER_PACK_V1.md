@@ -20,14 +20,14 @@ PNG and manifest can also be imported directly into the standalone player withou
 
 ## Manifest
 
-This is the current generator's default layout:
+The pack format remains version 1 for both artwork versions. This is the Art V2 generator's default layout:
 
 ```json
 {
   "schemaVersion": 1,
   "format": "gathria-character-pack",
   "name": "Mira",
-  "generator": "gathria-original-pixels-v1",
+  "generator": "gathria-warm-pixels-v2",
   "spritesheet": {
     "file": "spritesheet.png",
     "width": 384,
@@ -52,7 +52,11 @@ This is the current generator's default layout:
     { "id": 11, "x": 336, "y": 64, "width": 48, "height": 64 }
   ],
   "animations": {
-    "idle": { "frames": [0, 1, 2, 3], "fps": 4, "loop": true },
+    "idle": {
+      "frames": [0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 3, 0],
+      "fps": 4,
+      "loop": true
+    },
     "walk": { "frames": [4, 5, 6, 7, 8, 9, 10, 11], "fps": 10, "loop": true }
   },
   "facing": { "native": "right", "right": "none", "left": "mirror-x" },
@@ -62,7 +66,7 @@ This is the current generator's default layout:
 }
 ```
 
-The first row's last four cells are unused and transparent. They are not animation frames. Source rectangles and IDs are authoritative; do not infer frame IDs from array positions or assume every grid cell is occupied.
+The first row contains four distinct idle drawings. Art V2 holds some drawings through repeated frame references for a three-second idle cycle. The first row's last four cells are unused and transparent. They are not animation frames. Source rectangles and IDs are authoritative; do not infer frame IDs from array positions or assume every grid cell is occupied.
 
 ### Required values and limits
 
@@ -93,7 +97,14 @@ All fields shown above are required. Validation returns a copy containing recogn
 | `scale.recommended`                   | Integer 1–16. Consumers may choose another positive integer display scale.                                                                |
 | `configuration`                       | Literal `"character.json"`.                                                                                                               |
 
-Animation metadata does not encode world movement speed. A consumer may move the anchored sprite while playing `walk`, but it must use the actual pose frames. The prototype walking sequence lasts 0.8 seconds; idle lasts 1 second.
+Animation metadata does not encode world movement speed. A consumer may move the anchored sprite while playing `walk`, but it must use the actual pose frames. Both artwork versions use a 0.8-second walking sequence. Timing is read from each manifest:
+
+| Artwork | Manifest `generator`         | Idle sequence                                   | Idle duration |
+| ------- | ---------------------------- | ----------------------------------------------- | ------------- |
+| V1      | `gathria-original-pixels-v1` | `[0, 1, 2, 3]` at 4 fps                         | 1 second      |
+| V2      | `gathria-warm-pixels-v2`     | `[0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 3, 0]` at 4 fps | 3 seconds     |
+
+A repeated reference holds the same drawing for another sequence step. Consumers must preserve these references rather than deduplicate the animation list.
 
 ## Rendering, facing, and placement
 
@@ -109,7 +120,42 @@ The runnable reference is `src/consumer/player.ts`, used by the independent `/pl
 
 ## Editable configuration
 
-`character.json` is UTF-8 JSON with all of these fields:
+`character.json` is UTF-8 JSON. Configuration schema versions and pack format versions are separate: both configurations below export a CharacterPack manifest with `schemaVersion: 1`.
+
+### Art V2 configuration
+
+New characters use this complete configuration:
+
+```json
+{
+  "schemaVersion": 2,
+  "artworkVersion": 2,
+  "name": "Mira",
+  "skinTone": "#E5AE87",
+  "hairstyle": "waves",
+  "hairColor": "#8A4935",
+  "faceVariant": "heart",
+  "upperClothing": "hoodie",
+  "upperColor": "#447F79",
+  "lowerClothing": "trousers",
+  "lowerColor": "#484F68",
+  "shoeColor": "#E9DFCC"
+}
+```
+
+- `schemaVersion` and `artworkVersion` must both be `2`.
+- `faceVariant`: `heart`, `oval`, or `round`.
+- `hairstyle`: `crop`, `bob`, `waves`, or `mohawk`.
+- `upperClothing`: `tee`, `hoodie`, `jacket`, `suit`, or `bodice`.
+- `lowerClothing`: `trousers`, `shorts`, `skirt`, or `dress`.
+- `name` must be nonblank and at most 60 characters before trimming. The parser trims it.
+- Every color must be `#` followed by six hexadecimal digits. The parser normalizes letters to uppercase. The editor's swatches are suggestions; any valid six-digit color is allowed.
+
+The polished casual, wedding suit, and wedding dress buttons are editable starting points. Garments, face shapes, hairstyles, and colors remain independently selectable; no option is restricted by another appearance choice.
+
+### Preserving V1 configurations and packages
+
+Original saved configurations remain supported without migration:
 
 ```json
 {
@@ -126,14 +172,13 @@ The runnable reference is `src/consumer/player.ts`, used by the independent `/pl
 }
 ```
 
-- `schemaVersion` must be `1`.
-- `name` must be nonblank and at most 60 characters before trimming. The parser trims it.
-- Every color must be `#` followed by six hexadecimal digits. The parser normalizes letters to uppercase. The editor's swatches are suggestions; any valid six-digit color is allowed.
-- `hairstyle`: `crop`, `bob`, `waves`, or `mohawk`.
-- `upperClothing`: `tee`, `hoodie`, or `jacket`.
-- `lowerClothing`: `trousers`, `shorts`, or `skirt`.
+V1 uses the same name, color, and hairstyle validation, but only `tee`, `hoodie`, and `jacket` for upper clothing and `trousers`, `shorts`, and `skirt` for lower clothing. V1 configurations cannot contain `artworkVersion` or `faceVariant`; contradictory hybrid files are rejected with an explicit migration message.
 
-Saving and reopening this configuration preserves all editable inputs. Use the identified generator version to reproduce its pixels; later generator versions may change artwork. Import validates field values and the manifest/configuration name match. The configuration contains no cryptographic binding to image appearance, so a consumer cannot prove that a manually edited PNG was generated from that configuration. The editor exports its current configuration and its corresponding generated pixels together.
+The dispatcher in `src/core/generator.ts` sends schema 1 to the frozen renderer in `src/core/generator-v1.ts` and schema 2 to `src/core/generator-v2.ts`. Reopening, editing, and saving a V1 configuration retains its original artwork. The editor's **Create Art V2 copy** action explicitly opts into the new renderer and adds a face variant; loading a file never invokes that conversion. Generation is deterministic for a given configuration and artwork version. V1 regression tests compare decoded RGBA output with the original sample hashes.
+
+Existing exported packages retain their original pixels and animation timing. The independent player reads the imported PNG and manifest; it does not regenerate either artwork version. The original examples remain in `public/samples/`, and Art V2 examples are separate in `public/samples/v2/`. `npm run samples` uses `LEGACY_PRESETS` to regenerate only V1 examples; `node scripts/generate-art-v2-evidence.mjs` produces V2 examples and review evidence.
+
+Saving and reopening either configuration preserves all editable inputs. Import validates field values and the manifest/configuration name match. The manifest's `generator` is a provenance identifier, not a command or a substitute for configuration version validation. The configuration contains no cryptographic binding to image appearance, so a consumer cannot prove that a manually edited PNG was generated from that configuration. The editor exports its current configuration and its corresponding generated pixels together.
 
 ## Import validation and resource limits
 
@@ -153,6 +198,6 @@ Imports reject malformed input with actionable messages. The pure `readCharacter
 
 The built-in artwork consists of original procedural pixel shapes, palettes, and poses authored for this project. Generated output requires no external image assets. `PROVENANCE.txt` in every exported package grants use, modification, and redistribution of that original generated artwork, including commercial use, under the included MIT License. Retain its copyright and permission notice when redistributing; visible in-game credit is not required. It does not grant third-party trademark or identity rights.
 
-This MVP provides deterministic local generation only. It does not implement photo import or AI generation. A future provider can implement the small `CharacterGenerator` interface, but its normalized output must still satisfy this same manifest, pixel, and export pipeline.
+The generator provides deterministic local generation only. It does not implement photo import or AI generation. A future provider can implement the small `CharacterGenerator` interface, but its normalized output must still satisfy this same manifest, pixel, and export pipeline.
 
 Gathria compatibility is unverified until its actual loader, frame dimensions, animation names/timing, anchor, scaling, and facing rules are inspected at a recorded source revision. The standalone format and consumer remain usable independently of that work.

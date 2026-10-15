@@ -1,4 +1,6 @@
-// Run against the local Vite dev server. Uses the same browser PNG/ZIP exporter as the UI.
+// Regenerate the original V1 samples against the local Vite development server.
+// V2 samples and review evidence use generate-art-v2-evidence.mjs instead.
+// Both scripts use the same browser PNG/ZIP exporter as the UI.
 import { chromium } from "@playwright/test";
 import { unzipSync } from "fflate";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -12,11 +14,11 @@ try {
   const page = await browser.newPage();
   await page.goto(process.env.SAMPLE_BASE_URL || "http://127.0.0.1:5173");
   const examples = await page.evaluate(async () => {
-    const { PRESETS } = await import("/src/core/config.ts");
+    const { LEGACY_PRESETS } = await import("/src/core/config.ts");
     const { generateCharacter } = await import("/src/core/generator.ts");
     const { createCharacterPack } = await import("/src/core/pack.ts");
     return Promise.all(
-      PRESETS.map(async (preset) => ({
+      LEGACY_PRESETS.map(async (preset) => ({
         id: preset.id,
         bytes: Array.from(
           new Uint8Array(

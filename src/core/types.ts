@@ -1,10 +1,12 @@
 export type AnimationName = "idle" | "walk";
 export type Facing = "left" | "right";
 export type Hairstyle = "crop" | "bob" | "waves" | "mohawk";
-export type UpperClothing = "tee" | "hoodie" | "jacket";
-export type LowerClothing = "trousers" | "shorts" | "skirt";
-export interface CharacterConfig {
-  schemaVersion: 1;
+export type LegacyUpperClothing = "tee" | "hoodie" | "jacket";
+export type LegacyLowerClothing = "trousers" | "shorts" | "skirt";
+export type UpperClothing = LegacyUpperClothing | "suit" | "bodice";
+export type LowerClothing = LegacyLowerClothing | "dress";
+export type FaceVariant = "heart" | "oval" | "round";
+interface CharacterAppearance {
   name: string;
   skinTone: string;
   hairstyle: Hairstyle;
@@ -15,6 +17,18 @@ export interface CharacterConfig {
   lowerColor: string;
   shoeColor: string;
 }
+/** V1 always uses the original artwork, including when reopened and edited. */
+export interface LegacyCharacterConfig extends CharacterAppearance {
+  schemaVersion: 1;
+  upperClothing: LegacyUpperClothing;
+  lowerClothing: LegacyLowerClothing;
+}
+export interface ArtV2CharacterConfig extends CharacterAppearance {
+  schemaVersion: 2;
+  artworkVersion: 2;
+  faceVariant: FaceVariant;
+}
+export type CharacterConfig = LegacyCharacterConfig | ArtV2CharacterConfig;
 export interface SpriteFrame {
   id: number;
   x: number;

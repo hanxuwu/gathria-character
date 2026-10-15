@@ -152,7 +152,10 @@ export function Filmstrip({
         />
         <div className="frame-labels">
           {sequence.frames.map((id, i) => (
-            <span className={activeFrame === i + 1 ? "active" : ""} key={id}>
+            <span
+              className={activeFrame === i + 1 ? "active" : ""}
+              key={`${i}-${id}`}
+            >
               {String(i + 1).padStart(2, "0")}
             </span>
           ))}

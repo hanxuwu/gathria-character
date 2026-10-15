@@ -175,15 +175,19 @@ export function PackPlayer() {
     void openPack(() => loadCharacterPack(file), file.name);
   }
 
-  function openExample() {
+  function openExample(artworkVersion: 1 | 2) {
     void openPack(async () => {
-      const response = await fetch("/samples/mira.character.zip");
+      const response = await fetch(
+        artworkVersion === 2
+          ? "/samples/v2/mira.character.zip"
+          : "/samples/mira.character.zip",
+      );
       if (!response.ok)
         throw new Error(
           `The example pack could not be downloaded (HTTP ${response.status}).`,
         );
       return loadCharacterPack(await response.blob());
-    }, "mira.character.zip · bundled example");
+    }, `mira.character.zip · Art V${artworkVersion} bundled example`);
   }
 
   function openSeparateFiles() {
@@ -321,16 +325,23 @@ export function PackPlayer() {
             </div>
             <button
               className="player-sample-button"
-              onClick={openExample}
+              onClick={() => openExample(2)}
               disabled={busy}
             >
               <span className="player-sample-icon">
                 <Layers3 size={19} />
               </span>
               <span>
-                Just exploring?<strong>Try Mira’s example pack</strong>
+                Just exploring?<strong>Try Mira’s Art V2 pack</strong>
               </span>
               <ArrowRight size={17} />
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample(1)}
+              disabled={busy}
+            >
+              Try Mira’s example pack · original Art V1
             </button>
             <details className="player-separate-files">
               <summary>Have individual files?</summary>
@@ -467,7 +478,7 @@ export function PackPlayer() {
                 </span>
                 <span className="player-stage-frame">
                   {pack
-                    ? `FRAME ${String(frameId).padStart(2, "0")} / ${pack.manifest.frames.length}`
+                    ? `FRAME ID ${String(frameId).padStart(2, "0")}`
                     : "— / —"}
                 </span>
               </div>
@@ -627,7 +638,11 @@ export function PackPlayer() {
               </div>
               <div>
                 <dt>Configuration</dt>
-                <dd>{pack.config ? "Included" : "Not provided · optional"}</dd>
+                <dd>
+                  {pack.config
+                    ? `Included · Art V${pack.config.schemaVersion}`
+                    : "Not provided · optional"}
+                </dd>
               </div>
             </dl>
           </section>
