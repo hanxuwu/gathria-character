@@ -29,7 +29,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-In a cloud image with system Chromium already installed, use `CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e` instead. Playwright starts a Vite server automatically. The GitHub Actions workflow installs the browser and Linux libraries before testing.
+In a cloud image with system Chromium already installed, use `CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e` instead. Playwright starts its own Vite server on port 5175; it does not reuse a running development server. The GitHub Actions workflow installs the browser and Linux libraries before testing.
 
 ## Try the complete workflow
 
