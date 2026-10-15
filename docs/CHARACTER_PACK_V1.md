@@ -20,7 +20,7 @@ PNG and manifest can also be imported directly into the standalone player withou
 
 ## Manifest
 
-The pack format remains version 1 for both artwork versions. This is the Art V2 generator's default layout:
+The pack format remains version 1 for all three artwork versions. Dimensions are metadata, not fixed format constants. V1/V2 use 48×64 frames, a 384×128 sheet, and anchor (24, 60). Detailed V3 uses 192×256 frames, a 1536×512 sheet, and anchor (96, 240), at recommended scale 1. This is the preserved Art V2 generator's layout:
 
 ```json
 {
@@ -97,12 +97,13 @@ All fields shown above are required. Validation returns a copy containing recogn
 | `scale.recommended`                   | Integer 1–16. Consumers may choose another positive integer display scale.                                                                |
 | `configuration`                       | Literal `"character.json"`.                                                                                                               |
 
-Animation metadata does not encode world movement speed. A consumer may move the anchored sprite while playing `walk`, but it must use the actual pose frames. Both artwork versions use a 0.8-second walking sequence. Timing is read from each manifest:
+Animation metadata does not encode world movement speed. A consumer may move the anchored sprite while playing `walk`, but it must use the actual pose frames. All three artwork versions use a 0.8-second walking sequence. Timing is read from each manifest:
 
 | Artwork | Manifest `generator`         | Idle sequence                                   | Idle duration |
 | ------- | ---------------------------- | ----------------------------------------------- | ------------- |
 | V1      | `gathria-original-pixels-v1` | `[0, 1, 2, 3]` at 4 fps                         | 1 second      |
 | V2      | `gathria-warm-pixels-v2`     | `[0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 3, 0]` at 4 fps | 3 seconds     |
+| V3      | `gathria-detailed-pixels-v3` | `[0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 3, 0]` at 4 fps | 3 seconds     |
 
 A repeated reference holds the same drawing for another sequence step. Consumers must preserve these references rather than deduplicate the animation list.
 
@@ -143,7 +144,7 @@ New characters use this complete configuration:
 }
 ```
 
-- `schemaVersion` and `artworkVersion` must both be `2`.
+- `schemaVersion` is `2`; `artworkVersion` is explicitly `2` for the preserved warm pixels or `3` for the detailed illustrations. The field shape is unchanged, so a new configuration schema is unnecessary.
 - `faceVariant`: `heart`, `oval`, or `round`.
 - `hairstyle`: `crop`, `bob`, `waves`, or `mohawk`.
 - `upperClothing`: `tee`, `hoodie`, `jacket`, `suit`, or `bodice`.
@@ -153,7 +154,7 @@ New characters use this complete configuration:
 
 The polished casual, wedding suit, and wedding dress buttons are editable starting points. Garments, face shapes, hairstyles, and colors remain independently selectable; no option is restricted by another appearance choice.
 
-### Preserving V1 configurations and packages
+### Preserving V1 and V2 configurations and packages
 
 Original saved configurations remain supported without migration:
 
@@ -174,11 +175,13 @@ Original saved configurations remain supported without migration:
 
 V1 uses the same name, color, and hairstyle validation, but only `tee`, `hoodie`, and `jacket` for upper clothing and `trousers`, `shorts`, and `skirt` for lower clothing. V1 configurations cannot contain `artworkVersion` or `faceVariant`; contradictory hybrid files are rejected with an explicit migration message.
 
-The dispatcher in `src/core/generator.ts` sends schema 1 to the frozen renderer in `src/core/generator-v1.ts` and schema 2 to `src/core/generator-v2.ts`. Reopening, editing, and saving a V1 configuration retains its original artwork. The editor's **Create Art V2 copy** action explicitly opts into the new renderer and adds a face variant; loading a file never invokes that conversion. Generation is deterministic for a given configuration and artwork version. V1 regression tests compare decoded RGBA output with the original sample hashes.
+The dispatcher in `src/core/generator.ts` sends schema 1 to the frozen V1 renderer; schema 2 dispatches by `artworkVersion` to V2 or detailed V3. Reopening, editing, resetting, choosing presets, and saving an older configuration keeps its artwork version. **Create detailed copy** explicitly opts into V3; opening a file never invokes that conversion. V1 gains a face variant on conversion, while V2 retains its selected face. No implicit downgrade is provided.
 
-Existing exported packages retain their original pixels and animation timing. The independent player reads the imported PNG and manifest; it does not regenerate either artwork version. The original examples remain in `public/samples/`, and Art V2 examples are separate in `public/samples/v2/`. `npm run samples` uses `LEGACY_PRESETS` to regenerate only V1 examples; `node scripts/generate-art-v2-evidence.mjs` produces V2 examples and review evidence.
+Generation is deterministic for a given configuration and artwork version. Regression tests compare decoded V1 and V2 RGBA against fixed hashes from the published examples. Existing exported packages retain their original pixels and timing because the independent player reads their PNG and manifest without regeneration.
 
-Saving and reopening either configuration preserves all editable inputs. Import validates field values and the manifest/configuration name match. The manifest's `generator` is a provenance identifier, not a command or a substitute for configuration version validation. The configuration contains no cryptographic binding to image appearance, so a consumer cannot prove that a manually edited PNG was generated from that configuration. The editor exports its current configuration and its corresponding generated pixels together.
+Examples remain separated: `public/samples/` for V1, `public/samples/v2/` for V2, and `public/samples/detailed/` for V3. `npm run samples` regenerates only V1. `scripts/generate-art-v2-evidence.mjs` explicitly generates V2; `scripts/generate-detailed-evidence.mjs` generates V3. New detailed presets default to V3.
+
+Saving and reopening a configuration preserves all editable inputs. Import validates fields and the manifest/configuration name match. The manifest's `generator` is an informational provenance identifier, not executable code or a substitute for configuration validation. There is no cryptographic binding between configuration and appearance: a consumer cannot prove that a manually edited PNG came from that configuration. The editor exports its current configuration and corresponding generated pixels together.
 
 ## Import validation and resource limits
 
@@ -196,8 +199,8 @@ Imports reject malformed input with actionable messages. The pure `readCharacter
 
 ## Asset provenance and integration status
 
-The built-in artwork consists of original procedural pixel shapes, palettes, and poses authored for this project. Generated output requires no external image assets. `PROVENANCE.txt` in every exported package grants use, modification, and redistribution of that original generated artwork, including commercial use, under the included MIT License. Retain its copyright and permission notice when redistributing; visible in-game credit is not required. It does not grant third-party trademark or identity rights.
+V1/V2 use original procedural pixel shapes. V3 uses AI-assisted illustration banks created during development and prepared into local masked layers. The detailed renderer composes these assets deterministically; it makes no runtime model calls. See [ASSET_PROVENANCE.md](ASSET_PROVENANCE.md) for the source locations and workflow. `PROVENANCE.txt` identifies the appropriate origin and includes the MIT License in every export. Retain its copyright and permission notice when redistributing; visible in-game credit is not required.
 
-The generator provides deterministic local generation only. It does not implement photo import or AI generation. A future provider can implement the small `CharacterGenerator` interface, but its normalized output must still satisfy this same manifest, pixel, and export pipeline.
+The application does not implement photo input or AI generation as a user feature. A future provider can implement `CharacterGenerator`, but its output must satisfy the same manifest, pixel, and export contract.
 
 Gathria compatibility is unverified until its actual loader, frame dimensions, animation names/timing, anchor, scaling, and facing rules are inspected at a recorded source revision. The standalone format and consumer remain usable independently of that work.

@@ -28,7 +28,15 @@ export interface ArtV2CharacterConfig extends CharacterAppearance {
   artworkVersion: 2;
   faceVariant: FaceVariant;
 }
-export type CharacterConfig = LegacyCharacterConfig | ArtV2CharacterConfig;
+export interface ArtV3CharacterConfig extends CharacterAppearance {
+  schemaVersion: 2;
+  artworkVersion: 3;
+  faceVariant: FaceVariant;
+}
+export type CharacterConfig =
+  | LegacyCharacterConfig
+  | ArtV2CharacterConfig
+  | ArtV3CharacterConfig;
 export interface SpriteFrame {
   id: number;
   x: number;

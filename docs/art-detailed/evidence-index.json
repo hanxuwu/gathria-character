@@ -1,0 +1,999 @@
+{
+  "source": "Actual browser generator + createCharacterPack exports; production illustration banks are inputs, never substituted for these output pixels",
+  "frame": "idle frame 0, right facing",
+  "matching": "All archived V2 palette, face, hair and outfit inputs retained; only artworkVersion changes explicitly from 2 to 3",
+  "scene": "Neutral preview — not a Gathria scene",
+  "artworkSource": {
+    "file": "src/core/illustrated-assets.generated.ts",
+    "sha256": "dc0b88212e9a20696c5ce5b49440fcf3bb9c021dc3d2dc30b0dce4338b6f03df",
+    "artworkVersion": 3,
+    "frameDimensions": [
+      192,
+      256
+    ],
+    "anchor": [
+      96,
+      240
+    ]
+  },
+  "checks": [
+    "Repeated generation produces identical RGBA bytes",
+    "Every generated archive validates and decodes in the browser",
+    "Decoded exported PNG equals the generated RGBA bytes",
+    "Every sample opens and animates in the independent player with generator/editor routes blocked"
+  ],
+  "lineup": [
+    {
+      "id": "mira",
+      "label": "Mira",
+      "name": "Mira",
+      "directory": "public/samples/detailed/mira",
+      "faceVariant": "heart",
+      "spritesheetSha256": "be946e75e6b41c50b1b41fdedea831de1e93b3556813d0d8b9006eddc5049990",
+      "archive": "public/samples/detailed/mira.character.zip"
+    },
+    {
+      "id": "rowan",
+      "label": "Rowan",
+      "name": "Rowan",
+      "directory": "public/samples/detailed/rowan",
+      "faceVariant": "oval",
+      "spritesheetSha256": "950daf28c8f309a1fa928ff38ec8702f184d04d22d965fc2c617fd5e00a0447f",
+      "archive": "public/samples/detailed/rowan.character.zip"
+    },
+    {
+      "id": "jun",
+      "label": "Jun",
+      "name": "Jun",
+      "directory": "public/samples/detailed/jun",
+      "faceVariant": "round",
+      "spritesheetSha256": "23683c6f36bc4992266d58ccd33cbc9e0618ace8af05536e0f4e40cbefb2950b",
+      "archive": "public/samples/detailed/jun.character.zip"
+    }
+  ],
+  "outfits": [
+    {
+      "id": "mira-casual",
+      "label": "Polished casual",
+      "name": "Mira - Polished casual",
+      "directory": "public/samples/detailed/mira-casual",
+      "faceVariant": "heart",
+      "spritesheetSha256": "fc640fb49d32020071d171e2960bcb10741d2d90e18c142b7824658fda9ad5dd",
+      "archive": "public/samples/detailed/mira-casual.character.zip"
+    },
+    {
+      "id": "mira-wedding-suit",
+      "label": "Wedding suit",
+      "name": "Mira - Wedding suit",
+      "directory": "public/samples/detailed/mira-wedding-suit",
+      "faceVariant": "heart",
+      "spritesheetSha256": "b812bfb062530bd49d39df2af2d9559d7815566e2ceb391aac064864fb054eda",
+      "archive": "public/samples/detailed/mira-wedding-suit.character.zip"
+    },
+    {
+      "id": "mira-wedding-dress",
+      "label": "Wedding dress",
+      "name": "Mira - Wedding dress",
+      "directory": "public/samples/detailed/mira-wedding-dress",
+      "faceVariant": "heart",
+      "spritesheetSha256": "722968aa40ce5b29e9cc4ec3fcfb864df37aa1aa5bd9015cdba900176576a72e",
+      "archive": "public/samples/detailed/mira-wedding-dress.character.zip"
+    }
+  ],
+  "matched": [
+    {
+      "id": "mira",
+      "label": "Mira",
+      "name": "Mira",
+      "directory": "docs/art-detailed/matched/mira",
+      "faceVariant": "heart",
+      "spritesheetSha256": "be946e75e6b41c50b1b41fdedea831de1e93b3556813d0d8b9006eddc5049990",
+      "before": "public/samples/v2/mira"
+    },
+    {
+      "id": "rowan",
+      "label": "Rowan",
+      "name": "Rowan",
+      "directory": "docs/art-detailed/matched/rowan",
+      "faceVariant": "oval",
+      "spritesheetSha256": "950daf28c8f309a1fa928ff38ec8702f184d04d22d965fc2c617fd5e00a0447f",
+      "before": "public/samples/v2/rowan"
+    },
+    {
+      "id": "jun",
+      "label": "Jun",
+      "name": "Jun",
+      "directory": "docs/art-detailed/matched/jun",
+      "faceVariant": "round",
+      "spritesheetSha256": "23683c6f36bc4992266d58ccd33cbc9e0618ace8af05536e0f4e40cbefb2950b",
+      "before": "public/samples/v2/jun"
+    }
+  ],
+  "faces": [
+    {
+      "id": "face-heart",
+      "label": "Heart face",
+      "name": "Mira - heart face",
+      "directory": "docs/art-detailed/options/face-heart",
+      "faceVariant": "heart",
+      "spritesheetSha256": "95747a2db963262f92be4ef1778f0d877e986ee994c0f46a4d9e1bfbdbfa1667"
+    },
+    {
+      "id": "face-oval",
+      "label": "Oval face",
+      "name": "Mira - oval face",
+      "directory": "docs/art-detailed/options/face-oval",
+      "faceVariant": "oval",
+      "spritesheetSha256": "ce584a07de8d344745224195b9a58378a47146fef462904afe8113b07fbacb88"
+    },
+    {
+      "id": "face-round",
+      "label": "Round face",
+      "name": "Mira - round face",
+      "directory": "docs/art-detailed/options/face-round",
+      "faceVariant": "round",
+      "spritesheetSha256": "1a6a60ecaa3af85b23ffe4b78356f1328d3ee5a46e9481289bfe28468bfa0843"
+    }
+  ],
+  "hairstyles": [
+    {
+      "id": "hair-crop",
+      "label": "Crop",
+      "name": "Mira - crop hairstyle",
+      "directory": "docs/art-detailed/options/hair-crop",
+      "faceVariant": "heart",
+      "spritesheetSha256": "95747a2db963262f92be4ef1778f0d877e986ee994c0f46a4d9e1bfbdbfa1667"
+    },
+    {
+      "id": "hair-bob",
+      "label": "Bob",
+      "name": "Mira - bob hairstyle",
+      "directory": "docs/art-detailed/options/hair-bob",
+      "faceVariant": "heart",
+      "spritesheetSha256": "a41eeab4563da9915bb68c323acb564da03a5026aa7112c9565cb79ab865d3d6"
+    },
+    {
+      "id": "hair-waves",
+      "label": "Waves",
+      "name": "Mira - waves hairstyle",
+      "directory": "docs/art-detailed/options/hair-waves",
+      "faceVariant": "heart",
+      "spritesheetSha256": "be946e75e6b41c50b1b41fdedea831de1e93b3556813d0d8b9006eddc5049990"
+    },
+    {
+      "id": "hair-mohawk",
+      "label": "Mohawk",
+      "name": "Mira - mohawk hairstyle",
+      "directory": "docs/art-detailed/options/hair-mohawk",
+      "faceVariant": "heart",
+      "spritesheetSha256": "0931312709c96dbe30b3a9c3f7e2319db4d8f96567051dc269ae77a68cdc5981"
+    }
+  ],
+  "referencePair": [
+    {
+      "id": "dress",
+      "label": "Waves + wedding dress",
+      "name": "Wedding look - long waves",
+      "directory": "docs/art-detailed/reference-pair/dress",
+      "faceVariant": "heart",
+      "spritesheetSha256": "4bea092165982ae6120c1382f22637ff0c9f9e0500ba0ed08197e8311426d41e"
+    },
+    {
+      "id": "suit",
+      "label": "Crop + wedding suit",
+      "name": "Wedding look - cropped hair",
+      "directory": "docs/art-detailed/reference-pair/suit",
+      "faceVariant": "oval",
+      "spritesheetSha256": "df3296dd08688d71e4003ae7c62f894ee7acf3753bac331e0a1c4fba4bc74a8b"
+    }
+  ],
+  "browserPlayback": [
+    {
+      "id": "mira",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 331,
+      "recordingEndMs": 3470,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 3596,
+      "recordingEndMs": 5320,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "mira",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 5623,
+      "recordingEndMs": 8742,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 9340,
+      "recordingEndMs": 11068,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "rowan",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 11327,
+      "recordingEndMs": 14460,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "rowan",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 14644,
+      "recordingEndMs": 16371,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "rowan",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 16505,
+      "recordingEndMs": 19629,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "rowan",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 19759,
+      "recordingEndMs": 21486,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "jun",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 21697,
+      "recordingEndMs": 24820,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "jun",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 24948,
+      "recordingEndMs": 26669,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "jun",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 26803,
+      "recordingEndMs": 29936,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "jun",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 30206,
+      "recordingEndMs": 31928,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "mira-casual",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 32387,
+      "recordingEndMs": 35539,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira-casual",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 35734,
+      "recordingEndMs": 37522,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "mira-casual",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 37679,
+      "recordingEndMs": 40804,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira-casual",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 40947,
+      "recordingEndMs": 42686,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "mira-wedding-suit",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 43225,
+      "recordingEndMs": 46354,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira-wedding-suit",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 46564,
+      "recordingEndMs": 48284,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "mira-wedding-suit",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 48443,
+      "recordingEndMs": 51575,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira-wedding-suit",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 51760,
+      "recordingEndMs": 53484,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "mira-wedding-dress",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 53650,
+      "recordingEndMs": 56768,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira-wedding-dress",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 56878,
+      "recordingEndMs": 58601,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "mira-wedding-dress",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 58712,
+      "recordingEndMs": 61836,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mira-wedding-dress",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 61929,
+      "recordingEndMs": 63650,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "dress",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 64023,
+      "recordingEndMs": 67133,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "dress",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 67256,
+      "recordingEndMs": 68967,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "dress",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 69094,
+      "recordingEndMs": 72217,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "dress",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 72334,
+      "recordingEndMs": 74050,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "suit",
+      "animation": "idle",
+      "facing": "right",
+      "durationMs": 3000,
+      "recordingStartMs": 74255,
+      "recordingEndMs": 77366,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "suit",
+      "animation": "walk",
+      "facing": "right",
+      "durationMs": 1600,
+      "recordingStartMs": 77489,
+      "recordingEndMs": 79201,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "suit",
+      "animation": "idle",
+      "facing": "left",
+      "durationMs": 3000,
+      "recordingStartMs": 79334,
+      "recordingEndMs": 82449,
+      "observedFrames": 4,
+      "observedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expectedFrameIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "suit",
+      "animation": "walk",
+      "facing": "left",
+      "durationMs": 1600,
+      "recordingStartMs": 82570,
+      "recordingEndMs": 84283,
+      "observedFrames": 8,
+      "observedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "expectedFrameIds": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "recording": {
+    "file": "docs/art-detailed/independent-player-motion.webm",
+    "source": "Browser MediaRecorder capture of the actual running independent player canvas, with neutral background and labels",
+    "width": 960,
+    "height": 620,
+    "bytes": 3481561
+  }
+}

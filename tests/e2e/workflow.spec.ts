@@ -115,10 +115,10 @@ test("customize → save/reopen → export → independent PNG/metadata playback
   );
   const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
   expect(manifest.spritesheet).toMatchObject({
-    width: 384,
-    height: 128,
-    frameWidth: 48,
-    frameHeight: 64,
+    width: 1536,
+    height: 512,
+    frameWidth: 192,
+    frameHeight: 256,
   });
   expect(manifest.animations.walk.frames).toHaveLength(8);
   expect(manifest.facing).toEqual({
@@ -126,18 +126,24 @@ test("customize → save/reopen → export → independent PNG/metadata playback
     right: "none",
     left: "mirror-x",
   });
+  const provenance = Buffer.from(files["PROVENANCE.txt"]).toString();
+  expect(provenance).toContain("AI-assisted");
+  expect(provenance).not.toContain("or AI generation are used");
   const png = Buffer.from(files["spritesheet.png"]);
-  expect(png.readUInt32BE(16)).toBe(384);
-  expect(png.readUInt32BE(20)).toBe(128);
+  expect(png.readUInt32BE(16)).toBe(1536);
+  expect(png.readUInt32BE(20)).toBe(512);
 
   // Fresh page: block generator/editor sources to prove consumption uses exported files only.
   const player = await context.newPage();
   player.on("pageerror", (error) => errors.push(error.message));
   const forbidden: string[] = [];
-  await player.route(/\/(?:src\/editor\/|src\/core\/generator)/, (route) => {
-    forbidden.push(route.request().url());
-    return route.abort();
-  });
+  await player.route(
+    /\/(?:src\/editor\/|src\/core\/(?:generator|illustrated-))/,
+    (route) => {
+      forbidden.push(route.request().url());
+      return route.abort();
+    },
+  );
   await player.goto("/player.html");
   await player.locator("#player-zip").setInputFiles(packPath);
   await expect(player.getByRole("status")).toContainText("Loaded: Aria");
@@ -219,13 +225,11 @@ test("invalid imports and unfinished names give feedback without losing the char
     "Mira",
   );
   await page.goto("/player.html");
-  await page
-    .locator("#player-zip")
-    .setInputFiles({
-      name: "bad.zip",
-      mimeType: "application/zip",
-      buffer: Buffer.from("not a zip archive"),
-    });
+  await page.locator("#player-zip").setInputFiles({
+    name: "bad.zip",
+    mimeType: "application/zip",
+    buffer: Buffer.from("not a zip archive"),
+  });
   await expect(page.getByRole("alert")).toContainText("Couldn’t load");
   expect(errors).toEqual([]);
 });
@@ -306,13 +310,11 @@ test("bundled exports retain transparency, render at 8×, and reject corrupt PNG
   expect(transparency.partial).toBe(0);
   await page.getByText("Have individual files?", { exact: true }).click();
   const actualPng = await readFile("public/samples/mira/spritesheet.png");
-  await page
-    .locator("#player-png")
-    .setInputFiles({
-      name: "spritesheet.png",
-      mimeType: "image/png",
-      buffer: actualPng.subarray(0, 33),
-    });
+  await page.locator("#player-png").setInputFiles({
+    name: "spritesheet.png",
+    mimeType: "image/png",
+    buffer: actualPng.subarray(0, 33),
+  });
   await page
     .locator("#player-manifest")
     .setInputFiles("public/samples/mira/manifest.json");

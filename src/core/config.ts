@@ -1,5 +1,6 @@
 import type {
   ArtV2CharacterConfig,
+  ArtV3CharacterConfig,
   CharacterConfig,
   FaceVariant,
   LegacyCharacterConfig,
@@ -96,14 +97,14 @@ export const LEGACY_PRESETS: {
   },
 ];
 
-export const DEFAULT_CONFIG: ArtV2CharacterConfig = {
+export const ART_V2_DEFAULT_CONFIG: ArtV2CharacterConfig = {
   ...LEGACY_DEFAULT_CONFIG,
   schemaVersion: 2,
   artworkVersion: 2,
   faceVariant: "heart",
 };
 
-export const PRESETS: {
+export const ART_V2_PRESETS: {
   id: string;
   label: string;
   description: string;
@@ -116,6 +117,21 @@ export const PRESETS: {
     artworkVersion: 2,
     faceVariant: (["heart", "oval", "round"] as const)[index],
   },
+}));
+
+export const DEFAULT_CONFIG: ArtV3CharacterConfig = {
+  ...ART_V2_DEFAULT_CONFIG,
+  artworkVersion: 3,
+};
+
+export const PRESETS: {
+  id: string;
+  label: string;
+  description: string;
+  config: ArtV3CharacterConfig;
+}[] = ART_V2_PRESETS.map((preset) => ({
+  ...preset,
+  config: { ...preset.config, artworkVersion: 3 },
 }));
 
 type OutfitAppearance = Pick<
@@ -186,11 +202,15 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     ("artworkVersion" in input || "faceVariant" in input)
   ) {
     throw new Error(
-      "Version 1 configurations cannot contain artworkVersion or faceVariant. Create an explicit Art V2 copy to use these options.",
+      "Version 1 configurations cannot contain artworkVersion or faceVariant. Create an explicit detailed copy to use these options.",
     );
   }
-  if (input.schemaVersion === 2 && input.artworkVersion !== 2) {
-    throw new Error("Version 2 configurations require artworkVersion 2.");
+  if (
+    input.schemaVersion === 2 &&
+    input.artworkVersion !== 2 &&
+    input.artworkVersion !== 3
+  ) {
+    throw new Error("Version 2 configurations require artworkVersion 2 or 3.");
   }
   if (
     typeof input.name !== "string" ||
@@ -237,14 +257,15 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
       lowerClothing: choice("lowerClothing", LOWER_CLOTHING),
     };
   }
-  return {
-    schemaVersion: 2,
-    artworkVersion: 2,
+  const modernAppearance = {
     ...appearance,
     faceVariant: choice("faceVariant", FACE_VARIANTS),
     upperClothing: choice("upperClothing", V2_UPPER_CLOTHING),
     lowerClothing: choice("lowerClothing", V2_LOWER_CLOTHING),
   };
+  return input.artworkVersion === 2
+    ? { schemaVersion: 2, artworkVersion: 2, ...modernAppearance }
+    : { schemaVersion: 2, artworkVersion: 3, ...modernAppearance };
 }
 
 /** Explicit opt-in only: loading, editing, and saving never invoke migration. */
@@ -253,12 +274,33 @@ export function upgradeToArtV2(
   faceVariant: FaceVariant = "heart",
 ): ArtV2CharacterConfig {
   const parsed = parseCharacterConfig(config);
-  if (parsed.schemaVersion === 2) return parsed;
+  if (parsed.schemaVersion === 2) {
+    if (parsed.artworkVersion === 3) {
+      throw new Error(
+        "Detailed artwork cannot be silently downgraded to Art V2.",
+      );
+    }
+    return parsed;
+  }
   return {
     ...parsed,
     schemaVersion: 2,
     artworkVersion: 2,
     faceVariant,
+  };
+}
+
+/** Create a detailed copy explicitly; saved V1/V2 artwork never migrates on load. */
+export function upgradeToDetailedArt(
+  config: CharacterConfig,
+  faceVariant: FaceVariant = "heart",
+): ArtV3CharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  return {
+    ...parsed,
+    schemaVersion: 2,
+    artworkVersion: 3,
+    faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,
   };
 }
 

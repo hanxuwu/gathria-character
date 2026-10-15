@@ -37,9 +37,11 @@ try {
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto(baseUrl);
   const exported = await page.evaluate(async (legacyConfigs) => {
-    const { PRESETS, OUTFIT_PRESETS, parseCharacterConfig } = await import(
-      "/src/core/config.ts"
-    );
+    const {
+      ART_V2_PRESETS: PRESETS,
+      OUTFIT_PRESETS,
+      parseCharacterConfig,
+    } = await import("/src/core/config.ts");
     const { generateCharacter } = await import("/src/core/generator.ts");
     const { createCharacterPack, loadCharacterPack } = await import(
       "/src/core/pack.ts"
@@ -110,6 +112,11 @@ try {
     return Promise.all(
       requests.map(async (request) => {
         const config = parseCharacterConfig(request.config);
+        if (config.schemaVersion !== 2 || config.artworkVersion !== 2) {
+          throw new Error(
+            "The archived Art V2 exporter only accepts explicit artworkVersion 2.",
+          );
+        }
         const generated = generateCharacter(config);
         const repeated = generateCharacter(config);
         if (
@@ -208,6 +215,12 @@ try {
     );
   }
 
+  // Keep the legacy review screenshot on explicit Art V2 even after defaults evolve.
+  await page
+    .getByLabel("Open character configuration", { exact: true })
+    .setInputFiles(
+      fileURLToPath(new URL("public/samples/v2/mira/character.json", root)),
+    );
   await page
     .getByRole("button", { name: "Pause animation", exact: true })
     .click();

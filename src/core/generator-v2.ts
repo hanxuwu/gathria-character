@@ -844,7 +844,7 @@ function drawFrame(
 
 export function generateArtV2(value: ArtV2CharacterConfig): GeneratedCharacter {
   const config = parseCharacterConfig(value);
-  if (config.schemaVersion !== 2)
+  if (config.schemaVersion !== 2 || config.artworkVersion !== 2)
     throw new Error("Art V2 requires explicit schemaVersion 2.");
   const width = W * 8,
     height = H * 2;

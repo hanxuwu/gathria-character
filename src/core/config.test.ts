@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import {
+  ART_V2_DEFAULT_CONFIG,
+  ART_V2_PRESETS,
   configToJson,
   DEFAULT_CONFIG,
   LEGACY_DEFAULT_CONFIG,
@@ -9,11 +11,12 @@ import {
   parseCharacterConfig,
   PRESETS,
   upgradeToArtV2,
+  upgradeToDetailedArt,
 } from "./config";
 
 describe("versioned character configuration", () => {
   it("round-trips every preset into a fresh, complete configuration", () => {
-    for (const { config } of PRESETS) {
+    for (const { config } of [...ART_V2_PRESETS, ...PRESETS]) {
       const result = parseCharacterConfig(JSON.parse(configToJson(config)));
       expect(result).toEqual(config);
       expect(result).not.toBe(config);
@@ -40,6 +43,8 @@ describe("versioned character configuration", () => {
     ["artworkVersion", undefined, "require artworkVersion 2"],
     ["artworkVersion", 1, "require artworkVersion 2"],
     ["artworkVersion", "2", "require artworkVersion 2"],
+    ["artworkVersion", 4, "require artworkVersion 2 or 3"],
+    ["artworkVersion", "3", "require artworkVersion 2 or 3"],
     ["faceVariant", undefined, "faceVariant must be one of"],
     ["faceVariant", "square", "faceVariant must be one of"],
     ["name", "", "nonempty"],
@@ -124,10 +129,71 @@ describe("versioned character configuration", () => {
   });
 
   it("leaves an existing V2 face choice intact when creating a fresh copy", () => {
-    const original = { ...DEFAULT_CONFIG, faceVariant: "round" as const };
+    const original = {
+      ...ART_V2_DEFAULT_CONFIG,
+      faceVariant: "round" as const,
+    };
     const copy = upgradeToArtV2(original, "oval");
     expect(copy).toEqual(original);
     expect(copy).not.toBe(original);
+  });
+
+  it("keeps the published V2 samples at their exact artwork version on reopen and edit", () => {
+    for (const { id, config } of ART_V2_PRESETS) {
+      const shipped = JSON.parse(
+        readFileSync(
+          new URL(
+            `../../public/samples/v2/${id}/character.json`,
+            import.meta.url,
+          ),
+          "utf8",
+        ),
+      );
+      expect(config).toEqual(shipped);
+      const reopened = parseCharacterConfig(shipped);
+      expect(JSON.parse(configToJson(reopened))).toEqual(shipped);
+      const edited = parseCharacterConfig({
+        ...reopened,
+        hairColor: "#755879",
+      });
+      expect(edited).toMatchObject({ schemaVersion: 2, artworkVersion: 2 });
+    }
+    expect(ART_V2_DEFAULT_CONFIG).toEqual(ART_V2_PRESETS[0].config);
+  });
+
+  it("creates a detailed copy from V1 only when explicitly requested", () => {
+    const original = Object.freeze({ ...LEGACY_DEFAULT_CONFIG });
+    const detailed = upgradeToDetailedArt(original, "oval");
+    expect(detailed).toEqual({
+      ...original,
+      schemaVersion: 2,
+      artworkVersion: 3,
+      faceVariant: "oval",
+    });
+    expect(upgradeToDetailedArt(original).faceVariant).toBe("heart");
+    expect(original).toEqual(LEGACY_DEFAULT_CONFIG);
+    expect(JSON.parse(configToJson(detailed))).toEqual(detailed);
+  });
+
+  it("preserves V2 face, outfit, and colors in an explicit detailed copy", () => {
+    const original = Object.freeze({
+      ...ART_V2_PRESETS[2].config,
+      ...OUTFIT_PRESETS[2].appearance,
+    });
+    const detailed = upgradeToDetailedArt(original, "heart");
+    expect(detailed).toEqual({ ...original, artworkVersion: 3 });
+    expect(original.artworkVersion).toBe(2);
+    expect(JSON.parse(configToJson(detailed))).toEqual(detailed);
+  });
+
+  it("retains an existing detailed design and rejects implicit artwork downgrades", () => {
+    const original = { ...DEFAULT_CONFIG, faceVariant: "round" as const };
+    const copy = upgradeToDetailedArt(original, "oval");
+    expect(copy).toEqual(original);
+    expect(copy).not.toBe(original);
+    expect(() => upgradeToArtV2(original)).toThrow(
+      "cannot be silently downgraded",
+    );
   });
 
   it.each(["heart", "oval", "round"])(

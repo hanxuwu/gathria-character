@@ -175,12 +175,14 @@ export function PackPlayer() {
     void openPack(() => loadCharacterPack(file), file.name);
   }
 
-  function openExample(artworkVersion: 1 | 2) {
+  function openExample(artworkVersion: 1 | 2 | 3) {
     void openPack(async () => {
       const response = await fetch(
-        artworkVersion === 2
-          ? "/samples/v2/mira.character.zip"
-          : "/samples/mira.character.zip",
+        artworkVersion === 3
+          ? "/samples/detailed/mira.character.zip"
+          : artworkVersion === 2
+            ? "/samples/v2/mira.character.zip"
+            : "/samples/mira.character.zip",
       );
       if (!response.ok)
         throw new Error(
@@ -325,16 +327,23 @@ export function PackPlayer() {
             </div>
             <button
               className="player-sample-button"
-              onClick={() => openExample(2)}
+              onClick={() => openExample(3)}
               disabled={busy}
             >
               <span className="player-sample-icon">
                 <Layers3 size={19} />
               </span>
               <span>
-                Just exploring?<strong>Try Mira’s Art V2 pack</strong>
+                Just exploring?<strong>Try Mira’s detailed pack</strong>
               </span>
               <ArrowRight size={17} />
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample(2)}
+              disabled={busy}
+            >
+              Try Mira’s Art V2 pack · classic
             </button>
             <button
               className="player-legacy-sample"
@@ -640,7 +649,7 @@ export function PackPlayer() {
                 <dt>Configuration</dt>
                 <dd>
                   {pack.config
-                    ? `Included · Art V${pack.config.schemaVersion}`
+                    ? `Included · Art V${pack.config.schemaVersion === 1 ? 1 : pack.config.artworkVersion}`
                     : "Not provided · optional"}
                 </dd>
               </div>

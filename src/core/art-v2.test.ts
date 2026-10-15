@@ -2,9 +2,9 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
-  DEFAULT_CONFIG,
+  ART_V2_DEFAULT_CONFIG as DEFAULT_CONFIG,
   OUTFIT_PRESETS,
-  PRESETS,
+  ART_V2_PRESETS as PRESETS,
   configToJson,
   parseCharacterConfig,
   upgradeToArtV2,
@@ -43,6 +43,20 @@ const LEGACY_RGBA_HASHES = {
   jun: "c3363502177ee31ef0cdde9918e5c6ae5e3ac9c9ce309796b100a84effcad865",
 };
 
+// Captured from the published c9505f0 PNGs before introducing detailed artwork.
+// Keep original V2 exports and these fixed hashes as independent compatibility evidence.
+const ART_V2_RGBA_HASHES = {
+  mira: "a63d2c95ddd29510c780b783788364ba017bcfa400be28e993693e04eef2c08d",
+  rowan: "b596baf2039f23604123c8970b8aec3007301e6783e8a8150b8ca19920a46cce",
+  jun: "aacb574197597cd6fdb636406e1d3b4734febae4a40244e6247ba5ba9f7bb60a",
+  "mira-casual":
+    "31b04b3a1c4ff64f3030edc5de2c21fb84d11c850062b15c4a8f3fa457d13603",
+  "mira-wedding-suit":
+    "b41fd9eabf4508f38576c8f360d8cb7146931f22a21fbaef99ca087d7b7dcbbd",
+  "mira-wedding-dress":
+    "379a9b9004cbed007e46980da0ac281fe167b4618cd64b7c95175ee7138d3af9",
+};
+
 // Focus on garment boundaries that differ from the coordinated outfit presets:
 // a short sleeve over the long hem, bare arms with shorts, and a suit over a skirt.
 const OUTFIT_CASES = [
@@ -74,6 +88,37 @@ const OUTFIT_CASES = [
 ];
 
 describe("artwork version compatibility", () => {
+  it.each(Object.entries(ART_V2_RGBA_HASHES))(
+    "reopens %s's published V2 configuration with pixel-exact output",
+    (id, expectedHash) => {
+      const json = readFileSync(
+        new URL(
+          `../../public/samples/v2/${id}/character.json`,
+          import.meta.url,
+        ),
+        "utf8",
+      );
+      const config = parseCharacterConfig(JSON.parse(json));
+      const generated = generateCharacter(config);
+      expect(config).toMatchObject({ schemaVersion: 2, artworkVersion: 2 });
+      expect(JSON.parse(configToJson(config))).toEqual(JSON.parse(json));
+      expect(generated.manifest.generator).toBe("gathria-warm-pixels-v2");
+      expect(hash(generated.pixels)).toBe(expectedHash);
+      const original = readCharacterPackArchive(
+        new Uint8Array(
+          readFileSync(
+            new URL(
+              `../../public/samples/v2/${id}.character.zip`,
+              import.meta.url,
+            ),
+          ),
+        ),
+      );
+      expect(original.config).toEqual(config);
+      expect(original.manifest).toEqual(generated.manifest);
+    },
+  );
+
   it.each(Object.entries(LEGACY_RGBA_HASHES))(
     "reopens %s's original configuration with pixel-exact V1 output",
     (id, expectedHash) => {

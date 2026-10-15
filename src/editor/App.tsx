@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -24,6 +25,7 @@ import {
   X,
 } from "lucide-react";
 import {
+  ART_V2_PRESETS,
   CLOTHING_COLORS,
   DEFAULT_CONFIG,
   HAIR_COLORS,
@@ -33,7 +35,7 @@ import {
   SKIN_TONES,
   configToJson,
   parseCharacterConfig,
-  upgradeToArtV2,
+  upgradeToDetailedArt,
 } from "../core/config";
 import { generateCharacter } from "../core/generator";
 import {
@@ -179,7 +181,7 @@ export default function App() {
   const [facing, setFacing] = useState<Facing>("right");
   const [playing, setPlaying] = useState(true);
   const [speed, setSpeed] = useState(1);
-  const [zoom, setZoom] = useState(5);
+  const [zoom, setZoom] = useState(1);
   const [frame, setFrame] = useState(1);
   const [checkerboard, setCheckerboard] = useState(true);
   const [exporting, setExporting] = useState(false);
@@ -188,6 +190,7 @@ export default function App() {
     error?: boolean;
   } | null>(null);
   const importRef = useRef<HTMLInputElement>(null);
+  const presetStripRef = useRef<HTMLDivElement>(null);
   const generated = useMemo(
     () =>
       generateCharacter({
@@ -196,7 +199,19 @@ export default function App() {
       }),
     [config],
   );
-  const activePresets = config.schemaVersion === 1 ? LEGACY_PRESETS : PRESETS;
+  const artworkVersion = config.schemaVersion === 1 ? 1 : config.artworkVersion;
+  const activePresets =
+    artworkVersion === 1
+      ? LEGACY_PRESETS
+      : artworkVersion === 2
+        ? ART_V2_PRESETS
+        : PRESETS;
+  const { frameWidth, frameHeight } = generated.manifest.spritesheet;
+  const largePortraits = frameWidth > 96;
+  const recommendedZoom = generated.manifest.scale.recommended;
+  useEffect(() => {
+    setZoom(recommendedZoom);
+  }, [frameWidth, frameHeight, recommendedZoom]);
   const sequence = generated.manifest.animations[animation];
   const drawingCount = new Set(sequence.frames).size;
   const loopSeconds = Number(
@@ -218,13 +233,13 @@ export default function App() {
     setConfig({ ...item.config });
     setNotice(null);
   }
-  function createArtV2Copy() {
+  function createDetailedCopy() {
     try {
       const face = PRESETS.find((item) => item.id === selectedPreset)!.config
         .faceVariant;
-      setConfig(upgradeToArtV2(config, face));
+      setConfig(upgradeToDetailedArt(config, face));
       setNotice({
-        text: "Art V2 copy created. Save it as a new configuration to keep both designs.",
+        text: "Detailed copy created. Save it as a new configuration to keep both designs.",
       });
     } catch (error) {
       showError(error);
@@ -274,8 +289,8 @@ export default function App() {
       setConfig(next);
       setNotice({
         text:
-          next.schemaVersion === 1
-            ? `Opened ${next.name} in the original Art V1 style. Your saved design is preserved.`
+          next.schemaVersion === 1 || next.artworkVersion === 2
+            ? `Opened ${next.name} in its saved Art V${next.schemaVersion === 1 ? 1 : next.artworkVersion} style. Your design is preserved.`
             : `Opened ${next.name}. Every detail is ready to edit.`,
       });
     } catch (error) {
@@ -398,12 +413,52 @@ export default function App() {
               </button>
             </div>
             <section className="preset-section">
-              <span className="control-label">Start with someone</span>
-              <div className="preset-grid">
+              <div className="preset-label-row">
+                <span className="control-label">Start with someone</span>
+                {largePortraits && (
+                  <div className="preset-scroll-controls">
+                    <button
+                      type="button"
+                      className="icon-button"
+                      aria-label="Previous characters"
+                      onClick={() =>
+                        presetStripRef.current?.scrollBy({
+                          left: -(frameWidth + 23),
+                        })
+                      }
+                    >
+                      <ArrowLeft size={14} />
+                    </button>
+                    <button
+                      type="button"
+                      className="icon-button"
+                      aria-label="More characters"
+                      onClick={() =>
+                        presetStripRef.current?.scrollBy({
+                          left: frameWidth + 23,
+                        })
+                      }
+                    >
+                      <ArrowRight size={14} />
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div
+                ref={presetStripRef}
+                className={`preset-grid ${largePortraits ? "large-preset-grid" : ""}`}
+                role="group"
+                aria-label="Character presets"
+              >
                 {activePresets.map((item) => (
                   <button
                     type="button"
-                    className={`preset-card ${selectedPreset === item.id ? "selected" : ""}`}
+                    className={`preset-card ${artworkVersion === 3 ? "detailed-preset-card" : ""} ${selectedPreset === item.id ? "selected" : ""}`}
+                    style={
+                      largePortraits
+                        ? { width: frameWidth + 16, height: frameHeight + 28 }
+                        : undefined
+                    }
                     key={item.id}
                     onClick={() => choosePreset(item.id)}
                     aria-pressed={selectedPreset === item.id}
@@ -419,6 +474,11 @@ export default function App() {
                   </button>
                 ))}
               </div>
+              {largePortraits && (
+                <p className="preset-scroll-hint">
+                  Scroll to meet all three characters.
+                </p>
+              )}
             </section>
             <div className="name-field">
               <label className="control-label" htmlFor="character-name">
@@ -432,12 +492,15 @@ export default function App() {
                 placeholder="Give them a name"
               />
             </div>
-            {config.schemaVersion === 1 && (
+            {artworkVersion !== 3 && (
               <div className="legacy-art-notice">
-                <strong>Art V1 · original</strong>
-                <p>Your saved artwork stays in its original style.</p>
-                <button type="button" onClick={createArtV2Copy}>
-                  <Sparkles size={13} /> Create Art V2 copy
+                <strong>
+                  Art V{artworkVersion} ·{" "}
+                  {artworkVersion === 1 ? "original" : "classic"}
+                </strong>
+                <p>Your saved artwork stays in its existing style.</p>
+                <button type="button" onClick={createDetailedCopy}>
+                  <Sparkles size={13} /> Create detailed copy
                 </button>
               </div>
             )}
@@ -474,7 +537,7 @@ export default function App() {
                   ["crop", "Short crop"],
                   ["bob", "Classic bob"],
                   ["waves", "Long waves"],
-                  ["mohawk", "Mohawk"],
+                  ["mohawk", artworkVersion === 3 ? "Swept crest" : "Mohawk"],
                 ]}
                 onChange={(value) =>
                   update("hairstyle", value as CharacterConfig["hairstyle"])
@@ -599,7 +662,9 @@ export default function App() {
                 <div className="preview-title">
                   <span className="live-dot" />
                   <h2>Live preview</h2>
-                  <span className="subtle-pill">48 × 64 px</span>
+                  <span className="subtle-pill">
+                    {frameWidth} × {frameHeight} px
+                  </span>
                 </div>
                 <button
                   className={`icon-button ${checkerboard ? "is-on" : ""}`}
@@ -616,14 +681,26 @@ export default function App() {
               >
                 <div className="stage-corner">
                   <span>
-                    {config.schemaVersion === 1
+                    {artworkVersion === 1
                       ? "ART V1 · ORIGINAL"
-                      : "CHARACTER ART V2"}
+                      : artworkVersion === 2
+                        ? "ART V2 · CLASSIC"
+                        : "DETAILED ART · V3"}
                   </span>
-                  <span>100% browser-made</span>
+                  <span>
+                    {artworkVersion === 3
+                      ? "Fine detail. Made personal."
+                      : "100% browser-made"}
+                  </span>
                 </div>
                 <div className="canvas-position">
-                  <div className="ground-line" style={{ bottom: 4 * zoom }} />
+                  <div
+                    className="ground-line"
+                    style={{
+                      bottom:
+                        (frameHeight - generated.manifest.anchor.y) * zoom,
+                    }}
+                  />
                   <CharacterPreview
                     generated={generated}
                     animation={animation}
@@ -720,7 +797,7 @@ export default function App() {
                     value={zoom}
                     onChange={(e) => setZoom(Number(e.target.value))}
                   >
-                    {[2, 3, 4, 5, 6].map((value) => (
+                    {[1, 2, 3, 4, 5, 6].map((value) => (
                       <option value={value} key={value}>
                         {value}×
                       </option>

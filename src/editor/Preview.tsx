@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import type { AnimationName, Facing, GeneratedCharacter } from "../core/types";
 
 export function useSpriteSheet(generated: GeneratedCharacter) {
@@ -121,6 +121,8 @@ export function Filmstrip({
   const ref = useRef<HTMLCanvasElement>(null);
   const { sheet, ready } = useSpriteSheet(generated);
   const sequence = generated.manifest.animations[animation];
+  const { frameWidth, frameHeight } = generated.manifest.spritesheet;
+  const slotWidth = frameWidth + 16;
   useEffect(() => {
     const ctx = ref.current?.getContext("2d");
     if (!ctx || !sheet.current) return;
@@ -134,20 +136,28 @@ export function Filmstrip({
         frame.y,
         frame.width,
         frame.height,
-        i * 64 + 8,
+        i * slotWidth + 8,
         0,
         frame.width,
         frame.height,
       );
     });
-  }, [ready, generated, sequence, sheet]);
+  }, [ready, generated, sequence, sheet, slotWidth]);
   return (
     <div className="filmstrip-scroll">
-      <div className="filmstrip" style={{ width: sequence.frames.length * 64 }}>
+      <div
+        className="filmstrip"
+        style={
+          {
+            width: sequence.frames.length * slotWidth,
+            "--frame-slot": `${slotWidth}px`,
+          } as CSSProperties
+        }
+      >
         <canvas
           ref={ref}
-          width={sequence.frames.length * 64}
-          height={64}
+          width={sequence.frames.length * slotWidth}
+          height={frameHeight}
           aria-label={`${animation} animation frames`}
         />
         <div className="frame-labels">

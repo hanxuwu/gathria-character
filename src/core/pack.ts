@@ -583,6 +583,11 @@ SOFTWARE.
 `;
 const INTEGRATION = `# CharacterPack v1\n\nRead manifest.json and decode spritesheet.png as an RGBA image. Validate schemaVersion = 1 and format = "gathria-character-pack", then validate PNG dimensions against spritesheet.width/height.\n\nframes contains grid-aligned source rectangles, each with a unique numeric id. Resolve animation frame references by id (not by array index). Play animations.idle or animations.walk at their declared fps; loop only when loop is true.\n\nDraw the source rectangle at a positive integer scale with image smoothing disabled. Coordinates are pixels from the top-left. anchor.x/y are frame-local placement coordinates: draw the frame with its anchor at your world position. For left-facing output mirror the frame horizontally around its anchor; for right-facing output draw it unchanged. Keep the same world anchor when flipping. Do not flip the entire spritesheet.\n\ncharacter.json is editable source configuration, not required for playback. This pack contains all assets needed by a consumer; do not regenerate them. See the repository docs/CHARACTER_PACK_V1.md for the complete contract and the standalone player at player.html for an implementation.\n\nFrame dimensions and timing are prototype choices, not verified Gathria requirements. Gathria integration remains unverified pending inspection of its actual runtime.\n`;
 
+const ILLUSTRATED_PROVENANCE = PROVENANCE.replace(
+  "The bundled deterministic pixel artwork is drawn from original procedural shapes and poses authored for this project. No external image assets, photos, paid APIs, or AI generation are used.",
+  "Artwork version 3 uses AI-assisted illustration assets created for this project with OpenAI's image generation tool, then extracted into masked layers and composed by a deterministic local renderer. Source banks and preparation scripts are included in the repository. User-supplied images guided the visual style; those reference images are not bundled in this pack. No photos, remote services, or model calls are used during character customization, generation, export, or playback.",
+);
+
 export async function createCharacterPack(
   config: CharacterConfig,
   generated: GeneratedCharacter,
@@ -604,7 +609,12 @@ export async function createCharacterPack(
       "character.json": strToU8(
         JSON.stringify(validatedConfig, null, 2) + "\n",
       ),
-      "PROVENANCE.txt": strToU8(PROVENANCE),
+      "PROVENANCE.txt": strToU8(
+        validatedConfig.schemaVersion === 2 &&
+          validatedConfig.artworkVersion === 3
+          ? ILLUSTRATED_PROVENANCE
+          : PROVENANCE,
+      ),
       "INTEGRATION.md": strToU8(INTEGRATION),
     },
     { level: 6 },
