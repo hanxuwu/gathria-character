@@ -14,6 +14,14 @@ V3 uses 192×256 frames in a 1536×512 sheet, with a ground anchor at (96, 240).
 
 The runtime performs no AI calls, photo processing, asset downloads, or other remote generation. AI/photo input as a product feature remains a separate future milestone. An exported pack contains all pixels required for independent playback.
 
+## Expressive artwork V4
+
+V4 reuses the frozen V3 illustration bank and adds deterministic eye expressions, different highlight treatment, and an updated articulated rig in `expressive-face.ts` and `expressive-rig.ts`. V3 source bytes and rendering remain unchanged. New appearance files explicitly declare artwork version 4.
+
+The optional rose hairpiece was created with OpenAI's image generation tool on 2026-10-15, guided by the user's wedding character references. Its original transparent source is committed at [`artwork/expressive-source/flower-clip.png`](../artwork/expressive-source/flower-clip.png). `scripts/prepare-expressive-accessory.py` crops the alpha bounds, thresholds alpha at 128, scales with nearest-neighbor sampling into a 28×40 bound (actual 28×39), and packs fixed-color RGBA/material tuples. It does not redraw the asset. The app bundles `expressive-accessory.generated.ts`; this asset remains optional and recoloring does not affect its rose/leaf colors.
+
+Blinking and happy eyes are local procedural changes within the illustrated head's eye regions; this revision does not use a model during customization or animation. V4 keeps the V3 frame dimensions and CharacterPack v1 contract. Its real export evidence is in `docs/art-expressive/`, and samples are in `public/samples/expressive/`.
+
 ## Reuse and evidence
 
 Project source, prepared artwork, source banks, and generated sprites are distributed under the repository's [MIT License](../LICENSE), to the extent rights are held by the contributors. Retain its copyright and permission notice when redistributing. There is no mandatory visible in-game credit or per-export fee. This does not grant rights to third-party trademarks or identities, or to assets users independently add. Each exported pack includes the license and a provenance statement appropriate to its artwork version.

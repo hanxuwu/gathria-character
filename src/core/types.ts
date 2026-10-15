@@ -33,10 +33,17 @@ export interface ArtV3CharacterConfig extends CharacterAppearance {
   artworkVersion: 3;
   faceVariant: FaceVariant;
 }
+export interface ArtV4CharacterConfig
+  extends Omit<ArtV3CharacterConfig, "artworkVersion"> {
+  artworkVersion: 4;
+  expression: "gentle" | "joyful";
+  hairAccessory: "none" | "flowers";
+}
 export type CharacterConfig =
   | LegacyCharacterConfig
   | ArtV2CharacterConfig
-  | ArtV3CharacterConfig;
+  | ArtV3CharacterConfig
+  | ArtV4CharacterConfig;
 export interface SpriteFrame {
   id: number;
   x: number;

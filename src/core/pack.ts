@@ -611,8 +611,16 @@ export async function createCharacterPack(
       ),
       "PROVENANCE.txt": strToU8(
         validatedConfig.schemaVersion === 2 &&
-          validatedConfig.artworkVersion === 3
-          ? ILLUSTRATED_PROVENANCE
+          validatedConfig.artworkVersion >= 3
+          ? validatedConfig.artworkVersion === 4
+            ? ILLUSTRATED_PROVENANCE.replace(
+                "Artwork version 3",
+                "Artwork version 4",
+              ).replace(
+                "Prototype format:",
+                "Version 4 adds deterministic expressions, motion and an AI-assisted rose hairpiece.\n\nPrototype format:",
+              )
+            : ILLUSTRATED_PROVENANCE
           : PROVENANCE,
       ),
       "INTEGRATION.md": strToU8(INTEGRATION),

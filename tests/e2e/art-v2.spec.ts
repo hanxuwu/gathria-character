@@ -14,6 +14,7 @@ async function waitForDraw(page: Page) {
 for (const originalArt of [
   { version: 1, badge: "Art V1 · original", sample: "mira" },
   { version: 2, badge: "Art V2 · classic", sample: "v2/mira" },
+  { version: 3, badge: "Art V3 · detailed", sample: "detailed/mira" },
 ]) {
   test(`Art V${originalArt.version} saved work stays pixel-exact until an explicit detailed copy is made`, async ({
     page,
@@ -50,11 +51,15 @@ for (const originalArt of [
         await (await fetch(`/samples/${sample}/spritesheet.png`)).blob(),
       );
       const canvas = document.createElement("canvas");
-      canvas.width = 96;
-      canvas.height = 128;
+      const manifest = await (
+        await fetch(`/samples/${sample}/manifest.json`)
+      ).json();
+      const { frameWidth: w, frameHeight: h } = manifest.spritesheet;
+      canvas.width = w * 2;
+      canvas.height = h * 2;
       const context = canvas.getContext("2d")!;
       context.imageSmoothingEnabled = false;
-      context.drawImage(bitmap, 0, 0, 48, 64, 0, 0, 96, 128);
+      context.drawImage(bitmap, 0, 0, w, h, 0, 0, w * 2, h * 2);
       bitmap.close();
       return canvas.toDataURL();
     }, originalArt.sample);
@@ -86,11 +91,16 @@ for (const originalArt of [
     const originalProvenance = Buffer.from(
       originalFiles["PROVENANCE.txt"],
     ).toString();
-    expect(originalProvenance).toContain("or AI generation are used");
-    expect(originalProvenance).not.toContain("AI-assisted");
+    if (originalArt.version < 3) {
+      expect(originalProvenance).toContain("or AI generation are used");
+      expect(originalProvenance).not.toContain("AI-assisted");
+    } else
+      expect(originalProvenance).toContain(
+        "Artwork version 3 uses AI-assisted",
+      );
 
     await page
-      .getByRole("button", { name: "Create detailed copy", exact: true })
+      .getByRole("button", { name: "Create expressive copy", exact: true })
       .click();
     await expect(
       page.getByText(originalArt.badge, { exact: true }),
@@ -114,7 +124,7 @@ for (const originalArt of [
     expect(JSON.parse(await readFile(copyPath, "utf8"))).toMatchObject({
       ...originalConfig,
       schemaVersion: 2,
-      artworkVersion: 3,
+      artworkVersion: 4,
       faceVariant: "round",
     });
     await page.getByRole("button", { name: "Jun preset", exact: true }).click();
@@ -153,6 +163,10 @@ for (const outfit of [
       .click();
     await page.getByLabel("Face shape", { exact: true }).selectOption("heart");
     await page.getByRole("button", { name: outfit.label, exact: true }).click();
+    await page.getByLabel("Expression", { exact: true }).selectOption("joyful");
+    await page
+      .getByLabel("Hair accessory", { exact: true })
+      .selectOption("flowers");
     await expect(
       page.getByLabel("Upper clothing", { exact: true }),
     ).toHaveValue(outfit.upper);
@@ -181,14 +195,16 @@ for (const outfit of [
     const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
     expect(config).toMatchObject({
       schemaVersion: 2,
-      artworkVersion: 3,
+      artworkVersion: 4,
       faceVariant: "heart",
       upperClothing: outfit.upper,
       lowerClothing: outfit.lower,
+      expression: "joyful",
+      hairAccessory: "flowers",
     });
     expect(manifest).toMatchObject({
       schemaVersion: 1,
-      generator: "gathria-detailed-pixels-v3",
+      generator: "gathria-expressive-pixels-v4",
       anchor: { x: 96, y: 240 },
       spritesheet: {
         width: 1536,
@@ -202,7 +218,7 @@ for (const outfit of [
     player.on("pageerror", (error) => errors.push(error.message));
     const forbidden: string[] = [];
     await player.route(
-      /\/(?:src\/editor\/|src\/core\/(?:generator|illustrated-))/,
+      /\/(?:src\/editor\/|src\/core\/(?:generator|illustrated-|expressive-))/,
       (route) => {
         forbidden.push(route.request().url());
         return route.abort();
@@ -212,7 +228,7 @@ for (const outfit of [
     await player.locator("#player-zip").setInputFiles(zipPath);
     await expect(player.getByRole("status")).toContainText("Loaded: Rowan");
     await expect(
-      player.getByText("gathria-detailed-pixels-v3", { exact: true }),
+      player.getByText("gathria-expressive-pixels-v4", { exact: true }),
     ).toBeVisible();
     await player
       .getByRole("button", { name: "Pause animation", exact: true })

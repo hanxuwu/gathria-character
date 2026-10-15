@@ -1,6 +1,7 @@
 import type {
   ArtV2CharacterConfig,
   ArtV3CharacterConfig,
+  ArtV4CharacterConfig,
   CharacterConfig,
   FaceVariant,
   LegacyCharacterConfig,
@@ -119,12 +120,12 @@ export const ART_V2_PRESETS: {
   },
 }));
 
-export const DEFAULT_CONFIG: ArtV3CharacterConfig = {
+export const ART_V3_DEFAULT_CONFIG: ArtV3CharacterConfig = {
   ...ART_V2_DEFAULT_CONFIG,
   artworkVersion: 3,
 };
 
-export const PRESETS: {
+export const ART_V3_PRESETS: {
   id: string;
   label: string;
   description: string;
@@ -132,6 +133,22 @@ export const PRESETS: {
 }[] = ART_V2_PRESETS.map((preset) => ({
   ...preset,
   config: { ...preset.config, artworkVersion: 3 },
+}));
+
+export const DEFAULT_CONFIG: ArtV4CharacterConfig = {
+  ...ART_V3_DEFAULT_CONFIG,
+  artworkVersion: 4,
+  expression: "gentle",
+  hairAccessory: "none",
+};
+export const PRESETS = ART_V3_PRESETS.map((preset) => ({
+  ...preset,
+  config: {
+    ...preset.config,
+    artworkVersion: 4,
+    expression: "gentle",
+    hairAccessory: "none",
+  } as ArtV4CharacterConfig,
 }));
 
 type OutfitAppearance = Pick<
@@ -208,9 +225,12 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
   if (
     input.schemaVersion === 2 &&
     input.artworkVersion !== 2 &&
-    input.artworkVersion !== 3
+    input.artworkVersion !== 3 &&
+    input.artworkVersion !== 4
   ) {
-    throw new Error("Version 2 configurations require artworkVersion 2 or 3.");
+    throw new Error(
+      "Version 2 configurations require artworkVersion 2, 3 or 4.",
+    );
   }
   if (
     typeof input.name !== "string" ||
@@ -263,6 +283,14 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     upperClothing: choice("upperClothing", V2_UPPER_CLOTHING),
     lowerClothing: choice("lowerClothing", V2_LOWER_CLOTHING),
   };
+  if (input.artworkVersion === 4)
+    return {
+      schemaVersion: 2,
+      artworkVersion: 4,
+      ...modernAppearance,
+      expression: choice("expression", ["gentle", "joyful"] as const),
+      hairAccessory: choice("hairAccessory", ["none", "flowers"] as const),
+    };
   return input.artworkVersion === 2
     ? { schemaVersion: 2, artworkVersion: 2, ...modernAppearance }
     : { schemaVersion: 2, artworkVersion: 3, ...modernAppearance };
@@ -275,12 +303,12 @@ export function upgradeToArtV2(
 ): ArtV2CharacterConfig {
   const parsed = parseCharacterConfig(config);
   if (parsed.schemaVersion === 2) {
-    if (parsed.artworkVersion === 3) {
+    if (parsed.artworkVersion >= 3) {
       throw new Error(
         "Detailed artwork cannot be silently downgraded to Art V2.",
       );
     }
-    return parsed;
+    return parsed as ArtV2CharacterConfig;
   }
   return {
     ...parsed,
@@ -296,6 +324,10 @@ export function upgradeToDetailedArt(
   faceVariant: FaceVariant = "heart",
 ): ArtV3CharacterConfig {
   const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion === 4)
+    throw new Error(
+      "Expressive artwork cannot be silently downgraded to Art V3.",
+    );
   return {
     ...parsed,
     schemaVersion: 2,
@@ -306,4 +338,21 @@ export function upgradeToDetailedArt(
 
 export function configToJson(config: CharacterConfig): string {
   return `${JSON.stringify(parseCharacterConfig(config), null, 2)}\n`;
+}
+
+/** Explicit opt-in: all delivered artwork versions retain their renderer. */
+export function upgradeToExpressiveArt(
+  config: CharacterConfig,
+  faceVariant: FaceVariant = "heart",
+): ArtV4CharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion === 4) return parsed;
+  return {
+    ...parsed,
+    schemaVersion: 2,
+    artworkVersion: 4,
+    faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,
+    expression: "gentle",
+    hairAccessory: "none",
+  };
 }

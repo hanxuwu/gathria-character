@@ -2,9 +2,9 @@ import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import {
   ART_V2_PRESETS,
-  DEFAULT_CONFIG,
+  ART_V3_DEFAULT_CONFIG as DEFAULT_CONFIG,
   OUTFIT_PRESETS,
-  PRESETS,
+  ART_V3_PRESETS as PRESETS,
   SKIN_TONES,
   configToJson,
   parseCharacterConfig,

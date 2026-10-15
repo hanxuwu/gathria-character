@@ -1,61 +1,47 @@
 # Implementation status
 
-**Character Art V2, detailed revision implemented; awaiting user visual review.** Branch `feat/character-art-v2` remains based on the unmerged MVP branch `feat/character-mvp` (latest MVP commit `4785afa`). [Draft PR #1](https://github.com/hanxuwu/gathria-character/pull/1) targets that branch and must remain unmerged. Inspect the current Git state before continuing work; the initial published V2 commit is `c9505f0`.
+**Character Art V2 milestone, expressive refinement implemented; awaiting visual review.** Branch `feat/character-art-v2` remains based on unmerged `feat/character-mvp` (MVP `4785afa`). [Draft PR #1](https://github.com/hanxuwu/gathria-character/pull/1) targets that branch and must remain unmerged. Inspect current Git state before further editing. Published milestones include V2 `c9505f0` and detailed V3 `bc69f9d`.
 
-The new default uses detailed Japanese chibi illustrations and explicit **artworkVersion 3**. Published V1 and V2 configurations remain pixel-exact. The saved-character/editor/export workflow is retained. See [ART_V2_REVIEW.md](ART_V2_REVIEW.md) for actual comparisons, animations, sample packs and limitations.
+The current default is **artworkVersion 4**: warm Japanese chibi illustration layers with gentler dark-hair highlights, blinking, optional happy eyes and a rose hairpiece, wider stepping, stronger arm articulation and hair/hem motion. V1–V3 files keep their exact renderer. The [current review](ART_V2_REVIEW.md) links actual comparisons, animations, packs, verification and limitations; [V3 review](ART_V3_REVIEW.md) records the previous delivery.
 
-## Implementation
+## Implementation and compatibility
 
-| Area          | Result                                                                                                                                                   |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Artwork       | Rounded faces, large expressive eyes, overlapping curls, material shading, detailed casual/wedding clothing                                              |
-| Identity      | Mira waves/heart, Rowan silver crop/oval, Jun dark bob/round; face and hair independently selectable                                                     |
-| Customization | Four hair silhouettes, three face variants, five upper and four lower garments; five independent editable material colors                                |
-| Animation     | Fixed articulated rig, four idle drawings/12 timing steps at 4 fps, eight walk poses at 10 fps, secondary hair/skirt deformation, mirrored left playback |
-| Saved work    | Frozen V1/V2 renderers and presets; explicit detailed-copy conversion; no silent migration                                                               |
-| Export        | Transparent PNG and CharacterPack v1, configuration save/reopen, bounded validation, independent file-driven playback                                    |
-| Source art    | AI-assisted source banks committed with reproducible offline extraction/masks; runtime is local and deterministic                                        |
-
-## Architecture and compatibility
-
-- `src/core/generator.ts` dispatches validated schema-1 input to `generator-v1.ts`, and schema-2 input by `artworkVersion` to `generator-v2.ts` or `generator-v3.ts`. V1/V2 rendering is frozen; their defaults are exported separately from the new detailed defaults.
-- V1 configuration remains schema 1 without modern fields. V2 remains schema 2/artwork 2. Detailed V3 retains schema 2's field shape and explicitly sets artwork 3. **Create detailed copy** is an opt-in action; loading, editing, preset selection, resetting or saving older work preserves its version.
-- V1/V2 frames remain 48×64, sheet 384×128, anchor (24, 60). V3 frames are 192×256, sheet 1536×512, anchor (96, 240), recommended zoom 1. CharacterPack manifest schema stays 1 because consumers already read dimensions, anchor and timing from metadata.
-- `artwork/illustrated-source/` contains the two detailed production banks. `scripts/prepare-illustrated-assets.mjs` invokes the Python/Pillow/NumPy extraction scripts and writes `src/core/illustrated-assets.generated.ts`. Source alpha is normalized to 0/255; material IDs protect eyes and decorative details during recoloring. The browser needs no Python or image model.
-- `illustrated-canvas.ts` decodes prepared layers, applies shading-preserving recoloring and nearest-neighbor transforms. `illustrated-rig.ts` places articulated limbs, clothing and portraits. Generation is synchronous and deterministic for configuration + artwork version.
-- The independent consumer imports the actual PNG/manifest and does not import generator, prepared source banks, rig or editor modules. Configuration is optional for playback. File-size/decompression/manifest validation limits are unchanged.
-- `PROVENANCE.txt` distinguishes original procedural V1/V2 from AI-assisted V3 source artwork. The source and generated artwork are distributed under MIT terms; runtime AI/photo input is not implemented.
+- `generator.ts` dispatches schema 1 to V1 and schema 2 by explicit artwork version to V2, V3 or V4. Preserved defaults/presets are separately named. Opening, editing, resetting, preset selection and saving do not migrate old artwork.
+- V4 requires `expression: gentle | joyful` and `hairAccessory: none | flowers`. **Create expressive copy** explicitly converts older input with a gentle expression and no accessory, preserving its appearance fields/face. The old V3 copy API remains supported and rejects V4 downgrade.
+- V1/V2 geometry stays 48×64, sheet 384×128, anchor (24,60). V3/V4 geometry is 192×256, sheet 1536×512, anchor (96,240), recommended zoom 1. CharacterPack manifest stays version 1.
+- V4 uses four idle drawings across 24 entries at 8 fps, including a half/closed/half blink; walk uses eight drawings at 10 fps. Happy eyes remain closed throughout the selected expression. Both directions play via manifest mirroring. The existing editor workflow remains intact with two additional neutral selectors.
+- `illustrated-assets.generated.ts`, `illustrated-canvas.ts`, `illustrated-rig.ts` and `generator-v3.ts` remain frozen. `expressive-face.ts` handles V4-specific shading and eye regions; `expressive-rig.ts` poses limbs and secondary hair/cloth movement. Colors remain independently editable.
+- New `artwork/expressive-source/flower-clip.png` is an AI-assisted production input. `prepare-expressive-accessory.py` performs reproducible alpha extraction and sizing into a fixed-color prepared layer. The runtime needs no API, model, Python or remote artwork service. [Provenance](ASSET_PROVENANCE.md) distinguishes sources from outputs.
+- The independent player loads actual PNGs/manifests and optional configuration; it imports no editor, rig or generator. It offers all four example versions. Validation bounds and CharacterPack file structure are preserved.
 
 ## Verification
 
-Final corrected asset bank verified on 2026-10-15:
+Final revision checked on 2026-10-15:
 
-| Check                                              | Result                                                                                                                                            |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm test`                                         | **168 passed**, 6 files, no skips; includes fixed V1/V2 decoded hashes and focused detailed/mask regressions                                      |
-| `npm run typecheck`                                | Pass                                                                                                                                              |
-| `npm run build`                                    | Pass; both studio and independent player                                                                                                          |
-| `CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e` | **8 passed**, using the final detailed sample packs                                                                                               |
-| Isolated source preparation                        | Byte-identical generated bank from committed inputs; Pillow 12.3.0 / NumPy 2.3.5                                                                  |
-| Actual export/playback evidence                    | 18 PNGs validated against generator RGBA; 6 public packs plus 2 wedding examples; all 32 animation/facing phases observed every declared frame ID |
-| Visual review                                      | Native/enlarged actual exports; every walk pose; six skin tones; neckline and hand/clothing isolation; mobile/desktop editor and player           |
-
-Tests retain original V1/V2 output checks and cover detailed geometry, transparency, fixed foot anchors, deterministic generation, distinct faces, stable portraits, secondary hair/skirt motion, connected clothing, editable materials, explicit copy/save/reopen, actual ZIP provenance/export and generator-blocked independent playback. The final palette bug fixes were followed by a fresh full unit/typecheck/build/browser run; no outstanding regression failures remain.
+| Check                                              | Result                                                                                                                                                                             |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm test`                                         | **186 passed**, 7 files, no skips; all previous 168 checks retained                                                                                                                |
+| `npm run typecheck`                                | Pass                                                                                                                                                                               |
+| `npm run build`                                    | Pass, studio and independent consumer                                                                                                                                              |
+| `CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e` | **9 passed**                                                                                                                                                                       |
+| Saved-work preservation                            | V1/V2 existing regressions, new fixed hashes from published V3 PNGs, browser V1/V2/V3 pixel equality and save/reopen/export                                                        |
+| V4 visual regressions                              | Determinism, required fields, face variation, blink confined to eyes, stable gait portraits, hair/hem motion, colors, binary alpha, margins, connected clothing and grounded soles |
+| Actual evidence                                    | **20 exports** decoded equal to generator RGBA; eight public packs and two reference looks independently play all **40 motion/facing combinations**, observing every frame ID      |
+| Visual inspection                                  | Actual native/2× outputs, all idle/walk poses, expressions/hair options, recorded independent playback samples and neutral scene                                                   |
 
 ## Evidence and reproduction
 
-- Detailed outputs: `docs/art-detailed/` and `public/samples/detailed/`; [review and direct links](ART_V2_REVIEW.md).
-- Previous published outputs remain unchanged in `docs/art-v2/`, `public/samples/v2/`, and the original `public/samples/` directories.
-- `npm run samples` regenerates only V1. The old V2 evidence script explicitly selects V2. With Vite running, `CHROMIUM_PATH=/usr/bin/chromium node scripts/generate-detailed-evidence.mjs` generates actual V3 exports, validation metadata, UI captures and live consumer recording; `python3 scripts/render-detailed-review.py` assembles comparison PNGs/GIFs.
-- Source banks are production inputs, not implementation evidence. PNG comparisons preserve exported pixels; GIFs may quantize colors and browser video is compressed. Backgrounds are added only to review compositions.
-- The temporary rejected 96×128 procedural candidate was never published as a supported artwork version. Its historical PNGs, when included, are labeled previous-draft comparison evidence; the unused renderer was removed.
-- Dependencies use the existing lockfile. Node 24.19.0, npm 11.9.0, system Chromium and Python/Pillow/NumPy are available in this cloud environment. The saved environment setup already supports the Node/Vite/browser workflow.
+Current outputs live in `docs/art-expressive/` and `public/samples/expressive/`. Old `docs/art-v2/`, `docs/art-detailed/`, original `public/samples/`, `public/samples/v2/` and `public/samples/detailed/` outputs are preserved. The old detailed evidence script explicitly imports V3 presets.
 
-## Remaining work / next action
+With Vite running, run `CHROMIUM_PATH=/usr/bin/chromium node scripts/generate-expressive-evidence.mjs`, then `python3 scripts/render-expressive-review.py`. The first script uses the real browser generator/exporter, validates output bytes, captures studio/player screenshots and records independent playback. The second composes only real exports into integer-scaled comparisons and GIFs. GIFs use shared quantized palettes and centisecond timing; PNG packs retain lossless RGBA.
 
-1. **Stop for user visual review.** Keep the feature branch and draft PR unmerged. The detailed artwork is ready for review, not a claim of final Gathria art approval.
-2. Preserve all delivered artwork versions and their saved files during further work. After this delivery, treat V3 as published too; a new visual design needs a new explicit artwork version rather than silently reusing 3. Regenerate detailed evidence from the real renderer rather than substituting source illustrations or conceptual mockups.
-3. Gathria integration remains **UNVERIFIED**: read-only access to `hanxuwu/gathria` returned HTTP 403, so runtime code/assets could not be inspected. No other repository was modified. A neutral preview scene is not an integration test.
-4. A later integration milestone needs the actual runtime revision and loader/scene contract, with explicit checks for 192×256 source art, display scale, anchors, timing, facing and transparency. Runtime AI/photo input, other views, body shapes, selectable expressions, cloth physics and a general animation editor remain separate work.
+The optional source-preparation command is `python3 scripts/prepare-expressive-accessory.py`. Pinned Pillow/NumPy dependencies are in `artwork/requirements.txt`. V3 bank extraction is unchanged. Node 24.19.0, npm 11.9.0, system Chromium and Python/Pillow/NumPy are available; no dependency or environment setup changes were required.
 
-Remote CI, Firefox, Safari and a fresh cloud-task bootstrap are not claimed as verified. The original MVP handoff and its historical delivery notes remain in Git history.
+## Next action and remaining work
+
+1. **Stop for user visual review.** Keep the feature branch and draft PR unmerged. Preserve V4 as delivered in later work as well as V1–V3.
+2. Reference-sheet running, jumping, heart/bouquet gestures and open-mouth expressions remain outside this refinement. The rig still uses transformed illustration layers, limited body shapes and one mirrored view; it is not individually painted full-action animation or cloth physics.
+3. Production Gathria integration remains **UNVERIFIED**. Prior read-only access to `hanxuwu/gathria` returned HTTP 403. No actual scene assets were available, and no other repository was modified. The labeled neutral scene is not an integration test.
+4. A later integration milestone needs the actual runtime revision and scene/loader contract, including 192×256 source art, display scale, anchors, timing, facing and transparency. AI/photo input remains separate later work.
+
+Remote CI, Firefox, Safari and a fresh cloud-task bootstrap are not claimed as verified. Earlier handoffs remain in Git history.

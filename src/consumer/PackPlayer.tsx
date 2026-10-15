@@ -175,14 +175,16 @@ export function PackPlayer() {
     void openPack(() => loadCharacterPack(file), file.name);
   }
 
-  function openExample(artworkVersion: 1 | 2 | 3) {
+  function openExample(artworkVersion: 1 | 2 | 3 | 4) {
     void openPack(async () => {
       const response = await fetch(
-        artworkVersion === 3
-          ? "/samples/detailed/mira.character.zip"
-          : artworkVersion === 2
-            ? "/samples/v2/mira.character.zip"
-            : "/samples/mira.character.zip",
+        artworkVersion === 4
+          ? "/samples/expressive/mira.character.zip"
+          : artworkVersion === 3
+            ? "/samples/detailed/mira.character.zip"
+            : artworkVersion === 2
+              ? "/samples/v2/mira.character.zip"
+              : "/samples/mira.character.zip",
       );
       if (!response.ok)
         throw new Error(
@@ -327,16 +329,23 @@ export function PackPlayer() {
             </div>
             <button
               className="player-sample-button"
-              onClick={() => openExample(3)}
+              onClick={() => openExample(4)}
               disabled={busy}
             >
               <span className="player-sample-icon">
                 <Layers3 size={19} />
               </span>
               <span>
-                Just exploring?<strong>Try Mira’s detailed pack</strong>
+                Just exploring?<strong>Try Mira’s expressive pack</strong>
               </span>
               <ArrowRight size={17} />
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample(3)}
+              disabled={busy}
+            >
+              Try Mira’s Art V3 pack · detailed
             </button>
             <button
               className="player-legacy-sample"
