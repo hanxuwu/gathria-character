@@ -2,6 +2,7 @@ import type {
   ArtV2CharacterConfig,
   ArtV3CharacterConfig,
   ArtV4CharacterConfig,
+  ArtV5CharacterConfig,
   CharacterConfig,
   FaceVariant,
   LegacyCharacterConfig,
@@ -226,10 +227,11 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     input.schemaVersion === 2 &&
     input.artworkVersion !== 2 &&
     input.artworkVersion !== 3 &&
-    input.artworkVersion !== 4
+    input.artworkVersion !== 4 &&
+    input.artworkVersion !== 5
   ) {
     throw new Error(
-      "Version 2 configurations require artworkVersion 2, 3 or 4.",
+      "Version 2 configurations require artworkVersion 2, 3, 4 or 5.",
     );
   }
   if (
@@ -283,6 +285,18 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     upperClothing: choice("upperClothing", V2_UPPER_CLOTHING),
     lowerClothing: choice("lowerClothing", V2_LOWER_CLOTHING),
   };
+  if (input.artworkVersion === 5)
+    return {
+      schemaVersion: 2,
+      artworkVersion: 5,
+      ...modernAppearance,
+      expression: choice("expression", [
+        "neutral",
+        "gentle",
+        "joyful",
+      ] as const),
+      hairAccessory: choice("hairAccessory", ["none", "flowers"] as const),
+    };
   if (input.artworkVersion === 4)
     return {
       schemaVersion: 2,
@@ -324,7 +338,7 @@ export function upgradeToDetailedArt(
   faceVariant: FaceVariant = "heart",
 ): ArtV3CharacterConfig {
   const parsed = parseCharacterConfig(config);
-  if (parsed.schemaVersion === 2 && parsed.artworkVersion === 4)
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion >= 4)
     throw new Error(
       "Expressive artwork cannot be silently downgraded to Art V3.",
     );
@@ -346,6 +360,10 @@ export function upgradeToExpressiveArt(
   faceVariant: FaceVariant = "heart",
 ): ArtV4CharacterConfig {
   const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion === 5)
+    throw new Error(
+      "Cohesive artwork cannot be silently downgraded to Art V4.",
+    );
   if (parsed.schemaVersion === 2 && parsed.artworkVersion === 4) return parsed;
   return {
     ...parsed,
@@ -356,3 +374,24 @@ export function upgradeToExpressiveArt(
     hairAccessory: "none",
   };
 }
+
+/** V5 is opt-in for saved work. V1–V4 presets and rendering remain frozen. */
+export function upgradeToCohesiveArt(
+  config: CharacterConfig,
+  faceVariant: FaceVariant = "heart",
+): ArtV5CharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  return {
+    ...parsed,
+    schemaVersion: 2,
+    artworkVersion: 5,
+    faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,
+    expression: "expression" in parsed ? parsed.expression : "gentle",
+    hairAccessory: "hairAccessory" in parsed ? parsed.hairAccessory : "none",
+  };
+}
+export const COHESIVE_DEFAULT_CONFIG = upgradeToCohesiveArt(DEFAULT_CONFIG);
+export const COHESIVE_PRESETS = PRESETS.map((p) => ({
+  ...p,
+  config: upgradeToCohesiveArt(p.config),
+}));

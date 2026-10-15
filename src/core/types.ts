@@ -39,11 +39,17 @@ export interface ArtV4CharacterConfig
   expression: "gentle" | "joyful";
   hairAccessory: "none" | "flowers";
 }
+export interface ArtV5CharacterConfig
+  extends Omit<ArtV4CharacterConfig, "artworkVersion" | "expression"> {
+  artworkVersion: 5;
+  expression: "neutral" | "gentle" | "joyful";
+}
 export type CharacterConfig =
   | LegacyCharacterConfig
   | ArtV2CharacterConfig
   | ArtV3CharacterConfig
-  | ArtV4CharacterConfig;
+  | ArtV4CharacterConfig
+  | ArtV5CharacterConfig;
 export interface SpriteFrame {
   id: number;
   x: number;

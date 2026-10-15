@@ -28,15 +28,16 @@ import {
   ART_V2_PRESETS,
   ART_V3_PRESETS,
   CLOTHING_COLORS,
-  DEFAULT_CONFIG,
+  COHESIVE_DEFAULT_CONFIG as DEFAULT_CONFIG,
   HAIR_COLORS,
   LEGACY_PRESETS,
   OUTFIT_PRESETS,
-  PRESETS,
+  COHESIVE_PRESETS as PRESETS,
+  PRESETS as ART_V4_PRESETS,
   SKIN_TONES,
   configToJson,
   parseCharacterConfig,
-  upgradeToExpressiveArt,
+  upgradeToCohesiveArt,
 } from "../core/config";
 import { generateCharacter } from "../core/generator";
 import {
@@ -208,7 +209,9 @@ export default function App() {
         ? ART_V2_PRESETS
         : artworkVersion === 3
           ? ART_V3_PRESETS
-          : PRESETS;
+          : artworkVersion === 4
+            ? ART_V4_PRESETS
+            : PRESETS;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const largePortraits = frameWidth > 96;
   const recommendedZoom = generated.manifest.scale.recommended;
@@ -240,9 +243,9 @@ export default function App() {
     try {
       const face = PRESETS.find((item) => item.id === selectedPreset)!.config
         .faceVariant;
-      setConfig(upgradeToExpressiveArt(config, face));
+      setConfig(upgradeToCohesiveArt(config, face));
       setNotice({
-        text: "Expressive copy created. Save it as a new configuration to keep both designs.",
+        text: "Refined copy created. Save it as a new configuration to keep both designs.",
       });
     } catch (error) {
       showError(error);
@@ -292,7 +295,7 @@ export default function App() {
       setConfig(next);
       setNotice({
         text:
-          next.schemaVersion === 1 || next.artworkVersion < 4
+          next.schemaVersion === 1 || next.artworkVersion < 5
             ? `Opened ${next.name} in its saved Art V${next.schemaVersion === 1 ? 1 : next.artworkVersion} style. Your design is preserved.`
             : `Opened ${next.name}. Every detail is ready to edit.`,
       });
@@ -495,7 +498,7 @@ export default function App() {
                 placeholder="Give them a name"
               />
             </div>
-            {artworkVersion !== 4 && (
+            {artworkVersion !== 5 && (
               <div className="legacy-art-notice">
                 <strong>
                   Art V{artworkVersion} ·{" "}
@@ -507,7 +510,7 @@ export default function App() {
                 </strong>
                 <p>Your saved artwork stays in its existing style.</p>
                 <button type="button" onClick={createExpressiveCopy}>
-                  <Sparkles size={13} /> Create expressive copy
+                  <Sparkles size={13} /> Create refined copy
                 </button>
               </div>
             )}
@@ -531,50 +534,75 @@ export default function App() {
                   }}
                 />
               )}
-              {config.schemaVersion === 2 && config.artworkVersion === 4 && (
-                <>
-                  <SelectControl
-                    label="Expression"
-                    value={config.expression}
-                    options={[
-                      ["gentle", "Gentle smile"],
-                      ["joyful", "Happy eyes"],
-                    ]}
-                    onChange={(value) => {
-                      setConfig((current) =>
-                        current.schemaVersion === 2 &&
-                        current.artworkVersion === 4
-                          ? {
+              {config.schemaVersion === 2 &&
+                (config.artworkVersion === 4 ||
+                  config.artworkVersion === 5) && (
+                  <>
+                    {config.artworkVersion === 5 &&
+                      (config.hairstyle === "bob" ||
+                        config.hairstyle === "mohawk") && (
+                        <p className="control-label">
+                          Authored expressions are available for Long waves and
+                          Short crop. This hairstyle keeps its original face.
+                        </p>
+                      )}
+                    <SelectControl
+                      label="Expression"
+                      value={config.expression}
+                      options={
+                        config.artworkVersion === 5 &&
+                        (config.hairstyle === "bob" ||
+                          config.hairstyle === "mohawk")
+                          ? [[config.expression, "Original face"]]
+                          : [
+                              ...(config.artworkVersion === 5
+                                ? [["neutral", "Neutral"] as [string, string]]
+                                : []),
+                              ["gentle", "Gentle smile"],
+                              ["joyful", "Happy eyes"],
+                            ]
+                      }
+                      onChange={(value) => {
+                        setConfig((current) => {
+                          if (current.schemaVersion !== 2) return current;
+                          if (current.artworkVersion === 5)
+                            return {
+                              ...current,
+                              expression: value as "neutral" | "gentle" | "joyful",
+                            };
+                          if (current.artworkVersion === 4 && value !== "neutral")
+                            return {
                               ...current,
                               expression: value as "gentle" | "joyful",
-                            }
-                          : current,
-                      );
-                      setNotice(null);
-                    }}
-                  />
-                  <SelectControl
-                    label="Hair accessory"
-                    value={config.hairAccessory}
-                    options={[
-                      ["none", "None"],
-                      ["flowers", "Rose hairpiece"],
-                    ]}
-                    onChange={(value) => {
-                      setConfig((current) =>
-                        current.schemaVersion === 2 &&
-                        current.artworkVersion === 4
-                          ? {
-                              ...current,
-                              hairAccessory: value as "none" | "flowers",
-                            }
-                          : current,
-                      );
-                      setNotice(null);
-                    }}
-                  />
-                </>
-              )}
+                            };
+                          return current;
+                        });
+                        setNotice(null);
+                      }}
+                    />
+                    <SelectControl
+                      label="Hair accessory"
+                      value={config.hairAccessory}
+                      options={[
+                        ["none", "None"],
+                        ["flowers", "Rose hairpiece"],
+                      ]}
+                      onChange={(value) => {
+                        setConfig((current) =>
+                          current.schemaVersion === 2 &&
+                          (current.artworkVersion === 4 ||
+                            current.artworkVersion === 5)
+                            ? {
+                                ...current,
+                                hairAccessory: value as "none" | "flowers",
+                              }
+                            : current,
+                        );
+                        setNotice(null);
+                      }}
+                    />
+                  </>
+                )}
               <Swatches
                 label="Skin tone"
                 value={config.skinTone}
@@ -738,7 +766,9 @@ export default function App() {
                         ? "ART V2 · CLASSIC"
                         : artworkVersion === 3
                           ? "DETAILED ART · V3"
-                          : "EXPRESSIVE ART · V4"}
+                          : artworkVersion === 4
+                            ? "EXPRESSIVE ART · V4"
+                            : "REFINED ART · V5"}
                   </span>
                   <span>
                     {artworkVersion >= 3

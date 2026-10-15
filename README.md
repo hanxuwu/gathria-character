@@ -1,5 +1,7 @@
 # Gathria Character
 
+Current studio default: **Cohesive Art V5**. Bride/groom whole-face expressions, head/neck alignment and wedding layers were revised together. Saved V1–V4 artwork is preserved. See [V5 changes, real comparisons and animation previews](docs/ART_COHESION_V5.md).
+
 A standalone, browser-local pixel-art character studio. Customize a character, preview idle and walking animations, save editable configuration, and export a portable **CharacterPack v1** ZIP. A separate player consumes the exported PNG and metadata without invoking the generator.
 
 **Character Art V2 — expressive revision** adds gentle blinking, happy eyes, a rose hairpiece, softer hair highlights and a more articulated walk to the detailed Japanese chibi artwork. New characters explicitly use `artworkVersion: 4`; V1, V2 and V3 files retain their original pixels and workflow.

@@ -100,7 +100,7 @@ for (const originalArt of [
       );
 
     await page
-      .getByRole("button", { name: "Create expressive copy", exact: true })
+      .getByRole("button", { name: "Create refined copy", exact: true })
       .click();
     await expect(
       page.getByText(originalArt.badge, { exact: true }),
@@ -124,7 +124,7 @@ for (const originalArt of [
     expect(JSON.parse(await readFile(copyPath, "utf8"))).toMatchObject({
       ...originalConfig,
       schemaVersion: 2,
-      artworkVersion: 4,
+      artworkVersion: 5,
       faceVariant: "round",
     });
     await page.getByRole("button", { name: "Jun preset", exact: true }).click();
@@ -195,7 +195,7 @@ for (const outfit of [
     const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
     expect(config).toMatchObject({
       schemaVersion: 2,
-      artworkVersion: 4,
+      artworkVersion: 5,
       faceVariant: "heart",
       upperClothing: outfit.upper,
       lowerClothing: outfit.lower,
@@ -204,7 +204,7 @@ for (const outfit of [
     });
     expect(manifest).toMatchObject({
       schemaVersion: 1,
-      generator: "gathria-expressive-pixels-v4",
+      generator: "gathria-cohesive-pixels-v5",
       anchor: { x: 96, y: 240 },
       spritesheet: {
         width: 1536,
@@ -218,7 +218,7 @@ for (const outfit of [
     player.on("pageerror", (error) => errors.push(error.message));
     const forbidden: string[] = [];
     await player.route(
-      /\/(?:src\/editor\/|src\/core\/(?:generator|illustrated-|expressive-))/,
+      /\/(?:src\/editor\/|src\/core\/(?:generator|illustrated-|expressive-|cohesive-))/,
       (route) => {
         forbidden.push(route.request().url());
         return route.abort();
@@ -228,7 +228,7 @@ for (const outfit of [
     await player.locator("#player-zip").setInputFiles(zipPath);
     await expect(player.getByRole("status")).toContainText("Loaded: Rowan");
     await expect(
-      player.getByText("gathria-expressive-pixels-v4", { exact: true }),
+      player.getByText("gathria-cohesive-pixels-v5", { exact: true }),
     ).toBeVisible();
     await player
       .getByRole("button", { name: "Pause animation", exact: true })
