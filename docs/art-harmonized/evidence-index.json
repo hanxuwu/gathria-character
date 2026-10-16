@@ -1,0 +1,1757 @@
+{
+  "source": "Actual browser generateCharacter -> createCharacterPack -> PNG decode; independently loaded after closing Studio",
+  "artworkVersion": 7,
+  "baselineCommit": "c307a8f47b8872a8e7df93494581f46431ff4b87",
+  "revisionFiles": {
+    "src/core/harmonized-rig.ts": "0df8a2e64c2c17232bdb36a44488913647686cbee07434b7078bf05f2db22ae2",
+    "src/core/generator-v7.ts": "f51bae06620aca87c1f0502f44fd22dd25f5eeaa0ac05fb2590a2d549ed57970",
+    "scripts/prepare-harmonized-assets.py": "a788b6229ddc068c5b89ba070d36ee3c62344673d61ead4afce34575a4f9e5fd"
+  },
+  "groomSourceSha256": "bef921f5b62941d2945228c429b6be54d3eaea1c22fab9effd48387d077687b9",
+  "garmentSourceSha256": "c99182a4e1643d0b3fb19d3254b9dbb769a436e6380a961476c4880741317cc1",
+  "preparedBankSha256": "4120fcddab2844847bfbed7f13f8f2f514b115d93f578a49777d3c96e2feb79e",
+  "sourceSha256": "abaadd428cc93dc7382cfff26797c0d6504a566d705086b0daec87093152e6ce",
+  "exports": [
+    {
+      "id": "before-dress",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "bodice",
+        "lowerClothing": "dress",
+        "expression": "joyful",
+        "hairAccessory": "flowers",
+        "artworkVersion": 6
+      }
+    },
+    {
+      "id": "dress-neutral",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "bodice",
+        "lowerClothing": "dress",
+        "expression": "neutral",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-gentle",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "bodice",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-joyful",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "bodice",
+        "lowerClothing": "dress",
+        "expression": "joyful",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-outfit-tee",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "tee",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-outfit-hoodie",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "hoodie",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-outfit-jacket",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "jacket",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-outfit-suit",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "suit",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-outfit-bodice",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#E5AE87",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "bodice",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-dark-skin",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#553B32",
+        "hairstyle": "waves",
+        "hairColor": "#E9CF8D",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "bodice",
+        "lowerClothing": "dress",
+        "expression": "joyful",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "before-suit",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "suit",
+        "lowerClothing": "trousers",
+        "expression": "joyful",
+        "hairAccessory": "none",
+        "artworkVersion": 6
+      }
+    },
+    {
+      "id": "suit-neutral",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "suit",
+        "lowerClothing": "trousers",
+        "expression": "neutral",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-gentle",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "suit",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-joyful",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "suit",
+        "lowerClothing": "trousers",
+        "expression": "joyful",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-outfit-tee",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "tee",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-outfit-hoodie",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "hoodie",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-outfit-jacket",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "jacket",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-outfit-suit",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "suit",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-outfit-bodice",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "bodice",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-dark-skin",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#553B32",
+        "hairstyle": "crop",
+        "hairColor": "#E9CF8D",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "suit",
+        "lowerClothing": "trousers",
+        "expression": "joyful",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-dark-tee",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#553B32",
+        "hairstyle": "waves",
+        "hairColor": "#E9CF8D",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "tee",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "dress-light-jacket",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding dress",
+        "skinTone": "#F3D6BA",
+        "hairstyle": "waves",
+        "hairColor": "#43312E",
+        "upperColor": "#F2E9D8",
+        "lowerColor": "#F2E9D8",
+        "shoeColor": "#E9DFCC",
+        "faceVariant": "heart",
+        "upperClothing": "jacket",
+        "lowerClothing": "dress",
+        "expression": "gentle",
+        "hairAccessory": "flowers",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-dark-tee",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#553B32",
+        "hairstyle": "crop",
+        "hairColor": "#E9CF8D",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "tee",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    },
+    {
+      "id": "suit-light-jacket",
+      "config": {
+        "schemaVersion": 2,
+        "name": "Wedding suit",
+        "skinTone": "#F3D6BA",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#343F4B",
+        "lowerColor": "#343F4B",
+        "shoeColor": "#785542",
+        "faceVariant": "oval",
+        "upperClothing": "jacket",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 7
+      }
+    }
+  ],
+  "playback": [
+    {
+      "id": "dress-neutral",
+      "animation": "idle",
+      "facing": "right",
+      "labels": [
+        "Wedding dress, idle, facing right, frame 0",
+        "Wedding dress, idle, facing right, frame 1",
+        "Wedding dress, idle, facing right, frame 2",
+        "Wedding dress, idle, facing right, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 5
+        },
+        {
+          "frame": 1,
+          "ms": 386
+        },
+        {
+          "frame": 2,
+          "ms": 887
+        },
+        {
+          "frame": 3,
+          "ms": 1871
+        },
+        {
+          "frame": 0,
+          "ms": 2385
+        }
+      ]
+    },
+    {
+      "id": "dress-neutral",
+      "animation": "idle",
+      "facing": "left",
+      "labels": [
+        "Wedding dress, idle, facing left, frame 0",
+        "Wedding dress, idle, facing left, frame 1",
+        "Wedding dress, idle, facing left, frame 2",
+        "Wedding dress, idle, facing left, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 2
+        },
+        {
+          "frame": 1,
+          "ms": 420
+        },
+        {
+          "frame": 2,
+          "ms": 920
+        },
+        {
+          "frame": 3,
+          "ms": 1921
+        },
+        {
+          "frame": 0,
+          "ms": 2419
+        }
+      ]
+    },
+    {
+      "id": "dress-neutral",
+      "animation": "walk",
+      "facing": "right",
+      "labels": [
+        "Wedding dress, walk, facing right, frame 4",
+        "Wedding dress, walk, facing right, frame 5",
+        "Wedding dress, walk, facing right, frame 6",
+        "Wedding dress, walk, facing right, frame 7",
+        "Wedding dress, walk, facing right, frame 8",
+        "Wedding dress, walk, facing right, frame 9",
+        "Wedding dress, walk, facing right, frame 10",
+        "Wedding dress, walk, facing right, frame 11"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 104
+        },
+        {
+          "frame": 7,
+          "ms": 203
+        },
+        {
+          "frame": 8,
+          "ms": 304
+        },
+        {
+          "frame": 9,
+          "ms": 404
+        },
+        {
+          "frame": 10,
+          "ms": 503
+        },
+        {
+          "frame": 11,
+          "ms": 604
+        },
+        {
+          "frame": 4,
+          "ms": 703
+        },
+        {
+          "frame": 5,
+          "ms": 802
+        },
+        {
+          "frame": 6,
+          "ms": 902
+        }
+      ]
+    },
+    {
+      "id": "dress-neutral",
+      "animation": "walk",
+      "facing": "left",
+      "labels": [
+        "Wedding dress, walk, facing left, frame 5",
+        "Wedding dress, walk, facing left, frame 6",
+        "Wedding dress, walk, facing left, frame 7",
+        "Wedding dress, walk, facing left, frame 8",
+        "Wedding dress, walk, facing left, frame 9",
+        "Wedding dress, walk, facing left, frame 10",
+        "Wedding dress, walk, facing left, frame 11",
+        "Wedding dress, walk, facing left, frame 4"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 84
+        },
+        {
+          "frame": 7,
+          "ms": 184
+        },
+        {
+          "frame": 8,
+          "ms": 285
+        },
+        {
+          "frame": 9,
+          "ms": 384
+        },
+        {
+          "frame": 10,
+          "ms": 484
+        },
+        {
+          "frame": 11,
+          "ms": 584
+        },
+        {
+          "frame": 4,
+          "ms": 684
+        },
+        {
+          "frame": 5,
+          "ms": 784
+        },
+        {
+          "frame": 6,
+          "ms": 885
+        }
+      ]
+    },
+    {
+      "id": "dress-gentle",
+      "animation": "idle",
+      "facing": "right",
+      "labels": [
+        "Wedding dress, idle, facing right, frame 0",
+        "Wedding dress, idle, facing right, frame 1",
+        "Wedding dress, idle, facing right, frame 2",
+        "Wedding dress, idle, facing right, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "ms": 403
+        },
+        {
+          "frame": 2,
+          "ms": 920
+        },
+        {
+          "frame": 3,
+          "ms": 1923
+        },
+        {
+          "frame": 0,
+          "ms": 2419
+        }
+      ]
+    },
+    {
+      "id": "dress-gentle",
+      "animation": "idle",
+      "facing": "left",
+      "labels": [
+        "Wedding dress, idle, facing left, frame 0",
+        "Wedding dress, idle, facing left, frame 1",
+        "Wedding dress, idle, facing left, frame 2",
+        "Wedding dress, idle, facing left, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 4
+        },
+        {
+          "frame": 1,
+          "ms": 385
+        },
+        {
+          "frame": 2,
+          "ms": 889
+        },
+        {
+          "frame": 3,
+          "ms": 1887
+        },
+        {
+          "frame": 0,
+          "ms": 2385
+        }
+      ]
+    },
+    {
+      "id": "dress-gentle",
+      "animation": "walk",
+      "facing": "right",
+      "labels": [
+        "Wedding dress, walk, facing right, frame 5",
+        "Wedding dress, walk, facing right, frame 6",
+        "Wedding dress, walk, facing right, frame 7",
+        "Wedding dress, walk, facing right, frame 8",
+        "Wedding dress, walk, facing right, frame 9",
+        "Wedding dress, walk, facing right, frame 10",
+        "Wedding dress, walk, facing right, frame 11",
+        "Wedding dress, walk, facing right, frame 4"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 104
+        },
+        {
+          "frame": 7,
+          "ms": 204
+        },
+        {
+          "frame": 8,
+          "ms": 304
+        },
+        {
+          "frame": 9,
+          "ms": 403
+        },
+        {
+          "frame": 10,
+          "ms": 503
+        },
+        {
+          "frame": 11,
+          "ms": 602
+        },
+        {
+          "frame": 4,
+          "ms": 703
+        },
+        {
+          "frame": 5,
+          "ms": 803
+        },
+        {
+          "frame": 6,
+          "ms": 902
+        }
+      ]
+    },
+    {
+      "id": "dress-gentle",
+      "animation": "walk",
+      "facing": "left",
+      "labels": [
+        "Wedding dress, walk, facing left, frame 4",
+        "Wedding dress, walk, facing left, frame 5",
+        "Wedding dress, walk, facing left, frame 6",
+        "Wedding dress, walk, facing left, frame 7",
+        "Wedding dress, walk, facing left, frame 8",
+        "Wedding dress, walk, facing left, frame 9",
+        "Wedding dress, walk, facing left, frame 10",
+        "Wedding dress, walk, facing left, frame 11"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 104
+        },
+        {
+          "frame": 7,
+          "ms": 205
+        },
+        {
+          "frame": 8,
+          "ms": 303
+        },
+        {
+          "frame": 9,
+          "ms": 402
+        },
+        {
+          "frame": 10,
+          "ms": 510
+        },
+        {
+          "frame": 11,
+          "ms": 602
+        },
+        {
+          "frame": 4,
+          "ms": 703
+        },
+        {
+          "frame": 5,
+          "ms": 802
+        },
+        {
+          "frame": 6,
+          "ms": 903
+        }
+      ]
+    },
+    {
+      "id": "dress-joyful",
+      "animation": "idle",
+      "facing": "right",
+      "labels": [
+        "Wedding dress, idle, facing right, frame 0",
+        "Wedding dress, idle, facing right, frame 1",
+        "Wedding dress, idle, facing right, frame 2",
+        "Wedding dress, idle, facing right, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "ms": 382
+        },
+        {
+          "frame": 2,
+          "ms": 884
+        },
+        {
+          "frame": 3,
+          "ms": 1900
+        },
+        {
+          "frame": 0,
+          "ms": 2399
+        }
+      ]
+    },
+    {
+      "id": "dress-joyful",
+      "animation": "idle",
+      "facing": "left",
+      "labels": [
+        "Wedding dress, idle, facing left, frame 0",
+        "Wedding dress, idle, facing left, frame 1",
+        "Wedding dress, idle, facing left, frame 2",
+        "Wedding dress, idle, facing left, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "ms": 417
+        },
+        {
+          "frame": 2,
+          "ms": 919
+        },
+        {
+          "frame": 3,
+          "ms": 1917
+        },
+        {
+          "frame": 0,
+          "ms": 2416
+        }
+      ]
+    },
+    {
+      "id": "dress-joyful",
+      "animation": "walk",
+      "facing": "right",
+      "labels": [
+        "Wedding dress, walk, facing right, frame 5",
+        "Wedding dress, walk, facing right, frame 6",
+        "Wedding dress, walk, facing right, frame 7",
+        "Wedding dress, walk, facing right, frame 8",
+        "Wedding dress, walk, facing right, frame 9",
+        "Wedding dress, walk, facing right, frame 10",
+        "Wedding dress, walk, facing right, frame 11",
+        "Wedding dress, walk, facing right, frame 4"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 102
+        },
+        {
+          "frame": 7,
+          "ms": 186
+        },
+        {
+          "frame": 8,
+          "ms": 288
+        },
+        {
+          "frame": 9,
+          "ms": 386
+        },
+        {
+          "frame": 10,
+          "ms": 504
+        },
+        {
+          "frame": 11,
+          "ms": 586
+        },
+        {
+          "frame": 4,
+          "ms": 703
+        },
+        {
+          "frame": 5,
+          "ms": 786
+        },
+        {
+          "frame": 6,
+          "ms": 886
+        }
+      ]
+    },
+    {
+      "id": "dress-joyful",
+      "animation": "walk",
+      "facing": "left",
+      "labels": [
+        "Wedding dress, walk, facing left, frame 4",
+        "Wedding dress, walk, facing left, frame 5",
+        "Wedding dress, walk, facing left, frame 6",
+        "Wedding dress, walk, facing left, frame 7",
+        "Wedding dress, walk, facing left, frame 8",
+        "Wedding dress, walk, facing left, frame 9",
+        "Wedding dress, walk, facing left, frame 10",
+        "Wedding dress, walk, facing left, frame 11"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 2
+        },
+        {
+          "frame": 6,
+          "ms": 101
+        },
+        {
+          "frame": 7,
+          "ms": 202
+        },
+        {
+          "frame": 8,
+          "ms": 302
+        },
+        {
+          "frame": 9,
+          "ms": 402
+        },
+        {
+          "frame": 10,
+          "ms": 501
+        },
+        {
+          "frame": 11,
+          "ms": 601
+        },
+        {
+          "frame": 4,
+          "ms": 701
+        },
+        {
+          "frame": 5,
+          "ms": 801
+        },
+        {
+          "frame": 6,
+          "ms": 901
+        }
+      ]
+    },
+    {
+      "id": "suit-neutral",
+      "animation": "idle",
+      "facing": "right",
+      "labels": [
+        "Wedding suit, idle, facing right, frame 0",
+        "Wedding suit, idle, facing right, frame 1",
+        "Wedding suit, idle, facing right, frame 2",
+        "Wedding suit, idle, facing right, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "ms": 390
+        },
+        {
+          "frame": 2,
+          "ms": 888
+        },
+        {
+          "frame": 3,
+          "ms": 1908
+        },
+        {
+          "frame": 0,
+          "ms": 2388
+        }
+      ]
+    },
+    {
+      "id": "suit-neutral",
+      "animation": "idle",
+      "facing": "left",
+      "labels": [
+        "Wedding suit, idle, facing left, frame 0",
+        "Wedding suit, idle, facing left, frame 1",
+        "Wedding suit, idle, facing left, frame 2",
+        "Wedding suit, idle, facing left, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "ms": 386
+        },
+        {
+          "frame": 2,
+          "ms": 903
+        },
+        {
+          "frame": 3,
+          "ms": 1886
+        },
+        {
+          "frame": 0,
+          "ms": 2387
+        }
+      ]
+    },
+    {
+      "id": "suit-neutral",
+      "animation": "walk",
+      "facing": "right",
+      "labels": [
+        "Wedding suit, walk, facing right, frame 4",
+        "Wedding suit, walk, facing right, frame 5",
+        "Wedding suit, walk, facing right, frame 6",
+        "Wedding suit, walk, facing right, frame 7",
+        "Wedding suit, walk, facing right, frame 8",
+        "Wedding suit, walk, facing right, frame 9",
+        "Wedding suit, walk, facing right, frame 10",
+        "Wedding suit, walk, facing right, frame 11"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 4,
+          "ms": 3
+        },
+        {
+          "frame": 5,
+          "ms": 22
+        },
+        {
+          "frame": 6,
+          "ms": 121
+        },
+        {
+          "frame": 7,
+          "ms": 202
+        },
+        {
+          "frame": 8,
+          "ms": 321
+        },
+        {
+          "frame": 9,
+          "ms": 419
+        },
+        {
+          "frame": 10,
+          "ms": 519
+        },
+        {
+          "frame": 11,
+          "ms": 619
+        },
+        {
+          "frame": 4,
+          "ms": 719
+        },
+        {
+          "frame": 5,
+          "ms": 827
+        },
+        {
+          "frame": 6,
+          "ms": 919
+        }
+      ]
+    },
+    {
+      "id": "suit-neutral",
+      "animation": "walk",
+      "facing": "left",
+      "labels": [
+        "Wedding suit, walk, facing left, frame 4",
+        "Wedding suit, walk, facing left, frame 5",
+        "Wedding suit, walk, facing left, frame 6",
+        "Wedding suit, walk, facing left, frame 7",
+        "Wedding suit, walk, facing left, frame 8",
+        "Wedding suit, walk, facing left, frame 9",
+        "Wedding suit, walk, facing left, frame 10",
+        "Wedding suit, walk, facing left, frame 11"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 104
+        },
+        {
+          "frame": 7,
+          "ms": 203
+        },
+        {
+          "frame": 8,
+          "ms": 303
+        },
+        {
+          "frame": 9,
+          "ms": 402
+        },
+        {
+          "frame": 10,
+          "ms": 503
+        },
+        {
+          "frame": 11,
+          "ms": 603
+        },
+        {
+          "frame": 4,
+          "ms": 703
+        },
+        {
+          "frame": 5,
+          "ms": 803
+        },
+        {
+          "frame": 6,
+          "ms": 902
+        }
+      ]
+    },
+    {
+      "id": "suit-gentle",
+      "animation": "idle",
+      "facing": "right",
+      "labels": [
+        "Wedding suit, idle, facing right, frame 0",
+        "Wedding suit, idle, facing right, frame 1",
+        "Wedding suit, idle, facing right, frame 2",
+        "Wedding suit, idle, facing right, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 4
+        },
+        {
+          "frame": 1,
+          "ms": 418
+        },
+        {
+          "frame": 2,
+          "ms": 903
+        },
+        {
+          "frame": 3,
+          "ms": 1918
+        },
+        {
+          "frame": 0,
+          "ms": 2417
+        }
+      ]
+    },
+    {
+      "id": "suit-gentle",
+      "animation": "idle",
+      "facing": "left",
+      "labels": [
+        "Wedding suit, idle, facing left, frame 0",
+        "Wedding suit, idle, facing left, frame 1",
+        "Wedding suit, idle, facing left, frame 2",
+        "Wedding suit, idle, facing left, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 2
+        },
+        {
+          "frame": 1,
+          "ms": 419
+        },
+        {
+          "frame": 2,
+          "ms": 920
+        },
+        {
+          "frame": 3,
+          "ms": 1920
+        },
+        {
+          "frame": 0,
+          "ms": 2418
+        }
+      ]
+    },
+    {
+      "id": "suit-gentle",
+      "animation": "walk",
+      "facing": "right",
+      "labels": [
+        "Wedding suit, walk, facing right, frame 5",
+        "Wedding suit, walk, facing right, frame 6",
+        "Wedding suit, walk, facing right, frame 7",
+        "Wedding suit, walk, facing right, frame 8",
+        "Wedding suit, walk, facing right, frame 9",
+        "Wedding suit, walk, facing right, frame 10",
+        "Wedding suit, walk, facing right, frame 11",
+        "Wedding suit, walk, facing right, frame 4"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 53
+        },
+        {
+          "frame": 7,
+          "ms": 153
+        },
+        {
+          "frame": 8,
+          "ms": 255
+        },
+        {
+          "frame": 9,
+          "ms": 353
+        },
+        {
+          "frame": 10,
+          "ms": 455
+        },
+        {
+          "frame": 11,
+          "ms": 552
+        },
+        {
+          "frame": 4,
+          "ms": 652
+        },
+        {
+          "frame": 5,
+          "ms": 752
+        },
+        {
+          "frame": 6,
+          "ms": 869
+        }
+      ]
+    },
+    {
+      "id": "suit-gentle",
+      "animation": "walk",
+      "facing": "left",
+      "labels": [
+        "Wedding suit, walk, facing left, frame 5",
+        "Wedding suit, walk, facing left, frame 6",
+        "Wedding suit, walk, facing left, frame 7",
+        "Wedding suit, walk, facing left, frame 8",
+        "Wedding suit, walk, facing left, frame 9",
+        "Wedding suit, walk, facing left, frame 10",
+        "Wedding suit, walk, facing left, frame 11",
+        "Wedding suit, walk, facing left, frame 4"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 3
+        },
+        {
+          "frame": 6,
+          "ms": 55
+        },
+        {
+          "frame": 7,
+          "ms": 153
+        },
+        {
+          "frame": 8,
+          "ms": 255
+        },
+        {
+          "frame": 9,
+          "ms": 354
+        },
+        {
+          "frame": 10,
+          "ms": 453
+        },
+        {
+          "frame": 11,
+          "ms": 552
+        },
+        {
+          "frame": 4,
+          "ms": 652
+        },
+        {
+          "frame": 5,
+          "ms": 752
+        },
+        {
+          "frame": 6,
+          "ms": 863
+        }
+      ]
+    },
+    {
+      "id": "suit-joyful",
+      "animation": "idle",
+      "facing": "right",
+      "labels": [
+        "Wedding suit, idle, facing right, frame 0",
+        "Wedding suit, idle, facing right, frame 1",
+        "Wedding suit, idle, facing right, frame 2",
+        "Wedding suit, idle, facing right, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "ms": 370
+        },
+        {
+          "frame": 2,
+          "ms": 871
+        },
+        {
+          "frame": 3,
+          "ms": 1870
+        },
+        {
+          "frame": 0,
+          "ms": 2372
+        }
+      ]
+    },
+    {
+      "id": "suit-joyful",
+      "animation": "idle",
+      "facing": "left",
+      "labels": [
+        "Wedding suit, idle, facing left, frame 0",
+        "Wedding suit, idle, facing left, frame 1",
+        "Wedding suit, idle, facing left, frame 2",
+        "Wedding suit, idle, facing left, frame 3"
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 2
+        },
+        {
+          "frame": 1,
+          "ms": 435
+        },
+        {
+          "frame": 2,
+          "ms": 937
+        },
+        {
+          "frame": 3,
+          "ms": 1937
+        },
+        {
+          "frame": 0,
+          "ms": 2437
+        }
+      ]
+    },
+    {
+      "id": "suit-joyful",
+      "animation": "walk",
+      "facing": "right",
+      "labels": [
+        "Wedding suit, walk, facing right, frame 4",
+        "Wedding suit, walk, facing right, frame 5",
+        "Wedding suit, walk, facing right, frame 6",
+        "Wedding suit, walk, facing right, frame 7",
+        "Wedding suit, walk, facing right, frame 8",
+        "Wedding suit, walk, facing right, frame 9",
+        "Wedding suit, walk, facing right, frame 10",
+        "Wedding suit, walk, facing right, frame 11"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 4,
+          "ms": 3
+        },
+        {
+          "frame": 5,
+          "ms": 20
+        },
+        {
+          "frame": 6,
+          "ms": 119
+        },
+        {
+          "frame": 7,
+          "ms": 220
+        },
+        {
+          "frame": 8,
+          "ms": 303
+        },
+        {
+          "frame": 9,
+          "ms": 419
+        },
+        {
+          "frame": 10,
+          "ms": 519
+        },
+        {
+          "frame": 11,
+          "ms": 620
+        },
+        {
+          "frame": 4,
+          "ms": 719
+        },
+        {
+          "frame": 5,
+          "ms": 802
+        },
+        {
+          "frame": 6,
+          "ms": 921
+        }
+      ]
+    },
+    {
+      "id": "suit-joyful",
+      "animation": "walk",
+      "facing": "left",
+      "labels": [
+        "Wedding suit, walk, facing left, frame 4",
+        "Wedding suit, walk, facing left, frame 5",
+        "Wedding suit, walk, facing left, frame 6",
+        "Wedding suit, walk, facing left, frame 7",
+        "Wedding suit, walk, facing left, frame 8",
+        "Wedding suit, walk, facing left, frame 9",
+        "Wedding suit, walk, facing left, frame 10",
+        "Wedding suit, walk, facing left, frame 11"
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 4
+        },
+        {
+          "frame": 6,
+          "ms": 85
+        },
+        {
+          "frame": 7,
+          "ms": 186
+        },
+        {
+          "frame": 8,
+          "ms": 303
+        },
+        {
+          "frame": 9,
+          "ms": 402
+        },
+        {
+          "frame": 10,
+          "ms": 490
+        },
+        {
+          "frame": 11,
+          "ms": 586
+        },
+        {
+          "frame": 4,
+          "ms": 702
+        },
+        {
+          "frame": 5,
+          "ms": 800
+        },
+        {
+          "frame": 6,
+          "ms": 886
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "forbidden": []
+}
