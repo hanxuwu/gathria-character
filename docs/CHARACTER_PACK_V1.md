@@ -251,3 +251,11 @@ V1/V2 use original procedural pixel shapes. V3–V7 use AI-assisted illustration
 The application does not implement photo input or AI generation as a user feature. A future provider can implement `CharacterGenerator`, but its output must satisfy the same manifest, pixel, and export contract.
 
 Gathria compatibility is unverified until its actual loader, frame dimensions, animation names/timing, anchor, scaling, and facing rules are inspected at a recorded source revision. The standalone format and consumer remain usable independently of that work.
+
+## Compact running (motion version 2)
+
+Artwork V6 also supports explicit `motionVersion: 2`, identified by generator `gathria-polished-pixels-v6-motion-v2`. It has the same 1536×1024 layout, 192×256 frames, (96,240) anchor, 12 run IDs (12–23), 18 fps and optional-run contract as motion version 1. Only the run drawings differ. Original V6 rows remain byte-identical; V1–V7 and motion version 1 keep their original renderers.
+
+New editor configurations use motion version 2. Existing motion version 1 files preserve their version, pixels and preview; **Create compact running copy** is an explicit conversion. Historical V6 files without running use **Add running**. Saving/opening a file does not silently change its movement version. Both motion versions support the same optional `preview: { animation, facing }` metadata. The file-driven consumer requires no special rendering logic for the new generator ID.
+
+See [the compact running review](RUNNING_V2_REVIEW.md) for actual exported comparisons, compatibility verification and limits.
