@@ -2,6 +2,7 @@ import { Inflate, zipSync, strToU8 } from "fflate";
 import { parseCharacterConfig } from "./config";
 import type {
   Animation,
+  AnimationName,
   CharacterConfig,
   CharacterPackManifest,
   GeneratedCharacter,
@@ -142,7 +143,7 @@ export function validateManifest(value: unknown): CharacterPackManifest {
     return { id, x, y, width: frameWidth, height: frameHeight };
   });
   const animationData = record(data.animations, "animations");
-  function animation(key: "idle" | "walk"): Animation {
+  function animation(key: AnimationName): Animation {
     const item = record(animationData[key], `animations.${key}`);
     if (
       !Array.isArray(item.frames) ||
@@ -194,7 +195,11 @@ export function validateManifest(value: unknown): CharacterPackManifest {
       rows,
     },
     frames,
-    animations: { idle: animation("idle"), walk: animation("walk") },
+    animations: {
+      idle: animation("idle"),
+      walk: animation("walk"),
+      ...("run" in animationData ? { run: animation("run") } : {}),
+    },
     facing: { native: "right", right: "none", left: "mirror-x" },
     anchor: { x: anchorX, y: anchorY, units: "pixels", origin: "top-left" },
     scale: { pixelArt: true, recommended, integerOnly: true },
@@ -217,6 +222,15 @@ function validateConfigForManifest(
   if (config.name !== manifest.name)
     fail(
       "character.json name must match the name in manifest.json. Export both files from the same character.",
+    );
+  if (
+    config.schemaVersion === 2 &&
+    config.artworkVersion === 6 &&
+    (config.motionVersion === 1 || config.motionVersion === 2) &&
+    !manifest.animations.run
+  )
+    fail(
+      "character.json enables running but manifest.json has no run animation. Export both files from the same character.",
     );
   return config;
 }
@@ -594,6 +608,11 @@ export async function createCharacterPack(
 ): Promise<Blob> {
   const manifest = validateManifest(generated.manifest);
   const validatedConfig = validateConfigForManifest(config, manifest);
+  const running =
+    validatedConfig.schemaVersion === 2 &&
+    validatedConfig.artworkVersion === 6 &&
+    (validatedConfig.motionVersion === 1 ||
+      validatedConfig.motionVersion === 2);
   const png = await pixelsToPng(generated);
   if (png.size > MAX_ARCHIVE_BYTES)
     fail(
@@ -612,18 +631,55 @@ export async function createCharacterPack(
       "PROVENANCE.txt": strToU8(
         validatedConfig.schemaVersion === 2 &&
           validatedConfig.artworkVersion >= 3
-          ? validatedConfig.artworkVersion === 4
+          ? validatedConfig.artworkVersion === 7
             ? ILLUSTRATED_PROVENANCE.replace(
                 "Artwork version 3",
-                "Artwork version 4",
+                "Artwork version 7",
               ).replace(
                 "Prototype format:",
-                "Version 4 adds deterministic expressions, motion and an AI-assisted rose hairpiece.\n\nPrototype format:",
+                "V7 uses new AI-assisted complete bride/groom expression sources created with OpenAI image generation during development. Source sheets and exact prompts: artwork/harmonized-source/. The groom received a neck/collar refinement, and a separate hand-free gown backplate supports animated arms. scripts/prepare-harmonized-assets.py registers neck/waist/sole landmarks, shares a face-weighted 96-color palette across each identity, and extracts material-aware layers. Runtime is local and deterministic with no model calls. V1–V6 remain preserved. See docs/ART_HARMONY_V7.md.\n\nPrototype format:",
               )
-            : ILLUSTRATED_PROVENANCE
+            : validatedConfig.artworkVersion === 6
+              ? ILLUSTRATED_PROVENANCE.replace(
+                  "Artwork version 3",
+                  "Artwork version 6",
+                ).replace(
+                  "Prototype format:",
+                  "Version 6 technically re-cuts the existing AI-assisted V5 wedding sources into clean anatomical layers, retains full authored face states, and applies a quieter deterministic gait. No new model-generated artwork was introduced in this revision. See scripts/prepare-polished-assets.py and docs/ART_POLISH_V6.md.\n\n" +
+                    (running
+                      ? validatedConfig.motionVersion === 2
+                        ? "Motion version 2 refines the running key poses into a compact side-facing cycle using the preserved V6 layers. The original V6 idle and walk atlas rows remain byte-identical; motion version 1 retains its original renderer. No new AI-generated artwork or runtime model calls are used for running. See src/core/running-rig-v2.ts and docs/RUNNING_V2_REVIEW.md.\n\n"
+                        : "Motion version 1 adds locally composed running poses from the preserved V6 layers. The original V6 idle and walk atlas rows remain byte-identical. No new AI-generated artwork or runtime model calls are used for running. See docs/RUNNING_REVIEW.md.\n\n"
+                      : "") +
+                    "Prototype format:",
+                )
+              : validatedConfig.artworkVersion === 5
+                ? ILLUSTRATED_PROVENANCE.replace(
+                    "Artwork version 3",
+                    "Artwork version 5",
+                  ).replace(
+                    "Prototype format:",
+                    "Version 5 uses complete authored heads and wedding layers produced offline with OpenAI image generation. Repository sources: artwork/cohesive-source/character-expression-bank.png and garment-backplate.png. scripts/prepare-cohesive-assets.py registers neck/waist/sole landmarks, thresholds alpha, extracts overlapping layers and assigns recolor masks; the garment backplate removes embedded standing hands. Waves/crop use three authored expressions; bob/crest retain their illustrated open-eye face. Runtime composition and playback remain local and deterministic. See artwork/cohesive-source/README.md for production history.\n\nPrototype format:",
+                  )
+                : validatedConfig.artworkVersion === 4
+                  ? ILLUSTRATED_PROVENANCE.replace(
+                      "Artwork version 3",
+                      "Artwork version 4",
+                    ).replace(
+                      "Prototype format:",
+                      "Version 4 adds deterministic expressions, motion and an AI-assisted rose hairpiece.\n\nPrototype format:",
+                    )
+                  : ILLUSTRATED_PROVENANCE
           : PROVENANCE,
       ),
-      "INTEGRATION.md": strToU8(INTEGRATION),
+      "INTEGRATION.md": strToU8(
+        running
+          ? INTEGRATION.replace(
+              "Play animations.idle or animations.walk at their declared fps; loop only when loop is true.",
+              "Play animations.idle, animations.walk or the optional animations.run at their declared fps; loop only when loop is true. Running uses 12 frames at 18 FPS. Old packs can omit run; consumers must disable unavailable actions instead of inventing run frames. The atlas appends running below the unchanged V6 idle/walk rows. These are in-place clips: world movement, if desired, is supplied separately by the consuming scene.",
+            )
+          : INTEGRATION,
+      ),
     },
     { level: 6 },
   );

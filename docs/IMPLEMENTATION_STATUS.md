@@ -1,47 +1,43 @@
 # Implementation status
 
-**Character Art V2 milestone, expressive refinement implemented; awaiting visual review.** Branch `feat/character-art-v2` remains based on unmerged `feat/character-mvp` (MVP `4785afa`). [Draft PR #1](https://github.com/hanxuwu/gathria-character/pull/1) targets that branch and must remain unmerged. Inspect current Git state before further editing. Published milestones include V2 `c9505f0` and detailed V3 `bc69f9d`.
+**Everyday wardrobe batch implemented on V6 + compact running; awaiting user visual review.** Branch `fix/character-art-cohesion`, [draft PR #2](https://github.com/hanxuwu/gathria-character/pull/2), based on the verified V6 default-restoration commit `eb877ca`. Keep the PR unmerged and do not deploy. V7 remains an unaccepted visual iteration with its files and history preserved.
 
-The current default is **artworkVersion 4**: warm Japanese chibi illustration layers with gentler dark-hair highlights, blinking, optional happy eyes and a rose hairpiece, wider stepping, stronger arm articulation and hair/hem motion. V1–V3 files keep their exact renderer. The [current review](ART_V2_REVIEW.md) links actual comparisons, animations, packs, verification and limitations; [V3 review](ART_V3_REVIEW.md) records the previous delivery.
+## Latest batch: everyday clothing
 
-## Implementation and compatibility
+Four new **Everyday looks** cards provide denim/tan, coral/skirt, sage/shorts and ochre/navy combinations. They preserve the current identity, expression, version and action/facing, remove the rose hairpiece, and remain freely editable. Complete example files use V6 + motion version 2; the player’s main example is now Denim daytrip and retains wedding/older examples. No renderers, source banks or old export artifacts changed.
 
-- `generator.ts` dispatches schema 1 to V1 and schema 2 by explicit artwork version to V2, V3 or V4. Preserved defaults/presets are separately named. Opening, editing, resetting, preset selection and saving do not migrate old artwork.
-- V4 requires `expression: gentle | joyful` and `hairAccessory: none | flowers`. **Create expressive copy** explicitly converts older input with a gentle expression and no accessory, preserving its appearance fields/face. The old V3 copy API remains supported and rejects V4 downgrade.
-- V1/V2 geometry stays 48×64, sheet 384×128, anchor (24,60). V3/V4 geometry is 192×256, sheet 1536×512, anchor (96,240), recommended zoom 1. CharacterPack manifest stays version 1.
-- V4 uses four idle drawings across 24 entries at 8 fps, including a half/closed/half blink; walk uses eight drawings at 10 fps. Happy eyes remain closed throughout the selected expression. Both directions play via manifest mirroring. The existing editor workflow remains intact with two additional neutral selectors.
-- `illustrated-assets.generated.ts`, `illustrated-canvas.ts`, `illustrated-rig.ts` and `generator-v3.ts` remain frozen. `expressive-face.ts` handles V4-specific shading and eye regions; `expressive-rig.ts` poses limbs and secondary hair/cloth movement. Colors remain independently editable.
-- New `artwork/expressive-source/flower-clip.png` is an AI-assisted production input. `prepare-expressive-accessory.py` performs reproducible alpha extraction and sizing into a fixed-color prepared layer. The runtime needs no API, model, Python or remote artwork service. [Provenance](ASSET_PROVENANCE.md) distinguishes sources from outputs.
-- The independent player loads actual PNGs/manifests and optional configuration; it imports no editor, rig or generator. It offers all four example versions. Validation bounds and CharacterPack file structure are preserved.
+See [EVERYDAY_REVIEW.md](EVERYDAY_REVIEW.md) for the actual native/2× lineup, idle/walk/run GIFs, four CharacterPacks, independent playback evidence and inherited visual limitations. The coral soft-top waist flecks and angular generic knee cuts remain visible and are not claimed fixed.
 
-## Verification
+This batch passed **259 unit tests, 25 Chromium E2E tests, TypeScript and production build**. Final evidence passed 4 exported packs / 96 frames, 14 PNGs, 7 GIFs, 8 independent left/right run cases and the complete 20.96-second player recording. See [verification record](everyday/verification-results.json). Earlier running counts below remain historical records.
 
-Final revision checked on 2026-10-15:
+## Current behavior
 
-| Check                                              | Result                                                                                                                                                                             |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm test`                                         | **186 passed**, 7 files, no skips; all previous 168 checks retained                                                                                                                |
-| `npm run typecheck`                                | Pass                                                                                                                                                                               |
-| `npm run build`                                    | Pass, studio and independent consumer                                                                                                                                              |
-| `CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e` | **9 passed**                                                                                                                                                                       |
-| Saved-work preservation                            | V1/V2 existing regressions, new fixed hashes from published V3 PNGs, browser V1/V2/V3 pixel equality and save/reopen/export                                                        |
-| V4 visual regressions                              | Determinism, required fields, face variation, blink confined to eyes, stable gait portraits, hair/hem motion, colors, binary alpha, margins, connected clothing and grounded soles |
-| Actual evidence                                    | **20 exports** decoded equal to generator RGBA; eight public packs and two reference looks independently play all **40 motion/facing combinations**, observing every frame ID      |
-| Visual inspection                                  | Actual native/2× outputs, all idle/walk poses, expressions/hair options, recorded independent playback samples and neutral scene                                                   |
+New characters retain `artworkVersion: 6` and explicitly add `motionVersion: 2`. The editor offers idle, walk and run in either direction. Running-enabled configuration saves the selected action/facing in optional `preview` metadata; it has no effect on generated pixels. Old V6 files gain running only through **Add running**. Existing Motion 1 files preserve their original poses until **Create compact running copy** is selected. V1–V5 can create a V6 polished copy first. Existing V1–V7 files are never silently converted.
 
-## Evidence and reproduction
+`generator-motion-v2.ts` copies the complete original V6 1536×512 atlas into the new image, then appends twelve running timeline frames (eleven distinct bride drawings and twelve groom drawings). The new sheet is 1536×1024 with 192×256 frames and anchor (96,240). Idle stays 3 seconds, walk 0.8 seconds, and run has 12 frames at 18 fps (2/3 second). CharacterPack stays schema 1 with optional `animations.run`. Old packs remain playable with Run disabled and explained.
 
-Current outputs live in `docs/art-expressive/` and `public/samples/expressive/`. Old `docs/art-v2/`, `docs/art-detailed/`, original `public/samples/`, `public/samples/v2/` and `public/samples/detailed/` outputs are preserved. The old detailed evidence script explicitly imports V3 presets.
+`running-rig-v2.ts` reuses the frozen V6 art and color treatment. Head, neck, collar and torso share a rigid lean. Groom legs use compact hip-relative targets and folded recovery; arms keep near-right-angle flexion through their fore/aft pump. Smaller body bounce and modest shoe pitch preserve the ground reference. Original motion-version-1 modules stay untouched. The bride uses two hands to lightly hold the full gown, with bounded lift and delayed hem/hair motion. No new model calls or source illustrations were needed. Run-only material/joint masks remove pixels exposed by the larger limb rotations; historical art and actions do not use those masks.
 
-With Vite running, run `CHROMIUM_PATH=/usr/bin/chromium node scripts/generate-expressive-evidence.mjs`, then `python3 scripts/render-expressive-review.py`. The first script uses the real browser generator/exporter, validates output bytes, captures studio/player screenshots and records independent playback. The second composes only real exports into integer-scaled comparisons and GIFs. GIFs use shared quantized palettes and centisecond timing; PNG packs retain lossless RGBA.
+The independent player supports the optional run clip using only exported images and metadata. It safely resets when loading a pack without run. Preview labels state that animation is in place: there is no world translation or claimed speed-to-stride integration.
 
-The optional source-preparation command is `python3 scripts/prepare-expressive-accessory.py`. Pinned Pillow/NumPy dependencies are in `artwork/requirements.txt`. V3 bank extraction is unchanged. Node 24.19.0, npm 11.9.0, system Chromium and Python/Pillow/NumPy are available; no dependency or environment setup changes were required.
+## Recovery points and review evidence
 
-## Next action and remaining work
+- `40c4200`: actual browser-generated V6 baseline packs, original PNG equality and frozen renderer/source hashes.
+- `b0ed59e`: integrated running capability, final wedding pose selection, representative geometry tests and retained iterations 01–04.
+- `e09251e`: original Motion 1 final evidence and documentation.
+- `37db61b`: Motion 2 compact pose refinement, explicit-copy workflow and compatibility/geometry regressions.
+- The current delivery commit adds Motion 2 final evidence and documentation.
 
-1. **Stop for user visual review.** Keep the feature branch and draft PR unmerged. Preserve V4 as delivered in later work as well as V1–V3.
-2. Reference-sheet running, jumping, heart/bouquet gestures and open-mouth expressions remain outside this refinement. The rig still uses transformed illustration layers, limited body shapes and one mirrored view; it is not individually painted full-action animation or cloth physics.
-3. Production Gathria integration remains **UNVERIFIED**. Prior read-only access to `hanxuwu/gathria` returned HTTP 403. No actual scene assets were available, and no other repository was modified. The labeled neutral scene is not an integration test.
-4. A later integration milestone needs the actual runtime revision and scene/loader contract, including 192×256 source art, display scale, anchors, timing, facing and transparency. AI/photo input remains separate later work.
+See [RUNNING_V2_REVIEW.md](RUNNING_V2_REVIEW.md) for the current before/after GIF, native/2× comparisons, portable packs and verification. Final evidence is in [`running-v2/`](running-v2/), samples in [`samples/running-v2/`](../public/samples/running-v2/). Prior [Motion 1 review](RUNNING_REVIEW.md), [`running/`](running/) exports and [`running-baseline/`](running-baseline/) remain unchanged.
 
-Remote CI, Firefox, Safari and a fresh cloud-task bootstrap are not claimed as verified. Earlier handoffs remain in Git history.
+## Verification for the compact running batch
+
+**259 unit tests across 13 files, 22 Chromium E2E tests, TypeScript and production build passed.** This batch separately decoded 10 final packs / 240 frames, 28 PNGs, 10 GIFs, 4 iteration packs and the complete 14.2-second independent-player recording. Four Studio-closed run cases cover two identities and both facings. Full V6 idle/walk rows and delivered Motion 1 wedding pixels reproduce exactly. See [verification record](running-v2/verification-results.json) and [decoded-file report](running-v2/file-validation.json).
+
+The prior Motion 1 batch's 247 unit / 18 browser tests and 22 exports remain historical results in its own review. They are not presented as current executions.
+
+## Remaining limits
+
+The user reference’s third row guided motion mechanics, but the preserved V6 artwork remains three-quarter facing. A true profile requires new artwork. The bride reads as a careful gown-holding trot rather than a sprint. Dress folds are deformed from the existing artwork, not redrawn for each footfall; stronger running would need dedicated running/cloth poses. Groom cuffs and shoes retain some rigid cutout character. Whole-face expressions remain authored states, and bob/crest retain their original expression limitations. User visual acceptance is outstanding.
+
+Stop after delivery for review. Production Gathria integration and travel-speed calibration remain unverified. Firefox/Safari, photo input and runtime image generation are outside this batch. The studio retains its large build-chunk warning because every historical artwork bank remains bundled.

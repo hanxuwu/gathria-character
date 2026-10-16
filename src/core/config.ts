@@ -2,9 +2,14 @@ import type {
   ArtV2CharacterConfig,
   ArtV3CharacterConfig,
   ArtV4CharacterConfig,
+  ArtV5CharacterConfig,
+  ArtV6CharacterConfig,
+  ArtV7CharacterConfig,
   CharacterConfig,
+  CompactRunningCharacterConfig,
   FaceVariant,
   LegacyCharacterConfig,
+  RunningCharacterConfig,
 } from "./types";
 
 export const SKIN_TONES = [
@@ -210,6 +215,42 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     throw new Error("Character configuration must be a JSON object.");
   }
   const input = value as Record<string, unknown>;
+  if (
+    "motionVersion" in input &&
+    (input.schemaVersion !== 2 ||
+      input.artworkVersion !== 6 ||
+      (input.motionVersion !== 1 && input.motionVersion !== 2))
+  ) {
+    throw new Error(
+      "motionVersion must be 1 or 2 and requires artworkVersion 6.",
+    );
+  }
+  if (
+    "preview" in input &&
+    input.motionVersion !== 1 &&
+    input.motionVersion !== 2
+  ) {
+    throw new Error("preview requires explicit motionVersion 1 or 2.");
+  }
+  let preview: RunningCharacterConfig["preview"];
+  if ("preview" in input) {
+    if (
+      !input.preview ||
+      typeof input.preview !== "object" ||
+      Array.isArray(input.preview)
+    )
+      throw new Error("preview must contain a valid animation and facing.");
+    const candidate = input.preview as Record<string, unknown>;
+    if (
+      candidate.animation !== "idle" &&
+      candidate.animation !== "walk" &&
+      candidate.animation !== "run"
+    )
+      throw new Error("preview.animation must be idle, walk or run.");
+    if (candidate.facing !== "left" && candidate.facing !== "right")
+      throw new Error("preview.facing must be left or right.");
+    preview = { animation: candidate.animation, facing: candidate.facing };
+  }
   if (input.schemaVersion !== 1 && input.schemaVersion !== 2)
     throw new Error(
       "Unsupported schemaVersion. Use character configuration version 1 or 2.",
@@ -226,10 +267,13 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     input.schemaVersion === 2 &&
     input.artworkVersion !== 2 &&
     input.artworkVersion !== 3 &&
-    input.artworkVersion !== 4
+    input.artworkVersion !== 4 &&
+    input.artworkVersion !== 5 &&
+    input.artworkVersion !== 6 &&
+    input.artworkVersion !== 7
   ) {
     throw new Error(
-      "Version 2 configurations require artworkVersion 2, 3 or 4.",
+      "Version 2 configurations require artworkVersion 2, 3, 4, 5, 6 or 7.",
     );
   }
   if (
@@ -283,6 +327,34 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     upperClothing: choice("upperClothing", V2_UPPER_CLOTHING),
     lowerClothing: choice("lowerClothing", V2_LOWER_CLOTHING),
   };
+  if (
+    input.artworkVersion === 5 ||
+    input.artworkVersion === 6 ||
+    input.artworkVersion === 7
+  ) {
+    const refined = {
+      schemaVersion: 2 as const,
+      ...modernAppearance,
+      expression: choice("expression", [
+        "neutral",
+        "gentle",
+        "joyful",
+      ] as const),
+      hairAccessory: choice("hairAccessory", ["none", "flowers"] as const),
+    };
+    return input.artworkVersion === 5
+      ? { ...refined, artworkVersion: 5 }
+      : input.artworkVersion === 6
+        ? {
+            ...refined,
+            artworkVersion: 6,
+            ...(input.motionVersion === 1 || input.motionVersion === 2
+              ? { motionVersion: input.motionVersion }
+              : {}),
+            ...(preview ? { preview } : {}),
+          }
+        : { ...refined, artworkVersion: 7 };
+  }
   if (input.artworkVersion === 4)
     return {
       schemaVersion: 2,
@@ -324,7 +396,7 @@ export function upgradeToDetailedArt(
   faceVariant: FaceVariant = "heart",
 ): ArtV3CharacterConfig {
   const parsed = parseCharacterConfig(config);
-  if (parsed.schemaVersion === 2 && parsed.artworkVersion === 4)
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion >= 4)
     throw new Error(
       "Expressive artwork cannot be silently downgraded to Art V3.",
     );
@@ -346,6 +418,10 @@ export function upgradeToExpressiveArt(
   faceVariant: FaceVariant = "heart",
 ): ArtV4CharacterConfig {
   const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion >= 5)
+    throw new Error(
+      "Cohesive artwork cannot be silently downgraded to Art V4.",
+    );
   if (parsed.schemaVersion === 2 && parsed.artworkVersion === 4) return parsed;
   return {
     ...parsed,
@@ -356,3 +432,115 @@ export function upgradeToExpressiveArt(
     hairAccessory: "none",
   };
 }
+
+/** V5 is opt-in for saved work. V1–V4 presets and rendering remain frozen. */
+export function upgradeToCohesiveArt(
+  config: CharacterConfig,
+  faceVariant: FaceVariant = "heart",
+): ArtV5CharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion >= 6)
+    throw new Error("Polished artwork cannot be silently downgraded to V5.");
+  return {
+    ...parsed,
+    schemaVersion: 2,
+    artworkVersion: 5,
+    faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,
+    expression: "expression" in parsed ? parsed.expression : "gentle",
+    hairAccessory: "hairAccessory" in parsed ? parsed.hairAccessory : "none",
+  };
+}
+export const COHESIVE_DEFAULT_CONFIG = upgradeToCohesiveArt(DEFAULT_CONFIG);
+export const COHESIVE_PRESETS = PRESETS.map((p) => ({
+  ...p,
+  config: upgradeToCohesiveArt(p.config),
+}));
+
+/** New art is an explicit copy; already delivered V5 work also stays unchanged. */
+export function upgradeToPolishedArt(
+  config: CharacterConfig,
+  faceVariant: FaceVariant = "heart",
+): ArtV6CharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion >= 7)
+    throw new Error("V7 artwork cannot be silently downgraded to V6.");
+  return {
+    ...parsed,
+    schemaVersion: 2,
+    artworkVersion: 6,
+    faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,
+    expression: "expression" in parsed ? parsed.expression : "gentle",
+    hairAccessory: "hairAccessory" in parsed ? parsed.hairAccessory : "none",
+  };
+}
+export const POLISHED_DEFAULT_CONFIG = upgradeToPolishedArt(
+  COHESIVE_DEFAULT_CONFIG,
+);
+export const POLISHED_PRESETS = COHESIVE_PRESETS.map((p) => ({
+  ...p,
+  config: upgradeToPolishedArt(p.config),
+}));
+
+/** Running changes animation layout, never artwork; saved V6 files opt in explicitly. */
+export function enableRunning(
+  config: ArtV6CharacterConfig,
+): RunningCharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion !== 2 || parsed.artworkVersion !== 6)
+    throw new Error("Running requires an explicit V6 character copy.");
+  if (parsed.motionVersion === 2)
+    throw new Error(
+      "Compact running cannot be silently downgraded to motion version 1.",
+    );
+  return { ...parsed, motionVersion: 1 };
+}
+export const RUNNING_DEFAULT_CONFIG = enableRunning(POLISHED_DEFAULT_CONFIG);
+export const RUNNING_PRESETS = POLISHED_PRESETS.map((p) => ({
+  ...p,
+  config: enableRunning(p.config),
+}));
+
+/** Explicit movement copy; existing motion v1 configurations retain their poses. */
+export function enableCompactRunning(
+  config: ArtV6CharacterConfig,
+): CompactRunningCharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion !== 2 || parsed.artworkVersion !== 6)
+    throw new Error("Compact running requires an explicit V6 character copy.");
+  return { ...parsed, motionVersion: 2 };
+}
+export const COMPACT_RUNNING_DEFAULT_CONFIG = enableCompactRunning(
+  POLISHED_DEFAULT_CONFIG,
+);
+export const COMPACT_RUNNING_PRESETS = POLISHED_PRESETS.map((p) => ({
+  ...p,
+  config: enableCompactRunning(p.config),
+}));
+
+/** Explicit V7 copy; no opening or editing path invokes this conversion. */
+export function upgradeToHarmonizedArt(
+  config: CharacterConfig,
+  faceVariant: FaceVariant = "heart",
+): ArtV7CharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  const appearance = { ...parsed };
+  if (appearance.schemaVersion === 2 && appearance.artworkVersion === 6) {
+    delete appearance.motionVersion;
+    delete appearance.preview;
+  }
+  return {
+    ...appearance,
+    schemaVersion: 2,
+    artworkVersion: 7,
+    faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,
+    expression: "expression" in parsed ? parsed.expression : "gentle",
+    hairAccessory: "hairAccessory" in parsed ? parsed.hairAccessory : "none",
+  };
+}
+export const HARMONIZED_DEFAULT_CONFIG = upgradeToHarmonizedArt(
+  POLISHED_DEFAULT_CONFIG,
+);
+export const HARMONIZED_PRESETS = POLISHED_PRESETS.map((p) => ({
+  ...p,
+  config: upgradeToHarmonizedArt(p.config),
+}));

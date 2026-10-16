@@ -1,4 +1,4 @@
-export type AnimationName = "idle" | "walk";
+export type AnimationName = "idle" | "walk" | "run";
 export type Facing = "left" | "right";
 export type Hairstyle = "crop" | "bob" | "waves" | "mohawk";
 export type LegacyUpperClothing = "tee" | "hoodie" | "jacket";
@@ -39,11 +39,40 @@ export interface ArtV4CharacterConfig
   expression: "gentle" | "joyful";
   hairAccessory: "none" | "flowers";
 }
+export interface ArtV5CharacterConfig
+  extends Omit<ArtV4CharacterConfig, "artworkVersion" | "expression"> {
+  artworkVersion: 5;
+  expression: "neutral" | "gentle" | "joyful";
+}
+export interface ArtV6CharacterConfig
+  extends Omit<ArtV5CharacterConfig, "artworkVersion"> {
+  artworkVersion: 6;
+  /** Explicit opt-in; omitted on historical V6 configurations. */
+  motionVersion?: 1 | 2;
+  /** Saved playback choice, supported by explicit motion versions only. */
+  preview?: { animation: AnimationName; facing: Facing };
+}
+export interface ArtV7CharacterConfig
+  extends Omit<
+    ArtV6CharacterConfig,
+    "artworkVersion" | "motionVersion" | "preview"
+  > {
+  artworkVersion: 7;
+}
+export interface RunningCharacterConfig extends ArtV6CharacterConfig {
+  motionVersion: 1;
+}
+export interface CompactRunningCharacterConfig extends ArtV6CharacterConfig {
+  motionVersion: 2;
+}
 export type CharacterConfig =
   | LegacyCharacterConfig
   | ArtV2CharacterConfig
   | ArtV3CharacterConfig
-  | ArtV4CharacterConfig;
+  | ArtV4CharacterConfig
+  | ArtV5CharacterConfig
+  | ArtV6CharacterConfig
+  | ArtV7CharacterConfig;
 export interface SpriteFrame {
   id: number;
   x: number;
@@ -71,7 +100,7 @@ export interface CharacterPackManifest {
     rows: number;
   };
   frames: SpriteFrame[];
-  animations: Record<AnimationName, Animation>;
+  animations: Record<"idle" | "walk", Animation> & { run?: Animation };
   facing: { native: "right"; right: "none"; left: "mirror-x" };
   anchor: { x: number; y: number; units: "pixels"; origin: "top-left" };
   scale: { pixelArt: true; recommended: number; integerOnly: true };

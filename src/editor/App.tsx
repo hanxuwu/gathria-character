@@ -28,17 +28,27 @@ import {
   ART_V2_PRESETS,
   ART_V3_PRESETS,
   CLOTHING_COLORS,
-  DEFAULT_CONFIG,
+  COMPACT_RUNNING_DEFAULT_CONFIG as DEFAULT_CONFIG,
   HAIR_COLORS,
   LEGACY_PRESETS,
   OUTFIT_PRESETS,
-  PRESETS,
+  COHESIVE_PRESETS,
+  POLISHED_PRESETS,
+  RUNNING_PRESETS,
+  COMPACT_RUNNING_PRESETS as PRESETS,
+  HARMONIZED_PRESETS,
+  PRESETS as ART_V4_PRESETS,
   SKIN_TONES,
   configToJson,
+  enableCompactRunning,
   parseCharacterConfig,
-  upgradeToExpressiveArt,
+  upgradeToPolishedArt,
 } from "../core/config";
 import { generateCharacter } from "../core/generator";
+import {
+  EVERYDAY_PRESETS,
+  applyEverydayPreset,
+} from "../core/everyday-presets";
 import {
   createCharacterPack,
   downloadBlob,
@@ -52,6 +62,7 @@ import type {
   Facing,
 } from "../core/types";
 import { CharacterPreview, Filmstrip } from "./Preview";
+import "./controls.css";
 
 function PixelMark() {
   return (
@@ -201,6 +212,10 @@ export default function App() {
     [config],
   );
   const artworkVersion = config.schemaVersion === 1 ? 1 : config.artworkVersion;
+  const motionVersion =
+    config.schemaVersion === 2 && config.artworkVersion === 6
+      ? config.motionVersion
+      : undefined;
   const activePresets =
     artworkVersion === 1
       ? LEGACY_PRESETS
@@ -208,14 +223,28 @@ export default function App() {
         ? ART_V2_PRESETS
         : artworkVersion === 3
           ? ART_V3_PRESETS
-          : PRESETS;
+          : artworkVersion === 4
+            ? ART_V4_PRESETS
+            : artworkVersion === 5
+              ? COHESIVE_PRESETS
+              : artworkVersion === 6
+                ? motionVersion === 2
+                  ? PRESETS
+                  : motionVersion === 1
+                    ? RUNNING_PRESETS
+                    : POLISHED_PRESETS
+                : HARMONIZED_PRESETS;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const largePortraits = frameWidth > 96;
   const recommendedZoom = generated.manifest.scale.recommended;
   useEffect(() => {
     setZoom(recommendedZoom);
   }, [frameWidth, frameHeight, recommendedZoom]);
-  const sequence = generated.manifest.animations[animation];
+  const activeAnimation = generated.manifest.animations[animation]
+    ? animation
+    : "idle";
+  const sequence = generated.manifest.animations[activeAnimation]!;
+  const hasRun = Boolean(generated.manifest.animations.run);
   const drawingCount = new Set(sequence.frames).size;
   const loopSeconds = Number(
     (sequence.frames.length / sequence.fps).toFixed(2),
@@ -234,15 +263,71 @@ export default function App() {
     const item = activePresets.find((p) => p.id === id)!;
     setSelectedPreset(id);
     setConfig({ ...item.config });
+    restorePreview(item.config);
     setNotice(null);
+  }
+  function restorePreview(next: CharacterConfig) {
+    const preview =
+      next.schemaVersion === 2 &&
+      next.artworkVersion === 6 &&
+      (next.motionVersion === 1 || next.motionVersion === 2)
+        ? next.preview
+        : undefined;
+    setAnimation(preview?.animation ?? "idle");
+    setFacing(preview?.facing ?? "right");
+    setFrame(1);
+  }
+  function configWithPreview(): CharacterConfig {
+    return config.schemaVersion === 2 &&
+      config.artworkVersion === 6 &&
+      (config.motionVersion === 1 || config.motionVersion === 2)
+      ? {
+          ...config,
+          preview: { animation: activeAnimation, facing },
+        }
+      : config;
+  }
+  function addRunning() {
+    try {
+      if (config.schemaVersion !== 2 || config.artworkVersion !== 6)
+        throw new Error("Running can be added to an Art V6 configuration.");
+      setConfig(enableCompactRunning(config));
+      setAnimation("run");
+      setFrame(1);
+      setNotice({
+        text: "Running added. Your V6 appearance, idle and walk stay unchanged. Save this as a new configuration to keep the original file.",
+      });
+    } catch (error) {
+      showError(error);
+    }
+  }
+  function createCompactRunningCopy() {
+    try {
+      if (config.schemaVersion !== 2 || config.artworkVersion !== 6)
+        throw new Error("Compact running requires an Art V6 configuration.");
+      setConfig(
+        enableCompactRunning({
+          ...config,
+          preview: { animation: activeAnimation, facing },
+        }),
+      );
+      setFrame(1);
+      setNotice({
+        text: "Compact running copy created. Your appearance, idle and walk stay unchanged. Save this as a new configuration to keep the original running poses.",
+      });
+    } catch (error) {
+      showError(error);
+    }
   }
   function createExpressiveCopy() {
     try {
       const face = PRESETS.find((item) => item.id === selectedPreset)!.config
         .faceVariant;
-      setConfig(upgradeToExpressiveArt(config, face));
+      const next = upgradeToPolishedArt(config, face);
+      setConfig(next);
+      restorePreview(next);
       setNotice({
-        text: "Expressive copy created. Save it as a new configuration to keep both designs.",
+        text: "Polished copy created. Save it as a new configuration to keep both designs.",
       });
     } catch (error) {
       showError(error);
@@ -250,7 +335,7 @@ export default function App() {
   }
   function saveConfig() {
     try {
-      const json = configToJson(config);
+      const json = configToJson(configWithPreview());
       downloadBlob(
         new Blob([json], { type: "application/json" }),
         `${safeFilename(config.name)}.character.json`,
@@ -290,9 +375,10 @@ export default function App() {
       }
       const next = parseCharacterConfig(value);
       setConfig(next);
+      restorePreview(next);
       setNotice({
         text:
-          next.schemaVersion === 1 || next.artworkVersion < 4
+          next.schemaVersion === 1 || next.artworkVersion !== 6
             ? `Opened ${next.name} in its saved Art V${next.schemaVersion === 1 ? 1 : next.artworkVersion} style. Your design is preserved.`
             : `Opened ${next.name}. Every detail is ready to edit.`,
       });
@@ -303,7 +389,7 @@ export default function App() {
   async function exportPack() {
     setExporting(true);
     try {
-      const blob = await createCharacterPack(config, generated);
+      const blob = await createCharacterPack(configWithPreview(), generated);
       downloadBlob(blob, `${safeFilename(config.name)}.character.zip`);
       setNotice({
         text: "CharacterPack downloaded. Open it in the independent player to try your exported animations.",
@@ -409,6 +495,7 @@ export default function App() {
                 aria-label="Reset character"
                 onClick={() => {
                   setConfig({ ...preset.config });
+                  restorePreview(preset.config);
                   setNotice({ text: `Reset to the ${preset.label} preset.` });
                 }}
               >
@@ -495,7 +582,7 @@ export default function App() {
                 placeholder="Give them a name"
               />
             </div>
-            {artworkVersion !== 4 && (
+            {artworkVersion !== 6 && (
               <div className="legacy-art-notice">
                 <strong>
                   Art V{artworkVersion} ·{" "}
@@ -506,9 +593,11 @@ export default function App() {
                       : "detailed"}
                 </strong>
                 <p>Your saved artwork stays in its existing style.</p>
-                <button type="button" onClick={createExpressiveCopy}>
-                  <Sparkles size={13} /> Create expressive copy
-                </button>
+                {artworkVersion < 6 && (
+                  <button type="button" onClick={createExpressiveCopy}>
+                    <Sparkles size={13} /> Create polished copy
+                  </button>
+                )}
               </div>
             )}
             <Section number="01" title="The essentials">
@@ -531,50 +620,95 @@ export default function App() {
                   }}
                 />
               )}
-              {config.schemaVersion === 2 && config.artworkVersion === 4 && (
-                <>
-                  <SelectControl
-                    label="Expression"
-                    value={config.expression}
-                    options={[
-                      ["gentle", "Gentle smile"],
-                      ["joyful", "Happy eyes"],
-                    ]}
-                    onChange={(value) => {
-                      setConfig((current) =>
-                        current.schemaVersion === 2 &&
-                        current.artworkVersion === 4
-                          ? {
+              {config.schemaVersion === 2 &&
+                (config.artworkVersion === 4 ||
+                  config.artworkVersion === 5 ||
+                  config.artworkVersion === 6 ||
+                  config.artworkVersion === 7) && (
+                  <>
+                    {(config.artworkVersion === 5 ||
+                      config.artworkVersion === 6 ||
+                      config.artworkVersion === 7) &&
+                      (config.hairstyle === "bob" ||
+                        config.hairstyle === "mohawk") && (
+                        <p className="control-label">
+                          Authored expressions are available for Long waves and
+                          Short crop. This hairstyle keeps its original face.
+                        </p>
+                      )}
+                    <SelectControl
+                      label="Expression"
+                      value={config.expression}
+                      options={
+                        (config.artworkVersion === 5 ||
+                          config.artworkVersion === 6 ||
+                          config.artworkVersion === 7) &&
+                        (config.hairstyle === "bob" ||
+                          config.hairstyle === "mohawk")
+                          ? [[config.expression, "Original face"]]
+                          : [
+                              ...(config.artworkVersion === 5 ||
+                              config.artworkVersion === 6 ||
+                              config.artworkVersion === 7
+                                ? [["neutral", "Neutral"] as [string, string]]
+                                : []),
+                              ["gentle", "Gentle smile"],
+                              ["joyful", "Happy eyes"],
+                            ]
+                      }
+                      onChange={(value) => {
+                        setConfig((current) => {
+                          if (current.schemaVersion !== 2) return current;
+                          if (
+                            current.artworkVersion === 5 ||
+                            current.artworkVersion === 6 ||
+                            current.artworkVersion === 7
+                          )
+                            return {
+                              ...current,
+                              expression: value as
+                                | "neutral"
+                                | "gentle"
+                                | "joyful",
+                            };
+                          if (
+                            current.artworkVersion === 4 &&
+                            value !== "neutral"
+                          )
+                            return {
                               ...current,
                               expression: value as "gentle" | "joyful",
-                            }
-                          : current,
-                      );
-                      setNotice(null);
-                    }}
-                  />
-                  <SelectControl
-                    label="Hair accessory"
-                    value={config.hairAccessory}
-                    options={[
-                      ["none", "None"],
-                      ["flowers", "Rose hairpiece"],
-                    ]}
-                    onChange={(value) => {
-                      setConfig((current) =>
-                        current.schemaVersion === 2 &&
-                        current.artworkVersion === 4
-                          ? {
-                              ...current,
-                              hairAccessory: value as "none" | "flowers",
-                            }
-                          : current,
-                      );
-                      setNotice(null);
-                    }}
-                  />
-                </>
-              )}
+                            };
+                          return current;
+                        });
+                        setNotice(null);
+                      }}
+                    />
+                    <SelectControl
+                      label="Hair accessory"
+                      value={config.hairAccessory}
+                      options={[
+                        ["none", "None"],
+                        ["flowers", "Rose hairpiece"],
+                      ]}
+                      onChange={(value) => {
+                        setConfig((current) =>
+                          current.schemaVersion === 2 &&
+                          (current.artworkVersion === 4 ||
+                            current.artworkVersion === 5 ||
+                            current.artworkVersion === 6 ||
+                            current.artworkVersion === 7)
+                            ? {
+                                ...current,
+                                hairAccessory: value as "none" | "flowers",
+                              }
+                            : current,
+                        );
+                        setNotice(null);
+                      }}
+                    />
+                  </>
+                )}
               <Swatches
                 label="Skin tone"
                 value={config.skinTone}
@@ -602,6 +736,59 @@ export default function App() {
               />
             </Section>
             <Section number="02" title="A little style">
+              <div className="outfit-field">
+                <span className="control-label">Everyday looks</span>
+                <p className="everyday-hint">
+                  Complete outfits. Keep your character, mix any detail.
+                </p>
+                <div
+                  className="outfit-presets everyday-presets"
+                  role="group"
+                  aria-label="Everyday looks"
+                >
+                  {EVERYDAY_PRESETS.map(
+                    ({ id, label, description, appearance }) => (
+                      <button
+                        type="button"
+                        key={id}
+                        aria-label={label}
+                        aria-describedby={`everyday-${id}`}
+                        aria-pressed={
+                          Object.entries(appearance).every(
+                            ([key, value]) =>
+                              config[key as keyof CharacterConfig] === value,
+                          ) &&
+                          (!("hairAccessory" in config) ||
+                            config.hairAccessory === "none")
+                        }
+                        onClick={() => {
+                          setConfig((current) =>
+                            applyEverydayPreset(current, id),
+                          );
+                          setNotice(null);
+                        }}
+                      >
+                        <span className="everyday-label">{label}</span>
+                        <span className="everyday-colors" aria-hidden="true">
+                          {[
+                            appearance.upperColor,
+                            appearance.lowerColor,
+                            appearance.shoeColor,
+                          ].map((color) => (
+                            <i key={color} style={{ backgroundColor: color }} />
+                          ))}
+                        </span>
+                        <span
+                          className="everyday-description"
+                          id={`everyday-${id}`}
+                        >
+                          {description}
+                        </span>
+                      </button>
+                    ),
+                  )}
+                </div>
+              </div>
               {config.schemaVersion === 2 && (
                 <div className="outfit-field">
                   <span className="control-label">Outfit starting points</span>
@@ -637,7 +824,7 @@ export default function App() {
                 label="Upper clothing"
                 value={config.upperClothing}
                 options={[
-                  ["tee", "Everyday tee"],
+                  ["tee", artworkVersion >= 3 ? "Soft top" : "Everyday tee"],
                   ["hoodie", "Cozy hoodie"],
                   ["jacket", "Open jacket"],
                   ...(config.schemaVersion === 2
@@ -738,7 +925,13 @@ export default function App() {
                         ? "ART V2 · CLASSIC"
                         : artworkVersion === 3
                           ? "DETAILED ART · V3"
-                          : "EXPRESSIVE ART · V4"}
+                          : artworkVersion === 4
+                            ? "EXPRESSIVE ART · V4"
+                            : artworkVersion === 5
+                              ? "REFINED ART · V5"
+                              : artworkVersion === 6
+                                ? "POLISHED ART · V6"
+                                : "HARMONIZED ART · V7"}
                   </span>
                   <span>
                     {artworkVersion >= 3
@@ -756,7 +949,7 @@ export default function App() {
                   />
                   <CharacterPreview
                     generated={generated}
-                    animation={animation}
+                    animation={activeAnimation}
                     facing={facing}
                     playing={playing}
                     speed={speed}
@@ -767,22 +960,38 @@ export default function App() {
                 <div className="stage-name">
                   {config.name || "Your character"}
                   <span>
-                    {animation === "idle"
+                    {activeAnimation === "idle"
                       ? "Taking a little breather"
-                      : "Places to go, stories to tell"}
+                      : activeAnimation === "walk"
+                        ? "Walking in place · no travel"
+                        : "Running in place · no travel"}
                   </span>
                 </div>
                 <span className="zoom-badge">{zoom}×</span>
               </div>
               <div className="playback-controls">
                 <div className="segmented" aria-label="Animation">
-                  {(["idle", "walk"] as const).map((value) => (
+                  {(["idle", "walk", "run"] as const).map((value) => (
                     <button
                       key={value}
-                      aria-pressed={animation === value}
-                      onClick={() => setAnimation(value)}
+                      aria-pressed={activeAnimation === value}
+                      disabled={value === "run" && !hasRun}
+                      aria-describedby={
+                        value === "run" && !hasRun
+                          ? "running-availability"
+                          : undefined
+                      }
+                      onClick={() => {
+                        if (value === activeAnimation) return;
+                        setAnimation(value);
+                        setFrame(1);
+                      }}
                     >
-                      {value === "idle" ? "Idle" : "Walk"}
+                      {value === "idle"
+                        ? "Idle"
+                        : value === "walk"
+                          ? "Walk"
+                          : "Run"}
                     </button>
                   ))}
                 </div>
@@ -815,20 +1024,55 @@ export default function App() {
                     <button
                       aria-label="Face left"
                       aria-pressed={facing === "left"}
-                      onClick={() => setFacing("left")}
+                      onClick={() => {
+                        if (facing === "left") return;
+                        setFacing("left");
+                        setFrame(1);
+                      }}
                     >
                       <ArrowLeft size={16} />
                     </button>
                     <button
                       aria-label="Face right"
                       aria-pressed={facing === "right"}
-                      onClick={() => setFacing("right")}
+                      onClick={() => {
+                        if (facing === "right") return;
+                        setFacing("right");
+                        setFrame(1);
+                      }}
                     >
                       <ArrowRight size={16} />
                     </button>
                   </div>
                 </div>
               </div>
+              {!hasRun && (
+                <div className="legacy-art-notice" id="running-availability">
+                  <p>
+                    {artworkVersion === 6
+                      ? "Running is not included in this saved configuration. Add it while preserving the V6 artwork and existing animations."
+                      : artworkVersion < 6
+                        ? "Running is unavailable for this saved artwork. Create a polished copy, then add running."
+                        : "Running is unavailable for Art V7. This saved design is preserved; running uses the V6 character proportions."}
+                  </p>
+                  {artworkVersion === 6 && (
+                    <button type="button" onClick={addRunning}>
+                      <Sparkles size={13} /> Add running
+                    </button>
+                  )}
+                </div>
+              )}
+              {motionVersion === 1 && (
+                <div className="legacy-art-notice">
+                  <p>
+                    Your saved running poses are preserved. Create a copy to try
+                    the more compact running poses.
+                  </p>
+                  <button type="button" onClick={createCompactRunningCopy}>
+                    <Sparkles size={13} /> Create compact running copy
+                  </button>
+                </div>
+              )}
               <div className="preview-options">
                 <label>
                   <span>Speed</span>
@@ -857,7 +1101,7 @@ export default function App() {
                     ))}
                   </select>
                 </label>
-                <span className="crisp-note">Crisp pixels. Always.</span>
+                <span className="crisp-note">In-place preview · no travel</span>
               </div>
             </section>
             <section className="timeline-panel">
@@ -877,7 +1121,7 @@ export default function App() {
               </div>
               <Filmstrip
                 generated={generated}
-                animation={animation}
+                animation={activeAnimation}
                 activeFrame={frame}
               />
             </section>

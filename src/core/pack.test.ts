@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { strToU8, zipSync } from "fflate";
-import { DEFAULT_CONFIG } from "./config";
+import { DEFAULT_CONFIG, RUNNING_DEFAULT_CONFIG } from "./config";
 import {
   createCharacterPack,
   loadCharacterPack,
@@ -330,6 +330,24 @@ describe("CharacterPack ZIP byte validation", () => {
     );
   });
 
+  it.each([1, 2] as const)(
+    "requires a motion v%s source configuration to include a portable run clip",
+    (motionVersion) => {
+      const files = archiveFiles();
+      const config = { ...RUNNING_DEFAULT_CONFIG, motionVersion };
+      files["character.json"] = strToU8(JSON.stringify(config));
+      expect(() => readCharacterPackArchive(zipSync(files))).toThrow(
+        "has no run animation",
+      );
+      const data = JSON.parse(new TextDecoder().decode(files["manifest.json"]));
+      data.animations.run = { frames: [7], fps: 18, loop: true };
+      files["manifest.json"] = strToU8(JSON.stringify(data));
+      const parsed = readCharacterPackArchive(zipSync(files));
+      expect(parsed.config).toEqual(config);
+      expect(parsed.manifest.animations.run).toEqual(data.animations.run);
+    },
+  );
+
   it("rejects non-PNG data and image dimensions that disagree with metadata", () => {
     const files = archiveFiles();
     files["spritesheet.png"] = strToU8("not an image");
@@ -444,6 +462,18 @@ describe("export input validation", () => {
       createCharacterPack({ ...DEFAULT_CONFIG, name: "Rowan" }, generated()),
     ).rejects.toThrow("name must match");
   });
+
+  it.each([1, 2] as const)(
+    "rejects a motion v%s export missing run metadata before PNG work",
+    async (motionVersion) => {
+      await expect(
+        createCharacterPack(
+          { ...RUNNING_DEFAULT_CONFIG, motionVersion },
+          generated(),
+        ),
+      ).rejects.toThrow("has no run animation");
+    },
+  );
 
   it("rejects an inconsistent generated pixel buffer before touching the DOM", async () => {
     await expect(

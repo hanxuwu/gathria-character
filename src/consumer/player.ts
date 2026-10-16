@@ -12,6 +12,11 @@ export function frameAtTime(
   elapsedMs: number,
 ): SpriteFrame {
   const animation = manifest.animations[animationName];
+  if (!animation) {
+    throw new Error(
+      `Animation ${animationName} is not available in this pack.`,
+    );
+  }
   const position = Math.floor((Math.max(0, elapsedMs) * animation.fps) / 1000);
   const index = animation.loop
     ? position % animation.frames.length

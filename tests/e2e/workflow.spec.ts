@@ -65,6 +65,9 @@ test("customize → save/reopen → export → independent PNG/metadata playback
   await savedConfig.saveAs(configPath);
   const character = JSON.parse(await readFile(configPath, "utf8"));
   expect(character).toMatchObject({
+    artworkVersion: 6,
+    motionVersion: 2,
+    preview: { animation: "walk", facing: "left" },
     name: "Aria",
     hairstyle: "mohawk",
     upperClothing: "jacket",
@@ -110,17 +113,19 @@ test("customize → save/reopen → export → independent PNG/metadata playback
     "manifest.json",
     "spritesheet.png",
   ]);
-  expect(JSON.parse(Buffer.from(files["character.json"]).toString())).toEqual(
-    character,
-  );
+  expect(JSON.parse(Buffer.from(files["character.json"]).toString())).toEqual({
+    ...character,
+    preview: { animation: "idle", facing: "right" },
+  });
   const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
   expect(manifest.spritesheet).toMatchObject({
     width: 1536,
-    height: 512,
+    height: 1024,
     frameWidth: 192,
     frameHeight: 256,
   });
   expect(manifest.animations.walk.frames).toHaveLength(8);
+  expect(manifest.animations.run.frames).toHaveLength(12);
   expect(manifest.facing).toEqual({
     native: "right",
     right: "none",
@@ -131,7 +136,7 @@ test("customize → save/reopen → export → independent PNG/metadata playback
   expect(provenance).not.toContain("or AI generation are used");
   const png = Buffer.from(files["spritesheet.png"]);
   expect(png.readUInt32BE(16)).toBe(1536);
-  expect(png.readUInt32BE(20)).toBe(512);
+  expect(png.readUInt32BE(20)).toBe(1024);
 
   // Fresh page: block generator/editor sources to prove consumption uses exported files only.
   const player = await context.newPage();

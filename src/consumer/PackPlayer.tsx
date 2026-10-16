@@ -45,6 +45,7 @@ export function PackPlayer() {
   const frameRef = useRef(-1);
   const [canvasWidth, setCanvasWidth] = useState(640);
   const [playbackRevision, setPlaybackRevision] = useState(0);
+  const selectedClip = pack?.manifest.animations[animation];
   const frameHeight = pack?.manifest.spritesheet.frameHeight ?? 0;
   const canvasHeight = Math.max(420, frameHeight * zoom + 100);
   const canvasRenderWidth = Math.max(
@@ -153,6 +154,7 @@ export function PackPlayer() {
         if (request !== requestRef.current) return;
         elapsedRef.current = 0;
         frameRef.current = -1;
+        setFrameId(loaded.manifest.animations.idle.frames[0]);
         setPack(loaded);
         setSource(label);
         setAnimation("idle");
@@ -175,23 +177,53 @@ export function PackPlayer() {
     void openPack(() => loadCharacterPack(file), file.name);
   }
 
-  function openExample(artworkVersion: 1 | 2 | 3 | 4) {
-    void openPack(async () => {
-      const response = await fetch(
-        artworkVersion === 4
-          ? "/samples/expressive/mira.character.zip"
-          : artworkVersion === 3
-            ? "/samples/detailed/mira.character.zip"
-            : artworkVersion === 2
-              ? "/samples/v2/mira.character.zip"
-              : "/samples/mira.character.zip",
-      );
-      if (!response.ok)
-        throw new Error(
-          `The example pack could not be downloaded (HTTP ${response.status}).`,
+  function openExample(
+    artworkVersion:
+      | 1
+      | 2
+      | 3
+      | 4
+      | 6
+      | 7
+      | "everyday"
+      | "running"
+      | "running-v1",
+  ) {
+    void openPack(
+      async () => {
+        const response = await fetch(
+          artworkVersion === "everyday"
+            ? "/samples/everyday/denim-daytrip.character.zip"
+            : artworkVersion === "running"
+              ? "/samples/running-v2/dress.character.zip"
+              : artworkVersion === "running-v1"
+                ? "/samples/running/dress.character.zip"
+                : artworkVersion === 7
+                  ? "/samples/harmonized/dress-joyful.character.zip"
+                  : artworkVersion === 6
+                    ? "/samples/polished/dress-joyful.character.zip"
+                    : artworkVersion === 4
+                      ? "/samples/expressive/mira.character.zip"
+                      : artworkVersion === 3
+                        ? "/samples/detailed/mira.character.zip"
+                        : artworkVersion === 2
+                          ? "/samples/v2/mira.character.zip"
+                          : "/samples/mira.character.zip",
         );
-      return loadCharacterPack(await response.blob());
-    }, `mira.character.zip · Art V${artworkVersion} bundled example`);
+        if (!response.ok)
+          throw new Error(
+            `The example pack could not be downloaded (HTTP ${response.status}).`,
+          );
+        return loadCharacterPack(await response.blob());
+      },
+      artworkVersion === "everyday"
+        ? "denim-daytrip.character.zip · Art V6 · Motion V2 · bundled example"
+        : artworkVersion === "running"
+          ? "dress.character.zip · Art V6 · Motion V2 · bundled example"
+          : artworkVersion === "running-v1"
+            ? "dress.character.zip · Art V6 · Motion V1 · preserved example"
+            : `${artworkVersion >= 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
+    );
   }
 
   function openSeparateFiles() {
@@ -218,7 +250,11 @@ export function PackPlayer() {
   }
 
   function chooseAnimation(value: AnimationName) {
+    const clip = pack?.manifest.animations[value];
+    if (!clip) return;
     elapsedRef.current = 0;
+    frameRef.current = -1;
+    setFrameId(clip.frames[0]);
     setAnimation(value);
     setPlaybackRevision((value) => value + 1);
   }
@@ -329,16 +365,51 @@ export function PackPlayer() {
             </div>
             <button
               className="player-sample-button"
-              onClick={() => openExample(4)}
+              onClick={() => openExample("everyday")}
               disabled={busy}
             >
               <span className="player-sample-icon">
                 <Layers3 size={19} />
               </span>
               <span>
-                Just exploring?<strong>Try Mira’s expressive pack</strong>
+                Just exploring?<strong>Try the denim daytrip pack</strong>
               </span>
               <ArrowRight size={17} />
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample("running")}
+              disabled={busy}
+            >
+              Try the running wedding pack
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample("running-v1")}
+              disabled={busy}
+            >
+              Try the original running pack · Motion V1
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample(6)}
+              disabled={busy}
+            >
+              Try the polished wedding pack · Art V6
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample(7)}
+              disabled={busy}
+            >
+              Try the V7 wedding pack
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample(4)}
+              disabled={busy}
+            >
+              Try Mira’s expressive pack · Art V4
             </button>
             <button
               className="player-legacy-sample"
@@ -510,15 +581,26 @@ export function PackPlayer() {
                     role="group"
                     aria-labelledby="player-motion-label"
                   >
-                    {(["idle", "walk"] as const).map((value) => (
+                    {(["idle", "walk", "run"] as const).map((value) => (
                       <button
                         key={value}
-                        disabled={!pack}
+                        disabled={!pack?.manifest.animations[value]}
+                        aria-describedby={
+                          value === "run" &&
+                          pack &&
+                          !pack.manifest.animations.run
+                            ? "player-run-unavailable"
+                            : undefined
+                        }
                         aria-pressed={animation === value}
                         className={animation === value ? "player-selected" : ""}
                         onClick={() => chooseAnimation(value)}
                       >
-                        {value === "idle" ? "Idle" : "Walk"}
+                        {value === "idle"
+                          ? "Idle"
+                          : value === "walk"
+                            ? "Walk"
+                            : "Run"}
                       </button>
                     ))}
                   </div>
@@ -561,9 +643,17 @@ export function PackPlayer() {
                   )}
                 </button>
               </div>
+              <p className="player-motion-note">
+                In-place playback · The character stays in one place.
+              </p>
+              {pack && !pack.manifest.animations.run && (
+                <p className="player-motion-note" id="player-run-unavailable">
+                  Run unavailable: this pack includes Idle and Walk only.
+                </p>
+              )}
               <div className="player-control-row player-secondary-controls">
                 <label htmlFor="player-speed">
-                  Speed
+                  Playback speed
                   <select
                     id="player-speed"
                     value={speed}
@@ -596,9 +686,7 @@ export function PackPlayer() {
                   className="player-reset"
                   disabled={!pack}
                   onClick={() => {
-                    elapsedRef.current = 0;
-                    setPlaybackRevision((value) => value + 1);
-                    setAnimation("idle");
+                    chooseAnimation("idle");
                     setPlaying(true);
                     setSpeed(1);
                     setFacing("right");
@@ -607,8 +695,8 @@ export function PackPlayer() {
                   <RotateCcw size={13} /> Reset
                 </button>
                 <span className="player-timing">
-                  {pack
-                    ? `${pack.manifest.animations[animation].fps} FPS · ${pack.manifest.animations[animation].loop ? "LOOP" : "ONCE"}`
+                  {selectedClip
+                    ? `${selectedClip.fps} FPS · ${selectedClip.loop ? "LOOP" : "ONCE"}`
                     : "PIXEL PERFECT"}
                 </span>
               </div>
@@ -648,6 +736,9 @@ export function PackPlayer() {
                 <dd>
                   Idle {pack.manifest.animations.idle.fps} fps · Walk{" "}
                   {pack.manifest.animations.walk.fps} fps
+                  {pack.manifest.animations.run
+                    ? ` · Run ${pack.manifest.animations.run.fps} fps`
+                    : " · Run unavailable"}
                 </dd>
               </div>
               <div>

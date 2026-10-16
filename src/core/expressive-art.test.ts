@@ -99,7 +99,7 @@ describe("expressive artwork V4", () => {
     );
     expect(() => upgradeToDetailedArt(DEFAULT_CONFIG)).toThrow("downgraded");
     expect(() =>
-      parseCharacterConfig({ ...DEFAULT_CONFIG, artworkVersion: 5 }),
+      parseCharacterConfig({ ...DEFAULT_CONFIG, artworkVersion: 8 }),
     ).toThrow("artworkVersion");
   });
   it.each(["waves", "crop", "bob", "mohawk"] as const)(
