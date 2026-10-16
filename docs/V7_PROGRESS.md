@@ -1,0 +1,9 @@
+# V7 staged recovery points
+
+Work date: 17 October 2026 (Australia/Sydney). Branch `fix/character-art-cohesion`, draft PR #2, based on verified remote V6 `c307a8f47b8872a8e7df93494581f46431ff4b87`. Existing history is preserved.
+
+1. **Sources/extraction — `a9781a9` pushed.** Complete bride and groom three-state source sheets, a hand-free gown backplate, exact generation prompts, registration landmarks, a separately namespaced prepared bank and V6 baseline hashes. The first groom draft still had a short neck; the selected edit clarified neck/collar anatomy. Initial extraction was subsequently corrected during actual renderer inspection.
+2. **Expressions/animation — current implementation stage.** Explicit V7 config/renderer and opt-in copy; complete expression heads with matching rear hair; raised joyful hand/shoulder posture; contact/down/passing/up gait, independent feet and weighted hem lift. Actual exports exposed arm/leg contamination, a rear-hair cutout and color-mask errors; these were corrected in preparation rather than hidden by changing connectivity tests. Face-weighted 96-color preparation replaced the initial 64-color palette to preserve expression color. All original source images remain unchanged.
+3. **Delivery verification — pending final record.** Final exported PNG/GIF/ZIP decoding, full unit/typecheck/build/E2E runs, independent playback, final review and source documentation will be recorded in `ART_HARMONY_V7.md`. Historical V6 counts must not be presented as current V7 results.
+
+The production source sheets are not review evidence. Final visual evidence must be built after browser exports finish, from `docs/art-harmonized/` PNGs. Do not regenerate comparison panels concurrently with a running export process.

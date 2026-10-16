@@ -48,13 +48,18 @@ export interface ArtV6CharacterConfig
   extends Omit<ArtV5CharacterConfig, "artworkVersion"> {
   artworkVersion: 6;
 }
+export interface ArtV7CharacterConfig
+  extends Omit<ArtV6CharacterConfig, "artworkVersion"> {
+  artworkVersion: 7;
+}
 export type CharacterConfig =
   | LegacyCharacterConfig
   | ArtV2CharacterConfig
   | ArtV3CharacterConfig
   | ArtV4CharacterConfig
   | ArtV5CharacterConfig
-  | ArtV6CharacterConfig;
+  | ArtV6CharacterConfig
+  | ArtV7CharacterConfig;
 export interface SpriteFrame {
   id: number;
   x: number;

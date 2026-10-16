@@ -175,19 +175,21 @@ export function PackPlayer() {
     void openPack(() => loadCharacterPack(file), file.name);
   }
 
-  function openExample(artworkVersion: 1 | 2 | 3 | 4 | 6) {
+  function openExample(artworkVersion: 1 | 2 | 3 | 4 | 6 | 7) {
     void openPack(
       async () => {
         const response = await fetch(
-          artworkVersion === 6
-            ? "/samples/polished/dress-joyful.character.zip"
-            : artworkVersion === 4
-              ? "/samples/expressive/mira.character.zip"
-              : artworkVersion === 3
-                ? "/samples/detailed/mira.character.zip"
-                : artworkVersion === 2
-                  ? "/samples/v2/mira.character.zip"
-                  : "/samples/mira.character.zip",
+          artworkVersion === 7
+            ? "/samples/harmonized/dress-joyful.character.zip"
+            : artworkVersion === 6
+              ? "/samples/polished/dress-joyful.character.zip"
+              : artworkVersion === 4
+                ? "/samples/expressive/mira.character.zip"
+                : artworkVersion === 3
+                  ? "/samples/detailed/mira.character.zip"
+                  : artworkVersion === 2
+                    ? "/samples/v2/mira.character.zip"
+                    : "/samples/mira.character.zip",
         );
         if (!response.ok)
           throw new Error(
@@ -195,7 +197,7 @@ export function PackPlayer() {
           );
         return loadCharacterPack(await response.blob());
       },
-      `${artworkVersion === 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
+      `${artworkVersion >= 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
     );
   }
 
@@ -334,16 +336,23 @@ export function PackPlayer() {
             </div>
             <button
               className="player-sample-button"
-              onClick={() => openExample(6)}
+              onClick={() => openExample(7)}
               disabled={busy}
             >
               <span className="player-sample-icon">
                 <Layers3 size={19} />
               </span>
               <span>
-                Just exploring?<strong>Try the polished wedding pack</strong>
+                Just exploring?<strong>Try the V7 wedding pack</strong>
               </span>
               <ArrowRight size={17} />
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample(6)}
+              disabled={busy}
+            >
+              Try the V6 wedding pack
             </button>
             <button
               className="player-legacy-sample"

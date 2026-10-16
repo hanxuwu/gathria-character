@@ -612,31 +612,39 @@ export async function createCharacterPack(
       "PROVENANCE.txt": strToU8(
         validatedConfig.schemaVersion === 2 &&
           validatedConfig.artworkVersion >= 3
-          ? validatedConfig.artworkVersion === 6
+          ? validatedConfig.artworkVersion === 7
             ? ILLUSTRATED_PROVENANCE.replace(
                 "Artwork version 3",
-                "Artwork version 6",
+                "Artwork version 7",
               ).replace(
                 "Prototype format:",
-                "Version 6 technically re-cuts the existing AI-assisted V5 wedding sources into clean anatomical layers, retains full authored face states, and applies a quieter deterministic gait. No new model-generated artwork was introduced in this revision. See scripts/prepare-polished-assets.py and docs/ART_POLISH_V6.md.\n\nPrototype format:",
+                "V7 uses new AI-assisted complete bride/groom expression sources created with OpenAI image generation during development. Source sheets and exact prompts: artwork/harmonized-source/. The groom received a neck/collar refinement, and a separate hand-free gown backplate supports animated arms. scripts/prepare-harmonized-assets.py registers neck/waist/sole landmarks, shares a face-weighted 96-color palette across each identity, and extracts material-aware layers. Runtime is local and deterministic with no model calls. V1–V6 remain preserved. See docs/ART_HARMONY_V7.md.\n\nPrototype format:",
               )
-            : validatedConfig.artworkVersion === 5
+            : validatedConfig.artworkVersion === 6
               ? ILLUSTRATED_PROVENANCE.replace(
                   "Artwork version 3",
-                  "Artwork version 5",
+                  "Artwork version 6",
                 ).replace(
                   "Prototype format:",
-                  "Version 5 uses complete authored heads and wedding layers produced offline with OpenAI image generation. Repository sources: artwork/cohesive-source/character-expression-bank.png and garment-backplate.png. scripts/prepare-cohesive-assets.py registers neck/waist/sole landmarks, thresholds alpha, extracts overlapping layers and assigns recolor masks; the garment backplate removes embedded standing hands. Waves/crop use three authored expressions; bob/crest retain their illustrated open-eye face. Runtime composition and playback remain local and deterministic. See artwork/cohesive-source/README.md for production history.\n\nPrototype format:",
+                  "Version 6 technically re-cuts the existing AI-assisted V5 wedding sources into clean anatomical layers, retains full authored face states, and applies a quieter deterministic gait. No new model-generated artwork was introduced in this revision. See scripts/prepare-polished-assets.py and docs/ART_POLISH_V6.md.\n\nPrototype format:",
                 )
-              : validatedConfig.artworkVersion === 4
+              : validatedConfig.artworkVersion === 5
                 ? ILLUSTRATED_PROVENANCE.replace(
                     "Artwork version 3",
-                    "Artwork version 4",
+                    "Artwork version 5",
                   ).replace(
                     "Prototype format:",
-                    "Version 4 adds deterministic expressions, motion and an AI-assisted rose hairpiece.\n\nPrototype format:",
+                    "Version 5 uses complete authored heads and wedding layers produced offline with OpenAI image generation. Repository sources: artwork/cohesive-source/character-expression-bank.png and garment-backplate.png. scripts/prepare-cohesive-assets.py registers neck/waist/sole landmarks, thresholds alpha, extracts overlapping layers and assigns recolor masks; the garment backplate removes embedded standing hands. Waves/crop use three authored expressions; bob/crest retain their illustrated open-eye face. Runtime composition and playback remain local and deterministic. See artwork/cohesive-source/README.md for production history.\n\nPrototype format:",
                   )
-                : ILLUSTRATED_PROVENANCE
+                : validatedConfig.artworkVersion === 4
+                  ? ILLUSTRATED_PROVENANCE.replace(
+                      "Artwork version 3",
+                      "Artwork version 4",
+                    ).replace(
+                      "Prototype format:",
+                      "Version 4 adds deterministic expressions, motion and an AI-assisted rose hairpiece.\n\nPrototype format:",
+                    )
+                  : ILLUSTRATED_PROVENANCE
           : PROVENANCE,
       ),
       "INTEGRATION.md": strToU8(INTEGRATION),
