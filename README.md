@@ -4,9 +4,9 @@ Current studio default: **Polished Art V6 with compact running (`motionVersion: 
 
 A standalone, browser-local pixel-art character studio. Customize a character, preview idle, walking and running animations, save editable configuration, and export a portable **CharacterPack v1** ZIP. A separate player consumes the exported PNG and metadata without invoking the generator.
 
-![Bride and groom: actual V6 running exports, played in place](docs/running-v2/run-right.gif)
+![Four everyday looks from actual character exports](docs/everyday/lineup-idle-2x.png)
 
-[Compact running review](docs/RUNNING_V2_REVIEW.md) · [Original running review](docs/RUNNING_REVIEW.md) · [V6 review](docs/ART_POLISH_V6.md) · [V7 comparison and rejection record](docs/ART_HARMONY_V7.md) · [Default restoration](docs/V6_DEFAULT_RESTORATION.md)
+[Everyday wardrobe and packs](docs/EVERYDAY_REVIEW.md) · [Idle/walk/run preview](docs/everyday/action-switch.gif) · [Compact running review](docs/RUNNING_V2_REVIEW.md) · [Original running review](docs/RUNNING_REVIEW.md) · [V6 review](docs/ART_POLISH_V6.md) · [V7 comparison and rejection record](docs/ART_HARMONY_V7.md) · [Default restoration](docs/V6_DEFAULT_RESTORATION.md)
 
 ## Run
 
@@ -37,13 +37,13 @@ In a cloud image with system Chromium already installed, use `CHROMIUM_PATH=/usr
 
 ## Try the complete workflow
 
-1. Start with **Mira**, **Rowan**, or **Jun**. Choose a face shape, expression, hair accessory, skin, hairstyle, hair color, clothing cuts/colors, and shoes. Start with **Polished casual**, **Wedding suit**, or **Wedding dress**, then combine garments freely. The actual pixels update immediately.
+1. Start with **Mira**, **Rowan**, or **Jun**. Choose a face shape, expression, hair accessory, skin, hairstyle, hair color, clothing cuts/colors, and shoes. Choose **Denim daytrip**, **Coral afternoon**, **Sage weekend** or **Ochre traveler** under **Everyday looks**, then combine garments freely. These outfit cards preserve your identity and action while removing the rose hairpiece. Original casual and wedding starting points remain available. The actual pixels update immediately.
 2. Select **Idle**, **Walk** or **Run**, face left/right, play/pause, adjust speed, and select an integer zoom. The ground line and frame strip show alignment and poses. These are in-place previews, without travel through a scene.
 3. Name the character and choose **Save config**. Make other changes, then **Open saved configuration** to reopen the downloaded `.character.json`. Running-enabled files also save the selected action and facing direction.
 4. Choose **Export character** to download a ZIP containing `spritesheet.png`, `manifest.json`, `character.json`, `PROVENANCE.txt`, and `INTEGRATION.md`. **Download PNG only** is also available.
 5. Open the independent player, choose the downloaded ZIP, and play the available animations in either direction. Alternatively, extract it and choose the actual PNG and manifest files. Configuration is optional for playback. Older packs without running display a disabled **Run** action and an explanation.
 
-The player offers the compact V6 running sample plus the retained original running, V6 wedding, V7 comparison and V4, V3, V2 and V1 examples. Current [bride](public/samples/running-v2/dress.character.zip) and [groom](public/samples/running-v2/suit.character.zip) ZIPs are self-contained. [Compact running exports and checks](docs/running-v2/) include extracted files; [original V6 exports](docs/art-polished/) and [V7 comparison exports](docs/art-harmonized/) remain available. Older sample directories remain unchanged.
+The player’s main example is **Denim daytrip** and retains compact wedding, original running, V6 wedding, V7 comparison and V4, V3, V2 and V1 examples. [Four everyday ZIPs and review media](docs/EVERYDAY_REVIEW.md) are ready to load independently. Retained wedding [bride](public/samples/running-v2/dress.character.zip) and [groom](public/samples/running-v2/suit.character.zip) ZIPs are self-contained. [Compact running exports and checks](docs/running-v2/) include extracted files; [original V6 exports](docs/art-polished/) and [V7 comparison exports](docs/art-harmonized/) remain available. Older sample directories remain unchanged.
 
 Opening any V1–V7 configuration keeps its original renderer and options. For V1–V5 files, **Create polished copy** explicitly opts into V6. For a historical V6 file, **Add running** explicitly enables `motionVersion: 2` while retaining the exact existing idle/walk atlas rows. Original Motion 1 files retain their saved poses; **Create compact running copy** explicitly upgrades their run while retaining appearance and preview settings. V7 is never converted automatically and does not offer running. New configuration uses `schemaVersion: 2`, `artworkVersion: 6`, `motionVersion: 2`, `faceVariant`, `expression` (`neutral`, `gentle`, `joyful`) and `hairAccessory`. Running-enabled files optionally include `preview: { animation, facing }`; old files do not gain preview fields merely by opening or saving them. The portable **CharacterPack manifest remains version 1**, with optional `animations.run`. Whole-face expressions cover waves/crop; the other two hairstyles retain their original open-eye face and show a studio notice.
 
@@ -59,6 +59,7 @@ Regenerate V6 export evidence with `node scripts/generate-polished-evidence.mjs`
 | `src/core/generator.ts`                                | Artwork/motion dispatcher; frozen V1–V7 and opt-in V6 running                      |
 | `src/core/generator-motion-v1.ts`, `running-rig.ts`    | Append running frames from existing V6 layers; preserve original idle/walk         |
 | `src/core/generator-motion-v2.ts`, `running-rig-v2.ts` | Compact fore/aft arm pump and folded leg recovery; frozen original motion retained |
+| `src/core/everyday-presets.ts`                         | Four freely editable daily outfit combinations and complete example configurations |
 | `src/core/types.ts`                                    | Small `CharacterGenerator` interface and shared contracts                          |
 | `src/core/pack.ts`                                     | Manifest/ZIP validation, PNG encoding/decoding, downloads                          |
 | `src/editor/`                                          | Customization UI, animated canvas, frame strip                                     |

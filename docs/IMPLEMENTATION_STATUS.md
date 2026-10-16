@@ -1,6 +1,14 @@
 # Implementation status
 
-**V6 compact running (motion version 2) implemented; awaiting user visual review.** Branch `fix/character-art-cohesion`, [draft PR #2](https://github.com/hanxuwu/gathria-character/pull/2), based on the verified V6 default-restoration commit `eb877ca`. Keep the PR unmerged and do not deploy. V7 remains an unaccepted visual iteration with its files and history preserved.
+**Everyday wardrobe batch implemented on V6 + compact running; awaiting user visual review.** Branch `fix/character-art-cohesion`, [draft PR #2](https://github.com/hanxuwu/gathria-character/pull/2), based on the verified V6 default-restoration commit `eb877ca`. Keep the PR unmerged and do not deploy. V7 remains an unaccepted visual iteration with its files and history preserved.
+
+## Latest batch: everyday clothing
+
+Four new **Everyday looks** cards provide denim/tan, coral/skirt, sage/shorts and ochre/navy combinations. They preserve the current identity, expression, version and action/facing, remove the rose hairpiece, and remain freely editable. Complete example files use V6 + motion version 2; the player’s main example is now Denim daytrip and retains wedding/older examples. No renderers, source banks or old export artifacts changed.
+
+See [EVERYDAY_REVIEW.md](EVERYDAY_REVIEW.md) for the actual native/2× lineup, idle/walk/run GIFs, four CharacterPacks, independent playback evidence and inherited visual limitations. The coral soft-top waist flecks and angular generic knee cuts remain visible and are not claimed fixed.
+
+This batch passed **259 unit tests, 25 Chromium E2E tests, TypeScript and production build**. Final evidence passed 4 exported packs / 96 frames, 14 PNGs, 7 GIFs, 8 independent left/right run cases and the complete 20.96-second player recording. See [verification record](everyday/verification-results.json). Earlier running counts below remain historical records.
 
 ## Current behavior
 

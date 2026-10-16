@@ -46,6 +46,10 @@ import {
 } from "../core/config";
 import { generateCharacter } from "../core/generator";
 import {
+  EVERYDAY_PRESETS,
+  applyEverydayPreset,
+} from "../core/everyday-presets";
+import {
   createCharacterPack,
   downloadBlob,
   pixelsToPng,
@@ -732,6 +736,59 @@ export default function App() {
               />
             </Section>
             <Section number="02" title="A little style">
+              <div className="outfit-field">
+                <span className="control-label">Everyday looks</span>
+                <p className="everyday-hint">
+                  Complete outfits. Keep your character, mix any detail.
+                </p>
+                <div
+                  className="outfit-presets everyday-presets"
+                  role="group"
+                  aria-label="Everyday looks"
+                >
+                  {EVERYDAY_PRESETS.map(
+                    ({ id, label, description, appearance }) => (
+                      <button
+                        type="button"
+                        key={id}
+                        aria-label={label}
+                        aria-describedby={`everyday-${id}`}
+                        aria-pressed={
+                          Object.entries(appearance).every(
+                            ([key, value]) =>
+                              config[key as keyof CharacterConfig] === value,
+                          ) &&
+                          (!("hairAccessory" in config) ||
+                            config.hairAccessory === "none")
+                        }
+                        onClick={() => {
+                          setConfig((current) =>
+                            applyEverydayPreset(current, id),
+                          );
+                          setNotice(null);
+                        }}
+                      >
+                        <span className="everyday-label">{label}</span>
+                        <span className="everyday-colors" aria-hidden="true">
+                          {[
+                            appearance.upperColor,
+                            appearance.lowerColor,
+                            appearance.shoeColor,
+                          ].map((color) => (
+                            <i key={color} style={{ backgroundColor: color }} />
+                          ))}
+                        </span>
+                        <span
+                          className="everyday-description"
+                          id={`everyday-${id}`}
+                        >
+                          {description}
+                        </span>
+                      </button>
+                    ),
+                  )}
+                </div>
+              </div>
               {config.schemaVersion === 2 && (
                 <div className="outfit-field">
                   <span className="control-label">Outfit starting points</span>
@@ -767,7 +824,7 @@ export default function App() {
                 label="Upper clothing"
                 value={config.upperClothing}
                 options={[
-                  ["tee", "Everyday tee"],
+                  ["tee", artworkVersion >= 3 ? "Soft top" : "Everyday tee"],
                   ["hoodie", "Cozy hoodie"],
                   ["jacket", "Open jacket"],
                   ...(config.schemaVersion === 2
