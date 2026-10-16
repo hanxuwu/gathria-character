@@ -1,12 +1,12 @@
 # Gathria Character
 
-Current studio default: **Harmonized Art V7**. New complete wedding source art clarifies the neck/collar structure, coordinates three whole-face expressions, and gives walking a contact/down/passing/up rhythm with alternating shoes and weighted skirt movement. Saved V1–V6 artwork remains unchanged until **Create V7 copy** is selected.
+Current studio default: **Polished Art V6**. V7 was not accepted in visual review and is retained for comparison and saved-file compatibility. New characters and the main player example use V6; opening any saved V1–V7 configuration preserves its original artwork.
 
 A standalone, browser-local pixel-art character studio. Customize a character, preview idle and walking animations, save editable configuration, and export a portable **CharacterPack v1** ZIP. A separate player consumes the exported PNG and metadata without invoking the generator.
 
-![Bride and groom: actual V7 exported walking animation](docs/art-harmonized/walk-right.gif)
+![Bride and groom: actual V6 exported walking animation](docs/art-polished/walk-right.gif)
 
-[Before/after](docs/art-harmonized/before-after-1x.png) · [Head and neck](docs/art-harmonized/face-neck-4x.png) · [Expressions](docs/art-harmonized/expressions-2x.png) · [Review and limitations](docs/ART_HARMONY_V7.md)
+[V6 review](docs/ART_POLISH_V6.md) · [V7 comparison and rejection record](docs/ART_HARMONY_V7.md) · [Default restoration](docs/V6_DEFAULT_RESTORATION.md)
 
 ## Run
 
@@ -43,11 +43,11 @@ In a cloud image with system Chromium already installed, use `CHROMIUM_PATH=/usr
 4. Choose **Export character** to download a ZIP containing `spritesheet.png`, `manifest.json`, `character.json`, `PROVENANCE.txt`, and `INTEGRATION.md`. **Download PNG only** is also available.
 5. Open the independent player, choose the downloaded ZIP, and play both animations/directions. Alternatively, extract it and choose the actual PNG and manifest files. Configuration is optional for playback.
 
-The player offers the V7 wedding sample plus preserved V6, V4, V3, V2 and V1 examples. Current [bride and groom ZIPs](public/samples/harmonized/) are self-contained; all [expression/outfit exports](docs/art-harmonized/) also include extracted files. Older sample directories remain unchanged.
+The player offers the V6 wedding sample plus the retained V7 comparison and V4, V3, V2 and V1 examples. Current [bride and groom ZIPs](public/samples/polished/) are self-contained; [V6 expression/outfit exports](docs/art-polished/) and [V7 comparison exports](docs/art-harmonized/) also include extracted files. Older sample directories remain unchanged.
 
-Opening any V1–V6 configuration keeps its original renderer and options. **Create V7 copy** explicitly opts into V7. Configuration uses `schemaVersion: 2`, `artworkVersion: 7`, `faceVariant`, `expression` (`neutral`, `gentle`, `joyful`) and `hairAccessory`. The portable **CharacterPack manifest remains version 1**. Whole-face expressions cover waves/crop; the other two hairstyles retain their original open-eye face and show a studio notice.
+Opening any V1–V7 configuration keeps its original renderer and options. For V1–V5 files, **Create polished copy** explicitly opts into V6. V6/V7 files are never automatically converted. New configuration uses `schemaVersion: 2`, `artworkVersion: 6`, `faceVariant`, `expression` (`neutral`, `gentle`, `joyful`) and `hairAccessory`. The portable **CharacterPack manifest remains version 1**. Whole-face expressions cover waves/crop; the other two hairstyles retain their original open-eye face and show a studio notice.
 
-Regenerate current export evidence with `node scripts/generate-harmonized-evidence.mjs`, then `python3 scripts/render-harmonized-review.py` and `python3 scripts/verify-harmonized-evidence.py`. The first command starts its own server. Requirements and verified commands are in the [V7 review](docs/ART_HARMONY_V7.md#verification-in-this-v7-session). `npm run samples` still regenerates only original V1 samples.
+Regenerate V6 export evidence with `node scripts/generate-polished-evidence.mjs`, then `python3 scripts/render-polished-review.py` and `python3 scripts/verify-polished-evidence.py`. The corresponding `harmonized` scripts reproduce the retained V7 comparison. The first command starts its own server. Requirements and verified commands are in the [V6 review](docs/ART_POLISH_V6.md). `npm run samples` still regenerates only original V1 samples.
 
 ## Architecture and scope
 
@@ -79,6 +79,6 @@ A future provider can implement `CharacterGenerator.generate(config)` and return
 - [Gathria compatibility](docs/GATHRIA_COMPATIBILITY.md): **UNVERIFIED**. Read access to the candidate Gathria repository returned HTTP 403. No Gathria source was modified, and the proposed adapter is not an established runtime API.
 - [Implementation status and handoff](docs/IMPLEMENTATION_STATUS.md): completed milestones, verification, delivery, and next action.
 
-Verification covers pixel-exact V1–V6 preservation, explicit V7-copy migration, deterministic pixels, distinct face silhouettes, outfit connectivity, all customization fields, frame margins/anchors, config round trips, malformed imports, manifest mapping, bounded ZIP loading, and actual download/reopen/playback in Chromium. The browser suite also checks mobile layout, PNG transparency, high zoom, and corrupt-image rejection. Firefox, Safari, and actual Gathria integration are not verified.
+Verification covers pixel-exact V1–V7 preservation and explicit V6-copy migration for older files, deterministic pixels, distinct face silhouettes, outfit connectivity, all customization fields, frame margins/anchors, config round trips, malformed imports, manifest mapping, bounded ZIP loading, and actual download/reopen/playback in Chromium. The browser suite also checks mobile layout, PNG transparency, high zoom, and corrupt-image rejection. Firefox, Safari, and actual Gathria integration are not verified.
 
 Source and original generated artwork are released under the [MIT License](LICENSE). React, Vite, fflate, Lucide, and the other packages retain their own licenses. The app does not include authentication, cloud storage, photo/AI input, or a general animation editor.

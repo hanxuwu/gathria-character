@@ -1,5 +1,7 @@
 # V7 staged recovery points
 
+**Review outcome:** The user judged V7 worse than V6. V6 is restored as the default; V7 is retained as an unaccepted iteration with its original files and evidence. See [V6_DEFAULT_RESTORATION.md](V6_DEFAULT_RESTORATION.md). The implementation and verification notes below describe the V7 delivery at that time.
+
 Work date: 17 October 2026 (Australia/Sydney). Branch `fix/character-art-cohesion`, draft PR #2, based on verified remote V6 `c307a8f47b8872a8e7df93494581f46431ff4b87`. Existing history is preserved.
 
 1. **Sources/extraction — `a9781a9` pushed.** Complete bride and groom three-state source sheets, a hand-free gown backplate, exact generation prompts, registration landmarks, a separately namespaced prepared bank and V6 baseline hashes. The first groom draft still had a short neck; the selected edit clarified neck/collar anatomy. Initial extraction was subsequently corrected during actual renderer inspection.

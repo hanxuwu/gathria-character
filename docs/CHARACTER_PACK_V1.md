@@ -148,7 +148,7 @@ Preserved Art V2 characters use this complete configuration:
 ```
 
 - `schemaVersion` is `2`; `artworkVersion` is explicitly `2` for the preserved warm pixels `3` for preserved detailed illustrations, or `4` for expressive illustrations. V4 additionally requires `expression` (`gentle` or `joyful`) and `hairAccessory` (`none` or `flowers`). These fields are not required for older artwork.
-- Current V7 and preserved V5/V6 use `schemaVersion: 2` and require `expression` (`neutral`, `gentle`, `joyful`) and `hairAccessory` (`none`, `flowers`), in addition to the appearance fields below. V1–V6 files are never silently upgraded. **Create V7 copy** explicitly creates a V7 configuration; every exported package plays using its saved pixels.
+- Current default V6 and retained V5/V7 use `schemaVersion: 2` and require `expression` (`neutral`, `gentle`, `joyful`) and `hairAccessory` (`none`, `flowers`), in addition to the appearance fields below. V1–V7 files are never silently converted. For V1–V5 inputs, **Create polished copy** explicitly creates a V6 configuration; every exported package plays using its saved pixels.
 - `faceVariant`: `heart`, `oval`, or `round`.
 - `hairstyle`: `crop`, `bob`, `waves`, or `mohawk`.
 - `upperClothing`: `tee`, `hoodie`, `jacket`, `suit`, or `bodice`.

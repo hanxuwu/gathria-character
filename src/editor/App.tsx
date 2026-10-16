@@ -28,18 +28,18 @@ import {
   ART_V2_PRESETS,
   ART_V3_PRESETS,
   CLOTHING_COLORS,
-  HARMONIZED_DEFAULT_CONFIG as DEFAULT_CONFIG,
+  POLISHED_DEFAULT_CONFIG as DEFAULT_CONFIG,
   HAIR_COLORS,
   LEGACY_PRESETS,
   OUTFIT_PRESETS,
   COHESIVE_PRESETS,
-  POLISHED_PRESETS,
-  HARMONIZED_PRESETS as PRESETS,
+  POLISHED_PRESETS as PRESETS,
+  HARMONIZED_PRESETS,
   PRESETS as ART_V4_PRESETS,
   SKIN_TONES,
   configToJson,
   parseCharacterConfig,
-  upgradeToHarmonizedArt,
+  upgradeToPolishedArt,
 } from "../core/config";
 import { generateCharacter } from "../core/generator";
 import {
@@ -216,8 +216,8 @@ export default function App() {
             : artworkVersion === 5
               ? COHESIVE_PRESETS
               : artworkVersion === 6
-                ? POLISHED_PRESETS
-                : PRESETS;
+                ? PRESETS
+                : HARMONIZED_PRESETS;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const largePortraits = frameWidth > 96;
   const recommendedZoom = generated.manifest.scale.recommended;
@@ -249,9 +249,9 @@ export default function App() {
     try {
       const face = PRESETS.find((item) => item.id === selectedPreset)!.config
         .faceVariant;
-      setConfig(upgradeToHarmonizedArt(config, face));
+      setConfig(upgradeToPolishedArt(config, face));
       setNotice({
-        text: "V7 copy created. Save it as a new configuration to keep both designs.",
+        text: "Polished copy created. Save it as a new configuration to keep both designs.",
       });
     } catch (error) {
       showError(error);
@@ -301,7 +301,7 @@ export default function App() {
       setConfig(next);
       setNotice({
         text:
-          next.schemaVersion === 1 || next.artworkVersion < 7
+          next.schemaVersion === 1 || next.artworkVersion !== 6
             ? `Opened ${next.name} in its saved Art V${next.schemaVersion === 1 ? 1 : next.artworkVersion} style. Your design is preserved.`
             : `Opened ${next.name}. Every detail is ready to edit.`,
       });
@@ -504,7 +504,7 @@ export default function App() {
                 placeholder="Give them a name"
               />
             </div>
-            {artworkVersion !== 7 && (
+            {artworkVersion !== 6 && (
               <div className="legacy-art-notice">
                 <strong>
                   Art V{artworkVersion} ·{" "}
@@ -515,9 +515,11 @@ export default function App() {
                       : "detailed"}
                 </strong>
                 <p>Your saved artwork stays in its existing style.</p>
-                <button type="button" onClick={createExpressiveCopy}>
-                  <Sparkles size={13} /> Create V7 copy
-                </button>
+                {artworkVersion < 6 && (
+                  <button type="button" onClick={createExpressiveCopy}>
+                    <Sparkles size={13} /> Create polished copy
+                  </button>
+                )}
               </div>
             )}
             <Section number="01" title="The essentials">

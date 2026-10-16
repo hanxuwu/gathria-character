@@ -65,6 +65,7 @@ test("customize → save/reopen → export → independent PNG/metadata playback
   await savedConfig.saveAs(configPath);
   const character = JSON.parse(await readFile(configPath, "utf8"));
   expect(character).toMatchObject({
+    artworkVersion: 6,
     name: "Aria",
     hairstyle: "mohawk",
     upperClothing: "jacket",

@@ -1,5 +1,7 @@
 # Wedding character harmony — Artwork V7
 
+**Review outcome:** The user judged V7 worse than V6. V6 is restored as the default; V7 is retained as an unaccepted iteration with its original files and evidence. See [V6_DEFAULT_RESTORATION.md](V6_DEFAULT_RESTORATION.md). The implementation and verification notes below describe the V7 delivery at that time.
+
 V7 continues V6 `c307a8f` on `fix/character-art-cohesion`, with [PR #2](https://github.com/hanxuwu/gathria-character/pull/2) kept draft and unmerged. Work date: **17 October 2026 (Australia/Sydney)**. This batch concentrates on the waves bride and crop groom. User visual approval and production Gathria integration are still outstanding.
 
 ## What changed

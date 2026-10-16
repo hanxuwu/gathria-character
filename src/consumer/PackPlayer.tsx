@@ -336,23 +336,23 @@ export function PackPlayer() {
             </div>
             <button
               className="player-sample-button"
-              onClick={() => openExample(7)}
+              onClick={() => openExample(6)}
               disabled={busy}
             >
               <span className="player-sample-icon">
                 <Layers3 size={19} />
               </span>
               <span>
-                Just exploring?<strong>Try the V7 wedding pack</strong>
+                Just exploring?<strong>Try the polished wedding pack</strong>
               </span>
               <ArrowRight size={17} />
             </button>
             <button
               className="player-legacy-sample"
-              onClick={() => openExample(6)}
+              onClick={() => openExample(7)}
               disabled={busy}
             >
-              Try the V6 wedding pack
+              Try the V7 wedding pack
             </button>
             <button
               className="player-legacy-sample"

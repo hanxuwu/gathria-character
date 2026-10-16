@@ -13,8 +13,13 @@ async function waitForDraw(page: Page) {
 
 for (const originalArt of [
   {
+    version: 7,
+    badge: "Art V7 · detailed",
+    sample: "../../docs/art-harmonized/dress-joyful",
+  },
+  {
     version: 6,
-    badge: "Art V6 · detailed",
+    badge: "POLISHED ART · V6",
     sample: "../../docs/art-polished/dress-joyful",
   },
   { version: 1, badge: "Art V1 · original", sample: "mira" },
@@ -27,7 +32,7 @@ for (const originalArt of [
     sample: "../../docs/art-cohesive/dress-joyful",
   },
 ]) {
-  test(`Art V${originalArt.version} saved work stays pixel-exact until an explicit V7 copy is made`, async ({
+  test(`Art V${originalArt.version} saved work stays pixel-exact across save and export`, async ({
     page,
   }, testInfo) => {
     const originalFile = new URL(
@@ -110,8 +115,14 @@ for (const originalArt of [
         `Artwork version ${originalArt.version} uses AI-assisted`,
       );
 
+    if (originalArt.version >= 6) {
+      await expect(
+        page.getByRole("button", { name: /Create .*copy/ }),
+      ).toHaveCount(0);
+      return;
+    }
     await page
-      .getByRole("button", { name: "Create V7 copy", exact: true })
+      .getByRole("button", { name: "Create polished copy", exact: true })
       .click();
     await expect(
       page.getByText(originalArt.badge, { exact: true }),
@@ -135,7 +146,7 @@ for (const originalArt of [
     expect(JSON.parse(await readFile(copyPath, "utf8"))).toMatchObject({
       ...originalConfig,
       schemaVersion: 2,
-      artworkVersion: 7,
+      artworkVersion: 6,
       faceVariant: "round",
     });
     await page.getByRole("button", { name: "Jun preset", exact: true }).click();
@@ -206,7 +217,7 @@ for (const outfit of [
     const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
     expect(config).toMatchObject({
       schemaVersion: 2,
-      artworkVersion: 7,
+      artworkVersion: 6,
       faceVariant: "heart",
       upperClothing: outfit.upper,
       lowerClothing: outfit.lower,
@@ -215,7 +226,7 @@ for (const outfit of [
     });
     expect(manifest).toMatchObject({
       schemaVersion: 1,
-      generator: "gathria-harmonized-pixels-v7",
+      generator: "gathria-polished-pixels-v6",
       anchor: { x: 96, y: 240 },
       spritesheet: {
         width: 1536,
@@ -239,7 +250,7 @@ for (const outfit of [
     await player.locator("#player-zip").setInputFiles(zipPath);
     await expect(player.getByRole("status")).toContainText("Loaded: Rowan");
     await expect(
-      player.getByText("gathria-harmonized-pixels-v7", { exact: true }),
+      player.getByText("gathria-polished-pixels-v6", { exact: true }),
     ).toBeVisible();
     await player
       .getByRole("button", { name: "Pause animation", exact: true })
