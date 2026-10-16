@@ -3,6 +3,7 @@ import type {
   ArtV3CharacterConfig,
   ArtV4CharacterConfig,
   ArtV5CharacterConfig,
+  ArtV6CharacterConfig,
   CharacterConfig,
   FaceVariant,
   LegacyCharacterConfig,
@@ -228,10 +229,11 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     input.artworkVersion !== 2 &&
     input.artworkVersion !== 3 &&
     input.artworkVersion !== 4 &&
-    input.artworkVersion !== 5
+    input.artworkVersion !== 5 &&
+    input.artworkVersion !== 6
   ) {
     throw new Error(
-      "Version 2 configurations require artworkVersion 2, 3, 4 or 5.",
+      "Version 2 configurations require artworkVersion 2, 3, 4, 5 or 6.",
     );
   }
   if (
@@ -285,10 +287,9 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     upperClothing: choice("upperClothing", V2_UPPER_CLOTHING),
     lowerClothing: choice("lowerClothing", V2_LOWER_CLOTHING),
   };
-  if (input.artworkVersion === 5)
-    return {
-      schemaVersion: 2,
-      artworkVersion: 5,
+  if (input.artworkVersion === 5 || input.artworkVersion === 6) {
+    const refined = {
+      schemaVersion: 2 as const,
       ...modernAppearance,
       expression: choice("expression", [
         "neutral",
@@ -297,6 +298,10 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
       ] as const),
       hairAccessory: choice("hairAccessory", ["none", "flowers"] as const),
     };
+    return input.artworkVersion === 5
+      ? { ...refined, artworkVersion: 5 }
+      : { ...refined, artworkVersion: 6 };
+  }
   if (input.artworkVersion === 4)
     return {
       schemaVersion: 2,
@@ -360,7 +365,7 @@ export function upgradeToExpressiveArt(
   faceVariant: FaceVariant = "heart",
 ): ArtV4CharacterConfig {
   const parsed = parseCharacterConfig(config);
-  if (parsed.schemaVersion === 2 && parsed.artworkVersion === 5)
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion >= 5)
     throw new Error(
       "Cohesive artwork cannot be silently downgraded to Art V4.",
     );
@@ -381,6 +386,8 @@ export function upgradeToCohesiveArt(
   faceVariant: FaceVariant = "heart",
 ): ArtV5CharacterConfig {
   const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion === 2 && parsed.artworkVersion === 6)
+    throw new Error("Polished artwork cannot be silently downgraded to V5.");
   return {
     ...parsed,
     schemaVersion: 2,
@@ -394,4 +401,27 @@ export const COHESIVE_DEFAULT_CONFIG = upgradeToCohesiveArt(DEFAULT_CONFIG);
 export const COHESIVE_PRESETS = PRESETS.map((p) => ({
   ...p,
   config: upgradeToCohesiveArt(p.config),
+}));
+
+/** New art is an explicit copy; already delivered V5 work also stays unchanged. */
+export function upgradeToPolishedArt(
+  config: CharacterConfig,
+  faceVariant: FaceVariant = "heart",
+): ArtV6CharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  return {
+    ...parsed,
+    schemaVersion: 2,
+    artworkVersion: 6,
+    faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,
+    expression: "expression" in parsed ? parsed.expression : "gentle",
+    hairAccessory: "hairAccessory" in parsed ? parsed.hairAccessory : "none",
+  };
+}
+export const POLISHED_DEFAULT_CONFIG = upgradeToPolishedArt(
+  COHESIVE_DEFAULT_CONFIG,
+);
+export const POLISHED_PRESETS = COHESIVE_PRESETS.map((p) => ({
+  ...p,
+  config: upgradeToPolishedArt(p.config),
 }));

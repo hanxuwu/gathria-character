@@ -1,6 +1,8 @@
 # Character art cohesion V5
 
-V5 addresses the bride/groom head-to-body seam and procedural expression patches. New characters start in V5; saved V1–V4 configurations retain their renderer until **Create refined copy** is selected.
+Historical V5 delivery; the current batch is [V6 polish](ART_POLISH_V6.md). The verification counts below describe the original V5 session.
+
+V5 addresses the bride/groom head-to-body seam and procedural expression patches. At V5 delivery, new characters started in V5; saved V1–V4 configurations retain their renderer until **Create refined copy** is selected.
 
 本轮先修新娘长卷发与新郎短发。素材问题包括各部位绘制方式不一致、裙摆内嵌静态手部；合成问题包括矩形擦眼后补画表情、头颈裁切与变形、肤色/发色遮罩混淆，以及外套下摆裁切缺口。V5 使用完整绘制的三种头部状态与同源婚礼服装，重新登记颈部、腰线和脚底坐标，修正分层、遮罩和关节重叠。以下对比和循环均来自应用实际导出。
 

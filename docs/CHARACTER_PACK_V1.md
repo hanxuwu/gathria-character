@@ -20,7 +20,7 @@ PNG and manifest can also be imported directly into the standalone player withou
 
 ## Manifest
 
-The pack format remains version 1 for all four artwork versions. Dimensions are metadata, not fixed format constants. V1/V2 use 48×64 frames, a 384×128 sheet, and anchor (24, 60). Detailed V3 and expressive V4 use 192×256 frames, a 1536×512 sheet, and anchor (96, 240), at recommended scale 1. This is the preserved Art V2 generator's layout:
+The pack format remains version 1 for all six artwork versions. Dimensions are metadata, not fixed format constants. V1/V2 use 48×64 frames, a 384×128 sheet, and anchor (24, 60). Detailed V3–V6 use 192×256 frames, a 1536×512 sheet, and anchor (96, 240), at recommended scale 1. This is the preserved Art V2 generator's layout:
 
 ```json
 {
@@ -97,7 +97,7 @@ All fields shown above are required. Validation returns a copy containing recogn
 | `scale.recommended`                   | Integer 1–16. Consumers may choose another positive integer display scale.                                                                |
 | `configuration`                       | Literal `"character.json"`.                                                                                                               |
 
-Animation metadata does not encode world movement speed. A consumer may move the anchored sprite while playing `walk`, but it must use the actual pose frames. All three artwork versions use a 0.8-second walking sequence. Timing is read from each manifest:
+Animation metadata does not encode world movement speed. A consumer may move the anchored sprite while playing `walk`, but it must use the actual pose frames. All artwork versions use a 0.8-second walking sequence. Timing is read from each manifest:
 
 | Artwork | Manifest `generator`           | Idle sequence                                                | Idle duration |
 | ------- | ------------------------------ | ------------------------------------------------------------ | ------------- |
@@ -105,6 +105,8 @@ Animation metadata does not encode world movement speed. A consumer may move the
 | V2      | `gathria-warm-pixels-v2`       | `[0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 3, 0]` at 4 fps              | 3 seconds     |
 | V3      | `gathria-detailed-pixels-v3`   | `[0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 3, 0]` at 4 fps              | 3 seconds     |
 | V4      | `gathria-expressive-pixels-v4` | `[0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,2,3,2,0,0,0]` at 8 fps | 3 seconds     |
+
+V5 uses `gathria-cohesive-pixels-v5` with the same idle sequence/timing as V4 (whole-face portraits replace its procedural blink). V6 uses `gathria-polished-pixels-v6` with idle `[0,0,1,1,2,2,2,2,3,3,0,0]` at 4 fps, also three seconds. All retain twelve exported drawing rectangles; repeated references express holds, not extra image cells.
 
 A repeated reference holds the same drawing for another sequence step. Consumers must preserve these references rather than deduplicate the animation list.
 
@@ -116,7 +118,7 @@ A repeated reference holds the same drawing for another sequence step. Consumers
 4. The world position represents the frame-local anchor. Translate the drawing context to the desired world position, then scale it by `(zoom, zoom)` for right or `(-zoom, zoom)` for left.
 5. Draw the frame with destination top-left `(-anchor.x, -anchor.y)` and unscaled destination dimensions `(frame.width, frame.height)` inside that transformed context. Restore the context after drawing.
 
-This mirrors around the attachment point and preserves the same world anchor, including for an asymmetric anchor. Do not mirror the entire atlas or offset a flipped character by a guessed width. The current generator places the ground boundary at local `y = 60`; foot pixels end at `y = 59` for a planted sole. Head and torso bobbing does not move that ground boundary.
+This mirrors around the attachment point and preserves the same world anchor, including for an asymmetric anchor. Do not mirror the entire atlas or offset a flipped character by a guessed width. V1/V2 place the ground boundary at local `y = 60`, with planted sole pixels ending at `y = 59`; V3–V6 use `y = 240` and `y = 239` respectively. Head and torso bobbing does not move that ground boundary.
 
 The runnable reference is `src/consumer/player.ts`, used by the independent `/player.html` entry point. The consumer imports the pack and metadata utilities, never the generator or editor state. `src/compat/gathria.ts` is the isolated place to prepare data for a future runtime adapter; its status remains unverified.
 
@@ -126,7 +128,7 @@ The runnable reference is `src/consumer/player.ts`, used by the independent `/pl
 
 ### Art V2 configuration
 
-New characters use this complete configuration:
+Preserved Art V2 characters use this complete configuration:
 
 ```json
 {
@@ -146,6 +148,7 @@ New characters use this complete configuration:
 ```
 
 - `schemaVersion` is `2`; `artworkVersion` is explicitly `2` for the preserved warm pixels `3` for preserved detailed illustrations, or `4` for expressive illustrations. V4 additionally requires `expression` (`gentle` or `joyful`) and `hairAccessory` (`none` or `flowers`). These fields are not required for older artwork.
+- Current V6 and preserved V5 both use `schemaVersion: 2` and require `expression` (`neutral`, `gentle`, `joyful`) and `hairAccessory` (`none`, `flowers`), in addition to the appearance fields below. V1–V5 files are never silently upgraded. **Create polished copy** explicitly creates a V6 configuration; every exported package plays using its saved pixels.
 - `faceVariant`: `heart`, `oval`, or `round`.
 - `hairstyle`: `crop`, `bob`, `waves`, or `mohawk`.
 - `upperClothing`: `tee`, `hoodie`, `jacket`, `suit`, or `bodice`.

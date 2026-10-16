@@ -1,9 +1,10 @@
+import { ART_V6_GENERATOR_ID, generateArtV6 } from "./generator-v6";
 import { parseCharacterConfig } from "./config";
 import { generateLegacyCharacter } from "./generator-v1";
 import { generateArtV2 } from "./generator-v2";
 import { generateArtV3 } from "./generator-v3";
 import { generateArtV4 } from "./generator-v4";
-import { ART_V5_GENERATOR_ID, generateArtV5 } from "./generator-v5";
+import { generateArtV5 } from "./generator-v5";
 import type {
   CharacterConfig,
   CharacterGenerator,
@@ -21,9 +22,11 @@ export function generateCharacter(value: CharacterConfig): GeneratedCharacter {
         ? generateArtV3(config)
         : config.artworkVersion === 4
           ? generateArtV4(config)
-          : generateArtV5(config);
+          : config.artworkVersion === 5
+            ? generateArtV5(config)
+            : generateArtV6(config);
 }
 export const pixelGenerator: CharacterGenerator = {
-  id: ART_V5_GENERATOR_ID,
+  id: ART_V6_GENERATOR_ID,
   generate: generateCharacter,
 };

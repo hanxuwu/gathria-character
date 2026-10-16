@@ -31,3 +31,9 @@ Images and animations under `docs/art-detailed/` are assembled from **actual app
 ## Cohesive artwork V5
 
 V5 introduces an AI-assisted whole-character expression sheet produced on 16 October 2026 (Australia/Sydney) with OpenAI's image-generation tool. Its production source and preparation notes are in [`artwork/cohesive-source/`](../artwork/cohesive-source/). Three authored face states for the waves/crop portraits and their wedding bodies share the same source. Offline anatomical masks separate materials, preserve both rear-hair tails and register the neck. The previous illustration bank and V1–V4 generators remain frozen. Runtime remains deterministic and local. New evidence is in `docs/art-cohesive/`; see [the review](ART_COHESION_V5.md) for scope and remaining limits.
+
+## Polished artwork V6
+
+V6 (16 October 2026) introduces no newly generated illustration. It reuses the exact V5 expression-bank and garment-backplate images, plus the retained older daily clothing and accessory assets. [`prepare-polished-assets.py`](../scripts/prepare-polished-assets.py) normalizes those existing sources, separates sleeve/torso ownership along anatomical contours, retains whole head/neck states, excludes skirt fabric from bare hands, and restores existing hair/coat pixels to their fixed layers. It writes an independent V6 namespace in `polished-assets.generated.ts`; V5 and all older source banks remain unchanged. [`polished-source-baseline.json`](../artwork/polished-source-baseline.json) records their hashes.
+
+This is technical extraction, masking and local rig refinement of AI-assisted production artwork, not a new model call or a claim of hand-painted animation. The selected expression includes the entire authored face; it does not use rectangular eye erasure. New evidence is assembled from actual V6 exported PNGs in `docs/art-polished/`. [The review](ART_POLISH_V6.md) records compatibility, source processing, verification and remaining limits.

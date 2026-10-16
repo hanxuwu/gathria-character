@@ -44,12 +44,17 @@ export interface ArtV5CharacterConfig
   artworkVersion: 5;
   expression: "neutral" | "gentle" | "joyful";
 }
+export interface ArtV6CharacterConfig
+  extends Omit<ArtV5CharacterConfig, "artworkVersion"> {
+  artworkVersion: 6;
+}
 export type CharacterConfig =
   | LegacyCharacterConfig
   | ArtV2CharacterConfig
   | ArtV3CharacterConfig
   | ArtV4CharacterConfig
-  | ArtV5CharacterConfig;
+  | ArtV5CharacterConfig
+  | ArtV6CharacterConfig;
 export interface SpriteFrame {
   id: number;
   x: number;

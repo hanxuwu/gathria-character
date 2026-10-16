@@ -28,16 +28,17 @@ import {
   ART_V2_PRESETS,
   ART_V3_PRESETS,
   CLOTHING_COLORS,
-  COHESIVE_DEFAULT_CONFIG as DEFAULT_CONFIG,
+  POLISHED_DEFAULT_CONFIG as DEFAULT_CONFIG,
   HAIR_COLORS,
   LEGACY_PRESETS,
   OUTFIT_PRESETS,
-  COHESIVE_PRESETS as PRESETS,
+  COHESIVE_PRESETS,
+  POLISHED_PRESETS as PRESETS,
   PRESETS as ART_V4_PRESETS,
   SKIN_TONES,
   configToJson,
   parseCharacterConfig,
-  upgradeToCohesiveArt,
+  upgradeToPolishedArt,
 } from "../core/config";
 import { generateCharacter } from "../core/generator";
 import {
@@ -211,7 +212,9 @@ export default function App() {
           ? ART_V3_PRESETS
           : artworkVersion === 4
             ? ART_V4_PRESETS
-            : PRESETS;
+            : artworkVersion === 5
+              ? COHESIVE_PRESETS
+              : PRESETS;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const largePortraits = frameWidth > 96;
   const recommendedZoom = generated.manifest.scale.recommended;
@@ -243,9 +246,9 @@ export default function App() {
     try {
       const face = PRESETS.find((item) => item.id === selectedPreset)!.config
         .faceVariant;
-      setConfig(upgradeToCohesiveArt(config, face));
+      setConfig(upgradeToPolishedArt(config, face));
       setNotice({
-        text: "Refined copy created. Save it as a new configuration to keep both designs.",
+        text: "Polished copy created. Save it as a new configuration to keep both designs.",
       });
     } catch (error) {
       showError(error);
@@ -295,7 +298,7 @@ export default function App() {
       setConfig(next);
       setNotice({
         text:
-          next.schemaVersion === 1 || next.artworkVersion < 5
+          next.schemaVersion === 1 || next.artworkVersion < 6
             ? `Opened ${next.name} in its saved Art V${next.schemaVersion === 1 ? 1 : next.artworkVersion} style. Your design is preserved.`
             : `Opened ${next.name}. Every detail is ready to edit.`,
       });
@@ -498,7 +501,7 @@ export default function App() {
                 placeholder="Give them a name"
               />
             </div>
-            {artworkVersion !== 5 && (
+            {artworkVersion !== 6 && (
               <div className="legacy-art-notice">
                 <strong>
                   Art V{artworkVersion} ·{" "}
@@ -510,7 +513,7 @@ export default function App() {
                 </strong>
                 <p>Your saved artwork stays in its existing style.</p>
                 <button type="button" onClick={createExpressiveCopy}>
-                  <Sparkles size={13} /> Create refined copy
+                  <Sparkles size={13} /> Create polished copy
                 </button>
               </div>
             )}
@@ -536,9 +539,11 @@ export default function App() {
               )}
               {config.schemaVersion === 2 &&
                 (config.artworkVersion === 4 ||
-                  config.artworkVersion === 5) && (
+                  config.artworkVersion === 5 ||
+                  config.artworkVersion === 6) && (
                   <>
-                    {config.artworkVersion === 5 &&
+                    {(config.artworkVersion === 5 ||
+                      config.artworkVersion === 6) &&
                       (config.hairstyle === "bob" ||
                         config.hairstyle === "mohawk") && (
                         <p className="control-label">
@@ -550,12 +555,14 @@ export default function App() {
                       label="Expression"
                       value={config.expression}
                       options={
-                        config.artworkVersion === 5 &&
+                        (config.artworkVersion === 5 ||
+                          config.artworkVersion === 6) &&
                         (config.hairstyle === "bob" ||
                           config.hairstyle === "mohawk")
                           ? [[config.expression, "Original face"]]
                           : [
-                              ...(config.artworkVersion === 5
+                              ...(config.artworkVersion === 5 ||
+                              config.artworkVersion === 6
                                 ? [["neutral", "Neutral"] as [string, string]]
                                 : []),
                               ["gentle", "Gentle smile"],
@@ -565,12 +572,21 @@ export default function App() {
                       onChange={(value) => {
                         setConfig((current) => {
                           if (current.schemaVersion !== 2) return current;
-                          if (current.artworkVersion === 5)
+                          if (
+                            current.artworkVersion === 5 ||
+                            current.artworkVersion === 6
+                          )
                             return {
                               ...current,
-                              expression: value as "neutral" | "gentle" | "joyful",
+                              expression: value as
+                                | "neutral"
+                                | "gentle"
+                                | "joyful",
                             };
-                          if (current.artworkVersion === 4 && value !== "neutral")
+                          if (
+                            current.artworkVersion === 4 &&
+                            value !== "neutral"
+                          )
                             return {
                               ...current,
                               expression: value as "gentle" | "joyful",
@@ -591,7 +607,8 @@ export default function App() {
                         setConfig((current) =>
                           current.schemaVersion === 2 &&
                           (current.artworkVersion === 4 ||
-                            current.artworkVersion === 5)
+                            current.artworkVersion === 5 ||
+                            current.artworkVersion === 6)
                             ? {
                                 ...current,
                                 hairAccessory: value as "none" | "flowers",
@@ -768,7 +785,9 @@ export default function App() {
                           ? "DETAILED ART · V3"
                           : artworkVersion === 4
                             ? "EXPRESSIVE ART · V4"
-                            : "REFINED ART · V5"}
+                            : artworkVersion === 5
+                              ? "REFINED ART · V5"
+                              : "POLISHED ART · V6"}
                   </span>
                   <span>
                     {artworkVersion >= 3
