@@ -46,6 +46,28 @@ describe("independent metadata playback", () => {
     expect(frameAtTime(manifest, "idle", -20).id).toBe(90);
   });
 
+  it("reports a missing run clip rather than substituting walk", () => {
+    expect(() => frameAtTime(manifest, "run", 0)).toThrow(
+      "Animation run is not available in this pack.",
+    );
+  });
+
+  it("plays optional run clips using their declared order and timing", () => {
+    const running: CharacterPackManifest = {
+      ...manifest,
+      animations: {
+        ...manifest.animations,
+        run: { frames: [30, 90, 10], fps: 18, loop: true },
+      },
+    };
+    expect(frameAtTime(running, "run", 0).id).toBe(30);
+    expect(frameAtTime(running, "run", 55).id).toBe(30);
+    expect(frameAtTime(running, "run", 56).id).toBe(90);
+    expect(frameAtTime(running, "run", 112).id).toBe(10);
+    expect(frameAtTime(running, "run", 167).id).toBe(30);
+    expect(frameAtTime(running, "walk", 250).id).toBe(90);
+  });
+
   it("samples the loaded source rectangle and mirrors around an asymmetric anchor", () => {
     const context = {
       save: vi.fn(),

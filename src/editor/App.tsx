@@ -28,16 +28,18 @@ import {
   ART_V2_PRESETS,
   ART_V3_PRESETS,
   CLOTHING_COLORS,
-  POLISHED_DEFAULT_CONFIG as DEFAULT_CONFIG,
+  RUNNING_DEFAULT_CONFIG as DEFAULT_CONFIG,
   HAIR_COLORS,
   LEGACY_PRESETS,
   OUTFIT_PRESETS,
   COHESIVE_PRESETS,
-  POLISHED_PRESETS as PRESETS,
+  POLISHED_PRESETS,
+  RUNNING_PRESETS as PRESETS,
   HARMONIZED_PRESETS,
   PRESETS as ART_V4_PRESETS,
   SKIN_TONES,
   configToJson,
+  enableRunning,
   parseCharacterConfig,
   upgradeToPolishedArt,
 } from "../core/config";
@@ -55,6 +57,7 @@ import type {
   Facing,
 } from "../core/types";
 import { CharacterPreview, Filmstrip } from "./Preview";
+import "./controls.css";
 
 function PixelMark() {
   return (
@@ -204,6 +207,10 @@ export default function App() {
     [config],
   );
   const artworkVersion = config.schemaVersion === 1 ? 1 : config.artworkVersion;
+  const runningEnabled =
+    config.schemaVersion === 2 &&
+    config.artworkVersion === 6 &&
+    config.motionVersion === 1;
   const activePresets =
     artworkVersion === 1
       ? LEGACY_PRESETS
@@ -216,7 +223,9 @@ export default function App() {
             : artworkVersion === 5
               ? COHESIVE_PRESETS
               : artworkVersion === 6
-                ? PRESETS
+                ? runningEnabled
+                  ? PRESETS
+                  : POLISHED_PRESETS
                 : HARMONIZED_PRESETS;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const largePortraits = frameWidth > 96;
@@ -224,7 +233,11 @@ export default function App() {
   useEffect(() => {
     setZoom(recommendedZoom);
   }, [frameWidth, frameHeight, recommendedZoom]);
-  const sequence = generated.manifest.animations[animation];
+  const activeAnimation = generated.manifest.animations[animation]
+    ? animation
+    : "idle";
+  const sequence = generated.manifest.animations[activeAnimation]!;
+  const hasRun = Boolean(generated.manifest.animations.run);
   const drawingCount = new Set(sequence.frames).size;
   const loopSeconds = Number(
     (sequence.frames.length / sequence.fps).toFixed(2),
@@ -243,13 +256,51 @@ export default function App() {
     const item = activePresets.find((p) => p.id === id)!;
     setSelectedPreset(id);
     setConfig({ ...item.config });
+    restorePreview(item.config);
     setNotice(null);
+  }
+  function restorePreview(next: CharacterConfig) {
+    const preview =
+      next.schemaVersion === 2 &&
+      next.artworkVersion === 6 &&
+      next.motionVersion === 1
+        ? next.preview
+        : undefined;
+    setAnimation(preview?.animation ?? "idle");
+    setFacing(preview?.facing ?? "right");
+    setFrame(1);
+  }
+  function configWithPreview(): CharacterConfig {
+    return config.schemaVersion === 2 &&
+      config.artworkVersion === 6 &&
+      config.motionVersion === 1
+      ? {
+          ...config,
+          preview: { animation: activeAnimation, facing },
+        }
+      : config;
+  }
+  function addRunning() {
+    try {
+      if (config.schemaVersion !== 2 || config.artworkVersion !== 6)
+        throw new Error("Running can be added to an Art V6 configuration.");
+      setConfig(enableRunning(config));
+      setAnimation("run");
+      setFrame(1);
+      setNotice({
+        text: "Running added. Your V6 appearance, idle and walk stay unchanged. Save this as a new configuration to keep the original file.",
+      });
+    } catch (error) {
+      showError(error);
+    }
   }
   function createExpressiveCopy() {
     try {
       const face = PRESETS.find((item) => item.id === selectedPreset)!.config
         .faceVariant;
-      setConfig(upgradeToPolishedArt(config, face));
+      const next = upgradeToPolishedArt(config, face);
+      setConfig(next);
+      restorePreview(next);
       setNotice({
         text: "Polished copy created. Save it as a new configuration to keep both designs.",
       });
@@ -259,7 +310,7 @@ export default function App() {
   }
   function saveConfig() {
     try {
-      const json = configToJson(config);
+      const json = configToJson(configWithPreview());
       downloadBlob(
         new Blob([json], { type: "application/json" }),
         `${safeFilename(config.name)}.character.json`,
@@ -299,6 +350,7 @@ export default function App() {
       }
       const next = parseCharacterConfig(value);
       setConfig(next);
+      restorePreview(next);
       setNotice({
         text:
           next.schemaVersion === 1 || next.artworkVersion !== 6
@@ -312,7 +364,7 @@ export default function App() {
   async function exportPack() {
     setExporting(true);
     try {
-      const blob = await createCharacterPack(config, generated);
+      const blob = await createCharacterPack(configWithPreview(), generated);
       downloadBlob(blob, `${safeFilename(config.name)}.character.zip`);
       setNotice({
         text: "CharacterPack downloaded. Open it in the independent player to try your exported animations.",
@@ -418,6 +470,7 @@ export default function App() {
                 aria-label="Reset character"
                 onClick={() => {
                   setConfig({ ...preset.config });
+                  restorePreview(preset.config);
                   setNotice({ text: `Reset to the ${preset.label} preset.` });
                 }}
               >
@@ -818,7 +871,7 @@ export default function App() {
                   />
                   <CharacterPreview
                     generated={generated}
-                    animation={animation}
+                    animation={activeAnimation}
                     facing={facing}
                     playing={playing}
                     speed={speed}
@@ -829,22 +882,38 @@ export default function App() {
                 <div className="stage-name">
                   {config.name || "Your character"}
                   <span>
-                    {animation === "idle"
+                    {activeAnimation === "idle"
                       ? "Taking a little breather"
-                      : "Places to go, stories to tell"}
+                      : activeAnimation === "walk"
+                        ? "Walking in place · no travel"
+                        : "Running in place · no travel"}
                   </span>
                 </div>
                 <span className="zoom-badge">{zoom}×</span>
               </div>
               <div className="playback-controls">
                 <div className="segmented" aria-label="Animation">
-                  {(["idle", "walk"] as const).map((value) => (
+                  {(["idle", "walk", "run"] as const).map((value) => (
                     <button
                       key={value}
-                      aria-pressed={animation === value}
-                      onClick={() => setAnimation(value)}
+                      aria-pressed={activeAnimation === value}
+                      disabled={value === "run" && !hasRun}
+                      aria-describedby={
+                        value === "run" && !hasRun
+                          ? "running-availability"
+                          : undefined
+                      }
+                      onClick={() => {
+                        if (value === activeAnimation) return;
+                        setAnimation(value);
+                        setFrame(1);
+                      }}
                     >
-                      {value === "idle" ? "Idle" : "Walk"}
+                      {value === "idle"
+                        ? "Idle"
+                        : value === "walk"
+                          ? "Walk"
+                          : "Run"}
                     </button>
                   ))}
                 </div>
@@ -877,20 +946,44 @@ export default function App() {
                     <button
                       aria-label="Face left"
                       aria-pressed={facing === "left"}
-                      onClick={() => setFacing("left")}
+                      onClick={() => {
+                        if (facing === "left") return;
+                        setFacing("left");
+                        setFrame(1);
+                      }}
                     >
                       <ArrowLeft size={16} />
                     </button>
                     <button
                       aria-label="Face right"
                       aria-pressed={facing === "right"}
-                      onClick={() => setFacing("right")}
+                      onClick={() => {
+                        if (facing === "right") return;
+                        setFacing("right");
+                        setFrame(1);
+                      }}
                     >
                       <ArrowRight size={16} />
                     </button>
                   </div>
                 </div>
               </div>
+              {!hasRun && (
+                <div className="legacy-art-notice" id="running-availability">
+                  <p>
+                    {artworkVersion === 6
+                      ? "Running is not included in this saved configuration. Add it while preserving the V6 artwork and existing animations."
+                      : artworkVersion < 6
+                        ? "Running is unavailable for this saved artwork. Create a polished copy, then add running."
+                        : "Running is unavailable for Art V7. This saved design is preserved; running uses the V6 character proportions."}
+                  </p>
+                  {artworkVersion === 6 && (
+                    <button type="button" onClick={addRunning}>
+                      <Sparkles size={13} /> Add running
+                    </button>
+                  )}
+                </div>
+              )}
               <div className="preview-options">
                 <label>
                   <span>Speed</span>
@@ -919,7 +1012,7 @@ export default function App() {
                     ))}
                   </select>
                 </label>
-                <span className="crisp-note">Crisp pixels. Always.</span>
+                <span className="crisp-note">In-place preview · no travel</span>
               </div>
             </section>
             <section className="timeline-panel">
@@ -939,7 +1032,7 @@ export default function App() {
               </div>
               <Filmstrip
                 generated={generated}
-                animation={animation}
+                animation={activeAnimation}
                 activeFrame={frame}
               />
             </section>

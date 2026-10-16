@@ -8,6 +8,7 @@ import type {
   CharacterConfig,
   FaceVariant,
   LegacyCharacterConfig,
+  RunningCharacterConfig,
 } from "./types";
 
 export const SKIN_TONES = [
@@ -213,6 +214,36 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     throw new Error("Character configuration must be a JSON object.");
   }
   const input = value as Record<string, unknown>;
+  if (
+    "motionVersion" in input &&
+    (input.schemaVersion !== 2 ||
+      input.artworkVersion !== 6 ||
+      input.motionVersion !== 1)
+  ) {
+    throw new Error("motionVersion must be 1 and requires artworkVersion 6.");
+  }
+  if ("preview" in input && input.motionVersion !== 1) {
+    throw new Error("preview requires explicit motionVersion 1.");
+  }
+  let preview: RunningCharacterConfig["preview"];
+  if ("preview" in input) {
+    if (
+      !input.preview ||
+      typeof input.preview !== "object" ||
+      Array.isArray(input.preview)
+    )
+      throw new Error("preview must contain a valid animation and facing.");
+    const candidate = input.preview as Record<string, unknown>;
+    if (
+      candidate.animation !== "idle" &&
+      candidate.animation !== "walk" &&
+      candidate.animation !== "run"
+    )
+      throw new Error("preview.animation must be idle, walk or run.");
+    if (candidate.facing !== "left" && candidate.facing !== "right")
+      throw new Error("preview.facing must be left or right.");
+    preview = { animation: candidate.animation, facing: candidate.facing };
+  }
   if (input.schemaVersion !== 1 && input.schemaVersion !== 2)
     throw new Error(
       "Unsupported schemaVersion. Use character configuration version 1 or 2.",
@@ -307,7 +338,12 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     return input.artworkVersion === 5
       ? { ...refined, artworkVersion: 5 }
       : input.artworkVersion === 6
-        ? { ...refined, artworkVersion: 6 }
+        ? {
+            ...refined,
+            artworkVersion: 6,
+            ...(input.motionVersion === 1 ? { motionVersion: 1 as const } : {}),
+            ...(preview ? { preview } : {}),
+          }
         : { ...refined, artworkVersion: 7 };
   }
   if (input.artworkVersion === 4)
@@ -436,14 +472,34 @@ export const POLISHED_PRESETS = COHESIVE_PRESETS.map((p) => ({
   config: upgradeToPolishedArt(p.config),
 }));
 
+/** Running changes animation layout, never artwork; saved V6 files opt in explicitly. */
+export function enableRunning(
+  config: ArtV6CharacterConfig,
+): RunningCharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion !== 2 || parsed.artworkVersion !== 6)
+    throw new Error("Running requires an explicit V6 character copy.");
+  return { ...parsed, motionVersion: 1 };
+}
+export const RUNNING_DEFAULT_CONFIG = enableRunning(POLISHED_DEFAULT_CONFIG);
+export const RUNNING_PRESETS = POLISHED_PRESETS.map((p) => ({
+  ...p,
+  config: enableRunning(p.config),
+}));
+
 /** Explicit V7 copy; no opening or editing path invokes this conversion. */
 export function upgradeToHarmonizedArt(
   config: CharacterConfig,
   faceVariant: FaceVariant = "heart",
 ): ArtV7CharacterConfig {
   const parsed = parseCharacterConfig(config);
+  const appearance = { ...parsed };
+  if (appearance.schemaVersion === 2 && appearance.artworkVersion === 6) {
+    delete appearance.motionVersion;
+    delete appearance.preview;
+  }
   return {
-    ...parsed,
+    ...appearance,
     schemaVersion: 2,
     artworkVersion: 7,
     faceVariant: parsed.schemaVersion === 1 ? faceVariant : parsed.faceVariant,

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { strToU8, zipSync } from "fflate";
-import { DEFAULT_CONFIG } from "./config";
+import { DEFAULT_CONFIG, RUNNING_DEFAULT_CONFIG } from "./config";
 import {
   createCharacterPack,
   loadCharacterPack,
@@ -330,6 +330,20 @@ describe("CharacterPack ZIP byte validation", () => {
     );
   });
 
+  it("requires a running-enabled source configuration to include a portable run clip", () => {
+    const files = archiveFiles();
+    files["character.json"] = strToU8(JSON.stringify(RUNNING_DEFAULT_CONFIG));
+    expect(() => readCharacterPackArchive(zipSync(files))).toThrow(
+      "has no run animation",
+    );
+    const data = JSON.parse(new TextDecoder().decode(files["manifest.json"]));
+    data.animations.run = { frames: [7], fps: 18, loop: true };
+    files["manifest.json"] = strToU8(JSON.stringify(data));
+    const parsed = readCharacterPackArchive(zipSync(files));
+    expect(parsed.config).toEqual(RUNNING_DEFAULT_CONFIG);
+    expect(parsed.manifest.animations.run).toEqual(data.animations.run);
+  });
+
   it("rejects non-PNG data and image dimensions that disagree with metadata", () => {
     const files = archiveFiles();
     files["spritesheet.png"] = strToU8("not an image");
@@ -443,6 +457,12 @@ describe("export input validation", () => {
     await expect(
       createCharacterPack({ ...DEFAULT_CONFIG, name: "Rowan" }, generated()),
     ).rejects.toThrow("name must match");
+  });
+
+  it("rejects a running-enabled export missing run metadata before PNG work", async () => {
+    await expect(
+      createCharacterPack(RUNNING_DEFAULT_CONFIG, generated()),
+    ).rejects.toThrow("has no run animation");
   });
 
   it("rejects an inconsistent generated pixel buffer before touching the DOM", async () => {

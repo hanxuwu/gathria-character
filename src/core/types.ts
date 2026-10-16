@@ -1,4 +1,4 @@
-export type AnimationName = "idle" | "walk";
+export type AnimationName = "idle" | "walk" | "run";
 export type Facing = "left" | "right";
 export type Hairstyle = "crop" | "bob" | "waves" | "mohawk";
 export type LegacyUpperClothing = "tee" | "hoodie" | "jacket";
@@ -47,10 +47,20 @@ export interface ArtV5CharacterConfig
 export interface ArtV6CharacterConfig
   extends Omit<ArtV5CharacterConfig, "artworkVersion"> {
   artworkVersion: 6;
+  /** Explicit opt-in; omitted on historical V6 configurations. */
+  motionVersion?: 1;
+  /** Saved playback choice, supported by motionVersion 1 only. */
+  preview?: { animation: AnimationName; facing: Facing };
 }
 export interface ArtV7CharacterConfig
-  extends Omit<ArtV6CharacterConfig, "artworkVersion"> {
+  extends Omit<
+    ArtV6CharacterConfig,
+    "artworkVersion" | "motionVersion" | "preview"
+  > {
   artworkVersion: 7;
+}
+export interface RunningCharacterConfig extends ArtV6CharacterConfig {
+  motionVersion: 1;
 }
 export type CharacterConfig =
   | LegacyCharacterConfig
@@ -87,7 +97,7 @@ export interface CharacterPackManifest {
     rows: number;
   };
   frames: SpriteFrame[];
-  animations: Record<AnimationName, Animation>;
+  animations: Record<"idle" | "walk", Animation> & { run?: Animation };
   facing: { native: "right"; right: "none"; left: "mirror-x" };
   anchor: { x: number; y: number; units: "pixels"; origin: "top-left" };
   scale: { pixelArt: true; recommended: number; integerOnly: true };

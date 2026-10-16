@@ -50,7 +50,7 @@ export function CharacterPreview({
   frameCallback.current = onFrame;
   useEffect(() => {
     elapsed.current = 0;
-  }, [animation, generated]);
+  }, [animation, facing, generated]);
   useEffect(() => {
     let raf = 0;
     let previous = 0;
@@ -59,7 +59,9 @@ export function CharacterPreview({
       if (previous && playing)
         elapsed.current += Math.min(now - previous, 100) * speed;
       previous = now;
-      const sequence = generated.manifest.animations[animation];
+      const sequence =
+        generated.manifest.animations[animation] ??
+        generated.manifest.animations.idle;
       const offset =
         Math.floor((elapsed.current * sequence.fps) / 1000) %
         sequence.frames.length;
@@ -120,7 +122,9 @@ export function Filmstrip({
 }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const { sheet, ready } = useSpriteSheet(generated);
-  const sequence = generated.manifest.animations[animation];
+  const sequence =
+    generated.manifest.animations[animation] ??
+    generated.manifest.animations.idle;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const slotWidth = frameWidth + 16;
   useEffect(() => {
