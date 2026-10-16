@@ -28,18 +28,19 @@ import {
   ART_V2_PRESETS,
   ART_V3_PRESETS,
   CLOTHING_COLORS,
-  RUNNING_DEFAULT_CONFIG as DEFAULT_CONFIG,
+  COMPACT_RUNNING_DEFAULT_CONFIG as DEFAULT_CONFIG,
   HAIR_COLORS,
   LEGACY_PRESETS,
   OUTFIT_PRESETS,
   COHESIVE_PRESETS,
   POLISHED_PRESETS,
-  RUNNING_PRESETS as PRESETS,
+  RUNNING_PRESETS,
+  COMPACT_RUNNING_PRESETS as PRESETS,
   HARMONIZED_PRESETS,
   PRESETS as ART_V4_PRESETS,
   SKIN_TONES,
   configToJson,
-  enableRunning,
+  enableCompactRunning,
   parseCharacterConfig,
   upgradeToPolishedArt,
 } from "../core/config";
@@ -207,10 +208,10 @@ export default function App() {
     [config],
   );
   const artworkVersion = config.schemaVersion === 1 ? 1 : config.artworkVersion;
-  const runningEnabled =
-    config.schemaVersion === 2 &&
-    config.artworkVersion === 6 &&
-    config.motionVersion === 1;
+  const motionVersion =
+    config.schemaVersion === 2 && config.artworkVersion === 6
+      ? config.motionVersion
+      : undefined;
   const activePresets =
     artworkVersion === 1
       ? LEGACY_PRESETS
@@ -223,9 +224,11 @@ export default function App() {
             : artworkVersion === 5
               ? COHESIVE_PRESETS
               : artworkVersion === 6
-                ? runningEnabled
+                ? motionVersion === 2
                   ? PRESETS
-                  : POLISHED_PRESETS
+                  : motionVersion === 1
+                    ? RUNNING_PRESETS
+                    : POLISHED_PRESETS
                 : HARMONIZED_PRESETS;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const largePortraits = frameWidth > 96;
@@ -263,7 +266,7 @@ export default function App() {
     const preview =
       next.schemaVersion === 2 &&
       next.artworkVersion === 6 &&
-      next.motionVersion === 1
+      (next.motionVersion === 1 || next.motionVersion === 2)
         ? next.preview
         : undefined;
     setAnimation(preview?.animation ?? "idle");
@@ -273,7 +276,7 @@ export default function App() {
   function configWithPreview(): CharacterConfig {
     return config.schemaVersion === 2 &&
       config.artworkVersion === 6 &&
-      config.motionVersion === 1
+      (config.motionVersion === 1 || config.motionVersion === 2)
       ? {
           ...config,
           preview: { animation: activeAnimation, facing },
@@ -284,11 +287,29 @@ export default function App() {
     try {
       if (config.schemaVersion !== 2 || config.artworkVersion !== 6)
         throw new Error("Running can be added to an Art V6 configuration.");
-      setConfig(enableRunning(config));
+      setConfig(enableCompactRunning(config));
       setAnimation("run");
       setFrame(1);
       setNotice({
         text: "Running added. Your V6 appearance, idle and walk stay unchanged. Save this as a new configuration to keep the original file.",
+      });
+    } catch (error) {
+      showError(error);
+    }
+  }
+  function createCompactRunningCopy() {
+    try {
+      if (config.schemaVersion !== 2 || config.artworkVersion !== 6)
+        throw new Error("Compact running requires an Art V6 configuration.");
+      setConfig(
+        enableCompactRunning({
+          ...config,
+          preview: { animation: activeAnimation, facing },
+        }),
+      );
+      setFrame(1);
+      setNotice({
+        text: "Compact running copy created. Your appearance, idle and walk stay unchanged. Save this as a new configuration to keep the original running poses.",
       });
     } catch (error) {
       showError(error);
@@ -982,6 +1003,17 @@ export default function App() {
                       <Sparkles size={13} /> Add running
                     </button>
                   )}
+                </div>
+              )}
+              {motionVersion === 1 && (
+                <div className="legacy-art-notice">
+                  <p>
+                    Your saved running poses are preserved. Create a copy to try
+                    the more compact running poses.
+                  </p>
+                  <button type="button" onClick={createCompactRunningCopy}>
+                    <Sparkles size={13} /> Create compact running copy
+                  </button>
                 </div>
               )}
               <div className="preview-options">

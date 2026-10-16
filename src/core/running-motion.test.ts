@@ -1,7 +1,12 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { configToJson, enableRunning, parseCharacterConfig } from "./config";
+import {
+  configToJson,
+  enableCompactRunning,
+  enableRunning,
+  parseCharacterConfig,
+} from "./config";
 import { generateCharacter } from "./generator";
 import type { ArtV6CharacterConfig, GeneratedCharacter } from "./types";
 
@@ -214,4 +219,59 @@ describe("V6 running silhouette and ground contact", () => {
       }
     },
   );
+
+  it.each(["dress", "suit"])(
+    "keeps compact %s contact and flight poses connected without clipping or sinking",
+    (id) => {
+      const generated = generateCharacter(
+        enableCompactRunning(savedWedding(id)),
+      );
+      for (const [
+        index,
+        frameId,
+      ] of generated.manifest.animations.run!.frames.entries()) {
+        const bounds = geometry(
+          framePixels(generated, frameId),
+          `compact ${id} run ${index}`,
+        );
+        if ([0, 1, 6, 7].includes(index))
+          expect(
+            bounds.maxY,
+            `compact ${id} ${index}: planted contact/load`,
+          ).toBe(239);
+        if ([3, 4, 5, 9, 10, 11].includes(index))
+          expect(
+            bounds.maxY,
+            `compact ${id} ${index}: airborne recovery`,
+          ).toBeLessThan(239);
+      }
+    },
+  );
+
+  it("reduces the groom's maximum airborne leg spread relative to the delivered wide stride", () => {
+    const config = savedWedding("suit");
+    const original = generateCharacter(enableRunning(config));
+    const compact = generateCharacter(enableCompactRunning(config));
+    const maxAirborneSpan = (generated: GeneratedCharacter) =>
+      Math.max(
+        ...[3, 4, 5, 9, 10, 11].map((index) => {
+          const pixels = framePixels(
+            generated,
+            generated.manifest.animations.run!.frames[index],
+          );
+          let left = W,
+            right = -1;
+          // Measure below the waist so unchanged hair and shoulder width cannot
+          // hide a regression to the original widely splayed airborne legs.
+          for (let p = 170 * W; p < W * H; p++)
+            if (pixels[p * 4 + 3]) {
+              left = Math.min(left, p % W);
+              right = Math.max(right, p % W);
+            }
+          expect(right).toBeGreaterThan(left);
+          return right - left + 1;
+        }),
+      );
+    expect(maxAirborneSpan(compact)).toBeLessThan(maxAirborneSpan(original));
+  });
 });

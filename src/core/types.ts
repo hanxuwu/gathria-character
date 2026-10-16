@@ -48,8 +48,8 @@ export interface ArtV6CharacterConfig
   extends Omit<ArtV5CharacterConfig, "artworkVersion"> {
   artworkVersion: 6;
   /** Explicit opt-in; omitted on historical V6 configurations. */
-  motionVersion?: 1;
-  /** Saved playback choice, supported by motionVersion 1 only. */
+  motionVersion?: 1 | 2;
+  /** Saved playback choice, supported by explicit motion versions only. */
   preview?: { animation: AnimationName; facing: Facing };
 }
 export interface ArtV7CharacterConfig
@@ -61,6 +61,9 @@ export interface ArtV7CharacterConfig
 }
 export interface RunningCharacterConfig extends ArtV6CharacterConfig {
   motionVersion: 1;
+}
+export interface CompactRunningCharacterConfig extends ArtV6CharacterConfig {
+  motionVersion: 2;
 }
 export type CharacterConfig =
   | LegacyCharacterConfig

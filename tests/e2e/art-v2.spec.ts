@@ -218,7 +218,7 @@ for (const outfit of [
     expect(config).toMatchObject({
       schemaVersion: 2,
       artworkVersion: 6,
-      motionVersion: 1,
+      motionVersion: 2,
       faceVariant: "heart",
       upperClothing: outfit.upper,
       lowerClothing: outfit.lower,
@@ -227,7 +227,7 @@ for (const outfit of [
     });
     expect(manifest).toMatchObject({
       schemaVersion: 1,
-      generator: "gathria-polished-pixels-v6-motion-v1",
+      generator: "gathria-polished-pixels-v6-motion-v2",
       anchor: { x: 96, y: 240 },
       spritesheet: {
         width: 1536,
@@ -251,7 +251,7 @@ for (const outfit of [
     await player.locator("#player-zip").setInputFiles(zipPath);
     await expect(player.getByRole("status")).toContainText("Loaded: Rowan");
     await expect(
-      player.getByText("gathria-polished-pixels-v6-motion-v1", { exact: true }),
+      player.getByText("gathria-polished-pixels-v6-motion-v2", { exact: true }),
     ).toBeVisible();
     await player
       .getByRole("button", { name: "Pause animation", exact: true })

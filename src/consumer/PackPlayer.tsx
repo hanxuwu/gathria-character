@@ -177,23 +177,27 @@ export function PackPlayer() {
     void openPack(() => loadCharacterPack(file), file.name);
   }
 
-  function openExample(artworkVersion: 1 | 2 | 3 | 4 | 6 | 7 | "running") {
+  function openExample(
+    artworkVersion: 1 | 2 | 3 | 4 | 6 | 7 | "running" | "running-v1",
+  ) {
     void openPack(
       async () => {
         const response = await fetch(
           artworkVersion === "running"
-            ? "/samples/running/dress.character.zip"
-            : artworkVersion === 7
-              ? "/samples/harmonized/dress-joyful.character.zip"
-              : artworkVersion === 6
-                ? "/samples/polished/dress-joyful.character.zip"
-                : artworkVersion === 4
-                  ? "/samples/expressive/mira.character.zip"
-                  : artworkVersion === 3
-                    ? "/samples/detailed/mira.character.zip"
-                    : artworkVersion === 2
-                      ? "/samples/v2/mira.character.zip"
-                      : "/samples/mira.character.zip",
+            ? "/samples/running-v2/dress.character.zip"
+            : artworkVersion === "running-v1"
+              ? "/samples/running/dress.character.zip"
+              : artworkVersion === 7
+                ? "/samples/harmonized/dress-joyful.character.zip"
+                : artworkVersion === 6
+                  ? "/samples/polished/dress-joyful.character.zip"
+                  : artworkVersion === 4
+                    ? "/samples/expressive/mira.character.zip"
+                    : artworkVersion === 3
+                      ? "/samples/detailed/mira.character.zip"
+                      : artworkVersion === 2
+                        ? "/samples/v2/mira.character.zip"
+                        : "/samples/mira.character.zip",
         );
         if (!response.ok)
           throw new Error(
@@ -202,8 +206,10 @@ export function PackPlayer() {
         return loadCharacterPack(await response.blob());
       },
       artworkVersion === "running"
-        ? "dress.character.zip · Art V6 with running · bundled example"
-        : `${artworkVersion >= 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
+        ? "dress.character.zip · Art V6 · Motion V2 · bundled example"
+        : artworkVersion === "running-v1"
+          ? "dress.character.zip · Art V6 · Motion V1 · preserved example"
+          : `${artworkVersion >= 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
     );
   }
 
@@ -356,6 +362,13 @@ export function PackPlayer() {
                 Just exploring?<strong>Try the running wedding pack</strong>
               </span>
               <ArrowRight size={17} />
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample("running-v1")}
+              disabled={busy}
+            >
+              Try the original running pack · Motion V1
             </button>
             <button
               className="player-legacy-sample"

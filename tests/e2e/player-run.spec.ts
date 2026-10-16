@@ -3,16 +3,62 @@ import { readFile } from "node:fs/promises";
 import { unzipSync, strFromU8 } from "fflate";
 import type { CharacterPackManifest } from "../../src/core/types";
 
-for (const character of ["dress", "suit"]) {
-  test(`${character} run pack plays independently, mirrors, and resets when replaced by a legacy pack`, async ({
+test("bundled player examples prefer Motion V2 and preserve Motion V1", async ({
+  page,
+}) => {
+  await page.goto("/player.html");
+  const latest = page.waitForResponse((response) =>
+    response.url().endsWith("/samples/running-v2/dress.character.zip"),
+  );
+  await page
+    .getByRole("button", { name: /Try the running wedding pack/ })
+    .click();
+  expect((await latest).ok()).toBe(true);
+  await expect(page.getByRole("status")).toContainText("Loaded:");
+  await expect(
+    page.getByRole("button", { name: "Run", exact: true }),
+  ).toBeEnabled();
+  await expect(
+    page.getByText(/Art V6 · Motion V2 · bundled example/),
+  ).toBeVisible();
+
+  const original = page.waitForResponse((response) =>
+    response.url().endsWith("/samples/running/dress.character.zip"),
+  );
+  await page
+    .getByRole("button", {
+      name: "Try the original running pack · Motion V1",
+      exact: true,
+    })
+    .click();
+  expect((await original).ok()).toBe(true);
+  await expect(page.getByRole("status")).toContainText("Loaded:");
+  await expect(
+    page.getByText(/Art V6 · Motion V1 · preserved example/),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Run", exact: true }),
+  ).toBeEnabled();
+});
+
+for (const { character, directory, motion } of [
+  { character: "dress", directory: "running", motion: 1 },
+  { character: "suit", directory: "running", motion: 1 },
+  { character: "dress", directory: "running-v2", motion: 2 },
+  { character: "suit", directory: "running-v2", motion: 2 },
+]) {
+  test(`${character} Motion V${motion} pack plays independently, mirrors, and resets when replaced by a legacy pack`, async ({
     page,
   }) => {
-    const packPath = `public/samples/running/${character}.character.zip`;
+    const packPath = `public/samples/${directory}/${character}.character.zip`;
     const entries = unzipSync(await readFile(packPath));
     const manifest = JSON.parse(
       strFromU8(entries["manifest.json"]),
     ) as CharacterPackManifest;
     const run = manifest.animations.run!;
+    expect(JSON.parse(strFromU8(entries["character.json"])).motionVersion).toBe(
+      motion,
+    );
     expect(run.frames).toHaveLength(12);
     expect(run.fps).toBe(18);
 

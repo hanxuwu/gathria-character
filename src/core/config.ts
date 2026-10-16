@@ -6,6 +6,7 @@ import type {
   ArtV6CharacterConfig,
   ArtV7CharacterConfig,
   CharacterConfig,
+  CompactRunningCharacterConfig,
   FaceVariant,
   LegacyCharacterConfig,
   RunningCharacterConfig,
@@ -218,12 +219,18 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
     "motionVersion" in input &&
     (input.schemaVersion !== 2 ||
       input.artworkVersion !== 6 ||
-      input.motionVersion !== 1)
+      (input.motionVersion !== 1 && input.motionVersion !== 2))
   ) {
-    throw new Error("motionVersion must be 1 and requires artworkVersion 6.");
+    throw new Error(
+      "motionVersion must be 1 or 2 and requires artworkVersion 6.",
+    );
   }
-  if ("preview" in input && input.motionVersion !== 1) {
-    throw new Error("preview requires explicit motionVersion 1.");
+  if (
+    "preview" in input &&
+    input.motionVersion !== 1 &&
+    input.motionVersion !== 2
+  ) {
+    throw new Error("preview requires explicit motionVersion 1 or 2.");
   }
   let preview: RunningCharacterConfig["preview"];
   if ("preview" in input) {
@@ -341,7 +348,9 @@ export function parseCharacterConfig(value: unknown): CharacterConfig {
         ? {
             ...refined,
             artworkVersion: 6,
-            ...(input.motionVersion === 1 ? { motionVersion: 1 as const } : {}),
+            ...(input.motionVersion === 1 || input.motionVersion === 2
+              ? { motionVersion: input.motionVersion }
+              : {}),
             ...(preview ? { preview } : {}),
           }
         : { ...refined, artworkVersion: 7 };
@@ -479,12 +488,33 @@ export function enableRunning(
   const parsed = parseCharacterConfig(config);
   if (parsed.schemaVersion !== 2 || parsed.artworkVersion !== 6)
     throw new Error("Running requires an explicit V6 character copy.");
+  if (parsed.motionVersion === 2)
+    throw new Error(
+      "Compact running cannot be silently downgraded to motion version 1.",
+    );
   return { ...parsed, motionVersion: 1 };
 }
 export const RUNNING_DEFAULT_CONFIG = enableRunning(POLISHED_DEFAULT_CONFIG);
 export const RUNNING_PRESETS = POLISHED_PRESETS.map((p) => ({
   ...p,
   config: enableRunning(p.config),
+}));
+
+/** Explicit movement copy; existing motion v1 configurations retain their poses. */
+export function enableCompactRunning(
+  config: ArtV6CharacterConfig,
+): CompactRunningCharacterConfig {
+  const parsed = parseCharacterConfig(config);
+  if (parsed.schemaVersion !== 2 || parsed.artworkVersion !== 6)
+    throw new Error("Compact running requires an explicit V6 character copy.");
+  return { ...parsed, motionVersion: 2 };
+}
+export const COMPACT_RUNNING_DEFAULT_CONFIG = enableCompactRunning(
+  POLISHED_DEFAULT_CONFIG,
+);
+export const COMPACT_RUNNING_PRESETS = POLISHED_PRESETS.map((p) => ({
+  ...p,
+  config: enableCompactRunning(p.config),
 }));
 
 /** Explicit V7 copy; no opening or editing path invokes this conversion. */

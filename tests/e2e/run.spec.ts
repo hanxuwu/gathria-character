@@ -10,6 +10,10 @@ const v7Config = new URL(
   "../../docs/art-harmonized/dress-joyful/character.json",
   import.meta.url,
 ).pathname;
+const originalRunConfig = new URL(
+  "../../docs/running/suit-joyful/character.json",
+  import.meta.url,
+).pathname;
 
 async function waitForDraw(page: Page) {
   await page.evaluate(
@@ -69,7 +73,7 @@ test("running settings survive customization, save/reopen and an independently l
   const config = JSON.parse(await readFile(configPath, "utf8"));
   expect(config).toMatchObject({
     artworkVersion: 6,
-    motionVersion: 1,
+    motionVersion: 2,
     preview: { animation: "run", facing: "left" },
     hairstyle: "waves",
     expression: "joyful",
@@ -119,6 +123,7 @@ test("running settings survive customization, save/reopen and an independently l
     config,
   );
   const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
+  expect(manifest.generator).toBe("gathria-polished-pixels-v6-motion-v2");
   expect(manifest.animations.run).toEqual({
     frames: Array.from({ length: 12 }, (_, index) => index + 12),
     fps: 18,
@@ -252,4 +257,125 @@ test("V7 remains in its saved style with running explicitly unavailable", async 
   await expect(page.locator("#running-availability")).toContainText(
     "Running is unavailable for Art V7",
   );
+});
+
+test("saved original running poses and presets stay unchanged until an explicit compact copy", async ({
+  page,
+}, testInfo) => {
+  test.setTimeout(60_000);
+  const source = {
+    ...JSON.parse(await readFile(originalRunConfig, "utf8")),
+    preview: { animation: "run", facing: "left" },
+  };
+  const upload = {
+    name: "original-running.character.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(source)),
+  };
+  await page.goto("/");
+  await page
+    .getByRole("button", { name: "Pause animation", exact: true })
+    .click();
+  await page
+    .getByLabel("Open character configuration", { exact: true })
+    .setInputFiles(upload);
+  await page.getByLabel("Pixel zoom", { exact: true }).selectOption("1");
+  await waitForDraw(page);
+  await expect(preview(page)).toHaveAttribute(
+    "aria-label",
+    `${source.name}, run, facing left`,
+  );
+  const preserved = await preview(page).evaluate((canvas: HTMLCanvasElement) =>
+    canvas.toDataURL(),
+  );
+  const originalPixels = await page.evaluate(async () => {
+    const folder = "/docs/running/suit-joyful/";
+    const bitmap = await createImageBitmap(
+      await (await fetch(folder + "spritesheet.png")).blob(),
+    );
+    const manifest = await (await fetch(folder + "manifest.json")).json();
+    const frame = manifest.frames.find(
+      (item: { id: number }) => item.id === 12,
+    );
+    const canvas = document.createElement("canvas");
+    canvas.width = frame.width;
+    canvas.height = frame.height;
+    const context = canvas.getContext("2d")!;
+    context.imageSmoothingEnabled = false;
+    context.translate(canvas.width, 0);
+    context.scale(-1, 1);
+    context.drawImage(
+      bitmap,
+      frame.x,
+      frame.y,
+      frame.width,
+      frame.height,
+      0,
+      0,
+      frame.width,
+      frame.height,
+    );
+    bitmap.close();
+    return canvas.toDataURL();
+  });
+  expect(preserved).toBe(originalPixels);
+  const originalDownload = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Save config", exact: true }).click();
+  const originalPath = testInfo.outputPath("original-run.json");
+  await (await originalDownload).saveAs(originalPath);
+  expect(JSON.parse(await readFile(originalPath, "utf8"))).toEqual(source);
+
+  // Preset selection inside a historical file must not silently select motion 2.
+  await page.getByRole("button", { name: "Rowan preset", exact: true }).click();
+  const presetDownload = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Save config", exact: true }).click();
+  const presetPath = testInfo.outputPath("original-run-preset.json");
+  await (await presetDownload).saveAs(presetPath);
+  expect(JSON.parse(await readFile(presetPath, "utf8"))).toMatchObject({
+    name: "Rowan",
+    artworkVersion: 6,
+    motionVersion: 1,
+    preview: { animation: "idle", facing: "right" },
+  });
+
+  await page
+    .getByLabel("Open character configuration", { exact: true })
+    .setInputFiles(upload);
+  await page
+    .getByRole("button", { name: "Create compact running copy", exact: true })
+    .click();
+  await waitForDraw(page);
+  await expect(preview(page)).toHaveAttribute(
+    "aria-label",
+    `${source.name}, run, facing left`,
+  );
+  expect(
+    await preview(page).evaluate((canvas: HTMLCanvasElement) =>
+      canvas.toDataURL(),
+    ),
+  ).not.toBe(preserved);
+  await expect(
+    page.getByRole("button", {
+      name: "Create compact running copy",
+      exact: true,
+    }),
+  ).toHaveCount(0);
+  const copyDownload = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Save config", exact: true }).click();
+  const copyPath = testInfo.outputPath("compact-run.json");
+  await (await copyDownload).saveAs(copyPath);
+  expect(JSON.parse(await readFile(copyPath, "utf8"))).toEqual({
+    ...source,
+    motionVersion: 2,
+  });
+
+  await page
+    .getByLabel("Open character configuration", { exact: true })
+    .setInputFiles(originalPath);
+  await waitForDraw(page);
+  expect(
+    await preview(page).evaluate((canvas: HTMLCanvasElement) =>
+      canvas.toDataURL(),
+    ),
+  ).toBe(preserved);
 });

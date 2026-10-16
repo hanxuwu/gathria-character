@@ -226,7 +226,7 @@ function validateConfigForManifest(
   if (
     config.schemaVersion === 2 &&
     config.artworkVersion === 6 &&
-    config.motionVersion === 1 &&
+    (config.motionVersion === 1 || config.motionVersion === 2) &&
     !manifest.animations.run
   )
     fail(
@@ -611,7 +611,8 @@ export async function createCharacterPack(
   const running =
     validatedConfig.schemaVersion === 2 &&
     validatedConfig.artworkVersion === 6 &&
-    validatedConfig.motionVersion === 1;
+    (validatedConfig.motionVersion === 1 ||
+      validatedConfig.motionVersion === 2);
   const png = await pixelsToPng(generated);
   if (png.size > MAX_ARCHIVE_BYTES)
     fail(
@@ -646,7 +647,9 @@ export async function createCharacterPack(
                   "Prototype format:",
                   "Version 6 technically re-cuts the existing AI-assisted V5 wedding sources into clean anatomical layers, retains full authored face states, and applies a quieter deterministic gait. No new model-generated artwork was introduced in this revision. See scripts/prepare-polished-assets.py and docs/ART_POLISH_V6.md.\n\n" +
                     (running
-                      ? "Motion version 1 adds locally composed running poses from the preserved V6 layers. The original V6 idle and walk atlas rows remain byte-identical. No new AI-generated artwork or runtime model calls are used for running. See docs/RUNNING_REVIEW.md.\n\n"
+                      ? validatedConfig.motionVersion === 2
+                        ? "Motion version 2 refines the running key poses into a compact side-facing cycle using the preserved V6 layers. The original V6 idle and walk atlas rows remain byte-identical; motion version 1 retains its original renderer. No new AI-generated artwork or runtime model calls are used for running. See src/core/running-rig-v2.ts and docs/RUNNING_V2_REVIEW.md.\n\n"
+                        : "Motion version 1 adds locally composed running poses from the preserved V6 layers. The original V6 idle and walk atlas rows remain byte-identical. No new AI-generated artwork or runtime model calls are used for running. See docs/RUNNING_REVIEW.md.\n\n"
                       : "") +
                     "Prototype format:",
                 )
