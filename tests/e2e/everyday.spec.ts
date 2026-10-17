@@ -93,7 +93,7 @@ test("four everyday looks preserve identity and running, remain editable, and su
   expect(config).toMatchObject({
     name: "Everyday Alex",
     artworkVersion: 6,
-    motionVersion: 2,
+    motionVersion: 3,
     preview: { animation: "run", facing: "left" },
     faceVariant: "round",
     hairstyle: "waves",
@@ -126,7 +126,7 @@ test("four everyday looks preserve identity and running, remain editable, and su
     config,
   );
   const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
-  expect(manifest.generator).toBe("gathria-polished-pixels-v6-motion-v2");
+  expect(manifest.generator).toBe("gathria-polished-pixels-v6-motion-v3");
   expect(manifest.animations.run.frames).toHaveLength(12);
   expect(manifest.animations.run.fps).toBe(18);
   const png = [...files["spritesheet.png"]];

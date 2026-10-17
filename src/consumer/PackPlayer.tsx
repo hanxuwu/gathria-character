@@ -185,6 +185,7 @@ export function PackPlayer() {
       | 4
       | 6
       | 7
+      | "corrected-running"
       | "everyday"
       | "running"
       | "running-v1",
@@ -192,23 +193,25 @@ export function PackPlayer() {
     void openPack(
       async () => {
         const response = await fetch(
-          artworkVersion === "everyday"
-            ? "/samples/everyday/denim-daytrip.character.zip"
-            : artworkVersion === "running"
-              ? "/samples/running-v2/dress.character.zip"
-              : artworkVersion === "running-v1"
-                ? "/samples/running/dress.character.zip"
-                : artworkVersion === 7
-                  ? "/samples/harmonized/dress-joyful.character.zip"
-                  : artworkVersion === 6
-                    ? "/samples/polished/dress-joyful.character.zip"
-                    : artworkVersion === 4
-                      ? "/samples/expressive/mira.character.zip"
-                      : artworkVersion === 3
-                        ? "/samples/detailed/mira.character.zip"
-                        : artworkVersion === 2
-                          ? "/samples/v2/mira.character.zip"
-                          : "/samples/mira.character.zip",
+          artworkVersion === "corrected-running"
+            ? "/samples/run-connections/denim-daytrip.character.zip"
+            : artworkVersion === "everyday"
+              ? "/samples/everyday/denim-daytrip.character.zip"
+              : artworkVersion === "running"
+                ? "/samples/running-v2/dress.character.zip"
+                : artworkVersion === "running-v1"
+                  ? "/samples/running/dress.character.zip"
+                  : artworkVersion === 7
+                    ? "/samples/harmonized/dress-joyful.character.zip"
+                    : artworkVersion === 6
+                      ? "/samples/polished/dress-joyful.character.zip"
+                      : artworkVersion === 4
+                        ? "/samples/expressive/mira.character.zip"
+                        : artworkVersion === 3
+                          ? "/samples/detailed/mira.character.zip"
+                          : artworkVersion === 2
+                            ? "/samples/v2/mira.character.zip"
+                            : "/samples/mira.character.zip",
         );
         if (!response.ok)
           throw new Error(
@@ -216,13 +219,15 @@ export function PackPlayer() {
           );
         return loadCharacterPack(await response.blob());
       },
-      artworkVersion === "everyday"
-        ? "denim-daytrip.character.zip · Art V6 · Motion V2 · bundled example"
-        : artworkVersion === "running"
-          ? "dress.character.zip · Art V6 · Motion V2 · bundled example"
-          : artworkVersion === "running-v1"
-            ? "dress.character.zip · Art V6 · Motion V1 · preserved example"
-            : `${artworkVersion >= 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
+      artworkVersion === "corrected-running"
+        ? "denim-daytrip.character.zip · Art V6 · Motion V3 · bundled example"
+        : artworkVersion === "everyday"
+          ? "denim-daytrip.character.zip · Art V6 · Motion V2 · bundled example"
+          : artworkVersion === "running"
+            ? "dress.character.zip · Art V6 · Motion V2 · bundled example"
+            : artworkVersion === "running-v1"
+              ? "dress.character.zip · Art V6 · Motion V1 · preserved example"
+              : `${artworkVersion >= 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
     );
   }
 
@@ -365,7 +370,7 @@ export function PackPlayer() {
             </div>
             <button
               className="player-sample-button"
-              onClick={() => openExample("everyday")}
+              onClick={() => openExample("corrected-running")}
               disabled={busy}
             >
               <span className="player-sample-icon">
@@ -375,6 +380,13 @@ export function PackPlayer() {
                 Just exploring?<strong>Try the denim daytrip pack</strong>
               </span>
               <ArrowRight size={17} />
+            </button>
+            <button
+              className="player-legacy-sample"
+              onClick={() => openExample("everyday")}
+              disabled={busy}
+            >
+              Try the original denim pack · Motion V2
             </button>
             <button
               className="player-legacy-sample"

@@ -3,19 +3,21 @@ import { readFile } from "node:fs/promises";
 import { unzipSync, strFromU8 } from "fflate";
 import type { CharacterPackManifest } from "../../src/core/types";
 
-test("main player example opens the everyday denim pack with all three actions", async ({
+test("main player example opens the corrected denim pack with all three actions", async ({
   page,
 }) => {
   await page.goto("/player.html");
   const download = page.waitForResponse((response) =>
-    response.url().endsWith("/samples/everyday/denim-daytrip.character.zip"),
+    response
+      .url()
+      .endsWith("/samples/run-connections/denim-daytrip.character.zip"),
   );
   await page.locator(".player-sample-button").click();
   expect((await download).ok()).toBe(true);
   await expect(page.getByRole("status")).toContainText("Loaded:");
   await expect(
     page.getByText(
-      "denim-daytrip.character.zip · Art V6 · Motion V2 · bundled example",
+      "denim-daytrip.character.zip · Art V6 · Motion V3 · bundled example",
       { exact: true },
     ),
   ).toBeVisible();

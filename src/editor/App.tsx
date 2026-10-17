@@ -28,19 +28,21 @@ import {
   ART_V2_PRESETS,
   ART_V3_PRESETS,
   CLOTHING_COLORS,
-  COMPACT_RUNNING_DEFAULT_CONFIG as DEFAULT_CONFIG,
+  CORRECTED_RUNNING_DEFAULT_CONFIG as DEFAULT_CONFIG,
   HAIR_COLORS,
   LEGACY_PRESETS,
   OUTFIT_PRESETS,
   COHESIVE_PRESETS,
   POLISHED_PRESETS,
   RUNNING_PRESETS,
-  COMPACT_RUNNING_PRESETS as PRESETS,
+  COMPACT_RUNNING_PRESETS,
+  CORRECTED_RUNNING_PRESETS as PRESETS,
   HARMONIZED_PRESETS,
   PRESETS as ART_V4_PRESETS,
   SKIN_TONES,
   configToJson,
   enableCompactRunning,
+  enableCorrectedRunning,
   parseCharacterConfig,
   upgradeToPolishedArt,
 } from "../core/config";
@@ -228,11 +230,13 @@ export default function App() {
             : artworkVersion === 5
               ? COHESIVE_PRESETS
               : artworkVersion === 6
-                ? motionVersion === 2
+                ? motionVersion === 3
                   ? PRESETS
-                  : motionVersion === 1
-                    ? RUNNING_PRESETS
-                    : POLISHED_PRESETS
+                  : motionVersion === 2
+                    ? COMPACT_RUNNING_PRESETS
+                    : motionVersion === 1
+                      ? RUNNING_PRESETS
+                      : POLISHED_PRESETS
                 : HARMONIZED_PRESETS;
   const { frameWidth, frameHeight } = generated.manifest.spritesheet;
   const largePortraits = frameWidth > 96;
@@ -270,7 +274,9 @@ export default function App() {
     const preview =
       next.schemaVersion === 2 &&
       next.artworkVersion === 6 &&
-      (next.motionVersion === 1 || next.motionVersion === 2)
+      (next.motionVersion === 1 ||
+        next.motionVersion === 2 ||
+        next.motionVersion === 3)
         ? next.preview
         : undefined;
     setAnimation(preview?.animation ?? "idle");
@@ -280,7 +286,9 @@ export default function App() {
   function configWithPreview(): CharacterConfig {
     return config.schemaVersion === 2 &&
       config.artworkVersion === 6 &&
-      (config.motionVersion === 1 || config.motionVersion === 2)
+      (config.motionVersion === 1 ||
+        config.motionVersion === 2 ||
+        config.motionVersion === 3)
       ? {
           ...config,
           preview: { animation: activeAnimation, facing },
@@ -291,7 +299,7 @@ export default function App() {
     try {
       if (config.schemaVersion !== 2 || config.artworkVersion !== 6)
         throw new Error("Running can be added to an Art V6 configuration.");
-      setConfig(enableCompactRunning(config));
+      setConfig(enableCorrectedRunning(config));
       setAnimation("run");
       setFrame(1);
       setNotice({
@@ -314,6 +322,24 @@ export default function App() {
       setFrame(1);
       setNotice({
         text: "Compact running copy created. Your appearance, idle and walk stay unchanged. Save this as a new configuration to keep the original running poses.",
+      });
+    } catch (error) {
+      showError(error);
+    }
+  }
+  function createCorrectedRunningCopy() {
+    try {
+      if (config.schemaVersion !== 2 || config.artworkVersion !== 6)
+        throw new Error("Corrected running requires an Art V6 configuration.");
+      setConfig(
+        enableCorrectedRunning({
+          ...config,
+          preview: { animation: activeAnimation, facing },
+        }),
+      );
+      setFrame(1);
+      setNotice({
+        text: "Corrected running copy created. Your appearance, pace, idle and walk stay unchanged. Save this as a new configuration to preserve the original run.",
       });
     } catch (error) {
       showError(error);
@@ -1060,6 +1086,17 @@ export default function App() {
                       <Sparkles size={13} /> Add running
                     </button>
                   )}
+                </div>
+              )}
+              {(motionVersion === 1 || motionVersion === 2) && (
+                <div className="legacy-art-notice">
+                  <p>
+                    Your saved running artwork is preserved. Create a copy to
+                    use the corrected sleeve, knee and ankle connections.
+                  </p>
+                  <button type="button" onClick={createCorrectedRunningCopy}>
+                    <Sparkles size={13} /> Create corrected running copy
+                  </button>
                 </div>
               )}
               {motionVersion === 1 && (

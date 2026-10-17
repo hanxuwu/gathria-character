@@ -66,7 +66,7 @@ test("customize → save/reopen → export → independent PNG/metadata playback
   const character = JSON.parse(await readFile(configPath, "utf8"));
   expect(character).toMatchObject({
     artworkVersion: 6,
-    motionVersion: 2,
+    motionVersion: 3,
     preview: { animation: "walk", facing: "left" },
     name: "Aria",
     hairstyle: "mohawk",

@@ -1,4 +1,7 @@
-import { COMPACT_RUNNING_DEFAULT_CONFIG } from "./config";
+import {
+  COMPACT_RUNNING_DEFAULT_CONFIG,
+  enableCorrectedRunning,
+} from "./config";
 import type {
   CharacterConfig,
   CompactRunningCharacterConfig,
@@ -136,4 +139,10 @@ export const EVERYDAY_EXAMPLES = EVERYDAY_PRESETS.map((preset) => ({
     hairAccessory: "none",
     preview: { animation: "idle", facing: "right" },
   } satisfies CompactRunningCharacterConfig,
+}));
+
+/** New copies opt in; the delivered motion-v2 examples above stay reproducible. */
+export const CORRECTED_EVERYDAY_EXAMPLES = EVERYDAY_EXAMPLES.map((example) => ({
+  ...example,
+  config: enableCorrectedRunning(example.config),
 }));

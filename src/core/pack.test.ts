@@ -330,7 +330,7 @@ describe("CharacterPack ZIP byte validation", () => {
     );
   });
 
-  it.each([1, 2] as const)(
+  it.each([1, 2, 3] as const)(
     "requires a motion v%s source configuration to include a portable run clip",
     (motionVersion) => {
       const files = archiveFiles();
@@ -463,7 +463,7 @@ describe("export input validation", () => {
     ).rejects.toThrow("name must match");
   });
 
-  it.each([1, 2] as const)(
+  it.each([1, 2, 3] as const)(
     "rejects a motion v%s export missing run metadata before PNG work",
     async (motionVersion) => {
       await expect(

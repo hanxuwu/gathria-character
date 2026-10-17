@@ -99,7 +99,7 @@ describe("explicit compact running version", () => {
       );
     }
     for (const input of [
-      { ...COMPACT_RUNNING_DEFAULT_CONFIG, motionVersion: 3 },
+      { ...COMPACT_RUNNING_DEFAULT_CONFIG, motionVersion: 4 },
       { ...COMPACT_RUNNING_DEFAULT_CONFIG, motionVersion: "2" },
       { ...HARMONIZED_DEFAULT_CONFIG, motionVersion: 2 },
       {

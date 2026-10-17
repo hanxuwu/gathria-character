@@ -1,6 +1,7 @@
 import { ART_V7_GENERATOR_ID, generateArtV7 } from "./generator-v7";
 import { generateArtV6 } from "./generator-v6";
 import { generateMotionV1 } from "./generator-motion-v1";
+import { generateMotionV3 } from "./generator-motion-v3";
 import { generateMotionV2 } from "./generator-motion-v2";
 import { parseCharacterConfig } from "./config";
 import { generateLegacyCharacter } from "./generator-v1";
@@ -28,11 +29,13 @@ export function generateCharacter(value: CharacterConfig): GeneratedCharacter {
           : config.artworkVersion === 5
             ? generateArtV5(config)
             : config.artworkVersion === 6
-              ? config.motionVersion === 2
-                ? generateMotionV2(config)
-                : config.motionVersion === 1
-                  ? generateMotionV1(config)
-                  : generateArtV6(config)
+              ? config.motionVersion === 3
+                ? generateMotionV3(config)
+                : config.motionVersion === 2
+                  ? generateMotionV2(config)
+                  : config.motionVersion === 1
+                    ? generateMotionV1(config)
+                    : generateArtV6(config)
               : generateArtV7(config);
 }
 export const pixelGenerator: CharacterGenerator = {

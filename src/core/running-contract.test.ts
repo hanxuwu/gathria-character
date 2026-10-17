@@ -69,7 +69,7 @@ describe("explicit V6 running configuration", () => {
   });
 
   it.each([
-    { ...POLISHED_DEFAULT_CONFIG, motionVersion: 3 },
+    { ...POLISHED_DEFAULT_CONFIG, motionVersion: 4 },
     { ...POLISHED_DEFAULT_CONFIG, motionVersion: "1" },
     { ...POLISHED_DEFAULT_CONFIG, motionVersion: undefined },
     { ...LEGACY_DEFAULT_CONFIG, motionVersion: 1 },

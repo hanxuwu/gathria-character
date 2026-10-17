@@ -73,7 +73,7 @@ test("running settings survive customization, save/reopen and an independently l
   const config = JSON.parse(await readFile(configPath, "utf8"));
   expect(config).toMatchObject({
     artworkVersion: 6,
-    motionVersion: 2,
+    motionVersion: 3,
     preview: { animation: "run", facing: "left" },
     hairstyle: "waves",
     expression: "joyful",
@@ -123,7 +123,7 @@ test("running settings survive customization, save/reopen and an independently l
     config,
   );
   const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
-  expect(manifest.generator).toBe("gathria-polished-pixels-v6-motion-v2");
+  expect(manifest.generator).toBe("gathria-polished-pixels-v6-motion-v3");
   expect(manifest.animations.run).toEqual({
     frames: Array.from({ length: 12 }, (_, index) => index + 12),
     fps: 18,
