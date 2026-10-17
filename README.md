@@ -23,6 +23,12 @@ The isolated [skeletal rig lab](docs/SKELETAL_RIG_REVIEW.md) is at `/rig-lab.htm
 
 The [reusable Skin Studio](docs/REUSABLE_RIG_REVIEW.md) is at `/skin-studio.html`: Denim and Coral use one skeleton and motion library. Replace registered PNG parts, drag source joints, edit motion poses/timing with undo and redo, save complete skin/project ZIPs, and bake independent CharacterPacks. [The authoring tools review](docs/AUTHORING_TOOLS_REVIEW.md) covers the latest controls; [the material guide](docs/SKIN_PACK_V1.md) explains how to prepare another character without editing the renderer. This separate authoring app does not change the production Studio or historical files.
 
+Skin Studio's wardrobe mixes identities, tops, bottoms, shoes and colors across
+idle, walk, run and jump. **Your clothing** accepts reusable clothing ZIPs:
+download a registered item template, prepare its artwork and masks, then import
+it without editing application code. Save the project ZIP to keep all imported
+items. [Portable clothing guide and verification](docs/WARDROBE_ITEMS_REVIEW.md).
+
 ```sh
 npm run typecheck
 npm test

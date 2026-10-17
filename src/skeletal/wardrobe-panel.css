@@ -72,3 +72,32 @@
   padding-top: 10px;
   font-size: 10px;
 }
+.wardrobe-library {
+  margin: 20px 0;
+  padding: 14px 12px 4px;
+  border: 1px solid #ded8c9;
+  border-radius: 9px;
+  background: #f8f5ed;
+}
+.wardrobe-library .skin-wide {
+  margin-top: 8px;
+}
+.wardrobe-item-list {
+  padding: 0;
+  list-style: none;
+}
+.wardrobe-item-list li {
+  padding: 10px 0;
+  border-top: 1px solid #ded8c9;
+}
+.wardrobe-item-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-wrap: anywhere;
+  font-size: 11px;
+}
+.wardrobe-item-heading span {
+  color: #6f7666;
+  font-size: 10px;
+}

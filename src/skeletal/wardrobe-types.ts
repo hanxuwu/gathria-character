@@ -9,16 +9,27 @@ export type WardrobeColor = "skin" | "top" | "bottom" | "shoes";
 
 /** A recipe is an opt-in authoring extension. Old flat skins have no recipe,
  * and a detached/custom PNG is never guessed back into the catalog. */
-export interface WardrobeRecipe {
+interface WardrobeRecipeBase {
   format: "gathria-wardrobe-recipe";
-  version: 1;
   catalogVersion: 1;
   identity: WardrobeIdentityId;
+  colors: Record<WardrobeColor, string>;
+}
+export interface WardrobeRecipeV1 extends WardrobeRecipeBase {
+  version: 1;
   top: WardrobeTopId;
   bottom: WardrobeBottomId;
   shoes: WardrobeShoesId;
-  colors: Record<WardrobeColor, string>;
 }
+/** V2 resolves clothing IDs against the self-contained project item library.
+ * Built-in identities and catalog 1 remain frozen. */
+export interface WardrobeRecipeV2 extends WardrobeRecipeBase {
+  version: 2;
+  top: string;
+  bottom: string;
+  shoes: string;
+}
+export type WardrobeRecipe = WardrobeRecipeV1 | WardrobeRecipeV2;
 
 export type WardrobeMaterial = "skin" | "hair" | "upper" | "lower" | "shoe";
 
@@ -32,6 +43,29 @@ export interface EncodedWardrobePart {
   preserveWarmSkin: boolean;
   sourceLayerId: string;
 }
+
+export type WardrobeItemGroup = "top" | "bottom" | "shoes";
+interface CustomWardrobeItemBase {
+  format: "gathria-wardrobe-item";
+  version: 1;
+  rigId: "gathria-v6-humanoid-1";
+  id: string;
+  name: string;
+  provenance: string;
+  parts: EncodedWardrobePart[];
+}
+export type CustomWardrobeItem = CustomWardrobeItemBase &
+  (
+    | {
+        group: "top";
+        chains: { nearArm: JointTriple; farArm: JointTriple };
+      }
+    | {
+        group: "bottom";
+        chains: { nearLeg: JointTriple; farLeg: JointTriple };
+      }
+    | { group: "shoes"; ankles: { near: Point; far: Point } }
+  );
 
 export interface WardrobeIdentity {
   id: WardrobeIdentityId;

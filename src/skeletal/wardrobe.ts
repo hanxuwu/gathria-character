@@ -1,5 +1,6 @@
 import { unzlibSync } from "fflate";
 import { WARDROBE_ASSETS } from "./wardrobe-assets.generated";
+import { validateWardrobeItems } from "./wardrobe-items";
 import {
   ALL_SLOTS,
   FRAME_HEIGHT,
@@ -14,9 +15,11 @@ import {
 } from "./types";
 import type {
   EncodedWardrobePart,
+  CustomWardrobeItem,
   WardrobeIdentityId,
   WardrobeMaterial,
   WardrobeRecipe,
+  WardrobeRecipeV1,
 } from "./wardrobe-types";
 
 export const WARDROBE_OPTIONS = {
@@ -53,7 +56,10 @@ function choice<T extends string>(
 
 /** Strict extension parsing avoids treating future catalogs as today's art.
  * Colors are canonicalized so equivalent input produces one saved recipe. */
-export function validateWardrobeRecipe(value: unknown): WardrobeRecipe {
+export function validateWardrobeRecipe(
+  value: unknown,
+  items: CustomWardrobeItem[] = [],
+): WardrobeRecipe {
   const raw = object(value, "wardrobe");
   fields(
     raw,
@@ -69,12 +75,23 @@ export function validateWardrobeRecipe(value: unknown): WardrobeRecipe {
     ],
     "wardrobe",
   );
-  if (raw.format !== "gathria-wardrobe-recipe" || raw.version !== 1)
+  if (
+    raw.format !== "gathria-wardrobe-recipe" ||
+    (raw.version !== 1 && raw.version !== 2)
+  )
     throw Error("Unsupported wardrobe recipe format or version.");
   if (raw.catalogVersion !== 1)
     throw Error(
       "Unsupported wardrobe catalogVersion; keep this project’s existing flat artwork.",
     );
+  const custom = validateWardrobeItems(items);
+  const options = (
+    group: "top" | "bottom" | "shoes",
+    builtins: readonly { id: string }[],
+  ) =>
+    raw.version === 2
+      ? [...builtins, ...custom.filter((item) => item.group === group)]
+      : builtins;
   const colors = object(raw.colors, "wardrobe.colors");
   fields(colors, ["skin", "top", "bottom", "shoes"], "wardrobe.colors");
   const color = (key: keyof WardrobeRecipe["colors"]) => {
@@ -87,28 +104,36 @@ export function validateWardrobeRecipe(value: unknown): WardrobeRecipe {
   };
   return {
     format: "gathria-wardrobe-recipe",
-    version: 1,
+    version: raw.version,
     catalogVersion: 1,
     identity: choice(
       raw.identity,
       WARDROBE_ASSETS.identities,
       "wardrobe.identity",
     ),
-    top: choice(raw.top, WARDROBE_ASSETS.tops, "wardrobe.top"),
-    bottom: choice(raw.bottom, WARDROBE_ASSETS.bottoms, "wardrobe.bottom"),
-    shoes: choice(raw.shoes, WARDROBE_ASSETS.shoes, "wardrobe.shoes"),
+    top: choice(raw.top, options("top", WARDROBE_ASSETS.tops), "wardrobe.top"),
+    bottom: choice(
+      raw.bottom,
+      options("bottom", WARDROBE_ASSETS.bottoms),
+      "wardrobe.bottom",
+    ),
+    shoes: choice(
+      raw.shoes,
+      options("shoes", WARDROBE_ASSETS.shoes),
+      "wardrobe.shoes",
+    ),
     colors: {
       skin: color("skin"),
       top: color("top"),
       bottom: color("bottom"),
       shoes: color("shoes"),
     },
-  };
+  } as WardrobeRecipe;
 }
 
 export function defaultWardrobeRecipe(
   identity: WardrobeIdentityId = "crop",
-): WardrobeRecipe {
+): WardrobeRecipeV1 {
   const selected = WARDROBE_ASSETS.identities.find(
     (item) => item.id === identity,
   );
@@ -128,7 +153,7 @@ export function defaultWardrobeRecipe(
       bottom: config.lowerColor,
       shoes: config.shoeColor,
     },
-  });
+  }) as WardrobeRecipeV1;
 }
 
 const PIXELS = FRAME_WIDTH * FRAME_HEIGHT;
@@ -312,18 +337,30 @@ function ankleAllowance(
 export function assembleWardrobe(
   value: WardrobeRecipe,
   name = "Wardrobe character",
+  items: CustomWardrobeItem[] = [],
 ): SkinPack {
-  const recipe = validateWardrobeRecipe(value);
+  const custom = validateWardrobeItems(items);
+  const recipe = validateWardrobeRecipe(value, custom);
   if (typeof name !== "string" || !name.trim() || name.length > 60)
     throw Error("Character name must contain 1–60 characters.");
   const identity = WARDROBE_ASSETS.identities.find(
     (item) => item.id === recipe.identity,
   )!;
-  const top = WARDROBE_ASSETS.tops.find((item) => item.id === recipe.top)!;
-  const bottom = WARDROBE_ASSETS.bottoms.find(
-    (item) => item.id === recipe.bottom,
-  )!;
-  const shoes = WARDROBE_ASSETS.shoes.find((item) => item.id === recipe.shoes)!;
+  const top =
+    custom.find(
+      (item): item is Extract<CustomWardrobeItem, { group: "top" }> =>
+        item.group === "top" && item.id === recipe.top,
+    ) ?? WARDROBE_ASSETS.tops.find((item) => item.id === recipe.top)!;
+  const bottom =
+    custom.find(
+      (item): item is Extract<CustomWardrobeItem, { group: "bottom" }> =>
+        item.group === "bottom" && item.id === recipe.bottom,
+    ) ?? WARDROBE_ASSETS.bottoms.find((item) => item.id === recipe.bottom)!;
+  const shoes =
+    custom.find(
+      (item): item is Extract<CustomWardrobeItem, { group: "shoes" }> =>
+        item.group === "shoes" && item.id === recipe.shoes,
+    ) ?? WARDROBE_ASSETS.shoes.find((item) => item.id === recipe.shoes)!;
   const targets = {
     skin: recipe.colors.skin,
     hair: identity.sourceAppearance.hairColor,
@@ -383,8 +420,9 @@ export function assembleWardrobe(
     skinTone: recipe.colors.skin.toUpperCase(),
     upperClothing:
       recipe.top === "denim-jacket" ? ("jacket" as const) : ("tee" as const),
-    lowerClothing:
-      recipe.bottom === "trousers" ? ("trousers" as const) : ("skirt" as const),
+    lowerClothing: !bottom.parts.some((part) => part.slot === "garment")
+      ? ("trousers" as const)
+      : ("skirt" as const),
     upperColor: recipe.colors.top.toUpperCase(),
     lowerColor: recipe.colors.bottom.toUpperCase(),
     shoeColor: recipe.colors.shoes.toUpperCase(),
@@ -393,7 +431,10 @@ export function assembleWardrobe(
     metadata: {
       format: "gathria-skin-pack",
       version: 1,
-      id: `wardrobe-${recipe.identity}-${recipe.top}-${recipe.bottom}-${recipe.shoes}`,
+      id:
+        recipe.version === 1
+          ? `wardrobe-${recipe.identity}-${recipe.top}-${recipe.bottom}-${recipe.shoes}`
+          : wardrobeId(recipe),
       name: name.trim(),
       rigId: RIG_ID,
       slots: ALL_SLOTS.filter((slot) => !!images[slot]),
@@ -406,10 +447,30 @@ export function assembleWardrobe(
         garmentSway: 1,
       },
       sourceAppearance,
-      provenance: `${WARDROBE_ASSETS.provenance}\nWardrobe catalog 1 recipe: ${JSON.stringify(recipe)}\nMaterials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the common grounded sole at y=239. Clean skin/cloth ankle allowances extend at most four source pixels behind the shoes; explicit preserveAnkleOverlap retains them during mesh preparation. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.`,
+      provenance: `${WARDROBE_ASSETS.provenance}\nWardrobe catalog 1 recipe: ${JSON.stringify(recipe)}\nMaterials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the common grounded sole at y=239. Clean skin/cloth ankle allowances extend at most four source pixels behind the shoes; explicit preserveAnkleOverlap retains them during mesh preparation. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.${
+        recipe.version === 2
+          ? custom
+              .filter((item) => recipe[item.group] === item.id)
+              .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
+              .map(
+                (item) =>
+                  `\nCustom ${item.group} ${item.id} (${item.name}): ${item.provenance}`,
+              )
+              .join("")
+          : ""
+      }`,
     },
     images,
   };
+}
+
+/** IDs are display/export identifiers; full recipe, pixels and item sources
+ * remain authoritative. Bound the identifier even with three 32-char IDs. */
+function wardrobeId(recipe: WardrobeRecipe): string {
+  let hash = 0x811c9dc5;
+  for (const char of JSON.stringify(recipe))
+    hash = Math.imul(hash ^ char.charCodeAt(0), 0x01000193);
+  return `wardrobe-v2-${recipe.identity}-${(hash >>> 0).toString(16).padStart(8, "0")}`;
 }
 
 /** Apply only the assembled art and its recipe. A wardrobe choice never resets
@@ -418,11 +479,15 @@ export function applyWardrobe(
   project: AuthoringProject,
   value: WardrobeRecipe,
 ): AuthoringProject & { wardrobe: WardrobeRecipe } {
-  const wardrobe = validateWardrobeRecipe(value);
+  const wardrobe = validateWardrobeRecipe(value, project.wardrobeItems);
   return {
     ...project,
     wardrobe,
-    skin: assembleWardrobe(wardrobe, project.skin.metadata.name),
+    skin: assembleWardrobe(
+      wardrobe,
+      project.skin.metadata.name,
+      project.wardrobeItems,
+    ),
   };
 }
 
@@ -448,8 +513,9 @@ function equalData(a: unknown, b: unknown): boolean {
 export function assertWardrobeSkinMatches(
   value: WardrobeRecipe,
   skin: SkinPack,
+  items: CustomWardrobeItem[] = [],
 ): void {
-  const expected = assembleWardrobe(value, skin.metadata.name);
+  const expected = assembleWardrobe(value, skin.metadata.name, items);
   const {
     name: _actualName,
     provenance: actualProvenance,
