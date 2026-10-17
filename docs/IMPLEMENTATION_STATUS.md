@@ -1,8 +1,20 @@
 # Implementation status
 
-**Everyday wardrobe batch implemented on V6 + compact running; awaiting user visual review.** Branch `fix/character-art-cohesion`, [draft PR #2](https://github.com/hanxuwu/gathria-character/pull/2), based on the verified V6 default-restoration commit `eb877ca`. Keep the PR unmerged and do not deploy. V7 remains an unaccepted visual iteration with its files and history preserved.
+**Current batch: run-only limb ownership and joint repair; awaiting user visual review.** Branch `fix/run-limb-connections` starts from the verified PR #2 merge `ebec736`. That merge is on `feat/character-art-v2`; `main` remains unchanged. The new PR stays draft and unmerged. Existing V1–V7 artwork, Motion 1/2 files and prior exports remain available.
 
-## Latest batch: everyday clothing
+## Current behavior and recovery points
+
+New Studio characters and the main Denim player sample use artwork V6 + `motionVersion: 3`. Saved Motion 1/2 files keep their exact original pixels until **Create corrected running copy** is selected. Original V6 idle/walk atlas rows are copied byte-for-byte; frames remain 192×256, anchor (96,240), run 12 frames at 18 fps. Head/neck pixels and current pose targets, limb phase, stride and shoe pitch remain unchanged.
+
+Coral's source-space forearm contours now exclude neighboring skirt cloth and recover misplaced anatomical pixels. The fixed torso/skirt no longer retain stationary hand pixels. Blue underskirt and existing colors remain. Continuous original-texture leg strips replace separately rotated rectangular thigh/shin cuts; separate shoe ownership and finite endpoint sampling prevent duplicate shoe pixels and ankle spikes. No new illustration/model call was needed.
+
+- `816dabc`: four real merged-baseline exports, configurations, PNGs and original left/right loops frozen and pushed before the implementation.
+- `f38f8f0`: integrated Motion 3 repair, source ownership audit and focused regressions.
+- [Review](RUN_CONNECTIONS_REVIEW.md), [matched exports and player evidence](run-connections/README.md), [verification record](run-connections/verification-results.json).
+
+This batch passed **284 unit tests, 26 Chromium E2E tests, TypeScript and production build**. Media validation decoded 61 PNGs, 48 GIFs, 16 ZIPs and the full 23.36-second player recording; all eight independent run cases matched exported pixels. All counts below are historical. Deep knee folds remain visibly rounded and original hands/boots retain some rigid cutout character. Production Gathria integration and user aesthetic acceptance are not claimed.
+
+## Historical batch: everyday clothing
 
 Four new **Everyday looks** cards provide denim/tan, coral/skirt, sage/shorts and ochre/navy combinations. They preserve the current identity, expression, version and action/facing, remove the rose hairpiece, and remain freely editable. Complete example files use V6 + motion version 2; the player’s main example is now Denim daytrip and retains wedding/older examples. No renderers, source banks or old export artifacts changed.
 
@@ -10,7 +22,7 @@ See [EVERYDAY_REVIEW.md](EVERYDAY_REVIEW.md) for the actual native/2× lineup, i
 
 This batch passed **259 unit tests, 25 Chromium E2E tests, TypeScript and production build**. Final evidence passed 4 exported packs / 96 frames, 14 PNGs, 7 GIFs, 8 independent left/right run cases and the complete 20.96-second player recording. See [verification record](everyday/verification-results.json). Earlier running counts below remain historical records.
 
-## Current behavior
+## Historical Motion 2 behavior
 
 New characters retain `artworkVersion: 6` and explicitly add `motionVersion: 2`. The editor offers idle, walk and run in either direction. Running-enabled configuration saves the selected action/facing in optional `preview` metadata; it has no effect on generated pixels. Old V6 files gain running only through **Add running**. Existing Motion 1 files preserve their original poses until **Create compact running copy** is selected. V1–V5 can create a V6 polished copy first. Existing V1–V7 files are never silently converted.
 
