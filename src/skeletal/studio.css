@@ -155,6 +155,21 @@ hr {
   min-width: 0;
   margin: 0;
 }
+.skin-edit-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -3px 0 16px;
+}
+.skin-edit-toolbar span {
+  color: #748073;
+  font-size: 11px;
+  margin-left: 4px;
+}
+.skin-edit-toolbar button:disabled {
+  cursor: default;
+}
 .skin-panel {
   padding: 21px 19px;
   border: 1px solid #dddcd0;

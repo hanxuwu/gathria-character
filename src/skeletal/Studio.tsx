@@ -4,6 +4,19 @@ import { downloadBlob } from "../core/pack";
 import { createAuthoringProject, createBuiltinSkin } from "./builtins";
 import { prepareRig } from "./renderer";
 import { createBakedPack } from "./bake";
+import { createMotionLibrary } from "./definition";
+import { BindingCanvas } from "./BindingCanvas";
+import { MotionEditor } from "./MotionEditor";
+import {
+  beginEdit,
+  cancelEdit,
+  createHistory,
+  finishEdit,
+  recordEdit,
+  redoEdit,
+  replaceView,
+  undoEdit,
+} from "./history";
 import {
   decodeAttachment,
   exportProject,
@@ -13,6 +26,7 @@ import {
   importSkinPack,
   validateSkinMetadata,
   validateSkin,
+  validateProject,
 } from "./skin-io";
 import {
   ALL_SLOTS,
@@ -26,6 +40,7 @@ import {
   type RigInspection,
   type SkinPack,
   type Slot,
+  type MotionClip,
 } from "./types";
 import "./studio.css";
 
@@ -175,32 +190,71 @@ function NumberField({
   max: number;
   step?: number;
 }) {
+  const [draft, setDraft] = useState(String(value));
+  const [invalid, setInvalid] = useState(false);
+  useEffect(() => {
+    setDraft(String(value));
+    setInvalid(false);
+  }, [value]);
+  const commit = () => {
+    if (draft === String(value)) return;
+    const next = draft.trim() === "" ? Number.NaN : Number(draft);
+    // Reset even if the owner rejects a geometrically invalid joint. In that
+    // case the saved value stays unchanged, so its effect will not run again.
+    setDraft(String(value));
+    if (!Number.isFinite(next) || next < min || next > max) {
+      setInvalid(true);
+      return;
+    }
+    setInvalid(false);
+    onChange(next);
+  };
   return (
     <label className="skin-number">
       <span>{label}</span>
       <input
         type="number"
         aria-label={label}
-        value={value}
+        value={draft}
         min={min}
         max={max}
         step={step}
+        aria-invalid={invalid || undefined}
         onChange={(event) => {
-          const value = event.currentTarget.valueAsNumber;
-          if (Number.isFinite(value)) onChange(value);
+          setDraft(event.currentTarget.value);
+          setInvalid(false);
+        }}
+        onBlur={commit}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            event.currentTarget.blur();
+          }
+          if (event.key === "Escape") {
+            event.preventDefault();
+            setDraft(String(value));
+            setInvalid(false);
+          }
         }}
       />
+      {invalid && (
+        <small role="status">
+          Use {min}–{max}; kept previous value.
+        </small>
+      )}
     </label>
   );
 }
 
 export function SkinStudio() {
-  const [project, setProject] = useState<AuthoringProject>(() =>
-    createAuthoringProject(),
-  );
-  const [resetBindings, setResetBindings] = useState(() =>
-    structuredClone(project.skin.metadata.bindings),
-  );
+  const [history, setHistory] = useState(() => {
+    const project = createAuthoringProject();
+    return createHistory({
+      project,
+      resetBindings: structuredClone(project.skin.metadata.bindings),
+    });
+  });
+  const { project, resetBindings } = history.present;
   const [nameDraft, setNameDraft] = useState(project.skin.metadata.name);
   useEffect(
     () => setNameDraft(project.skin.metadata.name),
@@ -277,16 +331,25 @@ export function SkinStudio() {
   }, [playing, busy, animation, clip]);
 
   function updatePreview(patch: Partial<AuthoringProject["preview"]>) {
-    setProject((previous) => ({
-      ...previous,
-      preview: { ...previous.preview, ...patch },
-    }));
+    setHistory((previous) =>
+      replaceView(previous, {
+        ...previous.present,
+        project: {
+          ...previous.present.project,
+          preview: { ...previous.present.project.preview, ...patch },
+        },
+      }),
+    );
     if (patch.animation) setFrame(0);
   }
 
   // Validate the renderer before replacing live state. Syntactically valid
   // PNGs can still leave an empty limb mesh after ownership and offsets.
-  function applyProject(next: AuthoringProject) {
+  function applyProject(
+    next: AuthoringProject,
+    label = "Edit character",
+    loadedBindings = resetBindings,
+  ) {
     const candidate = prepareRig(next.rig, next.skin, next.motions);
     const preview = next.preview;
     candidate.frame(
@@ -295,15 +358,24 @@ export function SkinStudio() {
       preview.expression,
     );
     setPlaying(false);
-    setProject(next);
+    setHistory((previous) =>
+      recordEdit(
+        previous,
+        { project: next, resetBindings: loadedBindings },
+        label,
+      ),
+    );
   }
 
   function updateMetadata(
     update: (metadata: SkinPack["metadata"]) => SkinPack["metadata"],
+    label = "Edit binding",
   ) {
     try {
       const metadata = validateSkinMetadata(update(project.skin.metadata));
-      applyProject({ ...project, skin: { ...project.skin, metadata } });
+      if (JSON.stringify(metadata) === JSON.stringify(project.skin.metadata))
+        return;
+      applyProject({ ...project, skin: { ...project.skin, metadata } }, label);
       setNotice(null);
     } catch (error) {
       setNotice({
@@ -314,8 +386,11 @@ export function SkinStudio() {
   }
 
   function replaceSkin(skin: SkinPack) {
-    applyProject({ ...project, skin });
-    setResetBindings(structuredClone(skin.metadata.bindings));
+    applyProject(
+      { ...project, skin },
+      "Replace skin",
+      structuredClone(skin.metadata.bindings),
+    );
     setFrame(0);
     setNotice({
       text: `${skin.metadata.name} loaded. The skeleton and shared motion library are unchanged.`,
@@ -359,10 +434,72 @@ export function SkinStudio() {
         metadata,
         images: { ...project.skin.images, [slot]: decoded.pixels },
       });
-      applyProject({ ...project, skin });
+      applyProject({ ...project, skin }, `Replace ${human(slot)} PNG`);
       return `${human(slot)} replaced; its binding is preserved.${decoded.thresholdedPixels ? ` ${decoded.thresholdedPixels} partially transparent pixels were converted to crisp transparency.` : ""}`;
     });
   }
+
+  function changeMotion(next: MotionClip, label: string) {
+    if (JSON.stringify(next) === JSON.stringify(clip)) return;
+    try {
+      const motions = {
+        ...project.motions,
+        clips: { ...project.motions.clips, [animation]: next },
+      };
+      const checked = validateProject({ ...project, motions });
+      applyProject({ ...project, motions: checked.motions }, label);
+      setNotice({
+        text: `${label}. Shared motion applies to every skin; save a project to keep it.`,
+      });
+    } catch (error) {
+      setNotice({
+        text: error instanceof Error ? error.message : "Invalid motion.",
+        error: true,
+      });
+    }
+  }
+
+  function travelHistory(direction: "undo" | "redo") {
+    const available = direction === "undo" ? history.past : history.future;
+    if (busy || history.transaction || !available.length) return;
+    setPlaying(false);
+    setHistory((previous) =>
+      direction === "undo" ? undoEdit(previous) : redoEdit(previous),
+    );
+    setNotice({
+      text: `${direction === "undo" ? "Undid" : "Redid"}: ${available.at(-1)!.label}.`,
+    });
+  }
+
+  useEffect(() => {
+    const shortcut = (event: KeyboardEvent) => {
+      const target = event.target;
+      if (
+        target instanceof Element &&
+        target.closest('input,textarea,select,[contenteditable="true"]')
+      )
+        return;
+      if (
+        !(event.ctrlKey || event.metaKey) ||
+        event.altKey ||
+        busy ||
+        history.transaction
+      )
+        return;
+      const key = event.key.toLowerCase();
+      if (key === "z" || (key === "y" && !event.metaKey)) {
+        const direction = key === "y" || event.shiftKey ? "redo" : "undo";
+        if (
+          !(direction === "undo" ? history.past.length : history.future.length)
+        )
+          return;
+        event.preventDefault();
+        travelHistory(direction);
+      }
+    };
+    window.addEventListener("keydown", shortcut);
+    return () => window.removeEventListener("keydown", shortcut);
+  }, [history, busy]);
 
   function moveJoint(joint: number, axis: number, value: number) {
     updateMetadata((metadata) => {
@@ -378,7 +515,7 @@ export function SkinStudio() {
           chains: { ...metadata.bindings.chains, [chain]: points },
         },
       };
-    });
+    }, `Move ${jointLabels[joint].toLowerCase()}`);
   }
 
   const skinName = project.skin.metadata.name;
@@ -408,6 +545,26 @@ export function SkinStudio() {
         {busy ??
           notice?.text ??
           "Start with a skin, replace a part, then check its binding in motion."}
+      </div>
+
+      <div className="skin-edit-toolbar" aria-label="Edit history">
+        <button
+          aria-label="Undo edit"
+          disabled={!!busy || !!history.transaction || !history.past.length}
+          onClick={() => travelHistory("undo")}
+          title={history.past.at(-1)?.label}
+        >
+          ↶ Undo
+        </button>
+        <button
+          aria-label="Redo edit"
+          disabled={!!busy || !!history.transaction || !history.future.length}
+          onClick={() => travelHistory("redo")}
+          title={history.future.at(-1)?.label}
+        >
+          ↷ Redo
+        </button>
+        <span>20 recent edits · Ctrl/⌘ Z to undo · Shift Z to redo</span>
       </div>
 
       <fieldset className="skin-workspace" disabled={busy !== null}>
@@ -640,12 +797,45 @@ export function SkinStudio() {
               <figcaption>Posed character · {skinName}</figcaption>
             </figure>
             <figure>
-              <Canvas
+              <BindingCanvas
+                key={chain}
                 pixels={sourcePixels}
                 zoom={zoom}
-                markers={joints}
-                id="skin-source-canvas"
+                joints={joints}
+                jointLabels={jointLabels}
                 label={`Source attachment: ${human(slot)}, with ${LABELS[chain].toLowerCase()} landmarks`}
+                disabled={busy !== null}
+                onBegin={() => {
+                  setPlaying(false);
+                  setHistory((previous) =>
+                    beginEdit(
+                      previous,
+                      `Move ${LABELS[chain].toLowerCase()} joint`,
+                    ),
+                  );
+                }}
+                onChange={(joint, point) =>
+                  updateMetadata(
+                    (metadata) =>
+                      ({
+                        ...metadata,
+                        bindings: {
+                          ...metadata.bindings,
+                          chains: {
+                            ...metadata.bindings.chains,
+                            [chain]: metadata.bindings.chains[chain].map(
+                              (p, index) => (index === joint ? point : p),
+                            ),
+                          },
+                        },
+                      }) as SkinPack["metadata"],
+                  )
+                }
+                onCommit={() => setHistory((previous) => finishEdit(previous))}
+                onCancel={() => {
+                  setHistory((previous) => cancelEdit(previous));
+                  setNotice({ text: "Joint move cancelled." });
+                }}
               />
               <figcaption>
                 Source · {human(slot)}
@@ -716,6 +906,33 @@ export function SkinStudio() {
             </label>
             <span>Orange: near limbs · blue: far limbs</span>
           </div>
+          <MotionEditor
+            animation={animation}
+            clip={clip}
+            sequenceFrame={sequenceFrame}
+            disabled={busy !== null || !!history.transaction}
+            preview={
+              <Canvas
+                pixels={pixels}
+                zoom={1}
+                facing={facing}
+                id="skin-motion-canvas"
+                label="Motion pose preview"
+                frame={sequenceFrame}
+              />
+            }
+            onSelectFrame={(index) => {
+              setPlaying(false);
+              setFrame(index);
+            }}
+            onChange={changeMotion}
+            onReset={() =>
+              changeMotion(
+                createMotionLibrary().clips[animation],
+                `Reset ${animation} motion`,
+              )
+            }
+          />
         </section>
 
         <aside className="skin-panel skin-bindings">
@@ -735,8 +952,8 @@ export function SkinStudio() {
             </select>
           </label>
           <p className="skin-help">
-            Place source landmarks at the artwork’s joints. Both limb pieces
-            share the middle joint.
+            Drag the source-image handles, or enter coordinates here. Both limb
+            pieces share the middle joint; a whole drag is one undo step.
           </p>
           <div className="skin-joints">
             {joints.map((point, index) => (
@@ -927,8 +1144,11 @@ export function SkinStudio() {
           if (file)
             void runTask("Opening project…", async () => {
               const next = await importProject(file);
-              applyProject(next);
-              setResetBindings(structuredClone(next.skin.metadata.bindings));
+              applyProject(
+                next,
+                "Open project",
+                structuredClone(next.skin.metadata.bindings),
+              );
               setFrame(0);
               return `${next.skin.metadata.name} project opened with its artwork, bindings and motions.`;
             });

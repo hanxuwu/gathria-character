@@ -162,6 +162,7 @@ test("real PNG replacement and binding edits survive skin/project ZIPs; invalid 
     .getByLabel("Character name", { exact: true })
     .fill("Copper test visitor");
   await page.getByLabel("Offset X", { exact: true }).fill("3");
+  await page.getByLabel("Offset X", { exact: true }).press("Enter");
   await page.getByLabel("Expression", { exact: true }).selectOption("joyful");
   await page.getByLabel("Facing", { exact: true }).selectOption("left");
   const edited = await canvasPng(page);
@@ -309,9 +310,11 @@ test("binding offsets stay on integer pixels and a valid but unrenderable skin c
   await page.goto("/skin-studio.html");
   const before = await canvasPng(page);
   await page.getByLabel("Offset X", { exact: true }).fill("3.5");
+  await page.getByLabel("Offset X", { exact: true }).press("Enter");
   await expect(page.getByLabel("Offset X", { exact: true })).toHaveValue("4");
   expect(await canvasPng(page)).not.toBe(before);
   await page.getByLabel("Offset X", { exact: true }).fill("0");
+  await page.getByLabel("Offset X", { exact: true }).press("Enter");
   expect(await canvasPng(page)).toBe(before);
 
   const skin = await download(

@@ -1,0 +1,105 @@
+.binding-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+}
+.binding-canvas {
+  position: relative;
+  overflow: visible;
+}
+.binding-canvas canvas {
+  width: 100%;
+  height: 100%;
+}
+.binding-guides {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.binding-guides polyline {
+  stroke: #a85021;
+  fill: none;
+  stroke-width: 1;
+}
+.binding-guides .binding-guide-underlay {
+  stroke: #fffdf7;
+  stroke-width: 2;
+}
+.binding-canvas .binding-handle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  color: #713b23;
+  box-shadow: none;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 22px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  z-index: 1;
+}
+.binding-canvas .binding-handle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: transparent;
+  box-shadow: 0 0 0 1px #fffdf7;
+  pointer-events: none;
+}
+.binding-canvas .binding-handle span {
+  position: absolute;
+  left: calc(50% + 7px);
+  top: calc(50% - 7px);
+  line-height: 14px;
+  text-shadow:
+    1px 0 #fffdf7,
+    -1px 0 #fffdf7,
+    0 1px #fffdf7,
+    0 -1px #fffdf7;
+  pointer-events: none;
+}
+.binding-canvas .binding-handle:hover:not(:disabled),
+.binding-canvas .binding-handle[aria-pressed="true"] {
+  background: transparent;
+  color: #285a4d;
+  box-shadow: none;
+}
+.binding-canvas .binding-handle:active:not(:disabled) {
+  cursor: grabbing;
+}
+.binding-canvas .binding-handle:focus-visible {
+  outline: 3px solid #263c36;
+  outline-offset: 3px;
+  z-index: 2;
+}
+.binding-position {
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.binding-help {
+  max-width: 220px;
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+  color: #748073;
+}
