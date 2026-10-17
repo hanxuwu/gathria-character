@@ -1,0 +1,1057 @@
+Gathria reusable skeletal rig v2
+
+All available action frames were generated locally from a registered skin pack, the shared humanoid bone hierarchy and motion library. No Spine software, format, runtime or copied implementation is used. No image-generation service is called during rendering or playback.
+
+ARTWORK SOURCE
+Prepared offline from this repository's existing AI-assisted V6 crop/waves heads, illustrated everyday garments and Motion 3 repaired arm/skirt ownership. No new image-model call. Raw authored RGBA+material IDs, source palettes and registration landmarks are retained. Catalog v1 uses one 192×256 humanoid rig family with garment-specific source cut landmarks. See docs/WARDROBE_ASSET_SOURCES.md and docs/ASSET_PROVENANCE.md. Original artwork reuse follows the repository MIT notice; imported artwork retains its own terms.
+Wardrobe catalog 1 recipe: {"format":"gathria-wardrobe-recipe","version":2,"catalogVersion":1,"identity":"crop","top":"custom-maple-top","bottom":"custom-maple-bottom","shoes":"custom-maple-shoes","colors":{"skin":"#e5ae87","top":"#527d9a","bottom":"#a37b56","shoes":"#594435"}}
+Materials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the common grounded sole at y=239. Clean skin/cloth ankle allowances extend at most four source pixels behind the shoes; explicit preserveAnkleOverlap retains them during mesh preparation. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.
+Custom bottom custom-maple-bottom (Maple teal trousers): Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.
+Custom shoes custom-maple-shoes (Maple leather boots): Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.
+Custom top custom-maple-top (Maple knit sweater): Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.
+
+REPRODUCTION AND COMPATIBILITY
+Save the separate authoring project ZIP: it contains this skin's full RGBA images, binding data, rig and clips. This playback package contains baked pixels only. character.json is a legacy-compatible appearance reference; opening it in ordinary Studio does NOT reproduce an imported skin or this rig's animation. Use Skin Studio and the saved authoring project to reproduce or edit these frames.
+The project-owned rendering code is covered by the repository license. Rights in imported artwork are determined by the supplied source provenance; the renderer does not assign a new license to third-party images. Gathria production integration remains unverified.
+
+AUTHORING METADATA (not a self-contained image recipe)
+{
+  "format": "gathria-rig-authoring",
+  "version": 1,
+  "rig": {
+    "format": "gathria-rig",
+    "version": 1,
+    "id": "gathria-v6-humanoid-1",
+    "frame": {
+      "width": 192,
+      "height": 256
+    },
+    "anchor": [
+      96,
+      240
+    ],
+    "pivot": [
+      96,
+      170
+    ],
+    "bones": [
+      {
+        "id": "root",
+        "parent": null,
+        "from": [
+          96,
+          240
+        ],
+        "to": [
+          96,
+          170
+        ]
+      },
+      {
+        "id": "torso",
+        "parent": "root",
+        "from": [
+          96,
+          170
+        ],
+        "to": [
+          96,
+          118
+        ]
+      },
+      {
+        "id": "head",
+        "parent": "torso",
+        "from": [
+          96,
+          118
+        ],
+        "to": [
+          111,
+          64
+        ]
+      },
+      {
+        "id": "nearArm:upper",
+        "parent": "torso",
+        "from": [
+          75,
+          122
+        ],
+        "to": [
+          64,
+          150
+        ]
+      },
+      {
+        "id": "nearArm:lower",
+        "parent": "nearArm:upper",
+        "from": [
+          64,
+          150
+        ],
+        "to": [
+          60,
+          171
+        ]
+      },
+      {
+        "id": "farArm:upper",
+        "parent": "torso",
+        "from": [
+          123,
+          123
+        ],
+        "to": [
+          130,
+          150
+        ]
+      },
+      {
+        "id": "farArm:lower",
+        "parent": "farArm:upper",
+        "from": [
+          130,
+          150
+        ],
+        "to": [
+          134,
+          171
+        ]
+      },
+      {
+        "id": "nearLeg:upper",
+        "parent": "torso",
+        "from": [
+          86,
+          172
+        ],
+        "to": [
+          79,
+          198
+        ]
+      },
+      {
+        "id": "nearLeg:lower",
+        "parent": "nearLeg:upper",
+        "from": [
+          79,
+          198
+        ],
+        "to": [
+          73,
+          227
+        ]
+      },
+      {
+        "id": "farLeg:upper",
+        "parent": "torso",
+        "from": [
+          110,
+          172
+        ],
+        "to": [
+          108,
+          198
+        ]
+      },
+      {
+        "id": "farLeg:lower",
+        "parent": "farLeg:upper",
+        "from": [
+          108,
+          198
+        ],
+        "to": [
+          110,
+          227
+        ]
+      }
+    ],
+    "chains": {
+      "nearArm": [
+        [
+          75,
+          122
+        ],
+        [
+          64,
+          150
+        ],
+        [
+          60,
+          171
+        ]
+      ],
+      "farArm": [
+        [
+          123,
+          123
+        ],
+        [
+          130,
+          150
+        ],
+        [
+          134,
+          171
+        ]
+      ],
+      "nearLeg": [
+        [
+          86,
+          172
+        ],
+        [
+          79,
+          198
+        ],
+        [
+          73,
+          227
+        ]
+      ],
+      "farLeg": [
+        [
+          110,
+          172
+        ],
+        [
+          108,
+          198
+        ],
+        [
+          110,
+          227
+        ]
+      ]
+    },
+    "drawOrder": [
+      "back-hair",
+      "far-arm",
+      "far-leg",
+      "near-leg",
+      "hips",
+      "garment",
+      "torso",
+      "near-arm",
+      "head"
+    ]
+  },
+  "motions": {
+    "format": "gathria-motion-library",
+    "version": 1,
+    "id": "gathria-shared-basic-actions-2",
+    "clips": {
+      "idle": {
+        "fps": 4,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 1
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -1
+          }
+        ],
+        "sequence": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          0,
+          0
+        ]
+      },
+      "walk": {
+        "fps": 10,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -8
+          },
+          {
+            "footX": 7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": -7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": -12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 8
+          },
+          {
+            "footX": -8,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": 0,
+            "footLift": 9,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 9,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "jump": {
+        "fps": 15,
+        "loop": false,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 4,
+            "armAngle": 0.12,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.12
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 7,
+            "armAngle": 0.24,
+            "lean": 0.03,
+            "armSwing": 0,
+            "armBend": -0.2
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.35,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -1,
+            "armBend": -0.55
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.55,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -3,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.65,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -4,
+            "armBend": -0.75
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.58,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -4,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.45,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -3,
+            "armBend": -0.45
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.18,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.15
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 6,
+            "armAngle": 0.08,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.1
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 3,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "run": {
+        "fps": 18,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 2,
+            "armAngle": -0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 4,
+            "armAngle": 0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -13,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 2,
+            "armAngle": 0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -25,
+            "footLift": 10,
+            "shoePitch": 0.18,
+            "bodyBob": -1,
+            "armAngle": 0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -27,
+            "footLift": 24,
+            "shoePitch": 0.4,
+            "bodyBob": -2,
+            "armAngle": 0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -25,
+            "footLift": 34,
+            "shoePitch": 0.48,
+            "bodyBob": 0,
+            "armAngle": 0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -20,
+            "footLift": 36,
+            "shoePitch": 0.38,
+            "bodyBob": 2,
+            "armAngle": 0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -12,
+            "footLift": 30,
+            "shoePitch": 0.2,
+            "bodyBob": 4,
+            "armAngle": -0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 22,
+            "shoePitch": 0.05,
+            "bodyBob": 2,
+            "armAngle": -0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 10,
+            "footLift": 14,
+            "shoePitch": -0.1,
+            "bodyBob": -1,
+            "armAngle": -0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 16,
+            "footLift": 6,
+            "shoePitch": -0.08,
+            "bodyBob": -2,
+            "armAngle": -0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 16,
+            "footLift": 2,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    }
+  },
+  "skin": {
+    "metadata": {
+      "format": "gathria-skin-pack",
+      "version": 1,
+      "id": "wardrobe-v2-crop-8244ff04",
+      "name": "crop traveler clothes",
+      "rigId": "gathria-v6-humanoid-1",
+      "slots": [
+        "torso",
+        "hips",
+        "near-upper-arm",
+        "near-forearm",
+        "far-upper-arm",
+        "far-forearm",
+        "near-thigh",
+        "near-shin",
+        "near-shoe",
+        "far-thigh",
+        "far-shin",
+        "far-shoe",
+        "head-neutral",
+        "head-gentle",
+        "head-joyful"
+      ],
+      "sourceAppearance": {
+        "schemaVersion": 2,
+        "name": "Denim daytrip",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#527D9A",
+        "lowerColor": "#A37B56",
+        "shoeColor": "#594435",
+        "faceVariant": "oval",
+        "upperClothing": "tee",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 6,
+        "motionVersion": 3,
+        "preview": {
+          "animation": "idle",
+          "facing": "right"
+        }
+      },
+      "provenance": "Prepared offline from this repository's existing AI-assisted V6 crop/waves heads, illustrated everyday garments and Motion 3 repaired arm/skirt ownership. No new image-model call. Raw authored RGBA+material IDs, source palettes and registration landmarks are retained. Catalog v1 uses one 192×256 humanoid rig family with garment-specific source cut landmarks. See docs/WARDROBE_ASSET_SOURCES.md and docs/ASSET_PROVENANCE.md. Original artwork reuse follows the repository MIT notice; imported artwork retains its own terms.\nWardrobe catalog 1 recipe: {\"format\":\"gathria-wardrobe-recipe\",\"version\":2,\"catalogVersion\":1,\"identity\":\"crop\",\"top\":\"custom-maple-top\",\"bottom\":\"custom-maple-bottom\",\"shoes\":\"custom-maple-shoes\",\"colors\":{\"skin\":\"#e5ae87\",\"top\":\"#527d9a\",\"bottom\":\"#a37b56\",\"shoes\":\"#594435\"}}\nMaterials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the common grounded sole at y=239. Clean skin/cloth ankle allowances extend at most four source pixels behind the shoes; explicit preserveAnkleOverlap retains them during mesh preparation. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.\nCustom bottom custom-maple-bottom (Maple teal trousers): Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.\nCustom shoes custom-maple-shoes (Maple leather boots): Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.\nCustom top custom-maple-top (Maple knit sweater): Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.",
+      "bindings": {
+        "chains": {
+          "nearArm": [
+            [
+              77,
+              122
+            ],
+            [
+              67,
+              150
+            ],
+            [
+              65,
+              172
+            ]
+          ],
+          "farArm": [
+            [
+              126,
+              123
+            ],
+            [
+              131,
+              150
+            ],
+            [
+              136,
+              172
+            ]
+          ],
+          "nearLeg": [
+            [
+              86,
+              172
+            ],
+            [
+              79,
+              198
+            ],
+            [
+              74,
+              227
+            ]
+          ],
+          "farLeg": [
+            [
+              110,
+              172
+            ],
+            [
+              110,
+              198
+            ],
+            [
+              110,
+              227
+            ]
+          ]
+        },
+        "offsets": {},
+        "mesh": {
+          "blendRadius": 6,
+          "volume": 0.65,
+          "preserveAnkleOverlap": true
+        },
+        "jaw": {
+          "center": [
+            111,
+            88
+          ],
+          "start": 99,
+          "scale": 1,
+          "length": 1.055
+        },
+        "hairSway": 1,
+        "garmentSway": 1
+      }
+    },
+    "images": "Stored in the separate authoring ZIP; omitted from this playback package."
+  },
+  "preview": {
+    "animation": "run",
+    "facing": "right",
+    "expression": "gentle"
+  },
+  "wardrobe": {
+    "format": "gathria-wardrobe-recipe",
+    "version": 2,
+    "catalogVersion": 1,
+    "identity": "crop",
+    "top": "custom-maple-top",
+    "bottom": "custom-maple-bottom",
+    "shoes": "custom-maple-shoes",
+    "colors": {
+      "skin": "#e5ae87",
+      "top": "#527d9a",
+      "bottom": "#a37b56",
+      "shoes": "#594435"
+    }
+  },
+  "wardrobeItems": [
+    {
+      "format": "gathria-wardrobe-item",
+      "version": 1,
+      "rigId": "gathria-v6-humanoid-1",
+      "id": "custom-maple-top",
+      "name": "Maple knit sweater",
+      "provenance": "Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.",
+      "parts": [
+        {
+          "slot": "torso",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:torso"
+        },
+        {
+          "slot": "near-upper-arm",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:near-upper-arm"
+        },
+        {
+          "slot": "near-forearm",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:near-forearm"
+        },
+        {
+          "slot": "far-upper-arm",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:far-upper-arm"
+        },
+        {
+          "slot": "far-forearm",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:far-forearm"
+        }
+      ],
+      "group": "top",
+      "chains": {
+        "nearArm": [
+          [
+            77,
+            122
+          ],
+          [
+            67,
+            150
+          ],
+          [
+            65,
+            172
+          ]
+        ],
+        "farArm": [
+          [
+            126,
+            123
+          ],
+          [
+            131,
+            150
+          ],
+          [
+            136,
+            172
+          ]
+        ]
+      }
+    },
+    {
+      "format": "gathria-wardrobe-item",
+      "version": 1,
+      "rigId": "gathria-v6-humanoid-1",
+      "id": "custom-maple-bottom",
+      "name": "Maple teal trousers",
+      "provenance": "Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.",
+      "parts": [
+        {
+          "slot": "hips",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:hips"
+        },
+        {
+          "slot": "near-thigh",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:near-thigh"
+        },
+        {
+          "slot": "near-shin",
+          "data": "eJzt3dtXU9cWx/EjbKutdFjReuFO7gnkTsg9gCiKiKCovZ3z0pfTdvT/f91n/n6k7R9wQhmDfj8Pe4QEtyMPk7nWXHOt/S8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/7e17WqabNRqaZLf6cSltZMmm41mmpS6/TTpvz1Nk8G7d2kyPj9Pk/1Pn9Jkcv4+TV788EOa9E7i072Li/j04kOaDM/O4scP8WOuE7fqvY1/tnv8Nk0Ku3Gr1XI5Ta772wI3xtz8fITudoTuuoJ4rVxJk0w9Qjdbb6VJ9/gk4vIsYnXyPkJ3ovgdnEbAjvXj4fffRRD/9GOE+GlEaOP5YZpUJvt69SJNlkqlNGkfHUf8vo67bOqmi0tLxC8wM4/XN9JkpRihtlZREFfraVJXIE4+RNQefI5c6+Q6Oo1EOvTlLC5+b19p1rFa3YuorYzGerWnV5P4t2cf02RrEj/mO934e9CIvwfxHxK/wCzM3/4ismShGLmxGqnXCbLz+s00OD0G3vsY8XvwMQJx732E8/gssq6DuKfEXBlFcFYVoY2952lS06vKOC4ljZW3xxHElWFcshqPr1W2CV1gZm5p6LysGWnzMBJu5/iVsm7MYQ+/+17xq9msYtUDZofzUDPhmjJsfT8CtqrL1iQi1GnWsVrQjPnB0oomvJF1MxqFO/9+8/QZ8QvMzLNsJgKs2U6Tbzdz0wrVvmpQYxWnhqcqRH3UCPkgorulYbJDt3kYryoDRa1yrUfNufZumhR3e7pfZPH+SWRxR+16tRFVq1JMqm/NzRG/wCzMK/UWFG/Vccxca0qkjl+n2cl5BPHeRYyam5oJ1/ficjlMfn6gi8bKimS/t6VhcqE7mE59y92I5JqG09t78cubzci/K4U8oQvMzMLDhwq6iN/WYYyaGy9eRqn41evpqPm5Vogcv6PzSMJNpd6GorGuCN1WcepyEK1w3hpH/m2/jLv0jqPWXOmN4qYvj6bRnW1EPSy5fZv4BWZmsxIFq4IGuKVeZM7KUNn0IKLx6MeY+k7eO/96/hsTXpeeuydRsNpS6Lrg7Llu+0WE6UCfurq1opt6xal+EL+SU9Xq240Yo1/3twVulpwWc4rq1ci24lV5EEnTIVk/iJGvy1QeRE/UjTFS1Xmak1XEUsA+98KSa1qaJ3dVth6exu/VFLpFDaeXS1EZY9YLzNL87Zj6FlUbdr2p2In5qqPWw+S6Z66qS+2exGj44FNE6MGnz1HTehcZdk8rSS5RO+tO83S851t5TancG0ZS78dlcXktQvfWLeIXmJlbaqEoKGrzKhpXJ1oIcnFKZeaqprmO3y0t7vqVY9Vp1v2Tf1Wnx4rkjqbNG40oM2fbzucxal4qRuq989UdQheYrYVHUbry3LTYiyRcV9TWFLUt1ZW9JORw9nuO1ct2Duda5d/L9/Rj940S7ihyrcM+04ibrtciktfUOnndXxS4gR4sLSvUYtbrixeH/gpiX0qDmL56muvB8djLSW7CcnX68x8LSxXF+eNsQXsVIpVn6rGU/GQzClbPMrGefN1fFLiBnuYi3jZq0WWxogKT2y9qk4jaQkfTYbVPtbX846rVwUdNfTVqvtxhpFcHqlq5dbKislf3JLYueNS8ojaNVd10KZslfoErsFSOPuSNWizLeq9CqRcBuzWIIM6rplUZxGjYWxdcphq++yN0O1rcHanFo6KGjaKWnbwA5TWljcpW5F9tQMzopss54he4CutbEb+r2mvktkbXi6edWJFSRwrYyxmu4ndyoUg+1/4jrfDuKojdcOUdRqvabJitx4R3fSviN+/6lRqel/Os+gJX4UkmYmtVm4E2VWoq7KjfUdHozUV/lalG2iY4fc87CeO9naOoNe+8iiCuKohr2jWYb8esN6Pxs1tBNtXwzKoRcBW0YTAmqLm2TtjQJNjj57E3B+ri0B3oSA0nYW8d9NLvQJ0c/T9Xkry5yB3OvpUXfOv7Ec7LWjq67m8J3EB3Fu4p9cZQd3FlfToGvlzS1QkbTr0jXQbvIkIPLqJ01XwejdHb6ulo6FVbfdL9N1Gw2lCadThvqwhdHkYly7XrxxmmvsBV+Ean13jWm9e2oMt1XW9TUHL1/qOeqsnNQ0dtZFPn1bIu+Z2YIjfVp7XzMj7dVMNGS4fj9DVjbh5GxdrNHgsPHxG/wBXwiVSDc21JcIXZS7oX0cg8ViR3lVc7muGWtf5b6Gk5SVNaT26zrShOebBd1YZ9b0dq6ZdH2ufQ0E4Gt27M0fAMzNrcreh6zu1Graqi4PSxkF0Nf/saK3tJKK/thF4ELvXjV7z9/vKyo4M0Lju24lMPmH0knYO9o7Cvq3d6TUXo6/6iwA20lI/U62zqOazXdT3N9SS4PPQwOT71QRo+NTan0HXUenXJI+nd1xGwVTVrdY614UjV6f5J/BXYUhfI199GZ+Z1f1HgBip0Ixq9/ON+KR+QUVFIOlY9Li73owblMPWP3t2f1RZDz2uHKnH13urf6vycXWVdx+9QW/x9/sbde18Sv8Bs3V34erpN0Gu9LhUX1bVR/DNMfeics7PfK3oQrU6shjoph1pJcv+G69TOyf4r0Nf+hep+JPD1avSDeGfidX9b4Gb58l7Er3s1nGu9cptrx8VJs9hV/5UHzC1FtwbR4zOvJEVyHenVvqpbE128E/j+WpwY7Vmv+6TdirlWjX6Q+YTSFTBj8/OJasM6l30/Zq4eEuecYZWEffSGe5i9db+n5oyBxsXe3DtwO6UXhj9EnXqkTOxylnf8r5aiYLWuVi4vKpN/gZmbTyJ+/YSUxbXo2sgrdPMaSde1BtRTIh0oar3haKR2Dp+rMfFJlN7EoFFzTf0bXkRqvIj57/p2RO2aWqn92JVnxTgFfi4hfoHZ8elTPi9y4eGD6ak5ZZ3cXFeHRvc4VoLdQ+W8OtDxVQ7igVaXHMSjyxK1dicp6z7e3NQxddEAsqkB87ofm6RT6x6v6KwcADM0p9S7ogRZVDWqMoxA9LMGW69i+ccj5K56nd165b7moQK2r/ccuu2XUbHONqNgtaF9RQX1OnvC6wPwcjr73f1cCw++IX6B2XIz1JpalV2Xqmvlx4//PP35Zz21LLYa7Kobsv8mwtkjaR8p6Zzslkgv/XpNOKfNgSVXsTtR7PLDkjLKv08zkZO/UGf1dX9b4Ga5d39xuk3f8evzbtrHkVLrms36GaBHevzn6//8O00e6eSbr5/EU4qWSjGbbegg2Jai291Zm1o1coekuzAXV1e1az8G0ZlmBHZyOxL9dX9b4GaZ0xMG17Z1zIb6Mrb1mJSaTq5qq5HK/Vd9zXU7OvnVPVnv//tLmlz8+muafP7ttzT57ve4fPg1Lh9/+z1Nzn6JT49+imB3TGc9flYla57SFXAlkjtxjuszHUvlRR8/K+Vyr5FC1wUrb/31ge29NzH13VVfhk+N3VGc7+jhKG67dDvHth7W4HOynNkdv7fJv8AVS5SOn2i+2tS4ePBW7cvKukPVmpt/Hq7hTOwFo/ZRhG5Vj9T3wVh5rRhXxjorVgtQPsXjaY6zJoG/36K2A2+0Ygxc8OYEbURwEaun+rOLXV09CLSijksvIOfdLK31qOVK5PNHmgT7UYbX/VWAf7r7S0/T5EsVkv1g7zk9NHDuixh7z929qwpVvHfv6eM0+erBfQIWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+Pv9DzB9NLI=",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:near-shin"
+        },
+        {
+          "slot": "far-thigh",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:far-thigh"
+        },
+        {
+          "slot": "far-shin",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:far-shin"
+        }
+      ],
+      "group": "bottom",
+      "chains": {
+        "nearLeg": [
+          [
+            86,
+            172
+          ],
+          [
+            79,
+            198
+          ],
+          [
+            74,
+            227
+          ]
+        ],
+        "farLeg": [
+          [
+            110,
+            172
+          ],
+          [
+            110,
+            198
+          ],
+          [
+            110,
+            227
+          ]
+        ]
+      }
+    },
+    {
+      "format": "gathria-wardrobe-item",
+      "version": 1,
+      "rigId": "gathria-v6-humanoid-1",
+      "id": "custom-maple-shoes",
+      "name": "Maple leather boots",
+      "provenance": "Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.",
+      "parts": [
+        {
+          "slot": "near-shoe",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:near-shoe"
+        },
+        {
+          "slot": "far-shoe",
+          "data": "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",
+          "palette": {
+            "skin": "#f2be93",
+            "upper": "#c66632",
+            "lower": "#3e5b5c",
+            "shoe": "#875134"
+          },
+          "preserveWarmSkin": false,
+          "sourceLayerId": "generated-maple:far-shoe"
+        }
+      ],
+      "group": "shoes",
+      "ankles": {
+        "near": [
+          74,
+          227
+        ],
+        "far": [
+          110,
+          227
+        ]
+      }
+    }
+  ]
+}

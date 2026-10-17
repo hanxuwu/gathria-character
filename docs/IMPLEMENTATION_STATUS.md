@@ -1,6 +1,19 @@
 # Implementation status
 
-**Current batch: portable clothing items.** Continuing merged `main` at
+**Current batch: generated character pipeline trial.** Starts from PR #6's
+merged `main` at `51c708a`, on `feat/generated-character-pipeline`. Newly generated
+Maple artwork is registered into 15 slots, animated with the unchanged four-action
+rig, exported through Skin Studio and played independently. New clothing is also
+reused on both built-in identities. Actual exports exposed and guided repairs to
+duplicate torso sleeves, pelvis/leg ownership and cuff material masks.
+[Review and remaining defects](GENERATED_CHARACTER_REVIEW.md) ·
+[Source, projects and actual evidence](generated-traveler/README.md) ·
+[Current-session execution record](generated-traveler/verification-results.json).
+No runtime source or original artwork is changed. New identity registration in
+the wardrobe, alternate running hands and better deep-bend texture handling
+remain future work. This batch is for draft review, without merge/deployment.
+
+**Historical batch: portable clothing items.** Continuing merged `main` at
 `ffad05d82bad2d2f481488d6496df5cfb47a3fee` on `feat/custom-wardrobe-items`.
 Skin Studio imports and exports registered top, bottom and shoe item ZIPs,
 selects them through the same wardrobe and embeds the complete item library in
@@ -12,8 +25,8 @@ is pushed. This batch passed **418 unit tests, 48 Chromium E2E tests, TypeScript
 and build**, with 14 PNGs, six GIFs, 20 ZIPs and eight closed-editor independent
 playback cases verified. Two old wardrobe projects retain all 72 frames and both
 manifests exactly. Current evidence is in [wardrobe-items/](wardrobe-items/).
-The follow-up delivery commit records the artifacts; the feature remains in draft
-review, without merge or deployment. Older milestones' counts remain historical.
+The follow-up delivery commit `e45475e` records the artifacts; PR #6 was merged
+into main at `51c708a`. These counts are that batch's historical verification.
 
 **Historical batch: modular wardrobe MVP.** Skin Studio explicitly assembles two identities, two tops, two bottoms and two shoe designs, with separate skin/clothing colors, on the existing four-action skeleton. A pinned recipe and complete slot PNGs travel in the saved project. Manual artwork/binding edits detach the recipe without losing pixels; undo restores the full look. Original skins, legacy renderers, motions and production Studio remain preserved; the shared renderer retains old pixels and opts only clean wardrobe skins into ankle overlap. [Current review](WARDROBE_MVP_REVIEW.md) records material ownership repairs, ankle/sole fitting, compatibility, actual exports and limitations. This batch passed **389 unit tests, 45 Chromium E2E tests, TypeScript and production build**. Implementation `90fae7f` and ankle repair `3ec3493` are committed and pushed; the follow-up delivery commit contains export evidence. PR #5 was merged into its parent; PR #4 subsequently integrated the complete history into main at `ffad05d`. User visual acceptance and production Gathria integration are not claimed.
 

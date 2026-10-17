@@ -1,5 +1,31 @@
 # Artwork provenance and reuse
 
+## Generated Maple shared-rig trial
+
+This batch makes three OpenAI image-generation calls on 2026-10-17 UTC: an
+original Maple character/part sheet, a rejected torso correction that still
+contained a sleeve, and a corrected sleeveless torso backplate. The previous
+actual-export lineup is the style/proportion reference. Original transparent
+PNGs and exact prompts are retained in
+[`artwork/generated-traveler/source/`](../artwork/generated-traveler/source/).
+No generated image is substituted for actual exported-animation evidence.
+
+[`prepare-generated-traveler.mjs`](../scripts/prepare-generated-traveler.mjs)
+performs explicit source-region extraction, connected-object selection within
+each part, nearest-neighbor registration, binary alpha, ownership cuts and
+offline hand/cuff material masking. It emits a new 15-slot skin/project and
+three independently reusable clothing items. Heads, rig and motions are
+preserved between the trial's first and final exports. The existing renderer,
+source banks and old versions are unchanged. Runtime remains local and
+deterministic, with no Spine or generation API.
+
+The [source record](../artwork/generated-traveler/README.md) distinguishes new
+illustration from technical preparation. The [review](GENERATED_CHARACTER_REVIEW.md)
+and [actual exports](generated-traveler/README.md) document the source defects,
+repairs and remaining pose/identity limitations. This is AI-assisted original
+project artwork under the repository reuse notice to the extent rights are held,
+not a claim of hand-drawn illustration or final user visual acceptance.
+
 ## Modular wardrobe catalog 1
 
 The opt-in wardrobe reuses the V6 crop/waves expression heads and existing jacket, soft top, trousers, short skirt and two shoe designs. It adds no illustration or image-generation call. [`prepare-wardrobe-assets.mjs`](../scripts/prepare-wardrobe-assets.mjs) extracts complete registered groups, retains authored material IDs, and separates overlapping garment/shoe ownership into an independent checked-in catalog. Original source banks and built-in skins remain unchanged. [The preparation record](WARDROBE_ASSET_SOURCES.md) explains source groups, masks, ankle registration and limitations.

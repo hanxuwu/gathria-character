@@ -1,0 +1,788 @@
+Gathria reusable skeletal rig v2
+
+All available action frames were generated locally from a registered skin pack, the shared humanoid bone hierarchy and motion library. No Spine software, format, runtime or copied implementation is used. No image-generation service is called during rendering or playback.
+
+ARTWORK SOURCE
+Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase phase-1. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.
+
+REPRODUCTION AND COMPATIBILITY
+Save the separate authoring project ZIP: it contains this skin's full RGBA images, binding data, rig and clips. This playback package contains baked pixels only. character.json is a legacy-compatible appearance reference; opening it in ordinary Studio does NOT reproduce an imported skin or this rig's animation. Use Skin Studio and the saved authoring project to reproduce or edit these frames.
+The project-owned rendering code is covered by the repository license. Rights in imported artwork are determined by the supplied source provenance; the renderer does not assign a new license to third-party images. Gathria production integration remains unverified.
+
+AUTHORING METADATA (not a self-contained image recipe)
+{
+  "format": "gathria-rig-authoring",
+  "version": 1,
+  "rig": {
+    "format": "gathria-rig",
+    "version": 1,
+    "id": "gathria-v6-humanoid-1",
+    "frame": {
+      "width": 192,
+      "height": 256
+    },
+    "anchor": [
+      96,
+      240
+    ],
+    "pivot": [
+      96,
+      170
+    ],
+    "bones": [
+      {
+        "id": "root",
+        "parent": null,
+        "from": [
+          96,
+          240
+        ],
+        "to": [
+          96,
+          170
+        ]
+      },
+      {
+        "id": "torso",
+        "parent": "root",
+        "from": [
+          96,
+          170
+        ],
+        "to": [
+          96,
+          118
+        ]
+      },
+      {
+        "id": "head",
+        "parent": "torso",
+        "from": [
+          96,
+          118
+        ],
+        "to": [
+          111,
+          64
+        ]
+      },
+      {
+        "id": "nearArm:upper",
+        "parent": "torso",
+        "from": [
+          75,
+          122
+        ],
+        "to": [
+          64,
+          150
+        ]
+      },
+      {
+        "id": "nearArm:lower",
+        "parent": "nearArm:upper",
+        "from": [
+          64,
+          150
+        ],
+        "to": [
+          60,
+          171
+        ]
+      },
+      {
+        "id": "farArm:upper",
+        "parent": "torso",
+        "from": [
+          123,
+          123
+        ],
+        "to": [
+          130,
+          150
+        ]
+      },
+      {
+        "id": "farArm:lower",
+        "parent": "farArm:upper",
+        "from": [
+          130,
+          150
+        ],
+        "to": [
+          134,
+          171
+        ]
+      },
+      {
+        "id": "nearLeg:upper",
+        "parent": "torso",
+        "from": [
+          86,
+          172
+        ],
+        "to": [
+          79,
+          198
+        ]
+      },
+      {
+        "id": "nearLeg:lower",
+        "parent": "nearLeg:upper",
+        "from": [
+          79,
+          198
+        ],
+        "to": [
+          73,
+          227
+        ]
+      },
+      {
+        "id": "farLeg:upper",
+        "parent": "torso",
+        "from": [
+          110,
+          172
+        ],
+        "to": [
+          108,
+          198
+        ]
+      },
+      {
+        "id": "farLeg:lower",
+        "parent": "farLeg:upper",
+        "from": [
+          108,
+          198
+        ],
+        "to": [
+          110,
+          227
+        ]
+      }
+    ],
+    "chains": {
+      "nearArm": [
+        [
+          75,
+          122
+        ],
+        [
+          64,
+          150
+        ],
+        [
+          60,
+          171
+        ]
+      ],
+      "farArm": [
+        [
+          123,
+          123
+        ],
+        [
+          130,
+          150
+        ],
+        [
+          134,
+          171
+        ]
+      ],
+      "nearLeg": [
+        [
+          86,
+          172
+        ],
+        [
+          79,
+          198
+        ],
+        [
+          73,
+          227
+        ]
+      ],
+      "farLeg": [
+        [
+          110,
+          172
+        ],
+        [
+          108,
+          198
+        ],
+        [
+          110,
+          227
+        ]
+      ]
+    },
+    "drawOrder": [
+      "back-hair",
+      "far-arm",
+      "far-leg",
+      "near-leg",
+      "hips",
+      "garment",
+      "torso",
+      "near-arm",
+      "head"
+    ]
+  },
+  "motions": {
+    "format": "gathria-motion-library",
+    "version": 1,
+    "id": "gathria-shared-basic-actions-2",
+    "clips": {
+      "idle": {
+        "fps": 4,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 1
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -1
+          }
+        ],
+        "sequence": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          0,
+          0
+        ]
+      },
+      "walk": {
+        "fps": 10,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -8
+          },
+          {
+            "footX": 7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": -7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": -12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 8
+          },
+          {
+            "footX": -8,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": 0,
+            "footLift": 9,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 9,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "run": {
+        "fps": 18,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 2,
+            "armAngle": -0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 4,
+            "armAngle": 0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -13,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 2,
+            "armAngle": 0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -25,
+            "footLift": 10,
+            "shoePitch": 0.18,
+            "bodyBob": -1,
+            "armAngle": 0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -27,
+            "footLift": 24,
+            "shoePitch": 0.4,
+            "bodyBob": -2,
+            "armAngle": 0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -25,
+            "footLift": 34,
+            "shoePitch": 0.48,
+            "bodyBob": 0,
+            "armAngle": 0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -20,
+            "footLift": 36,
+            "shoePitch": 0.38,
+            "bodyBob": 2,
+            "armAngle": 0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": -12,
+            "footLift": 30,
+            "shoePitch": 0.2,
+            "bodyBob": 4,
+            "armAngle": -0.16,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 22,
+            "shoePitch": 0.05,
+            "bodyBob": 2,
+            "armAngle": -0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 10,
+            "footLift": 14,
+            "shoePitch": -0.1,
+            "bodyBob": -1,
+            "armAngle": -0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 16,
+            "footLift": 6,
+            "shoePitch": -0.08,
+            "bodyBob": -2,
+            "armAngle": -0.6,
+            "lean": 0.1,
+            "armSwing": 0
+          },
+          {
+            "footX": 16,
+            "footLift": 2,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.44,
+            "lean": 0.1,
+            "armSwing": 0
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "jump": {
+        "fps": 15,
+        "loop": false,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 4,
+            "armAngle": 0.12,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.12
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 7,
+            "armAngle": 0.24,
+            "lean": 0.03,
+            "armSwing": 0,
+            "armBend": -0.2
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.35,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -1,
+            "armBend": -0.55
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.55,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -3,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.65,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -4,
+            "armBend": -0.75
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.58,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -4,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.45,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -3,
+            "armBend": -0.45
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.18,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.15
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 6,
+            "armAngle": 0.08,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.1
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 3,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    }
+  },
+  "skin": {
+    "metadata": {
+      "format": "gathria-skin-pack",
+      "version": 1,
+      "id": "maple-traveler-phase-1",
+      "name": "traveler gentle",
+      "rigId": "gathria-v6-humanoid-1",
+      "slots": [
+        "head-neutral",
+        "head-gentle",
+        "head-joyful",
+        "torso",
+        "hips",
+        "near-upper-arm",
+        "near-forearm",
+        "near-thigh",
+        "near-shin",
+        "far-upper-arm",
+        "far-forearm",
+        "far-thigh",
+        "far-shin",
+        "near-shoe",
+        "far-shoe"
+      ],
+      "sourceAppearance": {
+        "schemaVersion": 2,
+        "name": "Denim daytrip",
+        "skinTone": "#E5AE87",
+        "hairstyle": "crop",
+        "hairColor": "#43312E",
+        "upperColor": "#527D9A",
+        "lowerColor": "#A37B56",
+        "shoeColor": "#594435",
+        "faceVariant": "oval",
+        "upperClothing": "jacket",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 6,
+        "motionVersion": 3,
+        "preview": {
+          "animation": "idle",
+          "facing": "right"
+        }
+      },
+      "provenance": "Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase phase-1. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.",
+      "bindings": {
+        "chains": {
+          "nearArm": [
+            [
+              77,
+              122
+            ],
+            [
+              67,
+              150
+            ],
+            [
+              65,
+              172
+            ]
+          ],
+          "farArm": [
+            [
+              126,
+              123
+            ],
+            [
+              131,
+              150
+            ],
+            [
+              136,
+              172
+            ]
+          ],
+          "nearLeg": [
+            [
+              86,
+              172
+            ],
+            [
+              79,
+              198
+            ],
+            [
+              74,
+              227
+            ]
+          ],
+          "farLeg": [
+            [
+              110,
+              172
+            ],
+            [
+              110,
+              198
+            ],
+            [
+              110,
+              227
+            ]
+          ]
+        },
+        "offsets": {},
+        "mesh": {
+          "blendRadius": 6,
+          "volume": 0.65,
+          "preserveAnkleOverlap": true
+        },
+        "jaw": {
+          "center": [
+            114,
+            98
+          ],
+          "start": 91,
+          "scale": 1,
+          "length": 1
+        },
+        "hairSway": 0,
+        "garmentSway": 0
+      }
+    },
+    "images": "Stored in the separate authoring ZIP; omitted from this playback package."
+  },
+  "preview": {
+    "animation": "run",
+    "facing": "left",
+    "expression": "gentle"
+  }
+}
