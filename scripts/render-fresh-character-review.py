@@ -418,5 +418,3 @@ if 'cuffMaterialCorrection' in report:
         file.write('\n[Before/after cuff recolor ownership, 4×](cuff-mask-before-after-4x.png) compares the preserved real exports with the corrected masks. The source artwork pixels are identical; only semantic material assignments changed. The final sleeve follows top color while the ivory cuff remains fixed and the hand follows skin color.\n')
 print(f'Validated {len(report["archives"])} ZIPs, {len(report["gif"])} GIFs, {len(report["playback"])} independent playback cases.')
 inventory()
-
-
