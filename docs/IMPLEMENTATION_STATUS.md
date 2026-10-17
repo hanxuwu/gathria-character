@@ -1,6 +1,14 @@
 # Implementation status
 
-**Current batch: run-only limb ownership and joint repair; awaiting user visual review.** Branch `fix/run-limb-connections` starts from the verified PR #2 merge `ebec736`. That merge is on `feat/character-art-v2`; `main` remains unchanged. The new PR stays draft and unmerged. Existing V1–V7 artwork, Motion 1/2 files and prior exports remain available.
+**Current batch: independent Denim skeletal authoring trial, ready for review.** Branch `experiment/denim-skeletal-rig` starts from verified `ea01dd8` on `fix/run-limb-connections`. PR #3 remains draft/unmerged; the experiment is a separate stacked draft targeting that repair branch. The Studio default and all production core sources remain unchanged.
+
+`/rig-lab.html` implements local bones, normalized mesh weights, keyframe controls, project save/reopen and native frame baking without Spine or any new animation dependency. Default run targets, V6 identity, head/neck treatment, frame dimensions, anchors and cadence stay fixed. Experimental packs identify `gathria-denim-skeletal-v1`; idle/walk rows stay byte-identical. Keep the separate rig-project JSON to reproduce the experiment: ordinary Studio intentionally interprets its appearance configuration as production Motion 3.
+
+Implementation recovery point: `4908e48` (pushed). [Skeletal review](SKELETAL_RIG_REVIEW.md) contains actual comparisons/GIFs, source and baked packs, independent playback proof and limitations. This batch passed **293 unit tests, 29 Chromium E2E tests, TypeScript and production build**; the expanded idle-timeline E2E also passed on a targeted rerun. Two packs, eleven PNGs including the two atlases, five GIFs and six independent action/direction cases were verified. The mesh gives modest local bend changes, but deep folded knees and overlapping inner mesh triangles remain limitations. No user visual acceptance or production Gathria integration is claimed. Stop here for review; all counts below are historical.
+
+## Historical batch: run-only limb ownership and joint repair
+
+Branch `fix/run-limb-connections` starts from the verified PR #2 merge `ebec736`. That merge is on `feat/character-art-v2`; `main` remains unchanged. Existing V1–V7 artwork, Motion 1/2 files and prior exports remain available.
 
 ## Current behavior and recovery points
 

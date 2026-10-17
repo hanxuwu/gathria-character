@@ -1,5 +1,9 @@
 # Artwork provenance and reuse
 
+## Independent Denim skeletal authoring study
+
+The [skeletal rig study](SKELETAL_RIG_REVIEW.md) reuses the frozen V6 Denim head, jacket, trousers and shoes from source revision `ea01dd8e074741fdfab0311e1e64585329c29391`. It introduces no new illustration, image-generation call, third-party animation implementation or Spine dependency. Its project-owned mesh code joins existing registered source textures, assigns normalized bone weights, applies bounded joint corrections and bakes nearest-neighbor triangles. Texture/source banks and production V1–V7/motion renderers remain unchanged. Experimental packs identify `gathria-denim-skeletal-v1`, retain historical artwork provenance and include the exact rig recipe in provenance text; separate project JSON preserves editable authoring inputs. Actual exported review evidence is in `docs/skeletal-rig/`.
+
 ## Preserved artwork V1 and V2
 
 `src/core/generator-v1.ts` and `src/core/generator-v2.ts` draw original integer-coordinate shapes and palette rules created for this project. Their 48×64 artwork is frozen: loading an existing configuration selects its original renderer. The original examples in `public/samples/` and `public/samples/v2/` remain unchanged.

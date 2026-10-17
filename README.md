@@ -19,6 +19,8 @@ npm run dev
 
 Open the address Vite prints. The studio is at `/`; the independent player is at `/player.html`. No API keys, account, backend, or runtime generation services are needed. Prepared artwork ships with the app. All editing, generation, and file processing happens in the browser. Changes are not autosaved: **Save config** preserves your editable character.
 
+The isolated [skeletal rig lab](docs/SKELETAL_RIG_REVIEW.md) is at `/rig-lab.html`: compare Denim's existing run with project-owned weighted-mesh animation, edit pose keys, save an authoring recipe and bake a portable pack. It uses no Spine dependency and leaves Studio defaults unchanged.
+
 ```sh
 npm run typecheck
 npm test

@@ -1,0 +1,34 @@
+{
+  "executedAt": "2026-10-17T01:00:59.630312+00:00",
+  "implementationCommit": "4908e4853cf0d18d9f2ff704de6ebc9da49d2d48",
+  "baselineCommit": "ea01dd8e074741fdfab0311e1e64585329c29391",
+  "unit": {
+    "command": "npm test",
+    "passed": 293,
+    "files": 18
+  },
+  "browser": {
+    "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npm run test:e2e",
+    "passed": 29,
+    "expandedIdleTimelineTargetedRerun": {
+      "passed": 1,
+      "note": "All 12 held idle timeline slots checked, after correcting initial test count4."
+    }
+  },
+  "build": {
+    "command": "npm run build",
+    "typescript": "passed",
+    "vite": "passed",
+    "warning": "Retained artwork chunks exceed500kB."
+  },
+  "frozenHistoricalFiles": 41,
+  "productionCoreEditorConsumerDiff": "empty",
+  "exportedPacks": 2,
+  "decodedAtlasPngs": 2,
+  "decodedReviewPngs": 9,
+  "decodedGifs": 5,
+  "closedAuthoringPlayerCases": 6,
+  "sourceHashAndFinalMediaHashRecheck": "passed",
+  "currentVersusHistorical": "All results here executed in this batch; prior milestone results remain historical.",
+  "visualReview": "Native and integer-zoom matched12-key PNGs and joint crops inspected. Modest bend change; deeply folded knees/texture stretch remain. Playback frame order/pixels/timing verified in actual independent player; not user visual acceptance."
+}

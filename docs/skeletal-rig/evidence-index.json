@@ -1,0 +1,979 @@
+{
+  "capturedAt": "2026-10-17T00:56:33.239Z",
+  "sourceRevision": "ea01dd8e074741fdfab0311e1e64585329c29391",
+  "source": "rig-lab browser modules -> baselineCharacter/bakeRigProject -> actual CharacterPack ZIP -> decoded PNG equality; close lab -> independent player",
+  "iteration": null,
+  "sourceFiles": {
+    "src/experiments/denim-rig/project.ts": "0be6ada6a256d1954b1b9512ea0ebbbd9670aefd273c45267c2f6307614ae2bc",
+    "src/experiments/denim-rig/rig.ts": "335b160311749be4633a9e913d1e9b5f5e227c347680465031789a09b1d69879",
+    "src/experiments/denim-rig/mesh.ts": "825ea805ab0e411eb90ec9196d944992be05ffd15659dbff41e04c151f6ccda1",
+    "src/experiments/denim-rig/bake.ts": "b7d83fd7156917c065399add7853729477a83ddaf32b05ee24f33c5564b9972f",
+    "src/core/everyday-presets.ts": "711e389852d882d1e4b5cca24963078f000d46ee476259a24abe480f143b91f3",
+    "src/core/running-rig-v3.ts": "981233bb744be0c092bb8ca26090625cef762c03fd5fcb074995358bf76b51b0",
+    "src/core/running-leg-parts.ts": "7aed1e6adf398964fee7c2adba1f8a46dbea52a5a0548a0d6e2f9910d5e089c5",
+    "src/core/running-arm-parts.ts": "25a08caecf188a06f6558e686dd8b658a01eadf1784afad67950e817370105bf",
+    "src/core/generator-motion-v3.ts": "a69234c0f0a1cdd8a5e3e869b6a0a5e79801a65ec3c52e715ae49eb551ffcf1e",
+    "src/core/polished-rig.ts": "306fa9e6bf2eec32ae127bdf07f4372657a84f705f0e322eedda26b9151c3790",
+    "src/core/polished-assets.generated.ts": "eebda1bd064fc07402f036c62a3fa9998e8aebb79972dab2b2ac0bc8c2792dc2",
+    "src/core/generator-v6.ts": "9cf97a66e1b8e5c2879c1699b51520d9417cef9f35f71098a7cc89cb40faf6c2",
+    "src/core/pack.ts": "457b7ddb4bf66a12bf15f5a0caa092f14fee0b8173f64f1602aa4087898d5a8a",
+    "src/consumer/player.ts": "5f3b7fe451a1b4d47870bfa0eb5ec345c0dcf2bd5c1608e5e4a4f7178ddd362a",
+    "src/consumer/PackPlayer.tsx": "b3a6f549ec3d6bf552b82bc0f1d1412d49371eb4b15a0d3a68792f886beae374"
+  },
+  "historicalSourceFilesVerified": 41,
+  "project": "project.json",
+  "exports": [
+    {
+      "id": "baseline",
+      "generator": "gathria-polished-pixels-v6-motion-v3",
+      "pngDecodePixelEquality": true,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "zipSha256": "e6a793316231f7644eabf25b51eaf60d8ac5813da0e9002a9036ddf0297be9ac",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 397056,
+          "sha256": "0a73dad601825953d6d41a5e7e42d092ca536a6ecf0abef1ca1e7ba51127af29"
+        },
+        "manifest.json": {
+          "bytes": 3676,
+          "sha256": "9c79c1b1accb04fe33aa3a34f5178bb678e6e81a7f0f481d4615fbf86baf0893"
+        },
+        "character.json": {
+          "bytes": 456,
+          "sha256": "36f1b01a6a6933fee1d870bee3ce13470067a0b2640592d2de8746a837d937bf"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 2779,
+          "sha256": "3b1c36a4087f112ccb0e464d2f3affa11ab77267f5128b369130cb2611a1b079"
+        },
+        "INTEGRATION.md": {
+          "bytes": 1659,
+          "sha256": "329084f969dea8f732ca4600e717516f986ec8fe2b1b431d9f79b9029d803374"
+        }
+      }
+    },
+    {
+      "id": "experimental",
+      "generator": "gathria-denim-skeletal-v1",
+      "pngDecodePixelEquality": true,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "zipSha256": "c00cf329b52fdd626faa76ae277c1c40986af5ed2db7bcc9b42aab73b85d630a",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 396922,
+          "sha256": "e7b8bc1bcf9890ce9b1164c314de69e9f0a4fc21e6c40e018a4fd9898f27f64d"
+        },
+        "manifest.json": {
+          "bytes": 3665,
+          "sha256": "a4ed59e1129f2d80aa337daec7a93148e6f8a6d57002cd6ff22a6045bb21b99c"
+        },
+        "character.json": {
+          "bytes": 456,
+          "sha256": "36f1b01a6a6933fee1d870bee3ce13470067a0b2640592d2de8746a837d937bf"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 6262,
+          "sha256": "1330c2e9d3954db572f21086e6663f421e9947a133088e1e67c2e147dd572aa0"
+        },
+        "INTEGRATION.md": {
+          "bytes": 2413,
+          "sha256": "73c7889622fbd89922193b55bf0b6c3a3a2269bfa38d4e61e1f35d8c4d9e1d69"
+        }
+      }
+    }
+  ],
+  "recipeRoundTripPixelEquality": true,
+  "idleWalkPixelEquality": true,
+  "runHeadNeckPixelEquality": true,
+  "consumerOpenedAfterAuthoringClosed": true,
+  "livePixelRegion": "Full native 192 x 256 frame, including shoes; visible consumer attachment guides reproduced in expected buffer.",
+  "playback": [
+    {
+      "animation": "idle",
+      "facing": "right",
+      "fullNativeFramePixelEquality": true,
+      "expectedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 6
+        },
+        {
+          "frame": 1,
+          "ms": 384
+        },
+        {
+          "frame": 2,
+          "ms": 860
+        },
+        {
+          "frame": 3,
+          "ms": 1874
+        },
+        {
+          "frame": 0,
+          "ms": 2372
+        },
+        {
+          "frame": 1,
+          "ms": 3371
+        },
+        {
+          "frame": 2,
+          "ms": 3870
+        },
+        {
+          "frame": 3,
+          "ms": 4870
+        },
+        {
+          "frame": 0,
+          "ms": 5370
+        },
+        {
+          "frame": 1,
+          "ms": 6369
+        },
+        {
+          "frame": 2,
+          "ms": 6870
+        },
+        {
+          "frame": 3,
+          "ms": 7870
+        },
+        {
+          "frame": 0,
+          "ms": 8370
+        }
+      ],
+      "nominalLoopMs": 3000,
+      "fps": 4,
+      "sequence": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "animation": "idle",
+      "facing": "left",
+      "fullNativeFramePixelEquality": true,
+      "expectedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pixelVerifiedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "ms": 4
+        },
+        {
+          "frame": 1,
+          "ms": 453
+        },
+        {
+          "frame": 2,
+          "ms": 954
+        },
+        {
+          "frame": 3,
+          "ms": 1958
+        },
+        {
+          "frame": 0,
+          "ms": 2455
+        },
+        {
+          "frame": 1,
+          "ms": 3454
+        },
+        {
+          "frame": 2,
+          "ms": 3953
+        },
+        {
+          "frame": 3,
+          "ms": 4954
+        },
+        {
+          "frame": 0,
+          "ms": 5453
+        },
+        {
+          "frame": 1,
+          "ms": 6454
+        },
+        {
+          "frame": 2,
+          "ms": 6955
+        },
+        {
+          "frame": 3,
+          "ms": 7953
+        },
+        {
+          "frame": 0,
+          "ms": 8453
+        }
+      ],
+      "nominalLoopMs": 3000,
+      "fps": 4,
+      "sequence": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "animation": "walk",
+      "facing": "right",
+      "fullNativeFramePixelEquality": true,
+      "expectedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 4,
+          "ms": 4
+        },
+        {
+          "frame": 5,
+          "ms": 39
+        },
+        {
+          "frame": 6,
+          "ms": 137
+        },
+        {
+          "frame": 7,
+          "ms": 238
+        },
+        {
+          "frame": 8,
+          "ms": 336
+        },
+        {
+          "frame": 9,
+          "ms": 438
+        },
+        {
+          "frame": 10,
+          "ms": 537
+        },
+        {
+          "frame": 11,
+          "ms": 638
+        },
+        {
+          "frame": 4,
+          "ms": 740
+        },
+        {
+          "frame": 5,
+          "ms": 839
+        },
+        {
+          "frame": 6,
+          "ms": 937
+        },
+        {
+          "frame": 7,
+          "ms": 1039
+        },
+        {
+          "frame": 8,
+          "ms": 1136
+        },
+        {
+          "frame": 9,
+          "ms": 1240
+        },
+        {
+          "frame": 10,
+          "ms": 1337
+        },
+        {
+          "frame": 11,
+          "ms": 1440
+        },
+        {
+          "frame": 4,
+          "ms": 1536
+        },
+        {
+          "frame": 5,
+          "ms": 1638
+        },
+        {
+          "frame": 6,
+          "ms": 1737
+        },
+        {
+          "frame": 7,
+          "ms": 1841
+        },
+        {
+          "frame": 8,
+          "ms": 1936
+        },
+        {
+          "frame": 9,
+          "ms": 2040
+        },
+        {
+          "frame": 10,
+          "ms": 2143
+        },
+        {
+          "frame": 11,
+          "ms": 2246
+        },
+        {
+          "frame": 4,
+          "ms": 2338
+        },
+        {
+          "frame": 5,
+          "ms": 2440
+        },
+        {
+          "frame": 6,
+          "ms": 2541
+        }
+      ],
+      "nominalLoopMs": 800,
+      "fps": 10,
+      "sequence": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "animation": "walk",
+      "facing": "left",
+      "fullNativeFramePixelEquality": true,
+      "expectedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "pixelVerifiedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 5,
+          "ms": 22
+        },
+        {
+          "frame": 6,
+          "ms": 120
+        },
+        {
+          "frame": 7,
+          "ms": 227
+        },
+        {
+          "frame": 8,
+          "ms": 321
+        },
+        {
+          "frame": 9,
+          "ms": 423
+        },
+        {
+          "frame": 10,
+          "ms": 520
+        },
+        {
+          "frame": 11,
+          "ms": 626
+        },
+        {
+          "frame": 4,
+          "ms": 725
+        },
+        {
+          "frame": 5,
+          "ms": 824
+        },
+        {
+          "frame": 6,
+          "ms": 920
+        },
+        {
+          "frame": 7,
+          "ms": 1023
+        },
+        {
+          "frame": 8,
+          "ms": 1119
+        },
+        {
+          "frame": 9,
+          "ms": 1221
+        },
+        {
+          "frame": 10,
+          "ms": 1321
+        },
+        {
+          "frame": 11,
+          "ms": 1422
+        },
+        {
+          "frame": 4,
+          "ms": 1520
+        },
+        {
+          "frame": 5,
+          "ms": 1623
+        },
+        {
+          "frame": 6,
+          "ms": 1720
+        },
+        {
+          "frame": 7,
+          "ms": 1824
+        },
+        {
+          "frame": 8,
+          "ms": 1920
+        },
+        {
+          "frame": 9,
+          "ms": 2023
+        },
+        {
+          "frame": 10,
+          "ms": 2121
+        },
+        {
+          "frame": 11,
+          "ms": 2228
+        },
+        {
+          "frame": 4,
+          "ms": 2320
+        },
+        {
+          "frame": 5,
+          "ms": 2424
+        },
+        {
+          "frame": 6,
+          "ms": 2520
+        }
+      ],
+      "nominalLoopMs": 800,
+      "fps": 10,
+      "sequence": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "animation": "run",
+      "facing": "right",
+      "fullNativeFramePixelEquality": true,
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "pixelVerifiedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 14,
+          "ms": 24
+        },
+        {
+          "frame": 15,
+          "ms": 85
+        },
+        {
+          "frame": 16,
+          "ms": 134
+        },
+        {
+          "frame": 17,
+          "ms": 184
+        },
+        {
+          "frame": 18,
+          "ms": 252
+        },
+        {
+          "frame": 19,
+          "ms": 302
+        },
+        {
+          "frame": 20,
+          "ms": 353
+        },
+        {
+          "frame": 21,
+          "ms": 418
+        },
+        {
+          "frame": 22,
+          "ms": 468
+        },
+        {
+          "frame": 23,
+          "ms": 518
+        },
+        {
+          "frame": 12,
+          "ms": 585
+        },
+        {
+          "frame": 13,
+          "ms": 634
+        },
+        {
+          "frame": 14,
+          "ms": 686
+        },
+        {
+          "frame": 15,
+          "ms": 751
+        },
+        {
+          "frame": 16,
+          "ms": 801
+        },
+        {
+          "frame": 17,
+          "ms": 852
+        },
+        {
+          "frame": 18,
+          "ms": 919
+        },
+        {
+          "frame": 19,
+          "ms": 968
+        },
+        {
+          "frame": 20,
+          "ms": 1021
+        },
+        {
+          "frame": 21,
+          "ms": 1085
+        },
+        {
+          "frame": 22,
+          "ms": 1134
+        },
+        {
+          "frame": 23,
+          "ms": 1185
+        },
+        {
+          "frame": 12,
+          "ms": 1254
+        },
+        {
+          "frame": 13,
+          "ms": 1301
+        },
+        {
+          "frame": 14,
+          "ms": 1353
+        },
+        {
+          "frame": 15,
+          "ms": 1420
+        },
+        {
+          "frame": 16,
+          "ms": 1467
+        },
+        {
+          "frame": 17,
+          "ms": 1518
+        },
+        {
+          "frame": 18,
+          "ms": 1585
+        },
+        {
+          "frame": 19,
+          "ms": 1635
+        },
+        {
+          "frame": 20,
+          "ms": 1688
+        },
+        {
+          "frame": 21,
+          "ms": 1751
+        },
+        {
+          "frame": 22,
+          "ms": 1801
+        },
+        {
+          "frame": 23,
+          "ms": 1852
+        },
+        {
+          "frame": 12,
+          "ms": 1919
+        },
+        {
+          "frame": 13,
+          "ms": 1967
+        },
+        {
+          "frame": 14,
+          "ms": 2020
+        },
+        {
+          "frame": 15,
+          "ms": 2084
+        },
+        {
+          "frame": 16,
+          "ms": 2134
+        }
+      ],
+      "nominalLoopMs": 666.6666666666666,
+      "fps": 18,
+      "sequence": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "animation": "run",
+      "facing": "left",
+      "fullNativeFramePixelEquality": true,
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "pixelVerifiedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 13,
+          "ms": 4
+        },
+        {
+          "frame": 14,
+          "ms": 58
+        },
+        {
+          "frame": 15,
+          "ms": 104
+        },
+        {
+          "frame": 16,
+          "ms": 170
+        },
+        {
+          "frame": 17,
+          "ms": 221
+        },
+        {
+          "frame": 18,
+          "ms": 272
+        },
+        {
+          "frame": 19,
+          "ms": 339
+        },
+        {
+          "frame": 20,
+          "ms": 389
+        },
+        {
+          "frame": 21,
+          "ms": 437
+        },
+        {
+          "frame": 22,
+          "ms": 503
+        },
+        {
+          "frame": 23,
+          "ms": 553
+        },
+        {
+          "frame": 12,
+          "ms": 608
+        },
+        {
+          "frame": 13,
+          "ms": 671
+        },
+        {
+          "frame": 14,
+          "ms": 725
+        },
+        {
+          "frame": 15,
+          "ms": 770
+        },
+        {
+          "frame": 16,
+          "ms": 837
+        },
+        {
+          "frame": 17,
+          "ms": 887
+        },
+        {
+          "frame": 18,
+          "ms": 961
+        },
+        {
+          "frame": 19,
+          "ms": 1016
+        },
+        {
+          "frame": 20,
+          "ms": 1056
+        },
+        {
+          "frame": 21,
+          "ms": 1103
+        },
+        {
+          "frame": 22,
+          "ms": 1175
+        },
+        {
+          "frame": 23,
+          "ms": 1220
+        },
+        {
+          "frame": 12,
+          "ms": 1277
+        },
+        {
+          "frame": 13,
+          "ms": 1337
+        },
+        {
+          "frame": 14,
+          "ms": 1390
+        },
+        {
+          "frame": 15,
+          "ms": 1437
+        },
+        {
+          "frame": 16,
+          "ms": 1503
+        },
+        {
+          "frame": 17,
+          "ms": 1554
+        },
+        {
+          "frame": 18,
+          "ms": 1606
+        },
+        {
+          "frame": 19,
+          "ms": 1670
+        },
+        {
+          "frame": 20,
+          "ms": 1725
+        },
+        {
+          "frame": 21,
+          "ms": 1770
+        },
+        {
+          "frame": 22,
+          "ms": 1837
+        },
+        {
+          "frame": 23,
+          "ms": 1888
+        },
+        {
+          "frame": 12,
+          "ms": 1944
+        },
+        {
+          "frame": 13,
+          "ms": 2006
+        },
+        {
+          "frame": 14,
+          "ms": 2059
+        },
+        {
+          "frame": 15,
+          "ms": 2104
+        }
+      ],
+      "nominalLoopMs": 666.6666666666666,
+      "fps": 18,
+      "sequence": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "forbidden": []
+}
