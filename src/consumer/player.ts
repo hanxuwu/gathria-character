@@ -1,5 +1,5 @@
 import type {
-  AnimationName,
+  PlaybackAnimationName,
   CharacterPackManifest,
   Facing,
   SpriteFrame,
@@ -8,7 +8,7 @@ import type {
 /** Select a frame using only the timing and frame ids supplied by a pack. */
 export function frameAtTime(
   manifest: CharacterPackManifest,
-  animationName: AnimationName,
+  animationName: PlaybackAnimationName,
   elapsedMs: number,
 ): SpriteFrame {
   const animation = manifest.animations[animationName];
@@ -29,6 +29,23 @@ export function frameAtTime(
       `Animation ${animationName} references an unavailable frame.`,
     );
   return frame;
+}
+
+/** A one-shot holds its final frame after every declared entry has elapsed. */
+export function animationHasEnded(
+  manifest: CharacterPackManifest,
+  animationName: PlaybackAnimationName,
+  elapsedMs: number,
+): boolean {
+  const animation = manifest.animations[animationName];
+  if (!animation)
+    throw new Error(
+      `Animation ${animationName} is not available in this pack.`,
+    );
+  return (
+    !animation.loop &&
+    elapsedMs >= (animation.frames.length * 1000) / animation.fps
+  );
 }
 
 /** Flipping around the attachment point also mirrors an asymmetric anchor. */

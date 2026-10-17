@@ -11,6 +11,8 @@ export const MOTION_LIMITS: Record<keyof MotionKey, readonly [number, number]> =
     armAngle: [-1.6, 1.6],
     lean: [-0.4, 0.4],
     armSwing: [-24, 24],
+    rootY: [-16, 0],
+    armBend: [-1.5, 1.5],
   };
 
 export const MOTION_FIELDS: Record<
@@ -20,6 +22,16 @@ export const MOTION_FIELDS: Record<
   idle: ["bodyBob", "lean", "armSwing"],
   walk: ["bodyBob", "lean", "armSwing", "footX", "footLift", "shoePitch"],
   run: ["bodyBob", "lean", "armAngle", "footX", "footLift", "shoePitch"],
+  jump: [
+    "rootY",
+    "bodyBob",
+    "lean",
+    "armAngle",
+    "armBend",
+    "footX",
+    "footLift",
+    "shoePitch",
+  ],
 };
 
 const inRange = (value: number, min: number, max: number) =>
@@ -39,7 +51,8 @@ export function setMotionField(
   const [min, max] = MOTION_LIMITS[field];
   const keyIndex = clip.sequence[playbackIndex];
   const key = clip.keys[keyIndex];
-  if (!inRange(value, min, max) || !key || key[field] === value) return clip;
+  if (!inRange(value, min, max) || !key || (key[field] ?? 0) === value)
+    return clip;
   return {
     ...clip,
     keys: clip.keys.map((pose, index) =>

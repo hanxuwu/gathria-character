@@ -1,10 +1,12 @@
 import type {
   ArtV6CharacterConfig,
-  AnimationName,
+  AnimationName as LegacyAnimationName,
+  PlaybackAnimationName,
   Facing,
 } from "../core/types";
 import type { Point } from "../core/pixel-art";
-export type { Point, AnimationName, Facing };
+export type AnimationName = PlaybackAnimationName;
+export type { Point, Facing };
 export const FRAME_WIDTH = 192,
   FRAME_HEIGHT = 256;
 export const RIG_ID = "gathria-v6-humanoid-1";
@@ -88,10 +90,14 @@ export interface MotionKey {
   armAngle: number;
   lean: number;
   armSwing: number;
+  /** Jump-only whole-body translation; omitted in legacy poses. */
+  rootY?: number;
+  /** Jump-only elbow bend relative to the registered rest arm. */
+  armBend?: number;
 }
 export interface MotionClip {
   fps: number;
-  loop: true;
+  loop: boolean;
   keys: MotionKey[];
   sequence: number[];
 }
@@ -99,7 +105,7 @@ export interface MotionLibrary {
   format: "gathria-motion-library";
   version: 1;
   id: string;
-  clips: Record<AnimationName, MotionClip>;
+  clips: Record<LegacyAnimationName, MotionClip> & { jump?: MotionClip };
 }
 export interface AuthoringProject {
   format: "gathria-rig-authoring";
@@ -110,6 +116,7 @@ export interface AuthoringProject {
   preview: { animation: AnimationName; facing: Facing; expression: Expression };
 }
 export interface RigInspection {
+  bodyBones?: Array<{ id: string; from: Point; to: Point }>;
   limbs: Array<{
     id: string;
     bones: Point[];

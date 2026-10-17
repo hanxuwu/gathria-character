@@ -7,6 +7,7 @@ import {
   assignPlaybackPose,
   holdPlaybackPose,
   MOTION_LIMITS,
+  MOTION_FIELDS,
   removePlaybackFrame,
   setMotionField,
   setMotionFps,
@@ -52,7 +53,7 @@ describe("motion authoring without changing the rig format", () => {
           clip,
           0,
           field as keyof MotionKey,
-          clip.keys[0][field as keyof MotionKey],
+          clip.keys[0][field as keyof MotionKey] ?? 0,
         ),
       ).toBe(clip);
     }
@@ -96,12 +97,32 @@ describe("motion authoring without changing the rig format", () => {
     const project = createAuthoringProject();
     for (const edge of [0, 1]) {
       let clip = project.motions.clips.run;
-      for (const [field, bounds] of Object.entries(MOTION_LIMITS))
-        clip = setMotionField(clip, 0, field as keyof MotionKey, bounds[edge]);
+      for (const field of MOTION_FIELDS.run)
+        clip = setMotionField(clip, 0, field, MOTION_LIMITS[field][edge]);
       project.motions.clips.run = setMotionFps(clip, edge ? 60 : 1);
       const reopened = validateProject(project);
       expect(reopened.motions).toEqual(project.motions);
     }
+  });
+
+  it("authors jump height and elbow flex without changing the existing actions", () => {
+    const project = createAuthoringProject();
+    const before = structuredClone(project.motions);
+    let jump = project.motions.clips.jump!;
+    jump = setMotionField(jump, 4, "rootY", -12);
+    jump = setMotionField(jump, 4, "armBend", 0.75);
+    jump = holdPlaybackPose(jump, 5);
+    project.motions.clips.jump = jump;
+    const reopened = validateProject(project);
+    expect(reopened.motions.clips.jump).toEqual(jump);
+    expect(jump.loop).toBe(false);
+    expect(jump.keys[jump.sequence[4]].rootY).toBe(-12);
+    expect(jump.keys[jump.sequence[4]].armBend).toBe(0.75);
+    for (const action of ["idle", "walk", "run"] as const)
+      expect(reopened.motions.clips[action]).toEqual(before.clips[action]);
+    expect(setMotionField(jump, 4, "rootY", -17)).toBe(jump);
+    expect(setMotionField(jump, 4, "rootY", 1)).toBe(jump);
+    expect(setMotionField(jump, 4, "armBend", 1.51)).toBe(jump);
   });
 
   it("shares authored poses across skins and exports the edited timing with actual pixels", () => {
@@ -120,7 +141,7 @@ describe("motion authoring without changing the rig format", () => {
       const current = preview.frame("run", 0);
       expect(digest(current)).not.toBe(digest(originalFrames[index]));
       const baked = bakeProject(validateProject(project));
-      expect(baked.manifest.frames).toHaveLength(24);
+      expect(baked.manifest.frames).toHaveLength(36);
       expect(baked.manifest.animations.run).toEqual({
         fps: 15,
         loop: true,

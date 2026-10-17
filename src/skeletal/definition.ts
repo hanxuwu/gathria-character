@@ -88,6 +88,22 @@ const key = (patch: Partial<MotionKey>): MotionKey => ({
   ...patch,
 });
 
+/** Twelve one-shot phases: source poses and labels stay shared across skins. */
+export const JUMP_PHASES = [
+  "Ready",
+  "Anticipation",
+  "Compression",
+  "Takeoff",
+  "Ascent",
+  "Apex",
+  "Float",
+  "Descent",
+  "Contact",
+  "Landing",
+  "Recovery",
+  "Ready",
+] as const;
+
 /** One motion library is applied to every registered skin. Keys are geometry;
  * sequences are playback timing, so held idle keys do not duplicate images. */
 export function createMotionLibrary(): MotionLibrary {
@@ -105,7 +121,7 @@ export function createMotionLibrary(): MotionLibrary {
   return {
     format: "gathria-motion-library",
     version: 1,
-    id: "gathria-shared-locomotion-1",
+    id: "gathria-shared-basic-actions-2",
     clips: {
       idle: {
         fps: 4,
@@ -127,6 +143,25 @@ export function createMotionLibrary(): MotionLibrary {
           }),
         ),
         sequence: Array.from({ length: 8 }, (_, i) => i),
+      },
+      jump: {
+        fps: 15,
+        loop: false,
+        keys: [
+          key({}),
+          key({ bodyBob: 4, armAngle: 0.12, armBend: -0.12 }),
+          key({ bodyBob: 7, armAngle: 0.24, armBend: -0.2, lean: 0.03 }),
+          key({ rootY: -1, bodyBob: 1, armAngle: -0.35, armBend: -0.55 }),
+          key({ rootY: -3, footLift: 8, armAngle: -0.55, armBend: -0.65 }),
+          key({ rootY: -4, footLift: 10, armAngle: -0.65, armBend: -0.75 }),
+          key({ rootY: -4, footLift: 10, armAngle: -0.58, armBend: -0.65 }),
+          key({ rootY: -3, footLift: 8, armAngle: -0.45, armBend: -0.45 }),
+          key({ bodyBob: 1, armAngle: -0.18, armBend: -0.15 }),
+          key({ bodyBob: 6, armAngle: 0.08, armBend: -0.1 }),
+          key({ bodyBob: 3 }),
+          key({}),
+        ],
+        sequence: Array.from({ length: 12 }, (_, i) => i),
       },
       run: {
         fps: 18,

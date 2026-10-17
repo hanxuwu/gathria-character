@@ -8,20 +8,24 @@ import {
   type AuthoringProject,
 } from "./types";
 
-export const REUSABLE_GENERATOR_ID = "gathria-reusable-rig-v1";
+export const LEGACY_REUSABLE_GENERATOR_ID = "gathria-reusable-rig-v1";
+export const REUSABLE_GENERATOR_ID = "gathria-reusable-rig-v2";
 
 /** Every output frame comes from the shared rig, including idle and walk.
  * No baked source character, identity-based dispatch or legacy fallback is used. */
 export function bakeProject(project: AuthoringProject): GeneratedCharacter {
   const rig = prepareRig(project.rig, project.skin, project.motions);
+  const hasJump = Boolean(project.motions.clips.jump);
+  const rows = hasJump ? 6 : 4;
   const width = W * 8,
-    height = H * 4;
+    height = H * rows;
   const pixels = new Uint8ClampedArray(width * height * 4);
   const frames: CharacterPackManifest["frames"] = [];
   const animations = {} as CharacterPackManifest["animations"];
   let nextId = 0;
-  for (const animation of ["idle", "walk", "run"] as const) {
+  for (const animation of ["idle", "walk", "run", "jump"] as const) {
     const clip = project.motions.clips[animation];
+    if (!clip) continue;
     const count = animation === "idle" ? 4 : animation === "walk" ? 8 : 12;
     if (clip.keys.length !== count)
       throw Error(
@@ -31,8 +35,13 @@ export function bakeProject(project: AuthoringProject): GeneratedCharacter {
     for (let index = 0; index < count; index++) {
       const column = index % 8;
       const row =
-        (animation === "idle" ? 0 : animation === "walk" ? 1 : 2) +
-        Math.floor(index / 8);
+        (animation === "idle"
+          ? 0
+          : animation === "walk"
+            ? 1
+            : animation === "run"
+              ? 2
+              : 4) + Math.floor(index / 8);
       const x = column * W,
         y = row * H;
       const rgba = rig.frame(animation, index, project.preview.expression);
@@ -59,7 +68,7 @@ export function bakeProject(project: AuthoringProject): GeneratedCharacter {
     schemaVersion: 1,
     format: "gathria-character-pack",
     name: project.skin.metadata.name,
-    generator: REUSABLE_GENERATOR_ID,
+    generator: hasJump ? REUSABLE_GENERATOR_ID : LEGACY_REUSABLE_GENERATOR_ID,
     spritesheet: {
       file: "spritesheet.png",
       width,
@@ -67,7 +76,7 @@ export function bakeProject(project: AuthoringProject): GeneratedCharacter {
       frameWidth: W,
       frameHeight: H,
       columns: 8,
-      rows: 4,
+      rows,
     },
     frames,
     animations,
@@ -101,15 +110,18 @@ export async function createBakedPack(
     name: project.skin.metadata.name,
     expression: project.preview.expression,
     preview: {
-      animation: project.preview.animation,
+      animation:
+        project.preview.animation === "jump"
+          ? ("idle" as const)
+          : project.preview.animation,
       facing: project.preview.facing,
     },
   };
   const ordinary = await createCharacterPack(reference, generated);
   const files = unzipSync(new Uint8Array(await ordinary.arrayBuffer()));
   const notice =
-    "Gathria reusable skeletal rig v1\n\n" +
-    "All idle, walk and run frames were generated locally from a registered skin pack, the shared humanoid bone hierarchy and motion library. No Spine software, format, runtime or copied implementation is used. No image-generation service is called during rendering or playback.\n\n" +
+    `Gathria reusable skeletal rig ${project.motions.clips.jump ? "v2" : "v1"}\n\n` +
+    "All available action frames were generated locally from a registered skin pack, the shared humanoid bone hierarchy and motion library. No Spine software, format, runtime or copied implementation is used. No image-generation service is called during rendering or playback.\n\n" +
     "ARTWORK SOURCE\n" +
     project.skin.metadata.provenance +
     "\n\n" +
@@ -130,7 +142,8 @@ export async function createBakedPack(
       JSON.stringify(recipe, null, 2) +
       "\n",
   );
-  const timing = (["idle", "walk", "run"] as const)
+  const timing = (["idle", "walk", "run", "jump"] as const)
+    .filter((animation) => generated.manifest.animations[animation])
     .map((animation) => {
       const clip = generated.manifest.animations[animation]!;
       return `- ${animation}: ${clip.frames.length} playback entries at ${clip.fps} FPS, loop=${clip.loop}.`;
@@ -139,11 +152,11 @@ export async function createBakedPack(
   files["INTEGRATION.md"] = strToU8(
     "# Reusable rig baked CharacterPack\n\n" +
       notice +
-      "Read manifest.json and decode spritesheet.png as RGBA. Validate the format/schema and PNG dimensions. Resolve animation frame references by frame ID, not array index. Play idle, walk or run using the manifest's actual sequence and declared FPS; loop only when loop is true. Timing can be edited in the authoring project.\n\n" +
+      "Read manifest.json and decode spritesheet.png as RGBA. Validate the format/schema and PNG dimensions. Resolve animation frame references by frame ID, not array index. Play each available action using the manifest's actual sequence and declared FPS; loop only when loop is true. Timing can be edited in the authoring project.\n\n" +
       timing +
       "\n\n" +
-      "Draw at a positive integer scale with image smoothing disabled. Keep the frame-local anchor at the same world position when mirroring left-facing output; never mirror the whole spritesheet. These are in-place clips, with world movement supplied separately by the scene. All three actions in this pack were baked by the shared rig; historical V6 idle/walk pixels are not reused.\n\n" +
-      "This package's five root files are sufficient for independent playback. character.json is a compatibility appearance reference, not an imported-art reproduction recipe. Retain the separate authoring ZIP to edit or reproduce the full rig and skin. See player.html and docs/CHARACTER_PACK_V1.md for the playback contract. Older packages without run remain playable; disable unavailable actions instead of inventing frames.\n",
+      "Draw at a positive integer scale with image smoothing disabled. Keep the frame-local anchor at the same world position when mirroring left-facing output; never mirror the whole spritesheet. These are in-place clips, with world movement supplied separately by the scene. All actions in this pack were baked by the shared rig; historical V6 idle/walk pixels are not reused.\n\n" +
+      "This package's five root files are sufficient for independent playback. character.json is a compatibility appearance reference, not an imported-art reproduction recipe. Retain the separate authoring ZIP to edit or reproduce the full rig and skin. See player.html and docs/CHARACTER_PACK_V1.md for the playback contract. Jump, when present, is a one-shot clip: hold its final authored frame (landed in the default clip) and replay explicitly. The older three-action atlas stays unchanged; jump occupies appended rows 4 and 5. Older packages without run or jump remain playable; disable unavailable actions instead of inventing frames. The legacy character.json preview falls back to idle when authoring jump; the full project preserves jump selection.\n",
   );
   return new Blob([zipSync(files, { level: 6 })], { type: "application/zip" });
 }

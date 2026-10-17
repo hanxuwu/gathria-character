@@ -94,12 +94,12 @@ describe("reusable skeletal skin integration", () => {
       left: "mirror-x",
     });
     let startId = 0;
-    for (const action of ["idle", "walk", "run"] as const) {
-      const clip = project.motions.clips[action];
+    for (const action of ["idle", "walk", "run", "jump"] as const) {
+      const clip = project.motions.clips[action]!;
       expect(output.manifest.animations[action]).toEqual({
         frames: clip.sequence.map((index) => index + startId),
         fps: clip.fps,
-        loop: true,
+        loop: clip.loop,
       });
       for (let key = 0; key < clip.keys.length; key++)
         expect(digest(extractFrame(output, startId + key))).toBe(
@@ -107,7 +107,7 @@ describe("reusable skeletal skin integration", () => {
         );
       startId += clip.keys.length;
     }
-    expect(output.manifest.frames).toHaveLength(24);
+    expect(output.manifest.frames).toHaveLength(36);
     expect(digest(project.skin.images.torso!)).toBe(originalImage);
   });
 
@@ -142,7 +142,7 @@ describe("reusable skeletal skin integration", () => {
       for (const action of ["idle", "walk", "run"] as AnimationName[]) {
         for (
           let key = 0;
-          key < project.motions.clips[action].keys.length;
+          key < project.motions.clips[action]!.keys.length;
           key++
         ) {
           const { limbs } = rig.inspect(action, key);

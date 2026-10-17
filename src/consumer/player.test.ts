@@ -1,7 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
 import type { CharacterPackManifest } from "../core/types";
-import { drawCharacterFrame, frameAtTime } from "./player";
-import { toProposedGathriaCharacter } from "../compat/gathria";
+import { animationHasEnded, drawCharacterFrame, frameAtTime } from "./player";
+import {
+  GATHRIA_COMPATIBILITY,
+  toProposedGathriaCharacter,
+} from "../compat/gathria";
 
 const manifest: CharacterPackManifest = {
   schemaVersion: 1,
@@ -50,6 +53,35 @@ describe("independent metadata playback", () => {
     expect(() => frameAtTime(manifest, "run", 0)).toThrow(
       "Animation run is not available in this pack.",
     );
+  });
+
+  it("does not invent jump playback for a legacy pack", () => {
+    expect(() => frameAtTime(manifest, "jump", 0)).toThrow(
+      "Animation jump is not available in this pack.",
+    );
+    expect(() => animationHasEnded(manifest, "jump", 0)).toThrow(
+      "Animation jump is not available in this pack.",
+    );
+  });
+
+  it("plays jump in declared order, includes repeated holds, then rests on its final frame", () => {
+    const jumping: CharacterPackManifest = {
+      ...manifest,
+      animations: {
+        ...manifest.animations,
+        jump: { frames: [30, 90, 90, 10], fps: 4, loop: false },
+      },
+    };
+    expect(frameAtTime(jumping, "jump", -1).id).toBe(30);
+    expect(frameAtTime(jumping, "jump", 249).id).toBe(30);
+    expect(frameAtTime(jumping, "jump", 250).id).toBe(90);
+    expect(frameAtTime(jumping, "jump", 749).id).toBe(90);
+    expect(frameAtTime(jumping, "jump", 750).id).toBe(10);
+    expect(animationHasEnded(jumping, "jump", 999)).toBe(false);
+    expect(animationHasEnded(jumping, "jump", 1000)).toBe(true);
+    expect(frameAtTime(jumping, "jump", 100_000).id).toBe(10);
+    expect(animationHasEnded(jumping, "idle", 100_000)).toBe(false);
+    expect(frameAtTime(jumping, "jump", 0).id).toBe(30);
   });
 
   it("plays optional run clips using their declared order and timing", () => {
@@ -115,5 +147,27 @@ describe("independent metadata playback", () => {
     });
     expect(mapped.atlas).toEqual(manifest.frames);
     expect(mapped.atlas).not.toBe(manifest.frames);
+  });
+
+  it("preserves optional jump metadata in the unverified scene adapter", () => {
+    expect(toProposedGathriaCharacter(manifest).clips).not.toHaveProperty(
+      "jump",
+    );
+    const jumping: CharacterPackManifest = {
+      ...manifest,
+      animations: {
+        ...manifest.animations,
+        jump: { frames: [30, 90, 10], fps: 12, loop: false },
+      },
+    };
+    const mapped = toProposedGathriaCharacter(jumping);
+    expect(mapped.clips.jump).toEqual({
+      frameIds: [30, 90, 10],
+      framesPerSecond: 12,
+      repeat: false,
+    });
+    jumping.animations.jump!.frames[0] = 10;
+    expect(mapped.clips.jump?.frameIds).toEqual([30, 90, 10]);
+    expect(GATHRIA_COMPATIBILITY.status).toBe("UNVERIFIED");
   });
 });

@@ -196,13 +196,13 @@ describe("reusable imported-skin engine", () => {
     expect(engine.frame("run", 0, "gentle")).toEqual(before);
     expect(edited.frame("idle", 0)).toEqual(engine.frame("idle", 0));
   });
-  it("bakes 24 shared-engine frames with held idle timing, explicit provenance identity and mirror metadata", () => {
+  it("bakes 36 shared-engine frames with held idle timing, explicit provenance identity and mirror metadata", () => {
     const p = project(),
       generated = bakeProject(p),
       engine = prepareRig(p.rig, p.skin, p.motions);
     expect(generated.manifest.generator).toBe(REUSABLE_GENERATOR_ID);
     expect(generated.manifest.name).toBe("Synthetic import");
-    expect(generated.manifest.frames).toHaveLength(24);
+    expect(generated.manifest.frames).toHaveLength(36);
     expect(generated.manifest.animations.idle.frames).toHaveLength(12);
     expect(generated.manifest.animations.walk.fps).toBe(10);
     expect(generated.manifest.animations.run!.fps).toBe(18);

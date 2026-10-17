@@ -280,11 +280,22 @@ export function prepareRig(
       throw Error("Animation key is outside this clip.");
     if (!["neutral", "gentle", "joyful"].includes(expression))
       throw Error("Unsupported expression.");
-    const key = clip.keys[index],
-      count = clip.keys.length;
+    const keys = clip.keys;
+    const key = keys[index],
+      count = keys.length;
     const canvas = new IllustratedCanvas();
     const inspection: RigInspection = { limbs: [] };
-    const upper = rotateAt(key.lean, rig.pivot, 0, key.bodyBob);
+    const jumping = animation === "jump";
+    const rootY = jumping ? (key.rootY ?? 0) : 0;
+    const upper = rotateAt(key.lean, rig.pivot, 0, key.bodyBob + rootY);
+    if (inspect)
+      inspection.bodyBones = rig.bones
+        .filter((bone) => ["root", "torso", "head"].includes(bone.id))
+        .map((bone) => ({
+          id: bone.id,
+          from: bone.id === "root" ? [...rig.anchor] : map(upper, bone.from),
+          to: map(upper, bone.to),
+        }));
     const phase = (index * Math.PI * 2) / count;
     const clothLag = Math.sin(phase - Math.PI / 3);
     const draw = (slot: Slot, matrix: Matrix = upper, warp: LayerWarp = {}) => {
@@ -296,9 +307,37 @@ export function prepareRig(
       const near = chain.startsWith("near"),
         arm = chain.endsWith("Arm");
       const [start, middle, end] = skin.bindings.chains[chain];
-      const phaseIndex = (index + (near ? 0 : Math.floor(count / 2))) % count;
-      const opposite = clip.keys[phaseIndex];
-      if (arm && animation === "run") {
+      const phaseIndex = jumping
+        ? index
+        : (index + (near ? 0 : Math.floor(count / 2))) % count;
+      const opposite = keys[phaseIndex];
+      if (arm && jumping) {
+        // Both arms push off together. Rotate the original two segments about
+        // their own joints so shoulder registration and limb length survive.
+        const swing = expression === "joyful" ? (near ? 2 : -2) : 0;
+        const restMiddle: Point = [
+          middle[0] + swing * 0.45,
+          middle[1] - Math.abs(swing) * 0.2,
+        ];
+        const restEnd: Point = [
+          end[0] + swing,
+          end[1] -
+            (Math.max(0, swing) * 0.65 + Math.abs(Math.min(0, swing)) * 0.2),
+        ];
+        const elbow = map(rotateAt(key.armAngle, start), restMiddle);
+        const wrist = map(
+          rotateAt(key.armAngle + (key.armBend ?? 0), restMiddle),
+          restEnd,
+        );
+        posed.set(chain, [
+          map(upper, start),
+          map(upper, elbow),
+          map(upper, [
+            wrist[0] + elbow[0] - restMiddle[0],
+            wrist[1] + elbow[1] - restMiddle[1],
+          ]),
+        ]);
+      } else if (arm && animation === "run") {
         const shoulder: Point = [start[0] - (near ? 0 : 8), start[1]];
         const upperLength = distance(start, middle),
           lowerLength = distance(middle, end);
@@ -340,10 +379,30 @@ export function prepareRig(
           animation === "run"
             ? hip[0] + opposite.footX
             : end[0] + opposite.footX,
-          end[1] - opposite.footLift,
+          end[1] - opposite.footLift + rootY,
         ];
-        const knee: Point =
-          animation === "run"
+        const jumpFlex = Math.min(
+          1,
+          (Math.abs(key.bodyBob) +
+            key.footLift +
+            Math.abs(key.footX) +
+            Math.abs(key.lean) * 20) /
+            3,
+        );
+        const jumpKnee = jumping
+          ? kneeBetween(
+              hip,
+              ankle,
+              distance(start, middle),
+              distance(middle, end),
+            )
+          : middle;
+        const knee: Point = jumping
+          ? [
+              middle[0] + (jumpKnee[0] - middle[0]) * jumpFlex,
+              middle[1] + rootY + (jumpKnee[1] - middle[1] - rootY) * jumpFlex,
+            ]
+          : animation === "run"
             ? kneeBetween(
                 hip,
                 ankle,
@@ -372,8 +431,9 @@ export function prepareRig(
       if (chain.endsWith("Leg")) {
         const near = chain.startsWith("near"),
           slot: Slot = near ? "near-shoe" : "far-shoe";
-        const opposite =
-          clip.keys[(index + (near ? 0 : Math.floor(count / 2))) % count];
+        const opposite = jumping
+          ? key
+          : keys[(index + (near ? 0 : Math.floor(count / 2))) % count];
         const ankle = skin.bindings.chains[chain][2];
         const sole = requireAttachment(slot).sourceBottom;
         draw(
@@ -382,7 +442,7 @@ export function prepareRig(
             opposite.shoePitch,
             ankle,
             joints[2][0] - ankle[0],
-            rig.anchor[1] - 1 - sole - opposite.footLift,
+            rig.anchor[1] - 1 - sole - opposite.footLift + rootY,
           ),
         );
       }
@@ -428,7 +488,9 @@ export function prepareRig(
               ? -3 + clothLag * 2
               : animation === "walk"
                 ? Math.sin(phase) * 5
-                : key.armSwing);
+                : jumping
+                  ? key.armAngle * 2
+                  : key.armSwing);
           draw(slot, upper, {
             inverse: (x, y) => [
               x - sway * Math.min(1.4, Math.max(0, (y - 100) / 80)) ** 2,
@@ -456,7 +518,7 @@ export function prepareRig(
               const waist = map(upper, [x, top]);
               return [
                 x - (waist[0] - x) * (1 - depth) - sway * depth,
-                y - (waist[1] - top) * (1 - depth),
+                y - (waist[1] - top) * (1 - depth) - rootY * depth,
               ];
             },
             margin: Math.ceil(Math.abs(sway)) + 8,

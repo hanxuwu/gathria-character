@@ -7,6 +7,7 @@ import { createBakedPack } from "./bake";
 import { createMotionLibrary } from "./definition";
 import { BindingCanvas } from "./BindingCanvas";
 import { MotionEditor } from "./MotionEditor";
+import { playbackFrame, playbackTick } from "./playback";
 import {
   beginEdit,
   cancelEdit,
@@ -67,6 +68,7 @@ function Canvas({
   inspection,
   showBones = false,
   showMesh = false,
+  skeletonOnly = false,
   markers,
   id,
   label,
@@ -78,6 +80,7 @@ function Canvas({
   inspection?: RigInspection;
   showBones?: boolean;
   showMesh?: boolean;
+  skeletonOnly?: boolean;
   markers?: readonly Point[];
   id: string;
   label: string;
@@ -105,7 +108,7 @@ function Canvas({
       context.translate(192, 0);
       context.scale(-1, 1);
     }
-    context.drawImage(source, 0, 0);
+    if (!skeletonOnly) context.drawImage(source, 0, 0);
     const line = (points: readonly Point[], color: string, dots = true) => {
       context.strokeStyle = "#fffdf7";
       context.lineWidth = 3;
@@ -129,6 +132,24 @@ function Canvas({
       }
     };
     if (inspection) {
+      if (showBones && inspection.bodyBones) {
+        for (const bone of inspection.bodyBones)
+          line([bone.from, bone.to], "#7063a1");
+        const torso = inspection.bodyBones.find((bone) => bone.id === "torso");
+        if (torso) {
+          // Show the actual connection to each posed limb. These guide lines
+          // never enter the skin, project attachments, or baked spritesheet.
+          for (const limb of inspection.limbs)
+            line(
+              [
+                limb.id.toLowerCase().includes("arm") ? torso.to : torso.from,
+                limb.bones[0],
+              ],
+              "#7063a1",
+              false,
+            );
+        }
+      }
       for (const limb of inspection.limbs) {
         const color = limb.id.toLowerCase().includes("far")
           ? "#168aa7"
@@ -155,7 +176,16 @@ function Canvas({
     }
     if (markers) line(markers, "#b95822");
     context.resetTransform();
-  }, [pixels, zoom, facing, inspection, showBones, showMesh, markers]);
+  }, [
+    pixels,
+    zoom,
+    facing,
+    inspection,
+    showBones,
+    showMesh,
+    skeletonOnly,
+    markers,
+  ]);
   return (
     <div
       className="skin-canvas"
@@ -170,6 +200,7 @@ function Canvas({
         aria-label={label}
         data-frame={frame}
         data-facing={facing}
+        data-view={skeletonOnly ? "skeleton" : "character"}
       />
     </div>
   );
@@ -266,6 +297,7 @@ export function SkinStudio() {
   const [playing, setPlaying] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [bones, setBones] = useState(false);
+  const [skeletonOnly, setSkeletonOnly] = useState(false);
   const [mesh, setMesh] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
   const [notice, setNotice] = useState<Notice | null>(null);
@@ -273,10 +305,9 @@ export function SkinStudio() {
   const projectInput = useRef<HTMLInputElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
   const { animation, facing, expression } = project.preview;
-  const clip = project.motions.clips[animation];
-  const sequenceFrame =
-    ((Math.trunc(frame) % clip.sequence.length) + clip.sequence.length) %
-    clip.sequence.length;
+  // Validation guarantees the saved preview names an available action.
+  const clip = project.motions.clips[animation]!;
+  const sequenceFrame = playbackFrame(clip, frame);
   const keyIndex = clip.sequence[sequenceFrame];
   const rig = useMemo(
     () => prepareRig(project.rig, project.skin, project.motions),
@@ -288,8 +319,10 @@ export function SkinStudio() {
   );
   const inspection = useMemo(
     () =>
-      bones || mesh ? rig.inspect(animation, keyIndex, expression) : undefined,
-    [rig, animation, keyIndex, expression, bones, mesh],
+      bones || mesh || skeletonOnly
+        ? rig.inspect(animation, keyIndex, expression)
+        : undefined,
+    [rig, animation, keyIndex, expression, bones, mesh, skeletonOnly],
   );
   const joints = project.skin.metadata.bindings.chains[chain];
   const jointLabels = chain.endsWith("Arm")
@@ -319,10 +352,12 @@ export function SkinStudio() {
     const start = performance.now();
     const first = sequenceFrame;
     const tick = (now: number) => {
-      setFrame(
-        (first + Math.floor((Math.max(0, now - start) * clip.fps) / 1000)) %
-          clip.sequence.length,
-      );
+      const next = playbackTick(clip, first, now - start);
+      setFrame(next.frame);
+      if (next.finished) {
+        setPlaying(false);
+        return;
+      }
       request = requestAnimationFrame(tick);
     };
     request = requestAnimationFrame(tick);
@@ -354,7 +389,7 @@ export function SkinStudio() {
     const preview = next.preview;
     candidate.frame(
       preview.animation,
-      next.motions.clips[preview.animation].sequence[0],
+      next.motions.clips[preview.animation]!.sequence[0],
       preview.expression,
     );
     setPlaying(false);
@@ -454,6 +489,34 @@ export function SkinStudio() {
     } catch (error) {
       setNotice({
         text: error instanceof Error ? error.message : "Invalid motion.",
+        error: true,
+      });
+    }
+  }
+
+  function addJumpAction() {
+    if (project.motions.clips.jump) return;
+    try {
+      const next = validateProject({
+        ...project,
+        motions: {
+          ...project.motions,
+          clips: {
+            ...project.motions.clips,
+            jump: createMotionLibrary().clips.jump!,
+          },
+        },
+        preview: { ...project.preview, animation: "jump" },
+      });
+      applyProject(next, "Add jump action");
+      setFrame(0);
+      setNotice({
+        text: "Jump added. Existing idle, walk and run motions are unchanged; save this project to keep the new action.",
+      });
+    } catch (error) {
+      setNotice({
+        text:
+          error instanceof Error ? error.message : "Jump could not be added.",
         error: true,
       });
     }
@@ -749,6 +812,10 @@ export function SkinStudio() {
                 <option value="idle">Idle</option>
                 <option value="walk">Walk</option>
                 <option value="run">Run</option>
+                <option value="jump" disabled={!project.motions.clips.jump}>
+                  Jump
+                  {!project.motions.clips.jump ? " (not in this project)" : ""}
+                </option>
               </select>
             </label>
             <label>
@@ -781,6 +848,15 @@ export function SkinStudio() {
               </select>
             </label>
           </div>
+          {!project.motions.clips.jump && (
+            <div className="skin-missing-action">
+              <p>
+                This saved project has idle, walk and run. Add jump explicitly
+                to keep its existing motions unchanged.
+              </p>
+              <button onClick={addJumpAction}>Add jump action</button>
+            </div>
+          )}
           <div className="skin-canvases">
             <figure>
               <Canvas
@@ -788,13 +864,17 @@ export function SkinStudio() {
                 zoom={zoom}
                 facing={facing}
                 inspection={inspection}
-                showBones={bones}
-                showMesh={mesh}
+                showBones={bones || skeletonOnly}
+                showMesh={mesh && !skeletonOnly}
+                skeletonOnly={skeletonOnly}
                 id="skin-posed-canvas"
                 label={`${skinName}, ${animation}, ${facing}, frame ${sequenceFrame + 1}`}
                 frame={sequenceFrame}
               />
-              <figcaption>Posed character · {skinName}</figcaption>
+              <figcaption>
+                {skeletonOnly ? "Animated skeleton" : "Posed character"} ·{" "}
+                {skinName}
+              </figcaption>
             </figure>
             <figure>
               <BindingCanvas
@@ -847,18 +927,27 @@ export function SkinStudio() {
           <div className="skin-playback">
             <button
               className="skin-primary"
-              onClick={() => setPlaying(!playing)}
+              onClick={() => {
+                if (
+                  !playing &&
+                  !clip.loop &&
+                  sequenceFrame === clip.sequence.length - 1
+                )
+                  setFrame(0);
+                setPlaying(!playing);
+              }}
             >
-              {playing ? "Pause" : "Play"}
+              {playing
+                ? "Pause"
+                : !clip.loop && sequenceFrame === clip.sequence.length - 1
+                  ? "Replay"
+                  : "Play"}
             </button>
             <button
               aria-label="Previous frame"
               onClick={() => {
                 setPlaying(false);
-                setFrame(
-                  (sequenceFrame + clip.sequence.length - 1) %
-                    clip.sequence.length,
-                );
+                setFrame(playbackFrame(clip, sequenceFrame - 1));
               }}
             >
               ←
@@ -878,16 +967,25 @@ export function SkinStudio() {
               aria-label="Next frame"
               onClick={() => {
                 setPlaying(false);
-                setFrame((sequenceFrame + 1) % clip.sequence.length);
+                setFrame(playbackFrame(clip, sequenceFrame + 1));
               }}
             >
               →
             </button>
             <output>
               Frame {sequenceFrame + 1}/{clip.sequence.length} · {clip.fps} fps
+              {!clip.loop ? " · plays once" : ""}
             </output>
           </div>
           <div className="skin-overlays">
+            <label>
+              <input
+                type="checkbox"
+                checked={skeletonOnly}
+                onChange={(event) => setSkeletonOnly(event.target.checked)}
+              />
+              Skeleton only
+            </label>
             <label>
               <input
                 type="checkbox"
@@ -900,12 +998,22 @@ export function SkinStudio() {
               <input
                 type="checkbox"
                 checked={mesh}
+                disabled={skeletonOnly}
                 onChange={(event) => setMesh(event.target.checked)}
               />
               Mesh
             </label>
-            <span>Orange: near limbs · blue: far limbs</span>
+            <span>
+              Purple: root, torso, head · orange: near limbs · blue: far limbs
+            </span>
           </div>
+          {skeletonOnly && (
+            <p className="skin-help">
+              The same animated bones drive each skin. Root → torso → head, with
+              upper and lower arm/leg chains. This view hides artwork only;
+              exports contain the character.
+            </p>
+          )}
           <MotionEditor
             animation={animation}
             clip={clip}
@@ -916,6 +1024,9 @@ export function SkinStudio() {
                 pixels={pixels}
                 zoom={1}
                 facing={facing}
+                inspection={inspection}
+                showBones={skeletonOnly}
+                skeletonOnly={skeletonOnly}
                 id="skin-motion-canvas"
                 label="Motion pose preview"
                 frame={sequenceFrame}
@@ -928,7 +1039,7 @@ export function SkinStudio() {
             onChange={changeMotion}
             onReset={() =>
               changeMotion(
-                createMotionLibrary().clips[animation],
+                createMotionLibrary().clips[animation]!,
                 `Reset ${animation} motion`,
               )
             }

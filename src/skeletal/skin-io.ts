@@ -343,14 +343,21 @@ function validateMotions(value: unknown): MotionLibrary {
   allowedKeys(raw, ["format", "version", "id", "clips"], "motions");
   exact(raw.format, "gathria-motion-library", "motions.format");
   exact(raw.version, 1, "motions.version");
-  if (Object.keys(source).length !== 3)
-    fail("motions must contain idle, walk and run clips.");
+  allowedKeys(source, ["idle", "walk", "run", "jump"], "motions.clips");
+  const names = [
+    "idle",
+    "walk",
+    "run",
+    ...(source.jump === undefined ? [] : ["jump"]),
+  ] as const;
   const clips = Object.fromEntries(
-    (["idle", "walk", "run"] as const).map((name) => {
+    names.map((name) => {
       const clip = object(source[name], `motions.${name}`);
-      exact(clip.loop, true, `${name}.loop`);
+      exact(clip.loop, name !== "jump", `${name}.loop`);
       allowedKeys(clip, ["fps", "loop", "keys", "sequence"], `motions.${name}`);
-      const keyCount = { idle: 4, walk: 8, run: 12 }[name];
+      const keyCount = { idle: 4, walk: 8, run: 12, jump: 12 }[
+        name as "idle" | "walk" | "run" | "jump"
+      ];
       if (!Array.isArray(clip.keys) || clip.keys.length !== keyCount)
         fail(`${name} needs exactly ${keyCount} keys for authoring format v1.`);
       const keys = clip.keys.map((value) => {
@@ -365,6 +372,7 @@ function validateMotions(value: unknown): MotionLibrary {
             "armAngle",
             "lean",
             "armSwing",
+            ...(name === "jump" ? ["rootY", "armBend"] : []),
           ],
           `${name}.key`,
         );
@@ -376,6 +384,12 @@ function validateMotions(value: unknown): MotionLibrary {
           armAngle: finite(k.armAngle, "armAngle", -1.6, 1.6),
           lean: finite(k.lean, "lean", -0.4, 0.4),
           armSwing: finite(k.armSwing, "armSwing", -24, 24),
+          ...(k.rootY === undefined
+            ? {}
+            : { rootY: finite(k.rootY, "rootY", -16, 0) }),
+          ...(k.armBend === undefined
+            ? {}
+            : { armBend: finite(k.armBend, "armBend", -1.5, 1.5) }),
         };
       });
       if (
@@ -391,7 +405,7 @@ function validateMotions(value: unknown): MotionLibrary {
         name,
         {
           fps: finite(clip.fps, `${name}.fps`, 1, 60),
-          loop: true as const,
+          loop: name !== "jump",
           keys,
           sequence,
         },
@@ -419,8 +433,10 @@ export function validateProject(
   allowedKeys(preview, ["animation", "facing", "expression"], "preview");
   exact(raw.format, "gathria-rig-authoring", "project.format");
   exact(raw.version, 1, "project.version");
+  const motions = validateMotions(raw.motions);
   if (
-    !["idle", "walk", "run"].includes(String(preview.animation)) ||
+    !["idle", "walk", "run", "jump"].includes(String(preview.animation)) ||
+    (preview.animation === "jump" && !motions.clips.jump) ||
     !["left", "right"].includes(String(preview.facing)) ||
     !["neutral", "gentle", "joyful"].includes(String(preview.expression))
   )
@@ -431,7 +447,7 @@ export function validateProject(
     format: "gathria-rig-authoring",
     version: 1,
     rig: validateRig(raw.rig),
-    motions: validateMotions(raw.motions),
+    motions,
     skin: validateSkin(skin ?? (raw.skin as SkinPack)),
     preview: {
       animation: preview.animation as AuthoringProject["preview"]["animation"],

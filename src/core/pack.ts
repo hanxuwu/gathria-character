@@ -2,7 +2,7 @@ import { Inflate, zipSync, strToU8 } from "fflate";
 import { parseCharacterConfig } from "./config";
 import type {
   Animation,
-  AnimationName,
+  PlaybackAnimationName,
   CharacterConfig,
   CharacterPackManifest,
   GeneratedCharacter,
@@ -143,7 +143,7 @@ export function validateManifest(value: unknown): CharacterPackManifest {
     return { id, x, y, width: frameWidth, height: frameHeight };
   });
   const animationData = record(data.animations, "animations");
-  function animation(key: AnimationName): Animation {
+  function animation(key: PlaybackAnimationName): Animation {
     const item = record(animationData[key], `animations.${key}`);
     if (
       !Array.isArray(item.frames) ||
@@ -199,6 +199,7 @@ export function validateManifest(value: unknown): CharacterPackManifest {
       idle: animation("idle"),
       walk: animation("walk"),
       ...("run" in animationData ? { run: animation("run") } : {}),
+      ...("jump" in animationData ? { jump: animation("jump") } : {}),
     },
     facing: { native: "right", right: "none", left: "mirror-x" },
     anchor: { x: anchorX, y: anchorY, units: "pixels", origin: "top-left" },

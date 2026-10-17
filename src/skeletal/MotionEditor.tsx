@@ -9,6 +9,7 @@ import {
   setMotionFps,
 } from "./motion-edit";
 import type { AnimationName, MotionClip, MotionKey } from "./types";
+import { JUMP_PHASES } from "./definition";
 import "./motion-editor.css";
 
 export interface MotionEditorProps {
@@ -30,8 +31,15 @@ const FIELD_LABELS: Record<keyof MotionKey, string> = {
   footX: "Foot travel (px)",
   footLift: "Foot lift (px)",
   shoePitch: "Shoe pitch (°)",
+  rootY: "Jump height (px, negative up)",
+  armBend: "Elbow bend (°)",
 };
-const ANGLES = new Set<keyof MotionKey>(["lean", "armAngle", "shoePitch"]);
+const ANGLES = new Set<keyof MotionKey>([
+  "lean",
+  "armAngle",
+  "shoePitch",
+  "armBend",
+]);
 const degrees = (radians: number) => (radians * 180) / Math.PI;
 const radians = (degrees: number) => (degrees * Math.PI) / 180;
 const readable = (value: number) => String(Math.round(value * 100) / 100);
@@ -139,7 +147,8 @@ export function MotionEditor({
         <p>
           <strong>{animation}</strong> · {clip.keys.length} source poses ·{" "}
           {clip.sequence.length} playback frames ·{" "}
-          {(clip.sequence.length / clip.fps).toFixed(2)} s loop
+          {(clip.sequence.length / clip.fps).toFixed(2)} s{" "}
+          {clip.loop ? "loop" : "one-shot"}
         </p>
         <MotionNumber
           key={`${animation}-fps`}
@@ -160,7 +169,7 @@ export function MotionEditor({
             key={index}
             aria-label={`Playback frame ${index + 1}, pose ${source + 1}`}
             aria-pressed={frame === index}
-            title={`Frame ${index + 1}: source pose ${source + 1}`}
+            title={`Frame ${index + 1}: source pose ${source + 1}${animation === "jump" ? ` · ${JUMP_PHASES[source]}` : ""}`}
             onClick={() => onSelectFrame(index)}
           >
             <span>{index + 1}</span>
@@ -188,6 +197,7 @@ export function MotionEditor({
             {clip.keys.map((_, index) => (
               <option key={index} value={index}>
                 Pose {index + 1}
+                {animation === "jump" ? ` · ${JUMP_PHASES[index]}` : ""}
               </option>
             ))}
           </select>
@@ -218,9 +228,12 @@ export function MotionEditor({
       </div>
       <p className="motion-help">
         Editing pose {keyIndex + 1} updates its {occurrences}{" "}
-        {occurrences === 1 ? "use" : "uses"} in this loop. Hold adds one timed
-        frame without creating another pose. Feet and arms use opposing
-        half-cycle poses.
+        {occurrences === 1 ? "use" : "uses"} in this{" "}
+        {clip.loop ? "loop" : "action"}. Hold adds one timed frame without
+        creating another pose.{" "}
+        {animation === "jump"
+          ? `${JUMP_PHASES[keyIndex]} · Both legs share the jump phase; root height moves the whole skeleton. Playback stops on the final authored pose.`
+          : "Feet and arms use opposing half-cycle poses."}
       </p>
       <div className="motion-pose-workspace">
         {preview && (
@@ -237,7 +250,7 @@ export function MotionEditor({
               <MotionNumber
                 key={`${animation}-${keyIndex}-${field}`}
                 label={FIELD_LABELS[field]}
-                value={angle ? degrees(pose[field]) : pose[field]}
+                value={angle ? degrees(pose[field] ?? 0) : (pose[field] ?? 0)}
                 min={angle ? degrees(min) : min}
                 max={angle ? degrees(max) : max}
                 step={0.5}

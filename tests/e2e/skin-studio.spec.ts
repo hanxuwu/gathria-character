@@ -372,8 +372,8 @@ for (const skin of ["denim-daytrip", "coral-afternoon"]) {
       "spritesheet.png",
     ]);
     const manifest = JSON.parse(strFromU8(files["manifest.json"]));
-    expect(manifest.generator).toBe("gathria-reusable-rig-v1");
-    expect(manifest.frames).toHaveLength(24);
+    expect(manifest.generator).toBe("gathria-reusable-rig-v2");
+    expect(manifest.frames).toHaveLength(36);
     expect(manifest.anchor).toMatchObject({ x: 96, y: 240 });
     expect(manifest.animations.run).toEqual({
       frames: Array.from({ length: 12 }, (_, i) => i + 12),
@@ -433,7 +433,7 @@ for (const skin of ["denim-daytrip", "coral-afternoon"]) {
       },
     );
     expect(expected.previewMatches).toBe(true);
-    expect([expected.width, expected.height]).toEqual([1536, 1024]);
+    expect([expected.width, expected.height]).toEqual([1536, 1536]);
     await page.close();
     const player = await context.newPage();
     const forbidden: string[] = [],
