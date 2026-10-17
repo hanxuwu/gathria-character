@@ -1,4 +1,9 @@
-import { Inflate, strToU8, zipSync } from "fflate";
+import { strToU8, zipSync } from "fflate";
+import { crc32, readBoundedArchive } from "./bounded-archive";
+import {
+  MAX_WARDROBE_LIBRARY_BYTES,
+  validateWardrobeItems,
+} from "./wardrobe-items";
 import { parseCharacterConfig } from "../core/config";
 import { createRigDefinition } from "./definition";
 import { assertWardrobeSkinMatches, validateWardrobeRecipe } from "./wardrobe";
@@ -433,7 +438,16 @@ export function validateProject(
     preview = object(raw.preview, "project.preview");
   allowedKeys(
     raw,
-    ["format", "version", "rig", "motions", "skin", "preview", "wardrobe"],
+    [
+      "format",
+      "version",
+      "rig",
+      "motions",
+      "skin",
+      "preview",
+      "wardrobe",
+      "wardrobeItems",
+    ],
     "project",
   );
   allowedKeys(preview, ["animation", "facing", "expression"], "preview");
@@ -450,11 +464,16 @@ export function validateProject(
       "project.preview must specify a supported animation, facing and expression.",
     );
   const validatedSkin = validateSkin(skin ?? (raw.skin as SkinPack));
+  const wardrobeItems =
+    raw.wardrobeItems === undefined
+      ? undefined
+      : validateWardrobeItems(raw.wardrobeItems);
   const wardrobe =
     raw.wardrobe === undefined
       ? undefined
-      : validateWardrobeRecipe(raw.wardrobe);
-  if (wardrobe) assertWardrobeSkinMatches(wardrobe, validatedSkin);
+      : validateWardrobeRecipe(raw.wardrobe, wardrobeItems);
+  if (wardrobe)
+    assertWardrobeSkinMatches(wardrobe, validatedSkin, wardrobeItems);
   return {
     format: "gathria-rig-authoring",
     version: 1,
@@ -462,6 +481,7 @@ export function validateProject(
     motions,
     skin: validatedSkin,
     ...(wardrobe ? { wardrobe } : {}),
+    ...(wardrobeItems !== undefined ? { wardrobeItems } : {}),
     preview: {
       animation: preview.animation as AuthoringProject["preview"]["animation"],
       facing: preview.facing as AuthoringProject["preview"]["facing"],
@@ -471,168 +491,32 @@ export function validateProject(
   };
 }
 
-const crcTable = Uint32Array.from({ length: 256 }, (_, n) => {
-  let v = n;
-  for (let b = 0; b < 8; b++) v = (v >>> 1) ^ (v & 1 ? 0xedb88320 : 0);
-  return v >>> 0;
-});
-function crc32(bytes: Uint8Array): number {
-  let c = 0xffffffff;
-  for (const b of bytes) c = (c >>> 8) ^ crcTable[(c ^ b) & 255];
-  return (c ^ 0xffffffff) >>> 0;
-}
-
-/** Bound every allocation before inflation; accept only our documented file paths. */
+/** Share the bounded ZIP reader with separately portable wardrobe items. */
 function readArchive(
   bytes: Uint8Array,
   project: boolean,
 ): Record<string, Uint8Array> {
-  if (bytes.length < 22 || bytes.length > MAX_ZIP)
-    fail("Skin/project ZIP must be intact and at most 12 MiB.");
-  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
-  let end = -1;
-  for (let p = bytes.length - 22; p >= Math.max(0, bytes.length - 65557); p--)
-    if (
-      view.getUint32(p, true) === 0x06054b50 &&
-      p + 22 + view.getUint16(p + 20, true) === bytes.length
-    ) {
-      end = p;
-      break;
-    }
-  if (end < 0 || view.getUint16(end + 4, true) || view.getUint16(end + 6, true))
-    fail("Invalid or multi-volume ZIP directory.");
-  const count = view.getUint16(end + 10, true),
-    directory = view.getUint32(end + 16, true);
-  if (
-    count !== view.getUint16(end + 8, true) ||
-    count > ALL_SLOTS.length + (project ? 2 : 3) ||
-    count < REQUIRED_SLOTS.length + (project ? 2 : 1)
-  )
-    fail("ZIP contains an unexpected number of files.");
-  if (directory + view.getUint32(end + 12, true) !== end)
-    fail("Invalid ZIP directory bounds; ZIP64 is unsupported.");
-  const allowed = new Set([
-    "skin.json",
-    ...ALL_SLOTS.map((s) => `slots/${s}.png`),
-    ...(project ? ["project.json"] : ["TEMPLATE.md", "guides.png"]),
-  ]);
-  const entries: Array<{
-    name: string;
-    size: number;
-    compressed: number;
-    start: number;
-    method: number;
-    crc: number;
-  }> = [];
-  const names = new Set<string>(),
-    ranges: Array<[number, number]> = [];
-  let offset = directory,
-    total = 0;
-  for (let i = 0; i < count; i++) {
-    if (offset + 46 > end || view.getUint32(offset, true) !== 0x02014b50)
-      fail("Invalid ZIP entry.");
-    const flags = view.getUint16(offset + 8, true),
-      method = view.getUint16(offset + 10, true),
-      crc = view.getUint32(offset + 16, true),
-      compressed = view.getUint32(offset + 20, true),
-      size = view.getUint32(offset + 24, true),
-      nl = view.getUint16(offset + 28, true),
-      el = view.getUint16(offset + 30, true),
-      cl = view.getUint16(offset + 32, true),
-      local = view.getUint32(offset + 42, true);
-    const next = offset + 46 + nl + el + cl;
-    if (next > end || view.getUint16(offset + 34, true))
-      fail("Invalid ZIP entry bounds.");
-    let name: string;
-    try {
-      name = decoder.decode(bytes.subarray(offset + 46, offset + 46 + nl));
-    } catch {
-      fail("ZIP filenames must be valid UTF-8.");
-    }
-    if (!allowed.has(name))
-      fail(`Unexpected ZIP path ${JSON.stringify(name)}.`);
-    if (names.has(name)) fail(`Duplicate ZIP file ${name}.`);
-    names.add(name);
-    if (flags & ~0x080e || ![0, 8].includes(method))
-      fail("Encrypted or unsupported ZIP compression.");
-    if (
-      !size ||
-      size > (name.endsWith(".png") ? MAX_IMAGE : MAX_TEXT) ||
-      (total += size) > MAX_ZIP
-    )
-      fail(`${name} exceeds the uncompressed size limit.`);
-    if (local + 30 > directory || view.getUint32(local, true) !== 0x04034b50)
-      fail(`Invalid local ZIP header for ${name}.`);
-    if (
-      view.getUint16(local + 6, true) !== flags ||
-      view.getUint16(local + 8, true) !== method
-    )
-      fail(`Inconsistent ZIP headers for ${name}.`);
-    const localNl = view.getUint16(local + 26, true),
-      start = local + 30 + localNl + view.getUint16(local + 28, true);
-    if (
-      start + compressed > directory ||
-      localNl !== nl ||
-      !bytes
-        .subarray(local + 30, local + 30 + localNl)
-        .every((v, j) => v === bytes[offset + 46 + j])
-    )
-      fail(`Invalid ZIP filename/data for ${name}.`);
-    if (
-      !(flags & 8) &&
-      (view.getUint32(local + 14, true) !== crc ||
-        view.getUint32(local + 18, true) !== compressed ||
-        view.getUint32(local + 22, true) !== size)
-    )
-      fail(`Inconsistent ZIP sizes/checksum for ${name}.`);
-    if (ranges.some(([a, b]) => local < b && start + compressed > a))
-      fail("Overlapping ZIP entries.");
-    ranges.push([local, start + compressed]);
-    entries.push({ name, start, compressed, size, method, crc });
-    offset = next;
-  }
-  if (
-    offset !== end ||
-    !names.has("skin.json") ||
-    (project && !names.has("project.json"))
-  )
-    fail("ZIP is missing its metadata or has invalid directory size.");
-  if (!project && names.has("guides.png") !== names.has("TEMPLATE.md"))
-    fail("Template guides and instructions must be supplied together.");
-  const files: Record<string, Uint8Array> = {};
-  for (const entry of entries) {
-    const compressed = bytes.subarray(
-      entry.start,
-      entry.start + entry.compressed,
-    );
-    let output: Uint8Array;
-    if (!entry.method) output = compressed;
-    else {
-      output = new Uint8Array(entry.size);
-      let written = 0;
-      try {
-        const inflate = new Inflate((chunk) => {
-          if (written + chunk.length > output.length)
-            fail("Inflation exceeds declared size.");
-          output.set(chunk, written);
-          written += chunk.length;
-        });
-        if (!compressed.length) fail("Empty compressed data.");
-        for (let i = 0; i < compressed.length; i += 1024)
-          inflate.push(
-            compressed.subarray(i, i + 1024),
-            i + 1024 >= compressed.length,
-          );
-      } catch {
-        fail(`${entry.name} cannot be decompressed within its declared size.`);
-      }
-      if (written !== entry.size) fail(`${entry.name} failed its size check.`);
-    }
-    if (output.length !== entry.size || crc32(output) !== entry.crc)
-      fail(`${entry.name} failed its checksum or size check.`);
-    files[entry.name] = output;
-  }
-  return files;
+  return readBoundedArchive(bytes, {
+    label: "Skin/project ZIP",
+    maxArchiveBytes: MAX_ZIP,
+    maxExpandedBytes: MAX_ZIP,
+    minFiles: REQUIRED_SLOTS.length + (project ? 2 : 1),
+    maxFiles: ALL_SLOTS.length + 3,
+    files: {
+      "skin.json": MAX_TEXT,
+      ...Object.fromEntries(
+        ALL_SLOTS.map((slot) => [`slots/${slot}.png`, MAX_IMAGE]),
+      ),
+      ...(project
+        ? {
+            "project.json": MAX_TEXT,
+            "wardrobe.json": MAX_WARDROBE_LIBRARY_BYTES,
+          }
+        : { "TEMPLATE.md": MAX_TEXT, "guides.png": MAX_IMAGE }),
+    },
+    required: project ? ["skin.json", "project.json"] : ["skin.json"],
+    paired: project ? [] : [["guides.png", "TEMPLATE.md"]],
+  });
 }
 function json(bytes: Uint8Array, name: string): unknown {
   try {
@@ -729,7 +613,9 @@ export async function decodeAttachment(
     URL.revokeObjectURL(url);
   }
 }
-async function encodePng(pixels: Uint8ClampedArray): Promise<Uint8Array> {
+export async function encodeAttachmentPng(
+  pixels: Uint8ClampedArray,
+): Promise<Uint8Array> {
   const canvas = document.createElement("canvas");
   canvas.width = 192;
   canvas.height = 256;
@@ -753,7 +639,7 @@ async function skinFiles(skin: SkinPack): Promise<Record<string, Uint8Array>> {
     "skin.json": strToU8(JSON.stringify(skin.metadata, null, 2)),
   };
   for (const slot of skin.metadata.slots)
-    files[`slots/${slot}.png`] = await encodePng(skin.images[slot]!);
+    files[`slots/${slot}.png`] = await encodeAttachmentPng(skin.images[slot]!);
   return files;
 }
 async function decodeSkin(
@@ -796,15 +682,48 @@ export async function importSkinPack(file: Blob): Promise<SkinPack> {
 }
 export async function exportProject(project: AuthoringProject): Promise<Blob> {
   const validated = validateProject(project, validateSkin(project.skin));
-  const { skin: _skin, ...metadata } = validated;
+  const { skin: _skin, wardrobeItems, ...metadata } = validated;
   const files = await skinFiles(validated.skin);
   files["project.json"] = strToU8(JSON.stringify(metadata, null, 2));
-  return new Blob([zipSync(files)], { type: "application/zip" });
+  if (wardrobeItems !== undefined) {
+    files["wardrobe.json"] = strToU8(
+      JSON.stringify({
+        format: "gathria-wardrobe-library",
+        version: 1,
+        items: wardrobeItems,
+      }),
+    );
+    if (files["wardrobe.json"].length > MAX_WARDROBE_LIBRARY_BYTES)
+      fail("Wardrobe library must be at most 4 MiB when serialized.");
+  }
+  const bytes = zipSync(files);
+  // The writer and reader share limits; never produce an unreopenable project.
+  readArchive(bytes, true);
+  return new Blob([bytes], { type: "application/zip" });
 }
 export async function importProject(file: Blob): Promise<AuthoringProject> {
-  const files = await openArchive(file, true),
-    skin = await decodeSkin(files);
-  return validateProject(json(files["project.json"], "project.json"), skin);
+  const files = await openArchive(file, true);
+  const metadata = object(
+    json(files["project.json"], "project.json"),
+    "project.json",
+  );
+  if (Object.hasOwn(metadata, "wardrobeItems"))
+    fail("Store the wardrobe library in wardrobe.json, not project.json.");
+  if (files["wardrobe.json"]) {
+    const library = object(
+      json(files["wardrobe.json"], "wardrobe.json"),
+      "wardrobe library",
+    );
+    allowedKeys(library, ["format", "version", "items"], "wardrobe library");
+    exact(
+      library.format,
+      "gathria-wardrobe-library",
+      "wardrobe library.format",
+    );
+    exact(library.version, 1, "wardrobe library.version");
+    metadata.wardrobeItems = validateWardrobeItems(library.items);
+  }
+  return validateProject(metadata, await decodeSkin(files));
 }
 export async function exportTemplate(skin: SkinPack): Promise<Blob> {
   const valid = validateSkin(skin),
@@ -838,7 +757,9 @@ export async function exportTemplate(skin: SkinPack): Promise<Blob> {
   ctx.fillText("GUIDE ONLY — DO NOT IMPORT", 2, 10);
   ctx.fillRect(93, 240, 7, 1);
   ctx.fillRect(96, 237, 1, 7);
-  files["guides.png"] = await encodePng(ctx.getImageData(0, 0, 192, 256).data);
+  files["guides.png"] = await encodeAttachmentPng(
+    ctx.getImageData(0, 0, 192, 256).data,
+  );
   files["TEMPLATE.md"] = strToU8(
     `# ${valid.metadata.name} — registered skin template\n\nEvery slots/*.png is a full 192×256 transparent canvas at native scale. Do not crop or resize it. guides.png is an instruction overlay, never a renderable slot; do not bake markers into artwork. The common foot anchor is (96,240). skin.json stores each source shoulder/elbow/wrist and hip/knee/ankle, offsets, mesh settings, provenance, and jaw registration.\n\nReplace artwork while preserving joint locations and a small overlap around joints. Upper/lower limbs own their own clothing only; torso and hips must remain filled beneath moving arms. Keep all three full-head expressions aligned, including ears, chin, hair and neck. Keep optional garment/back-hair separate from hands and limbs. Use binary alpha, nearest-neighbor pixels, and a transparent background. Standard skin import rejects partial alpha; Studio slot replacement offers explicit threshold conversion at alpha 128.\n\nThe 15 required slots are ${REQUIRED_SLOTS.join(", ")}. Optional slots: back-hair, garment. Remove an unused optional slot from skin.json and its PNG. Files must agree exactly. Do not rename paths or add files. This template archive may be imported with the two guide files present; they are ignored for rendering.\n\nSkin sourceAppearance is provenance/CharacterPack compatibility metadata; importing a skin uses these PNGs, never regenerates the appearance from that configuration. Record the actual creator, license and processing history in provenance when replacing art. Source: ${valid.metadata.provenance}\n`,
   );

@@ -5,7 +5,7 @@ import type {
   Facing,
 } from "../core/types";
 import type { Point } from "../core/pixel-art";
-import type { WardrobeRecipe } from "./wardrobe-types";
+import type { CustomWardrobeItem, WardrobeRecipe } from "./wardrobe-types";
 export type AnimationName = PlaybackAnimationName;
 export type { Point, Facing };
 export const FRAME_WIDTH = 192,
@@ -121,6 +121,8 @@ export interface AuthoringProject {
   skin: SkinPack;
   /** Optional, explicitly selected catalog composition; flat skin pixels remain authoritative. */
   wardrobe?: WardrobeRecipe;
+  /** Embedded registered clothing sources; projects never depend on a device catalog. */
+  wardrobeItems?: CustomWardrobeItem[];
   preview: { animation: AnimationName; facing: Facing; expression: Expression };
 }
 export interface RigInspection {

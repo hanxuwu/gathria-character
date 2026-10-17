@@ -8,8 +8,15 @@ import { createMotionLibrary } from "./definition";
 import { BindingCanvas } from "./BindingCanvas";
 import { MotionEditor } from "./MotionEditor";
 import { WardrobePanel } from "./WardrobePanel";
+import { WardrobeLibrary } from "./WardrobeLibrary";
 import { applyWardrobe, defaultWardrobeRecipe } from "./wardrobe";
-import type { WardrobeRecipe } from "./wardrobe-types";
+import {
+  addWardrobeItem,
+  createWardrobeItemTemplate,
+  removeWardrobeItem,
+} from "./wardrobe-items";
+import { exportWardrobeItem, importWardrobeItem } from "./wardrobe-item-io";
+import type { WardrobeItemGroup, WardrobeRecipe } from "./wardrobe-types";
 import { playbackFrame, playbackTick } from "./playback";
 import {
   beginEdit,
@@ -307,6 +314,7 @@ export function SkinStudio() {
   const skinInput = useRef<HTMLInputElement>(null);
   const projectInput = useRef<HTMLInputElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
+  const clothingInput = useRef<HTMLInputElement>(null);
   const { animation, facing, expression } = project.preview;
   // Validation guarantees the saved preview names an available action.
   const clip = project.motions.clips[animation]!;
@@ -471,10 +479,53 @@ export function SkinStudio() {
   function openWardrobe() {
     const knownIdentity =
       project.skin.metadata.id === "coral-afternoon" ||
-      project.skin.metadata.id.startsWith("wardrobe-waves-")
+      project.skin.metadata.id.startsWith("wardrobe-waves-") ||
+      project.skin.metadata.id.startsWith("wardrobe-v2-waves-")
         ? "waves"
         : "crop";
     changeWardrobe(defaultWardrobeRecipe(knownIdentity), "Open wardrobe");
+  }
+
+  async function saveItemTemplate(group: WardrobeItemGroup) {
+    if (!project.wardrobe) return;
+    await runTask("Preparing clothing template…", async () => {
+      const item = createWardrobeItemTemplate(
+        project.wardrobe!,
+        group,
+        project.wardrobeItems,
+      );
+      downloadBlob(await exportWardrobeItem(item), `${item.id}.wardrobe.zip`);
+      return `${item.name} template saved. Edit its artwork, masks and item details, then import the clothing ZIP.`;
+    });
+  }
+
+  async function saveClothing(id: string) {
+    const item = project.wardrobeItems?.find(
+      (candidate) => candidate.id === id,
+    );
+    if (!item) return;
+    await runTask("Saving clothing…", async () => {
+      downloadBlob(await exportWardrobeItem(item), `${item.id}.wardrobe.zip`);
+      return `${item.name} saved with its artwork, color masks and binding.`;
+    });
+  }
+
+  function removeClothing(id: string) {
+    try {
+      const next = removeWardrobeItem(project, id);
+      applyProject(next, "Remove clothing item");
+      setNotice({
+        text: "Unused clothing removed from this project. Undo restores it.",
+      });
+    } catch (error) {
+      setNotice({
+        text:
+          error instanceof Error
+            ? error.message
+            : "The item could not be removed.",
+        error: true,
+      });
+    }
   }
 
   async function runTask(label: string, task: () => Promise<string>) {
@@ -745,6 +796,7 @@ export function SkinStudio() {
           </label>
           <WardrobePanel
             recipe={project.wardrobe}
+            items={project.wardrobeItems}
             detached={
               !project.wardrobe &&
               project.skin.metadata.id.startsWith("wardrobe-")
@@ -752,6 +804,15 @@ export function SkinStudio() {
             disabled={busy !== null || !!history.transaction}
             onOpen={openWardrobe}
             onChange={changeWardrobe}
+          />
+          <WardrobeLibrary
+            items={project.wardrobeItems ?? []}
+            recipe={project.wardrobe}
+            disabled={busy !== null || !!history.transaction}
+            onImport={() => clothingInput.current?.click()}
+            onTemplate={(group) => void saveItemTemplate(group)}
+            onExport={(id) => void saveClothing(id)}
+            onRemove={removeClothing}
           />
           <p className="skin-help">
             Skin packs contain transparent artwork and bindings. Swapping a skin
@@ -1238,9 +1299,9 @@ export function SkinStudio() {
           <h2 id="save-title">Save your work</h2>
           <p>
             <strong>Project</strong> keeps the skeleton, motions, artwork,
-            bindings, wardrobe choices and preview settings.{" "}
-            <strong>CharacterPack</strong> contains baked frames for independent
-            playback.
+            bindings, wardrobe choices and preview settings. Imported clothing
+            is included too. <strong>CharacterPack</strong> contains baked
+            frames for independent playback.
           </p>
           <p className="skin-help">
             Imported artwork is reproduced from the saved project. Its
@@ -1291,6 +1352,28 @@ export function SkinStudio() {
         API or Spine runtime
       </footer>
 
+      <input
+        hidden
+        ref={clothingInput}
+        type="file"
+        accept=".zip,application/zip"
+        aria-label="Import clothing ZIP file"
+        onChange={(event) => {
+          const file = event.currentTarget.files?.[0];
+          event.currentTarget.value = "";
+          if (file)
+            void runTask("Importing clothing…", async () => {
+              const item = await importWardrobeItem(file);
+              const next = addWardrobeItem(project, item);
+              applyProject(
+                next,
+                "Import clothing item",
+                structuredClone(next.skin.metadata.bindings),
+              );
+              return `${item.name} added and selected. Your identity, skeleton and motions are unchanged. Save the project to keep this item.`;
+            });
+        }}
+      />
       <input
         hidden
         ref={skinInput}
