@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { WARDROBE_OPTIONS } from "./wardrobe";
-import type { WardrobeRecipe } from "./wardrobe-types";
+import { wardrobeOptions } from "./wardrobe-items";
+import type { CustomWardrobeItem, WardrobeRecipe } from "./wardrobe-types";
 import "./wardrobe-panel.css";
 
 type ColorKey = keyof WardrobeRecipe["colors"];
@@ -93,17 +93,20 @@ function WardrobeColors({
 
 export function WardrobePanel({
   recipe,
+  items = [],
   detached,
   disabled = false,
   onOpen,
   onChange,
 }: {
   recipe?: WardrobeRecipe;
+  items?: CustomWardrobeItem[];
   detached: boolean;
   disabled?: boolean;
   onOpen: () => void;
   onChange: (recipe: WardrobeRecipe, label: string) => void;
 }) {
+  const options = wardrobeOptions(items);
   return (
     <section className="wardrobe-panel" aria-labelledby="wardrobe-title">
       <div className="wardrobe-heading">
@@ -132,10 +135,10 @@ export function WardrobePanel({
           </p>
           {(
             [
-              ["identity", "Identity", WARDROBE_OPTIONS.identities],
-              ["top", "Top", WARDROBE_OPTIONS.tops],
-              ["bottom", "Bottom", WARDROBE_OPTIONS.bottoms],
-              ["shoes", "Shoes", WARDROBE_OPTIONS.shoes],
+              ["identity", "Identity", options.identities],
+              ["top", "Top", options.tops],
+              ["bottom", "Bottom", options.bottoms],
+              ["shoes", "Shoes", options.shoes],
             ] as const
           ).map(([key, label, options]) => (
             <label className="wardrobe-choice" key={key}>
@@ -146,7 +149,15 @@ export function WardrobePanel({
                 disabled={disabled}
                 onChange={(event) =>
                   onChange(
-                    { ...recipe, [key]: event.currentTarget.value },
+                    {
+                      ...recipe,
+                      version:
+                        recipe.version === 2 ||
+                        event.currentTarget.value.startsWith("custom-")
+                          ? 2
+                          : 1,
+                      [key]: event.currentTarget.value,
+                    } as WardrobeRecipe,
                     `Change wardrobe ${label.toLowerCase()}`,
                   )
                 }
