@@ -4,6 +4,12 @@ export default defineConfig({
   plugins: [react()],
   test: { include: ["src/**/*.test.ts"], environment: "node" },
   build: {
-    rollupOptions: { input: { editor: "index.html", player: "player.html" } },
+    rollupOptions: {
+      input: {
+        editor: "index.html",
+        player: "player.html",
+        rigLab: "rig-lab.html",
+      },
+    },
   },
 });
