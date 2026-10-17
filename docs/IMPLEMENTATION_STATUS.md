@@ -1,6 +1,21 @@
 # Implementation status
 
-**Current batch: generated character pipeline trial.** Starts from PR #6's
+**Current batch: Maple action forearms.** Continues draft PR #7 from `2b10770`.
+A generated closed-hand pair is registered under the original cuffs and selected
+only for run/jump through opt-in skin/top-item v2. The editor, garment library,
+source/project ZIPs and baking support the paired alternatives; old v1 files and
+idle/walk retain their outputs. Two knee parameter sweeps found no clear visual
+improvement, so the original mesh/joints remain. See
+[review](MAPLE_ACTION_POSES_REVIEW.md) and
+[actual exports and reusable files](maple-action-poses/README.md).
+This follow-up passed 437 unit tests, all 50 Chromium E2E tests and TypeScript/build;
+18 actual-export ZIPs, 61 PNGs and 24 GIFs were decoded and checked. The earlier
+concurrent-load unit timeout and successful isolated rerun are recorded in
+[verification-results.json](maple-action-poses/verification-results.json).
+The PR remains draft/unmerged; user visual acceptance and production integration
+remain unverified.
+
+**Historical batch: generated character pipeline trial.** Starts from PR #6's
 merged `main` at `51c708a`, on `feat/generated-character-pipeline`. Newly generated
 Maple artwork is registered into 15 slots, animated with the unchanged four-action
 rig, exported through Skin Studio and played independently. New clothing is also
@@ -11,7 +26,8 @@ duplicate torso sleeves, pelvis/leg ownership and cuff material masks.
 [Current-session execution record](generated-traveler/verification-results.json).
 No runtime source or original artwork is changed. New identity registration in
 the wardrobe, alternate running hands and better deep-bend texture handling
-remain future work. This batch is for draft review, without merge/deployment.
+were future work at that checkpoint. The follow-up above implements alternate
+hands; original evidence remains retained. PR #7 stays draft/unmerged.
 
 **Historical batch: portable clothing items.** Continuing merged `main` at
 `ffad05d82bad2d2f481488d6496df5cfb47a3fee` on `feat/custom-wardrobe-items`.

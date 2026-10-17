@@ -1,4 +1,5 @@
 import { Unzlib } from "fflate";
+import { validateActionForearms } from "./action-forearms";
 import { WARDROBE_ASSETS } from "./wardrobe-assets.generated";
 import {
   applyWardrobe,
@@ -8,6 +9,7 @@ import {
 import {
   FRAME_HEIGHT,
   FRAME_WIDTH,
+  ACTION_FOREARM_SLOTS,
   RIG_ID,
   type AuthoringProject,
   type JointTriple,
@@ -165,14 +167,18 @@ export function decodeWardrobeItemPart(data: string): Uint8Array {
   return output;
 }
 
-function part(value: unknown, group: WardrobeItemGroup): EncodedWardrobePart {
+function part(
+  value: unknown,
+  group: WardrobeItemGroup,
+  allowed: readonly Slot[],
+): EncodedWardrobePart {
   const raw = object(value, "item part");
   fields(
     raw,
     ["slot", "data", "palette", "preserveWarmSkin", "sourceLayerId"],
     "item part",
   );
-  if (!(WARDROBE_ITEM_SLOTS[group] as readonly unknown[]).includes(raw.slot))
+  if (!(allowed as readonly unknown[]).includes(raw.slot))
     throw Error(`A ${group} item cannot own slot ${String(raw.slot)}.`);
   if (typeof raw.preserveWarmSkin !== "boolean")
     throw Error("preserveWarmSkin must be boolean.");
@@ -241,6 +247,16 @@ export function validateWardrobeItem(value: unknown): CustomWardrobeItem {
   if (!["top", "bottom", "shoes"].includes(String(raw.group)))
     throw Error("Wardrobe item group must be top, bottom or shoes.");
   const group = raw.group as WardrobeItemGroup;
+  if (
+    raw.format !== "gathria-wardrobe-item" ||
+    (raw.version !== 1 && raw.version !== 2) ||
+    raw.rigId !== RIG_ID
+  )
+    throw Error("Unsupported wardrobe item format, version or rig family.");
+  if (raw.version === 2 && group !== "top")
+    throw Error(
+      "Wardrobe item version 2 is reserved for tops with action forearms.",
+    );
   fields(
     raw,
     [
@@ -253,28 +269,26 @@ export function validateWardrobeItem(value: unknown): CustomWardrobeItem {
       "group",
       "parts",
       group === "shoes" ? "ankles" : "chains",
+      ...(raw.version === 2 ? ["actionForearms"] : []),
     ],
     "wardrobe item",
   );
-  if (
-    raw.format !== "gathria-wardrobe-item" ||
-    raw.version !== 1 ||
-    raw.rigId !== RIG_ID
-  )
-    throw Error("Unsupported wardrobe item format, version or rig family.");
   const id = text(raw.id, "item.id", 32);
   if (!/^custom-[a-z0-9][a-z0-9-]*$/.test(id))
     throw Error(
       "Item ID must start custom- and contain lowercase letters, digits or hyphens.",
     );
-  const expected = WARDROBE_ITEM_SLOTS[group];
+  const expected: readonly Slot[] =
+    raw.version === 2
+      ? [...WARDROBE_ITEM_SLOTS.top, ...ACTION_FOREARM_SLOTS]
+      : WARDROBE_ITEM_SLOTS[group];
   if (
     !Array.isArray(raw.parts) ||
     raw.parts.length < expected.length - (group === "bottom" ? 1 : 0) ||
     raw.parts.length > expected.length
   )
     throw Error("Wardrobe item must contain its complete owned slot group.");
-  const parts = raw.parts.map((value) => part(value, group));
+  const parts = raw.parts.map((value) => part(value, group, expected));
   const slots = new Set(parts.map((value) => value.slot));
   if (
     slots.size !== parts.length ||
@@ -314,23 +328,29 @@ export function validateWardrobeItem(value: unknown): CustomWardrobeItem {
           "Shoe item needs a visible sole below its registered ankle.",
         );
     }
-    return { ...base, group, ankles };
+    return { ...base, version: 1, group, ankles };
   }
   const rawChains = object(raw.chains, "item.chains");
   if (group === "top") {
     fields(rawChains, ["nearArm", "farArm"], "item.chains");
-    return {
-      ...base,
-      group,
-      chains: {
-        nearArm: chain(rawChains.nearArm, "nearArm"),
-        farArm: chain(rawChains.farArm, "farArm"),
-      },
+    const chains = {
+      nearArm: chain(rawChains.nearArm, "nearArm"),
+      farArm: chain(rawChains.farArm, "farArm"),
     };
+    return raw.version === 2
+      ? {
+          ...base,
+          version: 2,
+          group,
+          chains,
+          actionForearms: validateActionForearms(raw.actionForearms),
+        }
+      : { ...base, version: 1, group, chains };
   }
   fields(rawChains, ["nearLeg", "farLeg"], "item.chains");
   return {
     ...base,
+    version: 1,
     group,
     chains: {
       nearLeg: chain(rawChains.nearLeg, "nearLeg"),

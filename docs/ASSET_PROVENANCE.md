@@ -1,5 +1,22 @@
 # Artwork provenance and reuse
 
+## Maple action forearms
+
+Two additional OpenAI image-generation calls on 2026-10-17 produced a rejected
+arm/hand draft and the selected isolated closed-fist pair. Exact prompts and
+untouched sources are retained at
+[`artwork/maple-action-poses/source/`](../artwork/maple-action-poses/source/).
+Only the selected hand skin contributes new artwork. Offline preparation removes
+the old hand by its semantic ownership mask in a copy of each forearm, registers
+the new hand underneath the original cuff, and preserves all original sleeve
+pixels and color masks. Original base attachments are not overwritten.
+
+The new skin/top-item v2 explicitly selects these alternate forearms for run and
+jump. Existing v1 files and idle/walk remain reproducible. The same skeleton,
+action timing and original body artwork are reused. Sources, hashes, technical
+registration, reusable item masks and actual exports accompany the
+[review](MAPLE_ACTION_POSES_REVIEW.md). No image API is called at runtime.
+
 ## Generated Maple shared-rig trial
 
 This batch makes three OpenAI image-generation calls on 2026-10-17 UTC: an

@@ -1,5 +1,10 @@
 # Generated character through the shared rig
 
+This is the historical first trial. The
+[action-forearm follow-up](MAPLE_ACTION_POSES_REVIEW.md) adds opt-in running/jump
+hands and updates the runtime contract; the original source/evidence and this
+trial's recorded checks remain preserved.
+
 Starting from merged main `51c708a`, this trial creates a genuinely new character
 and takes it through source preparation, Skin Studio, four shared actions,
 portable exports and a separate player. It uses branch
@@ -23,12 +28,12 @@ specific runtime code.
 
 ## Findings and changes
 
-| Actual defect | Cause | Bounded repair |
-| --- | --- | --- |
-| A second cuff remains at the waist when the arm rises | Model drew sleeves into the torso despite also drawing separate arms | Generate a complete sleeveless torso backplate and keep arm pixels solely in arm slots |
-| Shorts-shaped rims sit above moving trousers | Generated pelvis tile contains rigid trouser ends, with duplicate leg opening rims in the thigh | Keep a tapered pelvis bridge; remove rigid short-leg cuffs and opening rims above the hip; fit waist beneath sweater hem |
-| Upper wrist changes with sweater color | First mask used a generic horizontal wrist cutoff, missing the curved cuff boundary | Measure separate near/far hand and cuff polygons; save explicit skin/fixed-trim ownership |
-| Orange ring stays visible under blue/green sleeves | The first cuff polygon also included the orange fabric fold above the ribbing | Within that measured cuff region, assign the orange fold to upper-cloth material; preserve cream trim and skin |
+| Actual defect                                         | Cause                                                                                           | Bounded repair                                                                                                           |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| A second cuff remains at the waist when the arm rises | Model drew sleeves into the torso despite also drawing separate arms                            | Generate a complete sleeveless torso backplate and keep arm pixels solely in arm slots                                   |
+| Shorts-shaped rims sit above moving trousers          | Generated pelvis tile contains rigid trouser ends, with duplicate leg opening rims in the thigh | Keep a tapered pelvis bridge; remove rigid short-leg cuffs and opening rims above the hip; fit waist beneath sweater hem |
+| Upper wrist changes with sweater color                | First mask used a generic horizontal wrist cutoff, missing the curved cuff boundary             | Measure separate near/far hand and cuff polygons; save explicit skin/fixed-trim ownership                                |
+| Orange ring stays visible under blue/green sleeves    | The first cuff polygon also included the orange fabric fold above the ribbing                   | Within that measured cuff region, assign the orange fold to upper-cloth material; preserve cream trim and skin           |
 
 The last repair changes item masks, not the base skin's visible hand artwork.
 The new torso has somewhat stronger orange saturation than the sleeves; the

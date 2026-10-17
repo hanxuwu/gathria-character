@@ -1,0 +1,554 @@
+{
+  "phase": "action-forearms",
+  "source": {
+    "path": "artwork/maple-action-poses/source/closed-fists.png",
+    "sha256": "c5987998e66b41f537fd31d911b35ddbbc95d587c4340c2ed8bd5a94d0d6c749"
+  },
+  "baseline": {
+    "traveler.rig.zip": "37fd6c4baf9ba1b9ac09eed972cfc10270ad4f622a15c4e8736efb2913b965fe",
+    "traveler.skin.zip": "2de4653416c1595c7bf3153cfbe589609119ad25f097ec1ee6981fc3ca5fd6c6",
+    "traveler-top.wardrobe.zip": "c10fa05a5f15d15f161a498480e1e68a9366f5f85d2708790b51da116355f545",
+    "traveler-bottom.wardrobe.zip": "f03f30fc22dfcd1c13a4957e77a1e08383bc2b518d3e13ed11213cd06b2fd662",
+    "traveler-shoes.wardrobe.zip": "7acfb0b7e47f368bed705ee4959692dcc678a9984b02875cc50ff0725ca7bbbe",
+    "registration.json": "68357376f64283a6a2e578898eba2810647a21b8aed18a359022b61583645022"
+  },
+  "parts": [
+    {
+      "slot": "near-forearm-active",
+      "source": "artwork/maple-action-poses/source/closed-fists.png",
+      "region": [
+        350,
+        240,
+        760,
+        680
+      ],
+      "sourceBounds": [
+        420,
+        293,
+        696,
+        616
+      ],
+      "target": [
+        59,
+        159,
+        16,
+        19
+      ],
+      "alphaThreshold": 192,
+      "sampling": "nearest pixel centres",
+      "partialAlphaPixels": 69607,
+      "foregroundPixels": 65045,
+      "largestComponentPixels": 65045,
+      "removedHandPixels": 237,
+      "preservedSleevePixels": 286,
+      "overlapPixels": 10,
+      "visibleHandPixels": 212,
+      "rgbaSha256": "ac68645df094850f83eee0003254cc0474fa46e4574183d70ff8eeac4a935592",
+      "materialSha256": "f35dc4fa3654f9f6bcc139897c8ff6d6f64e962d95e1a055951f9513f7874e63"
+    },
+    {
+      "slot": "far-forearm-active",
+      "source": "artwork/maple-action-poses/source/closed-fists.png",
+      "region": [
+        1000,
+        240,
+        1410,
+        680
+      ],
+      "sourceBounds": [
+        1078,
+        293,
+        1354,
+        616
+      ],
+      "target": [
+        129,
+        160,
+        14,
+        18
+      ],
+      "alphaThreshold": 192,
+      "sampling": "nearest pixel centres",
+      "partialAlphaPixels": 70618,
+      "foregroundPixels": 65137,
+      "largestComponentPixels": 65137,
+      "removedHandPixels": 200,
+      "preservedSleevePixels": 273,
+      "overlapPixels": 15,
+      "visibleHandPixels": 169,
+      "rgbaSha256": "dbbfe29fd572e7172f865624c5ea5293d9f9a1a3287e108b534679fc9b5b9499",
+      "materialSha256": "dffa533a18d3ea48d6738f4361768bb4c73c8562b93da3fec5c39f170d3ba50c"
+    }
+  ],
+  "originalImageHashes": {
+    "head-neutral": "624a1239ae56555380f26968449d3f14158c7ce52e8d3c270a64b23713eb670a",
+    "head-gentle": "5664079e2f890f230269c60473fb814d3cc93d4f274043d0c3e1f874bf51052c",
+    "head-joyful": "24de5781d3bc1539bc94fb4ee6b0b0f44f115e05960cad97c88c60b8da44dc4e",
+    "torso": "f8854196ed91e5faff526080ce02b332e3bd053518b51fb5db3d5973c9d630e1",
+    "hips": "44d45eb841612d58f4534dea03c94cf9e031dab5e5cff9be34cc0c7c33b4e260",
+    "near-upper-arm": "0e28b85552121949c29187a0a123aa86dc8348b91286bad65e596531316cac92",
+    "near-forearm": "a179cc4572586a64eda7b095d40ba48633b82b705fa1a2439fb252309b46b379",
+    "near-thigh": "c307f56a08eb87d6e169bb8d2a81b775951b2ab643c1e8e9cb13e1be2bed2bc3",
+    "near-shin": "9d3ae9e3ff0c1c12bf84ba92925ec78c48a23289813ce0fcdfe03738581c84b1",
+    "far-upper-arm": "07ac00a4fa5b5729a4604ea868f800c08aa453516a0dbeecae73defef12e8565",
+    "far-forearm": "9941e57e8c0ee4ceb3d92150728bc2bcff67fa41f25116af9b565e3bf4a7c08a",
+    "far-thigh": "e3128008b8c7ad072e057d87a2cb067b44c3bce70a5b6d2d15b4efe4fe6fedef",
+    "far-shin": "1871be51905e6f0d06646cf143d4e62189ccb49bc28bcd46ea840a1bf5f73843",
+    "near-shoe": "3cdb0abc94a5a8ef12cf737e9654993329424933943d3d7b5aa841abb3df4b5d",
+    "far-shoe": "823271717e8539d37e034056ecbd10416ca79477e98679b7b879d93573eae455"
+  },
+  "unchanged": {
+    "bindings": "0ec0a1438ad2f9e370703083c524a08872b462e36f3a93081c79511c9688f0bd",
+    "rig": "3f6348d98de86eff4c29f498605ff9e9504e87926b05c5b62efb5f7b1d6c8545",
+    "motions": "b9756e8abbcde1cac05bd45b3738e32003c81c4919f2399a1c07060fad4678f5"
+  },
+  "frameChecks": [
+    {
+      "action": "idle",
+      "key": 0,
+      "beforeSha256": "e1610ab28eb29c47cf82bbfcce27b2a74ee34d070f56be90b43a6d745c8bd60e",
+      "afterSha256": "e1610ab28eb29c47cf82bbfcce27b2a74ee34d070f56be90b43a6d745c8bd60e",
+      "changed": false
+    },
+    {
+      "action": "idle",
+      "key": 1,
+      "beforeSha256": "46f05e82a0a5cac0f4ad95b3abc1fbe63e3b5a53afecc5b2dceb79c71e44cdbf",
+      "afterSha256": "46f05e82a0a5cac0f4ad95b3abc1fbe63e3b5a53afecc5b2dceb79c71e44cdbf",
+      "changed": false
+    },
+    {
+      "action": "idle",
+      "key": 2,
+      "beforeSha256": "4b721ac411987d5c4484df54853e06cf106c636c494d6cd54d00d98814d7f326",
+      "afterSha256": "4b721ac411987d5c4484df54853e06cf106c636c494d6cd54d00d98814d7f326",
+      "changed": false
+    },
+    {
+      "action": "idle",
+      "key": 3,
+      "beforeSha256": "cca68f8e5b0998d5ab12f423c20c824f58e5e8fd7787c5d10a24b3d99eeebe91",
+      "afterSha256": "cca68f8e5b0998d5ab12f423c20c824f58e5e8fd7787c5d10a24b3d99eeebe91",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 0,
+      "beforeSha256": "1b8c56c27196b1c7c29c7c77b108ac816f48b024cb2f747bf122733fefad1a17",
+      "afterSha256": "1b8c56c27196b1c7c29c7c77b108ac816f48b024cb2f747bf122733fefad1a17",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 1,
+      "beforeSha256": "1883f11eab3301aeb480c0289dbd9a3c143f95b5beffd888168b89c9b4be5a5c",
+      "afterSha256": "1883f11eab3301aeb480c0289dbd9a3c143f95b5beffd888168b89c9b4be5a5c",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 2,
+      "beforeSha256": "45125d023d41ac07e8488bff98141faca67bf550bf6f616d8352dd08f65f7f21",
+      "afterSha256": "45125d023d41ac07e8488bff98141faca67bf550bf6f616d8352dd08f65f7f21",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 3,
+      "beforeSha256": "0234452cdba9ff932ccf1146ee1cd14f9af21d1365ae179208baa70e01903e7b",
+      "afterSha256": "0234452cdba9ff932ccf1146ee1cd14f9af21d1365ae179208baa70e01903e7b",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 4,
+      "beforeSha256": "b72075c23cb07cbf1ea30ab5a43e61ae3cb22d54cd02f9be2f286e1f605789ad",
+      "afterSha256": "b72075c23cb07cbf1ea30ab5a43e61ae3cb22d54cd02f9be2f286e1f605789ad",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 5,
+      "beforeSha256": "8c850596c44be66db42bd4c0d498bb9fe616830edee012ef030312a521f2f3fc",
+      "afterSha256": "8c850596c44be66db42bd4c0d498bb9fe616830edee012ef030312a521f2f3fc",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 6,
+      "beforeSha256": "f42061aa074d3395fd722d684a8194eb4fa32793f3f898ea183c3d3a6d391715",
+      "afterSha256": "f42061aa074d3395fd722d684a8194eb4fa32793f3f898ea183c3d3a6d391715",
+      "changed": false
+    },
+    {
+      "action": "walk",
+      "key": 7,
+      "beforeSha256": "2162d40e00fdc5e8b5b894cbeee1269601295cad1742e55420172ea0758c81bb",
+      "afterSha256": "2162d40e00fdc5e8b5b894cbeee1269601295cad1742e55420172ea0758c81bb",
+      "changed": false
+    },
+    {
+      "action": "run",
+      "key": 0,
+      "beforeSha256": "c2ae7e0bce3552bd1dfb00d80dbe25807ce96f6f7e4e06f8f6c51cc40e4d7c2e",
+      "afterSha256": "d1d6235132726e0adf31f02a557c4c6f6ab4ec126f8fb2ba3eca747e7a43fa97",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 1,
+      "beforeSha256": "8179e404cc34e2e27ac86a12e0775b547596337b9d718da2a4fb8d2677813b01",
+      "afterSha256": "c4f4267e4e25cec098e22d3f4e56b09447bd6dcf9a4af5ebfcc74211b52cc002",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 2,
+      "beforeSha256": "9cb3a200aabdb2cd9256cfbb9c6e3d97b13e238d9fb8ce0f61f9fc623086e291",
+      "afterSha256": "983ea643922866a435a1799d340c848ab446e9f24b5538b1b2ef402b0eef7b67",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 3,
+      "beforeSha256": "81651c0df4c1a4d48e770721ba1d4e0121af88019f9e767c8f242dc6b3dff3b9",
+      "afterSha256": "ed6d1862b3e36dd879907e448b3fb2660bed7ca6dc20bdef96e78686da200b70",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 4,
+      "beforeSha256": "5e1afde76f2dd77f9fec14220fc4f525677c27fc63fcaffc33d620d47508faef",
+      "afterSha256": "42fb629171606faf9083d21a63c1fd0056c2f9a90939a1e9032f3e777613086a",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 5,
+      "beforeSha256": "d9a6f94d36e81ab55294b096dc11240f24da73a3cb8c4d4729c19519a90e7a75",
+      "afterSha256": "55131d77d2c610007d5084b46b81799b97dee72adaaba3a3404cb5c263febb46",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 6,
+      "beforeSha256": "234f79e448e0e28d4a6d031b45acd7f0f2815664bd831242bc91cddf876f313b",
+      "afterSha256": "2830190d6cae886e49cee20a52f615d7dd468376594dc5c369c0688bdf9a7e0d",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 7,
+      "beforeSha256": "5eefb5b33267d91959b711fd2015abe94d173a02554eeaf69dc2e84ff41182dc",
+      "afterSha256": "36eeba0c2710dbdba74714aa8fc0cca025d775d1eb9f4a2e2d184e827c4f59fa",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 8,
+      "beforeSha256": "8d0fe405d603f3da17590ba58806c54697d81008e16a7509a992bbf5ca13b657",
+      "afterSha256": "79148ad521fb57a0e50a4b6f4a23368566723880a84b64973e6fea167e8d5c88",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 9,
+      "beforeSha256": "aa93a97d8e708b9324e9e5cf90d6921e7790088122e021b6d4a16359ed4b2109",
+      "afterSha256": "0bd825b40ec38a1b5cf5575742d2424266982db0854103beeefc377da58f13f5",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 10,
+      "beforeSha256": "1e555a6a491dc874888747841357ade7c2f56b7d5e5304343dc5b531f0dd4746",
+      "afterSha256": "f90874b17a33902397f92117edf0a22334368b3774d8d8413cf4112f25aa7520",
+      "changed": true
+    },
+    {
+      "action": "run",
+      "key": 11,
+      "beforeSha256": "b7650a0b7d276ed40c68ed16e3270727602368f6392d405e2272d0a1da2af6ff",
+      "afterSha256": "6d4da5f2cc5df312cfdba14c975792ba84d3b925113aa6cb8402eb91ad1cd781",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 0,
+      "beforeSha256": "e1610ab28eb29c47cf82bbfcce27b2a74ee34d070f56be90b43a6d745c8bd60e",
+      "afterSha256": "bb1a3a9b75615aa83e5ddd12362b4dede431e0325bfe2566884a9d78eed13a81",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 1,
+      "beforeSha256": "d5aa759cbc8ba6e49ecabfbb77d0efc6c7f5a83b05fc04e79b6e46da61ddf706",
+      "afterSha256": "f645638ecc0086aea1e179fe4891f535ce29d01de386db898ce2969ccc7fb46a",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 2,
+      "beforeSha256": "d2afb43b98b743007418d583392a3343b38076d486d9819b7d405be564b8c1e2",
+      "afterSha256": "767c7a07e49e28e27e3f0c092e93f0af3bdde37936878d1deded553d074fd966",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 3,
+      "beforeSha256": "8af32af2acf2694cda14cb9037344a68a7ab56e3ccf9a309ab35153e5f5e2603",
+      "afterSha256": "4fff7c4d2d05b72a21d3847230a32ede5f8fc40b1dfdb3099656dcf9e241734e",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 4,
+      "beforeSha256": "e353d0815f40ea3e92fc0af854d54785d50baf2fb38980aab4c8228dc366433b",
+      "afterSha256": "94727bf5220d17bbad9de79a9e2dc944434f433dcc4e9ffa7cec647e75c5d583",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 5,
+      "beforeSha256": "c267520c41702bbffc11457c3fbe8cbe1ce6ba20285f5d2b7f70d1b4d8ab5574",
+      "afterSha256": "2decf8c4bfdbc71e68bc86f902da3b8ae856dc7fbdba97adad3ff08cc6b738df",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 6,
+      "beforeSha256": "77caa1e2f29bf61aa233bc0beca0b083306e423c71c1660ba500801fb3883605",
+      "afterSha256": "a20d033b159d41384d13150aa243da6bf4db8f0e1eed7569b3b2ea27aca522af",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 7,
+      "beforeSha256": "31fed4195f52256fe627a740e4e04bb420fe02b6147033aa60916d2ca73d9b3f",
+      "afterSha256": "aa1631710bcadb1f69efbc14d49f950a9cb161067474d873496bd908686e0c7c",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 8,
+      "beforeSha256": "5948ba25483dd8ff83489f0a5402fed001688ddedfa0328b37e80d3c66945efc",
+      "afterSha256": "15eb15117e368921941913fd822dfa615386f07d0795bb7dca9734ea0209b0e2",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 9,
+      "beforeSha256": "ac5b0ca1f7c9508191e313e10cd983fa38e9e2113fb459cdf7f7deedd33a8bdb",
+      "afterSha256": "a37bb6b681d83d32646711cbee93e7cb938a467b3261ef251bfe99914a998718",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 10,
+      "beforeSha256": "cc8f8942b3a0f4144e505f7bc742b2c5b29d0a7f2be9cdc662ac4a9133c97df3",
+      "afterSha256": "51ffbf1f95d1b535a2cb4d703684ac51e8031bedac58015be5353194e2c11956",
+      "changed": true
+    },
+    {
+      "action": "jump",
+      "key": 11,
+      "beforeSha256": "e1610ab28eb29c47cf82bbfcce27b2a74ee34d070f56be90b43a6d745c8bd60e",
+      "afterSha256": "bb1a3a9b75615aa83e5ddd12362b4dede431e0325bfe2566884a9d78eed13a81",
+      "changed": true
+    }
+  ],
+  "metadata": {
+    "format": "gathria-skin-pack",
+    "version": 2,
+    "id": "maple-traveler-action-poses",
+    "name": "Maple traveler",
+    "rigId": "gathria-v6-humanoid-1",
+    "slots": [
+      "head-neutral",
+      "head-gentle",
+      "head-joyful",
+      "torso",
+      "hips",
+      "near-upper-arm",
+      "near-forearm",
+      "near-thigh",
+      "near-shin",
+      "far-upper-arm",
+      "far-forearm",
+      "far-thigh",
+      "far-shin",
+      "near-shoe",
+      "far-shoe",
+      "near-forearm-active",
+      "far-forearm-active"
+    ],
+    "sourceAppearance": {
+      "schemaVersion": 2,
+      "name": "Denim daytrip",
+      "skinTone": "#E5AE87",
+      "hairstyle": "crop",
+      "hairColor": "#43312E",
+      "upperColor": "#527D9A",
+      "lowerColor": "#A37B56",
+      "shoeColor": "#594435",
+      "faceVariant": "oval",
+      "upperClothing": "jacket",
+      "lowerClothing": "trousers",
+      "expression": "gentle",
+      "hairAccessory": "none",
+      "artworkVersion": 6,
+      "motionVersion": 3,
+      "preview": {
+        "animation": "idle",
+        "facing": "right"
+      }
+    },
+    "provenance": "Original Maple character and isolated parts created with OpenAI image generation during development, 2026-10-17. Technical registration: scripts/prepare-generated-traveler.mjs; source artwork/prompts retained at artwork/generated-traveler/source. Phase final. Shared project-owned skeleton/motions; no Spine/runtime model calls. See docs/GENERATED_CHARACTER_REVIEW.md. SourceAppearance is only legacy playback metadata, not this identity.\nClosed-hand action attachments generated with OpenAI image generation during development, 2026-10-17 UTC. Raw source/prompts retained at artwork/maple-action-poses/source. scripts/prepare-maple-action-poses.mjs thresholds alpha at 192, isolates each source component, nearest-samples two registered hands, then overlays the unchanged original non-skin sleeve/cuff ownership. Only run/jump use the alternatives; all fifteen original slots, bindings, rig and motion data remain unchanged. See docs/MAPLE_ACTION_POSES_REVIEW.md.",
+    "bindings": {
+      "chains": {
+        "nearArm": [
+          [
+            77,
+            122
+          ],
+          [
+            67,
+            150
+          ],
+          [
+            65,
+            172
+          ]
+        ],
+        "farArm": [
+          [
+            126,
+            123
+          ],
+          [
+            131,
+            150
+          ],
+          [
+            136,
+            172
+          ]
+        ],
+        "nearLeg": [
+          [
+            86,
+            172
+          ],
+          [
+            79,
+            198
+          ],
+          [
+            74,
+            227
+          ]
+        ],
+        "farLeg": [
+          [
+            110,
+            172
+          ],
+          [
+            110,
+            198
+          ],
+          [
+            110,
+            227
+          ]
+        ]
+      },
+      "offsets": {},
+      "mesh": {
+        "blendRadius": 6,
+        "volume": 0.65,
+        "preserveAnkleOverlap": true
+      },
+      "jaw": {
+        "center": [
+          114,
+          98
+        ],
+        "start": 91,
+        "scale": 1,
+        "length": 1
+      },
+      "hairSway": 0,
+      "garmentSway": 0
+    },
+    "actionForearms": {
+      "run": {
+        "near-forearm": "near-forearm-active",
+        "far-forearm": "far-forearm-active"
+      },
+      "jump": {
+        "near-forearm": "near-forearm-active",
+        "far-forearm": "far-forearm-active"
+      }
+    }
+  },
+  "files": {
+    "slots/near-forearm-active.png": "7ae246f9ca703685731620c466fc7a20ee49bcd2202910b04a8f37481534ecde",
+    "slots/far-forearm-active.png": "1f58c2d88293c736a3f37036292aac45b2664f26fd33f1062ccff3f3f2d794e9",
+    "traveler.rig.zip": "251595446ea437871289455971b5823ba859eaea445e016706939b91e58ce9d6",
+    "traveler.skin.zip": "7594b527a3ab47c9dfe0a3e7d75a3dc6ea8b88df8f2be2cdc02c9004a73c98e9",
+    "traveler-top.wardrobe.zip": "8bd63bcf7a84af05ae5e94da04c67781eed0ac3744ffe77796d4255319e3357e",
+    "diagnostics/idle-0.png": "2927097160451c05269571a93e41228e2906edfda4b277aa6d252fb780a9748c",
+    "diagnostics/idle-1.png": "b3aae0b987eef4d61ae4223420ebab633fb91f5a92bc87120ae1298885bcf741",
+    "diagnostics/idle-2.png": "34d342a8ce72c7466ca7247e4feb7089d5297ae0a886867f7a30db4ea5f6e087",
+    "diagnostics/idle-3.png": "1c207bf6ff7f27fa1df360236cbbd2e80396c819acc5463ad62b468724aff740",
+    "diagnostics/walk-0.png": "7a9d8e3fb62301d126b8a4a08eb9bdc6c51a1ddc7be25e7fed4f290db85d0e0e",
+    "diagnostics/walk-1.png": "11c4474c01527d93082c94a6d68ed64327c2039c9e6f035fb102ed41c13a5561",
+    "diagnostics/walk-2.png": "d385e14483bf75e10f919fd9358410506b020d3cfaabf11e0499cc831ca1c4c5",
+    "diagnostics/walk-3.png": "eebc40434eaa62a27c012033ff5d9cd6a3412179db15e39a5f3348023111d8e8",
+    "diagnostics/walk-4.png": "3b095f3f12fd6961a5eb7e2f2a06d8c9031712c21ee3ab8bb3999d95173db0f2",
+    "diagnostics/walk-5.png": "53efd7a079adb5681dae8c69cbf1cfa954569dcfceccd3ff7b433c66bdec0277",
+    "diagnostics/walk-6.png": "307ff68232c52953acd88dc799b18142040e025652f756c73162a15930429974",
+    "diagnostics/walk-7.png": "ef661e4716efe97cd2474d79dc9e14bc27103dc6637f0afa263b2e8fb8214da2",
+    "diagnostics/run-0.png": "b7ec883df0194305b2ecb439b56e43d1fd042f2a9b1c7e0e0b574423af201977",
+    "diagnostics/run-1.png": "196b94c991e19d63692ea149acae5aa1a8b3b7f42b845d9c94365d156f3ad1e0",
+    "diagnostics/run-2.png": "f0002b99f48b222481f2fec394dd3538e44c187ef6a96e58110658d670e7d9e0",
+    "diagnostics/run-3.png": "b9a0ba866478efaa92decccb3faa66930049a818067771aa41ad1ec78d462c6b",
+    "diagnostics/run-4.png": "2f98b23efdf5a74dda6240516a05094a7163fad58827f04942c52422d4136410",
+    "diagnostics/run-5.png": "1141d26bede22ec004556a4becc8c27aea51fcbaf98006cb0dca8952f897b823",
+    "diagnostics/run-6.png": "26e6207b6c3ec8c209bd452f0390d56d36a699db190bf4ab3726d6af3026ecaf",
+    "diagnostics/run-7.png": "5c91e1442834fd5d66b4306893990d2c3f9e0f6d4051ad6a2b5b9017e552bb54",
+    "diagnostics/run-8.png": "6d1ccfd239d9ba8f1193d0928528725337da70c17619fdd90e1b48d50fbafa5e",
+    "diagnostics/run-9.png": "6d07f138bbf584c91bb4ff215d83d6e946933d6682f4e52faf3288a99d86cd41",
+    "diagnostics/run-10.png": "68c344c8809a07b698b213089bd336feb569423246e0a7f80f6eb020aadf6671",
+    "diagnostics/run-11.png": "a4a0915dbaef246187c3878661ec7751d633dd6719f24c25013c5cd1ea8eb792",
+    "diagnostics/jump-0.png": "3c5f2180098d871d9ccb554eaf06fee6a600d6393df67df7002175bd8b07d554",
+    "diagnostics/jump-1.png": "9bcb8cc88dda07f7eefd3053a4e652edab700a4c78172b0304fb11f416a39f22",
+    "diagnostics/jump-2.png": "c46c8bc905f953b660668f72f42efc87f7ce6c050a8a6a2897cf6cf0e32db698",
+    "diagnostics/jump-3.png": "62061c00f456c891c4b322eb9cd9e6b53704926e91ff5e27827caebed4c8adfc",
+    "diagnostics/jump-4.png": "8c734d39063e5fc3116823e923adab9a5332ea7f3629e10e33aad0ccaa628e81",
+    "diagnostics/jump-5.png": "3fa00253af8a3e4d8e71024dc08dde5826600857e50fbb9bf01a8f581b0cb962",
+    "diagnostics/jump-6.png": "2e4e79b3726e5520bb9c00c91900b4d2cbe8d24324d1aa3b7a1d0081e3583888",
+    "diagnostics/jump-7.png": "96fdf2ad21c09a665f5c58a17aa933222d29cebb6a98bf260c2114593c8a67be",
+    "diagnostics/jump-8.png": "7fcc87d3de5923d44283fce553b80ead6dcc137df23f1520a91039dd61c600c2",
+    "diagnostics/jump-9.png": "adee8c7940514a00e5125343c42aa49218176be1e178ddd2039545f04ef63a05",
+    "diagnostics/jump-10.png": "612990cddd70b5eaa8a91e5ff613eaa6f9a9bf1ecd1dd12787e2a39da2563f45",
+    "diagnostics/jump-11.png": "3c5f2180098d871d9ccb554eaf06fee6a600d6393df67df7002175bd8b07d554",
+    "slots/head-neutral.png": "80e6720782284b2201573cbb606c4cea20ecb9759af7530d1af52fa172a6258b",
+    "slots/head-gentle.png": "458539ad649ca4f36c7a45b66ffa29fecfe9b22c87aeeb64d00a22fdf383e972",
+    "slots/head-joyful.png": "4665882ff72dc7bed4b0c2868c727353896945d570b1cfd62fe1473bd5b83da8",
+    "slots/torso.png": "0cf6258477d34ca2f9a0ed407be1bd2e57973b2072a6a0192d55cc6256a98a5b",
+    "slots/hips.png": "b5173271e861b66922852ed501917c5d99f3f962f64acf8ac48c6bb13bfff9f8",
+    "slots/near-upper-arm.png": "e13de1a4313383c59cd5bccb756e18931cf8c86780d1f4a448f877984fc97ad6",
+    "slots/near-forearm.png": "587362f6df40fa98774362bd5b72350e990bfe1d73eb542e77f231cb9af0d754",
+    "slots/near-thigh.png": "fe17652e35b1c7c94384574e9d20f637af08db85ddd21c404916a5837e18bc4d",
+    "slots/near-shin.png": "0f07e41d8dc1bddd9f0a7aa7ca2db4ed990add620ef2d367e3df435276505c6a",
+    "slots/far-upper-arm.png": "1989f47a72b534818665f5e10a9aab09b3d9a29cdedce29411b59700598d0233",
+    "slots/far-forearm.png": "21082a147bbaa648792c3eb51d0c8aae73db7300f7e6d24d14c1723b7329bfb2",
+    "slots/far-thigh.png": "b1077bfdda3416cf11bddd04f336bd68447e277166e5e3540d3d35215fb1e7b6",
+    "slots/far-shin.png": "5fd621d1462a2e8c68a41e532c2684a1902697513b70db7f7ab91a92f23d9558",
+    "slots/near-shoe.png": "d88550ca15d081ae6564c571aa221def0d7b6c4d360cc1a8ccd8839e8765de1c",
+    "slots/far-shoe.png": "b95a6c7bc20bb6abaa610c5db7f843428b17a66ee526dd0472e0f2a44dc664f2",
+    "traveler-bottom.wardrobe.zip": "f03f30fc22dfcd1c13a4957e77a1e08383bc2b518d3e13ed11213cd06b2fd662",
+    "traveler-shoes.wardrobe.zip": "7acfb0b7e47f368bed705ee4959692dcc678a9984b02875cc50ff0725ca7bbbe"
+  }
+}

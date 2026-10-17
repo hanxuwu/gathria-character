@@ -61,6 +61,41 @@ unchanged; custom items use recipe v2 and need the current editor. See the
 
 ## Choose the correct file
 
+### Optional action forearms (skin/top item v2)
+
+For a hand shape used only during run/jump, prepare a **v2 skin** with two extra
+full-canvas attachments: `near-forearm-active` and `far-forearm-active`. They
+contain complete forearms, cuffs and hands and share the normal pair's source
+elbow/wrist chain. Keep enough cuff overlap and the same material ownership.
+The explicit `actionForearms` map selects both sides together:
+
+```json
+{
+  "run": {
+    "near-forearm": "near-forearm-active",
+    "far-forearm": "far-forearm-active"
+  },
+  "jump": {
+    "near-forearm": "near-forearm-active",
+    "far-forearm": "far-forearm-active"
+  }
+}
+```
+
+Declare either action or both; idle/walk always use the normal attachments.
+Both active PNGs are required. A **top item v2** carries the same map and the
+two extra artwork/mask pairs. Downloading its item template preserves them.
+Bottoms/shoes stay v1. The attachment editor exposes the extra slots after v2
+import; there is no arbitrary timeline or per-frame attachment switching yet.
+
+Old v1 files are never upgraded automatically. Selecting an old top returns the
+assembled skin to v1, and undo restores the previous variants. Old editor
+revisions reject v2 source files; baked CharacterPacks still use the existing
+format and player. See [the Maple review](MAPLE_ACTION_POSES_REVIEW.md) for a
+complete example and compatibility evidence.
+
+### Archive roles
+
 | File             | Purpose                                                                                                               |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `.skin.zip`      | `skin.json` plus `slots/<slot>.png`; reuse the art and its bindings with the shared rig                               |

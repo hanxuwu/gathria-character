@@ -29,8 +29,24 @@ export const REQUIRED_SLOTS = [
   "head-joyful",
 ] as const;
 export const OPTIONAL_SLOTS = ["back-hair", "garment"] as const;
-export const ALL_SLOTS = [...REQUIRED_SLOTS, ...OPTIONAL_SLOTS] as const;
+export const V1_SLOTS = [...REQUIRED_SLOTS, ...OPTIONAL_SLOTS] as const;
+/** These registered alternatives replace complete forearms, including hands. */
+export const ACTION_FOREARM_SLOTS = [
+  "near-forearm-active",
+  "far-forearm-active",
+] as const;
+export const ALL_SLOTS = [...V1_SLOTS, ...ACTION_FOREARM_SLOTS] as const;
 export type Slot = (typeof ALL_SLOTS)[number];
+export type ForearmAction = "run" | "jump";
+export type ActionForearms = Partial<
+  Record<
+    ForearmAction,
+    {
+      "near-forearm": "near-forearm-active";
+      "far-forearm": "far-forearm-active";
+    }
+  >
+>;
 export const CHAINS = ["nearArm", "farArm", "nearLeg", "farLeg"] as const;
 export type ChainName = (typeof CHAINS)[number];
 export type JointTriple = readonly [Point, Point, Point];
@@ -59,9 +75,8 @@ export interface RigDefinition {
     | "head"
   )[];
 }
-export interface SkinMetadata {
+interface SkinMetadataBase {
   format: "gathria-skin-pack";
-  version: 1;
   id: string;
   name: string;
   rigId: typeof RIG_ID;
@@ -84,6 +99,11 @@ export interface SkinMetadata {
   provenance: string;
   slots: Slot[];
 }
+export type SkinMetadata = SkinMetadataBase &
+  (
+    | { version: 1; actionForearms?: never }
+    | { version: 2; actionForearms: ActionForearms }
+  );
 export interface SkinPack {
   metadata: SkinMetadata;
   images: Partial<Record<Slot, Uint8ClampedArray>>;

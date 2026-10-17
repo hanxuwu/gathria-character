@@ -1,0 +1,102 @@
+{
+  "scope": "Executed in the Maple action-forearm follow-up starting at 2b10770, 2026-10-17 UTC. Earlier milestone counts are historical, not reused.",
+  "recordedAt": "2026-10-17T22:48:48.948185+00:00",
+  "checks": [
+    {
+      "command": "node scripts/prepare-maple-action-poses.mjs",
+      "result": "passed",
+      "preparedFiles": 58,
+      "decodedPng": 53,
+      "zipCrcChecks": 5,
+      "baseSlotsExact": 15,
+      "originalBindingsRigMotionsExact": true
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "includes": "TypeScript tsc -b and Vite production build",
+      "existingWarning": "Some generated-art chunks exceed 500 kB."
+    },
+    {
+      "command": "npm test",
+      "result": "passed",
+      "tests": 437,
+      "files": 33,
+      "durationSeconds": 27.15,
+      "execution": "Final complete suite, isolated from browser tests; no assertion or timeout changes."
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npm run test:e2e",
+      "result": "passed",
+      "tests": 50,
+      "durationReported": "4.5 minutes",
+      "retries": 0
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npx playwright test tests/e2e/action-forearms.spec.ts",
+      "result": "passed",
+      "tests": 2,
+      "durationSeconds": 29.7,
+      "note": "Focused check also included in the final 50-test suite; do not add to its count."
+    },
+    {
+      "command": "node scripts/generate-maple-pose-evidence.mjs",
+      "result": "passed",
+      "actualArchives": 18,
+      "timedEditorFrames": 88,
+      "closedEditorIndependentCases": 8,
+      "maxObservedSchedulingErrorMs": 31,
+      "runtimeAndScriptHashes": 21,
+      "preparedArchiveHashes": 5,
+      "legacyProjects": 2,
+      "legacyFramesExact": 72,
+      "legacyManifestsExact": 2,
+      "newExpressionsPreserveAll12IdleWalkKeys": 3
+    },
+    {
+      "command": "python3 scripts/render-maple-pose-review.py",
+      "result": "passed",
+      "actualExportEvidence": {
+        "png": 61,
+        "gif": 24,
+        "zip": 18
+      },
+      "checks": "All files decoded; each ZIP member/CRC; binary alpha and frame bounds; GIF frame pixels/order/duration/loop behavior; mirrored playback."
+    },
+    {
+      "command": "node scripts/diagnose-maple-knees.mjs",
+      "result": "passed",
+      "diagnosticFrames": 540,
+      "baselineFramesExactToPriorExport": 36,
+      "candidateAdopted": false,
+      "note": "Direct renderer diagnostic experiments, not UI exports. Both parameter sweeps failed to provide a clear visual improvement."
+    }
+  ],
+  "earlierAttemptsThisSession": [
+    {
+      "command": "npm test",
+      "result": "passed",
+      "tests": 436,
+      "note": "Before the extra active-offset regression was added. Superseded by final isolated 437-test run."
+    },
+    {
+      "command": "npm test",
+      "result": "436 passed; 1 timeout",
+      "concurrentWith": "Full Chromium E2E suite",
+      "test": "src/experiments/denim-rig/project.test.ts: bakes deterministic run frames with unchanged legacy rows, geometry and timing",
+      "timeoutMs": 20000,
+      "observedTestDurationMs": 21774,
+      "resolution": "After the browser suite completed, the same full unit suite passed all 437 tests without source, assertion or timeout changes."
+    }
+  ],
+  "visualReview": {
+    "inspected": "Actual native/2x run and jump keyframes, matching before/after 4x wrist and leg crops, three-identity clothing/recolor examples; timed continuous playback captured separately.",
+    "improvement": "Compact hand silhouette replaces splayed running hands; retained cuff connection and separated skin/cloth/fixed-trim recoloring; no new duplicate palms or detached fragments seen in inspected examples.",
+    "remaining": "Simplified mitten-like hand at 4x with fixed perspective; unchanged compressed deep knee folds and crowded leg crossings; inherited subtle expression and torso/sleeve saturation differences.",
+    "userVisualAcceptance": false,
+    "productionGathriaIntegration": "unverified"
+  },
+  "evidence": "final/evidence-index.json",
+  "artifactValidation": "final/artifact-validation.json",
+  "deliveryInventory": "delivery-integrity.json"
+}

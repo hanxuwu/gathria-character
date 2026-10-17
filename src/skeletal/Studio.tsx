@@ -41,6 +41,7 @@ import {
 } from "./skin-io";
 import {
   ALL_SLOTS,
+  V1_SLOTS,
   CHAINS,
   type AnimationName,
   type AuthoringProject,
@@ -302,6 +303,13 @@ export function SkinStudio() {
     [project.skin.metadata.name],
   );
   const [slot, setSlot] = useState<Slot>("torso");
+  const availableSlots =
+    project.skin.metadata.version === 2 ? ALL_SLOTS : V1_SLOTS;
+  // A wardrobe switch or undo may replace a v2 skin with a v1 skin.
+  // Keep the source editor on a valid attachment after either transition.
+  useEffect(() => {
+    if (!(availableSlots as readonly Slot[]).includes(slot)) setSlot("torso");
+  }, [availableSlots, slot]);
   const [chain, setChain] = useState<ChainName>("nearArm");
   const [frame, setFrame] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -868,7 +876,7 @@ export function SkinStudio() {
                 }
               }}
             >
-              {ALL_SLOTS.map((value) => (
+              {availableSlots.map((value) => (
                 <option value={value} key={value}>
                   {human(value)}
                   {!project.skin.images[value] ? " (empty)" : ""}
@@ -886,6 +894,14 @@ export function SkinStudio() {
             192 × 256, transparent PNG, up to 1 MiB. This changes only the
             selected attachment; its binding remains in place.
           </p>
+          {project.skin.metadata.version === 2 && (
+            <p className="skin-help">
+              Active forearms are used for{" "}
+              {Object.keys(project.skin.metadata.actionForearms).join(" and ")}.
+              Idle and walk keep the relaxed forearms. Both pairs share the same
+              elbow and wrist landmarks.
+            </p>
+          )}
           <details className="skin-details">
             <summary>Source &amp; version</summary>
             <p>

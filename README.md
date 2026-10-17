@@ -71,6 +71,9 @@ For a complete **newly generated source → registered parts → shared skeleton
 four actions → independent playback** example, see the
 [Maple pipeline review](docs/GENERATED_CHARACTER_REVIEW.md) and
 [downloadable source projects, clothing and previews](docs/generated-traveler/README.md).
+The [action-forearm follow-up](docs/MAPLE_ACTION_POSES_REVIEW.md) adds registered
+closed hands for run/jump through opt-in skin/top-item v2, preserves idle/walk,
+and records the remaining knee-fold limitation.
 This trial exposes and repairs duplicate sleeves, pelvis ownership and wrist
 material masks. The source art is new; runtime skeleton and motions are shared.
 It also documents the current limit that portable clothing can be reused on
