@@ -91,6 +91,14 @@ The exact run cycle is `12 / 18` seconds (2/3 second, approximately 666.67 ms). 
 
 `animations.run` is optional in the version 1 contract. If present, it must satisfy the same frame-reference, frame-rate and loop validation as idle/walk; malformed run metadata is rejected. If absent, this player disables Run and explains that the pack does not contain running. It does not speed up walking as a substitute. Consumers should check availability before selecting an animation. An older consumer that ignores unrecognized animation entries can still play the preserved idle/walk sequences using the declared image dimensions.
 
+### Optional jump and skeletal authoring packs
+
+`animations.jump` is an optional version 1 entry with the same strict frame-ID, FPS and boolean loop validation. The reusable rig's default jump uses twelve source poses (IDs 24–35), 15 FPS and `loop: false`: preparation, compression, takeoff, flight, contact and recovery. Play it once, give the final entry its full duration, then hold the final authored frame until another action or replay is selected. The default ends on the standing pose. Edited sequences may end on another pose.
+
+New four-action skeletal packs identify `gathria-reusable-rig-v2`, with 36 populated 192×256 rectangles on a 1536×1536 atlas. Jump is appended in rows 4–5; existing skeletal idle/walk/run rows, IDs and pixels are unchanged. Older three-action authoring projects still bake `gathria-reusable-rig-v1` with their original 1536×1024 atlas and no jump. The independent player disables Jump when absent and does not synthesize a replacement.
+
+These are in-place animations without world physics. The frame-local anchor remains (96, 240). Skeletal authoring project ZIPs preserve a jump preview selection; the legacy `character.json` appearance reference uses idle for that selection because ordinary Studio does not generate jump or imported skins. Keep the complete project ZIP to reproduce the authored character. The player's action selector reads the manifest's actual availability.
+
 ### Required values and limits
 
 All fields shown above are required. Validation returns a copy containing recognized fields, ignoring additional metadata fields. There are no implicit defaults for missing fields.

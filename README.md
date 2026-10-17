@@ -55,6 +55,8 @@ For the current limb repair, follow [the matched evidence instructions](docs/run
 
 Regenerate V6 export evidence with `node scripts/generate-polished-evidence.mjs`, then `python3 scripts/render-polished-review.py` and `python3 scripts/verify-polished-evidence.py`. The corresponding `harmonized` scripts reproduce the retained V7 comparison. The first command starts its own server. Requirements and verified commands are in the [V6 review](docs/ART_POLISH_V6.md). `npm run samples` still regenerates only original V1 samples.
 
+The shared rig now supports **idle, walk, run and a one-shot jump**. In Skin Studio, enable **Skeleton only** to inspect the foundation without artwork, then apply the same actions to registered skins. Older projects gain jump only through **Add jump action**. See [basic actions review](docs/BASIC_ACTIONS_REVIEW.md) for the actual previews, exports and current limitations.
+
 ## Architecture and scope
 
 | Location                                                                                               | Responsibility                                                                      |

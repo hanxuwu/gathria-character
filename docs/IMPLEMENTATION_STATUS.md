@@ -1,6 +1,10 @@
 # Implementation status
 
-**Current batch: visual binding, motion editing and undo.** Continuing draft PR #5 from verified `73e87c6`, Skin Studio now edits source joints with pointer/keyboard controls and shared poses, FPS and playback entries through a timeline. Twenty-step undo/redo covers the whole authoring project, including imported artwork and the loaded binding reset point. The existing renderer, default motions, file formats and production Studio are preserved. [Current review](AUTHORING_TOOLS_REVIEW.md) records this batch's workflow, evidence and limits.
+**Current batch: four basic skeletal actions.** New Skin Studio projects provide idle, walk, run and a one-shot jump on the same humanoid skeleton. Skeleton-only view exposes the animated root, torso, head and limb chains; source skin swapping reuses the motions. Old projects keep their original clips and pixels until explicit jump addition. [Current review](BASIC_ACTIONS_REVIEW.md) records the implementation, compatibility and evidence. This batch passed **357 unit tests, 41 Chromium E2E tests, TypeScript and the production build**. Evidence validates 51 PNGs, six GIFs, six ZIPs and sixteen independent playback cases. Implementation `7241753` is pushed; the follow-up commit saves the delivery evidence.
+
+## Historical batch: visual binding, motion editing and undo
+
+Continuing draft PR #5 from verified `73e87c6`, Skin Studio now edits source joints with pointer/keyboard controls and shared poses, FPS and playback entries through a timeline. Twenty-step undo/redo covers the whole authoring project, including imported artwork and the loaded binding reset point. The existing renderer, default motions, file formats and production Studio are preserved. [Authoring tools review](AUTHORING_TOOLS_REVIEW.md) records this batch's workflow, evidence and limits.
 
 Implementation `276a17b` is committed and pushed. This batch passed **335 unit tests, 38 Chromium E2E tests, TypeScript and production build**; the follow-up delivery commit saves the actual UI walkthrough, two edited source projects, playback packages and four independent run cases. All 18 PNGs, five GIFs and eight ZIPs decode and pass integrity checks; both default outputs remain pixel-identical. Earlier results below remain historical.
 
