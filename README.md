@@ -21,6 +21,8 @@ Open the address Vite prints. The studio is at `/`; the independent player is at
 
 The isolated [skeletal rig lab](docs/SKELETAL_RIG_REVIEW.md) is at `/rig-lab.html`: compare Denim's existing run with project-owned weighted-mesh animation, edit pose keys, save an authoring recipe and bake a portable pack. It uses no Spine dependency and leaves Studio defaults unchanged.
 
+The [reusable Skin Studio](docs/REUSABLE_RIG_REVIEW.md) is at `/skin-studio.html`: Denim and Coral use one skeleton and motion library. Replace registered PNG parts, drag source joints, edit motion poses/timing with undo and redo, save complete skin/project ZIPs, and bake independent CharacterPacks. [The authoring tools review](docs/AUTHORING_TOOLS_REVIEW.md) covers the latest controls; [the material guide](docs/SKIN_PACK_V1.md) explains how to prepare another character without editing the renderer. This separate authoring app does not change the production Studio or historical files.
+
 ```sh
 npm run typecheck
 npm test
@@ -52,6 +54,10 @@ Opening any V1–V7 configuration keeps its original renderer and options. For V
 For the current limb repair, follow [the matched evidence instructions](docs/run-connections/README.md#reproduction); frozen before exports must not be overwritten. Regenerate historical compact running evidence sequentially with `node scripts/generate-running-v2-evidence.mjs`, `python3 scripts/render-running-v2-review.py`, then `python3 scripts/verify-running-v2-evidence.py`. The original running scripts still reproduce Motion 1. The export step must finish before rendering review media. See the [compact running review](docs/RUNNING_V2_REVIEW.md) for the frozen V6 baseline, iteration record, commands and that batch’s historical verification results.
 
 Regenerate V6 export evidence with `node scripts/generate-polished-evidence.mjs`, then `python3 scripts/render-polished-review.py` and `python3 scripts/verify-polished-evidence.py`. The corresponding `harmonized` scripts reproduce the retained V7 comparison. The first command starts its own server. Requirements and verified commands are in the [V6 review](docs/ART_POLISH_V6.md). `npm run samples` still regenerates only original V1 samples.
+
+The shared rig now supports **idle, walk, run and a one-shot jump**. In Skin Studio, enable **Skeleton only** to inspect the foundation without artwork, then apply the same actions to registered skins. Older projects gain jump only through **Add jump action**. See [basic actions review](docs/BASIC_ACTIONS_REVIEW.md) for the actual previews, exports and current limitations.
+
+Skin Studio also offers an opt-in **Wardrobe**: keep one identity while combining two tops, two bottoms and two shoe designs, with separate skin and clothing colors. Save the full project to retain clothing choices, or bake a CharacterPack for independent playback. The registered collection uses the same skeleton and four actions. [Wardrobe review and actual exports](docs/WARDROBE_MVP_REVIEW.md) describe the supported combinations, compatibility and material limits.
 
 ## Architecture and scope
 

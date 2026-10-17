@@ -11,7 +11,10 @@ export interface ProposedGathriaCharacter {
   texture: string;
   frameSize: { width: number; height: number };
   atlas: { id: number; x: number; y: number; width: number; height: number }[];
-  clips: Record<"idle" | "walk", ProposedClip> & { run?: ProposedClip };
+  clips: Record<"idle" | "walk", ProposedClip> & {
+    run?: ProposedClip;
+    jump?: ProposedClip;
+  };
   origin: { x: number; y: number };
   facing: { native: "right"; flipXForLeft: boolean };
   pixelArt: true;
@@ -44,6 +47,9 @@ export function toProposedGathriaCharacter(
       walk: clip(manifest.animations.walk),
       ...(manifest.animations.run
         ? { run: clip(manifest.animations.run) }
+        : {}),
+      ...(manifest.animations.jump
+        ? { jump: clip(manifest.animations.jump) }
         : {}),
     },
     origin: {

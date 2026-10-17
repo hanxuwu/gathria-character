@@ -75,6 +75,38 @@ function archiveFiles(): Record<string, Uint8Array> {
 }
 
 describe("CharacterPack manifest contract", () => {
+  it("keeps legacy packs unchanged and copies optional jump timing without inventing it", () => {
+    const legacy = manifest();
+    expect(validateManifest(legacy)).toEqual(legacy);
+    expect(validateManifest(legacy).animations).not.toHaveProperty("jump");
+
+    const input = manifest();
+    input.animations.jump = { frames: [2, 2, 0, 3], fps: 12, loop: false };
+    const parsed = validateManifest(input);
+    expect(parsed.animations.jump).toEqual(input.animations.jump);
+    expect(parsed.schemaVersion).toBe(1);
+    input.animations.jump.frames.push(1);
+    expect(parsed.animations.jump?.frames).toEqual([2, 2, 0, 3]);
+  });
+
+  it.each([
+    [null, "animations.jump must be an object"],
+    [{ frames: [], fps: 12, loop: false }, "animations.jump.frames"],
+    [{ frames: [99], fps: 12, loop: false }, "references missing frame 99"],
+    [{ frames: [0.5], fps: 12, loop: false }, "animations.jump.frames[0]"],
+    [{ frames: [0], fps: 0, loop: false }, "animations.jump.fps"],
+    [{ frames: [0], fps: Infinity, loop: false }, "animations.jump.fps"],
+    [{ frames: [0], fps: 12, loop: "false" }, "animations.jump.loop"],
+  ])("rejects malformed optional jump metadata %j", (jump, message) => {
+    const input = manifest();
+    expect(() =>
+      validateManifest({
+        ...input,
+        animations: { ...input.animations, jump },
+      }),
+    ).toThrow(message);
+  });
+
   it("copies valid metadata without retaining mutable input arrays", () => {
     const input = manifest();
     const parsed = validateManifest(input);

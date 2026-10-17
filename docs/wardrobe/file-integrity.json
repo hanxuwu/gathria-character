@@ -1,0 +1,2399 @@
+{
+  "scope": "Every delivered file under docs/wardrobe, excluding this inventory.",
+  "counts": {
+    "md": 11,
+    "json": 22,
+    "png": 31,
+    "txt": 9,
+    "zip": 18,
+    "gif": 10
+  },
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 3873,
+      "sha256": "d8002381ad469e91c97a5c1bea0dfb929be70d9acfdd2d5b6fe49c2ba096eca9"
+    },
+    {
+      "file": "artifact-validation.json",
+      "bytes": 34711,
+      "sha256": "dd7ba43a9ad52435ed92faeda79289fc6bb704b6ee3e2402c93342b9859dfde3",
+      "validJson": true
+    },
+    {
+      "file": "connections-3x.png",
+      "bytes": 142408,
+      "sha256": "cf1a67ab6e76fb4f43469ba17368e33028da5f23055913f6a3c229b5fd58ccd9",
+      "dimensions": [
+        998,
+        962
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "crop-denim/INTEGRATION.md",
+      "bytes": 3924,
+      "sha256": "2cd77b1876aecf75ed7e3c162b8470043923aa325b90ebb95dfcfbe3da1def9d"
+    },
+    {
+      "file": "crop-denim/PROVENANCE.txt",
+      "bytes": 19099,
+      "sha256": "daa5d91c8acfccc025fbdf72064141ae62c7866cbae94574ad9be4aac7c4c7f5"
+    },
+    {
+      "file": "crop-denim/character.json",
+      "bytes": 477,
+      "sha256": "a26f3e8c43a2f720ee23a1a670f505be71cb24be200d552023827aabc54fafe4",
+      "validJson": true
+    },
+    {
+      "file": "crop-denim/manifest.json",
+      "bytes": 5135,
+      "sha256": "b45a164ba2bd82f9e441afccd974d9e4925f6d66d4d01e2f61b05975ffd089d0",
+      "validJson": true
+    },
+    {
+      "file": "crop-denim/spritesheet.png",
+      "bytes": 672121,
+      "sha256": "77287c7e9d7625fa9b32c01cce1aa02504db3a2ec54354c14f3e5e7622f72928",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "crop-denim.character.zip",
+      "bytes": 660865,
+      "sha256": "8e13caf74470d8aa3382d7b597185b4c4737720d6a1ed090c30b7859a06f7604",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 672121,
+          "sha256": "77287c7e9d7625fa9b32c01cce1aa02504db3a2ec54354c14f3e5e7622f72928",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5135,
+          "sha256": "b45a164ba2bd82f9e441afccd974d9e4925f6d66d4d01e2f61b05975ffd089d0",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 477,
+          "sha256": "a26f3e8c43a2f720ee23a1a670f505be71cb24be200d552023827aabc54fafe4",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19099,
+          "sha256": "daa5d91c8acfccc025fbdf72064141ae62c7866cbae94574ad9be4aac7c4c7f5"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3924,
+          "sha256": "2cd77b1876aecf75ed7e3c162b8470043923aa325b90ebb95dfcfbe3da1def9d"
+        }
+      ]
+    },
+    {
+      "file": "crop-denim.rig.zip",
+      "bytes": 142997,
+      "sha256": "9ba73f80611f91d244b5d3419e68110d9a6711fcb6e1c246395e1abd4662a484",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "skin.json",
+          "bytes": 3311,
+          "sha256": "e4e07083f1d0eaf35618d586c29e6ae18ba52dac27f52c2228f4f82b65503912",
+          "validJson": true
+        },
+        {
+          "name": "slots/torso.png",
+          "bytes": 10615,
+          "sha256": "8b27bcbcee6eb472401c16ae844f6822199e7c4d7f7b1fa77fade1a52b85d86e",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/hips.png",
+          "bytes": 4674,
+          "sha256": "41ef2e8e7caa702fe7cf2bc22a922f87efb579a0f0df7551bd19aa79cc90c79a",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-upper-arm.png",
+          "bytes": 5059,
+          "sha256": "3d90e29db44d9545833d359c4d862664b09028b9def876a802dd41d5fdfb65be",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-forearm.png",
+          "bytes": 3939,
+          "sha256": "8f5eefb9e3f4ca93e790ea39a7145f91cd4029ca828026e372763d9df294f3e8",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-upper-arm.png",
+          "bytes": 4098,
+          "sha256": "9a3a04af23d4d367fe294747319b928be258a4c777dbee286408090436591f27",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-forearm.png",
+          "bytes": 3751,
+          "sha256": "85c431911b481c63965fe744edf5aa96edd9f2f22774545f26c7db3e303d7274",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-thigh.png",
+          "bytes": 4519,
+          "sha256": "205828604307e3d151558343baccc30d3d8bdebb802efdfeb924291ffb2c023d",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shin.png",
+          "bytes": 5149,
+          "sha256": "7ec7ac9ab128238c69d7609eb57b39d99e18c0d486d7b4096b606056e370cf09",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shoe.png",
+          "bytes": 3692,
+          "sha256": "22da76036b05fa2f3dbb0a5754f494502869829f77200788a093a01eca1026aa",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-thigh.png",
+          "bytes": 4351,
+          "sha256": "ef0d2ce28d7c063e9cfe8a0e4b1d9a08ab086e177cf6f2f62230d8fefe182e43",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shin.png",
+          "bytes": 4852,
+          "sha256": "a88f7dc9f88edd77ffdd883e1d5910f5d36fa9ca04b746c7f7a16038cc01257c",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shoe.png",
+          "bytes": 4039,
+          "sha256": "8e245466be6ca7ba8ff0962d1c92444b261568556f9edc8bfc70b071666137ab",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-neutral.png",
+          "bytes": 27548,
+          "sha256": "c259c0c6e512afa923006f95b38fc94ba5e79d4d17c63d8ef030fd44b254136c",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-gentle.png",
+          "bytes": 27208,
+          "sha256": "18439993dd3c362f55634cb4e5c9e5a948712bb58c7f42e5cc1addddc1bf086d",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-joyful.png",
+          "bytes": 27439,
+          "sha256": "826e9e652a14683447af1d92f026b865ea485b1048f777649cb1cf2dc69af9ab",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "project.json",
+          "bytes": 12880,
+          "sha256": "d2d9ea111bc81fc4ab5d91f5a49cee65452eeeb276af38aca9c4f5eea4883715",
+          "validJson": true
+        }
+      ]
+    },
+    {
+      "file": "crop-mixed/INTEGRATION.md",
+      "bytes": 3923,
+      "sha256": "1009981895b6ff3be3d0aababdbceed4f1bc5bc888cc8ba8f555526642c78baf"
+    },
+    {
+      "file": "crop-mixed/PROVENANCE.txt",
+      "bytes": 19108,
+      "sha256": "4e1744d7186834ee4ccf31cdea59781e070ae3d3dd890c13fbc7c40e7e962dd7"
+    },
+    {
+      "file": "crop-mixed/character.json",
+      "bytes": 471,
+      "sha256": "9ec73d844f2ee8216768b67f3dd14eafa8f1560439a0aafc0969054fda19310b",
+      "validJson": true
+    },
+    {
+      "file": "crop-mixed/independent-jump-left.png",
+      "bytes": 158233,
+      "sha256": "07d74c1c5d148fbba96d371d035c8306ffea4ff8a9609a94cb1ff89a85a08663",
+      "dimensions": [
+        1280,
+        1277
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "crop-mixed/independent-jump-right.png",
+      "bytes": 158017,
+      "sha256": "29e0f4b6da59dbadef16c607b194b768bad6740ac8a4b0f34d8d6cc922edf7df",
+      "dimensions": [
+        1280,
+        1277
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "crop-mixed/manifest.json",
+      "bytes": 5135,
+      "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+      "validJson": true
+    },
+    {
+      "file": "crop-mixed/spritesheet.png",
+      "bytes": 614364,
+      "sha256": "08fc6b7b1bc435adbf5a9f347d16c7c1121e57c66e913ac9bcaaa80c5936bb38",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "crop-mixed-joyful/INTEGRATION.md",
+      "bytes": 3923,
+      "sha256": "1009981895b6ff3be3d0aababdbceed4f1bc5bc888cc8ba8f555526642c78baf"
+    },
+    {
+      "file": "crop-mixed-joyful/PROVENANCE.txt",
+      "bytes": 19108,
+      "sha256": "0392577bae8cdbc830e32aee5acaa8ee827eef092a5d3cd884f4f03c9b2cb17a"
+    },
+    {
+      "file": "crop-mixed-joyful/character.json",
+      "bytes": 471,
+      "sha256": "a33303d18f096668e97a048e78fbde7e1094ddbb9a8f93f3d05870749d6fab2e",
+      "validJson": true
+    },
+    {
+      "file": "crop-mixed-joyful/manifest.json",
+      "bytes": 5135,
+      "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+      "validJson": true
+    },
+    {
+      "file": "crop-mixed-joyful/spritesheet.png",
+      "bytes": 614727,
+      "sha256": "b6fd51f75eecc6a7dc3b808f4a7e1f33da6fac8d407e4d3b80f7be41e64ba7df",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "crop-mixed-joyful.character.zip",
+      "bytes": 604653,
+      "sha256": "03a8f4bbd345781b9dd9f95b3babd310cbee11a12f785466168227d33d5e2d19",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 614727,
+          "sha256": "b6fd51f75eecc6a7dc3b808f4a7e1f33da6fac8d407e4d3b80f7be41e64ba7df",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5135,
+          "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 471,
+          "sha256": "a33303d18f096668e97a048e78fbde7e1094ddbb9a8f93f3d05870749d6fab2e",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19108,
+          "sha256": "0392577bae8cdbc830e32aee5acaa8ee827eef092a5d3cd884f4f03c9b2cb17a"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3923,
+          "sha256": "1009981895b6ff3be3d0aababdbceed4f1bc5bc888cc8ba8f555526642c78baf"
+        }
+      ]
+    },
+    {
+      "file": "crop-mixed-neutral/INTEGRATION.md",
+      "bytes": 3923,
+      "sha256": "1009981895b6ff3be3d0aababdbceed4f1bc5bc888cc8ba8f555526642c78baf"
+    },
+    {
+      "file": "crop-mixed-neutral/PROVENANCE.txt",
+      "bytes": 19109,
+      "sha256": "f237496e57f9de642607d1153197fc47b31765e5856fdacd3acf2620f5fe74a3"
+    },
+    {
+      "file": "crop-mixed-neutral/character.json",
+      "bytes": 472,
+      "sha256": "3bad9b6acef7d7e3742ba272443b47ab63e646d27190c83ead6a4eb06db2d613",
+      "validJson": true
+    },
+    {
+      "file": "crop-mixed-neutral/manifest.json",
+      "bytes": 5135,
+      "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+      "validJson": true
+    },
+    {
+      "file": "crop-mixed-neutral/spritesheet.png",
+      "bytes": 619806,
+      "sha256": "551fecfe76e13aee54a74c3f6f374570bdefeffaf656f18401919d24dcb62012",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "crop-mixed-neutral.character.zip",
+      "bytes": 608956,
+      "sha256": "a17836aaa081b5999624ad9e4f6df06ce66af8858c5cff4df4c8393cd61751fe",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 619806,
+          "sha256": "551fecfe76e13aee54a74c3f6f374570bdefeffaf656f18401919d24dcb62012",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5135,
+          "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 472,
+          "sha256": "3bad9b6acef7d7e3742ba272443b47ab63e646d27190c83ead6a4eb06db2d613",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19109,
+          "sha256": "f237496e57f9de642607d1153197fc47b31765e5856fdacd3acf2620f5fe74a3"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3923,
+          "sha256": "1009981895b6ff3be3d0aababdbceed4f1bc5bc888cc8ba8f555526642c78baf"
+        }
+      ]
+    },
+    {
+      "file": "crop-mixed-reopened.character.zip",
+      "bytes": 603779,
+      "sha256": "896e20a554c99a69215c2e60e0255b69a8eaf4b608e4c952155a26dd503a6985",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 614364,
+          "sha256": "08fc6b7b1bc435adbf5a9f347d16c7c1121e57c66e913ac9bcaaa80c5936bb38",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5135,
+          "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 471,
+          "sha256": "9ec73d844f2ee8216768b67f3dd14eafa8f1560439a0aafc0969054fda19310b",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19108,
+          "sha256": "b2dc867eeb9f93f4bc4015816a80c9b36dfe91afbcda4df7d17d4256df6a11d0"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3923,
+          "sha256": "1009981895b6ff3be3d0aababdbceed4f1bc5bc888cc8ba8f555526642c78baf"
+        }
+      ]
+    },
+    {
+      "file": "crop-mixed.character.zip",
+      "bytes": 603778,
+      "sha256": "c0e8a58f13583105a3e67aa5533c7e45ca8c8cc6f8ea6ce0e39e98cf10b98dc9",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 614364,
+          "sha256": "08fc6b7b1bc435adbf5a9f347d16c7c1121e57c66e913ac9bcaaa80c5936bb38",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5135,
+          "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 471,
+          "sha256": "9ec73d844f2ee8216768b67f3dd14eafa8f1560439a0aafc0969054fda19310b",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19108,
+          "sha256": "4e1744d7186834ee4ccf31cdea59781e070ae3d3dd890c13fbc7c40e7e962dd7"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3923,
+          "sha256": "1009981895b6ff3be3d0aababdbceed4f1bc5bc888cc8ba8f555526642c78baf"
+        }
+      ]
+    },
+    {
+      "file": "crop-mixed.rig.zip",
+      "bytes": 146769,
+      "sha256": "b13da96c37f8fbe882ff2afb13e7763cf4949ccebfe8aba3d787a6ed9c9a70c5",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "skin.json",
+          "bytes": 3318,
+          "sha256": "708e00fbc75df46eefd76f25a8c00b1ca9bb4848031d139dfa0b425bd5c04125",
+          "validJson": true
+        },
+        {
+          "name": "slots/torso.png",
+          "bytes": 8331,
+          "sha256": "9f2084394f60ace98acd45c364c45c4adf04ce713d7000d0d1018e8a0dc43cae",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/hips.png",
+          "bytes": 4498,
+          "sha256": "436b0e69ac6a1f13a2146c942e10c85d9f4794d8814dcc4b4afad52df4ffc16e",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-upper-arm.png",
+          "bytes": 5041,
+          "sha256": "c6cd76bd549ec78bd11309f1dda3e45a1ae831c687948f93c6222033ee3591e8",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-forearm.png",
+          "bytes": 3418,
+          "sha256": "32738cbd23c2afaac39eaa9e956543f9f65c2b264ea7eed19075fc5a9a7edd1e",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-upper-arm.png",
+          "bytes": 4595,
+          "sha256": "166543fd8b4a4b25642c6c256f121fd0d2143ab96a3bc56b618aa5229e2194bb",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-forearm.png",
+          "bytes": 3195,
+          "sha256": "c065d1278b95a776423bc7e50b0721d1dee7ed5d91cb9863d2281a9967b7cedb",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-thigh.png",
+          "bytes": 5240,
+          "sha256": "014adf1c24bd5d5a6cdf1420a3b75e224670c5a56b348f098bf6767bea17150c",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shin.png",
+          "bytes": 3560,
+          "sha256": "1aafbf943e113fb2a68772a0fef3517deef01c5c1559cbfd990a5bd57c52926c",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shoe.png",
+          "bytes": 3707,
+          "sha256": "2f932da7361a8ab353bc55be316256028dd59cec2bbac86e247bb51a558b4cb8",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-thigh.png",
+          "bytes": 5202,
+          "sha256": "7507b136cdf3e2404c18be6837f341c557b20a24d573115e164576e3d63e07c5",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shin.png",
+          "bytes": 3431,
+          "sha256": "654f04af304fb539068668579cf7dacf24582a36db8bee8113fc528fbdcc52c4",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shoe.png",
+          "bytes": 4043,
+          "sha256": "ac602d1e10e0aeb17f6b99802e31c00c131d10bf966917694e4f60491a6c6df0",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-neutral.png",
+          "bytes": 27548,
+          "sha256": "c259c0c6e512afa923006f95b38fc94ba5e79d4d17c63d8ef030fd44b254136c",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-gentle.png",
+          "bytes": 27208,
+          "sha256": "18439993dd3c362f55634cb4e5c9e5a948712bb58c7f42e5cc1addddc1bf086d",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-joyful.png",
+          "bytes": 27439,
+          "sha256": "826e9e652a14683447af1d92f026b865ea485b1048f777649cb1cf2dc69af9ab",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/garment.png",
+          "bytes": 8498,
+          "sha256": "b038124155ecafb9453d318651fe347b6abd74e9dc01535e03053258304db17e",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "project.json",
+          "bytes": 12879,
+          "sha256": "b20c90814c025d7d679986ccc37610bd70a61ad6765677210bc545de51a6bd45",
+          "validJson": true
+        }
+      ]
+    },
+    {
+      "file": "evidence-index.json",
+      "bytes": 67614,
+      "sha256": "ee2964680cc304fe18de39b60688bc617bd45b9f2cc474b3169917f322ddc8b8",
+      "validJson": true
+    },
+    {
+      "file": "expressions-1x.png",
+      "bytes": 188945,
+      "sha256": "68961652f2563e803bd859eebea36537e213703f66c2ba13bafcc8105f9cb588",
+      "dimensions": [
+        656,
+        639
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "expressions-2x.png",
+      "bytes": 238758,
+      "sha256": "629ed379728a03af8611baf860e4933622e4f19f4209863314b9c53f45f353a5",
+      "dimensions": [
+        1232,
+        1151
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "four-actions-1x.png",
+      "bytes": 199453,
+      "sha256": "24436bc267f6df340411b1371d4e59aff88b678d4a9f9a1e3bb5aa4837a44576",
+      "dimensions": [
+        868,
+        639
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "four-actions-2x.png",
+      "bytes": 244930,
+      "sha256": "a351d253928e40ec88aaf47134a1a9617eae716a10f4687562ffbcde8783b429",
+      "dimensions": [
+        1636,
+        1151
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "four-actions-left-2x.gif",
+      "bytes": 3060387,
+      "sha256": "3847de12bebfa0187465586bfa9635814195ad05d689080ee724868e19afb35e",
+      "dimensions": [
+        848,
+        596
+      ],
+      "decodedFrames": 38,
+      "decodable": true,
+      "frameDurationsMs": [
+        500,
+        500,
+        1000,
+        500,
+        500,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        60,
+        50,
+        60,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        800
+      ],
+      "durationMs": 6070,
+      "loop": 0
+    },
+    {
+      "file": "four-actions-right-2x.gif",
+      "bytes": 3060467,
+      "sha256": "718077b9a5794c7724ae798caa39a5db4b1e6a83e8819ad09c797039415962d0",
+      "dimensions": [
+        848,
+        596
+      ],
+      "decodedFrames": 38,
+      "decodable": true,
+      "frameDurationsMs": [
+        500,
+        500,
+        1000,
+        500,
+        500,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        60,
+        50,
+        60,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        800
+      ],
+      "durationMs": 6070,
+      "loop": 0
+    },
+    {
+      "file": "idle-left-1x.gif",
+      "bytes": 119321,
+      "sha256": "41ea3d0f75bb2af10396a90d1074eb1a50b9c8e7a0e282ba45a61d663247e528",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 5,
+      "decodable": true,
+      "frameDurationsMs": [
+        500,
+        500,
+        1000,
+        500,
+        500
+      ],
+      "durationMs": 3000,
+      "loop": 0
+    },
+    {
+      "file": "idle-right-1x.gif",
+      "bytes": 119316,
+      "sha256": "e3e19677675a92f846f0bc4a4d7ffd2875c7b6e12c75c54e5ddede4c16c8f286",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 5,
+      "decodable": true,
+      "frameDurationsMs": [
+        500,
+        500,
+        1000,
+        500,
+        500
+      ],
+      "durationMs": 3000,
+      "loop": 0
+    },
+    {
+      "file": "iterations/01/README.md",
+      "bytes": 875,
+      "sha256": "8dea8526ed23efbaca344bee5546fee634c8c2fd661e310e876f5cbd7f8de86f"
+    },
+    {
+      "file": "iterations/01/connections-3x.png",
+      "bytes": 141985,
+      "sha256": "7c51a190205c4b14cf559aee933eab759f3e11a9fcc1a030905ce62fe953d9bd",
+      "dimensions": [
+        998,
+        962
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "iterations/01/crop-mixed.character.zip",
+      "bytes": 603480,
+      "sha256": "961273a90847351eff718353ffdf63d4e50548ced3d631271706bf698665aec7",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 613966,
+          "sha256": "f50d2d7ad55c3bd44609354a55d74c3ba141f4a36ece0cebd935a8696fec41ac",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5135,
+          "sha256": "6852acbdf916395101284788d00a11087f5383f8173f1eb162fd690ea7ba288a",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 471,
+          "sha256": "9ec73d844f2ee8216768b67f3dd14eafa8f1560439a0aafc0969054fda19310b",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 18748,
+          "sha256": "48a651b8eaf8ab3fa24a4adb8f2cd2d8055a328d027872bd9492785c4b0f2560"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3763,
+          "sha256": "4f608bc58717c9bbe3178b466c38062c095237ed8b15d8bcc1236a0701b14079"
+        }
+      ]
+    },
+    {
+      "file": "iterations/01/wardrobe-lineup-2x.png",
+      "bytes": 167149,
+      "sha256": "329ea3f335560d396a0b26349f0f05459565c233252c72b1ce7f00d4e7e6b54a",
+      "dimensions": [
+        1636,
+        603
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "iterations/01/waves-mixed.character.zip",
+      "bytes": 799190,
+      "sha256": "48bf7e004f92049a05f96bc6d7082624a0b500cb16568e651f101c35379b81c9",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 810071,
+          "sha256": "8e198e7670a4866bda1fe5b618575e415513fdbb3de4aa725df38037f4faf8f5",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5133,
+          "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 477,
+          "sha256": "2c685cb2edb418f028ecfb1e965d2da7dd39133630624b93d8e75a82782aec8f",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 18765,
+          "sha256": "eaf83b396bca65038b523016f31ebd328e8e96ded842a7d0906de89f204ea8b3"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3765,
+          "sha256": "b550be64659bb3a289fcf2da40f8dd5986b5610d29730f23911362e1bd2c179e"
+        }
+      ]
+    },
+    {
+      "file": "jump-keyframes-1x.png",
+      "bytes": 455021,
+      "sha256": "f2cad3da5758d9f66608393ac8f0f8522c07ff041974ef5c65f58ae06e1eba85",
+      "dimensions": [
+        1292,
+        1223
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "jump-keyframes-2x.png",
+      "bytes": 860373,
+      "sha256": "e7503fe9419e32fdcae6ee4cf3e079c53a92bc4e806569313eeb63ec2b90dd38",
+      "dimensions": [
+        2444,
+        2247
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "jump-left-1x.gif",
+      "bytes": 405693,
+      "sha256": "6bc2ec44f4f59c2f0e3db22475f40d7efca7b63a92008168c883610444f5d76d",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 12,
+      "decodable": true,
+      "frameDurationsMs": [
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70
+      ],
+      "durationMs": 800,
+      "loop": "no loop extension; plays once"
+    },
+    {
+      "file": "jump-right-1x.gif",
+      "bytes": 406963,
+      "sha256": "2d1542e922e03a831d138e9f1755909244eaf928b752ea48f5a639662da1099c",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 12,
+      "decodable": true,
+      "frameDurationsMs": [
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70
+      ],
+      "durationMs": 800,
+      "loop": "no loop extension; plays once"
+    },
+    {
+      "file": "legacy-frame-equality.json",
+      "bytes": 2015,
+      "sha256": "414774e29dd113f09016c3dd4b677d3128c7f569c1b8c61511e49252d5ef3440",
+      "validJson": true
+    },
+    {
+      "file": "recolor-1x.png",
+      "bytes": 82092,
+      "sha256": "9e5af9c1ada84bab07ba21d5bcb01520b9d21daa118354bdef123809cc0cecae",
+      "dimensions": [
+        444,
+        347
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "recolor-2x.png",
+      "bytes": 102905,
+      "sha256": "591b2ca419a6d9d413f3e761c53557b60182d320ba31a44bacfb60988c8bf867",
+      "dimensions": [
+        828,
+        603
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "run-keyframes-1x.png",
+      "bytes": 432588,
+      "sha256": "5120ba1a88cf9470fd8a37dfdc1d7f826414e580438c89814373d963c07b771f",
+      "dimensions": [
+        1292,
+        1223
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "run-keyframes-2x.png",
+      "bytes": 516756,
+      "sha256": "9a3b03641a3749d5e48b755894aa581d57cbeacf37de1d22ab2d7128370f2403",
+      "dimensions": [
+        2444,
+        2247
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "run-left-1x.gif",
+      "bytes": 418157,
+      "sha256": "c3ff6ee282a2bca7e175b23ae8436e51a4dec183bd1b5d6cca3592ec2b3c67c3",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 12,
+      "decodable": true,
+      "frameDurationsMs": [
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        60,
+        50,
+        60
+      ],
+      "durationMs": 670,
+      "loop": 0
+    },
+    {
+      "file": "run-right-1x.gif",
+      "bytes": 416362,
+      "sha256": "dae0ca1b3e4c0886bfff31bcfedcde6d8ca1223980973b680681a1b2d5be9f27",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 12,
+      "decodable": true,
+      "frameDurationsMs": [
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        50,
+        60,
+        60,
+        50,
+        60
+      ],
+      "durationMs": 670,
+      "loop": 0
+    },
+    {
+      "file": "shoe-fit-before-after-4x.png",
+      "bytes": 14497,
+      "sha256": "ea8fc93c3a17c6a86b020faf24795b128968dc24e8f99a1a6eb6f505f02f6638",
+      "dimensions": [
+        500,
+        410
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "studio-desktop.png",
+      "bytes": 398473,
+      "sha256": "d4a6366619e88ecd0d0a8300a5c0fc5caad25e79e9de1aa00f08136f6a67e2ae",
+      "dimensions": [
+        1440,
+        2071
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "studio-mobile.png",
+      "bytes": 349091,
+      "sha256": "277547014b26318afe06bb24babe1f760d32df517089d8148ee32f322ccd9095",
+      "dimensions": [
+        390,
+        4771
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "verification-results.json",
+      "bytes": 3589,
+      "sha256": "bd21291066e5d641a5a7c58ce182b326bdca1cedd19d9f35f79f584ac5d85713",
+      "validJson": true
+    },
+    {
+      "file": "walk-left-1x.gif",
+      "bytes": 291024,
+      "sha256": "d4e5a0fe4f521f2938c1e1ef15f301f927d117b93e64ce061dea8d17257f1ff7",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 8,
+      "decodable": true,
+      "frameDurationsMs": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "durationMs": 800,
+      "loop": 0
+    },
+    {
+      "file": "walk-right-1x.gif",
+      "bytes": 290315,
+      "sha256": "579d552b992b47891539cec9687330c9c60c8c9b26ee8a0f4276d9fe4b822f23",
+      "dimensions": [
+        464,
+        340
+      ],
+      "decodedFrames": 8,
+      "decodable": true,
+      "frameDurationsMs": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "durationMs": 800,
+      "loop": 0
+    },
+    {
+      "file": "wardrobe-lineup-1x.png",
+      "bytes": 132521,
+      "sha256": "fa2a51915cf77fddad11b0319bb1098fa6b760a4a85deaa21969befa175f9d0b",
+      "dimensions": [
+        868,
+        347
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "wardrobe-lineup-2x.png",
+      "bytes": 167885,
+      "sha256": "1d2358798fd7908c952c075053e45b8864d16324e12bed39043a4c2699b703ba",
+      "dimensions": [
+        1636,
+        603
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-mixed/INTEGRATION.md",
+      "bytes": 3925,
+      "sha256": "8c897bac0c32353fa85c5ded1974db167232fb6f8ae8dd749d92a868ddf56f9d"
+    },
+    {
+      "file": "waves-mixed/PROVENANCE.txt",
+      "bytes": 19125,
+      "sha256": "5dcd25ab20ed5ea1c47a014916324aac789671f8099add70d38bc694588781d1"
+    },
+    {
+      "file": "waves-mixed/character.json",
+      "bytes": 477,
+      "sha256": "2c685cb2edb418f028ecfb1e965d2da7dd39133630624b93d8e75a82782aec8f",
+      "validJson": true
+    },
+    {
+      "file": "waves-mixed/independent-jump-left.png",
+      "bytes": 172405,
+      "sha256": "9f995b6e1478f073375ba1adf3e3bc3a735c5a26773e68d519a80f26b75df652",
+      "dimensions": [
+        1280,
+        1277
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-mixed/independent-jump-right.png",
+      "bytes": 171762,
+      "sha256": "442c847c8438948bf2261e968a4f351e9052290b74029960e12062b6554b3f29",
+      "dimensions": [
+        1280,
+        1277
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-mixed/manifest.json",
+      "bytes": 5133,
+      "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+      "validJson": true
+    },
+    {
+      "file": "waves-mixed/spritesheet.png",
+      "bytes": 808339,
+      "sha256": "608dfaafd153c79bcfa46f039a0e8cdc0e1b867e898d32e89ddeac18e3928261",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-mixed-joyful/INTEGRATION.md",
+      "bytes": 3925,
+      "sha256": "8c897bac0c32353fa85c5ded1974db167232fb6f8ae8dd749d92a868ddf56f9d"
+    },
+    {
+      "file": "waves-mixed-joyful/PROVENANCE.txt",
+      "bytes": 19125,
+      "sha256": "1656ddfb9c841a5de8e24c62f9a4ac3362944d0b8c3c3c029a64df75325417a6"
+    },
+    {
+      "file": "waves-mixed-joyful/character.json",
+      "bytes": 477,
+      "sha256": "da68adf33020e5bc76245e2891b15c04dcc66eaebb5520d4bcefd83b66c6133c",
+      "validJson": true
+    },
+    {
+      "file": "waves-mixed-joyful/manifest.json",
+      "bytes": 5133,
+      "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+      "validJson": true
+    },
+    {
+      "file": "waves-mixed-joyful/spritesheet.png",
+      "bytes": 812797,
+      "sha256": "30036e8e24f252eb13f854751effcf9b664d52a349494686f5761e65cdd6795f",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-mixed-joyful.character.zip",
+      "bytes": 802283,
+      "sha256": "c86a2a544e73de141fe145b15c6cc5d71f29d74cc2204dba7fc2ebaed3b954bf",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 812797,
+          "sha256": "30036e8e24f252eb13f854751effcf9b664d52a349494686f5761e65cdd6795f",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5133,
+          "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 477,
+          "sha256": "da68adf33020e5bc76245e2891b15c04dcc66eaebb5520d4bcefd83b66c6133c",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19125,
+          "sha256": "1656ddfb9c841a5de8e24c62f9a4ac3362944d0b8c3c3c029a64df75325417a6"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3925,
+          "sha256": "8c897bac0c32353fa85c5ded1974db167232fb6f8ae8dd749d92a868ddf56f9d"
+        }
+      ]
+    },
+    {
+      "file": "waves-mixed-neutral/INTEGRATION.md",
+      "bytes": 3925,
+      "sha256": "8c897bac0c32353fa85c5ded1974db167232fb6f8ae8dd749d92a868ddf56f9d"
+    },
+    {
+      "file": "waves-mixed-neutral/PROVENANCE.txt",
+      "bytes": 19126,
+      "sha256": "f10c6502af65667fe59ddab88fd307dfbc3337fb9c9ce1ad003a0067dc969654"
+    },
+    {
+      "file": "waves-mixed-neutral/character.json",
+      "bytes": 478,
+      "sha256": "bf3cf8195ec9654deb4cc1d7dc8f4b20ab2555fb3dd6e989e271f3bc53998853",
+      "validJson": true
+    },
+    {
+      "file": "waves-mixed-neutral/manifest.json",
+      "bytes": 5133,
+      "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+      "validJson": true
+    },
+    {
+      "file": "waves-mixed-neutral/spritesheet.png",
+      "bytes": 810485,
+      "sha256": "5aa06cc85d0a6eca60233d5dca4b8a69daffe0447a3f2a4b96ba98cfe4d08991",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-mixed-neutral.character.zip",
+      "bytes": 799583,
+      "sha256": "77176e7b4dcbfad164884ef107214528b1087a3b535cdb2e20d1921a41227b53",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 810485,
+          "sha256": "5aa06cc85d0a6eca60233d5dca4b8a69daffe0447a3f2a4b96ba98cfe4d08991",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5133,
+          "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 478,
+          "sha256": "bf3cf8195ec9654deb4cc1d7dc8f4b20ab2555fb3dd6e989e271f3bc53998853",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19126,
+          "sha256": "f10c6502af65667fe59ddab88fd307dfbc3337fb9c9ce1ad003a0067dc969654"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3925,
+          "sha256": "8c897bac0c32353fa85c5ded1974db167232fb6f8ae8dd749d92a868ddf56f9d"
+        }
+      ]
+    },
+    {
+      "file": "waves-mixed-reopened.character.zip",
+      "bytes": 797378,
+      "sha256": "6557f8980c21e09e7d4686ede098a7165899e016b26eb87e64dd2ab7c53ff1a1",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 808339,
+          "sha256": "608dfaafd153c79bcfa46f039a0e8cdc0e1b867e898d32e89ddeac18e3928261",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5133,
+          "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 477,
+          "sha256": "2c685cb2edb418f028ecfb1e965d2da7dd39133630624b93d8e75a82782aec8f",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19125,
+          "sha256": "1a5774ba586a77ce154307ea28d6a7ce55dec97e01bbe0b87e8cebfcdc4940dc"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3925,
+          "sha256": "8c897bac0c32353fa85c5ded1974db167232fb6f8ae8dd749d92a868ddf56f9d"
+        }
+      ]
+    },
+    {
+      "file": "waves-mixed.character.zip",
+      "bytes": 797378,
+      "sha256": "fe0deb66ee93562c409748adecde94b010ed2eef4da413cccf79210888f55681",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 808339,
+          "sha256": "608dfaafd153c79bcfa46f039a0e8cdc0e1b867e898d32e89ddeac18e3928261",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5133,
+          "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 477,
+          "sha256": "2c685cb2edb418f028ecfb1e965d2da7dd39133630624b93d8e75a82782aec8f",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19125,
+          "sha256": "5dcd25ab20ed5ea1c47a014916324aac789671f8099add70d38bc694588781d1"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3925,
+          "sha256": "8c897bac0c32353fa85c5ded1974db167232fb6f8ae8dd749d92a868ddf56f9d"
+        }
+      ]
+    },
+    {
+      "file": "waves-mixed.rig.zip",
+      "bytes": 170002,
+      "sha256": "a02bdd080cec503ed5bd98b060190b7a8db99b55b30491fa2df7d8bd1678f417",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "skin.json",
+          "bytes": 3331,
+          "sha256": "693bb1f5d287c6f00e920d2205ee8063a173971d9f8fc1e3a4a5f8eece51a228",
+          "validJson": true
+        },
+        {
+          "name": "slots/torso.png",
+          "bytes": 10612,
+          "sha256": "c790e4876ab40a19b9594a77099991d5d1ed643d27ee0aaed15cfdcd7a304d71",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/hips.png",
+          "bytes": 4574,
+          "sha256": "d720eb3b77ef5e015d3d525ea6a01717318371e98508d70e039810c3caf63060",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-upper-arm.png",
+          "bytes": 5060,
+          "sha256": "7ef28dfa72e826d5b71c4704d0242ed1c0c1fc42f3c9d8bec024604de441564b",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-forearm.png",
+          "bytes": 3926,
+          "sha256": "0b5159942e24c15a7ce59c1d8bd58c3c56d14976ca881de00345178889de496b",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-upper-arm.png",
+          "bytes": 4117,
+          "sha256": "f51e289e1c8fb08badde6ce05e3199b7d2889de2e2bd0a0044613f9be9ea7ed1",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-forearm.png",
+          "bytes": 3725,
+          "sha256": "27d3df49f9124f10e4214ae27c768b3deee623014f7e24a1e0b65fbc23d361f0",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-thigh.png",
+          "bytes": 4426,
+          "sha256": "87863d467b7ef72118f69c58d2db51a6d66b0be5a59fea374d146d03393422e8",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shin.png",
+          "bytes": 5139,
+          "sha256": "db90a8da74d135d63b650c33d5f253ae22138f7bff51e18006a0c172aa608784",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shoe.png",
+          "bytes": 3673,
+          "sha256": "069b0dda290c460695e4986c4a6bf09ec5652d304dd74da0e0b836338d2f8e34",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-thigh.png",
+          "bytes": 4273,
+          "sha256": "f3ecfdb028b530ad899e9e374241a9be02c5d8536757665035f412bd532e3ba3",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shin.png",
+          "bytes": 4849,
+          "sha256": "80f5eac67a6a39095b457a6d6dfa263c837cea2b688c455543fb7362c1950c3f",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shoe.png",
+          "bytes": 3865,
+          "sha256": "f67c7d79023ab5599d347cb9a1dc0c8097903ed84aa1463e22bd5cb60710cc5a",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-neutral.png",
+          "bytes": 31374,
+          "sha256": "39ae5c22f1a0b1d0ef90d0c64117c9d74c6384d004085b07da6ae0014ae156c4",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-gentle.png",
+          "bytes": 31495,
+          "sha256": "a29207a40a4c9d30e72deb31ac402ae6e9c0fbca1ec32cec39d2d8f71e882909",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-joyful.png",
+          "bytes": 31084,
+          "sha256": "dabafae4aa54c51eb451037fa16d101c67223412f0cd2773af87ffbad93fa192",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/back-hair.png",
+          "bytes": 16163,
+          "sha256": "7ef7b35a2602bdb11a2dd0d0e07469982acdf6cb62a8d78165d00a5e1ebc8ea1",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "project.json",
+          "bytes": 12881,
+          "sha256": "4c4bc9964d914297c0667cd96fa5a88bd35fd04d0aa7afa42a5ac4e7a935b9b5",
+          "validJson": true
+        }
+      ]
+    },
+    {
+      "file": "waves-recolor/INTEGRATION.md",
+      "bytes": 3925,
+      "sha256": "c532e58b7785fcf738ddeae235a48b045dfc7718443da163c1c3852e1e2aec19"
+    },
+    {
+      "file": "waves-recolor/PROVENANCE.txt",
+      "bytes": 19125,
+      "sha256": "652095c4311524550d0e4c15ac8f7a0d5616023012fad1256319a43eabe967ef"
+    },
+    {
+      "file": "waves-recolor/character.json",
+      "bytes": 477,
+      "sha256": "ffa2212cc1643b710b5af08fc1548790693ecd8abe82b7678891a3ad2f86c328",
+      "validJson": true
+    },
+    {
+      "file": "waves-recolor/manifest.json",
+      "bytes": 5133,
+      "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+      "validJson": true
+    },
+    {
+      "file": "waves-recolor/spritesheet.png",
+      "bytes": 810339,
+      "sha256": "3b93e44cfc2c7a1e0fb5462f4a8ad6800474a35735d4204dae89ad5697907f7b",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-recolor.character.zip",
+      "bytes": 799520,
+      "sha256": "f09bf7abe8823ebb0d3028108ca528fdffc2f2854f3f79065342ea4021d0601a",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 810339,
+          "sha256": "3b93e44cfc2c7a1e0fb5462f4a8ad6800474a35735d4204dae89ad5697907f7b",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5133,
+          "sha256": "52eaef0ebba16b8611d01c8d92fb4ef94776875a38b97f31248a2323f80770b4",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 477,
+          "sha256": "ffa2212cc1643b710b5af08fc1548790693ecd8abe82b7678891a3ad2f86c328",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19125,
+          "sha256": "652095c4311524550d0e4c15ac8f7a0d5616023012fad1256319a43eabe967ef"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3925,
+          "sha256": "c532e58b7785fcf738ddeae235a48b045dfc7718443da163c1c3852e1e2aec19"
+        }
+      ]
+    },
+    {
+      "file": "waves-recolor.rig.zip",
+      "bytes": 169985,
+      "sha256": "d7fe65f7cf1c396484ff65a3358a8b68646a569bb46411b2549bacf3383c006d",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "skin.json",
+          "bytes": 3331,
+          "sha256": "6894c454613af5d0545d4886eaa9057b455d67c57a0bda3102b4829e54cede92",
+          "validJson": true
+        },
+        {
+          "name": "slots/torso.png",
+          "bytes": 10561,
+          "sha256": "c534543baf8350fde755a23054a13daeedb2148e2b64b4bd1d4fa398a36a45d4",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/hips.png",
+          "bytes": 4603,
+          "sha256": "be60dbe07a3daedafb3136a93eda486d270b9a430a985a6a91c438d183959d63",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-upper-arm.png",
+          "bytes": 5055,
+          "sha256": "17c9dfda3e183e674c082fe8f41fb7aeb57dd67d69ead8307edfaf2a10e5826c",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-forearm.png",
+          "bytes": 3914,
+          "sha256": "a02086b749902471a9c7ac86cea21d33b21d4b125e01d622dcda238518f4ec63",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-upper-arm.png",
+          "bytes": 4102,
+          "sha256": "e1d2970dc8ef6a660f1aa68c49c4dd658c14953bca7ab1109221f4b5812b1190",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-forearm.png",
+          "bytes": 3699,
+          "sha256": "843d3b57546ccef9e62c33a3c608d6e07743c8c200c9f600d9fb754a39ccd061",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-thigh.png",
+          "bytes": 4469,
+          "sha256": "2d49f6874f117c68b12ebcb70a3d2129e078ef788a4cc71e8739f194f47bc3a6",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shin.png",
+          "bytes": 5139,
+          "sha256": "a74ffede002149c1e0294f39960d2b646624ee0b1e5fc7c588f57a5a54537ba5",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shoe.png",
+          "bytes": 3709,
+          "sha256": "106db741ac3413807d897b7486b940af35114e49c7c9a917ac25eacc2f3cbbfd",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-thigh.png",
+          "bytes": 4289,
+          "sha256": "36139cd6c8aedfe19985a9a027bfb1222c9beab1d4e8ddb0d647b3de9dcd9dca",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shin.png",
+          "bytes": 4840,
+          "sha256": "0dcec44c38bfe12eb67d39abcdbdb9d03bd43b654dea2ae3d350f84ac783eaa0",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shoe.png",
+          "bytes": 3905,
+          "sha256": "f43fc8dbd3ade1a8aeb5cbc41b594c7095a8cd5f613aaacd0a20c5aacc1c466d",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-neutral.png",
+          "bytes": 31313,
+          "sha256": "1f6244838d341907f84c66f41e31f40fd50d5219cccd45cbc3154eed58dc87af",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-gentle.png",
+          "bytes": 31412,
+          "sha256": "64d0bfbde088f839ced0afe19ffbdf3c34fb2d47c98e0c1eebe6e06f93e15dd8",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-joyful.png",
+          "bytes": 31130,
+          "sha256": "0769715ddacf15848d1a0807c8003646f6779da50272918de22dde986d80752e",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/back-hair.png",
+          "bytes": 16163,
+          "sha256": "7ef7b35a2602bdb11a2dd0d0e07469982acdf6cb62a8d78165d00a5e1ebc8ea1",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "project.json",
+          "bytes": 12881,
+          "sha256": "7270da66abfbc134716285a20e34c18f02cb2a0a4f523da92cd34705cace8bd9",
+          "validJson": true
+        }
+      ]
+    },
+    {
+      "file": "waves-soft/INTEGRATION.md",
+      "bytes": 3924,
+      "sha256": "b62f706ddfe893374a17300b2eb1518b5be18fc1f1a2a936bc8989e6f38ba520"
+    },
+    {
+      "file": "waves-soft/PROVENANCE.txt",
+      "bytes": 19127,
+      "sha256": "dc444bf4192bdf74e6d3a8e18cf2b18044afc1a037a55df054044f97e6c518c3"
+    },
+    {
+      "file": "waves-soft/character.json",
+      "bytes": 464,
+      "sha256": "ded194e6722c1954658f24df769a6dc9ec7b47c5b7118e66c90bf0c55bf43641",
+      "validJson": true
+    },
+    {
+      "file": "waves-soft/manifest.json",
+      "bytes": 5126,
+      "sha256": "f3da953262c834b445181f52290ba8235b4e0c10e92bf79e848414c10cf083f5",
+      "validJson": true
+    },
+    {
+      "file": "waves-soft/spritesheet.png",
+      "bytes": 770118,
+      "sha256": "3f5162108ccfbf2def66437cfa03890d410cbb3ff000122da5715f06932879c3",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "decodedFrames": 1,
+      "decodable": true
+    },
+    {
+      "file": "waves-soft.character.zip",
+      "bytes": 759996,
+      "sha256": "ce0ff8bfa61727c2d2ed23d2c16867d4657bac2c2f22a1193f838526e51bbc7d",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "spritesheet.png",
+          "bytes": 770118,
+          "sha256": "3f5162108ccfbf2def66437cfa03890d410cbb3ff000122da5715f06932879c3",
+          "dimensions": [
+            1536,
+            1536
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 5126,
+          "sha256": "f3da953262c834b445181f52290ba8235b4e0c10e92bf79e848414c10cf083f5",
+          "validJson": true
+        },
+        {
+          "name": "character.json",
+          "bytes": 464,
+          "sha256": "ded194e6722c1954658f24df769a6dc9ec7b47c5b7118e66c90bf0c55bf43641",
+          "validJson": true
+        },
+        {
+          "name": "PROVENANCE.txt",
+          "bytes": 19127,
+          "sha256": "dc444bf4192bdf74e6d3a8e18cf2b18044afc1a037a55df054044f97e6c518c3"
+        },
+        {
+          "name": "INTEGRATION.md",
+          "bytes": 3924,
+          "sha256": "b62f706ddfe893374a17300b2eb1518b5be18fc1f1a2a936bc8989e6f38ba520"
+        }
+      ]
+    },
+    {
+      "file": "waves-soft.rig.zip",
+      "bytes": 174432,
+      "sha256": "8f58274097f405ecf523cfea15f9a8f41911be8db0a23111444991e2b89c0abb",
+      "crcVerified": true,
+      "members": [
+        {
+          "name": "skin.json",
+          "bytes": 3331,
+          "sha256": "35cce326aaa4c2ef6611f23e4cc47290a0f4fdd4e13c88769e7e76147b084ce9",
+          "validJson": true
+        },
+        {
+          "name": "slots/torso.png",
+          "bytes": 8304,
+          "sha256": "1b4f1810504bc1b0de83b0def15fe68dc5b2a6d9f6a5bd83dd361c121d96de7a",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/hips.png",
+          "bytes": 4452,
+          "sha256": "510ddaacdca3b391dfb7a3c77881ec67e977d5be66f4f75a643b03f56869f069",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-upper-arm.png",
+          "bytes": 4989,
+          "sha256": "91ca2130418590787cc36e9ab40f190546030c6650a815a8c04129e1dfd373dc",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-forearm.png",
+          "bytes": 3374,
+          "sha256": "22616e7a37061b91ad728af3703c5e06369872158387e1369ae04e137c8934bd",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-upper-arm.png",
+          "bytes": 4566,
+          "sha256": "dfd395472598903cee91c8d124f40392df6920db4f7ea10367a5c1385f4643ee",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-forearm.png",
+          "bytes": 3191,
+          "sha256": "ffe5f5f727746273e0c3b594b5518e7aae7a7666044e63587fbf4ee741cdcea6",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-thigh.png",
+          "bytes": 5258,
+          "sha256": "11b63d621d31a12a74821e27492f3e91dc04ede6dbc5f96f46701eadd890518b",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shin.png",
+          "bytes": 3531,
+          "sha256": "72ed548cc9531aedaa548535e05edf79e59e2e3aa44f31df35a9e460842e0512",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/near-shoe.png",
+          "bytes": 3951,
+          "sha256": "640248a8c26c7dc1d93fc581f1daa808ff1c60ad159a1f9f9d4c8233cd668128",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-thigh.png",
+          "bytes": 5186,
+          "sha256": "c61e1b42c6acc1939b2736ce2c03494981d84f507c6500afa44c542fb4ed2e6c",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shin.png",
+          "bytes": 3417,
+          "sha256": "79ca7dcc3f68cae89f12677e5bd9a417f67f73d3713b36119fe81d8f95385f70",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/far-shoe.png",
+          "bytes": 4090,
+          "sha256": "7f130a2e0144dfbf58c94384ec59d85640804b6ffaa81f3666ac8cbd9cbca7bc",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-neutral.png",
+          "bytes": 31374,
+          "sha256": "39ae5c22f1a0b1d0ef90d0c64117c9d74c6384d004085b07da6ae0014ae156c4",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-gentle.png",
+          "bytes": 31495,
+          "sha256": "a29207a40a4c9d30e72deb31ac402ae6e9c0fbca1ec32cec39d2d8f71e882909",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/head-joyful.png",
+          "bytes": 31084,
+          "sha256": "dabafae4aa54c51eb451037fa16d101c67223412f0cd2773af87ffbad93fa192",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/back-hair.png",
+          "bytes": 16163,
+          "sha256": "7ef7b35a2602bdb11a2dd0d0e07469982acdf6cb62a8d78165d00a5e1ebc8ea1",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "slots/garment.png",
+          "bytes": 8416,
+          "sha256": "40be28ecb53b5eadb32f0861a75d89ea7b42c03c7aebc84a870651caf8907abf",
+          "dimensions": [
+            192,
+            256
+          ],
+          "decoded": true,
+          "binaryAlpha": true
+        },
+        {
+          "name": "project.json",
+          "bytes": 12880,
+          "sha256": "37d2ed19cf480353c3fb81f59df4244f6999513a5406a158331923c09d08379a",
+          "validJson": true
+        }
+      ]
+    }
+  ]
+}

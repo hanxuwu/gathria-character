@@ -1,0 +1,101 @@
+{
+  "batch": "Visual binding, shared motion editing and undo",
+  "verifiedAt": "2026-10-17",
+  "baseline": "73e87c67a37c0f8b6b8b9ea1908d57ee86eaac59",
+  "implementationCommit": "276a17b2f2e4289df076824841c3525f321d3a8d",
+  "branch": "feat/reusable-character-rig",
+  "scope": "Tests executed in this batch; earlier review counts remain historical.",
+  "checks": [
+    {
+      "command": "npm test",
+      "passed": true,
+      "tests": 335,
+      "files": 24,
+      "durationSeconds": 23.71
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "includes": ["TypeScript tsc -b", "Vite production build"],
+      "warning": "Existing generated-art chunk size warning remains."
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npm run test:e2e",
+      "passed": true,
+      "tests": 38,
+      "durationReported": "2.7m"
+    },
+    {
+      "command": "git diff --check",
+      "passed": true
+    }
+  ],
+  "artifacts": {
+    "png": 18,
+    "gif": 5,
+    "zip": 8,
+    "zipContents": "2 default CharacterPacks, 2 full authoring projects, 2 edited CharacterPacks, 2 re-exported CharacterPacks",
+    "allDecodedAndNonempty": true,
+    "zipCrcAndMemberHashesVerified": true,
+    "details": "artifact-validation.json",
+    "inventory": "file-integrity.json"
+  },
+  "browserEvidence": {
+    "actualUiSteps": 6,
+    "dragUndoRedoPixelEquality": true,
+    "projectsReopenedExactly": 2,
+    "defaultAtlasesAndManifestsEqualPriorExports": true,
+    "editedIdleWalkPixelsUnchanged": true,
+    "sharedRigAndEditedMotionsEqualAcrossSkins": true,
+    "authoringClosedBeforeConsumer": true,
+    "independentRunCases": 4,
+    "all12NativeFramesOrderAndHoldTimingVerified": true,
+    "nominalLoopMs": 866.6666666666666,
+    "observedLoopRangeMs": [850, 886],
+    "observedFirstPoseHoldRangeMs": [131, 151],
+    "gifLoopMs": 870,
+    "errors": [],
+    "externalRequests": [],
+    "forbiddenGeneratorImports": [],
+    "mobileViewportWidth": 390,
+    "mobileDocumentWidth": 390
+  },
+  "compatibility": {
+    "capturedSourceHashesMatched": 19,
+    "protectedPathsUnchangedSinceBaseline": [
+      "src/core",
+      "src/editor",
+      "src/consumer",
+      "src/experiments",
+      "src/skeletal/renderer.ts",
+      "src/skeletal/definition.ts",
+      "src/skeletal/bake.ts",
+      "src/skeletal/skin-io.ts",
+      "src/skeletal/builtins.ts",
+      "src/skeletal/types.ts"
+    ],
+    "fileVersionsUnchanged": true,
+    "defaultArtAndMotionUnchanged": true
+  },
+  "captureCorrection": "The first capture stopped in independent playback because it required React's aria-label and the canvas paint to update simultaneously. The completed capture identifies every sampled pose by its unique full-native RGBA equality with an exported PNG frame; every sample must have exactly one match. No app code changed for this observer correction.",
+  "visualReview": {
+    "inspected": [
+      "Native source handles and key poses",
+      "Integer-zoom same-pose comparison",
+      "Desktop and 390px mobile editor",
+      "Independent playback and full-frame live pixel/timing capture"
+    ],
+    "result": "Editing controls and pose preview remain readable; identity/head/height retained. The example motion is technical evidence, not an art-improvement claim.",
+    "remaining": [
+      "Deep joint bends can compress source texture.",
+      "Only current rig family and fixed source-key counts are supported; no automatic illustration splitting or arbitrary topology/weight painting.",
+      "History and playback cursor are session-local; project save is explicit.",
+      "Production Gathria scene integration and user aesthetic acceptance remain unverified."
+    ]
+  },
+  "remoteImplementationChecks": {
+    "commit": "276a17b2f2e4289df076824841c3525f321d3a8d",
+    "verifyChecksPassed": 2,
+    "note": "These are implementation-head CI results, not a claim about the later documentation/artifact delivery commit."
+  }
+}

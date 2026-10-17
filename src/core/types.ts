@@ -1,4 +1,6 @@
 export type AnimationName = "idle" | "walk" | "run";
+/** Portable playback can include actions outside legacy character configurations. */
+export type PlaybackAnimationName = AnimationName | "jump";
 export type Facing = "left" | "right";
 export type Hairstyle = "crop" | "bob" | "waves" | "mohawk";
 export type LegacyUpperClothing = "tee" | "hoodie" | "jacket";
@@ -103,7 +105,10 @@ export interface CharacterPackManifest {
     rows: number;
   };
   frames: SpriteFrame[];
-  animations: Record<"idle" | "walk", Animation> & { run?: Animation };
+  animations: Record<"idle" | "walk", Animation> & {
+    run?: Animation;
+    jump?: Animation;
+  };
   facing: { native: "right"; right: "none"; left: "mirror-x" };
   anchor: { x: number; y: number; units: "pixels"; origin: "top-left" };
   scale: { pixelArt: true; recommended: number; integerOnly: true };

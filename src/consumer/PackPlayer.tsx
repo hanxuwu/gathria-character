@@ -18,14 +18,15 @@ import {
   loadCharacterPack,
   type LoadedCharacterPack,
 } from "../core/pack";
-import type { AnimationName, Facing } from "../core/types";
-import { drawCharacterFrame, frameAtTime } from "./player";
+import type { PlaybackAnimationName, Facing } from "../core/types";
+import { animationHasEnded, drawCharacterFrame, frameAtTime } from "./player";
 
 export function PackPlayer() {
   const [pack, setPack] = useState<LoadedCharacterPack | null>(null);
-  const [animation, setAnimation] = useState<AnimationName>("idle");
+  const [animation, setAnimation] = useState<PlaybackAnimationName>("idle");
   const [facing, setFacing] = useState<Facing>("right");
   const [playing, setPlaying] = useState(true);
+  const [completed, setCompleted] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [zoom, setZoom] = useState(5);
   const [busy, setBusy] = useState(false);
@@ -81,8 +82,12 @@ export function PackPlayer() {
     const context = canvas.getContext("2d");
     if (!context) return;
     const ratio = window.devicePixelRatio || 1;
-    canvas.width = Math.round(canvasRenderWidth * ratio);
-    canvas.height = Math.round(canvasHeight * ratio);
+    // Assigning either dimension clears the bitmap, even when unchanged.
+    // Playback state changes must not expose a blank frame between effects.
+    const width = Math.round(canvasRenderWidth * ratio);
+    const height = Math.round(canvasHeight * ratio);
+    if (canvas.width !== width) canvas.width = width;
+    if (canvas.height !== height) canvas.height = height;
     let previous: number | undefined;
     let request = 0;
     function draw(now: number) {
@@ -126,10 +131,17 @@ export function PackPlayer() {
         context.moveTo(attachment.x + 0.5, attachment.y - 5);
         context.lineTo(attachment.x + 0.5, attachment.y + 5);
         context.stroke();
+        if (animationHasEnded(pack.manifest, animation, elapsedRef.current)) {
+          setCompleted(true);
+          setPlaying(false);
+          return;
+        }
       }
       if (playing && pack) request = requestAnimationFrame(draw);
     }
-    request = requestAnimationFrame(draw);
+    // Paint immediately on pause, completion, action changes and replay. The
+    // callback schedules subsequent ticks only while playback is active.
+    draw(performance.now());
     return () => cancelAnimationFrame(request);
   }, [
     pack,
@@ -161,6 +173,7 @@ export function PackPlayer() {
         setFacing(loaded.manifest.facing.native);
         setZoom(Math.min(8, Math.max(1, loaded.manifest.scale.recommended)));
         setPlaying(true);
+        setCompleted(false);
       } catch (cause) {
         if (request !== requestRef.current) return;
         setError(
@@ -254,14 +267,21 @@ export function PackPlayer() {
     }, png.name);
   }
 
-  function chooseAnimation(value: AnimationName) {
+  function chooseAnimation(value: PlaybackAnimationName) {
     const clip = pack?.manifest.animations[value];
     if (!clip) return;
     elapsedRef.current = 0;
     frameRef.current = -1;
     setFrameId(clip.frames[0]);
     setAnimation(value);
+    if (completed) setPlaying(true);
+    setCompleted(false);
     setPlaybackRevision((value) => value + 1);
+  }
+
+  function replayAnimation() {
+    chooseAnimation(animation);
+    setPlaying(true);
   }
 
   return (
@@ -593,15 +613,15 @@ export function PackPlayer() {
                     role="group"
                     aria-labelledby="player-motion-label"
                   >
-                    {(["idle", "walk", "run"] as const).map((value) => (
+                    {(["idle", "walk", "run", "jump"] as const).map((value) => (
                       <button
                         key={value}
                         disabled={!pack?.manifest.animations[value]}
                         aria-describedby={
-                          value === "run" &&
+                          (value === "run" || value === "jump") &&
                           pack &&
-                          !pack.manifest.animations.run
-                            ? "player-run-unavailable"
+                          !pack.manifest.animations[value]
+                            ? `player-${value}-unavailable`
                             : undefined
                         }
                         aria-pressed={animation === value}
@@ -612,7 +632,9 @@ export function PackPlayer() {
                           ? "Idle"
                           : value === "walk"
                             ? "Walk"
-                            : "Run"}
+                            : value === "run"
+                              ? "Run"
+                              : "Jump"}
                       </button>
                     ))}
                   </div>
@@ -644,11 +666,22 @@ export function PackPlayer() {
                 </div>
                 <button
                   className="player-play-button"
-                  onClick={() => setPlaying((value) => !value)}
+                  onClick={() => {
+                    if (completed) replayAnimation();
+                    else setPlaying((value) => !value);
+                  }}
                   disabled={!pack}
-                  aria-label={playing ? "Pause animation" : "Play animation"}
+                  aria-label={
+                    completed
+                      ? "Replay animation"
+                      : playing
+                        ? "Pause animation"
+                        : "Play animation"
+                  }
                 >
-                  {playing ? (
+                  {completed ? (
+                    <RotateCcw size={18} />
+                  ) : playing ? (
                     <Pause size={18} fill="currentColor" />
                   ) : (
                     <Play size={18} fill="currentColor" />
@@ -660,7 +693,21 @@ export function PackPlayer() {
               </p>
               {pack && !pack.manifest.animations.run && (
                 <p className="player-motion-note" id="player-run-unavailable">
-                  Run unavailable: this pack includes Idle and Walk only.
+                  {pack.manifest.animations.jump
+                    ? "Run unavailable: this pack does not include a run animation."
+                    : "Run unavailable: this pack includes Idle and Walk only."}
+                </p>
+              )}
+              {pack && !pack.manifest.animations.jump && (
+                <p className="player-motion-note" id="player-jump-unavailable">
+                  Jump unavailable: this pack does not include a jump animation.
+                </p>
+              )}
+              {selectedClip && !selectedClip.loop && (
+                <p className="player-motion-note" id="player-one-shot-note">
+                  {completed
+                    ? "Finished · Holding the final frame. Replay to start again."
+                    : "Plays once · Holds the final frame until you replay or choose another action."}
                 </p>
               )}
               <div className="player-control-row player-secondary-controls">
@@ -706,6 +753,15 @@ export function PackPlayer() {
                 >
                   <RotateCcw size={13} /> Reset
                 </button>
+                {selectedClip && !selectedClip.loop && (
+                  <button
+                    className="player-reset"
+                    onClick={replayAnimation}
+                    aria-describedby="player-one-shot-note"
+                  >
+                    <RotateCcw size={13} /> Replay clip
+                  </button>
+                )}
                 <span className="player-timing">
                   {selectedClip
                     ? `${selectedClip.fps} FPS · ${selectedClip.loop ? "LOOP" : "ONCE"}`
@@ -751,6 +807,9 @@ export function PackPlayer() {
                   {pack.manifest.animations.run
                     ? ` · Run ${pack.manifest.animations.run.fps} fps`
                     : " · Run unavailable"}
+                  {pack.manifest.animations.jump
+                    ? ` · Jump ${pack.manifest.animations.jump.fps} fps`
+                    : " · Jump unavailable"}
                 </dd>
               </div>
               <div>

@@ -1,0 +1,131 @@
+.motion-editor {
+  min-width: 0;
+  margin: 20px 0 0;
+  padding: 17px;
+  border: 1px solid #d9ddd1;
+  border-radius: 9px;
+  background: #f6f7ef;
+}
+.motion-editor legend {
+  padding: 0 7px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.motion-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.motion-summary > p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.motion-summary > p strong {
+  text-transform: capitalize;
+}
+.motion-summary .motion-number {
+  flex: 0 0 102px;
+}
+.motion-timeline {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding: 7px 3px 11px;
+  margin: 9px -3px 2px;
+}
+.motion-timeline button {
+  display: flex;
+  flex: 0 0 41px;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  padding: 7px 4px;
+}
+.motion-timeline button span {
+  font-size: 9px;
+  font-weight: 400;
+}
+.motion-timeline button strong {
+  font-size: 11px;
+}
+.motion-timeline button[aria-pressed="true"] {
+  color: #fffdf5;
+  border-color: #35685a;
+  background: #35685a;
+}
+.motion-playback-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: end;
+  gap: 7px;
+}
+.motion-playback-tools button {
+  min-height: 37px;
+}
+.motion-help {
+  margin: 12px 0;
+  color: #687566;
+  font-size: 11px;
+  line-height: 1.65;
+}
+.motion-pose-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 12px 10px;
+}
+.motion-pose-workspace {
+  display: grid;
+  grid-template-columns: 192px minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+}
+.motion-pose-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.motion-editor label + label {
+  margin-top: 0;
+}
+.motion-number small {
+  color: #943b25;
+  font-size: 10px;
+  font-weight: 400;
+}
+.motion-number input[aria-invalid="true"] {
+  border-color: #ad5741;
+}
+.motion-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+.motion-footer button {
+  flex-shrink: 0;
+}
+.motion-editor button:disabled {
+  cursor: not-allowed;
+}
+@media (max-width: 600px) {
+  .motion-pose-workspace {
+    grid-template-columns: 1fr;
+  }
+  .motion-pose-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .motion-playback-tools {
+    grid-template-columns: 1fr 1fr;
+  }
+  .motion-playback-tools label {
+    grid-column: 1 / -1;
+  }
+  .motion-footer {
+    align-items: start;
+    flex-direction: column;
+  }
+}
