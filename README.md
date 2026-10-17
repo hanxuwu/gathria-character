@@ -57,6 +57,8 @@ Regenerate V6 export evidence with `node scripts/generate-polished-evidence.mjs`
 
 The shared rig now supports **idle, walk, run and a one-shot jump**. In Skin Studio, enable **Skeleton only** to inspect the foundation without artwork, then apply the same actions to registered skins. Older projects gain jump only through **Add jump action**. See [basic actions review](docs/BASIC_ACTIONS_REVIEW.md) for the actual previews, exports and current limitations.
 
+Skin Studio also offers an opt-in **Wardrobe**: keep one identity while combining two tops, two bottoms and two shoe designs, with separate skin and clothing colors. Save the full project to retain clothing choices, or bake a CharacterPack for independent playback. The registered collection uses the same skeleton and four actions. [Wardrobe review and actual exports](docs/WARDROBE_MVP_REVIEW.md) describe the supported combinations, compatibility and material limits.
+
 ## Architecture and scope
 
 | Location                                                                                               | Responsibility                                                                      |

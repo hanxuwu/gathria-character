@@ -1,6 +1,7 @@
 import { Inflate, strToU8, zipSync } from "fflate";
 import { parseCharacterConfig } from "../core/config";
 import { createRigDefinition } from "./definition";
+import { assertWardrobeSkinMatches, validateWardrobeRecipe } from "./wardrobe";
 import {
   ALL_SLOTS,
   CHAINS,
@@ -427,7 +428,7 @@ export function validateProject(
     preview = object(raw.preview, "project.preview");
   allowedKeys(
     raw,
-    ["format", "version", "rig", "motions", "skin", "preview"],
+    ["format", "version", "rig", "motions", "skin", "preview", "wardrobe"],
     "project",
   );
   allowedKeys(preview, ["animation", "facing", "expression"], "preview");
@@ -443,12 +444,19 @@ export function validateProject(
     fail(
       "project.preview must specify a supported animation, facing and expression.",
     );
+  const validatedSkin = validateSkin(skin ?? (raw.skin as SkinPack));
+  const wardrobe =
+    raw.wardrobe === undefined
+      ? undefined
+      : validateWardrobeRecipe(raw.wardrobe);
+  if (wardrobe) assertWardrobeSkinMatches(wardrobe, validatedSkin);
   return {
     format: "gathria-rig-authoring",
     version: 1,
     rig: validateRig(raw.rig),
     motions,
-    skin: validateSkin(skin ?? (raw.skin as SkinPack)),
+    skin: validatedSkin,
+    ...(wardrobe ? { wardrobe } : {}),
     preview: {
       animation: preview.animation as AuthoringProject["preview"]["animation"],
       facing: preview.facing as AuthoringProject["preview"]["facing"],

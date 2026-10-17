@@ -5,6 +5,7 @@ import type {
   Facing,
 } from "../core/types";
 import type { Point } from "../core/pixel-art";
+import type { WardrobeRecipe } from "./wardrobe-types";
 export type AnimationName = PlaybackAnimationName;
 export type { Point, Facing };
 export const FRAME_WIDTH = 192,
@@ -113,6 +114,8 @@ export interface AuthoringProject {
   rig: RigDefinition;
   motions: MotionLibrary;
   skin: SkinPack;
+  /** Optional, explicitly selected catalog composition; flat skin pixels remain authoritative. */
+  wardrobe?: WardrobeRecipe;
   preview: { animation: AnimationName; facing: Facing; expression: Expression };
 }
 export interface RigInspection {

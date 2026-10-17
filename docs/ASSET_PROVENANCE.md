@@ -1,5 +1,11 @@
 # Artwork provenance and reuse
 
+## Modular wardrobe catalog 1
+
+The opt-in wardrobe reuses the V6 crop/waves expression heads and existing jacket, soft top, trousers, short skirt and two shoe designs. It adds no illustration or image-generation call. [`prepare-wardrobe-assets.mjs`](../scripts/prepare-wardrobe-assets.mjs) extracts complete registered groups, retains authored material IDs, and separates overlapping garment/shoe ownership into an independent checked-in catalog. Original source banks and built-in skins remain unchanged. [The preparation record](WARDROBE_ASSET_SOURCES.md) explains source groups, masks, ankle registration and limitations.
+
+Runtime composition recolors only marked skin, upper/lower clothing and shoe pixels. Fixed eyes, trim and the blue underskirt remain fixed. Each saved project contains both a versioned clothing recipe and complete flat PNG attachments; each CharacterPack retains the source notice and composition metadata while playing from baked pixels alone. [Wardrobe review](WARDROBE_MVP_REVIEW.md) links actual application exports and verification. This is registered garment reuse, not automatic splitting or binding of arbitrary generated illustrations.
+
 ## Independent Denim skeletal authoring study
 
 The [skeletal rig study](SKELETAL_RIG_REVIEW.md) reuses the frozen V6 Denim head, jacket, trousers and shoes from source revision `ea01dd8e074741fdfab0311e1e64585329c29391`. It introduces no new illustration, image-generation call, third-party animation implementation or Spine dependency. Its project-owned mesh code joins existing registered source textures, assigns normalized bone weights, applies bounded joint corrections and bakes nearest-neighbor triangles. Texture/source banks and production V1–V7/motion renderers remain unchanged. Experimental packs identify `gathria-denim-skeletal-v1`, retain historical artwork provenance and include the exact rig recipe in provenance text; separate project JSON preserves editable authoring inputs. Actual exported review evidence is in `docs/skeletal-rig/`.

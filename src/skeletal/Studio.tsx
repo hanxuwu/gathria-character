@@ -7,6 +7,9 @@ import { createBakedPack } from "./bake";
 import { createMotionLibrary } from "./definition";
 import { BindingCanvas } from "./BindingCanvas";
 import { MotionEditor } from "./MotionEditor";
+import { WardrobePanel } from "./WardrobePanel";
+import { applyWardrobe, defaultWardrobeRecipe } from "./wardrobe";
+import type { WardrobeRecipe } from "./wardrobe-types";
 import { playbackFrame, playbackTick } from "./playback";
 import {
   beginEdit,
@@ -405,13 +408,27 @@ export function SkinStudio() {
   function updateMetadata(
     update: (metadata: SkinPack["metadata"]) => SkinPack["metadata"],
     label = "Edit binding",
+    keepWardrobe = false,
   ) {
     try {
       const metadata = validateSkinMetadata(update(project.skin.metadata));
       if (JSON.stringify(metadata) === JSON.stringify(project.skin.metadata))
         return;
-      applyProject({ ...project, skin: { ...project.skin, metadata } }, label);
-      setNotice(null);
+      applyProject(
+        {
+          ...project,
+          skin: { ...project.skin, metadata },
+          wardrobe: keepWardrobe ? project.wardrobe : undefined,
+        },
+        label,
+      );
+      setNotice(
+        project.wardrobe && !keepWardrobe
+          ? {
+              text: "Custom artwork; open wardrobe to create a new assembled look. Your edited artwork and binding are preserved.",
+            }
+          : null,
+      );
     } catch (error) {
       setNotice({
         text: error instanceof Error ? error.message : "Invalid binding.",
@@ -422,7 +439,7 @@ export function SkinStudio() {
 
   function replaceSkin(skin: SkinPack) {
     applyProject(
-      { ...project, skin },
+      { ...project, skin, wardrobe: undefined },
       "Replace skin",
       structuredClone(skin.metadata.bindings),
     );
@@ -430,6 +447,34 @@ export function SkinStudio() {
     setNotice({
       text: `${skin.metadata.name} loaded. The skeleton and shared motion library are unchanged.`,
     });
+  }
+
+  function changeWardrobe(recipe: WardrobeRecipe, label: string) {
+    if (JSON.stringify(recipe) === JSON.stringify(project.wardrobe)) return;
+    try {
+      const next = applyWardrobe(project, recipe);
+      applyProject(next, label, structuredClone(next.skin.metadata.bindings));
+      setNotice({
+        text: `${label}. Clothing, identity and colors are saved together in the project; the skeleton and motions are unchanged.`,
+      });
+    } catch (error) {
+      setNotice({
+        text:
+          error instanceof Error
+            ? error.message
+            : "The look could not be assembled.",
+        error: true,
+      });
+    }
+  }
+
+  function openWardrobe() {
+    const knownIdentity =
+      project.skin.metadata.id === "coral-afternoon" ||
+      project.skin.metadata.id.startsWith("wardrobe-waves-")
+        ? "waves"
+        : "crop";
+    changeWardrobe(defaultWardrobeRecipe(knownIdentity), "Open wardrobe");
   }
 
   async function runTask(label: string, task: () => Promise<string>) {
@@ -469,8 +514,11 @@ export function SkinStudio() {
         metadata,
         images: { ...project.skin.images, [slot]: decoded.pixels },
       });
-      applyProject({ ...project, skin }, `Replace ${human(slot)} PNG`);
-      return `${human(slot)} replaced; its binding is preserved.${decoded.thresholdedPixels ? ` ${decoded.thresholdedPixels} partially transparent pixels were converted to crisp transparency.` : ""}`;
+      applyProject(
+        { ...project, skin, wardrobe: undefined },
+        `Replace ${human(slot)} PNG`,
+      );
+      return `${human(slot)} replaced; its binding is preserved.${project.wardrobe ? " Custom artwork; open wardrobe to create a new assembled look." : ""}${decoded.thresholdedPixels ? ` ${decoded.thresholdedPixels} partially transparent pixels were converted to crisp transparency.` : ""}`;
     });
   }
 
@@ -666,7 +714,9 @@ export function SkinStudio() {
               <option value="coral-afternoon">Coral afternoon</option>
               {project.skin.metadata.id !== "denim-daytrip" &&
                 project.skin.metadata.id !== "coral-afternoon" && (
-                  <option value="custom">Imported skin</option>
+                  <option value="custom">
+                    {project.wardrobe ? "Wardrobe look" : "Imported skin"}
+                  </option>
                 )}
             </select>
           </label>
@@ -678,10 +728,14 @@ export function SkinStudio() {
               maxLength={60}
               onChange={(event) => setNameDraft(event.target.value)}
               onBlur={() => {
-                updateMetadata((metadata) => ({
-                  ...metadata,
-                  name: nameDraft,
-                }));
+                updateMetadata(
+                  (metadata) => ({
+                    ...metadata,
+                    name: nameDraft,
+                  }),
+                  "Rename character",
+                  true,
+                );
                 setNameDraft(nameDraft.trim() || project.skin.metadata.name);
               }}
               onKeyDown={(event) => {
@@ -689,6 +743,16 @@ export function SkinStudio() {
               }}
             />
           </label>
+          <WardrobePanel
+            recipe={project.wardrobe}
+            detached={
+              !project.wardrobe &&
+              project.skin.metadata.id.startsWith("wardrobe-")
+            }
+            disabled={busy !== null || !!history.transaction}
+            onOpen={openWardrobe}
+            onChange={changeWardrobe}
+          />
           <p className="skin-help">
             Skin packs contain transparent artwork and bindings. Swapping a skin
             keeps the same skeleton and actions.
@@ -1174,8 +1238,9 @@ export function SkinStudio() {
           <h2 id="save-title">Save your work</h2>
           <p>
             <strong>Project</strong> keeps the skeleton, motions, artwork,
-            bindings and preview settings. <strong>CharacterPack</strong>{" "}
-            contains baked frames for independent playback.
+            bindings, wardrobe choices and preview settings.{" "}
+            <strong>CharacterPack</strong> contains baked frames for independent
+            playback.
           </p>
           <p className="skin-help">
             Imported artwork is reproduced from the saved project. Its
@@ -1213,7 +1278,7 @@ export function SkinStudio() {
                   await createBakedPack(project),
                   `${fileStem(skinName)}.character.zip`,
                 );
-                return `CharacterPack exported with idle, walk and run in the ${expression} expression. Load it in the independent player.`;
+                return `CharacterPack exported with ${Object.keys(project.motions.clips).join(", ")} in the ${expression} expression. Load it in the independent player.`;
               })
             }
           >

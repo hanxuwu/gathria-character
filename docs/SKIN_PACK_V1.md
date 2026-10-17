@@ -31,6 +31,16 @@ A generated full-character illustration is useful as a consistent design source,
 
 The motion editor selects playback frames, edits their shared source poses, changes FPS, and adds/removes held playback entries. Repeated entries reuse the same pose; locomotion limbs use opposing half-cycle poses. Four idle, eight walk and twelve run source keys are preserved. New projects add twelve jump keys with coordinated legs and a one-shot sequence; it stops on the final authored pose and can be replayed. Old projects keep their three clips until **Add jump action** is selected; adding it is undoable. Optional jump-only `rootY` and `armBend` fields default to zero when omitted. Shared motion keys, FPS and playback sequence are saved in `project.json`, not the skin-only ZIP. Reset restores the selected clip's built-in motion. This is not yet a free-form bone or animation-curve editor. See [the basic actions review](BASIC_ACTIONS_REVIEW.md) and [the authoring tools review](AUTHORING_TOOLS_REVIEW.md) for undo/redo, controls and limits.
 
+## Assemble a wardrobe look
+
+In Skin Studio, **Open wardrobe** explicitly creates a catalog composition. The first catalog offers two identities, two tops, two bottoms and two shoe designs, plus separate skin/top/bottom/shoe colors. Clothing changes preserve the selected head, hair and complete expression heads. They reuse the project's rig, four basic actions and authored motion timing. **Apply colors** commits all color edits as one undoable change.
+
+The optional `project.json.wardrobe` extension identifies `gathria-wardrobe-recipe`, recipe version 1 and catalog version 1. It stores the identity/item IDs and four six-digit hex colors. Every project still stores complete rendered slot PNGs and bindings. Import validates the recipe against those saved pixels instead of regenerating them; mismatched or unsupported recipes are rejected before replacing the current project. Older projects without this extension retain their original images. Use this revision of Skin Studio to edit wardrobe projects; older revisions reject unknown fields.
+
+Replacing a PNG, importing a whole skin, or editing source joints, offsets, jaw or mesh settings preserves the resulting artwork and detaches the catalog recipe. Undo restores the prior recipe and pixels together. Reopening the wardrobe is an explicit new assembly, so it does not silently discard custom edits. Names, expressions, preview settings and motion edits keep the recipe. A skin-only ZIP deliberately contains flat art and bindings without a wardrobe recipe; save the **project ZIP** to continue editing clothing choices.
+
+Catalog garments are registered groups of sleeves/arms, torso, hips/legs and shoes. The first collection uses V6-scale source cuts, including garment-specific limb landmarks, rather than a universal unclothed body. Future generated art still needs ownership masks, complete hidden coverage and registered part groups; dropping an arbitrary whole-character illustration into the wardrobe is not supported. See [the wardrobe review](WARDROBE_MVP_REVIEW.md) and [source preparation](WARDROBE_ASSET_SOURCES.md).
+
 ## Choose the correct file
 
 | File             | Purpose                                                                                                               |
