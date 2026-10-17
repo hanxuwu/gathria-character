@@ -1,0 +1,24 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "result": "incomplete",
+      "context": "Capture ran concurrently with the full Playwright suite and a full unit-test attempt.",
+      "completedIndependentCases": 10,
+      "failedCase": "coral-afternoon/run/right",
+      "failure": "Strict observed playback sequence assertion: frame 20 followed 18; expected 19.",
+      "response": "Stopped capture; kept all sequence/timing assertions; retry scheduled only after the other browser workload finishes. No final evidence-index was written for this incomplete attempt."
+    },
+    {
+      "attempt": 2,
+      "result": "passed",
+      "context": "Retried after the full browser suite finished; no simultaneous unit/browser validation workload.",
+      "completedIndependentCases": 12,
+      "fullNativeFramePixelEquality": true,
+      "strictFrameSequenceChecksPassed": true,
+      "decodedPlaybackLoopErrorBelow75ms": true,
+      "sourceHashesStable": true,
+      "capturedAt": "2026-10-17T04:03:49.705Z"
+    }
+  ]
+}

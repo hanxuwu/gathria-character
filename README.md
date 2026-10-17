@@ -21,6 +21,8 @@ Open the address Vite prints. The studio is at `/`; the independent player is at
 
 The isolated [skeletal rig lab](docs/SKELETAL_RIG_REVIEW.md) is at `/rig-lab.html`: compare Denim's existing run with project-owned weighted-mesh animation, edit pose keys, save an authoring recipe and bake a portable pack. It uses no Spine dependency and leaves Studio defaults unchanged.
 
+The [reusable Skin Studio](docs/REUSABLE_RIG_REVIEW.md) is at `/skin-studio.html`: Denim and Coral use one skeleton and motion library. Replace registered PNG parts, adjust their joint bindings, save complete skin/project ZIPs, and bake independent CharacterPacks. [The material guide](docs/SKIN_PACK_V1.md) explains how to prepare another character without editing the renderer. This separate authoring app does not change the production Studio or historical files.
+
 ```sh
 npm run typecheck
 npm test
