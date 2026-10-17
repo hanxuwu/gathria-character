@@ -9,6 +9,7 @@ export default defineConfig({
         editor: "index.html",
         player: "player.html",
         rigLab: "rig-lab.html",
+        skinStudio: "skin-studio.html",
       },
     },
   },
