@@ -25,11 +25,11 @@ A generated full-character illustration is useful as a consistent design source,
 
 1. Replace one selected attachment PNG, or edit the template's PNG files and import the complete ZIP. Import reports any alpha normalization for an individual image; saved skin/project ZIPs require exact transparent/opaque pixels.
 2. Set the skin's name and ID in `skin.json` when preparing a reusable new identity. IDs are not limited to the built-in catalog. Keep `format`, `version` and `rigId` unchanged for this family.
-3. Match each arm's shoulder–elbow–wrist and each leg's hip–knee–ankle registration to the source drawing. These landmarks fit the same hierarchy and shared actions to the new parts. Attachment X/Y offsets are integer pixel adjustments; they are not a substitute for correct anatomical cuts.
+3. Match each arm's shoulder–elbow–wrist and each leg's hip–knee–ankle registration to the source drawing. Drag source-canvas handles, use arrow keys (Shift for ten pixels), or enter coordinates and commit with Enter/blur. A drag is one undo step; Escape cancels it. These landmarks fit the same hierarchy and shared actions to the new parts. Attachment X/Y offsets are integer pixel adjustments; they are not a substitute for correct anatomical cuts.
 4. Inspect isolated parts and the posed skeleton/mesh. Check all three actions, all expressions, both directions and every run key. Repair exposed source gaps rather than hiding them with unrelated pixels.
 5. Save the full project before exporting. Reopen it and compare the result, then load the baked CharacterPack into the independent player.
 
-The current UI edits registration and deformation settings. The shared motion keys, FPS and playback sequence are saved in `project.json`; this first Skin Studio does not have a general animation timeline or free-form bone editor. This format uses four idle keys, eight walk keys and twelve run keys. Timing and repeated playback entries remain data-driven.
+The motion editor selects playback frames, edits their shared source poses, changes FPS, and adds/removes held playback entries. Repeated entries reuse the same pose; limbs use opposing half-cycle poses. This format still uses four idle keys, eight walk keys and twelve run keys. Shared motion keys, FPS and playback sequence are saved in `project.json`, not the skin-only ZIP. Reset restores the selected clip's built-in motion. This is not yet a free-form bone or animation-curve editor. See [the authoring tools review](AUTHORING_TOOLS_REVIEW.md) for undo/redo, controls and limits.
 
 ## Choose the correct file
 
