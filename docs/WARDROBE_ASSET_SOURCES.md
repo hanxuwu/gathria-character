@@ -108,6 +108,13 @@ translation and a small vertical fit around the stationary sole. This keeps a
 boot's opening connected when paired with the skirt's shorter visible-leg cut;
 plain vertical translation would be canceled by the renderer's sole alignment
 and leave a gap. The fit uses nearest-neighbor sampling, not blurred scaling.
+For articulation, runtime assembly extends the selected shin's own terminal
+skin/cloth and contour by at most four source pixels, ending at ankle + 1.
+The `preserveAnkleOverlap` mesh flag retains this allowance behind the shoe.
+It never restores the old shoe pixels removed during ownership preparation.
+New catalog shoes normalize their source sole to y239 while retaining the ankle
+landmark; this also removes the one-pixel offset of the original far flat shoe.
+Old skins omit the flag and retain the original renderer behavior.
 The existing renderer keeps the sole on the common ground anchor and rotates it
 around the selected leg's ankle. Shoe swaps therefore need
 checks in standing, walking, running and jumping, including foot crossing and

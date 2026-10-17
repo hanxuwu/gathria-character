@@ -6,6 +6,7 @@ with cumulative centisecond rounding. All media and archive members are decoded.
 """
 from pathlib import Path
 from functools import lru_cache
+from collections import deque
 from PIL import Image, ImageDraw, ImageFont
 import hashlib
 import io
@@ -121,7 +122,15 @@ def panel(items, columns, scale, title):
         x, y = 20 + i % columns * cw, 48 + i // columns * ch
         draw.rectangle((x, y, x + sprite.width - 1, y + sprite.height - 1), fill=STAGE)
         image.paste(sprite, (x, y), sprite)
-        draw.text((x, y + sprite.height + 5), label, font=font(12), fill=INK)
+        lines, line = [], ''
+        for word in label.split():
+            candidate = f'{line} {word}'.strip()
+            if line and draw.textlength(candidate, font=font(12)) > 192 * scale:
+                lines.append(line); line = word
+            else:
+                line = candidate
+        lines.append(line)
+        draw.multiline_text((x, y + sprite.height + 5), '\n'.join(lines), font=font(12), fill=INK, spacing=1)
     return image
 
 
@@ -187,12 +196,61 @@ for case in evidence['playback']:
         report['playback'].append({'id': case['id'], 'facing': case['facing'], 'action': case['action'], 'fullNativePngPixelsSequenceAndWrapVerified': True})
 
 
+# Detect footwear-sized detached opaque islands, not decorative hair fragments.
+# Eight-neighbor connectivity allows crisp diagonal pixel outlines.
+def footwear_islands(rgba):
+    width, height = rgba.size
+    points = {i for i, alpha in enumerate(rgba.getchannel('A').tobytes()) if alpha}
+    components = []
+    while points:
+        start = points.pop(); queue = deque([start]); area = 0; top = height; bottom = 0
+        while queue:
+            point = queue.popleft(); x, y = point % width, point // width
+            area += 1; top = min(top, y); bottom = max(bottom, y)
+            for dx, dy in ((-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)):
+                nx, ny = x + dx, y + dy
+                adjacent = ny * width + nx
+                if 0 <= nx < width and 0 <= ny < height and adjacent in points:
+                    points.remove(adjacent); queue.append(adjacent)
+        components.append({'area':area,'top':top,'bottom':bottom})
+    components.sort(key=lambda item:item['area'], reverse=True)
+    return [item for item in components[1:] if item['area'] > 80 and item['top'] >= 185]
+
+@lru_cache(None)
+def initial_pack(id):
+    with zipfile.ZipFile(D / 'iterations' / '01' / f'{id}.character.zip') as archive:
+        m = json.loads(archive.read('manifest.json'))
+        with Image.open(io.BytesIO(archive.read('spritesheet.png'))) as decoded:
+            decoded.load(); return m, decoded.copy()
+
+def initial_frame(id,key):
+    m, atlas = initial_pack(id); f = next(f for f in m['frames'] if f['id'] == key)
+    return atlas.crop((f['x'],f['y'],f['x']+192,f['y']+256))
+
+initial_gaps = []
+for id, _ in IDS:
+    for key in range(36):
+        islands = footwear_islands(initial_frame(id,key))
+        if islands: initial_gaps.append({'id':id,'frame':key,'components':islands})
+report['reviewHistory'] = [
+    {'stage':'Initial capture harness','finding':'The first review-script anchor expectation omitted the existing units and origin fields. It was corrected to the complete manifest anchor object; no application change was needed. Final capture was repeated after script freeze.'},
+    {'stage':'Initial visual export review','finding':'The crossed trouser/flat-shoe look had a one-row transparent ankle gap. Initial exported packs and 3x connections are retained in iterations/01. This is a real artwork attachment defect, independent of the passing functional checks.','detachedFootwear':initial_gaps},
+]
+report['footwearConnectivity'] = []
+for id, _ in LOOKS:
+    checked = []
+    for key in range(36):
+        islands = footwear_islands(frame(id,key))
+        assert not islands, (id,key,'detached footwear-sized opaque island',islands)
+        checked.append(key)
+    report['footwearConnectivity'].append({'id':id,'frames':checked,'eightNeighborAlphaConnectivity':True,'detachedComponentsOver80PixelsWithTopAtOrBelow185':0,'scope':'Focused opaque-connectivity check for footwear-sized islands; does not replace visual checks of small edge gaps or texture seams.'})
+
 ALL_IDS = [id for id, _ in LOOKS] + [f'{id}-{expression}' for id, _ in IDS for expression in ('neutral', 'joyful')] + ['waves-recolor']
 for id in ALL_IDS:
     m = manifest(id)
     assert set(m['animations']) == set(ACTIONS)
     assert len(m['frames']) == 36 and not m['animations']['jump']['loop']
-    assert m['anchor'] == {'x': 96, 'y': 240}
+    assert m['anchor'] == {'x': 96, 'y': 240, 'units': 'pixels', 'origin': 'top-left'}
     for f in m['frames']:
         rgba = frame(id, f['id']); assert rgba.size == (192, 256)
         alpha = rgba.getchannel('A')
@@ -210,6 +268,17 @@ for scale in (1, 2):
     save_png(panel([(frame(id, 0), label) for id, label in [('waves-mixed', 'Original colors'), ('waves-recolor', 'Skin + top + bottom + shoes recolored')]], 2, scale, f'Semantic recolor / fixed eyes, hair and detail retained / {scale}x'), f'recolor-{scale}x.png')
     save_png(panel([(frame(id, key), f'{label.split(" / ")[0]} / run {key - 11:02d}') for id, label in IDS for key in range(12,24)], 6, scale, f'Crossed outfits / every run source pose / {scale}x'), f'run-keyframes-{scale}x.png')
     save_png(panel([(frame(id, key), f'{label.split(" / ")[0]} / jump {key - 23:02d}') for id, label in IDS for key in range(24,36)], 6, scale, f'Crossed outfits / every jump source pose / {scale}x'), f'jump-keyframes-{scale}x.png')
+
+# This focused comparison also comes from actual initial/final exported packs.
+comparison = Image.new('RGB',(500,410),BG); draw = ImageDraw.Draw(comparison)
+draw.text((14,12),'Shoe fit / initial vs final export / run pose 6 / 4x',font=font(13),fill=INK)
+for row,(id,label) in enumerate(IDS):
+    for col,(image,stage) in enumerate(((initial_frame(id,17),'Initial'),(frame(id,17),'Final'))):
+        crop=image.crop((97,207,151,244)).resize((216,148),Image.Resampling.NEAREST)
+        x,y=20+col*244,48+row*180
+        draw.rectangle((x,y,x+215,y+147),fill=STAGE);comparison.paste(crop,(x,y),crop)
+        draw.text((x,y+152),f'{id.split("-")[0].title()} / {stage}',font=font(12),fill=INK)
+save_png(comparison,'shoe-fit-before-after-4x.png')
 
 # Side-by-side joints/waist use exact crops from the exported run frames.
 def joint_panel():
@@ -260,6 +329,7 @@ These are downloads from real Skin Studio wardrobe controls. The same shared ske
 - [Four-action tour, right 2×](four-actions-right-2x.gif) · [Left 2×](four-actions-left-2x.gif)
 - [Expressions](expressions-2x.png) · [Semantic recolor](recolor-2x.png) · [Connections](connections-3x.png)
 - [Run keyframes](run-keyframes-1x.png) · [Jump keyframes](jump-keyframes-1x.png)
+- [Shoe fit: initial vs final](shoe-fit-before-after-4x.png) · [Initial export record](iterations/01/connections-3x.png)
 - [Desktop](studio-desktop.png) · [Mobile](studio-mobile.png)
 
 | Action | Native right | Native left |
@@ -280,6 +350,8 @@ These are downloads from real Skin Studio wardrobe controls. The same shared ske
 Both crossed looks were reopened through the UI. Item/color controls, selected jump/left preview, manifest and decoded spritesheet pixels were preserved. The three head PNGs and any back-hair PNG are pixel-identical within each identity's clothing pair. Clothing changes preserve the rig and all motion data.
 
 After closing the editor, the standalone player loaded the two crossed-look packs and exercised four actions in both directions (16 cases). Every sampled native character frame matched the exported PNG including player guides. Idle, walk and run were observed through wrapping; jump was checked for all phases, final hold and replay. Authoring/generator modules were blocked and none were requested. Independent player screenshots are inside `crop-mixed/` and `waves-mixed/`.
+
+Initial actual exports exposed a detached flat shoe in the crossed trouser look. The initial packs and 3× comparison remain in `iterations/01`. Final exported alpha is checked across all 36 poses of all four main looks: no separate opaque component larger than 80 pixels whose top is at or below y=185. This focused footwear check complements visual inspection; it does not prove the absence of every small texture seam. The complete-head Crop source retains a small collar-like tab, which limits perfectly clean collar swapping.
 
 Individual jump GIFs have no loop extension and play once. Four-action tour GIFs deliberately repeat with a labelled end hold. GIF timing uses cumulative centisecond rounding; every decoded GIF frame is compared to its palette-converted intended frame and duration. Characters animate in place.
 
