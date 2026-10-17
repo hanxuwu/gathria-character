@@ -167,7 +167,9 @@ export function validateSkinMetadata(value: unknown): SkinMetadata {
     ["chains", "offsets", "mesh", "jaw", "hairSway", "garmentSway"],
     "bindings",
   );
-  allowedKeys(mesh, ["blendRadius", "volume"], "mesh");
+  allowedKeys(mesh, ["blendRadius", "volume", "preserveAnkleOverlap"], "mesh");
+  if (mesh.preserveAnkleOverlap !== undefined)
+    exact(mesh.preserveAnkleOverlap, true, "mesh.preserveAnkleOverlap");
   allowedKeys(jaw, ["center", "start", "scale", "length"], "jaw");
   const offsets: SkinMetadata["bindings"]["offsets"] = {};
   for (const [slot, value] of Object.entries(
@@ -201,6 +203,9 @@ export function validateSkinMetadata(value: unknown): SkinMetadata {
       mesh: {
         blendRadius: finite(mesh.blendRadius, "mesh.blendRadius", 1, 16),
         volume: finite(mesh.volume, "mesh.volume", 0, 1),
+        ...(mesh.preserveAnkleOverlap === true
+          ? { preserveAnkleOverlap: true as const }
+          : {}),
       },
       jaw: {
         center: point(jaw.center, "jaw.center"),

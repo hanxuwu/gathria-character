@@ -1,7 +1,11 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { createAuthoringProject } from "./builtins";
-import { exportProject, validateProject } from "./skin-io";
+import {
+  exportProject,
+  validateProject,
+  validateSkinMetadata,
+} from "./skin-io";
 import { applyWardrobe, defaultWardrobeRecipe } from "./wardrobe";
 import type { AuthoringProject } from "./types";
 
@@ -30,6 +34,35 @@ function fingerprint(project: AuthoringProject) {
 }
 
 describe("wardrobe authoring persistence", () => {
+  it("preserves explicit ankle overlap while leaving old skin metadata unchanged", () => {
+    const metadata = createAuthoringProject().skin.metadata;
+    expect(
+      validateSkinMetadata(metadata).bindings.mesh.preserveAnkleOverlap,
+    ).toBeUndefined();
+    const current = structuredClone(metadata);
+    current.bindings.mesh.preserveAnkleOverlap = true;
+    expect(
+      validateSkinMetadata(current).bindings.mesh.preserveAnkleOverlap,
+    ).toBe(true);
+    expect(metadata.bindings.mesh.preserveAnkleOverlap).toBeUndefined();
+  });
+
+  it.each([false, 1, "true", null])(
+    "rejects malformed anatomical overlap flag %s",
+    (value) => {
+      const metadata = createAuthoringProject().skin.metadata;
+      expect(() =>
+        validateSkinMetadata({
+          ...metadata,
+          bindings: {
+            ...metadata.bindings,
+            mesh: { ...metadata.bindings.mesh, preserveAnkleOverlap: value },
+          },
+        }),
+      ).toThrow(/preserveAnkleOverlap/);
+    },
+  );
+
   it("keeps old projects flat and never opts them into the catalog during validation", () => {
     const original = createAuthoringProject();
     const before = fingerprint(original);

@@ -41,6 +41,34 @@ const changedSlots = (
     (slot) => !b.images[slot] || !equalPixels(a.images[slot]!, b.images[slot]!),
   );
 
+function significantComponents(pixels: Uint8ClampedArray): number[] {
+  const seen = new Uint8Array(W * H),
+    sizes: number[] = [];
+  for (let start = 0; start < seen.length; start++) {
+    if (seen[start] || !pixels[start * 4 + 3]) continue;
+    const queue = [start];
+    seen[start] = 1;
+    for (let i = 0; i < queue.length; i++) {
+      const point = queue[i],
+        x = point % W,
+        y = Math.floor(point / W);
+      for (let dy = -1; dy <= 1; dy++)
+        for (let dx = -1; dx <= 1; dx++) {
+          const nx = x + dx,
+            ny = y + dy;
+          if (nx < 0 || nx >= W || ny < 0 || ny >= H) continue;
+          const next = ny * W + nx;
+          if (!seen[next] && pixels[next * 4 + 3]) {
+            seen[next] = 1;
+            queue.push(next);
+          }
+        }
+    }
+    if (queue.length > 80) sizes.push(queue.length);
+  }
+  return sizes;
+}
+
 describe("versioned modular wardrobe", () => {
   it("canonicalizes a detached recipe and rejects unknown catalog choices without coercion", () => {
     const input = defaultWardrobeRecipe("crop");
@@ -262,9 +290,41 @@ describe("versioned modular wardrobe", () => {
           );
           const a = before.images[part.slot]!,
             b = after.images[part.slot]!;
+          const side = part.slot.startsWith("near") ? "near" : "far";
+          const isShoe = part.slot.endsWith("-shoe");
+          const sourceAnkle = WARDROBE_ASSETS.shoes.find(
+            (item) => item.id === recipe.shoes,
+          )!.ankles[side];
+          const targetAnkle =
+            before.metadata.bindings.chains[
+              side === "near" ? "nearLeg" : "farLeg"
+            ][2];
+          let sourceSole = 0;
+          if (isShoe)
+            for (let p = 0; p < W * H; p++)
+              if (raw[p * 5 + 3]) sourceSole = Math.floor(p / W);
           for (let p = 0; p < W * H; p++) {
-            const pixel = p * 4,
-              packed = p * 5;
+            const pixel = p * 4;
+            // Shoes are authored between two anchors; inspect the source mask
+            // at that nearest-neighbor sample, including a 238 px source sole.
+            const sourceY = isShoe
+              ? Math.round(
+                  sourceSole +
+                    ((Math.floor(p / W) - 239) *
+                      (sourceSole - sourceAnkle[1])) /
+                      (239 - targetAnkle[1]),
+                )
+              : Math.floor(p / W);
+            const sourceX = isShoe
+              ? (p % W) - targetAnkle[0] + sourceAnkle[0]
+              : p % W;
+            const packed = (sourceY * W + sourceX) * 5;
+            const allowedMaterial =
+              !raw[packed + 3] && part.slot.endsWith("-shin")
+                ? recipe.bottom === "trousers"
+                  ? 4
+                  : 1
+                : raw[packed + 4];
             if (a[pixel + 3] !== b[pixel + 3])
               throw Error(`${part.slot}: recolor changed alpha`);
             if (
@@ -272,9 +332,9 @@ describe("versioned modular wardrobe", () => {
               a[pixel + 1] !== b[pixel + 1] ||
               a[pixel + 2] !== b[pixel + 2]
             ) {
-              if (raw[packed + 4] !== material)
+              if (allowedMaterial !== material)
                 throw Error(
-                  `${part.slot}: ${color} changed material ${raw[packed + 4]}`,
+                  `${part.slot}: ${color} changed material ${allowedMaterial}`,
                 );
               changed.add(part.slot);
               count++;
@@ -325,6 +385,79 @@ describe("versioned modular wardrobe", () => {
     expect(() =>
       assertWardrobeSkinMatches(next.wardrobe, next.skin),
     ).not.toThrow();
+  });
+
+  it("keeps cleaned ankle allowances within four source pixels and preserves the original leg ink", () => {
+    for (const bottom of WARDROBE_ASSETS.bottoms) {
+      const skin = assembleWardrobe({
+        ...defaultWardrobeRecipe("waves"),
+        bottom: bottom.id,
+      });
+      expect(skin.metadata.bindings.mesh.preserveAnkleOverlap).toBe(true);
+      for (const part of bottom.parts.filter((part) =>
+        part.slot.endsWith("-shin"),
+      )) {
+        const source = unzlibSync(
+          Uint8Array.from(atob(part.data), (value) => value.charCodeAt(0)),
+        );
+        const pixels = skin.images[part.slot]!;
+        const ankle =
+          bottom.chains[part.slot === "near-shin" ? "nearLeg" : "farLeg"][2];
+        let extended = 0;
+        for (let p = 0; p < W * H; p++) {
+          if (source[p * 5 + 3]) expect(pixels[p * 4 + 3]).toBe(255);
+          if (!pixels[p * 4 + 3] || source[p * 5 + 3]) continue;
+          const x = p % W,
+            y = Math.floor(p / W);
+          expect(Math.abs(x - ankle[0])).toBeLessThanOrEqual(14);
+          expect(y).toBeLessThanOrEqual(ankle[1] + 1);
+          expect(y).toBeGreaterThanOrEqual(ankle[1] - 6);
+          expect(
+            [1, 2, 3, 4].some(
+              (dy) => source[((y - dy) * W + x) * 5 + 3] === 255,
+            ),
+          ).toBe(true);
+          extended++;
+        }
+        expect(extended).toBeGreaterThan(30);
+      }
+    }
+  });
+
+  it("keeps each shoe attached across every action for all four lower-garment/shoe combinations", () => {
+    const rig = createRigDefinition(),
+      motions = createMotionLibrary();
+    for (const bottom of ["trousers", "short-skirt"] as const)
+      for (const shoes of ["boots", "flats"] as const) {
+        const skin = assembleWardrobe({
+          ...defaultWardrobeRecipe("waves"),
+          bottom,
+          shoes,
+        });
+        for (const slot of ["near-shoe", "far-shoe"] as const) {
+          let sole = -1;
+          skin.images[slot]!.forEach((value, i) => {
+            if (i % 4 === 3 && value) sole = Math.floor(i / 4 / W);
+          });
+          expect(sole).toBe(239);
+        }
+        const renderer = prepareRig(rig, skin, motions);
+        for (const action of ["idle", "walk", "run", "jump"] as const)
+          for (
+            let frame = 0;
+            frame < motions.clips[action]!.keys.length;
+            frame++
+          ) {
+            const pixels = renderer.frame(action, frame, "gentle");
+            // Actual export inspection found a detached 359 px shoe island.
+            // Small source highlights remain allowed; a footwear-sized island
+            // fails even when frame bounds, timing and transparency all pass.
+            expect(
+              significantComponents(pixels),
+              `${bottom}/${shoes}/${action}/${frame}: detached artwork`,
+            ).toHaveLength(1);
+          }
+      }
   });
 
   it.each([

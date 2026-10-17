@@ -7,6 +7,7 @@ import {
   REQUIRED_SLOTS,
   RIG_ID,
   type AuthoringProject,
+  type JointTriple,
   type Point,
   type SkinPack,
   type Slot,
@@ -223,7 +224,6 @@ function fitShoe(
   source: Point,
   target: Point,
 ): Uint8ClampedArray {
-  if (source[0] === target[0] && source[1] === target[1]) return pixels;
   if (![...source, ...target].every(Number.isInteger))
     throw Error("Wardrobe source registration must use integer coordinates.");
   let sole = -1;
@@ -231,7 +231,10 @@ function fitShoe(
     if (pixels[p * 4 + 3]) sole = Math.floor(p / FRAME_WIDTH);
   if (sole <= source[1] || sole <= target[1])
     throw Error("Wardrobe shoe needs a sole below both registered ankles.");
-  const ratio = (sole - source[1]) / (sole - target[1]);
+  const ground = 239;
+  if (source[0] === target[0] && source[1] === target[1] && sole === ground)
+    return pixels;
+  const ratio = (sole - source[1]) / (ground - target[1]);
   if (ratio < 0.65 || ratio > 1.5)
     throw Error(
       "Wardrobe shoe fit exceeds this catalog's supported ankle range.",
@@ -240,13 +243,67 @@ function fitShoe(
   for (let y = 0; y < FRAME_HEIGHT; y++)
     for (let x = 0; x < FRAME_WIDTH; x++) {
       const sx = x - target[0] + source[0],
-        sy = Math.round(sole + (y - sole) * ratio);
+        sy = Math.round(sole + (y - ground) * ratio);
       if (sx < 0 || sx >= FRAME_WIDTH || sy < 0 || sy >= FRAME_HEIGHT) continue;
       const from = (sy * FRAME_WIDTH + sx) * 4;
       if (!pixels[from + 3]) continue;
       result.set(pixels.subarray(from, from + 4), (y * FRAME_WIDTH + x) * 4);
     }
   return result;
+}
+
+/** Separate shin/foot ownership needs a small hidden allowance at their joint.
+ * The original crops ended at the old shoe's top edge with no overlap. A posed
+ * shin and an independently pitched shoe then separate, despite touching at
+ * rest. Extend only this catalog's final owned cloth/skin columns, by at most
+ * four pixels, to ankle + 1. No shoe-colored pixels are copied into the leg.
+ * preserveAnkleOverlap keeps this clean allowance out of legacy shoe erasure. */
+function ankleAllowance(
+  part: EncodedWardrobePart,
+  pixels: Uint8ClampedArray,
+  joints: JointTriple,
+): Uint8ClampedArray {
+  const raw = decode(part),
+    ankle = joints[2];
+  const end = Math.round(ankle[1] + 1);
+  for (
+    let x = Math.max(0, Math.round(ankle[0]) - 14);
+    x <= Math.min(FRAME_WIDTH - 1, Math.round(ankle[0]) + 14);
+    x++
+  ) {
+    let last = -1;
+    for (let y = end; y >= ankle[1] - 7; y--)
+      if (raw[(y * FRAME_WIDTH + x) * 5 + 3]) {
+        last = y;
+        break;
+      }
+    if (last < 0 || last === end) continue;
+    const tail = (last * FRAME_WIDTH + x) * 5;
+    let sample = last;
+    if (
+      raw[tail + 4] === 0 &&
+      x > 0 &&
+      x < FRAME_WIDTH - 1 &&
+      raw[tail - 5 + 3] &&
+      raw[tail + 5 + 3]
+    ) {
+      for (let y = last - 1; y >= last - 3; y--) {
+        const material = raw[(y * FRAME_WIDTH + x) * 5 + 4];
+        if (material === 1 || material === 4) {
+          sample = y;
+          break;
+        }
+      }
+    }
+    const material = raw[(sample * FRAME_WIDTH + x) * 5 + 4];
+    if (material !== 0 && material !== 1 && material !== 4) continue;
+    const from = (sample * FRAME_WIDTH + x) * 4;
+    for (let y = last + 1; y <= Math.min(end, last + 4); y++) {
+      const dest = (y * FRAME_WIDTH + x) * 4;
+      if (!pixels[dest + 3]) pixels.set(pixels.subarray(from, from + 4), dest);
+    }
+  }
+  return pixels;
 }
 
 /** Assemble fresh flat RGBA attachments and coherent source chains. Complete
@@ -282,6 +339,12 @@ export function assembleWardrobe(
           `Catalog item has invalid or duplicate slot ownership: ${part.slot}.`,
         );
       let pixels = colorPart(part, targets);
+      if (part.slot === "near-shin" || part.slot === "far-shin")
+        pixels = ankleAllowance(
+          part,
+          pixels,
+          bottom.chains[part.slot === "near-shin" ? "nearLeg" : "farLeg"],
+        );
       if (part.slot === "near-shoe" || part.slot === "far-shoe") {
         const side = part.slot === "near-shoe" ? "near" : "far";
         const source = shoes.ankles[side],
@@ -337,13 +400,13 @@ export function assembleWardrobe(
       bindings: {
         chains: structuredClone({ ...top.chains, ...bottom.chains }),
         offsets: {},
-        mesh: { blendRadius: 6, volume: 0.65 },
+        mesh: { blendRadius: 6, volume: 0.65, preserveAnkleOverlap: true },
         jaw: structuredClone(identity.jaw),
         hairSway: 1,
         garmentSway: 1,
       },
       sourceAppearance,
-      provenance: `${WARDROBE_ASSETS.provenance}\nWardrobe catalog 1 recipe: ${JSON.stringify(recipe)}\nMaterials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the unchanged grounded sole. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.`,
+      provenance: `${WARDROBE_ASSETS.provenance}\nWardrobe catalog 1 recipe: ${JSON.stringify(recipe)}\nMaterials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the common grounded sole at y=239. Clean skin/cloth ankle allowances extend at most four source pixels behind the shoes; explicit preserveAnkleOverlap retains them during mesh preparation. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.`,
     },
     images,
   };

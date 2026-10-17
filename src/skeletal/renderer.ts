@@ -257,7 +257,9 @@ export function prepareRig(
           skin.bindings.chains[chain],
           {
             ...skin.bindings.mesh,
-            ...(arm ? {} : { excludeId: `${side}-shoe` }),
+            ...(arm || skin.bindings.mesh.preserveAnkleOverlap
+              ? {}
+              : { excludeId: `${side}-shoe` }),
           },
         ),
       ] as const;

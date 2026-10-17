@@ -69,7 +69,12 @@ export interface SkinMetadata {
   bindings: {
     chains: Record<ChainName, JointTriple>;
     offsets: Partial<Record<Slot, Point>>;
-    mesh: { blendRadius: number; volume: number };
+    mesh: {
+      blendRadius: number;
+      volume: number;
+      /** Cleanly separated footwear permits a painted ankle allowance behind the shoe. */
+      preserveAnkleOverlap?: true;
+    };
     jaw: { center: Point; start: number; scale: number; length: number };
     hairSway: number;
     garmentSway: number;
