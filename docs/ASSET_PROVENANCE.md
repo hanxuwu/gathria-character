@@ -95,3 +95,24 @@ This batch creates no new illustration and makes no image-generation call. [`ske
 The separate renderer consumes only imported RGBA attachments and data. All its idle/walk/run frames are newly baked from the shared rig, not copied from historical atlases. Its mesh helper derives from the earlier project-owned Denim experiment; it uses no Spine software or runtime. The technical import fixture changes one torso's red/blue channels to demonstrate external PNG replacement and is labeled accordingly. It is not new character illustration evidence.
 
 Imported packs retain their supplied source provenance. Export documentation distinguishes the repository's rendering-code license from any rights in externally supplied artwork. CharacterPack PNGs/GIFs are actual application output; guides and mesh overlays are labeled authoring diagnostics. See [REUSABLE_RIG_REVIEW.md](REUSABLE_RIG_REVIEW.md) for compatibility and limits.
+
+## Portable wardrobe item sample
+
+This batch uses the existing [registered wardrobe catalog](WARDROBE_ASSET_SOURCES.md)
+and makes no image-generation call. The sample embroidered denim top begins as
+an item template downloaded from Skin Studio. The
+[capture script](../scripts/generate-wardrobe-item-evidence.mjs) paints a small
+pixel flower badge on existing torso cloth pixels and changes only those
+pixels' material IDs to fixed color. It preserves alpha, registration, silhouette,
+joint coverage and all other parts. The edited PNG and material mask are packed
+and imported through the normal UI before producing the reviewed characters.
+
+The example trousers and lace-up shoes are renamed, visually unchanged template
+copies used to verify the other two supported clothing groups. Item metadata,
+the saved project library and baked CharacterPack provenance record these
+derivations. The sample illustrates reusable source editing; it is not a newly
+generated full outfit or a claim of improved underlying character artwork.
+All lineup PNGs and animation previews in [wardrobe-items/](wardrobe-items/)
+come from the application's actual exported atlases. Imported user artwork
+retains its supplied provenance and rights; clothing import does not assign it
+a new license. See [the feature review](WARDROBE_ITEMS_REVIEW.md).

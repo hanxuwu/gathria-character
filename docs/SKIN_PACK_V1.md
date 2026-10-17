@@ -43,12 +43,29 @@ Replacing a PNG, importing a whole skin, or editing source joints, offsets, jaw 
 
 Catalog garments are registered groups of sleeves/arms, torso, hips/legs and shoes. The first collection uses V6-scale source cuts, including garment-specific limb landmarks, rather than a universal unclothed body. Future generated art still needs ownership masks, complete hidden coverage and registered part groups; dropping an arbitrary whole-character illustration into the wardrobe is not supported. See [the wardrobe review](WARDROBE_MVP_REVIEW.md) and [source preparation](WARDROBE_ASSET_SOURCES.md).
 
+## Reuse individual clothing items
+
+**Your clothing** in Skin Studio imports prepared tops, bottoms and shoes into
+the current project's wardrobe. Start with **Download item template** for the
+selected group, edit its registered artwork and matching material masks, then
+use **Import clothing ZIP**. The item carries its own source joints and applies
+to both built-in identities with the same four actions. Clothing cannot replace
+head/hair slots. Read the included `TEMPLATE.md` before editing source pixels.
+
+Imported items are saved inside the full project ZIP, including unused choices.
+They do not depend on a browser cache. Import/select and removing an unused item
+are undoable. Duplicate IDs are rejected; update `item.json` with a new unique ID
+when preparing another item. Existing built-in recipe v1 projects remain
+unchanged; custom items use recipe v2 and need the current editor. See the
+[portable item contract and review](WARDROBE_ITEMS_REVIEW.md).
+
 ## Choose the correct file
 
 | File             | Purpose                                                                                                               |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `.skin.zip`      | `skin.json` plus `slots/<slot>.png`; reuse the art and its bindings with the shared rig                               |
 | `.template.zip`  | Skin files plus separate guide and preparation instructions                                                           |
+| `.wardrobe.zip`  | One registered top, bottom or shoe item, its color masks, provenance and preparation instructions                     |
 | `.rig.zip`       | Complete editable project: skin PNGs/metadata, rig, motion library and preview state                                  |
 | `.character.zip` | Existing five-file CharacterPack: baked atlas, manifest, appearance reference and documentation; independent playback |
 
