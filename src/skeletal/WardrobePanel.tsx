@@ -1,16 +1,31 @@
 import { useEffect, useState } from "react";
 import { wardrobeOptions } from "./wardrobe-items";
+import type { CustomWardrobeIdentity } from "./identity-types";
 import type { CustomWardrobeItem, WardrobeRecipe } from "./wardrobe-types";
 import "./wardrobe-panel.css";
 
-type ColorKey = keyof WardrobeRecipe["colors"];
+type ColorKey = "skin" | "hair" | "top" | "bottom" | "shoes";
 const COLOR_LABELS: Record<ColorKey, string> = {
   skin: "Skin",
+  hair: "Hair",
   top: "Top",
   bottom: "Bottom",
   shoes: "Shoes",
 };
-const COLOR_KEYS: ColorKey[] = ["skin", "top", "bottom", "shoes"];
+const BASE_COLOR_KEYS: ColorKey[] = ["skin", "top", "bottom", "shoes"];
+const IDENTITY_COLOR_KEYS: ColorKey[] = [
+  "skin",
+  "hair",
+  "top",
+  "bottom",
+  "shoes",
+];
+
+function colorValue(colors: WardrobeRecipe["colors"], key: ColorKey): string {
+  return key === "hair"
+    ? ((colors as { hair?: string }).hair ?? "")
+    : colors[key];
+}
 
 function WardrobeColors({
   colors,
@@ -24,9 +39,14 @@ function WardrobeColors({
   const [draft, setDraft] = useState(colors);
   const serializedColors = JSON.stringify(colors);
   useEffect(() => setDraft(colors), [serializedColors]);
-  const invalid = COLOR_KEYS.some((key) => !/^#[0-9a-f]{6}$/i.test(draft[key]));
-  const changed = COLOR_KEYS.some(
-    (key) => draft[key].toLowerCase() !== colors[key].toLowerCase(),
+  const keys = "hair" in colors ? IDENTITY_COLOR_KEYS : BASE_COLOR_KEYS;
+  const invalid = keys.some(
+    (key) => !/^#[0-9a-f]{6}$/i.test(colorValue(draft, key)),
+  );
+  const changed = keys.some(
+    (key) =>
+      colorValue(draft, key).toLowerCase() !==
+      colorValue(colors, key).toLowerCase(),
   );
   return (
     <form
@@ -38,14 +58,16 @@ function WardrobeColors({
       }}
     >
       <h4>Colors</h4>
-      {COLOR_KEYS.map((key) => (
+      {keys.map((key) => (
         <div className="wardrobe-color-row" key={key}>
           <label htmlFor={`wardrobe-${key}-color`}>{COLOR_LABELS[key]}</label>
           <input
             type="color"
             aria-label={`${COLOR_LABELS[key]} color picker`}
             value={
-              /^#[0-9a-f]{6}$/i.test(draft[key]) ? draft[key] : colors[key]
+              /^#[0-9a-f]{6}$/i.test(colorValue(draft, key))
+                ? colorValue(draft, key)
+                : colorValue(colors, key)
             }
             disabled={disabled}
             onChange={(event) =>
@@ -56,11 +78,13 @@ function WardrobeColors({
             id={`wardrobe-${key}-color`}
             aria-label={`${COLOR_LABELS[key]} color`}
             type="text"
-            value={draft[key]}
+            value={colorValue(draft, key)}
             maxLength={7}
             spellCheck={false}
             disabled={disabled}
-            aria-invalid={!/^#[0-9a-f]{6}$/i.test(draft[key]) || undefined}
+            aria-invalid={
+              !/^#[0-9a-f]{6}$/i.test(colorValue(draft, key)) || undefined
+            }
             onChange={(event) =>
               setDraft({ ...draft, [key]: event.currentTarget.value })
             }
@@ -94,19 +118,25 @@ function WardrobeColors({
 export function WardrobePanel({
   recipe,
   items = [],
+  identities = [],
   detached,
+  unknownArtwork = false,
   disabled = false,
   onOpen,
   onChange,
+  onIdentityChange,
 }: {
   recipe?: WardrobeRecipe;
   items?: CustomWardrobeItem[];
+  identities?: CustomWardrobeIdentity[];
   detached: boolean;
+  unknownArtwork?: boolean;
   disabled?: boolean;
   onOpen: () => void;
   onChange: (recipe: WardrobeRecipe, label: string) => void;
+  onIdentityChange: (id: string) => void;
 }) {
-  const options = wardrobeOptions(items);
+  const options = wardrobeOptions(items, identities);
   return (
     <section className="wardrobe-panel" aria-labelledby="wardrobe-title">
       <div className="wardrobe-heading">
@@ -124,8 +154,9 @@ export function WardrobePanel({
             Open wardrobe
           </button>
           <p className="skin-help">
-            Opening creates a look from the wardrobe collection. Undo restores
-            your current artwork.
+            {unknownArtwork
+              ? "Open wardrobe starts a new Crop look with the default outfit. To keep a prepared character identity, import its identity ZIP below and choose Use identity. Undo restores your current artwork."
+              : "Opening creates a look from the wardrobe collection. Undo restores your current artwork."}
           </p>
         </>
       ) : (
@@ -147,20 +178,26 @@ export function WardrobePanel({
                 aria-label={`Wardrobe ${label.toLowerCase()}`}
                 value={recipe[key]}
                 disabled={disabled}
-                onChange={(event) =>
+                onChange={(event) => {
+                  if (key === "identity") {
+                    onIdentityChange(event.currentTarget.value);
+                    return;
+                  }
                   onChange(
                     {
                       ...recipe,
                       version:
-                        recipe.version === 2 ||
-                        event.currentTarget.value.startsWith("custom-")
-                          ? 2
-                          : 1,
+                        recipe.version === 3
+                          ? 3
+                          : recipe.version === 2 ||
+                              event.currentTarget.value.startsWith("custom-")
+                            ? 2
+                            : 1,
                       [key]: event.currentTarget.value,
                     } as WardrobeRecipe,
                     `Change wardrobe ${label.toLowerCase()}`,
-                  )
-                }
+                  );
+                }}
               >
                 {options.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -174,7 +211,12 @@ export function WardrobePanel({
             colors={recipe.colors}
             disabled={disabled}
             onApply={(colors) =>
-              onChange({ ...recipe, colors }, "Change wardrobe colors")
+              onChange(
+                recipe.version === 3
+                  ? { ...recipe, colors: { ...recipe.colors, ...colors } }
+                  : { ...recipe, colors },
+                "Change wardrobe colors",
+              )
             }
           />
           <p className="skin-help wardrobe-boundary-note">

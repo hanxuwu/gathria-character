@@ -6,6 +6,7 @@ import type {
 } from "../core/types";
 import type { Point } from "../core/pixel-art";
 import type { CustomWardrobeItem, WardrobeRecipe } from "./wardrobe-types";
+import type { CustomWardrobeIdentity } from "./identity-types";
 export type AnimationName = PlaybackAnimationName;
 export type { Point, Facing };
 export const FRAME_WIDTH = 192,
@@ -143,6 +144,8 @@ export interface AuthoringProject {
   wardrobe?: WardrobeRecipe;
   /** Embedded registered clothing sources; projects never depend on a device catalog. */
   wardrobeItems?: CustomWardrobeItem[];
+  /** Complete expression heads and masks, retained even after detaching a recipe. */
+  wardrobeIdentities?: CustomWardrobeIdentity[];
   preview: { animation: AnimationName; facing: Facing; expression: Expression };
 }
 export interface RigInspection {

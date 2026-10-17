@@ -35,7 +35,22 @@ export interface WardrobeRecipeV2 extends WardrobeRecipeBase {
   bottom: string;
   shoes: string;
 }
-export type WardrobeRecipe = WardrobeRecipeV1 | WardrobeRecipeV2;
+/** Explicit identity-library selection and hair customization. Earlier recipe
+ * versions retain their exact catalog identity and recolor behavior. */
+export interface WardrobeRecipeV3 {
+  format: "gathria-wardrobe-recipe";
+  version: 3;
+  catalogVersion: 1;
+  identity: string;
+  top: string;
+  bottom: string;
+  shoes: string;
+  colors: Record<WardrobeColor | "hair", string>;
+}
+export type WardrobeRecipe =
+  | WardrobeRecipeV1
+  | WardrobeRecipeV2
+  | WardrobeRecipeV3;
 
 export type WardrobeMaterial = "skin" | "hair" | "upper" | "lower" | "shoe";
 

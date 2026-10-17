@@ -1,6 +1,8 @@
 import { unzlibSync } from "fflate";
 import { WARDROBE_ASSETS } from "./wardrobe-assets.generated";
 import { validateWardrobeItems } from "./wardrobe-items";
+import { validateWardrobeIdentities } from "./identities";
+import type { CustomWardrobeIdentity } from "./identity-types";
 import {
   ALL_SLOTS,
   ACTION_FOREARM_SLOTS,
@@ -60,6 +62,7 @@ function choice<T extends string>(
 export function validateWardrobeRecipe(
   value: unknown,
   items: CustomWardrobeItem[] = [],
+  identities: CustomWardrobeIdentity[] = [],
 ): WardrobeRecipe {
   const raw = object(value, "wardrobe");
   fields(
@@ -78,7 +81,7 @@ export function validateWardrobeRecipe(
   );
   if (
     raw.format !== "gathria-wardrobe-recipe" ||
-    (raw.version !== 1 && raw.version !== 2)
+    (raw.version !== 1 && raw.version !== 2 && raw.version !== 3)
   )
     throw Error("Unsupported wardrobe recipe format or version.");
   if (raw.catalogVersion !== 1)
@@ -86,16 +89,23 @@ export function validateWardrobeRecipe(
       "Unsupported wardrobe catalogVersion; keep this project’s existing flat artwork.",
     );
   const custom = validateWardrobeItems(items);
+  const customIdentities = validateWardrobeIdentities(identities);
   const options = (
     group: "top" | "bottom" | "shoes",
     builtins: readonly { id: string }[],
   ) =>
-    raw.version === 2
+    raw.version !== 1
       ? [...builtins, ...custom.filter((item) => item.group === group)]
       : builtins;
   const colors = object(raw.colors, "wardrobe.colors");
-  fields(colors, ["skin", "top", "bottom", "shoes"], "wardrobe.colors");
-  const color = (key: keyof WardrobeRecipe["colors"]) => {
+  fields(
+    colors,
+    raw.version === 3
+      ? ["skin", "hair", "top", "bottom", "shoes"]
+      : ["skin", "top", "bottom", "shoes"],
+    "wardrobe.colors",
+  );
+  const color = (key: keyof WardrobeRecipe["colors"] | "hair") => {
     const value = colors[key];
     if (typeof value !== "string" || !/^#[0-9a-f]{6}$/i.test(value))
       throw Error(
@@ -109,7 +119,7 @@ export function validateWardrobeRecipe(
     catalogVersion: 1,
     identity: choice(
       raw.identity,
-      WARDROBE_ASSETS.identities,
+      raw.version === 3 ? customIdentities : WARDROBE_ASSETS.identities,
       "wardrobe.identity",
     ),
     top: choice(raw.top, options("top", WARDROBE_ASSETS.tops), "wardrobe.top"),
@@ -125,6 +135,7 @@ export function validateWardrobeRecipe(
     ),
     colors: {
       skin: color("skin"),
+      ...(raw.version === 3 ? { hair: color("hair") } : {}),
       top: color("top"),
       bottom: color("bottom"),
       shoes: color("shoes"),
@@ -193,6 +204,7 @@ const light = (channels: readonly number[]) =>
 function colorPart(
   part: EncodedWardrobePart,
   targets: Record<WardrobeMaterial, string>,
+  preserveSourceIdentity = false,
 ): Uint8ClampedArray {
   const raw = decode(part);
   const pixels = new Uint8ClampedArray(PIXELS * 4);
@@ -204,19 +216,63 @@ function colorPart(
   ) as Partial<Record<WardrobeMaterial, number>>;
   const skinBase = part.palette.skin ? rgb(part.palette.skin) : undefined;
   const hairStrength = 0.35 + (0.65 * light(colors.hair)) / 255;
+  const identitySource = preserveSourceIdentity
+    ? (Object.fromEntries(
+        Object.entries(part.palette).map(([name, hex]) => [name, rgb(hex!)]),
+      ) as Partial<Record<WardrobeMaterial, number[]>>)
+    : undefined;
+  const sample = new Uint8ClampedArray(1);
   for (let p = 0; p < PIXELS; p++) {
     const source = p * 5,
       dest = p * 4;
     if (!raw[source + 3]) continue;
     const material = MATERIALS[raw[source + 4]],
       base = material && bases[material];
-    if (!material || !base) {
+    if (
+      !material ||
+      !base ||
+      (preserveSourceIdentity &&
+        (material === "skin" || material === "hair") &&
+        targets[material].toLowerCase() ===
+          part.palette[material]?.toLowerCase())
+    ) {
       pixels.set(raw.subarray(source, source + 4), dest);
       continue;
     }
     const luminance = light([raw[source], raw[source + 1], raw[source + 2]]);
     const highlight = Math.max(0, (luminance - base) / (255 - base));
     const target = colors[material];
+    if (identitySource && (material === "skin" || material === "hair")) {
+      // Custom source artwork keeps its complete chroma. Apply only the
+      // difference between two historical palette transforms, so moving one
+      // color-picker channel away from the source cannot switch shading models.
+      // The frozen catalog and all garment recoloring below remain untouched.
+      const original = identitySource[material]!;
+      for (let channel = 0; channel < 3; channel++) {
+        const shade = (tone: number[]): number => {
+          sample[0] =
+            luminance <= base
+              ? (tone[channel] * luminance) / base
+              : tone[channel] + (255 - tone[channel]) * highlight;
+          if (material === "hair" && sample[0] > tone[channel])
+            sample[0] =
+              tone[channel] +
+              (sample[0] - tone[channel]) * (0.35 + (0.65 * light(tone)) / 255);
+          if (material === "skin" && part.preserveWarmSkin && skinBase) {
+            const neutral =
+              luminance <= base
+                ? (skinBase[channel] * luminance) / base
+                : skinBase[channel] + (255 - skinBase[channel]) * highlight;
+            sample[0] += (raw[source + channel] - neutral) * 0.35;
+          }
+          return sample[0];
+        };
+        pixels[dest + channel] =
+          raw[source + channel] + shade(target) - shade(original);
+      }
+      pixels[dest + 3] = 255;
+      continue;
+    }
     for (let channel = 0; channel < 3; channel++) {
       // Preserve the original typed-array rounding at each stage, not a
       // subtly different single floating-point transform of the same art.
@@ -339,14 +395,17 @@ export function assembleWardrobe(
   value: WardrobeRecipe,
   name = "Wardrobe character",
   items: CustomWardrobeItem[] = [],
+  identities: CustomWardrobeIdentity[] = [],
 ): SkinPack {
   const custom = validateWardrobeItems(items);
-  const recipe = validateWardrobeRecipe(value, custom);
+  const customIdentities = validateWardrobeIdentities(identities);
+  const recipe = validateWardrobeRecipe(value, custom, customIdentities);
   if (typeof name !== "string" || !name.trim() || name.length > 60)
     throw Error("Character name must contain 1–60 characters.");
-  const identity = WARDROBE_ASSETS.identities.find(
-    (item) => item.id === recipe.identity,
-  )!;
+  const identity =
+    recipe.version === 3
+      ? customIdentities.find((item) => item.id === recipe.identity)!
+      : WARDROBE_ASSETS.identities.find((item) => item.id === recipe.identity)!;
   const top =
     custom.find(
       (item): item is Extract<CustomWardrobeItem, { group: "top" }> =>
@@ -364,19 +423,30 @@ export function assembleWardrobe(
     ) ?? WARDROBE_ASSETS.shoes.find((item) => item.id === recipe.shoes)!;
   const targets = {
     skin: recipe.colors.skin,
-    hair: identity.sourceAppearance.hairColor,
+    hair:
+      recipe.version === 3
+        ? recipe.colors.hair
+        : identity.sourceAppearance.hairColor,
     upper: recipe.colors.top,
     lower: recipe.colors.bottom,
     shoe: recipe.colors.shoes,
   };
   const images: SkinPack["images"] = {};
-  const add = (parts: EncodedWardrobePart[], allowed: readonly Slot[]) => {
+  const add = (
+    parts: EncodedWardrobePart[],
+    allowed: readonly Slot[],
+    identitySource = false,
+  ) => {
     for (const part of parts) {
       if (!allowed.includes(part.slot) || images[part.slot])
         throw Error(
           `Catalog item has invalid or duplicate slot ownership: ${part.slot}.`,
         );
-      let pixels = colorPart(part, targets);
+      let pixels = colorPart(
+        part,
+        targets,
+        identitySource && recipe.version === 3,
+      );
       if (part.slot === "near-shin" || part.slot === "far-shin")
         pixels = ankleAllowance(
           part,
@@ -392,12 +462,11 @@ export function assembleWardrobe(
       images[part.slot] = pixels;
     }
   };
-  add(identity.parts, [
-    "head-neutral",
-    "head-gentle",
-    "head-joyful",
-    "back-hair",
-  ]);
+  add(
+    identity.parts,
+    ["head-neutral", "head-gentle", "head-joyful", "back-hair"],
+    true,
+  );
   add(top.parts, [
     "torso",
     "near-upper-arm",
@@ -420,6 +489,9 @@ export function assembleWardrobe(
   const sourceAppearance = {
     ...structuredClone(identity.sourceAppearance),
     skinTone: recipe.colors.skin.toUpperCase(),
+    ...(recipe.version === 3
+      ? { hairColor: recipe.colors.hair.toUpperCase() }
+      : {}),
     upperClothing:
       recipe.top === "denim-jacket" ? ("jacket" as const) : ("tee" as const),
     lowerClothing: !bottom.parts.some((part) => part.slot === "garment")
@@ -450,12 +522,12 @@ export function assembleWardrobe(
         offsets: {},
         mesh: { blendRadius: 6, volume: 0.65, preserveAnkleOverlap: true },
         jaw: structuredClone(identity.jaw),
-        hairSway: 1,
+        hairSway: "hairSway" in identity ? identity.hairSway : 1,
         garmentSway: 1,
       },
       sourceAppearance,
       provenance: `${WARDROBE_ASSETS.provenance}\nWardrobe catalog 1 recipe: ${JSON.stringify(recipe)}\nMaterials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the common grounded sole at y=239. Clean skin/cloth ankle allowances extend at most four source pixels behind the shoes; explicit preserveAnkleOverlap retains them during mesh preparation. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.${
-        recipe.version === 2
+        recipe.version !== 1
           ? custom
               .filter((item) => recipe[item.group] === item.id)
               .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
@@ -465,7 +537,7 @@ export function assembleWardrobe(
               )
               .join("")
           : ""
-      }`,
+      }${recipe.version === 3 ? `\nCustom identity ${identity.id} (${identity.name}): ${(identity as CustomWardrobeIdentity).provenance}\nIdentity source skin/hair pixels are preserved exactly when the chosen color equals the authored palette. Registered neck (96,118); source masks own only fixed, skin and hair.` : ""}`,
     },
     images,
   };
@@ -477,7 +549,7 @@ function wardrobeId(recipe: WardrobeRecipe): string {
   let hash = 0x811c9dc5;
   for (const char of JSON.stringify(recipe))
     hash = Math.imul(hash ^ char.charCodeAt(0), 0x01000193);
-  return `wardrobe-v2-${recipe.identity}-${(hash >>> 0).toString(16).padStart(8, "0")}`;
+  return `wardrobe-v${recipe.version}-${recipe.identity}-${(hash >>> 0).toString(16).padStart(8, "0")}`;
 }
 
 /** Apply only the assembled art and its recipe. A wardrobe choice never resets
@@ -486,7 +558,11 @@ export function applyWardrobe(
   project: AuthoringProject,
   value: WardrobeRecipe,
 ): AuthoringProject & { wardrobe: WardrobeRecipe } {
-  const wardrobe = validateWardrobeRecipe(value, project.wardrobeItems);
+  const wardrobe = validateWardrobeRecipe(
+    value,
+    project.wardrobeItems,
+    project.wardrobeIdentities,
+  );
   return {
     ...project,
     wardrobe,
@@ -494,6 +570,7 @@ export function applyWardrobe(
       wardrobe,
       project.skin.metadata.name,
       project.wardrobeItems,
+      project.wardrobeIdentities,
     ),
   };
 }
@@ -521,8 +598,14 @@ export function assertWardrobeSkinMatches(
   value: WardrobeRecipe,
   skin: SkinPack,
   items: CustomWardrobeItem[] = [],
+  identities: CustomWardrobeIdentity[] = [],
 ): void {
-  const expected = assembleWardrobe(value, skin.metadata.name, items);
+  const expected = assembleWardrobe(
+    value,
+    skin.metadata.name,
+    items,
+    identities,
+  );
   const {
     name: _actualName,
     provenance: actualProvenance,

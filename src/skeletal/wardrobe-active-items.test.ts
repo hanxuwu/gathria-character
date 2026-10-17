@@ -1,3 +1,4 @@
+import type { WardrobeRecipe } from "./wardrobe-types";
 import { describe, expect, it } from "vitest";
 import { zlibSync } from "fflate";
 import { createAuthoringProject } from "./builtins";
@@ -117,7 +118,7 @@ describe("registered top action forearms", () => {
           skin: "#8d5135",
           top: "#759151",
         },
-      });
+      } as WardrobeRecipe);
     const changes = new Map<number, number>();
     for (const slot of ACTION_FOREARM_SLOTS) {
       const raw = decodeWardrobeItemPart(

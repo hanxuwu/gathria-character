@@ -1,4 +1,5 @@
 import { Unzlib } from "fflate";
+import type { CustomWardrobeIdentity } from "./identity-types";
 import { validateActionForearms } from "./action-forearms";
 import { WARDROBE_ASSETS } from "./wardrobe-assets.generated";
 import {
@@ -377,13 +378,19 @@ export function validateWardrobeItems(value: unknown): CustomWardrobeItem[] {
   return items;
 }
 
-export function wardrobeOptions(items: CustomWardrobeItem[] = []) {
+export function wardrobeOptions(
+  items: CustomWardrobeItem[] = [],
+  identities: CustomWardrobeIdentity[] = [],
+) {
   const options = (group: WardrobeItemGroup) =>
     items
       .filter((item) => item.group === group)
       .map(({ id, name }) => ({ id, label: name }));
   return {
-    identities: WARDROBE_OPTIONS.identities,
+    identities: [
+      ...WARDROBE_OPTIONS.identities,
+      ...identities.map(({ id, name }) => ({ id, label: name })),
+    ],
     tops: [...WARDROBE_OPTIONS.tops, ...options("top")],
     bottoms: [...WARDROBE_OPTIONS.bottoms, ...options("bottom")],
     shoes: [...WARDROBE_OPTIONS.shoes, ...options("shoes")],
@@ -394,9 +401,10 @@ export function createWardrobeItemTemplate(
   recipe: WardrobeRecipe,
   group: WardrobeItemGroup,
   items: CustomWardrobeItem[] = [],
+  identities: CustomWardrobeIdentity[] = [],
 ): CustomWardrobeItem {
   const checkedItems = validateWardrobeItems(items),
-    selected = validateWardrobeRecipe(recipe, checkedItems);
+    selected = validateWardrobeRecipe(recipe, checkedItems, identities);
   const custom = checkedItems.find(
     (item) => item.id === selected[group] && item.group === group,
   );
@@ -452,11 +460,13 @@ export function addWardrobeItem(
   if (items.length === 8)
     throw Error("A project supports at most eight custom wardrobe items.");
   const next = { ...project, wardrobeItems: [...items, item] };
-  return applyWardrobe(next, {
-    ...project.wardrobe,
-    version: 2,
-    [item.group]: item.id,
-  });
+  return project.wardrobe.version === 3
+    ? applyWardrobe(next, { ...project.wardrobe, [item.group]: item.id })
+    : applyWardrobe(next, {
+        ...project.wardrobe,
+        version: 2,
+        [item.group]: item.id,
+      });
 }
 
 export function removeWardrobeItem(
