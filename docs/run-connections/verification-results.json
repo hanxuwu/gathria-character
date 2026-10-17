@@ -1,0 +1,59 @@
+{
+  "recordedAt": "2026-10-17T00:22:50.028377+00:00",
+  "baseCommit": "ebec736e72966923304281bc0150505ae04f1c99",
+  "implementationCommit": "f38f8f0",
+  "scope": "Checks executed in this repair batch, not historical test counts",
+  "unitTests": {
+    "command": "npm test",
+    "passed": 284,
+    "files": 16,
+    "failed": 0,
+    "skipped": 0
+  },
+  "typecheckAndBuild": {
+    "command": "npm run build (tsc -b && vite build)",
+    "passed": true,
+    "knownWarning": "Large retained-artwork editor bundle"
+  },
+  "browserTests": {
+    "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npm run test:e2e",
+    "passed": 26,
+    "failed": 0,
+    "skipped": 0
+  },
+  "media": {
+    "pngs": 61,
+    "gifs": 48,
+    "beforeAfterRegressionPacks": 12,
+    "retainedIterationPacks": 4,
+    "publicSamplesByteExact": 4,
+    "allGifFramesAndTimingMatchExportedSource": true,
+    "independentVideoSeconds": 23.36
+  },
+  "independentPlayer": {
+    "studioClosed": true,
+    "runCases": 8,
+    "all12FrameIdsObservedPerCase": true,
+    "bothFacings": true,
+    "livePixelsMatchExportedPng": true,
+    "errors": [],
+    "externalRequests": [],
+    "forbiddenImports": []
+  },
+  "preservation": {
+    "historicalFilesUnchanged": 41,
+    "v6IdleWalkPixelExact": true,
+    "allRunHeadsThroughY110PixelExact": true,
+    "finalRgbaMatchesReviewedIteration02": true,
+    "cadenceFramesAnchorAndPoseTargetsPreserved": true
+  },
+  "visualReview": {
+    "method": "Native/integer-zoom actual exported frames, source ownership diagnostics, all48 main run poses and matched comparison loops as frame sequences; actual browser playback separately pixel-verified and recorded",
+    "result": "Arm foreign strips/static waist skin removed; knee and ankle contours connected; original blue underskirt retained",
+    "remaining": [
+      "Pronounced rounded U shape at deepest bare-knee folds",
+      "Inherited rigid hand/boot cutout articulation"
+    ],
+    "userAcceptance": "Pending"
+  }
+}

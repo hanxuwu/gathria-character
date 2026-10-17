@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "format": "gathria-character-pack",
+  "name": "Mira - mohawk hairstyle",
+  "generator": "gathria-expressive-pixels-v4",
+  "spritesheet": {
+    "file": "spritesheet.png",
+    "width": 1536,
+    "height": 512,
+    "frameWidth": 192,
+    "frameHeight": 256,
+    "columns": 8,
+    "rows": 2
+  },
+  "frames": [
+    {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 1,
+      "x": 192,
+      "y": 0,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 2,
+      "x": 384,
+      "y": 0,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 3,
+      "x": 576,
+      "y": 0,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 4,
+      "x": 0,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 5,
+      "x": 192,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 6,
+      "x": 384,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 7,
+      "x": 576,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 8,
+      "x": 768,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 9,
+      "x": 960,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 10,
+      "x": 1152,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 11,
+      "x": 1344,
+      "y": 256,
+      "width": 192,
+      "height": 256
+    }
+  ],
+  "animations": {
+    "idle": {
+      "frames": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        3,
+        2,
+        0,
+        0,
+        0
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "walk": {
+      "frames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "fps": 10,
+      "loop": true
+    }
+  },
+  "facing": {
+    "native": "right",
+    "right": "none",
+    "left": "mirror-x"
+  },
+  "anchor": {
+    "x": 96,
+    "y": 240,
+    "units": "pixels",
+    "origin": "top-left"
+  },
+  "scale": {
+    "pixelArt": true,
+    "recommended": 1,
+    "integerOnly": true
+  },
+  "configuration": "character.json"
+}
