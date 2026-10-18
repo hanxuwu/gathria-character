@@ -204,7 +204,7 @@ const light = (channels: readonly number[]) =>
 function colorPart(
   part: EncodedWardrobePart,
   targets: Record<WardrobeMaterial, string>,
-  preserveSourceIdentity = false,
+  preserveSource = false,
 ): Uint8ClampedArray {
   const raw = decode(part);
   const pixels = new Uint8ClampedArray(PIXELS * 4);
@@ -216,7 +216,7 @@ function colorPart(
   ) as Partial<Record<WardrobeMaterial, number>>;
   const skinBase = part.palette.skin ? rgb(part.palette.skin) : undefined;
   const hairStrength = 0.35 + (0.65 * light(colors.hair)) / 255;
-  const identitySource = preserveSourceIdentity
+  const sourceColors = preserveSource
     ? (Object.fromEntries(
         Object.entries(part.palette).map(([name, hex]) => [name, rgb(hex!)]),
       ) as Partial<Record<WardrobeMaterial, number[]>>)
@@ -231,8 +231,7 @@ function colorPart(
     if (
       !material ||
       !base ||
-      (preserveSourceIdentity &&
-        (material === "skin" || material === "hair") &&
+      (preserveSource &&
         targets[material].toLowerCase() ===
           part.palette[material]?.toLowerCase())
     ) {
@@ -242,12 +241,12 @@ function colorPart(
     const luminance = light([raw[source], raw[source + 1], raw[source + 2]]);
     const highlight = Math.max(0, (luminance - base) / (255 - base));
     const target = colors[material];
-    if (identitySource && (material === "skin" || material === "hair")) {
-      // Custom source artwork keeps its complete chroma. Apply only the
+    if (sourceColors) {
+      // Explicit custom source artwork keeps its complete chroma. Apply only the
       // difference between two historical palette transforms, so moving one
       // color-picker channel away from the source cannot switch shading models.
-      // The frozen catalog and all garment recoloring below remain untouched.
-      const original = identitySource[material]!;
+      // The frozen catalog and V1/V2 garment recoloring below remain untouched.
+      const original = sourceColors[material]!;
       for (let channel = 0; channel < 3; channel++) {
         const shade = (tone: number[]): number => {
           sample[0] =
@@ -435,18 +434,14 @@ export function assembleWardrobe(
   const add = (
     parts: EncodedWardrobePart[],
     allowed: readonly Slot[],
-    identitySource = false,
+    preserveSource = false,
   ) => {
     for (const part of parts) {
       if (!allowed.includes(part.slot) || images[part.slot])
         throw Error(
           `Catalog item has invalid or duplicate slot ownership: ${part.slot}.`,
         );
-      let pixels = colorPart(
-        part,
-        targets,
-        identitySource && recipe.version === 3,
-      );
+      let pixels = colorPart(part, targets, preserveSource);
       if (part.slot === "near-shin" || part.slot === "far-shin")
         pixels = ankleAllowance(
           part,
@@ -465,25 +460,32 @@ export function assembleWardrobe(
   add(
     identity.parts,
     ["head-neutral", "head-gentle", "head-joyful", "back-hair"],
-    true,
+    recipe.version === 3,
   );
-  add(top.parts, [
-    "torso",
-    "near-upper-arm",
-    "near-forearm",
-    "far-upper-arm",
-    "far-forearm",
-    ...("actionForearms" in top ? ACTION_FOREARM_SLOTS : []),
-  ]);
-  add(bottom.parts, [
-    "hips",
-    "near-thigh",
-    "near-shin",
-    "far-thigh",
-    "far-shin",
-    "garment",
-  ]);
-  add(shoes.parts, ["near-shoe", "far-shoe"]);
+  add(
+    top.parts,
+    [
+      "torso",
+      "near-upper-arm",
+      "near-forearm",
+      "far-upper-arm",
+      "far-forearm",
+      ...("actionForearms" in top && top.actionForearms
+        ? ACTION_FOREARM_SLOTS
+        : []),
+    ],
+    "version" in top && top.version === 3,
+  );
+  add(
+    bottom.parts,
+    ["hips", "near-thigh", "near-shin", "far-thigh", "far-shin", "garment"],
+    "version" in bottom && bottom.version === 3,
+  );
+  add(
+    shoes.parts,
+    ["near-shoe", "far-shoe"],
+    "version" in shoes && shoes.version === 3,
+  );
   for (const slot of REQUIRED_SLOTS)
     if (!images[slot]) throw Error(`Wardrobe assembly is missing ${slot}.`);
   const sourceAppearance = {
@@ -504,7 +506,7 @@ export function assembleWardrobe(
   return {
     metadata: {
       format: "gathria-skin-pack",
-      ...("actionForearms" in top
+      ...("actionForearms" in top && top.actionForearms
         ? {
             version: 2 as const,
             actionForearms: structuredClone(top.actionForearms),
@@ -533,7 +535,7 @@ export function assembleWardrobe(
               .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
               .map(
                 (item) =>
-                  `\nCustom ${item.group} ${item.id} (${item.name}): ${item.provenance}`,
+                  `\nCustom ${item.group} ${item.id} (${item.name}): ${item.provenance}${item.version === 3 ? "\nItem V3 source-relative-v1: authored material RGB is exact at its source palette; recoloring applies only the difference between source and target shading transforms. Geometric fitting and overlap still apply." : ""}`,
               )
               .join("")
           : ""

@@ -93,7 +93,27 @@ export type CustomWardrobeItemV2 = CustomWardrobeItemBase & {
   chains: { nearArm: JointTriple; farArm: JointTriple };
   actionForearms: ActionForearms;
 };
-export type CustomWardrobeItem = CustomWardrobeItemV1 | CustomWardrobeItemV2;
+/** Explicit source-relative colors preserve authored shading at the source
+ * palette. V1/V2 garments retain their historical recolor transform. */
+export type CustomWardrobeItemV3 = CustomWardrobeItemBase & {
+  version: 3;
+  colorModel: "source-relative-v1";
+} & (
+    | {
+        group: "top";
+        chains: { nearArm: JointTriple; farArm: JointTriple };
+        actionForearms?: ActionForearms;
+      }
+    | {
+        group: "bottom";
+        chains: { nearLeg: JointTriple; farLeg: JointTriple };
+      }
+    | { group: "shoes"; ankles: { near: Point; far: Point } }
+  );
+export type CustomWardrobeItem =
+  | CustomWardrobeItemV1
+  | CustomWardrobeItemV2
+  | CustomWardrobeItemV3;
 
 export interface WardrobeIdentity {
   id: WardrobeIdentityId;
