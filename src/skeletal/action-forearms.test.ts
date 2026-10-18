@@ -30,6 +30,8 @@ function alternateSkin(actions: ForearmAction[] = ["run", "jump"]): SkinPack {
   const actionForearms: ActionForearms = Object.fromEntries(
     actions.map((action) => [action, { ...pair }]),
   );
+  if (skin.metadata.version !== 1)
+    throw Error("Expected a legacy base skin fixture.");
   skin.metadata = {
     ...skin.metadata,
     version: 2,

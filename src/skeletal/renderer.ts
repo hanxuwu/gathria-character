@@ -1,6 +1,11 @@
 import { prepareMeshLimb } from "../experiments/denim-rig/mesh";
 import { validateActionForearms } from "./action-forearms";
 import {
+  validateRunLegs,
+  validateRunShoes,
+  preferBentLeg,
+} from "./run-attachments";
+import {
   IllustratedCanvas,
   translated,
   type Matrix,
@@ -10,6 +15,8 @@ import type { IllustratedLayer } from "../core/illustrated-types";
 import {
   CHAINS,
   ACTION_FOREARM_SLOTS,
+  RUN_LEG_SLOTS,
+  RUN_SHOE_SLOTS,
   FRAME_WIDTH as W,
   FRAME_HEIGHT as H,
   REQUIRED_SLOTS,
@@ -156,21 +163,39 @@ function validateHierarchy(rig: RigDefinition, skin: SkinPack) {
     )
       throw Error(`Skin image ${slot} must contain one complete RGBA frame.`);
   }
-  if (skin.metadata.version === 2) {
-    validateActionForearms(skin.metadata.actionForearms);
-    for (const slot of ACTION_FOREARM_SLOTS)
-      if (
-        !skin.metadata.slots.includes(slot) ||
-        !(skin.images[slot] instanceof Uint8ClampedArray) ||
-        skin.images[slot]!.length !== W * H * 4
-      )
-        throw Error(`Skin active forearm pair is missing ${slot}.`);
+  const metadata = skin.metadata;
+  if (![1, 2, 3].includes(metadata.version))
+    throw Error("Unsupported skin version.");
+  if (metadata.version === 2 || metadata.actionForearms)
+    validateActionForearms(metadata.actionForearms);
+  if (metadata.version === 3) {
+    if (!metadata.runLegs && !metadata.runShoes)
+      throw Error("Skin version 3 needs runLegs and/or runShoes.");
+    if (metadata.runLegs) validateRunLegs(metadata.runLegs);
+    if (metadata.runShoes) validateRunShoes(metadata.runShoes);
   } else if (
-    skin.metadata.version !== 1 ||
-    skin.metadata.actionForearms !== undefined ||
-    ACTION_FOREARM_SLOTS.some((slot) => skin.metadata.slots.includes(slot))
+    metadata.runLegs !== undefined ||
+    metadata.runShoes !== undefined
   ) {
-    throw Error("Active forearm attachments require skin version 2.");
+    throw Error("Run alternatives require skin version 3.");
+  }
+  if (metadata.version === 1 && metadata.actionForearms !== undefined)
+    throw Error("Active forearms require skin version 2 or 3.");
+  for (const [enabled, pair] of [
+    [!!metadata.actionForearms, ACTION_FOREARM_SLOTS],
+    [metadata.version === 3 && !!metadata.runLegs, RUN_LEG_SLOTS],
+    [metadata.version === 3 && !!metadata.runShoes, RUN_SHOE_SLOTS],
+  ] as const) {
+    for (const slot of pair) {
+      if (metadata.slots.includes(slot) !== enabled)
+        throw Error(`Skin extension and paired slot ${slot} must agree.`);
+      if (
+        enabled &&
+        (!(skin.images[slot] instanceof Uint8ClampedArray) ||
+          skin.images[slot]!.length !== W * H * 4)
+      )
+        throw Error(`Skin alternative pair is missing ${slot}.`);
+    }
   }
 }
 
@@ -328,12 +353,37 @@ export function prepareRig(
   };
   const meshes = new Map(CHAINS.map((chain) => [chain, prepareLimb(chain)]));
   const activeArmMeshes = new Map(
-    skin.version === 2
+    skin.actionForearms
       ? (["nearArm", "farArm"] as const).map(
           (chain) => [chain, prepareLimb(chain, true)] as const,
         )
       : [],
   );
+
+  const bentLegMeshes = new Map(
+    skin.runLegs
+      ? (["nearLeg", "farLeg"] as const).map((chain) => {
+          const source = skin.runLegs![chain];
+          return [
+            chain,
+            prepareMeshLimb(
+              (id) => requireAttachment(id).layer,
+              (id) => requireAttachment(id).pixels,
+              [source.slot],
+              source.joints,
+              skin.bindings.mesh,
+            ),
+          ] as const;
+        })
+      : [],
+  );
+  const shoeSource = (chain: "nearLeg" | "farLeg", animation: AnimationName) =>
+    animation === "run" && skin.runShoes
+      ? skin.runShoes[chain]
+      : {
+          slot: (chain === "nearLeg" ? "near-shoe" : "far-shoe") as Slot,
+          ankle: skin.bindings.chains[chain][2],
+        };
 
   function render(
     animation: AnimationName,
@@ -469,12 +519,17 @@ export function prepareRig(
             : end[0] + opposite.footX,
           end[1] - opposite.footLift + rootY,
         ];
-        if (runV2) {
-          const item = requireAttachment(near ? "near-shoe" : "far-shoe");
-          const shoe = rotateAt(opposite.shoePitch, end, ankle[0] - end[0]);
+        if (runV2 || (animation === "run" && skin.runShoes)) {
+          const source = shoeSource(chain as "nearLeg" | "farLeg", animation);
+          const item = requireAttachment(source.slot);
+          const shoe = rotateAt(
+            opposite.shoePitch,
+            source.ankle,
+            ankle[0] - source.ankle[0],
+          );
           const dy =
             rig.anchor[1] - 1 - rotatedSole(item, shoe) - opposite.footLift;
-          ankle = [ankle[0], end[1] + dy];
+          ankle = [ankle[0], source.ankle[1] + dy];
           runShoes.set(chain, [
             shoe[0],
             shoe[1],
@@ -524,27 +579,49 @@ export function prepareRig(
     function limb(chain: ChainName) {
       const joints = posed.get(chain)!,
         useActiveForearms =
-          skin.version === 2 &&
+          !!skin.actionForearms &&
           (animation === "run" || animation === "jump") &&
           skin.actionForearms[animation] !== undefined,
-        mesh =
-          useActiveForearms && (chain === "nearArm" || chain === "farArm")
+        bent =
+          animation === "run" &&
+          skin.runLegs &&
+          (chain === "nearLeg" || chain === "farLeg")
+            ? skin.runLegs[chain]
+            : undefined,
+        useBent =
+          !!bent &&
+          preferBentLeg(skin.bindings.chains[chain], bent.joints, joints),
+        mesh = useBent
+          ? bentLegMeshes.get(chain as "nearLeg" | "farLeg")!
+          : useActiveForearms && (chain === "nearArm" || chain === "farArm")
             ? activeArmMeshes.get(chain)!
             : meshes.get(chain)!;
+      const side = chain.startsWith("near") ? "near" : "far";
+      const sourceSlots: Slot[] = useBent
+        ? [bent!.slot]
+        : chain.endsWith("Arm")
+          ? [
+              `${side}-upper-arm`,
+              `${side}-forearm${useActiveForearms ? "-active" : ""}`,
+            ]
+          : [`${side}-thigh`, `${side}-shin`];
       mesh.draw(canvas, joints);
       if (inspect)
         inspection.limbs.push({
           id: chain,
+          variant: useBent ? "bent" : "base",
+          sourceSlots,
           bones: [...joints],
           ...mesh.inspect(joints),
         });
       if (chain.endsWith("Leg")) {
         const near = chain.startsWith("near"),
-          slot: Slot = near ? "near-shoe" : "far-shoe";
+          source = shoeSource(chain as "nearLeg" | "farLeg", animation),
+          slot = source.slot;
         const opposite = jumping
           ? key
           : keys[(index + (near ? 0 : Math.floor(count / 2))) % count];
-        const ankle = skin.bindings.chains[chain][2];
+        const ankle = source.ankle;
         const sole = requireAttachment(slot).sourceBottom;
         draw(
           slot,

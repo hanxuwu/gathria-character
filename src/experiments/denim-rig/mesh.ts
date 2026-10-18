@@ -211,7 +211,7 @@ export function rasterizeTexturedMesh(
 export function prepareMeshLimb(
   requireLayer: (id: string) => IllustratedLayer,
   colors: (id: string) => Uint8ClampedArray,
-  ids: readonly [string, string],
+  ids: readonly [string] | readonly [string, string],
   joints: readonly [Point, Point, Point],
   options: MeshOptions & { excludeId?: string } = {},
 ) {

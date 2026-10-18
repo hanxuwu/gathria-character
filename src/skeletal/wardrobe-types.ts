@@ -1,6 +1,8 @@
 import type { ArtV6CharacterConfig } from "../core/types";
 import type {
   ActionForearms,
+  RunLegs,
+  RunShoes,
   JointTriple,
   Point,
   SkinMetadata,
@@ -110,10 +112,27 @@ export type CustomWardrobeItemV3 = CustomWardrobeItemBase & {
       }
     | { group: "shoes"; ankles: { near: Point; far: Point } }
   );
+/** Explicit run-only registered pose artwork; base garment pixels stay frozen. */
+export type CustomWardrobeItemV4 = CustomWardrobeItemBase & {
+  version: 4;
+  colorModel: "source-relative-v1";
+} & (
+    | {
+        group: "bottom";
+        chains: { nearLeg: JointTriple; farLeg: JointTriple };
+        runLegs: RunLegs;
+      }
+    | {
+        group: "shoes";
+        ankles: { near: Point; far: Point };
+        runShoes: RunShoes;
+      }
+  );
 export type CustomWardrobeItem =
   | CustomWardrobeItemV1
   | CustomWardrobeItemV2
-  | CustomWardrobeItemV3;
+  | CustomWardrobeItemV3
+  | CustomWardrobeItemV4;
 
 export interface WardrobeIdentity {
   id: WardrobeIdentityId;
