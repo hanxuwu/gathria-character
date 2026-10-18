@@ -1,7 +1,7 @@
 {
   "tool": "OpenAI image generation tool",
   "createdUTC": "2026-10-18",
-  "calls": 4,
+  "calls": 5,
   "runtimeGeneration": false,
   "sources": [
     {
@@ -56,6 +56,22 @@
       "references": [
         "artwork/character-roster/source/roster-design.png"
       ]
+    },
+    {
+      "file": "ravi-expressions-revision.png",
+      "prompt": "ravi-expressions-revision-prompt.txt",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "sha256": "bd7690697557306600571964dc2999a360e91376730427b59dab76e675d8a212",
+      "references": [
+        "artwork/character-roster/source/expressions.png"
+      ],
+      "purpose": "Candidate revision for source expression skin-color drift; actual selection and residual differences recorded by preparation/review.",
+      "selection": "Not selected: modest skin-luma reduction did not resolve whole-face brightening; native eye/outline clarity slightly worse. Original expression bank retained.",
+      "comparison": "Original neutral/gentle skin median luma gap\u224819.1; revision\u224816.0. Prepared candidate review retains samples and native comparison."
     }
   ],
   "note": "Designs and production source sheets are not application-export evidence. Original tool outputs retained unchanged; registration and masks are separate offline preparation."
