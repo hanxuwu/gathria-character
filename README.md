@@ -37,6 +37,11 @@ wardrobe. Saved projects embed both libraries. The
 custom identities wearing three outfits through all four actions, with a new
 generated character and cardigan set. See the [identity format guide](docs/IDENTITY_PACK_V1.md).
 
+The [Theo and Rose pair](docs/REFERENCE_PAIR_REVIEW.md) adds a reference-guided
+navy suit and coral dress with two reusable identities, six garment items and
+three expressions each. [Actual previews and editable downloads](docs/reference-pair/README.md)
+exercise the same skeleton through idle, walk, run and jump.
+
 ```sh
 npm run typecheck
 npm test

@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-18",
+  "baseCommit": "cd89d619abc108763f978907ab0b978622a8b15f",
+  "scope": "New Theo/Rose source artwork, preparation and actual exported examples; runtime, rig and motion modules unchanged.",
+  "currentSession": {
+    "finalActualExports": {
+      "capturedAt": "2026-10-18T01:34:31.998Z",
+      "command": "node scripts/generate-reference-pair-evidence.mjs && python3 scripts/render-reference-pair-review.py",
+      "looksExpressionsAndColors": 10,
+      "decodedSourcePoses": 360,
+      "editorFrameFacingComparisons": 160,
+      "savedProjectRoundtrips": 6,
+      "identityRoundtrips": 2,
+      "garmentRoundtrips": 6,
+      "legacyProjectsExact": 2,
+      "independentPlaybackAfterClosingStudio": 20,
+      "maximumPlaybackTimingErrorMs": 36,
+      "runtimeFilesFrozen": 103,
+      "preparedInputsFrozen": 10,
+      "pageErrors": 0,
+      "externalRequests": 0,
+      "forbiddenAuthoringModuleRequests": 0,
+      "finalPngsDecoded": 133,
+      "finalGifsDecodedAndTimed": 20,
+      "finalZipsDecodedAndCrcChecked": 38,
+      "knownCollarHolePixelsReassignedToVisibleSkin": 59,
+      "previousOpaqueTorsoPixelsPreserved": 2398,
+      "beforeIteration": "iterations/02-before-collar/README.md",
+      "note": "The first functional capture passed but final visual inspection identified the remaining neckline opening. Final capture was repeated after the bounded material repair; only the corrected capture is final evidence.",
+      "exitCode": 0
+    },
+    "sourcePreparation": {
+      "command": "node scripts/prepare-reference-pair.mjs",
+      "outputHashesVerified": 238,
+      "sourceHashesVerified": 4,
+      "pngsDecodedIncludingInitialComparisons": 254,
+      "pngProperties": "192x256 RGBA; binary alpha",
+      "zipArchivesDecodedAndCrcChecked": 12,
+      "zipScope": "10 current prepared archives and two retained actual before-collar CharacterPacks",
+      "registeredExpressionHeadsPreserved": 6,
+      "lowerNeckRegionsVerified": 6,
+      "ivoryCuffPixelsCorrectedToFixedMaterial": 31,
+      "collarSkinAllowancePixels": 191,
+      "identityExpressionCollarGapChecks": 6,
+      "remainingCollarGapPixels": 0,
+      "originalOpaqueClothingPixelsChanged": 0,
+      "exitCode": 0
+    },
+    "unitTests": {
+      "command": "npm test -- src/skeletal/identities.test.ts src/skeletal/identity-io.test.ts src/skeletal/wardrobe.test.ts src/skeletal/wardrobe-items.test.ts src/skeletal/wardrobe-item-io.test.ts src/skeletal/wardrobe-active-items.test.ts src/skeletal/skin-io.test.ts src/skeletal/baked-provenance.test.ts",
+      "filesPassed": 7,
+      "testsPassed": 84,
+      "durationSeconds": 18.39,
+      "note": "Seven matching files exist; identity I/O coverage is included in identities.test.ts. No separate identity-io.test.ts exists.",
+      "exitCode": 0
+    },
+    "browserTests": {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e -- tests/e2e/identity-library.spec.ts",
+      "testsPassed": 2,
+      "durationSeconds": 30.1,
+      "exitCode": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "includes": ["TypeScript tsc -b", "Vite production build"],
+      "exitCode": 0,
+      "warnings": ["Existing minified bundle chunks over 500 kB"]
+    }
+  },
+  "historicalOnly": "The parent Maple/Willow delivery recorded 454 unit tests and 52 browser tests. Those full suites were not repeated in this asset-only batch.",
+  "actualExportCapture": "final/evidence-index.json",
+  "artifactValidation": "final/artifact-validation.json",
+  "fileIntegrity": "final/file-integrity.json"
+}
