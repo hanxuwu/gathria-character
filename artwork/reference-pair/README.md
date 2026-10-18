@@ -34,6 +34,21 @@ offline. Prepared identities and garments reuse the existing skeleton, renderer
 and idle/walk/run/jump motion library. They are new library entries; existing
 identity, wardrobe, skin and legacy artwork files remain unchanged.
 
+Head registration uses measured neck landmarks at a common 0.40 source scale,
+so Rose's longer curl bounds do not shrink her face relative to Theo. Complete
+heads retain the original neck and natural curl ends; the separate rear hair
+overlaps behind them. Connected-part extraction and alpha threshold 192 remove
+source halos. Nearest-neighbor sampling keeps the resulting pixel edges sharp.
+Clothing preparation removes static trouser pixels below the jacket, assigns a
+single visible waistband, trims the sock feet beneath separate shoes and retains
+limb overlap. Forearm alternatives come from each character's own clothing sheet.
+The retained Maple project supplies only shared rig, jaw bindings and motion data.
+
+Semantic masks distinguish skin, hair, fabric, shoes and fixed details. Coral
+bodice ownership is separate from the ivory neckline; Rose's ivory sleeve cuffs
+remain fixed when skin color changes. The original registered head colors are
+preserved exactly, while garment colors follow the existing wardrobe formula.
+
 Open `prepared/theo.rig.zip` or `prepared/rose.rig.zip` in Skin Studio to use an
 editable complete look. Each project embeds both identities and all six clothing
 items. The separate `*.identity.zip` and `*.wardrobe.zip` files can be imported
