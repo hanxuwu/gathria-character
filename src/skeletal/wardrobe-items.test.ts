@@ -132,7 +132,7 @@ describe("portable registered wardrobe items", () => {
     const recolored = applyWardrobe(installed, {
       ...installed.wardrobe!,
       colors: { ...installed.wardrobe!.colors, top: "#bc713e" },
-    });
+    } as WardrobeRecipe);
     let changed = 0,
       fixed = 0;
     const raw = decodeWardrobeItemPart(item.parts[0].data);
@@ -168,7 +168,7 @@ describe("portable registered wardrobe items", () => {
       ]),
     ).toThrow(/bottom/);
     expect(() =>
-      validateWardrobeRecipe({ ...recipe, version: 3 }, [item]),
+      validateWardrobeRecipe({ ...recipe, version: 4 }, [item]),
     ).toThrow(/version/);
     expect(
       validateWardrobeRecipe({ ...recipe, version: 2 }, [item]).version,

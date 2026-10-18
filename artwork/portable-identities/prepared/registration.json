@@ -1,0 +1,1267 @@
+{
+  "sources": {
+    "design": {
+      "path": "artwork/portable-identities/source/willow-design.png",
+      "sha256": "2d4a912d32f2f6ddab666d3f972cfd6f16f02f9be1c5046b7a43e8d9d2d348bf"
+    },
+    "clothing": {
+      "path": "artwork/portable-identities/source/willow-clothing.png",
+      "sha256": "8956a345cdadcb580aaaca759612c8cbc9f49ae134006c5e6bc4352d03a36090"
+    },
+    "fists": {
+      "path": "artwork/maple-action-poses/source/closed-fists.png",
+      "sha256": "c5987998e66b41f537fd31d911b35ddbbc95d587c4340c2ed8bd5a94d0d6c749"
+    },
+    "maple": {
+      "path": "artwork/maple-action-poses/prepared/traveler.rig.zip",
+      "sha256": "251595446ea437871289455971b5823ba859eaea445e016706939b91e58ce9d6"
+    },
+    "mapleTop": {
+      "path": "artwork/maple-action-poses/prepared/traveler-top.wardrobe.zip",
+      "sha256": "8bd63bcf7a84af05ae5e94da04c67781eed0ac3744ffe77796d4255319e3357e"
+    },
+    "mapleBottom": {
+      "path": "artwork/maple-action-poses/prepared/traveler-bottom.wardrobe.zip",
+      "sha256": "f03f30fc22dfcd1c13a4957e77a1e08383bc2b518d3e13ed11213cd06b2fd662"
+    },
+    "mapleShoes": {
+      "path": "artwork/maple-action-poses/prepared/traveler-shoes.wardrobe.zip",
+      "sha256": "7acfb0b7e47f368bed705ee4959692dcc678a9984b02875cc50ff0725ca7bbbe"
+    }
+  },
+  "stats": [
+    {
+      "id": "head-neutral",
+      "source": "artwork/portable-identities/source/willow-design.png",
+      "region": [
+        430,
+        260,
+        880,
+        700
+      ],
+      "sourceBounds": [
+        433,
+        287,
+        871,
+        674
+      ],
+      "target": [
+        42,
+        9,
+        118,
+        111
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 133873,
+      "foregroundPixels": 124857,
+      "retainedComponentPixels": 123925
+    },
+    {
+      "id": "head-gentle",
+      "source": "artwork/portable-identities/source/willow-design.png",
+      "region": [
+        880,
+        260,
+        1320,
+        700
+      ],
+      "sourceBounds": [
+        880,
+        287,
+        1302,
+        674
+      ],
+      "target": [
+        42,
+        9,
+        118,
+        111
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 133592,
+      "foregroundPixels": 124634,
+      "retainedComponentPixels": 123926
+    },
+    {
+      "id": "head-joyful",
+      "source": "artwork/portable-identities/source/willow-design.png",
+      "region": [
+        1320,
+        260,
+        1774,
+        700
+      ],
+      "sourceBounds": [
+        1320,
+        284,
+        1744,
+        673
+      ],
+      "target": [
+        42,
+        9,
+        118,
+        111
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 131325,
+      "foregroundPixels": 123871,
+      "retainedComponentPixels": 123871
+    },
+    {
+      "id": "torso",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        60,
+        80,
+        470,
+        510
+      ],
+      "sourceBounds": [
+        101,
+        127,
+        449,
+        472
+      ],
+      "target": [
+        72,
+        112,
+        59,
+        63
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 103832,
+      "foregroundPixels": 97618,
+      "retainedComponentPixels": 97618
+    },
+    {
+      "id": "hips",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        1100,
+        170,
+        1500,
+        500
+      ],
+      "sourceBounds": [
+        1131,
+        215,
+        1464,
+        443
+      ],
+      "target": [
+        75,
+        165,
+        47,
+        25
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 72550,
+      "foregroundPixels": 65446,
+      "retainedComponentPixels": 65446
+    },
+    {
+      "id": "nearArm",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        510,
+        85,
+        730,
+        520
+      ],
+      "sourceBounds": [
+        542,
+        121,
+        704,
+        510
+      ],
+      "target": [
+        56,
+        114,
+        29,
+        69
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 50513,
+      "foregroundPixels": 44985,
+      "retainedComponentPixels": 44985
+    },
+    {
+      "id": "farArm",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        850,
+        85,
+        1040,
+        520
+      ],
+      "sourceBounds": [
+        883,
+        127,
+        1035,
+        510
+      ],
+      "target": [
+        118,
+        115,
+        25,
+        68
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 45071,
+      "foregroundPixels": 40030,
+      "retainedComponentPixels": 40030
+    },
+    {
+      "id": "nearLeg",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        65,
+        515,
+        365,
+        965
+      ],
+      "sourceBounds": [
+        90,
+        532,
+        351,
+        933
+      ],
+      "target": [
+        64,
+        167,
+        34,
+        65
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 71953,
+      "foregroundPixels": 65092,
+      "retainedComponentPixels": 65092
+    },
+    {
+      "id": "farLeg",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        500,
+        515,
+        770,
+        965
+      ],
+      "sourceBounds": [
+        531,
+        538,
+        734,
+        925
+      ],
+      "target": [
+        97,
+        167,
+        27,
+        65
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 63292,
+      "foregroundPixels": 57198,
+      "retainedComponentPixels": 57198
+    },
+    {
+      "id": "near-shoe",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        815,
+        760,
+        1140,
+        975
+      ],
+      "sourceBounds": [
+        847,
+        787,
+        1117,
+        947
+      ],
+      "target": [
+        61,
+        218,
+        31,
+        22
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 36694,
+      "foregroundPixels": 32432,
+      "retainedComponentPixels": 32432
+    },
+    {
+      "id": "far-shoe",
+      "source": "artwork/portable-identities/source/willow-clothing.png",
+      "region": [
+        1200,
+        760,
+        1500,
+        975
+      ],
+      "sourceBounds": [
+        1220,
+        789,
+        1477,
+        942
+      ],
+      "target": [
+        99,
+        219,
+        29,
+        21
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 32800,
+      "foregroundPixels": 28906,
+      "retainedComponentPixels": 28906
+    },
+    {
+      "id": "near-forearm-active",
+      "source": "artwork/maple-action-poses/source/closed-fists.png",
+      "region": [
+        350,
+        240,
+        760,
+        680
+      ],
+      "sourceBounds": [
+        420,
+        293,
+        696,
+        616
+      ],
+      "target": [
+        59,
+        164,
+        16,
+        19
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 69607,
+      "foregroundPixels": 65045,
+      "retainedComponentPixels": 65045
+    },
+    {
+      "id": "far-forearm-active",
+      "source": "artwork/maple-action-poses/source/closed-fists.png",
+      "region": [
+        1000,
+        240,
+        1410,
+        680
+      ],
+      "sourceBounds": [
+        1078,
+        293,
+        1354,
+        616
+      ],
+      "target": [
+        129,
+        164,
+        14,
+        18
+      ],
+      "alphaThreshold": 192,
+      "partialSourcePixels": 70618,
+      "foregroundPixels": 65137,
+      "retainedComponentPixels": 65137
+    }
+  ],
+  "headPolygons": {
+    "maple": {
+      "skin": [
+        [
+          116,
+          48
+        ],
+        [
+          123,
+          50
+        ],
+        [
+          128,
+          56
+        ],
+        [
+          131,
+          64
+        ],
+        [
+          138,
+          69
+        ],
+        [
+          140,
+          78
+        ],
+        [
+          139,
+          97
+        ],
+        [
+          128,
+          105
+        ],
+        [
+          119,
+          109
+        ],
+        [
+          118,
+          115
+        ],
+        [
+          110,
+          120
+        ],
+        [
+          94,
+          118
+        ],
+        [
+          90,
+          113
+        ],
+        [
+          94,
+          106
+        ],
+        [
+          87,
+          102
+        ],
+        [
+          85,
+          97
+        ],
+        [
+          77,
+          99
+        ],
+        [
+          69,
+          93
+        ],
+        [
+          69,
+          84
+        ],
+        [
+          75,
+          80
+        ],
+        [
+          81,
+          82
+        ],
+        [
+          84,
+          87
+        ],
+        [
+          90,
+          92
+        ],
+        [
+          87,
+          85
+        ],
+        [
+          87,
+          77
+        ],
+        [
+          97,
+          70
+        ],
+        [
+          108,
+          63
+        ],
+        [
+          113,
+          56
+        ]
+      ],
+      "fixed": [
+        [
+          [
+            92,
+            72
+          ],
+          [
+            114,
+            70
+          ],
+          [
+            115,
+            91
+          ],
+          [
+            92,
+            92
+          ]
+        ],
+        [
+          [
+            127,
+            70
+          ],
+          [
+            141,
+            70
+          ],
+          [
+            141,
+            91
+          ],
+          [
+            127,
+            91
+          ]
+        ],
+        [
+          [
+            105,
+            61
+          ],
+          [
+            119,
+            61
+          ],
+          [
+            119,
+            70
+          ],
+          [
+            105,
+            70
+          ]
+        ],
+        [
+          [
+            128,
+            61
+          ],
+          [
+            141,
+            61
+          ],
+          [
+            141,
+            70
+          ],
+          [
+            128,
+            70
+          ]
+        ],
+        [
+          [
+            111,
+            94
+          ],
+          [
+            128,
+            94
+          ],
+          [
+            128,
+            107
+          ],
+          [
+            111,
+            107
+          ]
+        ]
+      ]
+    },
+    "willow": {
+      "skin": [
+        [
+          116,
+          41
+        ],
+        [
+          123,
+          43
+        ],
+        [
+          128,
+          49
+        ],
+        [
+          131,
+          58
+        ],
+        [
+          136,
+          63
+        ],
+        [
+          139,
+          70
+        ],
+        [
+          141,
+          94
+        ],
+        [
+          134,
+          102
+        ],
+        [
+          122,
+          108
+        ],
+        [
+          115,
+          110
+        ],
+        [
+          119,
+          117
+        ],
+        [
+          109,
+          120
+        ],
+        [
+          95,
+          117
+        ],
+        [
+          91,
+          113
+        ],
+        [
+          94,
+          106
+        ],
+        [
+          87,
+          102
+        ],
+        [
+          82,
+          98
+        ],
+        [
+          77,
+          99
+        ],
+        [
+          69,
+          94
+        ],
+        [
+          66,
+          87
+        ],
+        [
+          70,
+          81
+        ],
+        [
+          75,
+          78
+        ],
+        [
+          81,
+          80
+        ],
+        [
+          84,
+          87
+        ],
+        [
+          90,
+          92
+        ],
+        [
+          87,
+          85
+        ],
+        [
+          87,
+          77
+        ],
+        [
+          93,
+          71
+        ],
+        [
+          101,
+          66
+        ],
+        [
+          108,
+          60
+        ],
+        [
+          113,
+          51
+        ]
+      ],
+      "fixed": [
+        [
+          [
+            94,
+            69
+          ],
+          [
+            117,
+            69
+          ],
+          [
+            117,
+            92
+          ],
+          [
+            94,
+            92
+          ]
+        ],
+        [
+          [
+            127,
+            68
+          ],
+          [
+            141,
+            68
+          ],
+          [
+            141,
+            89
+          ],
+          [
+            127,
+            89
+          ]
+        ],
+        [
+          [
+            103,
+            59
+          ],
+          [
+            117,
+            59
+          ],
+          [
+            117,
+            69
+          ],
+          [
+            103,
+            69
+          ]
+        ],
+        [
+          [
+            128,
+            55
+          ],
+          [
+            141,
+            55
+          ],
+          [
+            141,
+            65
+          ],
+          [
+            128,
+            65
+          ]
+        ],
+        [
+          [
+            109,
+            92
+          ],
+          [
+            130,
+            92
+          ],
+          [
+            130,
+            106
+          ],
+          [
+            109,
+            106
+          ]
+        ]
+      ]
+    }
+  },
+  "handPolygons": {
+    "nearHand": [
+      [
+        52,
+        184
+      ],
+      [
+        52,
+        167
+      ],
+      [
+        62,
+        165
+      ],
+      [
+        65,
+        164
+      ],
+      [
+        72,
+        165
+      ],
+      [
+        78,
+        170
+      ],
+      [
+        80,
+        184
+      ]
+    ],
+    "farHand": [
+      [
+        121,
+        185
+      ],
+      [
+        121,
+        169
+      ],
+      [
+        128,
+        166
+      ],
+      [
+        133,
+        164
+      ],
+      [
+        139,
+        165
+      ],
+      [
+        145,
+        171
+      ],
+      [
+        149,
+        185
+      ]
+    ]
+  },
+  "materialRecords": {
+    "custom-maple:head-neutral": {
+      "counts": [
+        2637,
+        2103,
+        3980,
+        0,
+        0,
+        0
+      ]
+    },
+    "custom-maple:head-gentle": {
+      "counts": [
+        2663,
+        2104,
+        4032,
+        0,
+        0,
+        0
+      ]
+    },
+    "custom-maple:head-joyful": {
+      "counts": [
+        2385,
+        2363,
+        4016,
+        0,
+        0,
+        0
+      ]
+    },
+    "custom-willow:head-neutral": {
+      "counts": [
+        3245,
+        2125,
+        4196,
+        0,
+        0,
+        0
+      ]
+    },
+    "custom-willow:head-gentle": {
+      "counts": [
+        3370,
+        2205,
+        4366,
+        0,
+        0,
+        0
+      ]
+    },
+    "custom-willow:head-joyful": {
+      "counts": [
+        3066,
+        2511,
+        4257,
+        0,
+        0,
+        0
+      ]
+    },
+    "generated-willow:torso": {
+      "counts": [
+        863,
+        0,
+        0,
+        2151,
+        0,
+        0
+      ]
+    },
+    "generated-willow:near-upper-arm": {
+      "counts": [
+        0,
+        0,
+        0,
+        908,
+        0,
+        0
+      ]
+    },
+    "generated-willow:near-forearm": {
+      "counts": [
+        0,
+        227,
+        0,
+        537,
+        0,
+        0
+      ]
+    },
+    "generated-willow:far-upper-arm": {
+      "counts": [
+        0,
+        0,
+        0,
+        737,
+        0,
+        0
+      ]
+    },
+    "generated-willow:far-forearm": {
+      "counts": [
+        0,
+        220,
+        0,
+        412,
+        0,
+        0
+      ]
+    },
+    "generated-willow:near-forearm-active": {
+      "counts": [
+        0,
+        216,
+        0,
+        537,
+        0,
+        0
+      ]
+    },
+    "generated-willow:far-forearm-active": {
+      "counts": [
+        0,
+        178,
+        0,
+        412,
+        0,
+        0
+      ]
+    },
+    "generated-willow:hips": {
+      "counts": [
+        0,
+        0,
+        0,
+        0,
+        590,
+        0
+      ]
+    },
+    "generated-willow:near-thigh": {
+      "counts": [
+        0,
+        0,
+        0,
+        0,
+        659,
+        0
+      ]
+    },
+    "generated-willow:near-shin": {
+      "counts": [
+        0,
+        0,
+        0,
+        0,
+        822,
+        0
+      ]
+    },
+    "generated-willow:far-thigh": {
+      "counts": [
+        0,
+        0,
+        0,
+        0,
+        584,
+        0
+      ]
+    },
+    "generated-willow:far-shin": {
+      "counts": [
+        0,
+        0,
+        0,
+        0,
+        781,
+        0
+      ]
+    },
+    "generated-willow:near-shoe": {
+      "counts": [
+        114,
+        0,
+        0,
+        0,
+        0,
+        400
+      ]
+    },
+    "generated-willow:far-shoe": {
+      "counts": [
+        108,
+        0,
+        0,
+        0,
+        0,
+        343
+      ]
+    }
+  },
+  "checks": [
+    {
+      "identity": "maple",
+      "expression": "neutral",
+      "headSourcePreserved": true,
+      "rgbaSha256": "624a1239ae56555380f26968449d3f14158c7ce52e8d3c270a64b23713eb670a"
+    },
+    {
+      "identity": "maple",
+      "expression": "gentle",
+      "headSourcePreserved": true,
+      "rgbaSha256": "5664079e2f890f230269c60473fb814d3cc93d4f274043d0c3e1f874bf51052c"
+    },
+    {
+      "identity": "maple",
+      "expression": "joyful",
+      "headSourcePreserved": true,
+      "rgbaSha256": "24de5781d3bc1539bc94fb4ee6b0b0f44f115e05960cad97c88c60b8da44dc4e"
+    },
+    {
+      "identity": "willow",
+      "expression": "neutral",
+      "headSourcePreserved": true,
+      "rgbaSha256": "b6ba204360ffc1ae63141b898ddb37e4ab0dae79fd8d51f91c5c3c39f6a1383d"
+    },
+    {
+      "identity": "willow",
+      "expression": "gentle",
+      "headSourcePreserved": true,
+      "rgbaSha256": "fec2820ac9ebe290877c0a56ae29dc9a781d8c5673e7c40106c009741543bd00"
+    },
+    {
+      "identity": "willow",
+      "expression": "joyful",
+      "headSourcePreserved": true,
+      "rgbaSha256": "0d57b78b8e0787201da2c484211b96b464bd21ca9a0467a31a118e71694d2aee"
+    }
+  ],
+  "files": {
+    "maple/slots/head-neutral.png": "80e6720782284b2201573cbb606c4cea20ecb9759af7530d1af52fa172a6258b",
+    "maple/masks/head-neutral.png": "29e66dedb5277ceddc822449ebeaa0aa16f173bfc28172656b97ab632c87b82d",
+    "maple/slots/head-gentle.png": "458539ad649ca4f36c7a45b66ffa29fecfe9b22c87aeeb64d00a22fdf383e972",
+    "maple/masks/head-gentle.png": "211493f7c1a57de20d9a059c7bacd13d23572a6bf1a081e7273f0c1bb64f0458",
+    "maple/slots/head-joyful.png": "4665882ff72dc7bed4b0c2868c727353896945d570b1cfd62fe1473bd5b83da8",
+    "maple/masks/head-joyful.png": "1628434247c7a3e5fae46f436b3db5484cc0b69de27dd4138cc42c9080e7cdb7",
+    "maple.identity.zip": "b140bc9df2fb3992ae8591cb2728f3409c3a2051695f95143513109453cd1ee5",
+    "willow/slots/head-neutral.png": "4a4558bc50df36f59b486745cf6157eab3a9eb9189a07f96a38e3eee3975c86a",
+    "willow/masks/head-neutral.png": "4b7d7d36bb58dede1945f2ed4c328ef475707af04403ac286271a0913d373516",
+    "willow/slots/head-gentle.png": "448863fd0db345dc273ff7ebe5ed5a143e6d2baad22f5d3fc1fa70f336885bf0",
+    "willow/masks/head-gentle.png": "85d3f215e424acd8c51edade385bf0a513cee406298be2e036d3b439b7164736",
+    "willow/slots/head-joyful.png": "cbad4dfa1a3197aac27e2589121ec6f2f8207c771c7082470fc390016898044b",
+    "willow/masks/head-joyful.png": "5c1828fc4e921574af3477e75908ecd156d461e27d16990490ed6d2d4233e179",
+    "willow.identity.zip": "87a9098ada6ecce1bca2f7bd86df31027420c7587c98bcb667291b75498e5aa1",
+    "willow/slots/torso.png": "07ac948b5d117d4f987394052a2fcf774c7bc2800c6fadbd25bc1bfe9beebeae",
+    "willow/masks/torso.png": "3b23a1d0d79e836a6a9957a5f1b450ad001be4f5b0f069ec38e03a9ea8fe00c0",
+    "willow/slots/near-upper-arm.png": "004686da45f7cb575afff149d68adb4f862e27927d7d7cc142fe0dcba148e3dd",
+    "willow/masks/near-upper-arm.png": "e438d99ee96ec3a6ee64751ba006bb5f0861789544e318a98b987a29348ce339",
+    "willow/slots/near-forearm.png": "e70d9e6ac4846ecdb7dd970d529c552cf8bb322631c84850c70ba20f6baecab9",
+    "willow/masks/near-forearm.png": "01056449dae0075cab50ee323e106421c22cb24f255d9f523ac39bb4b3b9fd75",
+    "willow/slots/far-upper-arm.png": "568b6aee29928258265a79b8a701e226f696d822e88ca32226177f3c86655b81",
+    "willow/masks/far-upper-arm.png": "7b0810f818072d891e77b7547bbfecf3a1f5136c6d3a1008f41ea5c722b9aa49",
+    "willow/slots/far-forearm.png": "759febad4991a709fd7769c5418aacd50a26ff786bb422de7ab5df6b92c862ec",
+    "willow/masks/far-forearm.png": "6f8c9190a956646457ca269123d562717eb34d3c6b210d1e1c899362b4786c7f",
+    "willow/slots/near-forearm-active.png": "803d7526c294d8692daeff2f6e3b3da0aee30ea9bd836f47b11dbc0bab721aa9",
+    "willow/masks/near-forearm-active.png": "eae1e348ea6e2324d5ba101a9bae21a6e7ffd9f677fdd6be85dfd971661dabb0",
+    "willow/slots/far-forearm-active.png": "d1559204365e49d0b01fff98eff470d7c69335302a516a2630d36b013c07c05a",
+    "willow/masks/far-forearm-active.png": "a7fc807ce70b472d2f809fb4a1ff7d9b2794667cb89cb08ad0d43f82e332d810",
+    "willow-top.wardrobe.zip": "1732ff54336038ec6d973e499ed4d6418a51bfcff6f02dfa956749e949f75b67",
+    "willow/slots/hips.png": "c8705adaf808ef69570cfcda62a51a4d72109e9c1a9270cdb83fac7a710c621a",
+    "willow/masks/hips.png": "cd949d22b62b3603a0e09225d4389fa0cdb6bd5e5ef245a5fa1f55cf7d34df67",
+    "willow/slots/near-thigh.png": "48830cd844cdf9a3bee0958fda6af04271b25fbfcbd890d2b4eaa732ee6ff297",
+    "willow/masks/near-thigh.png": "ccdde68abf5a2802380dda7cc9af0a09b9b2eca54034ed7b634c675e12f11a8a",
+    "willow/slots/near-shin.png": "391f202b5bc4ba00cd15f37c7cd9188e63b0845dc00682c684e4f5b5dd0451da",
+    "willow/masks/near-shin.png": "5db6ca71d44aa7783436bfe443dfc78fe9cd36b7f60d89738a7a5aa6c4196b77",
+    "willow/slots/far-thigh.png": "767850ea408cfa4be1142bab1300222a7b13776945af569c2bf847494a1818a4",
+    "willow/masks/far-thigh.png": "3f7d4a43d33a51f305a5a79ebd35533a86d84e73bba24015c89cf90ebc5e02ea",
+    "willow/slots/far-shin.png": "4bdc063e0f770fc9b5ec449249c739ac6a1765de6de724f842ae12bec8b7011f",
+    "willow/masks/far-shin.png": "3817482895a4f9e8598f40f86073900d876f927bf7f05403b183b17a8a353675",
+    "willow-bottom.wardrobe.zip": "d3e12ce8362585540c0e8a5a443830207676f0730a6b7fa68466be422c46f22f",
+    "willow/slots/near-shoe.png": "42584ce7387612ba443b72d89c2de2f80bec59ff80bfc0f75d7304928ee342a4",
+    "willow/masks/near-shoe.png": "247cb20fed590067ecaff29df534acc5af6ef900cc5dc803aa61d8ed16162e8b",
+    "willow/slots/far-shoe.png": "0cc11ff3dcf97cbc607c2ed8ba8fcbc69ba044583046af3f04abf45b2100ed0d",
+    "willow/masks/far-shoe.png": "501869491c117bc553da0f5aa9d5d671546a913a0a2864eb19d49692872d30e1",
+    "willow-shoes.wardrobe.zip": "b0b37fdc60515489a49fa38d8dbedd97620cdfc98b46b8db80f415a0ddf5f29e",
+    "maple.rig.zip": "61b581c2e3ec3eebb5eac61e9c1c8182019650f3643afbe944024d3ef48bb505",
+    "diagnostics/outfits/maple-maple-idle-0.png": "32fda7aad8338601c0ad98c3e2db04c30deaebde649d6a951d3b6f471664f154",
+    "diagnostics/outfits/maple-maple-run-0.png": "1a341ea857f21bf87a94654620bff36d9ac97db9c2e6949f28b6bd88e5ee5914",
+    "diagnostics/outfits/maple-maple-run-3.png": "66f4814a7bc1b753512d27ded2d2dfd39388369182636be68b58079ac398bff8",
+    "diagnostics/outfits/maple-maple-run-6.png": "e298183074bb17478925d6d3dd2d24369834d879d51faebb016347f8db81167d",
+    "diagnostics/outfits/maple-maple-run-9.png": "2e465a5a4b905a5c796555263fd5677142cd031f9832c670bd33cd1a146a3e3a",
+    "diagnostics/outfits/maple-willow-idle-0.png": "af76b2fd2b593fc966017f3c285701a87dce07fc21ae57ac1b40d56f25006819",
+    "diagnostics/outfits/maple-willow-run-0.png": "90b6138ff0e6028df201b5c34aeef59cf4d436056d4f24f01dfaa8cdc4a960b1",
+    "diagnostics/outfits/maple-willow-run-3.png": "d2839a55aa50055e0c5339049c7781bd24421dfde40843e16bcbb7c3a37a8a6a",
+    "diagnostics/outfits/maple-willow-run-6.png": "b93b0f9582575cfb96c24262f7b29aabd94c1a346f1c32386c453383413b0d25",
+    "diagnostics/outfits/maple-willow-run-9.png": "df39ee4b90a557c1b88370c24d628666eae022ba975730b9a26d73e6c7e7aa80",
+    "diagnostics/outfits/maple-denim-idle-0.png": "59a487449b0436dd9534428f1cd5b05d3574053141e93231c8a25a2bd6a94aa1",
+    "diagnostics/outfits/maple-denim-run-0.png": "bf4e839f0989df05e517c2055633e7e801e58e3b153311e6581d9e8902a342f8",
+    "diagnostics/outfits/maple-denim-run-3.png": "dc03a3f4c6f0444992d2791e9a1cc23b966b5d3f5d73a7ce94ee2d4f22d04fa0",
+    "diagnostics/outfits/maple-denim-run-6.png": "b1b4fc30c1ce158b05afbda13576e693b3afacd21705e350b54d0d0fe8dc88a2",
+    "diagnostics/outfits/maple-denim-run-9.png": "327d22120a1c8f3c74c7899f2cd3519ffb3787de7b4034385ecd3186941b8318",
+    "diagnostics/maple/idle-0.png": "32fda7aad8338601c0ad98c3e2db04c30deaebde649d6a951d3b6f471664f154",
+    "diagnostics/maple/idle-1.png": "123accda8a320f12523f31cf15ef18c7660b6e6e70dc0c6cd0c2fcbb53bf8b58",
+    "diagnostics/maple/idle-2.png": "9029534fe0a9bdf14d89032637f5cf79bcdd1c1388cd73d059e0f18e055f5151",
+    "diagnostics/maple/idle-3.png": "1806723ec93633baeac93bc4b17f51f5dbb2baccc52c4499ce7934f63a751e71",
+    "diagnostics/maple/walk-0.png": "5bc107fde7d3d85710fe10f42c09fe86903f810fd54cd2253c0be1428d818b39",
+    "diagnostics/maple/walk-1.png": "77d9ac6ee986ad81c9d6886af5d9a12860991dd3d9169e9e27f5d044cac6e56c",
+    "diagnostics/maple/walk-2.png": "4a56d575d2e4d512cd8ce95eff222e7449628028f45b736a5b2d192f42a0730c",
+    "diagnostics/maple/walk-3.png": "f52e9f5d92373143089126017f237ebba164e135ea4c77acfcfcb0408d87fa99",
+    "diagnostics/maple/walk-4.png": "34ca549a7b32cf0ab658f9652eb8b0a14b992d97fb0df63a56a83f1c47a5d749",
+    "diagnostics/maple/walk-5.png": "529bbe94646a41b5d14809a71b4ffa02946c427c5321fbdcaa0e252b200ebc58",
+    "diagnostics/maple/walk-6.png": "4e9cf47b5778297b60d81246238c8d7ded46962b681b988b9a465f80a0210c3e",
+    "diagnostics/maple/walk-7.png": "1af09d1e1615de7bf31256b696b0c4c01541d5f1f3902afddb1027714bc7bb23",
+    "diagnostics/maple/run-0.png": "1a341ea857f21bf87a94654620bff36d9ac97db9c2e6949f28b6bd88e5ee5914",
+    "diagnostics/maple/run-1.png": "6cf3d96050ebd4745af41e3beeed8aaa98efb710315b764d5e07cc0fd433a40a",
+    "diagnostics/maple/run-2.png": "ce47a8c1d52d75fcfd0adafc49de200211cb3691c62b278dbb5a4c2bef232b44",
+    "diagnostics/maple/run-3.png": "66f4814a7bc1b753512d27ded2d2dfd39388369182636be68b58079ac398bff8",
+    "diagnostics/maple/run-4.png": "6405ace11fe31cc68afe4b815744e0a6bf5b7f636833c37f6c1668194bcd42a4",
+    "diagnostics/maple/run-5.png": "8aed26cbd9207e30f68526eea2c9e9dc87c80db1428648e132d93b8185a2f12b",
+    "diagnostics/maple/run-6.png": "e298183074bb17478925d6d3dd2d24369834d879d51faebb016347f8db81167d",
+    "diagnostics/maple/run-7.png": "5ffa0cea34049dc3237665100fc3236b0a744beeaf57c5d7c6cde2331f57c983",
+    "diagnostics/maple/run-8.png": "e079b959a63cd89fa1044acd278d3e3e4dc68b66d56ee79b69d8876987093ad1",
+    "diagnostics/maple/run-9.png": "2e465a5a4b905a5c796555263fd5677142cd031f9832c670bd33cd1a146a3e3a",
+    "diagnostics/maple/run-10.png": "c8b1c22d03d299167f1953145614003bba0af9279b0f8398cd27f2d21d5450cc",
+    "diagnostics/maple/run-11.png": "01d89d485d84d486d5607e4e3ab0633cc974591d667cfd8af6460111a51ba1c3",
+    "diagnostics/maple/jump-0.png": "bb1bb7439e86189d19bf206c00192b1977d7ca1019f2b86ae7b6cbc63a940376",
+    "diagnostics/maple/jump-1.png": "e67bb53ad25b5ee4e89ab5677f13e0cd23c05bb7fe235b7c9c34fcd42b0ec128",
+    "diagnostics/maple/jump-2.png": "a552ac68c1917bd90e9ece87a3d29e2b7bec3e7f5f7052d4a79b42d8203c6cb7",
+    "diagnostics/maple/jump-3.png": "b3e0be6be2e005aea8eb8996d105e7469f0589d571197ae0bd5817c1060f8c9d",
+    "diagnostics/maple/jump-4.png": "ed28ab8ec81ae6d33658fa12eba0f128be36f71246b00adfb1607dfb8709f801",
+    "diagnostics/maple/jump-5.png": "fdaf9542d45f638fca0cef59da208f250e53f09eb109d54d47a86c68847157cf",
+    "diagnostics/maple/jump-6.png": "866079d418c72594fee846e4c1a4ddb5e0f8b7c3dfa7ad04f916f7ca67f835d3",
+    "diagnostics/maple/jump-7.png": "d72e440db75ba9ac1e7d99b73ca19b138e00e4e92023f1bef4a74bf762030bf8",
+    "diagnostics/maple/jump-8.png": "a413ca9f60873f708bda4bfa71d8e67f92cbab138b5b0503da9c88e3ea9aab71",
+    "diagnostics/maple/jump-9.png": "df88075db45353780b599d2abbdb5cefeab4e1c5b6f207a0c7ce8741db7413e5",
+    "diagnostics/maple/jump-10.png": "fb59bd8c08d689345a11ad552c34404d190e8fcedd51eb0124a5a2d4109507f5",
+    "diagnostics/maple/jump-11.png": "bb1bb7439e86189d19bf206c00192b1977d7ca1019f2b86ae7b6cbc63a940376",
+    "diagnostics/maple/expression-neutral.png": "32fda7aad8338601c0ad98c3e2db04c30deaebde649d6a951d3b6f471664f154",
+    "diagnostics/maple/expression-gentle.png": "19b8690e89c1b7cbe5e2de25f489a78ea05fe9e0d6b23248f4ad67c7ef17111d",
+    "diagnostics/maple/expression-joyful.png": "f0667fccd8699b37785e94fc6052170a69641fc7f64c9dac874ee1c1e3ed073e",
+    "diagnostics/maple/recolor-neutral.png": "ad13bdcdcee857a370223c40b3886858dd5491ce84f4ff890316ef62c9ed7128",
+    "diagnostics/maple/recolor-gentle.png": "3cc1fda09d83566b4b01d30b5dd04e5ade79436f8e4972d48f8091140b5eb469",
+    "diagnostics/maple/recolor-joyful.png": "863df5ccd5daa7126a4f320a85080a872a514ee1c5b3c3ffdd54758d10ecc1bc",
+    "willow.rig.zip": "849549525194bec941da2e4f2d45ed13eb3ace779b9ace674557a6dabae8825f",
+    "diagnostics/outfits/willow-maple-idle-0.png": "b8b8472523b8fbf8f6298989275360720a661b7296412fac0d7e8946a827510f",
+    "diagnostics/outfits/willow-maple-run-0.png": "2d4d218e4d13653ab86982256f7692de7a7ec363568c4f259c94e71ac1a2bdda",
+    "diagnostics/outfits/willow-maple-run-3.png": "5b379df90dd7fbad86e11a46d2e8db9d413646e02f87f507e113cabdcd240036",
+    "diagnostics/outfits/willow-maple-run-6.png": "2acbe162fbc1c885495d04312133e2911b9ff1b68bdd940eb873e16f48eeb915",
+    "diagnostics/outfits/willow-maple-run-9.png": "e89c59b7536da613bb5128b69c00cb29ea7b3065df5d90824be69c6b0d805a20",
+    "diagnostics/outfits/willow-willow-idle-0.png": "a55ff17055d1e53ff4723798c9bec931a159ca2788a19a04d884d984f7a326a6",
+    "diagnostics/outfits/willow-willow-run-0.png": "517e3a326a925eb7c8fe0bea23014bde16c67e5565d1d7047e631b3974ce65a5",
+    "diagnostics/outfits/willow-willow-run-3.png": "5702b9e48768199701781a69cd372aef1e3f9d05fff4c05b80360fcf7fbcd9d8",
+    "diagnostics/outfits/willow-willow-run-6.png": "828a8ce17b01dff18d87a35cd9dc486b5b874c3a9bf2ff07ff8c2a1ab0941a23",
+    "diagnostics/outfits/willow-willow-run-9.png": "c7884c51f530806545f56dc95d7ccbcdda67ee17bf5bc08ed876d6a5032335ed",
+    "diagnostics/outfits/willow-denim-idle-0.png": "7ea6d4d016c0c8500fca78f2cc50200b08de4a00f744c0bf58e99da7cebf1726",
+    "diagnostics/outfits/willow-denim-run-0.png": "32e034b27c7f3e8347d9c1012eed515a3c086b9e968bb7b833d73d0e39be8883",
+    "diagnostics/outfits/willow-denim-run-3.png": "961ef55aad4b3b87d18fdbe7e2c781225011136bca61c5e95f380c66e5ce530e",
+    "diagnostics/outfits/willow-denim-run-6.png": "a528d522608d73a60e6a2400f24fa0d9d577ffa38477921c3e5f3596a190cfa4",
+    "diagnostics/outfits/willow-denim-run-9.png": "220e084c9e2941cf7bd8d30eee2a4c093274415d7c846ad891bb5ffd2762198d",
+    "diagnostics/willow/idle-0.png": "a55ff17055d1e53ff4723798c9bec931a159ca2788a19a04d884d984f7a326a6",
+    "diagnostics/willow/idle-1.png": "c91826d9ed8a6f9ef465cc3315bcd0cf211d940e53cc97a260259b2a75e237ca",
+    "diagnostics/willow/idle-2.png": "f8a9186bb59fdafd479a46ed8d39863028fa6389744b1a5bc21e426df8de24e3",
+    "diagnostics/willow/idle-3.png": "6e9ffece401fcfcc4c5fcd3b23d31513d42413491aba9234b6beeef3e221ece3",
+    "diagnostics/willow/walk-0.png": "28534f1c3c8ff5d91edf2671ae2827a35298184df7f32b83d4c261a65468a73f",
+    "diagnostics/willow/walk-1.png": "153fb535427249b01d3e67748b14210695666c2ce8a6a3071e0e664edd20940b",
+    "diagnostics/willow/walk-2.png": "5d41702e937a0df2142bf681bfa4d298c79fdc2708f4987c62e38eab6c573bc6",
+    "diagnostics/willow/walk-3.png": "ca14edad44e8c7d462039585dceb6cd05ba66ba6d14322a952fa375cf5f9fd90",
+    "diagnostics/willow/walk-4.png": "2dc08994c006f44bc03ae618ef3aee5f34e60c77dcba28ebf80e36fe6daade4c",
+    "diagnostics/willow/walk-5.png": "6e66133db6e0cd45f2403e56e50cf5c68d741225ac2d63e543bc517fc70cfea9",
+    "diagnostics/willow/walk-6.png": "60f008aaf76f824aef60541702c62cb2cf850c5c8e0a7bc498735b5967b5001a",
+    "diagnostics/willow/walk-7.png": "4cc95ab09b8f0c5c81dca62a1c0adf401241a786e0beed53f4523b1db548f08c",
+    "diagnostics/willow/run-0.png": "517e3a326a925eb7c8fe0bea23014bde16c67e5565d1d7047e631b3974ce65a5",
+    "diagnostics/willow/run-1.png": "943746b4240496197a1a10600cf400b6ddb4988783780559d7aa01525ed2b464",
+    "diagnostics/willow/run-2.png": "13d21293fe54eafb35d8554247178615259046a2be3204f82312c75b283cf3c8",
+    "diagnostics/willow/run-3.png": "5702b9e48768199701781a69cd372aef1e3f9d05fff4c05b80360fcf7fbcd9d8",
+    "diagnostics/willow/run-4.png": "b87a1455205fd95d1c1cd2c30e84ed4a3605620ddc137390f87264aba93fd9c3",
+    "diagnostics/willow/run-5.png": "01ab0b5db0ee9ceaf61ada3f35e74a2d40378e4056ce8be5ed172165a44156a1",
+    "diagnostics/willow/run-6.png": "828a8ce17b01dff18d87a35cd9dc486b5b874c3a9bf2ff07ff8c2a1ab0941a23",
+    "diagnostics/willow/run-7.png": "9b6abdc46831f930fef145c5efdb40891d0da29096cb6db58b4119a1fd239ebb",
+    "diagnostics/willow/run-8.png": "070504d06edf3469ab38d13ee811ce362f4e73cd2a3d2f53a0ca594ad1571d33",
+    "diagnostics/willow/run-9.png": "c7884c51f530806545f56dc95d7ccbcdda67ee17bf5bc08ed876d6a5032335ed",
+    "diagnostics/willow/run-10.png": "ecd96e3fe8e371eb71ee345e25a1768f5cad587a402b2608195114e6ac1d5237",
+    "diagnostics/willow/run-11.png": "b99e27410632e04a1f7448d26b41700949ac514c3ddd4c82aaf4b23694f0f005",
+    "diagnostics/willow/jump-0.png": "8ea564b6f128c27e81ddcc6d029533462fd6b02a7d103b601f5f1504a595e810",
+    "diagnostics/willow/jump-1.png": "c98b0dff47f0264e8cde63d8c92459aac78b68c453aca25ee64f69552648ed7e",
+    "diagnostics/willow/jump-2.png": "bbc073fca7c98cd7d77b6158cab76c45b58244ce04aa2759b9d57c04774df7f3",
+    "diagnostics/willow/jump-3.png": "46593ebcf5d8b990f6fac35c9b75ce404194c8cfb26e9fd7ae7316de41a049b6",
+    "diagnostics/willow/jump-4.png": "a35fc70b2c55e63ec9f64542679218768f5a2ee1606aa90ce8c2b4d0d8a18e90",
+    "diagnostics/willow/jump-5.png": "fc6bb66edc8cf6fd9d66d8eeff28d3a8d4282fc986a8d46f7aa57e4c0545abe6",
+    "diagnostics/willow/jump-6.png": "17a204ac7bc7e4ab959f43a9a33f0b31f5e3935dd26b1039c064113bad39b5e6",
+    "diagnostics/willow/jump-7.png": "d4cbe625bc3a73a4aaab4a07c4f7c9a6be930fd8c437136df0036444e77e9c64",
+    "diagnostics/willow/jump-8.png": "66eaacdbd0e484019973db58e24510b0202daa85fb7d38347750a0eb0b4ee38f",
+    "diagnostics/willow/jump-9.png": "8ff09d80b3c404d7ada92aff72410001fa476f2e9f3f87d0788d23ed63822f07",
+    "diagnostics/willow/jump-10.png": "4cc12d5e7a0de310d8beae666bff644e99fd9ca8ea8208969deb5e48c2271da3",
+    "diagnostics/willow/jump-11.png": "8ea564b6f128c27e81ddcc6d029533462fd6b02a7d103b601f5f1504a595e810",
+    "diagnostics/willow/expression-neutral.png": "a55ff17055d1e53ff4723798c9bec931a159ca2788a19a04d884d984f7a326a6",
+    "diagnostics/willow/expression-gentle.png": "6a2b5f88df701adf504bea55eca764f07a3e2b6af3af8b38c5383f92221e8ad1",
+    "diagnostics/willow/expression-joyful.png": "307bcde3cb2a5590734b192583ed2939d7da617e4496a357bf02693d4ef20da9",
+    "diagnostics/willow/recolor-neutral.png": "ad5edb8d81066fa4db24840f9fbcab71d7411d8030ddc235228ff8cf3c104c24",
+    "diagnostics/willow/recolor-gentle.png": "0231f5ee6b156c939880bd29c1febfa1ed9ec627531e5468b5489967b7113d8a",
+    "diagnostics/willow/recolor-joyful.png": "59516b464429532d862c5ca590d3435684cc1748958f30a4efbb0c2428206ee2"
+  }
+}

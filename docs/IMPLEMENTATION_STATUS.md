@@ -1,6 +1,26 @@
 # Implementation status
 
-**Current batch: Maple action forearms.** Continues draft PR #7 from `2b10770`.
+**Current batch: portable identities and Willow.** Starts from unmerged draft
+PR #7 at `fa3b5d2` on `feat/portable-character-identities`. Identity ZIPs and an
+explicit wardrobe recipe v3 let Maple/Willow retain their full heads while
+changing clothes, skin/hair colors and expressions. The generated Willow outfit
+uses the existing skeleton and four actions. Projects embed both identity and
+clothing libraries; historical files remain unchanged. Implementation `74923c0`
+and the real-export provenance repair `654de23` are committed and pushed.
+[Review](PORTABLE_IDENTITIES_REVIEW.md) ·
+[Sources, editable projects and actual exports](portable-identities/README.md) ·
+[Identity format](IDENTITY_PACK_V1.md).
+This batch passed **454 unit tests, all 52 Chromium E2E tests, TypeScript and
+production build**. Current execution and export results are recorded in
+[verification-results.json](portable-identities/verification-results.json).
+Final actual evidence verifies 12 new exports, 176 editor frame/facing checks,
+eight save/reopen roundtrips and 24 closed-editor independent playback cases;
+all 155 PNGs, 20 GIFs and 46 ZIPs decode. Four historical projects retain exact
+pixels and manifests. Review media and source hashes accompany the delivery.
+The branch is stacked on PR #7; no merge, deployment, final visual acceptance
+or production Gathria integration is implied. Deep knee folds remain unchanged.
+
+**Historical batch: Maple action forearms.** Continues draft PR #7 from `2b10770`.
 A generated closed-hand pair is registered under the original cuffs and selected
 only for run/jump through opt-in skin/top-item v2. The editor, garment library,
 source/project ZIPs and baking support the paired alternatives; old v1 files and

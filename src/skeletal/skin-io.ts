@@ -6,6 +6,10 @@ import {
   validateWardrobeItems,
 } from "./wardrobe-items";
 import { parseCharacterConfig } from "../core/config";
+import {
+  MAX_IDENTITY_LIBRARY_BYTES,
+  validateWardrobeIdentities,
+} from "./identities";
 import { createRigDefinition } from "./definition";
 import { assertWardrobeSkinMatches, validateWardrobeRecipe } from "./wardrobe";
 import {
@@ -464,6 +468,7 @@ export function validateProject(
       "preview",
       "wardrobe",
       "wardrobeItems",
+      "wardrobeIdentities",
     ],
     "project",
   );
@@ -485,12 +490,21 @@ export function validateProject(
     raw.wardrobeItems === undefined
       ? undefined
       : validateWardrobeItems(raw.wardrobeItems);
+  const wardrobeIdentities =
+    raw.wardrobeIdentities === undefined
+      ? undefined
+      : validateWardrobeIdentities(raw.wardrobeIdentities);
   const wardrobe =
     raw.wardrobe === undefined
       ? undefined
-      : validateWardrobeRecipe(raw.wardrobe, wardrobeItems);
+      : validateWardrobeRecipe(raw.wardrobe, wardrobeItems, wardrobeIdentities);
   if (wardrobe)
-    assertWardrobeSkinMatches(wardrobe, validatedSkin, wardrobeItems);
+    assertWardrobeSkinMatches(
+      wardrobe,
+      validatedSkin,
+      wardrobeItems,
+      wardrobeIdentities,
+    );
   return {
     format: "gathria-rig-authoring",
     version: 1,
@@ -499,6 +513,7 @@ export function validateProject(
     skin: validatedSkin,
     ...(wardrobe ? { wardrobe } : {}),
     ...(wardrobeItems !== undefined ? { wardrobeItems } : {}),
+    ...(wardrobeIdentities !== undefined ? { wardrobeIdentities } : {}),
     preview: {
       animation: preview.animation as AuthoringProject["preview"]["animation"],
       facing: preview.facing as AuthoringProject["preview"]["facing"],
@@ -518,7 +533,7 @@ function readArchive(
     maxArchiveBytes: MAX_ZIP,
     maxExpandedBytes: MAX_ZIP,
     minFiles: REQUIRED_SLOTS.length + (project ? 2 : 1),
-    maxFiles: ALL_SLOTS.length + 3,
+    maxFiles: ALL_SLOTS.length + (project ? 4 : 3),
     files: {
       "skin.json": MAX_TEXT,
       ...Object.fromEntries(
@@ -528,6 +543,7 @@ function readArchive(
         ? {
             "project.json": MAX_TEXT,
             "wardrobe.json": MAX_WARDROBE_LIBRARY_BYTES,
+            "identities.json": MAX_IDENTITY_LIBRARY_BYTES,
           }
         : { "TEMPLATE.md": MAX_TEXT, "guides.png": MAX_IMAGE }),
     },
@@ -699,7 +715,12 @@ export async function importSkinPack(file: Blob): Promise<SkinPack> {
 }
 export async function exportProject(project: AuthoringProject): Promise<Blob> {
   const validated = validateProject(project, validateSkin(project.skin));
-  const { skin: _skin, wardrobeItems, ...metadata } = validated;
+  const {
+    skin: _skin,
+    wardrobeItems,
+    wardrobeIdentities,
+    ...metadata
+  } = validated;
   const files = await skinFiles(validated.skin);
   files["project.json"] = strToU8(JSON.stringify(metadata, null, 2));
   if (wardrobeItems !== undefined) {
@@ -713,6 +734,17 @@ export async function exportProject(project: AuthoringProject): Promise<Blob> {
     if (files["wardrobe.json"].length > MAX_WARDROBE_LIBRARY_BYTES)
       fail("Wardrobe library must be at most 4 MiB when serialized.");
   }
+  if (wardrobeIdentities !== undefined) {
+    files["identities.json"] = strToU8(
+      JSON.stringify({
+        format: "gathria-identity-library",
+        version: 1,
+        identities: wardrobeIdentities,
+      }),
+    );
+    if (files["identities.json"].length > MAX_IDENTITY_LIBRARY_BYTES)
+      fail("Identity library must be at most 4 MiB when serialized.");
+  }
   const bytes = zipSync(files);
   // The writer and reader share limits; never produce an unreopenable project.
   readArchive(bytes, true);
@@ -724,6 +756,8 @@ export async function importProject(file: Blob): Promise<AuthoringProject> {
     json(files["project.json"], "project.json"),
     "project.json",
   );
+  if (Object.hasOwn(metadata, "wardrobeIdentities"))
+    fail("Store character identities in identities.json, not project.json.");
   if (Object.hasOwn(metadata, "wardrobeItems"))
     fail("Store the wardrobe library in wardrobe.json, not project.json.");
   if (files["wardrobe.json"]) {
@@ -739,6 +773,26 @@ export async function importProject(file: Blob): Promise<AuthoringProject> {
     );
     exact(library.version, 1, "wardrobe library.version");
     metadata.wardrobeItems = validateWardrobeItems(library.items);
+  }
+  if (files["identities.json"]) {
+    const library = object(
+      json(files["identities.json"], "identities.json"),
+      "identity library",
+    );
+    allowedKeys(
+      library,
+      ["format", "version", "identities"],
+      "identity library",
+    );
+    exact(
+      library.format,
+      "gathria-identity-library",
+      "identity library.format",
+    );
+    exact(library.version, 1, "identity library.version");
+    metadata.wardrobeIdentities = validateWardrobeIdentities(
+      library.identities,
+    );
   }
   return validateProject(metadata, await decodeSkin(files));
 }

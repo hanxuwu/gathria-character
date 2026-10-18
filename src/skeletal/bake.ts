@@ -1,7 +1,12 @@
 import { strToU8, unzipSync, zipSync } from "fflate";
-import { createCharacterPack, validateManifest } from "../core/pack";
+import {
+  createCharacterPack,
+  readCharacterPackArchive,
+  validateManifest,
+} from "../core/pack";
 import type { CharacterPackManifest, GeneratedCharacter } from "../core/types";
 import { prepareRig } from "./renderer";
+import { bakedAuthoringReference } from "./baked-provenance";
 import {
   FRAME_HEIGHT as H,
   FRAME_WIDTH as W,
@@ -119,27 +124,20 @@ export async function createBakedPack(
   };
   const ordinary = await createCharacterPack(reference, generated);
   const files = unzipSync(new Uint8Array(await ordinary.arrayBuffer()));
+  const authoring = bakedAuthoringReference(project);
   const notice =
     `Gathria reusable skeletal rig ${project.motions.clips.jump ? "v2" : "v1"}\n\n` +
     "All available action frames were generated locally from a registered skin pack, the shared humanoid bone hierarchy and motion library. No Spine software, format, runtime or copied implementation is used. No image-generation service is called during rendering or playback.\n\n" +
     "ARTWORK SOURCE\n" +
-    project.skin.metadata.provenance +
+    authoring.sourceNotice +
     "\n\n" +
     "REPRODUCTION AND COMPATIBILITY\n" +
     "Save the separate authoring project ZIP: it contains this skin's full RGBA images, binding data, rig and clips. This playback package contains baked pixels only. character.json is a legacy-compatible appearance reference; opening it in ordinary Studio does NOT reproduce an imported skin or this rig's animation. Use Skin Studio and the saved authoring project to reproduce or edit these frames.\n" +
     "The project-owned rendering code is covered by the repository license. Rights in imported artwork are determined by the supplied source provenance; the renderer does not assign a new license to third-party images. Gathria production integration remains unverified.\n\n";
-  const recipe = {
-    ...project,
-    skin: {
-      metadata: project.skin.metadata,
-      images:
-        "Stored in the separate authoring ZIP; omitted from this playback package.",
-    },
-  };
   files["PROVENANCE.txt"] = strToU8(
     notice +
       "AUTHORING METADATA (not a self-contained image recipe)\n" +
-      JSON.stringify(recipe, null, 2) +
+      JSON.stringify(authoring.metadata, null, 2) +
       "\n",
   );
   const timing = (["idle", "walk", "run", "jump"] as const)
@@ -158,5 +156,9 @@ export async function createBakedPack(
       "Draw at a positive integer scale with image smoothing disabled. Keep the frame-local anchor at the same world position when mirroring left-facing output; never mirror the whole spritesheet. These are in-place clips, with world movement supplied separately by the scene. All actions in this pack were baked by the shared rig; historical V6 idle/walk pixels are not reused.\n\n" +
       "This package's five root files are sufficient for independent playback. character.json is a compatibility appearance reference, not an imported-art reproduction recipe. Retain the separate authoring ZIP to edit or reproduce the full rig and skin. See player.html and docs/CHARACTER_PACK_V1.md for the playback contract. Jump, when present, is a one-shot clip: hold its final authored frame (landed in the default clip) and replay explicitly. The older three-action atlas stays unchanged; jump occupies appended rows 4 and 5. Older packages without run or jump remain playable; disable unavailable actions instead of inventing frames. The legacy character.json preview falls back to idle when authoring jump; the full project preserves jump selection.\n",
   );
-  return new Blob([zipSync(files, { level: 6 })], { type: "application/zip" });
+  const bytes = zipSync(files, { level: 6 });
+  // Use the independent consumer's unchanged limits before offering a download.
+  // Large authoring libraries must never produce an unusable playback package.
+  readCharacterPackArchive(bytes);
+  return new Blob([bytes], { type: "application/zip" });
 }

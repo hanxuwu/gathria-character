@@ -9,6 +9,14 @@ import { BindingCanvas } from "./BindingCanvas";
 import { MotionEditor } from "./MotionEditor";
 import { WardrobePanel } from "./WardrobePanel";
 import { WardrobeLibrary } from "./WardrobeLibrary";
+import { IdentityLibrary } from "./IdentityLibrary";
+import {
+  addWardrobeIdentity,
+  createWardrobeIdentityTemplate,
+  removeWardrobeIdentity,
+  selectWardrobeIdentity,
+} from "./identities";
+import { exportWardrobeIdentity, importWardrobeIdentity } from "./identity-io";
 import { applyWardrobe, defaultWardrobeRecipe } from "./wardrobe";
 import {
   addWardrobeItem,
@@ -323,6 +331,7 @@ export function SkinStudio() {
   const projectInput = useRef<HTMLInputElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
   const clothingInput = useRef<HTMLInputElement>(null);
+  const identityInput = useRef<HTMLInputElement>(null);
   const { animation, facing, expression } = project.preview;
   // Validation guarantees the saved preview names an available action.
   const clip = project.motions.clips[animation]!;
@@ -501,6 +510,7 @@ export function SkinStudio() {
         project.wardrobe!,
         group,
         project.wardrobeItems,
+        project.wardrobeIdentities,
       );
       downloadBlob(await exportWardrobeItem(item), `${item.id}.wardrobe.zip`);
       return `${item.name} template saved. Edit its artwork, masks and item details, then import the clothing ZIP.`;
@@ -531,6 +541,80 @@ export function SkinStudio() {
           error instanceof Error
             ? error.message
             : "The item could not be removed.",
+        error: true,
+      });
+    }
+  }
+
+  function changeIdentity(id: string) {
+    if (project.wardrobe?.identity === id) return;
+    try {
+      const next = selectWardrobeIdentity(project, id);
+      applyProject(
+        next,
+        project.wardrobe
+          ? "Change wardrobe identity"
+          : "Use identity in new look",
+        structuredClone(next.skin.metadata.bindings),
+      );
+      setNotice({
+        text: project.wardrobe
+          ? "Identity selected. Clothing and actions are preserved. Save the project to keep this look."
+          : "Identity selected with the default outfit. Import prepared clothing to dress this character, or Undo to restore your previous artwork.",
+      });
+    } catch (error) {
+      setNotice({
+        text:
+          error instanceof Error
+            ? error.message
+            : "The identity could not be selected.",
+        error: true,
+      });
+    }
+  }
+
+  async function saveIdentityTemplate() {
+    if (!project.wardrobe) return;
+    await runTask("Preparing identity template…", async () => {
+      const identity = createWardrobeIdentityTemplate(
+        project.wardrobe!,
+        project.wardrobeIdentities,
+      );
+      downloadBlob(
+        await exportWardrobeIdentity(identity),
+        `${identity.id}.identity.zip`,
+      );
+      return `${identity.name} template saved with three expressions, registered hair and color masks. Edit its identity details and artwork, then import the identity ZIP.`;
+    });
+  }
+
+  async function saveIdentity(id: string) {
+    const identity = project.wardrobeIdentities?.find(
+      (candidate) => candidate.id === id,
+    );
+    if (!identity) return;
+    await runTask("Saving identity…", async () => {
+      downloadBlob(
+        await exportWardrobeIdentity(identity),
+        `${identity.id}.identity.zip`,
+      );
+      return `${identity.name} saved with its expressions, color masks and registration.`;
+    });
+  }
+
+  function removeIdentity(id: string) {
+    try {
+      const next = removeWardrobeIdentity(project, id);
+      applyProject(next, "Remove identity");
+      setNotice({
+        text: "Unused identity removed from this project. Undo restores it.",
+      });
+    } catch (error) {
+      setNotice({
+        text:
+          error instanceof Error
+            ? error.message
+            : "The identity could not be removed.",
         error: true,
       });
     }
@@ -805,13 +889,31 @@ export function SkinStudio() {
           <WardrobePanel
             recipe={project.wardrobe}
             items={project.wardrobeItems}
+            identities={project.wardrobeIdentities}
             detached={
               !project.wardrobe &&
               project.skin.metadata.id.startsWith("wardrobe-")
             }
+            unknownArtwork={
+              project.skin.metadata.id !== "denim-daytrip" &&
+              project.skin.metadata.id !== "coral-afternoon" &&
+              !project.skin.metadata.id.startsWith("wardrobe-waves-") &&
+              !project.skin.metadata.id.startsWith("wardrobe-v2-waves-")
+            }
             disabled={busy !== null || !!history.transaction}
             onOpen={openWardrobe}
             onChange={changeWardrobe}
+            onIdentityChange={changeIdentity}
+          />
+          <IdentityLibrary
+            identities={project.wardrobeIdentities ?? []}
+            recipe={project.wardrobe}
+            disabled={busy !== null || !!history.transaction}
+            onImport={() => identityInput.current?.click()}
+            onTemplate={() => void saveIdentityTemplate()}
+            onSelect={changeIdentity}
+            onExport={(id) => void saveIdentity(id)}
+            onRemove={removeIdentity}
           />
           <WardrobeLibrary
             items={project.wardrobeItems ?? []}
@@ -1315,9 +1417,9 @@ export function SkinStudio() {
           <h2 id="save-title">Save your work</h2>
           <p>
             <strong>Project</strong> keeps the skeleton, motions, artwork,
-            bindings, wardrobe choices and preview settings. Imported clothing
-            is included too. <strong>CharacterPack</strong> contains baked
-            frames for independent playback.
+            bindings, wardrobe choices and preview settings. Imported identities
+            and clothing are included too. <strong>CharacterPack</strong>{" "}
+            contains baked frames for independent playback.
           </p>
           <p className="skin-help">
             Imported artwork is reproduced from the saved project. Its
@@ -1368,6 +1470,24 @@ export function SkinStudio() {
         API or Spine runtime
       </footer>
 
+      <input
+        hidden
+        ref={identityInput}
+        type="file"
+        accept=".zip,application/zip"
+        aria-label="Import identity ZIP file"
+        onChange={(event) => {
+          const file = event.currentTarget.files?.[0];
+          event.currentTarget.value = "";
+          if (file)
+            void runTask("Importing identity…", async () => {
+              const identity = await importWardrobeIdentity(file);
+              const next = addWardrobeIdentity(project, identity);
+              applyProject(next, "Import identity");
+              return `${identity.name} added to your identities. The current artwork is unchanged. Choose Use identity or select it in Wardrobe, then save the project to keep it.`;
+            });
+        }}
+      />
       <input
         hidden
         ref={clothingInput}
