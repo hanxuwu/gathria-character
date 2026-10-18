@@ -1,0 +1,26 @@
+Identity import maple: starting
+Identity import maple: library installed without pixel changes
+Identity import maple: metadata and all artwork/mask roundtrips exact
+Identity import willow: starting
+Identity import willow: library installed without pixel changes
+Identity import willow: metadata and all artwork/mask roundtrips exact
+Failure page notice: [
+  'CharacterPack exported with idle, walk, run, jump in the neutral expression. Load it in the independent player.'
+]
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Error: PROVENANCE.txt exceeds the CharacterPack uncompressed size limit.
+    at fail (http://127.0.0.1:5194/src/core/pack.ts:16:9)
+    at inspectArchive (http://127.0.0.1:5194/src/core/pack.ts:271:7)
+    at readCharacterPackArchive (http://127.0.0.1:5194/src/core/pack.ts:313:19)
+    at loadCharacterPack (http://127.0.0.1:5194/src/core/pack.ts:390:37)
+    at async eval (eval at evaluate (:370:30), <anonymous>:10:22)
+    at async <anonymous>:396:30
+    at capture (/workspace/gathria-character/scripts/generate-identity-evidence.mjs:200:30)
+    at async file:///workspace/gathria-character/scripts/generate-identity-evidence.mjs:904:22 {
+  log: []
+}
+
+Node.js v24.19.0

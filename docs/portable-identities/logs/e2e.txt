@@ -1,0 +1,74 @@
+
+> gathria-character@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:283369) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:283382) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 52 tests using 2 workers
+
+(node:283401) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:283402) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 tests/e2e/art-v2.spec.ts:35:3 › Art V7 saved work stays pixel-exact across save and export (3.7s)
+  ✓   1 tests/e2e/action-forearms.spec.ts:113:1 › v2 skin uses paired active forearms only for run and jump, preserving idle/walk and save-reopen pixels (6.5s)
+  ✓   3 tests/e2e/art-v2.spec.ts:35:3 › Art V6 saved work stays pixel-exact across save and export (3.3s)
+  ✓   5 tests/e2e/art-v2.spec.ts:35:3 › Art V1 saved work stays pixel-exact across save and export (4.0s)
+  ✓   6 tests/e2e/art-v2.spec.ts:35:3 › Art V2 saved work stays pixel-exact across save and export (3.7s)
+  ✓   7 tests/e2e/art-v2.spec.ts:35:3 › Art V3 saved work stays pixel-exact across save and export (4.4s)
+  ✓   8 tests/e2e/art-v2.spec.ts:35:3 › Art V4 saved work stays pixel-exact across save and export (5.1s)
+  ✓   9 tests/e2e/art-v2.spec.ts:35:3 › Art V5 saved work stays pixel-exact across save and export (5.8s)
+  ✓   4 tests/e2e/action-forearms.spec.ts:194:1 › v2 wardrobe top roundtrips and switching to a v1 top removes active mappings; undo and project reopen restore them (24.9s)
+  ✓  11 tests/e2e/basic-actions.spec.ts:55:1 › four basic actions animate the actual skeleton; jump lands once and explicitly replays (6.0s)
+  ✓  10 tests/e2e/art-v2.spec.ts:176:3 › Wedding suit exports actual detailed pixels and plays independently in both directions (8.3s)
+  ✓  13 tests/e2e/art-v2.spec.ts:176:3 › Wedding dress exports actual detailed pixels and plays independently in both directions (7.8s)
+  ✓  14 tests/e2e/everyday.spec.ts:14:1 › four everyday looks preserve identity and running, remain editable, and survive save/reopen/export (11.7s)
+  ✓  12 tests/e2e/basic-actions.spec.ts:123:1 › jump edits share one motion library, roundtrip and independently play every exported frame in both directions (22.4s)
+  ✓  15 tests/e2e/everyday.spec.ts:157:1 › an everyday look does not inject newer artwork fields into a legacy character (2.7s)
+  ✓  16 tests/e2e/basic-actions.spec.ts:442:1 › legacy projects keep their three actions until Add jump is chosen, and old packs report unavailable jump (3.0s)
+  ✓  18 tests/e2e/player-run.spec.ts:6:1 › main player example opens the corrected denim pack with all three actions (658ms)
+  ✓  19 tests/e2e/player-run.spec.ts:31:1 › bundled player examples preserve wedding Motion V2 and Motion V1 (832ms)
+  ✓  20 tests/e2e/player-run.spec.ts:75:3 › dress Motion V1 pack plays independently, mirrors, and resets when replaced by a legacy pack (4.2s)
+  ✓  21 tests/e2e/player-run.spec.ts:75:3 › suit Motion V1 pack plays independently, mirrors, and resets when replaced by a legacy pack (4.4s)
+  ✓  22 tests/e2e/player-run.spec.ts:75:3 › dress Motion V2 pack plays independently, mirrors, and resets when replaced by a legacy pack (4.2s)
+  ✓  17 tests/e2e/identity-library.spec.ts:65:1 › identity import preserves flat artwork; explicit use, removal history and self-contained project reopen work (18.0s)
+  ✓  23 tests/e2e/player-run.spec.ts:75:3 › suit Motion V2 pack plays independently, mirrors, and resets when replaced by a legacy pack (4.7s)
+  ✓  25 tests/e2e/rig-lab.spec.ts:21:1 › lab compares real baked frames while preserving every idle and walk frame (2.8s)
+  ✓  26 tests/e2e/rig-lab.spec.ts:66:1 › edited recipe round-trips through a real file; invalid import preserves it and PNG excludes overlays (1.7s)
+  ✓  24 tests/e2e/identity-library.spec.ts:169:1 › custom identity selection retains outfit, hair colors undo atomically, and bad imports leave the current look intact (10.5s)
+  ✓  27 tests/e2e/rig-lab.spec.ts:159:1 › skeletal pack contains the recipe and plays all run frames after the lab closes (7.4s)
+  ✓  28 tests/e2e/run-connections.spec.ts:15:1 › saved everyday motion stays unchanged until corrected copy, then exports and plays without Studio (9.1s)
+  ✓  30 tests/e2e/skin-authoring.spec.ts:68:1 › source joints drag in native pixels at both zooms, stay unmirrored and form cancellable undo transactions (3.6s)
+  ✓  29 tests/e2e/run.spec.ts:33:1 › running settings survive customization, save/reopen and an independently loaded export (9.1s)
+  ✓  32 tests/e2e/run.spec.ts:189:1 › historical V6 has no running until explicitly enabled and keeps its original idle pixels (4.6s)
+  ✓  33 tests/e2e/run.spec.ts:236:1 › V7 remains in its saved style with running explicitly unavailable (3.1s)
+  ✓  31 tests/e2e/skin-authoring.spec.ts:150:1 › edited shared poses and timing survive skin swaps and projects, then play exported pixels independently (10.6s)
+  ✓  34 tests/e2e/run.spec.ts:262:1 › saved original running poses and presets stay unchanged until an explicit compact copy (6.2s)
+  ✓  36 tests/e2e/skin-studio.spec.ts:37:1 › one studio swaps both skins across shared actions, expressions, mirrored playback and overlays (4.8s)
+  ✓  35 tests/e2e/skin-authoring.spec.ts:364:1 › PNG replacement participates in undo and redo while rejected input preserves the redo branch (16.8s)
+  ✓  38 tests/e2e/skin-authoring.spec.ts:436:1 › the checked-in original authoring project opens unchanged and project import is reversible (2.9s)
+  ✓  39 tests/e2e/wardrobe-items.spec.ts:151:1 › custom clothing imports atomically, keeps identity and motions, and reopens with its portable library (17.7s)
+  ✓  40 tests/e2e/wardrobe-items.spec.ts:288:1 › bottom and shoe items roundtrip; duplicate, corrupt, and unsupported imports leave work intact; only unused items can be removed (17.5s)
+  ✓  37 tests/e2e/skin-studio.spec.ts:113:1 › real PNG replacement and binding edits survive skin/project ZIPs; invalid imports preserve work and template PNGs decode (47.9s)
+  ✓  42 tests/e2e/skin-studio.spec.ts:307:1 › binding offsets stay on integer pixels and a valid but unrenderable skin cannot replace current work (15.7s)
+  ✓  43 tests/e2e/skin-studio.spec.ts:352:3 › denim-daytrip exports actual preview pixels and plays all actions independently after authoring closes (7.2s)
+  ✓  44 tests/e2e/skin-studio.spec.ts:352:3 › coral-afternoon exports actual preview pixels and plays all actions independently after authoring closes (7.7s)
+  ✓  45 tests/e2e/wardrobe.spec.ts:80:1 › wardrobe is opt-in, clothing preserves identity, and the composed skin retains all four actions (3.4s)
+  ✓  46 tests/e2e/wardrobe.spec.ts:169:1 › colors commit as one undo, names retain the recipe, and saved looks reopen exactly while stale imports preserve work (4.3s)
+  ✓  41 tests/e2e/wardrobe-items.spec.ts:372:1 › an imported clothing look exports every action and plays independently after the editor closes (43.9s)
+  ✓  48 tests/e2e/workflow.spec.ts:19:1 › customize → save/reopen → export → independent PNG/metadata playback (8.4s)
+  ✓  49 tests/e2e/workflow.spec.ts:211:1 › invalid imports and unfinished names give feedback without losing the character (3.0s)
+  ✓  47 tests/e2e/wardrobe.spec.ts:287:1 › manual bindings and replacement PNGs detach the catalog without losing artwork, and undo restores the complete look (17.0s)
+  ✓  50 tests/e2e/workflow.spec.ts:242:1 › small-screen studio and player keep controls usable (2.9s)
+  ✓  52 tests/e2e/workflow.spec.ts:262:1 › bundled exports retain transparency, render at 8×, and reject corrupt PNGs (1.2s)
+  ✓  51 tests/e2e/wardrobe.spec.ts:369:1 › a mixed wardrobe exports all decoded action frames and plays in both directions after the editor closes (32.0s)
+
+  52 passed (4.3m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

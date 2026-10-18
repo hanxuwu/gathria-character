@@ -29,6 +29,14 @@ download a registered item template, prepare its artwork and masks, then import
 it without editing application code. Save the project ZIP to keep all imported
 items. [Portable clothing guide and verification](docs/WARDROBE_ITEMS_REVIEW.md).
 
+**Your identities** also accepts registered character identity ZIPs with three
+complete expressions and skin/hair masks. Import adds to the library without
+changing the canvas; explicitly selecting an identity preserves the current
+wardrobe. Saved projects embed both libraries. The
+[Maple and Willow trial](docs/PORTABLE_IDENTITIES_REVIEW.md) demonstrates two
+custom identities wearing three outfits through all four actions, with a new
+generated character and cardigan set. See the [identity format guide](docs/IDENTITY_PACK_V1.md).
+
 ```sh
 npm run typecheck
 npm test
@@ -76,8 +84,10 @@ closed hands for run/jump through opt-in skin/top-item v2, preserves idle/walk,
 and records the remaining knee-fold limitation.
 This trial exposes and repairs duplicate sleeves, pelvis ownership and wrist
 material masks. The source art is new; runtime skeleton and motions are shared.
-It also documents the current limit that portable clothing can be reused on
-Crop/Waves while a new identity remains a separate flat skin/project.
+That trial's flat identity limitation is addressed by the opt-in
+[portable identity follow-up](docs/PORTABLE_IDENTITIES_REVIEW.md). Earlier flat
+files and outputs remain unchanged; new editable examples explicitly embed an
+identity library and wardrobe recipe v3.
 
 | Location                                                                                               | Responsibility                                                                      |
 | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |

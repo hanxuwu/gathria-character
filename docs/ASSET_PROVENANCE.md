@@ -1,5 +1,29 @@
 # Artwork provenance and reuse
 
+## Portable Maple and Willow identities
+
+Two OpenAI image-generation calls on 2026-10-17 UTC produced Willow's complete
+character/three-expression design and a separate clothing sheet. The preceding
+Maple source supplied the style/proportion reference. Untouched sources and
+exact prompts are retained in
+[`artwork/portable-identities/source/`](../artwork/portable-identities/source/).
+Maple's existing heads are reused byte-for-byte with newly authored ownership
+masks; no new Maple portrait was generated. Willow's run/jump hands reuse the
+retained Maple closed-fist source, adjusted offline to the new source palette.
+
+The [source record](../artwork/portable-identities/README.md) and preparation
+script describe measured registration, alpha cleanup, hip/leg ownership and
+explicit skin/hair/garment masks. Runtime only reads those prepared sources and
+recolors marked materials; it performs no segmentation, image API calls or
+identity-specific rendering. The existing skeleton, renderer and motions remain
+unchanged. Source-colored identity heads preserve the authored pixels exactly.
+Cross-dressing and playback evidence in the
+[review](PORTABLE_IDENTITIES_REVIEW.md) comes from actual application exports.
+
+Identity ZIPs retain their supplied provenance. They do not grant rights in
+third-party artwork; project-owned sources follow the repository reuse notice
+below. This delivery is not a claim of final visual acceptance.
+
 ## Maple action forearms
 
 Two additional OpenAI image-generation calls on 2026-10-17 produced a rejected
