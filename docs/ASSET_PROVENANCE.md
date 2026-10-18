@@ -1,5 +1,17 @@
 # Artwork provenance and reuse
 
+## Theo running shoe parenting
+
+This follow-up makes no image-generation call and changes no source pixels or
+material masks. A separately identified shoe item V5 adds a measured source
+shin direction to the previous running shoes. Both points come from the shoe's
+own original complete-character drawing, not the separately generated bent
+trouser drawing. The [source record](../artwork/theo-ankle-follow/README.md)
+retains coordinates, hashes, the original project and reproducible preparation.
+The new Skin V4 renderer couples shoe rotation and support to the final leg;
+all earlier items and projects retain their rendering. Actual Studio-exported
+PNG/GIF/ZIP evidence is linked from the [review](THEO_ANKLE_FOLLOW_REVIEW.md).
+
 ## Theo registered running alternatives
 
 One OpenAI image-generation call on 2026-10-18 UTC produced an isolated complete

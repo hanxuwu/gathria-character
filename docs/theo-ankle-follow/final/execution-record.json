@@ -1,0 +1,84 @@
+{
+  "scope": "This capture and artifact validation only; unit/browser-suite/build runs are recorded separately in the handoff.",
+  "sourceCommit": "ce5f239aa1d2b1e72de5b639b62fbf246d8ba93e",
+  "captureStartedAt": "2026-10-18T06:42:31.050Z",
+  "captureFinishedAt": "2026-10-18T06:44:22.865Z",
+  "phase": "final",
+  "attempt": 2,
+  "previousAttempt": {
+    "status": "harness-fixture-failure",
+    "report": "../verification/capture-attempt-1.json",
+    "productionCodeChanged": false,
+    "assertionsWeakened": false,
+    "fix": "Explicitly import the original V4 shoe ZIP before testing old footwear selection."
+  },
+  "commands": [
+    {
+      "command": "node scripts/generate-theo-ankle-follow-evidence.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/render-theo-ankle-follow-review.py",
+      "exitCode": 0
+    }
+  ],
+  "checks": {
+    "runtimeAndHarness": {
+      "fileCount": 117,
+      "allSha256StillMatch": true
+    },
+    "sourceAndPreparedInputs": {
+      "fileCount": 42,
+      "allSha256StillMatch": true
+    }
+  },
+  "actualUiSemanticPacks": 4,
+  "decodedExportedPoses": 144,
+  "editorExactFrameComparisons": 80,
+  "authoringClosedBeforeIndependentPlayback": true,
+  "independentPlaybackCases": 10,
+  "portableV5ItemRoundtrips": 1,
+  "projectFreshReopenRoundtrips": 2,
+  "oldProjects": [
+    {
+      "id": "before",
+      "previousDirectory": "docs/theo-passing-poses/final",
+      "all36FramesExact": true,
+      "manifestExact": true,
+      "motionVersion": 2,
+      "originalPackSha256": "07f100bf7dcf37196791e63bdff71aa6602c5ea437c0a9dfd074587837bb081a"
+    },
+    {
+      "id": "historical-v1",
+      "previousDirectory": "docs/theo-pose-study/final",
+      "motionVersion": 1,
+      "skinVersion": 1,
+      "all36FramesExact": true
+    },
+    {
+      "id": "historical-v2",
+      "previousDirectory": "docs/theo-run-repair/final",
+      "motionVersion": 2,
+      "skinVersion": 1,
+      "all36FramesExact": true
+    }
+  ],
+  "unchangedSourceRgbaArrays": 19,
+  "all24NonRunPosesPixelExact": true,
+  "actualShoeAttachmentSummary": {
+    "finalCases": 24,
+    "maximumAngleErrorDegrees": 1.4033418597069752e-14,
+    "maximumMatrixAnkleErrorPx": 6.355287432313019e-14,
+    "maximumSoleSupportErrorPx": 0,
+    "note": "Correct transform/contact metrics do not prove cuff silhouettes are aesthetically seamless; compare all12 actual PNGs/GIFs."
+  },
+  "maximumWholeRenderedFrameSoleErrorPx": 0,
+  "decodedGifCount": 16,
+  "zipCrcVerifiedCount": 17,
+  "notes": [
+    "The first partial capture is retained locally and documented; delivered final outputs come from the complete successful second capture.",
+    "Old independent-pitch angular references are explicitly estimates; final24shoe-transform metrics come from actual cached drawing matrices.",
+    "Pillow emitted a getdata deprecation warning; current decoding and pixel assertions passed.",
+    "Technical checks do not imply final visual acceptance or resolve existing recovery/overlap/style limitations."
+  ]
+}

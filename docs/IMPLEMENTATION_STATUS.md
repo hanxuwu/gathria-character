@@ -1,6 +1,25 @@
 # Implementation status
 
-**Current batch: Theo registered running pose attachments.** Starts from merged
+**Current batch: Theo shoes parented to the solved shin.** Continues draft PR #11
+from `8ed74d3`, on `feat/theo-passing-poses`; implementation and prepared project
+are committed and pushed as `ce5f239`. Opt-in Skin V4 / shoe item V5 supply the
+shoe's own source-shin axis. Run boots and trousers share the final ankle and
+rotation, with coupled opaque-sole support and fixed-length leg reach. Old files
+retain their renderer; all 19 source parts, anatomy, motion keys and non-run
+frames remain exact. This corrects independent shoe/cuff rotation while retaining
+the crowded ninth pose, fast recovery angle changes and old trouser folds.
+[Review](THEO_ANKLE_FOLLOW_REVIEW.md) ·
+[Actual comparisons and editable files](theo-ankle-follow/README.md) ·
+[Source contract](RUN_SHOE_PARENTING.md) ·
+[Current verification](theo-ankle-follow/verification-results.json).
+
+This follow-up ran **489 unit tests / 39 files, eighteen relevant Chromium tests,
+TypeScript and production build**, all passing. Actual export and closed-editor
+playback results are recorded separately with the final evidence. This remains
+an unmerged review delivery, not a claim of final natural running or user visual
+acceptance.
+
+**Historical batch: Theo registered running pose attachments.** Starts from merged
 `main` at `30125e5`, on `feat/theo-passing-poses`. Opt-in Skin V3 / bottom-and-shoe
 item V4 carry complete bent-leg and running-shoe source parts while preserving
 original anatomy, motions, heads and all non-run frames. The chosen source
