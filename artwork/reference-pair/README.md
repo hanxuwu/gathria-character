@@ -49,6 +49,16 @@ bodice ownership is separate from the ivory neckline; Rose's ivory sleeve cuffs
 remain fixed when skin color changes. The original registered head colors are
 preserved exactly, while garment colors follow the existing wardrobe formula.
 
+Final actual-export inspection found a remaining opening below the head inside
+Rose's scoop collar. A bounded torso-owned upper-chest allowance samples the
+original Rose neck skin ramp from `pair-design.png`, behind the existing cream
+rim. Its 191 source pixels use skin material 1; only the previous 59-pixel Rose
+or 50-pixel Theo gaps were exposed in idle. Original opaque clothing pixels and
+all six heads remain unchanged. The source polygon, samples and six expression/
+identity gap checks are retained in registration. This fills a garment opening
+without lengthening or moving the neck. Before-repair actual packs are preserved
+in `prepared/iterations/02-before-collar/`.
+
 Open `prepared/theo.rig.zip` or `prepared/rose.rig.zip` in Skin Studio to use an
 editable complete look. Each project embeds both identities and all six clothing
 items. The separate `*.identity.zip` and `*.wardrobe.zip` files can be imported

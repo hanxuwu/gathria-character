@@ -407,6 +407,48 @@ try {
         [60, 45, 365, 365],
         [72, 112, 59, 66],
       );
+      // The generated bodice has a scoop opening below the registered head.
+      // A top-owned upper-chest allowance sits behind its unchanged cream rim.
+      // Sample only the original neutral neck's skin ramp; do not lengthen or
+      // repaint any head, move the neckline, or alter a visible clothing pixel.
+      const collarOpening = [
+        [88, 112],
+        [110, 112],
+        [112, 119],
+        [110, 123],
+        [101, 124],
+        [94, 121],
+        [90, 117],
+      ];
+      const collarSkin = new Uint8Array(W * H);
+      const torsoBeforeCollar = ri.torso.slice();
+      let collarSkinPixels = 0;
+      for (let y = 112; y <= 123; y++)
+        for (let x = 88; x <= 112; x++) {
+          const p = y * W + x;
+          if (ri.torso[p * 4 + 3] || !inside(x + 0.5, y + 0.5, collarOpening))
+            continue;
+          const sx = 94 + Math.floor(((x - 88) * 11) / 24),
+            sy = Math.min(116, 114 + Math.floor((y - 112) / 4));
+          const si = (sy * W + sx) * 4,
+            sample = ri["head-neutral"].subarray(si, si + 4);
+          if (sample[3] !== 255 || sample[0] < 200 || sample[1] < 130)
+            throw Error("Collar allowance sampled outside authored neck skin");
+          ri.torso.set(sample, p * 4);
+          collarSkin[p] = 1;
+          collarSkinPixels++;
+        }
+      stats.push({
+        id: "rose:collar-skin-allowance",
+        source: sources.design.path,
+        sourceHead: "rose/head-neutral",
+        registeredSourceRegion: [94, 114, 106, 117],
+        targetPolygon: collarOpening,
+        pixels: collarSkinPixels,
+        material: 1,
+        ownership:
+          "top torso exposed upper chest behind the original cream scoop rim; head and neckline unchanged",
+      });
       // The torso owns the single visible cream waist band. Its peplum is not a
       // second skirt layer: the independent garment provides all cloth below it.
       eraseWhere(ri.torso, (x, y) => y >= 164);
@@ -576,6 +618,7 @@ try {
               if (slot === "garment" && g > 155 && b > 130 && r < g * 1.15)
                 m = 0;
             }
+            if (id === "rose" && slot === "torso" && collarSkin[p]) m = 1;
             if (slot.includes("shoe") && y >= 235) m = 0;
             materials[p] = m;
           }
@@ -624,6 +667,42 @@ try {
       const identities = [],
         items = [],
         checks = [];
+      let collarRimChanged = 0;
+      for (let p = 0; p < W * H; p++)
+        if (torsoBeforeCollar[p * 4 + 3] && p / W < 164)
+          for (let channel = 0; channel < 4; channel++)
+            collarRimChanged += +(
+              torsoBeforeCollar[p * 4 + channel] !== ri.torso[p * 4 + channel]
+            );
+      if (collarRimChanged)
+        throw Error("Collar allowance changed original clothing");
+      for (const [id, person] of Object.entries(people))
+        for (const expression of expressions) {
+          let openings = 0;
+          for (let y = 116; y <= 122; y++)
+            for (let x = 94; x <= 110; x++) {
+              const p = y * W + x;
+              if (
+                !person.images["head-" + expression][p * 4 + 3] &&
+                !ri.torso[p * 4 + 3]
+              )
+                openings++;
+              if (collarSkin[p] && clothMaterials.rose.torso[p] !== 1)
+                throw Error("Collar allowance lost skin ownership");
+            }
+          if (openings)
+            throw Error(id + "/" + expression + " retains exposed chest gap");
+          checks.push({
+            identity: id,
+            expression,
+            roseTopChestGapPixels: openings,
+          });
+        }
+      checks.push({
+        identity: "rose",
+        collarSkinPixels,
+        originalClothingPixelsChanged: collarRimChanged,
+      });
       for (const side of ["near", "far"]) {
         let creamPixels = 0;
         const slot = side + "-upper-arm",
@@ -947,7 +1026,7 @@ try {
                     bottom: "coral skirt",
                     shoes: "brown Mary Janes",
                   })[group],
-            provenance: `Original ${person.name} outfit generated with OpenAI image generation during development, 2026-10-18 UTC. Retained source artwork/reference-pair/source/${id}-clothing.png and exact prompts. scripts/prepare-reference-pair.mjs registers explicit source ownership, binary alpha192, nearest sampling, source masks, overlapping limb cuts and authored action hands. Shared rig and motions unchanged.`,
+            provenance: `Original ${person.name} outfit generated with OpenAI image generation during development, 2026-10-18 UTC. Retained source artwork/reference-pair/source/${id}-clothing.png and exact prompts.${id === "rose" && group === "top" ? " Exposed collar upper-chest skin samples the original neutral neck ramp from pair-design.png; the torso owns this bounded allowance behind its unchanged cream scoop rim. No head or neck anchor changes." : ""} scripts/prepare-reference-pair.mjs registers explicit source ownership, binary alpha192, nearest sampling, source masks, overlapping limb cuts and authored action hands. Shared rig and motions unchanged.`,
             group,
             parts,
             ...(group === "top"
