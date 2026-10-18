@@ -1,6 +1,23 @@
 # Implementation status
 
-**Current batch: Theo shoes parented to the solved shin.** Continues draft PR #11
+**Current batch: Ravi, Lina and Nora modular character trial.** Starts from
+`38cfaa8` on `feat/character-roster-trial`; new source illustrations are saved in
+`bc13ccf`, and registered playable projects/source corrections in `38362e6`.
+Three new portable identities and two tops combine with existing garments.
+Skin V4 / shoe item V5 retain shin-following footwear. Ravi keeps the original
+gait; Lina and Nora save an explicit compact run profile. Nora's failed skirt
+fit is preserved and her playable final outfit uses coral shorts.
+
+[Review and discovered limitations](CHARACTER_ROSTER_REVIEW.md) ·
+[Actual exports, GIFs and editable projects](character-roster/README.md) ·
+[Current-session verification](character-roster/verification-results.json).
+The review distinguishes passed functional checks from remaining face-tone,
+deep-knee and retargeting limitations. Historical artwork stays unchanged; the
+only existing runtime edit preserves an error message across TypeScript union
+narrowing. This is an unmerged review batch with no production integration or
+user visual acceptance claimed.
+
+**Historical batch: Theo shoes parented to the solved shin.** Continues draft PR #11
 from `8ed74d3`, on `feat/theo-passing-poses`; implementation and prepared project
 are committed and pushed as `ce5f239`. Opt-in Skin V4 / shoe item V5 supply the
 shoe's own source-shin axis. Run boots and trousers share the final ankle and

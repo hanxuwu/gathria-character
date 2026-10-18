@@ -1,0 +1,131 @@
+{
+  "batch": "Three new modular characters: Ravi, Lina and Nora",
+  "baselineCommit": "38cfaa869443959e479ef25f1ba82a4cb15c1042",
+  "implementationCommit": "38362e6ffcaf1bccf15d3b6c5052966414004d5b",
+  "scope": "Current-session execution. Earlier Theo batch test counts are historical and are not substituted for these checks.",
+  "unit": {
+    "command": "npx vitest run src/skeletal/identities.test.ts src/skeletal/wardrobe-items.test.ts src/skeletal/shin-following-shoes.test.ts src/skeletal/skin-io.test.ts src/skeletal/wardrobe-source-colors.test.ts",
+    "uniqueTestsCovered": 68,
+    "initial": {
+      "passed": 67,
+      "failed": 1,
+      "reason": "One real-Theo support test exceeded its unchanged 5000ms limit during concurrent work; no assertion mismatch.",
+      "log": "verification/unit-tests.log"
+    },
+    "isolatedRecheck": {
+      "command": "npx vitest run src/skeletal/shin-following-shoes.test.ts",
+      "passed": 7,
+      "failed": 0,
+      "testTimeoutOrAssertionsChanged": false,
+      "log": "verification/shin-following-recheck.log"
+    },
+    "conclusion": "All 68 unique selected tests passed across the initial run and unchanged isolated recheck."
+  },
+  "build": {
+    "command": "npm run build",
+    "includes": "tsc -b && vite build",
+    "exitCode": 0,
+    "log": "verification/build-final.log",
+    "initialFailure": {
+      "log": "verification/build.log",
+      "reason": "TS2339 on metadata.version after narrowing an impossible validation state; fixed by capturing the version before narrowing, without changing behavior."
+    },
+    "note": "Existing Vite large-chunk advisory remains."
+  },
+  "browser": {
+    "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npm run test:e2e -- tests/e2e/identity-library.spec.ts tests/e2e/wardrobe-source-colors.spec.ts tests/e2e/wardrobe-items.spec.ts",
+    "passed": 7,
+    "failed": 0,
+    "log": "verification/browser-tests.log",
+    "reportedDuration": "1.4m"
+  },
+  "preparation": {
+    "primaryNeutralFrames": 108,
+    "characters": 3,
+    "actionsPerCharacter": 4,
+    "expressionsPerIdentity": 3,
+    "identityRoundtrips": 3,
+    "projectRoundtrips": 3,
+    "rigChanged": false,
+    "nonRunClipsChanged": false,
+    "compactRun": {
+      "characters": ["lina", "nora"],
+      "footXFactor": 0.85,
+      "footLiftFactor": 0.95,
+      "bodyBobOffset": 0
+    },
+    "registration": "../../artwork/character-roster/prepared/registration.json",
+    "assetIntegrity": "../../artwork/character-roster/prepared/artifact-validation.json",
+    "topsIntegrity": "../../artwork/character-roster/prepared/tops/registration.json"
+  },
+  "compatibilityAudit": "verification/compatibility-audit.json",
+  "visualAcceptance": {
+    "userAccepted": false,
+    "gathriaIntegrationVerified": false,
+    "knownLimitations": [
+      "Ravi expression-dependent face tone",
+      "Deep bare-knee notch with inherited source meshes",
+      "Ravi crowded boot-crossing pose and old trouser folds",
+      "Nora skirt/following-shoe retarget unsupported; final outfit is coral shorts",
+      "Rear ponytail is a rigid attachment with limited sway"
+    ]
+  },
+  "initialCapture": {
+    "completed": false,
+    "failure": "Material ownership check incorrectly used source coordinates for the fitted ordinary far shoe.",
+    "concreteExample": {
+      "assembled": [105, 233],
+      "sampledSource": [105, 232],
+      "actualMaterial": 5,
+      "incorrectlyReadMaterial": 0
+    },
+    "fix": "Map ownership through geometric shoe fit and inherited shin allowance; retain all opaque-pixel and fixed-source-RGBA checks. No artwork/runtime edit.",
+    "archive": "iterations/capture-material-check",
+    "focusedRecheck": "iterations/capture-material-check/mapped-ownership-recheck.json"
+  },
+  "recordedAt": "2026-10-18T08:11:33.313537+00:00",
+  "actualApplication": {
+    "command": "node scripts/generate-character-roster-evidence.mjs",
+    "capturedAt": "2026-10-18T08:10:49.390Z",
+    "completed": true,
+    "semanticCharacterPacks": 6,
+    "exportedPoses": 216,
+    "downloadedArchives": 33,
+    "editorPoseDirectionComparisons": 216,
+    "projectReopens": 3,
+    "identityRoundtrips": 3,
+    "garmentRoundtrips": 4,
+    "expressionCanvasSamples": 18,
+    "sourcePartsChecked": 60,
+    "materialChecks": 3,
+    "crossGarmentTests": 3,
+    "rejectedOriginalProjectTests": 1,
+    "closedEditorPlaybackCases": 24,
+    "authoringClosedBeforeConsumer": true,
+    "errors": [],
+    "externalNetworkRequests": [],
+    "forbiddenGeneratorRequests": [],
+    "evidence": "final/evidence-index.json",
+    "log": "verification/capture-final.log",
+    "executionRecord": "final/current-execution-record.json"
+  },
+  "media": {
+    "command": "python3 scripts/render-character-roster-review.py",
+    "composedPngPanels": 23,
+    "gifPreviews": 36,
+    "allGifDecodedSequencesAndTimingChecked": true,
+    "actualPackFrameBoundsAndBinaryAlphaChecked": true,
+    "fileInventoryCounts": {
+      "json": 15,
+      "log": 1,
+      "png": 186,
+      "zip": 33,
+      "md": 6,
+      "txt": 6,
+      "gif": 36
+    },
+    "artifactValidation": "final/artifact-validation.json",
+    "completeInventory": "final/file-integrity.json"
+  },
+  "visualReview": "visual-review.json"
+}
