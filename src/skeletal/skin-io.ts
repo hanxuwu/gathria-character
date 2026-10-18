@@ -1,5 +1,6 @@
 import { strToU8, zipSync } from "fflate";
 import { crc32, readBoundedArchive } from "./bounded-archive";
+import { validateActionForearms } from "./action-forearms";
 import {
   MAX_WARDROBE_LIBRARY_BYTES,
   validateWardrobeItems,
@@ -9,11 +10,13 @@ import { createRigDefinition } from "./definition";
 import { assertWardrobeSkinMatches, validateWardrobeRecipe } from "./wardrobe";
 import {
   ALL_SLOTS,
+  ACTION_FOREARM_SLOTS,
   CHAINS,
   FRAME_HEIGHT,
   FRAME_WIDTH,
   REQUIRED_SLOTS,
   RIG_ID,
+  V1_SLOTS,
   type AuthoringProject,
   type ChainName,
   type JointTriple,
@@ -138,25 +141,31 @@ export function validateSkinMetadata(value: unknown): SkinMetadata {
       "sourceAppearance",
       "provenance",
       "slots",
+      ...(raw.version === 2 ? ["actionForearms"] : []),
     ],
     "skin",
   );
   exact(raw.format, "gathria-skin-pack", "skin.format");
-  exact(raw.version, 1, "skin.version");
+  if (raw.version !== 1 && raw.version !== 2)
+    fail("skin.version must be 1 or 2.");
   exact(raw.rigId, RIG_ID, "skin.rigId");
   const id = text(raw.id, "skin.id", 80);
   if (!/^[a-z0-9][a-z0-9._-]*$/i.test(id))
     fail("skin.id must be a simple alphanumeric identifier.");
+  const availableSlots = raw.version === 1 ? V1_SLOTS : ALL_SLOTS;
   if (
     !Array.isArray(raw.slots) ||
     raw.slots.length < REQUIRED_SLOTS.length ||
-    raw.slots.length > ALL_SLOTS.length
+    raw.slots.length > availableSlots.length
   )
     fail(
-      "skin.slots must list the 15 required slots and at most two optional slots.",
+      "skin.slots must list the 15 required slots and only this version's optional slots.",
     );
   const slots = raw.slots.map((s) => {
-    if (typeof s !== "string" || !(ALL_SLOTS as readonly string[]).includes(s))
+    if (
+      typeof s !== "string" ||
+      !(availableSlots as readonly string[]).includes(s)
+    )
       fail(`Unknown skin slot ${String(s)}.`);
     return s as Slot;
   });
@@ -164,6 +173,12 @@ export function validateSkinMetadata(value: unknown): SkinMetadata {
     fail("skin.slots contains a duplicate slot.");
   for (const slot of REQUIRED_SLOTS)
     if (!slots.includes(slot)) fail(`skin.slots is missing ${slot}.`);
+  const actionForearms =
+    raw.version === 2 ? validateActionForearms(raw.actionForearms) : undefined;
+  if (actionForearms)
+    for (const slot of ACTION_FOREARM_SLOTS)
+      if (!slots.includes(slot))
+        fail(`skin.slots is missing active pair slot ${slot}.`);
   const bindings = object(raw.bindings, "bindings"),
     mesh = object(bindings.mesh, "bindings.mesh"),
     jaw = object(bindings.jaw, "bindings.jaw");
@@ -195,7 +210,9 @@ export function validateSkinMetadata(value: unknown): SkinMetadata {
     fail("sourceAppearance must use artworkVersion 6.");
   return {
     format: "gathria-skin-pack",
-    version: 1,
+    ...(actionForearms
+      ? { version: 2 as const, actionForearms }
+      : { version: 1 as const }),
     id,
     name: text(raw.name, "skin.name", 60),
     rigId: RIG_ID,
@@ -760,8 +777,12 @@ export async function exportTemplate(skin: SkinPack): Promise<Blob> {
   files["guides.png"] = await encodeAttachmentPng(
     ctx.getImageData(0, 0, 192, 256).data,
   );
+  const activeForearmGuide =
+    valid.metadata.version === 2
+      ? `\n\nThis version 2 skin also requires near-forearm-active and far-forearm-active as a complete pair. Their full-canvas PNGs replace the corresponding base forearms only for the actions declared in skin.json actionForearms (${Object.keys(valid.metadata.actionForearms).join(", ")}). Keep their elbow and wrist registration identical to the base forearms, including any sleeve overlap. Both active slots must remain present; idle and walk always use the base slots. This does not change the skeleton or motion data.`
+      : "";
   files["TEMPLATE.md"] = strToU8(
-    `# ${valid.metadata.name} — registered skin template\n\nEvery slots/*.png is a full 192×256 transparent canvas at native scale. Do not crop or resize it. guides.png is an instruction overlay, never a renderable slot; do not bake markers into artwork. The common foot anchor is (96,240). skin.json stores each source shoulder/elbow/wrist and hip/knee/ankle, offsets, mesh settings, provenance, and jaw registration.\n\nReplace artwork while preserving joint locations and a small overlap around joints. Upper/lower limbs own their own clothing only; torso and hips must remain filled beneath moving arms. Keep all three full-head expressions aligned, including ears, chin, hair and neck. Keep optional garment/back-hair separate from hands and limbs. Use binary alpha, nearest-neighbor pixels, and a transparent background. Standard skin import rejects partial alpha; Studio slot replacement offers explicit threshold conversion at alpha 128.\n\nThe 15 required slots are ${REQUIRED_SLOTS.join(", ")}. Optional slots: back-hair, garment. Remove an unused optional slot from skin.json and its PNG. Files must agree exactly. Do not rename paths or add files. This template archive may be imported with the two guide files present; they are ignored for rendering.\n\nSkin sourceAppearance is provenance/CharacterPack compatibility metadata; importing a skin uses these PNGs, never regenerates the appearance from that configuration. Record the actual creator, license and processing history in provenance when replacing art. Source: ${valid.metadata.provenance}\n`,
+    `# ${valid.metadata.name} — registered skin template\n\nEvery slots/*.png is a full 192×256 transparent canvas at native scale. Do not crop or resize it. guides.png is an instruction overlay, never a renderable slot; do not bake markers into artwork. The common foot anchor is (96,240). skin.json stores each source shoulder/elbow/wrist and hip/knee/ankle, offsets, mesh settings, provenance, and jaw registration.\n\nReplace artwork while preserving joint locations and a small overlap around joints. Upper/lower limbs own their own clothing only; torso and hips must remain filled beneath moving arms. Keep all three full-head expressions aligned, including ears, chin, hair and neck. Keep optional garment/back-hair separate from hands and limbs. Use binary alpha, nearest-neighbor pixels, and a transparent background. Standard skin import rejects partial alpha; Studio slot replacement offers explicit threshold conversion at alpha 128.\n\nThe 15 required slots are ${REQUIRED_SLOTS.join(", ")}. Optional slots: back-hair, garment. Remove an unused optional slot from skin.json and its PNG. Files must agree exactly. Do not rename paths or add files. This template archive may be imported with the two guide files present; they are ignored for rendering.${activeForearmGuide}\n\nSkin sourceAppearance is provenance/CharacterPack compatibility metadata; importing a skin uses these PNGs, never regenerates the appearance from that configuration. Record the actual creator, license and processing history in provenance when replacing art. Source: ${valid.metadata.provenance}\n`,
   );
   return new Blob([zipSync(files)], { type: "application/zip" });
 }

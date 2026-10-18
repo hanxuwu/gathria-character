@@ -3,6 +3,7 @@ import { WARDROBE_ASSETS } from "./wardrobe-assets.generated";
 import { validateWardrobeItems } from "./wardrobe-items";
 import {
   ALL_SLOTS,
+  ACTION_FOREARM_SLOTS,
   FRAME_HEIGHT,
   FRAME_WIDTH,
   REQUIRED_SLOTS,
@@ -403,6 +404,7 @@ export function assembleWardrobe(
     "near-forearm",
     "far-upper-arm",
     "far-forearm",
+    ...("actionForearms" in top ? ACTION_FOREARM_SLOTS : []),
   ]);
   add(bottom.parts, [
     "hips",
@@ -430,7 +432,12 @@ export function assembleWardrobe(
   return {
     metadata: {
       format: "gathria-skin-pack",
-      version: 1,
+      ...("actionForearms" in top
+        ? {
+            version: 2 as const,
+            actionForearms: structuredClone(top.actionForearms),
+          }
+        : { version: 1 as const }),
       id:
         recipe.version === 1
           ? `wardrobe-${recipe.identity}-${recipe.top}-${recipe.bottom}-${recipe.shoes}`

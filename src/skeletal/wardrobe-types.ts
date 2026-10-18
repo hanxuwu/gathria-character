@@ -1,5 +1,11 @@
 import type { ArtV6CharacterConfig } from "../core/types";
-import type { JointTriple, Point, SkinMetadata, Slot } from "./types";
+import type {
+  ActionForearms,
+  JointTriple,
+  Point,
+  SkinMetadata,
+  Slot,
+} from "./types";
 
 export type WardrobeIdentityId = "crop" | "waves";
 export type WardrobeTopId = "denim-jacket" | "soft-top";
@@ -47,15 +53,13 @@ export interface EncodedWardrobePart {
 export type WardrobeItemGroup = "top" | "bottom" | "shoes";
 interface CustomWardrobeItemBase {
   format: "gathria-wardrobe-item";
-  version: 1;
   rigId: "gathria-v6-humanoid-1";
   id: string;
   name: string;
   provenance: string;
   parts: EncodedWardrobePart[];
 }
-export type CustomWardrobeItem = CustomWardrobeItemBase &
-  (
+export type CustomWardrobeItemV1 = CustomWardrobeItemBase & { version: 1 } & (
     | {
         group: "top";
         chains: { nearArm: JointTriple; farArm: JointTriple };
@@ -66,6 +70,15 @@ export type CustomWardrobeItem = CustomWardrobeItemBase &
       }
     | { group: "shoes"; ankles: { near: Point; far: Point } }
   );
+/** Action-specific forearms use the same source arm registration as the rest
+ * pair. Explicit V2 prevents older items silently changing their posed art. */
+export type CustomWardrobeItemV2 = CustomWardrobeItemBase & {
+  version: 2;
+  group: "top";
+  chains: { nearArm: JointTriple; farArm: JointTriple };
+  actionForearms: ActionForearms;
+};
+export type CustomWardrobeItem = CustomWardrobeItemV1 | CustomWardrobeItemV2;
 
 export interface WardrobeIdentity {
   id: WardrobeIdentityId;

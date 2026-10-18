@@ -7,9 +7,9 @@ import {
   FRAME_WIDTH as W,
   REQUIRED_SLOTS,
   RIG_ID,
+  V1_SLOTS,
   type AuthoringProject,
   type SkinPack,
-  type Slot,
 } from "./types";
 
 function solid(
@@ -28,7 +28,10 @@ function solid(
 function skin(id = "independent-import", color = 140): SkinPack {
   const rig = createRigDefinition();
   const images: SkinPack["images"] = {};
-  const rects: Record<Slot, [number, number, number, number]> = {
+  const rects: Record<
+    (typeof V1_SLOTS)[number],
+    [number, number, number, number]
+  > = {
     torso: [78, 118, 42, 56],
     hips: [82, 168, 32, 12],
     "near-upper-arm": [63, 119, 15, 35],

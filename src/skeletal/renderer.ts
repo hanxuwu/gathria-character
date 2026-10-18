@@ -1,4 +1,5 @@
 import { prepareMeshLimb } from "../experiments/denim-rig/mesh";
+import { validateActionForearms } from "./action-forearms";
 import {
   IllustratedCanvas,
   translated,
@@ -8,6 +9,7 @@ import {
 import type { IllustratedLayer } from "../core/illustrated-types";
 import {
   CHAINS,
+  ACTION_FOREARM_SLOTS,
   FRAME_WIDTH as W,
   FRAME_HEIGHT as H,
   REQUIRED_SLOTS,
@@ -144,6 +146,22 @@ function validateHierarchy(rig: RigDefinition, skin: SkinPack) {
     )
       throw Error(`Skin image ${slot} must contain one complete RGBA frame.`);
   }
+  if (skin.metadata.version === 2) {
+    validateActionForearms(skin.metadata.actionForearms);
+    for (const slot of ACTION_FOREARM_SLOTS)
+      if (
+        !skin.metadata.slots.includes(slot) ||
+        !(skin.images[slot] instanceof Uint8ClampedArray) ||
+        skin.images[slot]!.length !== W * H * 4
+      )
+        throw Error(`Skin active forearm pair is missing ${slot}.`);
+  } else if (
+    skin.metadata.version !== 1 ||
+    skin.metadata.actionForearms !== undefined ||
+    ACTION_FOREARM_SLOTS.some((slot) => skin.metadata.slots.includes(slot))
+  ) {
+    throw Error("Active forearm attachments require skin version 2.");
+  }
 }
 
 interface Attachment {
@@ -241,29 +259,32 @@ export function prepareRig(
     if (!result) throw Error(`Skin attachment ${id} is missing.`);
     return result;
   };
-  const meshes = new Map(
-    CHAINS.map((chain) => {
-      const near = chain.startsWith("near"),
-        arm = chain.endsWith("Arm");
-      const side = near ? "near" : "far";
-      return [
-        chain,
-        prepareMeshLimb(
-          (id) => requireAttachment(id).layer,
-          (id) => requireAttachment(id).pixels,
-          arm
-            ? [`${side}-upper-arm`, `${side}-forearm`]
-            : [`${side}-thigh`, `${side}-shin`],
-          skin.bindings.chains[chain],
-          {
-            ...skin.bindings.mesh,
-            ...(arm || skin.bindings.mesh.preserveAnkleOverlap
-              ? {}
-              : { excludeId: `${side}-shoe` }),
-          },
-        ),
-      ] as const;
-    }),
+  const prepareLimb = (chain: ChainName, active = false) => {
+    const near = chain.startsWith("near"),
+      arm = chain.endsWith("Arm"),
+      side = near ? "near" : "far";
+    return prepareMeshLimb(
+      (id) => requireAttachment(id).layer,
+      (id) => requireAttachment(id).pixels,
+      arm
+        ? [`${side}-upper-arm`, `${side}-forearm${active ? "-active" : ""}`]
+        : [`${side}-thigh`, `${side}-shin`],
+      skin.bindings.chains[chain],
+      {
+        ...skin.bindings.mesh,
+        ...(arm || skin.bindings.mesh.preserveAnkleOverlap
+          ? {}
+          : { excludeId: `${side}-shoe` }),
+      },
+    );
+  };
+  const meshes = new Map(CHAINS.map((chain) => [chain, prepareLimb(chain)]));
+  const activeArmMeshes = new Map(
+    skin.version === 2
+      ? (["nearArm", "farArm"] as const).map(
+          (chain) => [chain, prepareLimb(chain, true)] as const,
+        )
+      : [],
   );
 
   function render(
@@ -422,7 +443,14 @@ export function prepareRig(
     }
     function limb(chain: ChainName) {
       const joints = posed.get(chain)!,
-        mesh = meshes.get(chain)!;
+        useActiveForearms =
+          skin.version === 2 &&
+          (animation === "run" || animation === "jump") &&
+          skin.actionForearms[animation] !== undefined,
+        mesh =
+          useActiveForearms && (chain === "nearArm" || chain === "farArm")
+            ? activeArmMeshes.get(chain)!
+            : meshes.get(chain)!;
       mesh.draw(canvas, joints);
       if (inspect)
         inspection.limbs.push({

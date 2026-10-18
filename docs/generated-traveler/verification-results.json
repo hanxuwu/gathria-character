@@ -1,0 +1,100 @@
+{
+  "verifiedAtUtc": "2026-10-17T22:13:27.286997+00:00",
+  "baseline": "51c708ac847814a92fbe7186bb7713382bbf69f5",
+  "branch": "feat/generated-character-pipeline",
+  "scope": "New generated source assets and offline preparation; src/ unchanged from baseline. Functional verification is separate from visual acceptance.",
+  "checks": [
+    {
+      "command": "npm test",
+      "result": "passed",
+      "tests": 418,
+      "files": 31,
+      "logSha256": "1a4db3015b44f3600e2369a94fa300585dcea04057b86d717d45c60f1e7bcc37"
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "includes": [
+        "TypeScript tsc -b",
+        "Vite production build"
+      ],
+      "warning": "Existing >500 kB chunk warning",
+      "logSha256": "1bcfaee9a44c6537920e9258098d0248223a374337686cbef2bb3c000b92bfa6"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npx playwright test tests/e2e/skin-studio.spec.ts tests/e2e/skin-authoring.spec.ts tests/e2e/basic-actions.spec.ts tests/e2e/wardrobe-items.spec.ts",
+      "result": "passed",
+      "tests": 15,
+      "retries": 0,
+      "logSha256": "c61c90c84d94f99af815496b4519c8341647c55f511bcfc8b62b8a630053e0da"
+    },
+    {
+      "command": "PREPARE_PHASE=final node scripts/prepare-generated-traveler.mjs",
+      "result": "passed",
+      "generatedSlots": 15,
+      "defaultPhaseNote": "Preparation defaults to final; known-bad phase-1 is explicit opt-in."
+    },
+    {
+      "command": "node scripts/check-fresh-character.mjs",
+      "result": "passed",
+      "uniqueFrames": 756,
+      "renderInvocations": 1512,
+      "unchangedSourceFiles": 22,
+      "report": "final/preparation-checks.json"
+    },
+    {
+      "command": "node scripts/generate-fresh-character-evidence.mjs",
+      "result": "passed",
+      "report": "final/evidence-index.json",
+      "closedEditorPlayerCases": 8,
+      "timedEditorFrames": 88
+    },
+    {
+      "command": "python3 scripts/render-fresh-character-review.py",
+      "result": "passed",
+      "report": "final/artifact-validation.json",
+      "zip": 16,
+      "png": 59,
+      "gif": 24
+    }
+  ],
+  "finalInputs": {
+    "traveler.skin.zip": "2de4653416c1595c7bf3153cfbe589609119ad25f097ec1ee6981fc3ca5fd6c6",
+    "traveler.rig.zip": "37fd6c4baf9ba1b9ac09eed972cfc10270ad4f622a15c4e8736efb2913b965fe",
+    "traveler-top.wardrobe.zip": "c10fa05a5f15d15f161a498480e1e68a9366f5f85d2708790b51da116355f545",
+    "traveler-bottom.wardrobe.zip": "f03f30fc22dfcd1c13a4957e77a1e08383bc2b518d3e13ed11213cd06b2fd662",
+    "traveler-shoes.wardrobe.zip": "7acfb0b7e47f368bed705ee4959692dcc678a9984b02875cc50ff0725ca7bbbe"
+  },
+  "scriptSha256": {
+    "scripts/prepare-generated-traveler.mjs": "6926058d5f32e2b0e5a68339fe9a20ce04dbfca80ff3826abe0dbe1dfef6f154",
+    "scripts/check-fresh-character.mjs": "83e5e6b7ec7bbf4273197057ff95b97f168481a5732f242cc89ba467a6a4e233",
+    "scripts/generate-fresh-character-evidence.mjs": "7ad514fc47cc1f95c49e26ac54b111461017c33b1b38ba2f8f65b6be5e5bd014",
+    "scripts/render-fresh-character-review.py": "0ae0f94b343f28512f375b04cd2a295108bc07de776fe78193437e5dc2615f80"
+  },
+  "historicalOrNotExecuted": [
+    "Previous milestones counts are not credited here.",
+    "33 other existing E2E tests were not rerun locally.",
+    "Firefox, Safari, production Gathria integration and user visual acceptance unverified."
+  ],
+  "visualFindings": {
+    "repaired": [
+      "Duplicate static sleeves/cuffs in torso",
+      "Rigid shorts cuffs and open tube rims in pelvis/thigh sources",
+      "Wrist skin/cuff ownership",
+      "Orange cuff fold incorrectly kept fixed on recolored tops"
+    ],
+    "remaining": [
+      "Open palms look gestural during run/jump",
+      "Deep bends compress existing cloth texture",
+      "Small diagonal gaps and enclosed pockets at limb intersections/neckline",
+      "Subtle neutral/gentle expression distinction and slight hair-silhouette drift",
+      "Torso/sleeve orange saturation difference",
+      "New identity cannot yet register into the editable wardrobe"
+    ]
+  },
+  "iterationRecord": [
+    "phase-1: actual exports expose sleeve/pelvis ownership defects",
+    "first final capture: torso/hip fixes verified, recolor reveals residual orange cuff band; preserved in cuff-mask-before",
+    "corrected final: only 91 source pixels change material 0 to 3; underlying artwork unchanged; complete capture/checks rerun"
+  ]
+}

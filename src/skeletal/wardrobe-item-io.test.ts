@@ -106,6 +106,41 @@ describe("portable wardrobe archive preflight", () => {
     );
   });
 
+  it("requires both PNGs for each declared active forearm and rejects undeclared alternatives", async () => {
+    const entries = mutateMetadata(files(), (metadata) => {
+      const parts = metadata.parts as Record<string, unknown>[];
+      metadata.version = 2;
+      metadata.actionForearms = {
+        run: {
+          "near-forearm": "near-forearm-active",
+          "far-forearm": "far-forearm-active",
+        },
+      };
+      for (const side of ["near", "far"])
+        parts.push({
+          ...parts.find((part) => part.slot === `${side}-forearm`),
+          slot: `${side}-forearm-active`,
+        });
+    });
+    for (const side of ["near", "far"]) {
+      entries[`artwork/${side}-forearm-active.png`] = new Uint8Array([1, 2, 3]);
+      entries[`masks/${side}-forearm-active.png`] = new Uint8Array([1, 2, 3]);
+    }
+    delete entries["masks/far-forearm-active.png"];
+    await expect(importWardrobeItem(archive(entries))).rejects.toThrow(
+      /far-forearm-active requires both artwork and mask/,
+    );
+    await expect(
+      importWardrobeItem(
+        archive({
+          ...files(),
+          "artwork/near-forearm-active.png": new Uint8Array([1, 2, 3]),
+          "masks/near-forearm-active.png": new Uint8Array([1, 2, 3]),
+        }),
+      ),
+    ).rejects.toThrow(/exactly match/);
+  });
+
   it("rejects embedded pixel data, malformed metadata and invalid PNG payloads", async () => {
     const embedded = mutateMetadata(files(), (metadata) => {
       (metadata.parts as Record<string, unknown>[])[0].data =
