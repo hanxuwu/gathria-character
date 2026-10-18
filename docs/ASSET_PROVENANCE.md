@@ -1,5 +1,24 @@
 # Artwork provenance and reuse
 
+## Theo and Rose reference pair
+
+Three OpenAI image-generation calls on 2026-10-18 UTC produced a coordinated
+complete-character/expression design and two separate clothing sheets. The user
+supplied groom and coral-dress references; those input images are not bundled.
+Untouched output PNGs and exact prompts remain in
+[`artwork/reference-pair/source`](../artwork/reference-pair/source/).
+The prepared dress omits the concept's bag/strap; its rear hair and skirt have
+separate ownership. Active forearms use each new character's own clothing source.
+
+The [source record](../artwork/reference-pair/README.md) describes fixed-scale
+neck registration, overlap, binary-alpha cleanup and semantic masks. Preparation
+repairs static trouser/waist/sock duplication, a rear-hair cut that also removed
+neck pixels, and coral/ivory material classification. Existing rig, motions and
+runtime remain unchanged. New identity/garment/project ZIPs include provenance;
+[review media](REFERENCE_PAIR_REVIEW.md) comes from actual application exports.
+This is development-time AI-assisted artwork under the repository reuse notice,
+not a runtime image service or a claim of final visual acceptance.
+
 ## Portable Maple and Willow identities
 
 Two OpenAI image-generation calls on 2026-10-17 UTC produced Willow's complete

@@ -1,6 +1,27 @@
 # Implementation status
 
-**Current batch: portable identities and Willow.** Starts from unmerged draft
+**Current batch: Theo and Rose reference pair.** Starts from `cd89d61` on
+unmerged draft PR #8, using a separate `feat/reference-character-pair` branch.
+Three retained source-generation calls produce two coordinated identities and
+six reusable clothing items on the unchanged shared rig. Source commit `7c71e06`
+and registration commit `562d870` are pushed; `a87bd61` fills a remaining
+scoop-collar gap found in the actual exports. The trial repairs a neck/rear-hair
+ownership cut, coral/ivory masks and duplicated trouser/waist/sock source parts.
+[Review](REFERENCE_PAIR_REVIEW.md) · [Actual previews and downloads](reference-pair/README.md) ·
+[Sources](../artwork/reference-pair/README.md).
+
+This asset-only batch ran **84 focused unit tests, two identity-library Chromium
+E2E tests, TypeScript and production build**, all passing. The
+[current execution record](reference-pair/verification-results.json) distinguishes
+these checks from the preceding full suites. Functional exports and visual review
+are recorded separately. Final actual capture passes ten exports/360 poses,
+160 editor comparisons, six saved-project roundtrips and 20 closed-editor
+independent playback cases. All final 133 PNGs, 20 GIFs and 38 ZIPs decode;
+the original passing export's remaining collar defect is retained in a matched
+before/after comparison and repaired in the final capture. Deep-knee compression and modest skirt sway
+remain. The new work stays draft/unmerged with user visual acceptance pending.
+
+**Historical batch: portable identities and Willow.** Starts from unmerged draft
 PR #7 at `fa3b5d2` on `feat/portable-character-identities`. Identity ZIPs and an
 explicit wardrobe recipe v3 let Maple/Willow retain their full heads while
 changing clothes, skin/hair colors and expressions. The generated Willow outfit
@@ -11,7 +32,7 @@ and the real-export provenance repair `654de23` are committed and pushed.
 [Sources, editable projects and actual exports](portable-identities/README.md) ·
 [Identity format](IDENTITY_PACK_V1.md).
 This batch passed **454 unit tests, all 52 Chromium E2E tests, TypeScript and
-production build**. Current execution and export results are recorded in
+production build**. Its execution and export results are recorded in
 [verification-results.json](portable-identities/verification-results.json).
 Final actual evidence verifies 12 new exports, 176 editor frame/facing checks,
 eight save/reopen roundtrips and 24 closed-editor independent playback cases;
