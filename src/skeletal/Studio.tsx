@@ -314,7 +314,7 @@ export function SkinStudio() {
   );
   const [slot, setSlot] = useState<Slot>("torso");
   const availableSlots =
-    project.skin.metadata.version === 3
+    project.skin.metadata.version >= 3
       ? ALL_SLOTS.filter(
           (s) =>
             V1_SLOTS.includes(s as (typeof V1_SLOTS)[number]) ||
@@ -374,13 +374,22 @@ export function SkinStudio() {
     project.skin.metadata.runShoes[chain].slot === slot
       ? project.skin.metadata.runShoes[chain]
       : undefined;
+  const followSourceShoe =
+    project.skin.metadata.version === 4 &&
+    sourceShoe &&
+    (chain === "nearLeg" || chain === "farLeg")
+      ? project.skin.metadata.runShoes[chain]
+      : undefined;
   const joints: readonly Point[] =
     sourceLeg?.joints ??
     (sourceShoe
-      ? [sourceShoe.ankle]
+      ? [
+          ...(followSourceShoe ? [followSourceShoe.sourceShin] : []),
+          sourceShoe.ankle,
+        ]
       : project.skin.metadata.bindings.chains[chain]);
   const jointLabels = sourceShoe
-    ? ["Source ankle"]
+    ? [...(followSourceShoe ? ["Source shin"] : []), "Source ankle"]
     : chain.endsWith("Arm")
       ? ["Shoulder", "Elbow", "Wrist"]
       : ["Hip", "Knee", "Ankle"];
@@ -442,6 +451,18 @@ export function SkinStudio() {
     loadedBindings = resetBindings,
   ) {
     const candidate = prepareRig(next.rig, next.skin, next.motions);
+    // A valid first pose does not prove the remaining coupled run constraints.
+    // Reject unsupported V4 edits/imports atomically before replacing live state.
+    if (next.skin.metadata.version === 4)
+      for (let key = 0; key < next.motions.clips.run.keys.length; key++) {
+        try {
+          candidate.frame("run", key, next.preview.expression);
+        } catch (error) {
+          throw Error(
+            `Run pose ${key + 1}: ${error instanceof Error ? error.message : "unsupported shoe support"}`,
+          );
+        }
+      }
     const preview = next.preview;
     candidate.frame(
       preview.animation,
@@ -791,7 +812,7 @@ export function SkinStudio() {
     updateMetadata((metadata) => {
       if (
         sourceLeg &&
-        metadata.version === 3 &&
+        metadata.version >= 3 &&
         metadata.runLegs &&
         (chain === "nearLeg" || chain === "farLeg")
       )
@@ -809,17 +830,29 @@ export function SkinStudio() {
         };
       if (
         sourceShoe &&
-        metadata.version === 3 &&
         metadata.runShoes &&
         (chain === "nearLeg" || chain === "farLeg")
-      )
-        return {
-          ...metadata,
-          runShoes: {
-            ...metadata.runShoes,
-            [chain]: { ...metadata.runShoes[chain], ankle: point },
-          },
-        };
+      ) {
+        if (metadata.version === 4)
+          return {
+            ...metadata,
+            runShoes: {
+              ...metadata.runShoes,
+              [chain]: {
+                ...metadata.runShoes[chain],
+                ...(joint === 0 ? { sourceShin: point } : { ankle: point }),
+              },
+            },
+          };
+        if (metadata.version === 3)
+          return {
+            ...metadata,
+            runShoes: {
+              ...metadata.runShoes,
+              [chain]: { ...metadata.runShoes[chain], ankle: point },
+            },
+          };
+      }
       return {
         ...metadata,
         bindings: {
@@ -1076,7 +1109,7 @@ export function SkinStudio() {
               elbow and wrist landmarks.
             </p>
           )}
-          {project.skin.metadata.version === 3 && (
+          {project.skin.metadata.version >= 3 && (
             <p className="skin-help">
               Run alternatives have their own source landmarks. Selecting a bent
               leg or run shoe edits only that artwork registration; base body
@@ -1326,6 +1359,7 @@ export function SkinStudio() {
           <MotionEditor
             animation={animation}
             libraryVersion={project.motions.version}
+            followShinShoes={project.skin.metadata.version === 4}
             clip={clip}
             sequenceFrame={sequenceFrame}
             disabled={busy !== null || !!history.transaction}
@@ -1478,7 +1512,7 @@ export function SkinStudio() {
           <p className="skin-help">
             Reset keeps your replacement artwork. Check bent joints and the loop
             after editing.{" "}
-            {project.skin.metadata.version === 3 &&
+            {project.skin.metadata.version >= 3 &&
               "This resets base bindings; alternative source registration is preserved. Use Undo to restore an edited alternative."}
           </p>
         </aside>

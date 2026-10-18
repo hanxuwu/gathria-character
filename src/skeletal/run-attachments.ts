@@ -1,4 +1,10 @@
-import type { JointTriple, Point, RunLegs, RunShoes } from "./types";
+import type {
+  JointTriple,
+  Point,
+  RunLegs,
+  RunShoes,
+  ShinFollowRunShoes,
+} from "./types";
 
 function object(value: unknown, keys: string[], path: string) {
   if (!value || typeof value !== "object" || Array.isArray(value))
@@ -73,6 +79,27 @@ export function validateRunShoes(value: unknown): RunShoes {
     };
   };
   return { nearLeg: shoe("near"), farLeg: shoe("far") } as RunShoes;
+}
+
+/** New version only; old run-shoe metadata continues to reject sourceShin. */
+export function validateShinFollowRunShoes(value: unknown): ShinFollowRunShoes {
+  const raw = object(value, ["nearLeg", "farLeg"], "runShoes");
+  const shoe = (side: "near" | "far") => {
+    const entry = object(
+      raw[`${side}Leg`],
+      ["slot", "ankle", "sourceShin"],
+      `runShoes.${side}Leg`,
+    );
+    if (entry.slot !== `${side}-shoe-run`)
+      throw Error(`runShoes.${side}Leg has the wrong slot.`);
+    const ankle = point(entry.ankle, `runShoes.${side}Leg.ankle`),
+      sourceShin = point(entry.sourceShin, `runShoes.${side}Leg.sourceShin`),
+      length = Math.hypot(ankle[0] - sourceShin[0], ankle[1] - sourceShin[1]);
+    if (length < 3 || length > 96)
+      throw Error("The run shoe source shin axis must be 3–96 pixels long.");
+    return { slot: entry.slot, ankle, sourceShin };
+  };
+  return { nearLeg: shoe("near"), farLeg: shoe("far") } as ShinFollowRunShoes;
 }
 
 /** Signed segment turn preserves bend direction; circular distances handle ±π. */

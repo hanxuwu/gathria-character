@@ -303,7 +303,8 @@ describe("explicit run pose attachment contracts", () => {
       }),
     ).toThrow();
     const source = variantSkin(true, true);
-    for (const version of [1, 2, 4])
+    // V4 without each shoe's sourceShin remains invalid; V5 is unsupported.
+    for (const version of [1, 2, 4, 5])
       expect(() =>
         validateSkinMetadata({ ...source.metadata, version }),
       ).toThrow();

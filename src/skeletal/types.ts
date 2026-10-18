@@ -67,6 +67,25 @@ export interface RunShoes {
   nearLeg: { slot: "near-shoe-run"; ankle: Point };
   farLeg: { slot: "far-shoe-run"; ankle: Point };
 }
+/** V4 explicit footwear parenting: sourceShin→ankle registers the shoe's local leg axis. */
+export interface ShinFollowRunShoes {
+  nearLeg: { slot: "near-shoe-run"; ankle: Point; sourceShin: Point };
+  farLeg: { slot: "far-shoe-run"; ankle: Point; sourceShin: Point };
+}
+export interface ShoeInspection {
+  chain: "nearLeg" | "farLeg";
+  sourceSlot: Slot;
+  sourceAnkle: Point;
+  sourceShin: Point;
+  ankle: Point;
+  rotation: number;
+  matrix: readonly [number, number, number, number, number, number];
+  sole: number;
+  targetSole: number;
+  supportError: number;
+  ankleShift: number;
+  searchSamples: number;
+}
 export type Expression = "neutral" | "gentle" | "joyful";
 export interface BoneDefinition {
   id: string;
@@ -129,6 +148,12 @@ export type SkinMetadata = SkinMetadataBase &
         | { runLegs: RunLegs; runShoes?: RunShoes }
         | { runLegs?: RunLegs; runShoes: RunShoes }
       ))
+    | {
+        version: 4;
+        actionForearms?: ActionForearms;
+        runLegs?: RunLegs;
+        runShoes: ShinFollowRunShoes;
+      }
   );
 export interface SkinPack {
   metadata: SkinMetadata;
@@ -178,6 +203,7 @@ export interface AuthoringProject {
   preview: { animation: AnimationName; facing: Facing; expression: Expression };
 }
 export interface RigInspection {
+  shoes?: ShoeInspection[];
   bodyBones?: Array<{ id: string; from: Point; to: Point }>;
   limbs: Array<{
     id: string;

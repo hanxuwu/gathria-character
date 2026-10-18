@@ -3,6 +3,7 @@ import type {
   ActionForearms,
   RunLegs,
   RunShoes,
+  ShinFollowRunShoes,
   JointTriple,
   Point,
   SkinMetadata,
@@ -128,11 +129,20 @@ export type CustomWardrobeItemV4 = CustomWardrobeItemBase & {
         runShoes: RunShoes;
       }
   );
+/** Run footwear follows the posed shin at one shared ankle, without scaling. */
+export type CustomWardrobeItemV5 = CustomWardrobeItemBase & {
+  version: 5;
+  colorModel: "source-relative-v1";
+  group: "shoes";
+  ankles: { near: Point; far: Point };
+  runShoes: ShinFollowRunShoes;
+};
 export type CustomWardrobeItem =
   | CustomWardrobeItemV1
   | CustomWardrobeItemV2
   | CustomWardrobeItemV3
-  | CustomWardrobeItemV4;
+  | CustomWardrobeItemV4
+  | CustomWardrobeItemV5;
 
 export interface WardrobeIdentity {
   id: WardrobeIdentityId;

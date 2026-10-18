@@ -294,7 +294,8 @@ describe("portable registered wardrobe items", () => {
     );
     check((item) => (item.version = 3), /colorModel/);
     check((item) => (item.version = 4), /colorModel/);
-    check((item) => (item.version = 5), /Unsupported/);
+    check((item) => (item.version = 5), /colorModel/);
+    check((item) => (item.version = 6), /Unsupported/);
     check((item) => (item.id = "denim-jacket"), /custom-/);
     check((item) => (item.externalUrl = "https://example.invalid"), /exactly/);
   });

@@ -61,7 +61,7 @@ export async function exportWardrobeItem(
         `Every artwork/*.png and masks/*.png is a full ${FRAME_WIDTH}×${FRAME_HEIGHT} canvas. Keep registration and canvas size unchanged; the shared foot anchor is (96,240). Edit artwork and mask together. Keep background pixels transparent and use only binary alpha (0 or 255).\n\n` +
         `Masks are semantic data, not an illustration: at every visible artwork pixel use RGB (material,0,0) with material 0=fixed, 1=skin, 2=hair, 3=upper clothing, 4=lower clothing, 5=shoe. The mask alpha must exactly equal the artwork alpha. Transparent pixels have RGBA (0,0,0,0). Each used nonzero material needs its source hex color in that part's palette. Only materials belonging to this garment group are accepted. Do not paste a visual color legend into the mask.\n\n` +
         `item.json lists each owned slot and its source palette. Its chains/ankles describe source registration. Keep upper and lower limb artwork overlapping around the shared joint; keep torso and hips filled beneath moving limbs. Do not include head, hair, neighboring garments or decorative guides in these parts. Do not add or rename archive paths.\n\n` +
-        (valid.version === 3 || valid.version === 4
+        (valid.version === 3 || valid.version === 4 || valid.version === 5
           ? `This version ${valid.version} item explicitly uses colorModel source-relative-v1. At each declared source palette color, material pixels retain their complete authored RGB. Recoloring applies the difference between source and target shading transforms, preserving authored color variation continuously; fixed material zero never changes. Shoe fitting and ankle overlap are still geometric assembly steps. Older version 1/2 items keep their historical recoloring and are never upgraded implicitly.\n\n`
           : "") +
         ("actionForearms" in valid && valid.actionForearms
@@ -69,6 +69,9 @@ export async function exportWardrobeItem(
           : "") +
         (valid.version === 4
           ? `V4 run alternatives preserve their source PNGs and masks, with separate runLegs joints or runShoes ankle registration. They never replace the base anatomical chains/ankles. RunLegs are complete cloth-only legs, no embedded shoes. RunShoes are used throughout run and share rotation-aware opaque-sole placement with IK. Switching to an ordinary bottom/shoe removes only that group's run extension.\n\n`
+          : "") +
+        (valid.version === 5
+          ? `V5 footwear parents rigidly to the final posed shin during run, using its own sourceShin→ankle axis. Run ignores absolute shoePitch. Source axis length is registration only, not shoe scale; both points share the PNG canvas. A bounded native-pixel support solve keeps shoe and cloth on the same ankle. Other actions retain the normal shoe pair.\n\n`
           : "") +
         `Before importing a new garment, choose a distinct custom- identifier (at most 32 characters), name, and provenance in item.json. Preserve the actual creator/license and describe your edits. This template currently comes from: ${valid.provenance}\n`,
     ),

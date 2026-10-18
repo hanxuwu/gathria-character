@@ -424,6 +424,8 @@ export function assembleWardrobe(
     ) ?? WARDROBE_ASSETS.shoes.find((item) => item.id === recipe.shoes)!;
   const runLegs = "runLegs" in bottom ? bottom.runLegs : undefined;
   const runShoes = "runShoes" in shoes ? shoes.runShoes : undefined;
+  const followShoes =
+    "version" in shoes && shoes.version === 5 ? shoes.runShoes : undefined;
   const actionForearms =
     "actionForearms" in top ? top.actionForearms : undefined;
   const targets = {
@@ -498,7 +500,8 @@ export function assembleWardrobe(
   add(
     shoes.parts,
     ["near-shoe", "far-shoe", ...(runShoes ? RUN_SHOE_SLOTS : [])],
-    "version" in shoes && (shoes.version === 3 || shoes.version === 4),
+    "version" in shoes &&
+      (shoes.version === 3 || shoes.version === 4 || shoes.version === 5),
   );
   for (const slot of REQUIRED_SLOTS)
     if (!images[slot]) throw Error(`Wardrobe assembly is missing ${slot}.`);
@@ -520,29 +523,38 @@ export function assembleWardrobe(
   return {
     metadata: {
       format: "gathria-skin-pack",
-      ...(runLegs
+      ...(followShoes
         ? {
-            version: 3 as const,
-            runLegs: structuredClone(runLegs),
-            ...(runShoes ? { runShoes: structuredClone(runShoes) } : {}),
+            version: 4 as const,
+            runShoes: structuredClone(followShoes),
+            ...(runLegs ? { runLegs: structuredClone(runLegs) } : {}),
             ...(actionForearms
               ? { actionForearms: structuredClone(actionForearms) }
               : {}),
           }
-        : runShoes
+        : runLegs
           ? {
               version: 3 as const,
-              runShoes: structuredClone(runShoes),
+              runLegs: structuredClone(runLegs),
+              ...(runShoes ? { runShoes: structuredClone(runShoes) } : {}),
               ...(actionForearms
                 ? { actionForearms: structuredClone(actionForearms) }
                 : {}),
             }
-          : actionForearms
+          : runShoes
             ? {
-                version: 2 as const,
-                actionForearms: structuredClone(actionForearms),
+                version: 3 as const,
+                runShoes: structuredClone(runShoes),
+                ...(actionForearms
+                  ? { actionForearms: structuredClone(actionForearms) }
+                  : {}),
               }
-            : { version: 1 as const }),
+            : actionForearms
+              ? {
+                  version: 2 as const,
+                  actionForearms: structuredClone(actionForearms),
+                }
+              : { version: 1 as const }),
       id:
         recipe.version === 1
           ? `wardrobe-${recipe.identity}-${recipe.top}-${recipe.bottom}-${recipe.shoes}`
@@ -566,7 +578,7 @@ export function assembleWardrobe(
               .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
               .map(
                 (item) =>
-                  `\nCustom ${item.group} ${item.id} (${item.name}): ${item.provenance}${item.version === 3 ? "\nItem V3 source-relative-v1: authored material RGB is exact at its source palette; recoloring applies only the difference between source and target shading transforms. Geometric fitting and overlap still apply." : item.version === 4 ? "\nItem V4 source-relative-v1: run alternatives keep their source pixels, semantic masks and independent registration. Anatomical chains and base garment assembly are unchanged; run shoes share rotated opaque-sole placement with IK." : ""}`,
+                  `\nCustom ${item.group} ${item.id} (${item.name}): ${item.provenance}${item.version === 3 ? "\nItem V3 source-relative-v1: authored material RGB is exact at its source palette; recoloring applies only the difference between source and target shading transforms. Geometric fitting and overlap still apply." : item.version === 4 ? "\nItem V4 source-relative-v1: run alternatives keep their source pixels, semantic masks and independent registration. Anatomical chains and base garment assembly are unchanged; run shoes share rotated opaque-sole placement with IK." : item.version === 5 ? "\nItem V5 source-relative-v1: run shoe pixels remain exact; sourceShin→ankle registers the rigid shoe to the final posed shin. A bounded support solve shares one ankle with leg IK, ignores run shoePitch, and leaves other actions unchanged." : ""}`,
               )
               .join("")
           : ""

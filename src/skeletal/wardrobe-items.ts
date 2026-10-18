@@ -1,7 +1,11 @@
 import { Unzlib } from "fflate";
 import type { CustomWardrobeIdentity } from "./identity-types";
 import { validateActionForearms } from "./action-forearms";
-import { validateRunLegs, validateRunShoes } from "./run-attachments";
+import {
+  validateRunLegs,
+  validateRunShoes,
+  validateShinFollowRunShoes,
+} from "./run-attachments";
 import { WARDROBE_ASSETS } from "./wardrobe-assets.generated";
 import {
   applyWardrobe,
@@ -253,7 +257,7 @@ export function validateWardrobeItem(value: unknown): CustomWardrobeItem {
   const group = raw.group as WardrobeItemGroup;
   if (
     raw.format !== "gathria-wardrobe-item" ||
-    ![1, 2, 3, 4].includes(raw.version as number) ||
+    ![1, 2, 3, 4, 5].includes(raw.version as number) ||
     raw.rigId !== RIG_ID
   )
     throw Error("Unsupported wardrobe item format, version or rig family.");
@@ -262,24 +266,31 @@ export function validateWardrobeItem(value: unknown): CustomWardrobeItem {
       "Wardrobe item version 2 is reserved for tops with action forearms.",
     );
   if (
-    (raw.version === 3 || raw.version === 4) &&
+    (raw.version === 3 || raw.version === 4 || raw.version === 5) &&
     raw.colorModel !== "source-relative-v1"
   )
     throw Error(
-      "Wardrobe item version 3/4 requires colorModel source-relative-v1.",
+      "Wardrobe item version 3/4/5 requires colorModel source-relative-v1.",
     );
   if (raw.version === 4 && group === "top")
     throw Error(
       "Wardrobe item version 4 is reserved for run bottoms and shoes.",
     );
+  if (raw.version === 5 && group !== "shoes")
+    throw Error(
+      "Wardrobe item version 5 is reserved for shin-following shoes.",
+    );
+  const followShoes =
+    raw.version === 5 ? validateShinFollowRunShoes(raw.runShoes) : undefined;
   const runLegs =
     raw.version === 4 && group === "bottom"
       ? validateRunLegs(raw.runLegs)
       : undefined;
   const runShoes =
-    raw.version === 4 && group === "shoes"
+    followShoes ??
+    (raw.version === 4 && group === "shoes"
       ? validateRunShoes(raw.runShoes)
-      : undefined;
+      : undefined);
   const hasActionForearms =
     raw.version === 2 ||
     (raw.version === 3 &&
@@ -297,7 +308,9 @@ export function validateWardrobeItem(value: unknown): CustomWardrobeItem {
       "group",
       "parts",
       group === "shoes" ? "ankles" : "chains",
-      ...(raw.version === 3 || raw.version === 4 ? ["colorModel"] : []),
+      ...(raw.version === 3 || raw.version === 4 || raw.version === 5
+        ? ["colorModel"]
+        : []),
       ...(runLegs ? ["runLegs"] : []),
       ...(runShoes ? ["runShoes"] : []),
       ...(hasActionForearms ? ["actionForearms"] : []),
@@ -369,16 +382,25 @@ export function validateWardrobeItem(value: unknown): CustomWardrobeItem {
           "Shoe item needs a visible sole below its registered ankle.",
         );
     }
-    return runShoes
+    return followShoes
       ? {
           ...base,
-          version: 4,
+          version: 5,
           colorModel: "source-relative-v1",
           group,
           ankles,
-          runShoes,
+          runShoes: followShoes,
         }
-      : { ...base, group, ankles };
+      : runShoes
+        ? {
+            ...base,
+            version: 4,
+            colorModel: "source-relative-v1",
+            group,
+            ankles,
+            runShoes,
+          }
+        : { ...base, group, ankles };
   }
   const rawChains = object(raw.chains, "item.chains");
   if (group === "top") {

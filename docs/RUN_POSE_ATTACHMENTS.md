@@ -1,5 +1,9 @@
 # Registered running pose attachments
 
+For opt-in shoes that inherit the final shin rotation, see
+[Skin V4 / shoe item V5](RUN_SHOE_PARENTING.md). The V3 behavior described below
+is retained for historical projects, including its independent shoe pitch.
+
 Skin pack V3 adds optional, explicitly registered running alternatives. It
 keeps the original base parts and anatomical skeleton. The new parts supply
 artwork for poses that a standing drawing cannot bend into convincingly.
