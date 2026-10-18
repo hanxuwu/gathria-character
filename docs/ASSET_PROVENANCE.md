@@ -202,3 +202,28 @@ All lineup PNGs and animation previews in [wardrobe-items/](wardrobe-items/)
 come from the application's actual exported atlases. Imported user artwork
 retains its supplied provenance and rights; clothing import does not assign it
 a new license. See [the feature review](WARDROBE_ITEMS_REVIEW.md).
+
+
+## Theo complete-figure study
+
+Two development-time OpenAI image-generation calls on 2026-10-18 produced a
+complete standing/run-design board and supplementary hidden anatomy, expression
+heads and active forearms. The previous Theo/Rose source design and actual
+assembled image supplied references for the complete model; that model supplied
+the second call's reference. Untouched sources and exact prompts are retained in
+[`artwork/theo-pose-study`](../artwork/theo-pose-study/README.md).
+
+Offline preparation derives one standing-master scale from neck and sole
+landmarks, retains visible whole-character pixels, and assigns explicit part and
+material ownership. Helper artwork fills occluded regions and supplies complete
+expression heads; the generated extra arms/action hands are retained as sources
+but are not used in this candidate. The complete master supplies the actual
+visible arms and hands. The helper is not a replacement for the visible
+whole-character silhouette. The run drawings are design references, not actual
+exported animation frames. No runtime image-generation service is used.
+
+New clothing explicitly opts into item V3 `source-relative-v1` colors. This keeps
+authored color variation at source palette settings; V1/V2 clothing and historical
+projects retain their previous results. The actual application exports, matched
+comparisons and limitations are recorded in
+[the study review](THEO_POSE_STUDY_REVIEW.md).

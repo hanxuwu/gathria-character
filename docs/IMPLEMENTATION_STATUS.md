@@ -1,6 +1,27 @@
 # Implementation status
 
-**Current batch: Theo and Rose reference pair.** Starts from `cd89d61` on
+**Current batch: Theo whole-figure pose study.** Starts from `2471785` on
+unmerged draft PR #9, using `feat/theo-pose-study`. One complete standing model
+establishes fuller body/hand/suit proportions before splitting into the existing
+skeleton. Source `acec98b`, explicit source-color item V3 implementation
+`e653abe`, and registered artwork/project `9f9c385` are committed and pushed.
+Old items, projects, global motions and historical renderers remain unchanged.
+[Review](THEO_POSE_STUDY_REVIEW.md) · [Actual outputs and downloads](theo-pose-study/README.md) ·
+[V3 color contract](WARDROBE_ITEM_V3.md) · [Sources](../artwork/theo-pose-study/README.md).
+
+This batch passed **463 unit tests, nine relevant Chromium E2E tests, TypeScript
+and production build**. Prior Theo/Rose/Maple/Willow exports retain exact pixels
+and manifests. Preparation checks all 108 expression/action poses and preserves
+all fifteen registered source slot arrays at their source colors. The new
+project owns a twelve-key run and a four-key jump clearance adjustment; the
+same-art old-run comparator isolates the motion change. Small expression drawing
+drift, unequal half-cycle strides, deep knee compression, shoulder overlap gaps
+and misclassified forehead boundary pixels remain. Actual UI capture verifies
+six packs / 216 poses, 88 editor comparisons and ten closed-editor playback
+cases; 79 PNGs, ten GIFs and 21 ZIPs decode. Evidence is linked from the review;
+functional verification is separate from user visual acceptance.
+
+**Historical batch: Theo and Rose reference pair.** Starts from `cd89d61` on
 unmerged draft PR #8, using a separate `feat/reference-character-pair` branch.
 Three retained source-generation calls produce two coordinated identities and
 six reusable clothing items on the unchanged shared rig. Source commit `7c71e06`

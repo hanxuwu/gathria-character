@@ -42,6 +42,11 @@ navy suit and coral dress with two reusable identities, six garment items and
 three expressions each. [Actual previews and editable downloads](docs/reference-pair/README.md)
 exercise the same skeleton through idle, walk, run and jump.
 
+The [Theo complete-figure study](docs/THEO_POSE_STUDY_REVIEW.md) improves one
+whole suit character before deriving reusable parts. It adds explicitly versioned
+[source-relative clothing colors](docs/WARDROBE_ITEM_V3.md) and a project-owned
+run trial while preserving the previous pair.
+
 ```sh
 npm run typecheck
 npm test
