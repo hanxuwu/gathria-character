@@ -292,7 +292,8 @@ describe("portable registered wardrobe items", () => {
       (item) => (item.chains.nearArm[1] = item.chains.nearArm[0]),
       /segment/,
     );
-    check((item) => (item.version = 3), /Unsupported/);
+    check((item) => (item.version = 3), /colorModel/);
+    check((item) => (item.version = 4), /Unsupported/);
     check((item) => (item.id = "denim-jacket"), /custom-/);
     check((item) => (item.externalUrl = "https://example.invalid"), /exactly/);
   });

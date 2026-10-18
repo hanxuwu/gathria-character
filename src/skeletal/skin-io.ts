@@ -374,7 +374,8 @@ function validateMotions(value: unknown): MotionLibrary {
     source = object(raw.clips, "motions.clips");
   allowedKeys(raw, ["format", "version", "id", "clips"], "motions");
   exact(raw.format, "gathria-motion-library", "motions.format");
-  exact(raw.version, 1, "motions.version");
+  if (raw.version !== 1 && raw.version !== 2)
+    fail("motions.version must be 1 or 2.");
   allowedKeys(source, ["idle", "walk", "run", "jump"], "motions.clips");
   const names = [
     "idle",
@@ -405,6 +406,7 @@ function validateMotions(value: unknown): MotionLibrary {
             "lean",
             "armSwing",
             ...(name === "jump" ? ["rootY", "armBend"] : []),
+            ...(raw.version === 2 && name === "run" ? ["torsoLean"] : []),
           ],
           `${name}.key`,
         );
@@ -422,6 +424,9 @@ function validateMotions(value: unknown): MotionLibrary {
           ...(k.armBend === undefined
             ? {}
             : { armBend: finite(k.armBend, "armBend", -1.5, 1.5) }),
+          ...(k.torsoLean === undefined
+            ? {}
+            : { torsoLean: finite(k.torsoLean, "torsoLean", -0.12, 0.12) }),
         };
       });
       if (
@@ -446,7 +451,7 @@ function validateMotions(value: unknown): MotionLibrary {
   ) as MotionLibrary["clips"];
   return {
     format: "gathria-motion-library",
-    version: 1,
+    version: raw.version,
     id: text(raw.id, "motions.id"),
     clips,
   };

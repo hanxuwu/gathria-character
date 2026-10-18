@@ -1,0 +1,3009 @@
+{
+  "sources": {
+    "master": {
+      "path": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "sha256": "d860623760470e338e7e913cf1c5aebac622e45c54b503306f65a26ed1919b26"
+    },
+    "helper": {
+      "path": "artwork/theo-pose-study/source/hidden-parts-expressions.png",
+      "sha256": "ae5c7cce37de97bd4d1f576d00170292de59e38b5d1bd19ee0e10e9ca7e65e8f"
+    },
+    "baseline": {
+      "path": "artwork/reference-pair/prepared/theo.rig.zip",
+      "sha256": "a1b88af0efb0e11b9ae70472f30e249d0fb5f4a0973ffbb4831d3827eea659ec"
+    }
+  },
+  "records": [
+    {
+      "id": "standing-master",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": null,
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 20903
+    },
+    {
+      "id": "head",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          0,
+          0
+        ],
+        [
+          512,
+          0
+        ],
+        [
+          512,
+          219
+        ],
+        [
+          336,
+          219
+        ],
+        [
+          328,
+          229
+        ],
+        [
+          313,
+          238
+        ],
+        [
+          293,
+          244
+        ],
+        [
+          278,
+          246
+        ],
+        [
+          275,
+          251
+        ],
+        [
+          249,
+          251
+        ],
+        [
+          231,
+          239
+        ],
+        [
+          207,
+          239
+        ],
+        [
+          200,
+          233
+        ],
+        [
+          0,
+          233
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 10721
+    },
+    {
+      "id": "torso",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          216,
+          238
+        ],
+        [
+          232,
+          233
+        ],
+        [
+          260,
+          246
+        ],
+        [
+          286,
+          244
+        ],
+        [
+          310,
+          245
+        ],
+        [
+          322,
+          256
+        ],
+        [
+          321,
+          285
+        ],
+        [
+          325,
+          331
+        ],
+        [
+          328,
+          357
+        ],
+        [
+          320,
+          378
+        ],
+        [
+          296,
+          375
+        ],
+        [
+          273,
+          353
+        ],
+        [
+          257,
+          357
+        ],
+        [
+          244,
+          372
+        ],
+        [
+          215,
+          384
+        ],
+        [
+          188,
+          380
+        ],
+        [
+          190,
+          349
+        ],
+        [
+          201,
+          314
+        ],
+        [
+          215,
+          287
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 3644
+    },
+    {
+      "id": "hips",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          206,
+          349
+        ],
+        [
+          313,
+          349
+        ],
+        [
+          315,
+          390
+        ],
+        [
+          258,
+          401
+        ],
+        [
+          207,
+          391
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 1171
+    },
+    {
+      "id": "nearArm",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          196,
+          240
+        ],
+        [
+          218,
+          246
+        ],
+        [
+          215,
+          283
+        ],
+        [
+          197,
+          326
+        ],
+        [
+          198,
+          353
+        ],
+        [
+          204,
+          373
+        ],
+        [
+          194,
+          390
+        ],
+        [
+          153,
+          392
+        ],
+        [
+          142,
+          377
+        ],
+        [
+          140,
+          349
+        ],
+        [
+          147,
+          311
+        ],
+        [
+          157,
+          280
+        ],
+        [
+          170,
+          260
+        ],
+        [
+          179,
+          250
+        ],
+        [
+          186,
+          245
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 1740
+    },
+    {
+      "id": "farArm",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          311,
+          258
+        ],
+        [
+          325,
+          264
+        ],
+        [
+          340,
+          300
+        ],
+        [
+          357,
+          343
+        ],
+        [
+          356,
+          351
+        ],
+        [
+          367,
+          366
+        ],
+        [
+          362,
+          384
+        ],
+        [
+          349,
+          392
+        ],
+        [
+          329,
+          389
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          324,
+          354
+        ],
+        [
+          318,
+          328
+        ],
+        [
+          309,
+          297
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 930
+    },
+    {
+      "id": "nearLeg",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          206,
+          366
+        ],
+        [
+          262,
+          366
+        ],
+        [
+          259,
+          405
+        ],
+        [
+          242,
+          431
+        ],
+        [
+          235,
+          463
+        ],
+        [
+          218,
+          472
+        ],
+        [
+          169,
+          467
+        ],
+        [
+          171,
+          444
+        ],
+        [
+          184,
+          403
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 1623
+    },
+    {
+      "id": "farLeg",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          260,
+          365
+        ],
+        [
+          316,
+          367
+        ],
+        [
+          321,
+          415
+        ],
+        [
+          323,
+          450
+        ],
+        [
+          326,
+          465
+        ],
+        [
+          252,
+          467
+        ],
+        [
+          254,
+          423
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 1492
+    },
+    {
+      "id": "near-shoe",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          166,
+          463
+        ],
+        [
+          175,
+          456
+        ],
+        [
+          191,
+          452
+        ],
+        [
+          211,
+          454
+        ],
+        [
+          226,
+          463
+        ],
+        [
+          236,
+          478
+        ],
+        [
+          234,
+          491
+        ],
+        [
+          223,
+          497
+        ],
+        [
+          158,
+          497
+        ],
+        [
+          158,
+          476
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 682
+    },
+    {
+      "id": "far-shoe",
+      "source": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "box": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "polygon": [
+        [
+          254,
+          461
+        ],
+        [
+          274,
+          456
+        ],
+        [
+          291,
+          449
+        ],
+        [
+          304,
+          454
+        ],
+        [
+          321,
+          456
+        ],
+        [
+          343,
+          466
+        ],
+        [
+          351,
+          475
+        ],
+        [
+          350,
+          491
+        ],
+        [
+          251,
+          496
+        ],
+        [
+          251,
+          475
+        ]
+      ],
+      "sourceNeck": [
+        260,
+        246
+      ],
+      "scale": 0.484,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 813
+    },
+    {
+      "id": "hidden-torso",
+      "source": "artwork/theo-pose-study/source/hidden-parts-expressions.png",
+      "box": [
+        50,
+        120,
+        450,
+        465
+      ],
+      "polygon": null,
+      "sourceNeck": [
+        251.91549295774647,
+        144.61032863849766
+      ],
+      "scale": 0.213,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 4037
+    },
+    {
+      "id": "hidden-torso-ownership",
+      "targetPolygon": [
+        [
+          68,
+          127
+        ],
+        [
+          83,
+          122
+        ],
+        [
+          102,
+          123
+        ],
+        [
+          127,
+          128
+        ],
+        [
+          133,
+          170
+        ],
+        [
+          124,
+          182
+        ],
+        [
+          71,
+          181
+        ],
+        [
+          65,
+          166
+        ]
+      ],
+      "torsoHiddenPixels": 186,
+      "misownedHandPixels": 93,
+      "rule": "Helper contributes only originally occluded torso fill. Visible master pixels retained. Skin hand fringe excluded from coat."
+    },
+    {
+      "id": "hidden-pelvis",
+      "source": "artwork/theo-pose-study/source/hidden-parts-expressions.png",
+      "box": [
+        1150,
+        270,
+        1480,
+        475
+      ],
+      "polygon": null,
+      "sourceNeck": [
+        1320,
+        -35
+      ],
+      "scale": 0.16,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 1179
+    },
+    {
+      "id": "hidden-pelvis-ownership",
+      "bounds": [
+        76,
+        174,
+        121,
+        191
+      ],
+      "pelvisHiddenPixels": 22,
+      "rule": "Only compact occluded bridge; no generated static shorts silhouette retained."
+    },
+    {
+      "id": "near-thigh-coat-ownership",
+      "duplicateCoatPixels": 145,
+      "rule": "Visible coat belongs only to torso. Replace its occluded duplicate in the upper trouser leg with original hidden pelvis cloth or transparency; never swing a second coat hem with the knee."
+    },
+    {
+      "id": "far-thigh-coat-ownership",
+      "duplicateCoatPixels": 61,
+      "rule": "Visible coat belongs only to torso. Replace its occluded duplicate in the upper trouser leg with original hidden pelvis cloth or transparency; never swing a second coat hem with the knee."
+    },
+    {
+      "id": "head-neutral",
+      "source": "artwork/theo-pose-study/source/hidden-parts-expressions.png",
+      "box": [
+        0,
+        520,
+        440,
+        950
+      ],
+      "polygon": null,
+      "sourceNeck": [
+        232,
+        916
+      ],
+      "scale": 0.318,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 9990
+    },
+    {
+      "id": "head-joyful",
+      "source": "artwork/theo-pose-study/source/hidden-parts-expressions.png",
+      "box": [
+        440,
+        520,
+        850,
+        950
+      ],
+      "polygon": null,
+      "sourceNeck": [
+        639,
+        916
+      ],
+      "scale": 0.318,
+      "targetNeck": [
+        96,
+        118
+      ],
+      "threshold": 192,
+      "pixels": 9970
+    },
+    {
+      "id": "far-shoe-ground-registration",
+      "translation": [
+        0,
+        2
+      ],
+      "sole": 239,
+      "rule": "Two-pixel vertical registration only; no rescaling or repainting."
+    }
+  ],
+  "checks": [
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 1,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 2,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 3,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 1,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 2,
+      "bounds": [
+        32,
+        1,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 3,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 4,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 5,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 6,
+      "bounds": [
+        32,
+        1,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 7,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 0,
+      "bounds": [
+        33,
+        9,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 1,
+      "bounds": [
+        37,
+        11,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 2,
+      "bounds": [
+        44,
+        9,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 3,
+      "bounds": [
+        43,
+        6,
+        177,
+        236
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 4,
+      "bounds": [
+        36,
+        4,
+        177,
+        230
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 5,
+      "bounds": [
+        35,
+        7,
+        177,
+        232
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 6,
+      "bounds": [
+        38,
+        9,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 7,
+      "bounds": [
+        49,
+        11,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 8,
+      "bounds": [
+        49,
+        9,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 9,
+      "bounds": [
+        44,
+        6,
+        177,
+        238
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 10,
+      "bounds": [
+        37,
+        4,
+        177,
+        233
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 11,
+      "bounds": [
+        34,
+        7,
+        177,
+        232
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 1,
+      "bounds": [
+        32,
+        7,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 2,
+      "bounds": [
+        34,
+        10,
+        163,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 3,
+      "bounds": [
+        32,
+        3,
+        173,
+        239
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 4,
+      "bounds": [
+        32,
+        1,
+        179,
+        230
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 5,
+      "bounds": [
+        32,
+        1,
+        181,
+        228
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 6,
+      "bounds": [
+        32,
+        1,
+        179,
+        228
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 7,
+      "bounds": [
+        32,
+        1,
+        175,
+        230
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 8,
+      "bounds": [
+        32,
+        4,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 9,
+      "bounds": [
+        32,
+        9,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 10,
+      "bounds": [
+        32,
+        6,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 11,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 0,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 1,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 2,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 3,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 0,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 1,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 2,
+      "bounds": [
+        25,
+        3,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 3,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 4,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 5,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 6,
+      "bounds": [
+        25,
+        3,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 7,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 0,
+      "bounds": [
+        33,
+        10,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 1,
+      "bounds": [
+        37,
+        12,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 2,
+      "bounds": [
+        40,
+        10,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 3,
+      "bounds": [
+        40,
+        7,
+        177,
+        236
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 4,
+      "bounds": [
+        36,
+        5,
+        177,
+        230
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 5,
+      "bounds": [
+        35,
+        8,
+        177,
+        232
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 6,
+      "bounds": [
+        38,
+        10,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 7,
+      "bounds": [
+        40,
+        12,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 8,
+      "bounds": [
+        40,
+        10,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 9,
+      "bounds": [
+        40,
+        7,
+        177,
+        238
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 10,
+      "bounds": [
+        37,
+        5,
+        177,
+        233
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 11,
+      "bounds": [
+        34,
+        8,
+        177,
+        232
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 0,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 1,
+      "bounds": [
+        25,
+        9,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 2,
+      "bounds": [
+        28,
+        12,
+        163,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 3,
+      "bounds": [
+        25,
+        5,
+        173,
+        239
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 4,
+      "bounds": [
+        25,
+        3,
+        179,
+        230
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 5,
+      "bounds": [
+        25,
+        3,
+        181,
+        228
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 6,
+      "bounds": [
+        25,
+        3,
+        179,
+        228
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 7,
+      "bounds": [
+        25,
+        3,
+        175,
+        230
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 8,
+      "bounds": [
+        25,
+        6,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 9,
+      "bounds": [
+        25,
+        11,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 10,
+      "bounds": [
+        25,
+        8,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 11,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 0,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 1,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 2,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 3,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 1,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 2,
+      "bounds": [
+        33,
+        1,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 3,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 4,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 5,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 6,
+      "bounds": [
+        33,
+        1,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 7,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 0,
+      "bounds": [
+        33,
+        9,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 1,
+      "bounds": [
+        37,
+        11,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 2,
+      "bounds": [
+        44,
+        9,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 3,
+      "bounds": [
+        43,
+        6,
+        178,
+        236
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 4,
+      "bounds": [
+        36,
+        4,
+        178,
+        230
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 5,
+      "bounds": [
+        35,
+        7,
+        178,
+        232
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 6,
+      "bounds": [
+        38,
+        9,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 7,
+      "bounds": [
+        50,
+        11,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 8,
+      "bounds": [
+        50,
+        9,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 9,
+      "bounds": [
+        44,
+        6,
+        178,
+        238
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 10,
+      "bounds": [
+        37,
+        4,
+        178,
+        233
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 11,
+      "bounds": [
+        34,
+        7,
+        178,
+        232
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 0,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 1,
+      "bounds": [
+        33,
+        7,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 2,
+      "bounds": [
+        36,
+        10,
+        164,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 3,
+      "bounds": [
+        33,
+        3,
+        171,
+        239
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 4,
+      "bounds": [
+        33,
+        1,
+        177,
+        230
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 5,
+      "bounds": [
+        33,
+        1,
+        179,
+        228
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 6,
+      "bounds": [
+        33,
+        1,
+        178,
+        228
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 7,
+      "bounds": [
+        33,
+        1,
+        173,
+        230
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 8,
+      "bounds": [
+        33,
+        4,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 9,
+      "bounds": [
+        33,
+        9,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 10,
+      "bounds": [
+        33,
+        6,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 11,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "slot": "torso",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "hips",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "near-shoe",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "far-shoe",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "near-upper-arm",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "near-forearm",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "near-thigh",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "near-shin",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "far-upper-arm",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "far-forearm",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "far-thigh",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "far-shin",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "head-gentle",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "head-neutral",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "slot": "head-joyful",
+      "sourceChannelDifferences": 0
+    },
+    {
+      "hipAnnotationRestRgbaDifferences": 0,
+      "priorHipPoints": [
+        [
+          78,
+          182
+        ],
+        [
+          111,
+          182
+        ]
+      ],
+      "newHipPoints": [
+        [
+          86,
+          182
+        ],
+        [
+          103,
+          182
+        ]
+      ]
+    },
+    {
+      "expression": "neutral",
+      "skinMaskTop": 61,
+      "skinPixels": 1851
+    },
+    {
+      "expression": "gentle",
+      "skinMaskTop": 55,
+      "skinPixels": 1969
+    },
+    {
+      "expression": "joyful",
+      "skinMaskTop": 61,
+      "skinPixels": 2081
+    }
+  ],
+  "faceRegions": {
+    "gentle": [
+      [
+        107,
+        54
+      ],
+      [
+        122,
+        59
+      ],
+      [
+        130,
+        72
+      ],
+      [
+        136,
+        81
+      ],
+      [
+        136,
+        101
+      ],
+      [
+        126,
+        110
+      ],
+      [
+        114,
+        115
+      ],
+      [
+        101,
+        116
+      ],
+      [
+        102,
+        121
+      ],
+      [
+        91,
+        120
+      ],
+      [
+        83,
+        114
+      ],
+      [
+        77,
+        113
+      ],
+      [
+        74,
+        108
+      ],
+      [
+        70,
+        108
+      ],
+      [
+        61,
+        106
+      ],
+      [
+        56,
+        99
+      ],
+      [
+        56,
+        91
+      ],
+      [
+        60,
+        85
+      ],
+      [
+        67,
+        85
+      ],
+      [
+        73,
+        90
+      ],
+      [
+        77,
+        95
+      ],
+      [
+        78,
+        82
+      ],
+      [
+        84,
+        75
+      ],
+      [
+        96,
+        70
+      ]
+    ],
+    "neutral": [
+      [
+        119.214,
+        56.944
+      ],
+      [
+        129.708,
+        63.304
+      ],
+      [
+        133.524,
+        74.434
+      ],
+      [
+        136.386,
+        86.518
+      ],
+      [
+        136.06799999999998,
+        97.648
+      ],
+      [
+        131.298,
+        104.962
+      ],
+      [
+        120.804,
+        108.46
+      ],
+      [
+        108.72,
+        111.64
+      ],
+      [
+        106.176,
+        120.544
+      ],
+      [
+        96,
+        120.544
+      ],
+      [
+        83.28,
+        114.82
+      ],
+      [
+        80.418,
+        109.732
+      ],
+      [
+        81.372,
+        104.326
+      ],
+      [
+        74.05799999999999,
+        105.28
+      ],
+      [
+        65.78999999999999,
+        102.1
+      ],
+      [
+        60.384,
+        95.422
+      ],
+      [
+        60.702,
+        87.154
+      ],
+      [
+        65.154,
+        80.794
+      ],
+      [
+        70.878,
+        80.476
+      ],
+      [
+        77.238,
+        85.24600000000001
+      ],
+      [
+        81.69,
+        91.288
+      ],
+      [
+        82.326,
+        81.43
+      ],
+      [
+        88.05,
+        75.70599999999999
+      ],
+      [
+        95.682,
+        71.572
+      ],
+      [
+        106.494,
+        67.12
+      ]
+    ],
+    "joyful": [
+      [
+        119.214,
+        56.944
+      ],
+      [
+        129.708,
+        63.304
+      ],
+      [
+        133.524,
+        74.434
+      ],
+      [
+        136.386,
+        86.518
+      ],
+      [
+        136.06799999999998,
+        97.648
+      ],
+      [
+        131.298,
+        104.962
+      ],
+      [
+        120.804,
+        108.46
+      ],
+      [
+        108.72,
+        111.64
+      ],
+      [
+        106.176,
+        120.544
+      ],
+      [
+        96,
+        120.544
+      ],
+      [
+        83.28,
+        114.82
+      ],
+      [
+        80.418,
+        109.732
+      ],
+      [
+        81.372,
+        104.326
+      ],
+      [
+        74.05799999999999,
+        105.28
+      ],
+      [
+        65.78999999999999,
+        102.1
+      ],
+      [
+        60.384,
+        95.422
+      ],
+      [
+        60.702,
+        87.154
+      ],
+      [
+        65.154,
+        80.794
+      ],
+      [
+        70.878,
+        80.476
+      ],
+      [
+        77.238,
+        85.24600000000001
+      ],
+      [
+        81.69,
+        91.288
+      ],
+      [
+        82.326,
+        81.43
+      ],
+      [
+        88.05,
+        75.70599999999999
+      ],
+      [
+        95.682,
+        71.572
+      ],
+      [
+        106.494,
+        67.12
+      ]
+    ]
+  },
+  "bindings": {
+    "nearArm": [
+      [
+        62,
+        129
+      ],
+      [
+        53,
+        153
+      ],
+      [
+        54,
+        175
+      ]
+    ],
+    "farArm": [
+      [
+        123,
+        129
+      ],
+      [
+        132,
+        152
+      ],
+      [
+        135,
+        176
+      ]
+    ],
+    "nearLeg": [
+      [
+        86,
+        182
+      ],
+      [
+        71,
+        201
+      ],
+      [
+        66,
+        222
+      ]
+    ],
+    "farLeg": [
+      [
+        103,
+        182
+      ],
+      [
+        110,
+        201
+      ],
+      [
+        111,
+        222
+      ]
+    ]
+  },
+  "motionStudy": {
+    "format": "gathria-motion-library",
+    "version": 1,
+    "id": "theo-master-study-basic-actions-1",
+    "clips": {
+      "idle": {
+        "fps": 4,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 1
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -1
+          }
+        ],
+        "sequence": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          0,
+          0
+        ]
+      },
+      "walk": {
+        "fps": 10,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -8
+          },
+          {
+            "footX": 7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": -7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": -12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 8
+          },
+          {
+            "footX": -8,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": 0,
+            "footLift": 9,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 9,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "run": {
+        "fps": 18,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 23,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 5,
+            "armAngle": -1.1,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": 8,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 7,
+            "armAngle": -0.8,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": -9,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 5,
+            "armAngle": -0.45,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": -20,
+            "footLift": 6,
+            "shoePitch": 0.18,
+            "bodyBob": 2,
+            "armAngle": -0.1,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": -26,
+            "footLift": 15,
+            "shoePitch": 0.4,
+            "bodyBob": 0,
+            "armAngle": 0.25,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": -26,
+            "footLift": 24,
+            "shoePitch": 0.48,
+            "bodyBob": 3,
+            "armAngle": 0.45,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": -24,
+            "footLift": 28,
+            "shoePitch": 0.38,
+            "bodyBob": 5,
+            "armAngle": 0.55,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": -10,
+            "footLift": 14,
+            "shoePitch": 0.2,
+            "bodyBob": 7,
+            "armAngle": 0.25,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": 6,
+            "footLift": 14,
+            "shoePitch": 0.05,
+            "bodyBob": 5,
+            "armAngle": -0.1,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": 20,
+            "footLift": 10,
+            "shoePitch": -0.1,
+            "bodyBob": 2,
+            "armAngle": -0.45,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": 26,
+            "footLift": 11,
+            "shoePitch": -0.08,
+            "bodyBob": 0,
+            "armAngle": -0.8,
+            "lean": 0.14,
+            "armSwing": 0
+          },
+          {
+            "footX": 26,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 3,
+            "armAngle": -1,
+            "lean": 0.14,
+            "armSwing": 0
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "jump": {
+        "fps": 15,
+        "loop": false,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 4,
+            "armAngle": 0.12,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.12,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 7,
+            "armAngle": 0.24,
+            "lean": 0.03,
+            "armSwing": 0,
+            "armBend": -0.2,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.35,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -1,
+            "armBend": -0.55
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.55,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -2,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.65,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -2,
+            "armBend": -0.75
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.58,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -2,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.45,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -2,
+            "armBend": -0.45
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.18,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.15,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 6,
+            "armAngle": 0.08,
+            "lean": 0,
+            "armSwing": 0,
+            "armBend": -0.1,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 3,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    }
+  },
+  "sourceRegistration": {
+    "scale": 0.484,
+    "neck": [
+      260,
+      246
+    ],
+    "targetNeck": [
+      96,
+      118
+    ],
+    "sole": [
+      67,
+      239
+    ],
+    "masterBounds": [
+      113,
+      11,
+      390,
+      497
+    ]
+  },
+  "files": {
+    "diagnostics/master-native.png": "261460b75b704af913358360ca49f6016728927e6b051e85ca1fc91beb6b46f3",
+    "diagnostics/master-2x.png": "d841d464c00197946e3c27dc412c288b273a212949e7b694471ca0d26890a018",
+    "theo-study-top.wardrobe.zip": "8707e985ed726d5ddac8b1ed3fd3148fe876fd3fd143ddf63224ed1e703b01e5",
+    "theo-study-bottom.wardrobe.zip": "21f7d3bf738e7a73b7034dc5400b6d89c3dd569db98bbe30c0a70fc9e799a7ce",
+    "theo-study-shoes.wardrobe.zip": "3ed822474bdcd0de077adbebc5d536981e5369fcbb7c53413944fe1000ff0938",
+    "theo-study.identity.zip": "77c22d3dbc32709a3b6085ff66366e13cbf7380d8adfc28ee694e780cce592e1",
+    "theo-study-old-run.rig.zip": "2c21b78340eeaf1010d8d1e37cac7ec036901fa3747c845f6f7ff95218e8ebc9",
+    "theo-study.rig.zip": "e6910c065b46e8238975c0d5c7a0ffc476667c1c84ab46ebf5b0e4a408ab9e04",
+    "diagnostics/old-run/run-0.png": "45f28da7f5b78870a1bae8be9c14c62ef09f979f922d2fa073689eee2d27720d",
+    "diagnostics/old-run/run-1.png": "be9407bd297e1d425619111fe62ea8c641df3e59389c555fc857eaacc24a94f6",
+    "diagnostics/old-run/run-2.png": "8745d1c746f8f8538afe22c565daf5126f41a45c0aa43310e7e32a8193566385",
+    "diagnostics/old-run/run-3.png": "fe4f0cac22664626dbc47e9f8e9d514ba7283a3c9bb7afd842c9b3b1d5335cd4",
+    "diagnostics/old-run/run-4.png": "0b541d56f100b27ef31c0464b770ae2373cfdae34f95f482053f3f565a297789",
+    "diagnostics/old-run/run-5.png": "b9aace1fd83f27b3c0190f5afe1e79f65a977446f4925c5693224e642f3bade0",
+    "diagnostics/old-run/run-6.png": "073f3bdb087ed3a2d87885f09b3a79b0a88cad8add73137e91e5cb2f5abb5a84",
+    "diagnostics/old-run/run-7.png": "c11987763dfe3ff8d041e17faec909a675ec66d977d6210d5a93ad031143916c",
+    "diagnostics/old-run/run-8.png": "8c228b4618728628c4137471d09bb98511fff0e85fa3254c968a511fe1197c14",
+    "diagnostics/old-run/run-9.png": "365cbfb545c7ab37a763e9c25d5055b010aea2753bc5a7b1b45665e63d22a4a5",
+    "diagnostics/old-run/run-10.png": "eaa8ff8a0a7b89835ff215701f2ff33838c3a56350301faaa5b13dee873c8b9f",
+    "diagnostics/old-run/run-11.png": "994d09b96cba1afac36ee32c7ac2cc5128dfcd76bdd289c9e08031bfbba047d4",
+    "theo-study/slots/torso.png": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3",
+    "theo-study/masks/torso.png": "20fbeddb01c65bae171a6d7f64ecde9894408afbf9678e86d99d13766ed37ebd",
+    "theo-study/slots/hips.png": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91",
+    "theo-study/masks/hips.png": "30fd351c0282ca38c0de1ed9c9bc60fad312e68a553e8c171e70d3b09863a0a0",
+    "theo-study/slots/near-shoe.png": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223",
+    "theo-study/masks/near-shoe.png": "5c49e3d943bd101d581d3b1d5af9bb6495a92dddf7a2d82c872fdb78e7e20966",
+    "theo-study/slots/far-shoe.png": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9",
+    "theo-study/masks/far-shoe.png": "8d9601440a74302793a2a997464a03f9fa8221d493a8ccb1c9de56226af7d854",
+    "theo-study/slots/near-upper-arm.png": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d",
+    "theo-study/masks/near-upper-arm.png": "afc7a7ac99c63fa180e0d02aeb248b52830d9f393502ea52555ed9217cf5cb60",
+    "theo-study/slots/near-forearm.png": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515",
+    "theo-study/masks/near-forearm.png": "3a7b43a919638c048257f2af1f273320dba460498a1fa70d7c31a1d6912c5a56",
+    "theo-study/slots/near-thigh.png": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10",
+    "theo-study/masks/near-thigh.png": "30381a27545651bc4097e80b1ae007315e753ba5a093fd3fe208c8dcee732cda",
+    "theo-study/slots/near-shin.png": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29",
+    "theo-study/masks/near-shin.png": "28b0d7f5b42621008e4b0457a680bbae37de2a375e31cf1f547260ed922a19e6",
+    "theo-study/slots/far-upper-arm.png": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992",
+    "theo-study/masks/far-upper-arm.png": "31a40cd5dcaed01ba4a030d4d22bb78f8733713b700259b56a7bdcb3a82a11bd",
+    "theo-study/slots/far-forearm.png": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3",
+    "theo-study/masks/far-forearm.png": "b1b36eacca9db1d82fa3026e2bb7cc316353a3a67b1412556e53023e487ee7d2",
+    "theo-study/slots/far-thigh.png": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704",
+    "theo-study/masks/far-thigh.png": "3979f7b69ec75b237107fc7d896572b3ee0820e29cf4067f8b94e618a33e59fd",
+    "theo-study/slots/far-shin.png": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121",
+    "theo-study/masks/far-shin.png": "5666b36e1bccf7ad830c95c36ecc1489a6aeaaa62c83e9287207819796b00bf2",
+    "theo-study/slots/head-gentle.png": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa",
+    "theo-study/masks/head-gentle.png": "3586be93ddd2a94b00dfc965d1a743cf021ed7355a0159ace7643aa926e768c9",
+    "theo-study/slots/head-neutral.png": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708",
+    "theo-study/masks/head-neutral.png": "390aa9846be71e01df9dc7d36755917eb7ecdd1a0b91ce0d75d6a8717f5b761a",
+    "theo-study/slots/head-joyful.png": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824",
+    "theo-study/masks/head-joyful.png": "d128399cf4151b1f817953954cc77b8443992749d5435066ec9b492bcf9f9fb2",
+    "diagnostics/assembled/idle-0.png": "de556a690caba1eb212d1375b88d9c7d6284675760d8fdcab6656e545dc45029",
+    "diagnostics/assembled/idle-1.png": "f56b2e1f4e9c89efa6bbb6f86e18aee56bdc22f3a35df4fadf87b8a6dcd81013",
+    "diagnostics/assembled/idle-2.png": "ee807ca301cb61bc6f0242c9d86d98193db24c0a0c5ba2069fcd105db4c08a70",
+    "diagnostics/assembled/idle-3.png": "36d167df663ddc56db6ebf1d7ce512c0509e6d0b29170423615b8166d9c8b23d",
+    "diagnostics/assembled/walk-0.png": "17ba4b14e2effdcfe46f18a1cef288fb6834607b1f9f9a63013f5f50c0090400",
+    "diagnostics/assembled/walk-1.png": "1fce3e6be165f80a759bca483e9aaa8fbdf9a50614a59950e2546f9dbe51df7a",
+    "diagnostics/assembled/walk-2.png": "50a8f3faf3649e21ea89f9102b10c2a177001970f1ed788a90328a18dee6b990",
+    "diagnostics/assembled/walk-3.png": "064603329573c6ec9b1bc6f2dea9285ed91309e8cb1c87c5136a9ae34c8dee1b",
+    "diagnostics/assembled/walk-4.png": "4be810d8600db0129ec4b43126494ad625cb973411204c6ad27ca1e07b5ac308",
+    "diagnostics/assembled/walk-5.png": "b15f723ef5d515ed4e51f83fbfed37055d5f4e2ce3542815d1d650d48b7b7ad7",
+    "diagnostics/assembled/walk-6.png": "3f5c7b4f032faa6f432ba825ea2e95e20819f5ce4997b6c9a390122013b702b6",
+    "diagnostics/assembled/walk-7.png": "0e981d730dd023559b89a462633a09dec0c6e5b76651fe50eb1c53085fe30cec",
+    "diagnostics/assembled/run-0.png": "058342c45d3cbf65a343800ca522fcd000f14f264cf0ba5cd62357e21de297f6",
+    "diagnostics/assembled/run-1.png": "a26c961388e0e60820b08a838a8b7f45ebcf1c3889e8dc34927640e3e86dd13e",
+    "diagnostics/assembled/run-2.png": "2810e15b06987dc566b10f56155d3d78b9527b3a4d29a8bef3cf8e01764811ec",
+    "diagnostics/assembled/run-3.png": "979233d7c1ca291404c0f7a03f6e582411b5038042096211d8f22f5d6a0c110e",
+    "diagnostics/assembled/run-4.png": "d3c50efa9293e35464b62d22780c2185c00bb276178619eb740fb5c601e14ad4",
+    "diagnostics/assembled/run-5.png": "6c166d1405406536aef866e436ffe03013072614fad894ba93721d3a888d6047",
+    "diagnostics/assembled/run-6.png": "167084ce2deb63dc655ed444693440a193ef5c4cc233ee750419749aa34dc163",
+    "diagnostics/assembled/run-7.png": "3f192448423feb194593df6f42fbdb7f5cef0feabb73d85324d95f775536a5a4",
+    "diagnostics/assembled/run-8.png": "611c01b2d51d9f3fa3a1f0292440881c6f3154d495c458fa5f4fbd9767036ed6",
+    "diagnostics/assembled/run-9.png": "f5df79b00b31b23f703b0daa24236b6a87baf6b8f774d3e4189017da6cf3d32a",
+    "diagnostics/assembled/run-10.png": "110e1f1f58e2e95f1dd7b89fa91dc28c54338f55d1f3844053b651fa74b37931",
+    "diagnostics/assembled/run-11.png": "26ce46a1ef72002f252380553c49b81caf9278ec27cef585055604325949f8e7",
+    "diagnostics/assembled/jump-0.png": "de556a690caba1eb212d1375b88d9c7d6284675760d8fdcab6656e545dc45029",
+    "diagnostics/assembled/jump-1.png": "0468cf4a533569668025d5b6506b17e4110a99d42f3c49b2c35dad26f871cb64",
+    "diagnostics/assembled/jump-2.png": "f675755b2c836b953b77a71cfc3cf5fcafe922410b24d3a9ff4398621ab5baf7",
+    "diagnostics/assembled/jump-3.png": "c7d4699c4fae92622369c9cb27bbd19b544e6e8e9d78aa16cc305c43a24fabc8",
+    "diagnostics/assembled/jump-4.png": "6d1bc67c3ca4cbeb9a3269f4908673a216ef017127f079c3745d6a8a4e342ecb",
+    "diagnostics/assembled/jump-5.png": "aaed4555b561ffdeb028bbf9652cc36826f8937539f02310302f9a47339ef9c6",
+    "diagnostics/assembled/jump-6.png": "029dba4e50a021bfa83080e38978d95d9928fb566f2611d9b376f260e1b0a118",
+    "diagnostics/assembled/jump-7.png": "0d54027bffd34853766b692e1058cfd1904a0d99f673ef0b92fe09b682a675a1",
+    "diagnostics/assembled/jump-8.png": "738188db732968404ba77ac24baa2b52971511708803466458f525bd9dc9a1db",
+    "diagnostics/assembled/jump-9.png": "0893a2647290e4664fa0b40f3154af49f3760d2b83f6f635a10b71702fa0f373",
+    "diagnostics/assembled/jump-10.png": "1ce4b084fa730c8cee36608aa8111560493f90197a1250cd5aa3180899dfb821",
+    "diagnostics/assembled/jump-11.png": "de556a690caba1eb212d1375b88d9c7d6284675760d8fdcab6656e545dc45029",
+    "diagnostics/expressions/neutral.png": "1d25392987d2ee247d73840cf74d9e536a829ffaaaf8b90b97ae1bd4be1ad50d",
+    "diagnostics/expressions/gentle.png": "de556a690caba1eb212d1375b88d9c7d6284675760d8fdcab6656e545dc45029",
+    "diagnostics/expressions/joyful.png": "b117c7b3ce955fa85ca491d9c5ed3e8f773268d9d1fa464dc8135b1ad17ca97d",
+    "diagnostics/expressions/recolor-neutral.png": "d708542a2f06ac95c818b6117766e30c283f3d0bbd1a37f03c5c9374d66ce844",
+    "diagnostics/expressions/recolor-gentle.png": "d655db645194f7f42af6401e38051d9929a9db7520949b3365c30dc3b009c632",
+    "diagnostics/expressions/recolor-joyful.png": "8896d4e6f704e384fc85e68b96d53331faf7bbe6011b99dc43d5f80c254a696a",
+    "diagnostics/run-keyframes.png": "3a829bfc306c6c68452ff5479c6463e0533385b737699b64e753d7a66a9a194f",
+    "diagnostics/run-keyframes-2x.png": "abb004c79c21e2f937928b2f650fddc8e5dfc28b56e1721036dbdd5886b247f9",
+    "diagnostics/master-standing-comparison.png": "0467d2f44b1e62dba782d41739c07dadb0f08a84cfb84a7487fd674e627c78f9"
+  }
+}

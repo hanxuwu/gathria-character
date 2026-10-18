@@ -121,6 +121,8 @@ export interface MotionKey {
   rootY?: number;
   /** Jump-only elbow bend relative to the registered rest arm. */
   armBend?: number;
+  /** Motion-library v2 run only: upper-body rotation relative to the pelvis. */
+  torsoLean?: number;
 }
 export interface MotionClip {
   fps: number;
@@ -130,7 +132,9 @@ export interface MotionClip {
 }
 export interface MotionLibrary {
   format: "gathria-motion-library";
-  version: 1;
+  /** V2 opts run into shared pelvis-relative feet and grounded shoe rotation.
+   * Other actions retain v1 semantics; imports never upgrade implicitly. */
+  version: 1 | 2;
   id: string;
   clips: Record<LegacyAnimationName, MotionClip> & { jump?: MotionClip };
 }

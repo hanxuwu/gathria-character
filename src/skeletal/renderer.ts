@@ -43,6 +43,16 @@ function rotateAt(angle: number, pivot: Point, dx = 0, dy = 0): Matrix {
     pivot[1] - s * pivot[0] - c * pivot[1] + dy,
   ];
 }
+function compose(a: Matrix, b: Matrix): Matrix {
+  return [
+    a[0] * b[0] + a[2] * b[1],
+    a[1] * b[0] + a[3] * b[1],
+    a[0] * b[2] + a[2] * b[3],
+    a[1] * b[2] + a[3] * b[3],
+    a[0] * b[4] + a[2] * b[5] + a[4],
+    a[1] * b[4] + a[3] * b[5] + a[5],
+  ];
+}
 function kneeBetween(
   hip: Point,
   ankle: Point,
@@ -171,6 +181,42 @@ interface Attachment {
   /** Sole normalization uses original artwork; explicit offsets remain visible. */
   sourceBottom: number;
 }
+
+/** Find the actual nearest-neighbor silhouette support before vertical
+ * placement. Testing the opaque pixels (not the rectangular image bounds)
+ * lets a pitched heel/toe touch the ground. The resulting translation moves
+ * the ankle and its IK chain together with the shoe. This follows Canvas.draw's
+ * sampling exactly, including fractional horizontal positioning and offsets. */
+function rotatedSole(item: Attachment, matrix: Matrix): number {
+  const { layer, pixels } = item;
+  const corners = [
+    [layer.x - 1, layer.y - 1],
+    [layer.x + layer.width, layer.y - 1],
+    [layer.x - 1, layer.y + layer.height],
+    [layer.x + layer.width, layer.y + layer.height],
+  ].map((p) => map(matrix, [p[0], p[1]]));
+  const left = Math.floor(Math.min(...corners.map((p) => p[0]))) - 1,
+    right = Math.ceil(Math.max(...corners.map((p) => p[0]))) + 1,
+    top = Math.floor(Math.min(...corners.map((p) => p[1]))) - 1,
+    bottom = Math.ceil(Math.max(...corners.map((p) => p[1]))) + 1;
+  const [a, b, c, d, tx, ty] = matrix,
+    determinant = a * d - b * c;
+  for (let y = bottom; y >= top; y--)
+    for (let x = left; x <= right; x++) {
+      const ix =
+          Math.round((d * (x - tx) - c * (y - ty)) / determinant) - layer.x,
+        iy = Math.round((-b * (x - tx) + a * (y - ty)) / determinant) - layer.y;
+      if (
+        ix >= 0 &&
+        ix < layer.width &&
+        iy >= 0 &&
+        iy < layer.height &&
+        pixels[(iy * layer.width + ix) * 4 + 3]
+      )
+        return y;
+    }
+  throw Error("A run shoe must contain opaque support pixels.");
+}
 /** Crop only the transparent storage area, not ownership or anatomy. Source
  * images are complete registered frames; user offsets are baked into a copy
  * before mesh creation. Thus all consumers use the same attachment placement. */
@@ -242,6 +288,8 @@ export function prepareRig(
   library: MotionLibrary,
 ) {
   validateHierarchy(definition, sourceSkin);
+  if (library.version !== 1 && library.version !== 2)
+    throw Error("Unsupported motion library version.");
   const rig = structuredClone(definition),
     skin = structuredClone(sourceSkin.metadata),
     motions = structuredClone(library);
@@ -310,14 +358,30 @@ export function prepareRig(
     const inspection: RigInspection = { limbs: [] };
     const jumping = animation === "jump";
     const rootY = jumping ? (key.rootY ?? 0) : 0;
-    const upper = rotateAt(key.lean, rig.pivot, 0, key.bodyBob + rootY);
+    const runV2 = animation === "run" && motions.version === 2;
+    const pelvis = rotateAt(key.lean, rig.pivot, 0, key.bodyBob + rootY);
+    const hips: Point = [
+      (skin.bindings.chains.nearLeg[0][0] + skin.bindings.chains.farLeg[0][0]) /
+        2,
+      (skin.bindings.chains.nearLeg[0][1] + skin.bindings.chains.farLeg[0][1]) /
+        2,
+    ];
+    const posedHips = map(pelvis, hips);
+    const upper = runV2
+      ? compose(pelvis, rotateAt(key.torsoLean ?? 0, hips))
+      : pelvis;
     if (inspect)
       inspection.bodyBones = rig.bones
         .filter((bone) => ["root", "torso", "head"].includes(bone.id))
         .map((bone) => ({
           id: bone.id,
-          from: bone.id === "root" ? [...rig.anchor] : map(upper, bone.from),
-          to: map(upper, bone.to),
+          from:
+            bone.id === "root"
+              ? [...rig.anchor]
+              : runV2 && bone.id === "torso"
+                ? posedHips
+                : map(upper, bone.from),
+          to: runV2 && bone.id === "root" ? posedHips : map(upper, bone.to),
         }));
     const phase = (index * Math.PI * 2) / count;
     const clothLag = Math.sin(phase - Math.PI / 3);
@@ -326,6 +390,7 @@ export function prepareRig(
       if (item) canvas.draw(item.layer, item.pixels, matrix, warp);
     };
     const posed = new Map<ChainName, JointTriple>();
+    const runShoes = new Map<ChainName, Matrix>();
     for (const chain of CHAINS) {
       const near = chain.startsWith("near"),
         arm = chain.endsWith("Arm");
@@ -397,13 +462,28 @@ export function prepareRig(
           ]),
         ]);
       } else {
-        const hip = map(upper, start);
-        const ankle: Point = [
+        const hip = map(runV2 ? pelvis : upper, start);
+        let ankle: Point = [
           animation === "run"
-            ? hip[0] + opposite.footX
+            ? (runV2 ? posedHips[0] : hip[0]) + opposite.footX
             : end[0] + opposite.footX,
           end[1] - opposite.footLift + rootY,
         ];
+        if (runV2) {
+          const item = requireAttachment(near ? "near-shoe" : "far-shoe");
+          const shoe = rotateAt(opposite.shoePitch, end, ankle[0] - end[0]);
+          const dy =
+            rig.anchor[1] - 1 - rotatedSole(item, shoe) - opposite.footLift;
+          ankle = [ankle[0], end[1] + dy];
+          runShoes.set(chain, [
+            shoe[0],
+            shoe[1],
+            shoe[2],
+            shoe[3],
+            shoe[4],
+            shoe[5] + dy,
+          ]);
+        }
         const jumpFlex = Math.min(
           1,
           (Math.abs(key.bodyBob) +
@@ -468,12 +548,13 @@ export function prepareRig(
         const sole = requireAttachment(slot).sourceBottom;
         draw(
           slot,
-          rotateAt(
-            opposite.shoePitch,
-            ankle,
-            joints[2][0] - ankle[0],
-            rig.anchor[1] - 1 - sole - opposite.footLift + rootY,
-          ),
+          runShoes.get(chain) ??
+            rotateAt(
+              opposite.shoePitch,
+              ankle,
+              joints[2][0] - ankle[0],
+              rig.anchor[1] - 1 - sole - opposite.footLift + rootY,
+            ),
         );
       }
     }
@@ -555,6 +636,9 @@ export function prepareRig(
           });
           break;
         }
+        case "hips":
+          draw(slot, runV2 ? pelvis : upper);
+          break;
         default:
           draw(slot);
       }

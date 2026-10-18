@@ -1,4 +1,9 @@
-import type { AnimationName, MotionClip, MotionKey } from "./types";
+import type {
+  AnimationName,
+  MotionClip,
+  MotionKey,
+  MotionLibrary,
+} from "./types";
 
 /** The same authored-value limits used by the project importer. Angles are
  * stored in radians; the editor only converts their presentation to degrees. */
@@ -13,6 +18,7 @@ export const MOTION_LIMITS: Record<keyof MotionKey, readonly [number, number]> =
     armSwing: [-24, 24],
     rootY: [-16, 0],
     armBend: [-1.5, 1.5],
+    torsoLean: [-0.12, 0.12],
   };
 
 export const MOTION_FIELDS: Record<
@@ -33,6 +39,16 @@ export const MOTION_FIELDS: Record<
     "shoePitch",
   ],
 };
+
+/** Version-specific controls never add future fields to historical clips. */
+export function motionFields(
+  animation: AnimationName,
+  version: MotionLibrary["version"],
+) {
+  return version === 2 && animation === "run"
+    ? [...MOTION_FIELDS.run, "torsoLean" as const]
+    : MOTION_FIELDS[animation];
+}
 
 const inRange = (value: number, min: number, max: number) =>
   Number.isFinite(value) && value >= min && value <= max;

@@ -181,3 +181,38 @@ export function createMotionLibrary(): MotionLibrary {
     },
   };
 }
+
+/** Explicit opt-in defaults for the centered, ground-aware run solver.
+ * Historical project creation still calls createMotionLibrary (version 1).
+ * Resetting an existing v2 run uses these coordinates, never a v1 clip whose
+ * foot travel was measured from two different anatomical hips. */
+export function createMotionLibraryV2(): MotionLibrary {
+  const library = createMotionLibrary();
+  const footX = [18, 6, -6, -18, -25, -27, -23, -18, -3, 11, 19, 20];
+  const footLift = [0, 0, 0, 3, 9, 16, 21, 17, 14, 10, 6, 3];
+  const shoePitch = [
+    -0.08, 0, 0.18, 0.32, 0.45, 0.48, 0.38, 0.2, 0.05, -0.1, -0.12, -0.1,
+  ];
+  const bodyBob = [4, 5, 4, 2, 0, 2];
+  const torsoLean = [0, 0.012, 0.018, 0.01, -0.006, -0.01];
+  return {
+    ...library,
+    version: 2,
+    id: "gathria-centered-run-1",
+    clips: {
+      ...library.clips,
+      run: {
+        ...library.clips.run,
+        keys: library.clips.run.keys.map((pose, i) => ({
+          ...pose,
+          footX: footX[i],
+          footLift: footLift[i],
+          shoePitch: shoePitch[i],
+          bodyBob: bodyBob[i % 6],
+          lean: 0.14,
+          torsoLean: torsoLean[i % 6],
+        })),
+      },
+    },
+  };
+}

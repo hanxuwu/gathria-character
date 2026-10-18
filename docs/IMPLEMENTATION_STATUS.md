@@ -1,6 +1,48 @@
 # Implementation status
 
-**Current batch: Theo and Rose reference pair.** Starts from `cd89d61` on
+**Current batch: Theo run stride and shoulder repair.** Continues draft PR #10
+from `1ab97c5`, on `feat/theo-pose-study`. Explicit motion-library V2 centers
+run targets on the pelvis and shares rotated shoe support with the leg ankle;
+V1 defaults and historical projects remain unchanged. A new top adds 113
+same-cloth shoulder backing pixels and removes eight misplaced hand pixels.
+The tuned run retains head/identity, anatomy, clothing design and 12-key/18 FPS
+timing. [Review](THEO_RUN_REPAIR_REVIEW.md) ·
+[Actual exports and editable downloads](theo-run-repair/README.md) ·
+[Motion contract](MOTION_LIBRARY_V2.md) ·
+[Source record](../artwork/theo-run-repair/README.md).
+
+This follow-up passed **469 unit tests across 37 files, eleven relevant Chromium
+tests, TypeScript and build**. Historical Theo/Rose/Maple/Willow frames remain
+exact. V2 editing, reset, undo/redo and project reopen retain their explicit
+semantics. Contact ankle separation is now 41 px in both half-cycles; recovery
+is smoother and the shoulder wedge is closed. The ninth run pose still crowds
+the two boots, and deep knee folds remain a source/mesh limitation. The old
+forehead recolor mask and expression drawing drift are separate outstanding
+issues. Current execution and export checks are recorded with this review;
+neither passing tests nor a draft delivery implies user visual acceptance.
+
+**Historical batch: Theo whole-figure pose study.** Starts from `2471785` on
+unmerged draft PR #9, using `feat/theo-pose-study`. One complete standing model
+establishes fuller body/hand/suit proportions before splitting into the existing
+skeleton. Source `acec98b`, explicit source-color item V3 implementation
+`e653abe`, and registered artwork/project `9f9c385` are committed and pushed.
+Old items, projects, global motions and historical renderers remain unchanged.
+[Review](THEO_POSE_STUDY_REVIEW.md) · [Actual outputs and downloads](theo-pose-study/README.md) ·
+[V3 color contract](WARDROBE_ITEM_V3.md) · [Sources](../artwork/theo-pose-study/README.md).
+
+This batch passed **463 unit tests, nine relevant Chromium E2E tests, TypeScript
+and production build**. Prior Theo/Rose/Maple/Willow exports retain exact pixels
+and manifests. Preparation checks all 108 expression/action poses and preserves
+all fifteen registered source slot arrays at their source colors. The new
+project owns a twelve-key run and a four-key jump clearance adjustment; the
+same-art old-run comparator isolates the motion change. Small expression drawing
+drift, unequal half-cycle strides, deep knee compression, shoulder overlap gaps
+and misclassified forehead boundary pixels remain. Actual UI capture verifies
+six packs / 216 poses, 88 editor comparisons and ten closed-editor playback
+cases; 79 PNGs, ten GIFs and 21 ZIPs decode. Evidence is linked from the review;
+functional verification is separate from user visual acceptance.
+
+**Historical batch: Theo and Rose reference pair.** Starts from `cd89d61` on
 unmerged draft PR #8, using a separate `feat/reference-character-pair` branch.
 Three retained source-generation calls produce two coordinated identities and
 six reusable clothing items on the unchanged shared rig. Source commit `7c71e06`

@@ -42,6 +42,18 @@ navy suit and coral dress with two reusable identities, six garment items and
 three expressions each. [Actual previews and editable downloads](docs/reference-pair/README.md)
 exercise the same skeleton through idle, walk, run and jump.
 
+The [Theo complete-figure study](docs/THEO_POSE_STUDY_REVIEW.md) improves one
+whole suit character before deriving reusable parts. It adds explicitly versioned
+[source-relative clothing colors](docs/WARDROBE_ITEM_V3.md) and a project-owned
+run trial while preserving the previous pair.
+
+Its [run repair follow-up](docs/THEO_RUN_REPAIR_REVIEW.md) closes shoulder
+coverage gaps and introduces an explicit [motion-library V2](docs/MOTION_LIBRARY_V2.md)
+with shared-pelvis foot travel and grounded shoe/ankle support. The
+[new project and before/after GIFs](docs/theo-run-repair/README.md) retain the
+previous character's head and clothing design. Historical projects remain exact;
+crowded boots in the passing pose remain a documented visual limitation.
+
 ```sh
 npm run typecheck
 npm test

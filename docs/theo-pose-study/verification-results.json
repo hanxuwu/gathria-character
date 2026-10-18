@@ -1,0 +1,107 @@
+{
+  "recordedAt": "2026-10-18T15:44:55.600457+11:00",
+  "scope": "Theo whole-figure and project-owned run study; these checks executed in this batch, not historical counts.",
+  "baseCommit": "2471785aa155f3779b45cf97cf17158bab659d38",
+  "sourceCheckpoint": "acec98b",
+  "colorImplementationCheckpoint": "e653abe",
+  "checks": [
+    {
+      "command": "npm test",
+      "result": "passed",
+      "testFiles": 36,
+      "tests": 463,
+      "durationSeconds": 40.48
+    },
+    {
+      "command": "npm run typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "notes": ["Existing Vite chunk-size warning retained."]
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npx playwright test tests/e2e/wardrobe-source-colors.spec.ts tests/e2e/wardrobe-items.spec.ts tests/e2e/identity-library.spec.ts tests/e2e/action-forearms.spec.ts",
+      "result": "passed",
+      "tests": 9,
+      "durationApproxSeconds": 114
+    }
+  ],
+  "focusedDevelopmentChecks": {
+    "sourceColorTests": 9,
+    "browserTests": 2,
+    "note": "Also passed separately during implementation; included in final suites above, not added to their totals. One historical test expecting version3 unsupported was intentionally updated to require the new colorModel and reject futureversion4."
+  },
+  "compatibility": {
+    "historicalProjects": ["Theo", "Rose", "Maple", "Willow"],
+    "assertions": "Reopened slots, metadata, every baked frame and manifest match the previous exported packs exactly."
+  },
+  "visualAcceptance": "Pending user review; functional test results do not establish aesthetic acceptance.",
+  "preparedCheckpoint": "9f9c385",
+  "preparation": {
+    "checks": 127,
+    "expressionActionFrames": 108,
+    "sourceSlotArraysExactlyPreserved": 15,
+    "standingRgbaDifferencesAfterHipAnnotation": 0,
+    "minimumVisibleY": 1
+  },
+  "actualExport": {
+    "record": "final/evidence-index.json",
+    "semanticPacks": 6,
+    "bakedPoses": 216,
+    "editorFrameComparisons": 88,
+    "projectRoundtrips": 2,
+    "garmentRoundtrips": 3,
+    "identityRoundtrips": 1,
+    "closedEditorPlaybackCases": 10,
+    "runtimeAndHarnessFilesFrozen": 104,
+    "preparedAndBaselineInputsFrozen": 13,
+    "pageErrors": [],
+    "externalRequests": [],
+    "forbiddenAuthoringImports": []
+  },
+  "mediaIntegrity": {
+    "record": "final/file-integrity.json",
+    "counts": {
+      "png": 79,
+      "json": 15,
+      "md": 6,
+      "txt": 6,
+      "zip": 21,
+      "gif": 10
+    },
+    "checks": "Every PNG and GIF decoded; GIF frame sequence/timing/loop semantics and ZIP members/CRC checked. PNG source poses have binary alpha and frame-edge clearance."
+  },
+  "harnessNote": {
+    "record": "final/execution-record.json",
+    "initialAttempt": "Stopped on missing explicit Use identity selection before garment import into flat legacy project.",
+    "resolution": "Corrected harness sequencing only and reran all actual-export assertions successfully. No checks removed; final files audited as fresh."
+  },
+  "visualReview": {
+    "result": "Whole-figure volume and source-to-assembly fidelity improved; user acceptance pending.",
+    "remaining": [
+      "Some run poses expose a small triangular background notch between near sleeve cap and collar/torso.",
+      "Exposed forehead skin at some bang boundaries is incorrectly marked hair; dark-skin/blonde recolor creates light triangles. Neutral example (110,60) changes source RGB (250,173,125) to (255,226,162). Source-color and alpha checks do not establish semantic mask correctness.",
+      "Deep knee compression and asymmetric half-cycle strides remain.",
+      "Complete expression heads differ slightly in width/yaw/eye placement."
+    ],
+    "scopeDecision": "Retain the strongest verified whole-figure candidate and document these limits; no further pose patching or expansion in this batch."
+  },
+  "independentFinalAudit": {
+    "hashesExact": 117,
+    "gentleExportFramesEqualPrepared": 36,
+    "expressionIdleFramesEqualPrepared": 3,
+    "rigMotionsAnd15SlotsExact": true,
+    "runGifs": {
+      "count": 4,
+      "framesEach": 12,
+      "durationMs": 670,
+      "orderAndMirroring": "exact against actual exports",
+      "loopBoundaryChangedChannels": 19107,
+      "ordinaryAdjacentRange": [18441, 19829]
+    },
+    "zipCrcChecks": 21,
+    "visualConclusion": "Improved complete-character study, not a finished production character."
+  }
+}

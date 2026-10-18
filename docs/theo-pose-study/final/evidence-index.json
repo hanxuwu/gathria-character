@@ -1,0 +1,4113 @@
+{
+  "capturedAt": "2026-10-18T04:54:09.678Z",
+  "phase": "final",
+  "source": "Actual Skin Studio library imports, controls, project/CharacterPack downloads. Old Theo and Rose goldens remain exact; new source-relative clothing and one project-local run clip are verified. Studio closed before independent consumer.",
+  "sourceFiles": {
+    "scripts/generate-theo-pose-evidence.mjs": "7812f2aef991c8c9819ab8258dc85dc561d3ba2a3b7c6fb5c85b7b61ddee24de",
+    "src/consumer/PackPlayer.tsx": "b47abc3e405276d465604be8a401caf0520e1ad1ea36612daf43e5cceb1298b1",
+    "src/consumer/main.tsx": "11b7ae34966e906bed2911fc32b98646fa60b82fc7487c2784110a1b096fed4c",
+    "src/consumer/player.css": "d3eec8d0751d4cfa15796bfd27293faca13a491342c1fe41fddabce3f97ec9a8",
+    "src/consumer/player.test.ts": "b8c134ed8f25828ccdf9ab232563c977a78412d9d5764274f8acfec758a67d1c",
+    "src/consumer/player.ts": "72777c230a9141a42ef29e274235b3c4fb56d53ff2f16d441ea2048b70b8facc",
+    "src/core/art-v2.test.ts": "c4c210082a1c8a5cabd1f8b960c4f8aff906e8ec1efaad4ada83531f472c651d",
+    "src/core/cohesive-art.test.ts": "5fafda0954f7b77a6e36ba5362f3ed85582f2cc460e0df9022be490b66405ae6",
+    "src/core/cohesive-assets.generated.ts": "42cfe658e4930b5a5f2bd6f66f7ffd5959e9b59eb9fb366c3a1e08f34c305fcb",
+    "src/core/cohesive-rig.ts": "2f874bff128ba75d62822496837874bf20b4569cdaa8e56fd266c0c56282b26c",
+    "src/core/config.test.ts": "c9d336ec2ab8c6aa0c8dbd38f576f2256e3a308f7b18b1d7f21d05c3765f5255",
+    "src/core/config.ts": "b887a88736d969ccd76ee96ebdda683d5769d8c8a41120dc69d992b36317bbae",
+    "src/core/detailed-art.test.ts": "0bab0740f480a28a94c5a5173b61d5881af4153b222d1cf19d58ba0ff4981f19",
+    "src/core/everyday-presets.ts": "711e389852d882d1e4b5cca24963078f000d46ee476259a24abe480f143b91f3",
+    "src/core/expressive-accessory.generated.ts": "dbe923ecdd908f9fc6bdd3bead35b4bb077d200fdb2e2fdf824fccd2d9374cee",
+    "src/core/expressive-art.test.ts": "5036b1296c015f65062be2a34f9cad7c800d4685d726f145b511f8437101d934",
+    "src/core/expressive-face.ts": "e9586c2b3433901cdb400609a88726e1c8a5d66d148f017622a173e9b0fa675f",
+    "src/core/expressive-rig.ts": "a4f1bd95322a61a24e5c5f019c3ac29a1eb9f356d5617bf85d866d92aecd2347",
+    "src/core/generator-motion-v1.ts": "b2310151b44cc2dd4782199649975bc5a86644e4d179939975ed0e6bbfd329de",
+    "src/core/generator-motion-v2.ts": "ace55c159d97c864a37bbdcd58e75ac2e08103db9bdf8e4cd540e71b442eb494",
+    "src/core/generator-motion-v3.ts": "a69234c0f0a1cdd8a5e3e869b6a0a5e79801a65ec3c52e715ae49eb551ffcf1e",
+    "src/core/generator-v1.ts": "0ccf2c47fb81443da42cd0a66306d964ff38eb98453c561e131309eaea01d140",
+    "src/core/generator-v2.ts": "d2a2983eaea9d2e4973d8be28f9c8a8d15677a9d7738678522bca02f55d8bd53",
+    "src/core/generator-v3.ts": "7de0fe701c8ee610586004022e761a41acf9facdf9a1ce836f9b389b7b8a4350",
+    "src/core/generator-v4.ts": "7202ce57d59bf33995f2090b373f8097dfd590d1b7f76c67e6dbdeb92a9186ed",
+    "src/core/generator-v5.ts": "965416ed779cba3514c69fa8123d83de62ace6f7bd0c41b73986dbb122e3aa93",
+    "src/core/generator-v6.ts": "9cf97a66e1b8e5c2879c1699b51520d9417cef9f35f71098a7cc89cb40faf6c2",
+    "src/core/generator-v7.ts": "f51bae06620aca87c1f0502f44fd22dd25f5eeaa0ac05fb2590a2d549ed57970",
+    "src/core/generator.test.ts": "ec91472093fe5fba2f0964ead85d48226b7b5133a76c9f15ea9a249bd0a6987f",
+    "src/core/generator.ts": "23d812a85b427da09652b9d5858151a3e6647184a360dffaa91fd2969a5f19dd",
+    "src/core/harmonized-art.test.ts": "b5e70bbde903940268f09267d71761af0870323664d5956c3e99fca0930d91ae",
+    "src/core/harmonized-assets.generated.ts": "4120fcddab2844847bfbed7f13f8f2f514b115d93f578a49777d3c96e2feb79e",
+    "src/core/harmonized-rig.ts": "0df8a2e64c2c17232bdb36a44488913647686cbee07434b7078bf05f2db22ae2",
+    "src/core/illustrated-assets.generated.ts": "dc0b88212e9a20696c5ce5b49440fcf3bb9c021dc3d2dc30b0dce4338b6f03df",
+    "src/core/illustrated-canvas.ts": "81c58f2e0dd88c50bebdb8b153cbd63eedc64548506ea80cf14f809240cd2ab0",
+    "src/core/illustrated-rig.ts": "c2c05ec5b31cd85a183c044628007ab3f72101d1ab021612d3a7889ecee2d949",
+    "src/core/illustrated-types.ts": "1c72ff7f99f0d114385e90cd1cf25c5971ef75f041b4ecf0d93a20c8099dadd6",
+    "src/core/pack.test.ts": "fc02c364aea7bbe85d26664e614ee629a4b0903068eb3105d7764061f8b91088",
+    "src/core/pack.ts": "88b28df100f86819f7a67dd155a3541da04412b8b9c832e19c61274f25b65c0d",
+    "src/core/pixel-art.ts": "dd8781e1ab909fa14f4cc71408b9ec2d3bfbae5a14034665b8a62717d1e31eaf",
+    "src/core/polished-art.test.ts": "e6691c7fcf8a64c954febc917ea29213c216ebbd29a967648cdbc604c8684b0d",
+    "src/core/polished-assets.generated.ts": "eebda1bd064fc07402f036c62a3fa9998e8aebb79972dab2b2ac0bc8c2792dc2",
+    "src/core/polished-rig.ts": "306fa9e6bf2eec32ae127bdf07f4372657a84f705f0e322eedda26b9151c3790",
+    "src/core/running-arm-parts.test.ts": "f259ac41130c697bc8da1035f371a995f649a3f0704bc92cd5dc0517a9134b5d",
+    "src/core/running-arm-parts.ts": "25a08caecf188a06f6558e686dd8b658a01eadf1784afad67950e817370105bf",
+    "src/core/running-contract.test.ts": "f00971a37a23e2031474f2e852cb49665ae29eb7270e94a048de85477cb9a2f5",
+    "src/core/running-leg-parts.ts": "7aed1e6adf398964fee7c2adba1f8a46dbea52a5a0548a0d6e2f9910d5e089c5",
+    "src/core/running-motion.test.ts": "4dd4bc03fa16f1f18d0df971ec4424c1d66f0f0ccd47c0049e46b9e94c7288da",
+    "src/core/running-rig-v2.ts": "68f08fdf15712a35de8ada6ce22a0054ab1a7ba1971017902fafef5ab5a26f44",
+    "src/core/running-rig-v3.ts": "981233bb744be0c092bb8ca26090625cef762c03fd5fcb074995358bf76b51b0",
+    "src/core/running-rig.ts": "afa53c0c57d00405c8f7c03f6805f7e7ec32dd85ac2ad3aee4b226a8dc534c32",
+    "src/core/running-v2-contract.test.ts": "a76d48d3b33b507762b5488d8f1a9152b9b632f6b93f120820ebb67f994094d8",
+    "src/core/running-v3-contract.test.ts": "2e0a116a39a47d94e6c2c1663c52feef96b80559b302fd22c693e5c62322b9a2",
+    "src/core/running-v3-geometry.test.ts": "fd83412345fe276cedb0e49d50918f82fc8bc5e686bc66a46dda68a3de76f206",
+    "src/core/types.ts": "87e7875496ba344710301b732fa591422ab4632696d2e671907cf9b26f7ee1fa",
+    "src/skeletal/BindingCanvas.tsx": "2440b695671f933c91dededc7ee612049e52600363977c810684ac0e09eddc0a",
+    "src/skeletal/IdentityLibrary.tsx": "a8dbb58679797e003e61bd11d97b70f6fa36146cfd3205e8d6617acaa6b80b65",
+    "src/skeletal/MotionEditor.tsx": "d76ff592a6f237a9516a9c6644d72786924aa0e6243678f7fbb6aabb5879a8c0",
+    "src/skeletal/Studio.tsx": "440e354bd48066704fd16d82b67cd1c3455eeccc40c8896956291ce08dba0bc9",
+    "src/skeletal/WardrobeLibrary.tsx": "7cdf4cdf5d17a8ff10b7c9c9a4d2b3a8ac068331c1e1bfeb13a2fe349a463da2",
+    "src/skeletal/WardrobePanel.tsx": "58a5ce3db39391f70c8906bc650d6deb3eb0bf69580e305301189e7d5f5f947c",
+    "src/skeletal/action-forearms.test.ts": "7db9a7f1bb8ebb80cfaf0f7cd1a9fa68b0ee549f007702fcc227b17e9d55b49d",
+    "src/skeletal/action-forearms.ts": "b1f6ab6b47075db564f8b4af71884f70f656874730ea03af92c1f05bd3e0a32d",
+    "src/skeletal/bake.ts": "43c644d2fc3d4fc80259d1411a907b66f70c2d99b19c126aaaf67f13bf34fd3b",
+    "src/skeletal/baked-provenance.test.ts": "57adb2f0d0502c19f69863ac6a98bfb88ecd57988fc5d173b5bf4723717602a7",
+    "src/skeletal/baked-provenance.ts": "5d96ac3d6332dc170e1a7d01787aae08bf32d84ebe73481782a978fe46e313b2",
+    "src/skeletal/binding-edit.test.ts": "3bf3edfee85b146428051efe89cd9d16e801039c90d6b2eab3fa6186c1239427",
+    "src/skeletal/binding-edit.ts": "b08b962cc970f7874a2132e3767a8472eeeab673a556874b8c32b1c8c6f33538",
+    "src/skeletal/binding-editor.css": "944714969e142c270321a506e2b8c8e7ab68bfefd2e25a146abf770e8a299480",
+    "src/skeletal/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/skeletal/builtins.ts": "7506d490906514a484e3124adb0ea3f528d1dfb104aa6c3b8c23b3b3763edc43",
+    "src/skeletal/definition.ts": "2b7c10844a2e208e333b84df3e5c987b988767581581b2ca866f74d59a3645d5",
+    "src/skeletal/history.test.ts": "8ac219d3ef0c4041ed686a4642e047ac54f4edebad0ebec62d26b05ad6dcfa9e",
+    "src/skeletal/history.ts": "bc1ef8f41f4d48bdcb37c8d2642afe6cfb3df33ee9dce9087904ff986094a705",
+    "src/skeletal/identities.test.ts": "9e0ed0dc7709c8eaee571bfcb79c93b457c61e8ad3b49e0271fe7a641c4ad90c",
+    "src/skeletal/identities.ts": "3f26a95ea78a6e1c90af03046bc6000ed342c86bc0b1768f2b218718740ef147",
+    "src/skeletal/identity-io.ts": "cda1f15d8a84a46841e95d845f62c47b6ef0467c30e092223c7519c0aaaed41e",
+    "src/skeletal/identity-types.ts": "1bc38a8461184c6f187f00cebf49696eec9b0a56391653d5e48b84a81824666b",
+    "src/skeletal/integration.test.ts": "b400c67bf8adbd96cabe46c34f2d48cbd85ca5ca4bcfeac0a5310255b5d78a35",
+    "src/skeletal/jump-contract.test.ts": "f410e917068f078e2e17679e97dfaab3eb4180a2112496fc6eaaf4b67234cc5d",
+    "src/skeletal/jump-renderer.test.ts": "4739e5a50fec2a629637d62aa9f4338a4b68466c98593a79f14d944910af4bed",
+    "src/skeletal/motion-edit.test.ts": "916d87dd276efd017e2864fcacdd09d89a3f7a10755b9ab18ef0b620047ee5cf",
+    "src/skeletal/motion-edit.ts": "8aba5fb3ab33d376e47b851d0652edf182dbc6b03f9145a78b507cb715aa77e7",
+    "src/skeletal/motion-editor.css": "0e58273c05aed8a0fa24821ded579eba4f5761c3f9f8b89f700f5f9da4aae61b",
+    "src/skeletal/playback.test.ts": "4d2dbc74cb5953a46ac48da6985cc1629af3cf77041d891cc0636cf6fcd9fc9f",
+    "src/skeletal/playback.ts": "260a382ac7b64242d8510d4e47e593975e7f31dc7f9c99c2d0f16a293e32b4e3",
+    "src/skeletal/renderer.test.ts": "05e1ca46395251f02c8b8e2b94b2ec0803d451d317de5ea3d64114e9bf6d9313",
+    "src/skeletal/renderer.ts": "632c09e1d26d5df85768afc5250f6edcf3921c3ad895ce7c34e2f55071af1a13",
+    "src/skeletal/skin-io.test.ts": "8f0c0085e69a94700da8dd461a244779e6e959c7217db1d3d9404d71d5c24a83",
+    "src/skeletal/skin-io.ts": "505e933184cb58735a335c54dbcdf7bfd5239b330e2e9ba1d51b0f85e5f5586e",
+    "src/skeletal/studio.css": "e4e15287e4507d4689f1a7c8d73d3ad6d20249bcf82db6c7106de244ff0f8fa5",
+    "src/skeletal/types.ts": "33830a12592a4c4e6b04e9a8f4face1edeb1f0806a29a9e847de80ec9bf9165d",
+    "src/skeletal/wardrobe-active-items.test.ts": "18e1909e71eee99b6ef36bf54cd347fc67203b7ae70aa75b57d7a1697f196f42",
+    "src/skeletal/wardrobe-assets.generated.ts": "b94946ecc2aa616e80b69840709226dcdebb5421bd00a8486c955375009ab892",
+    "src/skeletal/wardrobe-io.test.ts": "25970c2220564eda2959a099ff0a1e6b1416a0098751fc43c203fef1978c3090",
+    "src/skeletal/wardrobe-item-io.test.ts": "19ed84c0577dea64c0a6c03644cd119cb62442069dcb90a87c44f93d6cdd308b",
+    "src/skeletal/wardrobe-item-io.ts": "bc074bd40641f7b6bef1310a2029eb3ff7aaaa51a2b09d8d8527b98e093f485e",
+    "src/skeletal/wardrobe-items.test.ts": "9391f00d7b9abdc653061c03e1d3a6a6c3879d4e71d4da69fcbf4ff8bbdab3d3",
+    "src/skeletal/wardrobe-items.ts": "ad6bc51c592c0e3320309e580636b32c003fb5f4103dcf40589f6a6437215e02",
+    "src/skeletal/wardrobe-panel.css": "3996ad1d726a9c76d525cbae2940f9460ee3cc9e387d81441c1fe9ceccfce7b8",
+    "src/skeletal/wardrobe-source-colors.test.ts": "c8b2f0526394a4a0efd4f053b137d10be4038ea864fd2f32e50987e2c33ae126",
+    "src/skeletal/wardrobe-types.ts": "35040cff0671ee6d3c495ca269fc0788c6bf27ad2cc18024c0f0fa88a2db7ea0",
+    "src/skeletal/wardrobe.test.ts": "92e64a6941401fb035eae7d24b5f9ea53af88596757d351f192aae10f2130e81",
+    "src/skeletal/wardrobe.ts": "27ac00e4138199cea2f0073bc75235cb942cdda3efea5949d1150b96f7e34650"
+  },
+  "preparedInputFiles": {
+    "docs/reference-pair/final/theo-theo.rig.zip": "424f742c2d5dd0b8513a8cf6773bf50087397e12adf23287962ae7875619464e",
+    "docs/reference-pair/final/theo-theo.character.zip": "a671fe841b0e8291879ef4cb915311c3c8185a2a210150953076f94ca73e33bb",
+    "docs/reference-pair/final/rose-rose.rig.zip": "7c8f81293c2988f6b563c8bf1ebab7cbfb15ad3f3ced7396cdf2fe7c14494e9b",
+    "docs/reference-pair/final/rose-rose.character.zip": "b056cb1424784b315f45376fb3b6a71e55d22fff2e30bc98c9264c42a7338194",
+    "artwork/theo-pose-study/prepared/registration.json": "005c6ba5cd728e143adba15434934d74aeda39c9449c77440035f5d9aab2d8e8",
+    "artwork/theo-pose-study/prepared/theo-study-old-run.rig.zip": "2c21b78340eeaf1010d8d1e37cac7ec036901fa3747c845f6f7ff95218e8ebc9",
+    "artwork/theo-pose-study/source/complete-pose-model.png": "d860623760470e338e7e913cf1c5aebac622e45c54b503306f65a26ed1919b26",
+    "artwork/theo-pose-study/source/hidden-parts-expressions.png": "ae5c7cce37de97bd4d1f576d00170292de59e38b5d1bd19ee0e10e9ca7e65e8f",
+    "artwork/theo-pose-study/prepared/theo-study.identity.zip": "77c22d3dbc32709a3b6085ff66366e13cbf7380d8adfc28ee694e780cce592e1",
+    "artwork/theo-pose-study/prepared/theo-study.rig.zip": "e6910c065b46e8238975c0d5c7a0ffc476667c1c84ab46ebf5b0e4a408ab9e04",
+    "artwork/theo-pose-study/prepared/theo-study-top.wardrobe.zip": "8707e985ed726d5ddac8b1ed3fd3148fe876fd3fd143ddf63224ed1e703b01e5",
+    "artwork/theo-pose-study/prepared/theo-study-bottom.wardrobe.zip": "21f7d3bf738e7a73b7034dc5400b6d89c3dd569db98bbe30c0a70fc9e799a7ce",
+    "artwork/theo-pose-study/prepared/theo-study-shoes.wardrobe.zip": "3ed822474bdcd0de077adbebc5d536981e5369fcbb7c53413944fe1000ff0938"
+  },
+  "authoringClosedBeforeConsumer": true,
+  "exports": [
+    {
+      "id": "before",
+      "name": "theo theo",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo",
+        "top": "custom-theo-top",
+        "bottom": "custom-theo-bottom",
+        "shoes": "custom-theo-shoes",
+        "colors": {
+          "skin": "#f3bd92",
+          "hair": "#67422e",
+          "top": "#343b4b",
+          "bottom": "#343b4b",
+          "shoes": "#795435"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 6,
+      "customIdentities": 2
+    },
+    {
+      "id": "new-art-old-run",
+      "name": "new art old run",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-study-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#f1bd90",
+          "hair": "#714b34",
+          "top": "#373b4b",
+          "bottom": "#373b4b",
+          "shoes": "#875934"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    },
+    {
+      "id": "theo-study",
+      "name": "theo study",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-study-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#f1bd90",
+          "hair": "#714b34",
+          "top": "#373b4b",
+          "bottom": "#373b4b",
+          "shoes": "#875934"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    },
+    {
+      "id": "theo-gentle",
+      "name": "theo gentle",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-study-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#f1bd90",
+          "hair": "#714b34",
+          "top": "#373b4b",
+          "bottom": "#373b4b",
+          "shoes": "#875934"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    },
+    {
+      "id": "theo-joyful",
+      "name": "theo joyful",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-study-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#f1bd90",
+          "hair": "#714b34",
+          "top": "#373b4b",
+          "bottom": "#373b4b",
+          "shoes": "#875934"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    },
+    {
+      "id": "theo-recolored",
+      "name": "theo recolored",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-study-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#9f684d",
+          "hair": "#b28a53",
+          "top": "#4c7068",
+          "bottom": "#596254",
+          "shoes": "#6d4f3c"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    }
+  ],
+  "archives": [
+    {
+      "file": "before.rig.zip",
+      "bytes": 443089,
+      "sha256": "a45f4112fac3c65fb974f1456b6a155fadb31ddda53e74989638a77abfc3c267",
+      "members": {
+        "skin.json": {
+          "bytes": 5518,
+          "sha256": "d6f0ae20d44f16ca9518e07b351a1649cb4736435a989cce848ad516e7ab5aa9"
+        },
+        "slots/torso.png": {
+          "bytes": 10642,
+          "sha256": "8133ba78911b2bb55cede5c6b722e828875511b276062b5c047ad3d28cbae75b"
+        },
+        "slots/hips.png": {
+          "bytes": 4630,
+          "sha256": "9795a3b1915297a1d3e88c04f667e206d7533ca8854c370313d9277d3c56439e"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 3931,
+          "sha256": "3f02a28a16f6e5486fd0d09c82cb5031e522a55c7a3205023c3a7c7add652409"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 4265,
+          "sha256": "47c97e166b7978e97fb8db85fb6b7fe0659028cc0b6dee66d0942bedaea7276b"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3709,
+          "sha256": "ed761cff02e9fbaf12ef781e45ddaf1124d7cde2a78d363509b66920b6ac5191"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 3897,
+          "sha256": "83f6d2954c8153711f43930c8cfbcd9a633af8b95bb107595e6a53c49c8566e0"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 4292,
+          "sha256": "2a78809630f6ce07ecc63bbcff81d1b30a3eaa194ac20d42e05bc4c3c6a745b3"
+        },
+        "slots/near-shin.png": {
+          "bytes": 4485,
+          "sha256": "603fe5929aa81bbb283aceba401050492ce2781ce0d8d24873796d919a6827fc"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 3933,
+          "sha256": "619455e56a64f93db64e9f0951b9936cf29ea5784b46fecce2e4fffec262098d"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 3909,
+          "sha256": "7c76256814756697c2f3c6d1a51d3bc19fb559ea6ab0d4032199e0726722100a"
+        },
+        "slots/far-shin.png": {
+          "bytes": 4138,
+          "sha256": "00d179a8f2c807a78407a9dc89ce8c4e7c3642e748794ca09fb2e42f35f1a1cc"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 3835,
+          "sha256": "1091bbe629c091e52df9b583460aa40e292bdef9a8760092178cea1cdc660e68"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 25457,
+          "sha256": "f7585571edca62aae07e6ab1c78bfe4904f0feab3b0609ae7c86c08ad64903dd"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 25413,
+          "sha256": "a12f3858760461bdf234c09122fbe99327856f734fc92791a638ed50570616ef"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 25373,
+          "sha256": "e72b34c4170341472f8de7db3fb95bdc1bf2cb05525b80f3c582124ffbcc96f6"
+        },
+        "slots/near-forearm-active.png": {
+          "bytes": 4368,
+          "sha256": "a7cf23ce3644af892a0a40e239318f187531c384fa1c6ef356607918894f2e2b"
+        },
+        "slots/far-forearm-active.png": {
+          "bytes": 3929,
+          "sha256": "8dab29b337c24126f455843fed6ae35fde6ff3b81dba4ff2ea5d1ca1cdf8d68a"
+        },
+        "project.json": {
+          "bytes": 12937,
+          "sha256": "e48a54262830de0960648a18adb231c80abd4f04756f6051dd3934bc56cc812e"
+        },
+        "wardrobe.json": {
+          "bytes": 123145,
+          "sha256": "078cb39b3a2c537f6b8038bd584400acc48df5206c9a3e7bb801aef09d3d631c"
+        },
+        "identities.json": {
+          "bytes": 286150,
+          "sha256": "98b83989cacd1eba3ecc2582a2a9b1fceb8528ac7615bd8ff1ac82aa52897890"
+        }
+      }
+    },
+    {
+      "file": "before.character.zip",
+      "bytes": 596392,
+      "sha256": "f5a1fa595c5f57d17845cd1fb091d089fdc2070e751b54bd4956245148ef0ded",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 604304,
+          "sha256": "5f868e8f1fd4082e07cea111e44c9197cd7fe272352d1f3f96d1588217517f1d"
+        },
+        "manifest.json": {
+          "bytes": 5109,
+          "sha256": "f46b4d2c774f564bf388b81702adbfbd587e56236c1a743ca92c2fb6a1e7e408"
+        },
+        "character.json": {
+          "bytes": 448,
+          "sha256": "bf7d87a96819f0031ebd9bd81030fbd4e860e09dc177c1b304041e5d212598ad"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 29264,
+          "sha256": "4f9d1c52238eb8aad364bb32b2afcd0380ef459eab6d4e1f1100126d1590950c"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5894,
+          "sha256": "c25ba95bfb5855ade08ef6f0821eb9a5a63b35ba74965f2bac1ebb7f72378c9c"
+        }
+      }
+    },
+    {
+      "file": "legacy-rose.character.zip",
+      "bytes": 723592,
+      "sha256": "3eb250730bdbcea8683afdba0390f5ea67eb6c40dc66b7949a7ee75e02fc1301",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 732321,
+          "sha256": "f7d1fd2a2bf83c58adcda0cec8d34b621fa91007f1d7a3d1050f3cda71800cb4"
+        },
+        "manifest.json": {
+          "bytes": 5109,
+          "sha256": "5b67e536b83437186d113ab5e76ff959178502692ed264372699b2c26252e0f9"
+        },
+        "character.json": {
+          "bytes": 446,
+          "sha256": "af196293915e2f29fc1a40f2f888098df51d7e2e42640ca9bb8906f30b57fc60"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 30088,
+          "sha256": "7790791969fc1b7a1c24a2c5006707b653231594347de0d071ab5c20a812947d"
+        },
+        "INTEGRATION.md": {
+          "bytes": 6104,
+          "sha256": "3d58412638c385956f34c2913d400c37d23ba241f6f479952ac70b8269b516fd"
+        }
+      }
+    },
+    {
+      "file": "theo-study.identity.zip",
+      "bytes": 104425,
+      "sha256": "a85857e76ad6fa8896e4a0dc2bedbb5c39134eba924fc85e0575e9823a859ca2",
+      "members": {
+        "identity.json": {
+          "bytes": 1833,
+          "sha256": "0fd0e244a4e554b0bc8db40b266ad17e349936c7677421bb589542b901a4cf75"
+        },
+        "TEMPLATE.md": {
+          "bytes": 1380,
+          "sha256": "8ed1dfb943c7ca2a7239f0df3d3378fe5f9baa829adafd54ab0a05bd97892cc5"
+        },
+        "artwork/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "masks/head-neutral.png": {
+          "bytes": 4954,
+          "sha256": "390aa9846be71e01df9dc7d36755917eb7ecdd1a0b91ce0d75d6a8717f5b761a"
+        },
+        "artwork/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "masks/head-gentle.png": {
+          "bytes": 5153,
+          "sha256": "3586be93ddd2a94b00dfc965d1a743cf021ed7355a0159ace7643aa926e768c9"
+        },
+        "artwork/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "masks/head-joyful.png": {
+          "bytes": 4960,
+          "sha256": "d128399cf4151b1f817953954cc77b8443992749d5435066ec9b492bcf9f9fb2"
+        }
+      }
+    },
+    {
+      "file": "theo-study-top.wardrobe.zip",
+      "bytes": 46443,
+      "sha256": "83f157bdc8d27804aa441d77091be6f4b7529dda6d71ae3c8cae064723cc3a55",
+      "members": {
+        "item.json": {
+          "bytes": 2145,
+          "sha256": "1b1ae76673880a44ea55bf7bea9ef03b642cdc2eabe53418de004aecf9211e12"
+        },
+        "TEMPLATE.md": {
+          "bytes": 1970,
+          "sha256": "a2f4cc212e1f2b80fbc0f7386db53982ae2ac350a2fc8794ec74bfcd61aeac91"
+        },
+        "artwork/torso.png": {
+          "bytes": 13582,
+          "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+        },
+        "masks/torso.png": {
+          "bytes": 3361,
+          "sha256": "20fbeddb01c65bae171a6d7f64ecde9894408afbf9678e86d99d13766ed37ebd"
+        },
+        "artwork/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "masks/near-upper-arm.png": {
+          "bytes": 2346,
+          "sha256": "afc7a7ac99c63fa180e0d02aeb248b52830d9f393502ea52555ed9217cf5cb60"
+        },
+        "artwork/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "masks/near-forearm.png": {
+          "bytes": 2428,
+          "sha256": "3a7b43a919638c048257f2af1f273320dba460498a1fa70d7c31a1d6912c5a56"
+        },
+        "artwork/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "masks/far-upper-arm.png": {
+          "bytes": 2333,
+          "sha256": "31a40cd5dcaed01ba4a030d4d22bb78f8733713b700259b56a7bdcb3a82a11bd"
+        },
+        "artwork/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "masks/far-forearm.png": {
+          "bytes": 2398,
+          "sha256": "b1b36eacca9db1d82fa3026e2bb7cc316353a3a67b1412556e53023e487ee7d2"
+        }
+      }
+    },
+    {
+      "file": "theo-study-bottom.wardrobe.zip",
+      "bytes": 37852,
+      "sha256": "0a14e24082a4ca7ca263dbf4ec0ddf0e3667115ad239f3d7ab8c4d22cd01fdfd",
+      "members": {
+        "item.json": {
+          "bytes": 2124,
+          "sha256": "4459518139cc67c16c351f1cf9dcb5d49d7d5a7c53734c69baae6b9f13aa7481"
+        },
+        "TEMPLATE.md": {
+          "bytes": 1976,
+          "sha256": "f9716029cc037d26b54b4e002f96676bc78328de43f327df8d53fd944dd37ceb"
+        },
+        "artwork/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "masks/hips.png": {
+          "bytes": 2512,
+          "sha256": "30fd351c0282ca38c0de1ed9c9bc60fad312e68a553e8c171e70d3b09863a0a0"
+        },
+        "artwork/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "masks/near-thigh.png": {
+          "bytes": 2393,
+          "sha256": "30381a27545651bc4097e80b1ae007315e753ba5a093fd3fe208c8dcee732cda"
+        },
+        "artwork/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "masks/near-shin.png": {
+          "bytes": 2425,
+          "sha256": "28b0d7f5b42621008e4b0457a680bbae37de2a375e31cf1f547260ed922a19e6"
+        },
+        "artwork/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "masks/far-thigh.png": {
+          "bytes": 2239,
+          "sha256": "3979f7b69ec75b237107fc7d896572b3ee0820e29cf4067f8b94e618a33e59fd"
+        },
+        "artwork/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "masks/far-shin.png": {
+          "bytes": 2345,
+          "sha256": "5666b36e1bccf7ad830c95c36ecc1489a6aeaaa62c83e9287207819796b00bf2"
+        }
+      }
+    },
+    {
+      "file": "theo-study-shoes.wardrobe.zip",
+      "bytes": 15608,
+      "sha256": "0d2904a7c69f7b5759a4624935aa6bf8509e43a7d6b3753b9228d284aba726b0",
+      "members": {
+        "item.json": {
+          "bytes": 1071,
+          "sha256": "b64a8f95fee273b56ed0ab58502c589dea92ab330613f3e1f43b3a73f05559d1"
+        },
+        "TEMPLATE.md": {
+          "bytes": 1974,
+          "sha256": "6e345a70c2336aa6b0bbd8b948a9cebedfef0e693b10b3092560eceeb76c3789"
+        },
+        "artwork/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "masks/near-shoe.png": {
+          "bytes": 2368,
+          "sha256": "5c49e3d943bd101d581d3b1d5af9bb6495a92dddf7a2d82c872fdb78e7e20966"
+        },
+        "artwork/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "masks/far-shoe.png": {
+          "bytes": 2415,
+          "sha256": "8d9601440a74302793a2a997464a03f9fa8221d493a8ccb1c9de56226af7d854"
+        }
+      }
+    },
+    {
+      "file": "new-art-old-run.rig.zip",
+      "bytes": 291458,
+      "sha256": "030e54d42b70c38e5352cf40f8c69271ee946c08a39a2518719ec86607e7d403",
+      "members": {
+        "skin.json": {
+          "bytes": 5074,
+          "sha256": "ed68a95953eb27288f382c7f5e042c7f234b105b62303f7623294eb9f7ba2e52"
+        },
+        "slots/torso.png": {
+          "bytes": 13582,
+          "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13133,
+          "sha256": "1583866419f6d73d9f7898fe54d511fe0e6340a4f7b3c0cbe81cd83e19fa1271"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "new-art-old-run.character.zip",
+      "bytes": 725675,
+      "sha256": "a3a140c7df8c55fbde2596854e34f17b43c2fb9bc037f27073386a9ed890ce21",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 734384,
+          "sha256": "37e25290ecbcc603cd5497f82711a0f86a5f699bfbe13fbcdcf887c3710dea6b"
+        },
+        "manifest.json": {
+          "bytes": 5115,
+          "sha256": "b2e0479cdffe6f722f1eb1b76ceb2c6fab5883f45b55d73410de2c0d5f0cbc0e"
+        },
+        "character.json": {
+          "bytes": 455,
+          "sha256": "eecc06204f95d5c602d1f28aa692d014e993ecaa26d928bb7a5fb1eac404b480"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28470,
+          "sha256": "5a8881e607207fbf55c2f73acb6f9c5183e0c6c61d2085699b16087f03c7ff63"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "de7dab2b439cff145bf9558715bad55d3951ae1b123541134fa76ba8ff39912b"
+        }
+      }
+    },
+    {
+      "file": "theo-study.rig.zip",
+      "bytes": 291479,
+      "sha256": "6d4a6e60315cd49e4267e904f3ce5cfd5c3ab809dbb35c46376e019a8fe6fa3d",
+      "members": {
+        "skin.json": {
+          "bytes": 5069,
+          "sha256": "1da7a5bf609074d58cedeb6342ee5d30080fd3ba541f46cabb60ecf5ec15c495"
+        },
+        "slots/torso.png": {
+          "bytes": 13582,
+          "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13137,
+          "sha256": "5466b970a20592af87d7b318599d2184b5a8340b569a3e25a59f1e8fee198c30"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-study.character.zip",
+      "bytes": 757253,
+      "sha256": "4994f4f6ae47fc16206a6b23c5d33fed00f56a900996c1a96f57066ea3b77883",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 765872,
+          "sha256": "5f08bb315a8c56143fc52782459e99b3cfbf49d7ae68abf79516778f654e8b57"
+        },
+        "manifest.json": {
+          "bytes": 5110,
+          "sha256": "acdfc376b90933ef9b719649af833412d3c0c37512f2cbf211606ad4c4bdd6eb"
+        },
+        "character.json": {
+          "bytes": 449,
+          "sha256": "f73c75210b06e2c79c6e2ac75068c65bd81edfced70b1bee09d89a485303469d"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28469,
+          "sha256": "ec6c23b985a4d53022dcea5f93760f62c10ce89542ec8bd0688f68abce59e640"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "de7dab2b439cff145bf9558715bad55d3951ae1b123541134fa76ba8ff39912b"
+        }
+      }
+    },
+    {
+      "file": "theo-study-reopened.character.zip",
+      "bytes": 757253,
+      "sha256": "d2018ccb6962a092db1d5db5f02a6baee4daf32a848cca4443935c6e3d48ba40",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 765872,
+          "sha256": "5f08bb315a8c56143fc52782459e99b3cfbf49d7ae68abf79516778f654e8b57"
+        },
+        "manifest.json": {
+          "bytes": 5110,
+          "sha256": "acdfc376b90933ef9b719649af833412d3c0c37512f2cbf211606ad4c4bdd6eb"
+        },
+        "character.json": {
+          "bytes": 449,
+          "sha256": "f73c75210b06e2c79c6e2ac75068c65bd81edfced70b1bee09d89a485303469d"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28469,
+          "sha256": "ec6c23b985a4d53022dcea5f93760f62c10ce89542ec8bd0688f68abce59e640"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "de7dab2b439cff145bf9558715bad55d3951ae1b123541134fa76ba8ff39912b"
+        }
+      }
+    },
+    {
+      "file": "theo-study-reopened.rig.zip",
+      "bytes": 291479,
+      "sha256": "eda8054278c45065a0097407cd3291733f54475a0eff6ea6efc8177017416f1d",
+      "members": {
+        "skin.json": {
+          "bytes": 5069,
+          "sha256": "1da7a5bf609074d58cedeb6342ee5d30080fd3ba541f46cabb60ecf5ec15c495"
+        },
+        "slots/torso.png": {
+          "bytes": 13582,
+          "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13137,
+          "sha256": "5466b970a20592af87d7b318599d2184b5a8340b569a3e25a59f1e8fee198c30"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-gentle.rig.zip",
+      "bytes": 291481,
+      "sha256": "c0153794cd6746dfa1e07fba32bb6b113c1a956c8638663e903faab9965d66af",
+      "members": {
+        "skin.json": {
+          "bytes": 5070,
+          "sha256": "b77a20667f78c04a0e2a534899f2c198059247caa1fae8075bdcde5a4b44bb64"
+        },
+        "slots/torso.png": {
+          "bytes": 13582,
+          "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13136,
+          "sha256": "6d9b6ca44ff4e2ee7735415482bf4a348395d8454b1f961a1e5bf2f4b9897d9f"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-gentle.character.zip",
+      "bytes": 771762,
+      "sha256": "296b8f6640376d3fcf1d9120babfeb74ada831cb7fb5c02d40286f03c3625d79",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 780936,
+          "sha256": "f345b60222846931f03d9c03d304f5fdd61c6cdad102638fcc30f6a2de108a47"
+        },
+        "manifest.json": {
+          "bytes": 5111,
+          "sha256": "a9d1a92a22aa5d63a1e6a3d2ae51f5ae2f89a854e333edb1f5bc8cae30aed614"
+        },
+        "character.json": {
+          "bytes": 449,
+          "sha256": "85a47a3f2fc47f3c0d6aa55ce6db3cd64009db943074d4cfe55097f1bc017ac2"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28469,
+          "sha256": "10e341619bc57c38dca5501d34423c267237421e2edaeacc1a1a2dae5f49bab9"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "de7dab2b439cff145bf9558715bad55d3951ae1b123541134fa76ba8ff39912b"
+        }
+      }
+    },
+    {
+      "file": "theo-joyful.rig.zip",
+      "bytes": 291479,
+      "sha256": "40a5e6b981450cabc4a7ac86d885ee455e9ab42eb91a9d4ed8de316e0e360e7a",
+      "members": {
+        "skin.json": {
+          "bytes": 5070,
+          "sha256": "aef84eab5a89eae59a7cffa23266e10f425a5195aff7c2bef18a272b131d2bb0"
+        },
+        "slots/torso.png": {
+          "bytes": 13582,
+          "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13136,
+          "sha256": "9acbd780d0f082124ab4299c0cd6fc26bacbd32695cfcd0c23ba89233a3c7b4d"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-joyful.character.zip",
+      "bytes": 755421,
+      "sha256": "1296c8c1255183be54e5a5a71fa69495d67e0787beadb2f4bdeb50304f065c5c",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 763890,
+          "sha256": "c63d5d1922830dfbe9a1b2208eb4c650a6d877e74ebb6f9eccec0cf165b78862"
+        },
+        "manifest.json": {
+          "bytes": 5111,
+          "sha256": "380f70c18c8c07b7ed08e0cfa9e4590c105eae48c05ef000dfa4e811c3b5869b"
+        },
+        "character.json": {
+          "bytes": 449,
+          "sha256": "7b4caec16e173ca4cd0dc93d5048628660beaacdbfe648c0aa2ac70ca40a8fdc"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28469,
+          "sha256": "22f03dbd4e2e3bdb2845ee24df2e9fc100e22af09b3961807e3fe5d0b19cda62"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "de7dab2b439cff145bf9558715bad55d3951ae1b123541134fa76ba8ff39912b"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored.rig.zip",
+      "bytes": 298065,
+      "sha256": "d9527f4ce25793254157934b153cb7cd8e0073e18a0df49d1e2bfb590d7a3bdf",
+      "members": {
+        "skin.json": {
+          "bytes": 5073,
+          "sha256": "cffda9c2d2afb4c475a79edb1b2809b028841fcca20dbb7a398173d643ce8359"
+        },
+        "slots/torso.png": {
+          "bytes": 13963,
+          "sha256": "69edd88395abf84583ed0c49d033f96bac7946e935caa1a7bef24f2cccb969a3"
+        },
+        "slots/hips.png": {
+          "bytes": 6030,
+          "sha256": "c89e83fc05e49f585213662f2cc6e60a31c3ce5a0795549a981a21d227b4a31d"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5307,
+          "sha256": "d53173409ced2ec34f5cf085845cc506744743e4c9fb0aeac8c79aca4520d70d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5515,
+          "sha256": "7e335d33d60767a43732408127b49b682cc90e1546dc4a821c8f627e9e0b853f"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3798,
+          "sha256": "8a8f4ce7a8e325d1b803291a2b5c8b958080fb32b6e3aab2825c51678438301f"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4681,
+          "sha256": "d945f4a1a9fa82301d9795b04778de2ccca49dadcc5682bb9254b844bbac40b7"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5193,
+          "sha256": "4b18e767a7e78f6de7dfe35a05f8a95e667ed3dac8a6a6fe727e93ace7446cbc"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5483,
+          "sha256": "254d0624b7ee4a758d02d54076261c56d62053c4b468c2525cdb7d152090d1b0"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4443,
+          "sha256": "388702810f5406547c840cf18cdf93c7d237511058f9f45469f8d1ccf37aa397"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4866,
+          "sha256": "18c4ce2a844f46acbcf000ce51b1c4ca55ea7cc2a9e8025341cfa80dd1609896"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5190,
+          "sha256": "05e9a50f26e2b8e172116dca68ba9dd6f57a8c0ce157f480396999c0eb814000"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4837,
+          "sha256": "147e408efe9a9971d24d06d8a2b12c382d28fb67f0887ad9bb870c2f3d0f4806"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 30606,
+          "sha256": "8e87a6424eefacccfe5530fed2e02c0c43e697194b36f193bc173ab2f18f0368"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 31829,
+          "sha256": "6d5a22d6a36eaeed10e3f185c8cf8400608a3bd97184880a7a0cf3bad222244f"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 30576,
+          "sha256": "e2ea1baea08d54a9f5711a4b9b4f95920c068322fc4095d8f38149190acf78ba"
+        },
+        "project.json": {
+          "bytes": 13137,
+          "sha256": "5cf464e4f24e07ee5e2a3f750de9fd9e96a0f518c7767161afb6b27caec4e3c6"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored.character.zip",
+      "bytes": 769984,
+      "sha256": "24eca1715c17d813fd0402fb1f74c158ceb0938ec40baad861bdb9e165e001ff",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 778719,
+          "sha256": "b4c8c6ddbcd6d54b6a5a9c56497b5924c47d6d5537783beb121e0389b39d2dbb"
+        },
+        "manifest.json": {
+          "bytes": 5114,
+          "sha256": "2744ef975d107092a72903a476a1515b797f72c84e16f3c675807579cb6d4866"
+        },
+        "character.json": {
+          "bytes": 453,
+          "sha256": "c51e87a2d436016d13ee26b078e387d1cf9dc1e364a07716715fdefb71e75f61"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28473,
+          "sha256": "c77cac85e65d725c66cf19aee3f50008c8c712e121cebc916bffde9b8dcfdb0f"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "e7b97f4cf42ed003e4afbf131f08d1cb641c9cee35a6f7c2bd907514b0081795"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored-reopened.character.zip",
+      "bytes": 769984,
+      "sha256": "747f70ac02327304854061b059915149d8b50845be6db43f4c371b8381c4930e",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 778719,
+          "sha256": "b4c8c6ddbcd6d54b6a5a9c56497b5924c47d6d5537783beb121e0389b39d2dbb"
+        },
+        "manifest.json": {
+          "bytes": 5114,
+          "sha256": "2744ef975d107092a72903a476a1515b797f72c84e16f3c675807579cb6d4866"
+        },
+        "character.json": {
+          "bytes": 453,
+          "sha256": "c51e87a2d436016d13ee26b078e387d1cf9dc1e364a07716715fdefb71e75f61"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28473,
+          "sha256": "c77cac85e65d725c66cf19aee3f50008c8c712e121cebc916bffde9b8dcfdb0f"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "e7b97f4cf42ed003e4afbf131f08d1cb641c9cee35a6f7c2bd907514b0081795"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored-reopened.rig.zip",
+      "bytes": 298065,
+      "sha256": "aee31a39b28953e51efdff33a85e58800214dc2e5a5ad97ef226db7dddcdda5e",
+      "members": {
+        "skin.json": {
+          "bytes": 5073,
+          "sha256": "cffda9c2d2afb4c475a79edb1b2809b028841fcca20dbb7a398173d643ce8359"
+        },
+        "slots/torso.png": {
+          "bytes": 13963,
+          "sha256": "69edd88395abf84583ed0c49d033f96bac7946e935caa1a7bef24f2cccb969a3"
+        },
+        "slots/hips.png": {
+          "bytes": 6030,
+          "sha256": "c89e83fc05e49f585213662f2cc6e60a31c3ce5a0795549a981a21d227b4a31d"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5307,
+          "sha256": "d53173409ced2ec34f5cf085845cc506744743e4c9fb0aeac8c79aca4520d70d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5515,
+          "sha256": "7e335d33d60767a43732408127b49b682cc90e1546dc4a821c8f627e9e0b853f"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3798,
+          "sha256": "8a8f4ce7a8e325d1b803291a2b5c8b958080fb32b6e3aab2825c51678438301f"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4681,
+          "sha256": "d945f4a1a9fa82301d9795b04778de2ccca49dadcc5682bb9254b844bbac40b7"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5193,
+          "sha256": "4b18e767a7e78f6de7dfe35a05f8a95e667ed3dac8a6a6fe727e93ace7446cbc"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5483,
+          "sha256": "254d0624b7ee4a758d02d54076261c56d62053c4b468c2525cdb7d152090d1b0"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4443,
+          "sha256": "388702810f5406547c840cf18cdf93c7d237511058f9f45469f8d1ccf37aa397"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4866,
+          "sha256": "18c4ce2a844f46acbcf000ce51b1c4ca55ea7cc2a9e8025341cfa80dd1609896"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5190,
+          "sha256": "05e9a50f26e2b8e172116dca68ba9dd6f57a8c0ce157f480396999c0eb814000"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4837,
+          "sha256": "147e408efe9a9971d24d06d8a2b12c382d28fb67f0887ad9bb870c2f3d0f4806"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 30606,
+          "sha256": "8e87a6424eefacccfe5530fed2e02c0c43e697194b36f193bc173ab2f18f0368"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 31829,
+          "sha256": "6d5a22d6a36eaeed10e3f185c8cf8400608a3bd97184880a7a0cf3bad222244f"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 30576,
+          "sha256": "e2ea1baea08d54a9f5711a4b9b4f95920c068322fc4095d8f38149190acf78ba"
+        },
+        "project.json": {
+          "bytes": 13137,
+          "sha256": "5cf464e4f24e07ee5e2a3f750de9fd9e96a0f518c7767161afb6b27caec4e3c6"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    }
+  ],
+  "roundtrips": [
+    {
+      "id": "theo-study",
+      "freshPage": true,
+      "customMotionAndV3ClothingPreserved": true,
+      "identities": 1,
+      "clothing": 3,
+      "previewAndIdentityAndColorsRestored": true,
+      "pngPixelsEqual": true,
+      "manifestEqual": true
+    },
+    {
+      "id": "theo-recolored",
+      "freshPage": true,
+      "customMotionAndV3ClothingPreserved": true,
+      "identities": 1,
+      "clothing": 3,
+      "previewAndIdentityAndColorsRestored": true,
+      "pngPixelsEqual": true,
+      "manifestEqual": true
+    }
+  ],
+  "itemRoundtrips": [
+    {
+      "group": "top",
+      "id": "custom-theo-study-top",
+      "version": 3,
+      "colorModel": "source-relative-v1",
+      "metadataEqual": true,
+      "artworkAndMasksDecodedPixelsEqual": true
+    },
+    {
+      "group": "bottom",
+      "id": "custom-theo-study-bottom",
+      "version": 3,
+      "colorModel": "source-relative-v1",
+      "metadataEqual": true,
+      "artworkAndMasksDecodedPixelsEqual": true
+    },
+    {
+      "group": "shoes",
+      "id": "custom-theo-study-shoes",
+      "version": 3,
+      "colorModel": "source-relative-v1",
+      "metadataEqual": true,
+      "artworkAndMasksDecodedPixelsEqual": true
+    }
+  ],
+  "identityChecks": [
+    {
+      "id": "custom-theo-study",
+      "importPreservesCurrentPixels": true,
+      "metadataEqual": true,
+      "artworkAndMasksDecodedPixelsEqual": true
+    }
+  ],
+  "sourceParts": [
+    {
+      "id": "theo-study",
+      "slot": "torso",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/torso-1x.png",
+      "bytes": 13582,
+      "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+    },
+    {
+      "id": "theo-study",
+      "slot": "hips",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/hips-1x.png",
+      "bytes": 5870,
+      "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+    },
+    {
+      "id": "theo-study",
+      "slot": "near-upper-arm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/near-upper-arm-1x.png",
+      "bytes": 5084,
+      "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+    },
+    {
+      "id": "theo-study",
+      "slot": "near-forearm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/near-forearm-1x.png",
+      "bytes": 5434,
+      "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+    },
+    {
+      "id": "theo-study",
+      "slot": "far-upper-arm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/far-upper-arm-1x.png",
+      "bytes": 3764,
+      "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+    },
+    {
+      "id": "theo-study",
+      "slot": "far-forearm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/far-forearm-1x.png",
+      "bytes": 4684,
+      "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+    },
+    {
+      "id": "theo-study",
+      "slot": "near-thigh",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/near-thigh-1x.png",
+      "bytes": 5002,
+      "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+    },
+    {
+      "id": "theo-study",
+      "slot": "near-shin",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/near-shin-1x.png",
+      "bytes": 5364,
+      "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+    },
+    {
+      "id": "theo-study",
+      "slot": "near-shoe",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/near-shoe-1x.png",
+      "bytes": 4488,
+      "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+    },
+    {
+      "id": "theo-study",
+      "slot": "far-thigh",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/far-thigh-1x.png",
+      "bytes": 4723,
+      "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+    },
+    {
+      "id": "theo-study",
+      "slot": "far-shin",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/far-shin-1x.png",
+      "bytes": 5003,
+      "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+    },
+    {
+      "id": "theo-study",
+      "slot": "far-shoe",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/far-shoe-1x.png",
+      "bytes": 4850,
+      "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+    },
+    {
+      "id": "theo-study",
+      "slot": "head-neutral",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/head-neutral-1x.png",
+      "bytes": 29060,
+      "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+    },
+    {
+      "id": "theo-study",
+      "slot": "head-gentle",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/head-gentle-1x.png",
+      "bytes": 30154,
+      "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+    },
+    {
+      "id": "theo-study",
+      "slot": "head-joyful",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-study/head-joyful-1x.png",
+      "bytes": 29023,
+      "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+    }
+  ],
+  "legacyChecks": [
+    {
+      "id": "before",
+      "previousId": "theo-theo",
+      "previousDirectory": "docs/reference-pair/final/",
+      "all36FramesExact": true,
+      "manifestExact": true,
+      "originalProjectSha256": "424f742c2d5dd0b8513a8cf6773bf50087397e12adf23287962ae7875619464e",
+      "originalPackSha256": "a671fe841b0e8291879ef4cb915311c3c8185a2a210150953076f94ca73e33bb"
+    },
+    {
+      "id": "legacy-rose",
+      "previousId": "rose-rose",
+      "previousDirectory": "docs/reference-pair/final/",
+      "all36FramesExact": true,
+      "manifestExact": true,
+      "originalProjectSha256": "7c8f81293c2988f6b563c8bf1ebab7cbfb15ad3f3ced7396cdf2fe7c14494e9b",
+      "originalPackSha256": "b056cb1424784b315f45376fb3b6a71e55d22fff2e30bc98c9264c42a7338194"
+    }
+  ],
+  "importChecks": [
+    {
+      "newProjectOnlyJumpClearance": [
+        {
+          "key": 0,
+          "afterRootY": 0
+        },
+        {
+          "key": 1,
+          "afterRootY": 0
+        },
+        {
+          "key": 2,
+          "afterRootY": 0
+        },
+        {
+          "key": 4,
+          "beforeRootY": -3,
+          "afterRootY": -2
+        },
+        {
+          "key": 5,
+          "beforeRootY": -4,
+          "afterRootY": -2
+        },
+        {
+          "key": 6,
+          "beforeRootY": -4,
+          "afterRootY": -2
+        },
+        {
+          "key": 7,
+          "beforeRootY": -3,
+          "afterRootY": -2
+        },
+        {
+          "key": 8,
+          "afterRootY": 0
+        },
+        {
+          "key": 9,
+          "afterRootY": 0
+        },
+        {
+          "key": 10,
+          "afterRootY": 0
+        },
+        {
+          "key": 11,
+          "afterRootY": 0
+        }
+      ],
+      "oldProjectClipsUnchanged": true
+    },
+    {
+      "sameNewArtworkAndRigInComparator": true,
+      "onlyRunClipChanges": true,
+      "comparatorUsesExactOldRun": true,
+      "oldFilesUntouched": true
+    }
+  ],
+  "topDyeChecks": [
+    {
+      "sourceColors": [
+        {
+          "slot": "head-neutral",
+          "sourcePixels": 9990,
+          "exactAuthoredPixels": 9990,
+          "alphaStable": true
+        },
+        {
+          "slot": "head-gentle",
+          "sourcePixels": 10721,
+          "exactAuthoredPixels": 10721,
+          "alphaStable": true
+        },
+        {
+          "slot": "head-joyful",
+          "sourcePixels": 9970,
+          "exactAuthoredPixels": 9970,
+          "alphaStable": true
+        },
+        {
+          "slot": "torso",
+          "sourcePixels": 3737,
+          "exactAuthoredPixels": 3737,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-upper-arm",
+          "sourcePixels": 1010,
+          "exactAuthoredPixels": 1010,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-forearm",
+          "sourcePixels": 1009,
+          "exactAuthoredPixels": 1009,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-upper-arm",
+          "sourcePixels": 413,
+          "exactAuthoredPixels": 413,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-forearm",
+          "sourcePixels": 687,
+          "exactAuthoredPixels": 687,
+          "alphaStable": true
+        },
+        {
+          "slot": "hips",
+          "sourcePixels": 1193,
+          "exactAuthoredPixels": 1193,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-thigh",
+          "sourcePixels": 959,
+          "exactAuthoredPixels": 959,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-shin",
+          "sourcePixels": 983,
+          "exactAuthoredPixels": 983,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-thigh",
+          "sourcePixels": 874,
+          "exactAuthoredPixels": 874,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-shin",
+          "sourcePixels": 916,
+          "exactAuthoredPixels": 916,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-shoe",
+          "sourcePixels": 682,
+          "exactAuthoredPixels": 682,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-shoe",
+          "sourcePixels": 813,
+          "exactAuthoredPixels": 813,
+          "alphaStable": true
+        }
+      ],
+      "ownedPixels": [
+        10532,
+        6505,
+        18548,
+        3524,
+        3849,
+        999
+      ],
+      "changedPixels": [
+        0,
+        6505,
+        18548,
+        3524,
+        3849,
+        999
+      ],
+      "fixed": [
+        {
+          "slot": "head-neutral",
+          "fixedPixels": 2018,
+          "allExact": true
+        },
+        {
+          "slot": "head-gentle",
+          "fixedPixels": 2475,
+          "allExact": true
+        },
+        {
+          "slot": "head-joyful",
+          "fixedPixels": 1739,
+          "allExact": true
+        },
+        {
+          "slot": "torso",
+          "fixedPixels": 2022,
+          "allExact": true
+        },
+        {
+          "slot": "near-upper-arm",
+          "fixedPixels": 170,
+          "allExact": true
+        },
+        {
+          "slot": "near-forearm",
+          "fixedPixels": 231,
+          "allExact": true
+        },
+        {
+          "slot": "far-upper-arm",
+          "fixedPixels": 105,
+          "allExact": true
+        },
+        {
+          "slot": "far-forearm",
+          "fixedPixels": 200,
+          "allExact": true
+        },
+        {
+          "slot": "hips",
+          "fixedPixels": 246,
+          "allExact": true
+        },
+        {
+          "slot": "near-thigh",
+          "fixedPixels": 172,
+          "allExact": true
+        },
+        {
+          "slot": "near-shin",
+          "fixedPixels": 240,
+          "allExact": true
+        },
+        {
+          "slot": "far-thigh",
+          "fixedPixels": 174,
+          "allExact": true
+        },
+        {
+          "slot": "far-shin",
+          "fixedPixels": 244,
+          "allExact": true
+        },
+        {
+          "slot": "near-shoe",
+          "fixedPixels": 218,
+          "allExact": true
+        },
+        {
+          "slot": "far-shoe",
+          "fixedPixels": 278,
+          "allExact": true
+        }
+      ],
+      "allSourceColorsExact": true,
+      "allAlphasStable": true
+    }
+  ],
+  "editorFrameCoverage": "Final study: every distinct pose in both directions (72); baseline/comparator: representative pose per action and direction (16). All six exported packs decode all 36 poses; independent playback observes final four actions and old running in both directions.",
+  "editorFrames": [
+    {
+      "id": "before",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "before",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "before",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "before",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "before",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "before",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "before",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "before",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "new-art-old-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 1
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 2
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 3
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 4
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 5
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 6
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 7
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 8
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 10
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 11
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 12
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 13
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 14
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 15
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 16
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 18
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 19
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 20
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 21
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 22
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 23
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 24
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 25
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 26
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 27
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 28
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 30
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 31
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 32
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 33
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 34
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 35
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 1
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 2
+    },
+    {
+      "id": "theo-study",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 3
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 4
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 5
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 6
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 7
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 8
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 10
+    },
+    {
+      "id": "theo-study",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 11
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 12
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 13
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 14
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 15
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 16
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 18
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 19
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 20
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 21
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 22
+    },
+    {
+      "id": "theo-study",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 23
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 24
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 25
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 26
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 27
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 28
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 30
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 31
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 32
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 33
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 34
+    },
+    {
+      "id": "theo-study",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 35
+    }
+  ],
+  "playback": [
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "idle",
+      "facing": "right",
+      "expectedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "matchedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "position": 0,
+          "ms": 4
+        },
+        {
+          "frame": 1,
+          "position": 1,
+          "ms": 520
+        },
+        {
+          "frame": 2,
+          "position": 2,
+          "ms": 1022
+        },
+        {
+          "frame": 3,
+          "position": 3,
+          "ms": 2024
+        },
+        {
+          "frame": 0,
+          "position": 4,
+          "ms": 2520
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 520,
+          "expectedMs": 500,
+          "errorMs": 20
+        },
+        {
+          "position": 2,
+          "actualMs": 1022,
+          "expectedMs": 1000,
+          "errorMs": 22
+        },
+        {
+          "position": 3,
+          "actualMs": 2024,
+          "expectedMs": 2000,
+          "errorMs": 24
+        },
+        {
+          "position": 4,
+          "actualMs": 2520,
+          "expectedMs": 2500,
+          "errorMs": 20
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 3000,
+      "finalPosition": 4,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "walk",
+      "facing": "right",
+      "expectedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matchedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 4,
+          "position": 0,
+          "ms": 3
+        },
+        {
+          "frame": 5,
+          "position": 1,
+          "ms": 125
+        },
+        {
+          "frame": 6,
+          "position": 2,
+          "ms": 224
+        },
+        {
+          "frame": 7,
+          "position": 3,
+          "ms": 324
+        },
+        {
+          "frame": 8,
+          "position": 4,
+          "ms": 426
+        },
+        {
+          "frame": 9,
+          "position": 5,
+          "ms": 524
+        },
+        {
+          "frame": 10,
+          "position": 6,
+          "ms": 627
+        },
+        {
+          "frame": 11,
+          "position": 7,
+          "ms": 725
+        },
+        {
+          "frame": 4,
+          "position": 8,
+          "ms": 827
+        },
+        {
+          "frame": 5,
+          "position": 9,
+          "ms": 927
+        },
+        {
+          "frame": 6,
+          "position": 10,
+          "ms": 1027
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 125,
+          "expectedMs": 100,
+          "errorMs": 25
+        },
+        {
+          "position": 2,
+          "actualMs": 224,
+          "expectedMs": 200,
+          "errorMs": 24
+        },
+        {
+          "position": 3,
+          "actualMs": 324,
+          "expectedMs": 300,
+          "errorMs": 24
+        },
+        {
+          "position": 4,
+          "actualMs": 426,
+          "expectedMs": 400,
+          "errorMs": 26
+        },
+        {
+          "position": 5,
+          "actualMs": 524,
+          "expectedMs": 500,
+          "errorMs": 24
+        },
+        {
+          "position": 6,
+          "actualMs": 627,
+          "expectedMs": 600,
+          "errorMs": 27
+        },
+        {
+          "position": 7,
+          "actualMs": 725,
+          "expectedMs": 700,
+          "errorMs": 25
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 10,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "right",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 72
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 122
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 190
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 236
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 287
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 354
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 403
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 454
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 521
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 571
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 620
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 688
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 737
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 788
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 853
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 903
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 953
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 72,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 16
+        },
+        {
+          "position": 2,
+          "actualMs": 122,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 11
+        },
+        {
+          "position": 3,
+          "actualMs": 190,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 23
+        },
+        {
+          "position": 4,
+          "actualMs": 236,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 14
+        },
+        {
+          "position": 5,
+          "actualMs": 287,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 9
+        },
+        {
+          "position": 6,
+          "actualMs": 354,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 21
+        },
+        {
+          "position": 7,
+          "actualMs": 403,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 14
+        },
+        {
+          "position": 8,
+          "actualMs": 454,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 10
+        },
+        {
+          "position": 9,
+          "actualMs": 521,
+          "expectedMs": 500,
+          "errorMs": 21
+        },
+        {
+          "position": 10,
+          "actualMs": 571,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 15
+        },
+        {
+          "position": 11,
+          "actualMs": 620,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 9
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "jump",
+      "facing": "right",
+      "expectedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "matchedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "transitions": [
+        {
+          "frame": 24,
+          "position": 0,
+          "ms": 6
+        },
+        {
+          "frame": 25,
+          "position": 1,
+          "ms": 91
+        },
+        {
+          "frame": 26,
+          "position": 2,
+          "ms": 152
+        },
+        {
+          "frame": 27,
+          "position": 3,
+          "ms": 220
+        },
+        {
+          "frame": 28,
+          "position": 4,
+          "ms": 288
+        },
+        {
+          "frame": 29,
+          "position": 5,
+          "ms": 354
+        },
+        {
+          "frame": 30,
+          "position": 6,
+          "ms": 421
+        },
+        {
+          "frame": 31,
+          "position": 7,
+          "ms": 487
+        },
+        {
+          "frame": 32,
+          "position": 8,
+          "ms": 553
+        },
+        {
+          "frame": 33,
+          "position": 9,
+          "ms": 619
+        },
+        {
+          "frame": 34,
+          "position": 10,
+          "ms": 685
+        },
+        {
+          "frame": 35,
+          "position": 11,
+          "ms": 755
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 91,
+          "expectedMs": 66.66666666666667,
+          "errorMs": 24
+        },
+        {
+          "position": 2,
+          "actualMs": 152,
+          "expectedMs": 133.33333333333334,
+          "errorMs": 19
+        },
+        {
+          "position": 3,
+          "actualMs": 220,
+          "expectedMs": 200,
+          "errorMs": 20
+        },
+        {
+          "position": 4,
+          "actualMs": 288,
+          "expectedMs": 266.6666666666667,
+          "errorMs": 21
+        },
+        {
+          "position": 5,
+          "actualMs": 354,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 21
+        },
+        {
+          "position": 6,
+          "actualMs": 421,
+          "expectedMs": 400,
+          "errorMs": 21
+        },
+        {
+          "position": 7,
+          "actualMs": 487,
+          "expectedMs": 466.6666666666667,
+          "errorMs": 20
+        },
+        {
+          "position": 8,
+          "actualMs": 553,
+          "expectedMs": 533.3333333333334,
+          "errorMs": 20
+        },
+        {
+          "position": 9,
+          "actualMs": 619,
+          "expectedMs": 600,
+          "errorMs": 19
+        },
+        {
+          "position": 10,
+          "actualMs": 685,
+          "expectedMs": 666.6666666666666,
+          "errorMs": 18
+        },
+        {
+          "position": 11,
+          "actualMs": 755,
+          "expectedMs": 733.3333333333334,
+          "errorMs": 22
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 11,
+      "once": true,
+      "replayStartedAtFirstFrameAndCompleted": true,
+      "finalStatus": "Finished · Holding the final frame. Replay to start again."
+    },
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "idle",
+      "facing": "left",
+      "expectedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "matchedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "position": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "position": 1,
+          "ms": 524
+        },
+        {
+          "frame": 2,
+          "position": 2,
+          "ms": 1023
+        },
+        {
+          "frame": 3,
+          "position": 3,
+          "ms": 2023
+        },
+        {
+          "frame": 0,
+          "position": 4,
+          "ms": 2523
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 524,
+          "expectedMs": 500,
+          "errorMs": 24
+        },
+        {
+          "position": 2,
+          "actualMs": 1023,
+          "expectedMs": 1000,
+          "errorMs": 23
+        },
+        {
+          "position": 3,
+          "actualMs": 2023,
+          "expectedMs": 2000,
+          "errorMs": 23
+        },
+        {
+          "position": 4,
+          "actualMs": 2523,
+          "expectedMs": 2500,
+          "errorMs": 23
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 3000,
+      "finalPosition": 4,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "walk",
+      "facing": "left",
+      "expectedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matchedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 4,
+          "position": 0,
+          "ms": 3
+        },
+        {
+          "frame": 5,
+          "position": 1,
+          "ms": 112
+        },
+        {
+          "frame": 6,
+          "position": 2,
+          "ms": 212
+        },
+        {
+          "frame": 7,
+          "position": 3,
+          "ms": 316
+        },
+        {
+          "frame": 8,
+          "position": 4,
+          "ms": 412
+        },
+        {
+          "frame": 9,
+          "position": 5,
+          "ms": 514
+        },
+        {
+          "frame": 10,
+          "position": 6,
+          "ms": 611
+        },
+        {
+          "frame": 11,
+          "position": 7,
+          "ms": 715
+        },
+        {
+          "frame": 4,
+          "position": 8,
+          "ms": 811
+        },
+        {
+          "frame": 5,
+          "position": 9,
+          "ms": 913
+        },
+        {
+          "frame": 6,
+          "position": 10,
+          "ms": 1013
+        },
+        {
+          "frame": 7,
+          "position": 11,
+          "ms": 1114
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 112,
+          "expectedMs": 100,
+          "errorMs": 12
+        },
+        {
+          "position": 2,
+          "actualMs": 212,
+          "expectedMs": 200,
+          "errorMs": 12
+        },
+        {
+          "position": 3,
+          "actualMs": 316,
+          "expectedMs": 300,
+          "errorMs": 16
+        },
+        {
+          "position": 4,
+          "actualMs": 412,
+          "expectedMs": 400,
+          "errorMs": 12
+        },
+        {
+          "position": 5,
+          "actualMs": 514,
+          "expectedMs": 500,
+          "errorMs": 14
+        },
+        {
+          "position": 6,
+          "actualMs": 611,
+          "expectedMs": 600,
+          "errorMs": 11
+        },
+        {
+          "position": 7,
+          "actualMs": 715,
+          "expectedMs": 700,
+          "errorMs": 15
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 11,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "left",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 79
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 129
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 181
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 245
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 295
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 346
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 413
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 463
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 511
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 578
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 628
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 680
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 744
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 796
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 845
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 913
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 961
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 79,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 23
+        },
+        {
+          "position": 2,
+          "actualMs": 129,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 18
+        },
+        {
+          "position": 3,
+          "actualMs": 181,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 14
+        },
+        {
+          "position": 4,
+          "actualMs": 245,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 23
+        },
+        {
+          "position": 5,
+          "actualMs": 295,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 17
+        },
+        {
+          "position": 6,
+          "actualMs": 346,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 13
+        },
+        {
+          "position": 7,
+          "actualMs": 413,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 24
+        },
+        {
+          "position": 8,
+          "actualMs": 463,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 19
+        },
+        {
+          "position": 9,
+          "actualMs": 511,
+          "expectedMs": 500,
+          "errorMs": 11
+        },
+        {
+          "position": 10,
+          "actualMs": 578,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 22
+        },
+        {
+          "position": 11,
+          "actualMs": 628,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 17
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-study",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "jump",
+      "facing": "left",
+      "expectedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "matchedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "transitions": [
+        {
+          "frame": 24,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 25,
+          "position": 1,
+          "ms": 76
+        },
+        {
+          "frame": 26,
+          "position": 2,
+          "ms": 142
+        },
+        {
+          "frame": 27,
+          "position": 3,
+          "ms": 210
+        },
+        {
+          "frame": 28,
+          "position": 4,
+          "ms": 278
+        },
+        {
+          "frame": 29,
+          "position": 5,
+          "ms": 345
+        },
+        {
+          "frame": 30,
+          "position": 6,
+          "ms": 412
+        },
+        {
+          "frame": 31,
+          "position": 7,
+          "ms": 485
+        },
+        {
+          "frame": 32,
+          "position": 8,
+          "ms": 545
+        },
+        {
+          "frame": 33,
+          "position": 9,
+          "ms": 610
+        },
+        {
+          "frame": 34,
+          "position": 10,
+          "ms": 679
+        },
+        {
+          "frame": 35,
+          "position": 11,
+          "ms": 745
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 76,
+          "expectedMs": 66.66666666666667,
+          "errorMs": 9
+        },
+        {
+          "position": 2,
+          "actualMs": 142,
+          "expectedMs": 133.33333333333334,
+          "errorMs": 9
+        },
+        {
+          "position": 3,
+          "actualMs": 210,
+          "expectedMs": 200,
+          "errorMs": 10
+        },
+        {
+          "position": 4,
+          "actualMs": 278,
+          "expectedMs": 266.6666666666667,
+          "errorMs": 11
+        },
+        {
+          "position": 5,
+          "actualMs": 345,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 12
+        },
+        {
+          "position": 6,
+          "actualMs": 412,
+          "expectedMs": 400,
+          "errorMs": 12
+        },
+        {
+          "position": 7,
+          "actualMs": 485,
+          "expectedMs": 466.6666666666667,
+          "errorMs": 18
+        },
+        {
+          "position": 8,
+          "actualMs": 545,
+          "expectedMs": 533.3333333333334,
+          "errorMs": 12
+        },
+        {
+          "position": 9,
+          "actualMs": 610,
+          "expectedMs": 600,
+          "errorMs": 10
+        },
+        {
+          "position": 10,
+          "actualMs": 679,
+          "expectedMs": 666.6666666666666,
+          "errorMs": 12
+        },
+        {
+          "position": 11,
+          "actualMs": 745,
+          "expectedMs": 733.3333333333334,
+          "errorMs": 12
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 11,
+      "once": true,
+      "replayStartedAtFirstFrameAndCompleted": true,
+      "finalStatus": "Finished · Holding the final frame. Replay to start again."
+    },
+    {
+      "id": "before",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "right",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 81
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 131
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 196
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 246
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 296
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 364
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 414
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 464
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 529
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 579
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 630
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 698
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 748
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 797
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 863
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 917
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 963
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 81,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 25
+        },
+        {
+          "position": 2,
+          "actualMs": 131,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 20
+        },
+        {
+          "position": 3,
+          "actualMs": 196,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 29
+        },
+        {
+          "position": 4,
+          "actualMs": 246,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 24
+        },
+        {
+          "position": 5,
+          "actualMs": 296,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 18
+        },
+        {
+          "position": 6,
+          "actualMs": 364,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 31
+        },
+        {
+          "position": 7,
+          "actualMs": 414,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 25
+        },
+        {
+          "position": 8,
+          "actualMs": 464,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 20
+        },
+        {
+          "position": 9,
+          "actualMs": 529,
+          "expectedMs": 500,
+          "errorMs": 29
+        },
+        {
+          "position": 10,
+          "actualMs": 579,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 23
+        },
+        {
+          "position": 11,
+          "actualMs": 630,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 19
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "before",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "left",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 83
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 134
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 203
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 250
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 300
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 368
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 417
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 468
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 533
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 583
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 633
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 702
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 750
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 801
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 867
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 916
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 966
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 83,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 27
+        },
+        {
+          "position": 2,
+          "actualMs": 134,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 23
+        },
+        {
+          "position": 3,
+          "actualMs": 203,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 36
+        },
+        {
+          "position": 4,
+          "actualMs": 250,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 28
+        },
+        {
+          "position": 5,
+          "actualMs": 300,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 22
+        },
+        {
+          "position": 6,
+          "actualMs": 368,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 35
+        },
+        {
+          "position": 7,
+          "actualMs": 417,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 28
+        },
+        {
+          "position": 8,
+          "actualMs": 468,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 24
+        },
+        {
+          "position": 9,
+          "actualMs": 533,
+          "expectedMs": 500,
+          "errorMs": 33
+        },
+        {
+          "position": 10,
+          "actualMs": 583,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 27
+        },
+        {
+          "position": 11,
+          "actualMs": 633,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 22
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "forbidden": []
+}

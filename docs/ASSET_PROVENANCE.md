@@ -1,5 +1,22 @@
 # Artwork provenance and reuse
 
+## Theo run shoulder and ownership repair
+
+This follow-up reuses the exact complete Theo study artwork and makes no new
+image-generation call. A separately identified top adds 113 hidden torso
+coverage pixels copied from the same source sleeve and removes eight explicitly
+located hand pixels that belonged outside the torso. The moving arms, all heads,
+lower clothing and shoes remain byte-identical. Original sources and items are
+not overwritten. The [source record](../artwork/theo-run-repair/README.md) and
+registration JSON include every donor/target coordinate, material, RGBA value,
+source hash and recoverable trial. Portable item/project ZIPs retain provenance.
+
+An opt-in [motion-library V2](MOTION_LIBRARY_V2.md) changes run target geometry,
+shoe support and upper-body response without new illustration. Actual review
+images come from [Studio-exported packs](THEO_RUN_REPAIR_REVIEW.md); preparation
+diagnostics remain separately labeled. This is local deterministic composition,
+not pose-by-pose generated animation or a runtime image service.
+
 ## Theo and Rose reference pair
 
 Three OpenAI image-generation calls on 2026-10-18 UTC produced a coordinated
@@ -202,3 +219,28 @@ All lineup PNGs and animation previews in [wardrobe-items/](wardrobe-items/)
 come from the application's actual exported atlases. Imported user artwork
 retains its supplied provenance and rights; clothing import does not assign it
 a new license. See [the feature review](WARDROBE_ITEMS_REVIEW.md).
+
+
+## Theo complete-figure study
+
+Two development-time OpenAI image-generation calls on 2026-10-18 produced a
+complete standing/run-design board and supplementary hidden anatomy, expression
+heads and active forearms. The previous Theo/Rose source design and actual
+assembled image supplied references for the complete model; that model supplied
+the second call's reference. Untouched sources and exact prompts are retained in
+[`artwork/theo-pose-study`](../artwork/theo-pose-study/README.md).
+
+Offline preparation derives one standing-master scale from neck and sole
+landmarks, retains visible whole-character pixels, and assigns explicit part and
+material ownership. Helper artwork fills occluded regions and supplies complete
+expression heads; the generated extra arms/action hands are retained as sources
+but are not used in this candidate. The complete master supplies the actual
+visible arms and hands. The helper is not a replacement for the visible
+whole-character silhouette. The run drawings are design references, not actual
+exported animation frames. No runtime image-generation service is used.
+
+New clothing explicitly opts into item V3 `source-relative-v1` colors. This keeps
+authored color variation at source palette settings; V1/V2 clothing and historical
+projects retain their previous results. The actual application exports, matched
+comparisons and limitations are recorded in
+[the study review](THEO_POSE_STUDY_REVIEW.md).
