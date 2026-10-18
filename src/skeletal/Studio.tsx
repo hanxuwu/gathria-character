@@ -4,7 +4,7 @@ import { downloadBlob } from "../core/pack";
 import { createAuthoringProject, createBuiltinSkin } from "./builtins";
 import { prepareRig } from "./renderer";
 import { createBakedPack } from "./bake";
-import { createMotionLibrary } from "./definition";
+import { createMotionLibrary, createMotionLibraryV2 } from "./definition";
 import { BindingCanvas } from "./BindingCanvas";
 import { MotionEditor } from "./MotionEditor";
 import { WardrobePanel } from "./WardrobePanel";
@@ -1259,6 +1259,7 @@ export function SkinStudio() {
           )}
           <MotionEditor
             animation={animation}
+            libraryVersion={project.motions.version}
             clip={clip}
             sequenceFrame={sequenceFrame}
             disabled={busy !== null || !!history.transaction}
@@ -1282,7 +1283,10 @@ export function SkinStudio() {
             onChange={changeMotion}
             onReset={() =>
               changeMotion(
-                createMotionLibrary().clips[animation]!,
+                (project.motions.version === 2
+                  ? createMotionLibraryV2()
+                  : createMotionLibrary()
+                ).clips[animation]!,
                 `Reset ${animation} motion`,
               )
             }

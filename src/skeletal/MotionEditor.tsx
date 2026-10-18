@@ -2,18 +2,24 @@ import { useEffect, useState, type ReactNode } from "react";
 import {
   assignPlaybackPose,
   holdPlaybackPose,
-  MOTION_FIELDS,
+  motionFields,
   MOTION_LIMITS,
   removePlaybackFrame,
   setMotionField,
   setMotionFps,
 } from "./motion-edit";
-import type { AnimationName, MotionClip, MotionKey } from "./types";
+import type {
+  AnimationName,
+  MotionClip,
+  MotionKey,
+  MotionLibrary,
+} from "./types";
 import { JUMP_PHASES } from "./definition";
 import "./motion-editor.css";
 
 export interface MotionEditorProps {
   animation: AnimationName;
+  libraryVersion?: MotionLibrary["version"];
   clip: MotionClip;
   sequenceFrame: number;
   disabled?: boolean;
@@ -33,12 +39,14 @@ const FIELD_LABELS: Record<keyof MotionKey, string> = {
   shoePitch: "Shoe pitch (°)",
   rootY: "Jump height (px, negative up)",
   armBend: "Elbow bend (°)",
+  torsoLean: "Upper body lean (°)",
 };
 const ANGLES = new Set<keyof MotionKey>([
   "lean",
   "armAngle",
   "shoePitch",
   "armBend",
+  "torsoLean",
 ]);
 const degrees = (radians: number) => (radians * 180) / Math.PI;
 const radians = (degrees: number) => (degrees * Math.PI) / 180;
@@ -119,6 +127,7 @@ function MotionNumber({
 
 export function MotionEditor({
   animation,
+  libraryVersion = 1,
   clip,
   sequenceFrame,
   disabled = false,
@@ -234,6 +243,9 @@ export function MotionEditor({
         {animation === "jump"
           ? `${JUMP_PHASES[keyIndex]} · Both legs share the jump phase; root height moves the whole skeleton. Playback stops on the final authored pose.`
           : "Feet and arms use opposing half-cycle poses."}
+        {animation === "run" &&
+          libraryVersion === 2 &&
+          " Foot travel is measured from the shared pelvis center. Shoe pitch keeps its opaque sole grounded before foot lift; upper body lean rotates above the pelvis."}
       </p>
       <div className="motion-pose-workspace">
         {preview && (
@@ -243,7 +255,7 @@ export function MotionEditor({
           </figure>
         )}
         <div className="motion-pose-fields">
-          {MOTION_FIELDS[animation].map((field) => {
+          {motionFields(animation, libraryVersion).map((field) => {
             const angle = ANGLES.has(field);
             const [min, max] = MOTION_LIMITS[field];
             return (
