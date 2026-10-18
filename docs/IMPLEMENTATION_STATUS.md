@@ -1,6 +1,23 @@
 # Implementation status
 
-**Current batch: Theo run stride and shoulder repair.** Continues draft PR #10
+**Current batch: Theo registered running pose attachments.** Starts from merged
+`main` at `30125e5`, on `feat/theo-passing-poses`. Opt-in Skin V3 / bottom-and-shoe
+item V4 carry complete bent-leg and running-shoe source parts while preserving
+original anatomy, motions, heads and all non-run frames. The chosen source
+improves bent cloth contours and consistent shoe perspective; pose 9 still
+crowds the boots, pose 10 retains a rear-trouser triangle, and base/bent cloth
+transitions remain visible.
+[Review](THEO_PASSING_POSES_REVIEW.md) ·
+[Actual previews and editable files](theo-passing-poses/README.md) ·
+[Source contract](RUN_POSE_ATTACHMENTS.md).
+
+This batch passed **482 unit tests / 38 files, eighteen relevant Chromium tests,
+TypeScript and production build**. Current command results and export checks
+are recorded in the review directory. Existing projects remain reproducible;
+the new study stays unmerged for review and does not imply natural-animation
+completion, user visual acceptance or Gathria integration.
+
+**Historical batch: Theo run stride and shoulder repair.** Continued draft PR #10
 from `1ab97c5`, on `feat/theo-pose-study`. Explicit motion-library V2 centers
 run targets on the pelvis and shares rotated shoe support with the leg ankle;
 V1 defaults and historical projects remain unchanged. A new top adds 113

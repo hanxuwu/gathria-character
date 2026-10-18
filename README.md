@@ -54,6 +54,12 @@ with shared-pelvis foot travel and grounded shoe/ankle support. The
 previous character's head and clothing design. Historical projects remain exact;
 crowded boots in the passing pose remain a documented visual limitation.
 
+The [registered running-attachment study](docs/THEO_PASSING_POSES_REVIEW.md)
+adds reusable bent-trouser and side-view shoe sources with independent source
+landmarks. [Actual comparisons and editable downloads](docs/theo-passing-poses/README.md)
+show the clearer knee contours and remaining crowded passing pose. It is an
+explicit opt-in project; old files and idle/walk/jump pixels remain unchanged.
+
 ```sh
 npm run typecheck
 npm test
