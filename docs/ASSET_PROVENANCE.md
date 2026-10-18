@@ -1,5 +1,22 @@
 # Artwork provenance and reuse
 
+## Theo run shoulder and ownership repair
+
+This follow-up reuses the exact complete Theo study artwork and makes no new
+image-generation call. A separately identified top adds 113 hidden torso
+coverage pixels copied from the same source sleeve and removes eight explicitly
+located hand pixels that belonged outside the torso. The moving arms, all heads,
+lower clothing and shoes remain byte-identical. Original sources and items are
+not overwritten. The [source record](../artwork/theo-run-repair/README.md) and
+registration JSON include every donor/target coordinate, material, RGBA value,
+source hash and recoverable trial. Portable item/project ZIPs retain provenance.
+
+An opt-in [motion-library V2](MOTION_LIBRARY_V2.md) changes run target geometry,
+shoe support and upper-body response without new illustration. Actual review
+images come from [Studio-exported packs](THEO_RUN_REPAIR_REVIEW.md); preparation
+diagnostics remain separately labeled. This is local deterministic composition,
+not pose-by-pose generated animation or a runtime image service.
+
 ## Theo and Rose reference pair
 
 Three OpenAI image-generation calls on 2026-10-18 UTC produced a coordinated

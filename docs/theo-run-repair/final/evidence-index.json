@@ -1,0 +1,6144 @@
+{
+  "capturedAt": "2026-10-18T05:24:28.898Z",
+  "phase": "final",
+  "source": "Actual Studio project/item imports and controls/downloads. Prior Theo study all36poses remain exact. Explicit new motion contract; Studio closes before independent playback.",
+  "sourceFiles": {
+    "scripts/generate-theo-run-repair-evidence.mjs": "49a785fc571ed3b7cea58a8bc6c2fcf4a19eaa2e3f4aa1104c9e11b739387768",
+    "scripts/render-theo-run-repair-review.py": "15173eea8a412a42cb6d1189ee0228244f12f780c10c59285b44246382824944",
+    "src/consumer/PackPlayer.tsx": "b47abc3e405276d465604be8a401caf0520e1ad1ea36612daf43e5cceb1298b1",
+    "src/consumer/main.tsx": "11b7ae34966e906bed2911fc32b98646fa60b82fc7487c2784110a1b096fed4c",
+    "src/consumer/player.css": "d3eec8d0751d4cfa15796bfd27293faca13a491342c1fe41fddabce3f97ec9a8",
+    "src/consumer/player.test.ts": "b8c134ed8f25828ccdf9ab232563c977a78412d9d5764274f8acfec758a67d1c",
+    "src/consumer/player.ts": "72777c230a9141a42ef29e274235b3c4fb56d53ff2f16d441ea2048b70b8facc",
+    "src/core/art-v2.test.ts": "c4c210082a1c8a5cabd1f8b960c4f8aff906e8ec1efaad4ada83531f472c651d",
+    "src/core/cohesive-art.test.ts": "5fafda0954f7b77a6e36ba5362f3ed85582f2cc460e0df9022be490b66405ae6",
+    "src/core/cohesive-assets.generated.ts": "42cfe658e4930b5a5f2bd6f66f7ffd5959e9b59eb9fb366c3a1e08f34c305fcb",
+    "src/core/cohesive-rig.ts": "2f874bff128ba75d62822496837874bf20b4569cdaa8e56fd266c0c56282b26c",
+    "src/core/config.test.ts": "c9d336ec2ab8c6aa0c8dbd38f576f2256e3a308f7b18b1d7f21d05c3765f5255",
+    "src/core/config.ts": "b887a88736d969ccd76ee96ebdda683d5769d8c8a41120dc69d992b36317bbae",
+    "src/core/detailed-art.test.ts": "0bab0740f480a28a94c5a5173b61d5881af4153b222d1cf19d58ba0ff4981f19",
+    "src/core/everyday-presets.ts": "711e389852d882d1e4b5cca24963078f000d46ee476259a24abe480f143b91f3",
+    "src/core/expressive-accessory.generated.ts": "dbe923ecdd908f9fc6bdd3bead35b4bb077d200fdb2e2fdf824fccd2d9374cee",
+    "src/core/expressive-art.test.ts": "5036b1296c015f65062be2a34f9cad7c800d4685d726f145b511f8437101d934",
+    "src/core/expressive-face.ts": "e9586c2b3433901cdb400609a88726e1c8a5d66d148f017622a173e9b0fa675f",
+    "src/core/expressive-rig.ts": "a4f1bd95322a61a24e5c5f019c3ac29a1eb9f356d5617bf85d866d92aecd2347",
+    "src/core/generator-motion-v1.ts": "b2310151b44cc2dd4782199649975bc5a86644e4d179939975ed0e6bbfd329de",
+    "src/core/generator-motion-v2.ts": "ace55c159d97c864a37bbdcd58e75ac2e08103db9bdf8e4cd540e71b442eb494",
+    "src/core/generator-motion-v3.ts": "a69234c0f0a1cdd8a5e3e869b6a0a5e79801a65ec3c52e715ae49eb551ffcf1e",
+    "src/core/generator-v1.ts": "0ccf2c47fb81443da42cd0a66306d964ff38eb98453c561e131309eaea01d140",
+    "src/core/generator-v2.ts": "d2a2983eaea9d2e4973d8be28f9c8a8d15677a9d7738678522bca02f55d8bd53",
+    "src/core/generator-v3.ts": "7de0fe701c8ee610586004022e761a41acf9facdf9a1ce836f9b389b7b8a4350",
+    "src/core/generator-v4.ts": "7202ce57d59bf33995f2090b373f8097dfd590d1b7f76c67e6dbdeb92a9186ed",
+    "src/core/generator-v5.ts": "965416ed779cba3514c69fa8123d83de62ace6f7bd0c41b73986dbb122e3aa93",
+    "src/core/generator-v6.ts": "9cf97a66e1b8e5c2879c1699b51520d9417cef9f35f71098a7cc89cb40faf6c2",
+    "src/core/generator-v7.ts": "f51bae06620aca87c1f0502f44fd22dd25f5eeaa0ac05fb2590a2d549ed57970",
+    "src/core/generator.test.ts": "ec91472093fe5fba2f0964ead85d48226b7b5133a76c9f15ea9a249bd0a6987f",
+    "src/core/generator.ts": "23d812a85b427da09652b9d5858151a3e6647184a360dffaa91fd2969a5f19dd",
+    "src/core/harmonized-art.test.ts": "b5e70bbde903940268f09267d71761af0870323664d5956c3e99fca0930d91ae",
+    "src/core/harmonized-assets.generated.ts": "4120fcddab2844847bfbed7f13f8f2f514b115d93f578a49777d3c96e2feb79e",
+    "src/core/harmonized-rig.ts": "0df8a2e64c2c17232bdb36a44488913647686cbee07434b7078bf05f2db22ae2",
+    "src/core/illustrated-assets.generated.ts": "dc0b88212e9a20696c5ce5b49440fcf3bb9c021dc3d2dc30b0dce4338b6f03df",
+    "src/core/illustrated-canvas.ts": "81c58f2e0dd88c50bebdb8b153cbd63eedc64548506ea80cf14f809240cd2ab0",
+    "src/core/illustrated-rig.ts": "c2c05ec5b31cd85a183c044628007ab3f72101d1ab021612d3a7889ecee2d949",
+    "src/core/illustrated-types.ts": "1c72ff7f99f0d114385e90cd1cf25c5971ef75f041b4ecf0d93a20c8099dadd6",
+    "src/core/pack.test.ts": "fc02c364aea7bbe85d26664e614ee629a4b0903068eb3105d7764061f8b91088",
+    "src/core/pack.ts": "88b28df100f86819f7a67dd155a3541da04412b8b9c832e19c61274f25b65c0d",
+    "src/core/pixel-art.ts": "dd8781e1ab909fa14f4cc71408b9ec2d3bfbae5a14034665b8a62717d1e31eaf",
+    "src/core/polished-art.test.ts": "e6691c7fcf8a64c954febc917ea29213c216ebbd29a967648cdbc604c8684b0d",
+    "src/core/polished-assets.generated.ts": "eebda1bd064fc07402f036c62a3fa9998e8aebb79972dab2b2ac0bc8c2792dc2",
+    "src/core/polished-rig.ts": "306fa9e6bf2eec32ae127bdf07f4372657a84f705f0e322eedda26b9151c3790",
+    "src/core/running-arm-parts.test.ts": "f259ac41130c697bc8da1035f371a995f649a3f0704bc92cd5dc0517a9134b5d",
+    "src/core/running-arm-parts.ts": "25a08caecf188a06f6558e686dd8b658a01eadf1784afad67950e817370105bf",
+    "src/core/running-contract.test.ts": "f00971a37a23e2031474f2e852cb49665ae29eb7270e94a048de85477cb9a2f5",
+    "src/core/running-leg-parts.ts": "7aed1e6adf398964fee7c2adba1f8a46dbea52a5a0548a0d6e2f9910d5e089c5",
+    "src/core/running-motion.test.ts": "4dd4bc03fa16f1f18d0df971ec4424c1d66f0f0ccd47c0049e46b9e94c7288da",
+    "src/core/running-rig-v2.ts": "68f08fdf15712a35de8ada6ce22a0054ab1a7ba1971017902fafef5ab5a26f44",
+    "src/core/running-rig-v3.ts": "981233bb744be0c092bb8ca26090625cef762c03fd5fcb074995358bf76b51b0",
+    "src/core/running-rig.ts": "afa53c0c57d00405c8f7c03f6805f7e7ec32dd85ac2ad3aee4b226a8dc534c32",
+    "src/core/running-v2-contract.test.ts": "a76d48d3b33b507762b5488d8f1a9152b9b632f6b93f120820ebb67f994094d8",
+    "src/core/running-v3-contract.test.ts": "2e0a116a39a47d94e6c2c1663c52feef96b80559b302fd22c693e5c62322b9a2",
+    "src/core/running-v3-geometry.test.ts": "fd83412345fe276cedb0e49d50918f82fc8bc5e686bc66a46dda68a3de76f206",
+    "src/core/types.ts": "87e7875496ba344710301b732fa591422ab4632696d2e671907cf9b26f7ee1fa",
+    "src/experiments/denim-rig/bake.ts": "b7d83fd7156917c065399add7853729477a83ddaf32b05ee24f33c5564b9972f",
+    "src/experiments/denim-rig/lab.css": "4965c51214473b5e0bd1275a1d0f0fbe8b7e9525d801448f012df8f08dfd9e2c",
+    "src/experiments/denim-rig/lab.tsx": "867ed2e199182af581d9bfbc4089f73a40b324d9b72b8e8ddea8a2880f5c03eb",
+    "src/experiments/denim-rig/mesh.test.ts": "b3841209bb8ef07add7d1fc6119073798fce537ed61b09f39c27834c43dc3c1b",
+    "src/experiments/denim-rig/mesh.ts": "825ea805ab0e411eb90ec9196d944992be05ffd15659dbff41e04c151f6ccda1",
+    "src/experiments/denim-rig/project.test.ts": "6b4d0d960a3a6f232096e266f3718df8230db85eeec6e3bead543c4c868d1128",
+    "src/experiments/denim-rig/project.ts": "0be6ada6a256d1954b1b9512ea0ebbbd9670aefd273c45267c2f6307614ae2bc",
+    "src/experiments/denim-rig/rig.ts": "335b160311749be4633a9e913d1e9b5f5e227c347680465031789a09b1d69879",
+    "src/skeletal/BindingCanvas.tsx": "2440b695671f933c91dededc7ee612049e52600363977c810684ac0e09eddc0a",
+    "src/skeletal/IdentityLibrary.tsx": "a8dbb58679797e003e61bd11d97b70f6fa36146cfd3205e8d6617acaa6b80b65",
+    "src/skeletal/MotionEditor.tsx": "eda6744f2a7ba43bae88c3b6ed0fb814741db66c3919f27c476d3d650f87f225",
+    "src/skeletal/Studio.tsx": "43bae1be822ba9a93e9c50628ea9390497152dd9a9a47c4886b1d1fb59c2f254",
+    "src/skeletal/WardrobeLibrary.tsx": "7cdf4cdf5d17a8ff10b7c9c9a4d2b3a8ac068331c1e1bfeb13a2fe349a463da2",
+    "src/skeletal/WardrobePanel.tsx": "58a5ce3db39391f70c8906bc650d6deb3eb0bf69580e305301189e7d5f5f947c",
+    "src/skeletal/action-forearms.test.ts": "7db9a7f1bb8ebb80cfaf0f7cd1a9fa68b0ee549f007702fcc227b17e9d55b49d",
+    "src/skeletal/action-forearms.ts": "b1f6ab6b47075db564f8b4af71884f70f656874730ea03af92c1f05bd3e0a32d",
+    "src/skeletal/bake.ts": "43c644d2fc3d4fc80259d1411a907b66f70c2d99b19c126aaaf67f13bf34fd3b",
+    "src/skeletal/baked-provenance.test.ts": "57adb2f0d0502c19f69863ac6a98bfb88ecd57988fc5d173b5bf4723717602a7",
+    "src/skeletal/baked-provenance.ts": "5d96ac3d6332dc170e1a7d01787aae08bf32d84ebe73481782a978fe46e313b2",
+    "src/skeletal/binding-edit.test.ts": "3bf3edfee85b146428051efe89cd9d16e801039c90d6b2eab3fa6186c1239427",
+    "src/skeletal/binding-edit.ts": "b08b962cc970f7874a2132e3767a8472eeeab673a556874b8c32b1c8c6f33538",
+    "src/skeletal/binding-editor.css": "944714969e142c270321a506e2b8c8e7ab68bfefd2e25a146abf770e8a299480",
+    "src/skeletal/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/skeletal/builtins.ts": "7506d490906514a484e3124adb0ea3f528d1dfb104aa6c3b8c23b3b3763edc43",
+    "src/skeletal/definition.ts": "88ca4b1e1965d269999b81ca3046b97c92be601dc03c4fe684e4fb64ce966d92",
+    "src/skeletal/history.test.ts": "8ac219d3ef0c4041ed686a4642e047ac54f4edebad0ebec62d26b05ad6dcfa9e",
+    "src/skeletal/history.ts": "bc1ef8f41f4d48bdcb37c8d2642afe6cfb3df33ee9dce9087904ff986094a705",
+    "src/skeletal/identities.test.ts": "9e0ed0dc7709c8eaee571bfcb79c93b457c61e8ad3b49e0271fe7a641c4ad90c",
+    "src/skeletal/identities.ts": "3f26a95ea78a6e1c90af03046bc6000ed342c86bc0b1768f2b218718740ef147",
+    "src/skeletal/identity-io.ts": "cda1f15d8a84a46841e95d845f62c47b6ef0467c30e092223c7519c0aaaed41e",
+    "src/skeletal/identity-types.ts": "1bc38a8461184c6f187f00cebf49696eec9b0a56391653d5e48b84a81824666b",
+    "src/skeletal/integration.test.ts": "b400c67bf8adbd96cabe46c34f2d48cbd85ca5ca4bcfeac0a5310255b5d78a35",
+    "src/skeletal/jump-contract.test.ts": "f410e917068f078e2e17679e97dfaab3eb4180a2112496fc6eaaf4b67234cc5d",
+    "src/skeletal/jump-renderer.test.ts": "4739e5a50fec2a629637d62aa9f4338a4b68466c98593a79f14d944910af4bed",
+    "src/skeletal/motion-edit.test.ts": "916d87dd276efd017e2864fcacdd09d89a3f7a10755b9ab18ef0b620047ee5cf",
+    "src/skeletal/motion-edit.ts": "ea65b9aadf40955f5edfd3ef4479d8ead6045242d924d5fcb450d4737bdf3708",
+    "src/skeletal/motion-editor.css": "0e58273c05aed8a0fa24821ded579eba4f5761c3f9f8b89f700f5f9da4aae61b",
+    "src/skeletal/playback.test.ts": "4d2dbc74cb5953a46ac48da6985cc1629af3cf77041d891cc0636cf6fcd9fc9f",
+    "src/skeletal/playback.ts": "260a382ac7b64242d8510d4e47e593975e7f31dc7f9c99c2d0f16a293e32b4e3",
+    "src/skeletal/renderer.test.ts": "05e1ca46395251f02c8b8e2b94b2ec0803d451d317de5ea3d64114e9bf6d9313",
+    "src/skeletal/renderer.ts": "d47a311e63dc4c45b9308509f23128524de1bcafad1c9d13a10bf29b31743cd4",
+    "src/skeletal/run-v2.test.ts": "73b7540c4ca9d71a09be955634dc3d066d6ca2698e48ad0529e5ede2ac04a75b",
+    "src/skeletal/skin-io.test.ts": "8f0c0085e69a94700da8dd461a244779e6e959c7217db1d3d9404d71d5c24a83",
+    "src/skeletal/skin-io.ts": "5338c6ac4a9c98e59e18b3f8368ebaea7d862ecb7bfbbae372f44682fe5af1fb",
+    "src/skeletal/studio.css": "e4e15287e4507d4689f1a7c8d73d3ad6d20249bcf82db6c7106de244ff0f8fa5",
+    "src/skeletal/types.ts": "3e9d3009d95fb8e5455b14524ca1293a452a9050fd77ffd4a1298e02bc0583b8",
+    "src/skeletal/wardrobe-active-items.test.ts": "18e1909e71eee99b6ef36bf54cd347fc67203b7ae70aa75b57d7a1697f196f42",
+    "src/skeletal/wardrobe-assets.generated.ts": "b94946ecc2aa616e80b69840709226dcdebb5421bd00a8486c955375009ab892",
+    "src/skeletal/wardrobe-io.test.ts": "25970c2220564eda2959a099ff0a1e6b1416a0098751fc43c203fef1978c3090",
+    "src/skeletal/wardrobe-item-io.test.ts": "19ed84c0577dea64c0a6c03644cd119cb62442069dcb90a87c44f93d6cdd308b",
+    "src/skeletal/wardrobe-item-io.ts": "bc074bd40641f7b6bef1310a2029eb3ff7aaaa51a2b09d8d8527b98e093f485e",
+    "src/skeletal/wardrobe-items.test.ts": "9391f00d7b9abdc653061c03e1d3a6a6c3879d4e71d4da69fcbf4ff8bbdab3d3",
+    "src/skeletal/wardrobe-items.ts": "ad6bc51c592c0e3320309e580636b32c003fb5f4103dcf40589f6a6437215e02",
+    "src/skeletal/wardrobe-panel.css": "3996ad1d726a9c76d525cbae2940f9460ee3cc9e387d81441c1fe9ceccfce7b8",
+    "src/skeletal/wardrobe-source-colors.test.ts": "c8b2f0526394a4a0efd4f053b137d10be4038ea864fd2f32e50987e2c33ae126",
+    "src/skeletal/wardrobe-types.ts": "35040cff0671ee6d3c495ca269fc0788c6bf27ad2cc18024c0f0fa88a2db7ea0",
+    "src/skeletal/wardrobe.test.ts": "92e64a6941401fb035eae7d24b5f9ea53af88596757d351f192aae10f2130e81",
+    "src/skeletal/wardrobe.ts": "27ac00e4138199cea2f0073bc75235cb942cdda3efea5949d1150b96f7e34650"
+  },
+  "preparedInputFiles": {
+    "docs/theo-pose-study/final/theo-study.rig.zip": "6d4a6e60315cd49e4267e904f3ce5cfd5c3ab809dbb35c46376e019a8fe6fa3d",
+    "docs/theo-pose-study/final/theo-study.character.zip": "4994f4f6ae47fc16206a6b23c5d33fed00f56a900996c1a96f57066ea3b77883",
+    "artwork/theo-pose-study/source/complete-pose-model.png": "d860623760470e338e7e913cf1c5aebac622e45c54b503306f65a26ed1919b26",
+    "artwork/theo-pose-study/source/hidden-parts-expressions.png": "ae5c7cce37de97bd4d1f576d00170292de59e38b5d1bd19ee0e10e9ca7e65e8f",
+    "scripts/prepare-theo-run-repair.mjs": "d08551f1c168ac4376cccca1de0ca6b22679da0cdb4410dd219df857b4d73691",
+    "artwork/theo-run-repair/run-motion.json": "29de5bd4cf23dbe38b726648659a13c531c8a899898cb20a2d3a8a39a466f168",
+    "artwork/theo-run-repair/prepared/registration.json": "b898e3859b36982bd328610e118b29f05d27fe5a662b1b083cc73caa60f7f66a",
+    "artwork/theo-run-repair/prepared/theo-run-old-motion.rig.zip": "3fc347cf258bd0f6d2a5d6bf8f8ef3cd32d1b7d18400e385171999cc80a91d0a",
+    "artwork/theo-run-repair/prepared/theo-run-top.wardrobe.zip": "35bc07dcc2aa76680d3aaf5a3aebe8c86a82e90efc30256478f557a87803af70",
+    "artwork/theo-run-repair/prepared/theo-run.rig.zip": "1f97a396b9dbf5bc2bb978db12b5cbc54ca49fc2755cde526aeac6b367fe2345",
+    "artwork/theo-run-repair/prepared/theo-run-top/slots/far-forearm.png": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3",
+    "artwork/theo-run-repair/prepared/theo-run-top/slots/far-upper-arm.png": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992",
+    "artwork/theo-run-repair/prepared/theo-run-top/slots/near-forearm.png": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515",
+    "artwork/theo-run-repair/prepared/theo-run-top/slots/near-upper-arm.png": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d",
+    "artwork/theo-run-repair/prepared/theo-run-top/slots/torso.png": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918",
+    "artwork/theo-run-repair/prepared/theo-run-top/masks/far-forearm.png": "b1b36eacca9db1d82fa3026e2bb7cc316353a3a67b1412556e53023e487ee7d2",
+    "artwork/theo-run-repair/prepared/theo-run-top/masks/far-upper-arm.png": "31a40cd5dcaed01ba4a030d4d22bb78f8733713b700259b56a7bdcb3a82a11bd",
+    "artwork/theo-run-repair/prepared/theo-run-top/masks/near-forearm.png": "3a7b43a919638c048257f2af1f273320dba460498a1fa70d7c31a1d6912c5a56",
+    "artwork/theo-run-repair/prepared/theo-run-top/masks/near-upper-arm.png": "afc7a7ac99c63fa180e0d02aeb248b52830d9f393502ea52555ed9217cf5cb60",
+    "artwork/theo-run-repair/prepared/theo-run-top/masks/torso.png": "795591cf5eeebb3cfdf51adf47b6fff414c80b7efd192fd830fab4d6ca15c388",
+    "artwork/theo-run-repair/prepared/diagnostics/all-shoulders-4x.png": "c1c9bcae4dc0b0a680a35c426cb267bbe73397579b185f62e9f1a6abc2c500b6",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage-comparison-8x.png": "c4aeef0227827f8b2456075638f3c79dc4ad427bd2e7e11b0b1edbbdc51e5c7c",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage-other-actions-1x.png": "4e136745f1e71f596187498b76ba709e777c6c537b6c5ad1fbf0f945e54f792c",
+    "artwork/theo-run-repair/prepared/diagnostics/final-run-keyframes-2x.png": "840a74de3d7692997e9384f8d758fd5a2ee6e20dc33f2f758223bc0b52caaaa2",
+    "artwork/theo-run-repair/prepared/diagnostics/run-inspection.json": "be3ad99afccfe52cbf803e0ba276786e26187e6536bf2e0c312a3aaa18dd9130",
+    "artwork/theo-run-repair/prepared/diagnostics/final/idle-0.png": "8e3a6946475d0d184200fcaa0a37321f12f4fadf7a2b5fb70c07eb7ee4eb0e6e",
+    "artwork/theo-run-repair/prepared/diagnostics/final/idle-1.png": "5d1dda1fe27cc9d2a3d7f324dbf4196c262988f70ba40f043070204bab8cee4c",
+    "artwork/theo-run-repair/prepared/diagnostics/final/idle-2.png": "a1d9af14a220b1d73f401bf90692158bb65e3aefe1ad91858de898b8bfeae2df",
+    "artwork/theo-run-repair/prepared/diagnostics/final/idle-3.png": "26d8f9365aa9dbad7a79105ae54dde04bc152b40482c9bb964fa654adb371875",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-0.png": "8e3a6946475d0d184200fcaa0a37321f12f4fadf7a2b5fb70c07eb7ee4eb0e6e",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-1.png": "4b78d8331c8d8cfc8282ae18480c80f109d7521ccecaa9742c0e1ba2279febf1",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-10.png": "d955c4f2d14d8f8dfcfe425395e3db089e59034c20034ad55aa5b344122f82ac",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-11.png": "8e3a6946475d0d184200fcaa0a37321f12f4fadf7a2b5fb70c07eb7ee4eb0e6e",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-2.png": "7f2c3995e0cb53c081d3a8f41b7bbba0e51c0f8f1c49411200c3d2fe527f7858",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-3.png": "5570044bb60ac3073bd981d5e4ea94b4fd97a2a687466057476d0960e31e1a01",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-4.png": "cc403c15c125ad0fb1d69c304c79d55d015ef93d39c37b4af8f22d9f5accb911",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-5.png": "fde8f36791f11b10c772f081a197c308a5457f75b9d706d4ab200337da310480",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-6.png": "3830c049693df9a079c44016c52706d185c60099774b3fdeef3392ddf035aee7",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-7.png": "0a74b370d5626c69d2d56348d85495b0d05d439e34442210e885a879eb7b9660",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-8.png": "46af0b724cba43616ec9d14978e59b4a39b3f077672b1dacebf75b41f60535a5",
+    "artwork/theo-run-repair/prepared/diagnostics/final/jump-9.png": "9f7c1fd9f44baa3124212eabd76266fc6b2c84d7f6e910da9e3534e4e8f884e7",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-0.png": "0d152cf2fba54ae664294eab0d7f08f3d592062acf8a9725444a56a44a1a2f4f",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-1.png": "295f0cb08be381dd4edb7554c61a64882feeaa055a96a85655a786edadd77dd4",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-10.png": "d7f5aa884833081c04269e3f59b99f6bf1091b4e87db0d43ca1d57adaa610c02",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-11.png": "07713c0c8978727ab915ba8d3711f1c9dc77ce42ddb8ca66048dee9b7e00a328",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-2.png": "5a07f195c0d2e1e7b8cc9f9b59a2550ae29f25ae9cee1a249f43f29a3a8a552b",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-3.png": "2b89e80f633cbeb7fcc4fc507048c9aa4f539456920be68f12aae6ba408949d7",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-4.png": "0773ac59bb001094501827068642585bb17940bfc0ec44ed987a52346c89de02",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-5.png": "5068846598eaac2f108789806169077e6a28587e9647248e7b6ee56a5815e548",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-6.png": "9f07cc87c4ba548294c993670114ed4a7fb98562e6e8114596470e2d800a3caf",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-7.png": "081834622e068345345e1e3b7768f554df126b6fd40a9228f3ce0de5015932c1",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-8.png": "9ff1d5f3c54ee24d967ef65bbe9efd44091861bef33e5c670354310b2843daf5",
+    "artwork/theo-run-repair/prepared/diagnostics/final/run-9.png": "08de7d71e85a30d54067e5d683fbfaa9a2fe59e642e7c6b8092142e6fc30840d",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-0.png": "15da1926e33a0fecb9da056da792eaebd4d61db392c4048edd5d10b79bb74e92",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-1.png": "532cea778fa724fb3a2df446e43909045b3211dfaba7a7f1214aeec13655278e",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-2.png": "6c77a2f39eab253efae76a7b3d818d1ddf7fc4b8d213f662b0a13e3970347d39",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-3.png": "85a6edd29ef2c1e7342ae6aa30879b294afa29d3c96709d4f9eb1fbd2bd05f4b",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-4.png": "2166849f96ec2bea07021404cf246894e536babb5b6b9983fa502ae83e8f41fa",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-5.png": "ecac2977ccf0b939edd7ab2d856e17639a9f4ef139709dcd4f0abcc22bf3aee6",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-6.png": "aaa286f23b1241725330613b2a55a9bc09ce053a1f6d7b5f914f065e85e9b942",
+    "artwork/theo-run-repair/prepared/diagnostics/final/walk-7.png": "b5ad35e99aecfcc037673fcac0ab3bfda1b11dfb38ecc9a5118ecb350ad0e8b7",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/idle-0.png": "8e3a6946475d0d184200fcaa0a37321f12f4fadf7a2b5fb70c07eb7ee4eb0e6e",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/idle-1.png": "5d1dda1fe27cc9d2a3d7f324dbf4196c262988f70ba40f043070204bab8cee4c",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/idle-2.png": "a1d9af14a220b1d73f401bf90692158bb65e3aefe1ad91858de898b8bfeae2df",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/idle-3.png": "26d8f9365aa9dbad7a79105ae54dde04bc152b40482c9bb964fa654adb371875",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-0.png": "8e3a6946475d0d184200fcaa0a37321f12f4fadf7a2b5fb70c07eb7ee4eb0e6e",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-1.png": "4b78d8331c8d8cfc8282ae18480c80f109d7521ccecaa9742c0e1ba2279febf1",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-10.png": "d955c4f2d14d8f8dfcfe425395e3db089e59034c20034ad55aa5b344122f82ac",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-11.png": "8e3a6946475d0d184200fcaa0a37321f12f4fadf7a2b5fb70c07eb7ee4eb0e6e",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-2.png": "7f2c3995e0cb53c081d3a8f41b7bbba0e51c0f8f1c49411200c3d2fe527f7858",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-3.png": "5570044bb60ac3073bd981d5e4ea94b4fd97a2a687466057476d0960e31e1a01",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-4.png": "cc403c15c125ad0fb1d69c304c79d55d015ef93d39c37b4af8f22d9f5accb911",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-5.png": "fde8f36791f11b10c772f081a197c308a5457f75b9d706d4ab200337da310480",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-6.png": "3830c049693df9a079c44016c52706d185c60099774b3fdeef3392ddf035aee7",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-7.png": "0a74b370d5626c69d2d56348d85495b0d05d439e34442210e885a879eb7b9660",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-8.png": "46af0b724cba43616ec9d14978e59b4a39b3f077672b1dacebf75b41f60535a5",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/jump-9.png": "9f7c1fd9f44baa3124212eabd76266fc6b2c84d7f6e910da9e3534e4e8f884e7",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-0.png": "9b5f5db82ac57ec308545b6d1264f25151826f2f54a753d9990eb3a83f87b504",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-1.png": "78794b7a73a52be63c5bc524a508d2d40e42f120b0022d4066a6062973e3c9a7",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-10.png": "9cb9932bade8258ac74bac5e2524d7a167b7928f9247187064a11231be62405b",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-11.png": "17961f9001230db1d0d151d09868cedfc068109f8e9d28642d296649ed2d5b00",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-2.png": "ff9b17dc9d1a9cf50ed31cd1dcece15170bf1ac93e8a907ce1214981e2e2e9e6",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-3.png": "9a88285b1c918f4482ea594201777989cc681e552cbcb21a93bf8b8795287729",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-4.png": "ff33d754606b9b1e609c114b2e6adc8333b69bf4ffb120b8f74af7dfabb67bd7",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-5.png": "dd34588e308f826fa454b839fd5fd52e6229a4f7737784f7d10db0c5b606bf6d",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-6.png": "058c10978eb4ebaedb69a6968881fc5d1383eaa59fd9b7124b2b9c6cfa1aefb3",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-7.png": "abcdcc9322b4823a2c4d4be2cd5284409829ce120d8356080a2768893cc8be80",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-8.png": "52e46e09990d71468cd675e09f8041298d323cb0433f0250cff7bdf3001ae138",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/run-9.png": "fb5fc9e60c942fb531e25223b49166bf1c9b200588dd3537f2ff8fd994b8bc9a",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-0.png": "15da1926e33a0fecb9da056da792eaebd4d61db392c4048edd5d10b79bb74e92",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-1.png": "532cea778fa724fb3a2df446e43909045b3211dfaba7a7f1214aeec13655278e",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-2.png": "6c77a2f39eab253efae76a7b3d818d1ddf7fc4b8d213f662b0a13e3970347d39",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-3.png": "85a6edd29ef2c1e7342ae6aa30879b294afa29d3c96709d4f9eb1fbd2bd05f4b",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-4.png": "2166849f96ec2bea07021404cf246894e536babb5b6b9983fa502ae83e8f41fa",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-5.png": "ecac2977ccf0b939edd7ab2d856e17639a9f4ef139709dcd4f0abcc22bf3aee6",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-6.png": "aaa286f23b1241725330613b2a55a9bc09ce053a1f6d7b5f914f065e85e9b942",
+    "artwork/theo-run-repair/prepared/diagnostics/coverage/walk-7.png": "b5ad35e99aecfcc037673fcac0ab3bfda1b11dfb38ecc9a5118ecb350ad0e8b7",
+    "artwork/theo-run-repair/prepared/diagnostics/before/idle-0.png": "1d25392987d2ee247d73840cf74d9e536a829ffaaaf8b90b97ae1bd4be1ad50d",
+    "artwork/theo-run-repair/prepared/diagnostics/before/idle-1.png": "1f8edcb89ef3c4f68feb5a493f0af58e6518cec6d79498ded55fd5e1037c2704",
+    "artwork/theo-run-repair/prepared/diagnostics/before/idle-2.png": "2f74c27367b27cb97ab043ad2ae9f90b5e0e4313debd40765964f550390671e3",
+    "artwork/theo-run-repair/prepared/diagnostics/before/idle-3.png": "70073363fe1c8d6d288ad249b65530dac64588bfb018bdb1a6b9a5836a7ef5e2",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-0.png": "1d25392987d2ee247d73840cf74d9e536a829ffaaaf8b90b97ae1bd4be1ad50d",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-1.png": "b0420f49abc56223830e4ca26966d2a3e29b9beeba211d6493550ae7dfc40b65",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-10.png": "f6c80076ff1a30c79506edd368805be23f633b091d9c46e3b430e63bed9397a0",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-11.png": "1d25392987d2ee247d73840cf74d9e536a829ffaaaf8b90b97ae1bd4be1ad50d",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-2.png": "4c080de16afae75e2bd9e166b9f6f3b18ce90fa96dc478ca58fd81caed59bf18",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-3.png": "7a2277370e26ffde99d30dd61afb1c47213d2f7589f1ac1cd41a411c709e62c1",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-4.png": "13b6607a9589d32e6bc5d66c3c0559210f3f7bfd6d0c7d656618395e8fc528ba",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-5.png": "26f7c45dc7ffa934b449a97b4cfebef00971061024428e341865c32c03d51b52",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-6.png": "c6f3b460ef7a1a19a9af245f8e51ac822d149254de8de8d6d266a16dfd733bb2",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-7.png": "eea9c3b51a1d94c4afe8b567ef9ca61db7301e7c2304d7b7f4dc04d504939ddf",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-8.png": "867c164b923eb0a183d062d739da70c973aafac6a8a6c2991a77c439c5d3e0c7",
+    "artwork/theo-run-repair/prepared/diagnostics/before/jump-9.png": "cd818a09ab06862f2a599588bac09759c25f3e8040d88e1da56c766fe895099a",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-0.png": "aaba5c6dd8e1c68addbaa2c263e4d1ed24d7bcfd92e5bf774b778e3aa7c78313",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-1.png": "8347af7c2423f99f3fd08327fd65e9d03c89cc5f32fae60571723062d743be15",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-10.png": "efe2e240b2e31bc95e49bb4a0f2ae9914753d262ffdea4fed490cf0fdb1a3dbf",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-11.png": "2675c42a8c0c412a11451d22de4cb6d2e9ae5ec0421c4bd390ffd20c8d55692a",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-2.png": "75cba691a8d0ed410ad164d75b013fa2e6dfe339e48d0e963fcef72f551b6f49",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-3.png": "388adaccc1ce75bee3f11397e185af94b4382d5ac2dac768cd52ee220fce89f2",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-4.png": "4133509b6059b110fb3493b2abc47819fa68ed4a96395ef6020c6709fe5de497",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-5.png": "f154e7fc861d76a076212930eebde3bca5b6632ec934e407f0fe5bd03c97d85b",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-6.png": "79cb4af4c00c2473e4c2e275e18c1ff401d64fe87d7e3514ccc92733302867c2",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-7.png": "b6f9dadabe4658a30409dd17bbb943d77f1162e86a7fa4205732e724b543b6b2",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-8.png": "d145148deec5667d87603e1002f98d3aaad58c4997bb90177702b2d06ccdf4c4",
+    "artwork/theo-run-repair/prepared/diagnostics/before/run-9.png": "f1be5e9368afe6d4b48d72719a1c49f14562af23427c736c2896fb385d973050",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-0.png": "67be9547882ee9a0e51a2c1da383a6a2056cb618b230d4372b4746d27c37b7ad",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-1.png": "77985785858912190a9bbf9c17fba403721c9857a7d31c8d599036112c7731d0",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-2.png": "8f4be4729109eae5039e2ac57716254454454a09e2c2aef3272e34aa5c95133d",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-3.png": "695edd7b331f5e8fb60d8e7cdbb3ca5e9c96b63aa9cfc90faca2f3d287a16c83",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-4.png": "12eb34cf661234153da0cda87cc4f05304e2482bf51146298b1d68d239a89de7",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-5.png": "b784248e3f3c3e42a04e2d076f2abbefc234e74c28a3acdbbdd6d23f2219b762",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-6.png": "a59b9b25e1508955688df7a216ceb22dca3e136429c5709154cf48572bd9d3a3",
+    "artwork/theo-run-repair/prepared/diagnostics/before/walk-7.png": "cdbe592a8af8dddcfc3b273ce37183878dadab34c7d8eb706b469afbad11cc2f"
+  },
+  "authoringClosedBeforeConsumer": true,
+  "exports": [
+    {
+      "id": "before",
+      "name": "theo study",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-study-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#f1bd90",
+          "hair": "#714b34",
+          "top": "#373b4b",
+          "bottom": "#373b4b",
+          "shoes": "#875934"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    },
+    {
+      "id": "theo-run",
+      "name": "theo run",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-run-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#f1bd90",
+          "hair": "#714b34",
+          "top": "#373b4b",
+          "bottom": "#373b4b",
+          "shoes": "#875934"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    },
+    {
+      "id": "theo-joyful",
+      "name": "theo joyful",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-run-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#f1bd90",
+          "hair": "#714b34",
+          "top": "#373b4b",
+          "bottom": "#373b4b",
+          "shoes": "#875934"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    },
+    {
+      "id": "theo-recolored",
+      "name": "theo recolored",
+      "recipe": {
+        "format": "gathria-wardrobe-recipe",
+        "version": 3,
+        "catalogVersion": 1,
+        "identity": "custom-theo-study",
+        "top": "custom-theo-run-top",
+        "bottom": "custom-theo-study-bottom",
+        "shoes": "custom-theo-study-shoes",
+        "colors": {
+          "skin": "#9f684d",
+          "hair": "#b28a53",
+          "top": "#4c7068",
+          "bottom": "#596254",
+          "shoes": "#6d4f3c"
+        }
+      },
+      "pngDecodePixelEquality": true,
+      "deterministicPixels": true,
+      "alpha": [
+        0,
+        255
+      ],
+      "customItems": 3,
+      "customIdentities": 1
+    }
+  ],
+  "archives": [
+    {
+      "file": "before.rig.zip",
+      "bytes": 291479,
+      "sha256": "bae3023d09cd2e5ac10a8a0a8ae41acc05e506b93370721aebdc3f03bf9189ea",
+      "members": {
+        "skin.json": {
+          "bytes": 5069,
+          "sha256": "1da7a5bf609074d58cedeb6342ee5d30080fd3ba541f46cabb60ecf5ec15c495"
+        },
+        "slots/torso.png": {
+          "bytes": 13582,
+          "sha256": "88503adc0a768ec96bcfbaf61eb59d2c4e36a1787b6d1b559a5a056cb4f4f7a3"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13137,
+          "sha256": "5466b970a20592af87d7b318599d2184b5a8340b569a3e25a59f1e8fee198c30"
+        },
+        "wardrobe.json": {
+          "bytes": 67595,
+          "sha256": "b8add72a2d9e47216b10619d767bfe69f3d51c244dcb7578f5018ca143f17c8a"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "before.character.zip",
+      "bytes": 757253,
+      "sha256": "b57998eafe0c7e02d84e3c62c889e10f4feac998b4ae17fae97bf44622f52595",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 765872,
+          "sha256": "5f08bb315a8c56143fc52782459e99b3cfbf49d7ae68abf79516778f654e8b57"
+        },
+        "manifest.json": {
+          "bytes": 5110,
+          "sha256": "acdfc376b90933ef9b719649af833412d3c0c37512f2cbf211606ad4c4bdd6eb"
+        },
+        "character.json": {
+          "bytes": 449,
+          "sha256": "f73c75210b06e2c79c6e2ac75068c65bd81edfced70b1bee09d89a485303469d"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 28469,
+          "sha256": "ec6c23b985a4d53022dcea5f93760f62c10ce89542ec8bd0688f68abce59e640"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5719,
+          "sha256": "de7dab2b439cff145bf9558715bad55d3951ae1b123541134fa76ba8ff39912b"
+        }
+      }
+    },
+    {
+      "file": "theo-run-top.wardrobe.zip",
+      "bytes": 46920,
+      "sha256": "9a5b42e6fc65de9c1c3d7fec4aa754d39b342dd9ff9040041e1bd69657447835",
+      "members": {
+        "item.json": {
+          "bytes": 2379,
+          "sha256": "bd345a67522964a41fa7e6bdfda818df412453773a1cfb551e067641a94a3eda"
+        },
+        "TEMPLATE.md": {
+          "bytes": 2190,
+          "sha256": "9c90008d75e264951f7fee5b754fcbce2e01067764877331e57f0aded8cc8eb5"
+        },
+        "artwork/torso.png": {
+          "bytes": 13737,
+          "sha256": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918"
+        },
+        "masks/torso.png": {
+          "bytes": 3377,
+          "sha256": "795591cf5eeebb3cfdf51adf47b6fff414c80b7efd192fd830fab4d6ca15c388"
+        },
+        "artwork/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "masks/near-upper-arm.png": {
+          "bytes": 2346,
+          "sha256": "afc7a7ac99c63fa180e0d02aeb248b52830d9f393502ea52555ed9217cf5cb60"
+        },
+        "artwork/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "masks/near-forearm.png": {
+          "bytes": 2428,
+          "sha256": "3a7b43a919638c048257f2af1f273320dba460498a1fa70d7c31a1d6912c5a56"
+        },
+        "artwork/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "masks/far-upper-arm.png": {
+          "bytes": 2333,
+          "sha256": "31a40cd5dcaed01ba4a030d4d22bb78f8733713b700259b56a7bdcb3a82a11bd"
+        },
+        "artwork/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "masks/far-forearm.png": {
+          "bytes": 2398,
+          "sha256": "b1b36eacca9db1d82fa3026e2bb7cc316353a3a67b1412556e53023e487ee7d2"
+        }
+      }
+    },
+    {
+      "file": "imported-top-legacy-motion.rig.zip",
+      "bytes": 317739,
+      "sha256": "60a34d1eddddcffd3a7105164086676b4e5f4ecad04244f7be5b13f3ec4e0c92",
+      "members": {
+        "skin.json": {
+          "bytes": 5285,
+          "sha256": "015a57c33c204d5a542bd814a673980e81dfb38c9115c4654f72ac583fb3e0cd"
+        },
+        "slots/torso.png": {
+          "bytes": 13737,
+          "sha256": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13137,
+          "sha256": "93b66d1678bb08da337cfafb29e88c69680c4bcff9f5cb8f430f1d273907c1d5"
+        },
+        "wardrobe.json": {
+          "bytes": 104049,
+          "sha256": "b63c4157a4b627f4579c9555d964205d51c92f53d83261e92f993061d94b9891"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "reset-v2-inspection.rig.zip",
+      "bytes": 292258,
+      "sha256": "cb1c8ec365dc7e00b69ebc9a8a9443dd251bc93c083bf6471593c667ad697902",
+      "members": {
+        "skin.json": {
+          "bytes": 5279,
+          "sha256": "8a843eea39293892dc26e2f434fd810119700a3a6b189f08f5e474673e95ef9c"
+        },
+        "slots/torso.png": {
+          "bytes": 13737,
+          "sha256": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13516,
+          "sha256": "862a23f0cb8142b67996625ac78f331cec04282afa4bc02206663efda688d633"
+        },
+        "wardrobe.json": {
+          "bytes": 68049,
+          "sha256": "c1be669191a5d8147e9e8b478894f30644c20f4897b37d6cc474523121aec055"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-run.rig.zip",
+      "bytes": 292283,
+      "sha256": "4330336c97c4fc909584949b3387e345b0e689909c24be7980b9843decf9e6f4",
+      "members": {
+        "skin.json": {
+          "bytes": 5283,
+          "sha256": "e5a9b1d7001cfb6d8f161b9bf4db4b6dbd51535f3398c2951a44ab1a898574bb"
+        },
+        "slots/torso.png": {
+          "bytes": 13737,
+          "sha256": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13513,
+          "sha256": "64bf7a503f77f096d73139a6d5ac667d0917f61a894fac13365d9bf2e0b698b2"
+        },
+        "wardrobe.json": {
+          "bytes": 68049,
+          "sha256": "c1be669191a5d8147e9e8b478894f30644c20f4897b37d6cc474523121aec055"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-run.character.zip",
+      "bytes": 902363,
+      "sha256": "71cd443611475edcfeaafd97043d1987101745f85bc40b056a33b1d6bd18e19e",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 911508,
+          "sha256": "2e0fdf6cb8d39110e269328ccb75c07314d21a084929f1307bbfc804f9413aa2"
+        },
+        "manifest.json": {
+          "bytes": 5108,
+          "sha256": "e2cd2060a48510936eeaa28d6c80d636257b9d2fea7f72806cf93b8d77e3cd31"
+        },
+        "character.json": {
+          "bytes": 447,
+          "sha256": "39d8df2e87ce23819126be210aa855ed829643a5fa248d267e6c684b16d65a55"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 29090,
+          "sha256": "7eb72d27294110f8d72f912352574a4e498cd9592f8bc182f985556a04354b3f"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5935,
+          "sha256": "10a10b6aeb61e5623a4c8189837d52b1e8b1a34e2295647346075afdec7aabf5"
+        }
+      }
+    },
+    {
+      "file": "theo-run-reopened.character.zip",
+      "bytes": 902363,
+      "sha256": "4c3248b445db41c434f417f791b3832d9099c8cfb2d6dcba5c6d776bf20aaa74",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 911508,
+          "sha256": "2e0fdf6cb8d39110e269328ccb75c07314d21a084929f1307bbfc804f9413aa2"
+        },
+        "manifest.json": {
+          "bytes": 5108,
+          "sha256": "e2cd2060a48510936eeaa28d6c80d636257b9d2fea7f72806cf93b8d77e3cd31"
+        },
+        "character.json": {
+          "bytes": 447,
+          "sha256": "39d8df2e87ce23819126be210aa855ed829643a5fa248d267e6c684b16d65a55"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 29090,
+          "sha256": "7eb72d27294110f8d72f912352574a4e498cd9592f8bc182f985556a04354b3f"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5935,
+          "sha256": "10a10b6aeb61e5623a4c8189837d52b1e8b1a34e2295647346075afdec7aabf5"
+        }
+      }
+    },
+    {
+      "file": "theo-run-reopened.rig.zip",
+      "bytes": 292283,
+      "sha256": "7fecc6d6e644294118237b221ddeb169c9ecbac8d727f4e06d6db2f7413137a5",
+      "members": {
+        "skin.json": {
+          "bytes": 5283,
+          "sha256": "e5a9b1d7001cfb6d8f161b9bf4db4b6dbd51535f3398c2951a44ab1a898574bb"
+        },
+        "slots/torso.png": {
+          "bytes": 13737,
+          "sha256": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13513,
+          "sha256": "64bf7a503f77f096d73139a6d5ac667d0917f61a894fac13365d9bf2e0b698b2"
+        },
+        "wardrobe.json": {
+          "bytes": 68049,
+          "sha256": "c1be669191a5d8147e9e8b478894f30644c20f4897b37d6cc474523121aec055"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-joyful.rig.zip",
+      "bytes": 292283,
+      "sha256": "8acc179181e12f2adab214f79bd58bbc22ea76523eaad7970270989ba5752ba4",
+      "members": {
+        "skin.json": {
+          "bytes": 5286,
+          "sha256": "6df02fec2b0ddb53b074af3c3f0edcff121cb3dbeef13cbd8954ec7c83b11467"
+        },
+        "slots/torso.png": {
+          "bytes": 13737,
+          "sha256": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918"
+        },
+        "slots/hips.png": {
+          "bytes": 5870,
+          "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5084,
+          "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5434,
+          "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3764,
+          "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4684,
+          "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5002,
+          "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5364,
+          "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4488,
+          "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4723,
+          "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5003,
+          "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4850,
+          "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 29060,
+          "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 30154,
+          "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 29023,
+          "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+        },
+        "project.json": {
+          "bytes": 13513,
+          "sha256": "a06f013f9e8ce24fe5f96585b42cb9e42a5af6a3c914741e92d077be648a5bf2"
+        },
+        "wardrobe.json": {
+          "bytes": 68049,
+          "sha256": "c1be669191a5d8147e9e8b478894f30644c20f4897b37d6cc474523121aec055"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-joyful.character.zip",
+      "bytes": 900164,
+      "sha256": "c519dd61a583655b102f052630cd1cd2e6d57b30a288f4dbb152d2f8da04c7f0",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 909313,
+          "sha256": "192462ce66e2b028a8dd125e66f08472d032e383558da7dec0e97cc8fbb6a9fb"
+        },
+        "manifest.json": {
+          "bytes": 5111,
+          "sha256": "380f70c18c8c07b7ed08e0cfa9e4590c105eae48c05ef000dfa4e811c3b5869b"
+        },
+        "character.json": {
+          "bytes": 450,
+          "sha256": "aa34208f383e1271d202f22221f8ebe4e83296ef03ffb80ec107f5c60dba5146"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 29093,
+          "sha256": "f0a9a62cbaf6a5e66f589bdbfeccdc21d8cc1082dbe984095891002d464fec7d"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5935,
+          "sha256": "10a10b6aeb61e5623a4c8189837d52b1e8b1a34e2295647346075afdec7aabf5"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored.rig.zip",
+      "bytes": 298817,
+      "sha256": "793739bed0c00468882617196d3d059f0c3efa1a88191ce9c99b9c46a3f62f75",
+      "members": {
+        "skin.json": {
+          "bytes": 5289,
+          "sha256": "28336a94f3152708cd6d3e0c32b563d0929b2218e49ba5755c15a1cc5aec54e4"
+        },
+        "slots/torso.png": {
+          "bytes": 14121,
+          "sha256": "cb379eb136f3e60bea3f4d76531bd394ec69f5e003421dcac4377e2683ce01be"
+        },
+        "slots/hips.png": {
+          "bytes": 6030,
+          "sha256": "c89e83fc05e49f585213662f2cc6e60a31c3ce5a0795549a981a21d227b4a31d"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5307,
+          "sha256": "d53173409ced2ec34f5cf085845cc506744743e4c9fb0aeac8c79aca4520d70d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5515,
+          "sha256": "7e335d33d60767a43732408127b49b682cc90e1546dc4a821c8f627e9e0b853f"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3798,
+          "sha256": "8a8f4ce7a8e325d1b803291a2b5c8b958080fb32b6e3aab2825c51678438301f"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4681,
+          "sha256": "d945f4a1a9fa82301d9795b04778de2ccca49dadcc5682bb9254b844bbac40b7"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5193,
+          "sha256": "4b18e767a7e78f6de7dfe35a05f8a95e667ed3dac8a6a6fe727e93ace7446cbc"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5483,
+          "sha256": "254d0624b7ee4a758d02d54076261c56d62053c4b468c2525cdb7d152090d1b0"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4443,
+          "sha256": "388702810f5406547c840cf18cdf93c7d237511058f9f45469f8d1ccf37aa397"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4866,
+          "sha256": "18c4ce2a844f46acbcf000ce51b1c4ca55ea7cc2a9e8025341cfa80dd1609896"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5190,
+          "sha256": "05e9a50f26e2b8e172116dca68ba9dd6f57a8c0ce157f480396999c0eb814000"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4837,
+          "sha256": "147e408efe9a9971d24d06d8a2b12c382d28fb67f0887ad9bb870c2f3d0f4806"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 30606,
+          "sha256": "8e87a6424eefacccfe5530fed2e02c0c43e697194b36f193bc173ab2f18f0368"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 31829,
+          "sha256": "6d5a22d6a36eaeed10e3f185c8cf8400608a3bd97184880a7a0cf3bad222244f"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 30576,
+          "sha256": "e2ea1baea08d54a9f5711a4b9b4f95920c068322fc4095d8f38149190acf78ba"
+        },
+        "project.json": {
+          "bytes": 13514,
+          "sha256": "93083279880f3c9a6082f75df6aece3149c6a36f3106d3ec24725ee333631c22"
+        },
+        "wardrobe.json": {
+          "bytes": 68049,
+          "sha256": "c1be669191a5d8147e9e8b478894f30644c20f4897b37d6cc474523121aec055"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored.character.zip",
+      "bytes": 907638,
+      "sha256": "17dea42f40dbf7c2e34f30cbee2022c412bb66b01bb67db4ae4d4dcd29aa72bd",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 917220,
+          "sha256": "ed31a0a8c1cd1c516b22e08aaa03246468444f2368e60e8f7784339edd7191ba"
+        },
+        "manifest.json": {
+          "bytes": 5114,
+          "sha256": "2744ef975d107092a72903a476a1515b797f72c84e16f3c675807579cb6d4866"
+        },
+        "character.json": {
+          "bytes": 454,
+          "sha256": "e077c63f6575fe02f1164a4cdf54a190f6db1a34826b3a1a55ad22d3c83fd062"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 29097,
+          "sha256": "cd878219dd6e54812e31910490b6a33d9cc0f71f17b54412e0b0653a0ea4ddf3"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5935,
+          "sha256": "b6c741524dffd13751e5cfb45c44a302a58cc893cce421fb36ee78ec37a34744"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored-reopened.character.zip",
+      "bytes": 907638,
+      "sha256": "adc2981bd31923648bf1bc51d4d9fcc5623526f66d256c961a57874b681fc7ab",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 917220,
+          "sha256": "ed31a0a8c1cd1c516b22e08aaa03246468444f2368e60e8f7784339edd7191ba"
+        },
+        "manifest.json": {
+          "bytes": 5114,
+          "sha256": "2744ef975d107092a72903a476a1515b797f72c84e16f3c675807579cb6d4866"
+        },
+        "character.json": {
+          "bytes": 454,
+          "sha256": "e077c63f6575fe02f1164a4cdf54a190f6db1a34826b3a1a55ad22d3c83fd062"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 29097,
+          "sha256": "cd878219dd6e54812e31910490b6a33d9cc0f71f17b54412e0b0653a0ea4ddf3"
+        },
+        "INTEGRATION.md": {
+          "bytes": 5935,
+          "sha256": "b6c741524dffd13751e5cfb45c44a302a58cc893cce421fb36ee78ec37a34744"
+        }
+      }
+    },
+    {
+      "file": "theo-recolored-reopened.rig.zip",
+      "bytes": 298817,
+      "sha256": "5f746aa33b552f9e991cafaa6cced4546a2e1d011bab0b198226ddd17a57a36e",
+      "members": {
+        "skin.json": {
+          "bytes": 5289,
+          "sha256": "28336a94f3152708cd6d3e0c32b563d0929b2218e49ba5755c15a1cc5aec54e4"
+        },
+        "slots/torso.png": {
+          "bytes": 14121,
+          "sha256": "cb379eb136f3e60bea3f4d76531bd394ec69f5e003421dcac4377e2683ce01be"
+        },
+        "slots/hips.png": {
+          "bytes": 6030,
+          "sha256": "c89e83fc05e49f585213662f2cc6e60a31c3ce5a0795549a981a21d227b4a31d"
+        },
+        "slots/near-upper-arm.png": {
+          "bytes": 5307,
+          "sha256": "d53173409ced2ec34f5cf085845cc506744743e4c9fb0aeac8c79aca4520d70d"
+        },
+        "slots/near-forearm.png": {
+          "bytes": 5515,
+          "sha256": "7e335d33d60767a43732408127b49b682cc90e1546dc4a821c8f627e9e0b853f"
+        },
+        "slots/far-upper-arm.png": {
+          "bytes": 3798,
+          "sha256": "8a8f4ce7a8e325d1b803291a2b5c8b958080fb32b6e3aab2825c51678438301f"
+        },
+        "slots/far-forearm.png": {
+          "bytes": 4681,
+          "sha256": "d945f4a1a9fa82301d9795b04778de2ccca49dadcc5682bb9254b844bbac40b7"
+        },
+        "slots/near-thigh.png": {
+          "bytes": 5193,
+          "sha256": "4b18e767a7e78f6de7dfe35a05f8a95e667ed3dac8a6a6fe727e93ace7446cbc"
+        },
+        "slots/near-shin.png": {
+          "bytes": 5483,
+          "sha256": "254d0624b7ee4a758d02d54076261c56d62053c4b468c2525cdb7d152090d1b0"
+        },
+        "slots/near-shoe.png": {
+          "bytes": 4443,
+          "sha256": "388702810f5406547c840cf18cdf93c7d237511058f9f45469f8d1ccf37aa397"
+        },
+        "slots/far-thigh.png": {
+          "bytes": 4866,
+          "sha256": "18c4ce2a844f46acbcf000ce51b1c4ca55ea7cc2a9e8025341cfa80dd1609896"
+        },
+        "slots/far-shin.png": {
+          "bytes": 5190,
+          "sha256": "05e9a50f26e2b8e172116dca68ba9dd6f57a8c0ce157f480396999c0eb814000"
+        },
+        "slots/far-shoe.png": {
+          "bytes": 4837,
+          "sha256": "147e408efe9a9971d24d06d8a2b12c382d28fb67f0887ad9bb870c2f3d0f4806"
+        },
+        "slots/head-neutral.png": {
+          "bytes": 30606,
+          "sha256": "8e87a6424eefacccfe5530fed2e02c0c43e697194b36f193bc173ab2f18f0368"
+        },
+        "slots/head-gentle.png": {
+          "bytes": 31829,
+          "sha256": "6d5a22d6a36eaeed10e3f185c8cf8400608a3bd97184880a7a0cf3bad222244f"
+        },
+        "slots/head-joyful.png": {
+          "bytes": 30576,
+          "sha256": "e2ea1baea08d54a9f5711a4b9b4f95920c068322fc4095d8f38149190acf78ba"
+        },
+        "project.json": {
+          "bytes": 13514,
+          "sha256": "93083279880f3c9a6082f75df6aece3149c6a36f3106d3ec24725ee333631c22"
+        },
+        "wardrobe.json": {
+          "bytes": 68049,
+          "sha256": "c1be669191a5d8147e9e8b478894f30644c20f4897b37d6cc474523121aec055"
+        },
+        "identities.json": {
+          "bytes": 115175,
+          "sha256": "0def217f8833225d2691354afbadd126de85e916f7f1a8b1afd4d464119b86e2"
+        }
+      }
+    }
+  ],
+  "roundtrips": [
+    {
+      "id": "theo-run",
+      "freshPage": true,
+      "customMotionAndV3ClothingPreserved": true,
+      "identities": 1,
+      "clothing": 3,
+      "previewAndIdentityAndColorsRestored": true,
+      "pngPixelsEqual": true,
+      "manifestEqual": true
+    },
+    {
+      "id": "theo-recolored",
+      "freshPage": true,
+      "customMotionAndV3ClothingPreserved": true,
+      "identities": 1,
+      "clothing": 3,
+      "previewAndIdentityAndColorsRestored": true,
+      "pngPixelsEqual": true,
+      "manifestEqual": true
+    }
+  ],
+  "itemRoundtrips": [
+    {
+      "id": "custom-theo-run-top",
+      "metadataEqual": true,
+      "artworkAndMasksDecodedPixelsEqual": true
+    }
+  ],
+  "sourceParts": [
+    {
+      "id": "theo-run",
+      "slot": "torso",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/torso-1x.png",
+      "bytes": 13737,
+      "sha256": "b5c497519adf7497730e95b359d786fd668d8ed227a5de8b884552a6ff0c3918"
+    },
+    {
+      "id": "theo-run",
+      "slot": "hips",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/hips-1x.png",
+      "bytes": 5870,
+      "sha256": "95dc380b617eacbd211ec2d5d9e3b7a854d2175bc0d5a6aab6928a6b54e17f91"
+    },
+    {
+      "id": "theo-run",
+      "slot": "near-upper-arm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/near-upper-arm-1x.png",
+      "bytes": 5084,
+      "sha256": "bb76ccf8e7210bcf92f7bef732eae137bf8784ff6f9243093f3756f3f9fd692d"
+    },
+    {
+      "id": "theo-run",
+      "slot": "near-forearm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/near-forearm-1x.png",
+      "bytes": 5434,
+      "sha256": "7d6f549aa1bf9c2d2e35c45b6f613bd62afbb8e2127d4701e4399e31a13ab515"
+    },
+    {
+      "id": "theo-run",
+      "slot": "far-upper-arm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/far-upper-arm-1x.png",
+      "bytes": 3764,
+      "sha256": "cf21e7e272f152426f6059e4dd6ae1785f39ae00ef8165481f5420ab29879992"
+    },
+    {
+      "id": "theo-run",
+      "slot": "far-forearm",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/far-forearm-1x.png",
+      "bytes": 4684,
+      "sha256": "1ed5b01901c5278b63c410988f42c6e6522c826a48f8dcc3da3792a7950ad3c3"
+    },
+    {
+      "id": "theo-run",
+      "slot": "near-thigh",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/near-thigh-1x.png",
+      "bytes": 5002,
+      "sha256": "80f242c2e38ecb0c997c291e85f2e4490f7b173157419787d38f1ddb9e55bc10"
+    },
+    {
+      "id": "theo-run",
+      "slot": "near-shin",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/near-shin-1x.png",
+      "bytes": 5364,
+      "sha256": "c6bd10869726ab01e02c9b6ad541af8a4aaa508bf2b2764b751c7a70c4dc1f29"
+    },
+    {
+      "id": "theo-run",
+      "slot": "near-shoe",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/near-shoe-1x.png",
+      "bytes": 4488,
+      "sha256": "ef31f8f77e4568b7892570856bbc743c1a620459f5cf34d1e7932293d6ba5223"
+    },
+    {
+      "id": "theo-run",
+      "slot": "far-thigh",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/far-thigh-1x.png",
+      "bytes": 4723,
+      "sha256": "faea1303a901b550f9d4f5cf44fd79270fadde95fafe7a11e9b826afb2395704"
+    },
+    {
+      "id": "theo-run",
+      "slot": "far-shin",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/far-shin-1x.png",
+      "bytes": 5003,
+      "sha256": "27def86c3e5db1f78427b71ac0f2dde22545403895282744783e892dcbfd4121"
+    },
+    {
+      "id": "theo-run",
+      "slot": "far-shoe",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/far-shoe-1x.png",
+      "bytes": 4850,
+      "sha256": "549d21f510bf69649f9e7303e7e803aacac3f97b359f7fdc48c460e422a6a0c9"
+    },
+    {
+      "id": "theo-run",
+      "slot": "head-neutral",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/head-neutral-1x.png",
+      "bytes": 29060,
+      "sha256": "cf3e27e7b9955853a3b3418e323fe45f2a34b051b45ad49fadaca4e36bd66708"
+    },
+    {
+      "id": "theo-run",
+      "slot": "head-gentle",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/head-gentle-1x.png",
+      "bytes": 30154,
+      "sha256": "4fc77a513f47faccab018068121d206b61a876140cd539001d4623f53b3553fa"
+    },
+    {
+      "id": "theo-run",
+      "slot": "head-joyful",
+      "exactSourcePixels": true,
+      "file": "isolated/theo-run/head-joyful-1x.png",
+      "bytes": 29023,
+      "sha256": "41ce75b192d0927b9f27d5e2e033e94892f27699a270d8ed9bc7330994c2b824"
+    }
+  ],
+  "legacyChecks": [
+    {
+      "id": "before",
+      "previousDirectory": "docs/theo-pose-study/final",
+      "all36FramesExact": true,
+      "manifestExact": true,
+      "motionVersionRemains1": true,
+      "originalPackSha256": "4994f4f6ae47fc16206a6b23c5d33fed00f56a900996c1a96f57066ea3b77883"
+    }
+  ],
+  "importChecks": [
+    {
+      "newTopImportDoesNotUpgradeOldMotion": true
+    },
+    {
+      "resetUsesV2Factory": true,
+      "resetPreservesOtherClips": true,
+      "resetUndoneBeforeFinalExport": true
+    },
+    {
+      "ordinaryMotionEditingPreservesExplicitMode": true
+    },
+    {
+      "oldMotionVersion": 1,
+      "newMotionVersion": 2,
+      "nonRunMotionClipsExact": true,
+      "sameRig": true
+    }
+  ],
+  "topDyeChecks": [
+    {
+      "sourceColors": [
+        {
+          "slot": "head-neutral",
+          "sourcePixels": 9990,
+          "exactAuthoredPixels": 9990,
+          "alphaStable": true
+        },
+        {
+          "slot": "head-gentle",
+          "sourcePixels": 10721,
+          "exactAuthoredPixels": 10721,
+          "alphaStable": true
+        },
+        {
+          "slot": "head-joyful",
+          "sourcePixels": 9970,
+          "exactAuthoredPixels": 9970,
+          "alphaStable": true
+        },
+        {
+          "slot": "torso",
+          "sourcePixels": 3842,
+          "exactAuthoredPixels": 3842,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-upper-arm",
+          "sourcePixels": 1010,
+          "exactAuthoredPixels": 1010,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-forearm",
+          "sourcePixels": 1009,
+          "exactAuthoredPixels": 1009,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-upper-arm",
+          "sourcePixels": 413,
+          "exactAuthoredPixels": 413,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-forearm",
+          "sourcePixels": 687,
+          "exactAuthoredPixels": 687,
+          "alphaStable": true
+        },
+        {
+          "slot": "hips",
+          "sourcePixels": 1193,
+          "exactAuthoredPixels": 1193,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-thigh",
+          "sourcePixels": 959,
+          "exactAuthoredPixels": 959,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-shin",
+          "sourcePixels": 983,
+          "exactAuthoredPixels": 983,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-thigh",
+          "sourcePixels": 874,
+          "exactAuthoredPixels": 874,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-shin",
+          "sourcePixels": 916,
+          "exactAuthoredPixels": 916,
+          "alphaStable": true
+        },
+        {
+          "slot": "near-shoe",
+          "sourcePixels": 682,
+          "exactAuthoredPixels": 682,
+          "alphaStable": true
+        },
+        {
+          "slot": "far-shoe",
+          "sourcePixels": 813,
+          "exactAuthoredPixels": 813,
+          "alphaStable": true
+        }
+      ],
+      "ownedPixels": [
+        10524,
+        6505,
+        18548,
+        3637,
+        3849,
+        999
+      ],
+      "changedPixels": [
+        0,
+        6505,
+        18548,
+        3637,
+        3849,
+        999
+      ],
+      "fixed": [
+        {
+          "slot": "head-neutral",
+          "fixedPixels": 2018,
+          "allExact": true
+        },
+        {
+          "slot": "head-gentle",
+          "fixedPixels": 2475,
+          "allExact": true
+        },
+        {
+          "slot": "head-joyful",
+          "fixedPixels": 1739,
+          "allExact": true
+        },
+        {
+          "slot": "torso",
+          "fixedPixels": 2014,
+          "allExact": true
+        },
+        {
+          "slot": "near-upper-arm",
+          "fixedPixels": 170,
+          "allExact": true
+        },
+        {
+          "slot": "near-forearm",
+          "fixedPixels": 231,
+          "allExact": true
+        },
+        {
+          "slot": "far-upper-arm",
+          "fixedPixels": 105,
+          "allExact": true
+        },
+        {
+          "slot": "far-forearm",
+          "fixedPixels": 200,
+          "allExact": true
+        },
+        {
+          "slot": "hips",
+          "fixedPixels": 246,
+          "allExact": true
+        },
+        {
+          "slot": "near-thigh",
+          "fixedPixels": 172,
+          "allExact": true
+        },
+        {
+          "slot": "near-shin",
+          "fixedPixels": 240,
+          "allExact": true
+        },
+        {
+          "slot": "far-thigh",
+          "fixedPixels": 174,
+          "allExact": true
+        },
+        {
+          "slot": "far-shin",
+          "fixedPixels": 244,
+          "allExact": true
+        },
+        {
+          "slot": "near-shoe",
+          "fixedPixels": 218,
+          "allExact": true
+        },
+        {
+          "slot": "far-shoe",
+          "fixedPixels": 278,
+          "allExact": true
+        }
+      ],
+      "allSourceColorsExact": true,
+      "allAlphasStable": true
+    }
+  ],
+  "regression": [
+    {
+      "unchangedSourceSlots": [
+        {
+          "slot": "head-neutral",
+          "exact": true
+        },
+        {
+          "slot": "head-gentle",
+          "exact": true
+        },
+        {
+          "slot": "head-joyful",
+          "exact": true
+        },
+        {
+          "slot": "near-thigh",
+          "exact": true
+        },
+        {
+          "slot": "near-shin",
+          "exact": true
+        },
+        {
+          "slot": "near-shoe",
+          "exact": true
+        },
+        {
+          "slot": "far-thigh",
+          "exact": true
+        },
+        {
+          "slot": "far-shin",
+          "exact": true
+        },
+        {
+          "slot": "far-shoe",
+          "exact": true
+        },
+        {
+          "slot": "hips",
+          "exact": true
+        }
+      ],
+      "identityLibraryExact": true,
+      "records": [
+        {
+          "id": "before",
+          "motionVersion": 1,
+          "run": {
+            "fps": 18,
+            "loop": true,
+            "keys": [
+              {
+                "footX": 23,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 5,
+                "armAngle": -1.1,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": 8,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 7,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": -9,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 5,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": -20,
+                "footLift": 6,
+                "shoePitch": 0.18,
+                "bodyBob": 2,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": -26,
+                "footLift": 15,
+                "shoePitch": 0.4,
+                "bodyBob": 0,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": -26,
+                "footLift": 24,
+                "shoePitch": 0.48,
+                "bodyBob": 3,
+                "armAngle": 0.45,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": -24,
+                "footLift": 28,
+                "shoePitch": 0.38,
+                "bodyBob": 5,
+                "armAngle": 0.55,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": -10,
+                "footLift": 14,
+                "shoePitch": 0.2,
+                "bodyBob": 7,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": 6,
+                "footLift": 14,
+                "shoePitch": 0.05,
+                "bodyBob": 5,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": 20,
+                "footLift": 10,
+                "shoePitch": -0.1,
+                "bodyBob": 2,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": 26,
+                "footLift": 11,
+                "shoePitch": -0.08,
+                "bodyBob": 0,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              {
+                "footX": 26,
+                "footLift": 8,
+                "shoePitch": 0,
+                "bodyBob": 3,
+                "armAngle": -1,
+                "lean": 0.14,
+                "armSwing": 0
+              }
+            ],
+            "sequence": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "keys": [
+            {
+              "index": 0,
+              "key": {
+                "footX": 23,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 5,
+                "armAngle": -1.1,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      137.05246333352238
+                    ],
+                    [
+                      130.38029579155824,
+                      159.7036767275709
+                    ],
+                    [
+                      152.56248917119558,
+                      150.06260329831142
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      187.85939375706133
+                    ],
+                    [
+                      93.97191330709371,
+                      206.75192113135455
+                    ],
+                    [
+                      77.25699459775763,
+                      194
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      185.4871608081093
+                    ],
+                    [
+                      103.13709172237607,
+                      200.84277370894316
+                    ],
+                    [
+                      107.42332266214278,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      129.65667825737785
+                    ],
+                    [
+                      43.81157772850926,
+                      137.98186026950822
+                    ],
+                    [
+                      50.964473910954425,
+                      158.81059225691354
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 1,
+              "key": {
+                "footX": 8,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 7,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      139.05246333352238
+                    ],
+                    [
+                      123.24669565080254,
+                      163.60136803507342
+                    ],
+                    [
+                      147.28728640746243,
+                      160.94618516551472
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      189.85939375706133
+                    ],
+                    [
+                      112.25006998122988,
+                      206.86387239103584
+                    ],
+                    [
+                      91.25699459775763,
+                      208
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      187.4871608081093
+                    ],
+                    [
+                      102.90089314353911,
+                      203.12619495683575
+                    ],
+                    [
+                      92.42332266214278,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      131.65667825737785
+                    ],
+                    [
+                      47.3545855259156,
+                      146.77413154180527
+                    ],
+                    [
+                      60.343319433344405,
+                      164.55875387352793
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "key": {
+                "footX": -9,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 5,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      137.05246333352238
+                    ],
+                    [
+                      114.66454983314111,
+                      161.04274160301483
+                    ],
+                    [
+                      138.15808117504332,
+                      166.79200112812407
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      187.85939375706133
+                    ],
+                    [
+                      121.0493807745982,
+                      192.13273547365844
+                    ],
+                    [
+                      107.25699459775763,
+                      208
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      185.4871608081093
+                    ],
+                    [
+                      92.19753456262946,
+                      208.41229176359855
+                    ],
+                    [
+                      75.42332266214278,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      129.65667825737785
+                    ],
+                    [
+                      53.79327183863748,
+                      150.9553590804833
+                    ],
+                    [
+                      72.09284204968256,
+                      163.2079396287201
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "key": {
+                "footX": -20,
+                "footLift": 6,
+                "shoePitch": 0.18,
+                "bodyBob": 2,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      134.05246333352238
+                    ],
+                    [
+                      106.7942680130923,
+                      154.57518419192462
+                    ],
+                    [
+                      126.89204179844755,
+                      168.03176209541434
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      184.85939375706133
+                    ],
+                    [
+                      120.5557349375677,
+                      190.98790265373324
+                    ],
+                    [
+                      121.25699459775763,
+                      212
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      182.4871608081093
+                    ],
+                    [
+                      83.89904559308897,
+                      206.68891970193488
+                    ],
+                    [
+                      64.42332266214278,
+                      216
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      126.65667825737785
+                    ],
+                    [
+                      61.961127437788264,
+                      151.5540241426925
+                    ],
+                    [
+                      83.3526273565405,
+                      156.78888146892632
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "key": {
+                "footX": -26,
+                "footLift": 15,
+                "shoePitch": 0.4,
+                "bodyBob": 0,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      132.05246333352238
+                    ],
+                    [
+                      100.59015786240833,
+                      146.61915299956357
+                    ],
+                    [
+                      114.85522708639034,
+                      166.15137765614074
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      182.85939375706133
+                    ],
+                    [
+                      119.60825105219712,
+                      191.4169276625386
+                    ],
+                    [
+                      127.25699459775763,
+                      211
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      180.4871608081093
+                    ],
+                    [
+                      79.83522350349962,
+                      204.25582391966142
+                    ],
+                    [
+                      58.42332266214278,
+                      207
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      124.65667825737785
+                    ],
+                    [
+                      70.86776246970628,
+                      150.1337721282475
+                    ],
+                    [
+                      92.75737487976672,
+                      147.7161558358371
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "key": {
+                "footX": -26,
+                "footLift": 24,
+                "shoePitch": 0.48,
+                "bodyBob": 3,
+                "armAngle": 0.45,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      135.05246333352238
+                    ],
+                    [
+                      98.09377974060187,
+                      145.36628675353006
+                    ],
+                    [
+                      108.19404331615736,
+                      167.3431990868017
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      185.85939375706133
+                    ],
+                    [
+                      119.60825105219712,
+                      194.4169276625386
+                    ],
+                    [
+                      127.25699459775763,
+                      214
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      183.4871608081093
+                    ],
+                    [
+                      78.10979847894333,
+                      206.8567866585194
+                    ],
+                    [
+                      58.42332266214278,
+                      198
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      127.65667825737785
+                    ],
+                    [
+                      75.87319022612674,
+                      152.0669030210633
+                    ],
+                    [
+                      96.84616154019344,
+                      145.34868344595742
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 6,
+              "key": {
+                "footX": -24,
+                "footLift": 28,
+                "shoePitch": 0.38,
+                "bodyBob": 5,
+                "armAngle": 0.55,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      137.05246333352238
+                    ],
+                    [
+                      97.17622999386013,
+                      145.07433980321406
+                    ],
+                    [
+                      105.03200407636544,
+                      167.94980293655055
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      187.85939375706133
+                    ],
+                    [
+                      113.7709917242488,
+                      203.77793250652482
+                    ],
+                    [
+                      124.25699459775763,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      185.4871608081093
+                    ],
+                    [
+                      76.53079228549261,
+                      208.37182738321272
+                    ],
+                    [
+                      60.42332266214278,
+                      194
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      129.65667825737785
+                    ],
+                    [
+                      78.27108260283627,
+                      153.16432949253914
+                    ],
+                    [
+                      98.46857360462276,
+                      144.38586964853727
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 7,
+              "key": {
+                "footX": -10,
+                "footLift": 14,
+                "shoePitch": 0.2,
+                "bodyBob": 7,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      139.05246333352238
+                    ],
+                    [
+                      100.59015786240833,
+                      153.61915299956357
+                    ],
+                    [
+                      114.85522708639034,
+                      173.15137765614074
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      189.85939375706133
+                    ],
+                    [
+                      117.08488656044531,
+                      202.48784718642023
+                    ],
+                    [
+                      109.25699459775763,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      187.4871608081093
+                    ],
+                    [
+                      95.9973780056937,
+                      208.74842236297525
+                    ],
+                    [
+                      74.42332266214278,
+                      208
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      131.65667825737785
+                    ],
+                    [
+                      70.86776246970628,
+                      157.1337721282475
+                    ],
+                    [
+                      92.75737487976672,
+                      154.7161558358371
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 8,
+              "key": {
+                "footX": 6,
+                "footLift": 14,
+                "shoePitch": 0.05,
+                "bodyBob": 5,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      137.05246333352238
+                    ],
+                    [
+                      106.7942680130923,
+                      157.57518419192462
+                    ],
+                    [
+                      126.89204179844755,
+                      171.03176209541434
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      187.85939375706133
+                    ],
+                    [
+                      107.20363933015612,
+                      207.2149463564225
+                    ],
+                    [
+                      92.25699459775763,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      185.4871608081093
+                    ],
+                    [
+                      107.01313573365017,
+                      194.1877553506882
+                    ],
+                    [
+                      90.42332266214278,
+                      208
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      129.65667825737785
+                    ],
+                    [
+                      61.961127437788264,
+                      154.5540241426925
+                    ],
+                    [
+                      83.3526273565405,
+                      159.78888146892632
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 9,
+              "key": {
+                "footX": 20,
+                "footLift": 10,
+                "shoePitch": -0.1,
+                "bodyBob": 2,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      134.05246333352238
+                    ],
+                    [
+                      114.66454983314111,
+                      158.04274160301483
+                    ],
+                    [
+                      138.15808117504332,
+                      163.79200112812407
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      184.85939375706133
+                    ],
+                    [
+                      99.17370987724475,
+                      205.0003948437322
+                    ],
+                    [
+                      81.25699459775763,
+                      216
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      182.4871608081093
+                    ],
+                    [
+                      107.23207187282121,
+                      190.59647393835508
+                    ],
+                    [
+                      104.42332266214278,
+                      212
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      126.65667825737785
+                    ],
+                    [
+                      53.79327183863748,
+                      147.9553590804833
+                    ],
+                    [
+                      72.09284204968256,
+                      160.2079396287201
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 10,
+              "key": {
+                "footX": 26,
+                "footLift": 11,
+                "shoePitch": -0.08,
+                "bodyBob": 0,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      132.05246333352238
+                    ],
+                    [
+                      123.24669565080254,
+                      156.60136803507342
+                    ],
+                    [
+                      147.28728640746243,
+                      153.94618516551472
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      182.85939375706133
+                    ],
+                    [
+                      95.75948518320371,
+                      202.34727179026163
+                    ],
+                    [
+                      75.25699459775763,
+                      207
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      180.4871608081093
+                    ],
+                    [
+                      106.80128249183653,
+                      189.71900319522865
+                    ],
+                    [
+                      110.42332266214278,
+                      211
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      124.65667825737785
+                    ],
+                    [
+                      47.3545855259156,
+                      139.77413154180527
+                    ],
+                    [
+                      60.343319433344405,
+                      157.55875387352793
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 11,
+              "key": {
+                "footX": 26,
+                "footLift": 8,
+                "shoePitch": 0,
+                "bodyBob": 3,
+                "armAngle": -1,
+                "lean": 0.14,
+                "armSwing": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      135.05246333352238
+                    ],
+                    [
+                      128.06976415326474,
+                      158.57336742503367
+                    ],
+                    [
+                      151.10364026159246,
+                      151.19498335897907
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      185.85939375706133
+                    ],
+                    [
+                      95.03543723179214,
+                      205.12833830371466
+                    ],
+                    [
+                      75.25699459775763,
+                      198
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      183.4871608081093
+                    ],
+                    [
+                      106.80128249183653,
+                      192.71900319522865
+                    ],
+                    [
+                      110.42332266214278,
+                      214
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      127.65667825737785
+                    ],
+                    [
+                      44.76381984737883,
+                      138.36046527491055
+                    ],
+                    [
+                      53.960384821436804,
+                      158.37104229502495
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "theo-run",
+          "motionVersion": 2,
+          "run": {
+            "fps": 18,
+            "loop": true,
+            "keys": [
+              {
+                "footX": 18,
+                "footLift": 0,
+                "shoePitch": -0.08,
+                "bodyBob": 4,
+                "armAngle": -1.1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0
+              },
+              {
+                "footX": 6,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 5,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.012
+              },
+              {
+                "footX": -6,
+                "footLift": 0,
+                "shoePitch": 0.18,
+                "bodyBob": 4,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.018
+              },
+              {
+                "footX": -18,
+                "footLift": 3,
+                "shoePitch": 0.32,
+                "bodyBob": 2,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.01
+              },
+              {
+                "footX": -25,
+                "footLift": 9,
+                "shoePitch": 0.45,
+                "bodyBob": 0,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.006
+              },
+              {
+                "footX": -27,
+                "footLift": 16,
+                "shoePitch": 0.48,
+                "bodyBob": 2,
+                "armAngle": 0.45,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.01
+              },
+              {
+                "footX": -23,
+                "footLift": 21,
+                "shoePitch": 0.38,
+                "bodyBob": 4,
+                "armAngle": 0.55,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0
+              },
+              {
+                "footX": -10,
+                "footLift": 16,
+                "shoePitch": 0.2,
+                "bodyBob": 5,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.012
+              },
+              {
+                "footX": 4,
+                "footLift": 17,
+                "shoePitch": 0.05,
+                "bodyBob": 4,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.018
+              },
+              {
+                "footX": 15,
+                "footLift": 11,
+                "shoePitch": -0.1,
+                "bodyBob": 2,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.01
+              },
+              {
+                "footX": 19,
+                "footLift": 6,
+                "shoePitch": -0.12,
+                "bodyBob": 0,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.006
+              },
+              {
+                "footX": 20,
+                "footLift": 3,
+                "shoePitch": -0.1,
+                "bodyBob": 2,
+                "armAngle": -1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.01
+              }
+            ],
+            "sequence": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "keys": [
+            {
+              "index": 0,
+              "key": {
+                "footX": 18,
+                "footLift": 0,
+                "shoePitch": -0.08,
+                "bodyBob": 4,
+                "armAngle": -1.1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      136.05246333352238
+                    ],
+                    [
+                      130.38029579155824,
+                      158.7036767275709
+                    ],
+                    [
+                      152.56248917119558,
+                      149.06260329831142
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      186.85939375706133
+                    ],
+                    [
+                      88.53705130987782,
+                      202.61385479998887
+                    ],
+                    [
+                      69.8401586299502,
+                      193
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      184.4871608081093
+                    ],
+                    [
+                      101.69998299341529,
+                      201.4434872911019
+                    ],
+                    [
+                      110.8401586299502,
+                      221
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      128.65667825737785
+                    ],
+                    [
+                      43.81157772850926,
+                      136.98186026950822
+                    ],
+                    [
+                      50.964473910954425,
+                      157.81059225691354
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 1,
+              "key": {
+                "footX": 6,
+                "footLift": 0,
+                "shoePitch": 0,
+                "bodyBob": 5,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.012
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      121.12881307374369,
+                      137.3883705690727
+                    ],
+                    [
+                      123.54536209672042,
+                      161.96804287810784
+                    ],
+                    [
+                      147.61608338136435,
+                      159.6015313448613
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      187.85939375706133
+                    ],
+                    [
+                      102.97930427677905,
+                      208.0344687103186
+                    ],
+                    [
+                      82.8401586299502,
+                      202
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      185.4871608081093
+                    ],
+                    [
+                      103.1355646479324,
+                      200.8446345543103
+                    ],
+                    [
+                      98.8401586299502,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.73989118431469,
+                      129.3633557240206
+                    ],
+                    [
+                      47.86063812990203,
+                      144.23133446660026
+                    ],
+                    [
+                      60.63502651366538,
+                      162.1705373870416
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "key": {
+                "footX": -6,
+                "footLift": 0,
+                "shoePitch": 0.18,
+                "bodyBob": 4,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.018
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      121.42401154551891,
+                      136.55898860300516
+                    ],
+                    [
+                      115.12233910698026,
+                      160.43971146638103
+                    ],
+                    [
+                      138.5085835163024,
+                      166.61090036540588
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      186.85939375706133
+                    ],
+                    [
+                      117.30905771402246,
+                      199.20164921185767
+                    ],
+                    [
+                      96.8401586299502,
+                      204
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      184.4871608081093
+                    ],
+                    [
+                      100.0799410529741,
+                      202.9498339776122
+                    ],
+                    [
+                      86.8401586299502,
+                      220
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      69.08418245402521,
+                      128.21978656244818
+                    ],
+                    [
+                      54.4424850738922,
+                      149.25833921771905
+                    ],
+                    [
+                      72.51855629405165,
+                      161.83830937840398
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "key": {
+                "footX": -18,
+                "footLift": 3,
+                "shoePitch": 0.32,
+                "bodyBob": 2,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.01
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      121.03018674873982,
+                      134.33189186768382
+                    ],
+                    [
+                      107.08454639468599,
+                      154.71617785261313
+                    ],
+                    [
+                      127.0467517634429,
+                      168.37305732105588
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      184.85939375706133
+                    ],
+                    [
+                      120.20564865455033,
+                      191.99721621464548
+                    ],
+                    [
+                      107.8401586299502,
+                      209
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      182.4871608081093
+                    ],
+                    [
+                      93.39657126349152,
+                      204.97006118902976
+                    ],
+                    [
+                      74.8401586299502,
+                      216
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.62531961812958,
+                      126.41167084658306
+                    ],
+                    [
+                      62.28385855469849,
+                      151.24684492652435
+                    ],
+                    [
+                      83.62194120657739,
+                      156.69535194602835
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "key": {
+                "footX": -25,
+                "footLift": 9,
+                "shoePitch": 0.45,
+                "bodyBob": 0,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.006
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.23715001876707,
+                      131.88718622452876
+                    ],
+                    [
+                      100.37969487908873,
+                      146.57328425551242
+                    ],
+                    [
+                      114.76169997737566,
+                      166.01956743129819
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      182.85939375706133
+                    ],
+                    [
+                      118.19227422687925,
+                      193.9587767977289
+                    ],
+                    [
+                      111.8401586299502,
+                      214
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      180.4871608081093
+                    ],
+                    [
+                      88.66647740360938,
+                      204.31981986747508
+                    ],
+                    [
+                      67.8401586299502,
+                      210
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      67.71227243851462,
+                      124.80642106958314
+                    ],
+                    [
+                      70.67892207614477,
+                      150.26617342359373
+                    ],
+                    [
+                      92.55363486364342,
+                      147.7172637617103
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "key": {
+                "footX": -27,
+                "footLift": 16,
+                "shoePitch": 0.48,
+                "bodyBob": 2,
+                "armAngle": 0.45,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.01
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.03778700994717,
+                      133.7779968394053
+                    ],
+                    [
+                      97.7004537075771,
+                      144.31571675117127
+                    ],
+                    [
+                      108.01997773469455,
+                      166.19052929559655
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      184.85939375706133
+                    ],
+                    [
+                      117.77933037027388,
+                      196.564624238356
+                    ],
+                    [
+                      112.8401586299502,
+                      217
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      182.4871608081093
+                    ],
+                    [
+                      86.9393181537545,
+                      206.56349289350368
+                    ],
+                    [
+                      65.8401586299502,
+                      202
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      67.48500664306341,
+                      126.90738728056147
+                    ],
+                    [
+                      75.5479802592307,
+                      151.23820018241474
+                    ],
+                    [
+                      96.452721857417,
+                      144.31059029782546
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 6,
+              "key": {
+                "footX": -23,
+                "footLift": 21,
+                "shoePitch": 0.38,
+                "bodyBob": 4,
+                "armAngle": 0.55,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.53537162845379,
+                      136.05246333352238
+                    ],
+                    [
+                      97.17622999386013,
+                      144.07433980321406
+                    ],
+                    [
+                      105.03200407636544,
+                      166.94980293655055
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      186.85939375706133
+                    ],
+                    [
+                      116.09042484349231,
+                      200.64233056838435
+                    ],
+                    [
+                      110.8401586299502,
+                      221
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      184.4871608081093
+                    ],
+                    [
+                      88.81534040131281,
+                      208.29283618560734
+                    ],
+                    [
+                      69.8401586299502,
+                      198
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.05392382918403,
+                      128.65667825737785
+                    ],
+                    [
+                      78.27108260283627,
+                      152.16432949253914
+                    ],
+                    [
+                      98.46857360462276,
+                      143.38586964853727
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 7,
+              "key": {
+                "footX": -10,
+                "footLift": 16,
+                "shoePitch": 0.2,
+                "bodyBob": 5,
+                "armAngle": 0.25,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.012
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      121.12881307374369,
+                      137.3883705690727
+                    ],
+                    [
+                      101.01023926504072,
+                      151.71467462503114
+                    ],
+                    [
+                      115.03990034572485,
+                      171.4166697006862
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      187.85939375706133
+                    ],
+                    [
+                      111.58215796560752,
+                      205.27751654418196
+                    ],
+                    [
+                      98.8401586299502,
+                      222
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      185.4871608081093
+                    ],
+                    [
+                      103.9999405859041,
+                      199.7264034377953
+                    ],
+                    [
+                      82.8401586299502,
+                      204
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.73989118431469,
+                      129.3633557240206
+                    ],
+                    [
+                      71.24780944178572,
+                      154.87238051945022
+                    ],
+                    [
+                      93.16485651790562,
+                      152.7176073380818
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 8,
+              "key": {
+                "footX": 4,
+                "footLift": 17,
+                "shoePitch": 0.05,
+                "bodyBob": 4,
+                "armAngle": -0.1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.018
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      121.42401154551891,
+                      136.55898860300516
+                    ],
+                    [
+                      107.31574490115045,
+                      156.83105836145361
+                    ],
+                    [
+                      127.16805761237819,
+                      170.64719675159813
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      186.85939375706133
+                    ],
+                    [
+                      104.04357067096231,
+                      206.9151907691036
+                    ],
+                    [
+                      86.8401586299502,
+                      219
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      184.4871608081093
+                    ],
+                    [
+                      108.59002704497648,
+                      185.89086992068454
+                    ],
+                    [
+                      96.8401586299502,
+                      204
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      69.08418245402521,
+                      128.21978656244818
+                    ],
+                    [
+                      62.54424504288776,
+                      153.00343477368625
+                    ],
+                    [
+                      83.83805728854523,
+                      158.62247028226665
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 9,
+              "key": {
+                "footX": 15,
+                "footLift": 11,
+                "shoePitch": -0.1,
+                "bodyBob": 2,
+                "armAngle": -0.45,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": 0.01
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      121.03018674873982,
+                      134.33189186768382
+                    ],
+                    [
+                      114.91975970773555,
+                      158.26226339377098
+                    ],
+                    [
+                      138.35462474581362,
+                      164.24616685614953
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      184.85939375706133
+                    ],
+                    [
+                      94.21784538325683,
+                      203.8449245196182
+                    ],
+                    [
+                      74.8401586299502,
+                      212
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      182.4871608081093
+                    ],
+                    [
+                      107.89424125882245,
+                      188.41303460258356
+                    ],
+                    [
+                      107.8401586299502,
+                      210
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      68.62531961812958,
+                      126.41167084658306
+                    ],
+                    [
+                      54.15239739577197,
+                      147.56668260137977
+                    ],
+                    [
+                      72.32852887253549,
+                      160.00164317789174
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 10,
+              "key": {
+                "footX": 19,
+                "footLift": 6,
+                "shoePitch": -0.12,
+                "bodyBob": 0,
+                "armAngle": -0.8,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.006
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.23715001876707,
+                      131.88718622452876
+                    ],
+                    [
+                      123.09571778188013,
+                      156.4193812005942
+                    ],
+                    [
+                      147.11994480757366,
+                      153.62000344510352
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      182.85939375706133
+                    ],
+                    [
+                      88.0504393648988,
+                      198.20823406769878
+                    ],
+                    [
+                      67.8401586299502,
+                      204
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      180.4871608081093
+                    ],
+                    [
+                      104.76910016734479,
+                      193.6039187043585
+                    ],
+                    [
+                      111.8401586299502,
+                      214
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      67.71227243851462,
+                      124.80642106958314
+                    ],
+                    [
+                      47.104010897697115,
+                      140.04779752531252
+                    ],
+                    [
+                      60.199218102362046,
+                      157.7541677989426
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 11,
+              "key": {
+                "footX": 20,
+                "footLift": 3,
+                "shoePitch": -0.1,
+                "bodyBob": 2,
+                "armAngle": -1,
+                "lean": 0.14,
+                "armSwing": 0,
+                "torsoLean": -0.01
+              },
+              "limbs": [
+                {
+                  "id": "farArm",
+                  "bones": [
+                    [
+                      120.03778700994717,
+                      133.7779968394053
+                    ],
+                    [
+                      127.80700793905523,
+                      157.22238222599006
+                    ],
+                    [
+                      150.76594975223895,
+                      149.61403215394128
+                    ]
+                  ]
+                },
+                {
+                  "id": "farLeg",
+                  "bones": [
+                    [
+                      101.25699459775763,
+                      184.85939375706133
+                    ],
+                    [
+                      86.6635187818074,
+                      198.89614778387522
+                    ],
+                    [
+                      65.8401586299502,
+                      196
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearLeg",
+                  "bones": [
+                    [
+                      84.42332266214278,
+                      182.4871608081093
+                    ],
+                    [
+                      101.53500579065556,
+                      199.60996141167212
+                    ],
+                    [
+                      112.8401586299502,
+                      218
+                    ]
+                  ]
+                },
+                {
+                  "id": "nearArm",
+                  "bones": [
+                    [
+                      67.48500664306341,
+                      126.90738728056147
+                    ],
+                    [
+                      44.30310324297287,
+                      137.84353627135664
+                    ],
+                    [
+                      53.69931082773569,
+                      157.7611486539703
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "editorFrameCoverage": "Final: all36poses in both directions(72); baseline representative four actions/bothdirections(8). Gentle actual canvas captures; 4 semantic packs/144poses. Independent final4actions2directions plus baseline run.",
+  "editorFrames": [
+    {
+      "id": "before",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "before",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "before",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "before",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "before",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "before",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "before",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "before",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 1
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 2
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "right",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 3
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 4
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 5
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 6
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 7
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 8
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 10
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "right",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 11
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 12
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 13
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 14
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 15
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 16
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 18
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 19
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 20
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 21
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 22
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "right",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 23
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 24
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 25
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 26
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 27
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 28
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 30
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 31
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 32
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 33
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 34
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "right",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 35
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 0
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 1
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 2
+    },
+    {
+      "id": "theo-run",
+      "action": "idle",
+      "facing": "left",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 3
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 4
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 5
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 6
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 7
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 8
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 9
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 10
+    },
+    {
+      "id": "theo-run",
+      "action": "walk",
+      "facing": "left",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 11
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 12
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 13
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 14
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 15
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 16
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 17
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 18
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 19
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 20
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 21
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 22
+    },
+    {
+      "id": "theo-run",
+      "action": "run",
+      "facing": "left",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 23
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 0,
+      "exactPixels": true,
+      "frameId": 24
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 1,
+      "exactPixels": true,
+      "frameId": 25
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 2,
+      "exactPixels": true,
+      "frameId": 26
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 3,
+      "exactPixels": true,
+      "frameId": 27
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 4,
+      "exactPixels": true,
+      "frameId": 28
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 5,
+      "exactPixels": true,
+      "frameId": 29
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 6,
+      "exactPixels": true,
+      "frameId": 30
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 7,
+      "exactPixels": true,
+      "frameId": 31
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 8,
+      "exactPixels": true,
+      "frameId": 32
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 9,
+      "exactPixels": true,
+      "frameId": 33
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 10,
+      "exactPixels": true,
+      "frameId": 34
+    },
+    {
+      "id": "theo-run",
+      "action": "jump",
+      "facing": "left",
+      "sequenceIndex": 11,
+      "exactPixels": true,
+      "frameId": 35
+    }
+  ],
+  "playback": [
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "idle",
+      "facing": "right",
+      "expectedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "matchedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "position": 0,
+          "ms": 3
+        },
+        {
+          "frame": 1,
+          "position": 1,
+          "ms": 518
+        },
+        {
+          "frame": 2,
+          "position": 2,
+          "ms": 1018
+        },
+        {
+          "frame": 3,
+          "position": 3,
+          "ms": 2018
+        },
+        {
+          "frame": 0,
+          "position": 4,
+          "ms": 2519
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 518,
+          "expectedMs": 500,
+          "errorMs": 18
+        },
+        {
+          "position": 2,
+          "actualMs": 1018,
+          "expectedMs": 1000,
+          "errorMs": 18
+        },
+        {
+          "position": 3,
+          "actualMs": 2018,
+          "expectedMs": 2000,
+          "errorMs": 18
+        },
+        {
+          "position": 4,
+          "actualMs": 2519,
+          "expectedMs": 2500,
+          "errorMs": 19
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 3000,
+      "finalPosition": 4,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "walk",
+      "facing": "right",
+      "expectedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matchedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 4,
+          "position": 0,
+          "ms": 4
+        },
+        {
+          "frame": 5,
+          "position": 1,
+          "ms": 111
+        },
+        {
+          "frame": 6,
+          "position": 2,
+          "ms": 212
+        },
+        {
+          "frame": 7,
+          "position": 3,
+          "ms": 311
+        },
+        {
+          "frame": 8,
+          "position": 4,
+          "ms": 408
+        },
+        {
+          "frame": 9,
+          "position": 5,
+          "ms": 511
+        },
+        {
+          "frame": 10,
+          "position": 6,
+          "ms": 610
+        },
+        {
+          "frame": 11,
+          "position": 7,
+          "ms": 709
+        },
+        {
+          "frame": 4,
+          "position": 8,
+          "ms": 816
+        },
+        {
+          "frame": 5,
+          "position": 9,
+          "ms": 913
+        },
+        {
+          "frame": 6,
+          "position": 10,
+          "ms": 1010
+        },
+        {
+          "frame": 7,
+          "position": 11,
+          "ms": 1110
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 111,
+          "expectedMs": 100,
+          "errorMs": 11
+        },
+        {
+          "position": 2,
+          "actualMs": 212,
+          "expectedMs": 200,
+          "errorMs": 12
+        },
+        {
+          "position": 3,
+          "actualMs": 311,
+          "expectedMs": 300,
+          "errorMs": 11
+        },
+        {
+          "position": 4,
+          "actualMs": 408,
+          "expectedMs": 400,
+          "errorMs": 8
+        },
+        {
+          "position": 5,
+          "actualMs": 511,
+          "expectedMs": 500,
+          "errorMs": 11
+        },
+        {
+          "position": 6,
+          "actualMs": 610,
+          "expectedMs": 600,
+          "errorMs": 10
+        },
+        {
+          "position": 7,
+          "actualMs": 709,
+          "expectedMs": 700,
+          "errorMs": 9
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 11,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "right",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 3
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 87
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 130
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 179
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 247
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 296
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 346
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 413
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 465
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 515
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 580
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 630
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 680
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 746
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 796
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 848
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 912
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 963
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 87,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 31
+        },
+        {
+          "position": 2,
+          "actualMs": 130,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 19
+        },
+        {
+          "position": 3,
+          "actualMs": 179,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 12
+        },
+        {
+          "position": 4,
+          "actualMs": 247,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 25
+        },
+        {
+          "position": 5,
+          "actualMs": 296,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 18
+        },
+        {
+          "position": 6,
+          "actualMs": 346,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 13
+        },
+        {
+          "position": 7,
+          "actualMs": 413,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 24
+        },
+        {
+          "position": 8,
+          "actualMs": 465,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 21
+        },
+        {
+          "position": 9,
+          "actualMs": 515,
+          "expectedMs": 500,
+          "errorMs": 15
+        },
+        {
+          "position": 10,
+          "actualMs": 580,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 24
+        },
+        {
+          "position": 11,
+          "actualMs": 630,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 19
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "jump",
+      "facing": "right",
+      "expectedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "matchedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "transitions": [
+        {
+          "frame": 24,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 25,
+          "position": 1,
+          "ms": 79
+        },
+        {
+          "frame": 26,
+          "position": 2,
+          "ms": 143
+        },
+        {
+          "frame": 27,
+          "position": 3,
+          "ms": 211
+        },
+        {
+          "frame": 28,
+          "position": 4,
+          "ms": 278
+        },
+        {
+          "frame": 29,
+          "position": 5,
+          "ms": 345
+        },
+        {
+          "frame": 30,
+          "position": 6,
+          "ms": 412
+        },
+        {
+          "frame": 31,
+          "position": 7,
+          "ms": 480
+        },
+        {
+          "frame": 32,
+          "position": 8,
+          "ms": 543
+        },
+        {
+          "frame": 33,
+          "position": 9,
+          "ms": 610
+        },
+        {
+          "frame": 34,
+          "position": 10,
+          "ms": 676
+        },
+        {
+          "frame": 35,
+          "position": 11,
+          "ms": 745
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 79,
+          "expectedMs": 66.66666666666667,
+          "errorMs": 12
+        },
+        {
+          "position": 2,
+          "actualMs": 143,
+          "expectedMs": 133.33333333333334,
+          "errorMs": 10
+        },
+        {
+          "position": 3,
+          "actualMs": 211,
+          "expectedMs": 200,
+          "errorMs": 11
+        },
+        {
+          "position": 4,
+          "actualMs": 278,
+          "expectedMs": 266.6666666666667,
+          "errorMs": 11
+        },
+        {
+          "position": 5,
+          "actualMs": 345,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 12
+        },
+        {
+          "position": 6,
+          "actualMs": 412,
+          "expectedMs": 400,
+          "errorMs": 12
+        },
+        {
+          "position": 7,
+          "actualMs": 480,
+          "expectedMs": 466.6666666666667,
+          "errorMs": 13
+        },
+        {
+          "position": 8,
+          "actualMs": 543,
+          "expectedMs": 533.3333333333334,
+          "errorMs": 10
+        },
+        {
+          "position": 9,
+          "actualMs": 610,
+          "expectedMs": 600,
+          "errorMs": 10
+        },
+        {
+          "position": 10,
+          "actualMs": 676,
+          "expectedMs": 666.6666666666666,
+          "errorMs": 9
+        },
+        {
+          "position": 11,
+          "actualMs": 745,
+          "expectedMs": 733.3333333333334,
+          "errorMs": 12
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 11,
+      "once": true,
+      "replayStartedAtFirstFrameAndCompleted": true,
+      "finalStatus": "Finished · Holding the final frame. Replay to start again."
+    },
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "idle",
+      "facing": "left",
+      "expectedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "matchedFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "transitions": [
+        {
+          "frame": 0,
+          "position": 0,
+          "ms": 4
+        },
+        {
+          "frame": 1,
+          "position": 1,
+          "ms": 521
+        },
+        {
+          "frame": 2,
+          "position": 2,
+          "ms": 1015
+        },
+        {
+          "frame": 3,
+          "position": 3,
+          "ms": 2017
+        },
+        {
+          "frame": 0,
+          "position": 4,
+          "ms": 2514
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 521,
+          "expectedMs": 500,
+          "errorMs": 21
+        },
+        {
+          "position": 2,
+          "actualMs": 1015,
+          "expectedMs": 1000,
+          "errorMs": 15
+        },
+        {
+          "position": 3,
+          "actualMs": 2017,
+          "expectedMs": 2000,
+          "errorMs": 17
+        },
+        {
+          "position": 4,
+          "actualMs": 2514,
+          "expectedMs": 2500,
+          "errorMs": 14
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 3000,
+      "finalPosition": 4,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "walk",
+      "facing": "left",
+      "expectedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matchedFrames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transitions": [
+        {
+          "frame": 4,
+          "position": 0,
+          "ms": 3
+        },
+        {
+          "frame": 5,
+          "position": 1,
+          "ms": 123
+        },
+        {
+          "frame": 6,
+          "position": 2,
+          "ms": 222
+        },
+        {
+          "frame": 7,
+          "position": 3,
+          "ms": 323
+        },
+        {
+          "frame": 8,
+          "position": 4,
+          "ms": 422
+        },
+        {
+          "frame": 9,
+          "position": 5,
+          "ms": 523
+        },
+        {
+          "frame": 10,
+          "position": 6,
+          "ms": 623
+        },
+        {
+          "frame": 11,
+          "position": 7,
+          "ms": 723
+        },
+        {
+          "frame": 4,
+          "position": 8,
+          "ms": 822
+        },
+        {
+          "frame": 5,
+          "position": 9,
+          "ms": 923
+        },
+        {
+          "frame": 6,
+          "position": 10,
+          "ms": 1024
+        },
+        {
+          "frame": 7,
+          "position": 11,
+          "ms": 1124
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 123,
+          "expectedMs": 100,
+          "errorMs": 23
+        },
+        {
+          "position": 2,
+          "actualMs": 222,
+          "expectedMs": 200,
+          "errorMs": 22
+        },
+        {
+          "position": 3,
+          "actualMs": 323,
+          "expectedMs": 300,
+          "errorMs": 23
+        },
+        {
+          "position": 4,
+          "actualMs": 422,
+          "expectedMs": 400,
+          "errorMs": 22
+        },
+        {
+          "position": 5,
+          "actualMs": 523,
+          "expectedMs": 500,
+          "errorMs": 23
+        },
+        {
+          "position": 6,
+          "actualMs": 623,
+          "expectedMs": 600,
+          "errorMs": 23
+        },
+        {
+          "position": 7,
+          "actualMs": 723,
+          "expectedMs": 700,
+          "errorMs": 23
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 11,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "left",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 3
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 68
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 135
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 184
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 234
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 300
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 356
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 402
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 468
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 516
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 567
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 634
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 684
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 733
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 800
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 850
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 899
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 966
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 68,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 12
+        },
+        {
+          "position": 2,
+          "actualMs": 135,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 24
+        },
+        {
+          "position": 3,
+          "actualMs": 184,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 17
+        },
+        {
+          "position": 4,
+          "actualMs": 234,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 12
+        },
+        {
+          "position": 5,
+          "actualMs": 300,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 22
+        },
+        {
+          "position": 6,
+          "actualMs": 356,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 23
+        },
+        {
+          "position": 7,
+          "actualMs": 402,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 13
+        },
+        {
+          "position": 8,
+          "actualMs": 468,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 24
+        },
+        {
+          "position": 9,
+          "actualMs": 516,
+          "expectedMs": 500,
+          "errorMs": 16
+        },
+        {
+          "position": 10,
+          "actualMs": 567,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 11
+        },
+        {
+          "position": 11,
+          "actualMs": 634,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 23
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "theo-run",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "jump",
+      "facing": "left",
+      "expectedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "matchedFrames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "transitions": [
+        {
+          "frame": 24,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 25,
+          "position": 1,
+          "ms": 74
+        },
+        {
+          "frame": 26,
+          "position": 2,
+          "ms": 140
+        },
+        {
+          "frame": 27,
+          "position": 3,
+          "ms": 208
+        },
+        {
+          "frame": 28,
+          "position": 4,
+          "ms": 276
+        },
+        {
+          "frame": 29,
+          "position": 5,
+          "ms": 342
+        },
+        {
+          "frame": 30,
+          "position": 6,
+          "ms": 409
+        },
+        {
+          "frame": 31,
+          "position": 7,
+          "ms": 476
+        },
+        {
+          "frame": 32,
+          "position": 8,
+          "ms": 541
+        },
+        {
+          "frame": 33,
+          "position": 9,
+          "ms": 607
+        },
+        {
+          "frame": 34,
+          "position": 10,
+          "ms": 673
+        },
+        {
+          "frame": 35,
+          "position": 11,
+          "ms": 742
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 74,
+          "expectedMs": 66.66666666666667,
+          "errorMs": 7
+        },
+        {
+          "position": 2,
+          "actualMs": 140,
+          "expectedMs": 133.33333333333334,
+          "errorMs": 7
+        },
+        {
+          "position": 3,
+          "actualMs": 208,
+          "expectedMs": 200,
+          "errorMs": 8
+        },
+        {
+          "position": 4,
+          "actualMs": 276,
+          "expectedMs": 266.6666666666667,
+          "errorMs": 9
+        },
+        {
+          "position": 5,
+          "actualMs": 342,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 9
+        },
+        {
+          "position": 6,
+          "actualMs": 409,
+          "expectedMs": 400,
+          "errorMs": 9
+        },
+        {
+          "position": 7,
+          "actualMs": 476,
+          "expectedMs": 466.6666666666667,
+          "errorMs": 9
+        },
+        {
+          "position": 8,
+          "actualMs": 541,
+          "expectedMs": 533.3333333333334,
+          "errorMs": 8
+        },
+        {
+          "position": 9,
+          "actualMs": 607,
+          "expectedMs": 600,
+          "errorMs": 7
+        },
+        {
+          "position": 10,
+          "actualMs": 673,
+          "expectedMs": 666.6666666666666,
+          "errorMs": 6
+        },
+        {
+          "position": 11,
+          "actualMs": 742,
+          "expectedMs": 733.3333333333334,
+          "errorMs": 9
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 800,
+      "finalPosition": 11,
+      "once": true,
+      "replayStartedAtFirstFrameAndCompleted": true,
+      "finalStatus": "Finished · Holding the final frame. Replay to start again."
+    },
+    {
+      "id": "before",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "right",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 69
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 137
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 186
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 236
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 303
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 354
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 404
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 471
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 519
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 569
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 636
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 687
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 736
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 804
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 852
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 903
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 969
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 69,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 13
+        },
+        {
+          "position": 2,
+          "actualMs": 137,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 26
+        },
+        {
+          "position": 3,
+          "actualMs": 186,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 19
+        },
+        {
+          "position": 4,
+          "actualMs": 236,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 14
+        },
+        {
+          "position": 5,
+          "actualMs": 303,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 25
+        },
+        {
+          "position": 6,
+          "actualMs": 354,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 21
+        },
+        {
+          "position": 7,
+          "actualMs": 404,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 15
+        },
+        {
+          "position": 8,
+          "actualMs": 471,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 27
+        },
+        {
+          "position": 9,
+          "actualMs": 519,
+          "expectedMs": 500,
+          "errorMs": 19
+        },
+        {
+          "position": 10,
+          "actualMs": 569,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 13
+        },
+        {
+          "position": 11,
+          "actualMs": 636,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 25
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    },
+    {
+      "id": "before",
+      "fullNativeFramePixelsMatchPng": true,
+      "action": "run",
+      "facing": "left",
+      "expectedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "matchedFrames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "transitions": [
+        {
+          "frame": 12,
+          "position": 0,
+          "ms": 5
+        },
+        {
+          "frame": 13,
+          "position": 1,
+          "ms": 82
+        },
+        {
+          "frame": 14,
+          "position": 2,
+          "ms": 133
+        },
+        {
+          "frame": 15,
+          "position": 3,
+          "ms": 198
+        },
+        {
+          "frame": 16,
+          "position": 4,
+          "ms": 248
+        },
+        {
+          "frame": 17,
+          "position": 5,
+          "ms": 299
+        },
+        {
+          "frame": 18,
+          "position": 6,
+          "ms": 367
+        },
+        {
+          "frame": 19,
+          "position": 7,
+          "ms": 417
+        },
+        {
+          "frame": 20,
+          "position": 8,
+          "ms": 466
+        },
+        {
+          "frame": 21,
+          "position": 9,
+          "ms": 533
+        },
+        {
+          "frame": 22,
+          "position": 10,
+          "ms": 587
+        },
+        {
+          "frame": 23,
+          "position": 11,
+          "ms": 631
+        },
+        {
+          "frame": 12,
+          "position": 12,
+          "ms": 700
+        },
+        {
+          "frame": 13,
+          "position": 13,
+          "ms": 750
+        },
+        {
+          "frame": 14,
+          "position": 14,
+          "ms": 799
+        },
+        {
+          "frame": 15,
+          "position": 15,
+          "ms": 865
+        },
+        {
+          "frame": 16,
+          "position": 16,
+          "ms": 915
+        },
+        {
+          "frame": 17,
+          "position": 17,
+          "ms": 965
+        }
+      ],
+      "timingChecks": [
+        {
+          "position": 1,
+          "actualMs": 82,
+          "expectedMs": 55.55555555555556,
+          "errorMs": 26
+        },
+        {
+          "position": 2,
+          "actualMs": 133,
+          "expectedMs": 111.11111111111111,
+          "errorMs": 22
+        },
+        {
+          "position": 3,
+          "actualMs": 198,
+          "expectedMs": 166.66666666666666,
+          "errorMs": 31
+        },
+        {
+          "position": 4,
+          "actualMs": 248,
+          "expectedMs": 222.22222222222223,
+          "errorMs": 26
+        },
+        {
+          "position": 5,
+          "actualMs": 299,
+          "expectedMs": 277.77777777777777,
+          "errorMs": 21
+        },
+        {
+          "position": 6,
+          "actualMs": 367,
+          "expectedMs": 333.3333333333333,
+          "errorMs": 34
+        },
+        {
+          "position": 7,
+          "actualMs": 417,
+          "expectedMs": 388.8888888888889,
+          "errorMs": 28
+        },
+        {
+          "position": 8,
+          "actualMs": 466,
+          "expectedMs": 444.44444444444446,
+          "errorMs": 22
+        },
+        {
+          "position": 9,
+          "actualMs": 533,
+          "expectedMs": 500,
+          "errorMs": 33
+        },
+        {
+          "position": 10,
+          "actualMs": 587,
+          "expectedMs": 555.5555555555555,
+          "errorMs": 31
+        },
+        {
+          "position": 11,
+          "actualMs": 631,
+          "expectedMs": 611.1111111111111,
+          "errorMs": 20
+        }
+      ],
+      "timingAllowanceMs": 90,
+      "nominalDurationMs": 666.6666666666666,
+      "finalPosition": 17,
+      "once": false,
+      "finalStatus": null
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "forbidden": []
+}

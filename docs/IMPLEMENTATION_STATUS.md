@@ -1,6 +1,27 @@
 # Implementation status
 
-**Current batch: Theo whole-figure pose study.** Starts from `2471785` on
+**Current batch: Theo run stride and shoulder repair.** Continues draft PR #10
+from `1ab97c5`, on `feat/theo-pose-study`. Explicit motion-library V2 centers
+run targets on the pelvis and shares rotated shoe support with the leg ankle;
+V1 defaults and historical projects remain unchanged. A new top adds 113
+same-cloth shoulder backing pixels and removes eight misplaced hand pixels.
+The tuned run retains head/identity, anatomy, clothing design and 12-key/18 FPS
+timing. [Review](THEO_RUN_REPAIR_REVIEW.md) ·
+[Actual exports and editable downloads](theo-run-repair/README.md) ·
+[Motion contract](MOTION_LIBRARY_V2.md) ·
+[Source record](../artwork/theo-run-repair/README.md).
+
+This follow-up passed **469 unit tests across 37 files, eleven relevant Chromium
+tests, TypeScript and build**. Historical Theo/Rose/Maple/Willow frames remain
+exact. V2 editing, reset, undo/redo and project reopen retain their explicit
+semantics. Contact ankle separation is now 41 px in both half-cycles; recovery
+is smoother and the shoulder wedge is closed. The ninth run pose still crowds
+the two boots, and deep knee folds remain a source/mesh limitation. The old
+forehead recolor mask and expression drawing drift are separate outstanding
+issues. Current execution and export checks are recorded with this review;
+neither passing tests nor a draft delivery implies user visual acceptance.
+
+**Historical batch: Theo whole-figure pose study.** Starts from `2471785` on
 unmerged draft PR #9, using `feat/theo-pose-study`. One complete standing model
 establishes fuller body/hand/suit proportions before splitting into the existing
 skeleton. Source `acec98b`, explicit source-color item V3 implementation

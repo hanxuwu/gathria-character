@@ -1,0 +1,101 @@
+{
+  "recordedAt": "2026-10-18T05:25:49.686339+00:00",
+  "scope": "Current Theo run repair follow-up only; no historical test counts treated as rerun.",
+  "baselineCommit": "1ab97c54efae5a58dab091523f6cb3f83d289c6e",
+  "runtimeCommit": "f526c0d",
+  "preparedCommit": "1c8bb0f",
+  "checks": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "files": 37,
+      "passed": 469,
+      "log": "checks/unit.log"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "log": "Tool-session output; TypeScript also executed by production build."
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": "checks/build.log",
+      "warnings": [
+        "Existing >500kB bundle chunk warning"
+      ]
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e -- tests/e2e/run-v2.spec.ts",
+      "exitCode": 0,
+      "passed": 2,
+      "durationSeconds": 17.3,
+      "log": "Current-session runtime agent tool output; no dedicated persisted log. Not included in existing-browser.log."
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e -- tests/e2e/skin-authoring.spec.ts tests/e2e/basic-actions.spec.ts tests/e2e/wardrobe-source-colors.spec.ts",
+      "exitCode": 0,
+      "passed": 9,
+      "log": "checks/existing-browser.log"
+    },
+    {
+      "command": "node scripts/prepare-theo-run-repair.mjs",
+      "exitCode": 0,
+      "expressionsTimesActionsFrames": 108,
+      "nonTorsoSourceSlotsExact": 14,
+      "torsoAddedPixels": 113,
+      "torsoRemovedMisownedPixels": 8,
+      "record": "../../artwork/theo-run-repair/prepared/registration.json"
+    },
+    {
+      "command": "node scripts/generate-theo-run-repair-evidence.mjs",
+      "exitCode": 0,
+      "semanticPacks": 4,
+      "bakedPoseCount": 144,
+      "editorComparisons": 80,
+      "independentPlaybackCases": 10,
+      "editorClosedFirst": true,
+      "runtimeHashesUnchanged": 114,
+      "inputHashesUnchanged": 133,
+      "record": "final/evidence-index.json"
+    },
+    {
+      "command": "python3 scripts/render-theo-run-repair-review.py",
+      "exitCode": 0,
+      "decodedFiles": {
+        "json": 11,
+        "md": 4,
+        "txt": 4,
+        "png": 66,
+        "gif": 16,
+        "zip": 15
+      },
+      "record": "final/file-integrity.json"
+    }
+  ],
+  "initialFocusedTestCorrections": "Runtime agent corrected a test-only fixture and slow typed-array assertion before passing the six new focused tests. Final full 469-test run passed first time. No implementation checks were weakened.",
+  "visualJudgment": {
+    "improved": [
+      "Equal41px contact ankle spacing",
+      "Maximum recovery ankleY step reduced from14px to8/9px",
+      "Closed proximal shoulder gap",
+      "Removed eight source hand fragments from torso",
+      "Shared rotated shoe support and leg ankle"
+    ],
+    "remaining": [
+      "Pose9 boots still overlap",
+      "Deep knee compression and fixed running elbow bend",
+      "Stylized dark shoulder backing edge",
+      "Existing forehead skin/hair mask issue under recoloring",
+      "Mild expression-source geometry drift"
+    ],
+    "acceptance": "Review pending; no user visual acceptance or production Gathria integration claimed."
+  },
+  "independentReview": {
+    "preparedVsActualFramesExact": 36,
+    "zipCrcsPassed": 15,
+    "runGifFramesCompared": 48,
+    "frozenHashesMatch": 247,
+    "remaining": "Pose9 boot overlap and pose10 deep-knee trouser triangulation remain visible."
+  }
+}
