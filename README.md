@@ -29,6 +29,11 @@ download a registered item template, prepare its artwork and masks, then import
 it without editing application code. Save the project ZIP to keep all imported
 items. [Portable clothing guide and verification](docs/WARDROBE_ITEMS_REVIEW.md).
 
+To refine the body first, choose **Open base model** in Skin Studio. The simple
+training outfit exposes the joints and includes idle, walk, run and jump,
+three expressions, bone overlays and editable project/CharacterPack export.
+[Mother-model review, GIFs and downloads](docs/base-character/README.md).
+
 **Your identities** also accepts registered character identity ZIPs with three
 complete expressions and skin/hair masks. Import adds to the library without
 changing the canvas; explicitly selecting an identity preserves the current

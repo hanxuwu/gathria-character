@@ -1,6 +1,26 @@
 # Implementation status
 
-**Current batch: calibrated body and eight-look kit.** Starts from merged main
+**Current batch: editable base character / four actions.** Starts from merged
+`main` at `19623f5`, on `feat/base-character-study`. A new generated source sheet
+provides a plain training outfit and continuous bare limbs; the existing bald
+shared-expression heads keep attention on anatomy. The project contains its
+own registered chains and thin-shoe run / visible-hop adjustments. **Open base
+model** loads it in Skin Studio with undo and ordinary project validation.
+Old renderers, art, file schemas and other projects' clips are unchanged.
+
+[Review and limitations](BASE_CHARACTER_REVIEW.md) ·
+[Actual four-action GIFs, bone overlays and editable model](base-character/README.md) ·
+[Current-session verification](base-character/verification-results.json).
+
+42 relevant unit tests, 10 Chromium regressions, TypeScript and production build
+passed in this batch. Actual editor exports match all 72 mirrored/native poses;
+8 closed-editor playback cases verify timing, order and jump completion/replay.
+18 GIF timelines, 58 PNGs and 4 final ZIPs decode successfully. Deep-bend softness,
+crowded run recovery, a visible shoulder cap and limited non-run foot parenting
+remain documented. This is a reviewable mother-model foundation, not user visual
+acceptance or production Gathria integration.
+
+**Historical batch: calibrated body and eight-look kit.** Starts from merged main
 `0a0fc06` on `feat/standard-character-kit`. One new source sheet separates
 three expression faces from two hair overlays. Registered derivatives of two
 existing tops, one trouser set and two shoe designs share exact Theo body
@@ -16,8 +36,9 @@ This asset/preparation batch leaves existing runtime modules, legacy art and
 file formats unchanged. Hair remains separately editable in offline sources
 and compiles into ordinary IdentityPack V1 variants; no runtime hair selector
 or universal outfit fitting is claimed. The review separates functional
-checks from remaining trouser, expression and source-finish limits. It remains
-unmerged, without user visual acceptance or production Gathria integration.
+checks from remaining trouser, expression and source-finish limits. It was
+merged as PR #13 (`19623f5`), without a claim of user visual acceptance or
+production Gathria integration.
 
 **Historical batch: Ravi, Lina and Nora modular character trial.** Starts from
 `38cfaa8` on `feat/character-roster-trial`; new source illustrations are saved in
