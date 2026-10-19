@@ -1,5 +1,23 @@
 # Artwork provenance and reuse
 
+## Ravi, Lina and Nora modular character trial
+
+The 18 October 2026 batch retains five original OpenAI image-generation outputs:
+a complete design board, a three-character expression bank, teal and ochre top
+part boards, and one rejected Ravi expression revision. Exact prompts, reference
+paths and SHA256 hashes are in
+[`artwork/character-roster/source`](../artwork/character-roster/source/README.md).
+These are development sources; the browser makes no model/API calls.
+
+Preparation registers whole heads and semantic masks, extracts named clothing
+parts and removes locally misassigned collar/waist/shoe pixels. Existing Theo
+trousers/boots, Rose blouse and Sage shorts/sneakers are reused with explicit
+source axes and ownership. Original historical sources remain unchanged. Nora's
+Rose skirt/flats are retained as a rejected run-fitting study; the final outfit
+uses coral shorts. No incomplete frame sequence is presented as a playable loop.
+See the [batch review](CHARACTER_ROSTER_REVIEW.md) for actual exports, rejected
+candidate evidence and remaining limitations.
+
 ## Theo running shoe parenting
 
 This follow-up makes no image-generation call and changes no source pixels or

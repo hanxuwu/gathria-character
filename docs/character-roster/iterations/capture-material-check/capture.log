@@ -1,0 +1,30 @@
+2026-10-18T07:59:38.808Z Three identity and four garment portable import/export checks complete.
+2026-10-18T07:59:47.431Z Cross garment lina-shoes-on-ravi: accepted, all12 run poses rendered; Lina sneakers — shin-follow added and selected. Your identity, skeleton and motions are unchanged. Save the project to keep this item.
+2026-10-18T07:59:56.315Z Cross garment ravi-shoes-on-nora: accepted, all12 run poses rendered; Theo boots — follow trouser ankle added and selected. Your identity, skeleton and motions are unchanged. Save the project to keep this item.
+2026-10-18T08:00:04.397Z Cross garment rose-skirt-on-nora: rejected atomically; Run pose 1: Run shoe support is outside the bounded fixed-length leg reach.
+2026-10-18T08:00:12.994Z Original motion on Nora: UI rejected safely; Run pose 1: Run shoe support is outside the bounded fixed-length leg reach.
+2026-10-18T08:00:20.564Z Actual UI export ravi: all 36 baked PNG poses match; deterministic.
+2026-10-18T08:00:26.948Z Editor: 72 timed frames/facings exactly match the actual exported PNG.
+2026-10-18T08:00:52.252Z Actual UI export ravi-variant: all 36 baked PNG poses match; deterministic.
+2026-10-18T08:00:56.340Z ravi: base and stress palette exports, expressions, source attachments and project reopen complete.
+2026-10-18T08:01:03.357Z Actual UI export lina: all 36 baked PNG poses match; deterministic.
+2026-10-18T08:01:09.861Z Editor: 144 timed frames/facings exactly match the actual exported PNG.
+2026-10-18T08:01:35.734Z Actual UI export lina-variant: all 36 baked PNG poses match; deterministic.
+Failure page notice: [
+  'CharacterPack exported with idle, walk, run, jump in the joyful expression. Load it in the independent player.'
+]
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Error: far-shoe: fixed pixel recolored
+    at eval (eval at evaluate (:370:30), <anonymous>:43:32)
+    at async <anonymous>:396:30
+    at /workspace/gathria-character/scripts/generate-character-roster-evidence.mjs:1124:9
+    at page.evaluate (/workspace/gathria-character/scripts/generate-character-roster-evidence.mjs:1114:7)
+    at verifyMaterials (/workspace/gathria-character/scripts/generate-character-roster-evidence.mjs:683:29)
+    at /workspace/gathria-character/scripts/generate-character-roster-evidence.mjs:1235:11 {
+  log: []
+}
+
+Node.js v24.19.0

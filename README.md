@@ -42,6 +42,12 @@ navy suit and coral dress with two reusable identities, six garment items and
 three expressions each. [Actual previews and editable downloads](docs/reference-pair/README.md)
 exercise the same skeleton through idle, walk, run and jump.
 
+The [Ravi, Lina and Nora trial](docs/CHARACTER_ROSTER_REVIEW.md) adds three
+everyday identities and two tops, exercises portable clothing and following
+shoes, and records where shorter legs and skirt sources fail to reuse a gait.
+[Actual four-action previews and editable packs](docs/character-roster/README.md)
+include the remaining expression-tone and deep-bend silhouette limitations.
+
 The [Theo complete-figure study](docs/THEO_POSE_STUDY_REVIEW.md) improves one
 whole suit character before deriving reusable parts. It adds explicitly versioned
 [source-relative clothing colors](docs/WARDROBE_ITEM_V3.md) and a project-owned

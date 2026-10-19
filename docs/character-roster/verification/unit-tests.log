@@ -1,0 +1,71 @@
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/skeletal/wardrobe-items.test.ts (19 tests) 6228ms
+   ✓ portable registered wardrobe items > makes a valid editable crop/top template without changing its source art  333ms
+   ✓ portable registered wardrobe items > makes a valid editable waves/top template without changing its source art  339ms
+   ✓ portable registered wardrobe items > accepts locally edited art and swaps only its entire clothing group with four actions intact  801ms
+   ✓ portable registered wardrobe items > keeps fixed details intact while recoloring authored imported channels  485ms
+   ✓ portable registered wardrobe items > keeps libraries isolated, exposes selected imports and removes only unselected items  552ms
+   ✓ portable registered wardrobe items > rejects missing/duplicate parts, invalid registration, palette ambiguity and future formats  366ms
+   ✓ portable registered wardrobe items > limits embedded libraries and keeps long item IDs within the existing skin contract  1302ms
+ ✓ src/skeletal/wardrobe-source-colors.test.ts (9 tests) 5720ms
+   ✓ explicit source-relative wardrobe item colors > preserves an authored skirt while sharing the unchanged catalog identity and clothing  435ms
+   ✓ explicit source-relative wardrobe item colors > preserves authored RGB at source palettes for all garment groups and active hands  952ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored skin channel and keeps alpha and fixed details  649ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored top channel and keeps alpha and fixed details  485ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored bottom channel and keeps alpha and fixed details  485ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored shoes channel and keeps alpha and fixed details  415ms
+   ✓ explicit source-relative wardrobe item colors > keeps source-neighbor colors continuous instead of switching shading models  1035ms
+   ✓ explicit source-relative wardrobe item colors > persists the explicit model with deterministic posed artwork and stable registration  996ms
+ ❯ src/skeletal/shin-following-shoes.test.ts (7 tests | 1 failed) 14574ms
+   ✓ explicit shin-following shoe registrations > rejects absent, foreign, collapsed, nonfinite and out-of-bounds source axes  1865ms
+   ✓ explicit shin-following shoe registrations > rotates asymmetric shoe markers with the solved shin and shares its ankle in motion V1  775ms
+   ✓ explicit shin-following shoe registrations > rotates asymmetric shoe markers with the solved shin and shares its ankle in motion V2  463ms
+   ✓ explicit shin-following shoe registrations > rejects impossible non-first run poses only in the explicit following mode 265ms
+   × explicit shin-following shoe registrations > supports every real Theo run pose with rasterized soles and stable non-run artwork 5122ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ explicit shin-following shoe registrations > clears following footwear on replacement while preserving leg alternatives and active forearms  4978ms
+   ✓ explicit shin-following shoe registrations > keeps all 36 historical SkinV3 Theo frames pixel-exact  1090ms
+ ✓ src/skeletal/skin-io.test.ts (18 tests) 2243ms
+   ✓ reusable skin contract > accepts actual denim-daytrip source slots and detaches all authoring buffers  827ms
+   ✓ reusable skin contract > accepts actual coral-afternoon source slots and detaches all authoring buffers  705ms
+ ✓ src/skeletal/identities.test.ts (15 tests) 15611ms
+   ✓ portable character identities > installs sources without changing flat pixels, then explicitly selects an independently retained identity  1460ms
+   ✓ portable character identities > preserves exact source identity pixels at source colors, while keeping all clothing unchanged  2402ms
+   ✓ portable character identities > recolors only authored skin/hair channels without touching fixed eyes or identity geometry  3191ms
+   ✓ portable character identities > changes source-neighbor hair and skin colors continuously without a shading-model jump  694ms
+   ✓ portable character identities > combines a custom identity and a paired action-forearm top without changing the rig or heads  1258ms
+   ✓ portable character identities > keeps all three custom heads invariant while swapping clothing, and persists used plus unused identities  3426ms
+   ✓ portable character identities > keeps original V1/V2 builtin behavior and rejects implicit custom/hair upgrades  923ms
+   ✓ portable character identities > rejects stale recipe pixels instead of silently rebuilding a changed head  523ms
+   ✓ portable character identities > bounds libraries and prevents identity collisions without mutating existing projects  314ms
+   ✓ portable character identities > rejects inline, ambiguous or unsupported project identity libraries before decoding any PNG  545ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/skeletal/shin-following-shoes.test.ts > explicit shin-following shoe registrations > supports every real Theo run pose with rasterized soles and stable non-run artwork
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/skeletal/shin-following-shoes.test.ts:260:3
+    258|   });
+    259| 
+    260|   it("supports every real Theo run pose with rasterized soles and stab…
+       |   ^
+    261|     const original = historicalTheo(),
+    262|       current = addWardrobeItem(original, followingItem(original));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 67 passed (68)
+   Start at  07:45:01
+   Duration  16.21s (transform 708ms, setup 0ms, collect 1.52s, tests 44.38s, environment 1ms, prepare 383ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
