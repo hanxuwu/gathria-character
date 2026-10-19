@@ -120,14 +120,13 @@ describe("portable character identities", () => {
       );
     for (const part of custom.parts) {
       const raw = decodeWardrobeItemPart(part.data),
-        actual = skin.images[part.slot]!;
+        actual = skin.images[part.slot]!,
+        expected = new Uint8ClampedArray((raw.length / 5) * 4);
       for (let p = 0; p < raw.length / 5; p++)
-        expect(
-          Buffer.compare(
-            Buffer.from(actual.subarray(p * 4, p * 4 + 4)),
-            Buffer.from(raw.subarray(p * 5, p * 5 + 4)),
-          ),
-        ).toBe(0);
+        expected.set(raw.subarray(p * 5, p * 5 + 4), p * 4);
+      expect(equal(actual, expected), `${part.slot}: exact source RGBA`).toBe(
+        true,
+      );
     }
     for (const slot of old.metadata.slots.filter(
       (slot) => !slot.startsWith("head-") && slot !== "back-hair",
@@ -157,21 +156,28 @@ describe("portable character identities", () => {
     for (const part of custom.parts) {
       const raw = decodeWardrobeItemPart(part.data),
         a = before.images[part.slot]!,
-        b = after.images[part.slot]!;
+        b = after.images[part.slot]!,
+        alphaMismatches: number[] = [],
+        fixedMismatches: number[] = [];
       for (let p = 0; p < raw.length / 5; p++) {
-        expect(a[p * 4 + 3]).toBe(b[p * 4 + 3]);
+        if (a[p * 4 + 3] !== b[p * 4 + 3]) alphaMismatches.push(p);
         const same = equal(
           a.subarray(p * 4, p * 4 + 4),
           b.subarray(p * 4, p * 4 + 4),
         );
         if (!raw[p * 5 + 4]) {
-          expect(same).toBe(true);
+          if (!same) fixedMismatches.push(p);
           fixed++;
         } else if (!same) {
           if (raw[p * 5 + 4] === 1) changedSkin++;
           else changedHair++;
         }
       }
+      expect(alphaMismatches, `${part.slot}: changed alpha pixels`).toEqual([]);
+      expect(
+        fixedMismatches,
+        `${part.slot}: changed fixed RGBA pixels`,
+      ).toEqual([]);
     }
     expect(fixed).toBeGreaterThan(100);
     expect(changedSkin).toBeGreaterThan(100);
