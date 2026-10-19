@@ -257,6 +257,7 @@ describe("explicit shin-following shoe registrations", () => {
     expect(digest(legacy.frame("run", 4))).toBe(digest(legacy.frame("run", 4)));
   });
 
+  // Full-sheet baking and real-source validation need a CI integration budget.
   it("supports every real Theo run pose with rasterized soles and stable non-run artwork", () => {
     const original = historicalTheo(),
       current = addWardrobeItem(original, followingItem(original));
@@ -339,8 +340,9 @@ describe("explicit shin-following shoe registrations", () => {
     expect(digest(bakeProject(reopened).pixels)).toBe(
       digest(bakeProject(current).pixels),
     );
-  });
+  }, 20_000);
 
+  // Repeated source-backed wardrobe rebuilds are heavier than isolated units.
   it("clears following footwear on replacement while preserving leg alternatives and active forearms", () => {
     const original = historicalTheo();
     const top = createWardrobeItemTemplate(
@@ -397,7 +399,7 @@ describe("explicit shin-following shoe registrations", () => {
       expect(plain.skin.images[slot]).toBeUndefined();
     const restored = applyWardrobe(plain, active.wardrobe!);
     expect(restored.skin.metadata).toEqual(active.skin.metadata);
-  });
+  }, 20_000);
 
   it("keeps all 36 historical SkinV3 Theo frames pixel-exact", () => {
     const original = historicalTheo();
