@@ -1,0 +1,46 @@
+{
+  "session": "standard-character-kit",
+  "date": "2026-10-19",
+  "baseCommit": "0a0fc061d6024a444b7d0a5bc377b4d39e48153c",
+  "historicalResultsSubstituted": false,
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed",
+      "note": "Existing large-chunk warning retained; no runtime code changes."
+    },
+    {
+      "command": "npm test -- src/skeletal/identities.test.ts src/skeletal/skin-io.test.ts src/skeletal/wardrobe.test.ts src/skeletal/wardrobe-io.test.ts src/skeletal/jump-renderer.test.ts src/skeletal/baked-provenance.test.ts src/skeletal/renderer.test.ts src/skeletal/run-attachments.test.ts src/skeletal/wardrobe-active-items.test.ts src/skeletal/wardrobe-source-colors.test.ts src/skeletal/wardrobe-item-io.test.ts src/skeletal/wardrobe-items.test.ts --maxWorkers=2",
+      "status": "passed",
+      "tests": 135,
+      "files": 12,
+      "durationSeconds": 33.89
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npx playwright test tests/e2e/identity-library.spec.ts tests/e2e/wardrobe-items.spec.ts tests/e2e/wardrobe-source-colors.spec.ts --reporter=list",
+      "status": "passed",
+      "tests": 7,
+      "duration": "1.6m",
+      "scope": "Identity/garment imports, save/reopen, recolor, independent export/playback; exact historical Theo/Rose/Maple/Willow baked pixels."
+    }
+  ],
+  "note": "Prepared-kit contract and actual 8-combination export/playback evidence are recorded separately after artifact generation. These test results were executed this session. Functional success is not visual acceptance.",
+  "iterations": [
+    {
+      "stage": "assembly",
+      "status": "failed_then_corrected",
+      "issue": "short-teal-boots walk key2 bounds [30,0,160,239] violated transparent top margin",
+      "cause": "tall haircut crown plus existing upward walk bob",
+      "correction": "crown-only registration compression, no face/body/motion changes; 216 head/action/expression frames checked afterward"
+    },
+    {
+      "stage": "garment_fit",
+      "issue": "frontal Sage near-shoe view looked twisted in a side-running pose",
+      "correction": "source-owned three-quarter shoe drawing registered for both feet; first-pass comparisons retained"
+    }
+  ]
+}

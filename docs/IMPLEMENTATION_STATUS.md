@@ -1,6 +1,25 @@
 # Implementation status
 
-**Current batch: Ravi, Lina and Nora modular character trial.** Starts from
+**Current batch: calibrated body and eight-look kit.** Starts from merged main
+`0a0fc06` on `feat/standard-character-kit`. One new source sheet separates
+three expression faces from two hair overlays. Registered derivatives of two
+existing tops, one trouser set and two shoe designs share exact Theo body
+chains and all four original action clips. The source and preparation stages
+are saved in `003620f`, `1fcdbab` and `0c774a1`.
+
+[Review and limits](STANDARD_KIT_REVIEW.md) ·
+[Repeatable authoring contract](STANDARD_CHARACTER_KIT.md) ·
+[Actual exports and editable kit](standard-kit/README.md) ·
+[Current verification](standard-kit/verification-results.json).
+
+This asset/preparation batch leaves existing runtime modules, legacy art and
+file formats unchanged. Hair remains separately editable in offline sources
+and compiles into ordinary IdentityPack V1 variants; no runtime hair selector
+or universal outfit fitting is claimed. The review separates functional
+checks from remaining trouser, expression and source-finish limits. It remains
+unmerged, without user visual acceptance or production Gathria integration.
+
+**Historical batch: Ravi, Lina and Nora modular character trial.** Starts from
 `38cfaa8` on `feat/character-roster-trial`; new source illustrations are saved in
 `bc13ccf`, and registered playable projects/source corrections in `38362e6`.
 Three new portable identities and two tops combine with existing garments.
@@ -14,8 +33,8 @@ fit is preserved and her playable final outfit uses coral shorts.
 The review distinguishes passed functional checks from remaining face-tone,
 deep-knee and retargeting limitations. Historical artwork stays unchanged; the
 only existing runtime edit preserves an error message across TypeScript union
-narrowing. This is an unmerged review batch with no production integration or
-user visual acceptance claimed.
+narrowing. This batch was merged as PR #12 (`0a0fc06`); production integration
+and user visual acceptance remain unclaimed.
 
 **Historical batch: Theo shoes parented to the solved shin.** Continues draft PR #11
 from `8ed74d3`, on `feat/theo-passing-poses`; implementation and prepared project

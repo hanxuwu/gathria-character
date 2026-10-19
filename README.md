@@ -48,6 +48,13 @@ shoes, and records where shorter legs and skirt sources fail to reuse a gait.
 [Actual four-action previews and editable packs](docs/character-roster/README.md)
 include the remaining expression-tone and deep-bend silhouette limitations.
 
+The [calibrated character kit](docs/STANDARD_CHARACTER_KIT.md) fixes one body
+and motion library across eight combinations: two shared-face hairstyle
+variants, two tops, one pair of trousers and two shoes. Separate face/hair
+sources are compiled offline into existing identity packages; no runtime hair
+slot or new file format is required. [Actual exports and editable kit](docs/standard-kit/README.md)
+include the source-registration and dynamic-fit review.
+
 The [Theo complete-figure study](docs/THEO_POSE_STUDY_REVIEW.md) improves one
 whole suit character before deriving reusable parts. It adds explicitly versioned
 [source-relative clothing colors](docs/WARDROBE_ITEM_V3.md) and a project-owned
