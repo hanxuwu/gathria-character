@@ -1,0 +1,3083 @@
+{
+  "format": "gathria-standard-kit-head-registration",
+  "version": 1,
+  "canvas": [
+    192,
+    256
+  ],
+  "targetNeck": [
+    96,
+    118
+  ],
+  "alphaThreshold": 192,
+  "source": {
+    "path": "artwork/standard-kit/source/head-hair.png",
+    "sha256": "733995ea09ddd585800658c8f9c5db11fe8e2121a5186e86dea5757c88167929",
+    "size": [
+      1536,
+      1024
+    ]
+  },
+  "baseline": {
+    "path": "docs/theo-ankle-follow/final/theo-ankle-follow.rig.zip",
+    "sha256": "f2363754882a95a7001fb6589016c60cd45e85d1c7103451a548d080c0dbf49a"
+  },
+  "palette": {
+    "skin": "#f6bc8d",
+    "hair": "#75462c"
+  },
+  "composition": "registered hair over immutable shared face; no rear-hair attachment",
+  "faces": [
+    {
+      "expression": "neutral",
+      "path": "identities/shared-face/neutral.png",
+      "mask": "identities/shared-face/neutral.mask.png",
+      "sourceBox": [
+        100,
+        65,
+        480,
+        465
+      ],
+      "sourceNeck": [
+        285,
+        448
+      ],
+      "scale": [
+        0.27,
+        0.27
+      ],
+      "targetNeck": [
+        96,
+        118
+      ],
+      "excludedNapePixels": 65,
+      "pathSha256": "cd3ef695a47625224a134855753b8c2d7b4968d97b36e00f775180f5cd74b550",
+      "maskSha256": "f7578526c5e8aa385ddc0b32d68a5a99a779ae2c178b79b4178ce5e7b8ee7903"
+    },
+    {
+      "expression": "gentle",
+      "path": "identities/shared-face/gentle.png",
+      "mask": "identities/shared-face/gentle.mask.png",
+      "sourceBox": [
+        575,
+        65,
+        955,
+        465
+      ],
+      "sourceNeck": [
+        760,
+        448
+      ],
+      "scale": [
+        0.27,
+        0.27
+      ],
+      "targetNeck": [
+        96,
+        118
+      ],
+      "excludedNapePixels": 69,
+      "pathSha256": "234e75bcfc81ef6e23660051f74944ea3799ed56ce677871191de6f6df85f8c3",
+      "maskSha256": "c9e8ef53fa0aea69e06a52f3dcc47510306b17adc7a91e717381c94ea091d4cf"
+    },
+    {
+      "expression": "joyful",
+      "path": "identities/shared-face/joyful.png",
+      "mask": "identities/shared-face/joyful.mask.png",
+      "sourceBox": [
+        1050,
+        65,
+        1430,
+        465
+      ],
+      "sourceNeck": [
+        1235,
+        448
+      ],
+      "scale": [
+        0.27,
+        0.27
+      ],
+      "targetNeck": [
+        96,
+        118
+      ],
+      "excludedNapePixels": 64,
+      "pathSha256": "730536888925502a10df4fd0ceda758736380350424fa1c9de1b26dd666764a9",
+      "maskSha256": "51bafc08a37bf8b1a355d7dc490a9740c1ad5e45b5800061c51bd5517061aaf6"
+    }
+  ],
+  "hairs": [
+    {
+      "id": "short",
+      "path": "identities/short/hair.png",
+      "mask": "identities/short/hair.mask.png",
+      "sourceBox": [
+        190,
+        490,
+        750,
+        960
+      ],
+      "sourceEar": [
+        350,
+        850
+      ],
+      "targetEar": [
+        66.57,
+        83.14
+      ],
+      "scale": [
+        0.235,
+        0.23
+      ],
+      "crownClearance": {
+        "maxY": 4,
+        "fade": [
+          14,
+          65
+        ]
+      },
+      "farOpeningWarp": {
+        "maxX": 7,
+        "xBand": [
+          112,
+          144
+        ],
+        "yBand": [
+          48,
+          72
+        ]
+      },
+      "name": "Standard kit — tousled crop",
+      "palette": {
+        "skin": "#f6bc8d",
+        "hair": "#75462c"
+      },
+      "pathSha256": "0084ec70a06d60a0524bd1896f222072c9e7563e87eaddd98a83334835ae08fe",
+      "maskSha256": "29fcf4ed5d0b2bd1492c331a7ae3c202b6aefdec72e2c859689140e12ff2596d"
+    },
+    {
+      "id": "sweep",
+      "path": "identities/sweep/hair.png",
+      "mask": "identities/sweep/hair.mask.png",
+      "sourceBox": [
+        850,
+        500,
+        1400,
+        970
+      ],
+      "sourceEar": [
+        1000,
+        850
+      ],
+      "targetEar": [
+        66.57,
+        86.14
+      ],
+      "scale": [
+        0.25,
+        0.245
+      ],
+      "crownClearance": {
+        "maxY": 1,
+        "fade": [
+          14,
+          65
+        ]
+      },
+      "farOpeningWarp": {
+        "maxX": 4,
+        "xBand": [
+          112,
+          144
+        ],
+        "yBand": [
+          48,
+          72
+        ]
+      },
+      "frontOpeningLift": {
+        "maxY": 5,
+        "xBand": [
+          79,
+          91
+        ],
+        "rightFade": [
+          110,
+          124
+        ],
+        "yBand": [
+          43,
+          66
+        ]
+      },
+      "name": "Standard kit — side sweep",
+      "palette": {
+        "skin": "#f6bc8d",
+        "hair": "#75462c"
+      },
+      "pathSha256": "980bce0348ac523306430717bc85e5ee9d242bd657267d14e6b47bad808938ae",
+      "maskSha256": "6afcd1bc88949302535c6816c63fbd750ce54b33a618fe8ba58aac1dccf21858"
+    }
+  ],
+  "checks": [
+    {
+      "id": "short",
+      "expression": "neutral",
+      "sharedFaceRetained": 3439,
+      "coveredFacePixels": 4053,
+      "compositionExact": true
+    },
+    {
+      "id": "short",
+      "expression": "gentle",
+      "sharedFaceRetained": 3445,
+      "coveredFacePixels": 4046,
+      "compositionExact": true
+    },
+    {
+      "id": "short",
+      "expression": "joyful",
+      "sharedFaceRetained": 3462,
+      "coveredFacePixels": 4053,
+      "compositionExact": true
+    },
+    {
+      "id": "short",
+      "actualPoseBoundaryChecks": 108,
+      "minimumTopMargin": 4,
+      "poses": [
+        {
+          "action": "idle",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19796
+        },
+        {
+          "action": "idle",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19800
+        },
+        {
+          "action": "idle",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19658
+        },
+        {
+          "action": "idle",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19776
+        },
+        {
+          "action": "idle",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19780
+        },
+        {
+          "action": "idle",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19630
+        },
+        {
+          "action": "idle",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19850
+        },
+        {
+          "action": "idle",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19854
+        },
+        {
+          "action": "idle",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19711
+        },
+        {
+          "action": "idle",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19821
+        },
+        {
+          "action": "idle",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19825
+        },
+        {
+          "action": "idle",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19745
+        },
+        {
+          "action": "walk",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19303
+        },
+        {
+          "action": "walk",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19307
+        },
+        {
+          "action": "walk",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19325
+        },
+        {
+          "action": "walk",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19612
+        },
+        {
+          "action": "walk",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19616
+        },
+        {
+          "action": "walk",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19634
+        },
+        {
+          "action": "walk",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            4,
+            160,
+            239
+          ],
+          "opaquePixels": 19671
+        },
+        {
+          "action": "walk",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            4,
+            160,
+            239
+          ],
+          "opaquePixels": 19675
+        },
+        {
+          "action": "walk",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            4,
+            160,
+            239
+          ],
+          "opaquePixels": 19693
+        },
+        {
+          "action": "walk",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19369
+        },
+        {
+          "action": "walk",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19373
+        },
+        {
+          "action": "walk",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19391
+        },
+        {
+          "action": "walk",
+          "key": 4,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19387
+        },
+        {
+          "action": "walk",
+          "key": 4,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19391
+        },
+        {
+          "action": "walk",
+          "key": 4,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19409
+        },
+        {
+          "action": "walk",
+          "key": 5,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19377
+        },
+        {
+          "action": "walk",
+          "key": 5,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19381
+        },
+        {
+          "action": "walk",
+          "key": 5,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19399
+        },
+        {
+          "action": "walk",
+          "key": 6,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            4,
+            160,
+            239
+          ],
+          "opaquePixels": 19662
+        },
+        {
+          "action": "walk",
+          "key": 6,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            4,
+            160,
+            239
+          ],
+          "opaquePixels": 19666
+        },
+        {
+          "action": "walk",
+          "key": 6,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            4,
+            160,
+            239
+          ],
+          "opaquePixels": 19684
+        },
+        {
+          "action": "walk",
+          "key": 7,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19442
+        },
+        {
+          "action": "walk",
+          "key": 7,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19446
+        },
+        {
+          "action": "walk",
+          "key": 7,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            5,
+            160,
+            239
+          ],
+          "opaquePixels": 19464
+        },
+        {
+          "action": "run",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            33,
+            11,
+            175,
+            239
+          ],
+          "opaquePixels": 18659
+        },
+        {
+          "action": "run",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            33,
+            11,
+            175,
+            239
+          ],
+          "opaquePixels": 18663
+        },
+        {
+          "action": "run",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            33,
+            11,
+            175,
+            239
+          ],
+          "opaquePixels": 18680
+        },
+        {
+          "action": "run",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            38,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 18012
+        },
+        {
+          "action": "run",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            38,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 18016
+        },
+        {
+          "action": "run",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            38,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 18033
+        },
+        {
+          "action": "run",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            44,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 17017
+        },
+        {
+          "action": "run",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            44,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 17021
+        },
+        {
+          "action": "run",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            44,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 17038
+        },
+        {
+          "action": "run",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            49,
+            9,
+            176,
+            236
+          ],
+          "opaquePixels": 17291
+        },
+        {
+          "action": "run",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            49,
+            9,
+            176,
+            236
+          ],
+          "opaquePixels": 17295
+        },
+        {
+          "action": "run",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            49,
+            9,
+            176,
+            236
+          ],
+          "opaquePixels": 17313
+        },
+        {
+          "action": "run",
+          "key": 4,
+          "expression": "neutral",
+          "bounds": [
+            47,
+            7,
+            174,
+            233
+          ],
+          "opaquePixels": 17459
+        },
+        {
+          "action": "run",
+          "key": 4,
+          "expression": "gentle",
+          "bounds": [
+            47,
+            7,
+            174,
+            233
+          ],
+          "opaquePixels": 17464
+        },
+        {
+          "action": "run",
+          "key": 4,
+          "expression": "joyful",
+          "bounds": [
+            47,
+            7,
+            174,
+            233
+          ],
+          "opaquePixels": 17482
+        },
+        {
+          "action": "run",
+          "key": 5,
+          "expression": "neutral",
+          "bounds": [
+            46,
+            9,
+            174,
+            236
+          ],
+          "opaquePixels": 17388
+        },
+        {
+          "action": "run",
+          "key": 5,
+          "expression": "gentle",
+          "bounds": [
+            46,
+            9,
+            174,
+            236
+          ],
+          "opaquePixels": 17392
+        },
+        {
+          "action": "run",
+          "key": 5,
+          "expression": "joyful",
+          "bounds": [
+            46,
+            9,
+            174,
+            236
+          ],
+          "opaquePixels": 17409
+        },
+        {
+          "action": "run",
+          "key": 6,
+          "expression": "neutral",
+          "bounds": [
+            46,
+            11,
+            175,
+            239
+          ],
+          "opaquePixels": 17218
+        },
+        {
+          "action": "run",
+          "key": 6,
+          "expression": "gentle",
+          "bounds": [
+            46,
+            11,
+            175,
+            239
+          ],
+          "opaquePixels": 17222
+        },
+        {
+          "action": "run",
+          "key": 6,
+          "expression": "joyful",
+          "bounds": [
+            46,
+            11,
+            175,
+            239
+          ],
+          "opaquePixels": 17239
+        },
+        {
+          "action": "run",
+          "key": 7,
+          "expression": "neutral",
+          "bounds": [
+            49,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 16499
+        },
+        {
+          "action": "run",
+          "key": 7,
+          "expression": "gentle",
+          "bounds": [
+            49,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 16503
+        },
+        {
+          "action": "run",
+          "key": 7,
+          "expression": "joyful",
+          "bounds": [
+            49,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 16520
+        },
+        {
+          "action": "run",
+          "key": 8,
+          "expression": "neutral",
+          "bounds": [
+            50,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 16684
+        },
+        {
+          "action": "run",
+          "key": 8,
+          "expression": "gentle",
+          "bounds": [
+            50,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 16688
+        },
+        {
+          "action": "run",
+          "key": 8,
+          "expression": "joyful",
+          "bounds": [
+            50,
+            12,
+            177,
+            239
+          ],
+          "opaquePixels": 16705
+        },
+        {
+          "action": "run",
+          "key": 9,
+          "expression": "neutral",
+          "bounds": [
+            44,
+            9,
+            176,
+            236
+          ],
+          "opaquePixels": 17886
+        },
+        {
+          "action": "run",
+          "key": 9,
+          "expression": "gentle",
+          "bounds": [
+            44,
+            9,
+            176,
+            236
+          ],
+          "opaquePixels": 17890
+        },
+        {
+          "action": "run",
+          "key": 9,
+          "expression": "joyful",
+          "bounds": [
+            44,
+            9,
+            176,
+            236
+          ],
+          "opaquePixels": 17908
+        },
+        {
+          "action": "run",
+          "key": 10,
+          "expression": "neutral",
+          "bounds": [
+            37,
+            7,
+            174,
+            233
+          ],
+          "opaquePixels": 18772
+        },
+        {
+          "action": "run",
+          "key": 10,
+          "expression": "gentle",
+          "bounds": [
+            37,
+            7,
+            174,
+            233
+          ],
+          "opaquePixels": 18777
+        },
+        {
+          "action": "run",
+          "key": 10,
+          "expression": "joyful",
+          "bounds": [
+            37,
+            7,
+            174,
+            233
+          ],
+          "opaquePixels": 18795
+        },
+        {
+          "action": "run",
+          "key": 11,
+          "expression": "neutral",
+          "bounds": [
+            34,
+            9,
+            174,
+            236
+          ],
+          "opaquePixels": 18898
+        },
+        {
+          "action": "run",
+          "key": 11,
+          "expression": "gentle",
+          "bounds": [
+            34,
+            9,
+            174,
+            236
+          ],
+          "opaquePixels": 18902
+        },
+        {
+          "action": "run",
+          "key": 11,
+          "expression": "joyful",
+          "bounds": [
+            34,
+            9,
+            174,
+            236
+          ],
+          "opaquePixels": 18919
+        },
+        {
+          "action": "jump",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19796
+        },
+        {
+          "action": "jump",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19800
+        },
+        {
+          "action": "jump",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19658
+        },
+        {
+          "action": "jump",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            10,
+            160,
+            239
+          ],
+          "opaquePixels": 19563
+        },
+        {
+          "action": "jump",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            10,
+            160,
+            239
+          ],
+          "opaquePixels": 19567
+        },
+        {
+          "action": "jump",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            10,
+            160,
+            239
+          ],
+          "opaquePixels": 19440
+        },
+        {
+          "action": "jump",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            34,
+            13,
+            163,
+            239
+          ],
+          "opaquePixels": 19244
+        },
+        {
+          "action": "jump",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            34,
+            13,
+            163,
+            239
+          ],
+          "opaquePixels": 19248
+        },
+        {
+          "action": "jump",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            34,
+            13,
+            163,
+            239
+          ],
+          "opaquePixels": 19142
+        },
+        {
+          "action": "jump",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            6,
+            172,
+            238
+          ],
+          "opaquePixels": 19138
+        },
+        {
+          "action": "jump",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            6,
+            172,
+            238
+          ],
+          "opaquePixels": 19142
+        },
+        {
+          "action": "jump",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            6,
+            170,
+            238
+          ],
+          "opaquePixels": 19101
+        },
+        {
+          "action": "jump",
+          "key": 4,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            4,
+            178,
+            229
+          ],
+          "opaquePixels": 18752
+        },
+        {
+          "action": "jump",
+          "key": 4,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            4,
+            178,
+            229
+          ],
+          "opaquePixels": 18756
+        },
+        {
+          "action": "jump",
+          "key": 4,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            4,
+            176,
+            229
+          ],
+          "opaquePixels": 18728
+        },
+        {
+          "action": "jump",
+          "key": 5,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            4,
+            180,
+            227
+          ],
+          "opaquePixels": 18612
+        },
+        {
+          "action": "jump",
+          "key": 5,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            4,
+            180,
+            227
+          ],
+          "opaquePixels": 18616
+        },
+        {
+          "action": "jump",
+          "key": 5,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            4,
+            178,
+            227
+          ],
+          "opaquePixels": 18600
+        },
+        {
+          "action": "jump",
+          "key": 6,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            4,
+            178,
+            227
+          ],
+          "opaquePixels": 18640
+        },
+        {
+          "action": "jump",
+          "key": 6,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            4,
+            178,
+            227
+          ],
+          "opaquePixels": 18644
+        },
+        {
+          "action": "jump",
+          "key": 6,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            4,
+            177,
+            227
+          ],
+          "opaquePixels": 18619
+        },
+        {
+          "action": "jump",
+          "key": 7,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            4,
+            174,
+            229
+          ],
+          "opaquePixels": 18812
+        },
+        {
+          "action": "jump",
+          "key": 7,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            4,
+            174,
+            229
+          ],
+          "opaquePixels": 18816
+        },
+        {
+          "action": "jump",
+          "key": 7,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            4,
+            172,
+            229
+          ],
+          "opaquePixels": 18769
+        },
+        {
+          "action": "jump",
+          "key": 8,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            7,
+            160,
+            239
+          ],
+          "opaquePixels": 19485
+        },
+        {
+          "action": "jump",
+          "key": 8,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            7,
+            160,
+            239
+          ],
+          "opaquePixels": 19489
+        },
+        {
+          "action": "jump",
+          "key": 8,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            7,
+            160,
+            239
+          ],
+          "opaquePixels": 19401
+        },
+        {
+          "action": "jump",
+          "key": 9,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            12,
+            160,
+            239
+          ],
+          "opaquePixels": 19511
+        },
+        {
+          "action": "jump",
+          "key": 9,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            12,
+            160,
+            239
+          ],
+          "opaquePixels": 19515
+        },
+        {
+          "action": "jump",
+          "key": 9,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            12,
+            160,
+            239
+          ],
+          "opaquePixels": 19378
+        },
+        {
+          "action": "jump",
+          "key": 10,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            9,
+            160,
+            239
+          ],
+          "opaquePixels": 19671
+        },
+        {
+          "action": "jump",
+          "key": 10,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            9,
+            160,
+            239
+          ],
+          "opaquePixels": 19675
+        },
+        {
+          "action": "jump",
+          "key": 10,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            9,
+            160,
+            239
+          ],
+          "opaquePixels": 19534
+        },
+        {
+          "action": "jump",
+          "key": 11,
+          "expression": "neutral",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19796
+        },
+        {
+          "action": "jump",
+          "key": 11,
+          "expression": "gentle",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19800
+        },
+        {
+          "action": "jump",
+          "key": 11,
+          "expression": "joyful",
+          "bounds": [
+            30,
+            6,
+            160,
+            239
+          ],
+          "opaquePixels": 19658
+        }
+      ]
+    },
+    {
+      "id": "sweep",
+      "expression": "neutral",
+      "sharedFaceRetained": 3597,
+      "coveredFacePixels": 3895,
+      "compositionExact": true
+    },
+    {
+      "id": "sweep",
+      "expression": "gentle",
+      "sharedFaceRetained": 3604,
+      "coveredFacePixels": 3887,
+      "compositionExact": true
+    },
+    {
+      "id": "sweep",
+      "expression": "joyful",
+      "sharedFaceRetained": 3613,
+      "coveredFacePixels": 3902,
+      "compositionExact": true
+    },
+    {
+      "id": "sweep",
+      "actualPoseBoundaryChecks": 108,
+      "minimumTopMargin": 3,
+      "poses": [
+        {
+          "action": "idle",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20743
+        },
+        {
+          "action": "idle",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20748
+        },
+        {
+          "action": "idle",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20598
+        },
+        {
+          "action": "idle",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20723
+        },
+        {
+          "action": "idle",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20728
+        },
+        {
+          "action": "idle",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20570
+        },
+        {
+          "action": "idle",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20797
+        },
+        {
+          "action": "idle",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20802
+        },
+        {
+          "action": "idle",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20651
+        },
+        {
+          "action": "idle",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20768
+        },
+        {
+          "action": "idle",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20773
+        },
+        {
+          "action": "idle",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20685
+        },
+        {
+          "action": "walk",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20250
+        },
+        {
+          "action": "walk",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20255
+        },
+        {
+          "action": "walk",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20265
+        },
+        {
+          "action": "walk",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20559
+        },
+        {
+          "action": "walk",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20564
+        },
+        {
+          "action": "walk",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20574
+        },
+        {
+          "action": "walk",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            3,
+            162,
+            239
+          ],
+          "opaquePixels": 20618
+        },
+        {
+          "action": "walk",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            3,
+            162,
+            239
+          ],
+          "opaquePixels": 20623
+        },
+        {
+          "action": "walk",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            3,
+            162,
+            239
+          ],
+          "opaquePixels": 20633
+        },
+        {
+          "action": "walk",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20316
+        },
+        {
+          "action": "walk",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20321
+        },
+        {
+          "action": "walk",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20331
+        },
+        {
+          "action": "walk",
+          "key": 4,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20334
+        },
+        {
+          "action": "walk",
+          "key": 4,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20339
+        },
+        {
+          "action": "walk",
+          "key": 4,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20349
+        },
+        {
+          "action": "walk",
+          "key": 5,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20324
+        },
+        {
+          "action": "walk",
+          "key": 5,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20329
+        },
+        {
+          "action": "walk",
+          "key": 5,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20339
+        },
+        {
+          "action": "walk",
+          "key": 6,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            3,
+            162,
+            239
+          ],
+          "opaquePixels": 20609
+        },
+        {
+          "action": "walk",
+          "key": 6,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            3,
+            162,
+            239
+          ],
+          "opaquePixels": 20614
+        },
+        {
+          "action": "walk",
+          "key": 6,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            3,
+            162,
+            239
+          ],
+          "opaquePixels": 20624
+        },
+        {
+          "action": "walk",
+          "key": 7,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20389
+        },
+        {
+          "action": "walk",
+          "key": 7,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20394
+        },
+        {
+          "action": "walk",
+          "key": 7,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            4,
+            162,
+            239
+          ],
+          "opaquePixels": 20404
+        },
+        {
+          "action": "run",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            33,
+            10,
+            178,
+            239
+          ],
+          "opaquePixels": 19607
+        },
+        {
+          "action": "run",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            33,
+            10,
+            178,
+            239
+          ],
+          "opaquePixels": 19612
+        },
+        {
+          "action": "run",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            33,
+            10,
+            178,
+            239
+          ],
+          "opaquePixels": 19621
+        },
+        {
+          "action": "run",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            38,
+            11,
+            179,
+            239
+          ],
+          "opaquePixels": 18960
+        },
+        {
+          "action": "run",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            38,
+            11,
+            179,
+            239
+          ],
+          "opaquePixels": 18965
+        },
+        {
+          "action": "run",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            38,
+            11,
+            179,
+            239
+          ],
+          "opaquePixels": 18974
+        },
+        {
+          "action": "run",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            44,
+            10,
+            180,
+            239
+          ],
+          "opaquePixels": 17960
+        },
+        {
+          "action": "run",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            44,
+            10,
+            180,
+            239
+          ],
+          "opaquePixels": 17965
+        },
+        {
+          "action": "run",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            44,
+            10,
+            180,
+            239
+          ],
+          "opaquePixels": 17975
+        },
+        {
+          "action": "run",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            47,
+            8,
+            179,
+            236
+          ],
+          "opaquePixels": 18233
+        },
+        {
+          "action": "run",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            47,
+            8,
+            179,
+            236
+          ],
+          "opaquePixels": 18238
+        },
+        {
+          "action": "run",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            47,
+            8,
+            179,
+            236
+          ],
+          "opaquePixels": 18248
+        },
+        {
+          "action": "run",
+          "key": 4,
+          "expression": "neutral",
+          "bounds": [
+            45,
+            6,
+            177,
+            233
+          ],
+          "opaquePixels": 18404
+        },
+        {
+          "action": "run",
+          "key": 4,
+          "expression": "gentle",
+          "bounds": [
+            45,
+            6,
+            177,
+            233
+          ],
+          "opaquePixels": 18410
+        },
+        {
+          "action": "run",
+          "key": 4,
+          "expression": "joyful",
+          "bounds": [
+            45,
+            6,
+            177,
+            233
+          ],
+          "opaquePixels": 18420
+        },
+        {
+          "action": "run",
+          "key": 5,
+          "expression": "neutral",
+          "bounds": [
+            45,
+            8,
+            176,
+            236
+          ],
+          "opaquePixels": 18334
+        },
+        {
+          "action": "run",
+          "key": 5,
+          "expression": "gentle",
+          "bounds": [
+            45,
+            8,
+            176,
+            236
+          ],
+          "opaquePixels": 18339
+        },
+        {
+          "action": "run",
+          "key": 5,
+          "expression": "joyful",
+          "bounds": [
+            45,
+            8,
+            176,
+            236
+          ],
+          "opaquePixels": 18348
+        },
+        {
+          "action": "run",
+          "key": 6,
+          "expression": "neutral",
+          "bounds": [
+            46,
+            10,
+            178,
+            239
+          ],
+          "opaquePixels": 18166
+        },
+        {
+          "action": "run",
+          "key": 6,
+          "expression": "gentle",
+          "bounds": [
+            46,
+            10,
+            178,
+            239
+          ],
+          "opaquePixels": 18171
+        },
+        {
+          "action": "run",
+          "key": 6,
+          "expression": "joyful",
+          "bounds": [
+            46,
+            10,
+            178,
+            239
+          ],
+          "opaquePixels": 18180
+        },
+        {
+          "action": "run",
+          "key": 7,
+          "expression": "neutral",
+          "bounds": [
+            47,
+            11,
+            179,
+            239
+          ],
+          "opaquePixels": 17447
+        },
+        {
+          "action": "run",
+          "key": 7,
+          "expression": "gentle",
+          "bounds": [
+            47,
+            11,
+            179,
+            239
+          ],
+          "opaquePixels": 17452
+        },
+        {
+          "action": "run",
+          "key": 7,
+          "expression": "joyful",
+          "bounds": [
+            47,
+            11,
+            179,
+            239
+          ],
+          "opaquePixels": 17461
+        },
+        {
+          "action": "run",
+          "key": 8,
+          "expression": "neutral",
+          "bounds": [
+            48,
+            10,
+            180,
+            239
+          ],
+          "opaquePixels": 17627
+        },
+        {
+          "action": "run",
+          "key": 8,
+          "expression": "gentle",
+          "bounds": [
+            48,
+            10,
+            180,
+            239
+          ],
+          "opaquePixels": 17632
+        },
+        {
+          "action": "run",
+          "key": 8,
+          "expression": "joyful",
+          "bounds": [
+            48,
+            10,
+            180,
+            239
+          ],
+          "opaquePixels": 17642
+        },
+        {
+          "action": "run",
+          "key": 9,
+          "expression": "neutral",
+          "bounds": [
+            44,
+            8,
+            179,
+            236
+          ],
+          "opaquePixels": 18828
+        },
+        {
+          "action": "run",
+          "key": 9,
+          "expression": "gentle",
+          "bounds": [
+            44,
+            8,
+            179,
+            236
+          ],
+          "opaquePixels": 18833
+        },
+        {
+          "action": "run",
+          "key": 9,
+          "expression": "joyful",
+          "bounds": [
+            44,
+            8,
+            179,
+            236
+          ],
+          "opaquePixels": 18843
+        },
+        {
+          "action": "run",
+          "key": 10,
+          "expression": "neutral",
+          "bounds": [
+            37,
+            6,
+            177,
+            233
+          ],
+          "opaquePixels": 19717
+        },
+        {
+          "action": "run",
+          "key": 10,
+          "expression": "gentle",
+          "bounds": [
+            37,
+            6,
+            177,
+            233
+          ],
+          "opaquePixels": 19723
+        },
+        {
+          "action": "run",
+          "key": 10,
+          "expression": "joyful",
+          "bounds": [
+            37,
+            6,
+            177,
+            233
+          ],
+          "opaquePixels": 19733
+        },
+        {
+          "action": "run",
+          "key": 11,
+          "expression": "neutral",
+          "bounds": [
+            34,
+            8,
+            176,
+            236
+          ],
+          "opaquePixels": 19844
+        },
+        {
+          "action": "run",
+          "key": 11,
+          "expression": "gentle",
+          "bounds": [
+            34,
+            8,
+            176,
+            236
+          ],
+          "opaquePixels": 19849
+        },
+        {
+          "action": "run",
+          "key": 11,
+          "expression": "joyful",
+          "bounds": [
+            34,
+            8,
+            176,
+            236
+          ],
+          "opaquePixels": 19858
+        },
+        {
+          "action": "jump",
+          "key": 0,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20743
+        },
+        {
+          "action": "jump",
+          "key": 0,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20748
+        },
+        {
+          "action": "jump",
+          "key": 0,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20598
+        },
+        {
+          "action": "jump",
+          "key": 1,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            9,
+            162,
+            239
+          ],
+          "opaquePixels": 20510
+        },
+        {
+          "action": "jump",
+          "key": 1,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            9,
+            162,
+            239
+          ],
+          "opaquePixels": 20515
+        },
+        {
+          "action": "jump",
+          "key": 1,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            9,
+            162,
+            239
+          ],
+          "opaquePixels": 20380
+        },
+        {
+          "action": "jump",
+          "key": 2,
+          "expression": "neutral",
+          "bounds": [
+            34,
+            12,
+            165,
+            239
+          ],
+          "opaquePixels": 20189
+        },
+        {
+          "action": "jump",
+          "key": 2,
+          "expression": "gentle",
+          "bounds": [
+            34,
+            12,
+            165,
+            239
+          ],
+          "opaquePixels": 20194
+        },
+        {
+          "action": "jump",
+          "key": 2,
+          "expression": "joyful",
+          "bounds": [
+            35,
+            12,
+            165,
+            239
+          ],
+          "opaquePixels": 20080
+        },
+        {
+          "action": "jump",
+          "key": 3,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            5,
+            172,
+            238
+          ],
+          "opaquePixels": 20085
+        },
+        {
+          "action": "jump",
+          "key": 3,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            5,
+            172,
+            238
+          ],
+          "opaquePixels": 20090
+        },
+        {
+          "action": "jump",
+          "key": 3,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            5,
+            170,
+            238
+          ],
+          "opaquePixels": 20041
+        },
+        {
+          "action": "jump",
+          "key": 4,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            3,
+            178,
+            229
+          ],
+          "opaquePixels": 19699
+        },
+        {
+          "action": "jump",
+          "key": 4,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            3,
+            178,
+            229
+          ],
+          "opaquePixels": 19704
+        },
+        {
+          "action": "jump",
+          "key": 4,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            3,
+            176,
+            229
+          ],
+          "opaquePixels": 19668
+        },
+        {
+          "action": "jump",
+          "key": 5,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            3,
+            180,
+            227
+          ],
+          "opaquePixels": 19559
+        },
+        {
+          "action": "jump",
+          "key": 5,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            3,
+            180,
+            227
+          ],
+          "opaquePixels": 19564
+        },
+        {
+          "action": "jump",
+          "key": 5,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            3,
+            178,
+            227
+          ],
+          "opaquePixels": 19540
+        },
+        {
+          "action": "jump",
+          "key": 6,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            3,
+            178,
+            227
+          ],
+          "opaquePixels": 19587
+        },
+        {
+          "action": "jump",
+          "key": 6,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            3,
+            178,
+            227
+          ],
+          "opaquePixels": 19592
+        },
+        {
+          "action": "jump",
+          "key": 6,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            3,
+            177,
+            227
+          ],
+          "opaquePixels": 19559
+        },
+        {
+          "action": "jump",
+          "key": 7,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            3,
+            174,
+            229
+          ],
+          "opaquePixels": 19759
+        },
+        {
+          "action": "jump",
+          "key": 7,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            3,
+            174,
+            229
+          ],
+          "opaquePixels": 19764
+        },
+        {
+          "action": "jump",
+          "key": 7,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            3,
+            172,
+            229
+          ],
+          "opaquePixels": 19709
+        },
+        {
+          "action": "jump",
+          "key": 8,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            6,
+            162,
+            239
+          ],
+          "opaquePixels": 20432
+        },
+        {
+          "action": "jump",
+          "key": 8,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            6,
+            162,
+            239
+          ],
+          "opaquePixels": 20437
+        },
+        {
+          "action": "jump",
+          "key": 8,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            6,
+            162,
+            239
+          ],
+          "opaquePixels": 20341
+        },
+        {
+          "action": "jump",
+          "key": 9,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            11,
+            162,
+            239
+          ],
+          "opaquePixels": 20458
+        },
+        {
+          "action": "jump",
+          "key": 9,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            11,
+            162,
+            239
+          ],
+          "opaquePixels": 20463
+        },
+        {
+          "action": "jump",
+          "key": 9,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            11,
+            162,
+            239
+          ],
+          "opaquePixels": 20318
+        },
+        {
+          "action": "jump",
+          "key": 10,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            8,
+            162,
+            239
+          ],
+          "opaquePixels": 20618
+        },
+        {
+          "action": "jump",
+          "key": 10,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            8,
+            162,
+            239
+          ],
+          "opaquePixels": 20623
+        },
+        {
+          "action": "jump",
+          "key": 10,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            8,
+            162,
+            239
+          ],
+          "opaquePixels": 20474
+        },
+        {
+          "action": "jump",
+          "key": 11,
+          "expression": "neutral",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20743
+        },
+        {
+          "action": "jump",
+          "key": 11,
+          "expression": "gentle",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20748
+        },
+        {
+          "action": "jump",
+          "key": 11,
+          "expression": "joyful",
+          "bounds": [
+            32,
+            5,
+            162,
+            239
+          ],
+          "opaquePixels": 20598
+        }
+      ]
+    },
+    {
+      "expression": "neutral",
+      "sharedFaceInBothHairVariants": true,
+      "commonVisiblePixels": 3129,
+      "protectedVisibleFace": "identities/shared-face/neutral.protected.png"
+    },
+    {
+      "expression": "gentle",
+      "sharedFaceInBothHairVariants": true,
+      "commonVisiblePixels": 3136,
+      "protectedVisibleFace": "identities/shared-face/gentle.protected.png"
+    },
+    {
+      "expression": "joyful",
+      "sharedFaceInBothHairVariants": true,
+      "commonVisiblePixels": 3144,
+      "protectedVisibleFace": "identities/shared-face/joyful.protected.png"
+    },
+    {
+      "id": "short",
+      "protectedEyes": {
+        "sourcePolygons": [
+          [
+            [
+              260,
+              289
+            ],
+            [
+              278,
+              278
+            ],
+            [
+              309,
+              275
+            ],
+            [
+              334,
+              288
+            ],
+            [
+              338,
+              307
+            ],
+            [
+              332,
+              330
+            ],
+            [
+              317,
+              339
+            ],
+            [
+              287,
+              339
+            ],
+            [
+              268,
+              324
+            ]
+          ],
+          [
+            [
+              411,
+              287
+            ],
+            [
+              426,
+              278
+            ],
+            [
+              441,
+              280
+            ],
+            [
+              449,
+              291
+            ],
+            [
+              447,
+              322
+            ],
+            [
+              437,
+              337
+            ],
+            [
+              419,
+              338
+            ],
+            [
+              409,
+              326
+            ]
+          ]
+        ],
+        "sourceExpression": "neutral",
+        "sourceNeck": [
+          285,
+          448
+        ],
+        "scale": [
+          0.27,
+          0.27
+        ],
+        "targetNeck": [
+          96,
+          118
+        ],
+        "pixels": 426,
+        "overlapPixels": 0
+      }
+    },
+    {
+      "id": "sweep",
+      "protectedEyes": {
+        "sourcePolygons": [
+          [
+            [
+              260,
+              289
+            ],
+            [
+              278,
+              278
+            ],
+            [
+              309,
+              275
+            ],
+            [
+              334,
+              288
+            ],
+            [
+              338,
+              307
+            ],
+            [
+              332,
+              330
+            ],
+            [
+              317,
+              339
+            ],
+            [
+              287,
+              339
+            ],
+            [
+              268,
+              324
+            ]
+          ],
+          [
+            [
+              411,
+              287
+            ],
+            [
+              426,
+              278
+            ],
+            [
+              441,
+              280
+            ],
+            [
+              449,
+              291
+            ],
+            [
+              447,
+              322
+            ],
+            [
+              437,
+              337
+            ],
+            [
+              419,
+              338
+            ],
+            [
+              409,
+              326
+            ]
+          ]
+        ],
+        "sourceExpression": "neutral",
+        "sourceNeck": [
+          285,
+          448
+        ],
+        "scale": [
+          0.27,
+          0.27
+        ],
+        "targetNeck": [
+          96,
+          118
+        ],
+        "pixels": 426,
+        "overlapPixels": 0
+      }
+    }
+  ],
+  "limitations": [
+    "The three expressions are separate generated drawings, registered by the short neck; small facial contour and light differences remain. Both hairstyles use exactly the same face for a given expression.",
+    "Hair is precomposed offline into IdentityPack V1. This batch does not add a runtime hair slot or an arbitrary hairstyle fitting algorithm."
+  ]
+}
