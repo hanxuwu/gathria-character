@@ -171,10 +171,9 @@ function validateHierarchy(rig: RigDefinition, skin: SkinPack) {
   if (metadata.version === 2 || metadata.actionForearms)
     validateActionForearms(metadata.actionForearms);
   if (metadata.version === 3 || metadata.version === 4) {
+    const version = metadata.version;
     if (!metadata.runLegs && !metadata.runShoes)
-      throw Error(
-        `Skin version ${metadata.version} needs runLegs and/or runShoes.`,
-      );
+      throw Error(`Skin version ${version} needs runLegs and/or runShoes.`);
     if (metadata.runLegs) validateRunLegs(metadata.runLegs);
     if (metadata.version === 4) validateShinFollowRunShoes(metadata.runShoes);
     else if (metadata.runShoes) validateRunShoes(metadata.runShoes);

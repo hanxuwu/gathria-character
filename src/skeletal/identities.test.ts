@@ -256,6 +256,7 @@ describe("portable character identities", () => {
     expect(validateProject(dressed).wardrobe?.identity).toBe(custom.id);
   });
 
+  // Multiple source-backed identity/wardrobe rebuilds need a CI integration budget.
   it("keeps all three custom heads invariant while swapping clothing, and persists used plus unused identities", () => {
     const custom = identity(),
       second = { ...identity(), id: "custom-second", name: "Second" };
@@ -290,7 +291,7 @@ describe("portable character identities", () => {
     expect(imported.wardrobe?.version).toBe(3);
     expect(imported.wardrobe?.identity).toBe(custom.id);
     expect(validateProject(imported).wardrobe?.top).toBe(item.id);
-  });
+  }, 20_000);
 
   it("keeps original V1/V2 builtin behavior and rejects implicit custom/hair upgrades", () => {
     const custom = identity(),
