@@ -54,6 +54,19 @@ with shared-pelvis foot travel and grounded shoe/ankle support. The
 previous character's head and clothing design. Historical projects remain exact;
 crowded boots in the passing pose remain a documented visual limitation.
 
+The [registered running-attachment study](docs/THEO_PASSING_POSES_REVIEW.md)
+adds reusable bent-trouser and side-view shoe sources with independent source
+landmarks. [Actual comparisons and editable downloads](docs/theo-passing-poses/README.md)
+show the clearer knee contours and remaining crowded passing pose. It is an
+explicit opt-in project; old files and idle/walk/jump pixels remain unchanged.
+
+The [shoe-parenting correction](docs/THEO_ANKLE_FOLLOW_REVIEW.md) attaches run
+shoes to the final shin direction at a shared ankle, preventing the separately
+pitched boots from twisting away from the trouser cuffs. Its explicit
+[Skin V4 / shoe item V5 contract](docs/RUN_SHOE_PARENTING.md) retains old files
+and original artwork. [Actual comparisons and downloads](docs/theo-ankle-follow/README.md)
+show the fix and the remaining crowded recovery pose.
+
 ```sh
 npm run typecheck
 npm test

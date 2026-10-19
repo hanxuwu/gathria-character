@@ -1,0 +1,5668 @@
+{
+  "sources": {
+    "project": {
+      "path": "docs/theo-passing-poses/final/theo-passing.rig.zip",
+      "sha256": "a8cac7f312ee6bfe15461956d0f24dbffcf46f09463d6dc7620e09a167a3c961"
+    },
+    "originalBoot": {
+      "path": "artwork/theo-pose-study/source/complete-pose-model.png",
+      "sha256": "d860623760470e338e7e913cf1c5aebac622e45c54b503306f65a26ed1919b26"
+    },
+    "previousRegistration": {
+      "path": "artwork/theo-passing-poses/prepared/registration.json",
+      "sha256": "5b8c3990b89accd9f42e3301e7521a6fbcdcee05dafff36e103202898e72e275"
+    }
+  },
+  "originalSource": {
+    "knee": [
+      1284,
+      405
+    ],
+    "ankle": [
+      1268,
+      456
+    ],
+    "scale": 0.484
+  },
+  "sourceAxis": {
+    "nearLeg": {
+      "sourceShin": [
+        74,
+        197
+      ],
+      "ankle": [
+        66,
+        222
+      ],
+      "angleRadians": 1.8804992713373527
+    },
+    "farLeg": {
+      "sourceShin": [
+        119,
+        197
+      ],
+      "ankle": [
+        111,
+        222
+      ],
+      "angleRadians": 1.8804992713373527
+    }
+  },
+  "sourceChecks": [
+    {
+      "slot": "torso",
+      "changedChannels": 0
+    },
+    {
+      "slot": "hips",
+      "changedChannels": 0
+    },
+    {
+      "slot": "near-upper-arm",
+      "changedChannels": 0
+    },
+    {
+      "slot": "near-forearm",
+      "changedChannels": 0
+    },
+    {
+      "slot": "far-upper-arm",
+      "changedChannels": 0
+    },
+    {
+      "slot": "far-forearm",
+      "changedChannels": 0
+    },
+    {
+      "slot": "near-thigh",
+      "changedChannels": 0
+    },
+    {
+      "slot": "near-shin",
+      "changedChannels": 0
+    },
+    {
+      "slot": "near-shoe",
+      "changedChannels": 0
+    },
+    {
+      "slot": "far-thigh",
+      "changedChannels": 0
+    },
+    {
+      "slot": "far-shin",
+      "changedChannels": 0
+    },
+    {
+      "slot": "far-shoe",
+      "changedChannels": 0
+    },
+    {
+      "slot": "head-neutral",
+      "changedChannels": 0
+    },
+    {
+      "slot": "head-gentle",
+      "changedChannels": 0
+    },
+    {
+      "slot": "head-joyful",
+      "changedChannels": 0
+    },
+    {
+      "slot": "near-leg-bent",
+      "changedChannels": 0
+    },
+    {
+      "slot": "far-leg-bent",
+      "changedChannels": 0
+    },
+    {
+      "slot": "near-shoe-run",
+      "changedChannels": 0
+    },
+    {
+      "slot": "far-shoe-run",
+      "changedChannels": 0
+    }
+  ],
+  "nonRunChecks": [
+    {
+      "action": "idle",
+      "key": 0,
+      "changedChannels": 0
+    },
+    {
+      "action": "idle",
+      "key": 1,
+      "changedChannels": 0
+    },
+    {
+      "action": "idle",
+      "key": 2,
+      "changedChannels": 0
+    },
+    {
+      "action": "idle",
+      "key": 3,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 0,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 1,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 2,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 3,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 4,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 5,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 6,
+      "changedChannels": 0
+    },
+    {
+      "action": "walk",
+      "key": 7,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 0,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 1,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 2,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 3,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 4,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 5,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 6,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 7,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 8,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 9,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 10,
+      "changedChannels": 0
+    },
+    {
+      "action": "jump",
+      "key": 11,
+      "changedChannels": 0
+    }
+  ],
+  "upperChecks": [
+    {
+      "expression": "neutral",
+      "key": 0,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 1,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 2,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 3,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 4,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 5,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 6,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 7,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 8,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 9,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 10,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "neutral",
+      "key": 11,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 0,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 1,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 2,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 3,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 4,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 5,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 6,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 7,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 8,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 9,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 10,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "gentle",
+      "key": 11,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 0,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 1,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 2,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 3,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 4,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 5,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 6,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 7,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 8,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 9,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 10,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    },
+    {
+      "expression": "joyful",
+      "key": 11,
+      "region": [
+        0,
+        0,
+        192,
+        166
+      ],
+      "changedChannels": 0
+    }
+  ],
+  "frames": [
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 1,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 2,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "idle",
+      "key": 3,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 1,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 2,
+      "bounds": [
+        32,
+        1,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 3,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 4,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 5,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 6,
+      "bounds": [
+        32,
+        1,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "walk",
+      "key": 7,
+      "bounds": [
+        32,
+        2,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 0,
+      "bounds": [
+        33,
+        8,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 1,
+      "bounds": [
+        38,
+        9,
+        179,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 2,
+      "bounds": [
+        44,
+        8,
+        180,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 3,
+      "bounds": [
+        50,
+        6,
+        179,
+        237
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 4,
+      "bounds": [
+        48,
+        4,
+        176,
+        234
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 5,
+      "bounds": [
+        46,
+        6,
+        176,
+        237
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 6,
+      "bounds": [
+        46,
+        8,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 7,
+      "bounds": [
+        50,
+        9,
+        179,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 8,
+      "bounds": [
+        51,
+        8,
+        180,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 9,
+      "bounds": [
+        44,
+        6,
+        179,
+        237
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 10,
+      "bounds": [
+        37,
+        4,
+        176,
+        234
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "run",
+      "key": 11,
+      "bounds": [
+        34,
+        6,
+        176,
+        237
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 1,
+      "bounds": [
+        32,
+        7,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 2,
+      "bounds": [
+        34,
+        10,
+        163,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 3,
+      "bounds": [
+        32,
+        3,
+        173,
+        239
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 4,
+      "bounds": [
+        32,
+        1,
+        179,
+        230
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 5,
+      "bounds": [
+        32,
+        1,
+        181,
+        228
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 6,
+      "bounds": [
+        32,
+        1,
+        179,
+        228
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 7,
+      "bounds": [
+        32,
+        1,
+        175,
+        230
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 8,
+      "bounds": [
+        32,
+        4,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 9,
+      "bounds": [
+        32,
+        9,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 10,
+      "bounds": [
+        32,
+        6,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "neutral",
+      "action": "jump",
+      "key": 11,
+      "bounds": [
+        32,
+        3,
+        160,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 0,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 1,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 2,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "idle",
+      "key": 3,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 0,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 1,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 2,
+      "bounds": [
+        25,
+        3,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 3,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 4,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 5,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 6,
+      "bounds": [
+        25,
+        3,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "walk",
+      "key": 7,
+      "bounds": [
+        25,
+        4,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 0,
+      "bounds": [
+        33,
+        9,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 1,
+      "bounds": [
+        38,
+        10,
+        179,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 2,
+      "bounds": [
+        43,
+        9,
+        180,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 3,
+      "bounds": [
+        42,
+        7,
+        179,
+        237
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 4,
+      "bounds": [
+        40,
+        5,
+        176,
+        234
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 5,
+      "bounds": [
+        39,
+        7,
+        176,
+        237
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 6,
+      "bounds": [
+        40,
+        9,
+        177,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 7,
+      "bounds": [
+        42,
+        10,
+        179,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 8,
+      "bounds": [
+        43,
+        9,
+        180,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 9,
+      "bounds": [
+        42,
+        7,
+        179,
+        237
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 10,
+      "bounds": [
+        37,
+        5,
+        176,
+        234
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "run",
+      "key": 11,
+      "bounds": [
+        34,
+        7,
+        176,
+        237
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 0,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 1,
+      "bounds": [
+        25,
+        9,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 2,
+      "bounds": [
+        28,
+        12,
+        163,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 3,
+      "bounds": [
+        25,
+        5,
+        173,
+        239
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 4,
+      "bounds": [
+        25,
+        3,
+        179,
+        230
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 5,
+      "bounds": [
+        25,
+        3,
+        181,
+        228
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 6,
+      "bounds": [
+        25,
+        3,
+        179,
+        228
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 7,
+      "bounds": [
+        25,
+        3,
+        175,
+        230
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 8,
+      "bounds": [
+        25,
+        6,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 9,
+      "bounds": [
+        25,
+        11,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 10,
+      "bounds": [
+        25,
+        8,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "gentle",
+      "action": "jump",
+      "key": 11,
+      "bounds": [
+        25,
+        5,
+        159,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 0,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 1,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 2,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "idle",
+      "key": 3,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 0,
+      "bounds": [
+        32,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 1,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 2,
+      "bounds": [
+        33,
+        1,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 3,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 4,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 5,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 6,
+      "bounds": [
+        33,
+        1,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "walk",
+      "key": 7,
+      "bounds": [
+        33,
+        2,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 0,
+      "bounds": [
+        33,
+        8,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 1,
+      "bounds": [
+        38,
+        9,
+        180,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 2,
+      "bounds": [
+        44,
+        9,
+        181,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 3,
+      "bounds": [
+        51,
+        6,
+        180,
+        237
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 4,
+      "bounds": [
+        48,
+        4,
+        177,
+        234
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 5,
+      "bounds": [
+        46,
+        6,
+        177,
+        237
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 6,
+      "bounds": [
+        46,
+        8,
+        178,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 7,
+      "bounds": [
+        51,
+        9,
+        180,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 8,
+      "bounds": [
+        52,
+        9,
+        181,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 9,
+      "bounds": [
+        44,
+        6,
+        180,
+        237
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 10,
+      "bounds": [
+        37,
+        4,
+        177,
+        234
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "run",
+      "key": 11,
+      "bounds": [
+        34,
+        6,
+        177,
+        237
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 0,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 1,
+      "bounds": [
+        33,
+        7,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 2,
+      "bounds": [
+        36,
+        10,
+        164,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 3,
+      "bounds": [
+        33,
+        3,
+        171,
+        239
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 4,
+      "bounds": [
+        33,
+        1,
+        177,
+        230
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 5,
+      "bounds": [
+        33,
+        1,
+        179,
+        228
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 6,
+      "bounds": [
+        33,
+        1,
+        178,
+        228
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 7,
+      "bounds": [
+        33,
+        1,
+        173,
+        230
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 8,
+      "bounds": [
+        33,
+        4,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 9,
+      "bounds": [
+        33,
+        9,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 10,
+      "bounds": [
+        33,
+        6,
+        161,
+        240
+      ]
+    },
+    {
+      "expression": "joyful",
+      "action": "jump",
+      "key": 11,
+      "bounds": [
+        33,
+        3,
+        161,
+        240
+      ]
+    }
+  ],
+  "inspection": {
+    "before": [
+      {
+        "key": 0,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              103.25624196150031,
+              122.50876819694287
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.25624196150031,
+              122.50876819694287
+            ],
+            "to": [
+              125.64481009547862,
+              71.13025112112403
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.53537162845379,
+                136.05246333352238
+              ],
+              [
+                130.38029579155824,
+                158.7036767275709
+              ],
+              [
+                152.56248917119558,
+                149.06260329831142
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                88.53705130987782,
+                202.61385479998887
+              ],
+              [
+                69.8401586299502,
+                193
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "base",
+            "sourceSlots": [
+              "near-thigh",
+              "near-shin"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                103.1474216524496,
+                199.8301760593952
+              ],
+              [
+                110.8401586299502,
+                220
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.05392382918403,
+                128.65667825737785
+              ],
+              [
+                43.81157772850926,
+                136.98186026950822
+              ],
+              [
+                50.964473910954425,
+                157.81059225691354
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 1,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              186.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              186.6732772825853
+            ],
+            "to": [
+              104.01344793027994,
+              123.6383059871914
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.01344793027994,
+              123.6383059871914
+            ],
+            "to": [
+              127.01693151469969,
+              72.53214448995773
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.12881307374369,
+                137.3883705690727
+              ],
+              [
+                123.54536209672042,
+                161.96804287810784
+              ],
+              [
+                147.61608338136435,
+                159.6015313448613
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                187.85939375706133
+              ],
+              [
+                102.64296912692893,
+                208.06036092708783
+              ],
+              [
+                82.8401586299502,
+                201
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                185.4871608081093
+              ],
+              [
+                104.41055379958854,
+                199.14404886719214
+              ],
+              [
+                98.8401586299502,
+                220
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.73989118431469,
+                129.3633557240206
+              ],
+              [
+                47.86063812990203,
+                144.23133446660026
+              ],
+              [
+                60.63502651366538,
+                162.1705373870416
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 2,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              104.3914543701934,
+              122.70647994683509
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.3914543701934,
+              122.70647994683509
+            ],
+            "to": [
+              127.70115902231572,
+              71.73925843113123
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.42401154551891,
+                136.55898860300516
+              ],
+              [
+                115.12233910698026,
+                160.43971146638103
+              ],
+              [
+                138.5085835163024,
+                166.61090036540588
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                117.47625332692816,
+                198.98109521668428
+              ],
+              [
+                96.8401586299502,
+                203
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                101.75159591902884,
+                201.3907387114612
+              ],
+              [
+                86.8401586299502,
+                217
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                69.08418245402521,
+                128.21978656244818
+              ],
+              [
+                54.4424850738922,
+                149.25833921771905
+              ],
+              [
+                72.51855629405165,
+                161.83830937840398
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 3,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              103.88735572516461,
+              120.616085493389
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.88735572516461,
+              120.616085493389
+            ],
+            "to": [
+              126.78858104777962,
+              69.46401927194668
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.03018674873982,
+                134.33189186768382
+              ],
+              [
+                107.08454639468599,
+                154.71617785261313
+              ],
+              [
+                127.0467517634429,
+                168.37305732105588
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                120.20564865455033,
+                191.99721621464548
+              ],
+              [
+                107.8401586299502,
+                209
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                94.9937418944158,
+                204.26481534788914
+              ],
+              [
+                74.8401586299502,
+                212
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.62531961812958,
+                126.41167084658306
+              ],
+              [
+                62.28385855469849,
+                151.24684492652435
+              ],
+              [
+                83.62194120657739,
+                156.69535194602835
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 4,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              181.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              181.6732772825853
+            ],
+            "to": [
+              102.87706969196716,
+              118.44740902968454
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.87706969196716,
+              118.44740902968454
+            ],
+            "to": [
+              124.95696558009644,
+              66.93548616158174
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.23715001876707,
+                131.88718622452876
+              ],
+              [
+                100.37969487908873,
+                146.57328425551242
+              ],
+              [
+                114.76169997737566,
+                166.01956743129819
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                182.85939375706133
+              ],
+              [
+                118.19227422687925,
+                193.9587767977289
+              ],
+              [
+                111.8401586299502,
+                214
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                180.4871608081093
+              ],
+              [
+                89.4265071200903,
+                204.17192690954573
+              ],
+              [
+                67.8401586299502,
+                204
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.71227243851462,
+                124.80642106958314
+              ],
+              [
+                70.67892207614477,
+                150.26617342359373
+              ],
+              [
+                92.55363486364342,
+                147.7172637617103
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 5,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              102.62408659818284,
+              120.40776729876842
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.62408659818284,
+              120.40776729876842
+            ],
+            "to": [
+              124.49775870536818,
+              68.8079371774653
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.03778700994717,
+                133.7779968394053
+              ],
+              [
+                97.7004537075771,
+                144.31571675117127
+              ],
+              [
+                108.01997773469455,
+                166.19052929559655
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                117.77933037027388,
+                196.564624238356
+              ],
+              [
+                112.8401586299502,
+                217
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                84.59217655810407,
+                206.69400877230777
+              ],
+              [
+                65.8401586299502,
+                196
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.48500664306341,
+                126.90738728056147
+              ],
+              [
+                75.5479802592307,
+                151.23820018241474
+              ],
+              [
+                96.452721857417,
+                144.31059029782546
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 6,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              103.25624196150031,
+              122.50876819694287
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.25624196150031,
+              122.50876819694287
+            ],
+            "to": [
+              125.64481009547862,
+              71.13025112112403
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.53537162845379,
+                136.05246333352238
+              ],
+              [
+                97.17622999386013,
+                144.07433980321406
+              ],
+              [
+                105.03200407636544,
+                166.94980293655055
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                116.79881457272106,
+                199.83829324298952
+              ],
+              [
+                110.8401586299502,
+                220
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                84.66300752483482,
+                208.69341105812939
+              ],
+              [
+                69.8401586299502,
+                193
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.05392382918403,
+                128.65667825737785
+              ],
+              [
+                78.27108260283627,
+                152.16432949253914
+              ],
+              [
+                98.46857360462276,
+                143.38586964853727
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 7,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              186.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              186.6732772825853
+            ],
+            "to": [
+              104.01344793027994,
+              123.6383059871914
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.01344793027994,
+              123.6383059871914
+            ],
+            "to": [
+              127.01693151469969,
+              72.53214448995773
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.12881307374369,
+                137.3883705690727
+              ],
+              [
+                101.01023926504072,
+                151.71467462503114
+              ],
+              [
+                115.03990034572485,
+                171.4166697006862
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                187.85939375706133
+              ],
+              [
+                112.93512206801815,
+                204.40089727966614
+              ],
+              [
+                98.8401586299502,
+                220
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                185.4871608081093
+              ],
+              [
+                104.35419002426384,
+                199.22617555420874
+              ],
+              [
+                82.8401586299502,
+                201
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.73989118431469,
+                129.3633557240206
+              ],
+              [
+                71.24780944178572,
+                154.87238051945022
+              ],
+              [
+                93.16485651790562,
+                152.7176073380818
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 8,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              104.3914543701934,
+              122.70647994683509
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.3914543701934,
+              122.70647994683509
+            ],
+            "to": [
+              127.70115902231572,
+              71.73925843113123
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.42401154551891,
+                136.55898860300516
+              ],
+              [
+                107.31574490115045,
+                156.83105836145361
+              ],
+              [
+                127.16805761237819,
+                170.64719675159813
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                105.18142106603399,
+                206.72390676128805
+              ],
+              [
+                86.8401586299502,
+                217
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                108.62698021760195,
+                184.91490014235845
+              ],
+              [
+                96.8401586299502,
+                203
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                69.08418245402521,
+                128.21978656244818
+              ],
+              [
+                62.54424504288776,
+                153.00343477368625
+              ],
+              [
+                83.83805728854523,
+                158.62247028226665
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 9,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              103.88735572516461,
+              120.616085493389
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.88735572516461,
+              120.616085493389
+            ],
+            "to": [
+              126.78858104777962,
+              69.46401927194668
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.03018674873982,
+                134.33189186768382
+              ],
+              [
+                114.91975970773555,
+                158.26226339377098
+              ],
+              [
+                138.35462474581362,
+                164.24616685614953
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "base",
+            "sourceSlots": [
+              "far-thigh",
+              "far-shin"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                94.21784538325683,
+                203.8449245196182
+              ],
+              [
+                74.8401586299502,
+                212
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                108.12391459058267,
+                187.41483188495386
+              ],
+              [
+                107.8401586299502,
+                209
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.62531961812958,
+                126.41167084658306
+              ],
+              [
+                54.15239739577197,
+                147.56668260137977
+              ],
+              [
+                72.32852887253549,
+                160.00164317789174
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 10,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              181.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              181.6732772825853
+            ],
+            "to": [
+              102.87706969196716,
+              118.44740902968454
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.87706969196716,
+              118.44740902968454
+            ],
+            "to": [
+              124.95696558009644,
+              66.93548616158174
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.23715001876707,
+                131.88718622452876
+              ],
+              [
+                123.09571778188013,
+                156.4193812005942
+              ],
+              [
+                147.11994480757366,
+                153.62000344510352
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "base",
+            "sourceSlots": [
+              "far-thigh",
+              "far-shin"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                182.85939375706133
+              ],
+              [
+                88.0504393648988,
+                198.20823406769878
+              ],
+              [
+                67.8401586299502,
+                204
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                180.4871608081093
+              ],
+              [
+                104.76910016734479,
+                193.6039187043585
+              ],
+              [
+                111.8401586299502,
+                214
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.71227243851462,
+                124.80642106958314
+              ],
+              [
+                47.104010897697115,
+                140.04779752531252
+              ],
+              [
+                60.199218102362046,
+                157.7541677989426
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 11,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              102.62408659818284,
+              120.40776729876842
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.62408659818284,
+              120.40776729876842
+            ],
+            "to": [
+              124.49775870536818,
+              68.8079371774653
+            ]
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.03778700994717,
+                133.7779968394053
+              ],
+              [
+                127.80700793905523,
+                157.22238222599006
+              ],
+              [
+                150.76594975223895,
+                149.61403215394128
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "base",
+            "sourceSlots": [
+              "far-thigh",
+              "far-shin"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                86.6635187818074,
+                198.89614778387522
+              ],
+              [
+                65.8401586299502,
+                196
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "base",
+            "sourceSlots": [
+              "near-thigh",
+              "near-shin"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                103.30875642060626,
+                197.63114944237233
+              ],
+              [
+                112.8401586299502,
+                217
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.48500664306341,
+                126.90738728056147
+              ],
+              [
+                44.30310324297287,
+                137.84353627135664
+              ],
+              [
+                53.69931082773569,
+                157.7611486539703
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "final": [
+      {
+        "key": 0,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              103.25624196150031,
+              122.50876819694287
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.25624196150031,
+              122.50876819694287
+            ],
+            "to": [
+              125.64481009547862,
+              71.13025112112403
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              110.8401586299502,
+              216.01458336828216
+            ],
+            "rotation": -0.5230935606570963,
+            "matrix": [
+              0.8662779007212089,
+              -0.4995624072346269,
+              0.4995624072346269,
+              0.8662779007212089,
+              -57.23703722373676,
+              56.67200828565916
+            ],
+            "sole": 239,
+            "targetSole": 239,
+            "supportError": 0,
+            "ankleShift": -5.98541663171784,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              69.8401586299502,
+              194.15074466945558
+            ],
+            "rotation": 1.6920075879436445,
+            "matrix": [
+              -0.1209146697055307,
+              0.9926629048423248,
+              -0.9926629048423248,
+              -0.1209146697055307,
+              303.63285184226027,
+              110.80821890658532
+            ],
+            "sole": 218,
+            "targetSole": 218,
+            "supportError": 0,
+            "ankleShift": -6.849255330544423,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.53537162845379,
+                136.05246333352238
+              ],
+              [
+                130.38029579155824,
+                158.7036767275709
+              ],
+              [
+                152.56248917119558,
+                149.06260329831142
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                88.94204888762539,
+                202.9324181195295
+              ],
+              [
+                69.8401586299502,
+                194.15074466945558
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                106.26856851485609,
+                194.91717680208131
+              ],
+              [
+                110.8401586299502,
+                216.01458336828216
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.05392382918403,
+                128.65667825737785
+              ],
+              [
+                43.81157772850926,
+                136.98186026950822
+              ],
+              [
+                50.964473910954425,
+                157.81059225691354
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 1,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              186.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              186.6732772825853
+            ],
+            "to": [
+              104.01344793027994,
+              123.6383059871914
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.01344793027994,
+              123.6383059871914
+            ],
+            "to": [
+              127.01693151469969,
+              72.53214448995773
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              98.8401586299502,
+              219.88323754374778
+            ],
+            "rotation": -0.04548758330190905,
+            "matrix": [
+              0.9989656182561457,
+              -0.045471898378190774,
+              0.045471898378190774,
+              0.9989656182561457,
+              22.81366638508623,
+              1.114015583844008
+            ],
+            "sole": 239,
+            "targetSole": 239,
+            "supportError": 0,
+            "ankleShift": -2.116762456252218,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              82.8401586299502,
+              199.21134727833385
+            ],
+            "rotation": 1.6975021160542314,
+            "matrix": [
+              -0.12636703130430016,
+              0.991983555004486,
+              -0.991983555004486,
+              -0.12636703130430016,
+              317.0872483157234,
+              117.15465362239053
+            ],
+            "sole": 223,
+            "targetSole": 223,
+            "supportError": 0,
+            "ankleShift": -6.788652721666153,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.12881307374369,
+                137.3883705690727
+              ],
+              [
+                123.54536209672042,
+                161.96804287810784
+              ],
+              [
+                147.61608338136435,
+                159.6015313448613
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                187.85939375706133
+              ],
+              [
+                101.8935096380062,
+                208.09784351497356
+              ],
+              [
+                82.8401586299502,
+                199.21134727833385
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                185.4871608081093
+              ],
+              [
+                104.47765418482939,
+                199.04532392772765
+              ],
+              [
+                98.8401586299502,
+                219.88323754374778
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.73989118431469,
+                129.3633557240206
+              ],
+              [
+                47.86063812990203,
+                144.23133446660026
+              ],
+              [
+                60.63502651366538,
+                162.1705373870416
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 2,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              104.3914543701934,
+              122.70647994683509
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.3914543701934,
+              122.70647994683509
+            ],
+            "to": [
+              127.70115902231572,
+              71.73925843113123
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              86.8401586299502,
+              211.3540505405964
+            ],
+            "rotation": 0.6224560757658562,
+            "matrix": [
+              0.8124489369387814,
+              0.5830323531906647,
+              -0.5830323531906647,
+              0.8124489369387814,
+              162.65171120031818,
+              -7.489748770396943
+            ],
+            "sole": 239,
+            "targetSole": 239,
+            "supportError": 0,
+            "ankleShift": -10.645949459403596,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              96.8401586299502,
+              195.2200704788679
+            ],
+            "rotation": 1.436791669935283,
+            "matrix": [
+              0.13360395765754668,
+              0.9910348038783706,
+              -0.9910348038783706,
+              0.13360395765754668,
+              302.01984579096086,
+              55.555128648393406
+            ],
+            "sole": 222,
+            "targetSole": 222,
+            "supportError": 0,
+            "ankleShift": -9.77992952113209,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.42401154551891,
+                136.55898860300516
+              ],
+              [
+                115.12233910698026,
+                160.43971146638103
+              ],
+              [
+                138.5085835163024,
+                166.61090036540588
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                117.54028747150754,
+                198.8949399925957
+              ],
+              [
+                96.8401586299502,
+                195.2200704788679
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                104.17257766478308,
+                198.48597957401552
+              ],
+              [
+                86.8401586299502,
+                211.3540505405964
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                69.08418245402521,
+                128.21978656244818
+              ],
+              [
+                54.4424850738922,
+                149.25833921771905
+              ],
+              [
+                72.51855629405165,
+                161.83830937840398
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 3,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              103.88735572516461,
+              120.616085493389
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.88735572516461,
+              120.616085493389
+            ],
+            "to": [
+              126.78858104777962,
+              69.46401927194668
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              74.8401586299502,
+              206.93390660369025
+            ],
+            "rotation": 1.1083866249185237,
+            "matrix": [
+              0.4461060353325639,
+              0.8949801144382267,
+              -0.8949801144382267,
+              0.4461060353325639,
+              244.08274570328732,
+              48.829679206938096
+            ],
+            "sole": 236,
+            "targetSole": 236,
+            "supportError": 0,
+            "ankleShift": -12.066093396309753,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              107.8401586299502,
+              203.05542537174915
+            ],
+            "rotation": 0.39089753162875046,
+            "matrix": [
+              0.9245674562394245,
+              0.38101839701379236,
+              -0.38101839701379236,
+              0.9245674562394245,
+              89.79925512443597,
+              -44.49159198193405
+            ],
+            "sole": 228,
+            "targetSole": 228,
+            "supportError": 0,
+            "ankleShift": -7.944574628250848,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.03018674873982,
+                134.33189186768382
+              ],
+              [
+                107.08454639468599,
+                154.71617785261313
+              ],
+              [
+                127.0467517634429,
+                168.37305732105588
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                121.39371303896014,
+                186.98367491070704
+              ],
+              [
+                107.8401586299502,
+                203.05542537174915
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                96.17598268306031,
+                203.65021782813187
+              ],
+              [
+                74.8401586299502,
+                206.93390660369025
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.62531961812958,
+                126.41167084658306
+              ],
+              [
+                62.28385855469849,
+                151.24684492652435
+              ],
+              [
+                83.62194120657739,
+                156.69535194602835
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 4,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              181.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              181.6732772825853
+            ],
+            "to": [
+              102.87706969196716,
+              118.44740902968454
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.87706969196716,
+              118.44740902968454
+            ],
+            "to": [
+              124.95696558009644,
+              66.93548616158174
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              67.8401586299502,
+              202.30704711855122
+            ],
+            "rotation": 1.3483838772362822,
+            "matrix": [
+              0.22058328912973219,
+              0.9753681420657069,
+              -0.9753681420657069,
+              0.22058328912973219,
+              269.8133890859748,
+              88.96325955541404
+            ],
+            "sole": 230,
+            "targetSole": 230,
+            "supportError": 0,
+            "ankleShift": -10.692952881448775,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              111.8401586299502,
+              213.99238045186388
+            ],
+            "rotation": -0.0025606280390531033,
+            "matrix": [
+              0.9999967215938141,
+              -0.002560625240792891,
+              0.002560625240792891,
+              0.9999967215938141,
+              0.2720637295808107,
+              -7.722662340234848
+            ],
+            "sole": 233,
+            "targetSole": 233,
+            "supportError": 0,
+            "ankleShift": -2.0076195481361196,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.23715001876707,
+                131.88718622452876
+              ],
+              [
+                100.37969487908873,
+                146.57328425551242
+              ],
+              [
+                114.76169997737566,
+                166.01956743129819
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                182.85939375706133
+              ],
+              [
+                118.19640748713753,
+                193.952467765789
+              ],
+              [
+                111.8401586299502,
+                213.99238045186388
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                180.4871608081093
+              ],
+              [
+                89.34500137490068,
+                204.1889978392001
+              ],
+              [
+                67.8401586299502,
+                202.30704711855122
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.71227243851462,
+                124.80642106958314
+              ],
+              [
+                70.67892207614477,
+                150.26617342359373
+              ],
+              [
+                92.55363486364342,
+                147.7172637617103
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 5,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              102.62408659818284,
+              120.40776729876842
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.62408659818284,
+              120.40776729876842
+            ],
+            "to": [
+              124.49775870536818,
+              68.8079371774653
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              65.8401586299502,
+              198.63016287540282
+            ],
+            "rotation": 1.6417608443414597,
+            "matrix": [
+              -0.0709049700979809,
+              0.9974830751523579,
+              -0.9974830751523579,
+              -0.0709049700979809,
+              291.9611293402404,
+              148.53718327709893
+            ],
+            "sole": 223,
+            "targetSole": 223,
+            "supportError": 0,
+            "ankleShift": -7.369837124597183,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              112.8401586299502,
+              216.84029619446835
+            ],
+            "rotation": -0.06786618407268774,
+            "matrix": [
+              0.997697974292686,
+              -0.06781409950940025,
+              0.06781409950940025,
+              0.997697974292686,
+              -12.959046607624815,
+              2.878710947035472
+            ],
+            "sole": 236,
+            "targetSole": 236,
+            "supportError": 0,
+            "ankleShift": -2.159703805531649,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.03778700994717,
+                133.7779968394053
+              ],
+              [
+                97.7004537075771,
+                144.31571675117127
+              ],
+              [
+                108.01997773469455,
+                166.19052929559655
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                117.87507058954363,
+                196.4282982138898
+              ],
+              [
+                112.8401586299502,
+                216.84029619446835
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                85.88192401618784,
+                206.6506142469284
+              ],
+              [
+                65.8401586299502,
+                198.63016287540282
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.48500664306341,
+                126.90738728056147
+              ],
+              [
+                75.5479802592307,
+                151.23820018241474
+              ],
+              [
+                96.452721857417,
+                144.31059029782546
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 6,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              103.25624196150031,
+              122.50876819694287
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.25624196150031,
+              122.50876819694287
+            ],
+            "to": [
+              125.64481009547862,
+              71.13025112112403
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              69.8401586299502,
+              196.31337323300986
+            ],
+            "rotation": 1.8595702485219585,
+            "matrix": [
+              -0.28477712847187575,
+              0.9585937549866016,
+              -0.9585937549866016,
+              -0.28477712847187575,
+              301.44326271611953,
+              196.26670792465058
+            ],
+            "sole": 218,
+            "targetSole": 218,
+            "supportError": 0,
+            "ankleShift": -4.686626766990145,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              110.8401586299502,
+              219.9426527314168
+            ],
+            "rotation": -0.020440171768249638,
+            "matrix": [
+              0.9997911069621642,
+              -0.02043874847856972,
+              0.02043874847856972,
+              0.9997911069621642,
+              -4.674056405092506,
+              0.2577280669376023
+            ],
+            "sole": 239,
+            "targetSole": 239,
+            "supportError": 0,
+            "ankleShift": -2.057347268583186,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.53537162845379,
+                136.05246333352238
+              ],
+              [
+                97.17622999386013,
+                144.07433980321406
+              ],
+              [
+                105.03200407636544,
+                166.94980293655055
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                116.83710613231877,
+                199.79230234603057
+              ],
+              [
+                110.8401586299502,
+                219.9426527314168
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                87.67525064058876,
+                208.4751779087994
+              ],
+              [
+                69.8401586299502,
+                196.31337323300986
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.05392382918403,
+                128.65667825737785
+              ],
+              [
+                78.27108260283627,
+                152.16432949253914
+              ],
+              [
+                98.46857360462276,
+                143.38586964853727
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 7,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              186.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              186.6732772825853
+            ],
+            "to": [
+              104.01344793027994,
+              123.6383059871914
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.01344793027994,
+              123.6383059871914
+            ],
+            "to": [
+              127.01693151469969,
+              72.53214448995773
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              82.8401586299502,
+              196.05618294428805
+            ],
+            "rotation": 1.422328491847381,
+            "matrix": [
+              0.14792299717061755,
+              0.988998881146011,
+              -0.988998881146011,
+              0.14792299717061755,
+              292.6349924311039,
+              97.94335141677422
+            ],
+            "sole": 223,
+            "targetSole": 223,
+            "supportError": 0,
+            "ankleShift": -9.943817055711946,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              98.8401586299502,
+              210.57261604494218
+            ],
+            "rotation": 0.7526050123588057,
+            "matrix": [
+              0.7299107108364052,
+              0.6835425035843007,
+              -0.6835425035843007,
+              0.7299107108364052,
+              169.56650552282397,
+              -27.34077965859717
+            ],
+            "sole": 239,
+            "targetSole": 239,
+            "supportError": 0,
+            "ankleShift": -11.42738395505782,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.12881307374369,
+                137.3883705690727
+              ],
+              [
+                101.01023926504072,
+                151.71467462503114
+              ],
+              [
+                115.03990034572485,
+                171.4166697006862
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                187.85939375706133
+              ],
+              [
+                117.20405455798574,
+                200.33702488740371
+              ],
+              [
+                98.8401586299502,
+                210.57261604494218
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                185.4871608081093
+              ],
+              [
+                104.14720266561247,
+                199.5217095222194
+              ],
+              [
+                82.8401586299502,
+                196.05618294428805
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.73989118431469,
+                129.3633557240206
+              ],
+              [
+                71.24780944178572,
+                154.87238051945022
+              ],
+              [
+                93.16485651790562,
+                152.7176073380818
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 8,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              185.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              185.6732772825853
+            ],
+            "to": [
+              104.3914543701934,
+              122.70647994683509
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              104.3914543701934,
+              122.70647994683509
+            ],
+            "to": [
+              127.70115902231572,
+              71.73925843113123
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              96.8401586299502,
+              199.3588877061265
+            ],
+            "rotation": 0.25518764018152473,
+            "matrix": [
+              0.9676159472794384,
+              0.25242697670913655,
+              -0.25242697670913655,
+              0.9676159472794384,
+              89.01629493893557,
+              -32.11203305271184
+            ],
+            "sole": 222,
+            "targetSole": 222,
+            "supportError": 0,
+            "ankleShift": -5.641112293873505,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              86.8401586299502,
+              209.83219605570193
+            ],
+            "rotation": 1.0831564782537206,
+            "matrix": [
+              0.4685421401544553,
+              0.8834411485206487,
+              -0.8834411485206487,
+              0.4685421401544553,
+              230.95591604438968,
+              7.753873455620848
+            ],
+            "sole": 239,
+            "targetSole": 239,
+            "supportError": 0,
+            "ankleShift": -12.167803944298072,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.42401154551891,
+                136.55898860300516
+              ],
+              [
+                107.31574490115045,
+                156.83105836145361
+              ],
+              [
+                127.16805761237819,
+                170.64719675159813
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                186.85939375706133
+              ],
+              [
+                107.53200898720421,
+                206.11099614263532
+              ],
+              [
+                86.8401586299502,
+                209.83219605570193
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                184.4871608081093
+              ],
+              [
+                108.39620265026902,
+                181.12546107807728
+              ],
+              [
+                96.8401586299502,
+                199.3588877061265
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                69.08418245402521,
+                128.21978656244818
+              ],
+              [
+                62.54424504288776,
+                153.00343477368625
+              ],
+              [
+                83.83805728854523,
+                158.62247028226665
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 9,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              103.88735572516461,
+              120.616085493389
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              103.88735572516461,
+              120.616085493389
+            ],
+            "to": [
+              126.78858104777962,
+              69.46401927194668
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              107.8401586299502,
+              207.47562987996207
+            ],
+            "rotation": -0.2842476616374965,
+            "matrix": [
+              0.9598729065834816,
+              -0.28043538151770153,
+              0.28043538151770153,
+              0.9598729065834816,
+              -17.76810790148933,
+              12.892579798597438
+            ],
+            "sole": 228,
+            "targetSole": 228,
+            "supportError": 0,
+            "ankleShift": -3.524370120037929,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              74.8401586299502,
+              207.00058106787242
+            ],
+            "rotation": 1.1336519402303653,
+            "matrix": [
+              0.42335411090562625,
+              0.9059642911170984,
+              -0.9059642911170984,
+              0.42335411090562625,
+              228.9719249474215,
+              12.453932132825472
+            ],
+            "sole": 236,
+            "targetSole": 236,
+            "supportError": 0,
+            "ankleShift": -11.999418932127583,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                121.03018674873982,
+                134.33189186768382
+              ],
+              [
+                114.91975970773555,
+                158.26226339377098
+              ],
+              [
+                138.35462474581362,
+                164.24616685614953
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "far-leg-bent"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                95.69345850441059,
+                204.3285248660252
+              ],
+              [
+                74.8401586299502,
+                207.00058106787242
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                108.38960332383647,
+                185.89559024773803
+              ],
+              [
+                107.8401586299502,
+                207.47562987996207
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                68.62531961812958,
+                126.41167084658306
+              ],
+              [
+                54.15239739577197,
+                147.56668260137977
+              ],
+              [
+                72.32852887253549,
+                160.00164317789174
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 10,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              181.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              181.6732772825853
+            ],
+            "to": [
+              102.87706969196716,
+              118.44740902968454
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.87706969196716,
+              118.44740902968454
+            ],
+            "to": [
+              124.95696558009644,
+              66.93548616158174
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              111.8401586299502,
+              210.4495943042024
+            ],
+            "rotation": -0.5397486892731025,
+            "matrix": [
+              0.8578378621670623,
+              -0.5139204240275379,
+              0.5139204240275379,
+              0.8578378621670623,
+              -58.867474407189334,
+              53.92833688893208
+            ],
+            "sole": 233,
+            "targetSole": 233,
+            "supportError": 0,
+            "ankleShift": -5.550405695797593,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              67.8401586299502,
+              201.06110215039115
+            ],
+            "rotation": 1.1521401014957153,
+            "matrix": [
+              0.40653309945857163,
+              0.9136360539320935,
+              -0.9136360539320935,
+              0.40653309945857163,
+              225.54218856297345,
+              9.397152084125878
+            ],
+            "sole": 230,
+            "targetSole": 230,
+            "supportError": 0,
+            "ankleShift": -11.93889784960885,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.23715001876707,
+                131.88718622452876
+              ],
+              [
+                123.09571778188013,
+                156.4193812005942
+              ],
+              [
+                147.11994480757366,
+                153.62000344510352
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "base",
+            "sourceSlots": [
+              "far-thigh",
+              "far-shin"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                182.85939375706133
+              ],
+              [
+                88.73929324242744,
+                198.77501981382596
+              ],
+              [
+                67.8401586299502,
+                201.06110215039115
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                180.4871608081093
+              ],
+              [
+                106.91783878948252,
+                189.4312507113277
+              ],
+              [
+                111.8401586299502,
+                210.4495943042024
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.71227243851462,
+                124.80642106958314
+              ],
+              [
+                47.104010897697115,
+                140.04779752531252
+              ],
+              [
+                60.199218102362046,
+                157.7541677989426
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "key": 11,
+        "bodyBones": [
+          {
+            "id": "root",
+            "from": [
+              96,
+              240
+            ],
+            "to": [
+              92.8401586299502,
+              183.6732772825853
+            ]
+          },
+          {
+            "id": "torso",
+            "from": [
+              92.8401586299502,
+              183.6732772825853
+            ],
+            "to": [
+              102.62408659818284,
+              120.40776729876842
+            ]
+          },
+          {
+            "id": "head",
+            "from": [
+              102.62408659818284,
+              120.40776729876842
+            ],
+            "to": [
+              124.49775870536818,
+              68.8079371774653
+            ]
+          }
+        ],
+        "shoes": [
+          {
+            "chain": "nearLeg",
+            "sourceSlot": "near-shoe-run",
+            "sourceAnkle": [
+              66,
+              222
+            ],
+            "sourceShin": [
+              74,
+              197
+            ],
+            "ankle": [
+              112.8401586299502,
+              212.39174374009713
+            ],
+            "rotation": -0.5920517907595684,
+            "matrix": [
+              0.8297973944300641,
+              -0.5580647670271585,
+              0.5580647670271585,
+              0.8297973944300641,
+              -65.81684768246322,
+              65.00899680041536
+            ],
+            "sole": 236,
+            "targetSole": 236,
+            "supportError": 0,
+            "ankleShift": -6.608256259902873,
+            "searchSamples": 10
+          },
+          {
+            "chain": "farLeg",
+            "sourceSlot": "far-shoe-run",
+            "sourceAnkle": [
+              111,
+              222
+            ],
+            "sourceShin": [
+              119,
+              197
+            ],
+            "ankle": [
+              65.8401586299502,
+              195.86610952703182
+            ],
+            "rotation": 1.4048928934582794,
+            "matrix": [
+              0.16514342706462756,
+              0.9862695617818437,
+              -0.9862695617818437,
+              0.16514342706462756,
+              266.4610809413458,
+              49.72834736089986
+            ],
+            "sole": 223,
+            "targetSole": 223,
+            "supportError": 0,
+            "ankleShift": -10.133890472968176,
+            "searchSamples": 10
+          }
+        ],
+        "limbs": [
+          {
+            "id": "farArm",
+            "variant": "base",
+            "sourceSlots": [
+              "far-upper-arm",
+              "far-forearm"
+            ],
+            "bones": [
+              [
+                120.03778700994717,
+                133.7779968394053
+              ],
+              [
+                127.80700793905523,
+                157.22238222599006
+              ],
+              [
+                150.76594975223895,
+                149.61403215394128
+              ]
+            ]
+          },
+          {
+            "id": "farLeg",
+            "variant": "base",
+            "sourceSlots": [
+              "far-thigh",
+              "far-shin"
+            ],
+            "bones": [
+              [
+                101.25699459775763,
+                184.85939375706133
+              ],
+              [
+                86.64696080573194,
+                198.8789127429562
+              ],
+              [
+                65.8401586299502,
+                195.86610952703182
+              ]
+            ]
+          },
+          {
+            "id": "nearLeg",
+            "variant": "bent",
+            "sourceSlots": [
+              "near-leg-bent"
+            ],
+            "bones": [
+              [
+                84.42332266214278,
+                182.4871608081093
+              ],
+              [
+                106.82574663412883,
+                191.65947786430536
+              ],
+              [
+                112.8401586299502,
+                212.39174374009713
+              ]
+            ]
+          },
+          {
+            "id": "nearArm",
+            "variant": "base",
+            "sourceSlots": [
+              "near-upper-arm",
+              "near-forearm"
+            ],
+            "bones": [
+              [
+                67.48500664306341,
+                126.90738728056147
+              ],
+              [
+                44.30310324297287,
+                137.84353627135664
+              ],
+              [
+                53.69931082773569,
+                157.7611486539703
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "unchanged": {
+    "rig": true,
+    "motions": true,
+    "identity": true,
+    "shoeParts": true,
+    "allSkinImages": true
+  },
+  "roundtrip": {
+    "project": true,
+    "wardrobeItem": true
+  },
+  "files": {
+    "theo-ankle-follow-shoes.wardrobe.zip": "47b90d710cc1d9e75aa3783575f00881ab3d99c50c2b4a0c1c50f95ac363752b",
+    "theo-ankle-follow.rig.zip": "f17f9920bcf340f111eb53d0cbbca6eb620317844b6b21b0d16d0472b313041d",
+    "slots/near-shoe-run.png": "2c00eeed1fbed1e1a7f7d0aa5b2dbe82b755c66ea2e195fc75b38e028ccdbb9c",
+    "masks/near-shoe-run.png": "fedbdfdab067bdd774e0e4bb422d15ce4d18800ffdeed0b418fc5aa3f6f97e43",
+    "slots/far-shoe-run.png": "625bf27e6d54bcf5bc5184b7bed6b4fabab4ce83034a769d67d6f8d3e44e049d",
+    "masks/far-shoe-run.png": "c0aaffc4ab61dffb2fe9aa0878f6f8a5d68423c3803152ab27ddfd3a0da49b64",
+    "diagnostics/before/run-0.png": "9625c663d63362a673f7f065553596e2d59bf600282221d048cf1bb2d9b49d5a",
+    "diagnostics/before/run-1.png": "eaf301d85f177ad8f9cde55aa8e44587dc957f22f5fb34423507415002374aef",
+    "diagnostics/before/run-2.png": "d408219b15fb2c5a3ed23bedd4471aead67ada4b583f024f43cfbf51b6603af0",
+    "diagnostics/before/run-3.png": "0f9d366f73ea974f1d1cfca57f488dacdb50a489e05ec7bdd0f793cf0248c76e",
+    "diagnostics/before/run-4.png": "f5f7a00382c2de97fa0511913f8f41da89dc6a6e40f6a73188caca925aae6163",
+    "diagnostics/before/run-5.png": "2dee8eb7fff85dbf4e17f716b29d3b312f1dce81ccbc82df643c1c3e1b2fc303",
+    "diagnostics/before/run-6.png": "4603f91bb9e731448d18ae6a72407adb3d19921a865419f36c373a5e41133f7c",
+    "diagnostics/before/run-7.png": "08ad2467bae3ed9d5f66c021c553442f968e7717d4d9836ff9ccc32f08db4576",
+    "diagnostics/before/run-8.png": "b92a21324733e6c8525425932b0b17127538e3b9494c655d0703e6cd2d5dcd1f",
+    "diagnostics/before/run-9.png": "4135f148e658b08a6fc5071c1d59aba8857f9fd4f024ce3a1f8c727af8cf272c",
+    "diagnostics/before/run-10.png": "ea2d0d2e425ef492ee958b66eb2409b7b78a2fa4ae8769726177738b3f986b6d",
+    "diagnostics/before/run-11.png": "830ebc1045750c18154b6d31ec06d520215b86cb36f3cf51cbc34f32ab7ec32e",
+    "diagnostics/final/run-0.png": "d3d96298e4505d28b0721845227198e33c640ab10d385f4e845efa38b17a35dc",
+    "diagnostics/final/run-1.png": "a07048082f6994d1b6363d84a252cce80637ae6c6cd040e7568d095ac44eac72",
+    "diagnostics/final/run-2.png": "e3ec2b7c77f4023dcc33850ddde7f04f5d7e865ba2b0f5f875e2757508ebbd45",
+    "diagnostics/final/run-3.png": "336291aca062f55546a84d5d8f386f2345d0f700b08f92c8dbade0066d424b31",
+    "diagnostics/final/run-4.png": "81fcb729e9fe1f37b298632ebcb08da295647d03b7fd0c8dca03d47cd783c033",
+    "diagnostics/final/run-5.png": "591d41514e01322e6e032177e9404f5d2ed2d9453ff54278bae8071ab5d439c6",
+    "diagnostics/final/run-6.png": "bc270276cc32db64f9e92e2bb43cbc9dccc4174cb1f92a7967086085cb992c61",
+    "diagnostics/final/run-7.png": "52fc85466f06f0aa9eae16000e649ef8f536e846f3827b482a0dfbb92c74beb8",
+    "diagnostics/final/run-8.png": "e8de8c8afb0afae8aa972399f19ec4326e924d988b54cdcbe143aea528540ddd",
+    "diagnostics/final/run-9.png": "6a4aaeea970c6e5b4b0a31e3c015d0b8e0832b31587dd34a44fda7e8e8577318",
+    "diagnostics/final/run-10.png": "94e78543de320dbaa988caa5b88b495c3c4d71b82aed47b6b18bd05deaf061d4",
+    "diagnostics/final/run-11.png": "9ed6cc44071e77af2c1e863ecbe66df6991323878acedb247d8e6e5e892b29b1",
+    "diagnostics/run-comparison-right-2x.gif": "6976630bcaf645fa456519adc53e430ff8ba2c3c8a77d7bf85ecf4ab047d604a",
+    "diagnostics/run-comparison-left-2x.gif": "b9cd5cc2a3944c11ec52dd8b5fefc64ec23d2e2d056113e811b41675810615ce",
+    "diagnostics/run-keyframes-1x.png": "9304c95854ecb9c9517d93abecd5f6a09341787fd89f1b61a6bc4a16500f7f11",
+    "diagnostics/run-keyframes-2x.png": "6addc685a77ffbc3bc1413a871198db9c8a929f37b1135f399c0ddc17d76371c",
+    "diagnostics/ankle-connections-3x.png": "8730669e3c22eeac4685060a1cc7a4070036c4b60ca26d5475dfecca2087f1ba"
+  }
+}

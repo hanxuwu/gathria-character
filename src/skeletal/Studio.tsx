@@ -50,6 +50,8 @@ import {
 import {
   ALL_SLOTS,
   V1_SLOTS,
+  V2_SLOTS,
+  type JointTriple,
   CHAINS,
   type AnimationName,
   type AuthoringProject,
@@ -312,7 +314,15 @@ export function SkinStudio() {
   );
   const [slot, setSlot] = useState<Slot>("torso");
   const availableSlots =
-    project.skin.metadata.version === 2 ? ALL_SLOTS : V1_SLOTS;
+    project.skin.metadata.version >= 3
+      ? ALL_SLOTS.filter(
+          (s) =>
+            V1_SLOTS.includes(s as (typeof V1_SLOTS)[number]) ||
+            project.skin.metadata.slots.includes(s),
+        )
+      : project.skin.metadata.version === 2
+        ? V2_SLOTS
+        : V1_SLOTS;
   // A wardrobe switch or undo may replace a v2 skin with a v1 skin.
   // Keep the source editor on a valid attachment after either transition.
   useEffect(() => {
@@ -352,10 +362,37 @@ export function SkinStudio() {
         : undefined,
     [rig, animation, keyIndex, expression, bones, mesh, skeletonOnly],
   );
-  const joints = project.skin.metadata.bindings.chains[chain];
-  const jointLabels = chain.endsWith("Arm")
-    ? ["Shoulder", "Elbow", "Wrist"]
-    : ["Hip", "Knee", "Ankle"];
+  const sourceLeg =
+    project.skin.metadata.runLegs &&
+    (chain === "nearLeg" || chain === "farLeg") &&
+    project.skin.metadata.runLegs[chain].slot === slot
+      ? project.skin.metadata.runLegs[chain]
+      : undefined;
+  const sourceShoe =
+    project.skin.metadata.runShoes &&
+    (chain === "nearLeg" || chain === "farLeg") &&
+    project.skin.metadata.runShoes[chain].slot === slot
+      ? project.skin.metadata.runShoes[chain]
+      : undefined;
+  const followSourceShoe =
+    project.skin.metadata.version === 4 &&
+    sourceShoe &&
+    (chain === "nearLeg" || chain === "farLeg")
+      ? project.skin.metadata.runShoes[chain]
+      : undefined;
+  const joints: readonly Point[] =
+    sourceLeg?.joints ??
+    (sourceShoe
+      ? [
+          ...(followSourceShoe ? [followSourceShoe.sourceShin] : []),
+          sourceShoe.ankle,
+        ]
+      : project.skin.metadata.bindings.chains[chain]);
+  const jointLabels = sourceShoe
+    ? [...(followSourceShoe ? ["Source shin"] : []), "Source ankle"]
+    : chain.endsWith("Arm")
+      ? ["Shoulder", "Elbow", "Wrist"]
+      : ["Hip", "Knee", "Ankle"];
   const offset = project.skin.metadata.bindings.offsets[slot] ?? [0, 0];
   const sourcePixels = useMemo(() => {
     const original = project.skin.images[slot];
@@ -414,6 +451,18 @@ export function SkinStudio() {
     loadedBindings = resetBindings,
   ) {
     const candidate = prepareRig(next.rig, next.skin, next.motions);
+    // A valid first pose does not prove the remaining coupled run constraints.
+    // Reject unsupported V4 edits/imports atomically before replacing live state.
+    if (next.skin.metadata.version === 4)
+      for (let key = 0; key < next.motions.clips.run.keys.length; key++) {
+        try {
+          candidate.frame("run", key, next.preview.expression);
+        } catch (error) {
+          throw Error(
+            `Run pose ${key + 1}: ${error instanceof Error ? error.message : "unsupported shoe support"}`,
+          );
+        }
+      }
     const preview = next.preview;
     candidate.frame(
       preview.animation,
@@ -755,21 +804,77 @@ export function SkinStudio() {
     return () => window.removeEventListener("keydown", shortcut);
   }, [history, busy]);
 
-  function moveJoint(joint: number, axis: number, value: number) {
+  function updateJoint(
+    joint: number,
+    point: Point,
+    label = "Edit source landmark",
+  ) {
     updateMetadata((metadata) => {
-      const points = metadata.bindings.chains[chain].map((point, index) =>
-        index === joint
-          ? point.map((coordinate, a) => (a === axis ? value : coordinate))
-          : [...point],
-      ) as unknown as typeof joints;
+      if (
+        sourceLeg &&
+        metadata.version >= 3 &&
+        metadata.runLegs &&
+        (chain === "nearLeg" || chain === "farLeg")
+      )
+        return {
+          ...metadata,
+          runLegs: {
+            ...metadata.runLegs,
+            [chain]: {
+              ...metadata.runLegs[chain],
+              joints: metadata.runLegs[chain].joints.map((p, index) =>
+                index === joint ? point : p,
+              ) as unknown as JointTriple,
+            },
+          },
+        };
+      if (
+        sourceShoe &&
+        metadata.runShoes &&
+        (chain === "nearLeg" || chain === "farLeg")
+      ) {
+        if (metadata.version === 4)
+          return {
+            ...metadata,
+            runShoes: {
+              ...metadata.runShoes,
+              [chain]: {
+                ...metadata.runShoes[chain],
+                ...(joint === 0 ? { sourceShin: point } : { ankle: point }),
+              },
+            },
+          };
+        if (metadata.version === 3)
+          return {
+            ...metadata,
+            runShoes: {
+              ...metadata.runShoes,
+              [chain]: { ...metadata.runShoes[chain], ankle: point },
+            },
+          };
+      }
       return {
         ...metadata,
         bindings: {
           ...metadata.bindings,
-          chains: { ...metadata.bindings.chains, [chain]: points },
+          chains: {
+            ...metadata.bindings.chains,
+            [chain]: metadata.bindings.chains[chain].map((p, index) =>
+              index === joint ? point : p,
+            ),
+          },
         },
-      };
-    }, `Move ${jointLabels[joint].toLowerCase()}`);
+      } as SkinPack["metadata"];
+    }, label);
+  }
+  function moveJoint(joint: number, axis: number, value: number) {
+    updateJoint(
+      joint,
+      joints[joint].map((coordinate, a) =>
+        a === axis ? value : coordinate,
+      ) as unknown as Point,
+      `Move ${jointLabels[joint].toLowerCase()}`,
+    );
   }
 
   const skinName = project.skin.metadata.name;
@@ -996,12 +1101,19 @@ export function SkinStudio() {
             192 × 256, transparent PNG, up to 1 MiB. This changes only the
             selected attachment; its binding remains in place.
           </p>
-          {project.skin.metadata.version === 2 && (
+          {project.skin.metadata.actionForearms && (
             <p className="skin-help">
               Active forearms are used for{" "}
               {Object.keys(project.skin.metadata.actionForearms).join(" and ")}.
               Idle and walk keep the relaxed forearms. Both pairs share the same
               elbow and wrist landmarks.
+            </p>
+          )}
+          {project.skin.metadata.version >= 3 && (
+            <p className="skin-help">
+              Run alternatives have their own source landmarks. Selecting a bent
+              leg or run shoe edits only that artwork registration; base body
+              proportions stay unchanged. Other actions keep the base parts.
             </p>
           )}
           <details className="skin-details">
@@ -1121,7 +1233,7 @@ export function SkinStudio() {
             </figure>
             <figure>
               <BindingCanvas
-                key={chain}
+                key={`${chain}-${sourceLeg || sourceShoe ? slot : "base"}`}
                 pixels={sourcePixels}
                 zoom={zoom}
                 joints={joints}
@@ -1137,23 +1249,7 @@ export function SkinStudio() {
                     ),
                   );
                 }}
-                onChange={(joint, point) =>
-                  updateMetadata(
-                    (metadata) =>
-                      ({
-                        ...metadata,
-                        bindings: {
-                          ...metadata.bindings,
-                          chains: {
-                            ...metadata.bindings.chains,
-                            [chain]: metadata.bindings.chains[chain].map(
-                              (p, index) => (index === joint ? point : p),
-                            ),
-                          },
-                        },
-                      }) as SkinPack["metadata"],
-                  )
-                }
+                onChange={(joint, point) => updateJoint(joint, point)}
                 onCommit={() => setHistory((previous) => finishEdit(previous))}
                 onCancel={() => {
                   setHistory((previous) => cancelEdit(previous));
@@ -1163,7 +1259,10 @@ export function SkinStudio() {
               <figcaption>
                 Source · {human(slot)}
                 <br />
-                {LABELS[chain]} landmarks · facing right
+                {sourceLeg || sourceShoe
+                  ? "Alternative source"
+                  : LABELS[chain]}{" "}
+                landmarks · facing right
               </figcaption>
             </figure>
           </div>
@@ -1260,6 +1359,7 @@ export function SkinStudio() {
           <MotionEditor
             animation={animation}
             libraryVersion={project.motions.version}
+            followShinShoes={project.skin.metadata.version === 4}
             clip={clip}
             sequenceFrame={sequenceFrame}
             disabled={busy !== null || !!history.transaction}
@@ -1299,6 +1399,7 @@ export function SkinStudio() {
             Joint chain
             <select
               aria-label="Joint chain"
+              disabled={!!sourceLeg || !!sourceShoe}
               value={chain}
               onChange={(event) => setChain(event.target.value as ChainName)}
             >
@@ -1312,6 +1413,8 @@ export function SkinStudio() {
           <p className="skin-help">
             Drag the source-image handles, or enter coordinates here. Both limb
             pieces share the middle joint; a whole drag is one undo step.
+            {(sourceLeg || sourceShoe) &&
+              " Editing this alternative source leaves the anatomical chain unchanged."}
           </p>
           <div className="skin-joints">
             {joints.map((point, index) => (
@@ -1320,15 +1423,15 @@ export function SkinStudio() {
                 <NumberField
                   label={`${jointLabels[index]} X`}
                   value={point[0]}
-                  min={0}
-                  max={191}
+                  min={sourceLeg || sourceShoe ? 1 : 0}
+                  max={sourceLeg || sourceShoe ? 190 : 191}
                   onChange={(value) => moveJoint(index, 0, value)}
                 />
                 <NumberField
                   label={`${jointLabels[index]} Y`}
                   value={point[1]}
-                  min={0}
-                  max={255}
+                  min={sourceLeg || sourceShoe ? 1 : 0}
+                  max={sourceLeg || sourceShoe ? 254 : 255}
                   onChange={(value) => moveJoint(index, 1, value)}
                 />
               </div>
@@ -1408,7 +1511,9 @@ export function SkinStudio() {
           </button>
           <p className="skin-help">
             Reset keeps your replacement artwork. Check bent joints and the loop
-            after editing.
+            after editing.{" "}
+            {project.skin.metadata.version >= 3 &&
+              "This resets base bindings; alternative source registration is preserved. Use Undo to restore an edited alternative."}
           </p>
         </aside>
       </fieldset>

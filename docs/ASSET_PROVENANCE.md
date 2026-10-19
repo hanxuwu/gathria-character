@@ -1,5 +1,36 @@
 # Artwork provenance and reuse
 
+## Theo running shoe parenting
+
+This follow-up makes no image-generation call and changes no source pixels or
+material masks. A separately identified shoe item V5 adds a measured source
+shin direction to the previous running shoes. Both points come from the shoe's
+own original complete-character drawing, not the separately generated bent
+trouser drawing. The [source record](../artwork/theo-ankle-follow/README.md)
+retains coordinates, hashes, the original project and reproducible preparation.
+The new Skin V4 renderer couples shoe rotation and support to the final leg;
+all earlier items and projects retain their rendering. Actual Studio-exported
+PNG/GIF/ZIP evidence is linked from the [review](THEO_ANKLE_FOLLOW_REVIEW.md).
+
+## Theo registered running alternatives
+
+One OpenAI image-generation call on 2026-10-18 UTC produced an isolated complete
+bent navy trouser leg after the cropped original run source exposed a skewed
+cuff and deep mesh folds. The exact prompt, untouched output and both input
+references are retained in
+[`artwork/theo-passing-poses/source`](../artwork/theo-passing-poses/source/README.md).
+The prompt's initial hip-cut diagnosis is explicitly corrected in the source
+record; UV tracing identified the visible flap at the cuff.
+
+Side-view running shoes reuse the original complete Theo model. Offline
+preparation records source joints, uniform registration, alpha threshold and
+material ownership. Original fifteen parts, identity and motions are preserved.
+Reusable clothing ZIPs carry their own source notice. The
+[review](THEO_PASSING_POSES_REVIEW.md) uses actual application exports, and
+retains rejected source/registration trials separately. No image service runs
+in the browser; this is AI-assisted source artwork under the reuse notice below,
+not a claim of hand-drawn art or completed natural motion.
+
 ## Theo run shoulder and ownership repair
 
 This follow-up reuses the exact complete Theo study artwork and makes no new
@@ -219,7 +250,6 @@ All lineup PNGs and animation previews in [wardrobe-items/](wardrobe-items/)
 come from the application's actual exported atlases. Imported user artwork
 retains its supplied provenance and rights; clothing import does not assign it
 a new license. See [the feature review](WARDROBE_ITEMS_REVIEW.md).
-
 
 ## Theo complete-figure study
 

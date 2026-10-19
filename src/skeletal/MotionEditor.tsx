@@ -20,6 +20,7 @@ import "./motion-editor.css";
 export interface MotionEditorProps {
   animation: AnimationName;
   libraryVersion?: MotionLibrary["version"];
+  followShinShoes?: boolean;
   clip: MotionClip;
   sequenceFrame: number;
   disabled?: boolean;
@@ -60,6 +61,7 @@ function MotionNumber({
   min,
   max,
   step = 1,
+  disabled = false,
   onCommit,
 }: {
   label: string;
@@ -67,6 +69,7 @@ function MotionNumber({
   min: number;
   max: number;
   step?: number;
+  disabled?: boolean;
   onCommit: (value: number) => void;
 }) {
   const [draft, setDraft] = useState(readable(value));
@@ -76,6 +79,7 @@ function MotionNumber({
     setInvalid(false);
   }, [value]);
   const commit = () => {
+    if (disabled) return;
     // Do not round-trip an untouched display value: radians may have greater
     // precision than the two decimal places shown by the number field.
     if (draft === readable(value)) return;
@@ -86,6 +90,9 @@ function MotionNumber({
       return;
     }
     setInvalid(false);
+    // The owner may reject a coupled support constraint without changing value.
+    // Restore the saved display now; successful commits update it via props.
+    setDraft(readable(value));
     onCommit(parsed);
   };
   return (
@@ -94,6 +101,7 @@ function MotionNumber({
       <input
         type="number"
         aria-label={label}
+        disabled={disabled}
         value={draft}
         min={min}
         max={max}
@@ -128,6 +136,7 @@ function MotionNumber({
 export function MotionEditor({
   animation,
   libraryVersion = 1,
+  followShinShoes = false,
   clip,
   sequenceFrame,
   disabled = false,
@@ -245,7 +254,12 @@ export function MotionEditor({
           : "Feet and arms use opposing half-cycle poses."}
         {animation === "run" &&
           libraryVersion === 2 &&
-          " Foot travel is measured from the shared pelvis center. Shoe pitch keeps its opaque sole grounded before foot lift; upper body lean rotates above the pelvis."}
+          (followShinShoes
+            ? " Foot travel is measured from the shared pelvis center; upper body lean rotates above the pelvis."
+            : " Foot travel is measured from the shared pelvis center. Shoe pitch keeps its opaque sole grounded before foot lift; upper body lean rotates above the pelvis.")}
+        {animation === "run" &&
+          followShinShoes &&
+          " Run shoes follow the final shin rotation at the same ankle. Shoe pitch is disabled for these shoes; its saved value remains available for other shoe versions and actions."}
       </p>
       <div className="motion-pose-workspace">
         {preview && (
@@ -262,6 +276,11 @@ export function MotionEditor({
               <MotionNumber
                 key={`${animation}-${keyIndex}-${field}`}
                 label={FIELD_LABELS[field]}
+                disabled={
+                  animation === "run" &&
+                  followShinShoes &&
+                  field === "shoePitch"
+                }
                 value={angle ? degrees(pose[field] ?? 0) : (pose[field] ?? 0)}
                 min={angle ? degrees(min) : min}
                 max={angle ? degrees(max) : max}

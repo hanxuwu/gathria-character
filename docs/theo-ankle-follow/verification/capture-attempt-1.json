@@ -1,0 +1,17 @@
+{
+  "attempt": 1,
+  "status": "failed-harness-fixture",
+  "failure": "Old V4 shoe ID was selected without importing it into the portable final project. That project correctly contains only its selected top/bottom/new V5 shoes.",
+  "productionCodeChanged": false,
+  "assertionsWeakened": false,
+  "repair": "Explicitly import original V4 shoe ZIP before verifying old pitch behavior and bent-leg preservation.",
+  "completedBeforeFailure": [
+    "Baseline and final actual UI exports:72poses deterministic/PNG-equal",
+    "80editor frame checks",
+    "Source-axis editing/save/freshreopen/undo",
+    "Invalid nonfirst-key edit rollback and undo preservation",
+    "Source19attachment inspection"
+  ],
+  "partialExportsRetainedLocally": "/tmp/theo-ankle-follow-failed-capture-1",
+  "deliveryAction": "Restart complete capture into fresh final directory; no incomplete final report retained."
+}

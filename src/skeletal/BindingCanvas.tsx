@@ -6,18 +6,13 @@ import {
   nudgeJoint,
   type BindingDrag,
 } from "./binding-edit";
-import {
-  FRAME_HEIGHT,
-  FRAME_WIDTH,
-  type JointTriple,
-  type Point,
-} from "./types";
+import { FRAME_HEIGHT, FRAME_WIDTH, type Point } from "./types";
 import "./binding-editor.css";
 
 export interface BindingCanvasProps {
   pixels: Uint8ClampedArray;
   zoom: number;
-  joints: JointTriple;
+  joints: readonly Point[];
   jointLabels: readonly string[];
   label: string;
   disabled?: boolean;

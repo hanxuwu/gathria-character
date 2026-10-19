@@ -1,0 +1,88 @@
+{
+  "executedDateUTC": "2026-10-18",
+  "baseCommit": "30125e5863a0d52f9a2c45ed397a16c0d9190c53",
+  "implementationCommit": "724bf0d",
+  "scope": "Current batch execution, not historical counts. Actual capture/inventory records are separate.",
+  "checks": [
+    {
+      "command": "npm test",
+      "attempt": 1,
+      "result": "failed",
+      "passed": 481,
+      "failed": 1,
+      "cause": "Future-version test still used item V4, now intentionally supported. V4 missing colorModel remains invalid; unsupported-version assertion moved to V5."
+    },
+    {
+      "command": "npm test",
+      "attempt": 2,
+      "result": "passed",
+      "tests": 482,
+      "files": 38,
+      "durationSeconds": 52.68
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "includes": ["TypeScript build check", "Vite production build"]
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\",\"--disable-dev-shm-usage\"]' npx playwright test tests/e2e/skin-studio.spec.ts tests/e2e/skin-authoring.spec.ts tests/e2e/wardrobe-items.spec.ts tests/e2e/wardrobe-source-colors.spec.ts tests/e2e/action-forearms.spec.ts tests/e2e/run-v2.spec.ts --workers=1",
+      "result": "passed",
+      "tests": 18,
+      "durationReported": "4.5m"
+    }
+  ],
+  "logs": {
+    "unit-first": "verification-logs/unit-first.log",
+    "unit-final": "verification-logs/unit-final.log",
+    "build": "verification-logs/build.log",
+    "chromium": "verification-logs/chromium.log"
+  },
+  "actualExportEvidence": "final/evidence-index.json",
+  "visualAcceptance": "Pending user review. Pose9 boot overlap, pose10 rear-trouser triangle, residual inner folds and source-width transitions remain.",
+  "sourceArchiveInventory": "source-file-checks.json",
+  "sourceArchiveChecks": {
+    "png": 82,
+    "gif": 3,
+    "zip": 7,
+    "result": "passed"
+  },
+  "sourceCommit": "ab9af71011cb55ce4e5150fb08b219181695c7a8",
+  "actualExportChecks": {
+    "result": "passed",
+    "captureCommit": "ab9af71011cb55ce4e5150fb08b219181695c7a8",
+    "semanticPacks": 6,
+    "poses": 216,
+    "editorFrameFacingComparisons": 80,
+    "portableItemRoundtrips": 2,
+    "projectReopens": 2,
+    "independentPlaybackCasesAfterStudioClosed": 10,
+    "sourceEditSaveReopenUndoAndGarmentOwnership": "passed",
+    "runtimeAndInputHashes": "unchanged",
+    "fileIntegrity": "final/file-integrity.json",
+    "decodedFiles": {
+      "png": 76,
+      "gif": 16,
+      "zip": 23
+    }
+  },
+  "independentReview": {
+    "nonRunFramesPixelExact": 24,
+    "runFramesUpperPixelsExact": {
+      "frames": 12,
+      "region": "y < 170"
+    },
+    "selectedPreparationMatchesActualRunPixels": true,
+    "sampledDeliveredGifs": 5,
+    "runGifFrames": 12,
+    "runGifLoop": 0,
+    "runGifDurationMs": 670,
+    "visualFindings": [
+      "Near/front knees and shoe view improved",
+      "Pose 9 boots remain stacked",
+      "Pose 10 rear/base trouser still has a conspicuous triangular flap",
+      "Base/bent source width transitions and residual inner folds remain"
+    ],
+    "userVisualAcceptance": false
+  }
+}

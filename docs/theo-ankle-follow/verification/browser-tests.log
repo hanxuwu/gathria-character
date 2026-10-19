@@ -1,0 +1,40 @@
+
+> gathria-character@0.1.0 test:e2e
+> playwright test tests/e2e/skin-studio.spec.ts tests/e2e/skin-authoring.spec.ts tests/e2e/wardrobe-items.spec.ts tests/e2e/wardrobe-source-colors.spec.ts tests/e2e/action-forearms.spec.ts tests/e2e/run-v2.spec.ts
+
+[WebServer] (node:47461) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:47491) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 2 workers
+
+(node:47538) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:47537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 tests/e2e/action-forearms.spec.ts:113:1 › v2 skin uses paired active forearms only for run and jump, preserving idle/walk and save-reopen pixels (12.2s)
+  ✓   1 tests/e2e/run-v2.spec.ts:27:1 › v2 run controls, reset, history and ZIP reopen preserve explicit motion semantics (19.0s)
+  ✓   4 tests/e2e/run-v2.spec.ts:121:1 › historical Theo motion v1 retains all 36 exported frames and its manifest (8.4s)
+  ✓   5 tests/e2e/skin-authoring.spec.ts:68:1 › source joints drag in native pixels at both zooms, stay unmirrored and form cancellable undo transactions (3.1s)
+  ✓   3 tests/e2e/action-forearms.spec.ts:194:1 › v2 wardrobe top roundtrips and switching to a v1 top removes active mappings; undo and project reopen restore them (27.0s)
+  ✓   6 tests/e2e/skin-authoring.spec.ts:150:1 › edited shared poses and timing survive skin swaps and projects, then play exported pixels independently (10.2s)
+  ✓   7 tests/e2e/skin-studio.spec.ts:37:1 › one studio swaps both skins across shared actions, expressions, mirrored playback and overlays (5.5s)
+  ✓   8 tests/e2e/skin-authoring.spec.ts:364:1 › PNG replacement participates in undo and redo while rejected input preserves the redo branch (16.8s)
+  ✓  10 tests/e2e/skin-authoring.spec.ts:436:1 › the checked-in original authoring project opens unchanged and project import is reversible (3.0s)
+  ✓  11 tests/e2e/wardrobe-items.spec.ts:151:1 › custom clothing imports atomically, keeps identity and motions, and reopens with its portable library (18.4s)
+  ✓   9 tests/e2e/skin-studio.spec.ts:113:1 › real PNG replacement and binding edits survive skin/project ZIPs; invalid imports preserve work and template PNGs decode (49.5s)
+  ✓  12 tests/e2e/wardrobe-items.spec.ts:288:1 › bottom and shoe items roundtrip; duplicate, corrupt, and unsupported imports leave work intact; only unused items can be removed (18.1s)
+  ✓  13 tests/e2e/skin-studio.spec.ts:307:1 › binding offsets stay on integer pixels and a valid but unrenderable skin cannot replace current work (17.0s)
+  ✓  15 tests/e2e/skin-studio.spec.ts:352:3 › denim-daytrip exports actual preview pixels and plays all actions independently after authoring closes (7.1s)
+  ✓  16 tests/e2e/skin-studio.spec.ts:352:3 › coral-afternoon exports actual preview pixels and plays all actions independently after authoring closes (8.4s)
+  ✓  17 tests/e2e/wardrobe-source-colors.spec.ts:3:1 › source-relative items round trip through editable PNG ZIPs and self-contained projects (13.8s)
+  ✓  14 tests/e2e/wardrobe-items.spec.ts:372:1 › an imported clothing look exports every action and plays independently after the editor closes (47.9s)
+  ✓  18 tests/e2e/wardrobe-source-colors.spec.ts:140:1 › previous Theo, Rose, Maple and Willow projects retain every baked pixel (13.7s)
+
+  18 passed (2.6m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

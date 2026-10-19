@@ -36,7 +36,15 @@ export const ACTION_FOREARM_SLOTS = [
   "near-forearm-active",
   "far-forearm-active",
 ] as const;
-export const ALL_SLOTS = [...V1_SLOTS, ...ACTION_FOREARM_SLOTS] as const;
+export const V2_SLOTS = [...V1_SLOTS, ...ACTION_FOREARM_SLOTS] as const;
+/** Complete cloth-only leg alternatives and independently registered run shoes. */
+export const RUN_LEG_SLOTS = ["near-leg-bent", "far-leg-bent"] as const;
+export const RUN_SHOE_SLOTS = ["near-shoe-run", "far-shoe-run"] as const;
+export const ALL_SLOTS = [
+  ...V2_SLOTS,
+  ...RUN_LEG_SLOTS,
+  ...RUN_SHOE_SLOTS,
+] as const;
 export type Slot = (typeof ALL_SLOTS)[number];
 export type ForearmAction = "run" | "jump";
 export type ActionForearms = Partial<
@@ -51,6 +59,33 @@ export type ActionForearms = Partial<
 export const CHAINS = ["nearArm", "farArm", "nearLeg", "farLeg"] as const;
 export type ChainName = (typeof CHAINS)[number];
 export type JointTriple = readonly [Point, Point, Point];
+export interface RunLegs {
+  nearLeg: { slot: "near-leg-bent"; joints: JointTriple };
+  farLeg: { slot: "far-leg-bent"; joints: JointTriple };
+}
+export interface RunShoes {
+  nearLeg: { slot: "near-shoe-run"; ankle: Point };
+  farLeg: { slot: "far-shoe-run"; ankle: Point };
+}
+/** V4 explicit footwear parenting: sourceShin→ankle registers the shoe's local leg axis. */
+export interface ShinFollowRunShoes {
+  nearLeg: { slot: "near-shoe-run"; ankle: Point; sourceShin: Point };
+  farLeg: { slot: "far-shoe-run"; ankle: Point; sourceShin: Point };
+}
+export interface ShoeInspection {
+  chain: "nearLeg" | "farLeg";
+  sourceSlot: Slot;
+  sourceAnkle: Point;
+  sourceShin: Point;
+  ankle: Point;
+  rotation: number;
+  matrix: readonly [number, number, number, number, number, number];
+  sole: number;
+  targetSole: number;
+  supportError: number;
+  ankleShift: number;
+  searchSamples: number;
+}
 export type Expression = "neutral" | "gentle" | "joyful";
 export interface BoneDefinition {
   id: string;
@@ -102,8 +137,23 @@ interface SkinMetadataBase {
 }
 export type SkinMetadata = SkinMetadataBase &
   (
-    | { version: 1; actionForearms?: never }
-    | { version: 2; actionForearms: ActionForearms }
+    | { version: 1; actionForearms?: never; runLegs?: never; runShoes?: never }
+    | {
+        version: 2;
+        actionForearms: ActionForearms;
+        runLegs?: never;
+        runShoes?: never;
+      }
+    | ({ version: 3; actionForearms?: ActionForearms } & (
+        | { runLegs: RunLegs; runShoes?: RunShoes }
+        | { runLegs?: RunLegs; runShoes: RunShoes }
+      ))
+    | {
+        version: 4;
+        actionForearms?: ActionForearms;
+        runLegs?: RunLegs;
+        runShoes: ShinFollowRunShoes;
+      }
   );
 export interface SkinPack {
   metadata: SkinMetadata;
@@ -153,9 +203,13 @@ export interface AuthoringProject {
   preview: { animation: AnimationName; facing: Facing; expression: Expression };
 }
 export interface RigInspection {
+  shoes?: ShoeInspection[];
   bodyBones?: Array<{ id: string; from: Point; to: Point }>;
   limbs: Array<{
     id: string;
+    /** The chosen cloth source; anatomical bones remain independent. */
+    sourceSlots?: Slot[];
+    variant?: "base" | "bent";
     bones: Point[];
     vertices: Point[];
     triangles: number[];

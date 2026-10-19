@@ -1,0 +1,52 @@
+2026-10-18T06:39:35.362Z Actual UI export before: all 36 baked PNG poses match; deterministic.
+2026-10-18T06:39:45.622Z Editor: 8 timed frames/facings exactly match the actual exported PNG.
+2026-10-18T06:40:10.610Z Actual UI export theo-ankle-follow: all 36 baked PNG poses match; deterministic.
+2026-10-18T06:40:16.688Z Editor: 80 timed frames/facings exactly match the actual exported PNG.
+Failure page notice: [
+  'CharacterPack exported with idle, walk, run, jump in the neutral expression. Load it in the independent player.'
+]
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.selectOption: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Wardrobe shoes', { exact: true })[22m
+[2m    - locator resolved to <select aria-label="Wardrobe shoes">…</select>[22m
+[2m  - attempting select option action[22m
+[2m    2 × waiting for element to be visible and enabled[22m
+[2m      - did not find some options[22m
+[2m    - retrying select option action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible and enabled[22m
+[2m      - did not find some options[22m
+[2m    - retrying select option action[22m
+[2m      - waiting 100ms[22m
+[2m    30 × waiting for element to be visible and enabled[22m
+[2m       - did not find some options[22m
+[2m     - retrying select option action[22m
+[2m       - waiting 500ms[22m
+
+    at verifySwaps (/workspace/gathria-character/scripts/generate-theo-ankle-follow-evidence.mjs:1070:6)
+    at async file:///workspace/gathria-character/scripts/generate-theo-ankle-follow-evidence.mjs:1275:3 {
+  log: [
+    "  - waiting for getByLabel('Wardrobe shoes', { exact: true })",
+    '    - locator resolved to <select aria-label="Wardrobe shoes">…</select>',
+    '  - attempting select option action',
+    '    2 × waiting for element to be visible and enabled',
+    '      - did not find some options',
+    '    - retrying select option action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible and enabled',
+    '      - did not find some options',
+    '    - retrying select option action',
+    '      - waiting 100ms',
+    '    30 × waiting for element to be visible and enabled',
+    '       - did not find some options',
+    '     - retrying select option action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0
