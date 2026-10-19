@@ -72,6 +72,20 @@ Studio downloads, PNG equality, save/reopen, UI expression/recolor checks,
 closed-editor independent playback and complete PNG/GIF/ZIP decoding. These
 are this batch's results, not substituted historical counts.
 
+The actual capture passed **576 mirrored editor-frame comparisons, eight
+complete project save/reopen cycles, 48 UI expression captures, two recolor
+stress exports and 64 independent-player cases after Studio closed**. The
+artifact review decoded **262 PNGs, 48 GIFs and 36 downloaded ZIPs** and checked
+360 exported source poses. GIF pixel comparisons use the recorded palette
+quantization; cumulative timing follows the manifest to GIF's 10 ms resolution.
+
+Native-size lineups, complete exported run frames and integer-zoom face,
+shoulder and ankle panels were inspected separately. The reviewed frames show
+connected neck/collar, sleeve/wrist and shoe/ankle boundaries without newly
+detached material fragments. Timed browser playback and decoded GIF order are
+recorded checks; static contact-sheet review is not presented as user approval
+of continuous animation.
+
 ## Remaining limits
 
 - Neutral and gentle expressions remain subtly different. Three separate
@@ -83,6 +97,9 @@ are this batch's results, not substituted historical counts.
 - Sleeve and footwear source detail differs slightly from the new head's
   softer finish. The shoe pair reuses one three-quarter painting, rather than
   newly drawn near/far perspective assets.
+- The ochre sleeve retains a small pointed outer edge in extreme rear-arm
+  poses. Deep jump crouches also expose an angular trouser/cuff fold; see the
+  [actual 3× jump crop](standard-kit/final/short-ochre-sneakers-jump-knee-3x.png).
 - Hair is rigidly attached here. There is no ponytail physics, independent
   front/back viewpoint, universal body retargeting or arbitrary-clothing fit.
 - No production Gathria scene integration or user visual acceptance is claimed.
