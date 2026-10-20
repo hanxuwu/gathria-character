@@ -8,6 +8,7 @@ type WorkbenchTab = "original" | "rig";
 
 export function CharacterWorkbench() {
   const query = new URLSearchParams(window.location.search);
+  const [nativeStudy] = useState(() => query.get("study") === "kling-male");
   const [character] = useState(
     () =>
       KLING_CHARACTERS.find((entry) => entry.id === query.get("character")) ??
@@ -18,7 +19,7 @@ export function CharacterWorkbench() {
     name: string;
   }>({ id: character.id, name: character.name });
   const initial: WorkbenchTab =
-    query.get("mode") === "rig" ? "rig" : "original";
+    query.get("mode") === "rig" || nativeStudy ? "rig" : "original";
   const [tab, setTab] = useState<WorkbenchTab>(initial);
   const [visited, setVisited] = useState<Set<WorkbenchTab>>(
     () => new Set([initial]),
@@ -100,11 +101,19 @@ export function CharacterWorkbench() {
         <div className="workbench-heading">
           <div>
             <p className="workspace-eyebrow">Character workbench</p>
-            <h1>{tab === "original" ? selection.name : "Skeleton & motion"}</h1>
+            <h1>
+              {tab === "original"
+                ? selection.name
+                : nativeStudy
+                  ? "Kling male · HD skeleton study"
+                  : "Skeleton & motion"}
+            </h1>
             <p>
               {tab === "original"
                 ? "Explore the original artwork. Keep every movement and detail."
-                : "The complete editable workspace, with your bindings, clothing and motion tools."}
+                : nativeStudy
+                  ? "A native-size layered candidate. Compare four skeletal poses with the original standing reference."
+                  : "The complete editable workspace, with your bindings, clothing and motion tools."}
             </p>
           </div>
           <a className="workbench-back" href="/">
@@ -202,13 +211,41 @@ export function CharacterWorkbench() {
           <div className="workbench-panel-note">
             <Info size={17} aria-hidden="true" />
             <p>
-              <strong>Existing editable characters.</strong> Clothing,
-              expressions, bones, mesh, joint binding, motion editing, undo/redo
-              and project export remain available. Kling high-resolution binding
-              is not yet available.
+              {nativeStudy ? (
+                <>
+                  <strong>Native Kling candidate.</strong> Registered parts and
+                  four static poses at original resolution. Clothing and
+                  expression are fixed; these are not completed animation
+                  cycles.
+                </>
+              ) : (
+                <>
+                  <strong>Existing editable characters.</strong> Clothing,
+                  expressions, bones, mesh, joint binding, motion editing,
+                  undo/redo and project export remain available. The separate{" "}
+                  <a
+                    href="/workbench.html?mode=rig&study=kling-male"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Kling HD study
+                  </a>{" "}
+                  reviews native part binding and four static poses.
+                </>
+              )}
             </p>
-            <a href="/skin-studio.html" target="_blank" rel="noreferrer">
-              Open Skin Studio separately{" "}
+            <a
+              href={
+                nativeStudy
+                  ? "/skin-studio.html?study=kling-male"
+                  : "/skin-studio.html"
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
+              {nativeStudy
+                ? "Open HD study separately"
+                : "Open Skin Studio separately"}{" "}
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           </div>
@@ -217,7 +254,11 @@ export function CharacterWorkbench() {
               className="workbench-frame workbench-frame--rig"
               ref={rigFrame}
               title="Skeleton and motion editor"
-              src="/skin-studio.html?embedded=1"
+              src={
+                nativeStudy
+                  ? "/skin-studio.html?embedded=1&study=kling-male"
+                  : "/skin-studio.html?embedded=1"
+              }
               onLoad={() => notifyVisibility(rigFrame.current, tab === "rig")}
             />
           )}

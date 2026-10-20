@@ -93,8 +93,12 @@ export function CharacterLibrary() {
             ))}
           </div>
           <p className="library-originals-note">
-            The originals remain your visual reference. Editable Kling layers
-            and bone bindings are the next stage.
+            The originals remain your visual reference. Review the separate{" "}
+            <a href="/workbench.html?mode=rig&study=kling-male">
+              Kling male HD skeleton study
+            </a>{" "}
+            for native layered parts and four static poses. Full skeletal
+            animation and interchangeable clothing are still in development.
           </p>
         </section>
 
