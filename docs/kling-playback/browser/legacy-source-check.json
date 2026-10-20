@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-20T21:06:07.438Z",
+  "sourceSha256": "fcbee8bca213727306b44582c0487a667c3b7afff8b48a916c2305e390638fa4",
+  "sourceBytes": 18553211,
+  "check": "Separate final-code compatibility run of original uploaded 384x576 source archive",
+  "frames": 80,
+  "characters": [
+    {
+      "id": "male",
+      "actions": [
+        "idle",
+        "walk",
+        "run",
+        "celebrate"
+      ],
+      "passed": true
+    },
+    {
+      "id": "female",
+      "actions": [
+        "idle",
+        "walk",
+        "run",
+        "celebrate"
+      ],
+      "passed": true
+    }
+  ],
+  "browserErrors": [],
+  "implementationHashes": {
+    "src/core/baked-source.ts": "b17aebca72ab7ad0815465c5cfe0150ba52ad4391e40bbd4eb3a1f09d1534a81",
+    "src/core/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/core/pack.ts": "8db518b92884e20db7e7f3dac4b4b320020f305b7522ed6aeebfb52e2a75886c",
+    "src/consumer/PackPlayer.tsx": "d421853e98a4bafc7bf1df964c86d64ece92b1181a17193a38e219363abd4f14"
+  },
+  "result": "passed",
+  "completedAt": "2026-10-20T21:06:21.238Z"
+}

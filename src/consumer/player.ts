@@ -1,17 +1,31 @@
 import type {
-  PlaybackAnimationName,
-  CharacterPackManifest,
+  PortableAnimationName,
+  Animation,
+  PortableCharacterPackManifest,
   Facing,
   SpriteFrame,
 } from "../core/types";
 
+/** Optional source actions do not change the legacy skeletal action contract. */
+export function animationFor(
+  manifest: PortableCharacterPackManifest,
+  name: PortableAnimationName,
+): Animation | undefined {
+  if (name === "celebrate") {
+    return manifest.schemaVersion === 2
+      ? manifest.animations.celebrate
+      : undefined;
+  }
+  return manifest.animations[name];
+}
+
 /** Select a frame using only the timing and frame ids supplied by a pack. */
 export function frameAtTime(
-  manifest: CharacterPackManifest,
-  animationName: PlaybackAnimationName,
+  manifest: PortableCharacterPackManifest,
+  animationName: PortableAnimationName,
   elapsedMs: number,
 ): SpriteFrame {
-  const animation = manifest.animations[animationName];
+  const animation = animationFor(manifest, animationName);
   if (!animation) {
     throw new Error(
       `Animation ${animationName} is not available in this pack.`,
@@ -33,11 +47,11 @@ export function frameAtTime(
 
 /** A one-shot holds its final frame after every declared entry has elapsed. */
 export function animationHasEnded(
-  manifest: CharacterPackManifest,
-  animationName: PlaybackAnimationName,
+  manifest: PortableCharacterPackManifest,
+  animationName: PortableAnimationName,
   elapsedMs: number,
 ): boolean {
-  const animation = manifest.animations[animationName];
+  const animation = animationFor(manifest, animationName);
   if (!animation)
     throw new Error(
       `Animation ${animationName} is not available in this pack.`,
@@ -52,14 +66,15 @@ export function animationHasEnded(
 export function drawCharacterFrame(
   context: CanvasRenderingContext2D,
   image: CanvasImageSource,
-  manifest: CharacterPackManifest,
+  manifest: PortableCharacterPackManifest,
   frame: SpriteFrame,
   facing: Facing,
   zoom: number,
   attachment: { x: number; y: number },
 ): void {
   context.save();
-  context.imageSmoothingEnabled = false;
+  context.imageSmoothingEnabled = manifest.schemaVersion === 2;
+  if (manifest.schemaVersion === 2) context.imageSmoothingQuality = "high";
   context.translate(attachment.x, attachment.y);
   context.scale(manifest.facing[facing] === "mirror-x" ? -zoom : zoom, zoom);
   context.drawImage(

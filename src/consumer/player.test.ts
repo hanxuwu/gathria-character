@@ -171,3 +171,67 @@ describe("independent metadata playback", () => {
     expect(GATHRIA_COMPATIBILITY.status).toBe("UNVERIFIED");
   });
 });
+
+describe("baked source playback", () => {
+  const source: import("../core/types").CharacterPackV2Manifest = {
+    ...manifest,
+    schemaVersion: 2,
+    capabilities: { renderMode: "baked", editableAppearance: false },
+    scale: { pixelArt: false, integerOnly: false, recommended: 0.5 },
+    animations: {
+      ...manifest.animations,
+      celebrate: { frames: [10, 10, 90, 30], fps: 12, loop: true },
+    },
+  };
+  it("preserves source timing, repeated holds and independent animation namespace", () => {
+    expect(frameAtTime(source, "celebrate", 0).id).toBe(10);
+    expect(frameAtTime(source, "celebrate", 100).id).toBe(10);
+    expect(frameAtTime(source, "celebrate", 200).id).toBe(90);
+    expect(frameAtTime(source, "celebrate", 340).id).toBe(10);
+    expect(() => frameAtTime(manifest, "celebrate", 0)).toThrow(
+      "not available",
+    );
+    // A comparison uses elapsed time, never forces a different source's frame index.
+    const slower = {
+      ...source,
+      animations: {
+        ...source.animations,
+        celebrate: { ...source.animations.celebrate!, fps: 6 },
+      },
+    };
+    expect(frameAtTime(slower, "celebrate", 200).id).toBe(10);
+  });
+  it("draws the unscaled source rectangle with smooth fractional display and the declared anchor", () => {
+    const context = {
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      scale: vi.fn(),
+      drawImage: vi.fn(),
+      imageSmoothingEnabled: false,
+    };
+    const image = {} as CanvasImageSource;
+    drawCharacterFrame(
+      context as unknown as CanvasRenderingContext2D,
+      image,
+      source,
+      source.frames[0],
+      "left",
+      0.5,
+      { x: 100, y: 200 },
+    );
+    expect(context.imageSmoothingEnabled).toBe(true);
+    expect(context.scale).toHaveBeenCalledWith(-0.5, 0.5);
+    expect(context.drawImage).toHaveBeenCalledWith(
+      image,
+      0,
+      0,
+      8,
+      16,
+      -2,
+      -15,
+      8,
+      16,
+    );
+  });
+});

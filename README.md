@@ -19,6 +19,15 @@ npm run dev
 
 Open the address Vite prints. The studio is at `/`; the independent player is at `/player.html`. No API keys, account, backend, or runtime generation services are needed. Prepared artwork ships with the app. All editing, generation, and file processing happens in the browser. Changes are not autosaved: **Save config** preserves your editable character.
 
+To play the two **original Kling video characters**, open the same player and
+choose **Try the Kling character pair**. This opt-in source import preserves
+native 704×1024 RGBA frames and original 24 fps idle, walk, run and celebrate
+loops. Select either character, compare both, and export independent
+CharacterPack V2 files. These are baked characters with fixed appearance;
+existing Studio and Skin Studio keep their editable workflows and V1 exports.
+[Source comparisons, GIFs, downloads and limits](docs/kling-playback/README.md)
+· [Compatibility and verification](docs/KLING_PLAYBACK_REVIEW.md).
+
 The isolated [skeletal rig lab](docs/SKELETAL_RIG_REVIEW.md) is at `/rig-lab.html`: compare Denim's existing run with project-owned weighted-mesh animation, edit pose keys, save an authoring recipe and bake a portable pack. It uses no Spine dependency and leaves Studio defaults unchanged.
 
 The [reusable Skin Studio](docs/REUSABLE_RIG_REVIEW.md) is at `/skin-studio.html`: Denim and Coral use one skeleton and motion library. Replace registered PNG parts, drag source joints, edit motion poses/timing with undo and redo, save complete skin/project ZIPs, and bake independent CharacterPacks. [The authoring tools review](docs/AUTHORING_TOOLS_REVIEW.md) covers the latest controls; [the material guide](docs/SKIN_PACK_V1.md) explains how to prepare another character without editing the renderer. This separate authoring app does not change the production Studio or historical files.

@@ -14,16 +14,35 @@ import {
   Upload,
 } from "lucide-react";
 import {
-  loadCharacterFiles,
-  loadCharacterPack,
+  loadPortableCharacterFiles,
+  loadPortableCharacterPack,
+  createBakedCharacterPack,
+  downloadBlob,
   type LoadedCharacterPack,
 } from "../core/pack";
-import type { PlaybackAnimationName, Facing } from "../core/types";
-import { animationHasEnded, drawCharacterFrame, frameAtTime } from "./player";
+import type { PortableAnimationName, Facing } from "../core/types";
+import {
+  importBakedSourceArchive,
+  inspectBakedArchiveKind,
+  convertSourceCharacter,
+  type BakedSourceBundle,
+} from "../core/baked-source";
+import {
+  animationFor,
+  animationHasEnded,
+  drawCharacterFrame,
+  frameAtTime,
+} from "./player";
+
+type SourceEntry = { pack: LoadedCharacterPack; archive: Blob };
+const klingSampleUrl = new URL(
+  "../../artwork/kling-playback/prepared/kling-source.zip",
+  import.meta.url,
+).href;
 
 export function PackPlayer() {
   const [pack, setPack] = useState<LoadedCharacterPack | null>(null);
-  const [animation, setAnimation] = useState<PlaybackAnimationName>("idle");
+  const [animation, setAnimation] = useState<PortableAnimationName>("idle");
   const [facing, setFacing] = useState<Facing>("right");
   const [playing, setPlaying] = useState(true);
   const [completed, setCompleted] = useState(false);
@@ -33,6 +52,16 @@ export function PackPlayer() {
   const [error, setError] = useState("");
   const [source, setSource] = useState("");
   const [frameId, setFrameId] = useState(0);
+  const [sourceBundle, setSourceBundle] = useState<BakedSourceBundle | null>(
+    null,
+  );
+  const [characterId, setCharacterId] = useState("");
+  const [comparisonPack, setComparisonPack] =
+    useState<LoadedCharacterPack | null>(null);
+  const [comparisonRequested, setComparisonRequested] = useState(false);
+  const [downloadPack, setDownloadPack] = useState<Blob | null>(null);
+  const [framePosition, setFramePosition] = useState(0);
+  const sourceEntries = useRef(new Map<string, SourceEntry>());
   const [files, setFiles] = useState<{
     png?: File;
     metadata?: File;
@@ -46,8 +75,17 @@ export function PackPlayer() {
   const frameRef = useRef(-1);
   const [canvasWidth, setCanvasWidth] = useState(640);
   const [playbackRevision, setPlaybackRevision] = useState(0);
-  const selectedClip = pack?.manifest.animations[animation];
-  const frameHeight = pack?.manifest.spritesheet.frameHeight ?? 0;
+  const selectedClip = pack
+    ? animationFor(pack.manifest, animation)
+    : undefined;
+  const isBaked = pack?.manifest.schemaVersion === 2;
+  const zoomChoices = isBaked
+    ? [...new Set([0.25, 0.5, 0.75, 1, 1.5, 2, zoom])].sort((a, b) => a - b)
+    : [1, 2, 3, 4, 5, 6, 7, 8];
+  const frameHeight = Math.max(
+    pack?.manifest.spritesheet.frameHeight ?? 0,
+    comparisonPack?.manifest.spritesheet.frameHeight ?? 0,
+  );
   const canvasHeight = Math.max(420, frameHeight * zoom + 100);
   const canvasRenderWidth = Math.max(
     canvasWidth,
@@ -56,8 +94,14 @@ export function PackPlayer() {
           Math.max(
             pack.manifest.anchor.x,
             pack.manifest.spritesheet.frameWidth - pack.manifest.anchor.x,
+            comparisonPack?.manifest.anchor.x ?? 0,
+            comparisonPack
+              ? comparisonPack.manifest.spritesheet.frameWidth -
+                  comparisonPack.manifest.anchor.x
+              : 0,
           ) *
-          zoom +
+          zoom *
+          (comparisonPack ? 2 : 1) +
           48
       : 0,
   );
@@ -98,7 +142,7 @@ export function PackPlayer() {
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
       context.clearRect(0, 0, canvasRenderWidth, canvasHeight);
       const attachment = {
-        x: Math.round(canvasRenderWidth / 2),
+        x: Math.round(canvasRenderWidth / (comparisonPack ? 4 : 2)),
         y: attachmentY,
       };
       context.strokeStyle = "#c7c4d1";
@@ -120,10 +164,33 @@ export function PackPlayer() {
           zoom,
           attachment,
         );
+        if (
+          comparisonPack &&
+          animationFor(comparisonPack.manifest, animation)
+        ) {
+          drawCharacterFrame(
+            context,
+            comparisonPack.image,
+            comparisonPack.manifest,
+            frameAtTime(comparisonPack.manifest, animation, elapsedRef.current),
+            facing,
+            zoom,
+            { x: Math.round((canvasRenderWidth * 3) / 4), y: attachmentY },
+          );
+        }
         if (frame.id !== frameRef.current) {
           frameRef.current = frame.id;
           setFrameId(frame.id);
         }
+        const clip = animationFor(pack.manifest, animation)!;
+        const position = Math.floor(
+          (Math.max(0, elapsedRef.current) * clip.fps) / 1000,
+        );
+        setFramePosition(
+          clip.loop
+            ? position % clip.frames.length
+            : Math.min(position, clip.frames.length - 1),
+        );
         context.strokeStyle = "#7762d6";
         context.beginPath();
         context.moveTo(attachment.x - 5, attachment.y + 0.5);
@@ -145,6 +212,7 @@ export function PackPlayer() {
     return () => cancelAnimationFrame(request);
   }, [
     pack,
+    comparisonPack,
     animation,
     facing,
     playing,
@@ -157,7 +225,11 @@ export function PackPlayer() {
   ]);
 
   const openPack = useCallback(
-    async (operation: () => Promise<LoadedCharacterPack>, label: string) => {
+    async (
+      operation: () => Promise<LoadedCharacterPack>,
+      label: string,
+      onLoaded?: (loaded: LoadedCharacterPack) => void,
+    ) => {
       const request = ++requestRef.current;
       setBusy(true);
       setError("");
@@ -171,13 +243,33 @@ export function PackPlayer() {
         setSource(label);
         setAnimation("idle");
         setFacing(loaded.manifest.facing.native);
-        setZoom(Math.min(8, Math.max(1, loaded.manifest.scale.recommended)));
+        setZoom(
+          loaded.manifest.schemaVersion === 2
+            ? ([0.25, 0.5, 0.75, 1]
+                .filter(
+                  (value) =>
+                    value <= loaded.manifest.scale.recommended &&
+                    value * loaded.manifest.spritesheet.frameHeight <= 512 &&
+                    value * loaded.manifest.spritesheet.frameWidth <=
+                      (stageRef.current?.clientWidth ?? 640) - 48,
+                )
+                .at(-1) ?? 0.25)
+            : Math.min(8, Math.max(1, loaded.manifest.scale.recommended)),
+        );
+        setFramePosition(0);
+        setSourceBundle(null);
+        sourceEntries.current.clear();
+        setCharacterId("");
+        setComparisonPack(null);
+        setComparisonRequested(false);
+        setDownloadPack(null);
+        onLoaded?.(loaded);
         setPlaying(true);
         setCompleted(false);
       } catch (cause) {
         if (request !== requestRef.current) return;
         setError(
-          `${cause instanceof Error ? cause.message : "This file could not be opened."} Try exporting a fresh character pack from the studio, or load a matching PNG and manifest below.`,
+          `${cause instanceof Error ? cause.message : "This file could not be opened."} Choose an intact CharacterPack or unified source ZIP, or load matching PNG and metadata files below.`,
         );
       } finally {
         if (request === requestRef.current) setBusy(false);
@@ -186,8 +278,116 @@ export function PackPlayer() {
     [],
   );
 
-  function openZip(file: File) {
-    void openPack(() => loadCharacterPack(file), file.name);
+  async function sourceEntry(
+    bundle: BakedSourceBundle,
+    id: string,
+  ): Promise<SourceEntry> {
+    const converted = await convertSourceCharacter(bundle, id);
+    const archive = await createBakedCharacterPack(
+      converted.recipe,
+      converted.manifest,
+      converted.png,
+    );
+    return { pack: await loadPortableCharacterPack(archive), archive };
+  }
+
+  function openZip(
+    file: Blob,
+    label = file instanceof File ? file.name : "Source characters",
+  ) {
+    let bundle: BakedSourceBundle | undefined;
+    let entry: SourceEntry | undefined;
+    let selectedId = "";
+    void openPack(
+      async () => {
+        const kind = await inspectBakedArchiveKind(file);
+        if (kind === "unified-source") {
+          bundle = await importBakedSourceArchive(file);
+          selectedId = bundle.characters[0].id;
+          entry = await sourceEntry(bundle, selectedId);
+          return entry.pack;
+        }
+        return loadPortableCharacterPack(file);
+      },
+      label,
+      (loaded) => {
+        setDownloadPack(
+          entry?.archive ?? (loaded.manifest.schemaVersion === 2 ? file : null),
+        );
+        if (bundle && entry) {
+          setSourceBundle(bundle);
+          setCharacterId(selectedId);
+          sourceEntries.current.set(selectedId, entry);
+        }
+      },
+    );
+  }
+
+  async function openKlingExample() {
+    const request = ++requestRef.current;
+    setBusy(true);
+    setError("");
+    try {
+      const response = await fetch(klingSampleUrl);
+      if (!response.ok)
+        throw new Error(
+          `Source example could not be downloaded (HTTP ${response.status}).`,
+        );
+      const archive = await response.blob();
+      if (request !== requestRef.current) return;
+      openZip(archive, "Kling original-video source bundle");
+    } catch (cause) {
+      if (request !== requestRef.current) return;
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Source example could not be opened.",
+      );
+      setBusy(false);
+    }
+  }
+
+  async function selectSourceCharacter(id: string, compare = false) {
+    if (!sourceBundle) return;
+    const request = ++requestRef.current;
+    setBusy(true);
+    setError("");
+    try {
+      const entry =
+        sourceEntries.current.get(id) ?? (await sourceEntry(sourceBundle, id));
+      if (request !== requestRef.current) return;
+      sourceEntries.current.set(id, entry);
+      if (compare) {
+        setComparisonPack(entry.pack);
+      } else {
+        const previousId = characterId;
+        setCharacterId(id);
+        setPack(entry.pack);
+        setDownloadPack(entry.archive);
+        if (comparisonPack)
+          setComparisonPack(
+            sourceEntries.current.get(previousId)?.pack ?? null,
+          );
+        if (!animationFor(entry.pack.manifest, animation)) {
+          setAnimation("idle");
+          elapsedRef.current = 0;
+        }
+        frameRef.current = -1;
+        setCompleted(false);
+      }
+      setPlaybackRevision((value) => value + 1);
+    } catch (cause) {
+      if (request === requestRef.current && compare)
+        setComparisonRequested(false);
+      if (request === requestRef.current)
+        setError(
+          cause instanceof Error
+            ? cause.message
+            : "Character could not be opened.",
+        );
+    } finally {
+      if (request === requestRef.current) setBusy(false);
+    }
   }
 
   function openExample(
@@ -230,7 +430,7 @@ export function PackPlayer() {
           throw new Error(
             `The example pack could not be downloaded (HTTP ${response.status}).`,
           );
-        return loadCharacterPack(await response.blob());
+        return loadPortableCharacterPack(await response.blob());
       },
       artworkVersion === "corrected-running"
         ? "denim-daytrip.character.zip · Art V6 · Motion V3 · bundled example"
@@ -248,9 +448,12 @@ export function PackPlayer() {
     if (!files.png || !files.metadata) return;
     const { png, metadata, config } = files;
     void openPack(async () => {
-      if (metadata.size > 64 * 1024 || (config && config.size > 64 * 1024)) {
+      if (
+        metadata.size > 1024 * 1024 ||
+        (config && config.size > 1024 * 1024)
+      ) {
         throw new Error(
-          "Selected JSON files must be no larger than 64 KiB. Choose the small metadata files from a character export.",
+          "Selected JSON files must be no larger than 1 MiB. Choose the small metadata files from a character export.",
         );
       }
       let manifest: unknown;
@@ -263,18 +466,28 @@ export function PackPlayer() {
           "A selected JSON file is invalid. Choose the manifest.json and optional character.json from the same export.",
         );
       }
-      return loadCharacterFiles(png, manifest, configuration);
+      return loadPortableCharacterFiles(png, manifest, configuration);
     }, png.name);
   }
 
-  function chooseAnimation(value: PlaybackAnimationName) {
-    const clip = pack?.manifest.animations[value];
+  function chooseAnimation(value: PortableAnimationName) {
+    const clip = pack ? animationFor(pack.manifest, value) : undefined;
     if (!clip) return;
     elapsedRef.current = 0;
     frameRef.current = -1;
     setFrameId(clip.frames[0]);
+    setFramePosition(0);
     setAnimation(value);
     if (completed) setPlaying(true);
+    setCompleted(false);
+    setPlaybackRevision((value) => value + 1);
+  }
+
+  function scrubFrame(index: number) {
+    if (!selectedClip) return;
+    elapsedRef.current = (index * 1000) / selectedClip.fps + 0.00001;
+    setFramePosition(index);
+    setPlaying(false);
     setCompleted(false);
     setPlaybackRevision((value) => value + 1);
   }
@@ -323,7 +536,7 @@ export function PackPlayer() {
               <em>Ready to move.</em>
             </h1>
             <p className="player-intro">
-              Drop in an exported pack and see your pixels come to life.
+              Drop in an exported pack and see your character come to life.
               <br className="player-desktop-break" /> An independent player,
               powered by the files you bring.
             </p>
@@ -385,9 +598,23 @@ export function PackPlayer() {
                 />
               </label>
               <span className="player-file-hint">
-                .zip · spritesheet + manifest + character
+                .zip · CharacterPack or unified source bundle
               </span>
             </div>
+            <button
+              className="player-source-button"
+              onClick={() => void openKlingExample()}
+              disabled={busy}
+            >
+              <span className="player-sample-icon">
+                <Layers3 size={19} />
+              </span>
+              <span>
+                Original video artwork
+                <strong>Try the Kling character pair</strong>
+              </span>
+              <ArrowRight size={17} />
+            </button>
             <button
               className="player-sample-button"
               onClick={() => openExample("corrected-running")}
@@ -562,19 +789,103 @@ export function PackPlayer() {
                 <span /> {pack ? "PACK LOADED" : "AWAITING CHARACTER"}
               </span>
             </div>
-            <div className="player-stage" ref={stageRef}>
+            {isBaked && (
+              <div className="player-baked-controls">
+                <p>
+                  <strong>Original artwork · baked playback</strong>
+                  <br />
+                  These frames preserve the supplied character artwork.
+                  Clothing, colors and expressions are part of the image and
+                  cannot be edited separately.
+                </p>
+                {sourceBundle && (
+                  <div className="player-source-selection">
+                    <label htmlFor="player-character">
+                      Character
+                      <select
+                        id="player-character"
+                        aria-label="Character"
+                        value={characterId}
+                        disabled={busy}
+                        onChange={(event) =>
+                          void selectSourceCharacter(event.target.value)
+                        }
+                      >
+                        {sourceBundle.characters.map((character) => (
+                          <option key={character.id} value={character.id}>
+                            {character.name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    {sourceBundle.characters.length === 2 && (
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={comparisonRequested}
+                          disabled={busy}
+                          onChange={(event) => {
+                            setComparisonRequested(event.target.checked);
+                            if (!event.target.checked) setComparisonPack(null);
+                            else {
+                              const other = sourceBundle.characters.find(
+                                (character) => character.id !== characterId,
+                              );
+                              if (other)
+                                void selectSourceCharacter(other.id, true);
+                            }
+                          }}
+                        />{" "}
+                        Compare both characters
+                      </label>
+                    )}
+                  </div>
+                )}
+                {downloadPack && (
+                  <button
+                    className="player-button player-button-secondary"
+                    disabled={busy}
+                    onClick={() =>
+                      downloadBlob(
+                        downloadPack,
+                        `${characterId || "baked-character"}.character.zip`,
+                      )
+                    }
+                  >
+                    Export selected CharacterPack
+                  </button>
+                )}
+                {comparisonPack && (
+                  <p>
+                    Shared elapsed time, each source’s own frame rate. Different
+                    source performances do not have identical foot phases.
+                  </p>
+                )}
+              </div>
+            )}
+            <div
+              className={`player-stage ${isBaked ? "player-smooth" : ""}`}
+              ref={stageRef}
+            >
               <div
                 className="player-stage-surface"
                 style={{ width: canvasRenderWidth }}
               >
                 <span className="player-stage-label">
-                  {pack ? pack.manifest.name : "YOUR NEXT ADVENTURER"}
+                  {pack
+                    ? `${pack.manifest.name}${comparisonPack ? ` + ${comparisonPack.manifest.name}` : ""}`
+                    : "YOUR NEXT ADVENTURER"}
                 </span>
-                <span className="player-stage-zoom">{zoom}× PIXEL SCALE</span>
+                <span className="player-stage-zoom">
+                  {zoom}× {isBaked ? "SOURCE SCALE" : "PIXEL SCALE"}
+                </span>
                 <canvas
                   ref={canvasRef}
                   style={{ height: canvasHeight }}
                   data-testid="consumer-canvas"
+                  data-frame-id={frameId}
+                  data-frame-position={framePosition}
+                  data-comparison={Boolean(comparisonPack)}
                   aria-label={
                     pack
                       ? `${pack.manifest.name}, ${animation}, facing ${facing}, frame ${frameId}`
@@ -613,10 +924,18 @@ export function PackPlayer() {
                     role="group"
                     aria-labelledby="player-motion-label"
                   >
-                    {(["idle", "walk", "run", "jump"] as const).map((value) => (
+                    {(
+                      [
+                        "idle",
+                        "walk",
+                        "run",
+                        "jump",
+                        ...(isBaked ? ["celebrate" as const] : []),
+                      ] as const
+                    ).map((value) => (
                       <button
                         key={value}
-                        disabled={!pack?.manifest.animations[value]}
+                        disabled={!pack || !animationFor(pack.manifest, value)}
                         aria-describedby={
                           (value === "run" || value === "jump") &&
                           pack &&
@@ -634,7 +953,9 @@ export function PackPlayer() {
                             ? "Walk"
                             : value === "run"
                               ? "Run"
-                              : "Jump"}
+                              : value === "jump"
+                                ? "Jump"
+                                : "Celebrate"}
                       </button>
                     ))}
                   </div>
@@ -689,7 +1010,9 @@ export function PackPlayer() {
                 </button>
               </div>
               <p className="player-motion-note">
-                In-place playback · The character stays in one place.
+                {isBaked
+                  ? "Source playback · Motion inside each supplied frame is preserved."
+                  : "In-place playback · The character stays in one place."}
               </p>
               {pack && !pack.manifest.animations.run && (
                 <p className="player-motion-note" id="player-run-unavailable">
@@ -710,11 +1033,27 @@ export function PackPlayer() {
                     : "Plays once · Holds the final frame until you replay or choose another action."}
                 </p>
               )}
+              {selectedClip && (
+                <label className="player-frame-scrubber" htmlFor="player-frame">
+                  Inspect frame {framePosition + 1} /{" "}
+                  {selectedClip.frames.length}
+                  <input
+                    id="player-frame"
+                    type="range"
+                    min={0}
+                    max={selectedClip.frames.length - 1}
+                    step={1}
+                    value={framePosition}
+                    onChange={(event) => scrubFrame(Number(event.target.value))}
+                  />
+                </label>
+              )}
               <div className="player-control-row player-secondary-controls">
                 <label htmlFor="player-speed">
                   Playback speed
                   <select
                     id="player-speed"
+                    aria-label="Playback speed"
                     value={speed}
                     disabled={!pack}
                     onChange={(event) => setSpeed(Number(event.target.value))}
@@ -727,14 +1066,15 @@ export function PackPlayer() {
                   </select>
                 </label>
                 <label htmlFor="player-zoom">
-                  Pixel scale
+                  {isBaked ? "Display scale" : "Pixel scale"}
                   <select
                     id="player-zoom"
+                    aria-label={isBaked ? "Display scale" : "Pixel scale"}
                     value={zoom}
                     disabled={!pack}
                     onChange={(event) => setZoom(Number(event.target.value))}
                   >
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
+                    {zoomChoices.map((value) => (
                       <option key={value} value={value}>
                         {value}×
                       </option>
@@ -810,6 +1150,10 @@ export function PackPlayer() {
                   {pack.manifest.animations.jump
                     ? ` · Jump ${pack.manifest.animations.jump.fps} fps`
                     : " · Jump unavailable"}
+                  {pack.manifest.schemaVersion === 2 &&
+                  pack.manifest.animations.celebrate
+                    ? ` · Celebrate ${pack.manifest.animations.celebrate.fps} fps`
+                    : ""}
                 </dd>
               </div>
               <div>
@@ -820,7 +1164,9 @@ export function PackPlayer() {
                 <dt>Configuration</dt>
                 <dd>
                   {pack.config
-                    ? `Included · Art V${pack.config.schemaVersion === 1 ? 1 : pack.config.artworkVersion}`
+                    ? "format" in pack.config
+                      ? "Included · baked source recipe"
+                      : `Included · Art V${pack.config.schemaVersion === 1 ? 1 : pack.config.artworkVersion}`
                     : "Not provided · optional"}
                 </dd>
               </div>
@@ -831,7 +1177,7 @@ export function PackPlayer() {
         <footer className="player-footer">
           <span>Small characters. Big stories.</span>
           <p>
-            Standalone pack format v1 <span>·</span> Gathria runtime
+            Standalone pack formats v1 & v2 <span>·</span> Gathria runtime
             compatibility is unverified.
           </p>
           <a href="/">

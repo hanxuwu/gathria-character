@@ -1,0 +1,79 @@
+{
+  "verifiedAtUtc": "2026-10-20T21:08:20.467142+00:00",
+  "branch": "feat/kling-source-playback",
+  "baselineCommit": "d6cfcb7751c2f2431ad9bd3cb8bd9c7ca52718db",
+  "implementationCommit": "f9aa414bc0eefa8634827e3003d6be9871260905",
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "seconds": 9.01,
+      "log": "checks/typecheck.txt"
+    },
+    {
+      "name": "unit",
+      "command": "npm test",
+      "exitCode": 0,
+      "seconds": 92.06,
+      "log": "checks/unit.txt",
+      "testsPassed": 549,
+      "filesPassed": 44
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exitCode": 0,
+      "seconds": 11.67,
+      "log": "checks/build.txt"
+    },
+    {
+      "name": "e2e",
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "exitCode": 0,
+      "testsPassed": 63,
+      "durationReported": "6.2m",
+      "log": "checks/e2e.txt"
+    }
+  ],
+  "sourceSha256": "ae00ced97c2a5735912978705d80adc4130359e53413e26e4cc28112a6281f6c",
+  "implementationHashes": {
+    "src/consumer/PackPlayer.tsx": "d421853e98a4bafc7bf1df964c86d64ece92b1181a17193a38e219363abd4f14",
+    "src/consumer/player.ts": "2f86d0d1a0614b0dd3e4d1e63df4f1ccf69de880b7c8049e177801d6826da1e5",
+    "src/consumer/player.css": "aed4f9067d74ee65f4624aadee8645947b2a33a038781b405430f153dfbeadc7",
+    "src/core/pack.ts": "8db518b92884e20db7e7f3dac4b4b320020f305b7522ed6aeebfb52e2a75886c",
+    "src/core/pack-v2.ts": "ad7d882326b9805adfaaa02e5e000ffdc5947dac91335064b159b1edd2ea7f86",
+    "src/core/baked-source.ts": "b17aebca72ab7ad0815465c5cfe0150ba52ad4391e40bbd4eb3a1f09d1534a81",
+    "src/core/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/core/types.ts": "b417a2a583dc654cf6dfb7e6daa9863b5c80d560108b70e82fb9b728d58c13b5",
+    "scripts/generate-kling-evidence.mjs": "16d5836e8ff8f05641069e10169195b859439426ef566e1bc7b401a8d5f9e668"
+  },
+  "browserEvidenceSha256": "2461d5fdf540e245159ee228f9856b67a39c42d4813b674e48d4814d5c8883a7",
+  "legacySourceCheckSha256": "4217b98b21faa246a377c405424f06d65874bbd79808c6ca7943f0eb7e875082",
+  "mediaValidationSha256": "2524c9a8fe731126345e06e295a808b6b6b13fa5fd70236a425705ee76227cc7",
+  "decodedRgbaFramesExact": 166,
+  "independentPlaybackCases": 16,
+  "browserScreenshots": {
+    "nativeCapture": 17,
+    "separateLegacySourceCheck": 1
+  },
+  "decodedReviewFiles": 46,
+  "decodedReviewGifs": 14,
+  "decodedAdditionalPngs": 20,
+  "decodedSourceFrames": 166,
+  "zipCrcChecked": 3,
+  "initialBrowserAttempt": {
+    "passed": 43,
+    "failed": 3,
+    "interrupted": 2,
+    "notRun": 15,
+    "reason": "Stopped after locating two integration causes: duplicated sample-button selector and shared ZIP utility imported through skeletal directory. Fixed both; original assertions retained; focused11 and finalfull63 passed."
+  },
+  "visualReview": {
+    "sourceAndNativeExportCompared": true,
+    "nativeAndIntegerZoomInspected": true,
+    "allSelectedSourceFramesInspected": true,
+    "userAcceptance": "pending",
+    "remaining": "Original run hand/shoe blur; slight source walk cadence differences; estimated matte edges; fixed-appearance composites; native source import33\u201342seconds; large decodedatlases."
+  }
+}

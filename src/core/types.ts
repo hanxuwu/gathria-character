@@ -1,6 +1,8 @@
 export type AnimationName = "idle" | "walk" | "run";
 /** Portable playback can include actions outside legacy character configurations. */
 export type PlaybackAnimationName = AnimationName | "jump";
+/** Source playback is independent of the legacy skeletal/configuration actions. */
+export type PortableAnimationName = PlaybackAnimationName | "celebrate";
 export type Facing = "left" | "right";
 export type Hairstyle = "crop" | "bob" | "waves" | "mohawk";
 export type LegacyUpperClothing = "tee" | "hoodie" | "jacket";
@@ -113,6 +115,53 @@ export interface CharacterPackManifest {
   anchor: { x: number; y: number; units: "pixels"; origin: "top-left" };
   scale: { pixelArt: true; recommended: number; integerOnly: true };
   configuration: "character.json";
+}
+/** Native source pixels: this pack does not promise editable skeletal appearance. */
+export interface CharacterPackV2Manifest
+  extends Omit<
+    CharacterPackManifest,
+    "schemaVersion" | "animations" | "scale"
+  > {
+  schemaVersion: 2;
+  animations: Record<"idle" | "walk", Animation> & {
+    run?: Animation;
+    jump?: Animation;
+    celebrate?: Animation;
+  };
+  scale: { pixelArt: false; recommended: number; integerOnly: false };
+  capabilities: { renderMode: "baked"; editableAppearance: false };
+}
+export type PortableCharacterPackManifest =
+  | CharacterPackManifest
+  | CharacterPackV2Manifest;
+export type JsonValue =
+  | null
+  | boolean
+  | number
+  | string
+  | JsonValue[]
+  | { [key: string]: JsonValue };
+/** Reproducible source selection, never masquerading as a legacy wardrobe config. */
+export interface BakedCharacterRecipe {
+  format: "gathria-baked-character";
+  schemaVersion: 1;
+  name: string;
+  characterId: string;
+  source: {
+    kind: "video-extraction" | "unified-archive";
+    name: string;
+    sha256: string;
+  };
+  provenance: string;
+  derivation: {
+    method: string;
+    frames: Array<{
+      frameId: number;
+      sourceFrame: number;
+      timeSeconds: number;
+    }>;
+  };
+  sourceMetadata?: { [key: string]: JsonValue };
 }
 export interface GeneratedCharacter {
   width: number;
