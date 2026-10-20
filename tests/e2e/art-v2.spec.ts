@@ -40,7 +40,7 @@ for (const originalArt of [
       import.meta.url,
     ).pathname;
     const originalConfig = JSON.parse(await readFile(originalFile, "utf8"));
-    await page.goto("/");
+    await page.goto("/editor.html");
     await page
       .getByRole("button", { name: "Pause animation", exact: true })
       .click();
@@ -179,7 +179,7 @@ for (const outfit of [
   }, testInfo) => {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
-    await page.goto("/");
+    await page.goto("/editor.html");
     await page
       .getByRole("button", { name: "Rowan preset", exact: true })
       .click();

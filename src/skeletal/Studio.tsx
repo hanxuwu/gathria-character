@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { MainNavigation } from "../workspace/MainNavigation";
 import { downloadBlob } from "../core/pack";
 import { createAuthoringProject, createBuiltinSkin } from "./builtins";
 import { prepareRig } from "./renderer";
@@ -75,6 +76,8 @@ const LABELS: Record<ChainName, string> = {
 };
 const EMPTY = new Uint8ClampedArray(192 * 256 * 4);
 const human = (value: string) => value.replaceAll("-", " ");
+const embedded =
+  new URLSearchParams(window.location.search).get("embedded") === "1";
 const fileStem = (name: string) =>
   name
     .toLowerCase()
@@ -300,6 +303,22 @@ function NumberField({
 }
 
 export function SkinStudio() {
+  const [workspaceActive, setWorkspaceActive] = useState(true);
+  useEffect(() => {
+    if (!embedded) return;
+    const receive = (event: MessageEvent) => {
+      if (
+        event.origin === window.location.origin &&
+        event.source === window.parent &&
+        event.data?.type === "gathria-workbench-visibility" &&
+        typeof event.data.active === "boolean"
+      ) {
+        setWorkspaceActive(event.data.active);
+      }
+    };
+    window.addEventListener("message", receive);
+    return () => window.removeEventListener("message", receive);
+  }, []);
   const [history, setHistory] = useState(() => {
     const project = createAuthoringProject();
     return createHistory({
@@ -413,7 +432,7 @@ export function SkinStudio() {
   }, [project.skin.images, slot, offset[0], offset[1]]);
 
   useEffect(() => {
-    if (!playing || busy) return;
+    if (!playing || busy || !workspaceActive) return;
     let request = 0;
     const start = performance.now();
     const first = sequenceFrame;
@@ -429,7 +448,7 @@ export function SkinStudio() {
     request = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(request);
     // Each play operation starts from the selected frame; the clock owns later frames.
-  }, [playing, busy, animation, clip]);
+  }, [playing, busy, animation, clip, workspaceActive]);
 
   function updatePreview(patch: Partial<AuthoringProject["preview"]>) {
     setHistory((previous) =>
@@ -883,18 +902,24 @@ export function SkinStudio() {
     <main className="skin-studio">
       <header className="skin-header">
         <div>
-          <a href="/" className="skin-brand">
+          <a
+            href="/"
+            className="skin-brand"
+            target={embedded ? "_top" : undefined}
+          >
             Gathria Character
           </a>
           <h1>Skin &amp; skeleton studio</h1>
           <p>One skeleton. Shared motions. Your own character artwork.</p>
         </div>
-        <nav aria-label="Other workspaces">
-          <a href="/rig-lab.html">Denim rig lab</a>
-          <a href="/player.html" target="_blank" rel="noreferrer">
-            Independent player ↗
-          </a>
-        </nav>
+        {!embedded && (
+          <nav aria-label="Other workspaces">
+            <a href="/rig-lab.html">Denim rig lab</a>
+            <a href="/player.html" target="_blank" rel="noreferrer">
+              Independent player ↗
+            </a>
+          </nav>
+        )}
       </header>
 
       <div
@@ -950,7 +975,9 @@ export function SkinStudio() {
           >
             Open base model
           </button>
-          <a href="/mother-study.html">Review reference mother candidate ↗</a>
+          <a href="/mother-study.html" target="_blank" rel="noreferrer">
+            Review reference mother candidate ↗
+          </a>
           <p className="skin-help">
             A simple training outfit for refining proportions and four basic
             actions.
@@ -1699,4 +1726,9 @@ export function SkinStudio() {
   );
 }
 
-createRoot(document.getElementById("root")!).render(<SkinStudio />);
+createRoot(document.getElementById("root")!).render(
+  <>
+    {!embedded && <MainNavigation active="workbench" />}
+    <SkinStudio />
+  </>,
+);

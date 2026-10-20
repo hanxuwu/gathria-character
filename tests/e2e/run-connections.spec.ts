@@ -23,7 +23,7 @@ test("saved everyday motion stays unchanged until corrected copy, then exports a
     ),
     preview: { animation: "run", facing: "left" },
   };
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page
     .getByRole("button", { name: "Pause animation", exact: true })
     .click();

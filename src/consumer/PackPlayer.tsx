@@ -35,21 +35,30 @@ import {
   imageForFrame,
 } from "./player";
 
+import {
+  KLING_CHARACTERS,
+  isKlingCharacterId,
+  type KlingCharacterId,
+} from "./kling-catalog";
+import { loadKlingCharacter } from "./kling-packs";
+import { MainNavigation } from "../workspace/MainNavigation";
+
 type SourceEntry = { pack: LoadedCharacterPack; archive: Blob };
-const klingSampleUrl = new URL(
-  "../../artwork/kling-jump/prepared/kling-source.zip",
-  import.meta.url,
-).href;
 
 export function PackPlayer() {
+  const embedded =
+    new URLSearchParams(window.location.search).get("embedded") === "1";
   const [pack, setPack] = useState<LoadedCharacterPack | null>(null);
   const [animation, setAnimation] = useState<PortableAnimationName>("idle");
   const [facing, setFacing] = useState<Facing>("right");
   const [playing, setPlaying] = useState(true);
+  const [presentationActive, setPresentationActive] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [zoom, setZoom] = useState(5);
   const [busy, setBusy] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
+  const [klingCatalog, setKlingCatalog] = useState(false);
   const [error, setError] = useState("");
   const [source, setSource] = useState("");
   const [frameId, setFrameId] = useState(0);
@@ -73,9 +82,13 @@ export function PackPlayer() {
   const stageRef = useRef<HTMLDivElement>(null);
   const elapsedRef = useRef(0);
   const requestRef = useRef(0);
+  const pendingFetchRef = useRef<AbortController | null>(null);
   const frameRef = useRef(-1);
   const [canvasWidth, setCanvasWidth] = useState(640);
   const [playbackRevision, setPlaybackRevision] = useState(0);
+  const sourceCharacters = klingCatalog
+    ? KLING_CHARACTERS
+    : sourceBundle?.characters;
   const selectedClip = pack
     ? animationFor(pack.manifest, animation)
     : undefined;
@@ -122,6 +135,35 @@ export function PackPlayer() {
   }, []);
 
   useEffect(() => {
+    if (!embedded) return;
+    const receive = (event: MessageEvent) => {
+      if (
+        event.source !== window.parent ||
+        event.origin !== window.location.origin ||
+        event.data?.type !== "gathria-workbench-visibility" ||
+        typeof event.data.active !== "boolean"
+      )
+        return;
+      setPresentationActive(event.data.active);
+    };
+    window.addEventListener("message", receive);
+    return () => window.removeEventListener("message", receive);
+  }, [embedded]);
+
+  useEffect(() => {
+    if (!embedded || !pack) return;
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId:
+          klingCatalog && isKlingCharacterId(characterId) ? characterId : null,
+        name: pack.manifest.name,
+      },
+      window.location.origin,
+    );
+  }, [embedded, pack, klingCatalog, characterId]);
+
+  useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const context = canvas.getContext("2d");
@@ -137,7 +179,7 @@ export function PackPlayer() {
     let request = 0;
     function draw(now: number) {
       if (!context || !canvas) return;
-      if (previous !== undefined && playing)
+      if (previous !== undefined && playing && presentationActive)
         elapsedRef.current += (now - previous) * speed;
       previous = now;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -227,7 +269,8 @@ export function PackPlayer() {
           return;
         }
       }
-      if (playing && pack) request = requestAnimationFrame(draw);
+      if (playing && pack && presentationActive)
+        request = requestAnimationFrame(draw);
     }
     // Paint immediately on pause, completion, action changes and replay. The
     // callback schedules subsequent ticks only while playback is active.
@@ -239,6 +282,7 @@ export function PackPlayer() {
     animation,
     facing,
     playing,
+    presentationActive,
     speed,
     zoom,
     canvasRenderWidth,
@@ -249,15 +293,19 @@ export function PackPlayer() {
 
   const openPack = useCallback(
     async (
-      operation: () => Promise<LoadedCharacterPack>,
+      operation: (signal: AbortSignal) => Promise<LoadedCharacterPack>,
       label: string,
       onLoaded?: (loaded: LoadedCharacterPack) => void,
     ) => {
       const request = ++requestRef.current;
+      pendingFetchRef.current?.abort();
+      const controller = new AbortController();
+      pendingFetchRef.current = controller;
       setBusy(true);
+      setLoadingMessage("Opening and validating your pack…");
       setError("");
       try {
-        const loaded = await operation();
+        const loaded = await operation(controller.signal);
         if (request !== requestRef.current) return;
         elapsedRef.current = 0;
         frameRef.current = -1;
@@ -281,6 +329,7 @@ export function PackPlayer() {
         );
         setFramePosition(0);
         setSourceBundle(null);
+        setKlingCatalog(false);
         sourceEntries.current.clear();
         setCharacterId("");
         setComparisonPack(null);
@@ -347,42 +396,68 @@ export function PackPlayer() {
     );
   }
 
-  async function openKlingExample() {
-    const request = ++requestRef.current;
-    setBusy(true);
-    setError("");
-    try {
-      const response = await fetch(klingSampleUrl);
-      if (!response.ok)
-        throw new Error(
-          `Source example could not be downloaded (HTTP ${response.status}).`,
-        );
-      const archive = await response.blob();
-      if (request !== requestRef.current) return;
-      openZip(archive, "Kling original-video source bundle");
-    } catch (cause) {
-      if (request !== requestRef.current) return;
-      setError(
-        cause instanceof Error
-          ? cause.message
-          : "Source example could not be opened.",
+  const openKlingExample = useCallback(
+    (id: KlingCharacterId = "male") => {
+      let entry: SourceEntry;
+      void openPack(
+        async (signal) => {
+          entry = await loadKlingCharacter(id, signal, (stage) => {
+            if (!signal.aborted) setLoadingMessage(stage);
+          });
+          return entry.pack;
+        },
+        "Kling original-video character · prepared pack",
+        () => {
+          setKlingCatalog(true);
+          setCharacterId(id);
+          setDownloadPack(entry.archive);
+          sourceEntries.current.set(id, entry);
+        },
       );
-      setBusy(false);
-    }
+    },
+    [openPack],
+  );
+
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("kling");
+    const start = window.setTimeout(() => {
+      if (isKlingCharacterId(id)) openKlingExample(id);
+    }, 0);
+    return () => {
+      window.clearTimeout(start);
+      ++requestRef.current;
+      pendingFetchRef.current?.abort();
+      sourceEntries.current.clear();
+    };
+  }, [openKlingExample]);
+
+  function retainSourceEntries(ids: string[]) {
+    for (const id of sourceEntries.current.keys())
+      if (!ids.includes(id)) sourceEntries.current.delete(id);
   }
 
   async function selectSourceCharacter(id: string, compare = false) {
-    if (!sourceBundle) return;
+    if (!sourceBundle && !(klingCatalog && isKlingCharacterId(id))) return;
     const request = ++requestRef.current;
+    pendingFetchRef.current?.abort();
+    const controller = new AbortController();
+    pendingFetchRef.current = controller;
     setBusy(true);
+    setLoadingMessage("Opening and validating your pack…");
     setError("");
     try {
       const entry =
-        sourceEntries.current.get(id) ?? (await sourceEntry(sourceBundle, id));
+        sourceEntries.current.get(id) ??
+        (klingCatalog && isKlingCharacterId(id)
+          ? await loadKlingCharacter(id, controller.signal, (stage) => {
+              if (!controller.signal.aborted) setLoadingMessage(stage);
+            })
+          : await sourceEntry(sourceBundle!, id));
       if (request !== requestRef.current) return;
       sourceEntries.current.set(id, entry);
       if (compare) {
         setComparisonPack(entry.pack);
+        retainSourceEntries([characterId, id]);
       } else {
         const previousId = characterId;
         setCharacterId(id);
@@ -392,6 +467,7 @@ export function PackPlayer() {
           setComparisonPack(
             sourceEntries.current.get(previousId)?.pack ?? null,
           );
+        retainSourceEntries(comparisonPack ? [id, previousId] : [id]);
         if (!animationFor(entry.pack.manifest, animation)) {
           setAnimation("idle");
           elapsedRef.current = 0;
@@ -522,58 +598,35 @@ export function PackPlayer() {
   }
 
   return (
-    <div className="player-app">
-      <header className="player-header">
-        <a
-          className="player-brand"
-          href="/"
-          aria-label="Gathria Character home"
-        >
-          <span className="player-brand-mark" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-            <i />
-          </span>
-          <span>
-            gathria<span className="player-brand-sub">CHARACTER</span>
-          </span>
-        </a>
-        <nav aria-label="Main navigation">
-          <a href="/">Character studio</a>
-          <a href="/player.html" aria-current="page">
-            Pack player <ArrowUpRight size={14} />
-          </a>
-        </nav>
-        <span className="player-header-tag">
-          <span /> LOCAL & PRIVATE
-        </span>
-      </header>
+    <div className={`player-app${embedded ? " player-app--embedded" : ""}`}>
+      {!embedded && <MainNavigation active="player" />}
 
       <main className="player-main">
-        <div className="player-title-row">
-          <div>
-            <p className="player-eyebrow">YOUR CHARACTER, OUT IN THE WORLD</p>
-            <h1>
-              A little character.
-              <br />
-              <em>Ready to move.</em>
-            </h1>
-            <p className="player-intro">
-              Drop in an exported pack and see your character come to life.
-              <br className="player-desktop-break" /> An independent player,
-              powered by the files you bring.
-            </p>
+        {!embedded && (
+          <div className="player-title-row">
+            <div>
+              <p className="player-eyebrow">YOUR CHARACTER, OUT IN THE WORLD</p>
+              <h1>
+                A little character.
+                <br />
+                <em>Ready to move.</em>
+              </h1>
+              <p className="player-intro">
+                Drop in an exported pack and see your character come to life.
+                <br className="player-desktop-break" /> An independent player,
+                powered by the files you bring.
+              </p>
+            </div>
+            <div className="player-title-note">
+              <Box size={28} strokeWidth={1.3} />
+              <span>
+                Portable pixels.
+                <br />
+                Endless possibilities.
+              </span>
+            </div>
           </div>
-          <div className="player-title-note">
-            <Box size={28} strokeWidth={1.3} />
-            <span>
-              Portable pixels.
-              <br />
-              Endless possibilities.
-            </span>
-          </div>
-        </div>
+        )}
 
         <div className="player-layout">
           <aside className="player-import-panel">
@@ -781,7 +834,7 @@ export function PackPlayer() {
             </div>
             <div className="player-status" role="status" aria-live="polite">
               {busy ? (
-                "Opening and validating your pack…"
+                loadingMessage || "Opening and validating your pack…"
               ) : pack ? (
                 <>
                   <Check size={15} /> Loaded: {pack.manifest.name}
@@ -822,7 +875,7 @@ export function PackPlayer() {
                   Clothing, colors and expressions are part of the image and
                   cannot be edited separately.
                 </p>
-                {sourceBundle && (
+                {sourceCharacters && (
                   <div className="player-source-selection">
                     <label htmlFor="player-character">
                       Character
@@ -835,14 +888,14 @@ export function PackPlayer() {
                           void selectSourceCharacter(event.target.value)
                         }
                       >
-                        {sourceBundle.characters.map((character) => (
+                        {sourceCharacters.map((character) => (
                           <option key={character.id} value={character.id}>
                             {character.name}
                           </option>
                         ))}
                       </select>
                     </label>
-                    {sourceBundle.characters.length === 2 && (
+                    {sourceCharacters.length === 2 && (
                       <label>
                         <input
                           type="checkbox"
@@ -850,9 +903,11 @@ export function PackPlayer() {
                           disabled={busy}
                           onChange={(event) => {
                             setComparisonRequested(event.target.checked);
-                            if (!event.target.checked) setComparisonPack(null);
-                            else {
-                              const other = sourceBundle.characters.find(
+                            if (!event.target.checked) {
+                              setComparisonPack(null);
+                              retainSourceEntries([characterId]);
+                            } else {
+                              const other = sourceCharacters.find(
                                 (character) => character.id !== characterId,
                               );
                               if (other)
@@ -1202,16 +1257,18 @@ export function PackPlayer() {
           </section>
         )}
 
-        <footer className="player-footer">
-          <span>Small characters. Big stories.</span>
-          <p>
-            Standalone pack formats v1, v2 & v3 <span>·</span> Gathria runtime
-            compatibility is unverified.
-          </p>
-          <a href="/">
-            Back to the studio <ArrowUpRight size={14} />
-          </a>
-        </footer>
+        {!embedded && (
+          <footer className="player-footer">
+            <span>Small characters. Big stories.</span>
+            <p>
+              Standalone pack formats v1, v2 & v3 <span>·</span> Gathria runtime
+              compatibility is unverified.
+            </p>
+            <a href="/editor.html">
+              Back to the classic studio <ArrowUpRight size={14} />
+            </a>
+          </footer>
+        )}
       </main>
     </div>
   );

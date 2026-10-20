@@ -40,7 +40,7 @@ try {
   });
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto(baseUrl);
+  await page.goto(new URL("/editor.html", baseUrl).href);
   const exported = await page.evaluate(async (legacyConfigs) => {
     const {
       ART_V3_PRESETS: PRESETS,

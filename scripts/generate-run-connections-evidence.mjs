@@ -97,7 +97,7 @@ try {
   });
   const page = await context.newPage();
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto(origin);
+  await page.goto(origin + "/editor.html");
   const reuseExports = process.env.RUN_CONNECTIONS_REUSE_EXPORTS === "1";
   let checkpoint;
   let exports;
