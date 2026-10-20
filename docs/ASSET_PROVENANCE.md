@@ -1,5 +1,28 @@
 # Artwork provenance and reuse
 
+## Faithful original Kling playback
+
+This batch reextracts both user-supplied original Kling videos; it makes no
+image-generation call and does not use the regenerated reference-mother master
+as its artwork. The existing male video is reused and the new female original
+is stored once. Hashes, selected original frame indices, fixed crops and chroma
+profiles are retained in [the source record](../artwork/kling-playback/README.md).
+
+The 166 selected frames preserve every source frame in four continuous 24 fps
+intervals. Offline processing changes the green-screen background and estimated
+soft edges only; every fully opaque output pixel retains decoded source RGB.
+Characters are never resized, redrawn, stabilized or fitted to a skeleton.
+From prepared RGBA PNG to native V2 atlas/export/reimport, pixels are exact.
+The exported recipe retains original video hashes, crop/matte parameters,
+frame/time maps and the source archive hash. Source videos remain untouched.
+
+Actual player exports drive the [review images and GIFs](kling-playback/README.md).
+GIFs are explicitly smaller palette-based display copies; native PNG/ZIP is the
+fidelity reference. These assets are whole-character baked performances, not
+independent clothing, expression or anatomy layers. Source motion blur and
+small loop differences remain documented. See [the compatibility review](KLING_PLAYBACK_REVIEW.md)
+and [bounded modular feasibility](KLING_MODULAR_FEASIBILITY.md).
+
 ## Approved-reference mother candidate
 
 Three development-time OpenAI image calls created a complete master, alpha-cleanup
