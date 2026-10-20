@@ -1,0 +1,68 @@
+{
+  "executedAt": "2026-10-19T21:04:19.187528+00:00",
+  "implementationCommit": "a0f8cd0",
+  "newSessionExecutionOnly": true,
+  "unitTests": {
+    "passed": 42,
+    "files": 5,
+    "commands": [
+      "npm test -- src/skeletal/base-character.test.ts src/skeletal/shin-following-shoes.test.ts src/skeletal/jump-renderer.test.ts src/skeletal/wardrobe-source-colors.test.ts src/skeletal/skin-io.test.ts",
+      "npm test -- src/skeletal/base-character.test.ts"
+    ],
+    "note": "38 existing tests passed in the first run; all 4 new tests passed after replacing a slow deep-equality matcher on the 9 MiB atlas with exact Buffer.compare. No timeout or assertion relaxed."
+  },
+  "browserTests": {
+    "passed": 10,
+    "files": [
+      "tests/e2e/base-character.spec.ts",
+      "tests/e2e/basic-actions.spec.ts",
+      "tests/e2e/skin-studio.spec.ts"
+    ],
+    "browser": "system Chromium",
+    "workers": 2
+  },
+  "build": {
+    "command": "npm run build",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "warning": "Existing chunks > 500 kB",
+    "resolvedInitialFailure": "New test helper parameter needed readonly Point-compatible arrays."
+  },
+  "productionSmoke": {
+    "executedAt": "2026-10-19T21:03:18.170Z",
+    "builtAssetLoaded": true,
+    "assetResponses": [
+      {
+        "url": "/assets/base-character.rig-Bbra1bP2.zip",
+        "status": 200
+      }
+    ],
+    "modelName": "Base character study"
+  },
+  "actualExports": {
+    "nativePoses": 36,
+    "editorPixelComparisons": 72,
+    "expressionsAndPosesChecked": 108,
+    "closedEditorPlaybackCases": 8,
+    "sourceSlotsChecked": 17,
+    "reopenPixelExact": true,
+    "recolorExport": true,
+    "jumpOnceHoldAndReplay": true
+  },
+  "artifacts": {
+    "pngDecoded": 58,
+    "gifTimelinesDecoded": 18,
+    "zipArchivesDecoded": 4,
+    "details": "final/artifact-validation.json"
+  },
+  "visualInspection": {
+    "method": "Inspect native/integer-zoom actual export keyframes and prepared joint crops; independently verify full browser playback frame order and time against decoded atlas. Not a user visual acceptance.",
+    "limitations": [
+      "Crowded recovery legs/shoes, run keys 8\u20139",
+      "Soft mesh knees and angular hem pixels in deep bends",
+      "Near shoulder cap visible during large swing",
+      "Strict shin-following footwear verified for run only",
+      "Three-quarter view only; no production Gathria scene validation"
+    ]
+  }
+}

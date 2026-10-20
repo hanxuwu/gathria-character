@@ -1,5 +1,22 @@
 # Artwork provenance and reuse
 
+## Base character mother model
+
+One development-time OpenAI image-generation call created the plain training
+body and isolated parts in
+[`artwork/base-character/source`](../artwork/base-character/source/README.md).
+The exact prompt, untouched original, input reference and SHA256 inventory are
+retained. Production heads reuse the three existing standard-kit bald faces
+and masks. The prepared body is registered, semantically masked and assembled
+through the ordinary project-owned rig; no image API runs in the browser.
+
+The complete figure on the generated sheet is a source guide. All
+[delivered four-action previews](base-character/README.md) instead come from
+actual Studio exports. Source-specific segmentation and rounded hidden joint
+overlap are recorded in the preparation script and registration metadata.
+The source has no separately painted bent-knee corrective; remaining mesh and
+passing-pose limits are described in the [review](BASE_CHARACTER_REVIEW.md).
+
 ## Ravi, Lina and Nora modular character trial
 
 The 18 October 2026 batch retains five original OpenAI image-generation outputs:

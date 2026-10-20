@@ -1,0 +1,1247 @@
+Gathria reusable skeletal rig v2
+
+All available action frames were generated locally from a registered skin pack, the shared humanoid bone hierarchy and motion library. No Spine software, format, runtime or copied implementation is used. No image-generation service is called during rendering or playback.
+
+ARTWORK SOURCE
+[skin-artwork]
+Prepared offline from this repository's existing AI-assisted V6 crop/waves heads, illustrated everyday garments and Motion 3 repaired arm/skirt ownership. No new image-model call. Raw authored RGBA+material IDs, source palettes and registration landmarks are retained. Catalog v1 uses one 192×256 humanoid rig family with garment-specific source cut landmarks. See docs/WARDROBE_ASSET_SOURCES.md and docs/ASSET_PROVENANCE.md. Original artwork reuse follows the repository MIT notice; imported artwork retains its own terms.
+Wardrobe catalog 1 recipe: {"format":"gathria-wardrobe-recipe","version":3,"catalogVersion":1,"identity":"custom-base-bald","top":"custom-base-vest","bottom":"custom-base-shorts","shoes":"custom-base-shoes","colors":{"skin":"#f6bc8d","hair":"#75462c","top":"#b9bca6","bottom":"#46575c","shoes":"#e9dfd2"}}
+Materials are recolored from authored masks. Shoes are fitted by nearest-neighbor sampling between the selected bottom's source ankle and the common grounded sole at y=239. Clean skin/cloth ankle allowances extend at most four source pixels behind the shoes; explicit preserveAnkleOverlap retains them during mesh preparation. Flat skin images remain independently exportable; character.json is a compatibility reference, not the wardrobe recipe.
+Custom shoes custom-base-shoes (Base · simple shoes): Base character study 1. OpenAI image generation, development-time only, source artwork/base-character/source/model-sheet.png SHA256 a7e4e3a5bab61e18cadf8539a1faf3fe74519919dda4c3d4ab5550ffd9beed0b; exact prompt retained beside source. Existing standard-kit shared bald expression heads retained. Offline registration in scripts/prepare-base-character.mjs: authored part bounding boxes, nearest-neighbor sampling, alpha >= 210, largest connected source component, explicit limb landmarks/material ownership. No runtime AI, no new legacy rendering version.
+Item V5 source-relative-v1: run shoe pixels remain exact; sourceShin→ankle registers the rigid shoe to the final posed shin. A bounded support solve shares one ankle with leg IK, ignores run shoePitch, and leaves other actions unchanged.
+Custom bottom custom-base-shorts (Base · shorts + bare legs): Base character study 1. OpenAI image generation, development-time only, source artwork/base-character/source/model-sheet.png SHA256 a7e4e3a5bab61e18cadf8539a1faf3fe74519919dda4c3d4ab5550ffd9beed0b; exact prompt retained beside source. Existing standard-kit shared bald expression heads retained. Offline registration in scripts/prepare-base-character.mjs: authored part bounding boxes, nearest-neighbor sampling, alpha >= 210, largest connected source component, explicit limb landmarks/material ownership. No runtime AI, no new legacy rendering version.
+Item V3 source-relative-v1: authored material RGB is exact at its source palette; recoloring applies only the difference between source and target shading transforms. Geometric fitting and overlap still apply.
+Custom top custom-base-vest (Base · training vest + bare arms): Base character study 1. OpenAI image generation, development-time only, source artwork/base-character/source/model-sheet.png SHA256 a7e4e3a5bab61e18cadf8539a1faf3fe74519919dda4c3d4ab5550ffd9beed0b; exact prompt retained beside source. Existing standard-kit shared bald expression heads retained. Offline registration in scripts/prepare-base-character.mjs: authored part bounding boxes, nearest-neighbor sampling, alpha >= 210, largest connected source component, explicit limb landmarks/material ownership. No runtime AI, no new legacy rendering version.
+Item V3 source-relative-v1: authored material RGB is exact at its source palette; recoloring applies only the difference between source and target shading transforms. Geometric fitting and overlap still apply.
+Custom identity custom-base-bald (Base · bald shared face): Base character study 1. OpenAI image generation, development-time only, source artwork/base-character/source/model-sheet.png SHA256 a7e4e3a5bab61e18cadf8539a1faf3fe74519919dda4c3d4ab5550ffd9beed0b; exact prompt retained beside source. Existing standard-kit shared bald expression heads retained. Offline registration in scripts/prepare-base-character.mjs: authored part bounding boxes, nearest-neighbor sampling, alpha >= 210, largest connected source component, explicit limb landmarks/material ownership. No runtime AI, no new legacy rendering version.
+Identity source skin/hair pixels are preserved exactly when the chosen color equals the authored palette. Registered neck (96,118); source masks own only fixed, skin and hair.
+
+REPRODUCTION AND COMPATIBILITY
+Save the separate authoring project ZIP: it contains this skin's full RGBA images, binding data, rig and clips. This playback package contains baked pixels only. character.json is a legacy-compatible appearance reference; opening it in ordinary Studio does NOT reproduce an imported skin or this rig's animation. Use Skin Studio and the saved authoring project to reproduce or edit these frames.
+The project-owned rendering code is covered by the repository license. Rights in imported artwork are determined by the supplied source provenance; the renderer does not assign a new license to third-party images. Gathria production integration remains unverified.
+
+AUTHORING METADATA (not a self-contained image recipe)
+{
+  "format": "gathria-rig-authoring",
+  "version": 1,
+  "rig": {
+    "format": "gathria-rig",
+    "version": 1,
+    "id": "gathria-v6-humanoid-1",
+    "frame": {
+      "width": 192,
+      "height": 256
+    },
+    "anchor": [
+      96,
+      240
+    ],
+    "pivot": [
+      96,
+      170
+    ],
+    "bones": [
+      {
+        "id": "root",
+        "parent": null,
+        "from": [
+          96,
+          240
+        ],
+        "to": [
+          96,
+          170
+        ]
+      },
+      {
+        "id": "torso",
+        "parent": "root",
+        "from": [
+          96,
+          170
+        ],
+        "to": [
+          96,
+          118
+        ]
+      },
+      {
+        "id": "head",
+        "parent": "torso",
+        "from": [
+          96,
+          118
+        ],
+        "to": [
+          111,
+          64
+        ]
+      },
+      {
+        "id": "nearArm:upper",
+        "parent": "torso",
+        "from": [
+          74,
+          133
+        ],
+        "to": [
+          66,
+          155
+        ]
+      },
+      {
+        "id": "nearArm:lower",
+        "parent": "nearArm:upper",
+        "from": [
+          66,
+          155
+        ],
+        "to": [
+          67,
+          177
+        ]
+      },
+      {
+        "id": "farArm:upper",
+        "parent": "torso",
+        "from": [
+          121,
+          133
+        ],
+        "to": [
+          127,
+          155
+        ]
+      },
+      {
+        "id": "farArm:lower",
+        "parent": "farArm:upper",
+        "from": [
+          127,
+          155
+        ],
+        "to": [
+          130,
+          177
+        ]
+      },
+      {
+        "id": "nearLeg:upper",
+        "parent": "torso",
+        "from": [
+          86,
+          181
+        ],
+        "to": [
+          82,
+          205
+        ]
+      },
+      {
+        "id": "nearLeg:lower",
+        "parent": "nearLeg:upper",
+        "from": [
+          82,
+          205
+        ],
+        "to": [
+          79,
+          229
+        ]
+      },
+      {
+        "id": "farLeg:upper",
+        "parent": "torso",
+        "from": [
+          106,
+          181
+        ],
+        "to": [
+          109,
+          205
+        ]
+      },
+      {
+        "id": "farLeg:lower",
+        "parent": "farLeg:upper",
+        "from": [
+          109,
+          205
+        ],
+        "to": [
+          111,
+          229
+        ]
+      }
+    ],
+    "chains": {
+      "nearArm": [
+        [
+          74,
+          133
+        ],
+        [
+          66,
+          155
+        ],
+        [
+          67,
+          177
+        ]
+      ],
+      "farArm": [
+        [
+          121,
+          133
+        ],
+        [
+          127,
+          155
+        ],
+        [
+          130,
+          177
+        ]
+      ],
+      "nearLeg": [
+        [
+          86,
+          181
+        ],
+        [
+          82,
+          205
+        ],
+        [
+          79,
+          229
+        ]
+      ],
+      "farLeg": [
+        [
+          106,
+          181
+        ],
+        [
+          109,
+          205
+        ],
+        [
+          111,
+          229
+        ]
+      ]
+    },
+    "drawOrder": [
+      "back-hair",
+      "far-arm",
+      "far-leg",
+      "near-leg",
+      "hips",
+      "garment",
+      "torso",
+      "near-arm",
+      "head"
+    ]
+  },
+  "motions": {
+    "format": "gathria-motion-library",
+    "version": 2,
+    "id": "base-character-study-actions-1",
+    "clips": {
+      "idle": {
+        "fps": 4,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 1
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -1
+          }
+        ],
+        "sequence": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          0,
+          0
+        ]
+      },
+      "walk": {
+        "fps": 10,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -8
+          },
+          {
+            "footX": 7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": -7,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": -12,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 8
+          },
+          {
+            "footX": -8,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 6
+          },
+          {
+            "footX": 0,
+            "footLift": 9,
+            "shoePitch": 0,
+            "bodyBob": -2,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0
+          },
+          {
+            "footX": 9,
+            "footLift": 5,
+            "shoePitch": 0,
+            "bodyBob": -1,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": -6
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "run": {
+        "fps": 18,
+        "loop": true,
+        "keys": [
+          {
+            "footX": 14.4,
+            "footLift": 0,
+            "shoePitch": -0.08,
+            "bodyBob": 10,
+            "armAngle": -1.1,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0
+          },
+          {
+            "footX": 4.800000000000001,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 11,
+            "armAngle": -0.8,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0.012
+          },
+          {
+            "footX": -4.800000000000001,
+            "footLift": 0,
+            "shoePitch": 0.18,
+            "bodyBob": 10,
+            "armAngle": -0.45,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0.018
+          },
+          {
+            "footX": -14.4,
+            "footLift": 3,
+            "shoePitch": 0.32,
+            "bodyBob": 8,
+            "armAngle": -0.1,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0.01
+          },
+          {
+            "footX": -20,
+            "footLift": 9,
+            "shoePitch": 0.45,
+            "bodyBob": 6,
+            "armAngle": 0.25,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": -0.006
+          },
+          {
+            "footX": -21.6,
+            "footLift": 16,
+            "shoePitch": 0.48,
+            "bodyBob": 8,
+            "armAngle": 0.45,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": -0.01
+          },
+          {
+            "footX": -18.400000000000002,
+            "footLift": 21,
+            "shoePitch": 0.38,
+            "bodyBob": 10,
+            "armAngle": 0.55,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0
+          },
+          {
+            "footX": -8,
+            "footLift": 16,
+            "shoePitch": 0.2,
+            "bodyBob": 11,
+            "armAngle": 0.25,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0.012
+          },
+          {
+            "footX": 3.2,
+            "footLift": 17,
+            "shoePitch": 0.05,
+            "bodyBob": 10,
+            "armAngle": -0.1,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0.018
+          },
+          {
+            "footX": 12,
+            "footLift": 11,
+            "shoePitch": -0.1,
+            "bodyBob": 8,
+            "armAngle": -0.45,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": 0.01
+          },
+          {
+            "footX": 15.200000000000001,
+            "footLift": 6,
+            "shoePitch": -0.12,
+            "bodyBob": 6,
+            "armAngle": -0.8,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": -0.006
+          },
+          {
+            "footX": 16,
+            "footLift": 3,
+            "shoePitch": -0.1,
+            "bodyBob": 8,
+            "armAngle": -1,
+            "lean": 0.14,
+            "armSwing": 0,
+            "torsoLean": -0.01
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "jump": {
+        "fps": 15,
+        "loop": false,
+        "keys": [
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 4,
+            "armAngle": 0.12,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0,
+            "armBend": -0.12
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 7,
+            "armAngle": 0.24,
+            "lean": 0.03,
+            "armSwing": 0,
+            "rootY": 0,
+            "armBend": -0.2
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.35,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -2,
+            "armBend": -0.55
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.55,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -9,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.65,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -14,
+            "armBend": -0.75
+          },
+          {
+            "footX": 0,
+            "footLift": 10,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.58,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -14,
+            "armBend": -0.65
+          },
+          {
+            "footX": 0,
+            "footLift": 8,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": -0.45,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": -8,
+            "armBend": -0.45
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 1,
+            "armAngle": -0.18,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0,
+            "armBend": -0.15
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 6,
+            "armAngle": 0.08,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0,
+            "armBend": -0.1
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 3,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0
+          },
+          {
+            "footX": 0,
+            "footLift": 0,
+            "shoePitch": 0,
+            "bodyBob": 0,
+            "armAngle": 0,
+            "lean": 0,
+            "armSwing": 0,
+            "rootY": 0
+          }
+        ],
+        "sequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    }
+  },
+  "preview": {
+    "animation": "idle",
+    "facing": "right",
+    "expression": "neutral"
+  },
+  "skin": {
+    "metadata": {
+      "format": "gathria-skin-pack",
+      "version": 4,
+      "runShoes": {
+        "nearLeg": {
+          "slot": "near-shoe-run",
+          "ankle": [
+            79,
+            229
+          ],
+          "sourceShin": [
+            82,
+            205
+          ]
+        },
+        "farLeg": {
+          "slot": "far-shoe-run",
+          "ankle": [
+            111,
+            229
+          ],
+          "sourceShin": [
+            109,
+            205
+          ]
+        }
+      },
+      "id": "wardrobe-v3-custom-base-bald-f780e400",
+      "name": "Base character study",
+      "rigId": "gathria-v6-humanoid-1",
+      "slots": [
+        "torso",
+        "hips",
+        "near-upper-arm",
+        "near-forearm",
+        "far-upper-arm",
+        "far-forearm",
+        "near-thigh",
+        "near-shin",
+        "near-shoe",
+        "far-thigh",
+        "far-shin",
+        "far-shoe",
+        "head-neutral",
+        "head-gentle",
+        "head-joyful",
+        "near-shoe-run",
+        "far-shoe-run"
+      ],
+      "sourceAppearance": {
+        "schemaVersion": 2,
+        "name": "Theo pose study",
+        "skinTone": "#F6BC8D",
+        "hairstyle": "crop",
+        "hairColor": "#75462C",
+        "upperColor": "#B9BCA6",
+        "lowerColor": "#46575C",
+        "shoeColor": "#E9DFD2",
+        "faceVariant": "oval",
+        "upperClothing": "tee",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 6,
+        "motionVersion": 3,
+        "preview": {
+          "animation": "idle",
+          "facing": "right"
+        }
+      },
+      "bindings": {
+        "chains": {
+          "nearArm": [
+            [
+              74,
+              133
+            ],
+            [
+              66,
+              155
+            ],
+            [
+              67,
+              177
+            ]
+          ],
+          "farArm": [
+            [
+              121,
+              133
+            ],
+            [
+              127,
+              155
+            ],
+            [
+              130,
+              177
+            ]
+          ],
+          "nearLeg": [
+            [
+              86,
+              181
+            ],
+            [
+              82,
+              205
+            ],
+            [
+              79,
+              229
+            ]
+          ],
+          "farLeg": [
+            [
+              106,
+              181
+            ],
+            [
+              109,
+              205
+            ],
+            [
+              111,
+              229
+            ]
+          ]
+        },
+        "offsets": {},
+        "mesh": {
+          "blendRadius": 6,
+          "volume": 0.65,
+          "preserveAnkleOverlap": true
+        },
+        "jaw": {
+          "center": [
+            111,
+            78
+          ],
+          "start": 80,
+          "scale": 1,
+          "length": 1
+        },
+        "hairSway": 0,
+        "garmentSway": 1
+      },
+      "provenanceReference": "skin-artwork"
+    },
+    "images": "Stored in the separate authoring ZIP; omitted from this playback package."
+  },
+  "wardrobe": {
+    "format": "gathria-wardrobe-recipe",
+    "version": 3,
+    "catalogVersion": 1,
+    "identity": "custom-base-bald",
+    "top": "custom-base-vest",
+    "bottom": "custom-base-shorts",
+    "shoes": "custom-base-shoes",
+    "colors": {
+      "skin": "#f6bc8d",
+      "hair": "#75462c",
+      "top": "#b9bca6",
+      "bottom": "#46575c",
+      "shoes": "#e9dfd2"
+    }
+  },
+  "selectedSources": {
+    "identity": {
+      "format": "gathria-character-identity",
+      "version": 1,
+      "rigId": "gathria-v6-humanoid-1",
+      "id": "custom-base-bald",
+      "name": "Base · bald shared face",
+      "frame": {
+        "width": 192,
+        "height": 256
+      },
+      "anchor": [
+        96,
+        240
+      ],
+      "neck": [
+        96,
+        118
+      ],
+      "jaw": {
+        "center": [
+          111,
+          78
+        ],
+        "start": 80,
+        "scale": 1,
+        "length": 1
+      },
+      "hairSway": 0,
+      "palette": {
+        "skin": "#f6bc8d",
+        "hair": "#75462c"
+      },
+      "sourceAppearance": {
+        "schemaVersion": 2,
+        "name": "Theo pose study",
+        "skinTone": "#F6BC8D",
+        "hairstyle": "crop",
+        "hairColor": "#75462C",
+        "upperColor": "#373B4B",
+        "lowerColor": "#373B4B",
+        "shoeColor": "#875934",
+        "faceVariant": "oval",
+        "upperClothing": "tee",
+        "lowerClothing": "trousers",
+        "expression": "gentle",
+        "hairAccessory": "none",
+        "artworkVersion": 6,
+        "motionVersion": 3,
+        "preview": {
+          "animation": "idle",
+          "facing": "right"
+        }
+      },
+      "provenanceReference": "skin-artwork",
+      "parts": [
+        {
+          "slot": "head-neutral",
+          "palette": {
+            "skin": "#f6bc8d",
+            "hair": "#75462c"
+          },
+          "preserveWarmSkin": true,
+          "sourceLayerId": "base-character-study-1:head-neutral"
+        },
+        {
+          "slot": "head-gentle",
+          "palette": {
+            "skin": "#f6bc8d",
+            "hair": "#75462c"
+          },
+          "preserveWarmSkin": true,
+          "sourceLayerId": "base-character-study-1:head-gentle"
+        },
+        {
+          "slot": "head-joyful",
+          "palette": {
+            "skin": "#f6bc8d",
+            "hair": "#75462c"
+          },
+          "preserveWarmSkin": true,
+          "sourceLayerId": "base-character-study-1:head-joyful"
+        }
+      ]
+    },
+    "clothing": [
+      {
+        "format": "gathria-wardrobe-item",
+        "version": 3,
+        "colorModel": "source-relative-v1",
+        "rigId": "gathria-v6-humanoid-1",
+        "id": "custom-base-vest",
+        "name": "Base · training vest + bare arms",
+        "group": "top",
+        "chains": {
+          "nearArm": [
+            [
+              74,
+              133
+            ],
+            [
+              66,
+              155
+            ],
+            [
+              67,
+              177
+            ]
+          ],
+          "farArm": [
+            [
+              121,
+              133
+            ],
+            [
+              127,
+              155
+            ],
+            [
+              130,
+              177
+            ]
+          ]
+        },
+        "provenanceReference": "skin-artwork",
+        "parts": [
+          {
+            "slot": "torso",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:torso"
+          },
+          {
+            "slot": "near-upper-arm",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:near-upper-arm"
+          },
+          {
+            "slot": "near-forearm",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:near-forearm"
+          },
+          {
+            "slot": "far-upper-arm",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:far-upper-arm"
+          },
+          {
+            "slot": "far-forearm",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:far-forearm"
+          }
+        ]
+      },
+      {
+        "format": "gathria-wardrobe-item",
+        "version": 3,
+        "colorModel": "source-relative-v1",
+        "rigId": "gathria-v6-humanoid-1",
+        "id": "custom-base-shorts",
+        "name": "Base · shorts + bare legs",
+        "group": "bottom",
+        "chains": {
+          "nearLeg": [
+            [
+              86,
+              181
+            ],
+            [
+              82,
+              205
+            ],
+            [
+              79,
+              229
+            ]
+          ],
+          "farLeg": [
+            [
+              106,
+              181
+            ],
+            [
+              109,
+              205
+            ],
+            [
+              111,
+              229
+            ]
+          ]
+        },
+        "provenanceReference": "skin-artwork",
+        "parts": [
+          {
+            "slot": "hips",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:hips"
+          },
+          {
+            "slot": "near-thigh",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:near-thigh"
+          },
+          {
+            "slot": "near-shin",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:near-shin"
+          },
+          {
+            "slot": "far-thigh",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:far-thigh"
+          },
+          {
+            "slot": "far-shin",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:far-shin"
+          }
+        ]
+      },
+      {
+        "format": "gathria-wardrobe-item",
+        "version": 5,
+        "rigId": "gathria-v6-humanoid-1",
+        "id": "custom-base-shoes",
+        "name": "Base · simple shoes",
+        "colorModel": "source-relative-v1",
+        "group": "shoes",
+        "ankles": {
+          "near": [
+            79,
+            229
+          ],
+          "far": [
+            111,
+            229
+          ]
+        },
+        "runShoes": {
+          "nearLeg": {
+            "slot": "near-shoe-run",
+            "ankle": [
+              79,
+              229
+            ],
+            "sourceShin": [
+              82,
+              205
+            ]
+          },
+          "farLeg": {
+            "slot": "far-shoe-run",
+            "ankle": [
+              111,
+              229
+            ],
+            "sourceShin": [
+              109,
+              205
+            ]
+          }
+        },
+        "provenanceReference": "skin-artwork",
+        "parts": [
+          {
+            "slot": "near-shoe",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:near-shoe"
+          },
+          {
+            "slot": "far-shoe",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:far-shoe"
+          },
+          {
+            "slot": "near-shoe-run",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:near-shoe-run"
+          },
+          {
+            "slot": "far-shoe-run",
+            "palette": {
+              "skin": "#f6bc8d",
+              "hair": "#75462c",
+              "upper": "#b9bca6",
+              "lower": "#46575c",
+              "shoe": "#e9dfd2"
+            },
+            "preserveWarmSkin": true,
+            "sourceLayerId": "base-character-study-1:far-shoe-run"
+          }
+        ]
+      }
+    ],
+    "artwork": "All encoded source pixels and unused library entries remain in the separate authoring ZIP."
+  }
+}

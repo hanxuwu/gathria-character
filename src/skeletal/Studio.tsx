@@ -65,6 +65,7 @@ import {
   type MotionClip,
 } from "./types";
 import "./studio.css";
+import baseCharacterUrl from "../../artwork/base-character/prepared/base-character.rig.zip?url";
 
 const LABELS: Record<ChainName, string> = {
   nearArm: "Near arm",
@@ -930,6 +931,29 @@ export function SkinStudio() {
         <legend className="skin-sr-only">Character authoring</legend>
         <aside className="skin-panel skin-files">
           <h2>1 · Choose artwork</h2>
+          <button
+            onClick={() =>
+              void runTask("Opening base model…", async () => {
+                const response = await fetch(baseCharacterUrl);
+                if (!response.ok)
+                  throw Error("The base model could not be loaded.");
+                const next = await importProject(await response.blob());
+                applyProject(
+                  next,
+                  "Open base model",
+                  structuredClone(next.skin.metadata.bindings),
+                );
+                setFrame(0);
+                return "Base model opened. Choose Idle, Walk, Run or Jump; enable Bones to inspect the joints. Undo restores your previous project.";
+              })
+            }
+          >
+            Open base model
+          </button>
+          <p className="skin-help">
+            A simple training outfit for refining proportions and four basic
+            actions.
+          </p>
           <label>
             Example skin
             <select
