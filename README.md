@@ -1,8 +1,10 @@
 # Gathria Character
 
-Current studio default: **Polished Art V6 with repaired compact running (`motionVersion: 3`)**. The V6 proportions, source art, idle and walk pixels are preserved. V7 was not accepted in visual review and is retained for comparison and saved-file compatibility. Opening any saved V1–V7 configuration preserves its original artwork and available actions.
+Start in the **Character Library** with the two original Kling characters. The three main destinations are the library (`/`), character workbench (`/workbench.html`) and independent player (`/player.html`). The workbench keeps original-video playback and the complete existing skeleton/motion editor in separate, persistent tabs. Kling artwork is not yet an editable skeleton or wardrobe.
 
-A standalone, browser-local pixel-art character studio. Customize a character, preview idle, walking and running animations, save editable configuration, and export a portable **CharacterPack v1** ZIP. A separate player consumes the exported PNG and metadata without invoking the generator.
+A standalone, browser-local character toolkit. Original Kling characters retain five source-video actions and portable native CharacterPack V3 export. Existing skeletal projects retain wardrobe, binding, motion editing, undo/redo, save/reopen and baked export. [Workspace review and current verification](docs/KLING_WORKSPACE_REVIEW.md).
+
+The **classic editor**, now at `/editor.html`, retains **Polished Art V6 with repaired compact running (`motionVersion: 3`)**. V6 proportions, source art, idle and walk pixels are preserved. V7 remains available for comparison and saved-file compatibility. Opening saved V1–V7 configurations preserves their original artwork and available actions. Classic configuration save and CharacterPack V1 export remain unchanged.
 
 ![Four everyday looks from actual character exports](docs/everyday/lineup-idle-2x.png)
 
@@ -17,15 +19,17 @@ npm ci
 npm run dev
 ```
 
-Open the address Vite prints. The studio is at `/`; the independent player is at `/player.html`. No API keys, account, backend, or runtime generation services are needed. Prepared artwork ships with the app. All editing, generation, and file processing happens in the browser. Changes are not autosaved: **Save config** preserves your editable character.
+Open the address Vite prints to enter the Character Library. Choose a Kling character for the workbench, or open **Skeleton & motion** to edit a skeletal project. The independent player is at `/player.html`; the classic editor is at `/editor.html`. Existing `/skin-studio.html`, `/rig-lab.html` and `/mother-study.html` URLs remain available. No API keys, account, backend, or runtime generation services are needed. Prepared artwork ships with the app. All editing, generation, and file processing happens in the browser. Changes are not autosaved: save the appropriate config or full authoring project before leaving.
 
 To play the two **original Kling video characters**, open the same player and
-choose **Try the Kling character pair**. The five-action source import preserves
+choose **Try the Kling character pair**. The prepared five-action packs preserve
 original 24 fps idle, walk, run, celebrate and a **one-shot jump**. Select either
 character, compare both, scrub, replay the landing and export independent
 CharacterPack V3 ZIPs. Native artwork is unscaled; the 704×1056 canvas adds 32
 transparent pixels above the previous crop to accommodate the source jump.
-These are baked characters with fixed appearance; existing Studio and Skin
+Only the selected character is loaded initially; selecting the other character
+or requesting comparison loads its pack on demand. Raw source ZIP import remains
+available through the file chooser. These are baked characters with fixed appearance; existing Studio and Skin
 Studio keep their editable workflows and V1 exports. Older V1/V2 packs and the
 four-action source archive remain supported.
 [Jump previews, downloads and limits](docs/kling-jump/README.md)

@@ -1,0 +1,90 @@
+{
+  "scope": "Current workspace integration batch only; older milestone test counts are not reused.",
+  "implementationCommit": "82d5f9d2fbb36605e443cdfc59dd9d0056f89848",
+  "checks": [
+    {
+      "command": "npm test -- --maxWorkers=1",
+      "passed": 585,
+      "filesPassed": 47,
+      "implementationAtRun": "5d682e9",
+      "note": "Before the final navigation-only target attribute fix; no unit-covered runtime changed afterward.",
+      "log": "checks/unit.log"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": 71,
+      "failed": 1,
+      "implementationAtRun": "5d682e9",
+      "failure": "Standalone mother-study link unexpectedly opened a new tab. Fixed in 82d5f9d; standalone navigation restored, embedded editor retains new-tab behavior.",
+      "log": "checks/browser-full.log"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e -- tests/e2e/mother-study.spec.ts tests/e2e/workspace-shell.spec.ts",
+      "passed": 7,
+      "failed": 0,
+      "implementationAtRun": "82d5f9d",
+      "note": "Focused regression after the navigation fix. The complete 72-case suite was not rerun locally after this fix.",
+      "log": "checks/browser-navigation-final.log"
+    },
+    {
+      "scope": "Prepared loader and existing source/native V3 playback focused browser cases",
+      "passed": 7,
+      "failed": 0,
+      "implementationAtRun": "5d682e9",
+      "log": "checks/browser-loader.log"
+    },
+    {
+      "command": "npm run typecheck",
+      "passed": true,
+      "implementationAtRun": "82d5f9d",
+      "log": "checks/typecheck.log"
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "htmlEntries": 7,
+      "implementationAtRun": "82d5f9d",
+      "note": "Existing large-chunk warnings remain.",
+      "log": "checks/build.log"
+    },
+    {
+      "command": "KLING_WORKSPACE_BASELINE=1 node scripts/verify-kling-workspace.mjs",
+      "passed": true,
+      "implementationAtRun": "82d5f9d",
+      "report": "evidence-index.json",
+      "log": "checks/native-evidence.log",
+      "nativeActionDirectionCases": 20,
+      "exactOriginalZipExports": 2,
+      "skeletonSaveReopen": true,
+      "pageErrors": 0
+    }
+  ],
+  "performance": {
+    "preparedCharacters": [
+      {
+        "id": "male",
+        "seconds": 3.895456728
+      },
+      {
+        "id": "female",
+        "seconds": 3.8846002619999997
+      }
+    ],
+    "rawSourceConversionSeconds": 47.45025779,
+    "method": "Existing raw source ZIP imported through file chooser, same browser/environment, no other heavy test jobs. Prepared timings include navigation+HTTP fetch; raw source timing includes local file input+conversion, not network transfer.",
+    "caveat": "Individual local desktop fresh-browser-context measurements; not an internet or mobile performance benchmark."
+  },
+  "artifactValidation": "artifact-validation.json",
+  "visualReview": {
+    "screenshots": 7,
+    "reviewed": "Library desktop/mobile, native character player, original workbench and real skeletal authoring. Original source frames and original ZIP exports unchanged.",
+    "mobile": "Main navigation fits 390px. Existing skeletal authoring canvases retain inner horizontal scrolling; detailed authoring remains desktop-oriented.",
+    "acceptance": "No new character artwork or user visual acceptance is claimed."
+  },
+  "limitations": [
+    "Kling originals remain fixed-appearance baked characters; HD layered parts and skeletal bindings are a later milestone.",
+    "Native atlas RGBA pixels require approximately 346 MiB per character before browser allocations; peak memory is not measured.",
+    "Tab sessions persist while the page remains open; there is no new autosave or project database.",
+    "Existing advanced editor URLs remain available behind three primary navigation destinations."
+  ]
+}
