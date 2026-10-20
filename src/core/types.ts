@@ -81,6 +81,8 @@ export type CharacterConfig =
   | ArtV6CharacterConfig
   | ArtV7CharacterConfig;
 export interface SpriteFrame {
+  /** V3 atlas page; V1/V2 frames use the primary image. */
+  page?: number;
   id: number;
   x: number;
   y: number;
@@ -131,9 +133,23 @@ export interface CharacterPackV2Manifest
   scale: { pixelArt: false; recommended: number; integerOnly: false };
   capabilities: { renderMode: "baked"; editableAppearance: false };
 }
+/** Additional native pages keep original frame dimensions without oversized images. */
+export interface CharacterPackV3Manifest
+  extends Omit<CharacterPackV2Manifest, "schemaVersion" | "frames"> {
+  schemaVersion: 3;
+  additionalSheets: Array<
+    Omit<CharacterPackV2Manifest["spritesheet"], "file"> & {
+      file: `spritesheet-${number}.png`;
+    }
+  >;
+  frames: Array<SpriteFrame & { page: number }>;
+}
+export type BakedCharacterPackManifest =
+  | CharacterPackV2Manifest
+  | CharacterPackV3Manifest;
 export type PortableCharacterPackManifest =
   | CharacterPackManifest
-  | CharacterPackV2Manifest;
+  | BakedCharacterPackManifest;
 export type JsonValue =
   | null
   | boolean

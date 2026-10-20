@@ -32,11 +32,12 @@ import {
   animationHasEnded,
   drawCharacterFrame,
   frameAtTime,
+  imageForFrame,
 } from "./player";
 
 type SourceEntry = { pack: LoadedCharacterPack; archive: Blob };
 const klingSampleUrl = new URL(
-  "../../artwork/kling-playback/prepared/kling-source.zip",
+  "../../artwork/kling-jump/prepared/kling-source.zip",
   import.meta.url,
 ).href;
 
@@ -78,7 +79,7 @@ export function PackPlayer() {
   const selectedClip = pack
     ? animationFor(pack.manifest, animation)
     : undefined;
-  const isBaked = pack?.manifest.schemaVersion === 2;
+  const isBaked = !!pack && pack.manifest.schemaVersion !== 1;
   const zoomChoices = isBaked
     ? [...new Set([0.25, 0.5, 0.75, 1, 1.5, 2, zoom])].sort((a, b) => a - b)
     : [1, 2, 3, 4, 5, 6, 7, 8];
@@ -157,7 +158,7 @@ export function PackPlayer() {
         const frame = frameAtTime(pack.manifest, animation, elapsedRef.current);
         drawCharacterFrame(
           context,
-          pack.image,
+          imageForFrame(pack, frame),
           pack.manifest,
           frame,
           facing,
@@ -168,11 +169,16 @@ export function PackPlayer() {
           comparisonPack &&
           animationFor(comparisonPack.manifest, animation)
         ) {
+          const comparisonFrame = frameAtTime(
+            comparisonPack.manifest,
+            animation,
+            elapsedRef.current,
+          );
           drawCharacterFrame(
             context,
-            comparisonPack.image,
+            imageForFrame(comparisonPack, comparisonFrame),
             comparisonPack.manifest,
-            frameAtTime(comparisonPack.manifest, animation, elapsedRef.current),
+            comparisonFrame,
             facing,
             zoom,
             { x: Math.round((canvasRenderWidth * 3) / 4), y: attachmentY },
@@ -198,7 +204,24 @@ export function PackPlayer() {
         context.moveTo(attachment.x + 0.5, attachment.y - 5);
         context.lineTo(attachment.x + 0.5, attachment.y + 5);
         context.stroke();
-        if (animationHasEnded(pack.manifest, animation, elapsedRef.current)) {
+        const comparisonClip = comparisonPack
+          ? animationFor(comparisonPack.manifest, animation)
+          : undefined;
+        // Keep a longer compared one-shot playing after the selected character
+        // has landed. The shorter character holds its authored final frame.
+        const comparisonEnded =
+          !comparisonPack ||
+          !comparisonClip ||
+          comparisonClip.loop ||
+          animationHasEnded(
+            comparisonPack.manifest,
+            animation,
+            elapsedRef.current,
+          );
+        if (
+          animationHasEnded(pack.manifest, animation, elapsedRef.current) &&
+          comparisonEnded
+        ) {
           setCompleted(true);
           setPlaying(false);
           return;
@@ -244,7 +267,7 @@ export function PackPlayer() {
         setAnimation("idle");
         setFacing(loaded.manifest.facing.native);
         setZoom(
-          loaded.manifest.schemaVersion === 2
+          loaded.manifest.schemaVersion !== 1
             ? ([0.25, 0.5, 0.75, 1]
                 .filter(
                   (value) =>
@@ -287,6 +310,7 @@ export function PackPlayer() {
       converted.recipe,
       converted.manifest,
       converted.png,
+      converted.additionalPngs,
     );
     return { pack: await loadPortableCharacterPack(archive), archive };
   }
@@ -312,7 +336,7 @@ export function PackPlayer() {
       label,
       (loaded) => {
         setDownloadPack(
-          entry?.archive ?? (loaded.manifest.schemaVersion === 2 ? file : null),
+          entry?.archive ?? (loaded.manifest.schemaVersion !== 1 ? file : null),
         );
         if (bundle && entry) {
           setSourceBundle(bundle);
@@ -885,6 +909,10 @@ export function PackPlayer() {
                   data-testid="consumer-canvas"
                   data-frame-id={frameId}
                   data-frame-position={framePosition}
+                  data-frame-page={
+                    pack?.manifest.frames.find((frame) => frame.id === frameId)
+                      ?.page ?? 0
+                  }
                   data-comparison={Boolean(comparisonPack)}
                   aria-label={
                     pack
@@ -1150,7 +1178,7 @@ export function PackPlayer() {
                   {pack.manifest.animations.jump
                     ? ` · Jump ${pack.manifest.animations.jump.fps} fps`
                     : " · Jump unavailable"}
-                  {pack.manifest.schemaVersion === 2 &&
+                  {pack.manifest.schemaVersion !== 1 &&
                   pack.manifest.animations.celebrate
                     ? ` · Celebrate ${pack.manifest.animations.celebrate.fps} fps`
                     : ""}
@@ -1177,7 +1205,7 @@ export function PackPlayer() {
         <footer className="player-footer">
           <span>Small characters. Big stories.</span>
           <p>
-            Standalone pack formats v1 & v2 <span>·</span> Gathria runtime
+            Standalone pack formats v1, v2 & v3 <span>·</span> Gathria runtime
             compatibility is unverified.
           </p>
           <a href="/">

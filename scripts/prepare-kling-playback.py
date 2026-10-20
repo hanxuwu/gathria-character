@@ -6,6 +6,7 @@ Requires ffmpeg/ffprobe, Pillow, NumPy, SciPy. All source identities/selection
 decisions live in artwork/kling-playback/source/selection.json.
 """
 from pathlib import Path
+import argparse
 import hashlib
 import io
 import json
@@ -18,8 +19,12 @@ from PIL import Image
 from scipy.ndimage import binary_dilation, label
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "artwork/kling-playback"
-RECIPE = json.loads((BASE / "source/selection.json").read_text())
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--recipe", default="artwork/kling-playback/source/selection.json")
+args = parser.parse_args()
+recipe_path = ROOT / args.recipe
+BASE = recipe_path.parent.parent
+RECIPE = json.loads(recipe_path.read_text())
 OUTPUT = BASE / "prepared"
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
@@ -102,19 +107,30 @@ manifest = {
     "actions": {}, "layers": {"body_composite": {"required": True}},
     "equipment_slots": {}, "derivation": RECIPE,
 }
+def action_key(name):
+    return name + ("_once" if name == "jump" else "_loop")
+
+
 for name, interval in actions.items():
+    loop = interval.get("loop", True)
     count = interval["endExclusive"] - interval["start"]
-    manifest["actions"][name + "_loop"] = {
-        "fps": fps, "frames": count, "repeat": -1, "loop": True,
+    manifest["actions"][action_key(name)] = {
+        "fps": fps, "frames": count, "repeat": -1 if loop else 0, "loop": loop,
         "is_candidate": True, "source_action": name,
         "selection_strategy": "original_forward_contiguous",
         "duration_ms": count * 1000 / fps,
-        "frame_template": "characters/{character}/layers/body_composite/" + name + "_loop/{frame:03d}.png",
+        "frame_template": "characters/{character}/layers/body_composite/" + action_key(name) + "/{frame:03d}.png",
     }
 
-report = {"recipeSha256": sha((BASE / "source/selection.json").read_bytes()),
+report = {"recipeSha256": sha(recipe_path.read_bytes()),
           "canvas": RECIPE["canvas"], "fps": fps, "characters": {},
           "processing": "Fixed native crop; chroma-key alpha; edge-only unmix/despill; lossless RGBA8 PNG."}
+legacy = RECIPE.get("legacyReference")
+legacy_files = {}
+if legacy:
+    with zipfile.ZipFile(ROOT / legacy["archive"]) as old:
+        legacy_files = {name: old.read(name) for name in old.namelist() if name.endswith(".png")}
+legacy_matches = 0
 with zipfile.ZipFile(OUTPUT / "kling-source.zip", "w") as archive:
     put(archive, "manifest.json", json_bytes(manifest))
     put(archive, "README.md", ("# Original Kling source frames\n\n" + "\n".join(RECIPE["notes"]) + "\n").encode())
@@ -142,7 +158,8 @@ with zipfile.ZipFile(OUTPUT / "kling-source.zip", "w") as archive:
             assert len(extracted) == len(wanted)
             sources = dict(zip(wanted, extracted))
             for action, interval in actions.items():
-                key = action + "_loop"
+                key = action_key(action)
+                loop = interval.get("loop", True)
                 frames = []
                 metadata["actions"][key] = {"config": f"actions/{key}.json",
                     "frames_dir": f"layers/body_composite/{key}", "count": interval["endExclusive"] - interval["start"]}
@@ -152,15 +169,22 @@ with zipfile.ZipFile(OUTPUT / "kling-source.zip", "w") as archive:
                     x, y = character["cropOrigin"]
                     # Assert no retained character pixels lie outside the fixed crop.
                     outside = rgba[:, :, 3].copy()
-                    outside[y:y + height, x:x + width] = 0
+                    outside[max(0, y):min(rgba.shape[0], y + height), max(0, x):min(rgba.shape[1], x + width)] = 0
                     assert not np.any(outside), f"Clipped foreground at {identity}/{source_frame}"
-                    crop = rgba[y:y + height, x:x + width]
-                    image = Image.fromarray(crop, "RGBA")
+                    image = Image.fromarray(rgba, "RGBA").crop((x, y, x + width, y + height))
+                    crop = np.array(image)
                     bounds = image.getbbox()
                     assert bounds and bounds[0] > 0 and bounds[1] > 0 and bounds[2] < width and bounds[3] < height
                     encoded = png(image)
                     relative = f"layers/body_composite/{key}/{index:03d}.png"
-                    put(archive, f"characters/{identity}/{relative}", encoded)
+                    archive_path = f"characters/{identity}/{relative}"
+                    if archive_path in legacy_files:
+                        old = np.array(Image.open(io.BytesIO(legacy_files[archive_path])).convert("RGBA"))
+                        padding = legacy["paddingTop"]
+                        assert not np.any(crop[:padding]), "Legacy top padding is not transparent"
+                        assert np.array_equal(crop[padding:], old), f"Legacy pixels changed: {archive_path}"
+                        legacy_matches += 1
+                    put(archive, archive_path, encoded)
                     frames.append({"i": index, "source_action": action, "source_index": index,
                                    "source_video_frame": source_frame, "source_time_s": source_frame / fps,
                                    "image": relative,
@@ -172,14 +196,14 @@ with zipfile.ZipFile(OUTPUT / "kling-source.zip", "w") as archive:
                         "rgbaSha256": sha(crop.tobytes()), "bounds": bounds,
                         "opaquePixels": int(np.count_nonzero(a == 255)),
                         "partialAlphaPixels": int(np.count_nonzero((a > 0) & (a < 255))),
-                        "opaqueRgbMatchesSource": True, "discardedForegroundComponents": discarded,
+                        "opaqueRgbMatchesSource": True, "sourceTopEdgePixels": int(np.count_nonzero(rgba[0, :, 3])), "discardedForegroundComponents": discarded,
                         "backgroundRgbEstimate": background})
                     # One lossless raw crop provides a readable standing provenance
                     # comparison. Original full videos retain every other source frame.
                     if source_frame == 348:
-                        Image.fromarray(source[y:y + height, x:x + width]).save(OUTPUT / f"{identity}-source-standing.png")
+                        Image.fromarray(source).crop((x, y, x + width, y + height)).save(OUTPUT / f"{identity}-source-standing.png")
                 put(archive, f"characters/{identity}/actions/{key}.json", json_bytes({
-                    "name": key, "fps": fps, "repeat": -1, "loop": True, "frames": frames,
+                    "name": key, "fps": fps, "repeat": -1 if loop else 0, "loop": loop, "frames": frames,
                     "authoring_status": "original_forward_cycle_candidate_not_user_approved",
                     "required_slots": ["body_composite"], "optional_slots": [],
                     "occlusion_order_status": "baked_no_independent_clothing"}))
@@ -189,6 +213,9 @@ with zipfile.ZipFile(OUTPUT / "kling-source.zip", "w") as archive:
             "sourceFps": stream["r_frame_rate"], "sourceFrames": int(stream["nb_frames"]),
             "cropOrigin": character["cropOrigin"], "frames": frame_report}
         print(f"{identity}: {len(frame_report)} native RGBA frames, opaque RGB unchanged", flush=True)
+if legacy:
+    assert legacy_matches == len(legacy_files), "Did not preserve every historical source frame"
+    report["legacyFramesExactlyPreservedAfterPadding"] = legacy_matches
 report["archiveSha256"] = sha((OUTPUT / "kling-source.zip").read_bytes())
 (OUTPUT / "extraction-report.json").write_bytes(json_bytes(report))
 print(f"Archive {report['archiveSha256']}", flush=True)

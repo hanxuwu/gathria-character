@@ -8,6 +8,7 @@ import {
   encodeSourceRgbaPng,
   importBakedSourceArchive,
   inspectBakedArchiveKind,
+  planSourceAtlasPages,
 } from "./baked-source";
 import {
   createBakedCharacterPack,
@@ -30,17 +31,22 @@ function pixels(seed: number) {
     ]).flat(),
   );
 }
-function sourceFiles() {
+function sourceFiles(includeJump = false) {
+  const actionsToInclude = [
+    ...BAKED_SOURCE_ACTIONS,
+    ...(includeJump ? (["jump"] as const) : []),
+  ];
   const files: Record<string, Uint8Array> = {};
   const definitions: Record<string, unknown> = {};
-  for (const [a, action] of BAKED_SOURCE_ACTIONS.entries()) {
-    const key = `${action}_loop`;
+  for (const [a, action] of actionsToInclude.entries()) {
+    const loop = action !== "jump";
+    const key = loop ? `${action}_loop` : "jump_once";
     const fps = a % 2 ? 24 : 12;
     definitions[key] = {
       fps,
       frames: 3,
-      repeat: -1,
-      loop: true,
+      repeat: loop ? -1 : 0,
+      loop,
       duration_ms: 3000 / fps,
       selection_strategy: "recorded-order",
       frame_template: `characters/{character}/layers/body_composite/${key}/{frame:03d}.png`,
@@ -71,8 +77,9 @@ function sourceFiles() {
   for (const [c, id] of ids.entries()) {
     const actions: Record<string, unknown> = {};
     files[`characters/${id}/`] = new Uint8Array();
-    for (const [a, action] of BAKED_SOURCE_ACTIONS.entries()) {
-      const key = `${action}_loop`;
+    for (const [a, action] of actionsToInclude.entries()) {
+      const loop = action !== "jump";
+      const key = loop ? `${action}_loop` : "jump_once";
       const fps = a % 2 ? 24 : 12;
       actions[key] = {
         config: `actions/${key}.json`,
@@ -104,8 +111,8 @@ function sourceFiles() {
         name: key,
         fps,
         frames,
-        repeat: -1,
-        loop: true,
+        repeat: loop ? -1 : 0,
+        loop,
       });
     }
     files[`characters/${id}/meta.json`] = json({
@@ -263,6 +270,8 @@ describe("Unified source archive adapter", () => {
         uniqueFrames: 8,
         sourcePixelFidelity: "exact-rgba",
       });
+      expect(output.manifest.schemaVersion).toBe(2);
+      expect(output.additionalPngs).toEqual([]);
       expect(output.manifest.capabilities).toEqual({
         renderMode: "baked",
         editableAppearance: false,
@@ -307,6 +316,98 @@ describe("Unified source archive adapter", () => {
           : undefined,
       ).toEqual(bundle.manifest.derivation);
     }
+  });
+
+  it("adds a forward one-shot jump without changing required legacy actions or losing source provenance", async () => {
+    const bundle = await importBakedSourceArchive(archive(sourceFiles(true)));
+    const original = await importBakedSourceArchive(archive());
+    for (const [c, id] of ids.entries()) {
+      const character = bundle.characters[c];
+      for (const action of BAKED_SOURCE_ACTIONS) {
+        expect(character.actions[action]).toEqual(
+          original.characters[c].actions[action],
+        );
+      }
+      expect(character.actions.jump?.loop).toBe(false);
+      const output = await convertSourceCharacter(bundle, id);
+      const jump = output.manifest.animations.jump!;
+      expect(jump.loop).toBe(false);
+      expect(jump.fps).toBe(12);
+      expect(jump.frames).toHaveLength(3);
+      // A source hold remains a sequence position even though atlas cells deduplicate.
+      expect(jump.frames[2]).toBe(jump.frames[0]);
+      const atlas = decodeSourceRgbaPng(
+        new Uint8Array(await output.png.arrayBuffer()),
+      );
+      for (const [i, id] of jump.frames.entries()) {
+        const frame = output.manifest.frames.find((f) => f.id === id)!;
+        const actual = new Uint8Array(width * height * 4);
+        for (let row = 0; row < height; row++) {
+          const start = ((frame.y + row) * atlas.width + frame.x) * 4;
+          actual.set(
+            atlas.pixels.subarray(start, start + width * 4),
+            row * width * 4,
+          );
+        }
+        expect(actual).toEqual(pixels(c * 30 + 8 + (i % 2)));
+      }
+      expect(output.recipe.sourceMetadata?.actions).toMatchObject({
+        jump: {
+          loop: false,
+          fps: 12,
+          frames: [
+            { sourceFrame: 140, sourceIndex: 0, timeSeconds: 140 / 24 },
+            { sourceFrame: 141, sourceIndex: 1, timeSeconds: 141 / 24 },
+            { sourceFrame: 140, sourceIndex: 0, timeSeconds: 140 / 24 },
+          ],
+        },
+      });
+      const packed = await createBakedCharacterPack(
+        output.recipe,
+        output.manifest,
+        output.png,
+      );
+      const reopened = await readPortableCharacterPackArchive(
+        new Uint8Array(await packed.arrayBuffer()),
+      );
+      expect(reopened.manifest.animations.jump).toEqual(jump);
+    }
+  });
+
+  it.each([
+    ["manifest loop", "manifest.json", "loop", true],
+    ["manifest repeat", "manifest.json", "repeat", -1],
+    ["clip loop", "characters/amber/actions/jump_once.json", "loop", true],
+    ["clip repeat", "characters/amber/actions/jump_once.json", "repeat", -1],
+  ] as const)(
+    "rejects contradictory one-shot %s metadata",
+    async (_label, path, field, value) => {
+      const files = sourceFiles(true);
+      const data = read(files, path);
+      const clip = path === "manifest.json" ? data.actions.jump_once : data;
+      clip[field] = value;
+      files[path] = json(data);
+      await expect(importBakedSourceArchive(archive(files))).rejects.toThrow(
+        "timing or count metadata",
+      );
+    },
+  );
+
+  it("rejects undeclared jump metadata and incomplete jump frames without dropping the action", async () => {
+    const files = sourceFiles(true);
+    const manifest = read(files, "manifest.json");
+    delete manifest.actions.jump_once;
+    files["manifest.json"] = json(manifest);
+    await expect(importBakedSourceArchive(archive(files))).rejects.toThrow(
+      "not declared",
+    );
+    const incomplete = sourceFiles(true);
+    delete incomplete[
+      "characters/amber/layers/body_composite/jump_once/001.png"
+    ];
+    await expect(importBakedSourceArchive(archive(incomplete))).rejects.toThrow(
+      "Missing source frame",
+    );
   });
 
   it.each([
@@ -490,5 +591,45 @@ describe("bounded exact RGBA PNG codec", () => {
     expect(() => decodeSourceRgbaPng(independentPng(0).slice(0, -1))).toThrow(
       "Truncated",
     );
+  });
+});
+
+describe("bounded source page planning", () => {
+  it("keeps the historical native atlas and adds a second page when jump pixels overflow it", () => {
+    const old = planSourceAtlasPages(704, 1024, 83);
+    expect(old).toEqual([
+      { start: 0, count: 83, columns: 11, rows: 8, width: 7744, height: 8192 },
+    ]);
+    const expanded = planSourceAtlasPages(704, 1024, 117, 83);
+    expect(expanded[0]).toEqual(old[0]);
+    expect(expanded[1].start).toBe(83);
+    expect(expanded[1].count).toBe(34);
+  });
+
+  it("fits padded native frames across pages without discarding or overlapping sequence positions", () => {
+    const pages = planSourceAtlasPages(704, 1056, 117, 83);
+    expect(pages).toHaveLength(2);
+    expect(
+      pages.flatMap((p) =>
+        Array.from({ length: p.count }, (_, i) => p.start + i),
+      ),
+    ).toEqual(Array.from({ length: 117 }, (_, i) => i));
+    for (const page of pages) {
+      expect(page.width).toBeLessThanOrEqual(8192);
+      expect(page.height).toBeLessThanOrEqual(8192);
+      expect(page.width * page.height).toBeLessThanOrEqual(64 * 1024 * 1024);
+      expect(page.columns * page.rows).toBeGreaterThanOrEqual(page.count);
+    }
+    expect(
+      pages.reduce((n, p) => n + p.width * p.height, 0),
+    ).toBeLessThanOrEqual(128 * 1024 * 1024);
+  });
+
+  it("rejects oversized decoded budgets before allocating any atlases", () => {
+    expect(() => planSourceAtlasPages(2048, 2048, 33)).toThrow(
+      "decoded budget",
+    );
+    expect(() => planSourceAtlasPages(2048, 2048, 65)).toThrow("four-page");
+    expect(() => planSourceAtlasPages(704, 1056, 0)).toThrow("frameCount");
   });
 });

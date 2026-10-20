@@ -1,5 +1,6 @@
 import { Inflate, zipSync, strToU8 } from "fflate";
 import { parseCharacterConfig } from "./config";
+import { BAKED_MAX_PAGES, validateMultipageBakedManifest } from "./pack-v3";
 import {
   BAKED_MAX_ARCHIVE_BYTES,
   validateBakedCharacterRecipe,
@@ -14,9 +15,12 @@ import type {
   SpriteFrame,
   BakedCharacterRecipe,
   CharacterPackV2Manifest,
+  CharacterPackV3Manifest,
+  BakedCharacterPackManifest,
   PortableCharacterPackManifest,
 } from "./types";
 export { validateBakedCharacterRecipe, validateBakedManifest } from "./pack-v2";
+export { validateMultipageBakedManifest } from "./pack-v3";
 
 export interface LoadedCharacterPack<
   Manifest extends
@@ -27,6 +31,8 @@ export interface LoadedCharacterPack<
 > {
   manifest: Manifest;
   image: HTMLImageElement;
+  /** V3 pages, including image as page zero. */
+  images?: HTMLImageElement[];
   config?: Config;
 }
 
@@ -265,10 +271,9 @@ function parseJson(bytes: Uint8Array, name: string): unknown {
   }
 }
 
-function checkPngHeader(
-  bytes: Uint8Array,
-  manifest: PortableCharacterPackManifest,
-): void {
+type PngDimensions = { spritesheet: { width: number; height: number } };
+
+function checkPngHeader(bytes: Uint8Array, manifest: PngDimensions): void {
   const signature = [137, 80, 78, 71, 13, 10, 26, 10];
   if (bytes.length < 33 || !signature.every((value, i) => bytes[i] === value)) {
     fail("spritesheet.png must be a valid PNG image.");
@@ -301,6 +306,7 @@ interface ZipEntry {
 function inspectArchive(
   bytes: Uint8Array,
   maxBytes = MAX_ARCHIVE_BYTES,
+  allowMultipage = false,
 ): ZipEntry[] {
   if (bytes.length < 22 || bytes.length > maxBytes)
     fail(
@@ -326,8 +332,15 @@ function inspectArchive(
   if (view.getUint16(end + 4, true) || view.getUint16(end + 6, true))
     fail("Multi-volume ZIP files are not supported.");
   const count = view.getUint16(end + 10, true);
-  if (count !== view.getUint16(end + 8, true) || count > REQUIRED_FILES.length)
-    fail("A CharacterPack ZIP may contain only the five documented files.");
+  if (
+    count !== view.getUint16(end + 8, true) ||
+    count > REQUIRED_FILES.length + (allowMultipage ? BAKED_MAX_PAGES - 1 : 0)
+  )
+    fail(
+      allowMultipage
+        ? "A multipage CharacterPack ZIP may contain at most eight documented files."
+        : "A CharacterPack ZIP may contain only the five documented files.",
+    );
   const directorySize = view.getUint32(end + 12, true);
   let offset = view.getUint32(end + 16, true);
   if (offset + directorySize !== end)
@@ -336,6 +349,7 @@ function inspectArchive(
   const ranges: Array<[number, number]> = [];
   const entries: ZipEntry[] = [];
   let totalSize = 0;
+  let totalPngSize = 0;
   for (let i = 0; i < count; i++) {
     if (offset + 46 > end || view.getUint32(offset, true) !== 0x02014b50)
       fail("Invalid ZIP entry directory.");
@@ -359,7 +373,10 @@ function inspectArchive(
     } catch {
       fail("ZIP filenames must be valid UTF-8.");
     }
-    if (!(REQUIRED_FILES as readonly string[]).includes(name))
+    if (
+      !(REQUIRED_FILES as readonly string[]).includes(name) &&
+      !(allowMultipage && /^spritesheet-[1-3]\.png$/.test(name))
+    )
       fail(
         `Unexpected ZIP path ${JSON.stringify(name)}. Use only the five documented files at the archive root.`,
       );
@@ -369,10 +386,18 @@ function inspectArchive(
       fail(
         `${name}: encrypted or unsupported ZIP compression is not supported.`,
       );
-    const limit = name === "spritesheet.png" ? maxBytes : MAX_TEXT_BYTES;
+    const isPng =
+      name === "spritesheet.png" ||
+      (allowMultipage && /^spritesheet-[1-3]\.png$/.test(name));
+    const limit = isPng ? maxBytes : MAX_TEXT_BYTES;
     totalSize += size;
     if (size > limit || totalSize > maxBytes + 4 * MAX_TEXT_BYTES)
       fail(`${name} exceeds the CharacterPack uncompressed size limit.`);
+    if (isPng) totalPngSize += size;
+    if (allowMultipage && totalPngSize > maxBytes)
+      fail(
+        "Atlas PNG pages exceed the aggregate 64 MiB uncompressed PNG budget.",
+      );
     if (
       local + 30 > view.getUint32(end + 16, true) ||
       view.getUint32(local, true) !== 0x04034b50
@@ -499,7 +524,7 @@ export function readCharacterPackArchive(bytes: Uint8Array): {
 
 async function decodePng(
   bytes: Uint8Array,
-  manifest: PortableCharacterPackManifest,
+  manifest: PngDimensions,
 ): Promise<HTMLImageElement> {
   checkPngHeader(bytes, manifest);
   const url = URL.createObjectURL(new Blob([bytes], { type: "image/png" }));
@@ -564,7 +589,8 @@ export function validatePortableManifest(
   const data = record(value, "Manifest");
   if (data.schemaVersion === 1) return validateManifest(value);
   if (data.schemaVersion === 2) return validateBakedManifest(value);
-  fail("Unsupported CharacterPack schemaVersion. Expected 1 or 2.");
+  if (data.schemaVersion === 3) return validateMultipageBakedManifest(value);
+  fail("Unsupported CharacterPack schemaVersion. Expected 1, 2 or 3.");
 }
 
 function readPortableZipEntry(bytes: Uint8Array, entry: ZipEntry): Uint8Array {
@@ -672,7 +698,7 @@ export { checkBakedScanlines as validateRgbaPngScanlines };
 /** Pure structure/CRC preflight; async export/load additionally validate decoded rows. */
 function checkBakedPng(
   bytes: Uint8Array,
-  manifest: CharacterPackV2Manifest,
+  manifest: PngDimensions,
 ): Uint8Array[] {
   checkPngHeader(bytes, manifest);
   if (
@@ -739,7 +765,7 @@ function checkBakedPng(
 
 async function validateBakedPngPixels(
   bytes: Uint8Array,
-  manifest: CharacterPackV2Manifest,
+  manifest: PngDimensions,
 ): Promise<void> {
   const chunks = checkBakedPng(bytes, manifest);
   await checkBakedScanlines(
@@ -755,19 +781,27 @@ export type PortableCharacterPackArchive =
       manifest: CharacterPackManifest;
       config: CharacterConfig;
       png: Uint8Array;
+      additionalPngs?: never;
     }
   | {
       manifest: CharacterPackV2Manifest;
       config: BakedCharacterRecipe;
       png: Uint8Array;
+      additionalPngs?: never;
+    }
+  | {
+      manifest: CharacterPackV3Manifest;
+      config: BakedCharacterRecipe;
+      png: Uint8Array;
+      additionalPngs: Uint8Array[];
     };
 
 export function readPortableCharacterPackArchive(
   bytes: Uint8Array,
 ): PortableCharacterPackArchive {
-  // Inspect a bounded manifest first. V1 is then rechecked under the original
-  // limits before any potentially oversized PNG allocation or decompression.
-  const entries = inspectArchive(bytes, BAKED_MAX_ARCHIVE_BYTES);
+  // Inspect at most eight bounded root entries before reading the version. V1/V2
+  // are then rechecked with their original strict five-file envelopes.
+  const entries = inspectArchive(bytes, BAKED_MAX_ARCHIVE_BYTES, true);
   const manifestEntry = entries.find(
     (entry) => entry.name === "manifest.json",
   )!;
@@ -775,6 +809,19 @@ export function readPortableCharacterPackArchive(
     parseJson(readPortableZipEntry(bytes, manifestEntry), "manifest.json"),
   );
   if (manifest.schemaVersion === 1) return readCharacterPackArchive(bytes);
+  if (manifest.schemaVersion === 2)
+    inspectArchive(bytes, BAKED_MAX_ARCHIVE_BYTES);
+  const allowed = new Set<string>(REQUIRED_FILES);
+  if (manifest.schemaVersion === 3)
+    for (const sheet of manifest.additionalSheets) allowed.add(sheet.file);
+  for (const entry of entries)
+    if (!allowed.has(entry.name))
+      fail(
+        `Unexpected atlas file ${entry.name}; every page must be declared in manifest.json.`,
+      );
+  for (const name of allowed)
+    if (!entries.some((entry) => entry.name === name))
+      fail(`CharacterPack is missing ${name}.`);
   const files: Record<string, Uint8Array> = {};
   for (const entry of entries)
     files[entry.name] = readPortableZipEntry(bytes, entry);
@@ -784,6 +831,14 @@ export function readPortableCharacterPackArchive(
   );
   const png = files["spritesheet.png"];
   checkBakedPng(png, manifest);
+  if (manifest.schemaVersion === 3) {
+    const additionalPngs = manifest.additionalSheets.map((sheet) => {
+      const bytes = files[sheet.file];
+      checkBakedPng(bytes, { spritesheet: sheet });
+      return bytes;
+    });
+    return { manifest, config, png, additionalPngs };
+  }
   return { manifest, config, png };
 }
 
@@ -792,9 +847,21 @@ export async function loadPortableCharacterPack(
 ): Promise<LoadedCharacterPack> {
   if (file.size > BAKED_MAX_ARCHIVE_BYTES)
     fail("CharacterPack ZIP must be at most 64 MiB (V1: 32 MiB).");
-  const { manifest, config, png } = readPortableCharacterPackArchive(
+  const archive = readPortableCharacterPackArchive(
     new Uint8Array(await file.arrayBuffer()),
   );
+  const { manifest, config, png } = archive;
+  if (manifest.schemaVersion === 3) {
+    const sheets = [manifest.spritesheet, ...manifest.additionalSheets];
+    const pages = [png, ...archive.additionalPngs!];
+    // Validate every page before the browser allocates decoded image surfaces.
+    for (const [i, bytes] of pages.entries())
+      await validateBakedPngPixels(bytes, { spritesheet: sheets[i] });
+    const images: HTMLImageElement[] = [];
+    for (const [i, bytes] of pages.entries())
+      images.push(await decodePng(bytes, { spritesheet: sheets[i] }));
+    return { manifest, config, image: images[0], images };
+  }
   if (manifest.schemaVersion === 2) await validateBakedPngPixels(png, manifest);
   return { manifest, config, image: await decodePng(png, manifest) };
 }
@@ -805,6 +872,10 @@ export async function loadPortableCharacterFiles(
   config?: unknown,
 ): Promise<LoadedCharacterPack> {
   const manifest = validatePortableManifest(metadata);
+  if (manifest.schemaVersion === 3)
+    fail(
+      "Multipage CharacterPack V3 requires the complete ZIP; a single PNG cannot supply every atlas page.",
+    );
   if (manifest.schemaVersion === 1)
     return loadCharacterFiles(png, metadata, config);
   if (png.size > BAKED_MAX_ARCHIVE_BYTES)
@@ -825,9 +896,19 @@ export async function loadPortableCharacterFiles(
 /** Package the existing PNG bytes without resizing, quantizing, repainting or re-encoding. */
 export async function createBakedCharacterPack(
   recipe: BakedCharacterRecipe,
-  metadata: CharacterPackV2Manifest,
+  metadata: BakedCharacterPackManifest,
   png: Blob,
+  additionalPngs: Blob[] = [],
 ): Promise<Blob> {
+  if (metadata.schemaVersion === 3)
+    return createMultipageBakedCharacterPack(
+      recipe,
+      metadata,
+      png,
+      additionalPngs,
+    );
+  if (additionalPngs.length)
+    fail("V2 CharacterPack must contain only its primary PNG.");
   const manifest = validateBakedManifest(metadata);
   const validatedRecipe = validateBakedCharacterRecipe(recipe, manifest);
   if (png.size > BAKED_MAX_ARCHIVE_BYTES)
@@ -852,6 +933,44 @@ export async function createBakedCharacterPack(
   if (bytes.length > BAKED_MAX_ARCHIVE_BYTES)
     fail("Generated baked CharacterPack exceeds the 64 MiB archive limit.");
   return new Blob([bytes], { type: "application/zip" });
+}
+
+async function createMultipageBakedCharacterPack(
+  recipe: BakedCharacterRecipe,
+  metadata: CharacterPackV3Manifest,
+  png: Blob,
+  additionalPngs: Blob[],
+): Promise<Blob> {
+  const manifest = validateMultipageBakedManifest(metadata);
+  const validatedRecipe = validateBakedCharacterRecipe(recipe, manifest);
+  if (additionalPngs.length !== manifest.additionalSheets.length)
+    fail("V3 export requires exactly one PNG per declared atlas page.");
+  const sheets = [manifest.spritesheet, ...manifest.additionalSheets];
+  const blobs = [png, ...additionalPngs];
+  if (blobs.reduce((sum, blob) => sum + blob.size, 0) > BAKED_MAX_ARCHIVE_BYTES)
+    fail("V3 PNG pages exceed the aggregate 64 MiB archive budget.");
+  const files: Record<string, Uint8Array | [Uint8Array, { level: 0 }]> = {};
+  for (const [i, blob] of blobs.entries()) {
+    const bytes = new Uint8Array(await blob.arrayBuffer());
+    await validateBakedPngPixels(bytes, { spritesheet: sheets[i] });
+    files[sheets[i].file] = [bytes, { level: 0 }];
+  }
+  const text = {
+    "manifest.json": JSON.stringify(manifest, null, 2),
+    "character.json": JSON.stringify(validatedRecipe, null, 2),
+    "PROVENANCE.txt": `Baked source character: ${validatedRecipe.name}\n\n${validatedRecipe.provenance}\n\nSource kind: ${validatedRecipe.source.kind}\nSource file: ${validatedRecipe.source.name}\nSHA256: ${validatedRecipe.source.sha256}\nDerivation: ${validatedRecipe.derivation.method}\nAll PNG bytes are retained unchanged. No runtime AI, skeletal reconstruction or generated frames.\n`,
+    "INTEGRATION.md": `# CharacterPack V3: multipage original artwork\n\nLoad manifest.json, character.json and every declared PNG. Page 0 is spritesheet; pages 1 onward are additionalSheets in order. Each frame has an explicit page index and an unscaled rectangle within that page. All pages share native frame dimensions and the frame-relative anchor. Do not combine pages into an oversized image or resize artwork.\n\nPlay each animation's frame IDs in order at its declared FPS. Respect loop: a one-shot jump holds its last frame and can be explicitly replayed. Jump and celebrate remain distinct. Missing actions are unavailable. Render right natively and left with mirror-x around the anchor. Fractional display zoom uses smooth sampling; exported pixels stay native.\n\nThis baked recipe is not editable wardrobe or skeletal data. Provenance and source frame/timing maps are in character.json. The complete ZIP supports independent playback. A single PNG with metadata cannot represent V3. Older V1/V2-only consumers must reject schemaVersion 3 explicitly.\n\nLimits: 2–4 PNG pages, each at most 8192 pixels per dimension and 64 Mi pixels decoded; at most 128 Mi decoded pixels across all pages, 1024 total grid cells/unique frames, 64 MiB ZIP/aggregate PNG bytes, 256 KiB per text file. V1/V2 limits and file envelopes remain unchanged.\n`,
+  };
+  for (const [name, content] of Object.entries(text)) {
+    const bytes = strToU8(content);
+    if (bytes.length > MAX_TEXT_BYTES)
+      fail(`${name} exceeds the 256 KiB text limit.`);
+    files[name] = bytes;
+  }
+  const archive = zipSync(files, { level: 6 });
+  if (archive.length > BAKED_MAX_ARCHIVE_BYTES)
+    fail("Generated baked CharacterPack exceeds the 64 MiB archive limit.");
+  return new Blob([archive], { type: "application/zip" });
 }
 
 export async function pixelsToPng(

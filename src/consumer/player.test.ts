@@ -1,6 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
 import type { CharacterPackManifest } from "../core/types";
-import { animationHasEnded, drawCharacterFrame, frameAtTime } from "./player";
+import {
+  animationHasEnded,
+  drawCharacterFrame,
+  frameAtTime,
+  imageForFrame,
+} from "./player";
 import {
   GATHRIA_COMPATIBILITY,
   toProposedGathriaCharacter,
@@ -225,6 +230,72 @@ describe("baked source playback", () => {
     expect(context.drawImage).toHaveBeenCalledWith(
       image,
       0,
+      0,
+      8,
+      16,
+      -2,
+      -15,
+      8,
+      16,
+    );
+  });
+});
+
+describe("multipage baked jump playback", () => {
+  const source: import("../core/types").CharacterPackV3Manifest = {
+    ...manifest,
+    schemaVersion: 3,
+    capabilities: { renderMode: "baked", editableAppearance: false },
+    scale: { pixelArt: false, integerOnly: false, recommended: 1 },
+    additionalSheets: [{ ...manifest.spritesheet, file: "spritesheet-1.png" }],
+    frames: manifest.frames.map((frame, i) => ({ ...frame, page: i ? 1 : 0 })),
+    animations: {
+      ...manifest.animations,
+      jump: { frames: [30, 90, 10], fps: 4, loop: false },
+      celebrate: { frames: [90, 10], fps: 8, loop: true },
+    },
+  };
+  it("selects the exact page across one-shot boundaries without changing order, timing or final hold", () => {
+    const first = {} as HTMLImageElement;
+    const second = {} as HTMLImageElement;
+    const pack = { manifest: source, image: first, images: [first, second] };
+    expect(imageForFrame(pack, frameAtTime(source, "jump", 0))).toBe(first);
+    expect(imageForFrame(pack, frameAtTime(source, "jump", 250))).toBe(second);
+    expect(frameAtTime(source, "jump", 50_000).id).toBe(10);
+    expect(animationHasEnded(source, "jump", 749)).toBe(false);
+    expect(animationHasEnded(source, "jump", 750)).toBe(true);
+    expect(frameAtTime(source, "celebrate", 250).id).toBe(90);
+    expect(() =>
+      imageForFrame({ ...pack, images: [first] }, source.frames[1]),
+    ).toThrow("unavailable");
+    expect(imageForFrame({ manifest, image: first }, manifest.frames[1])).toBe(
+      first,
+    );
+  });
+  it("keeps fractional display smoothing and the original anchor for additional pages", () => {
+    const context = {
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      scale: vi.fn(),
+      drawImage: vi.fn(),
+      imageSmoothingEnabled: false,
+    };
+    const image = {} as CanvasImageSource;
+    drawCharacterFrame(
+      context as unknown as CanvasRenderingContext2D,
+      image,
+      source,
+      source.frames[1],
+      "left",
+      0.5,
+      { x: 100, y: 200 },
+    );
+    expect(context.imageSmoothingEnabled).toBe(true);
+    expect(context.scale).toHaveBeenCalledWith(-0.5, 0.5);
+    expect(context.drawImage).toHaveBeenCalledWith(
+      image,
+      8,
       0,
       8,
       16,
