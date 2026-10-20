@@ -975,7 +975,11 @@ export function SkinStudio() {
           >
             Open base model
           </button>
-          <a href="/mother-study.html" target="_blank" rel="noreferrer">
+          <a
+            href="/mother-study.html"
+            target={embedded ? "_blank" : undefined}
+            rel={embedded ? "noreferrer" : undefined}
+          >
             Review reference mother candidate ↗
           </a>
           <p className="skin-help">
