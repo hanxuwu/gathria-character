@@ -1,0 +1,564 @@
+{
+  "source": "Actual existing-player UI-exported native CharacterPack V3 atlases",
+  "gifNote": "0.5x display copies on checker; 256 colors, original24fps rounded to GIF10ms units. One-shot GIFs omit the repeat extension. Native RGBA PNG/ZIP retains source fidelity.",
+  "limitations": [
+    "Original videos clip a small scalp arc at apex source frames183\u2013186. These source pixels are retained without reconstructing missing artwork.",
+    "Uniform32px transparent top padding changes canvas and anchor only; historical source RGBA is unchanged below padding."
+  ],
+  "packs": {
+    "male": {
+      "path": "docs/kling-jump/exports/male.character.zip",
+      "sha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+      "bytes": 30330913,
+      "schemaVersion": 3,
+      "sheets": [
+        {
+          "file": "spritesheet.png",
+          "size": [
+            7744,
+            7392
+          ]
+        },
+        {
+          "file": "spritesheet-1.png",
+          "size": [
+            6336,
+            5280
+          ]
+        }
+      ],
+      "frameSize": [
+        704,
+        1056
+      ],
+      "crcAndPngDecode": true
+    },
+    "female": {
+      "path": "docs/kling-jump/exports/female.character.zip",
+      "sha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+      "bytes": 30286811,
+      "schemaVersion": 3,
+      "sheets": [
+        {
+          "file": "spritesheet.png",
+          "size": [
+            7744,
+            7392
+          ]
+        },
+        {
+          "file": "spritesheet-1.png",
+          "size": [
+            6336,
+            5280
+          ]
+        }
+      ],
+      "frameSize": [
+        704,
+        1056
+      ],
+      "crcAndPngDecode": true
+    }
+  },
+  "animations": [
+    {
+      "path": "docs/kling-jump/review/male_jump_right.gif",
+      "frames": 39,
+      "facing": "right",
+      "nativeFps": 24,
+      "nativeDurationMs": 1625,
+      "gifDurationMs": 1620,
+      "gifDurationsMs": [
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "loop": false
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_left.gif",
+      "frames": 39,
+      "facing": "left",
+      "nativeFps": 24,
+      "nativeDurationMs": 1625,
+      "gifDurationMs": 1620,
+      "gifDurationsMs": [
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "loop": false
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_right.gif",
+      "frames": 39,
+      "facing": "right",
+      "nativeFps": 24,
+      "nativeDurationMs": 1625,
+      "gifDurationMs": 1620,
+      "gifDurationsMs": [
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "loop": false
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_left.gif",
+      "frames": 39,
+      "facing": "left",
+      "nativeFps": 24,
+      "nativeDurationMs": 1625,
+      "gifDurationMs": 1620,
+      "gifDurationsMs": [
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "loop": false
+    },
+    {
+      "path": "docs/kling-jump/review/pair_jump_right.gif",
+      "frames": 39,
+      "facing": "right",
+      "nativeFps": 24,
+      "nativeDurationMs": 1625,
+      "gifDurationMs": 1620,
+      "gifDurationsMs": [
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "loop": false
+    }
+  ],
+  "media": [
+    {
+      "path": "docs/kling-jump/review/female_apex_source_matte_export_1x.png",
+      "sha256": "c2ed698fc2b092b5338bf4e051f61591c3697dcdc7b027e7a36047590e45e766",
+      "bytes": 524316,
+      "size": [
+        2112,
+        1120
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_keyframes_1x.png",
+      "sha256": "97762d17cc6cb3665ed754e14a2f89cdc35928464269fc8ea09535aa1b15a284",
+      "bytes": 1443607,
+      "size": [
+        2112,
+        2200
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_keyframes_2x.png",
+      "sha256": "09d841267571645bbb6c58d9fcbe6925309963e13ae0d65415e8e210ffb2a6d7",
+      "bytes": 1890569,
+      "size": [
+        4224,
+        4312
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_left.gif",
+      "sha256": "316af6fe343c54c863e2880f82389950cc04375774adc36e3439e3d5b8d9fed8",
+      "bytes": 1607473,
+      "size": [
+        352,
+        576
+      ],
+      "frames": 39,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_right.gif",
+      "sha256": "0d5c22c2dbf748e89607cc4614ccd35715db4bf1045e9f0ca1bb6ce123f332c7",
+      "bytes": 1605561,
+      "size": [
+        352,
+        576
+      ],
+      "frames": 39,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/male_apex_source_matte_export_1x.png",
+      "sha256": "9cf3de5a9a2dba066881d96db9fc216af5f3df6a53b1096bdcae4383c2fecee6",
+      "bytes": 406732,
+      "size": [
+        2112,
+        1120
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_keyframes_1x.png",
+      "sha256": "532ef26d91c937236bd895000ca8a19aa6085b8be07fe3ddc8d418da9c06acf7",
+      "bytes": 1428899,
+      "size": [
+        2112,
+        2200
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_keyframes_2x.png",
+      "sha256": "910034dcf277aa13a9afd1daf5be82214987ab3853ebf54eccf8aac278e08a87",
+      "bytes": 1873449,
+      "size": [
+        4224,
+        4312
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_left.gif",
+      "sha256": "23ac040cba6423b860002e3c83b33710ae140af555bb24096290f69a7f416615",
+      "bytes": 1582675,
+      "size": [
+        352,
+        576
+      ],
+      "frames": 39,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_right.gif",
+      "sha256": "3bcbae0cd217cc45f7750dc551f7249b729871a0fe2fe3594b6f53f7d2068b11",
+      "bytes": 1585100,
+      "size": [
+        352,
+        576
+      ],
+      "frames": 39,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/review/pair_jump_right.gif",
+      "sha256": "69c7c2068650bfe95b1f8a15f8c86ea1f84ca855d93386ba048b7e8cee5a0111",
+      "bytes": 3231950,
+      "size": [
+        704,
+        576
+      ],
+      "frames": 39,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/female-imported-jump-apex.png",
+      "sha256": "cf895a9a0dd28be39085270ad86be924764dfbc57893bb5020413c306f180be9",
+      "bytes": 139243,
+      "size": [
+        825,
+        1099
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/female-independent-jump-apex.png",
+      "sha256": "2087f128972cc299acf6c57ee23b3183a54e03c3f00c17f19eeb8764aed7d802",
+      "bytes": 134649,
+      "size": [
+        825,
+        1057
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/female-independent-jump-recovery.png",
+      "sha256": "424fe0b41895878930ed33c3b51a4360b96caacc55076afd3e76a374406298dd",
+      "bytes": 137427,
+      "size": [
+        825,
+        1057
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/male-imported-jump-apex.png",
+      "sha256": "be32d4ee7b1156d0b9f3fe1fd4157d9e0deb75a1768b2c5b688aceeaa93f0d7e",
+      "bytes": 138726,
+      "size": [
+        825,
+        1099
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/male-independent-jump-apex.png",
+      "sha256": "2a98be1fc481a4695c7ff19d65a76fdbb40ac395f8e6342174975c6d22894f7d",
+      "bytes": 134376,
+      "size": [
+        825,
+        1057
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/male-independent-jump-recovery.png",
+      "sha256": "843ee2866c380d9e1a99c5e2e41ad7ae01ba9ac09dd5b475800182a4743ea076",
+      "bytes": 136720,
+      "size": [
+        825,
+        1057
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/pair-jump-apex.png",
+      "sha256": "b475c243b6973527bd6eba14d21c2f9bf09d2c56dcc911a150c88dcf1f0c9209",
+      "bytes": 232598,
+      "size": [
+        825,
+        1128
+      ],
+      "frames": 1,
+      "decoded": true
+    },
+    {
+      "path": "docs/kling-jump/browser/pair-jump-recovery.png",
+      "sha256": "0d4edf92fd53e8c4dd496ff510473d473fe64fa53c848daf8442f886d695b407",
+      "bytes": 237909,
+      "size": [
+        825,
+        1128
+      ],
+      "frames": 1,
+      "decoded": true
+    }
+  ],
+  "fidelity": [
+    {
+      "character": "male",
+      "sourceFramesExactRgba": 122,
+      "historicalFramesExactAfterRemovingTop32": 83,
+      "transparentFrameBoundariesChecked": 122,
+      "jumpSourceFrames": [
+        171,
+        209
+      ],
+      "jumpFps": 24,
+      "jumpFrames": 39,
+      "jumpLoop": false
+    },
+    {
+      "character": "female",
+      "sourceFramesExactRgba": 122,
+      "historicalFramesExactAfterRemovingTop32": 83,
+      "transparentFrameBoundariesChecked": 122,
+      "jumpSourceFrames": [
+        171,
+        209
+      ],
+      "jumpFps": 24,
+      "jumpFrames": 39,
+      "jumpLoop": false
+    }
+  ],
+  "sourceSha256": "80f34676b01f5b7a98efb4ebfb8d237e01334299fd5f2774acc4fc62d00b342d",
+  "legacySourceSha256": "ae00ced97c2a5735912978705d80adc4130359e53413e26e4cc28112a6281f6c",
+  "browserEvidenceSha256": "f9c45d0bbddb5b9f89a7706e2af3044416d9ae81aefa9645eb04963362e655a5",
+  "totals": {
+    "exactSourceFrames": 244,
+    "unchangedHistoricalFrames": 166,
+    "gifs": 5,
+    "decodedMedia": 19
+  }
+}

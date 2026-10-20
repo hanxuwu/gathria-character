@@ -238,7 +238,7 @@ function metadata(value: unknown): { [key: string]: JsonValue } {
 
 export function validateBakedCharacterRecipe(
   value: unknown,
-  manifest?: CharacterPackV2Manifest,
+  manifest?: Pick<CharacterPackV2Manifest, "name" | "frames">,
 ): BakedCharacterRecipe {
   const data = record(value, "character.json");
   if (data.schemaVersion !== 1 || data.format !== "gathria-baked-character")

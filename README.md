@@ -20,13 +20,17 @@ npm run dev
 Open the address Vite prints. The studio is at `/`; the independent player is at `/player.html`. No API keys, account, backend, or runtime generation services are needed. Prepared artwork ships with the app. All editing, generation, and file processing happens in the browser. Changes are not autosaved: **Save config** preserves your editable character.
 
 To play the two **original Kling video characters**, open the same player and
-choose **Try the Kling character pair**. This opt-in source import preserves
-native 704×1024 RGBA frames and original 24 fps idle, walk, run and celebrate
-loops. Select either character, compare both, and export independent
-CharacterPack V2 files. These are baked characters with fixed appearance;
-existing Studio and Skin Studio keep their editable workflows and V1 exports.
-[Source comparisons, GIFs, downloads and limits](docs/kling-playback/README.md)
-· [Compatibility and verification](docs/KLING_PLAYBACK_REVIEW.md).
+choose **Try the Kling character pair**. The five-action source import preserves
+original 24 fps idle, walk, run, celebrate and a **one-shot jump**. Select either
+character, compare both, scrub, replay the landing and export independent
+CharacterPack V3 ZIPs. Native artwork is unscaled; the 704×1056 canvas adds 32
+transparent pixels above the previous crop to accommodate the source jump.
+These are baked characters with fixed appearance; existing Studio and Skin
+Studio keep their editable workflows and V1 exports. Older V1/V2 packs and the
+four-action source archive remain supported.
+[Jump previews, downloads and limits](docs/kling-jump/README.md)
+· [Source fidelity and compatibility](docs/KLING_JUMP_REVIEW.md)
+· [Previous four-action evidence](docs/kling-playback/README.md).
 
 The isolated [skeletal rig lab](docs/SKELETAL_RIG_REVIEW.md) is at `/rig-lab.html`: compare Denim's existing run with project-owned weighted-mesh animation, edit pose keys, save an authoring recipe and bake a portable pack. It uses no Spine dependency and leaves Studio defaults unchanged.
 

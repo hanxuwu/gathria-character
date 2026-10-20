@@ -1,3 +1,4 @@
+import type { LoadedCharacterPack } from "../core/pack";
 import type {
   PortableAnimationName,
   Animation,
@@ -12,7 +13,7 @@ export function animationFor(
   name: PortableAnimationName,
 ): Animation | undefined {
   if (name === "celebrate") {
-    return manifest.schemaVersion === 2
+    return manifest.schemaVersion !== 1
       ? manifest.animations.celebrate
       : undefined;
   }
@@ -73,8 +74,8 @@ export function drawCharacterFrame(
   attachment: { x: number; y: number },
 ): void {
   context.save();
-  context.imageSmoothingEnabled = manifest.schemaVersion === 2;
-  if (manifest.schemaVersion === 2) context.imageSmoothingQuality = "high";
+  context.imageSmoothingEnabled = manifest.schemaVersion !== 1;
+  if (manifest.schemaVersion !== 1) context.imageSmoothingQuality = "high";
   context.translate(attachment.x, attachment.y);
   context.scale(manifest.facing[facing] === "mirror-x" ? -zoom : zoom, zoom);
   context.drawImage(
@@ -89,4 +90,19 @@ export function drawCharacterFrame(
     frame.height,
   );
   context.restore();
+}
+
+/** Select the declared page; a missing page must never fall back to unrelated art. */
+export function imageForFrame(
+  pack: Pick<LoadedCharacterPack, "manifest" | "image" | "images">,
+  frame: SpriteFrame,
+): HTMLImageElement {
+  if (pack.manifest.schemaVersion !== 3) return pack.image;
+  const image =
+    frame.page === undefined ? undefined : pack.images?.[frame.page];
+  if (!image)
+    throw new Error(
+      `Image page ${frame.page} is unavailable for frame ${frame.id}.`,
+    );
+  return image;
 }

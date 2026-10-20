@@ -52,9 +52,10 @@ try {
   }));
   assert.deepEqual(report.context, { secure: false, subtleAvailable: false });
   const start = performance.now();
+  // Keep this historical four-action regression explicit as the sample evolves.
   await page
-    .getByRole("button", { name: /Try the Kling character pair/ })
-    .click();
+    .locator("#player-zip")
+    .setInputFiles("artwork/kling-playback/prepared/kling-source.zip");
   await expect(page.getByRole("status")).toContainText("Loaded:", {
     timeout: 180000,
   });

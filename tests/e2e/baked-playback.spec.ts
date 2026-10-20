@@ -268,13 +268,17 @@ for (const withoutSubtle of [false, true]) {
     const beforeAdvance = await independentCanvas.evaluate(
       (canvas: HTMLCanvasElement) => canvas.toDataURL(),
     );
-    await expect
-      .poll(() =>
-        independentCanvas.evaluate((canvas: HTMLCanvasElement) =>
-          canvas.toDataURL(),
-        ),
-      )
-      .not.toBe(beforeAdvance);
+    // Observe on browser paint ticks: sparse timer polling can repeatedly sample
+    // the same held pose in this 300 ms loop even while playback is advancing.
+    await independent.waitForFunction(
+      ({ canvas, previous }) =>
+        canvas instanceof HTMLCanvasElement && canvas.toDataURL() !== previous,
+      {
+        canvas: await independentCanvas.elementHandle(),
+        previous: beforeAdvance,
+      },
+      { polling: "raf", timeout: 5000 },
+    );
     await independent
       .getByLabel("Display scale", { exact: true })
       .selectOption("0.5");
@@ -315,4 +319,317 @@ test("incomplete source is rejected without replacing a loaded legacy character"
     "aria-label",
     /Mira/,
   );
+});
+
+function jumpingSourceFixture() {
+  const { files } = sourceFixture();
+  const parse = (path: string) =>
+    JSON.parse(Buffer.from(files[path]).toString());
+  const encode = (path: string, value: unknown) => {
+    files[path] = strToU8(JSON.stringify(value));
+  };
+  const manifest = parse("manifest.json");
+  manifest.actions.jump_once = {
+    ...manifest.actions.idle_loop,
+    loop: false,
+    repeat: 0,
+    frame_template:
+      "characters/{character}/layers/body_composite/jump_once/{frame:03d}.png",
+  };
+  encode("manifest.json", manifest);
+  for (const id of ["male", "female"]) {
+    const metaPath = `characters/${id}/meta.json`;
+    const meta = parse(metaPath);
+    meta.actions.jump_once = {
+      config: "actions/jump_once.json",
+      frames_dir: "layers/body_composite/jump_once",
+      count: 3,
+    };
+    encode(metaPath, meta);
+    const clip = parse(`characters/${id}/actions/idle_loop.json`);
+    clip.name = "jump_once";
+    clip.loop = false;
+    clip.repeat = 0;
+    for (const frame of clip.frames) {
+      const previous = frame.image;
+      frame.image = previous.replace("idle_loop", "jump_once");
+      frame.source_action = "jump";
+      frame.source_video_frame += 40;
+      frame.source_time_s = frame.source_video_frame / 30;
+      files[`characters/${id}/${frame.image}`] =
+        files[`characters/${id}/${previous}`];
+    }
+    encode(`characters/${id}/actions/jump_once.json`, clip);
+  }
+  return Buffer.from(zipSync(files));
+}
+
+test("optional source jump plays once, exports its timing, compares both characters and replays without Web Crypto", async ({
+  page,
+  context,
+}, testInfo) => {
+  await context.addInitScript(() => {
+    Object.defineProperty(globalThis.crypto, "subtle", { value: undefined });
+  });
+  await page.goto("/player.html");
+  await page.locator("#player-zip").setInputFiles({
+    name: "jump-source.zip",
+    mimeType: "application/zip",
+    buffer: jumpingSourceFixture(),
+  });
+  await expect(page.getByRole("status")).toContainText("Loaded: Male fixture");
+  await page.getByLabel("Compare both characters", { exact: true }).check();
+  const canvas = page.getByTestId("consumer-canvas");
+  await expect(canvas).toHaveAttribute("data-comparison", "true");
+  await page.getByRole("button", { name: "Jump", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Replay animation", exact: true }),
+  ).toBeVisible();
+  await expect(canvas).toHaveAttribute("data-frame-position", "2");
+  await expect(page.locator("#player-one-shot-note")).toContainText(
+    "Holding the final frame",
+  );
+  const final = await canvas.evaluate((node: HTMLCanvasElement) =>
+    node.toDataURL(),
+  );
+  await page.waitForTimeout(200);
+  expect(
+    await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL()),
+  ).toBe(final);
+  await page
+    .getByRole("button", { name: "Replay animation", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Pause animation", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Pause animation", exact: true })
+    .click();
+  await page.locator("#player-frame").fill("0");
+  await expect(canvas).toHaveAttribute("data-frame-position", "0");
+  await page.getByRole("button", { name: "Left", exact: true }).click();
+  await expect(canvas).toHaveAttribute("aria-label", /jump, facing left/);
+  await page.getByLabel("Character", { exact: true }).selectOption("female");
+  await expect(page.getByRole("status")).toContainText(
+    "Loaded: Female fixture",
+  );
+  await expect(
+    page.getByRole("button", { name: "Jump", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
+  const pending = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export selected CharacterPack", exact: true })
+    .click();
+  const download = await pending;
+  const path = testInfo.outputPath("jump.character.zip");
+  await download.saveAs(path);
+  const files = unzipSync(await readFile(path));
+  const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
+  expect(manifest.animations.jump).toMatchObject({ fps: 4, loop: false });
+  expect(manifest.animations.jump.frames).toHaveLength(3);
+  await page.close();
+  const independent = await context.newPage();
+  await independent.goto("/player.html");
+  await independent.locator("#player-zip").setInputFiles(path);
+  await expect(independent.getByRole("status")).toContainText(
+    "Loaded: Female fixture",
+  );
+  await independent.getByRole("button", { name: "Jump", exact: true }).click();
+  await expect(
+    independent.getByRole("button", { name: "Replay animation", exact: true }),
+  ).toBeVisible();
+  await independent.getByRole("button", { name: "Walk", exact: true }).click();
+  await expect(
+    independent.getByRole("button", { name: "Pause animation", exact: true }),
+  ).toBeVisible();
+  await expect(independent.getByTestId("consumer-canvas")).toHaveAttribute(
+    "aria-label",
+    /walk, facing right/,
+  );
+});
+
+/** Two tiny native pages exercise storage and rendering, not character artwork quality. */
+async function multipageJumpFixture() {
+  const { createBakedCharacterPack } = await import("../../src/core/pack");
+  const primary = new Uint8Array(width * height * 4);
+  const jump = new Uint8Array(width * 3 * height * 4);
+  for (let y = 5; y < 44; y++) {
+    for (let x = 8; x < 20; x++) {
+      primary.set([40, 160, 70, 255], (y * width + x) * 4);
+      for (let frame = 0; frame < 3; frame++) {
+        jump.set(
+          [220, 70 + frame * 30, 130, 255],
+          (y * width * 3 + frame * width + x + frame * 2) * 4,
+        );
+      }
+    }
+  }
+  const sheet = {
+    file: "spritesheet.png" as const,
+    width,
+    height,
+    frameWidth: width,
+    frameHeight: height,
+    columns: 1,
+    rows: 1,
+  };
+  const manifest: import("../../src/core/types").CharacterPackV3Manifest = {
+    schemaVersion: 3,
+    format: "gathria-character-pack",
+    name: "Native paged jump",
+    generator: "e2e-fixture",
+    spritesheet: sheet,
+    additionalSheets: [
+      { ...sheet, file: "spritesheet-1.png", width: width * 3, columns: 3 },
+    ],
+    frames: [
+      { id: 0, page: 0, x: 0, y: 0, width, height },
+      ...[0, 1, 2].map((i) => ({
+        id: i + 1,
+        page: 1,
+        x: i * width,
+        y: 0,
+        width,
+        height,
+      })),
+    ],
+    animations: {
+      idle: { frames: [0], fps: 1, loop: true },
+      walk: { frames: [0], fps: 1, loop: true },
+      jump: { frames: [1, 2, 3], fps: 4, loop: false },
+      celebrate: { frames: [1, 3], fps: 2, loop: true },
+    },
+    facing: { native: "right", right: "none", left: "mirror-x" },
+    anchor: { x: 16, y: 44, units: "pixels", origin: "top-left" },
+    scale: { pixelArt: false, integerOnly: false, recommended: 1 },
+    configuration: "character.json",
+    capabilities: { renderMode: "baked", editableAppearance: false },
+  };
+  const recipe: import("../../src/core/types").BakedCharacterRecipe = {
+    schemaVersion: 1,
+    format: "gathria-baked-character",
+    name: manifest.name,
+    characterId: "fixture",
+    source: {
+      kind: "unified-archive",
+      name: "Synthetic fixture",
+      sha256: "c".repeat(64),
+    },
+    provenance: "Synthetic contract fixture; not character artwork evidence.",
+    derivation: {
+      method: "fixture",
+      frames: manifest.frames.map((frame) => ({
+        frameId: frame.id,
+        sourceFrame: frame.id,
+        timeSeconds: frame.id / 4,
+      })),
+    },
+  };
+  const png = (pixels: Uint8Array, columns: number) =>
+    new Blob([
+      new Uint8Array(
+        encodeSourceRgbaPng({
+          pixels,
+          width: width * columns,
+          height,
+          colorChunks: [],
+        }),
+      ),
+    ]);
+  return Buffer.from(
+    await (
+      await createBakedCharacterPack(recipe, manifest, png(primary, 1), [
+        png(jump, 3),
+      ])
+    ).arrayBuffer(),
+  );
+}
+
+test("independent native multipage pack draws the jump page, holds landing, mirrors, scrubs and reexports all pages", async ({
+  page,
+}, testInfo) => {
+  const forbidden: string[] = [];
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.route(
+    /\/src\/(?:skeletal\/|editor\/|experiments\/|core\/(?:generator|illustrated-))/,
+    (route) => {
+      forbidden.push(route.request().url());
+      return route.abort();
+    },
+  );
+  const input = await multipageJumpFixture();
+  await page.goto("/player.html");
+  await page.locator("#player-zip").setInputFiles({
+    name: "multipage.character.zip",
+    mimeType: "application/zip",
+    buffer: input,
+  });
+  await expect(page.getByRole("status")).toContainText(
+    "Loaded: Native paged jump",
+  );
+  const canvas = page.getByTestId("consumer-canvas");
+  await expect(canvas).toHaveCSS("image-rendering", "auto");
+  await expect(canvas).toHaveAttribute("data-frame-page", "0");
+  await page
+    .getByRole("button", { name: "Pause animation", exact: true })
+    .click();
+  await page.getByRole("button", { name: "Jump", exact: true }).click();
+  await expect(canvas).toHaveAttribute("data-frame-page", "1");
+  const countRed = await canvas.evaluate((node: HTMLCanvasElement) => {
+    const pixels = node
+      .getContext("2d")!
+      .getImageData(0, 0, node.width, node.height).data;
+    let count = 0;
+    for (let i = 0; i < pixels.length; i += 4)
+      if (pixels[i] === 220 && pixels[i + 1] === 70 && pixels[i + 2] === 130)
+        count++;
+    return count;
+  });
+  expect(countRed).toBeGreaterThan(100);
+  const right = await canvas.evaluate((node: HTMLCanvasElement) =>
+    node.toDataURL(),
+  );
+  await page.getByRole("button", { name: "Left", exact: true }).click();
+  expect(
+    await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL()),
+  ).not.toBe(right);
+  await page.locator("#player-frame").fill("2");
+  await expect(canvas).toHaveAttribute("data-frame-id", "3");
+  await page
+    .getByRole("button", { name: "Play animation", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Replay animation", exact: true }),
+  ).toBeVisible();
+  await expect(canvas).toHaveAttribute("data-frame-id", "3");
+  await page.waitForTimeout(200);
+  await expect(canvas).toHaveAttribute("data-frame-id", "3");
+  await page
+    .getByRole("button", { name: "Replay animation", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Pause animation", exact: true }),
+  ).toBeVisible();
+  const pending = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export selected CharacterPack", exact: true })
+    .click();
+  const download = await pending;
+  const path = testInfo.outputPath("multipage.character.zip");
+  await download.saveAs(path);
+  const output = unzipSync(await readFile(path));
+  const original = unzipSync(input);
+  for (const file of [
+    "spritesheet.png",
+    "spritesheet-1.png",
+    "manifest.json",
+    "character.json",
+  ]) {
+    expect(output[file]).toEqual(original[file]);
+  }
+  await page.getByRole("button", { name: "Idle", exact: true }).click();
+  await expect(canvas).toHaveAttribute("data-frame-page", "0");
+  expect(forbidden).toEqual([]);
+  expect(errors).toEqual([]);
 });

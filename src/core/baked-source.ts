@@ -6,7 +6,11 @@ import {
   validatePortableManifest,
   validateRgbaPngScanlines,
 } from "./pack";
-import type { BakedCharacterRecipe, CharacterPackV2Manifest } from "./types";
+import type {
+  BakedCharacterRecipe,
+  BakedCharacterPackManifest,
+  CharacterPackV2Manifest,
+} from "./types";
 
 /** External source contract, deliberately distinct from native CharacterPack. */
 export const BAKED_SOURCE_ACTIONS = [
@@ -15,7 +19,17 @@ export const BAKED_SOURCE_ACTIONS = [
   "run",
   "celebrate",
 ] as const;
-export type BakedSourceAction = (typeof BAKED_SOURCE_ACTIONS)[number];
+export const BAKED_SOURCE_OPTIONAL_ACTIONS = ["jump"] as const;
+export type BakedSourceAction =
+  | (typeof BAKED_SOURCE_ACTIONS)[number]
+  | (typeof BAKED_SOURCE_OPTIONAL_ACTIONS)[number];
+const supportedSourceActions = [
+  ...BAKED_SOURCE_ACTIONS,
+  ...BAKED_SOURCE_OPTIONAL_ACTIONS,
+] as const;
+function sourceActionKey(action: BakedSourceAction): string {
+  return action === "jump" ? "jump_once" : `${action}_loop`;
+}
 const MAX_ARCHIVE = 64 * 1024 * 1024;
 const MAX_EXPANDED = 128 * 1024 * 1024;
 const MAX_TEXT = 256 * 1024;
@@ -229,7 +243,7 @@ export interface SourceFrame {
 }
 export interface SourceClip {
   fps: number;
-  loop: true;
+  loop: boolean;
   selectionStrategy: string;
   frames: SourceFrame[];
 }
@@ -237,7 +251,8 @@ export interface SourceCharacter {
   id: string;
   name: string;
   anchor: { x: number; y: number };
-  actions: Record<BakedSourceAction, SourceClip>;
+  actions: Record<(typeof BAKED_SOURCE_ACTIONS)[number], SourceClip> &
+    Partial<Record<(typeof BAKED_SOURCE_OPTIONAL_ACTIONS)[number], SourceClip>>;
   metadata: Record<string, unknown>;
 }
 export interface BakedSourceBundle {
@@ -495,13 +510,13 @@ async function encodeAtlasPng(image: RgbaPng): Promise<Uint8Array> {
 function sourceFileLimit(path: string): number {
   if (path === "manifest.json" || path === "README.md") return MAX_TEXT;
   if (
-    /^characters\/[a-z0-9][a-z0-9_-]{0,31}\/(meta\.json|actions\/(idle|walk|run|celebrate)_loop\.json)$/.test(
+    /^characters\/[a-z0-9][a-z0-9_-]{0,31}\/(meta\.json|actions\/((idle|walk|run|celebrate)_loop|jump_once)\.json)$/.test(
       path,
     )
   )
     return MAX_TEXT;
   if (
-    /^characters\/[a-z0-9][a-z0-9_-]{0,31}\/layers\/body_composite\/(idle|walk|run|celebrate)_loop\/\d{3}\.png$/.test(
+    /^characters\/[a-z0-9][a-z0-9_-]{0,31}\/layers\/body_composite\/((idle|walk|run|celebrate)_loop|jump_once)\/\d{3}\.png$/.test(
       path,
     )
   )
@@ -569,12 +584,18 @@ export async function importBakedSourceArchive(
   const actionDefinitions = object(manifest.actions, "actions");
   if (
     Object.keys(actionDefinitions).some(
-      (k) => !BAKED_SOURCE_ACTIONS.some((a) => a + "_loop" === k),
+      (k) => !supportedSourceActions.some((a) => sourceActionKey(a) === k),
     )
   )
     fail(
-      "Unsupported source action; this importer preserves idle/walk/run/celebrate only.",
+      "Unsupported source action; expected idle/walk/run/celebrate loops and optional jump_once.",
     );
+  const availableActions: readonly BakedSourceAction[] = [
+    ...BAKED_SOURCE_ACTIONS,
+    ...BAKED_SOURCE_OPTIONAL_ACTIONS.filter(
+      (action) => sourceActionKey(action) in actionDefinitions,
+    ),
+  ];
   let totalPixels = 0;
   const usedImages = new Set<string>();
   const characters: SourceCharacter[] = [];
@@ -591,11 +612,17 @@ export async function importBakedSourceArchive(
     )
       fail(`Character ${id} metadata must describe the baked source identity.`);
     const actionsMeta = object(metadata.actions, `${id}.actions`);
+    if (Object.keys(actionsMeta).some((key) => !(key in actionDefinitions)))
+      fail(
+        `Unsupported ${id} action metadata not declared in the source manifest.`,
+      );
     const actions = {} as SourceCharacter["actions"];
     let anchor: SourceCharacter["anchor"] | undefined;
     let count = 0;
-    for (const action of BAKED_SOURCE_ACTIONS) {
-      const key = action + "_loop",
+    for (const action of availableActions) {
+      const loop = action !== "jump";
+      const repeat = loop ? -1 : 0;
+      const key = sourceActionKey(action),
         definition = object(actionDefinitions[key], `actions.${key}`),
         detail = object(actionsMeta[key], `${id}.actions.${key}`);
       const configPath = `characters/${id}/actions/${key}.json`;
@@ -610,10 +637,10 @@ export async function importBakedSourceArchive(
       if (
         clip.name !== key ||
         clip.fps !== fps ||
-        definition.loop !== true ||
-        clip.loop !== true ||
-        definition.repeat !== -1 ||
-        clip.repeat !== -1 ||
+        definition.loop !== loop ||
+        clip.loop !== loop ||
+        definition.repeat !== repeat ||
+        clip.repeat !== repeat ||
         detail.count !== expected
       )
         fail(`Inconsistent ${id}/${key} timing or count metadata.`);
@@ -714,7 +741,7 @@ export async function importBakedSourceArchive(
       }
       actions[action] = {
         fps,
-        loop: true,
+        loop,
         selectionStrategy: text(
           definition.selection_strategy,
           `${key}.selection_strategy`,
@@ -755,8 +782,9 @@ export async function importBakedSourceArchive(
 }
 
 export interface ConvertedSourceCharacter {
-  manifest: CharacterPackV2Manifest;
+  manifest: BakedCharacterPackManifest;
   png: Blob;
+  additionalPngs: Blob[];
   recipe: BakedCharacterRecipe;
   stats: {
     sequenceFrames: number;
@@ -767,7 +795,81 @@ export interface ConvertedSourceCharacter {
     partialAlphaPixels: number;
   };
 }
-/** One native atlas, one temporary frame. No character-specific rendering,
+interface SourceAtlasPage {
+  start: number;
+  count: number;
+  columns: number;
+  rows: number;
+  width: number;
+  height: number;
+}
+/** Plan native pages and enforce all decoded budgets before allocating pixels. */
+export function planSourceAtlasPages(
+  frameWidth: number,
+  frameHeight: number,
+  frameCount: number,
+  legacyUniqueFrames = 0,
+): SourceAtlasPage[] {
+  integer(frameWidth, "frameWidth", 1, 2048);
+  integer(frameHeight, "frameHeight", 1, 2048);
+  integer(frameCount, "frameCount", 1, MAX_FRAMES);
+  integer(legacyUniqueFrames, "legacyUniqueFrames", 0, frameCount);
+  function layout(count: number) {
+    let best: { columns: number; rows: number; score: number } | undefined;
+    for (
+      let columns = 1;
+      columns <= Math.min(count, Math.floor(8192 / frameWidth));
+      columns++
+    ) {
+      const rows = Math.ceil(count / columns),
+        w = columns * frameWidth,
+        h = rows * frameHeight;
+      if (h > 8192 || w * h > MAX_ATLAS_PIXELS) continue;
+      const score = columns * rows + Math.abs(Math.log(w / h)) * 0.1;
+      if (!best || score < best.score) best = { columns, rows, score };
+    }
+    return best;
+  }
+  const pages: SourceAtlasPage[] = [];
+  let start = 0;
+  while (start < frameCount) {
+    let count = frameCount - start;
+    let best = layout(count);
+    // Keep the old four-action atlas byte-for-byte when a new jump exceeds its
+    // page capacity. Extra source pixels get a page, never resampling or dropping.
+    if (
+      !best &&
+      start === 0 &&
+      legacyUniqueFrames &&
+      layout(legacyUniqueFrames)
+    ) {
+      count = legacyUniqueFrames;
+      best = layout(count);
+    }
+    while (!best && count > 1) best = layout(--count);
+    if (!best) fail("Source frame cannot fit a bounded native atlas page.");
+    pages.push({
+      start,
+      count,
+      columns: best.columns,
+      rows: best.rows,
+      width: best.columns * frameWidth,
+      height: best.rows * frameHeight,
+    });
+    start += count;
+  }
+  if (
+    pages.length > 4 ||
+    pages.reduce((n, page) => n + page.width * page.height, 0) >
+      128 * 1024 * 1024
+  )
+    fail(
+      "Source character exceeds the four-page, 128-megapixel decoded budget; split the source rather than silently degrading artwork.",
+    );
+  return pages;
+}
+
+/** Bounded native pages, one temporary frame. No character-specific rendering,
  * resizing, alpha thresholding, invented expressions or skeletal conversion. */
 export async function convertSourceCharacter(
   bundle: BakedSourceBundle,
@@ -780,9 +882,14 @@ export async function convertSourceCharacter(
     ids = new Map<string, number>();
   const clips = {} as CharacterPackV2Manifest["animations"];
   let sequenceFrames = 0;
-  for (const action of BAKED_SOURCE_ACTIONS) {
-    const clip = character.actions[action],
-      refs: number[] = [];
+  let legacyUniqueFrames = 0;
+  const availableActions = supportedSourceActions.filter(
+    (action) => character.actions[action] !== undefined,
+  );
+  for (const action of availableActions) {
+    if (action === "jump") legacyUniqueFrames = unique.length;
+    const clip = character.actions[action]!;
+    const refs: number[] = [];
     for (const frame of clip.frames) {
       let ref = ids.get(frame.pixelHash);
       if (ref === undefined) {
@@ -793,87 +900,113 @@ export async function convertSourceCharacter(
       refs.push(ref);
       sequenceFrames++;
     }
-    clips[action] = { frames: refs, fps: clip.fps, loop: true };
+    clips[action] = { frames: refs, fps: clip.fps, loop: clip.loop };
   }
-  let best: { columns: number; rows: number; score: number } | undefined;
-  for (
-    let columns = 1;
-    columns <= Math.min(unique.length, Math.floor(8192 / bundle.width));
-    columns++
-  ) {
-    const rows = Math.ceil(unique.length / columns),
-      w = columns * bundle.width,
-      h = rows * bundle.height;
-    if (h > 8192 || w * h > MAX_ATLAS_PIXELS) continue;
-    const score = columns * rows + Math.abs(Math.log(w / h)) * 0.1;
-    if (!best || score < best.score) best = { columns, rows, score };
-  }
-  if (!best)
-    fail(
-      "Source character cannot fit the bounded native atlas without resizing; split the source rather than silently degrading artwork.",
-    );
-  const width = best.columns * bundle.width,
-    height = best.rows * bundle.height,
-    pixels = new Uint8Array(width * height * 4);
-  let colorChunks: Uint8Array[] = [];
+  const pages = planSourceAtlasPages(
+    bundle.width,
+    bundle.height,
+    unique.length,
+    legacyUniqueFrames,
+  );
+  const multipage = pages.length > 1;
+  const { width, height } = pages[0];
   let partialAlphaPixels = 0;
   const derivation: BakedCharacterRecipe["derivation"]["frames"] = [];
-  for (let index = 0; index < unique.length; index++) {
-    const frame = unique[index],
-      image = decodeSourceRgbaPng(frame.png, {
+  const frameRects: Array<{
+    id: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    page?: number;
+  }> = [];
+  const pngs: Blob[] = [];
+  for (const [pageIndex, page] of pages.entries()) {
+    const pixels = new Uint8Array(page.width * page.height * 4);
+    let colorChunks: Uint8Array[] = [];
+    for (let cell = 0; cell < page.count; cell++) {
+      const index = page.start + cell;
+      const frame = unique[index],
+        image = decodeSourceRgbaPng(frame.png, {
+          width: bundle.width,
+          height: bundle.height,
+        }),
+        x = (cell % page.columns) * bundle.width,
+        y = Math.floor(cell / page.columns) * bundle.height;
+      for (let row = 0; row < bundle.height; row++)
+        pixels.set(
+          image.pixels.subarray(
+            row * bundle.width * 4,
+            (row + 1) * bundle.width * 4,
+          ),
+          ((y + row) * page.width + x) * 4,
+        );
+      colorChunks = image.colorChunks;
+      partialAlphaPixels += frame.partialAlphaPixels;
+      derivation.push({
+        frameId: index,
+        sourceFrame: frame.sourceFrame,
+        timeSeconds: frame.timeSeconds,
+      });
+      frameRects.push({
+        id: index,
+        x,
+        y,
         width: bundle.width,
         height: bundle.height,
-      }),
-      x = (index % best.columns) * bundle.width,
-      y = Math.floor(index / best.columns) * bundle.height;
-    for (let row = 0; row < bundle.height; row++)
-      pixels.set(
-        image.pixels.subarray(
-          row * bundle.width * 4,
-          (row + 1) * bundle.width * 4,
-        ),
-        ((y + row) * width + x) * 4,
-      );
-    colorChunks = image.colorChunks;
-    partialAlphaPixels += frame.partialAlphaPixels;
-    derivation.push({
-      frameId: index,
-      sourceFrame: frame.sourceFrame,
-      timeSeconds: frame.timeSeconds,
-    });
-    // Yield between complete frames so import progress does not monopolize UI.
-    if (index % 8 === 7)
-      await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        ...(multipage ? { page: pageIndex } : {}),
+      });
+      // Yield between complete frames so import progress does not monopolize UI.
+      if (cell % 8 === 7)
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    }
+    pngs.push(
+      new Blob(
+        [
+          new Uint8Array(
+            await encodeAtlasPng({
+              width: page.width,
+              height: page.height,
+              pixels,
+              colorChunks,
+            }),
+          ),
+        ],
+        { type: "image/png" },
+      ),
+    );
+  }
+  function sheet(page: (typeof pages)[number], index: number) {
+    return {
+      file: index === 0 ? "spritesheet.png" : `spritesheet-${index}.png`,
+      width: page.width,
+      height: page.height,
+      frameWidth: bundle.width,
+      frameHeight: bundle.height,
+      columns: page.columns,
+      rows: page.rows,
+    };
   }
   const name = character.name;
   const manifest = validatePortableManifest({
-    schemaVersion: 2,
+    schemaVersion: multipage ? 3 : 2,
     format: "gathria-character-pack",
     name,
     generator: "gathria-unified-source-adapter-v1",
     capabilities: { renderMode: "baked", editableAppearance: false },
-    spritesheet: {
-      file: "spritesheet.png",
-      width,
-      height,
-      frameWidth: bundle.width,
-      frameHeight: bundle.height,
-      columns: best.columns,
-      rows: best.rows,
-    },
-    frames: unique.map((_, id) => ({
-      id,
-      x: (id % best!.columns) * bundle.width,
-      y: Math.floor(id / best!.columns) * bundle.height,
-      width: bundle.width,
-      height: bundle.height,
-    })),
+    spritesheet: sheet(pages[0], 0),
+    ...(multipage
+      ? {
+          additionalSheets: pages.slice(1).map((page, i) => sheet(page, i + 1)),
+        }
+      : {}),
+    frames: frameRects,
     animations: clips,
     facing: { native: "right", right: "none", left: "mirror-x" },
     anchor: { ...character.anchor, units: "pixels", origin: "top-left" },
     scale: { pixelArt: false, integerOnly: false, recommended: 1 },
     configuration: "character.json",
-  }) as CharacterPackV2Manifest;
+  }) as BakedCharacterPackManifest;
   const sourceMetadata = {
     externalFormat: bundle.manifest.format,
     externalVersion: bundle.manifest.version,
@@ -883,12 +1016,13 @@ export async function convertSourceCharacter(
       : { sourceDerivation: bundle.manifest.derivation }),
     character: character.metadata,
     actions: Object.fromEntries(
-      BAKED_SOURCE_ACTIONS.map((action) => [
+      availableActions.map((action) => [
         action,
         {
-          fps: character.actions[action].fps,
-          selectionStrategy: character.actions[action].selectionStrategy,
-          frames: character.actions[action].frames.map((f) => ({
+          fps: character.actions[action]!.fps,
+          ...(action === "jump" ? { loop: false } : {}),
+          selectionStrategy: character.actions[action]!.selectionStrategy,
+          frames: character.actions[action]!.frames.map((f) => ({
             sourceIndex: f.sourceIndex,
             sourceFrame: f.sourceFrame,
             timeSeconds: f.timeSeconds,
@@ -912,23 +1046,19 @@ export async function convertSourceCharacter(
         sha256: bundle.sourceSha256,
       },
       provenance:
-        "User-supplied Kling source artwork. Imported through the external Gathria Unified CharacterPack 1.0.0 contract. Each native-resolution RGBA frame is packed without resampling, thresholding, recoloring or regeneration; duplicate pixels share atlas cells while frame order and FPS remain intact. Clothing, body and shoes are baked together. This is not an editable skeletal or wardrobe identity. Source action selection is a loop candidate, not final artistic acceptance.",
+        "User-supplied Kling source artwork. Imported through the external Gathria Unified CharacterPack 1.0.0 contract. Each native-resolution RGBA frame is packed without resampling, thresholding, recoloring or regeneration; duplicate pixels share atlas cells while frame order and FPS remain intact. Clothing, body and shoes are baked together. This is not an editable skeletal or wardrobe identity. Source action selection is a loop candidate, not final artistic acceptance." +
+        (character.actions.jump
+          ? " The optional jump is a forward one-shot source sequence, not a looping or synthesized pose."
+          : ""),
       derivation: { method: "exact-rgba-atlas-v1", frames: derivation },
       sourceMetadata,
     },
     manifest,
   );
-  const png = new Blob(
-    [
-      new Uint8Array(
-        await encodeAtlasPng({ width, height, pixels, colorChunks }),
-      ),
-    ],
-    { type: "image/png" },
-  );
   return {
     manifest,
-    png,
+    png: pngs[0],
+    additionalPngs: pngs.slice(1),
     recipe,
     stats: {
       sequenceFrames,

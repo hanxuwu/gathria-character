@@ -1,5 +1,8 @@
 # Original Kling characters — review
 
+This page preserves the original four-action delivery. The current player sample
+also includes a one-shot jump: [five-action preview and packs](../kling-jump/README.md).
+
 These pictures come from the actual player's exported CharacterPacks. They
 retain the source video figures; there is no newly drawn or skeletal stand-in.
 Open `/player.html` after `npm run dev`, then choose **Try the Kling character pair**.

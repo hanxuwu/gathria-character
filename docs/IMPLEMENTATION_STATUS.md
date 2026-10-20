@@ -1,6 +1,18 @@
 # Implementation status
 
-**Current batch: approved-reference mother candidate / four static poses.**
+**Current batch: original Kling one-shot jump / five-action playback.** Based on
+merged main `7284c8b`, on `feat/kling-source-jump`. Original source frames 171–209
+add a real jump to both characters; unchanged artwork uses uniform transparent
+top padding and native V3 multipage export. V1/V2 and old source archives remain
+supported. The ordinary HTTP SHA-256 fallback stays enabled.
+
+[Current review, compatibility and limitations](KLING_JUMP_REVIEW.md) ·
+[Actual export previews and downloads](kling-jump/README.md).
+
+The following sections are historical batch records; their branch/merge states
+and test counts describe the time of those deliveries.
+
+**Historical batch: approved-reference mother candidate / four static poses.**
 On `feat/reference-mother-model`, based on `c074feb` from the still-unmerged
 `feat/base-character-study` (PR #14). A coherent 1024 × 1536 master and 15 HD
 parts preserve the approved Kling/PNG proportions. A separate validated static
@@ -16,7 +28,7 @@ explicit one-frame still holds for old-player compatibility. Neutral-only face,
 compiled hands, soft large-bend folds and no Gathria integration remain disclosed.
 Final visual acceptance belongs to the user.
 
-**Previous unmerged batch: editable base character / four actions.** Starts from merged
+**Historical batch: editable base character / four actions.** Starts from merged
 `main` at `19623f5`, on `feat/base-character-study`. A new generated source sheet
 provides a plain training outfit and continuous bare limbs; the existing bald
 shared-expression heads keep attention on anatomy. The project contains its

@@ -1,0 +1,183 @@
+{
+  "scope": "Executed for original Kling jump on 2026-10-20; previous four-action records are historical.",
+  "implementationCommit": "9a6344929e6119673b6d9d1fddfb19c1fae0bf95",
+  "implementationHashes": {
+    "src/core/types.ts": "e4bfd1674c0b5728897530c320894175c33eab99376c726618e7afb2c646c14d",
+    "src/core/pack.ts": "715ddc2bf0fae4f48d2f0ce8ee0bdb5252a735bc8dd3883d8dfa80b22aff010b",
+    "src/core/pack-v2.ts": "ff497c58c58e054a0590e36a6de5020446d7e31ba945d7c405e8123c5afd82e1",
+    "src/core/pack-v3.ts": "1e1a7bd8e1324e0e95de1dfeda0b31c04f1fa1409211fb808147e632dd7bedef",
+    "src/core/baked-source.ts": "c98e6f37f46a2e2377112eaf30b51d5fb86070447bb8fa723b49100b6372cce4",
+    "src/core/sha256.ts": "9dadabe2eade2c115bb3f61da9920c24b00b5c13808956dd6e9116523d20d4b9",
+    "src/consumer/PackPlayer.tsx": "f01e36db864f9eee0cc33d71e0eb4e3159669b3b35b61de8fa51e4042fa74f1d",
+    "src/consumer/player.ts": "6da0a4e38b519fb81fe38e9bb1b56e9f1c9a9cf93868601d847de492c062a04b",
+    "scripts/generate-kling-jump-evidence.mjs": "ca694aa272b5528a540a162b234894122e6c84f33299e1b3ff6820e82ccc4bf6"
+  },
+  "unit": {
+    "command": "npm test -- --maxWorkers=1",
+    "passed": 582,
+    "files": 46,
+    "durationSeconds": 138.63,
+    "log": "checks/unit-final.txt",
+    "priorAttempt": {
+      "passed": 580,
+      "timeouts": 1,
+      "cause": "Existing denim rig test exceeded its unchanged 20-second timeout during concurrent native import, browser and unit work. Re-run at lower concurrency passed.",
+      "log": "checks/unit-initial-concurrent.txt"
+    }
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "passed": true,
+    "log": "checks/typecheck-final.txt"
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "log": "checks/build-final.txt",
+    "note": "Existing chunk-size warnings remain; bundled source ZIP SHA-256 matches prepared source."
+  },
+  "browserSuite": {
+    "fullAttempt": {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": 65,
+      "failed": 1,
+      "log": "checks/e2e-full-initial.txt",
+      "cause": "An existing old four-action canvas-change test sampled identical held poses at the same phase. Trace showed actual canvas changes; observation now samples requestAnimationFrame, retaining the same pixel-change predicate and 5-second timeout."
+    },
+    "focusedFinal": {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e -- tests/e2e/baked-playback.spec.ts",
+      "passed": 5,
+      "failed": 0,
+      "durationSeconds": 19.6,
+      "log": "checks/e2e-focused-final.txt"
+    },
+    "note": "No claim that all 66 browser tests passed in a single final local run."
+  },
+  "nativeBrowser": {
+    "passed": true,
+    "report": "browser/evidence-index.json",
+    "log": "checks/native-browser-final.txt",
+    "startedAt": "2026-10-20T22:06:28.758Z",
+    "finishedAt": "2026-10-20T22:08:49.130Z",
+    "httpContext": {
+      "secure": false,
+      "subtleAvailable": false
+    },
+    "sourceImportSeconds": 58.078515272,
+    "sourceContextClosedBeforeIndependentLoads": true,
+    "independentActionDirectionCases": 20,
+    "jumpCases": [
+      {
+        "character": "male",
+        "facing": "right",
+        "observedFrames": 39,
+        "totalFrames": 39,
+        "finalHoldAndReplay": true
+      },
+      {
+        "character": "male",
+        "facing": "left",
+        "observedFrames": 39,
+        "totalFrames": 39,
+        "finalHoldAndReplay": true
+      },
+      {
+        "character": "female",
+        "facing": "right",
+        "observedFrames": 39,
+        "totalFrames": 39,
+        "finalHoldAndReplay": true
+      },
+      {
+        "character": "female",
+        "facing": "left",
+        "observedFrames": 39,
+        "totalFrames": 39,
+        "finalHoldAndReplay": true
+      }
+    ],
+    "browserErrors": [],
+    "runtimeUnchangedDuringAndAfterCapture": true,
+    "priorCaptures": "Two captures were rejected: one missed a sampled jump position under heavy concurrency; another detected a footer edit during capture. Final frozen-runtime capture passed all checks without weakening assertions."
+  },
+  "artifacts": {
+    "report": "artifact-validation.json",
+    "exactSourceFrames": 244,
+    "unchangedHistoricalFrames": 166,
+    "gifs": 5,
+    "decodedPngAndGifFiles": 19,
+    "zipCrcChecks": 4,
+    "gifFrameCount": 39,
+    "nativeDurationMs": 1625,
+    "gifDurationMs": 1620,
+    "gifTimingNote": "GIF timing quantizes to 10 ms; native packs retain 24 fps.",
+    "hashesRecheckedAfterGeneration": true
+  },
+  "visualReview": {
+    "basis": "Actual exported PNGs, native/2x keyframes, source-matte-export apex comparisons and browser playback; this is not user acceptance.",
+    "result": "Original anticipation, airborne, landing and recovery poses preserved; no skeleton reconstruction or resizing of source frames.",
+    "remaining": [
+      "Original video clips a small scalp arc at source frames 183\u2013186. No missing pixels are invented.",
+      "Original landing motion blur and minor chroma-matte edge irregularities remain.",
+      "Returning from recovered jump to the separately recorded idle clip has a source pose change.",
+      "Native pair import took 58.08 seconds in this environment and uses about 692 MiB of decoded RGBA atlases; mobile optimization is not included."
+    ]
+  },
+  "sourceSha256": "80f34676b01f5b7a98efb4ebfb8d237e01334299fd5f2774acc4fc62d00b342d",
+  "exportPacks": {
+    "male": {
+      "path": "docs/kling-jump/exports/male.character.zip",
+      "sha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+      "bytes": 30330913,
+      "schemaVersion": 3,
+      "sheets": [
+        {
+          "file": "spritesheet.png",
+          "size": [
+            7744,
+            7392
+          ]
+        },
+        {
+          "file": "spritesheet-1.png",
+          "size": [
+            6336,
+            5280
+          ]
+        }
+      ],
+      "frameSize": [
+        704,
+        1056
+      ],
+      "crcAndPngDecode": true
+    },
+    "female": {
+      "path": "docs/kling-jump/exports/female.character.zip",
+      "sha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+      "bytes": 30286811,
+      "schemaVersion": 3,
+      "sheets": [
+        {
+          "file": "spritesheet.png",
+          "size": [
+            7744,
+            7392
+          ]
+        },
+        {
+          "file": "spritesheet-1.png",
+          "size": [
+            6336,
+            5280
+          ]
+        }
+      ],
+      "frameSize": [
+        704,
+        1056
+      ],
+      "crcAndPngDecode": true
+    }
+  }
+}

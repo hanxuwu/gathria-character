@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "canvas": {
+    "width": 704,
+    "height": 1056,
+    "anchor": [
+      352,
+      998
+    ]
+  },
+  "fps": 24,
+  "actions": {
+    "idle": {
+      "start": 336,
+      "endExclusive": 360
+    },
+    "walk": {
+      "start": 26,
+      "endExclusive": 53
+    },
+    "run": {
+      "start": 140,
+      "endExclusive": 156
+    },
+    "celebrate": {
+      "start": 253,
+      "endExclusive": 269
+    },
+    "jump": {
+      "start": 171,
+      "endExclusive": 210,
+      "loop": false
+    }
+  },
+  "characters": {
+    "male": {
+      "name": "Kling male — original video",
+      "video": "artwork/reference-mother/source/reference-video.mp4",
+      "sha256": "ca1737b97dfc1bc91a1f24636a42bc6919f0a2f002975bf907cb49486779cc5a",
+      "cropOrigin": [
+        586,
+        -20
+      ],
+      "matte": {
+        "greenStart": 0.035,
+        "greenEnd": 0.27
+      }
+    },
+    "female": {
+      "name": "Kling female — original video",
+      "video": "artwork/kling-playback/source/female.mp4",
+      "sha256": "8319516856a1ba660fb33f12711ccbedc184eca5a1d4b8d9ac64841e731f8eda",
+      "cropOrigin": [
+        586,
+        -4
+      ],
+      "matte": {
+        "greenStart": 0.035,
+        "greenEnd": 0.48
+      }
+    }
+  },
+  "notes": [
+    "Zero-based decoded video frame indices. Every selected frame is played forward once at the original 24 fps; no duplicated endpoint, ping-pong, interpolation or morphing.",
+    "Fixed per-character crop only. No scaling, per-frame recentering, stabilization, skeleton fitting, repainting or facial correction.",
+    "Ground anchor is a fixed reference near the standing soles, not a per-frame foot lock or anatomical measurement.",
+    "Background alpha is estimated from each source green-screen profile. Only partially transparent edge RGB is unmixed/despilled; every fully opaque pixel retains decoded source RGB exactly.",
+    "Original source motion blur, pose variation and small cycle mismatch remain visible. These are reviewed loop candidates, not user-approved final animation.",
+    "Jump is a single forward performance, source frames171–209 inclusive at24fps, then holds its final frame. No celebration frames substitute for jump.",
+    "All frames gain32 transparent canvas pixels above the old crop; anchor moves by the same32pixels. Existing four actions retain identical RGBA after removing this padding. No visible artwork is shifted relative to its anchor.",
+    "The original videos cut a small scalp arc at source frames183–186. New canvas includes every source pixel but cannot reconstruct artwork missing from the video."
+  ],
+  "legacyReference": {
+    "archive": "artwork/kling-playback/prepared/kling-source.zip",
+    "paddingTop": 32
+  }
+}

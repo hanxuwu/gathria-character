@@ -1,0 +1,275 @@
+
+> gathria-character@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ❯ src/experiments/denim-rig/project.test.ts (3 tests | 1 failed) 22480ms
+   ✓ isolated Denim skeletal authoring > round-trips a typed recipe without silently accepting other source versions or identities 4ms
+   × isolated Denim skeletal authoring > bakes deterministic run frames with unchanged legacy rows, geometry and timing 22290ms
+     → Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ isolated Denim skeletal authoring > uses edited keys while preserving production output and unrelated run phases 184ms
+ ✓ src/skeletal/identities.test.ts (15 tests) 23890ms
+   ✓ portable character identities > exports a complete registered crop template without changing catalog sources  473ms
+   ✓ portable character identities > exports a complete registered waves template without changing catalog sources  355ms
+   ✓ portable character identities > installs sources without changing flat pixels, then explicitly selects an independently retained identity  1549ms
+   ✓ portable character identities > preserves exact source identity pixels at source colors, while keeping all clothing unchanged  897ms
+   ✓ portable character identities > recolors only authored skin/hair channels without touching fixed eyes or identity geometry  913ms
+   ✓ portable character identities > changes source-neighbor hair and skin colors continuously without a shading-model jump  1228ms
+   ✓ portable character identities > combines a custom identity and a paired action-forearm top without changing the rig or heads  2617ms
+   ✓ portable character identities > keeps all three custom heads invariant while swapping clothing, and persists used plus unused identities  8467ms
+   ✓ portable character identities > keeps original V1/V2 builtin behavior and rejects implicit custom/hair upgrades  2788ms
+   ✓ portable character identities > rejects stale recipe pixels instead of silently rebuilding a changed head  1223ms
+   ✓ portable character identities > rejects misplaced materials, nonbinary alpha, invisible hidden payload and clipped boundary pixels  623ms
+   ✓ portable character identities > bounds libraries and prevents identity collisions without mutating existing projects  902ms
+   ✓ portable character identities > rejects inline, ambiguous or unsupported project identity libraries before decoding any PNG  1467ms
+ ✓ src/skeletal/shin-following-shoes.test.ts (7 tests) 25199ms
+   ✓ explicit shin-following shoe registrations > rejects absent, foreign, collapsed, nonfinite and out-of-bounds source axes  2531ms
+   ✓ explicit shin-following shoe registrations > rotates asymmetric shoe markers with the solved shin and shares its ankle in motion V1  949ms
+   ✓ explicit shin-following shoe registrations > rotates asymmetric shoe markers with the solved shin and shares its ankle in motion V2  579ms
+   ✓ explicit shin-following shoe registrations > supports every real Theo run pose with rasterized soles and stable non-run artwork  7100ms
+   ✓ explicit shin-following shoe registrations > clears following footwear on replacement while preserving leg alternatives and active forearms  11566ms
+   ✓ explicit shin-following shoe registrations > keeps all 36 historical SkinV3 Theo frames pixel-exact  2172ms
+ ✓ src/core/expressive-art.test.ts (18 tests) 9498ms
+   ✓ expressive artwork V4 > round-trips 'Mira' without a runtime service  454ms
+   ✓ expressive artwork V4 > round-trips 'Rowan' without a runtime service  397ms
+   ✓ expressive artwork V4 > blinks without changing waves hair, body, alpha or face placement  1006ms
+   ✓ expressive artwork V4 > blinks without changing crop hair, body, alpha or face placement  765ms
+   ✓ expressive artwork V4 > blinks without changing bob hair, body, alpha or face placement  938ms
+   ✓ expressive artwork V4 > blinks without changing mohawk hair, body, alpha or face placement  992ms
+   ✓ expressive artwork V4 > keeps expressions recolorable across skin tones and ornaments independent of palettes  1690ms
+   ✓ expressive artwork V4 > 'Polished casual' stays connected, transparent, unclipped and grounded through every pose  380ms
+   ✓ expressive artwork V4 > 'Wedding suit' stays connected, transparent, unclipped and grounded through every pose  505ms
+   ✓ expressive artwork V4 > 'Wedding dress' stays connected, transparent, unclipped and grounded through every pose  630ms
+   ✓ expressive artwork V4 > keeps three distinct face shapes with the same hair and wardrobe  364ms
+   ✓ expressive artwork V4 > keeps eyes, hair crown and accessories stable throughout the walking loop  465ms
+ ✓ src/skeletal/static-pose.test.ts (7 tests) 12165ms
+   ✓ explicit static rig review poses > preserves every pre-edit legacy frame and expression: artwork/base-character/prepared/base-character.rig.zip  2764ms
+   ✓ explicit static rig review poses > preserves every pre-edit legacy frame and expression: docs/theo-ankle-follow/final/theo-ankle-follow.rig.zip  2535ms
+   ✓ explicit static rig review poses > reassembles the native rest pose exactly and does not mutate the old clip  1284ms
+   ✓ explicit static rig review poses > supports independently raised arms, follows both hands and rotates shoes at shared ankles  1503ms
+   ✓ explicit static rig review poses > preserves a perspective-raised far sole instead of normalizing both shoes to one ground line  1304ms
+   ✓ explicit static rig review poses > moves the body and all attachment roots together and returns detached pose metadata  1450ms
+   ✓ explicit static rig review poses > rejects unknown fields, nonfinite or detached joints, collapsed/stretched anatomy and invalid IDs  1297ms
+ ✓ src/skeletal/run-attachments.test.ts (13 tests) 19575ms
+   ✓ explicit run pose attachment contracts > keeps source registrations detached and accepts independently optional paired extensions  2563ms
+   ✓ explicit run pose attachment contracts > retains existing active forearms when a skin also declares run shoes  2297ms
+   ✓ run source selection and anatomical attachment > changes cloth sources without changing solved anatomy or any non-run frame  1469ms
+   ✓ run source selection and anatomical attachment > keeps run shoe support and the shin ankle connected in motion V1  717ms
+   ✓ run source selection and anatomical attachment > keeps run shoe support and the shin ankle connected in motion V2  653ms
+   ✓ portable run wardrobe ownership and old project compatibility > roundtrips V4 source registrations and selected project libraries without upgrading motions  3143ms
+   ✓ portable run wardrobe ownership and old project compatibility > clears only the changed wardrobe group's alternatives and restores them from the embedded library  2865ms
+   ✓ portable run wardrobe ownership and old project compatibility > rejects cross-group ownership, missing pairs, ambiguous versions and non-source color models  382ms
+   ✓ portable run wardrobe ownership and old project compatibility > preserves alternate source pixels at authored colors and recolors only their owned materials  2308ms
+   ✓ portable run wardrobe ownership and old project compatibility > reproduces every historical Theo motion V2 atlas pixel from its saved source library  2783ms
+ ✓ src/skeletal/wardrobe-source-colors.test.ts (9 tests) 9726ms
+   ✓ explicit source-relative wardrobe item colors > preserves an authored skirt while sharing the unchanged catalog identity and clothing  1113ms
+   ✓ explicit source-relative wardrobe item colors > preserves authored RGB at source palettes for all garment groups and active hands  1209ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored skin channel and keeps alpha and fixed details  1124ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored top channel and keeps alpha and fixed details  786ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored bottom channel and keeps alpha and fixed details  867ms
+   ✓ explicit source-relative wardrobe item colors > recolors only the authored shoes channel and keeps alpha and fixed details  693ms
+   ✓ explicit source-relative wardrobe item colors > keeps source-neighbor colors continuous instead of switching shading models  1619ms
+   ✓ explicit source-relative wardrobe item colors > retains strict version, color-model and paired action ownership  545ms
+   ✓ explicit source-relative wardrobe item colors > persists the explicit model with deterministic posed artwork and stable registration  1736ms
+ ✓ src/core/running-v3-geometry.test.ts (11 tests) 10890ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'denim-daytrip' head/neck, cadence and grounded frame boundaries stable  771ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'coral-afternoon' head/neck, cadence and grounded frame boundaries stable  1022ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'sage-weekend' head/neck, cadence and grounded frame boundaries stable  857ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'ochre-traveler' head/neck, cadence and grounded frame boundaries stable  1138ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'denim-daytrip' lower-cloth and shoe recoloring effective without changing geometry  1186ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'coral-afternoon' lower-cloth and shoe recoloring effective without changing geometry  1777ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'sage-weekend' lower-cloth and shoe recoloring effective without changing geometry  1293ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'ochre-traveler' lower-cloth and shoe recoloring effective without changing geometry  1883ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'coral-afternoon' bare-leg skin responsive through bent recovery poses  601ms
+   ✓ corrected run preserves pose registration and material controls > keeps 'sage-weekend' bare-leg skin responsive through bent recovery poses  345ms
+ ✓ src/skeletal/base-character.test.ts (4 tests) 9370ms
+   ✓ base character study > embeds editable anatomy, clothing and all four clips in its own project  1772ms
+   ✓ base character study > keeps every pose and expression nonempty, transparent and within the frame  2396ms
+   ✓ base character study > keeps run leg lengths, shared ankles and shoe axes stable at all twelve keys  1766ms
+   ✓ base character study > lands the one-shot jump on its exact ready pose and bakes deterministically  3432ms
+ ✓ src/skeletal/wardrobe.test.ts (14 tests) 9502ms
+   ✓ versioned modular wardrobe > assembles deterministic independent buffers and does not turn flat projects into wardrobe projects  302ms
+   ✓ versioned modular wardrobe > recolors only authored material masks for crop, including skin on head, hands and legs  920ms
+   ✓ versioned modular wardrobe > recolors only authored material masks for waves, including skin on head, hands and legs  1234ms
+   ✓ versioned modular wardrobe > keeps edited motions, preview and skeleton while recipe assembly replaces only the skin  408ms
+   ✓ versioned modular wardrobe > keeps each shoe attached across every action for all four lower-garment/shoe combinations  3991ms
+   ✓ versioned modular wardrobe > poses mixed clothing 'crop'/'soft-top'/'trousers'/'flats' with every action and no frame clipping  808ms
+   ✓ versioned modular wardrobe > poses mixed clothing 'waves'/'denim-jacket'/'short-skirt'/'boots' with every action and no frame clipping  1123ms
+ ✓ src/skeletal/wardrobe-active-items.test.ts (5 tests) 9240ms
+   ✓ registered top action forearms > keeps idle/walk and bone registration exact while enabling alternate run/jump sources  2044ms
+   ✓ registered top action forearms > clears active attachments on a normal top and restores them from the same library  1516ms
+   ✓ registered top action forearms > recolors alternate skin and sleeve channels while leaving fixed details and original sources intact  3261ms
+   ✓ registered top action forearms > retains alternate parts and maps through selected-item templates and JSON library reopen  698ms
+   ✓ registered top action forearms > rejects incomplete pairs, unsupported actions, foreign parts and version ambiguity  1717ms
+ ✓ src/skeletal/wardrobe-items.test.ts (19 tests) 11525ms
+   ✓ portable registered wardrobe items > makes a valid editable crop/top template without changing its source art  531ms
+   ✓ portable registered wardrobe items > makes a valid editable waves/top template without changing its source art  354ms
+   ✓ portable registered wardrobe items > accepts locally edited art and swaps only its entire clothing group with four actions intact  1575ms
+   ✓ portable registered wardrobe items > keeps fixed details intact while recoloring authored imported channels  1158ms
+   ✓ portable registered wardrobe items > does not resolve custom IDs through recipe version 1 or another group  402ms
+   ✓ portable registered wardrobe items > replaces optional skirt ownership and all registration together  315ms
+   ✓ portable registered wardrobe items > keeps libraries isolated, exposes selected imports and removes only unselected items  1339ms
+   ✓ portable registered wardrobe items > rejects incompatible shoe registration atomically  521ms
+   ✓ portable registered wardrobe items > rejects partial alpha instead of guessing material ownership  303ms
+   ✓ portable registered wardrobe items > rejects missing/duplicate parts, invalid registration, palette ambiguity and future formats  602ms
+   ✓ portable registered wardrobe items > limits embedded libraries and keeps long item IDs within the existing skin contract  2711ms
+ ✓ src/skeletal/renderer.test.ts (7 tests) 8871ms
+   ✓ reusable imported-skin engine > drives arbitrary skin IDs with one hierarchy and clip library  4181ms
+   ✓ reusable imported-skin engine > expressions share their head registration, and attachment offsets change actual pixels  388ms
+   ✓ reusable imported-skin engine > uses editable motion values while keeping prepared engines deterministic snapshots  1588ms
+   ✓ reusable imported-skin engine > bakes 36 shared-engine frames with held idle timing, explicit provenance identity and mirror metadata  2391ms
+ ✓ src/skeletal/wardrobe-item-io.test.ts (11 tests) 8891ms
+   ✓ portable wardrobe archive preflight > rejects paths outside the item contract before image decoding  389ms
+   ✓ portable wardrobe archive preflight > requires both PNGs for each declared active forearm and rejects undeclared alternatives  306ms
+   ✓ portable wardrobe archive preflight > rejects embedded pixel data, malformed metadata and invalid PNG payloads  347ms
+   ✓ portable wardrobe archive preflight > bounds archive metadata, inflated image size, CRC and actual decompressed output  364ms
+   ✓ self-contained project wardrobe library > validates a selected custom top against its flat exported artwork  2137ms
+   ✓ self-contained project wardrobe library > validates a selected custom bottom against its flat exported artwork  1234ms
+   ✓ self-contained project wardrobe library > validates a selected custom shoes against its flat exported artwork  1486ms
+   ✓ self-contained project wardrobe library > preserves independently validated unselected items after manual edits detach the recipe  637ms
+   ✓ self-contained project wardrobe library > rejects a missing library or valid but changed selected item without changing source pixels  1364ms
+   ✓ self-contained project wardrobe library > rejects duplicate on-disk library sources and unsupported library metadata before PNG decoding  323ms
+ ✓ src/skeletal/action-forearms.test.ts (13 tests) 5121ms
+   ✓ versioned paired action forearms > preserves v1 metadata and accepts a detached v2 pair for run and jump  1480ms
+   ✓ versioned paired action forearms > replaces only declared action forearms while retaining every pose and idle/walk pixel  2211ms
+   ✓ versioned paired action forearms > uses base arms for an undeclared active action and snapshots source buffers  327ms
+   ✓ versioned paired action forearms > keeps active and base attachment offsets independent across actions and metadata reopen  908ms
+ ✓ src/core/running-motion.test.ts (10 tests) 4412ms
+   ✓ V6 running silhouette and ground contact > keeps every dress run pose deterministic, connected and correctly grounded  1016ms
+   ✓ V6 running silhouette and ground contact > keeps every suit run pose deterministic, connected and correctly grounded  628ms
+   ✓ V6 running silhouette and ground contact > keeps dress recoloring and a different expression connected across the whole run  458ms
+   ✓ V6 running silhouette and ground contact > retains visible recolorable bare legs in shorts through every run pose  507ms
+   ✓ V6 running silhouette and ground contact > retains visible recolorable bare legs in skirt through every run pose  636ms
+   ✓ V6 running silhouette and ground contact > reduces the groom's maximum airborne leg spread relative to the delivered wide stride  437ms
+ ✓ src/core/detailed-art.test.ts (19 tests) 8474ms
+   ✓ detailed pixel artwork > round-trips 'Mira' deterministically with the explicit new dimensions and original pack contract  672ms
+   ✓ detailed pixel artwork > round-trips 'Rowan' deterministically with the explicit new dimensions and original pack contract  366ms
+   ✓ detailed pixel artwork > creates detailed copies of V2 presets without changing their saved appearance fields or original version  365ms
+   ✓ detailed pixel artwork > applies every editable material color to exported pixels without changing the character silhouette  1371ms
+   ✓ detailed pixel artwork > recolors the exposed tee neckline for every skin tone instead of retaining pale source skin  606ms
+   ✓ detailed pixel artwork > keeps 'Jun tee' finger shadows tied to skin instead of lower clothing  555ms
+   ✓ detailed pixel artwork > keeps 'bare bodice hands' finger shadows tied to skin instead of lower clothing  437ms
+   ✓ detailed pixel artwork > moves the flowing hair and dress independently of body bob  428ms
+   ✓ detailed pixel artwork > keeps 'Polished casual' opaque, connected, inside its frame, and on the anchor line  603ms
+   ✓ detailed pixel artwork > keeps 'Wedding suit' opaque, connected, inside its frame, and on the anchor line  483ms
+   ✓ detailed pixel artwork > keeps 'Wedding dress' opaque, connected, inside its frame, and on the anchor line  522ms
+   ✓ detailed pixel artwork > keeps 'mohawk with tee and long dress' opaque, connected, inside its frame, and on the anchor line  560ms
+   ✓ detailed pixel artwork > keeps 'bob with bodice and shorts' opaque, connected, inside its frame, and on the anchor line  427ms
+ ✓ src/core/running-v3-contract.test.ts (7 tests) 4749ms
+   ✓ explicit run-only limb correction > keeps delivered 'denim-daytrip' pixels intact and changes only explicit new run rows  1351ms
+   ✓ explicit run-only limb correction > keeps delivered 'coral-afternoon' pixels intact and changes only explicit new run rows  1249ms
+   ✓ explicit run-only limb correction > keeps delivered 'sage-weekend' pixels intact and changes only explicit new run rows  845ms
+   ✓ explicit run-only limb correction > keeps delivered 'ochre-traveler' pixels intact and changes only explicit new run rows  1250ms
+ ✓ src/core/generator.test.ts (19 tests) 4112ms
+   ✓ original pixel generator > produces the same pixels and metadata for the same config without mutating it  1186ms
+   ✓ original pixel generator > preserves a transparent margin, opaque pixel edges, and the planted ground line for every outfit  437ms
+   ✓ original pixel generator > renders customization skinTone=#553B32 into the actual sprite pixels  326ms
+   ✓ original pixel generator > changes metadata but preserves artwork when the character is renamed  836ms
+ ✓ src/skeletal/run-v2.test.ts (6 tests) 4830ms
+   ✓ explicit centered run motion library v2 > uses equal half-cycle foot spacing without moving anatomical hip registrations  1014ms
+   ✓ explicit centered run motion library v2 > grounds the rotated opaque sole and shares the shoe's transformed ankle with leg IK  1099ms
+   ✓ explicit centered run motion library v2 > keeps historical defaults and every non-run frame unchanged and deterministic  1806ms
+   ✓ explicit centered run motion library v2 > rejects future versions and misplaced, nonfinite or out-of-range v2 fields  552ms
+ ✓ src/core/art-v2.test.ts (23 tests) 3414ms
+   ✓ warm pixel artwork V2 > deterministically generates 'Mira' with the existing pack geometry  1040ms
+   ✓ warm pixel artwork V2 > deterministically generates 'Rowan' with the existing pack geometry  867ms
+   ✓ warm pixel artwork V2 > deterministically generates 'Jun' with the existing pack geometry  874ms
+ ✓ src/skeletal/skin-io.test.ts (18 tests) 3652ms
+   ✓ reusable skin contract > accepts actual denim-daytrip source slots and detaches all authoring buffers  1381ms
+   ✓ reusable skin contract > accepts actual coral-afternoon source slots and detaches all authoring buffers  922ms
+ ✓ src/core/harmonized-art.test.ts (10 tests) 4161ms
+   ✓ harmonized artwork V7 > keeps garment material out of whole heads and matches rear hair to each expression  926ms
+   ✓ harmonized artwork V7 > waves keeps ear and cheek skin independent of blonde recoloring  378ms
+   ✓ harmonized artwork V7 > waves preserves identity through three complete expressions and deterministic save/reopen  812ms
+   ✓ harmonized artwork V7 > crop preserves identity through three complete expressions and deterministic save/reopen  689ms
+   ✓ harmonized artwork V7 > waves keeps all wedding poses connected, within bounds and on the floor  612ms
+   ✓ harmonized artwork V7 > crop keeps all wedding poses connected, within bounds and on the floor  491ms
+ ✓ src/core/running-v2-contract.test.ts (7 tests) 2696ms
+   ✓ explicit compact running version > keeps dress motion1 pixels exact and changes only the explicit motion2 run rows  1761ms
+   ✓ explicit compact running version > keeps suit motion1 pixels exact and changes only the explicit motion2 run rows  893ms
+ ✓ src/skeletal/integration.test.ts (5 tests) 4408ms
+   ✓ reusable skeletal skin integration > drives two different silhouettes and an unknown replacement skin with the exact same rig and clips  1042ms
+   ✓ reusable skeletal skin integration > bakes every animation from preview pixels, preserving geometry, timing and deterministic edits  1338ms
+   ✓ reusable skeletal skin integration > denim-daytrip has finite normalized meshes and clear frame margins through every expression and run key  722ms
+   ✓ reusable skeletal skin integration > coral-afternoon has finite normalized meshes and clear frame margins through every expression and run key  1034ms
+ ✓ src/core/cohesive-art.test.ts (7 tests) 6042ms
+   ✓ cohesive artwork V5 > waves has three distinct whole-face states, deterministic after save/reopen  2246ms
+   ✓ cohesive artwork V5 > crop has three distinct whole-face states, deterministic after save/reopen  1015ms
+   ✓ cohesive artwork V5 > waves hair recoloring does not recolor the authored eyes  377ms
+   ✓ cohesive artwork V5 > crop hair recoloring does not recolor the authored eyes  364ms
+   ✓ cohesive artwork V5 > waves stays inside the frame and grounded through all outfits and poses  1547ms
+   ✓ cohesive artwork V5 > crop stays inside the frame and grounded through all outfits and poses  483ms
+ ✓ src/skeletal/jump-renderer.test.ts (4 tests) 2992ms
+   ✓ shared one-shot skeletal jump > denim-daytrip: preserves complete heads, neutral registration and transparent boundaries through all expressions  994ms
+   ✓ shared one-shot skeletal jump > denim-daytrip: keeps feet planted during compression, then moves both complete legs and shoes together  309ms
+   ✓ shared one-shot skeletal jump > coral-afternoon: preserves complete heads, neutral registration and transparent boundaries through all expressions  1128ms
+   ✓ shared one-shot skeletal jump > coral-afternoon: keeps feet planted during compression, then moves both complete legs and shoes together  560ms
+ ✓ src/core/polished-art.test.ts (7 tests) 3380ms
+   ✓ polished artwork V6 > waves preserves identity through three complete expressions and deterministic save/reopen  1500ms
+   ✓ polished artwork V6 > crop preserves identity through three complete expressions and deterministic save/reopen  905ms
+   ✓ polished artwork V6 > waves keeps all wedding poses connected, within bounds and on the floor  555ms
+   ✓ polished artwork V6 > crop keeps all wedding poses connected, within bounds and on the floor  366ms
+ ✓ src/core/running-arm-parts.test.ts (5 tests) 3303ms
+   ✓ running arm source ownership > preserves the authored blue skirt, all unaffected pixels, palettes and attachment coordinates  2878ms
+ ✓ src/skeletal/mother-study.test.ts (3 tests) 2578ms
+   ✓ independent mother pose study > mirrors RGBA exactly without altering the source or dirtying transparent pixels  334ms
+   ✓ independent mother pose study > bakes three still holds and four review PNG frames without changing ordinary clips  2061ms
+ ✓ src/skeletal/wardrobe-io.test.ts (18 tests) 1986ms
+ ✓ src/skeletal/jump-contract.test.ts (4 tests) 2591ms
+   ✓ four basic actions and old authoring projects > preserves denim-daytrip historical project data and every old atlas pixel  1085ms
+   ✓ four basic actions and old authoring projects > preserves coral-afternoon historical project data and every old atlas pixel  1130ms
+   ✓ four basic actions and old authoring projects > rejects unsupported or malformed jump data while permitting unchanged old projects  330ms
+ ✓ src/core/running-contract.test.ts (26 tests) 2923ms
+   ✓ running atlas and portable contract > appends bride running while preserving both V6 atlas rows exactly  2093ms
+   ✓ running atlas and portable contract > appends groom running while preserving both V6 atlas rows exactly  808ms
+ ✓ src/experiments/denim-rig/mesh.test.ts (6 tests) 2606ms
+   ✓ independent weighted limb mesh > rasterizes the bind pose byte-for-byte, preserving source texture and transparency  1633ms
+   ✓ independent weighted limb mesh > does not crack along triangle edges under a rotated and translated rigid pose  912ms
+ ✓ src/skeletal/motion-edit.test.ts (6 tests) 3086ms
+   ✓ motion authoring without changing the rig format > shares authored poses across skins and exports the edited timing with actual pixels  2675ms
+ ✓ src/core/pack-v2.test.ts (23 tests) 1188ms
+   ✓ native baked CharacterPack V2 > dispatches V1 without adding actions, source capabilities or relaxed limits  961ms
+ ✓ src/core/sha256.test.ts (3 tests) 1194ms
+   ✓ SHA-256: Web Crypto > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  309ms
+   ✓ SHA-256: HTTP without subtle > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  465ms
+   ✓ SHA-256: no crypto object > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  418ms
+ ✓ src/core/pack.test.ts (74 tests) 294ms
+ ✓ src/core/baked-source.test.ts (31 tests) 1991ms
+   ✓ Unified source archive adapter > preserves source hashes, atlas pixels and export metadata without Web Crypto  340ms
+ ✓ src/core/pack-v3.test.ts (17 tests) 151ms
+ ✓ src/skeletal/baked-provenance.test.ts (2 tests) 107ms
+ ✓ src/skeletal/binding-edit.test.ts (4 tests) 39ms
+ ✓ src/skeletal/playback.test.ts (2 tests) 5ms
+ ✓ src/core/config.test.ts (43 tests) 42ms
+ ✓ src/skeletal/history.test.ts (3 tests) 16ms
+ ✓ src/consumer/player.test.ts (13 tests) 31ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/experiments/denim-rig/project.test.ts > isolated Denim skeletal authoring > bakes deterministic run frames with unchanged legacy rows, geometry and timing
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/experiments/denim-rig/project.test.ts:49:3
+     47|   });
+     48|
+     49|   it("bakes deterministic run frames with unchanged legacy rows, geome…
+       |   ^
+     50|     const project = createDefaultProject();
+     51|     const before = baselineCharacter();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 45 passed (46)
+      Tests  1 failed | 580 passed (581)
+   Start at  21:54:46
+   Duration  104.81s (transform 3.52s, setup 0ms, collect 12.66s, tests 277.40s, environment 9ms, prepare 6.57s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

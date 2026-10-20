@@ -258,7 +258,7 @@ describe("native baked CharacterPack V2", () => {
       readCharacterPackArchive(bytes),
     );
     expect(validatePortableManifest(legacy())).toEqual(legacy());
-    expect(() => validatePortableManifest({ schemaVersion: 3 })).toThrow(
+    expect(() => validatePortableManifest({ schemaVersion: 4 })).toThrow(
       "schemaVersion",
     );
     // A highly compressible oversized PNG still must fail V1's declared size guard.
