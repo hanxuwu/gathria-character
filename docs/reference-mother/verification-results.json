@@ -1,0 +1,51 @@
+{
+  "executedThisSession": true,
+  "recordedAt": "2026-10-20T00:05:53.379119+00:00",
+  "baseline": "c074feb00f94e99ef77fd37df56583d0019c330a",
+  "scope": "One independent HD mother candidate and four static poses; not complete animations.",
+  "unit": {
+    "command": "npm test -- --reporter=json --outputFile=/tmp/reference-mother-unit-results-final.json",
+    "passed": 503,
+    "failed": 0,
+    "files": 42,
+    "includes": "216 preserved Theo/base-model legacy frame hashes, static-pose validation, actual transforms, mirrored RGBA, static-pack pixels and original generator/exports.",
+    "initialFailure": "First full run: 502/503; generic typed-array deep comparisons in new mirror test exceeded 5s under parallel load. Replaced only assertion implementation with full Buffer byte equality, retaining every compared byte; final 503/503 passed."
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "includes": "TypeScript tsc -b and all Vite entries, including mother-study.html"
+  },
+  "chromium": {
+    "distinctTestsPassed": 9,
+    "initialBatch": {
+      "candidate": 3,
+      "baseCharacter": 2,
+      "workflow": 4,
+      "passed": 9
+    },
+    "finalAssets": {
+      "candidateTestsPassed": 3,
+      "reason": "Rerun after final masking/whole-limb sampling; existing workflows already passed this session."
+    },
+    "executable": "/usr/bin/chromium",
+    "files": [
+      "tests/e2e/mother-study.spec.ts",
+      "tests/e2e/base-character.spec.ts",
+      "tests/e2e/workflow.spec.ts"
+    ]
+  },
+  "actualUiExports": {
+    "evidence": "final/evidence-index.json",
+    "posePNGs": 8,
+    "independentConsumerCases": 6,
+    "candidateClosedBeforePlayer": true,
+    "decodedPNGs": 50,
+    "archiveChecks": 3,
+    "errors": [],
+    "externalRequests": [],
+    "status": "passed"
+  },
+  "assetIntegrity": "review/integrity.json",
+  "visualStatus": "Reviewed at native1x/integer2x,4xjointcrops andHDdarkbackground; no user acceptance claimed. Soft folds, slight shorts flares and inner shoulder transition remain."
+}

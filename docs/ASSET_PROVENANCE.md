@@ -1,5 +1,16 @@
 # Artwork provenance and reuse
 
+## Approved-reference mother candidate
+
+Three development-time OpenAI image calls created a complete master, alpha-cleanup
+edit and supplementary hidden-joint paint. The uploaded Kling MP4, extracted
+reference frames, original generated outputs and exact prompts are retained in
+[the source record](../artwork/reference-mother/source/README.md). The user PNG
+was visually referenced from the conversation; its original desktop file bytes
+were unavailable. Hidden regions are newly painted, not recovered video layers.
+The [four-pose evidence](reference-mother/README.md) comes from actual registered
+rig rendering and page exports. Defaults and historical assets remain unchanged.
+
 ## Base character mother model
 
 One development-time OpenAI image-generation call created the plain training

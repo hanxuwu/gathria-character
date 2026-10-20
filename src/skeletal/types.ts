@@ -204,6 +204,16 @@ export interface AuthoringProject {
 }
 export interface RigInspection {
   shoes?: ShoeInspection[];
+  /** Explicit static poses have no ground-support solve or motion timing. */
+  poseShoes?: Array<{
+    chain: "nearLeg" | "farLeg";
+    sourceSlot: Slot;
+    sourceShin: Point;
+    sourceAnkle: Point;
+    ankle: Point;
+    rotation: number;
+    matrix: readonly [number, number, number, number, number, number];
+  }>;
   bodyBones?: Array<{ id: string; from: Point; to: Point }>;
   limbs: Array<{
     id: string;
