@@ -10,6 +10,7 @@ export default defineConfig({
         player: "player.html",
         rigLab: "rig-lab.html",
         skinStudio: "skin-studio.html",
+        motherStudy: "mother-study.html",
       },
     },
   },

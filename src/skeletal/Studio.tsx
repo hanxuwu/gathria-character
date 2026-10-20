@@ -950,6 +950,7 @@ export function SkinStudio() {
           >
             Open base model
           </button>
+          <a href="/mother-study.html">Review reference mother candidate ↗</a>
           <p className="skin-help">
             A simple training outfit for refining proportions and four basic
             actions.

@@ -1,0 +1,123 @@
+{
+  "format": "gathria-skin-pack",
+  "version": 1,
+  "id": "reference-mother-candidate-1",
+  "name": "Reference mother candidate 1",
+  "rigId": "gathria-v6-humanoid-1",
+  "bindings": {
+    "chains": {
+      "nearArm": [
+        [
+          73.919,
+          128.4395
+        ],
+        [
+          63.967,
+          150.8315
+        ],
+        [
+          55.259,
+          170.1135
+        ]
+      ],
+      "farArm": [
+        [
+          121.191,
+          128.595
+        ],
+        [
+          129.277,
+          151.92
+        ],
+        [
+          136.43,
+          170.4245
+        ]
+      ],
+      "nearLeg": [
+        [
+          85.426,
+          174.312
+        ],
+        [
+          81.5385,
+          199.192
+        ],
+        [
+          73.297,
+          220.962
+        ]
+      ],
+      "farLeg": [
+        [
+          112.0165,
+          174.312
+        ],
+        [
+          112.6385,
+          199.192
+        ],
+        [
+          111.861,
+          219.2515
+        ]
+      ]
+    },
+    "offsets": {},
+    "mesh": {
+      "blendRadius": 5,
+      "volume": 0.55,
+      "preserveAnkleOverlap": true
+    },
+    "jaw": {
+      "center": [
+        101,
+        65
+      ],
+      "start": 110,
+      "scale": 1,
+      "length": 1
+    },
+    "hairSway": 0,
+    "garmentSway": 0
+  },
+  "sourceAppearance": {
+    "schemaVersion": 2,
+    "name": "Reference mother candidate 1",
+    "skinTone": "#F6BC8D",
+    "hairstyle": "crop",
+    "hairColor": "#75462C",
+    "upperColor": "#B9BCA6",
+    "lowerColor": "#46575C",
+    "shoeColor": "#E9DFD2",
+    "faceVariant": "oval",
+    "upperClothing": "tee",
+    "lowerClothing": "trousers",
+    "expression": "gentle",
+    "hairAccessory": "none",
+    "artworkVersion": 6,
+    "motionVersion": 3,
+    "preview": {
+      "animation": "idle",
+      "facing": "right"
+    }
+  },
+  "provenance": "Reference mother candidate 1. User-supplied Kling video standing frame 348 at 14.50 seconds; user PNG viewed in conversation only. Full master and supplemental hidden joint paint generated with OpenAI image generation at development time. Prompts and originals retained in artwork/reference-mother/source. Master SHA256 d9bed3928e8907ad1587196f8867335d0ae6da59c66bb7649daa15e92df69f86. Offline masks and uniform registration in scripts/prepare-reference-mother.py. Visible master pixels retained; supplementary hidden areas are newly painted, not original extracted layers. Only neutral face authored; required expression slots alias neutral. Explicit four-pose study is authoritative; project container generic motion clips are not reviewed animation cycles. No runtime API.",
+  "slots": [
+    "torso",
+    "hips",
+    "near-upper-arm",
+    "near-forearm",
+    "far-upper-arm",
+    "far-forearm",
+    "near-thigh",
+    "near-shin",
+    "near-shoe",
+    "far-thigh",
+    "far-shin",
+    "far-shoe",
+    "head-neutral",
+    "head-gentle",
+    "head-joyful"
+  ]
+}

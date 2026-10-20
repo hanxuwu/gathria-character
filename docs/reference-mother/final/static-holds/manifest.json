@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "format": "gathria-character-pack",
+  "name": "Reference mother — static pose holds",
+  "generator": "gathria-static-pose-study-v1",
+  "spritesheet": {
+    "file": "spritesheet.png",
+    "width": 576,
+    "height": 256,
+    "frameWidth": 192,
+    "frameHeight": 256,
+    "columns": 3,
+    "rows": 1
+  },
+  "frames": [
+    {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 1,
+      "x": 192,
+      "y": 0,
+      "width": 192,
+      "height": 256
+    },
+    {
+      "id": 2,
+      "x": 384,
+      "y": 0,
+      "width": 192,
+      "height": 256
+    }
+  ],
+  "animations": {
+    "idle": {
+      "frames": [
+        0
+      ],
+      "fps": 1,
+      "loop": false
+    },
+    "walk": {
+      "frames": [
+        1
+      ],
+      "fps": 1,
+      "loop": false
+    },
+    "run": {
+      "frames": [
+        2
+      ],
+      "fps": 1,
+      "loop": false
+    }
+  },
+  "facing": {
+    "native": "right",
+    "right": "none",
+    "left": "mirror-x"
+  },
+  "anchor": {
+    "x": 96,
+    "y": 240,
+    "units": "pixels",
+    "origin": "top-left"
+  },
+  "scale": {
+    "pixelArt": true,
+    "recommended": 1,
+    "integerOnly": true
+  },
+  "configuration": "character.json"
+}

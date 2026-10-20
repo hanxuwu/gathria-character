@@ -1,6 +1,22 @@
 # Implementation status
 
-**Current batch: editable base character / four actions.** Starts from merged
+**Current batch: approved-reference mother candidate / four static poses.**
+On `feat/reference-mother-model`, based on `c074feb` from the still-unmerged
+`feat/base-character-study` (PR #14). A coherent 1024 × 1536 master and 15 HD
+parts preserve the approved Kling/PNG proportions. A separate validated static
+pose API and `/mother-study.html` expose standing, walk contact, run flight and
+celebration without changing defaults or legacy motion output.
+
+[Review and limitations](REFERENCE_MOTHER_REVIEW.md) ·
+[Actual comparison, four poses and downloads](reference-mother/README.md) ·
+[Current verification](reference-mother/verification-results.json).
+
+This is not a completed animation library. The optional CharacterPack contains
+explicit one-frame still holds for old-player compatibility. Neutral-only face,
+compiled hands, soft large-bend folds and no Gathria integration remain disclosed.
+Final visual acceptance belongs to the user.
+
+**Previous unmerged batch: editable base character / four actions.** Starts from merged
 `main` at `19623f5`, on `feat/base-character-study`. A new generated source sheet
 provides a plain training outfit and continuous bare limbs; the existing bald
 shared-expression heads keep attention on anatomy. The project contains its

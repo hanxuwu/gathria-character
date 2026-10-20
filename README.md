@@ -34,6 +34,12 @@ training outfit exposes the joints and includes idle, walk, run and jump,
 three expressions, bone overlays and editable project/CharacterPack export.
 [Mother-model review, GIFs and downloads](docs/base-character/README.md).
 
+The independent [reference mother candidate](docs/REFERENCE_MOTHER_REVIEW.md) is
+at `/mother-study.html`, also linked from Skin Studio. It preserves the approved
+Kling/PNG shape in an HD master and registered parts, with four **static pose
+studies** and bone overlays. [Comparisons and source/project downloads](docs/reference-mother/README.md)
+are available; complete candidate animation cycles are still future work.
+
 **Your identities** also accepts registered character identity ZIPs with three
 complete expressions and skin/hair masks. Import adds to the library without
 changing the canvas; explicitly selecting an identity preserves the current

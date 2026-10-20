@@ -1,6 +1,11 @@
 import { prepareMeshLimb } from "../experiments/denim-rig/mesh";
 import { validateActionForearms } from "./action-forearms";
 import {
+  staticPoseBodyMatrix,
+  validateStaticRigPose,
+  type StaticRigPose,
+} from "./static-pose";
+import {
   validateRunLegs,
   validateRunShoes,
   validateShinFollowRunShoes,
@@ -606,6 +611,7 @@ export function prepareRig(
     index: number,
     expression: Expression,
     inspect: boolean,
+    staticPose?: StaticRigPose,
   ) {
     const clip = motions.clips[animation];
     if (
@@ -625,7 +631,9 @@ export function prepareRig(
     const jumping = animation === "jump";
     const rootY = jumping ? (key.rootY ?? 0) : 0;
     const runV2 = animation === "run" && motions.version === 2;
-    const pelvis = rotateAt(key.lean, rig.pivot, 0, key.bodyBob + rootY);
+    const pelvis = staticPose
+      ? staticPoseBodyMatrix(staticPose, rig.pivot)
+      : rotateAt(key.lean, rig.pivot, 0, key.bodyBob + rootY);
     const hips: Point = [
       (skin.bindings.chains.nearLeg[0][0] + skin.bindings.chains.farLeg[0][0]) /
         2,
@@ -658,6 +666,10 @@ export function prepareRig(
     const posed = new Map<ChainName, JointTriple>();
     const runShoes = new Map<ChainName, Matrix>();
     for (const chain of CHAINS) {
+      if (staticPose) {
+        posed.set(chain, staticPose.chains[chain]);
+        continue;
+      }
       const near = chain.startsWith("near"),
         arm = chain.endsWith("Arm");
       const [start, middle, end] = skin.bindings.chains[chain];
@@ -855,6 +867,32 @@ export function prepareRig(
           : keys[(index + (near ? 0 : Math.floor(count / 2))) % count];
         const ankle = source.ankle;
         const sole = requireAttachment(slot).sourceBottom;
+        if (staticPose) {
+          const rest = skin.bindings.chains[chain];
+          const rotation =
+            Math.atan2(
+              joints[2][1] - joints[1][1],
+              joints[2][0] - joints[1][0],
+            ) - Math.atan2(rest[2][1] - rest[1][1], rest[2][0] - rest[1][0]);
+          const matrix = rotateAt(
+            rotation,
+            ankle,
+            joints[2][0] - ankle[0],
+            joints[2][1] - ankle[1],
+          );
+          draw(slot, matrix);
+          if (inspect)
+            (inspection.poseShoes ??= []).push({
+              chain: chain as "nearLeg" | "farLeg",
+              sourceSlot: slot,
+              sourceShin: rest[1],
+              sourceAnkle: ankle,
+              ankle: joints[2],
+              rotation,
+              matrix,
+            });
+          return;
+        }
         draw(
           slot,
           runShoes.get(chain) ??
@@ -902,6 +940,10 @@ export function prepareRig(
           break;
         }
         case "back-hair": {
+          if (staticPose) {
+            draw(slot);
+            break;
+          }
           const sway =
             skin.bindings.hairSway *
             (animation === "run"
@@ -921,6 +963,10 @@ export function prepareRig(
           break;
         }
         case "garment": {
+          if (staticPose) {
+            draw(slot);
+            break;
+          }
           const garment = attachments.get(slot);
           if (!garment) break;
           const top = garment.layer.y,
@@ -956,6 +1002,25 @@ export function prepareRig(
     return { pixels: canvas.pixels, inspection };
   }
   return {
+    /** Independent posed-joint review, not a new clip or legacy pose override. */
+    pose(value: unknown, expression: Expression = "gentle") {
+      return render(
+        "idle",
+        0,
+        expression,
+        false,
+        validateStaticRigPose(value, rig, skin),
+      ).pixels;
+    },
+    inspectPose(value: unknown, expression: Expression = "gentle") {
+      return render(
+        "idle",
+        0,
+        expression,
+        true,
+        validateStaticRigPose(value, rig, skin),
+      ).inspection;
+    },
     frame(
       animation: AnimationName,
       index: number,
