@@ -602,7 +602,7 @@ export function PackPlayer() {
               </span>
             </div>
             <button
-              className="player-sample-button"
+              className="player-source-button"
               onClick={() => void openKlingExample()}
               disabled={busy}
             >

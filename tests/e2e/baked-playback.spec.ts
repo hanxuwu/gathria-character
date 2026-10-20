@@ -206,7 +206,7 @@ test("source pair → same-clock playback → native V2 export → independent r
   const independent = await context.newPage();
   const forbidden: string[] = [];
   await independent.route(
-    /\/(?:src\/editor\/|src\/core\/(?:generator|illustrated-))/,
+    /\/src\/(?:skeletal\/|editor\/|experiments\/|core\/(?:generator|illustrated-))/,
     (route) => {
       forbidden.push(route.request().url());
       return route.abort();

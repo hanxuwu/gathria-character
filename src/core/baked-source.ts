@@ -1,5 +1,5 @@
 import { Unzlib, Zlib } from "fflate";
-import { crc32, readBoundedArchive } from "../skeletal/bounded-archive";
+import { crc32, readBoundedArchive } from "./bounded-archive";
 import {
   validateBakedCharacterRecipe,
   validatePortableManifest,
