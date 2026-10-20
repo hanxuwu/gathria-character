@@ -633,3 +633,122 @@ test("independent native multipage pack draws the jump page, holds landing, mirr
   expect(forbidden).toEqual([]);
   expect(errors).toEqual([]);
 });
+
+/** Tiny stand-ins exercise loading policy, not the appearance of the originals. */
+async function preparedKlingFixture(id: "male" | "female") {
+  const files = unzipSync(await multipageJumpFixture());
+  const manifest = JSON.parse(Buffer.from(files["manifest.json"]).toString());
+  const recipe = JSON.parse(Buffer.from(files["character.json"]).toString());
+  manifest.name = recipe.name = `Prepared ${id} fixture`;
+  manifest.animations.run = { frames: [1, 2, 3], fps: 4, loop: true };
+  recipe.characterId = id;
+  files["manifest.json"] = strToU8(JSON.stringify(manifest));
+  files["character.json"] = strToU8(JSON.stringify(recipe));
+  return Buffer.from(zipSync(files));
+}
+
+test("prepared Kling originals defer the second download, release comparison cache and export the original archive", async ({
+  page,
+}, testInfo) => {
+  const fixtures = {
+    male: await preparedKlingFixture("male"),
+    female: await preparedKlingFixture("female"),
+  };
+  const downloads: string[] = [];
+  const sourceRequests: string[] = [];
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.route("**/artwork/**/kling-source.zip*", (route) => {
+    sourceRequests.push(route.request().url());
+    return route.abort();
+  });
+  await page.route(
+    /\/docs\/kling-jump\/exports\/(male|female)\.character\.zip(?:\?.*)?$/,
+    async (route) => {
+      const id = route.request().url().includes("/female.") ? "female" : "male";
+      downloads.push(id);
+      await route.fulfill({
+        body: fixtures[id],
+        contentType: "application/zip",
+      });
+    },
+  );
+  await page.goto("/player.html");
+  expect(downloads).toEqual([]);
+  await page
+    .getByRole("button", { name: /Try the Kling character pair/ })
+    .click();
+  await expect(page.getByRole("status")).toContainText(
+    "Loaded: Prepared male fixture",
+  );
+  expect(downloads).toEqual(["male"]);
+  for (const name of ["Idle", "Walk", "Run", "Jump", "Celebrate"])
+    await expect(page.getByRole("button", { name, exact: true })).toBeEnabled();
+
+  await page.getByLabel("Character", { exact: true }).selectOption("female");
+  await expect(page.getByRole("status")).toContainText(
+    "Loaded: Prepared female fixture",
+  );
+  expect(downloads).toEqual(["male", "female"]);
+  await page.getByLabel("Character", { exact: true }).selectOption("male");
+  await expect(page.getByRole("status")).toContainText(
+    "Loaded: Prepared male fixture",
+  );
+  // Inactive decoded characters are not retained after selecting a replacement.
+  expect(downloads).toEqual(["male", "female", "male"]);
+
+  const canvas = page.getByTestId("consumer-canvas");
+  await page.getByLabel("Compare both characters", { exact: true }).check();
+  await expect(canvas).toHaveAttribute("data-comparison", "true");
+  expect(downloads).toEqual(["male", "female", "male", "female"]);
+  await page.getByLabel("Compare both characters", { exact: true }).uncheck();
+  await expect(canvas).toHaveAttribute("data-comparison", "false");
+  await page.getByLabel("Compare both characters", { exact: true }).check();
+  await expect(canvas).toHaveAttribute("data-comparison", "true");
+  expect(downloads).toEqual(["male", "female", "male", "female", "female"]);
+
+  await page.getByRole("button", { name: "Jump", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Replay animation", exact: true }),
+  ).toBeVisible();
+  await expect(canvas).toHaveAttribute("data-frame-position", "2");
+  await page.getByRole("button", { name: "Left", exact: true }).click();
+  await expect(canvas).toHaveAttribute("aria-label", /jump, facing left/);
+  const pending = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export selected CharacterPack", exact: true })
+    .click();
+  const output = testInfo.outputPath("prepared-male.character.zip");
+  await (await pending).saveAs(output);
+  expect(await readFile(output)).toEqual(fixtures.male);
+  expect(sourceRequests).toEqual([]);
+  expect(errors).toEqual([]);
+});
+
+test("female workbench link loads only that prepared original and embedded mode hides duplicate navigation", async ({
+  page,
+}) => {
+  const fixture = await preparedKlingFixture("female");
+  const downloads: string[] = [];
+  await page.route(
+    /\/docs\/kling-jump\/exports\/(male|female)\.character\.zip(?:\?.*)?$/,
+    async (route) => {
+      downloads.push(
+        route.request().url().includes("/female.") ? "female" : "male",
+      );
+      await route.fulfill({ body: fixture, contentType: "application/zip" });
+    },
+  );
+  await page.goto("/player.html?kling=female&embedded=1");
+  await expect(page.getByRole("status")).toContainText(
+    "Loaded: Prepared female fixture",
+  );
+  await expect(page.getByLabel("Character", { exact: true })).toHaveValue(
+    "female",
+  );
+  expect(downloads).toEqual(["female"]);
+  await expect(page.getByRole("navigation")).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Jump", exact: true }),
+  ).toBeEnabled();
+});

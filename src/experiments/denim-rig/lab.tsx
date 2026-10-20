@@ -344,7 +344,7 @@ function RigLab() {
           </p>
         </div>
         <nav className="lab-nav" aria-label="Gathria tools">
-          <a href="/">Character Studio</a>
+          <a href="/editor.html">Character Studio</a>
           <a href="/player.html" target="_blank" rel="noreferrer">
             Independent player ↗
           </a>

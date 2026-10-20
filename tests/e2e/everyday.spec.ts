@@ -17,7 +17,7 @@ test("four everyday looks preserve identity and running, remain editable, and su
   test.setTimeout(60_000);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page
     .getByRole("button", { name: "Pause animation", exact: true })
     .click();
@@ -162,7 +162,7 @@ test("an everyday look does not inject newer artwork fields into a legacy charac
     import.meta.url,
   ).pathname;
   const original = JSON.parse(await readFile(sourcePath, "utf8"));
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page
     .getByLabel("Open character configuration", { exact: true })
     .setInputFiles(sourcePath);

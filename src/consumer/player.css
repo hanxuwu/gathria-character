@@ -51,6 +51,22 @@ input:focus-visible {
 .player-app {
   min-height: 100vh;
 }
+.player-app--embedded .player-main {
+  max-width: none;
+  padding: 16px;
+}
+.player-app--embedded .player-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.player-app--embedded .player-preview-panel {
+  order: -1;
+  width: 100%;
+}
+.player-app--embedded .player-import-panel {
+  width: 100%;
+}
 .player-header {
   height: 90px;
   padding: 0 5.2%;

@@ -22,7 +22,7 @@ test("customize → save/reopen → export → independent PNG/metadata playback
 }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page
     .getByRole("button", { name: "Pause animation", exact: true })
     .click();
@@ -213,7 +213,7 @@ test("invalid imports and unfinished names give feedback without losing the char
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page.getByLabel("Character name", { exact: true }).fill("");
   await page.getByRole("button", { name: "Save config", exact: true }).click();
   await expect(page.getByRole("alert")).toContainText("name");
@@ -243,7 +243,7 @@ test("small-screen studio and player keep controls usable", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page.getByRole("button", { name: "Jun preset", exact: true }).click();
   await page.getByLabel("Pixel zoom", { exact: true }).selectOption("6");
   await expect(page.getByLabel("Character name", { exact: true })).toHaveValue(

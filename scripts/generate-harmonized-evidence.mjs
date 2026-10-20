@@ -40,7 +40,7 @@ try {
     )
       external.push(r.url());
   });
-  await page.goto("http://127.0.0.1:5177");
+  await page.goto("http://127.0.0.1:5177/editor.html");
   const exports = await page.evaluate(async () => {
     const {
       POLISHED_DEFAULT_CONFIG: DEFAULT_CONFIG,

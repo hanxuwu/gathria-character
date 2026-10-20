@@ -1,6 +1,17 @@
 # Implementation status
 
-**Current batch: original Kling one-shot jump / five-action playback.** Based on
+**Current batch: Kling library, workbench and prepared-pack loading.** Based on
+merged main `d20a335`, on `feat/kling-character-workspace` (draft PR #19).
+Three primary destinations organize the original male/female playback and the
+complete existing skeletal editor. Classic editing is preserved at
+`/editor.html`; the old specialist URLs remain available. Native originals load
+from the already verified V3 packs without rebaking. Kling high-resolution
+layers/bindings are a later milestone, not implemented by this navigation work.
+
+[Workspace review and limitations](KLING_WORKSPACE_REVIEW.md) ·
+[Actual screenshots and verification](kling-workspace/README.md).
+
+**Historical batch: original Kling one-shot jump / five-action playback.** Based on
 merged main `7284c8b`, on `feat/kling-source-jump`. Original source frames 171–209
 add a real jump to both characters; unchanged artwork uses uniform transparent
 top padding and native V3 multipage export. V1/V2 and old source archives remain

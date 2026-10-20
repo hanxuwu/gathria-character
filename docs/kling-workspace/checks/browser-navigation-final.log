@@ -1,0 +1,29 @@
+
+> gathria-character@0.1.0 test:e2e
+> playwright test tests/e2e/mother-study.spec.ts tests/e2e/workspace-shell.spec.ts
+
+[WebServer] (node:275671) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:275684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 2 workers
+
+(node:275703) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:275702) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/workspace-shell.spec.ts:3:1 › library has three primary destinations, original previews and lazy character loading (1.6s)
+  ✓  2 tests/e2e/mother-study.spec.ts:20:1 › four static candidate poses, mirrors and overlays are separate from ordinary Studio (4.2s)
+  ✓  3 tests/e2e/workspace-shell.spec.ts:52:1 › workbench keeps the real skeletal editor and undo history alive across tabs (3.8s)
+  ✓  5 tests/e2e/workspace-shell.spec.ts:139:1 › workbench follows trusted player selection without reloading the retained player (1.1s)
+  ✓  6 tests/e2e/workspace-shell.spec.ts:210:1 › mobile library and workbench navigation stay within the viewport and support keyboard tabs (1.9s)
+  ✓  4 tests/e2e/mother-study.spec.ts:93:1 › pose PNGs and separate archive decode; independent player loads three honest static holds (4.5s)
+  ✓  7 tests/e2e/mother-study.spec.ts:244:1 › a failed candidate load is explicit and retryable, with exports disabled (829ms)
+
+  7 passed (11.5s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

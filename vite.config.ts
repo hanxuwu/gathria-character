@@ -6,7 +6,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        editor: "index.html",
+        library: "index.html",
+        editor: "editor.html",
+        workbench: "workbench.html",
         player: "player.html",
         rigLab: "rig-lab.html",
         skinStudio: "skin-studio.html",

@@ -37,7 +37,7 @@ test("running settings survive customization, save/reopen and an independently l
   test.setTimeout(60_000);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page
     .getByRole("button", { name: "Pause animation", exact: true })
     .click();
@@ -189,7 +189,7 @@ test("running settings survive customization, save/reopen and an independently l
 test("historical V6 has no running until explicitly enabled and keeps its original idle pixels", async ({
   page,
 }, testInfo) => {
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page
     .getByRole("button", { name: "Pause animation", exact: true })
     .click();
@@ -236,7 +236,7 @@ test("historical V6 has no running until explicitly enabled and keeps its origin
 test("V7 remains in its saved style with running explicitly unavailable", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page.getByRole("button", { name: "Run", exact: true }).click();
   await page
     .getByLabel("Open character configuration", { exact: true })
@@ -272,7 +272,7 @@ test("saved original running poses and presets stay unchanged until an explicit 
     mimeType: "application/json",
     buffer: Buffer.from(JSON.stringify(source)),
   };
-  await page.goto("/");
+  await page.goto("/editor.html");
   await page
     .getByRole("button", { name: "Pause animation", exact: true })
     .click();
