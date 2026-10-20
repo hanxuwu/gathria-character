@@ -5,6 +5,14 @@ retain the source video figures; there is no newly drawn or skeletal stand-in.
 Open `/player.html` after `npm run dev`, then choose **Try the Kling character pair**.
 For quick independent playback, upload either exported pack below.
 
+If an older build reports `Cannot read properties of undefined (reading 'digest')`,
+its source importer assumes Web Crypto is available. Browsers usually hide
+`crypto.subtle` on ordinary HTTP LAN addresses (localhost and HTTPS differ).
+The HTTP compatibility fix uses the same SHA-256 fingerprints through a local
+JavaScript fallback; it does not skip validation or change artwork. Update the
+player build, or load one of the exported CharacterPacks below directly in the
+older player. See [HTTP verification](http-fix/README.md).
+
 ## Native sources and portable packs
 
 - [Male CharacterPack V2](exports/male.character.zip)

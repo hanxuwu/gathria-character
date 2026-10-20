@@ -1,5 +1,6 @@
 import { Unzlib, Zlib } from "fflate";
 import { crc32, readBoundedArchive } from "./bounded-archive";
+import { sha256 } from "./sha256";
 import {
   validateBakedCharacterRecipe,
   validatePortableManifest,
@@ -72,12 +73,6 @@ function parse(bytes: Uint8Array | undefined, label: string): unknown {
   } catch {
     return fail(`${label} must be valid UTF-8 JSON.`);
   }
-}
-async function sha256(bytes: Uint8Array): Promise<string> {
-  const hash = new Uint8Array(
-    await crypto.subtle.digest("SHA-256", new Uint8Array(bytes)),
-  );
-  return [...hash].map((n) => n.toString(16).padStart(2, "0")).join("");
 }
 function join(arrays: readonly Uint8Array[]): Uint8Array {
   const out = new Uint8Array(arrays.reduce((n, a) => n + a.length, 0));

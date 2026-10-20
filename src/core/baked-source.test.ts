@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { strToU8, unzipSync, zipSync, zlibSync } from "fflate";
 import { crc32 } from "../skeletal/bounded-archive";
 import {
@@ -195,6 +195,25 @@ function independentPng(
 }
 
 describe("Unified source archive adapter", () => {
+  it("preserves source hashes, atlas pixels and export metadata without Web Crypto", async () => {
+    const input = archive();
+    const native = await importBakedSourceArchive(input);
+    const expected = await convertSourceCharacter(native, ids[0]);
+    vi.stubGlobal("crypto", {});
+    try {
+      const fallback = await importBakedSourceArchive(input);
+      const actual = await convertSourceCharacter(fallback, ids[0]);
+      expect(fallback.sourceSha256).toBe(native.sourceSha256);
+      expect(actual.manifest).toEqual(expected.manifest);
+      expect(actual.recipe).toEqual(expected.recipe);
+      expect(new Uint8Array(await actual.png.arrayBuffer())).toEqual(
+        new Uint8Array(await expected.png.arrayBuffer()),
+      );
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it("explicitly distinguishes source and native contracts without treating an unknown format as native", async () => {
     expect(await inspectBakedArchiveKind(archive())).toBe("unified-source");
     const native = new Blob([
