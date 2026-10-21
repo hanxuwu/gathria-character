@@ -1,0 +1,66 @@
+{
+  "recordedAt": "2026-10-21T02:03:16.535932+00:00",
+  "baselineCommit": "8dfbf832e8ed168229db4ad8f229eb141200619e",
+  "scope": "Female native skeleton: four editable static poses, not continuous animation; original playback and male preserved",
+  "commands": [
+    {
+      "command": "npm run typecheck",
+      "passed": true,
+      "log": "checks/typecheck.log"
+    },
+    {
+      "command": "npm test",
+      "passed": true,
+      "tests": 113,
+      "files": 8,
+      "log": "checks/unit.log"
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "log": "checks/build.log"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 17,
+      "log": "checks/e2e.log"
+    }
+  ],
+  "browserEvidence": {
+    "passed": true,
+    "file": "final/evidence-index.json",
+    "editorPoseDirections": 8,
+    "independentPoseDirections": 8,
+    "editorClosedBeforeIndependentPlayback": true
+  },
+  "artifacts": {
+    "pngsDecoded": 49,
+    "zipsDecodedCrc": 2,
+    "restComparison": {
+      "rgbaDifferentPixels": 0,
+      "totalPixels": 743424,
+      "silhouetteDifferentPixels": 0,
+      "maxChannelDifference": 0,
+      "caveat": "Pixel equality is a registration check, not user artistic acceptance."
+    },
+    "file": "final/artifact-validation.json"
+  },
+  "protectedExistingFiles": 50,
+  "preservation": "preservation.json",
+  "visualAcceptance": "Pending user review; limitations in KLING_FEMALE_NATIVE_REVIEW.md",
+  "historicalChecks": "Initial captures and earlier UI test runs are not the final counts above.",
+  "postCaptureAudit": {
+    "checkedAt": "2026-10-21T02:04:23.921130+00:00",
+    "capturedInputs": 67,
+    "documentationOnlyUpdates": [
+      {
+        "path": "artwork/kling-native-female/source/README.md",
+        "capturedSha256": "54475bbb3e3a9266416400a4a0120f2280749ba95ce383f81421a9abffe94029",
+        "deliveredSha256": "55c61f706cdde6ade80c1c91798d39da6120422e703a56a50bf49eacb085aff4",
+        "reason": "Documentation-only clarification of actual donor selections and source-cloth hip allowances after capture; no PNG, registration, project or runtime change."
+      }
+    ],
+    "allOtherCapturedInputsStillMatch": true
+  }
+}

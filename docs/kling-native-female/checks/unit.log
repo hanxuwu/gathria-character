@@ -1,0 +1,36 @@
+
+> gathria-character@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/core/sha256.test.ts (3 tests) 1022ms
+   ✓ SHA-256: HTTP without subtle > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  466ms
+   ✓ SHA-256: no crypto object > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  331ms
+ ✓ src/core/pack-v2.test.ts (30 tests) 261ms
+ ✓ src/core/baked-source.test.ts (31 tests) 1842ms
+   ✓ Unified source archive adapter > preserves source hashes, atlas pixels and export metadata without Web Crypto  409ms
+ ✓ src/skeletal/geometry.test.ts (3 tests) 47ms
+ ✓ src/core/pack-v3.test.ts (18 tests) 213ms
+ ✓ src/consumer/player.test.ts (11 tests) 32ms
+ ✓ src/consumer/kling-packs.test.ts (3 tests) 10ms
+ ✓ src/skeletal/native-study.test.ts (14 tests) 25119ms
+   ✓ native source registration and deterministic composition > renders all four derived poses deterministically and mirrors complete native frames  2084ms
+   ✓ native source registration and deterministic composition > partitions the already-deformed near arm without resampling seams or double alpha  816ms
+   ✓ native study validation and editable portable project > updates a pose with registered bone lengths, saves and reopens source PNG bytes  4758ms
+   ✓ native study validation and editable portable project > exports four honest native V2 static holds with explicit derived provenance  3080ms
+   ✓ female native registration and portable output > preserves alpha and the full frame through four poses, mirrors and ankle parenting  2285ms
+   ✓ female native registration and portable output > roundtrips edited female joints and identity with unchanged source parts  2875ms
+   ✓ female native registration and portable output > exports identity-correct V2 holds whose four frames match the female renderer  3442ms
+
+ Test Files  8 passed (8)
+      Tests  113 passed (113)
+   Start at  01:58:26
+   Duration  26.08s (transform 734ms, setup 0ms, collect 1.73s, tests 28.55s, environment 2ms, prepare 1.04s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

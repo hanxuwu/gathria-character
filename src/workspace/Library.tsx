@@ -18,8 +18,8 @@ export function CharacterLibrary() {
             </h1>
             <p className="library-intro__copy">
               Start with an original Kling character, explore its movements,
-              <br className="desktop-break" /> or shape the male skeleton
-              candidate from the same artwork.
+              <br className="desktop-break" /> or shape either skeleton
+              candidate from its own original artwork.
             </p>
           </div>
           <div className="library-local-note">
@@ -88,34 +88,28 @@ export function CharacterLibrary() {
                   <span className="library-character__capability">
                     Five video actions · clothing is fixed
                   </span>
-                  {character.id === "male" ? (
-                    <div className="library-character__skeleton">
-                      <a
-                        className="workspace-button workspace-button--secondary"
-                        href="/workbench.html?character=male&mode=rig"
-                      >
-                        <Bone size={18} aria-hidden="true" />
-                        <span>Edit Kling male skeleton</span>
-                        <ArrowRight size={16} aria-hidden="true" />
-                      </a>
-                      <span className="library-character__capability">
-                        Four static poses · adjustable joints · save and export
-                      </span>
-                    </div>
-                  ) : (
-                    <p className="library-character__skeleton-status">
-                      Female skeleton editing is not available yet.
-                    </p>
-                  )}
+                  <div className="library-character__skeleton">
+                    <a
+                      className="workspace-button workspace-button--secondary"
+                      href={`/workbench.html?character=${character.id}&mode=rig`}
+                    >
+                      <Bone size={18} aria-hidden="true" />
+                      <span>Edit {character.name} skeleton</span>
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </a>
+                    <span className="library-character__capability">
+                      Four static poses · adjustable joints · save and export
+                    </span>
+                  </div>
                 </div>
               </article>
             ))}
           </div>
           <p className="library-originals-note">
-            Original playback preserves both characters from the video. The male
-            skeleton candidate uses registered layers and four editable static
-            poses; continuous skeletal animation and interchangeable clothing
-            remain in development.
+            Original playback preserves both characters from the video. Each
+            skeleton candidate has its own registered layers and four editable
+            static poses; continuous skeletal animation and interchangeable
+            clothing remain in development.
           </p>
         </section>
       </main>

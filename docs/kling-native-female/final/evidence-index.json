@@ -1,0 +1,696 @@
+{
+  "format": "gathria-female-native-study-evidence",
+  "version": 1,
+  "phase": "final",
+  "quick": false,
+  "startedAt": "2026-10-21T01:58:14.320Z",
+  "scope": "Four female native static skeletal pose studies; no completed animation cycles or user visual acceptance claimed.",
+  "inputHashes": {
+    "artwork/kling-native-female/prepared/celebrate.png": "f1b27ea63043302df3f5d07a5f8cd82e979bb2449fb49aaee5c8f92f63e3f874",
+    "artwork/kling-native-female/prepared/parts/far-forearm.png": "0162831aaf8a5e4a9df9f767e38ff8c278c339614e67cc76b13dd53744bca973",
+    "artwork/kling-native-female/prepared/parts/far-hand.png": "91d185204f4a075274eccdcfaf277491abd55e342de4c66fba98a7a4e4d99e3d",
+    "artwork/kling-native-female/prepared/parts/far-shin.png": "5c223cff092b077ab4cbd3b711f4ac7cf87acbdc2bfeae9d17e68bcafe3bb0c1",
+    "artwork/kling-native-female/prepared/parts/far-shoe.png": "a5359496530b700e7e90d89e3f2a957fb75277cef0cadb3cfaeb5fe7c242113e",
+    "artwork/kling-native-female/prepared/parts/far-thigh.png": "9f58db44e62e614b54caec82e4d4898867339cea6416e147552406f02595f369",
+    "artwork/kling-native-female/prepared/parts/far-upper-arm.png": "362ebaa51fc1fba6be8cb0237848c6fc387a94d1bfd9bd9b17bc8691d645ff0e",
+    "artwork/kling-native-female/prepared/parts/head.png": "5bfeed03046e82d7fc646089c56e5c212553980a7ffa38cb2e3fde061300775a",
+    "artwork/kling-native-female/prepared/parts/near-forearm.png": "55305f66547a9422a556d28c3ef17c1c889ebf3f946848bff87e6ece9b6cc0ac",
+    "artwork/kling-native-female/prepared/parts/near-hand.png": "eba03b0b72abea4cc3d6e0a3e950a32eea0af073225fd795282b9999886159ae",
+    "artwork/kling-native-female/prepared/parts/near-shin.png": "d7d191c177a26cb5f4c8a32299d2c9523500f3d343273299dba863171fa30011",
+    "artwork/kling-native-female/prepared/parts/near-shoe.png": "080d47f3aaf9fb0dbb0a57bd3f507d846bf73377f465f9c21befab36e8207a4b",
+    "artwork/kling-native-female/prepared/parts/near-thigh.png": "b3a90e9d1252bc3edd009e5a90a58f1194a6f3ea2fae3a4ed0a302ac90306570",
+    "artwork/kling-native-female/prepared/parts/near-upper-arm.png": "3918a527295d854e9efa1799a6c4737e6202bda2208c96aa73cf9d07e054ab5d",
+    "artwork/kling-native-female/prepared/parts/pelvis.png": "e4f93ffd0065bc1d4980a5a0676749d60197399a766cb079812f936bfa15bcec",
+    "artwork/kling-native-female/prepared/parts/torso.png": "464495297c0cbd79ffb41115edf93fb8e0ed6236af30a02dd8f9f102de4f6301",
+    "artwork/kling-native-female/prepared/preparation-report.json": "e9d486c254e03233b47a271e8db08227ade84b3d1536ef5d422e3dbf405c70aa",
+    "artwork/kling-native-female/prepared/project.zip": "0043f1a9b1e70dc1667a82b4fa270e7d3a8632caa96d3444586cec8b5fa72c65",
+    "artwork/kling-native-female/prepared/reference.png": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+    "artwork/kling-native-female/prepared/registration.json": "1feecc0035a9bc7ca1891e9e6c39ba37b41ca70c0f1f18a6cd6329912b5f9e18",
+    "artwork/kling-native-female/prepared/rest-composite.png": "f8716a86cbcdd4d9f2482b8516d624baa7fa139e3a0f47775dc942aec5cebd27",
+    "artwork/kling-native-female/prepared/run-flight.png": "0c65a93c0b8cf10d4a89a1451237af2b6aec23532615f94c3ac9f45e6b240848",
+    "artwork/kling-native-female/prepared/standing.png": "43c8877faa5165ae14d6bdca6ef24b75d29d7d376e4e766868c3a2d049469ea1",
+    "artwork/kling-native-female/prepared/walk-contact.png": "c40f41ef99c5322ff743e8e98089e0820cca5ce3a770821f7f8b1864d54f0779",
+    "artwork/kling-native-female/source/README.md": "54475bbb3e3a9266416400a4a0120f2280749ba95ce383f81421a9abffe94029",
+    "artwork/kling-native-female/source/generation-prompt.txt": "019dc73b74359eeaeb653edf1641455d8870741fda8aa96fe8f98ccc01ff0354",
+    "artwork/kling-native-female/source/hidden-joints.png": "98ef19b7abe04da60443c9f194993cedf9f21df4754c2c1d811f3d1c6192b9c8",
+    "artwork/kling-native-female/source/provenance.json": "84f9e5f4146d871681ceea524ea4a9d8a76a10559a10eb0f5654032307b82111",
+    "artwork/kling-native-female/source/reference.png": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+    "index.html": "2eb6a93b44840d381b05609cc9f82ab4f2baaf35b99c5a930b6e23c328cdc66a",
+    "player.html": "c21b823dd640430eeb3b5edfc36008d835c030647f42f03781124bbcfde18165",
+    "skin-studio.html": "8a8ee6963effc186855f8f3b92a1b56347292019b0964716fb6363b3523221ab",
+    "src/consumer/PackPlayer.tsx": "b71eb7a2371710a300c9b3d205b336fa1d7ac4489adacbde267885c2a5a3e1f0",
+    "src/consumer/kling-catalog.ts": "46c1e40947f417b7a1cf213e8ee83ef63a6f769dc5010fbf8aee737ba9409e27",
+    "src/consumer/kling-packs.test.ts": "996057a76502d3b4461400cc3e73fda8687e4b6a8541a4af8001840a715ad63d",
+    "src/consumer/kling-packs.ts": "bed34a0258b2c6680451c29cd42ba0a7c5acf067f26b587c5a80b7f7021d4112",
+    "src/consumer/main.tsx": "11b7ae34966e906bed2911fc32b98646fa60b82fc7487c2784110a1b096fed4c",
+    "src/consumer/player.css": "010e2e09bbecbb7af0125466518b35eeaed3150cde39595fece369adbfe219cd",
+    "src/consumer/player.test.ts": "950f297177fe50cc46171b527706e793d2c55baa866b10d7ed821cdd80fad7b7",
+    "src/consumer/player.ts": "8ce2f5a1a70d244739aff3f5e1bebebe98dd1b547d2414eaf727b6c0d4bd6ea4",
+    "src/core/baked-source.test.ts": "835947af4b8963b2f2ba5f75e760633a22f3a9c79632b4f16bf67e294632757b",
+    "src/core/baked-source.ts": "c98e6f37f46a2e2377112eaf30b51d5fb86070447bb8fa723b49100b6372cce4",
+    "src/core/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/core/pack-v2.test.ts": "74f5da3d07d63208c17668d4453a5397b77fc545eefc756fb13d2ef9a7c8f927",
+    "src/core/pack-v2.ts": "ff497c58c58e054a0590e36a6de5020446d7e31ba945d7c405e8123c5afd82e1",
+    "src/core/pack-v3.test.ts": "85d18347b183a7d01f2569b062a8fee1d0a2fcb119b13c7f3a6d3096aa2f7b9a",
+    "src/core/pack-v3.ts": "1e1a7bd8e1324e0e95de1dfeda0b31c04f1fa1409211fb808147e632dd7bedef",
+    "src/core/pack.ts": "77eeb7c8dc49a4ab79d7b0466b433d967f78e1de35d67c326ed34ccc5792940c",
+    "src/core/sha256.test.ts": "4bcca339955914b841693cfc81b391b81a14c6d9341ed8d49f3c78e7adcb93d5",
+    "src/core/sha256.ts": "9dadabe2eade2c115bb3f61da9920c24b00b5c13808956dd6e9116523d20d4b9",
+    "src/core/types.ts": "4f22876a4957b84bb2450042534d6a661d4f273edab41eb901aee85ea7b58670",
+    "src/skeletal/NativeStudy.tsx": "253580fc52369e72aeacc12db19e9e8cc1687a4496c8faca2b5f3f507f0ca9cf",
+    "src/skeletal/geometry.test.ts": "27a820d5cd3defdf07876b67dcd4921eff152aa58559a554f39065614c4f5c91",
+    "src/skeletal/geometry.ts": "197cf4eac53b77b7cdfac9e6ef54b7a4cebb48cabace7d1de9fd863b4826a3ff",
+    "src/skeletal/main.tsx": "9b0df8847245e674c43761a55e8aefd31024e705d1d1662e9546a03edf83b356",
+    "src/skeletal/native-study.css": "a84350341c60f5e15c2a82f70e239118ce01609c3d61016a4e088fa8de52312f",
+    "src/skeletal/native-study.test.ts": "ee247d6573150d07b3a50b9b990faebd4ea313d2a1a495b21a4fec9dae01d71b",
+    "src/skeletal/native-study.ts": "0a2c15bc1522a1129d932f3897d40f20216eccae63bf83d7dc99750778071aa0",
+    "src/workspace/Library.tsx": "378e71a926a59a90844258db1d2490764c8672db0042a4d86dcd756ee1d18164",
+    "src/workspace/MainNavigation.tsx": "a1e7e9c1944cd907644f5cf5fa9c3434cb4f8ef342ed6fcc33a4e5866ffddcd6",
+    "src/workspace/Workbench.tsx": "823560f672dddbf11c9af4bbf95bb5d7239bdd8d84e6332206a13e0eb57f367f",
+    "src/workspace/main.tsx": "860ee0100634905205c0ce85ff53672f69c5a4f5ed67825a8f10a440c866b3f2",
+    "src/workspace/navigation.css": "27566e1d525c5797a57573461a218b7aa4d41c43a76c98bbfec7580e4aedcc57",
+    "src/workspace/workbench-main.tsx": "fc3d7cb2ecf80631d3ef7b4faa084a368d498bd19273cf14338bd2dafafc23a3",
+    "src/workspace/workspace.css": "db291caabd5858969a9b310ed45583ef2028a000770ff26e5e0dc23ee53e37f1",
+    "vite.config.ts": "5db54edaef02bec9ef8951c08d4a6e9272f2a7b1907470accaf17098f7bcdc36",
+    "workbench.html": "60d6ab4516fcfa7dbf37221202a97ec1c9fc4118ae60707ba45d0618723a602f"
+  },
+  "downloads": [
+    {
+      "file": "standing-right-1x.png",
+      "bytes": 318950,
+      "sha256": "43c8877faa5165ae14d6bdca6ef24b75d29d7d376e4e766868c3a2d049469ea1",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "walk-contact-right-1x.png",
+      "bytes": 357298,
+      "sha256": "c40f41ef99c5322ff743e8e98089e0820cca5ce3a770821f7f8b1864d54f0779",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "run-flight-right-1x.png",
+      "bytes": 377564,
+      "sha256": "0c65a93c0b8cf10d4a89a1451237af2b6aec23532615f94c3ac9f45e6b240848",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "celebrate-right-1x.png",
+      "bytes": 330257,
+      "sha256": "f1b27ea63043302df3f5d07a5f8cd82e979bb2449fb49aaee5c8f92f63e3f874",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "standing-left-1x.png",
+      "bytes": 319012,
+      "sha256": "683b545784ed23c6dc2c42df72baeca1cd176d1b858dc366b3cac1f7e6372006",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "walk-contact-left-1x.png",
+      "bytes": 357275,
+      "sha256": "275953dbcb0eb8e3167132755308937cbe312777aaedf4236396f406bab1a5cf",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "run-flight-left-1x.png",
+      "bytes": 377568,
+      "sha256": "3b636ccb74fd72157fc0e82ba5f346ab65ab93ac405e6267ec011ed65f32dfde",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "celebrate-left-1x.png",
+      "bytes": 330389,
+      "sha256": "a9f20447302ff4811160afffd6c39edad621acd92ccac037dbf4776edcdb6dde",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "kling-female-native-study.project.zip",
+      "bytes": 625417,
+      "sha256": "0043f1a9b1e70dc1667a82b4fa270e7d3a8632caa96d3444586cec8b5fa72c65",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "kling-female-native-stills.character.zip",
+      "bytes": 1393154,
+      "sha256": "d01f1389abc96779dd480554326d8f4a0c11efcf07d57166b01cb6fe44795b36",
+      "source": "Actual application UI download",
+      "retained": true
+    },
+    {
+      "file": "edited.project.zip",
+      "bytes": 625528,
+      "sha256": "fc22fad5dc81b1c8083af99b55d01390a45581d8851dc3373c8b84137b709acf",
+      "source": "Actual application UI download",
+      "retained": false
+    }
+  ],
+  "decodedPngs": [
+    {
+      "file": "standing-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "7911c88d007c7641df1639e6eeb537431f677478b9b804f5cdb2b3c5e7540ebc",
+      "transparent": 519248,
+      "partial": 1629,
+      "visible": 224176,
+      "alphaLevels": 246
+    },
+    {
+      "file": "walk-contact-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "3b5ee7d95d303b36df3f669670bb015d8922ccfcf6ec692a158fffc849f1f536",
+      "transparent": 533084,
+      "partial": 7250,
+      "visible": 210340,
+      "alphaLevels": 256
+    },
+    {
+      "file": "run-flight-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "c8b3e2457ebf62fd9b322f017059c69a3c6d0b5a120050856938a8dcbbab8af7",
+      "transparent": 524315,
+      "partial": 9638,
+      "visible": 219109,
+      "alphaLevels": 256
+    },
+    {
+      "file": "celebrate-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "897e3c735ba35cd2e202a09e5c48dcfcdb55bd3dfc42e180a27abfd831121de1",
+      "transparent": 520772,
+      "partial": 4640,
+      "visible": 222652,
+      "alphaLevels": 256
+    },
+    {
+      "file": "standing-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "817d7fb59e9154a2b6b7a311a78fbf5694d9b76d3a1ab923c052f140015c3bb1",
+      "transparent": 519248,
+      "partial": 1629,
+      "visible": 224176,
+      "alphaLevels": 246
+    },
+    {
+      "file": "walk-contact-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "21d577f68a76482715e9ca516bcd317a3236b20f867941ba63c60dd4c501956b",
+      "transparent": 533084,
+      "partial": 7250,
+      "visible": 210340,
+      "alphaLevels": 256
+    },
+    {
+      "file": "run-flight-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "22e5f04713fbe070279a8fced092ba8c81a31575e61986bbcb17bb56a0f8dff8",
+      "transparent": 524315,
+      "partial": 9638,
+      "visible": 219109,
+      "alphaLevels": 256
+    },
+    {
+      "file": "celebrate-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "7f46e35b1c7380537bd820f6a0cb3e9e61e72757ece43fd10484fbbfaf7db5cd",
+      "transparent": 520772,
+      "partial": 4640,
+      "visible": 222652,
+      "alphaLevels": 256
+    }
+  ],
+  "editorPoses": [
+    {
+      "pose": "standing",
+      "facing": "right",
+      "exportedPng": "standing-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "7911c88d007c7641df1639e6eeb537431f677478b9b804f5cdb2b3c5e7540ebc",
+      "transparent": 519248,
+      "partial": 1629,
+      "visible": 224176,
+      "alphaLevels": 246,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    },
+    {
+      "pose": "walk-contact",
+      "facing": "right",
+      "exportedPng": "walk-contact-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "3b5ee7d95d303b36df3f669670bb015d8922ccfcf6ec692a158fffc849f1f536",
+      "transparent": 533084,
+      "partial": 7250,
+      "visible": 210340,
+      "alphaLevels": 256,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    },
+    {
+      "pose": "run-flight",
+      "facing": "right",
+      "exportedPng": "run-flight-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "c8b3e2457ebf62fd9b322f017059c69a3c6d0b5a120050856938a8dcbbab8af7",
+      "transparent": 524315,
+      "partial": 9638,
+      "visible": 219109,
+      "alphaLevels": 256,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    },
+    {
+      "pose": "celebrate",
+      "facing": "right",
+      "exportedPng": "celebrate-right-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "897e3c735ba35cd2e202a09e5c48dcfcdb55bd3dfc42e180a27abfd831121de1",
+      "transparent": 520772,
+      "partial": 4640,
+      "visible": 222652,
+      "alphaLevels": 256,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    },
+    {
+      "pose": "standing",
+      "facing": "left",
+      "exportedPng": "standing-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "817d7fb59e9154a2b6b7a311a78fbf5694d9b76d3a1ab923c052f140015c3bb1",
+      "transparent": 519248,
+      "partial": 1629,
+      "visible": 224176,
+      "alphaLevels": 246,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    },
+    {
+      "pose": "walk-contact",
+      "facing": "left",
+      "exportedPng": "walk-contact-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "21d577f68a76482715e9ca516bcd317a3236b20f867941ba63c60dd4c501956b",
+      "transparent": 533084,
+      "partial": 7250,
+      "visible": 210340,
+      "alphaLevels": 256,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    },
+    {
+      "pose": "run-flight",
+      "facing": "left",
+      "exportedPng": "run-flight-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "22e5f04713fbe070279a8fced092ba8c81a31575e61986bbcb17bb56a0f8dff8",
+      "transparent": 524315,
+      "partial": 9638,
+      "visible": 219109,
+      "alphaLevels": 256,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    },
+    {
+      "pose": "celebrate",
+      "facing": "left",
+      "exportedPng": "celebrate-left-1x.png",
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "7f46e35b1c7380537bd820f6a0cb3e9e61e72757ece43fd10484fbbfaf7db5cd",
+      "transparent": 520772,
+      "partial": 4640,
+      "visible": 222652,
+      "alphaLevels": 256,
+      "exactCanvasMatch": true,
+      "note": "Both expected and actual pass through the same browser Canvas premultiplication; raw PNG checks are separate."
+    }
+  ],
+  "archives": [
+    {
+      "file": "kling-female-native-study.project.zip",
+      "sha256": "0043f1a9b1e70dc1667a82b4fa270e7d3a8632caa96d3444586cec8b5fa72c65",
+      "members": {
+        "document.json": {
+          "bytes": 9002,
+          "sha256": "b2c0ceadcf6fbb5c63020430814f5e9264d6062842406e3ef7dfdb62856182ee"
+        },
+        "reference.png": {
+          "bytes": 290687,
+          "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+        },
+        "parts/head.png": {
+          "bytes": 139175,
+          "sha256": "5bfeed03046e82d7fc646089c56e5c212553980a7ffa38cb2e3fde061300775a"
+        },
+        "parts/torso.png": {
+          "bytes": 34954,
+          "sha256": "464495297c0cbd79ffb41115edf93fb8e0ed6236af30a02dd8f9f102de4f6301"
+        },
+        "parts/pelvis.png": {
+          "bytes": 16090,
+          "sha256": "e4f93ffd0065bc1d4980a5a0676749d60197399a766cb079812f936bfa15bcec"
+        },
+        "parts/near-upper-arm.png": {
+          "bytes": 18886,
+          "sha256": "3918a527295d854e9efa1799a6c4737e6202bda2208c96aa73cf9d07e054ab5d"
+        },
+        "parts/near-forearm.png": {
+          "bytes": 12937,
+          "sha256": "55305f66547a9422a556d28c3ef17c1c889ebf3f946848bff87e6ece9b6cc0ac"
+        },
+        "parts/near-hand.png": {
+          "bytes": 12191,
+          "sha256": "eba03b0b72abea4cc3d6e0a3e950a32eea0af073225fd795282b9999886159ae"
+        },
+        "parts/far-upper-arm.png": {
+          "bytes": 14406,
+          "sha256": "362ebaa51fc1fba6be8cb0237848c6fc387a94d1bfd9bd9b17bc8691d645ff0e"
+        },
+        "parts/far-forearm.png": {
+          "bytes": 11413,
+          "sha256": "0162831aaf8a5e4a9df9f767e38ff8c278c339614e67cc76b13dd53744bca973"
+        },
+        "parts/far-hand.png": {
+          "bytes": 11860,
+          "sha256": "91d185204f4a075274eccdcfaf277491abd55e342de4c66fba98a7a4e4d99e3d"
+        },
+        "parts/near-thigh.png": {
+          "bytes": 20139,
+          "sha256": "b3a90e9d1252bc3edd009e5a90a58f1194a6f3ea2fae3a4ed0a302ac90306570"
+        },
+        "parts/near-shin.png": {
+          "bytes": 16906,
+          "sha256": "d7d191c177a26cb5f4c8a32299d2c9523500f3d343273299dba863171fa30011"
+        },
+        "parts/near-shoe.png": {
+          "bytes": 19685,
+          "sha256": "080d47f3aaf9fb0dbb0a57bd3f507d846bf73377f465f9c21befab36e8207a4b"
+        },
+        "parts/far-thigh.png": {
+          "bytes": 17931,
+          "sha256": "9f58db44e62e614b54caec82e4d4898867339cea6416e147552406f02595f369"
+        },
+        "parts/far-shin.png": {
+          "bytes": 15266,
+          "sha256": "5c223cff092b077ab4cbd3b711f4ac7cf87acbdc2bfeae9d17e68bcafe3bb0c1"
+        },
+        "parts/far-shoe.png": {
+          "bytes": 17819,
+          "sha256": "a5359496530b700e7e90d89e3f2a957fb75277cef0cadb3cfaeb5fe7c242113e"
+        },
+        "checksums.json": {
+          "bytes": 1571,
+          "sha256": "07f1852c41cbbf26ff26cd8e57477c9e46ed5456f272ba7355c6b37b584b1439"
+        }
+      }
+    },
+    {
+      "file": "kling-female-native-stills.character.zip",
+      "sha256": "d01f1389abc96779dd480554326d8f4a0c11efcf07d57166b01cb6fe44795b36",
+      "members": {
+        "spritesheet.png": {
+          "bytes": 1395543,
+          "sha256": "2531c540c4d7c758ac2e7314d21a5366342c32fa85fe2f82d56bb5b7c4796804"
+        },
+        "manifest.json": {
+          "bytes": 1569,
+          "sha256": "fe970386694cf19eec4954f8b062cdd2bf013cb4e45235d3c841df6204c7f177"
+        },
+        "character.json": {
+          "bytes": 3205,
+          "sha256": "814dadba3d1bf7881775c553d6ac4a02f7986246be8067918b8e16e20e161ca5"
+        },
+        "PROVENANCE.txt": {
+          "bytes": 1741,
+          "sha256": "620f52b401dfc1c677aff96282603f39d4093839296e8ede2c13824ee0df3e5b"
+        },
+        "INTEGRATION.md": {
+          "bytes": 1982,
+          "sha256": "823d51158948e7116ac23a5a3ab02afdbd321731297c7988dcacae20904f13f1"
+        }
+      }
+    }
+  ],
+  "independentPlayback": [
+    {
+      "pose": "standing",
+      "action": "idle",
+      "facing": "right",
+      "frameId": 0,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    },
+    {
+      "pose": "walk-contact",
+      "action": "walk",
+      "facing": "right",
+      "frameId": 1,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    },
+    {
+      "pose": "run-flight",
+      "action": "run",
+      "facing": "right",
+      "frameId": 2,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    },
+    {
+      "pose": "celebrate",
+      "action": "celebrate",
+      "facing": "right",
+      "frameId": 3,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    },
+    {
+      "pose": "standing",
+      "action": "idle",
+      "facing": "left",
+      "frameId": 0,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    },
+    {
+      "pose": "walk-contact",
+      "action": "walk",
+      "facing": "left",
+      "frameId": 1,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    },
+    {
+      "pose": "run-flight",
+      "action": "run",
+      "facing": "left",
+      "frameId": 2,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    },
+    {
+      "pose": "celebrate",
+      "action": "celebrate",
+      "facing": "left",
+      "frameId": 3,
+      "staticHoldEnded": true,
+      "differingChannels": 0,
+      "exact": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "forbiddenEditorRequests": [],
+  "visibleEntry": {
+    "label": "Edit Kling female skeleton",
+    "url": "/workbench.html?character=female&mode=rig",
+    "loadedFemale": true
+  },
+  "nativeProject": {
+    "parts": 15,
+    "poses": 4,
+    "referenceSha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+    "sourceReferenceUnchanged": true
+  },
+  "characterPack": {
+    "schemaVersion": 2,
+    "dimensions": [
+      2816,
+      1056
+    ],
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "fps": 1,
+        "loop": false
+      },
+      "walk": {
+        "frames": [
+          1
+        ],
+        "fps": 1,
+        "loop": false
+      },
+      "run": {
+        "frames": [
+          2
+        ],
+        "fps": 1,
+        "loop": false
+      },
+      "celebrate": {
+        "frames": [
+          3
+        ],
+        "fps": 1,
+        "loop": false
+      }
+    },
+    "anchor": {
+      "x": 352,
+      "y": 1000,
+      "units": "pixels",
+      "origin": "top-left"
+    },
+    "source": "Actual native study UI export; four static holds, not source-video animation."
+  },
+  "rawPixelChecks": {
+    "restDifferentChannels": 0,
+    "poses": [
+      {
+        "pose": "standing",
+        "atlasDifferentChannels": 0,
+        "mirrorDifferentChannels": 0
+      },
+      {
+        "pose": "walk-contact",
+        "atlasDifferentChannels": 0,
+        "mirrorDifferentChannels": 0
+      },
+      {
+        "pose": "run-flight",
+        "atlasDifferentChannels": 0,
+        "mirrorDifferentChannels": 0
+      },
+      {
+        "pose": "celebrate",
+        "atlasDifferentChannels": 0,
+        "mirrorDifferentChannels": 0
+      }
+    ]
+  },
+  "projectSaveReopen": {
+    "baselineMatches": true,
+    "poseEditChangesActualRender": true,
+    "editedProjectReopensExactly": true,
+    "undoRestoresBaseline": true,
+    "resetRestoresBaseline": true,
+    "baselineRestored": true
+  },
+  "editorClosedBeforeIndependentPlayer": true,
+  "inputHashesAfter": {
+    "artwork/kling-native-female/prepared/celebrate.png": "f1b27ea63043302df3f5d07a5f8cd82e979bb2449fb49aaee5c8f92f63e3f874",
+    "artwork/kling-native-female/prepared/parts/far-forearm.png": "0162831aaf8a5e4a9df9f767e38ff8c278c339614e67cc76b13dd53744bca973",
+    "artwork/kling-native-female/prepared/parts/far-hand.png": "91d185204f4a075274eccdcfaf277491abd55e342de4c66fba98a7a4e4d99e3d",
+    "artwork/kling-native-female/prepared/parts/far-shin.png": "5c223cff092b077ab4cbd3b711f4ac7cf87acbdc2bfeae9d17e68bcafe3bb0c1",
+    "artwork/kling-native-female/prepared/parts/far-shoe.png": "a5359496530b700e7e90d89e3f2a957fb75277cef0cadb3cfaeb5fe7c242113e",
+    "artwork/kling-native-female/prepared/parts/far-thigh.png": "9f58db44e62e614b54caec82e4d4898867339cea6416e147552406f02595f369",
+    "artwork/kling-native-female/prepared/parts/far-upper-arm.png": "362ebaa51fc1fba6be8cb0237848c6fc387a94d1bfd9bd9b17bc8691d645ff0e",
+    "artwork/kling-native-female/prepared/parts/head.png": "5bfeed03046e82d7fc646089c56e5c212553980a7ffa38cb2e3fde061300775a",
+    "artwork/kling-native-female/prepared/parts/near-forearm.png": "55305f66547a9422a556d28c3ef17c1c889ebf3f946848bff87e6ece9b6cc0ac",
+    "artwork/kling-native-female/prepared/parts/near-hand.png": "eba03b0b72abea4cc3d6e0a3e950a32eea0af073225fd795282b9999886159ae",
+    "artwork/kling-native-female/prepared/parts/near-shin.png": "d7d191c177a26cb5f4c8a32299d2c9523500f3d343273299dba863171fa30011",
+    "artwork/kling-native-female/prepared/parts/near-shoe.png": "080d47f3aaf9fb0dbb0a57bd3f507d846bf73377f465f9c21befab36e8207a4b",
+    "artwork/kling-native-female/prepared/parts/near-thigh.png": "b3a90e9d1252bc3edd009e5a90a58f1194a6f3ea2fae3a4ed0a302ac90306570",
+    "artwork/kling-native-female/prepared/parts/near-upper-arm.png": "3918a527295d854e9efa1799a6c4737e6202bda2208c96aa73cf9d07e054ab5d",
+    "artwork/kling-native-female/prepared/parts/pelvis.png": "e4f93ffd0065bc1d4980a5a0676749d60197399a766cb079812f936bfa15bcec",
+    "artwork/kling-native-female/prepared/parts/torso.png": "464495297c0cbd79ffb41115edf93fb8e0ed6236af30a02dd8f9f102de4f6301",
+    "artwork/kling-native-female/prepared/preparation-report.json": "e9d486c254e03233b47a271e8db08227ade84b3d1536ef5d422e3dbf405c70aa",
+    "artwork/kling-native-female/prepared/project.zip": "0043f1a9b1e70dc1667a82b4fa270e7d3a8632caa96d3444586cec8b5fa72c65",
+    "artwork/kling-native-female/prepared/reference.png": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+    "artwork/kling-native-female/prepared/registration.json": "1feecc0035a9bc7ca1891e9e6c39ba37b41ca70c0f1f18a6cd6329912b5f9e18",
+    "artwork/kling-native-female/prepared/rest-composite.png": "f8716a86cbcdd4d9f2482b8516d624baa7fa139e3a0f47775dc942aec5cebd27",
+    "artwork/kling-native-female/prepared/run-flight.png": "0c65a93c0b8cf10d4a89a1451237af2b6aec23532615f94c3ac9f45e6b240848",
+    "artwork/kling-native-female/prepared/standing.png": "43c8877faa5165ae14d6bdca6ef24b75d29d7d376e4e766868c3a2d049469ea1",
+    "artwork/kling-native-female/prepared/walk-contact.png": "c40f41ef99c5322ff743e8e98089e0820cca5ce3a770821f7f8b1864d54f0779",
+    "artwork/kling-native-female/source/README.md": "54475bbb3e3a9266416400a4a0120f2280749ba95ce383f81421a9abffe94029",
+    "artwork/kling-native-female/source/generation-prompt.txt": "019dc73b74359eeaeb653edf1641455d8870741fda8aa96fe8f98ccc01ff0354",
+    "artwork/kling-native-female/source/hidden-joints.png": "98ef19b7abe04da60443c9f194993cedf9f21df4754c2c1d811f3d1c6192b9c8",
+    "artwork/kling-native-female/source/provenance.json": "84f9e5f4146d871681ceea524ea4a9d8a76a10559a10eb0f5654032307b82111",
+    "artwork/kling-native-female/source/reference.png": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+    "index.html": "2eb6a93b44840d381b05609cc9f82ab4f2baaf35b99c5a930b6e23c328cdc66a",
+    "player.html": "c21b823dd640430eeb3b5edfc36008d835c030647f42f03781124bbcfde18165",
+    "skin-studio.html": "8a8ee6963effc186855f8f3b92a1b56347292019b0964716fb6363b3523221ab",
+    "src/consumer/PackPlayer.tsx": "b71eb7a2371710a300c9b3d205b336fa1d7ac4489adacbde267885c2a5a3e1f0",
+    "src/consumer/kling-catalog.ts": "46c1e40947f417b7a1cf213e8ee83ef63a6f769dc5010fbf8aee737ba9409e27",
+    "src/consumer/kling-packs.test.ts": "996057a76502d3b4461400cc3e73fda8687e4b6a8541a4af8001840a715ad63d",
+    "src/consumer/kling-packs.ts": "bed34a0258b2c6680451c29cd42ba0a7c5acf067f26b587c5a80b7f7021d4112",
+    "src/consumer/main.tsx": "11b7ae34966e906bed2911fc32b98646fa60b82fc7487c2784110a1b096fed4c",
+    "src/consumer/player.css": "010e2e09bbecbb7af0125466518b35eeaed3150cde39595fece369adbfe219cd",
+    "src/consumer/player.test.ts": "950f297177fe50cc46171b527706e793d2c55baa866b10d7ed821cdd80fad7b7",
+    "src/consumer/player.ts": "8ce2f5a1a70d244739aff3f5e1bebebe98dd1b547d2414eaf727b6c0d4bd6ea4",
+    "src/core/baked-source.test.ts": "835947af4b8963b2f2ba5f75e760633a22f3a9c79632b4f16bf67e294632757b",
+    "src/core/baked-source.ts": "c98e6f37f46a2e2377112eaf30b51d5fb86070447bb8fa723b49100b6372cce4",
+    "src/core/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/core/pack-v2.test.ts": "74f5da3d07d63208c17668d4453a5397b77fc545eefc756fb13d2ef9a7c8f927",
+    "src/core/pack-v2.ts": "ff497c58c58e054a0590e36a6de5020446d7e31ba945d7c405e8123c5afd82e1",
+    "src/core/pack-v3.test.ts": "85d18347b183a7d01f2569b062a8fee1d0a2fcb119b13c7f3a6d3096aa2f7b9a",
+    "src/core/pack-v3.ts": "1e1a7bd8e1324e0e95de1dfeda0b31c04f1fa1409211fb808147e632dd7bedef",
+    "src/core/pack.ts": "77eeb7c8dc49a4ab79d7b0466b433d967f78e1de35d67c326ed34ccc5792940c",
+    "src/core/sha256.test.ts": "4bcca339955914b841693cfc81b391b81a14c6d9341ed8d49f3c78e7adcb93d5",
+    "src/core/sha256.ts": "9dadabe2eade2c115bb3f61da9920c24b00b5c13808956dd6e9116523d20d4b9",
+    "src/core/types.ts": "4f22876a4957b84bb2450042534d6a661d4f273edab41eb901aee85ea7b58670",
+    "src/skeletal/NativeStudy.tsx": "253580fc52369e72aeacc12db19e9e8cc1687a4496c8faca2b5f3f507f0ca9cf",
+    "src/skeletal/geometry.test.ts": "27a820d5cd3defdf07876b67dcd4921eff152aa58559a554f39065614c4f5c91",
+    "src/skeletal/geometry.ts": "197cf4eac53b77b7cdfac9e6ef54b7a4cebb48cabace7d1de9fd863b4826a3ff",
+    "src/skeletal/main.tsx": "9b0df8847245e674c43761a55e8aefd31024e705d1d1662e9546a03edf83b356",
+    "src/skeletal/native-study.css": "a84350341c60f5e15c2a82f70e239118ce01609c3d61016a4e088fa8de52312f",
+    "src/skeletal/native-study.test.ts": "ee247d6573150d07b3a50b9b990faebd4ea313d2a1a495b21a4fec9dae01d71b",
+    "src/skeletal/native-study.ts": "0a2c15bc1522a1129d932f3897d40f20216eccae63bf83d7dc99750778071aa0",
+    "src/workspace/Library.tsx": "378e71a926a59a90844258db1d2490764c8672db0042a4d86dcd756ee1d18164",
+    "src/workspace/MainNavigation.tsx": "a1e7e9c1944cd907644f5cf5fa9c3434cb4f8ef342ed6fcc33a4e5866ffddcd6",
+    "src/workspace/Workbench.tsx": "823560f672dddbf11c9af4bbf95bb5d7239bdd8d84e6332206a13e0eb57f367f",
+    "src/workspace/main.tsx": "860ee0100634905205c0ce85ff53672f69c5a4f5ed67825a8f10a440c866b3f2",
+    "src/workspace/navigation.css": "27566e1d525c5797a57573461a218b7aa4d41c43a76c98bbfec7580e4aedcc57",
+    "src/workspace/workbench-main.tsx": "fc3d7cb2ecf80631d3ef7b4faa084a368d498bd19273cf14338bd2dafafc23a3",
+    "src/workspace/workspace.css": "db291caabd5858969a9b310ed45583ef2028a000770ff26e5e0dc23ee53e37f1",
+    "vite.config.ts": "5db54edaef02bec9ef8951c08d4a6e9272f2a7b1907470accaf17098f7bcdc36",
+    "workbench.html": "60d6ab4516fcfa7dbf37221202a97ec1c9fc4118ae60707ba45d0618723a602f"
+  },
+  "inputsUnchanged": true,
+  "passed": true,
+  "finishedAt": "2026-10-21T01:59:08.268Z"
+}

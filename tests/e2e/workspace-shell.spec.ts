@@ -45,10 +45,8 @@ test("library has three primary destinations, original previews and lazy charact
   await expect(
     page
       .locator(".library-character--female")
-      .getByText("Female skeleton editing is not available yet.", {
-        exact: true,
-      }),
-  ).toBeVisible();
+      .getByRole("link", { name: "Edit Kling female skeleton", exact: true }),
+  ).toHaveAttribute("href", "/workbench.html?character=female&mode=rig");
   await expect(
     page.locator(
       'a[href="/editor.html"], a[href="/rig-lab.html"], a[href="/mother-study.html"]',
@@ -177,16 +175,18 @@ test("workbench follows trusted player selection without reloading the retained 
     page.getByRole("link", { name: "Open player separately" }),
   ).toHaveAttribute("href", "/player.html?kling=female");
   await expect(page).toHaveURL(/character=female/);
-  await page.getByRole("tab", { name: "Male skeleton" }).click();
+  await page.getByRole("tab", { name: "Female skeleton" }).click();
   await expect(
     page.getByRole("heading", {
-      name: "Kling male · skeleton candidate",
+      name: "Kling female · skeleton candidate",
       exact: true,
     }),
   ).toBeVisible();
-  await expect(
-    page.getByText(/Female skeleton editing is not available yet/),
-  ).toBeVisible();
+  const femaleRig = page.frameLocator('iframe[data-character="female"]');
+  await expect(femaleRig.getByRole("status")).toContainText(
+    "Loaded: Kling female",
+  );
+  await expect(page.locator('iframe[data-character="male"]')).toHaveCount(0);
   await page.getByRole("tab", { name: "Original playback" }).click();
   await expect(
     page.getByRole("heading", { name: "Kling female", exact: true }),
@@ -244,4 +244,254 @@ test("mobile library and workbench navigation stay within the viewport and suppo
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);
+});
+
+test("female library entry and character changes retain separate male and female joint edits", async ({
+  page,
+}) => {
+  test.setTimeout(120000);
+  await page.route(/\/(male|female)\.character\.zip(?:\?.*)?$/, (route) =>
+    route.fulfill({
+      status: 503,
+      body: "Original playback is checked separately",
+    }),
+  );
+  await page.goto("/");
+  await page
+    .getByRole("link", { name: "Edit Kling female skeleton", exact: true })
+    .click();
+  await expect(page).toHaveURL(/character=female&mode=rig/);
+  await expect(
+    page.getByRole("tab", { name: "Female skeleton" }),
+  ).toHaveAttribute("aria-selected", "true");
+  const female = page.frameLocator('iframe[data-character="female"]');
+  await expect(female.getByRole("status")).toContainText(
+    "Loaded: Kling female",
+  );
+  await female
+    .getByLabel("Review pose", { exact: true })
+    .selectOption("celebrate");
+  const femaleUpper = female.getByLabel("Upper rotation (degrees)", {
+    exact: true,
+  });
+  const originalAngle = await femaleUpper.inputValue();
+  const editedAngle = String(Number(originalAngle) - 5);
+  await femaleUpper.fill(editedAngle);
+  await female.getByRole("button", { name: "Apply joint angles" }).click();
+  const femaleCanvas = female.locator("#native-posed-canvas");
+  const femalePixels = await femaleCanvas.evaluate(
+    (canvas: HTMLCanvasElement) => canvas.toDataURL(),
+  );
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  const playerBody = page
+    .frameLocator('iframe[title="Original Kling playback"]')
+    .locator("body");
+  await expect(playerBody).toBeVisible();
+  await playerBody.evaluate(() =>
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId: "male",
+        name: "Kling male",
+      },
+      window.location.origin,
+    ),
+  );
+  await page.getByRole("tab", { name: "Male skeleton", exact: true }).click();
+  const male = page.frameLocator('iframe[data-character="male"]');
+  await expect(male.getByRole("status")).toContainText("Loaded: Kling male");
+  await expect(page.locator('iframe[data-character="female"]')).toBeHidden();
+  await expect(page.locator('iframe[data-character="male"]')).toBeVisible();
+  await male
+    .getByLabel("Review pose", { exact: true })
+    .selectOption("run-flight");
+  await male.getByLabel("Bones", { exact: true }).check();
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  await playerBody.evaluate(() =>
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId: "female",
+        name: "Kling female",
+      },
+      window.location.origin,
+    ),
+  );
+  await page.getByRole("tab", { name: "Female skeleton", exact: true }).click();
+  await expect(page.locator('iframe[data-character="male"]')).toBeHidden();
+  await expect(female.getByLabel("Review pose", { exact: true })).toHaveValue(
+    "celebrate",
+  );
+  await expect(femaleUpper).toHaveValue(editedAngle);
+  expect(
+    await femaleCanvas.evaluate((canvas: HTMLCanvasElement) =>
+      canvas.toDataURL(),
+    ),
+  ).toBe(femalePixels);
+  await female.getByRole("button", { name: "Undo pose edit" }).click();
+  await expect(femaleUpper).toHaveValue(originalAngle);
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  await playerBody.evaluate(() =>
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId: "male",
+        name: "Kling male",
+      },
+      window.location.origin,
+    ),
+  );
+  await page.getByRole("tab", { name: "Male skeleton", exact: true }).click();
+  await expect(male.getByLabel("Review pose", { exact: true })).toHaveValue(
+    "run-flight",
+  );
+  await expect(male.getByLabel("Bones", { exact: true })).toBeChecked();
+});
+
+test("an embedded cross-import updates the outer identity without replacing either retained session", async ({
+  page,
+}) => {
+  test.setTimeout(120000);
+  await page.route(/\/(male|female)\.character\.zip(?:\?.*)?$/, (route) =>
+    route.fulfill({
+      status: 503,
+      body: "Original playback is tested separately",
+    }),
+  );
+  await page.goto("/workbench.html?character=female&mode=rig");
+  const female = page.frameLocator('iframe[data-character="female"]');
+  await expect(female.getByRole("status")).toContainText(
+    "Loaded: Kling female",
+  );
+  await female
+    .getByLabel("Review pose", { exact: true })
+    .selectOption("celebrate");
+  const femaleUpper = female.getByLabel("Upper rotation (degrees)", {
+    exact: true,
+  });
+  const editedAngle = String(Number(await femaleUpper.inputValue()) - 5);
+  await femaleUpper.fill(editedAngle);
+  await female.getByRole("button", { name: "Apply joint angles" }).click();
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  const player = page
+    .frameLocator('iframe[title="Original Kling playback"]')
+    .locator("body");
+  await expect(player).toBeVisible();
+  await player.evaluate(() =>
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId: "male",
+        name: "Kling male",
+      },
+      window.location.origin,
+    ),
+  );
+  await expect(
+    page.getByRole("heading", { name: "Kling male", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("tab", { name: "Male skeleton", exact: true }).click();
+  const maleSession = page.frameLocator('iframe[data-character="male"]');
+  await expect(maleSession.getByRole("status")).toContainText(
+    "Loaded: Kling male",
+  );
+  // Neither the top-level window nor the original-player iframe may spoof a
+  // native project's identity. Only its own retained rig iframe is trusted.
+  await page.evaluate(() =>
+    window.postMessage(
+      { type: "gathria:native-study-project-loaded", characterId: "female" },
+      window.location.origin,
+    ),
+  );
+  await player.evaluate(() =>
+    window.parent.postMessage(
+      { type: "gathria:native-study-project-loaded", characterId: "female" },
+      window.location.origin,
+    ),
+  );
+  await expect(
+    page.getByRole("heading", {
+      name: "Kling male · skeleton candidate",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await maleSession
+    .getByLabel("Native project ZIP", { exact: true })
+    .setInputFiles("artwork/kling-native-female/prepared/project.zip");
+  await expect(maleSession.getByRole("status")).toContainText(
+    "Native project reopened",
+  );
+  await expect(
+    page.getByRole("heading", {
+      name: "Kling female · skeleton candidate",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("tab", { name: "Female skeleton", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await expect(
+    page.getByRole("link", {
+      name: "Open female skeleton separately",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "/skin-studio.html?character=female");
+  await expect(page.locator('iframe[data-character="male"]')).toHaveAttribute(
+    "src",
+    "/skin-studio.html?character=male&embedded=1",
+  );
+  await expect(page.locator('iframe[data-character="male"]')).toHaveAttribute(
+    "data-loaded-character",
+    "female",
+  );
+  await expect(page).toHaveURL(/character=female/);
+  await maleSession
+    .getByLabel("Review pose", { exact: true })
+    .selectOption("run-flight");
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  await player.evaluate(() =>
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId: "female",
+        name: "Kling female",
+      },
+      window.location.origin,
+    ),
+  );
+  await expect(
+    page.getByRole("heading", { name: "Kling female", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("tab", { name: "Female skeleton", exact: true }).click();
+  await expect(femaleUpper).toHaveValue(editedAngle);
+  await expect(female.getByLabel("Review pose", { exact: true })).toHaveValue(
+    "celebrate",
+  );
+  await expect(
+    female.getByRole("button", { name: "Undo pose edit" }),
+  ).toBeEnabled();
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  await player.evaluate(() =>
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId: "male",
+        name: "Kling male",
+      },
+      window.location.origin,
+    ),
+  );
+  await expect(
+    page.getByRole("heading", { name: "Kling male", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("tab", { name: "Female skeleton", exact: true }).click();
+  await expect(
+    maleSession.getByLabel("Review pose", { exact: true }),
+  ).toHaveValue("run-flight");
+  await expect(
+    maleSession.getByRole("heading", {
+      name: "Kling female, built from the original.",
+      exact: true,
+    }),
+  ).toBeVisible();
 });

@@ -261,6 +261,9 @@ describe("native study validation and editable portable project", () => {
   });
 
   it("updates a pose with registered bone lengths, saves and reopens source PNG bytes", async () => {
+    // Adding the female registration must not silently upgrade legacy projects.
+    expect(document.characterId).toBeUndefined();
+    expect(same(archive, read("project.zip"))).toBe(true);
     expect(same(await exportNativeStudyProject(project), archive)).toBe(true);
     const reordered = Object.fromEntries(
       Object.entries(project.files).reverse(),
@@ -333,6 +336,9 @@ describe("native study validation and editable portable project", () => {
       new Uint8Array(await blob.arrayBuffer()),
     );
     expect(pack.manifest.schemaVersion).toBe(2);
+    expect(await sha256(new Uint8Array(await blob.arrayBuffer()))).toBe(
+      "a8785f0b21aa4c3217099f8248e6ac3d76dc1c64bc0cd8f95c9dcab9053259e4",
+    );
     expect(pack.manifest.spritesheet.frameWidth).toBe(704);
     expect(pack.manifest.spritesheet.frameHeight).toBe(1056);
     expect(pack.manifest.scale.pixelArt).toBe(false);
@@ -365,5 +371,174 @@ describe("native study validation and editable portable project", () => {
     expect(await sha256(project.files["reference.png"])).toBe(
       document.source.referenceSha256,
     );
+  }, 30000);
+});
+
+describe("female native registration and portable output", () => {
+  const femaleBase = new URL(
+    "../../artwork/kling-native-female/prepared/",
+    import.meta.url,
+  );
+  let female: NativeStudyProject;
+  let femaleArchive: Uint8Array;
+  let femaleRig: ReturnType<typeof prepareNativeStudy>;
+
+  beforeAll(async () => {
+    femaleArchive = new Uint8Array(
+      readFileSync(new URL("project.zip", femaleBase)),
+    );
+    female = await importNativeStudyArchive(femaleArchive);
+    femaleRig = prepareNativeStudy(female);
+  }, 30000);
+
+  it("keeps the approved female source and independent anatomy, with no male substitution", () => {
+    expect(female.document.characterId).toBe("kling-female-native-study");
+    expect(female.document.chains).not.toEqual(document.chains);
+    const source = decodeSourceRgbaPng(
+      new Uint8Array(
+        readFileSync(
+          new URL(
+            "../../artwork/kling-jump/prepared/female-library-preview.png",
+            import.meta.url,
+          ),
+        ),
+      ),
+    );
+    expect(same(female.reference.pixels, source.pixels)).toBe(true);
+    expect(same(femaleRig.render("standing"), source.pixels)).toBe(true);
+    expect(same(female.reference.pixels, project.reference.pixels)).toBe(false);
+    const withoutReference = {
+      ...female,
+      reference: {
+        ...female.reference,
+        pixels: new Uint8Array(female.reference.pixels.length),
+      },
+    };
+    expect(
+      same(
+        prepareNativeStudy(withoutReference).render("standing"),
+        source.pixels,
+      ),
+    ).toBe(true);
+    expect(() =>
+      validateNativeStudyDocument({
+        ...female.document,
+        characterId: "unknown-character",
+      }),
+    ).toThrow(/characterId/);
+  });
+
+  it("preserves alpha and the full frame through four poses, mirrors and ankle parenting", () => {
+    for (const id of NATIVE_POSES) {
+      const pixels = femaleRig.render(id);
+      expect(same(femaleRig.render(id), pixels)).toBe(true);
+      expect(
+        same(femaleRig.render(id, "left"), mirrorNativePixels(pixels)),
+      ).toBe(true);
+      let opaque = 0,
+        partial = 0;
+      for (let y = 0; y < 1056; y++)
+        for (let x = 0; x < 704; x++) {
+          const alpha = pixels[(y * 704 + x) * 4 + 3];
+          if (alpha === 255) opaque++;
+          else if (alpha > 0) partial++;
+          // Every authored pose fits the native frame without edge clipping.
+          if (x === 0 || x === 703 || y === 0 || y === 1055)
+            expect(alpha).toBe(0);
+        }
+      expect(opaque).toBeGreaterThan(100000);
+      expect(partial).toBeGreaterThan(100);
+      for (const shoe of femaleRig.inspect(id).shoes) {
+        const rest = female.document.chains[shoe.chain];
+        const posed = female.document.poses.find((p) => p.id === id)!.chains[
+          shoe.chain
+        ];
+        const angle =
+          Math.atan2(posed[2][1] - posed[1][1], posed[2][0] - posed[1][0]) -
+          Math.atan2(rest[2][1] - rest[1][1], rest[2][0] - rest[1][0]);
+        expect(Math.cos(shoe.rotation)).toBeCloseTo(Math.cos(angle), 10);
+        expect(Math.sin(shoe.rotation)).toBeCloseTo(Math.sin(angle), 10);
+        const m = shoe.matrix,
+          ankle = rest[2];
+        expect(m[0] * ankle[0] + m[2] * ankle[1] + m[4]).toBeCloseTo(
+          posed[2][0],
+          8,
+        );
+        expect(m[1] * ankle[0] + m[3] * ankle[1] + m[5]).toBeCloseTo(
+          posed[2][1],
+          8,
+        );
+      }
+    }
+  }, 30000);
+
+  it("roundtrips edited female joints and identity with unchanged source parts", async () => {
+    expect(same(await exportNativeStudyProject(female), femaleArchive)).toBe(
+      true,
+    );
+    const changed = structuredClone(female.document);
+    changed.poses[1] = makeNativePose(
+      changed,
+      "walk-contact",
+      "Edited female contact",
+      {
+        angles: { nearArm: [0.2, -0.3] },
+      },
+    );
+    const edited = { ...female, document: changed };
+    const reopened = await importNativeStudyArchive(
+      await exportNativeStudyProject(edited),
+    );
+    expect(reopened.document).toEqual(validateNativeStudyDocument(changed));
+    for (const file of Object.keys(female.files))
+      expect(same(reopened.files[file], female.files[file])).toBe(true);
+    expect(
+      same(
+        prepareNativeStudy(reopened).render("walk-contact"),
+        prepareNativeStudy(edited).render("walk-contact"),
+      ),
+    ).toBe(true);
+  }, 30000);
+
+  it("exports identity-correct V2 holds whose four frames match the female renderer", async () => {
+    const packBytes = new Uint8Array(
+      await (await createNativeStudyHoldPack(female)).arrayBuffer(),
+    );
+    const pack = readPortableCharacterPackArchive(packBytes);
+    const entries = unzipSync(packBytes);
+    const recipe = JSON.parse(
+      new TextDecoder().decode(entries["character.json"]),
+    );
+    expect(recipe.characterId).toBe("kling-female-native-study");
+    expect(recipe.source.sha256).toBe(await sha256(femaleArchive));
+    expect(recipe.sourceMetadata.originalReference).toEqual(
+      female.document.source,
+    );
+    expect(new TextDecoder().decode(entries["PROVENANCE.txt"])).toContain(
+      "NATIVE KLING FEMALE CANDIDATE",
+    );
+    expect(pack.manifest.schemaVersion).toBe(2);
+    expect(pack.manifest.anchor.x).toBe(female.document.anchor[0]);
+    expect(pack.manifest.anchor.y).toBe(female.document.anchor[1]);
+    expect(pack.manifest.facing.left).toBe("mirror-x");
+    expect(pack.manifest.animations.jump).toBeUndefined();
+    const atlas = decodeSourceRgbaPng(entries["spritesheet.png"]);
+    NATIVE_POSES.forEach((id, index) => {
+      const frame = new Uint8Array(704 * 1056 * 4);
+      for (let y = 0; y < 1056; y++)
+        frame.set(
+          atlas.pixels.subarray(
+            (y * 2816 + index * 704) * 4,
+            (y * 2816 + (index + 1) * 704) * 4,
+          ),
+          y * 704 * 4,
+        );
+      expect(same(frame, femaleRig.render(id))).toBe(true);
+    });
+    for (const animation of Object.values(pack.manifest.animations)) {
+      expect(animation?.frames).toHaveLength(1);
+      expect(animation?.fps).toBe(1);
+      expect(animation?.loop).toBe(false);
+    }
   }, 30000);
 });

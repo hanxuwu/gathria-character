@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { ArrowUpRight, Bone, Film, Info } from "lucide-react";
-import { KLING_CHARACTERS } from "../consumer/kling-catalog";
+import {
+  KLING_CHARACTERS,
+  type KlingCharacterId,
+} from "../consumer/kling-catalog";
 import { MainNavigation } from "./MainNavigation";
 import "./workspace.css";
 
@@ -10,25 +13,46 @@ export function CharacterWorkbench() {
   const query = new URLSearchParams(window.location.search);
   const [character] = useState(
     () =>
-      KLING_CHARACTERS.find((entry) => entry.id === query.get("character")) ??
-      KLING_CHARACTERS[0],
+      KLING_CHARACTERS.find(
+        (entry) =>
+          entry.id ===
+          (query.get("character") ??
+            (query.get("study") === "kling-female" ? "female" : "male")),
+      ) ?? KLING_CHARACTERS[0],
   );
   const [selection, setSelection] = useState<{
     id: "male" | "female" | null;
     name: string;
   }>({ id: character.id, name: character.name });
   const initial: WorkbenchTab =
-    query.get("mode") === "rig" || query.get("study") === "kling-male"
+    query.get("mode") === "rig" ||
+    ["kling-male", "kling-female"].includes(query.get("study") ?? "")
       ? "rig"
       : "original";
   const [tab, setTab] = useState<WorkbenchTab>(initial);
   const [visited, setVisited] = useState<Set<WorkbenchTab>>(
     () => new Set([initial]),
   );
+  const [rigCharacter, setRigCharacter] = useState<KlingCharacterId>(
+    character.id,
+  );
+  const [visitedRigs, setVisitedRigs] = useState<Set<KlingCharacterId>>(
+    () => new Set(initial === "rig" ? [character.id] : []),
+  );
+  // Session keys never change when a project is imported. Loaded identities do,
+  // so the surrounding UI must follow the document without replacing its iframe.
+  const [rigIdentities, setRigIdentities] = useState<
+    Record<KlingCharacterId, KlingCharacterId>
+  >({ male: "male", female: "female" });
+  const loadedRigCharacter = rigIdentities[rigCharacter];
+  const rigName = `Kling ${loadedRigCharacter}`;
+  const rigLabel = `${loadedRigCharacter === "female" ? "Female" : "Male"} skeleton`;
   const originalButton = useRef<HTMLButtonElement>(null);
   const rigButton = useRef<HTMLButtonElement>(null);
   const originalFrame = useRef<HTMLIFrameElement>(null);
-  const rigFrame = useRef<HTMLIFrameElement>(null);
+  const rigFrames = useRef<
+    Partial<Record<KlingCharacterId, HTMLIFrameElement | null>>
+  >({});
 
   function notifyVisibility(frame: HTMLIFrameElement | null, active: boolean) {
     frame?.contentWindow?.postMessage(
@@ -39,8 +63,18 @@ export function CharacterWorkbench() {
 
   useEffect(() => {
     notifyVisibility(originalFrame.current, tab === "original");
-    notifyVisibility(rigFrame.current, tab === "rig");
-  }, [tab]);
+    for (const id of ["male", "female"] as const)
+      notifyVisibility(
+        rigFrames.current[id] ?? null,
+        tab === "rig" && id === rigCharacter,
+      );
+    if (tab === "rig")
+      setVisitedRigs((previous) =>
+        previous.has(rigCharacter)
+          ? previous
+          : new Set([...previous, rigCharacter]),
+      );
+  }, [tab, rigCharacter]);
 
   useEffect(() => {
     function receiveSelection(event: MessageEvent) {
@@ -60,20 +94,50 @@ export function CharacterWorkbench() {
       )
         return;
       setSelection({ id: data.characterId, name: data.name });
-      const url = new URL(window.location.href);
-      if (data.characterId) url.searchParams.set("character", data.characterId);
-      else url.searchParams.delete("character");
-      window.history.replaceState(null, "", url);
+      if (data.characterId) setRigCharacter(data.characterId);
     }
     window.addEventListener("message", receiveSelection);
     return () => window.removeEventListener("message", receiveSelection);
   }, []);
 
+  useEffect(() => {
+    function receiveNativeIdentity(event: MessageEvent) {
+      if (event.origin !== window.location.origin) return;
+      const session = (["male", "female"] as const).find(
+        (id) => event.source === rigFrames.current[id]?.contentWindow,
+      );
+      const data = event.data;
+      if (
+        !session ||
+        !data ||
+        data.type !== "gathria:native-study-project-loaded" ||
+        (data.characterId !== "male" && data.characterId !== "female")
+      )
+        return;
+      setRigIdentities((previous) =>
+        previous[session] === data.characterId
+          ? previous
+          : { ...previous, [session]: data.characterId },
+      );
+    }
+    window.addEventListener("message", receiveNativeIdentity);
+    return () => window.removeEventListener("message", receiveNativeIdentity);
+  }, []);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const identity = tab === "rig" ? loadedRigCharacter : selection.id;
+    if (identity) url.searchParams.set("character", identity);
+    else url.searchParams.delete("character");
+    window.history.replaceState(null, "", url);
+  }, [tab, loadedRigCharacter, selection]);
+
   function select(next: WorkbenchTab) {
     setVisited((previous) => new Set([...previous, next]));
     setTab(next);
     const url = new URL(window.location.href);
-    if (selection.id) url.searchParams.set("character", selection.id);
+    if (next === "rig") url.searchParams.set("character", loadedRigCharacter);
+    else if (selection.id) url.searchParams.set("character", selection.id);
     else url.searchParams.delete("character");
     if (next === "rig") url.searchParams.set("mode", "rig");
     else url.searchParams.delete("mode");
@@ -107,7 +171,7 @@ export function CharacterWorkbench() {
             <h1>
               {tab === "original"
                 ? selection.name
-                : "Kling male · skeleton candidate"}
+                : `${rigName} · skeleton candidate`}
             </h1>
             <p>
               {tab === "original"
@@ -148,7 +212,7 @@ export function CharacterWorkbench() {
             tabIndex={tab === "rig" ? 0 : -1}
             onClick={() => select("rig")}
           >
-            <Bone size={18} aria-hidden="true" /> Male skeleton
+            <Bone size={18} aria-hidden="true" /> {rigLabel}
           </button>
           <span>Tab changes keep your open sessions.</span>
         </div>
@@ -210,24 +274,47 @@ export function CharacterWorkbench() {
           <div className="workbench-panel-note">
             <Info size={17} aria-hidden="true" />
             <p>
-              <strong>Kling male skeleton candidate.</strong> Four static poses
+              <strong>{rigName} skeleton candidate.</strong> Four static poses
               with adjustable joints, save/reopen and export. Clothing and
-              expression are fixed. Female skeleton editing is not available
-              yet.
+              expression are fixed.
+              {!selection.id &&
+                " This is the retained Kling skeleton session; imported playback packs are not automatically converted to skeletons."}
             </p>
-            <a href="/skin-studio.html" target="_blank" rel="noreferrer">
-              Open male skeleton separately{" "}
+            <a
+              href={`/skin-studio.html?character=${loadedRigCharacter}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open {loadedRigCharacter} skeleton separately{" "}
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           </div>
-          {visited.has("rig") && (
-            <iframe
-              className="workbench-frame workbench-frame--rig"
-              ref={rigFrame}
-              title="Skeleton and motion editor"
-              src="/skin-studio.html?embedded=1"
-              onLoad={() => notifyVisibility(rigFrame.current, tab === "rig")}
-            />
+          {(["male", "female"] as const).map(
+            (id) =>
+              visitedRigs.has(id) && (
+                <iframe
+                  key={id}
+                  hidden={id !== rigCharacter}
+                  data-character={id}
+                  data-loaded-character={rigIdentities[id]}
+                  className="workbench-frame workbench-frame--rig"
+                  ref={(frame) => {
+                    rigFrames.current[id] = frame;
+                  }}
+                  title={
+                    id === rigCharacter
+                      ? "Skeleton and motion editor"
+                      : `${id} skeleton session (retained)`
+                  }
+                  src={`/skin-studio.html?character=${id}&embedded=1`}
+                  onLoad={() =>
+                    notifyVisibility(
+                      rigFrames.current[id] ?? null,
+                      tab === "rig" && id === rigCharacter,
+                    )
+                  }
+                />
+              ),
           )}
         </section>
         <p className="workbench-save-note">

@@ -82,6 +82,8 @@ export interface NativeStudyDocument {
   format: "gathria-native-pose-study";
   version: 1;
   name: string;
+  /** Omitted by the original male candidate; retained as omitted on save. */
+  characterId?: "kling-male-native-study" | "kling-female-native-study";
   frame: { width: 704; height: 1056 };
   anchor: Point;
   pivot: Point;
@@ -265,6 +267,7 @@ export function validateNativeStudyDocument(
     "format",
     "version",
     "name",
+    "characterId",
     "frame",
     "anchor",
     "pivot",
@@ -278,6 +281,12 @@ export function validateNativeStudyDocument(
   ]);
   if (raw.format !== "gathria-native-pose-study" || raw.version !== 1)
     fail("Unsupported native study format/version.");
+  if (
+    raw.characterId !== undefined &&
+    raw.characterId !== "kling-male-native-study" &&
+    raw.characterId !== "kling-female-native-study"
+  )
+    fail("Unsupported native study characterId.");
   const frame = object(raw.frame, "frame", ["width", "height"]);
   if (frame.width !== W || frame.height !== H)
     fail("This native study version preserves the 704×1056 source canvas.");
@@ -307,6 +316,7 @@ export function validateNativeStudyDocument(
     format: "gathria-native-pose-study",
     version: 1,
     name: text(raw.name, "name", 80),
+    ...(raw.characterId === undefined ? {} : { characterId: raw.characterId }),
     frame: { width: W, height: H },
     anchor: point(raw.anchor, "anchor"),
     pivot: point(raw.pivot, "pivot"),
@@ -1009,7 +1019,7 @@ export async function createNativeStudyHoldPack(
       format: "gathria-baked-character",
       schemaVersion: 1,
       name,
-      characterId: "kling-male-native-study",
+      characterId: project.document.characterId ?? "kling-male-native-study",
       source: {
         kind: "unified-archive",
         name: "native-study.project.zip",
@@ -1048,7 +1058,11 @@ export async function createNativeStudyHoldPack(
     new Blob([png], { type: "image/png" }),
   );
   const files = unzipSync(new Uint8Array(await blob.arrayBuffer()));
-  const notice = `NATIVE KLING MALE CANDIDATE — FOUR STATIC POSE HOLDS\n\n${recipe.provenance}\n\nStanding, walk contact, run flight and celebration are four still poses, not completed animation cycles. Selectors idle/walk/run/celebrate each hold one frame at1FPS with loop=false. No jump is supplied. Native pixels and smooth alpha use704×1056; facing left mirrors each frame.\n\nThis is derived skeletal rendering from registered original parts plus explicitly disclosed reconstructed hidden regions. It is not an exact video frame for the three posed states. The separate native-study project retains source PNGs, registrations, joints and editable static poses. Do not import it as legacy SkinV1.\n\n${recipe.derivation.method}\nProject SHA256: ${recipe.source.sha256}\n`;
+  const character =
+    project.document.characterId === "kling-female-native-study"
+      ? "FEMALE"
+      : "MALE";
+  const notice = `NATIVE KLING ${character} CANDIDATE — FOUR STATIC POSE HOLDS\n\n${recipe.provenance}\n\nStanding, walk contact, run flight and celebration are four still poses, not completed animation cycles. Selectors idle/walk/run/celebrate each hold one frame at1FPS with loop=false. No jump is supplied. Native pixels and smooth alpha use704×1056; facing left mirrors each frame.\n\nThis is derived skeletal rendering from registered original parts plus explicitly disclosed reconstructed hidden regions. It is not an exact video frame for the three posed states. The separate native-study project retains source PNGs, registrations, joints and editable static poses. Do not import it as legacy SkinV1.\n\n${recipe.derivation.method}\nProject SHA256: ${recipe.source.sha256}\n`;
   files["PROVENANCE.txt"] = strToU8(notice);
   files["INTEGRATION.md"] = strToU8(
     `# Native pose-study holds / CharacterPack V2\n\n${notice}\nLoad with the independent V2 player using manifest rectangles and anchor, smooth fractional display scaling, and the non-looping hold semantics. No model API or editor is required for playback.\n`,
