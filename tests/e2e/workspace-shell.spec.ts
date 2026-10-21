@@ -78,7 +78,7 @@ test("workbench keeps native joint edits and undo history alive across tabs", as
     page.getByRole("tab", { name: "Male skeleton" }),
   ).toHaveAttribute("aria-selected", "true");
   await expect(
-    page.locator('iframe[title="Original Kling playback"]'),
+    page.locator('iframe[title="Sprite action workspace"]'),
   ).toHaveCount(0);
   const studio = page.frameLocator(
     'iframe[title="Skeleton and motion editor"]',
@@ -104,12 +104,12 @@ test("workbench keeps native joint edits and undo history alive across tabs", as
   expect(await pixels()).not.toBe(before);
   await studio.getByLabel("Bones", { exact: true }).check();
   const withBones = await pixels();
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   await expect(
-    page.getByText("Original Kling artwork.", { exact: true }),
+    page.getByText("Original Kling sprite frames.", { exact: true }),
   ).toBeVisible();
   await expect(
-    page.locator('iframe[title="Original Kling playback"]'),
+    page.locator('iframe[title="Sprite action workspace"]'),
   ).toHaveCount(1);
   await page.getByRole("tab", { name: "Male skeleton" }).click();
   await expect(pose).toHaveValue("run-flight");
@@ -142,7 +142,7 @@ test("workbench follows trusted player selection without reloading the retained 
   );
   await page.goto("/workbench.html?character=male");
   const playerBody = page
-    .frameLocator('iframe[title="Original Kling playback"]')
+    .frameLocator('iframe[title="Sprite action workspace"]')
     .locator("body");
   await expect(playerBody).toBeVisible();
   await page.evaluate(() =>
@@ -172,7 +172,7 @@ test("workbench follows trusted player selection without reloading the retained 
     page.getByRole("heading", { name: "Kling female", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("link", { name: "Open player separately" }),
+    page.getByRole("link", { name: "Open source player separately" }),
   ).toHaveAttribute("href", "/player.html?kling=female");
   await expect(page).toHaveURL(/character=female/);
   await page.getByRole("tab", { name: "Female skeleton" }).click();
@@ -187,13 +187,13 @@ test("workbench follows trusted player selection without reloading the retained 
     "Loaded: Kling female",
   );
   await expect(page.locator('iframe[data-character="male"]')).toHaveCount(0);
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   await expect(
     page.getByRole("heading", { name: "Kling female", exact: true }),
   ).toBeVisible();
   await expect(
-    page.locator('iframe[title="Original Kling playback"]'),
-  ).toHaveAttribute("src", "/player.html?kling=male&embedded=1");
+    page.locator('iframe[title="Sprite action workspace"]'),
+  ).toHaveAttribute("src", "/player.html?kling=male&embedded=1&authoring=1");
   await playerBody.evaluate(() =>
     window.parent.postMessage(
       {
@@ -232,13 +232,11 @@ test("mobile library and workbench navigation stay within the viewport and suppo
     route.fulfill({ status: 503, body: "Unavailable for keyboard test" }),
   );
   await rigTab.press("Home");
+  await expect(page.getByRole("tab", { name: "Sprite actions" })).toBeFocused();
   await expect(
-    page.getByRole("tab", { name: "Original playback" }),
-  ).toBeFocused();
-  await expect(
-    page.getByRole("tab", { name: "Original playback" }),
+    page.getByRole("tab", { name: "Sprite actions" }),
   ).toHaveAttribute("aria-selected", "true");
-  await page.getByRole("tab", { name: "Original playback" }).press("End");
+  await page.getByRole("tab", { name: "Sprite actions" }).press("End");
   await expect(rigTab).toBeFocused();
   await expect(rigTab).toHaveAttribute("aria-selected", "true");
   expect(
@@ -282,9 +280,9 @@ test("female library entry and character changes retain separate male and female
   const femalePixels = await femaleCanvas.evaluate(
     (canvas: HTMLCanvasElement) => canvas.toDataURL(),
   );
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   const playerBody = page
-    .frameLocator('iframe[title="Original Kling playback"]')
+    .frameLocator('iframe[title="Sprite action workspace"]')
     .locator("body");
   await expect(playerBody).toBeVisible();
   await playerBody.evaluate(() =>
@@ -306,7 +304,7 @@ test("female library entry and character changes retain separate male and female
     .getByLabel("Review pose", { exact: true })
     .selectOption("run-flight");
   await male.getByLabel("Bones", { exact: true }).check();
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   await playerBody.evaluate(() =>
     window.parent.postMessage(
       {
@@ -330,7 +328,7 @@ test("female library entry and character changes retain separate male and female
   ).toBe(femalePixels);
   await female.getByRole("button", { name: "Undo pose edit" }).click();
   await expect(femaleUpper).toHaveValue(originalAngle);
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   await playerBody.evaluate(() =>
     window.parent.postMessage(
       {
@@ -372,9 +370,9 @@ test("an embedded cross-import updates the outer identity without replacing eith
   const editedAngle = String(Number(await femaleUpper.inputValue()) - 5);
   await femaleUpper.fill(editedAngle);
   await female.getByRole("button", { name: "Apply joint angles" }).click();
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   const player = page
-    .frameLocator('iframe[title="Original Kling playback"]')
+    .frameLocator('iframe[title="Sprite action workspace"]')
     .locator("body");
   await expect(player).toBeVisible();
   await player.evaluate(() =>
@@ -448,7 +446,7 @@ test("an embedded cross-import updates the outer identity without replacing eith
   await maleSession
     .getByLabel("Review pose", { exact: true })
     .selectOption("run-flight");
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   await player.evaluate(() =>
     window.parent.postMessage(
       {
@@ -470,7 +468,7 @@ test("an embedded cross-import updates the outer identity without replacing eith
   await expect(
     female.getByRole("button", { name: "Undo pose edit" }),
   ).toBeEnabled();
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   await player.evaluate(() =>
     window.parent.postMessage(
       {

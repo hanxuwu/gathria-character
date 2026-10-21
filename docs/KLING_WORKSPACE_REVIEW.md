@@ -5,7 +5,8 @@ The app has three primary destinations: **Character library**, **Workbench** and
 Each card includes its own prominent **Edit Kling male/female skeleton** button.
 Female assets are registered independently from the male source.
 
-The workbench lazily mounts original playback and separate male/female native
+The workbench defaults to **Sprite actions**, where the original frames can be
+inspected and their action metadata arranged. It lazily mounts this player and separate male/female native
 skeletal sessions. Switching characters and tabs preserves each session’s joint
 edits and undo history. A cross-character project import updates the loaded
 identity without replacing its session. Messages are accepted only from the
@@ -14,7 +15,7 @@ expected same-origin child. Original playback is never automatically rigged.
 | Entry                                        | Function                                          |
 | -------------------------------------------- | ------------------------------------------------- |
 | `/`                                          | Two Kling cards and their skeleton buttons        |
-| `/workbench.html?character=male` or `female` | Original character playback                       |
+| `/workbench.html?character=male` or `female` | Original sprite playback and action editing       |
 | `/workbench.html?character=female&mode=rig`  | Selected native skeletal candidate                |
 | `/player.html`                               | Independent V2/V3 and Kling source ZIP playback   |
 | `/skin-studio.html?character=female`         | Standalone female candidate (male is the default) |
@@ -32,3 +33,5 @@ this cleanup is not a new compression or mobile-performance milestone.
 [Five-action packs](kling-jump/README.md) ·
 [Male candidate limits](KLING_NATIVE_STUDY_REVIEW.md) ·
 [Female candidate and new verification](KLING_FEMALE_NATIVE_REVIEW.md).
+
+[Sprite action project workflow and verification](SPRITE_ACTIONS_REVIEW.md).

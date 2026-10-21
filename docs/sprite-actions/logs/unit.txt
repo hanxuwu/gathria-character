@@ -1,0 +1,29 @@
+> gathria-character@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/core/baked-source.test.ts (31 tests) 1435ms
+ ✓ src/core/sha256.test.ts (3 tests) 591ms
+ ✓ src/core/pack-v2.test.ts (30 tests) 142ms
+ ✓ src/core/pack-v3.test.ts (18 tests) 78ms
+ ✓ src/skeletal/geometry.test.ts (3 tests) 20ms
+ ✓ src/consumer/player.test.ts (11 tests) 11ms
+ ✓ src/consumer/kling-packs.test.ts (3 tests) 9ms
+ ✓ src/core/sprite-actions.test.ts (6 tests) 6967ms
+   ✓ sprite action project contract > edits actual Kling male V3 timing while preserving every atlas byte and source mapping  4371ms
+   ✓ sprite action project contract > edits actual Kling female V3 timing while preserving every atlas byte and source mapping  2467ms
+ ✓ src/skeletal/native-study.test.ts (14 tests) 14572ms
+   ✓ native source registration and deterministic composition > renders all four derived poses deterministically and mirrors complete native frames  1678ms
+   ✓ native source registration and deterministic composition > partitions the already-deformed near arm without resampling seams or double alpha  616ms
+   ✓ native study validation and editable portable project > updates a pose with registered bone lengths, saves and reopens source PNG bytes  2568ms
+   ✓ native study validation and editable portable project > exports four honest native V2 static holds with explicit derived provenance  1711ms
+   ✓ female native registration and portable output > preserves alpha and the full frame through four poses, mirrors and ankle parenting  858ms
+   ✓ female native registration and portable output > roundtrips edited female joints and identity with unchanged source parts  2000ms
+   ✓ female native registration and portable output > exports identity-correct V2 holds whose four frames match the female renderer  1772ms
+
+ Test Files  9 passed (9)
+      Tests  119 passed (119)
+   Start at  02:29:41
+   Duration  15.31s (transform 713ms, setup 0ms, collect 1.29s, tests 23.82s, environment 2ms, prepare 801ms)

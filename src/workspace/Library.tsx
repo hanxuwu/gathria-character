@@ -17,9 +17,9 @@ export function CharacterLibrary() {
               <em>A story of your own.</em>
             </h1>
             <p className="library-intro__copy">
-              Start with an original Kling character, explore its movements,
-              <br className="desktop-break" /> or shape either skeleton
-              candidate from its own original artwork.
+              Start with an original Kling character, inspect its sprite frames,
+              <br className="desktop-break" /> and arrange the actions for your
+              story.
             </p>
           </div>
           <div className="library-local-note">
@@ -86,7 +86,7 @@ export function CharacterLibrary() {
                     Open character <ArrowRight size={16} aria-hidden="true" />
                   </a>
                   <span className="library-character__capability">
-                    Five video actions · clothing is fixed
+                    Five sprite actions · inspect, arrange and export
                   </span>
                   <div className="library-character__skeleton">
                     <a
@@ -106,10 +106,9 @@ export function CharacterLibrary() {
             ))}
           </div>
           <p className="library-originals-note">
-            Original playback preserves both characters from the video. Each
-            skeleton candidate has its own registered layers and four editable
-            static poses; continuous skeletal animation and interchangeable
-            clothing remain in development.
+            Your original sprite frames stay intact while you arrange actions.
+            The separate skeleton candidates remain available as optional tools
+            with four editable static poses.
           </p>
         </section>
       </main>

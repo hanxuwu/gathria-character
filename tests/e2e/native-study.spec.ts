@@ -145,9 +145,7 @@ test("the visible male skeleton entry retains poses and old study URLs still ope
     .getByLabel("Review pose", { exact: true })
     .selectOption("celebrate");
   await frame.getByLabel("Bones", { exact: true }).check();
-  await page
-    .getByRole("tab", { name: "Original playback", exact: true })
-    .click();
+  await page.getByRole("tab", { name: "Sprite actions", exact: true }).click();
   await page.getByRole("tab", { name: "Male skeleton", exact: true }).click();
   await expect(frame.getByLabel("Review pose", { exact: true })).toHaveValue(
     "celebrate",
@@ -158,11 +156,11 @@ test("the visible male skeleton entry retains poses and old study URLs still ope
     page.locator('iframe[title="Skeleton and motion editor"]'),
   ).toHaveAttribute("src", "/skin-studio.html?character=male&embedded=1");
   await expect(frame.getByRole("status")).toContainText("Loaded:");
-  await page.getByRole("tab", { name: "Original playback" }).click();
+  await page.getByRole("tab", { name: "Sprite actions" }).click();
   await expect(page).not.toHaveURL(/mode=rig|study=kling-male/);
   await page.reload();
   await expect(
-    page.getByRole("tab", { name: "Original playback" }),
+    page.getByRole("tab", { name: "Sprite actions" }),
   ).toHaveAttribute("aria-selected", "true");
 });
 

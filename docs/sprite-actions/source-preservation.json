@@ -1,0 +1,2986 @@
+{
+  "baseCommit": "d583cdabc4da35b9db852200c423668bce2a8fd4",
+  "checkedAt": "2026-10-21T02:35:44.057003+00:00",
+  "scope": "Existing artwork, exported/review image and ZIP assets, Kling JSON records, and complete skeletal runtime: unchanged from the branch baseline. New sprite-action metadata samples are separate.",
+  "passed": true,
+  "filesChecked": 496,
+  "bytesChecked": 433163903,
+  "files": [
+    {
+      "path": "artwork/kling-jump/README.md",
+      "bytes": 1984,
+      "gitBlob": "2dbed50f40489783f6d0fb721719aed09ceb696c",
+      "sha256": "fbe036ef612a3cc070313d02e4be4da307321962b39705962409663c129ab74c"
+    },
+    {
+      "path": "artwork/kling-jump/prepared/extraction-report.json",
+      "bytes": 663657,
+      "gitBlob": "4db334ddf1314066ae059fab537c7feacc72c0a7",
+      "sha256": "df89f2eea778b06492bdf6a0343ca4b32962292bb1e3e2b122cff8d106f8107e"
+    },
+    {
+      "path": "artwork/kling-jump/prepared/female-library-preview.png",
+      "bytes": 290687,
+      "gitBlob": "7b5571825885d9b1f62737953045747ffbed9e73",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+    },
+    {
+      "path": "artwork/kling-jump/prepared/female-source-standing.png",
+      "bytes": 518500,
+      "gitBlob": "7971a996aa895dec045006229bd8b1914fc68eb1",
+      "sha256": "fad09f34747ce41b2d2c3dd9d7daaa4b3b9c8440871241ac2dc5f808054b570b"
+    },
+    {
+      "path": "artwork/kling-jump/prepared/kling-source.zip",
+      "bytes": 65448898,
+      "gitBlob": "2eac26a2bee50a1af4ea9db7ab9ba165bae49823",
+      "sha256": "80f34676b01f5b7a98efb4ebfb8d237e01334299fd5f2774acc4fc62d00b342d"
+    },
+    {
+      "path": "artwork/kling-jump/prepared/library-preview-provenance.json",
+      "bytes": 869,
+      "gitBlob": "fb9fa0acf873f5110278e3c5f1214a811f8bca15",
+      "sha256": "3fc5936de363e6942054fd8a5ac3144332aa27519eb691b1911c14bd6cbc0940"
+    },
+    {
+      "path": "artwork/kling-jump/prepared/male-library-preview.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "artwork/kling-jump/prepared/male-source-standing.png",
+      "bytes": 366957,
+      "gitBlob": "0f16d11cd8656d3f033a927d48f6f5ce2d015c53",
+      "sha256": "91703b107dcca146dbdd1582ccc46121bd46e8b18bd5533475940a92441d1603"
+    },
+    {
+      "path": "artwork/kling-jump/source/selection.json",
+      "bytes": 2717,
+      "gitBlob": "bb6907cdc7936c49306eafc4ac8496d25b92f136",
+      "sha256": "42c668b63ac9def824f2d64d5cd0b219ffa91f8bea4a3a9c68d97cf8134ace4d"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/celebrate.png",
+      "bytes": 330257,
+      "gitBlob": "20866a27a76bf4d5539554cae327be8236435a21",
+      "sha256": "f1b27ea63043302df3f5d07a5f8cd82e979bb2449fb49aaee5c8f92f63e3f874"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/far-forearm.png",
+      "bytes": 11413,
+      "gitBlob": "001af675f212207ff16eddbbd5ea50006f75c623",
+      "sha256": "0162831aaf8a5e4a9df9f767e38ff8c278c339614e67cc76b13dd53744bca973"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/far-hand.png",
+      "bytes": 11860,
+      "gitBlob": "0ab8017977eb343e808e38cf0a42a2a248c8d64d",
+      "sha256": "91d185204f4a075274eccdcfaf277491abd55e342de4c66fba98a7a4e4d99e3d"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/far-shin.png",
+      "bytes": 15266,
+      "gitBlob": "8517bdd15642be7c997702878a9d01fa685715af",
+      "sha256": "5c223cff092b077ab4cbd3b711f4ac7cf87acbdc2bfeae9d17e68bcafe3bb0c1"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/far-shoe.png",
+      "bytes": 17819,
+      "gitBlob": "a9182b0e64b73f6910393f729739510058256b27",
+      "sha256": "a5359496530b700e7e90d89e3f2a957fb75277cef0cadb3cfaeb5fe7c242113e"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/far-thigh.png",
+      "bytes": 17931,
+      "gitBlob": "a24bb1063103f9e6a39584ac3e4b093e50f03713",
+      "sha256": "9f58db44e62e614b54caec82e4d4898867339cea6416e147552406f02595f369"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/far-upper-arm.png",
+      "bytes": 14406,
+      "gitBlob": "5aa021404a82fa0f9775012b34fbf4b6d7900971",
+      "sha256": "362ebaa51fc1fba6be8cb0237848c6fc387a94d1bfd9bd9b17bc8691d645ff0e"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/head.png",
+      "bytes": 139175,
+      "gitBlob": "48fb1fcca7b94f6e8b3387b88488fbf2a70ae45a",
+      "sha256": "5bfeed03046e82d7fc646089c56e5c212553980a7ffa38cb2e3fde061300775a"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/near-forearm.png",
+      "bytes": 12937,
+      "gitBlob": "a08b80e6860940a1a8efb5e2622be7c78059e0ba",
+      "sha256": "55305f66547a9422a556d28c3ef17c1c889ebf3f946848bff87e6ece9b6cc0ac"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/near-hand.png",
+      "bytes": 12191,
+      "gitBlob": "4607ff09d565c6191682b01585590cdc73845854",
+      "sha256": "eba03b0b72abea4cc3d6e0a3e950a32eea0af073225fd795282b9999886159ae"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/near-shin.png",
+      "bytes": 16906,
+      "gitBlob": "d32b505001de0468ac4e8dcfeeda6b6b4dbe570b",
+      "sha256": "d7d191c177a26cb5f4c8a32299d2c9523500f3d343273299dba863171fa30011"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/near-shoe.png",
+      "bytes": 19685,
+      "gitBlob": "2989c4518c948e42c7f954b35aa1e15acba8498a",
+      "sha256": "080d47f3aaf9fb0dbb0a57bd3f507d846bf73377f465f9c21befab36e8207a4b"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/near-thigh.png",
+      "bytes": 20139,
+      "gitBlob": "3afecd8b478567b267f16ed5eb8952ffa3d22bef",
+      "sha256": "b3a90e9d1252bc3edd009e5a90a58f1194a6f3ea2fae3a4ed0a302ac90306570"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/near-upper-arm.png",
+      "bytes": 18886,
+      "gitBlob": "adb76c32de79149638cbbf73f99749b35eb3e5d2",
+      "sha256": "3918a527295d854e9efa1799a6c4737e6202bda2208c96aa73cf9d07e054ab5d"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/pelvis.png",
+      "bytes": 16090,
+      "gitBlob": "634fe9188e22db49db469ed508af82207354ba2e",
+      "sha256": "e4f93ffd0065bc1d4980a5a0676749d60197399a766cb079812f936bfa15bcec"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/parts/torso.png",
+      "bytes": 34954,
+      "gitBlob": "4bc1bd3049deb0a1506c17ca03adb069273fce12",
+      "sha256": "464495297c0cbd79ffb41115edf93fb8e0ed6236af30a02dd8f9f102de4f6301"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/preparation-report.json",
+      "bytes": 6260,
+      "gitBlob": "7fdcc78bddd456b2bb349feaa1cbc8c7e5207676",
+      "sha256": "e9d486c254e03233b47a271e8db08227ade84b3d1536ef5d422e3dbf405c70aa"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/project.zip",
+      "bytes": 625417,
+      "gitBlob": "06225fc0d0e4e28ea25555fb78330cb668fa2608",
+      "sha256": "0043f1a9b1e70dc1667a82b4fa270e7d3a8632caa96d3444586cec8b5fa72c65"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/reference.png",
+      "bytes": 290687,
+      "gitBlob": "7b5571825885d9b1f62737953045747ffbed9e73",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/registration.json",
+      "bytes": 9090,
+      "gitBlob": "cb55af7caa9c936389df716f95c7a9ec8a924183",
+      "sha256": "1feecc0035a9bc7ca1891e9e6c39ba37b41ca70c0f1f18a6cd6329912b5f9e18"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/rest-composite.png",
+      "bytes": 296160,
+      "gitBlob": "771293b12acf43ad47140e4a2cd38062ecb83bcf",
+      "sha256": "f8716a86cbcdd4d9f2482b8516d624baa7fa139e3a0f47775dc942aec5cebd27"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/run-flight.png",
+      "bytes": 377564,
+      "gitBlob": "5fe1c34375811ed511adca1e233cd5fc7f620ad6",
+      "sha256": "0c65a93c0b8cf10d4a89a1451237af2b6aec23532615f94c3ac9f45e6b240848"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/standing.png",
+      "bytes": 318950,
+      "gitBlob": "6641d1fdd8bfe70c6c351438475901d07024f1c5",
+      "sha256": "43c8877faa5165ae14d6bdca6ef24b75d29d7d376e4e766868c3a2d049469ea1"
+    },
+    {
+      "path": "artwork/kling-native-female/prepared/walk-contact.png",
+      "bytes": 357298,
+      "gitBlob": "1f11266afcfdcd3126d04889f61789a9c726ee46",
+      "sha256": "c40f41ef99c5322ff743e8e98089e0820cca5ce3a770821f7f8b1864d54f0779"
+    },
+    {
+      "path": "artwork/kling-native-female/source/README.md",
+      "bytes": 2430,
+      "gitBlob": "c75484248e44cf0031b2b3b5b6f2f5cb858027cd",
+      "sha256": "55c61f706cdde6ade80c1c91798d39da6120422e703a56a50bf49eacb085aff4"
+    },
+    {
+      "path": "artwork/kling-native-female/source/generation-prompt.txt",
+      "bytes": 1827,
+      "gitBlob": "357f77d9b05d914e1e22cf260a0327a028e592e2",
+      "sha256": "019dc73b74359eeaeb653edf1641455d8870741fda8aa96fe8f98ccc01ff0354"
+    },
+    {
+      "path": "artwork/kling-native-female/source/hidden-joints.png",
+      "bytes": 1411706,
+      "gitBlob": "719cacf6b82548113aaff867e9c62a2ff9040ae7",
+      "sha256": "98ef19b7abe04da60443c9f194993cedf9f21df4754c2c1d811f3d1c6192b9c8"
+    },
+    {
+      "path": "artwork/kling-native-female/source/provenance.json",
+      "bytes": 1064,
+      "gitBlob": "5805162adf7de511e15d22f7cf2d3ec4cdfeb40f",
+      "sha256": "84f9e5f4146d871681ceea524ea4a9d8a76a10559a10eb0f5654032307b82111"
+    },
+    {
+      "path": "artwork/kling-native-female/source/reference.png",
+      "bytes": 290687,
+      "gitBlob": "7b5571825885d9b1f62737953045747ffbed9e73",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/celebrate.png",
+      "bytes": 324115,
+      "gitBlob": "bebc2b498014b86e14084bc1cf7b32acaba11d95",
+      "sha256": "1dd59fb7a14dc7c333cbc36966391f50bc015141c42a3583119b6fa098ef149d"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/far-forearm.png",
+      "bytes": 12107,
+      "gitBlob": "b559142679bedab0acc95750f0cc607a6fa7da06",
+      "sha256": "17352c135953f758c5ea73f834777b473d050bbe2094a1557c692892c218b5b0"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/far-hand.png",
+      "bytes": 10312,
+      "gitBlob": "9e518e95a6053842e6143372b8f19a84d973fe38",
+      "sha256": "d614275a37066f3659240cca3de3eec903144db129de26ff407e7193f40505d3"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/far-shin.png",
+      "bytes": 17457,
+      "gitBlob": "46bbb9ff7aeed7b13d97b6f25988ea4cc6972cf5",
+      "sha256": "245e3846e65d5f22ddc72531bbe2ac45d93173297cef21a98dae2cc361c2a484"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/far-shoe.png",
+      "bytes": 13757,
+      "gitBlob": "04e4eb35f6bbefa77d9f78d26b908a767551e707",
+      "sha256": "32e7b8633a31846bb2c84b30ff69e11673f38aa2a47b7da57092e81819263346"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/far-thigh.png",
+      "bytes": 25615,
+      "gitBlob": "3c367f045b79bdaa9afc10d92e4f237c12e4df6d",
+      "sha256": "4316107c361824e8f574045b673285b64462cce69663cfbea46c647e7056d5e5"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/far-upper-arm.png",
+      "bytes": 14900,
+      "gitBlob": "5f857cae1d1a7086d7b376ca8163ec7dadae0c6d",
+      "sha256": "f69e7d596c9e26ac8292407731ffa954267d287b5eac6b8487722fd6b21e76e9"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/head.png",
+      "bytes": 124823,
+      "gitBlob": "65f4e8c0ba5e9d8c6ca1eb56dbde0f22347e39b0",
+      "sha256": "d5d52d8c63476f1e2bbd125f0b6b92e661d75aa44200d91327b4be152322a7e5"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/near-forearm.png",
+      "bytes": 13707,
+      "gitBlob": "6ae29306131bbf34c3ce4e3e209e0cb01d815001",
+      "sha256": "e47e62e5d4e4ff907167be8943105630e9110165f347f7eb1118c40c880d6c1f"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/near-hand.png",
+      "bytes": 11881,
+      "gitBlob": "09054c536402e6f2994d5c797c16bf09a2f68688",
+      "sha256": "4c6574bd13d3f05aff850ed419aaabf6b81ec95cafc97413a20b7a2b38aee1cc"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/near-shin.png",
+      "bytes": 16956,
+      "gitBlob": "3545d74cf582daac714d2ccff4a44274939ccb56",
+      "sha256": "eeb7df3e33c6a4f43f54626fdd6689c233d0f36dd34987290cd30ca0dda38332"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/near-shoe.png",
+      "bytes": 16185,
+      "gitBlob": "dad9022550838eb6e8f5331258807ec21134102b",
+      "sha256": "f54fc7bdbcf2a432cd30a6d1d114a4d08342587cc621ebd1ea186923ac2bfc68"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/near-thigh.png",
+      "bytes": 28491,
+      "gitBlob": "4af0e8cc614f49722ec8362e54c7486449575584",
+      "sha256": "ce2daf6ec200c16c0afb24b5abd55cfd3ba4a0d865c84c0a20c6d17edf4c3747"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/near-upper-arm.png",
+      "bytes": 20883,
+      "gitBlob": "a0ed7970298b40e4ca51b81a91136b238d047ac4",
+      "sha256": "5d77dad070408e1db6f8f8a0dfa9514b2d51f6e3b8572c3f46162b4e486fbf98"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/pelvis.png",
+      "bytes": 18518,
+      "gitBlob": "b1f9b37548a22453b02466727a546a79ff0bdd10",
+      "sha256": "fa9c50e202fe4de122cf67894615f8ade652070a7719dca41ea630981576d936"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/parts/torso.png",
+      "bytes": 35922,
+      "gitBlob": "fdb26e2eb4a095fd89ddd9f9dc1521069f32bec3",
+      "sha256": "9921eae23d9125aebe1646920146670606c2bce2ba1c2e4831962a1e3f3bd7b2"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/preparation-report.json",
+      "bytes": 5233,
+      "gitBlob": "8a9a0e512481f0dcda6a30f2a222d184e3d2979f",
+      "sha256": "5d2d5e2a7dac569799e3d048048eb606144e4254208d341595b3ab617475cfef"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/project.zip",
+      "bytes": 615183,
+      "gitBlob": "156a4b83623732f6c5d6cce682d0f95766e24900",
+      "sha256": "bfefaef4617eff58d09f1543a642bd8db3f67ff94fe96f79aa4c520939e071b7"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/registration.json",
+      "bytes": 8870,
+      "gitBlob": "6f245ccb89028473af3f40a8135a44203316feab",
+      "sha256": "65c6683a0e203dab4b24ab3703021cbe1192ca13b5b95b75f8d72eb19f7b7378"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/rest-composite.png",
+      "bytes": 283900,
+      "gitBlob": "b517bbf0179806704eb19b40ef60658776080eaa",
+      "sha256": "a410311a100a687eb2f0c6547838663edad10f439f4b64b61ad0249234e9f9be"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/run-flight.png",
+      "bytes": 362914,
+      "gitBlob": "44d107f8db490016bb0b277c3560a7e9034a4bbb",
+      "sha256": "4fb20e5626b8cd47fac2dc51227b1b067cdf9950ace8f9f05cceca1fa2819597"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/standing.png",
+      "bytes": 311208,
+      "gitBlob": "f327fb1bdf4f51d65c9db9037a9f625439b04763",
+      "sha256": "759c56527b500598e4e4d90a94fc3a3616e98893c268d2ae7989cf6d6c10b2c7"
+    },
+    {
+      "path": "artwork/kling-native-study/prepared/walk-contact.png",
+      "bytes": 349795,
+      "gitBlob": "01e5d07a7a5aef7d73ba11a8ac7287ed07e4ff8c",
+      "sha256": "1ce18a571bf32ee54b24d6c0f26be1df2d186f2a3381a8c73ea81b130be23f6e"
+    },
+    {
+      "path": "artwork/kling-native-study/source/README.md",
+      "bytes": 2325,
+      "gitBlob": "ad811931497f94ee45fc953f083534eb06daf609",
+      "sha256": "dbed1108fbe11b3a1ca187f198ccbe658cdbdb6a92a551b15c7ccf3ae7a5645e"
+    },
+    {
+      "path": "artwork/kling-native-study/source/generation-prompt.txt",
+      "bytes": 1505,
+      "gitBlob": "f6ac37dabf66aaf8accfd577d3eb200b598f16d4",
+      "sha256": "a6e44f058ca0a046ee4adf5d8ab8b80a745d660e2ccd544f4a2e1cf0d7799393"
+    },
+    {
+      "path": "artwork/kling-native-study/source/hidden-joints.png",
+      "bytes": 1423660,
+      "gitBlob": "8df4c9d4b84f6f7706b14a123ff940ee661b7db4",
+      "sha256": "fee32913565c26e1b29b93fee5bc0f4e56d258e82803b5f88776e1dbb6adf342"
+    },
+    {
+      "path": "artwork/kling-native-study/source/provenance.json",
+      "bytes": 803,
+      "gitBlob": "5399368aa6ad005c8b1fbf3e11200aabdc46ff67",
+      "sha256": "454372637fec801df99c561de5363fe46e407f9dccdd1309c6d3c62a8cd73ecf"
+    },
+    {
+      "path": "artwork/kling-native-study/source/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "artwork/kling-playback/README.md",
+      "bytes": 2021,
+      "gitBlob": "77551ae744eb20a761212611f73c5387307e0847",
+      "sha256": "9104797cd1141e2d528b23835135c484046e598543cb586acb2427cd7b04add1"
+    },
+    {
+      "path": "artwork/kling-playback/prepared/extraction-report.json",
+      "bytes": 442990,
+      "gitBlob": "75e345f8ab4d3aceb16f2275d6ac6234e10457fc",
+      "sha256": "7a1ad4934fb94677fcb63fa22bdff4364f4c9886c19fc6da03b2eed0e565f6b2"
+    },
+    {
+      "path": "artwork/kling-playback/prepared/female-source-standing.png",
+      "bytes": 508850,
+      "gitBlob": "c8cdc28eefc6853c3c638afe8198d9dbebb11137",
+      "sha256": "014b035eee507199a6d3af3cbf8c9c600f8d411b65e171a44330b678da166241"
+    },
+    {
+      "path": "artwork/kling-playback/prepared/kling-source.zip",
+      "bytes": 45493444,
+      "gitBlob": "de6144bf38c5aae3d072d4612eb74e6699f81bcf",
+      "sha256": "ae00ced97c2a5735912978705d80adc4130359e53413e26e4cc28112a6281f6c"
+    },
+    {
+      "path": "artwork/kling-playback/prepared/male-source-standing.png",
+      "bytes": 364665,
+      "gitBlob": "57773c65c28ab395e120a706f0deb690bbd11c8e",
+      "sha256": "1e2172a753d615fa4fa6a3b89c7af05090dd863b50dd4d5135dc340be302f70c"
+    },
+    {
+      "path": "artwork/kling-playback/source/female.mp4",
+      "bytes": 16563877,
+      "gitBlob": "8264aba9141c59eba164352c778960fe03f61784",
+      "sha256": "8319516856a1ba660fb33f12711ccbedc184eca5a1d4b8d9ac64841e731f8eda"
+    },
+    {
+      "path": "artwork/kling-playback/source/male.mp4",
+      "bytes": 14087744,
+      "gitBlob": "3cad9305e6b3e8659b1f65be77b50eabaf1c5e25",
+      "sha256": "ca1737b97dfc1bc91a1f24636a42bc6919f0a2f002975bf907cb49486779cc5a"
+    },
+    {
+      "path": "artwork/kling-playback/source/selection.json",
+      "bytes": 1764,
+      "gitBlob": "3c8ed0458eeb6eab0ee41a8cfc6d2a58fd37ce5e",
+      "sha256": "059f68a123e9e640b77ce4e2922d0bb37ac67799a0742666ed0484ff7f1dfc28"
+    },
+    {
+      "path": "artwork/requirements.txt",
+      "bytes": 28,
+      "gitBlob": "969f184a939e047a8e8bce94c85ece8fd1aeee20",
+      "sha256": "d0524439f7a0da67c1283d44683e00fcc795a0657e726f22087cfcbe198f7c89"
+    },
+    {
+      "path": "docs/kling-focus/browser-evidence.json",
+      "bytes": 29344,
+      "gitBlob": "6d4c89b79e2c583bb914b760588a08da03e54536",
+      "sha256": "bd2b8baed34426abb4fe107cc0a23851afe7263a36232e4a11d7d2e6520b996a"
+    },
+    {
+      "path": "docs/kling-focus/source-preservation.json",
+      "bytes": 10833,
+      "gitBlob": "725b0f0335ee857bcf168a95ae17d029ab8eb6eb",
+      "sha256": "f56615c1813d39287e4598b555041ad2a15aceb5156a2790fed1a2267fd23958"
+    },
+    {
+      "path": "docs/kling-focus/verification-results.json",
+      "bytes": 1262,
+      "gitBlob": "8ea5121e698eb30d65d4e6d3682e4ca8c4a20a35",
+      "sha256": "14013b32924300fcf1e36e265db520a7a3005a555032c0b5e15365808e62d1bc"
+    },
+    {
+      "path": "docs/kling-focus/workspace/edited-native-study.project.zip",
+      "bytes": 615299,
+      "gitBlob": "b3009983e3c0fa61ddebc4ce138af37b17e7bc97",
+      "sha256": "abda1249ecf5fe14394ed146d27e7ef172b8f6596d01aae6490f3b575fdd9370"
+    },
+    {
+      "path": "docs/kling-focus/workspace/evidence-index.json",
+      "bytes": 12983,
+      "gitBlob": "28d58e23b3a0cad1c6d41ec4efed58a67c05c2bd",
+      "sha256": "633ed1592b20d657503186e3a30181041bf4f631ec9f9a1bff1d8050d15ddd23"
+    },
+    {
+      "path": "docs/kling-focus/workspace/female-player.png",
+      "bytes": 158668,
+      "gitBlob": "4d6baa3247e1509e517ccbb3088fc2fa873fa203",
+      "sha256": "839a9c47fb794747c2800fd0c389f585a9b3029ea9681c8b795387c798642598"
+    },
+    {
+      "path": "docs/kling-focus/workspace/library-desktop.png",
+      "bytes": 172876,
+      "gitBlob": "216e96c4f141e937dd7393a6dd29d3d02ddc4889",
+      "sha256": "e2eaa5f3bdb8e555c78d8fcceceae9265074acf68e6df81304f92317ac05e45d"
+    },
+    {
+      "path": "docs/kling-focus/workspace/library-mobile.png",
+      "bytes": 141187,
+      "gitBlob": "ca7048da2aee9e7480a3fa91905ac7c5c365fa22",
+      "sha256": "072572d465d7220a176a0445b15f1fe4a71daa2cd3d2fb90b41e0d8a49e82c20"
+    },
+    {
+      "path": "docs/kling-focus/workspace/male-player.png",
+      "bytes": 158011,
+      "gitBlob": "d3760f40eff86ddd752bef295187fdbe49f08c38",
+      "sha256": "b952182af531823688493f8a79563668612ebf4f95de1f2de5b44ded9ba622e8"
+    },
+    {
+      "path": "docs/kling-focus/workspace/workbench-mobile.png",
+      "bytes": 121346,
+      "gitBlob": "a15b1f90c2bff2b836e99d1e10796dcd3fcacaa8",
+      "sha256": "8cafcbf5ad3f5138035a3132f164ba45991d6a203d716928fd52408fd297afe0"
+    },
+    {
+      "path": "docs/kling-focus/workspace/workbench-original.png",
+      "bytes": 175929,
+      "gitBlob": "d3076727fc6792453966cc5dbfe40107c1014a7b",
+      "sha256": "26aa898e4e5b06fc8ffae1c0e96804bf6c0e76e1872f48fddf4e2fb26ac8a839"
+    },
+    {
+      "path": "docs/kling-focus/workspace/workbench-skeleton-edited.png",
+      "bytes": 304866,
+      "gitBlob": "56aec7c078eff51554aaf8077d9e9147a5549919",
+      "sha256": "c572efe1d1434c3e3f2ee5ad1a3e76511f9f91c2888903c84ffda16ad18cac7b"
+    },
+    {
+      "path": "docs/kling-jump/artifact-validation.json",
+      "bytes": 11787,
+      "gitBlob": "38c41fad58519b0feda23389e83c455bb6bd772b",
+      "sha256": "ea663c0a098a12bf9e9100de21dd78e5da2bfff36e4434a594999ffed573187d"
+    },
+    {
+      "path": "docs/kling-jump/browser/evidence-index.json",
+      "bytes": 114199,
+      "gitBlob": "1c364be73c8b5134c2d38f08049e795af7a1a4de",
+      "sha256": "f9c45d0bbddb5b9f89a7706e2af3044416d9ae81aefa9645eb04963362e655a5"
+    },
+    {
+      "path": "docs/kling-jump/browser/female-imported-jump-apex.png",
+      "bytes": 139243,
+      "gitBlob": "1f88a7422b68ad18382fcd0e934ae82c2d14ee9e",
+      "sha256": "cf895a9a0dd28be39085270ad86be924764dfbc57893bb5020413c306f180be9"
+    },
+    {
+      "path": "docs/kling-jump/browser/female-independent-jump-apex.png",
+      "bytes": 134649,
+      "gitBlob": "35f552c2c7e357a55d691e0855aa9c51f04361bb",
+      "sha256": "2087f128972cc299acf6c57ee23b3183a54e03c3f00c17f19eeb8764aed7d802"
+    },
+    {
+      "path": "docs/kling-jump/browser/female-independent-jump-recovery.png",
+      "bytes": 137427,
+      "gitBlob": "e494a71e49683971c3cba0f254ea7e980c8f46e6",
+      "sha256": "424fe0b41895878930ed33c3b51a4360b96caacc55076afd3e76a374406298dd"
+    },
+    {
+      "path": "docs/kling-jump/browser/male-imported-jump-apex.png",
+      "bytes": 138726,
+      "gitBlob": "7a59edd10332abba3a0b077dd8bc4721a37c1336",
+      "sha256": "be32d4ee7b1156d0b9f3fe1fd4157d9e0deb75a1768b2c5b688aceeaa93f0d7e"
+    },
+    {
+      "path": "docs/kling-jump/browser/male-independent-jump-apex.png",
+      "bytes": 134376,
+      "gitBlob": "8115458674c585d5d0d56f685313cc6b11439047",
+      "sha256": "2a98be1fc481a4695c7ff19d65a76fdbb40ac395f8e6342174975c6d22894f7d"
+    },
+    {
+      "path": "docs/kling-jump/browser/male-independent-jump-recovery.png",
+      "bytes": 136720,
+      "gitBlob": "242f5d4573d439e16fefac7f369f4c25f9b4256f",
+      "sha256": "843ee2866c380d9e1a99c5e2e41ad7ae01ba9ac09dd5b475800182a4743ea076"
+    },
+    {
+      "path": "docs/kling-jump/browser/pair-jump-apex.png",
+      "bytes": 232598,
+      "gitBlob": "66f93d4432a89fe009c6f70985336626d1973ac5",
+      "sha256": "b475c243b6973527bd6eba14d21c2f9bf09d2c56dcc911a150c88dcf1f0c9209"
+    },
+    {
+      "path": "docs/kling-jump/browser/pair-jump-recovery.png",
+      "bytes": 237909,
+      "gitBlob": "0a0af2da7bb4765e8e98c4ad25542af9b19d972b",
+      "sha256": "0d4edf92fd53e8c4dd496ff510473d473fe64fa53c848daf8442f886d695b407"
+    },
+    {
+      "path": "docs/kling-jump/exports/female.character.zip",
+      "bytes": 30286811,
+      "gitBlob": "8d69a4d895f8308f3629f78c956521ddf826992a",
+      "sha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe"
+    },
+    {
+      "path": "docs/kling-jump/exports/male.character.zip",
+      "bytes": 30330913,
+      "gitBlob": "97e8aaa8a0fc411c6eaaaee845e14b490c56fe14",
+      "sha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d"
+    },
+    {
+      "path": "docs/kling-jump/review/female_apex_source_matte_export_1x.png",
+      "bytes": 524316,
+      "gitBlob": "22f60ea262f89415b56de7866bf1b2c717120800",
+      "sha256": "c2ed698fc2b092b5338bf4e051f61591c3697dcdc7b027e7a36047590e45e766"
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_keyframes_1x.png",
+      "bytes": 1443607,
+      "gitBlob": "502204ad8dc841ce2175d2a4432501bfa5ceb25c",
+      "sha256": "97762d17cc6cb3665ed754e14a2f89cdc35928464269fc8ea09535aa1b15a284"
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_keyframes_2x.png",
+      "bytes": 1890569,
+      "gitBlob": "1acd7a052560d27a97181f45bbf8a0047582dd3d",
+      "sha256": "09d841267571645bbb6c58d9fcbe6925309963e13ae0d65415e8e210ffb2a6d7"
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_left.gif",
+      "bytes": 1607473,
+      "gitBlob": "34874af3c3d5d21780168013d9cf9d2fc1d292e2",
+      "sha256": "316af6fe343c54c863e2880f82389950cc04375774adc36e3439e3d5b8d9fed8"
+    },
+    {
+      "path": "docs/kling-jump/review/female_jump_right.gif",
+      "bytes": 1605561,
+      "gitBlob": "1cab7e59333baaed2bd439a610299d62238ca790",
+      "sha256": "0d5c22c2dbf748e89607cc4614ccd35715db4bf1045e9f0ca1bb6ce123f332c7"
+    },
+    {
+      "path": "docs/kling-jump/review/male_apex_source_matte_export_1x.png",
+      "bytes": 406732,
+      "gitBlob": "560f8e0da46a929beb9161215859b1ea9d192b7b",
+      "sha256": "9cf3de5a9a2dba066881d96db9fc216af5f3df6a53b1096bdcae4383c2fecee6"
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_keyframes_1x.png",
+      "bytes": 1428899,
+      "gitBlob": "2a4110566072fcfa1b1e96cca4d124815d1a2f97",
+      "sha256": "532ef26d91c937236bd895000ca8a19aa6085b8be07fe3ddc8d418da9c06acf7"
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_keyframes_2x.png",
+      "bytes": 1873449,
+      "gitBlob": "c5fc212ab2b8d254e5913a9351b642c6eb1fba61",
+      "sha256": "910034dcf277aa13a9afd1daf5be82214987ab3853ebf54eccf8aac278e08a87"
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_left.gif",
+      "bytes": 1582675,
+      "gitBlob": "39786d49332b987fa41061cff3971a7faf73f8f0",
+      "sha256": "23ac040cba6423b860002e3c83b33710ae140af555bb24096290f69a7f416615"
+    },
+    {
+      "path": "docs/kling-jump/review/male_jump_right.gif",
+      "bytes": 1585100,
+      "gitBlob": "dec2cb82602a1e94ba1b59c16d63de7af80a4016",
+      "sha256": "3bcbae0cd217cc45f7750dc551f7249b729871a0fe2fe3594b6f53f7d2068b11"
+    },
+    {
+      "path": "docs/kling-jump/review/pair_jump_right.gif",
+      "bytes": 3231950,
+      "gitBlob": "1afedf8c85b08a47fe16b1339abbf73716455824",
+      "sha256": "69c7c2068650bfe95b1f8a15f8c86ea1f84ca855d93386ba048b7e8cee5a0111"
+    },
+    {
+      "path": "docs/kling-jump/verification-results.json",
+      "bytes": 6608,
+      "gitBlob": "ea9038a4d54d43f81e575f3b6d20f86f8da95c4a",
+      "sha256": "1e9f89895fbf9cc9b139c2de75ea38e30ea94180f96a5cacb98d070c1e963768"
+    },
+    {
+      "path": "docs/kling-native-female/final/artifact-validation.json",
+      "bytes": 19073,
+      "gitBlob": "48547f9c905b7d191acbbe21fb25f7007d00ac75",
+      "sha256": "712b6ca4c92675b258caa3619142351b5513b2498726d72b9b1ea0a2c179161d"
+    },
+    {
+      "path": "docs/kling-native-female/final/celebrate-bones-right.png",
+      "bytes": 402746,
+      "gitBlob": "416a9e6040f8d5bbe0e59c82b5ec317b487f60c7",
+      "sha256": "bc000cedfb586a86dbd7577145e52d0b1b1b556f8ea5dbdd0cd23b488f11d42a"
+    },
+    {
+      "path": "docs/kling-native-female/final/celebrate-left-1x.png",
+      "bytes": 330389,
+      "gitBlob": "e92ec05e602a4fbac4615fcda3feacaba5e87925",
+      "sha256": "a9f20447302ff4811160afffd6c39edad621acd92ccac037dbf4776edcdb6dde"
+    },
+    {
+      "path": "docs/kling-native-female/final/celebrate-right-1x.png",
+      "bytes": 330257,
+      "gitBlob": "20866a27a76bf4d5539554cae327be8236435a21",
+      "sha256": "f1b27ea63043302df3f5d07a5f8cd82e979bb2449fb49aaee5c8f92f63e3f874"
+    },
+    {
+      "path": "docs/kling-native-female/final/character-pack/character.json",
+      "bytes": 3205,
+      "gitBlob": "b4a819c2aeb4b4ce61e7faa0b91a52cee5741cba",
+      "sha256": "814dadba3d1bf7881775c553d6ac4a02f7986246be8067918b8e16e20e161ca5"
+    },
+    {
+      "path": "docs/kling-native-female/final/character-pack/manifest.json",
+      "bytes": 1569,
+      "gitBlob": "63c3bd7ac7b85db5748db7d2c76b2ac1fdafe778",
+      "sha256": "fe970386694cf19eec4954f8b062cdd2bf013cb4e45235d3c841df6204c7f177"
+    },
+    {
+      "path": "docs/kling-native-female/final/character-pack/spritesheet.png",
+      "bytes": 1395543,
+      "gitBlob": "a3522b597e1cc3ef1fabec2a6b2848387f005a75",
+      "sha256": "2531c540c4d7c758ac2e7314d21a5366342c32fa85fe2f82d56bb5b7c4796804"
+    },
+    {
+      "path": "docs/kling-native-female/final/evidence-index.json",
+      "bytes": 32023,
+      "gitBlob": "6604e9aebe78897543a9ddf0fd5808f212ef31f1",
+      "sha256": "09b4bc1753256d398afac9fe63587c978784f0a54c16dcf5eeb18136a0a5e0e7"
+    },
+    {
+      "path": "docs/kling-native-female/final/independent-player.png",
+      "bytes": 228585,
+      "gitBlob": "1c2c72e7a7f3cfda2e9d7667c2ec5fe6572289fb",
+      "sha256": "7fd662c812bc150fa9236bdbfcdd5061b63a35188bab87051c100417df107d58"
+    },
+    {
+      "path": "docs/kling-native-female/final/kling-female-native-stills.character.zip",
+      "bytes": 1393154,
+      "gitBlob": "35ca410cc4dc7f31effd4c3f831a6ab8fd5c7b92",
+      "sha256": "d01f1389abc96779dd480554326d8f4a0c11efcf07d57166b01cb6fe44795b36"
+    },
+    {
+      "path": "docs/kling-native-female/final/kling-female-native-study.project.zip",
+      "bytes": 625417,
+      "gitBlob": "06225fc0d0e4e28ea25555fb78330cb668fa2608",
+      "sha256": "0043f1a9b1e70dc1667a82b4fa270e7d3a8632caa96d3444586cec8b5fa72c65"
+    },
+    {
+      "path": "docs/kling-native-female/final/library-female-entry.png",
+      "bytes": 173287,
+      "gitBlob": "a291805b22108f790780b416a3795ddcec5d4979",
+      "sha256": "7f2ba81842113ff5faac1a895106f385a60bf090a2f8da4b5171c0133d78522a"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/checksums.json",
+      "bytes": 1571,
+      "gitBlob": "1a6f291c4158a543f579375b3730213d49b39f59",
+      "sha256": "07f1852c41cbbf26ff26cd8e57477c9e46ed5456f272ba7355c6b37b584b1439"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/document.json",
+      "bytes": 9002,
+      "gitBlob": "c53b36c95d0eb55ce9269e4c20d7b42de81f061b",
+      "sha256": "b2c0ceadcf6fbb5c63020430814f5e9264d6062842406e3ef7dfdb62856182ee"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/far-forearm.png",
+      "bytes": 11413,
+      "gitBlob": "001af675f212207ff16eddbbd5ea50006f75c623",
+      "sha256": "0162831aaf8a5e4a9df9f767e38ff8c278c339614e67cc76b13dd53744bca973"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/far-hand.png",
+      "bytes": 11860,
+      "gitBlob": "0ab8017977eb343e808e38cf0a42a2a248c8d64d",
+      "sha256": "91d185204f4a075274eccdcfaf277491abd55e342de4c66fba98a7a4e4d99e3d"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/far-shin.png",
+      "bytes": 15266,
+      "gitBlob": "8517bdd15642be7c997702878a9d01fa685715af",
+      "sha256": "5c223cff092b077ab4cbd3b711f4ac7cf87acbdc2bfeae9d17e68bcafe3bb0c1"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/far-shoe.png",
+      "bytes": 17819,
+      "gitBlob": "a9182b0e64b73f6910393f729739510058256b27",
+      "sha256": "a5359496530b700e7e90d89e3f2a957fb75277cef0cadb3cfaeb5fe7c242113e"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/far-thigh.png",
+      "bytes": 17931,
+      "gitBlob": "a24bb1063103f9e6a39584ac3e4b093e50f03713",
+      "sha256": "9f58db44e62e614b54caec82e4d4898867339cea6416e147552406f02595f369"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/far-upper-arm.png",
+      "bytes": 14406,
+      "gitBlob": "5aa021404a82fa0f9775012b34fbf4b6d7900971",
+      "sha256": "362ebaa51fc1fba6be8cb0237848c6fc387a94d1bfd9bd9b17bc8691d645ff0e"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/head.png",
+      "bytes": 139175,
+      "gitBlob": "48fb1fcca7b94f6e8b3387b88488fbf2a70ae45a",
+      "sha256": "5bfeed03046e82d7fc646089c56e5c212553980a7ffa38cb2e3fde061300775a"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/near-forearm.png",
+      "bytes": 12937,
+      "gitBlob": "a08b80e6860940a1a8efb5e2622be7c78059e0ba",
+      "sha256": "55305f66547a9422a556d28c3ef17c1c889ebf3f946848bff87e6ece9b6cc0ac"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/near-hand.png",
+      "bytes": 12191,
+      "gitBlob": "4607ff09d565c6191682b01585590cdc73845854",
+      "sha256": "eba03b0b72abea4cc3d6e0a3e950a32eea0af073225fd795282b9999886159ae"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/near-shin.png",
+      "bytes": 16906,
+      "gitBlob": "d32b505001de0468ac4e8dcfeeda6b6b4dbe570b",
+      "sha256": "d7d191c177a26cb5f4c8a32299d2c9523500f3d343273299dba863171fa30011"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/near-shoe.png",
+      "bytes": 19685,
+      "gitBlob": "2989c4518c948e42c7f954b35aa1e15acba8498a",
+      "sha256": "080d47f3aaf9fb0dbb0a57bd3f507d846bf73377f465f9c21befab36e8207a4b"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/near-thigh.png",
+      "bytes": 20139,
+      "gitBlob": "3afecd8b478567b267f16ed5eb8952ffa3d22bef",
+      "sha256": "b3a90e9d1252bc3edd009e5a90a58f1194a6f3ea2fae3a4ed0a302ac90306570"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/near-upper-arm.png",
+      "bytes": 18886,
+      "gitBlob": "adb76c32de79149638cbbf73f99749b35eb3e5d2",
+      "sha256": "3918a527295d854e9efa1799a6c4737e6202bda2208c96aa73cf9d07e054ab5d"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/pelvis.png",
+      "bytes": 16090,
+      "gitBlob": "634fe9188e22db49db469ed508af82207354ba2e",
+      "sha256": "e4f93ffd0065bc1d4980a5a0676749d60197399a766cb079812f936bfa15bcec"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/parts/torso.png",
+      "bytes": 34954,
+      "gitBlob": "4bc1bd3049deb0a1506c17ca03adb069273fce12",
+      "sha256": "464495297c0cbd79ffb41115edf93fb8e0ed6236af30a02dd8f9f102de4f6301"
+    },
+    {
+      "path": "docs/kling-native-female/final/project/reference.png",
+      "bytes": 290687,
+      "gitBlob": "7b5571825885d9b1f62737953045747ffbed9e73",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+    },
+    {
+      "path": "docs/kling-native-female/final/reference.png",
+      "bytes": 290687,
+      "gitBlob": "7b5571825885d9b1f62737953045747ffbed9e73",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/celebrate-iteration-comparison-1x.png",
+      "bytes": 344801,
+      "gitBlob": "56d64a7674a6228bc7faaa003516f762929787af",
+      "sha256": "bef48367cbee888b3e9e237a58736784051a701fc013001a60db4de64991871d"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/far-joints-2x.png",
+      "bytes": 804641,
+      "gitBlob": "ad8d83cdd16f48f4176ba85d7e0e1023e504facb",
+      "sha256": "f855cc66c1ff7fb1543d8f8ede12f5617a714b272a972bc150ae1e306f9891ca"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/four-poses-left-1x.png",
+      "bytes": 1265908,
+      "gitBlob": "0a26f713c0003dd2a9ef2c037337c55e00e4a699",
+      "sha256": "8f70e2986891258a69643f3a29f2c970b39ffa09ce69bbada82dc567c9bcb6ff"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/four-poses-right-1x.png",
+      "bytes": 1267261,
+      "gitBlob": "adf0f16c7b4e32ef43123db2f321ab1a24d5c89a",
+      "sha256": "374162bcb5393ab1442a9796a4e62d826d8b4ccb1c1ef4fd2f65572b1a9a2c05"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/four-poses-right-2x.png",
+      "bytes": 1664556,
+      "gitBlob": "633004ae7f891977bea8a2eb5a2e0688b8a5abe8",
+      "sha256": "d2369c42978c3eca3f89771f020f3762a3def5cc1140a664c5c549089d24567f"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/joint-iteration-comparison-2x.png",
+      "bytes": 628060,
+      "gitBlob": "735fff5afbe1a78968301195d9a01d09091d3369",
+      "sha256": "cce4398a514f600fb466fcceab21de4ea87ab1e9b781d2a25584adedd7c13df6"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/joints-2x.png",
+      "bytes": 1013895,
+      "gitBlob": "6338172f040567f55e52d38068ffd8f16edc6cfd",
+      "sha256": "e3815f0b52693f445efb8785e6b0c9692b9952d80ca4532b2a10eab84ac516fd"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/registered-parts.png",
+      "bytes": 304560,
+      "gitBlob": "f2fbe088b9e8dc6cc66e6ce29c32af4aaa5d674d",
+      "sha256": "481a5bfb4994b00d93e4180762baebca3677d589f19bdad457702b9d9be3b385"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/run-flight-iteration-comparison-1x.png",
+      "bytes": 382224,
+      "gitBlob": "989818c7e5d8789378daa7e359db48db32ea31c2",
+      "sha256": "2cb067e03d59575d3c5dd85ba6240652372562b84771db66f8fc589e46ff94e8"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/source-reconstruction-1x.png",
+      "bytes": 337360,
+      "gitBlob": "fc27fbc6d8c257315cd363410fc4b48ef3906616",
+      "sha256": "b5f64eab9aaa1c478e61faf1f6e19c5fdc2f1acf8466e7e51a08b0ae3905c2ea"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/source-reconstruction-2x.png",
+      "bytes": 460883,
+      "gitBlob": "046e378f6fa80f5e0beea8442dd555ccdd7b1881",
+      "sha256": "759e7a477a76708820bfc89e97ce75cc2e4dbcf2f2973b86600cf743b0356911"
+    },
+    {
+      "path": "docs/kling-native-female/final/review/walk-contact-iteration-comparison-1x.png",
+      "bytes": 355319,
+      "gitBlob": "66ca3614b0e8a287728f7fae02551e05451c972a",
+      "sha256": "5fc97c45c2b583e84286df13886b266865c1ac765a83430425a258edea10d952"
+    },
+    {
+      "path": "docs/kling-native-female/final/run-flight-bones-right.png",
+      "bytes": 445983,
+      "gitBlob": "b8e6f110d5a55c227320e31b7d10c16cea08ed71",
+      "sha256": "dd1c4417b86cf6f8d64a53b590aef8c08e960c70fb6a7bebc3d0bcd6202b2c67"
+    },
+    {
+      "path": "docs/kling-native-female/final/run-flight-left-1x.png",
+      "bytes": 377568,
+      "gitBlob": "9ad46cf58988817c69abeb6b51c162a2a20558b5",
+      "sha256": "3b636ccb74fd72157fc0e82ba5f346ab65ab93ac405e6267ec011ed65f32dfde"
+    },
+    {
+      "path": "docs/kling-native-female/final/run-flight-right-1x.png",
+      "bytes": 377564,
+      "gitBlob": "5fe1c34375811ed511adca1e233cd5fc7f620ad6",
+      "sha256": "0c65a93c0b8cf10d4a89a1451237af2b6aec23532615f94c3ac9f45e6b240848"
+    },
+    {
+      "path": "docs/kling-native-female/final/standing-bones-right.png",
+      "bytes": 394364,
+      "gitBlob": "f64cf8db86ddcaee39cad834a37140a40654e671",
+      "sha256": "e74b1d1178170316cb26a2a4619833093509be8c6252db42ebb52e9dd649f9e6"
+    },
+    {
+      "path": "docs/kling-native-female/final/standing-left-1x.png",
+      "bytes": 319012,
+      "gitBlob": "9bbf00b9cf0e9a7d6b341ec13aa88e96c36590c4",
+      "sha256": "683b545784ed23c6dc2c42df72baeca1cd176d1b858dc366b3cac1f7e6372006"
+    },
+    {
+      "path": "docs/kling-native-female/final/standing-right-1x.png",
+      "bytes": 318950,
+      "gitBlob": "6641d1fdd8bfe70c6c351438475901d07024f1c5",
+      "sha256": "43c8877faa5165ae14d6bdca6ef24b75d29d7d376e4e766868c3a2d049469ea1"
+    },
+    {
+      "path": "docs/kling-native-female/final/ui-celebrate.png",
+      "bytes": 320316,
+      "gitBlob": "cc2e1260740ba60d1e080f82b3617a125fb6a08b",
+      "sha256": "e89e7c82336d450e7a3d1097c430c7554bbe01f59a78d32937121de9fa844669"
+    },
+    {
+      "path": "docs/kling-native-female/final/ui-run-flight.png",
+      "bytes": 322041,
+      "gitBlob": "c6262ceb1035205665de5c211a58c9b15226e36f",
+      "sha256": "fdcd72ffdb65e3fb46a325f75044c28a02b03399b31143c82797a7300134377b"
+    },
+    {
+      "path": "docs/kling-native-female/final/ui-standing.png",
+      "bytes": 227086,
+      "gitBlob": "de7d7e83572877adac8f834f51f1b2520ee0bfeb",
+      "sha256": "686d401ad50ecc2d9f0ca18a26f606e376a8fec1968178f5805c3160f38c858a"
+    },
+    {
+      "path": "docs/kling-native-female/final/ui-walk-contact.png",
+      "bytes": 316290,
+      "gitBlob": "f430f0826be38483394d993d96bf2fc88f5aab9d",
+      "sha256": "27316ce0efd7514354b9514673b17252ddc7c31706d41661afe6b46ddee9a7d1"
+    },
+    {
+      "path": "docs/kling-native-female/final/walk-contact-bones-right.png",
+      "bytes": 422606,
+      "gitBlob": "55dcad89bdb32689b9a983c4ad7c4177c6ca373c",
+      "sha256": "db5d85186c09dca97feae4b45b8ded03ed8269a250450f8cb30e4af24c1ce074"
+    },
+    {
+      "path": "docs/kling-native-female/final/walk-contact-left-1x.png",
+      "bytes": 357275,
+      "gitBlob": "b3ac3d02df168f540778618edc1bf97e4d9ae112",
+      "sha256": "275953dbcb0eb8e3167132755308937cbe312777aaedf4236396f406bab1a5cf"
+    },
+    {
+      "path": "docs/kling-native-female/final/walk-contact-right-1x.png",
+      "bytes": 357298,
+      "gitBlob": "1f11266afcfdcd3126d04889f61789a9c726ee46",
+      "sha256": "c40f41ef99c5322ff743e8e98089e0820cca5ce3a770821f7f8b1864d54f0779"
+    },
+    {
+      "path": "docs/kling-native-female/final/workbench-female-skeleton.png",
+      "bytes": 215522,
+      "gitBlob": "759a2a1c16fc1a76b5d21d5b089ce731efd40a3f",
+      "sha256": "d3fb56e351e210d8aee11c1aaed1ef332b01264e6b6a5f24967698425a2a62e9"
+    },
+    {
+      "path": "docs/kling-native-female/initial/artifact-validation.json",
+      "bytes": 16763,
+      "gitBlob": "dc7181ce190eef9e55959bc568ead469b24f8874",
+      "sha256": "d620286e59bed54615d11d73e388f7d9031d469f5b96a33a1760ea62f20f46b2"
+    },
+    {
+      "path": "docs/kling-native-female/initial/celebrate-bones-right.png",
+      "bytes": 400250,
+      "gitBlob": "1e2e00a6c0d9a7133d2a7a5bc8073425c15df72f",
+      "sha256": "4088fd67c43b2a701d6c0ed63ded5e707ebdd147131321f2ac5a986b07f07b07"
+    },
+    {
+      "path": "docs/kling-native-female/initial/celebrate-left-1x.png",
+      "bytes": 328082,
+      "gitBlob": "45c9a24f0d94d54b335d86c1dfeb004b28c25f16",
+      "sha256": "ccca26bd9e8aeebe0a0d2c899350aabfb7182d01dcdb83e04d9611e55311f3dd"
+    },
+    {
+      "path": "docs/kling-native-female/initial/celebrate-right-1x.png",
+      "bytes": 327945,
+      "gitBlob": "1036ce56b16e79c6da29d99ef1d3224f462c1690",
+      "sha256": "a83a2dbb35dd45bcef240fe07d74d6bf7a7aacdec7286d63519e738115701bb1"
+    },
+    {
+      "path": "docs/kling-native-female/initial/evidence-index.json",
+      "bytes": 27463,
+      "gitBlob": "0bb91b4b67714ab352fb4bc9a9d81766c983a971",
+      "sha256": "ef549666a722b7104cdfb5dba11119081e754c1c6db1d332a5be8f3ca48a6e56"
+    },
+    {
+      "path": "docs/kling-native-female/initial/kling-female-native-study.project.zip",
+      "bytes": 633187,
+      "gitBlob": "87b0cb289c037e29a1c6a539a76ce1c9438ee28c",
+      "sha256": "e28eefe3114e6ab99d945d0655d6ede9a8f0c2c7340092d14cbc3dca4a15479b"
+    },
+    {
+      "path": "docs/kling-native-female/initial/library-female-entry.png",
+      "bytes": 173287,
+      "gitBlob": "a291805b22108f790780b416a3795ddcec5d4979",
+      "sha256": "7f2ba81842113ff5faac1a895106f385a60bf090a2f8da4b5171c0133d78522a"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/checksums.json",
+      "bytes": 1571,
+      "gitBlob": "13f811218bf5b30c8f42a43fcda5286a93f37fe4",
+      "sha256": "35f6197e414bddccd226650eff2422db5fb27fffab487fd3c46932e49402cb9d"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/document.json",
+      "bytes": 8893,
+      "gitBlob": "1209075ecb77d9eccc7b723a2230b1f9d490bfca",
+      "sha256": "2366477b1bad5585d1e3461e98476814de0236ba1f32c5a4899e6f22da814843"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/far-forearm.png",
+      "bytes": 11397,
+      "gitBlob": "8c45a97e45d9f75032918d8d8e426fa53844a7bd",
+      "sha256": "dc5dbf1e3534b12fbb1a02c36b2ccb84edb5dc7d6b0b283382bfbe8a3a54aeb8"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/far-hand.png",
+      "bytes": 11860,
+      "gitBlob": "0ab8017977eb343e808e38cf0a42a2a248c8d64d",
+      "sha256": "91d185204f4a075274eccdcfaf277491abd55e342de4c66fba98a7a4e4d99e3d"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/far-shin.png",
+      "bytes": 15266,
+      "gitBlob": "8517bdd15642be7c997702878a9d01fa685715af",
+      "sha256": "5c223cff092b077ab4cbd3b711f4ac7cf87acbdc2bfeae9d17e68bcafe3bb0c1"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/far-shoe.png",
+      "bytes": 17819,
+      "gitBlob": "a9182b0e64b73f6910393f729739510058256b27",
+      "sha256": "a5359496530b700e7e90d89e3f2a957fb75277cef0cadb3cfaeb5fe7c242113e"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/far-thigh.png",
+      "bytes": 21753,
+      "gitBlob": "60cbb956076fbf06f96386a7fc69f9f98713ab8c",
+      "sha256": "46c541b8c106b0f7b939d57cb1d631a07e3d90fb8d3a81c1ad0f45b515860de4"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/far-upper-arm.png",
+      "bytes": 13559,
+      "gitBlob": "11d6b970f12dd6a519de1ebd5c250e743c15dc3d",
+      "sha256": "89e7bdff47e742ad6728296ac68fe5894485016f98e2cf94162aed374d1b5cea"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/head.png",
+      "bytes": 139175,
+      "gitBlob": "48fb1fcca7b94f6e8b3387b88488fbf2a70ae45a",
+      "sha256": "5bfeed03046e82d7fc646089c56e5c212553980a7ffa38cb2e3fde061300775a"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/near-forearm.png",
+      "bytes": 12937,
+      "gitBlob": "a08b80e6860940a1a8efb5e2622be7c78059e0ba",
+      "sha256": "55305f66547a9422a556d28c3ef17c1c889ebf3f946848bff87e6ece9b6cc0ac"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/near-hand.png",
+      "bytes": 12191,
+      "gitBlob": "4607ff09d565c6191682b01585590cdc73845854",
+      "sha256": "eba03b0b72abea4cc3d6e0a3e950a32eea0af073225fd795282b9999886159ae"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/near-shin.png",
+      "bytes": 16906,
+      "gitBlob": "d32b505001de0468ac4e8dcfeeda6b6b4dbe570b",
+      "sha256": "d7d191c177a26cb5f4c8a32299d2c9523500f3d343273299dba863171fa30011"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/near-shoe.png",
+      "bytes": 19685,
+      "gitBlob": "2989c4518c948e42c7f954b35aa1e15acba8498a",
+      "sha256": "080d47f3aaf9fb0dbb0a57bd3f507d846bf73377f465f9c21befab36e8207a4b"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/near-thigh.png",
+      "bytes": 25618,
+      "gitBlob": "3ab1d3d6177615f17bc4d6cd9ab551fc57dc72c8",
+      "sha256": "d1997b2162a4b154f0b3d30d4af73393d0f17b1493f4b29e79b01401833b8508"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/near-upper-arm.png",
+      "bytes": 18886,
+      "gitBlob": "adb76c32de79149638cbbf73f99749b35eb3e5d2",
+      "sha256": "3918a527295d854e9efa1799a6c4737e6202bda2208c96aa73cf9d07e054ab5d"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/pelvis.png",
+      "bytes": 16120,
+      "gitBlob": "06fa7202540a47524c66dcac07dfb9f6f1459b5b",
+      "sha256": "da4dbe81d03ec0b6107c9e9fa1e1da847c3b40da7c3be4d5f5cf5fc3b8e8b7b6"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/parts/torso.png",
+      "bytes": 34502,
+      "gitBlob": "b0d9c89105d16e846d4dbfc98c4465235e6ea81f",
+      "sha256": "9544016b3697290d8ed79ff00112b3a047a17ae914e00fea83496f8cc19e8597"
+    },
+    {
+      "path": "docs/kling-native-female/initial/project/reference.png",
+      "bytes": 290687,
+      "gitBlob": "7b5571825885d9b1f62737953045747ffbed9e73",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+    },
+    {
+      "path": "docs/kling-native-female/initial/reference.png",
+      "bytes": 290687,
+      "gitBlob": "7b5571825885d9b1f62737953045747ffbed9e73",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/far-joints-2x.png",
+      "bytes": 804070,
+      "gitBlob": "58c25b4f782bc216973482ec5b8d2fc8816a6d27",
+      "sha256": "b815b4da864b8f029336c9dabbda60940ddc36222185f0291b834ffdba93d54e"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/four-poses-left-1x.png",
+      "bytes": 1265542,
+      "gitBlob": "1656ba9d18d7bfddefdcf416b739ca238385c5c5",
+      "sha256": "e6eb5864f2d015d05c2cd41d7c6ce9cd72814376d0baef41fe6ac0057ec46113"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/four-poses-right-1x.png",
+      "bytes": 1266801,
+      "gitBlob": "53b5e36c55af9b10ced77cc26bacd6039a09665d",
+      "sha256": "01bdf76302e4f3f6b38c21dbb1cb00866c8bb27c834ef83f1f14edecacf511fe"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/four-poses-right-2x.png",
+      "bytes": 1664187,
+      "gitBlob": "d090d4e4cbfede8cc79d773f8f76e239e88749ae",
+      "sha256": "d5e30d6db3c36ee1389317a1b20b4a6002b1d27a8ac2187096dfec7e0c3c42fa"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/joints-2x.png",
+      "bytes": 1019236,
+      "gitBlob": "629cd2efe0dbb1c6ba2d8d0046adf7da6fcb51b2",
+      "sha256": "3205b245ec9071270e9a0378f260eecf7ba1f76d18186e4ca6c02d3306a0c0ba"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/registered-parts.png",
+      "bytes": 306280,
+      "gitBlob": "b2cf09074964cbb74ac26ea345c9e00e83d4b51a",
+      "sha256": "bc181567d01f5364842dbbca14494d03fe0db2626c4e5c6788ca5e84db907bde"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/source-reconstruction-1x.png",
+      "bytes": 337360,
+      "gitBlob": "fc27fbc6d8c257315cd363410fc4b48ef3906616",
+      "sha256": "b5f64eab9aaa1c478e61faf1f6e19c5fdc2f1acf8466e7e51a08b0ae3905c2ea"
+    },
+    {
+      "path": "docs/kling-native-female/initial/review/source-reconstruction-2x.png",
+      "bytes": 460883,
+      "gitBlob": "046e378f6fa80f5e0beea8442dd555ccdd7b1881",
+      "sha256": "759e7a477a76708820bfc89e97ce75cc2e4dbcf2f2973b86600cf743b0356911"
+    },
+    {
+      "path": "docs/kling-native-female/initial/run-flight-bones-right.png",
+      "bytes": 447068,
+      "gitBlob": "a7709f0c0d03eab55c29e62dea484178e4d13c1d",
+      "sha256": "4cff7007b1cf4a8672030a8b4e8718ad5d5b34d44831022835aab3ab188520c7"
+    },
+    {
+      "path": "docs/kling-native-female/initial/run-flight-left-1x.png",
+      "bytes": 379619,
+      "gitBlob": "d8463277442fa96ba343ca5b7682d962e5cfa54f",
+      "sha256": "26600ad28f71a406ffbae9c8561dd0ee55c1e9024a84270a7cc7c005f24c22c3"
+    },
+    {
+      "path": "docs/kling-native-female/initial/run-flight-right-1x.png",
+      "bytes": 379679,
+      "gitBlob": "0c46c257e188b40b5191b37ab2bd1619ff5a5fb9",
+      "sha256": "2980d9c1a3a457d9b243944060a0ff2b0bc856df4823838e6f789add16f43b2b"
+    },
+    {
+      "path": "docs/kling-native-female/initial/standing-bones-right.png",
+      "bytes": 394364,
+      "gitBlob": "f64cf8db86ddcaee39cad834a37140a40654e671",
+      "sha256": "e74b1d1178170316cb26a2a4619833093509be8c6252db42ebb52e9dd649f9e6"
+    },
+    {
+      "path": "docs/kling-native-female/initial/standing-left-1x.png",
+      "bytes": 319012,
+      "gitBlob": "9bbf00b9cf0e9a7d6b341ec13aa88e96c36590c4",
+      "sha256": "683b545784ed23c6dc2c42df72baeca1cd176d1b858dc366b3cac1f7e6372006"
+    },
+    {
+      "path": "docs/kling-native-female/initial/standing-right-1x.png",
+      "bytes": 318950,
+      "gitBlob": "6641d1fdd8bfe70c6c351438475901d07024f1c5",
+      "sha256": "43c8877faa5165ae14d6bdca6ef24b75d29d7d376e4e766868c3a2d049469ea1"
+    },
+    {
+      "path": "docs/kling-native-female/initial/ui-celebrate.png",
+      "bytes": 319880,
+      "gitBlob": "a2824349899ab8be562028535c16f30dc5163767",
+      "sha256": "c52428e3012358a3036fcffc675eecb22b5a457dd2579837c4700398153ac812"
+    },
+    {
+      "path": "docs/kling-native-female/initial/ui-run-flight.png",
+      "bytes": 322355,
+      "gitBlob": "f8cf327a1124d14edaeedadbe21ab5153d601ad3",
+      "sha256": "a263a0301cbc22286b00168fdb7759f38b2d120219a9e1e1f7a63f1455ea516f"
+    },
+    {
+      "path": "docs/kling-native-female/initial/ui-standing.png",
+      "bytes": 227086,
+      "gitBlob": "de7d7e83572877adac8f834f51f1b2520ee0bfeb",
+      "sha256": "686d401ad50ecc2d9f0ca18a26f606e376a8fec1968178f5805c3160f38c858a"
+    },
+    {
+      "path": "docs/kling-native-female/initial/ui-walk-contact.png",
+      "bytes": 316239,
+      "gitBlob": "73a922b8a8f2eadf78ccc1e83d8b6f4fa4544a67",
+      "sha256": "5b38ddd3d8296712acc26186578df517fe586b55a440b926f9df1901b6835ea1"
+    },
+    {
+      "path": "docs/kling-native-female/initial/walk-contact-bones-right.png",
+      "bytes": 422749,
+      "gitBlob": "79882690b15299b1ac5d75f1f726ff363b9488ad",
+      "sha256": "bc64832e15b533bbb7f9eac2f81f2a6c172386fa1c8af363e96656606b0d29d5"
+    },
+    {
+      "path": "docs/kling-native-female/initial/walk-contact-left-1x.png",
+      "bytes": 357534,
+      "gitBlob": "144acaa3e74586cf2d7f67d6e42554cb233565f1",
+      "sha256": "d5df5d4e7b74788a8d9c9636334d8466a44f555ab667b7c42aed64f8bcbba482"
+    },
+    {
+      "path": "docs/kling-native-female/initial/walk-contact-right-1x.png",
+      "bytes": 357489,
+      "gitBlob": "0f2ad5db870e5106af6689f2d8f5e6d318fef8c5",
+      "sha256": "b03cd44c26e35cb163ac58c372da186569b15a137cfd0c642ba8b0c2d762555f"
+    },
+    {
+      "path": "docs/kling-native-female/initial/workbench-female-skeleton.png",
+      "bytes": 215522,
+      "gitBlob": "759a2a1c16fc1a76b5d21d5b089ce731efd40a3f",
+      "sha256": "d3fb56e351e210d8aee11c1aaed1ef332b01264e6b6a5f24967698425a2a62e9"
+    },
+    {
+      "path": "docs/kling-native-female/preservation.json",
+      "bytes": 13907,
+      "gitBlob": "0443618dd52a521617ee524a6558aa319a83870c",
+      "sha256": "7772aeb50345dcaddbef1fbdef84ed53a1a6c88106ea25120afe5c5e35b5312f"
+    },
+    {
+      "path": "docs/kling-native-female/verification-results.json",
+      "bytes": 2236,
+      "gitBlob": "a77c52fd7b233fcce787698be2bf32e76132fa33",
+      "sha256": "46687def95b9bf05b2cad3fa1ef7695025e990ade07fc03ea82a2bc102f1e753"
+    },
+    {
+      "path": "docs/kling-native-study/final/artifact-validation.json",
+      "bytes": 18159,
+      "gitBlob": "1b467ac4d0d371024cdf5e107527c78a8d1c27f5",
+      "sha256": "e65daad899ef49a6ee9fcc6e54051d86bad58e1c1a812699a3612403b0630ef4"
+    },
+    {
+      "path": "docs/kling-native-study/final/celebrate-bones-right.png",
+      "bytes": 392348,
+      "gitBlob": "309f8cbe5c0cb3f6b3ff875c0ef9adbeaff3854e",
+      "sha256": "534d77c5cfebf5b9ea891452da4c7258004e268559ef0d00e0aaea85bb4b10f9"
+    },
+    {
+      "path": "docs/kling-native-study/final/celebrate-left-1x.png",
+      "bytes": 324651,
+      "gitBlob": "99592926db600ea0ac3dd68b37303c259df07fbb",
+      "sha256": "192dbe083daa464123efb1dc1cc1acc294e4d23d10110beaa3bd7bef7efffd96"
+    },
+    {
+      "path": "docs/kling-native-study/final/celebrate-right-1x.png",
+      "bytes": 324115,
+      "gitBlob": "bebc2b498014b86e14084bc1cf7b32acaba11d95",
+      "sha256": "1dd59fb7a14dc7c333cbc36966391f50bc015141c42a3583119b6fa098ef149d"
+    },
+    {
+      "path": "docs/kling-native-study/final/character-pack/character.json",
+      "bytes": 2845,
+      "gitBlob": "6376691eaa2dafbaaa98a8e2837f4012c5bb3245",
+      "sha256": "f443df32a642524922d03c7ec5c6550383fa53212dc3bfd8791d6b8fd7a0cab5"
+    },
+    {
+      "path": "docs/kling-native-study/final/character-pack/manifest.json",
+      "bytes": 1567,
+      "gitBlob": "4e6841e02845e2ded275feba08cba5ed9ba6d48f",
+      "sha256": "bc69dfa6b70793a02b59bd159d40fdebcf18b2bfeb4edc0f4ff42a0239cbd133"
+    },
+    {
+      "path": "docs/kling-native-study/final/character-pack/spritesheet.png",
+      "bytes": 1356923,
+      "gitBlob": "05cb3dd46758702f463abe16c445d1aedb0df96a",
+      "sha256": "70019c12152c5bc2af59a0e8ab4b9b8a656cb9c1f4abc39a41b52b2808312b8c"
+    },
+    {
+      "path": "docs/kling-native-study/final/evidence-index.json",
+      "bytes": 57563,
+      "gitBlob": "2c6c864c4d5d497f37b42afd57c9810ebd1dd5d9",
+      "sha256": "07137495e85c6205d1b85145e811679d9dd1dbbf88da2ac652dbeb046e57418e"
+    },
+    {
+      "path": "docs/kling-native-study/final/independent-player.png",
+      "bytes": 249427,
+      "gitBlob": "6512ec35946e41a6f56f19531bd73b3975d85e93",
+      "sha256": "615b9a4919aaef12c32caa8269f193c3209499e845b289d86fee1ebb9dd2b9d5"
+    },
+    {
+      "path": "docs/kling-native-study/final/kling-male-native-stills.character.zip",
+      "bytes": 1354080,
+      "gitBlob": "04cc675bb8d513564b9389d55bb13f1053c1fba3",
+      "sha256": "a8785f0b21aa4c3217099f8248e6ac3d76dc1c64bc0cd8f95c9dcab9053259e4"
+    },
+    {
+      "path": "docs/kling-native-study/final/kling-male-native-study.project.zip",
+      "bytes": 615183,
+      "gitBlob": "156a4b83623732f6c5d6cce682d0f95766e24900",
+      "sha256": "bfefaef4617eff58d09f1543a642bd8db3f67ff94fe96f79aa4c520939e071b7"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/checksums.json",
+      "bytes": 1571,
+      "gitBlob": "4de4b482c37c665c4d3868c9bd5358466b2ea9ae",
+      "sha256": "7a338041b08e7d5c1410d37034bc45033b39ff07eb222c37e32e35523923bc6d"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/document.json",
+      "bytes": 8782,
+      "gitBlob": "447cc6e6fc45814fd01a703029c7f8fa279b62a4",
+      "sha256": "1bacee54085d52e09d96f395cb93e2c44651f07f4bf2b2397188ad08687216ca"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/far-forearm.png",
+      "bytes": 12107,
+      "gitBlob": "b559142679bedab0acc95750f0cc607a6fa7da06",
+      "sha256": "17352c135953f758c5ea73f834777b473d050bbe2094a1557c692892c218b5b0"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/far-hand.png",
+      "bytes": 10312,
+      "gitBlob": "9e518e95a6053842e6143372b8f19a84d973fe38",
+      "sha256": "d614275a37066f3659240cca3de3eec903144db129de26ff407e7193f40505d3"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/far-shin.png",
+      "bytes": 17457,
+      "gitBlob": "46bbb9ff7aeed7b13d97b6f25988ea4cc6972cf5",
+      "sha256": "245e3846e65d5f22ddc72531bbe2ac45d93173297cef21a98dae2cc361c2a484"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/far-shoe.png",
+      "bytes": 13757,
+      "gitBlob": "04e4eb35f6bbefa77d9f78d26b908a767551e707",
+      "sha256": "32e7b8633a31846bb2c84b30ff69e11673f38aa2a47b7da57092e81819263346"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/far-thigh.png",
+      "bytes": 25615,
+      "gitBlob": "3c367f045b79bdaa9afc10d92e4f237c12e4df6d",
+      "sha256": "4316107c361824e8f574045b673285b64462cce69663cfbea46c647e7056d5e5"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/far-upper-arm.png",
+      "bytes": 14900,
+      "gitBlob": "5f857cae1d1a7086d7b376ca8163ec7dadae0c6d",
+      "sha256": "f69e7d596c9e26ac8292407731ffa954267d287b5eac6b8487722fd6b21e76e9"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/head.png",
+      "bytes": 124823,
+      "gitBlob": "65f4e8c0ba5e9d8c6ca1eb56dbde0f22347e39b0",
+      "sha256": "d5d52d8c63476f1e2bbd125f0b6b92e661d75aa44200d91327b4be152322a7e5"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/near-forearm.png",
+      "bytes": 13707,
+      "gitBlob": "6ae29306131bbf34c3ce4e3e209e0cb01d815001",
+      "sha256": "e47e62e5d4e4ff907167be8943105630e9110165f347f7eb1118c40c880d6c1f"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/near-hand.png",
+      "bytes": 11881,
+      "gitBlob": "09054c536402e6f2994d5c797c16bf09a2f68688",
+      "sha256": "4c6574bd13d3f05aff850ed419aaabf6b81ec95cafc97413a20b7a2b38aee1cc"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/near-shin.png",
+      "bytes": 16956,
+      "gitBlob": "3545d74cf582daac714d2ccff4a44274939ccb56",
+      "sha256": "eeb7df3e33c6a4f43f54626fdd6689c233d0f36dd34987290cd30ca0dda38332"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/near-shoe.png",
+      "bytes": 16185,
+      "gitBlob": "dad9022550838eb6e8f5331258807ec21134102b",
+      "sha256": "f54fc7bdbcf2a432cd30a6d1d114a4d08342587cc621ebd1ea186923ac2bfc68"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/near-thigh.png",
+      "bytes": 28491,
+      "gitBlob": "4af0e8cc614f49722ec8362e54c7486449575584",
+      "sha256": "ce2daf6ec200c16c0afb24b5abd55cfd3ba4a0d865c84c0a20c6d17edf4c3747"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/near-upper-arm.png",
+      "bytes": 20883,
+      "gitBlob": "a0ed7970298b40e4ca51b81a91136b238d047ac4",
+      "sha256": "5d77dad070408e1db6f8f8a0dfa9514b2d51f6e3b8572c3f46162b4e486fbf98"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/pelvis.png",
+      "bytes": 18518,
+      "gitBlob": "b1f9b37548a22453b02466727a546a79ff0bdd10",
+      "sha256": "fa9c50e202fe4de122cf67894615f8ade652070a7719dca41ea630981576d936"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/parts/torso.png",
+      "bytes": 35922,
+      "gitBlob": "fdb26e2eb4a095fd89ddd9f9dc1521069f32bec3",
+      "sha256": "9921eae23d9125aebe1646920146670606c2bce2ba1c2e4831962a1e3f3bd7b2"
+    },
+    {
+      "path": "docs/kling-native-study/final/project/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/final/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/celebrate-iteration-comparison-1x.png",
+      "bytes": 373836,
+      "gitBlob": "8ba7b1378f7cae78cbc03c94496949e989a833d4",
+      "sha256": "d0352c22c0183a4fe2c148a2f55d089c27a6d742ac8db985f984a342c0d503ea"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/four-poses-left-1x.png",
+      "bytes": 1212671,
+      "gitBlob": "72a5336a1677c610245b020c10a7b6702074aae9",
+      "sha256": "5293e9643c37bb070b0d70bb62516b98aa5028f2018d8898b83db4abee21d53f"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/four-poses-right-1x.png",
+      "bytes": 1212805,
+      "gitBlob": "66dc9f56f2d3cb218c13ed8cb3d48e07bfa8aeb3",
+      "sha256": "015e5f629d2b31dfa4ea82b27ea11e215e851a8930c87d37ff9a1b5c969502f5"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/four-poses-right-2x.png",
+      "bytes": 1602077,
+      "gitBlob": "db7cdd91e19ac26a4e75e08274fe8b728c2e69e3",
+      "sha256": "825d78c2ec0c3b532dcf12c0f8efc87c331a9ee2037424006b2b6d542158c056"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/joint-iteration-comparison-2x.png",
+      "bytes": 857145,
+      "gitBlob": "04fda69bff0cca79a63af756cb766e03b4fc4642",
+      "sha256": "995fe490e96b95299a6df3f2dcfac2c0b53218b4be2ba51844640ba430c2767b"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/joints-2x.png",
+      "bytes": 1037751,
+      "gitBlob": "2505d62ff6f62efede8ea3b3b2ad7baff672be56",
+      "sha256": "691073bdd15b9bf204d0bc9867673ea1df550bf69f08a1c4f94816d1579645e6"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/registered-parts.png",
+      "bytes": 301620,
+      "gitBlob": "4e66c1ac6455e7f1f0c2fa82a32c47ffc5273864",
+      "sha256": "27a8282d7960af82cfbba691ffabd4d6bdb9405ae7f8a5950a562b3539f29263"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/run-flight-iteration-comparison-1x.png",
+      "bytes": 608803,
+      "gitBlob": "c2b50259353004a1ca37fdf1cfb0ec4c15c87b5e",
+      "sha256": "4f49fe66f6ea5bbb59cc5fe072b9fa750000968fe6dc79142ac08b1556cb898c"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/source-reconstruction-1x.png",
+      "bytes": 324405,
+      "gitBlob": "7ea6545c98dbb1296a770e92c934d8b5fc09c742",
+      "sha256": "3cfdefd04ef155ea643f8279489ba682d76ed3cfdfab0c0f17b9264c681ce9a8"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/source-reconstruction-2x.png",
+      "bytes": 445654,
+      "gitBlob": "06477f37d6afa4b8fd16874041a42230a3ac53b7",
+      "sha256": "eff0ba362d9920370ff3da25ffbeb37b49dff7c06b560d46e01dc066fded3eee"
+    },
+    {
+      "path": "docs/kling-native-study/final/review/walk-contact-iteration-comparison-1x.png",
+      "bytes": 592358,
+      "gitBlob": "1bb18cf92caf4b197b58ac6c74ebf56fd669887a",
+      "sha256": "c40d23e1fb924440ab188e541bc5c096971968c94efc5f392ccdf0949d9d1845"
+    },
+    {
+      "path": "docs/kling-native-study/final/run-flight-bones-right.png",
+      "bytes": 428617,
+      "gitBlob": "a8ec7a303a9662523d1665b364859a62f1e0dbab",
+      "sha256": "280a2e202d15fa2854ba7cdbe99fc86470a2151a52c60ec631f5724d217631ac"
+    },
+    {
+      "path": "docs/kling-native-study/final/run-flight-left-1x.png",
+      "bytes": 363167,
+      "gitBlob": "8eb1cc4d75de20f50d12cf41c4864841e6e75b76",
+      "sha256": "3e8884e42f45a85672a78db77a02e2b8b5f859b47d919588f84714502286bcdb"
+    },
+    {
+      "path": "docs/kling-native-study/final/run-flight-right-1x.png",
+      "bytes": 362914,
+      "gitBlob": "44d107f8db490016bb0b277c3560a7e9034a4bbb",
+      "sha256": "4fb20e5626b8cd47fac2dc51227b1b067cdf9950ace8f9f05cceca1fa2819597"
+    },
+    {
+      "path": "docs/kling-native-study/final/standing-bones-right.png",
+      "bytes": 380306,
+      "gitBlob": "a8e800f05ed671f3a77af62c4596cb86387878df",
+      "sha256": "730b3322b84fbbc4ae78c81a23cbacce0b90a5aa40c70cbf3db53a44fc96dc24"
+    },
+    {
+      "path": "docs/kling-native-study/final/standing-left-1x.png",
+      "bytes": 311516,
+      "gitBlob": "4916b2f0dbbd3255b47edde0dcb79ef47d6c6602",
+      "sha256": "aa923c27935fb1c60ed441282ef90fe56f50c9d895161c7b0bde9c7da9344a13"
+    },
+    {
+      "path": "docs/kling-native-study/final/standing-right-1x.png",
+      "bytes": 311208,
+      "gitBlob": "f327fb1bdf4f51d65c9db9037a9f625439b04763",
+      "sha256": "759c56527b500598e4e4d90a94fc3a3616e98893c268d2ae7989cf6d6c10b2c7"
+    },
+    {
+      "path": "docs/kling-native-study/final/ui-celebrate.png",
+      "bytes": 315815,
+      "gitBlob": "3050a85210701be42bf88a1c7929da879542b5b3",
+      "sha256": "e4ed2eb0e25b75418996610f04d02f810a84c17dfa2b34c443f0091c349fd707"
+    },
+    {
+      "path": "docs/kling-native-study/final/ui-run-flight.png",
+      "bytes": 314414,
+      "gitBlob": "c13290dcc9865f46416b09c5a3fedc09782efcac",
+      "sha256": "55374fd9caac1ebc9cbf9f77dccbf8a5a47c6261c88bfb6efd92c055b74eaf3c"
+    },
+    {
+      "path": "docs/kling-native-study/final/ui-standing.png",
+      "bytes": 223842,
+      "gitBlob": "3b493cc776bdd085aaeb6f24e713dfb1d36218ea",
+      "sha256": "04e6e3dd938a99b1b4487bc8a0dee4af98ac1cdaa1f3ef58da03be0198fcc4e6"
+    },
+    {
+      "path": "docs/kling-native-study/final/ui-walk-contact.png",
+      "bytes": 310874,
+      "gitBlob": "32aa998ba8955acaabc1fe21187849606c127684",
+      "sha256": "c9d98e2f702d9bd52e16048408204bd676cbb01ada0f6bcabb48275eefaad1fd"
+    },
+    {
+      "path": "docs/kling-native-study/final/walk-contact-bones-right.png",
+      "bytes": 410304,
+      "gitBlob": "5da6857975327e12676d5cdab6e430eae1ff14c3",
+      "sha256": "7aea3186c83b35728f9f97457bd13881b0688d8698f586ab973326b2a46bdde4"
+    },
+    {
+      "path": "docs/kling-native-study/final/walk-contact-left-1x.png",
+      "bytes": 350271,
+      "gitBlob": "d9faa0025de772f9e6178b304943fd030df3593b",
+      "sha256": "758416ddd28fae2e8852f78119f807b510c3409d1e0bf65c0009df8061610023"
+    },
+    {
+      "path": "docs/kling-native-study/final/walk-contact-right-1x.png",
+      "bytes": 349795,
+      "gitBlob": "01e5d07a7a5aef7d73ba11a8ac7287ed07e4ff8c",
+      "sha256": "1ce18a571bf32ee54b24d6c0f26be1df2d186f2a3381a8c73ea81b130be23f6e"
+    },
+    {
+      "path": "docs/kling-native-study/initial/artifact-validation.json",
+      "bytes": 15537,
+      "gitBlob": "e4db8fd91dfecca39a053612bba8ac09fd8d127a",
+      "sha256": "f356cc18f90d4a8c17677ae54180c158c424a9566da575eaecdc622628df5bd0"
+    },
+    {
+      "path": "docs/kling-native-study/initial/celebrate-bones-right.png",
+      "bytes": 366777,
+      "gitBlob": "8a2f9d2704c51262cdca251b702697aaa46a420c",
+      "sha256": "a3b32c4c2ebb2c945c98e4d8388a1f198867f4106d13d18337c10033ad9b9528"
+    },
+    {
+      "path": "docs/kling-native-study/initial/celebrate-left-1x.png",
+      "bytes": 303490,
+      "gitBlob": "e58742d8b7dc70504ec23d241cd470156c8c0a1c",
+      "sha256": "5b168c2952933dff4efb7d82479fa1a2774a0c0dc25dc10b996ecbbb0ee44f93"
+    },
+    {
+      "path": "docs/kling-native-study/initial/celebrate-right-1x.png",
+      "bytes": 303269,
+      "gitBlob": "48b608525ab9d7725a64f6cb95a059b34f19ee33",
+      "sha256": "f1fa18f8c7f12cbf7913e36a6ccf9febc9903f457a17b5f0cbbdbee01e7a2a87"
+    },
+    {
+      "path": "docs/kling-native-study/initial/evidence-index.json",
+      "bytes": 53069,
+      "gitBlob": "7d3099f0003edc5e3b2c349cd019aabd0c80184d",
+      "sha256": "be27cb1e74c44f3487fcf85754e4add410ef4a0bbbe4f01cc0413d5b760cd611"
+    },
+    {
+      "path": "docs/kling-native-study/initial/kling-male-native-study.project.zip",
+      "bytes": 613863,
+      "gitBlob": "0f063420700cbb99bb6878a6d2f36e3febb346bf",
+      "sha256": "ec9348b8bca6d858b33cd902d8f6e69b2c53c8a785e16330d6eb96c888958409"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/checksums.json",
+      "bytes": 1571,
+      "gitBlob": "8f36ab942ecc5a7ae02003fbc79514f03e8903c4",
+      "sha256": "dabf47d531cfe00b053d60784b696a7e03217bc2c05c646d0b35c1d77bbd70f7"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/document.json",
+      "bytes": 8623,
+      "gitBlob": "8f45dc6bd159500795813a4566d9d22444ac9461",
+      "sha256": "93cc9c0763d7f4004a88e3dc0896bd4bdf4274da57b3c395c70d8548a2f752a8"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/far-forearm.png",
+      "bytes": 11878,
+      "gitBlob": "1b7697d646dab5c9c8a7ba8fd95dcdaba155a32d",
+      "sha256": "7162dd5fc63d29929d2b79357b545b9dc7151fffda89c2d48ae0071627894627"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/far-hand.png",
+      "bytes": 10644,
+      "gitBlob": "2501211be77ee1e4b90e1b4ba4893638cee3b5a4",
+      "sha256": "2469d6133cd1d9794caaf8cfa2df795b2a8c7f351ff901b6ba88fdb90e77b13c"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/far-shin.png",
+      "bytes": 17457,
+      "gitBlob": "46bbb9ff7aeed7b13d97b6f25988ea4cc6972cf5",
+      "sha256": "245e3846e65d5f22ddc72531bbe2ac45d93173297cef21a98dae2cc361c2a484"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/far-shoe.png",
+      "bytes": 13757,
+      "gitBlob": "04e4eb35f6bbefa77d9f78d26b908a767551e707",
+      "sha256": "32e7b8633a31846bb2c84b30ff69e11673f38aa2a47b7da57092e81819263346"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/far-thigh.png",
+      "bytes": 21554,
+      "gitBlob": "93f546d177f1f161a5d904e7a2ad59451cf090bf",
+      "sha256": "3fc46e5a2aedea2d7e415769606a505868cef2abb57cf23eb6cf7047de3649fd"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/far-upper-arm.png",
+      "bytes": 15314,
+      "gitBlob": "727513f946192d5623aa1120413d7c60c8b5e2b8",
+      "sha256": "9ce56cd905afd4fca1eacdb8913d21e9d188a9e14f1afbb19977a568d942e291"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/head.png",
+      "bytes": 124823,
+      "gitBlob": "65f4e8c0ba5e9d8c6ca1eb56dbde0f22347e39b0",
+      "sha256": "d5d52d8c63476f1e2bbd125f0b6b92e661d75aa44200d91327b4be152322a7e5"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/near-forearm.png",
+      "bytes": 13744,
+      "gitBlob": "65a83268516ad9710664ec2f31c15c1c3592ee43",
+      "sha256": "d53855fb3f3897a94168e54a66836883fcbee39575678fa49f176192fdb529fe"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/near-hand.png",
+      "bytes": 12309,
+      "gitBlob": "fc5b45fc1ed6dd56912d5eae4cb2e55f024d6c80",
+      "sha256": "2b8c28f198909d903d3f8293d82c8c399ce7fb040ed063a7b5f7be831c3d242b"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/near-shin.png",
+      "bytes": 16956,
+      "gitBlob": "3545d74cf582daac714d2ccff4a44274939ccb56",
+      "sha256": "eeb7df3e33c6a4f43f54626fdd6689c233d0f36dd34987290cd30ca0dda38332"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/near-shoe.png",
+      "bytes": 16185,
+      "gitBlob": "dad9022550838eb6e8f5331258807ec21134102b",
+      "sha256": "f54fc7bdbcf2a432cd30a6d1d114a4d08342587cc621ebd1ea186923ac2bfc68"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/near-thigh.png",
+      "bytes": 24046,
+      "gitBlob": "4dd9db2ee32b42a40c6b4cb67524cc39e89a72cc",
+      "sha256": "fbae35f8b6165808bcf6dd0ba50277fc92686d3c51f46e9694e9a8cbb66c678a"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/near-upper-arm.png",
+      "bytes": 20675,
+      "gitBlob": "00ded6d47a44afe8b5e52fa22b97bdf7116ca409",
+      "sha256": "711a6773adf8816fc730dafe380c2a44da53c34b972a1d4f1f296946de176d25"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/pelvis.png",
+      "bytes": 16774,
+      "gitBlob": "7c5ecd8d3b84060bf0a5dbfcdaaea10a5cd29a93",
+      "sha256": "0d2c8d1ea2fab8e2b24bfaa94a849285efe691df2036915bca67862269232695"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/parts/torso.png",
+      "bytes": 42937,
+      "gitBlob": "24d741c58513b23536ffc66f8706e381b47b726b",
+      "sha256": "9261c4e39bda4af3f8523835dc42493fafe2e7167db97928e3502fe86ed14389"
+    },
+    {
+      "path": "docs/kling-native-study/initial/project/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/initial/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/initial/review/four-poses-left-1x.png",
+      "bytes": 1137463,
+      "gitBlob": "2db62c127da9dbc9ac621eaf2616295fe17a662d",
+      "sha256": "de468594fcb13dc1e32462124f7fb4688393b495098cc1b6f825504a679e92ae"
+    },
+    {
+      "path": "docs/kling-native-study/initial/review/four-poses-right-1x.png",
+      "bytes": 1138667,
+      "gitBlob": "bc0b5d6cb65fdc997038c5b65eaf7e218ea18cda",
+      "sha256": "3febb2b1402a5283137ad2a058669b17e61644ec1e0d7aa60eb8a128d0aafe20"
+    },
+    {
+      "path": "docs/kling-native-study/initial/review/four-poses-right-2x.png",
+      "bytes": 1509775,
+      "gitBlob": "060bfbf4ee2f59e7ac1ccc27638697227b37f599",
+      "sha256": "d1da5a404e39e5d23f7c719d3e5b44c55be357ae85bb773a048174c8b98cafd9"
+    },
+    {
+      "path": "docs/kling-native-study/initial/review/joints-2x.png",
+      "bytes": 1062511,
+      "gitBlob": "364f9ea366f3a7205bf11238469a9f8ed0a27ac6",
+      "sha256": "a93d3a2df790709b4543828197f6cac43a5d07b45a59df4fc567bcb8d5693e66"
+    },
+    {
+      "path": "docs/kling-native-study/initial/review/source-reconstruction-1x.png",
+      "bytes": 324405,
+      "gitBlob": "7ea6545c98dbb1296a770e92c934d8b5fc09c742",
+      "sha256": "3cfdefd04ef155ea643f8279489ba682d76ed3cfdfab0c0f17b9264c681ce9a8"
+    },
+    {
+      "path": "docs/kling-native-study/initial/review/source-reconstruction-2x.png",
+      "bytes": 445654,
+      "gitBlob": "06477f37d6afa4b8fd16874041a42230a3ac53b7",
+      "sha256": "eff0ba362d9920370ff3da25ffbeb37b49dff7c06b560d46e01dc066fded3eee"
+    },
+    {
+      "path": "docs/kling-native-study/initial/run-flight-bones-right.png",
+      "bytes": 386181,
+      "gitBlob": "092c9a832b6651de6d738d0b4368cdad7968be3f",
+      "sha256": "11251964b9831bec5220c5501affab06d0479d0d090e6e0d47bc1e8fb93ca448"
+    },
+    {
+      "path": "docs/kling-native-study/initial/run-flight-left-1x.png",
+      "bytes": 328215,
+      "gitBlob": "6e19c98b1da7155d0bc834c2504e14804255c832",
+      "sha256": "34b0eae8ea8569da4daaa90c932e4fe0c23933b96f6f6ea7f92ac69649a97d5a"
+    },
+    {
+      "path": "docs/kling-native-study/initial/run-flight-right-1x.png",
+      "bytes": 328376,
+      "gitBlob": "b687e781d15dd693d614de4fe2009868cc85594c",
+      "sha256": "66a923dc051c71437fdba0465652a46f5ee7f8b7b9130acb537b7e0f74ee9fcb"
+    },
+    {
+      "path": "docs/kling-native-study/initial/standing-bones-right.png",
+      "bytes": 380306,
+      "gitBlob": "a8e800f05ed671f3a77af62c4596cb86387878df",
+      "sha256": "730b3322b84fbbc4ae78c81a23cbacce0b90a5aa40c70cbf3db53a44fc96dc24"
+    },
+    {
+      "path": "docs/kling-native-study/initial/standing-left-1x.png",
+      "bytes": 311516,
+      "gitBlob": "4916b2f0dbbd3255b47edde0dcb79ef47d6c6602",
+      "sha256": "aa923c27935fb1c60ed441282ef90fe56f50c9d895161c7b0bde9c7da9344a13"
+    },
+    {
+      "path": "docs/kling-native-study/initial/standing-right-1x.png",
+      "bytes": 311208,
+      "gitBlob": "f327fb1bdf4f51d65c9db9037a9f625439b04763",
+      "sha256": "759c56527b500598e4e4d90a94fc3a3616e98893c268d2ae7989cf6d6c10b2c7"
+    },
+    {
+      "path": "docs/kling-native-study/initial/ui-celebrate.png",
+      "bytes": 310038,
+      "gitBlob": "8ce10bac9bf340fc7cc2b47f07e7b9680837b9fe",
+      "sha256": "530b35cf6dad7f6933097ec9194de48c512099162679a061f73b18d451a224a2"
+    },
+    {
+      "path": "docs/kling-native-study/initial/ui-run-flight.png",
+      "bytes": 304365,
+      "gitBlob": "38b24527efeb646e628b68cd9519a75e87f8b517",
+      "sha256": "27d8d871653395ebea2864f215763d8b7a21e807fbdb5e29dc08cd2f893afcd2"
+    },
+    {
+      "path": "docs/kling-native-study/initial/ui-standing.png",
+      "bytes": 223842,
+      "gitBlob": "3b493cc776bdd085aaeb6f24e713dfb1d36218ea",
+      "sha256": "04e6e3dd938a99b1b4487bc8a0dee4af98ac1cdaa1f3ef58da03be0198fcc4e6"
+    },
+    {
+      "path": "docs/kling-native-study/initial/ui-walk-contact.png",
+      "bytes": 303629,
+      "gitBlob": "b8861233e63564d5d2f9bd696b1f39ab6c018f24",
+      "sha256": "683ca33410d0caf8dfa81ce97e4f38239af0552f50b3273d04ad9cb78c831252"
+    },
+    {
+      "path": "docs/kling-native-study/initial/walk-contact-bones-right.png",
+      "bytes": 379243,
+      "gitBlob": "d367f920d72c59b0330fa88bbc0800e3f3a6cd2e",
+      "sha256": "c935c3bbd42af1d283db2ba99c26b46c5082afbf1dd8efc4728fb7a5652363a2"
+    },
+    {
+      "path": "docs/kling-native-study/initial/walk-contact-left-1x.png",
+      "bytes": 325717,
+      "gitBlob": "0726b79ed59ea318386968b2681156292e7bb97d",
+      "sha256": "4157548fdfcc7a4d077a0ad5a7f011d90419609ae419e260d0b34052b28bcba4"
+    },
+    {
+      "path": "docs/kling-native-study/initial/walk-contact-right-1x.png",
+      "bytes": 325449,
+      "gitBlob": "a1efbbb0bea68b3ce7109353dbaca1e9d75d5ff3",
+      "sha256": "1b7d26306cdb85ab328d703230bbfb4f4411881994e1757ba8d64055d591ea2c"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/artifact-validation.json",
+      "bytes": 16884,
+      "gitBlob": "abb96ccc22e762bdd314a16cae6468bcc6070cc0",
+      "sha256": "df4640901fea03c09e5215573d60f618b98dd244d0acf8f5f482d77a59219317"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/celebrate-bones-right.png",
+      "bytes": 392348,
+      "gitBlob": "309f8cbe5c0cb3f6b3ff875c0ef9adbeaff3854e",
+      "sha256": "534d77c5cfebf5b9ea891452da4c7258004e268559ef0d00e0aaea85bb4b10f9"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/celebrate-left-1x.png",
+      "bytes": 324651,
+      "gitBlob": "99592926db600ea0ac3dd68b37303c259df07fbb",
+      "sha256": "192dbe083daa464123efb1dc1cc1acc294e4d23d10110beaa3bd7bef7efffd96"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/celebrate-right-1x.png",
+      "bytes": 324115,
+      "gitBlob": "bebc2b498014b86e14084bc1cf7b32acaba11d95",
+      "sha256": "1dd59fb7a14dc7c333cbc36966391f50bc015141c42a3583119b6fa098ef149d"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/character-pack/character.json",
+      "bytes": 2845,
+      "gitBlob": "6376691eaa2dafbaaa98a8e2837f4012c5bb3245",
+      "sha256": "f443df32a642524922d03c7ec5c6550383fa53212dc3bfd8791d6b8fd7a0cab5"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/character-pack/manifest.json",
+      "bytes": 1567,
+      "gitBlob": "4e6841e02845e2ded275feba08cba5ed9ba6d48f",
+      "sha256": "bc69dfa6b70793a02b59bd159d40fdebcf18b2bfeb4edc0f4ff42a0239cbd133"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/character-pack/spritesheet.png",
+      "bytes": 1356923,
+      "gitBlob": "05cb3dd46758702f463abe16c445d1aedb0df96a",
+      "sha256": "70019c12152c5bc2af59a0e8ab4b9b8a656cb9c1f4abc39a41b52b2808312b8c"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/evidence-index.json",
+      "bytes": 31746,
+      "gitBlob": "d08dfd3d18383fe7bf34ca15b7d4ede40f479d21",
+      "sha256": "36ff1aae93f53ce7238fbe159f1a080b1ecb3d5e33913794efc7f70f96f353b6"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/independent-player.png",
+      "bytes": 226280,
+      "gitBlob": "eee15464155c3d4dbe40bf5a1c74b1e64b10bb5a",
+      "sha256": "f1838358b79adcedc830008b9ed16e9a2052a96239b4ad21e59b03804075d0d8"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/kling-male-native-stills.character.zip",
+      "bytes": 1354080,
+      "gitBlob": "04cc675bb8d513564b9389d55bb13f1053c1fba3",
+      "sha256": "a8785f0b21aa4c3217099f8248e6ac3d76dc1c64bc0cd8f95c9dcab9053259e4"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/kling-male-native-study.project.zip",
+      "bytes": 615183,
+      "gitBlob": "156a4b83623732f6c5d6cce682d0f95766e24900",
+      "sha256": "bfefaef4617eff58d09f1543a642bd8db3f67ff94fe96f79aa4c520939e071b7"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/checksums.json",
+      "bytes": 1571,
+      "gitBlob": "4de4b482c37c665c4d3868c9bd5358466b2ea9ae",
+      "sha256": "7a338041b08e7d5c1410d37034bc45033b39ff07eb222c37e32e35523923bc6d"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/document.json",
+      "bytes": 8782,
+      "gitBlob": "447cc6e6fc45814fd01a703029c7f8fa279b62a4",
+      "sha256": "1bacee54085d52e09d96f395cb93e2c44651f07f4bf2b2397188ad08687216ca"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/far-forearm.png",
+      "bytes": 12107,
+      "gitBlob": "b559142679bedab0acc95750f0cc607a6fa7da06",
+      "sha256": "17352c135953f758c5ea73f834777b473d050bbe2094a1557c692892c218b5b0"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/far-hand.png",
+      "bytes": 10312,
+      "gitBlob": "9e518e95a6053842e6143372b8f19a84d973fe38",
+      "sha256": "d614275a37066f3659240cca3de3eec903144db129de26ff407e7193f40505d3"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/far-shin.png",
+      "bytes": 17457,
+      "gitBlob": "46bbb9ff7aeed7b13d97b6f25988ea4cc6972cf5",
+      "sha256": "245e3846e65d5f22ddc72531bbe2ac45d93173297cef21a98dae2cc361c2a484"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/far-shoe.png",
+      "bytes": 13757,
+      "gitBlob": "04e4eb35f6bbefa77d9f78d26b908a767551e707",
+      "sha256": "32e7b8633a31846bb2c84b30ff69e11673f38aa2a47b7da57092e81819263346"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/far-thigh.png",
+      "bytes": 25615,
+      "gitBlob": "3c367f045b79bdaa9afc10d92e4f237c12e4df6d",
+      "sha256": "4316107c361824e8f574045b673285b64462cce69663cfbea46c647e7056d5e5"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/far-upper-arm.png",
+      "bytes": 14900,
+      "gitBlob": "5f857cae1d1a7086d7b376ca8163ec7dadae0c6d",
+      "sha256": "f69e7d596c9e26ac8292407731ffa954267d287b5eac6b8487722fd6b21e76e9"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/head.png",
+      "bytes": 124823,
+      "gitBlob": "65f4e8c0ba5e9d8c6ca1eb56dbde0f22347e39b0",
+      "sha256": "d5d52d8c63476f1e2bbd125f0b6b92e661d75aa44200d91327b4be152322a7e5"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/near-forearm.png",
+      "bytes": 13707,
+      "gitBlob": "6ae29306131bbf34c3ce4e3e209e0cb01d815001",
+      "sha256": "e47e62e5d4e4ff907167be8943105630e9110165f347f7eb1118c40c880d6c1f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/near-hand.png",
+      "bytes": 11881,
+      "gitBlob": "09054c536402e6f2994d5c797c16bf09a2f68688",
+      "sha256": "4c6574bd13d3f05aff850ed419aaabf6b81ec95cafc97413a20b7a2b38aee1cc"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/near-shin.png",
+      "bytes": 16956,
+      "gitBlob": "3545d74cf582daac714d2ccff4a44274939ccb56",
+      "sha256": "eeb7df3e33c6a4f43f54626fdd6689c233d0f36dd34987290cd30ca0dda38332"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/near-shoe.png",
+      "bytes": 16185,
+      "gitBlob": "dad9022550838eb6e8f5331258807ec21134102b",
+      "sha256": "f54fc7bdbcf2a432cd30a6d1d114a4d08342587cc621ebd1ea186923ac2bfc68"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/near-thigh.png",
+      "bytes": 28491,
+      "gitBlob": "4af0e8cc614f49722ec8362e54c7486449575584",
+      "sha256": "ce2daf6ec200c16c0afb24b5abd55cfd3ba4a0d865c84c0a20c6d17edf4c3747"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/near-upper-arm.png",
+      "bytes": 20883,
+      "gitBlob": "a0ed7970298b40e4ca51b81a91136b238d047ac4",
+      "sha256": "5d77dad070408e1db6f8f8a0dfa9514b2d51f6e3b8572c3f46162b4e486fbf98"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/pelvis.png",
+      "bytes": 18518,
+      "gitBlob": "b1f9b37548a22453b02466727a546a79ff0bdd10",
+      "sha256": "fa9c50e202fe4de122cf67894615f8ade652070a7719dca41ea630981576d936"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/parts/torso.png",
+      "bytes": 35922,
+      "gitBlob": "fdb26e2eb4a095fd89ddd9f9dc1521069f32bec3",
+      "sha256": "9921eae23d9125aebe1646920146670606c2bce2ba1c2e4831962a1e3f3bd7b2"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/project/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/review/four-poses-left-1x.png",
+      "bytes": 1212671,
+      "gitBlob": "72a5336a1677c610245b020c10a7b6702074aae9",
+      "sha256": "5293e9643c37bb070b0d70bb62516b98aa5028f2018d8898b83db4abee21d53f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/review/four-poses-right-1x.png",
+      "bytes": 1212805,
+      "gitBlob": "66dc9f56f2d3cb218c13ed8cb3d48e07bfa8aeb3",
+      "sha256": "015e5f629d2b31dfa4ea82b27ea11e215e851a8930c87d37ff9a1b5c969502f5"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/review/four-poses-right-2x.png",
+      "bytes": 1602077,
+      "gitBlob": "db7cdd91e19ac26a4e75e08274fe8b728c2e69e3",
+      "sha256": "825d78c2ec0c3b532dcf12c0f8efc87c331a9ee2037424006b2b6d542158c056"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/review/joints-2x.png",
+      "bytes": 1037751,
+      "gitBlob": "2505d62ff6f62efede8ea3b3b2ad7baff672be56",
+      "sha256": "691073bdd15b9bf204d0bc9867673ea1df550bf69f08a1c4f94816d1579645e6"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/review/registered-parts.png",
+      "bytes": 301620,
+      "gitBlob": "4e66c1ac6455e7f1f0c2fa82a32c47ffc5273864",
+      "sha256": "27a8282d7960af82cfbba691ffabd4d6bdb9405ae7f8a5950a562b3539f29263"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/review/source-reconstruction-1x.png",
+      "bytes": 324405,
+      "gitBlob": "7ea6545c98dbb1296a770e92c934d8b5fc09c742",
+      "sha256": "3cfdefd04ef155ea643f8279489ba682d76ed3cfdfab0c0f17b9264c681ce9a8"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/review/source-reconstruction-2x.png",
+      "bytes": 445654,
+      "gitBlob": "06477f37d6afa4b8fd16874041a42230a3ac53b7",
+      "sha256": "eff0ba362d9920370ff3da25ffbeb37b49dff7c06b560d46e01dc066fded3eee"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/run-flight-bones-right.png",
+      "bytes": 428617,
+      "gitBlob": "a8ec7a303a9662523d1665b364859a62f1e0dbab",
+      "sha256": "280a2e202d15fa2854ba7cdbe99fc86470a2151a52c60ec631f5724d217631ac"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/run-flight-left-1x.png",
+      "bytes": 363167,
+      "gitBlob": "8eb1cc4d75de20f50d12cf41c4864841e6e75b76",
+      "sha256": "3e8884e42f45a85672a78db77a02e2b8b5f859b47d919588f84714502286bcdb"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/run-flight-right-1x.png",
+      "bytes": 362914,
+      "gitBlob": "44d107f8db490016bb0b277c3560a7e9034a4bbb",
+      "sha256": "4fb20e5626b8cd47fac2dc51227b1b067cdf9950ace8f9f05cceca1fa2819597"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/standing-bones-right.png",
+      "bytes": 380306,
+      "gitBlob": "a8e800f05ed671f3a77af62c4596cb86387878df",
+      "sha256": "730b3322b84fbbc4ae78c81a23cbacce0b90a5aa40c70cbf3db53a44fc96dc24"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/standing-left-1x.png",
+      "bytes": 311516,
+      "gitBlob": "4916b2f0dbbd3255b47edde0dcb79ef47d6c6602",
+      "sha256": "aa923c27935fb1c60ed441282ef90fe56f50c9d895161c7b0bde9c7da9344a13"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/standing-right-1x.png",
+      "bytes": 311208,
+      "gitBlob": "f327fb1bdf4f51d65c9db9037a9f625439b04763",
+      "sha256": "759c56527b500598e4e4d90a94fc3a3616e98893c268d2ae7989cf6d6c10b2c7"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/ui-celebrate.png",
+      "bytes": 315815,
+      "gitBlob": "3050a85210701be42bf88a1c7929da879542b5b3",
+      "sha256": "e4ed2eb0e25b75418996610f04d02f810a84c17dfa2b34c443f0091c349fd707"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/ui-run-flight.png",
+      "bytes": 314414,
+      "gitBlob": "c13290dcc9865f46416b09c5a3fedc09782efcac",
+      "sha256": "55374fd9caac1ebc9cbf9f77dccbf8a5a47c6261c88bfb6efd92c055b74eaf3c"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/ui-standing.png",
+      "bytes": 223842,
+      "gitBlob": "3b493cc776bdd085aaeb6f24e713dfb1d36218ea",
+      "sha256": "04e6e3dd938a99b1b4487bc8a0dee4af98ac1cdaa1f3ef58da03be0198fcc4e6"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/ui-walk-contact.png",
+      "bytes": 310874,
+      "gitBlob": "32aa998ba8955acaabc1fe21187849606c127684",
+      "sha256": "c9d98e2f702d9bd52e16048408204bd676cbb01ada0f6bcabb48275eefaad1fd"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/walk-contact-bones-right.png",
+      "bytes": 410304,
+      "gitBlob": "5da6857975327e12676d5cdab6e430eae1ff14c3",
+      "sha256": "7aea3186c83b35728f9f97457bd13881b0688d8698f586ab973326b2a46bdde4"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/walk-contact-left-1x.png",
+      "bytes": 350271,
+      "gitBlob": "d9faa0025de772f9e6178b304943fd030df3593b",
+      "sha256": "758416ddd28fae2e8852f78119f807b510c3409d1e0bf65c0009df8061610023"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/kling-focus/walk-contact-right-1x.png",
+      "bytes": 349795,
+      "gitBlob": "01e5d07a7a5aef7d73ba11a8ac7287ed07e4ff8c",
+      "sha256": "1ce18a571bf32ee54b24d6c0f26be1df2d186f2a3381a8c73ea81b130be23f6e"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/celebrate-bones-right.png",
+      "bytes": 394193,
+      "gitBlob": "ea1929f028886e3f5cc049d547fc2a8d82e9ba13",
+      "sha256": "e18273093207b05e2af38dbd4a9a1a27f1cea1d35c77c3aad6985d59700cc21a"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/celebrate-left-1x.png",
+      "bytes": 325687,
+      "gitBlob": "168d93eed50e9370986b1b3635db1f996756cf85",
+      "sha256": "a4adb5a679550f6ecd75b7b187a8f243011fa611cb2f1949043f246caa2df642"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/celebrate-right-1x.png",
+      "bytes": 325228,
+      "gitBlob": "f08ff66a463b103aee3a0a747708bd232f47c955",
+      "sha256": "63c48b79f465bee356c89bb8f8aefaa423d95fe0c36b611c2cc6fd7653c55b65"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/character-pack/character.json",
+      "bytes": 2637,
+      "gitBlob": "605f4547c20182ee13e7f1a30c3cf73fccab61de",
+      "sha256": "a0c293c78825b1d961a3c95165480b7256159f84a0af7f8c0a969e95a13aacce"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/character-pack/manifest.json",
+      "bytes": 1567,
+      "gitBlob": "4e6841e02845e2ded275feba08cba5ed9ba6d48f",
+      "sha256": "bc69dfa6b70793a02b59bd159d40fdebcf18b2bfeb4edc0f4ff42a0239cbd133"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/character-pack/spritesheet.png",
+      "bytes": 1358662,
+      "gitBlob": "b88e0b2346f42c11e620810c88e6fdf69c93caf5",
+      "sha256": "ce6908d73aa4465c903f3e565e8ed10f52eece97e06f4966246eda1e1d5418f8"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/evidence-index.json",
+      "bytes": 60907,
+      "gitBlob": "37cafe09268c6c5e5683be23025d8bbbd28ad0e6",
+      "sha256": "b658efe08c0b3959c8b3ba9f08e053985e1ebff65fbba709e760a44e2ec87563"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/independent-player.png",
+      "bytes": 249550,
+      "gitBlob": "792ed2c71ebc2e9dc65b8b03b5e898fb6e5df369",
+      "sha256": "293ec7d323b1565c5fdfd7c12b7cb82bde4826115c3fc6ae118d1c42e7cf8f88"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/kling-male-native-stills.character.zip",
+      "bytes": 1355677,
+      "gitBlob": "dab1fe38e24138bfb3ed0b8010447f10606acf8d",
+      "sha256": "98d018265b401c6e07a0a8c6ec2c2702d9feec0193911099848017413efb5c8c"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/kling-male-native-study.project.zip",
+      "bytes": 615119,
+      "gitBlob": "b63c1d3a445b1a6e051597f426fd4fba77c29bb2",
+      "sha256": "6ec950e76a42b8dbcb274eddd82804002bb569c2e655e14dd2a8edc212a74120"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/checksums.json",
+      "bytes": 1571,
+      "gitBlob": "4790046f8d80de4e8a476160ac6ef68fb1457a1b",
+      "sha256": "de1350bb3777c52c2c838da5ce0e14a4e03e4e5125fa632c5dcd0ff4a82c812f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/document.json",
+      "bytes": 8653,
+      "gitBlob": "230e66d2b6d9c0c7b17d71ff86d053005247bae7",
+      "sha256": "8e64cbac7418aeff329086b798b36eb370039ddbcec241e997b64bcd94d310cd"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/far-forearm.png",
+      "bytes": 12107,
+      "gitBlob": "b559142679bedab0acc95750f0cc607a6fa7da06",
+      "sha256": "17352c135953f758c5ea73f834777b473d050bbe2094a1557c692892c218b5b0"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/far-hand.png",
+      "bytes": 10312,
+      "gitBlob": "9e518e95a6053842e6143372b8f19a84d973fe38",
+      "sha256": "d614275a37066f3659240cca3de3eec903144db129de26ff407e7193f40505d3"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/far-shin.png",
+      "bytes": 17457,
+      "gitBlob": "46bbb9ff7aeed7b13d97b6f25988ea4cc6972cf5",
+      "sha256": "245e3846e65d5f22ddc72531bbe2ac45d93173297cef21a98dae2cc361c2a484"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/far-shoe.png",
+      "bytes": 13757,
+      "gitBlob": "04e4eb35f6bbefa77d9f78d26b908a767551e707",
+      "sha256": "32e7b8633a31846bb2c84b30ff69e11673f38aa2a47b7da57092e81819263346"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/far-thigh.png",
+      "bytes": 25615,
+      "gitBlob": "3c367f045b79bdaa9afc10d92e4f237c12e4df6d",
+      "sha256": "4316107c361824e8f574045b673285b64462cce69663cfbea46c647e7056d5e5"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/far-upper-arm.png",
+      "bytes": 14900,
+      "gitBlob": "5f857cae1d1a7086d7b376ca8163ec7dadae0c6d",
+      "sha256": "f69e7d596c9e26ac8292407731ffa954267d287b5eac6b8487722fd6b21e76e9"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/head.png",
+      "bytes": 124823,
+      "gitBlob": "65f4e8c0ba5e9d8c6ca1eb56dbde0f22347e39b0",
+      "sha256": "d5d52d8c63476f1e2bbd125f0b6b92e661d75aa44200d91327b4be152322a7e5"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/near-forearm.png",
+      "bytes": 13707,
+      "gitBlob": "6ae29306131bbf34c3ce4e3e209e0cb01d815001",
+      "sha256": "e47e62e5d4e4ff907167be8943105630e9110165f347f7eb1118c40c880d6c1f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/near-hand.png",
+      "bytes": 11881,
+      "gitBlob": "09054c536402e6f2994d5c797c16bf09a2f68688",
+      "sha256": "4c6574bd13d3f05aff850ed419aaabf6b81ec95cafc97413a20b7a2b38aee1cc"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/near-shin.png",
+      "bytes": 16956,
+      "gitBlob": "3545d74cf582daac714d2ccff4a44274939ccb56",
+      "sha256": "eeb7df3e33c6a4f43f54626fdd6689c233d0f36dd34987290cd30ca0dda38332"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/near-shoe.png",
+      "bytes": 16185,
+      "gitBlob": "dad9022550838eb6e8f5331258807ec21134102b",
+      "sha256": "f54fc7bdbcf2a432cd30a6d1d114a4d08342587cc621ebd1ea186923ac2bfc68"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/near-thigh.png",
+      "bytes": 28491,
+      "gitBlob": "4af0e8cc614f49722ec8362e54c7486449575584",
+      "sha256": "ce2daf6ec200c16c0afb24b5abd55cfd3ba4a0d865c84c0a20c6d17edf4c3747"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/near-upper-arm.png",
+      "bytes": 20883,
+      "gitBlob": "a0ed7970298b40e4ca51b81a91136b238d047ac4",
+      "sha256": "5d77dad070408e1db6f8f8a0dfa9514b2d51f6e3b8572c3f46162b4e486fbf98"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/pelvis.png",
+      "bytes": 18518,
+      "gitBlob": "b1f9b37548a22453b02466727a546a79ff0bdd10",
+      "sha256": "fa9c50e202fe4de122cf67894615f8ade652070a7719dca41ea630981576d936"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/parts/torso.png",
+      "bytes": 35922,
+      "gitBlob": "fdb26e2eb4a095fd89ddd9f9dc1521069f32bec3",
+      "sha256": "9921eae23d9125aebe1646920146670606c2bce2ba1c2e4831962a1e3f3bd7b2"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/project/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/reference.png",
+      "bytes": 278747,
+      "gitBlob": "535608d45dc516e1a89f4d419c1ac56ade31cfbc",
+      "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/run-flight-bones-right.png",
+      "bytes": 427908,
+      "gitBlob": "1893aed02506cc17a768f644899be66f95db3993",
+      "sha256": "033be5780d941bdf524b2b525b90cb4bfd4ba00d698440c16ab9e817066c838b"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/run-flight-left-1x.png",
+      "bytes": 362339,
+      "gitBlob": "b1375f9f778130bf1df743672b59e59c44189777",
+      "sha256": "3606e7e8b5645af511914a8906016729e1bee75e48a03eb6c16a094c3ff4e959"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/run-flight-right-1x.png",
+      "bytes": 362048,
+      "gitBlob": "8be2b7ff5d54ef3b96a49007cb79e37380ee7cfa",
+      "sha256": "d41fcb64ff51f9be30ed4272c0e06231f7a2a11445f3f03db0e3d64f0035aede"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/standing-bones-right.png",
+      "bytes": 380306,
+      "gitBlob": "a8e800f05ed671f3a77af62c4596cb86387878df",
+      "sha256": "730b3322b84fbbc4ae78c81a23cbacce0b90a5aa40c70cbf3db53a44fc96dc24"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/standing-left-1x.png",
+      "bytes": 311516,
+      "gitBlob": "4916b2f0dbbd3255b47edde0dcb79ef47d6c6602",
+      "sha256": "aa923c27935fb1c60ed441282ef90fe56f50c9d895161c7b0bde9c7da9344a13"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/standing-right-1x.png",
+      "bytes": 311208,
+      "gitBlob": "f327fb1bdf4f51d65c9db9037a9f625439b04763",
+      "sha256": "759c56527b500598e4e4d90a94fc3a3616e98893c268d2ae7989cf6d6c10b2c7"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/ui-celebrate.png",
+      "bytes": 315832,
+      "gitBlob": "de68bd00915cdd109bdd775a9765c0f865af5b5d",
+      "sha256": "c8b61274905f8f4c14358d8506aeb8673b1a07e71d1ed34362b1e95c7d2fd93c"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/ui-run-flight.png",
+      "bytes": 314130,
+      "gitBlob": "c5621baed310c3f0b3e393cdf949177d826fa3d9",
+      "sha256": "2c9ae98881871da18fc43f2ac8a11c5467c28604bf0896fc903291ed39154d92"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/ui-standing.png",
+      "bytes": 223842,
+      "gitBlob": "3b493cc776bdd085aaeb6f24e713dfb1d36218ea",
+      "sha256": "04e6e3dd938a99b1b4487bc8a0dee4af98ac1cdaa1f3ef58da03be0198fcc4e6"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/ui-walk-contact.png",
+      "bytes": 311100,
+      "gitBlob": "3a2b1017c90b836a9c62c12f8f8c5ee303cbc8d5",
+      "sha256": "4ccc38f3a18dbbcdc1c7852509ce5c707b8072dff2728bc910f9ade37630bf25"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/walk-contact-bones-right.png",
+      "bytes": 411564,
+      "gitBlob": "f6077ba00fe6a5570e0f2e165a7279ef42ef9bac",
+      "sha256": "eeb38a57c98998ad1a215164d34bbbbe063df1e9879d131c56f6d862db0c7871"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/walk-contact-left-1x.png",
+      "bytes": 351508,
+      "gitBlob": "36ff774e66a78b9de1c2439746a382d0e996e7e9",
+      "sha256": "0d135b20a9536cd8427f14ded9cfc3f1124ac7ed81b1673556962d43122c39ee"
+    },
+    {
+      "path": "docs/kling-native-study/iterations/workflow-check/walk-contact-right-1x.png",
+      "bytes": 351090,
+      "gitBlob": "9ef2ee48fb8e3bc61a048cb7c5df09bfff51b202",
+      "sha256": "16a72d7aa489a6a6c5d88a4e092e8aedb3b36758124d746a9a6be9f70f61f381"
+    },
+    {
+      "path": "docs/kling-playback/artifact-validation.json",
+      "bytes": 25139,
+      "gitBlob": "d329242e009bb17d4db78ec0eee6dabb5d425b5d",
+      "sha256": "2524c9a8fe731126345e06e295a808b6b6b13fa5fd70236a425705ee76227cc7"
+    },
+    {
+      "path": "docs/kling-playback/browser/evidence-index.json",
+      "bytes": 148275,
+      "gitBlob": "a11eb9c7654fc79100eb139d737b04038065ef12",
+      "sha256": "2461d5fdf540e245159ee228f9856b67a39c42d4813b674e48d4814d5c8883a7"
+    },
+    {
+      "path": "docs/kling-playback/browser/female-independent-celebrate.png",
+      "bytes": 137485,
+      "gitBlob": "78d32c1c68047e74649f2deaada3374f6aca0ae8",
+      "sha256": "c1aca952c3e84ac73cd6627a008325f718c495aa343c714930546e11ecb09ce8"
+    },
+    {
+      "path": "docs/kling-playback/browser/female-independent-idle.png",
+      "bytes": 137035,
+      "gitBlob": "7e4ca3e7613bf073aa1635999236ce9f570098e9",
+      "sha256": "dd6e81d5d65df8f7346aff136a22a3c5db674ec225a2736bca07ebd55d4d2495"
+    },
+    {
+      "path": "docs/kling-playback/browser/female-independent-run.png",
+      "bytes": 138700,
+      "gitBlob": "5f2711a5c5160f6589f31eb822dde0840b85e336",
+      "sha256": "9040e6d5b5171519294bc9ad420782b17457cad84b8aaa3ecb1ef3786651d873"
+    },
+    {
+      "path": "docs/kling-playback/browser/female-independent-walk.png",
+      "bytes": 127567,
+      "gitBlob": "3cd18e7d4d922d0c9adf8107b28a502ea51adda5",
+      "sha256": "75ec0017228766fd367900267958bec1ac63b88e4bfa86dad7b4389b1f943c81"
+    },
+    {
+      "path": "docs/kling-playback/browser/female-native-canvas.png",
+      "bytes": 281736,
+      "gitBlob": "5a97d61cfb38a304d804aaefd209c50cb96eb494",
+      "sha256": "bd34bb0b914235f4110fe978da7c8ce18c289411e37a7e5950de925fbb884f39"
+    },
+    {
+      "path": "docs/kling-playback/browser/female-source-import.png",
+      "bytes": 141568,
+      "gitBlob": "bd82af65c6bfebe940bd072d477de695d66b8eb3",
+      "sha256": "c0fca7e108f87c7ccfbc3e3ff95ed88804656cec45d64ae649b80cb47e135e09"
+    },
+    {
+      "path": "docs/kling-playback/browser/legacy-source-check.json",
+      "bytes": 1113,
+      "gitBlob": "27620f33fade02fd051e7f0195e0f35bb8066cb4",
+      "sha256": "4217b98b21faa246a377c405424f06d65874bbd79808c6ca7943f0eb7e875082"
+    },
+    {
+      "path": "docs/kling-playback/browser/male-independent-celebrate.png",
+      "bytes": 137132,
+      "gitBlob": "1e4f2746bc6a199c208debc8f2254241ad0d7d3a",
+      "sha256": "66c69d1b63312981a69b841ced36021b36259c4f40997050ac3b36e9eeb969ef"
+    },
+    {
+      "path": "docs/kling-playback/browser/male-independent-idle.png",
+      "bytes": 134033,
+      "gitBlob": "9f4b9e47abf5d0107738a349ea9ba043f6eb99a9",
+      "sha256": "44fb5d99943fa20915127dffb207946b9b88eb143c9746d003f1d416e7cf3924"
+    },
+    {
+      "path": "docs/kling-playback/browser/male-independent-run.png",
+      "bytes": 138905,
+      "gitBlob": "8fc32ca1d6526a95a1eb69d2419e708da33ddadb",
+      "sha256": "345b0ad5d71d5ed30b5e7ccd1a98cad4a6c7c967012bfa3bc777bc976234f161"
+    },
+    {
+      "path": "docs/kling-playback/browser/male-independent-walk.png",
+      "bytes": 127350,
+      "gitBlob": "ce8c2db0a83effc2a095dc27cf375801335b159b",
+      "sha256": "af9dabbeaf69f53c6ff8a9c832afa6ab429f7043bcd0f15e9e825bd3fc3ac369"
+    },
+    {
+      "path": "docs/kling-playback/browser/male-native-canvas.png",
+      "bytes": 270091,
+      "gitBlob": "d8a779dca93ab86e97435b531ea6816d2daba0f8",
+      "sha256": "0412b7ce2a42f24c8182567362f70eb03fee58011e18bf02be63acb76f646303"
+    },
+    {
+      "path": "docs/kling-playback/browser/male-source-import.png",
+      "bytes": 138539,
+      "gitBlob": "3ef377f795e63a49671617d78fb983a4e57e55e7",
+      "sha256": "1a598b36c4045f9adafd0bc5affc234897eced7b835021d1872dab75cb926d9d"
+    },
+    {
+      "path": "docs/kling-playback/browser/original-384-source-compatibility.png",
+      "bytes": 111620,
+      "gitBlob": "1b1cc73bfa54487b697fb8051325662559401ebd",
+      "sha256": "897f68f58dbea624db04325306f300ab8c4a74754553e2fe45f092af2dedb098"
+    },
+    {
+      "path": "docs/kling-playback/browser/pair-celebrate.png",
+      "bytes": 238556,
+      "gitBlob": "f7c2ac6b5c9dc7c017ee859c05e12a8e1bef7bc2",
+      "sha256": "b804b98b72b4001583418d3b77db4443f3172093a5ba167f6f6d9bc648b3372a"
+    },
+    {
+      "path": "docs/kling-playback/browser/pair-idle.png",
+      "bytes": 235603,
+      "gitBlob": "d8cf28f5f9359cb5d915d6bfde454b75a0b9d3af",
+      "sha256": "2d42fdd21450987d7ce287fad960f4d31e9476069ff2cbb3b05bccd5fea30997"
+    },
+    {
+      "path": "docs/kling-playback/browser/pair-run.png",
+      "bytes": 241820,
+      "gitBlob": "67dfb178a9f3d514768ece29a6f674ec78ce1c6a",
+      "sha256": "4d8351f911639564655d63dbe96f01878ef3eb47508ced5134e64e9d7b069b11"
+    },
+    {
+      "path": "docs/kling-playback/browser/pair-walk.png",
+      "bytes": 220513,
+      "gitBlob": "24dda1a13ae073939a3331fba0d7c687bbf1480b",
+      "sha256": "80eb1d6af4202b02879266e8b06f3c2df61efea026c991cc78d2eaf4fa063905"
+    },
+    {
+      "path": "docs/kling-playback/exports/female.character.zip",
+      "bytes": 19862985,
+      "gitBlob": "20926988860cefd91e8f4485cdff065ea3f0b5c8",
+      "sha256": "9c2e47303d78d782a9c1f211b120bd0eb51ea48dc121111ba3dbb296b5d570cc"
+    },
+    {
+      "path": "docs/kling-playback/exports/male.character.zip",
+      "bytes": 19817463,
+      "gitBlob": "a6bc15957a9720d4d008aa23f48dfcbbe3751ec8",
+      "sha256": "a1a88199ca6a82099cba844a749969378bbc7b0154381e43fc106a7680dd8d14"
+    },
+    {
+      "path": "docs/kling-playback/http-fix/female-http-player.png",
+      "bytes": 140642,
+      "gitBlob": "49998477a72cf983a2161a07e79780a80fa31da2",
+      "sha256": "6dd8ce69d78065903de591b1fec51cc1d10af7a6c1843deb9bd21b090986b8aa"
+    },
+    {
+      "path": "docs/kling-playback/http-fix/male-http-player.png",
+      "bytes": 139732,
+      "gitBlob": "c693abc99754cab68934e59060dd679395ee90e7",
+      "sha256": "ca2275a73d1b76c35edd4c3f2088d1d7b8dd76035d94f61a61cded0fd029ffcf"
+    },
+    {
+      "path": "docs/kling-playback/http-fix/verification.json",
+      "bytes": 968,
+      "gitBlob": "ce7277d2bda44d71ad5e3f3166a7942f79d74c0f",
+      "sha256": "8a611db99b9d1c633be470b8757d2c1b90ddee97c97780adba4012bf8f8f1bf9"
+    },
+    {
+      "path": "docs/kling-playback/review/female_celebrate.gif",
+      "bytes": 704880,
+      "gitBlob": "ad22f60c8ed0f4324b08c8bd5956096e39a83d9d",
+      "sha256": "a1634200b21f9077da516689108a2f8abba554170ef7bd1ca64ab2938bf97692"
+    },
+    {
+      "path": "docs/kling-playback/review/female_celebrate_boundary_1x.png",
+      "bytes": 546939,
+      "gitBlob": "f83c382da7e9fce52db026ca04b080003ac00bf1",
+      "sha256": "8f5c8eb0813646ed666dfe202213c7c96226038b2597caf1ae3c742c8325b7db"
+    },
+    {
+      "path": "docs/kling-playback/review/female_celebrate_frames_1x.png",
+      "bytes": 4383772,
+      "gitBlob": "92416a9582fba8ea1fc48af2307720da9d4a33d1",
+      "sha256": "20dec6cd6a2728bba4cf8f4009dac0adab6c798dfbb61a560ad2664077f1b134"
+    },
+    {
+      "path": "docs/kling-playback/review/female_celebrate_frames_overview.png",
+      "bytes": 540128,
+      "gitBlob": "232e102ed0dc748d8eccd40f759bf297dca2c0a6",
+      "sha256": "5f0374ec72f203385b64e98b5b1031c3995738d4e8ba098cff2c96875a67c109"
+    },
+    {
+      "path": "docs/kling-playback/review/female_face_neck_2x.png",
+      "bytes": 256856,
+      "gitBlob": "ff8b325ba72941dd20b61afda1c3cd07dd9007a7",
+      "sha256": "30bbb2c2eb840c9204fbdb66421173d20f3c808a69819d6ebbbafa7cc6111165"
+    },
+    {
+      "path": "docs/kling-playback/review/female_idle.gif",
+      "bytes": 999004,
+      "gitBlob": "6d6a957cf8788fa2bd756769aeb0bf911f473030",
+      "sha256": "7a73b309a82d44c818bf975d71fca1e3feaedae06c03e9e5235906416f4bd43e"
+    },
+    {
+      "path": "docs/kling-playback/review/female_idle_boundary_1x.png",
+      "bytes": 518897,
+      "gitBlob": "7c489876b260fd441abd02868310766ebd41f3c3",
+      "sha256": "18cd1ce9e2c3753d342eb90fd8b4b34fc5e207bc792429700aba372539bc8b9c"
+    },
+    {
+      "path": "docs/kling-playback/review/female_idle_frames_1x.png",
+      "bytes": 3386022,
+      "gitBlob": "0a99050f377012023e94df955ff22137d3d0f199",
+      "sha256": "58f23107dd28105171ee2549520157743e70c6a41f4e9ce049ea121e2338f1ed"
+    },
+    {
+      "path": "docs/kling-playback/review/female_idle_frames_overview.png",
+      "bytes": 491436,
+      "gitBlob": "fe53d5d6417cc6d1cacbc7ce6009eb962ca3cdbf",
+      "sha256": "a59bdfeff496141eec3ab85921ae39f73ca100a2e00423139ecc1f3abadc4254"
+    },
+    {
+      "path": "docs/kling-playback/review/female_run.gif",
+      "bytes": 673815,
+      "gitBlob": "8eebf35f5b339c945cc6c65869b69072e49ba2f3",
+      "sha256": "2569cdcffb16a50ac29be86bbc729cb9c75fd5cb50f249535dfaaa2d462eb559"
+    },
+    {
+      "path": "docs/kling-playback/review/female_run_boundary_1x.png",
+      "bytes": 522735,
+      "gitBlob": "0a3e1bffc6df1481698794fd846304f42062757a",
+      "sha256": "c5bfbb39a914c877200dca9062fdc91ff2a4713165986b1229a2b17ccf5156db"
+    },
+    {
+      "path": "docs/kling-playback/review/female_run_frames_1x.png",
+      "bytes": 3736309,
+      "gitBlob": "2a2a9ebab501695e33e893d04aed9a317b68a72c",
+      "sha256": "8cfe8f26ed6f63267d7cf73bce4748f358c1155196e03d967bb1f3aa348b1a73"
+    },
+    {
+      "path": "docs/kling-playback/review/female_run_frames_overview.png",
+      "bytes": 498525,
+      "gitBlob": "00ef1d6a16ca194907c7bc11dfd802d096d443ef",
+      "sha256": "a5af60caf32892dee07f935fd0c6e5f5bc0f222349cbf264bd94346415873f8d"
+    },
+    {
+      "path": "docs/kling-playback/review/female_run_left.gif",
+      "bytes": 671828,
+      "gitBlob": "64ab8572a181667f29fda9563e97ee0546095e72",
+      "sha256": "eb0940e2e52b92735f642bda21f23f8a5c22ff7d2c758be60533bf6cc400e207"
+    },
+    {
+      "path": "docs/kling-playback/review/female_source_matte_export_1x.png",
+      "bytes": 592271,
+      "gitBlob": "84dda21d8aaa535251cf172aaf4cdf5344e15f9e",
+      "sha256": "02ca09a2bbf067f184f80b62f1f190ec1f8d440c326d48edf1c294b1d36f7df5"
+    },
+    {
+      "path": "docs/kling-playback/review/female_standing_dark_1x.png",
+      "bytes": 276422,
+      "gitBlob": "f07842052d8a66c9abe14498aad934d5ad37097b",
+      "sha256": "05a30c1e477afbfffbe701b5f9a373f0c1de93519b846adf7760900b086e4317"
+    },
+    {
+      "path": "docs/kling-playback/review/female_standing_light_1x.png",
+      "bytes": 276579,
+      "gitBlob": "0551535a512db11b401b4f3408bf9d23a8c42c69",
+      "sha256": "eff0f35a0b139f689acfc431bcc07bae1ad058d345bcb5a0b41630b8d90d237e"
+    },
+    {
+      "path": "docs/kling-playback/review/female_walk.gif",
+      "bytes": 1101848,
+      "gitBlob": "07daefa6a1f2f6b1236a194778cc41e5aea64789",
+      "sha256": "1762af7ff905e6dbe006775006d14f489e8481ed46a549177981aab53752105f"
+    },
+    {
+      "path": "docs/kling-playback/review/female_walk_boundary_1x.png",
+      "bytes": 486708,
+      "gitBlob": "b1c12020dde09796abacb72147eec2454c452db1",
+      "sha256": "71273c1977c54e72d3935d3685eb00fd4788da77c95a52e5df86f6cf1d0fa782"
+    },
+    {
+      "path": "docs/kling-playback/review/female_walk_frames_1x.png",
+      "bytes": 6516684,
+      "gitBlob": "7a8ad4f68354ab9492fa24b9db958c84848fb2ee",
+      "sha256": "754eb971b45109f0e8d1987a5f7f6f6d460ca135336573d80f8f3fa081ff9092"
+    },
+    {
+      "path": "docs/kling-playback/review/female_walk_frames_overview.png",
+      "bytes": 811165,
+      "gitBlob": "0598f14c7ca392aa962c2017aa9b0d8984bf7531",
+      "sha256": "e65d3c58c865abd61fd028dc48b348fd5f9af41cc4e68b6a24371fd599c5fdb9"
+    },
+    {
+      "path": "docs/kling-playback/review/male_celebrate.gif",
+      "bytes": 689236,
+      "gitBlob": "b40f320c68de6cae6659c786b3db605f0e9df6ba",
+      "sha256": "987d262187f96ac98f085efeda29a0343446bd966ec9681a162ab41be88e4c70"
+    },
+    {
+      "path": "docs/kling-playback/review/male_celebrate_boundary_1x.png",
+      "bytes": 538184,
+      "gitBlob": "3b44a7f1c347cd3f86cf3e98a5c240680e487dcb",
+      "sha256": "4a61f29252aac5628a487b3cf3ecc5c35fc3e52dc4ce3af1ee7d63612bfaf244"
+    },
+    {
+      "path": "docs/kling-playback/review/male_celebrate_frames_1x.png",
+      "bytes": 4274684,
+      "gitBlob": "450db690e4a6223ac891886f429434ed6289a66d",
+      "sha256": "da999e26db2707563a049434908381fa8a4528fd55e9dd6f82ad9e99656cfa32"
+    },
+    {
+      "path": "docs/kling-playback/review/male_celebrate_frames_overview.png",
+      "bytes": 530079,
+      "gitBlob": "985bcae77f8627decbe01c10f15045019d4a0363",
+      "sha256": "cf718b713817265d908ec1a88fb59f38a4d9827083fbb43600ffed6f2bc462a2"
+    },
+    {
+      "path": "docs/kling-playback/review/male_face_neck_2x.png",
+      "bytes": 216894,
+      "gitBlob": "6f4cb29acf9e96e8b53801ef16d81b54329a6133",
+      "sha256": "0030282aa9792bfb39dc6bada7c276c6de9fc5ae39799f277fbdd7958bbcefc7"
+    },
+    {
+      "path": "docs/kling-playback/review/male_idle.gif",
+      "bytes": 965950,
+      "gitBlob": "b22a1bb5ebf40296671736168cd18c17ec9000ac",
+      "sha256": "3b6972b8e8608e39a6939f0ddae4c0bc644013afb23f50af9b25a040ccdcb335"
+    },
+    {
+      "path": "docs/kling-playback/review/male_idle_boundary_1x.png",
+      "bytes": 479268,
+      "gitBlob": "3ba4b2d844cd2773a0a2dfcfb9fb2afefbb91ecc",
+      "sha256": "647605370e3389f4408c0d3d4a999ecdb6765cbd806c555b41f45b0d7d7cb37a"
+    },
+    {
+      "path": "docs/kling-playback/review/male_idle_frames_1x.png",
+      "bytes": 3021910,
+      "gitBlob": "53ae03e6f09ab4844d900a628ab71b14fff97e94",
+      "sha256": "22a1fc2ff341c7115535d7f515bd8322845452bd5c4148d87e3c9ba1786eb8df"
+    },
+    {
+      "path": "docs/kling-playback/review/male_idle_frames_overview.png",
+      "bytes": 441670,
+      "gitBlob": "d5dba8b0daf2d664fc7d9b06bfaf776359c0d4db",
+      "sha256": "460ac2db47910ba9a446a38130f505c94e5caad22c845af4a694fe4fdc40b72a"
+    },
+    {
+      "path": "docs/kling-playback/review/male_run.gif",
+      "bytes": 655740,
+      "gitBlob": "3d61a1924e9e66ffff329009960a7ce6afe9adcc",
+      "sha256": "f0f7cdce9a8eaa8abcb2e4cb239ce02a62d8dc00bd628ee3ccc65c79de55ce81"
+    },
+    {
+      "path": "docs/kling-playback/review/male_run_boundary_1x.png",
+      "bytes": 527147,
+      "gitBlob": "591bf4fdbb962d27f538dec19dd8bea841cccc4a",
+      "sha256": "e896f045ac365d0ba6b846b253419e10036dff008e4db9b914bb3ed1987923f7"
+    },
+    {
+      "path": "docs/kling-playback/review/male_run_frames_1x.png",
+      "bytes": 3795003,
+      "gitBlob": "43858bd5f8655367dae800fd510cc3497b3aa31e",
+      "sha256": "9603228d138bd513dd1165ca5ec3f5313710fa18c871db2906ecd72f6704a276"
+    },
+    {
+      "path": "docs/kling-playback/review/male_run_frames_overview.png",
+      "bytes": 487627,
+      "gitBlob": "b0292d4c2afdd11a7493488aed9c02604215cbf2",
+      "sha256": "f27d26421de3beec1b6a07034ec317b4511fef62e57aeb43c2d168020f691d32"
+    },
+    {
+      "path": "docs/kling-playback/review/male_run_left.gif",
+      "bytes": 655269,
+      "gitBlob": "dd2c5a5018ce6829bb1d9bff93047402133defd7",
+      "sha256": "3fb5a5bd3a38c8b4db28f46a647bcfe2126e49943e97860b3d0cffd8380c2ddb"
+    },
+    {
+      "path": "docs/kling-playback/review/male_source_matte_export_1x.png",
+      "bytes": 438882,
+      "gitBlob": "c964d39d174a8c649b60795da4545de5edd6c7e7",
+      "sha256": "8666691d919ae1ab8438070601c921eb0a285c34dae8711a77b3414cd23fd4de"
+    },
+    {
+      "path": "docs/kling-playback/review/male_standing_dark_1x.png",
+      "bytes": 263588,
+      "gitBlob": "9ef96ee9d5de010bcf3ef4f451daca3fa50656d3",
+      "sha256": "8d91266468b1a4231d9b8b7dbb210244acd6bfac1ef7783ac73100c695cfb843"
+    },
+    {
+      "path": "docs/kling-playback/review/male_standing_light_1x.png",
+      "bytes": 263739,
+      "gitBlob": "52ff9d005df2354faf3418e95594950231b467f6",
+      "sha256": "219b09862dca5ee751b93bf6c685605e36074997af35ffff5d1e3c7b5ff38424"
+    },
+    {
+      "path": "docs/kling-playback/review/male_walk.gif",
+      "bytes": 1079944,
+      "gitBlob": "b7a0ecb3287f5bbdb6e1c75b71da0ba007f23066",
+      "sha256": "5adec85f983a4602eac3b05b206e837fe6d6a617e56e1a9d37817c4f25077720"
+    },
+    {
+      "path": "docs/kling-playback/review/male_walk_boundary_1x.png",
+      "bytes": 483391,
+      "gitBlob": "acd6f8750165a11c5f724079bcb709b33defe7bd",
+      "sha256": "b6e1480afeb1f41f31ea861f810f9223255233b838f25902529b37c7b63eab19"
+    },
+    {
+      "path": "docs/kling-playback/review/male_walk_frames_1x.png",
+      "bytes": 6490772,
+      "gitBlob": "8a642da1886a01ee61d31a39926d8fafc5b41cc3",
+      "sha256": "09628df532b9b777aca2d7c44d6ec60928b291353d9cdde250a008926b9b5709"
+    },
+    {
+      "path": "docs/kling-playback/review/male_walk_frames_overview.png",
+      "bytes": 798550,
+      "gitBlob": "2d184ddaf840916490b97224c169c9a46ee18eeb",
+      "sha256": "148d35879466fffa4578694928f4e2c0b771eef71d7f66c887ffd912593ffbaa"
+    },
+    {
+      "path": "docs/kling-playback/review/pair_celebrate.gif",
+      "bytes": 1365012,
+      "gitBlob": "4fcbb3754df8f32cd230b12802f216af8f4fea6f",
+      "sha256": "7bb16afe1259bcb2a1b80e172aff63380ddf415dd45be74a8cb97a4f604db12a"
+    },
+    {
+      "path": "docs/kling-playback/review/pair_idle.gif",
+      "bytes": 1967668,
+      "gitBlob": "9b1a28349251cd0b1e39ae48cedd22019151e69f",
+      "sha256": "addb6b993b7f435f66b75e2073e93c93c4651e738d768bb25ba02d105daabac1"
+    },
+    {
+      "path": "docs/kling-playback/review/pair_run.gif",
+      "bytes": 1345249,
+      "gitBlob": "2b44ddc99b469d238dd45eea72c773025095cb59",
+      "sha256": "c330e5a5e7753ca2624c9d0627a5732920ae5cca6c717c0777717fba0f725517"
+    },
+    {
+      "path": "docs/kling-playback/review/pair_walk.gif",
+      "bytes": 2150670,
+      "gitBlob": "6deefa8b9c0e06bf21285a1637fc8779d9bdb194",
+      "sha256": "50359e44b25cb20592559498e62e67241bd41cdc61ed69ddc366ec9474a71c8c"
+    },
+    {
+      "path": "docs/kling-playback/verification-results.json",
+      "bytes": 3291,
+      "gitBlob": "9bf2514f86833d678a73b8ea0168f7b85e563c7d",
+      "sha256": "f7026387d9303e8f2b0081645ae034eff534de186e9fc6e4c94bed5e7f3d1ef7"
+    },
+    {
+      "path": "docs/kling-workspace/artifact-validation.json",
+      "bytes": 3930,
+      "gitBlob": "cc68c717d357e11a805ace026f8dacb971442f2f",
+      "sha256": "544ab35d1a182a42358211ec316b7aef80643648a0590a18f46d597c7f89f191"
+    },
+    {
+      "path": "docs/kling-workspace/evidence-index.json",
+      "bytes": 37945,
+      "gitBlob": "08f003b08d5b3cddc4c1006ba99c507689558b83",
+      "sha256": "923fc68ea07a99d8491d4f1e7bc9ce00c9d55c78a21cbf02c4d0f8829a8acd3b"
+    },
+    {
+      "path": "docs/kling-workspace/female-player.png",
+      "bytes": 180435,
+      "gitBlob": "8b46c8d4555ca20c8936eb834ffcd39227a6af26",
+      "sha256": "6dfa72ffc165e78c8a7ba5e8a8c63a424049c3f0f7544a686be31aff30fd67ed"
+    },
+    {
+      "path": "docs/kling-workspace/library-desktop.png",
+      "bytes": 186462,
+      "gitBlob": "712e3f685a3f99ea72690f7a0b0fc9aba793fec5",
+      "sha256": "1827d027613c2485755e77922d9ef383f1faa3dec9953df8d1e3f6cf9b90082c"
+    },
+    {
+      "path": "docs/kling-workspace/library-mobile.png",
+      "bytes": 151159,
+      "gitBlob": "817ab1aaa8fef4b10df868a01a0efdbba25e74ce",
+      "sha256": "eecbf3a06cd3a3e1747824030edaf109edb528805ba416fc352bc56124f82e37"
+    },
+    {
+      "path": "docs/kling-workspace/male-player.png",
+      "bytes": 179624,
+      "gitBlob": "4e4b92a526fcb6397036e5dc6c67db35cf9def5e",
+      "sha256": "2bd88dc67d808d46fac95285ce4bb10476b11615d1de0f64e6d82f24b04a23fd"
+    },
+    {
+      "path": "docs/kling-workspace/verification-results.json",
+      "bytes": 3868,
+      "gitBlob": "0e3b07f28014b6c1462532814db014f2c54491f2",
+      "sha256": "ca5029fc61c24d3d27418ac69c5d90764572cb74b266391c59365778cc75eec0"
+    },
+    {
+      "path": "docs/kling-workspace/workbench-original.png",
+      "bytes": 179630,
+      "gitBlob": "5b1035a7b4bae0228c99d5fcdd58da95407a53f7",
+      "sha256": "08cdce33ae35c13ff9f1875c99c55a2879d493ea81455bb25b664b4d9fa72818"
+    },
+    {
+      "path": "src/skeletal/NativeStudy.tsx",
+      "bytes": 23719,
+      "gitBlob": "a50303eb3f1684650b8f0f51866f773868f7f526",
+      "sha256": "253580fc52369e72aeacc12db19e9e8cc1687a4496c8faca2b5f3f507f0ca9cf"
+    },
+    {
+      "path": "src/skeletal/geometry.test.ts",
+      "bytes": 2129,
+      "gitBlob": "fb004a6fb04182b32cee75de6f4b693e6e43639f",
+      "sha256": "27a820d5cd3defdf07876b67dcd4921eff152aa58559a554f39065614c4f5c91"
+    },
+    {
+      "path": "src/skeletal/geometry.ts",
+      "bytes": 6256,
+      "gitBlob": "43f9ef158b069786ebb76792722a37920758772f",
+      "sha256": "197cf4eac53b77b7cdfac9e6ef54b7a4cebb48cabace7d1de9fd863b4826a3ff"
+    },
+    {
+      "path": "src/skeletal/main.tsx",
+      "bytes": 218,
+      "gitBlob": "fa5b009b142e1775974c525db0bf75b9c1b61136",
+      "sha256": "9b0df8847245e674c43761a55e8aefd31024e705d1d1662e9546a03edf83b356"
+    },
+    {
+      "path": "src/skeletal/native-study.css",
+      "bytes": 6103,
+      "gitBlob": "1140028621548210bc3146af1c36cb0ff0d69a4b",
+      "sha256": "a84350341c60f5e15c2a82f70e239118ce01609c3d61016a4e088fa8de52312f"
+    },
+    {
+      "path": "src/skeletal/native-study.test.ts",
+      "bytes": 19389,
+      "gitBlob": "6d8c678ad690258b296411c247f1ceef57a12128",
+      "sha256": "ee247d6573150d07b3a50b9b990faebd4ea313d2a1a495b21a4fec9dae01d71b"
+    },
+    {
+      "path": "src/skeletal/native-study.ts",
+      "bytes": 36064,
+      "gitBlob": "7fd38bffe69042a864287877fc081832667a6ba2",
+      "sha256": "0a2c15bc1522a1129d932f3897d40f20216eccae63bf83d7dc99750778071aa0"
+    }
+  ]
+}

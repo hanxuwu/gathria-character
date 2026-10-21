@@ -1,0 +1,140 @@
+.sprite-action-editor {
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid #d8dece;
+  border-radius: 18px;
+  background: #f5f6ef;
+  color: #3e5147;
+}
+.sprite-action-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.sprite-action-heading h2 {
+  margin: 6px 0;
+  font:
+    500 26px Georgia,
+    serif;
+}
+.sprite-action-editor p {
+  line-height: 1.55;
+}
+.sprite-action-badge {
+  border-radius: 16px;
+  padding: 6px 12px;
+  background: #e5eade;
+  font-size: 13px;
+}
+.sprite-action-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+}
+.sprite-action-fields label,
+.sprite-endpoints > label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.sprite-action-fields input[type="number"],
+.sprite-endpoints select {
+  width: 128px;
+  padding: 9px 10px;
+  border: 1px solid #b8c4b2;
+  background: #fff;
+  border-radius: 8px;
+  color: #31483d;
+  font: inherit;
+}
+.sprite-action-fields .sprite-action-loop {
+  flex-direction: row;
+  align-items: center;
+  min-height: 40px;
+}
+.sprite-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+.sprite-action-buttons button {
+  min-height: 42px;
+  width: auto;
+  margin-top: 0;
+  font-size: 14px;
+}
+.sprite-action-hint {
+  font-size: 13px;
+  color: #697666;
+}
+.sprite-action-status {
+  font-size: 14px;
+  min-height: 22px;
+}
+.sprite-action-file {
+  display: none;
+}
+.sprite-endpoints {
+  border-top: 1px solid #d8dece;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.sprite-endpoints summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+.sprite-endpoint-scroll {
+  display: flex;
+  gap: 18px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 16px 0;
+}
+.sprite-endpoint-scroll figure {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.sprite-endpoint-scroll figcaption {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.sprite-endpoint-scroll canvas {
+  display: block;
+  background-color: #f1eee5;
+  background-image:
+    linear-gradient(45deg, #e5e3da 25%, transparent 25%),
+    linear-gradient(-45deg, #e5e3da 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e5e3da 75%),
+    linear-gradient(-45deg, transparent 75%, #e5e3da 75%);
+  background-size: 24px 24px;
+  background-position:
+    0 0,
+    0 12px,
+    12px -12px,
+    -12px 0;
+}
+.player-frame-steps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.player-frame-steps span {
+  color: #697666;
+  font-size: 13px;
+}
+@media (max-width: 600px) {
+  .sprite-action-editor {
+    padding: 16px;
+  }
+  .sprite-action-buttons button {
+    width: 100%;
+  }
+}
