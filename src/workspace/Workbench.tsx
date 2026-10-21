@@ -239,6 +239,16 @@ export function CharacterWorkbench() {
                 </>
               )}
             </p>
+            {selection.id && (
+              <a
+                href={`/player.html?kling=${selection.id}&variant=keyframes`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Review keyframe loops{" "}
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            )}
             <a
               href={
                 selection.id

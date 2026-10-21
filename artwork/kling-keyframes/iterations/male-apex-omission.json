@@ -1,0 +1,91 @@
+{
+  "status": "rejected",
+  "candidate": {
+    "fps": 24,
+    "loop": true,
+    "entries": [
+      {
+        "frameId": 86,
+        "ticks": 2,
+        "phase": "crouched preparation / cycle join"
+      },
+      {
+        "frameId": 88,
+        "ticks": 1,
+        "phase": "prepare extension"
+      },
+      {
+        "frameId": 89,
+        "ticks": 1,
+        "phase": "begin rapid extension"
+      },
+      {
+        "frameId": 90,
+        "ticks": 1,
+        "phase": "leg extension"
+      },
+      {
+        "frameId": 91,
+        "ticks": 1,
+        "phase": "toe-off"
+      },
+      {
+        "frameId": 92,
+        "ticks": 1,
+        "phase": "rising flight"
+      },
+      {
+        "frameId": 93,
+        "ticks": 1,
+        "phase": "rising flight / feet tuck"
+      },
+      {
+        "frameId": 94,
+        "ticks": 3,
+        "phase": "highest retained complete-head pose"
+      },
+      {
+        "frameId": 99,
+        "ticks": 3,
+        "phase": "descending peak pose with complete head"
+      },
+      {
+        "frameId": 100,
+        "ticks": 1,
+        "phase": "descending flight"
+      },
+      {
+        "frameId": 101,
+        "ticks": 1,
+        "phase": "approach floor"
+      },
+      {
+        "frameId": 102,
+        "ticks": 1,
+        "phase": "touch down"
+      },
+      {
+        "frameId": 103,
+        "ticks": 1,
+        "phase": "landing compression"
+      },
+      {
+        "frameId": 104,
+        "ticks": 1,
+        "phase": "deeper landing compression"
+      },
+      {
+        "frameId": 105,
+        "ticks": 2,
+        "phase": "lowest crouched landing"
+      },
+      {
+        "frameId": 107,
+        "ticks": 1,
+        "phase": "crouched rebound / cycle join"
+      }
+    ],
+    "notes": "Continuous crouch-to-crouch hop, trimmed to source174\u2013195 / IDs86\u2013107 (22/24s). Standing recovery from the one-shot is deliberately excluded. Source183\u2013186 / IDs95\u201398 has a cropped scalp; excluded rather than repaired. Neighboring complete-head peak poses94 and99 each hold3ticks; peak timing is explicitly redistributed and must be visually reviewed for a plateau. This is not the original standing-recovery one-shot."
+  },
+  "reason": "Omitting all four apex poses removes the highest/tucked-leg stage and redistributes its time into a flat two-pose hold. Keep a real source apex for trajectory readability; the small original scalp cut is disclosed, never repaired."
+}

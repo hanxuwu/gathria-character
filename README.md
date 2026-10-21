@@ -32,6 +32,10 @@ standalone view. Existing male links retain their default behavior. There are th
 
 ## What is ready
 
+- Separate keyframe loop candidates: **52 original drawings per character**,
+  five repeating actions, explicit review entry and portable V2 packs. The
+  repeated-hop jump is separate from the unchanged original one-shot.
+  [View comparisons and open the candidates](docs/kling-keyframes/README.md).
 - Sprite actions: contiguous source-frame selection, FPS and loop settings,
   frame stepping, first/last inspection, undo/reset, self-contained project
   save/reopen and existing-format CharacterPack export. Original PNG bytes stay
@@ -54,6 +58,8 @@ visible and are documented; this is not a claim of natural finished animation.
 
 - `artwork/kling-playback`: source selection, extraction recipe and four-action archive.
 - `artwork/kling-jump`: unchanged five-action source, previews and provenance.
+- `artwork/kling-keyframes`: phase-based selection, source IDs and pose holds;
+  no new artwork. Candidate exports and evidence are in `docs/kling-keyframes`.
 - `artwork/kling-native-study`: exact male reference, hidden-joint supplementary
   painting, fifteen parts, registration and editable project.
 - `artwork/kling-native-female`: female-specific source, supplementary paint,
