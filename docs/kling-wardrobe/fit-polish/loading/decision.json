@@ -1,0 +1,128 @@
+{
+  "format": "gathria-wardrobe-loading-experiment-decision",
+  "version": 1,
+  "decidedAt": "2026-10-21T22:30:35.305Z",
+  "artCheckpoint": "1dc57401b7038015cfd019d1c60f58c9df6c9854",
+  "decision": "not-adopted",
+  "reason": "The pixel-correct row-filter candidate did not show a consistent end-to-end first-load improvement across both characters. Male original improved while female original and male Everyday medians regressed modestly; three of four baseline/candidate ranges overlap in this bounded two-round sample. Female Everyday alone shows a separated improvement. Preserve the experiment without shipping a first-load speed claim.",
+  "candidateSourceSha256": "c3fec50c24f7cf1d5adc7ed813bc7bf3142f66a0fb929966b877f19d1b549b41",
+  "restoredSourceSha256": "fa90d1e2ba9391af0e0c44e5b224d8661d513e711b5ffa2f278cbf73608b7a57",
+  "originalSourceSha256": "fa90d1e2ba9391af0e0c44e5b224d8661d513e711b5ffa2f278cbf73608b7a57",
+  "sourceRestoredByteExact": true,
+  "applicationRuntimeChangeRetained": false,
+  "testsScope": "The 155 unit tests, typecheck, candidate build, 15 browser cases, and eight-page RGBA comparison validate the experimental candidate. No repeat suite is claimed after restoring the byte-identical previously tested art-checkpoint source.",
+  "summary": [
+    {
+      "character": "male",
+      "stage": "original",
+      "pixelsIdenticalAcrossRuns": true,
+      "baseline": {
+        "milliseconds": [
+          12285.899999976158,
+          13279.299999952316
+        ],
+        "medianMs": 12782.599999964237,
+        "minMs": 12285.899999976158,
+        "maxMs": 13279.299999952316
+      },
+      "candidate": {
+        "milliseconds": [
+          12056.699999988079,
+          12396.400000035763
+        ],
+        "medianMs": 12226.550000011921,
+        "minMs": 12056.699999988079,
+        "maxMs": 12396.400000035763
+      },
+      "medianChangeMs": -556.0499999523163,
+      "medianChangePercent": -4.350053979267692,
+      "rangesOverlap": true
+    },
+    {
+      "character": "male",
+      "stage": "day",
+      "pixelsIdenticalAcrossRuns": true,
+      "baseline": {
+        "milliseconds": [
+          9389.899999976158,
+          9190.799999952316
+        ],
+        "medianMs": 9290.349999964237,
+        "minMs": 9190.799999952316,
+        "maxMs": 9389.899999976158
+      },
+      "candidate": {
+        "milliseconds": [
+          9221.699999988079,
+          9864.300000011921
+        ],
+        "medianMs": 9543,
+        "minMs": 9221.699999988079,
+        "maxMs": 9864.300000011921
+      },
+      "medianChangeMs": 252.6500000357628,
+      "medianChangePercent": 2.719488501905045,
+      "rangesOverlap": true
+    },
+    {
+      "character": "female",
+      "stage": "original",
+      "pixelsIdenticalAcrossRuns": true,
+      "baseline": {
+        "milliseconds": [
+          13236,
+          13887.400000035763
+        ],
+        "medianMs": 13561.700000017881,
+        "minMs": 13236,
+        "maxMs": 13887.400000035763
+      },
+      "candidate": {
+        "milliseconds": [
+          13990.5,
+          13498
+        ],
+        "medianMs": 13744.25,
+        "minMs": 13498,
+        "maxMs": 13990.5
+      },
+      "medianChangeMs": 182.5499999821186,
+      "medianChangePercent": 1.3460701828080397,
+      "rangesOverlap": true
+    },
+    {
+      "character": "female",
+      "stage": "day",
+      "pixelsIdenticalAcrossRuns": true,
+      "baseline": {
+        "milliseconds": [
+          8799,
+          9115.900000035763
+        ],
+        "medianMs": 8957.450000017881,
+        "minMs": 8799,
+        "maxMs": 9115.900000035763
+      },
+      "candidate": {
+        "milliseconds": [
+          8435.199999988079,
+          8154
+        ],
+        "medianMs": 8294.59999999404,
+        "minMs": 8154,
+        "maxMs": 8435.199999988079
+      },
+      "medianChangeMs": -662.8500000238419,
+      "medianChangePercent": -7.399985487192433,
+      "rangesOverlap": false
+    }
+  ],
+  "evidence": {
+    "browser-comparison.json": "31d19cf5130c89ca070b15b8b8bb386524aeca6103d0c77dfaae8cbc9f8c0b99",
+    "decoder-pixels.json": "0eb5d27d97591510df3e9f0b188e4157dbda208c48e226aba717a560c969ce99",
+    "validation.json": "0b210001a10c65cdbec97d2818bc90c4709f50d82636e8ee4a4ae830aef174eb",
+    "browser-tests.json": "18a1a692fa78ae4193f505ea47a84d0d82c30284478c392294c7531cfe8919ce",
+    "browser-tests-launch-failure.json": "4ca160569c3daa130f94a327ae66fbda19c127db997492c871e03abf865e0d49",
+    "row-filter-prototype.patch": "8db9486c1657d5fae91bcc0d6a891cf3440b5e5e5c8bf11031b66608ba52e04a"
+  }
+}

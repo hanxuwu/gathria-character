@@ -1,0 +1,50 @@
+{
+  "format": "gathria-wardrobe-row-filter-validation",
+  "version": 1,
+  "recordedAt": "2026-10-21T22:25:29.195Z",
+  "artCheckpoint": "1dc5740",
+  "decoderSourceSha256": "c3fec50c24f7cf1d5adc7ed813bc7bf3142f66a0fb929966b877f19d1b549b41",
+  "checks": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "testFiles": 12,
+      "tests": 155,
+      "wallSeconds": 13.19,
+      "resultSource": "Completed command output in this development session."
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "resultSource": "Completed command output in this development session."
+    },
+    {
+      "command": "node node_modules/vite/bin/vite.js build --outDir /tmp/wardrobe-load-profile/candidate-dist",
+      "exitCode": 0,
+      "buildSeconds": 2.46,
+      "resultSource": "Completed command output in this development session."
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium PLAYWRIGHT_JSON_OUTPUT_NAME=docs/kling-wardrobe/fit-polish/loading/browser-tests.json node node_modules/playwright/cli.js test tests/e2e/wardrobe.spec.ts tests/e2e/baked-playback.spec.ts --workers=1 --reporter=line,json",
+      "exitCode": 0,
+      "tests": 15,
+      "failed": 0,
+      "report": "browser-tests.json",
+      "sha256": "18a1a692fa78ae4193f505ea47a84d0d82c30284478c392294c7531cfe8919ce"
+    },
+    {
+      "command": "node scripts/benchmark-kling-wardrobe-load.mjs --mode=pixels --ref=ec9bd75 --output=docs/kling-wardrobe/fit-polish/loading/decoder-pixels.json",
+      "exitCode": 0,
+      "pages": 8,
+      "bytesCompared": 1177583616,
+      "report": "decoder-pixels.json",
+      "sha256": "0eb5d27d97591510df3e9f0b188e4157dbda208c48e226aba717a560c969ce99"
+    }
+  ],
+  "initialBrowserLaunchFailure": {
+    "report": "browser-tests-launch-failure.json",
+    "sha256": "4ca160569c3daa130f94a327ae66fbda19c127db997492c871e03abf865e0d49",
+    "reason": "Default Playwright bundled Chromium headless shell was absent. All 15 cases failed before application execution. Rerun used installed /usr/bin/chromium, as the art capture did."
+  },
+  "passed": true
+}

@@ -115,6 +115,20 @@ observations still include a 105.6 ms gap during male-wedding walk→run. This i
 reported rather than used to claim guaranteed delivery of every display frame.
 Source motion metadata and GIF encoding checks are distinct from browser timing.
 
+## First-load experiment after the art checkpoint
+
+The complete art/evidence checkpoint is `1dc5740`. A subsequent
+[loading experiment](loading/README.md) moved PNG filter selection out of the
+per-byte loop. It passed 155 unit tests, 15 targeted browser cases and an exact
+comparison of all eight exported atlas pages. Nevertheless, eight balanced
+browser runs did not show a consistent first-load improvement across both
+characters: three of the four timing ranges overlap, with some measures slower.
+
+The optimization **is not shipped**. Its exact patch, results and reproduction
+steps are retained; the application decoder is restored byte-for-byte to the
+art checkpoint. This keeps the accepted technical baseline and avoids claiming
+that the remaining first-load delay has been solved.
+
 ## Visual scope
 
 Native actual exports show a clearer jacket hem and less duplicated tank ink

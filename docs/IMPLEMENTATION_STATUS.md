@@ -1,9 +1,10 @@
 # Implementation status
 
-Current batch: **Kling registered wardrobe**, based on motion-flow commit
-`b5edec14df9a748fa35a069d977fd4e0fba195aa`, branch `feat/kling-wardrobe`.
-The wardrobe uses those complete motion candidates; original default packs and
-optional skeletal candidates remain unchanged.
+Current review batch: **Kling clothing fit polish**, branch
+`fix/kling-wardrobe-fit-polish`, based on merged main `c89e5ad`.
+The registered wardrobe uses the complete motion candidates introduced at
+`b5edec14df9a748fa35a069d977fd4e0fba195aa`; original default packs and optional
+skeletal candidates remain unchanged.
 
 Latest candidate: **clothing seam and hem fit polish**. Male top V2 removes
 copied interior tank ink, joins shoulder sampling and fits the jacket's real
@@ -12,6 +13,9 @@ leg/shoe boundary. Separate versioned garment IDs preserve existing projects;
 source packs, original registration and anchors stay unchanged.
 [Current actual-export review](kling-wardrobe/fit-polish/README.md). The earlier
 [complete outfits](kling-wardrobe/full-outfits/README.md) remain the before baseline.
+The subsequent [loading experiment](kling-wardrobe/fit-polish/loading/README.md)
+is retained for review but not adopted: measured browser startup gains were
+inconsistent, so the shipping decoder remains unchanged.
 
 The preceding [dress fitting V2](kling-wardrobe/fit-v2/README.md) remains the
 female before baseline. Its direct-playback replay and retained atlas decoding
