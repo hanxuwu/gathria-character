@@ -16,13 +16,14 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const run = process.env.WARDROBE_FIT_RUN ?? "";
 assert(/^[a-z0-9-]*$/.test(run));
 const production = process.env.WARDROBE_PRODUCTION === "1";
+const resumeIndependent = process.env.WARDROBE_FIT_RESUME_INDEPENDENT === "1";
 const output = join(root, "docs/kling-wardrobe/fit-polish/browser", run);
 const exports = join(root, "docs/kling-wardrobe/fit-polish/exports", run);
 await mkdir(output, { recursive: true });
 await mkdir(exports, { recursive: true });
 const reportPath = join(output, "evidence-index.json");
 assert(
-  !existsSync(reportPath),
+  resumeIndependent || !existsSync(reportPath),
   "Choose a new WARDROBE_FIT_RUN; earlier evidence is immutable.",
 );
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -707,193 +708,311 @@ async function saveRecording(video, character, look) {
   });
 }
 
+if (resumeIndependent) {
+  const rawBytes = await readFile(reportPath),
+    raw = parse(rawBytes);
+  assert.equal(raw.passed, false);
+  assert(
+    raw.failure.startsWith(
+      "browserContext.newPage: Executable doesn't exist at ",
+    ) && raw.failure.includes("ffmpeg-1013/ffmpeg-linux"),
+    "Resume is restricted to the known missing recorder dependency before independent playback.",
+  );
+  assert.equal(raw.production, true);
+  for (const [key, count] of Object.entries({
+    downloads: 38,
+    poses: 26,
+    projects: 4,
+    legacy: 4,
+    transitions: 8,
+    playback: 0,
+    recordings: 0,
+    screenshots: 4,
+    mixed: 2,
+  }))
+    assert.equal(
+      raw[key].length,
+      count,
+      `Incomplete authoring checkpoint: ${key}`,
+    );
+  for (const key of [
+    "errors",
+    "consoleErrors",
+    "failedResponses",
+    "externalRequests",
+    "forbiddenIndependentRequests",
+  ])
+    assert.deepEqual(raw[key], []);
+  const script = "scripts/verify-kling-fit-polish.mjs";
+  assert.deepEqual(
+    Object.keys(raw.inputHashes).sort(),
+    Object.keys(report.inputHashes).sort(),
+  );
+  for (const [path, digest] of Object.entries(raw.inputHashes))
+    if (path !== script)
+      assert.equal(
+        report.inputHashes[path],
+        digest,
+        `Authoring input changed before resume: ${path}`,
+      );
+  const snapshot = join(output, "capture-before-resume.mjs");
+  assert.equal(
+    sha(await readFile(snapshot)),
+    raw.inputHashes[script],
+    "Preserved original capture script does not match the failed run.",
+  );
+  for (const artifact of [...raw.downloads, ...raw.screenshots]) {
+    const data = await readFile(join(root, artifact.file));
+    assert.equal(data.length, artifact.bytes);
+    assert.equal(
+      sha(data),
+      artifact.sha256,
+      `Prior output changed: ${artifact.file}`,
+    );
+  }
+  for (const artifact of raw.downloads) decode(join(root, artifact.file));
+  const failedPath = join(output, "evidence-index.environment-failure.json");
+  assert(
+    !existsSync(failedPath),
+    "Preserve the previous resume checkpoint; choose a new run for another capture.",
+  );
+  await writeFile(failedPath, rawBytes);
+  const currentHashes = report.inputHashes;
+  Object.assign(report, raw);
+  delete report.passed;
+  delete report.failure;
+  delete report.finishedAt;
+  report.inputHashes = currentHashes;
+  report.resumedIndependent = {
+    startedAt: new Date().toISOString(),
+    preservedFailureReport: rel(failedPath),
+    preservedFailureSha256: sha(rawBytes),
+    preservedOriginalScript: rel(snapshot),
+    preservedOriginalScriptSha256: sha(await readFile(snapshot)),
+    resumedScript: script,
+    resumedScriptSha256: currentHashes[script],
+    recorderEnvironment: {
+      playwrightCache: process.env.PLAYWRIGHT_BROWSERS_PATH ?? null,
+      ffmpegVersion: execFileSync("ffmpeg", ["-version"], {
+        encoding: "utf8",
+      }).split("\n")[0],
+      recorderRealPath: execFileSync(
+        "readlink",
+        [
+          "-f",
+          join(
+            process.env.PLAYWRIGHT_BROWSERS_PATH,
+            "ffmpeg-1013/ffmpeg-linux",
+          ),
+        ],
+        { encoding: "utf8" },
+      ).trim(),
+      note: "Official Playwright download was denied by environment network policy. The installed system FFmpeg is used at Playwright's expected path, with its ordinary recorder arguments. A preliminary real Playwright video decoded successfully before this continuation.",
+    },
+    verifiedPriorDownloads: raw.downloads.length,
+    verifiedPriorScreenshots: raw.screenshots.length,
+    sourceNote:
+      "Authoring, save/reopen, old-project and export results are retained unchanged from the first capture of this exact asset candidate. This fresh browser run adds only independent playback after installing the missing Playwright recorder dependency; it does not claim the entire capture was newly rerun.",
+  };
+  console.log(
+    "Verified prior 38 downloads (hashes, nested ZIP CRCs and PNG decoding); resuming independent playback in a fresh browser.",
+  );
+}
+
 try {
   browser = await chromium.launch({
     executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
     headless: true,
   });
-  for (const source of Object.values(sourceInfo)) {
-    const {
-      character,
-      presets,
-      manifest,
-      sourceBytes,
-      recipe,
-      reviewedFrames,
-    } = source;
-    const context = await browser.newContext({
-      viewport: { width: 1440, height: 1100 },
-      acceptDownloads: true,
-    });
-    context.setDefaultTimeout(30000);
-    await monitor(context);
-    const page = await context.newPage();
-    activePage = page;
-    await timed(`${character}-original-open`, async () => {
-      await page.goto(
-        `${origin}/workbench.html?character=${character}&mode=wardrobe`,
-      );
-      await ready(page, "Original outfit.");
-    });
-    // Imported projects carry their historical assets. New defaults must not migrate them.
-    for (const look of ["day", "wedding"]) {
-      const oldDirectory = beforeDirectory;
-      const path = join(
-        root,
-        oldDirectory,
-        `${character}-${look}.wardrobe.zip`,
-      );
-      const document = parse(
-        unzipSync(new Uint8Array(await readFile(path)))["document.json"],
-      );
-      assert.notDeepEqual(document.selection, presets[look].selection);
-      await panel(page)
-        .getByLabel("Open wardrobe project file", { exact: true })
-        .setInputFiles(path);
-      await ready(page, "Saved outfit and action settings restored");
-      await assertSelection(page, document.selection);
-      const referenceId = character === "male" ? 0 : 89;
-      if (referenceId === null) await pose(page, "wardrobe", "idle", "right");
-      else {
-        const [action, clip] = Object.entries(manifest.animations).find(
-          ([, clip]) => clip.frames.includes(referenceId),
+  if (!resumeIndependent)
+    for (const source of Object.values(sourceInfo)) {
+      const {
+        character,
+        presets,
+        manifest,
+        sourceBytes,
+        recipe,
+        reviewedFrames,
+      } = source;
+      const context = await browser.newContext({
+        viewport: { width: 1440, height: 1100 },
+        acceptDownloads: true,
+      });
+      context.setDefaultTimeout(30000);
+      await monitor(context);
+      const page = await context.newPage();
+      activePage = page;
+      await timed(`${character}-original-open`, async () => {
+        await page.goto(
+          `${origin}/workbench.html?character=${character}&mode=wardrobe`,
         );
-        await pose(
+        await ready(page, "Original outfit.");
+      });
+      // Imported projects carry their historical assets. New defaults must not migrate them.
+      for (const look of ["day", "wedding"]) {
+        const oldDirectory = beforeDirectory;
+        const path = join(
+          root,
+          oldDirectory,
+          `${character}-${look}.wardrobe.zip`,
+        );
+        const document = parse(
+          unzipSync(new Uint8Array(await readFile(path)))["document.json"],
+        );
+        assert.notDeepEqual(document.selection, presets[look].selection);
+        await panel(page)
+          .getByLabel("Open wardrobe project file", { exact: true })
+          .setInputFiles(path);
+        await ready(page, "Saved outfit and action settings restored");
+        await assertSelection(page, document.selection);
+        const referenceId = character === "male" ? 0 : 89;
+        if (referenceId === null) await pose(page, "wardrobe", "idle", "right");
+        else {
+          const [action, clip] = Object.entries(manifest.animations).find(
+            ([, clip]) => clip.frames.includes(referenceId),
+          );
+          await pose(
+            page,
+            "wardrobe",
+            action,
+            "right",
+            clip.frames.indexOf(referenceId),
+          );
+          await expect(page.getByTestId("wardrobe-preview")).toHaveAttribute(
+            "data-rendered-frame-id",
+            String(referenceId),
+          );
+        }
+        const reference = join(
+          root,
+          oldDirectory,
+          `${character}-${look}${referenceId === null ? "" : `-frame-${referenceId}`}.png`,
+        );
+        const saved = await download(
           page,
-          "wardrobe",
-          action,
-          "right",
-          clip.frames.indexOf(referenceId),
+          "Save current PNG",
+          `${character}-${look}-legacy.png`,
+          "legacy-png",
+          reference,
         );
-        await expect(page.getByTestId("wardrobe-preview")).toHaveAttribute(
-          "data-rendered-frame-id",
-          String(referenceId),
-        );
-      }
-      const reference = join(
-        root,
-        oldDirectory,
-        `${character}-${look}${referenceId === null ? "" : `-frame-${referenceId}`}.png`,
-      );
-      const saved = await download(
-        page,
-        "Save current PNG",
-        `${character}-${look}-legacy.png`,
-        "legacy-png",
-        reference,
-      );
-      report.legacy.push({
-        character,
-        look,
-        oldProject: rel(path),
-        selection: document.selection,
-        reference: rel(reference),
-        originalNativePixelsUnchanged: true,
-        file: rel(saved.path),
-      });
-      await persist();
-    }
-    // Old projects intentionally retain their saved registration profile. Open
-    // the current entry again before applying assets registered to its new profile.
-    await timed(`${character}-current-profile-open`, async () => {
-      await page.goto(
-        `${origin}/workbench.html?character=${character}&mode=wardrobe`,
-      );
-      await ready(page, "Original outfit.");
-    });
-    for (const look of ["day", "wedding"]) {
-      const preset = presets[look];
-      console.log(`Capturing ${character} ${look}.`);
-      await timed(`${character}-${look}-preflight`, async () => {
-        await button(panel(page), preset.name).click();
-        await ready(page, `${preset.name} selected`);
-      });
-      await assertSelection(page, preset.selection);
-      await pose(page, "wardrobe", "idle", "right");
-      await screenshot(
-        page,
-        `${character}-${look}-workbench.png`,
-        page.locator(".wardrobe-editor"),
-      );
-      for (const id of reviewedFrames) await exportPose(page, source, look, id);
-      await transition(page, "wardrobe", source, look, "walk", "run");
-      await transition(page, "wardrobe", source, look, "jump", "walk");
-      await pose(page, "wardrobe", "run", "left");
-      const saved = await download(
-        page,
-        /Save wardrobe/,
-        `${character}-${look}.wardrobe.zip`,
-        "project",
-      );
-      const document = parse(saved.files["document.json"]);
-      assert.deepEqual(document.selection, preset.selection);
-      assert.deepEqual(document.preview, { action: "run", facing: "left" });
-      assert.equal(sha(saved.files["source.character.zip"]), sha(sourceBytes));
-      await button(panel(page), "Original").click();
-      await ready(page, "Original outfit selected");
-      await panel(page)
-        .getByLabel("Open wardrobe project file", { exact: true })
-        .setInputFiles(saved.path);
-      await ready(page, "Saved outfit and action settings restored");
-      await expect(
-        panel(page).getByLabel("Wardrobe action", { exact: true }),
-      ).toHaveValue("run");
-      await expect(
-        panel(page).getByLabel("Wardrobe facing", { exact: true }),
-      ).toHaveValue("left");
-      await assertSelection(page, preset.selection);
-      const exported = await download(
-        page,
-        "Export CharacterPack",
-        `${character}-${look}.character.zip`,
-        "pack",
-      );
-      const actualManifest = parse(exported.files["manifest.json"]);
-      assert.deepEqual(actualManifest.frames, manifest.frames);
-      for (const key of ["animations", "anchor", "facing", "scale"])
-        assert.deepEqual(actualManifest[key], manifest[key]);
-      assert.deepEqual(
-        parse(exported.files["character.json"]).sourceMetadata.motionFlow,
-        recipe.sourceMetadata.motionFlow,
-      );
-      const matchedPoses = verifyExportedPoses(exported.path, source, look);
-      report.projects.push({
-        character,
-        look,
-        selection: preset.selection,
-        project: rel(saved.path),
-        pack: rel(exported.path),
-        reopened: true,
-        exactSourceBytes: true,
-        actionMetadataAnchorFacingPreserved: true,
-        ...matchedPoses,
-      });
-      if (character === "male") {
-        // These cross-preset outfits exercise both trouser materials with a different top/shoe pairing.
-        const mixed = {
-          ...expectedSelections.male[look],
-          bottom:
-            expectedSelections.male[look === "day" ? "wedding" : "day"].bottom,
-          shoes: look === "day" ? "brown-shoes" : null,
-        };
-        await chooseItem(page, "bottom", mixed.bottom);
-        await chooseItem(page, "shoes", mixed.shoes);
-        await assertSelection(page, mixed);
-        for (const id of [58, 74, 104])
-          await exportPose(page, source, `${look}-mixed`, id, true);
-        report.mixed.push({
+        report.legacy.push({
           character,
           look,
-          selection: mixed,
-          frameIds: [58, 74, 104],
-          allFramesPreflightPassed: true,
+          oldProject: rel(path),
+          selection: document.selection,
+          reference: rel(reference),
+          originalNativePixelsUnchanged: true,
+          file: rel(saved.path),
         });
+        await persist();
       }
-      await persist();
+      // Old projects intentionally retain their saved registration profile. Open
+      // the current entry again before applying assets registered to its new profile.
+      await timed(`${character}-current-profile-open`, async () => {
+        await page.goto(
+          `${origin}/workbench.html?character=${character}&mode=wardrobe`,
+        );
+        await ready(page, "Original outfit.");
+      });
+      for (const look of ["day", "wedding"]) {
+        const preset = presets[look];
+        console.log(`Capturing ${character} ${look}.`);
+        await timed(`${character}-${look}-preflight`, async () => {
+          await button(panel(page), preset.name).click();
+          await ready(page, `${preset.name} selected`);
+        });
+        await assertSelection(page, preset.selection);
+        await pose(page, "wardrobe", "idle", "right");
+        await screenshot(
+          page,
+          `${character}-${look}-workbench.png`,
+          page.locator(".wardrobe-editor"),
+        );
+        for (const id of reviewedFrames)
+          await exportPose(page, source, look, id);
+        await transition(page, "wardrobe", source, look, "walk", "run");
+        await transition(page, "wardrobe", source, look, "jump", "walk");
+        await pose(page, "wardrobe", "run", "left");
+        const saved = await download(
+          page,
+          /Save wardrobe/,
+          `${character}-${look}.wardrobe.zip`,
+          "project",
+        );
+        const document = parse(saved.files["document.json"]);
+        assert.deepEqual(document.selection, preset.selection);
+        assert.deepEqual(document.preview, { action: "run", facing: "left" });
+        assert.equal(
+          sha(saved.files["source.character.zip"]),
+          sha(sourceBytes),
+        );
+        await button(panel(page), "Original").click();
+        await ready(page, "Original outfit selected");
+        await panel(page)
+          .getByLabel("Open wardrobe project file", { exact: true })
+          .setInputFiles(saved.path);
+        await ready(page, "Saved outfit and action settings restored");
+        await expect(
+          panel(page).getByLabel("Wardrobe action", { exact: true }),
+        ).toHaveValue("run");
+        await expect(
+          panel(page).getByLabel("Wardrobe facing", { exact: true }),
+        ).toHaveValue("left");
+        await assertSelection(page, preset.selection);
+        const exported = await download(
+          page,
+          "Export CharacterPack",
+          `${character}-${look}.character.zip`,
+          "pack",
+        );
+        const actualManifest = parse(exported.files["manifest.json"]);
+        assert.deepEqual(actualManifest.frames, manifest.frames);
+        for (const key of ["animations", "anchor", "facing", "scale"])
+          assert.deepEqual(actualManifest[key], manifest[key]);
+        assert.deepEqual(
+          parse(exported.files["character.json"]).sourceMetadata.motionFlow,
+          recipe.sourceMetadata.motionFlow,
+        );
+        const matchedPoses = verifyExportedPoses(exported.path, source, look);
+        report.projects.push({
+          character,
+          look,
+          selection: preset.selection,
+          project: rel(saved.path),
+          pack: rel(exported.path),
+          reopened: true,
+          exactSourceBytes: true,
+          actionMetadataAnchorFacingPreserved: true,
+          ...matchedPoses,
+        });
+        if (character === "male") {
+          // These cross-preset outfits exercise both trouser materials with a different top/shoe pairing.
+          const mixed = {
+            ...expectedSelections.male[look],
+            bottom:
+              expectedSelections.male[look === "day" ? "wedding" : "day"]
+                .bottom,
+            shoes: look === "day" ? "brown-shoes" : null,
+          };
+          await chooseItem(page, "bottom", mixed.bottom);
+          await chooseItem(page, "shoes", mixed.shoes);
+          await assertSelection(page, mixed);
+          for (const id of [58, 74, 104])
+            await exportPose(page, source, `${look}-mixed`, id, true);
+          report.mixed.push({
+            character,
+            look,
+            selection: mixed,
+            frameIds: [58, 74, 104],
+            allFramesPreflightPassed: true,
+          });
+        }
+        await persist();
+      }
+      await context.close();
     }
-    await context.close();
-  }
-  report.workbenchClosedAt = new Date().toISOString();
+  if (!resumeIndependent) report.workbenchClosedAt = new Date().toISOString();
+  report.independentStartedAt = new Date().toISOString();
   // No authoring context remains. Each exported pack gets a new standalone context.
   for (const source of Object.values(sourceInfo))
     for (const look of ["day", "wedding"]) {

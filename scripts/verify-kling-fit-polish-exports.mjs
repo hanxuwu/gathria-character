@@ -152,6 +152,76 @@ async function main() {
   report.historicalBaseline = await describe(
     resolve(directory, "baseline.json"),
   );
+  if (browser.resumedIndependent) {
+    const resume = browser.resumedIndependent;
+    const failedBytes = await bytes(
+      resolve(root, resume.preservedFailureReport),
+    );
+    assert.equal(sha(failedBytes), resume.preservedFailureSha256);
+    const failed = JSON.parse(Buffer.from(failedBytes));
+    assert.equal(failed.passed, false);
+    assert(
+      failed.failure.startsWith(
+        "browserContext.newPage: Executable doesn't exist at ",
+      ) && failed.failure.includes("ffmpeg-1013/ffmpeg-linux"),
+    );
+    assert.equal(failed.playback.length, 0);
+    assert.equal(failed.recordings.length, 0);
+    assert.equal(failed.transitions.length, 8);
+    assert.equal(failed.screenshots.length, 4);
+    assert.equal(failed.downloads.length, 38);
+    for (const key of ["downloads", "poses", "projects", "legacy", "mixed"])
+      assert.deepEqual(
+        browser[key],
+        failed[key],
+        `Completed authoring evidence changed on resume: ${key}`,
+      );
+    assert.deepEqual(browser.transitions.slice(0, 8), failed.transitions);
+    assert.deepEqual(browser.screenshots.slice(0, 4), failed.screenshots);
+    assert.equal(browser.startedAt, failed.startedAt);
+    assert.equal(browser.workbenchClosedAt, failed.workbenchClosedAt);
+    assert.equal(browser.commitAtCapture, failed.commitAtCapture);
+    assert(
+      new Date(browser.independentStartedAt) >= new Date(resume.startedAt),
+    );
+    for (const key of [
+      "errors",
+      "consoleErrors",
+      "failedResponses",
+      "externalRequests",
+      "forbiddenIndependentRequests",
+    ])
+      assert.deepEqual(failed[key], []);
+    assert.equal(
+      sha(await bytes(resolve(root, resume.preservedOriginalScript))),
+      resume.preservedOriginalScriptSha256,
+    );
+    assert.equal(
+      resume.preservedOriginalScriptSha256,
+      failed.inputHashes[resume.resumedScript],
+    );
+    assert.equal(
+      sha(await bytes(resolve(root, resume.resumedScript))),
+      resume.resumedScriptSha256,
+    );
+    assert.equal(
+      resume.resumedScriptSha256,
+      browser.inputHashes[resume.resumedScript],
+    );
+    for (const [path, digest] of Object.entries(failed.inputHashes))
+      if (path !== resume.resumedScript)
+        assert.equal(
+          browser.inputHashes[path],
+          digest,
+          `Frozen authoring input changed on continuation: ${path}`,
+        );
+    report.browserEvidence.resumedIndependent = {
+      ...resume,
+      preservedFailureVerified: true,
+      completedAuthoringFieldsUnchanged: true,
+      independentPlaybackCapturedInFreshBrowser: true,
+    };
+  }
   // New profiles live at new paths. No historical registration, template,
   // garment, source pack or already delivered project may be rewritten.
   const tracked = execFileSync(
