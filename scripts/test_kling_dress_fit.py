@@ -1,7 +1,7 @@
 """Focused fitting regressions. Toy masks are tests, not visual evidence."""
 import unittest
 import numpy as np
-from kling_dress_fit import continuous_side_allowance, join_bodice, overlap_cloth
+from kling_dress_fit import continuous_side_allowance, join_bodice, overlap_cloth, preserve_side_ink
 
 
 class DressFitRegression(unittest.TestCase):
@@ -38,6 +38,22 @@ class DressFitRegression(unittest.TestCase):
         # Clearance covers the raised thigh and never pinches inward below it.
         self.assertGreaterEqual(edge[50] + right[50], 111)
         self.assertTrue(np.all(np.diff((edge + right)[10:88]) >= -1e-8))
+
+    def test_side_clearance_does_not_multiply_painted_ink_thickness(self):
+        source = np.zeros((5, 110, 4), dtype=np.uint8)
+        source[:, 20:81] = [210, 115, 95, 255]
+        source[:, 20:23, :3] = 20
+        source[:, 78:81, :3] = 20
+        # The accepted broad silhouette has a stretched five-pixel side ink.
+        fitted = np.zeros_like(source)
+        fitted[:, 8:93] = [210, 115, 95, 255]
+        fitted[:, 8:13, :3] = 20
+        fitted[:, 88:93, :3] = 20
+        result = preserve_side_ink(source, fitted, np.full(5, 20), np.full(5, 80), np.full(5, 12), np.full(5, 12))
+        np.testing.assert_array_equal(result[:, :, 3], fitted[:, :, 3])
+        self.assertEqual(int(np.sum(result[2, 8:20, 0] < 50)), 3)
+        self.assertEqual(int(np.sum(result[2, 80:93, 0] < 50)), 3)
+        np.testing.assert_array_equal(result[:, 44:57], fitted[:, 44:57])
 
 
 if __name__ == '__main__':

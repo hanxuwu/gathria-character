@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw, ImageFont
 from scipy import ndimage as ndi
 
 from kling_wardrobe_common import ROOT, load_source, save_garment, protected_mask, sha
-from kling_dress_fit import continuous_side_allowance, join_bodice, overlap_cloth
+from kling_dress_fit import continuous_side_allowance, join_bodice, overlap_cloth, preserve_side_ink
 
 W, H = 704, 1056
 YY, XX = np.indices((H, W))
@@ -107,7 +107,7 @@ def bodice_patch(frame, tank, material):
     return patch
 
 
-def skirt_patch(definition, template, points, tank, shorts, frame_id, exposed_legs=None, refined=False):
+def skirt_patch(definition, template, points, tank, shorts, frame_id, exposed_legs=None, refined=False, outline=False):
     wl=points['waistLeft']; wr=points['waistRight']
     left,right=float(wl['x']),float(wr['x'])
     waist_y=(float(wl['y'])+float(wr['y']))*.5
@@ -160,11 +160,11 @@ def skirt_patch(definition, template, points, tank, shorts, frame_id, exposed_le
         if refined:sampled=np.rint(sampled)
         patch[:,:,c]=np.where(region,sampled,0).astype(np.uint8)
     if exposed_legs is not None:
-        patch=cover_thigh_slivers(patch,exposed_legs,waist_y,refined)
+        patch=cover_thigh_slivers(patch,exposed_legs,waist_y,refined,outline)
     return patch
 
 
-def cover_thigh_slivers(patch, exposed_legs, waist_y, refined=False):
+def cover_thigh_slivers(patch, exposed_legs, waist_y, refined=False, outline=False):
     # A narrow skin island hugging the skirt side above its hem is a coverage
     # slit, unlike a real leg emerging below or moving away from the garment.
     cloth=patch[:,:,3]>8
@@ -208,6 +208,8 @@ def cover_thigh_slivers(patch, exposed_legs, waist_y, refined=False):
     for c in range(4):
         sampled=ndi.map_coordinates(patch[:,:,c].astype(float),[YY,sample_x],order=1,mode='constant',cval=0)
         result[:,:,c]=(np.rint(sampled) if refined else sampled).astype(np.uint8)
+    if outline:
+        result=preserve_side_ink(patch,result,left,right,extra_left,extra_right,band)
     return result
 
 
@@ -221,12 +223,13 @@ def main():
     parser.add_argument('--masks',type=Path,default=Path('/tmp/kling-wardrobe-female/masks'))
     parser.add_argument('--registration',type=Path,default=ROOT/'artwork/kling-wardrobe/registration/female/registration.json')
     parser.add_argument('--prototype',action='store_true')
-    parser.add_argument('--fit-revision',type=int,choices=[1,2],default=1)
+    parser.add_argument('--fit-revision',type=int,choices=[1,2,3],default=1)
     args=parser.parse_args()
-    refined=args.fit_revision==2
+    refined=args.fit_revision>=2
+    outline=args.fit_revision==3
     if refined:
-        OUT=ROOT/'artwork/kling-wardrobe/prepared/female-dresses-v2'
-        REVIEW=Path('/tmp/kling-wardrobe-dresses-v2')
+        OUT=ROOT/f'artwork/kling-wardrobe/prepared/female-dresses-v{args.fit_revision}'
+        REVIEW=Path(f'/tmp/kling-wardrobe-dresses-v{args.fit_revision}')
     registration_bytes=args.registration.read_bytes()
     registration=json.loads(registration_bytes)
     source,manifest,config,frames=load_source('female')
@@ -249,7 +252,7 @@ def main():
             tank=masks['tank'];shorts=masks['shorts']
             top=bodice_patch(frame,tank,material)
             exposed_legs=masks['skin']&~masks['nearArm']&~masks['farArm']&~masks['nearHand']&~masks['farHand']&~masks['headNeck']
-            lower=skirt_patch(definition,skirt,rec['points'],tank,shorts,frame_id,exposed_legs,refined)
+            lower=skirt_patch(definition,skirt,rec['points'],tank,shorts,frame_id,exposed_legs,refined,outline)
             # Soften only the cloth-to-cloth waist overlap. Source tank masks
             # can have stepped lower edges in blurred crouches; their colour
             # must join the skirt without exposing or changing body pixels.
@@ -341,7 +344,9 @@ def main():
                 'Broad skirt folds use a registered 2D fitting approximation, not new individually drawn motion poses. See scripts/prepare-kling-wardrobe-dresses.py.')
             if refined:
                 provenance+=' Fitting revision 2: garment-only continuous side clearance and opaque waist overlap; unchanged source and registration. See scripts/kling_dress_fit.py.'
-            item_id=f'{item}-v2' if refined else item
+            if outline:
+                provenance+=' Fitting revision 3: keep the accepted revision-2 alpha/silhouette while preserving the painted side-ink width during garment-only clearance fitting. No new source image or body pixels.'
+            item_id=f'{item}-v{args.fit_revision}' if refined else item
             name=definition['name']+(' · refined fit' if refined else '')
             catalog.append(save_garment('female',item_id,name,'fullBody',registration_bytes,prepared,provenance))
     (REVIEW/'audit.json').write_text(json.dumps(audit,indent=2))

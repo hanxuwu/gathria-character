@@ -1,4 +1,4 @@
-"""Revision 2 garment-only fitting; source body pixels and guides never move."""
+"""Versioned garment-only fitting; source body pixels and guides never move."""
 import numpy as np
 from scipy import ndimage as ndi
 
@@ -82,4 +82,41 @@ def overlap_cloth(top, lower):
     result[overlap, :3] = np.round((top[overlap, :3] * a[:, None]
                                    + lower[overlap, :3] * b[:, None]) / combined[:, None]).astype(np.uint8)
     result[overlap, 3] = np.round(combined * 255).astype(np.uint8)
+    return result
+
+
+def preserve_side_ink(patch, stretched, left, right, extra_left, extra_right, band=24, ink_band=6):
+    """Keep a painted side outline's width while fitting cloth inside it.
+
+    Revision 2's stretch carries the edge ink through the full clearance factor.
+    Translate the outer ink strip as a unit and distribute the required extra
+    fabric through the interior of the existing fitting band instead. Alpha is
+    copied from the accepted V2 silhouette; original body/ownership is untouched.
+    Premultiplied sampling avoids interpolating opaque ink against zero RGB just
+    outside the original cloth patch.
+    """
+    yy, xx = np.indices(patch.shape[:2])
+    x = xx.astype(float)
+    valid = patch[:, :, 3].any(axis=1)
+    left_edge = left[:, None] - extra_left[:, None]
+    right_edge = right[:, None] + extra_right[:, None]
+    for source_edge, target_edge, allowance, sign in [
+        (left[:, None], left_edge, extra_left[:, None], 1),
+        (right[:, None], right_edge, extra_right[:, None], -1),
+    ]:
+        distance = (xx - target_edge) * sign
+        interior = ink_band + (distance - ink_band) * (band - ink_band) / (band + allowance - ink_band)
+        mapped = source_edge + sign * np.where(distance <= ink_band, distance, interior)
+        change = valid[:, None] & (allowance > .01) & (distance < band + allowance)
+        x = np.where(change, mapped, x)
+    changed = np.abs(x - xx) > .001
+    alpha = patch[:, :, 3].astype(float) / 255
+    sampled_alpha = ndi.map_coordinates(alpha, [yy, x], order=1, mode='constant', cval=0)
+    usable = changed & (stretched[:, :, 3] > 0) & (sampled_alpha > 1e-6)
+    result = stretched.copy()
+    for channel in range(3):
+        premultiplied = patch[:, :, channel].astype(float) * alpha
+        sampled = ndi.map_coordinates(premultiplied, [yy, x], order=1, mode='constant', cval=0)
+        color = np.clip(np.rint(sampled / np.maximum(sampled_alpha, 1e-6)), 0, 255)
+        result[usable, channel] = color[usable].astype(np.uint8)
     return result
