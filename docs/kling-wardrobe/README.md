@@ -1,6 +1,10 @@
 # Kling wardrobe: casual and wedding
 
-**Latest candidate:** [clothing seam and hem fit polish](fit-polish/README.md).
+**Latest performance batch:** [verified garment loading reuse](loading-reuse/README.md).
+It reduces first clothing selection and repeat-switch waits without changing
+artwork or export formats. Original cold opening is still expensive.
+
+**Current artwork:** [clothing seam and hem fit polish](fit-polish/README.md).
 Male top V2 improves shoulder sampling, collar fitting and jacket hem ownership;
 female dress V4 restores painted hem boundaries and removes donor-background
 fragments. Old sources, registration and saved projects retain their original
