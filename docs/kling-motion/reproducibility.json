@@ -1,0 +1,24 @@
+{
+  "command": "python3 scripts/compile-kling-motion.py --output /tmp/kling-motion-repro",
+  "passed": true,
+  "files": [
+    {
+      "file": "male.character.zip",
+      "bytes": 22641075,
+      "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "byteIdentical": true
+    },
+    {
+      "file": "female.character.zip",
+      "bytes": 24565426,
+      "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "byteIdentical": true
+    },
+    {
+      "file": "compilation-report.json",
+      "bytes": 62391,
+      "sha256": "473f3ac1659b595f5564f425997bdec1aaec9d35aa3737b3b63685ea637f9314",
+      "byteIdentical": true
+    }
+  ]
+}

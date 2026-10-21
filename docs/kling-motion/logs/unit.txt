@@ -1,0 +1,43 @@
+
+> gathria-character@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/core/baked-source.test.ts (31 tests) 2096ms
+   ✓ Unified source archive adapter > adds a forward one-shot jump without changing required legacy actions or losing source provenance  384ms
+ ✓ src/core/sha256.test.ts (3 tests) 1492ms
+   ✓ SHA-256: Web Crypto > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  506ms
+   ✓ SHA-256: HTTP without subtle > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  526ms
+   ✓ SHA-256: no crypto object > matches independent SHA-256 for empty, padding-boundary, binary and frame-sized inputs  445ms
+ ✓ src/core/pack-v3.test.ts (18 tests) 227ms
+ ✓ src/core/pack-v2.test.ts (30 tests) 193ms
+ ✓ src/skeletal/geometry.test.ts (3 tests) 31ms
+ ✓ src/consumer/player.test.ts (11 tests) 13ms
+ ✓ src/consumer/kling-packs.test.ts (5 tests) 58ms
+ ✓ src/consumer/motion-flow.test.ts (11 tests) 8ms
+ ✓ src/core/sprite-actions.test.ts (6 tests) 13571ms
+   ✓ sprite action project contract > edits actual Kling male V3 timing while preserving every atlas byte and source mapping  6847ms
+   ✓ sprite action project contract > edits actual Kling female V3 timing while preserving every atlas byte and source mapping  6592ms
+ ✓ src/skeletal/native-study.test.ts (14 tests) 24895ms
+   ✓ native source registration and deterministic composition > reconstructs the actual native source from fifteen parts with unchanged RGBA  302ms
+   ✓ native source registration and deterministic composition > renders all four derived poses deterministically and mirrors complete native frames  2456ms
+   ✓ native source registration and deterministic composition > partitions the already-deformed near arm without resampling seams or double alpha  995ms
+   ✓ native source registration and deterministic composition > holds proximal shoulder vertices on the body and tapers to the unchanged limb  317ms
+   ✓ native study validation and editable portable project > updates a pose with registered bone lengths, saves and reopens source PNG bytes  5556ms
+   ✓ native study validation and editable portable project > exports four honest native V2 static holds with explicit derived provenance  2636ms
+   ✓ female native registration and portable output > preserves alpha and the full frame through four poses, mirrors and ankle parenting  1520ms
+   ✓ female native registration and portable output > roundtrips edited female joints and identity with unchanged source parts  2720ms
+   ✓ female native registration and portable output > exports identity-correct V2 holds whose four frames match the female renderer  2877ms
+
+ Test Files  10 passed (10)
+      Tests  132 passed (132)
+   Start at  04:08:24
+   Duration  25.80s (transform 783ms, setup 0ms, collect 1.80s, tests 42.58s, environment 4ms, prepare 1.62s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

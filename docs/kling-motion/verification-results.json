@@ -1,0 +1,112 @@
+{
+  "format": "gathria-kling-motion-verification",
+  "version": 1,
+  "verifiedAt": "2026-10-21T04:26:43.848271+00:00",
+  "baselineCommit": "fd914ef832efd735a746d662e6a009a81fa5bd71",
+  "branch": "feat/kling-motion-flow",
+  "scope": "Checks executed in this batch on the frozen runtime; visual assessment is separate from test results and does not assert user acceptance.",
+  "checks": [
+    {
+      "command": "npm test",
+      "passed": true,
+      "testFiles": 10,
+      "tests": 132,
+      "log": "logs/unit.txt"
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "includes": ["TypeScript project build", "Vite production build"],
+      "log": "logs/build.txt"
+    },
+    {
+      "command": "CI=true CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 28,
+      "retries": 0,
+      "log": "logs/e2e-final.txt",
+      "initialRun": {
+        "passed": 27,
+        "failed": 1,
+        "log": "logs/e2e-initial.txt",
+        "resolution": "Wait for saved-project import to settle before selecting Run; same FPS/range/export assertions. No runtime change for this correction."
+      }
+    },
+    {
+      "command": "python3 scripts/compile-kling-motion.py",
+      "passed": true,
+      "exactSourceRGBAFrames": 184,
+      "packs": 2,
+      "report": "exports/compilation-report.json"
+    },
+    {
+      "command": "python3 scripts/compile-kling-motion.py --output /tmp/kling-motion-repro",
+      "passed": true,
+      "byteIdenticalPacks": 2,
+      "byteIdenticalReport": true,
+      "report": "reproducibility.json"
+    },
+    {
+      "command": "python3 scripts/render-kling-motion.py",
+      "passed": true,
+      "decodedGIFs": 20,
+      "decodedPNGs": 12,
+      "report": "review/media-validation.json"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium node scripts/verify-kling-motion.mjs",
+      "passed": true,
+      "authoringSaveReopenCases": 2,
+      "decodedUIDownloads": 10,
+      "independentLoopCases": 16,
+      "fullJumpToIdleCases": 4,
+      "matchingVsImmediateFlowComparisons": 4,
+      "playbackSpeed": 1,
+      "decodedFlowGIFs": 4,
+      "decodedBrowserPNGs": 24,
+      "report": "browser/evidence-index.json",
+      "recordingRefinement": "One flow-only capture after deferring PNG encoding; complete recordings selected per side as documented in browser evidence, with remaining sampling limits explicit.",
+      "commandsAlsoExecuted": [
+        "CHROMIUM_PATH=/usr/bin/chromium FLOW_ONLY=1 node scripts/verify-kling-motion.mjs"
+      ]
+    },
+    {
+      "check": "protected source/artwork/core/skeleton files against baseline Git blobs",
+      "passed": true,
+      "files": 578,
+      "report": "source-preservation.json"
+    },
+    {
+      "check": "Python syntax, changed TypeScript/Markdown/JS formatting, git diff whitespace",
+      "passed": true
+    }
+  ],
+  "visualAssessment": {
+    "status": "Review candidate, not user-accepted",
+    "review": "../KLING_MOTION_REVIEW.md",
+    "improvements": [
+      "Restored fast limb and arm poses previously held through motion",
+      "Support-phase walk/run entries instead of automatic airborne frame0",
+      "Full jump landing/upright recovery before automatic idle"
+    ],
+    "remainingLimits": [
+      "Source torso-angle variation, blur and jump-apex scalp clipping are retained",
+      "Missing neutral transition drawings leave visible jump anticipation and celebration cuts",
+      "Flow GIFs capture actual browser samples; missing intermediate samples are disclosed, not invented or interpolated",
+      "Clothing and expressions remain baked into complete character drawings",
+      "88/96-frame candidates use more decoded memory than 52-frame loop studies"
+    ]
+  },
+  "compatibility": {
+    "originalDefaultUnchanged": true,
+    "keyframeV1Unchanged": true,
+    "skeletonsUnchanged": true,
+    "manifestFormat": "Existing V3 multipage; optional validated sourceMetadata.motionFlow",
+    "oldConsumerJump": "Plays once and holds final pose; auto-idle requires motion-flow support"
+  },
+  "historicalCI": {
+    "separateFromCurrentResults": true,
+    "report": "prior-main-ci.json",
+    "note": "Previous main E2E failed; detailed remote logs could not be downloaded. Do not attribute or relabel that run from current results."
+  }
+}

@@ -1,6 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { loadPortableCharacterPack } from "../core/pack";
-import { KLING_CHARACTERS, KLING_KEYFRAME_CHARACTERS } from "./kling-catalog";
+import {
+  KLING_CHARACTERS,
+  KLING_KEYFRAME_CHARACTERS,
+  KLING_MOTION_CHARACTERS,
+} from "./kling-catalog";
 import { loadKlingCharacter } from "./kling-packs";
 
 vi.mock("../core/pack", () => ({
@@ -92,5 +96,29 @@ describe("prepared Kling loading", () => {
       loadKlingCharacter("male", new AbortController().signal),
     ).rejects.toThrow("HTTP 503");
     expect(loadPortableCharacterPack).not.toHaveBeenCalled();
+  });
+
+  it("loads the explicit motion variant without changing original or V1 catalog entries", async () => {
+    const archive = new Blob([new Uint8Array([7, 8, 9])]);
+    const fetched = vi
+      .fn()
+      .mockResolvedValue({ ok: true, blob: async () => archive });
+    vi.stubGlobal("fetch", fetched);
+    const pack = { manifest: { name: "Motion study" } } as Awaited<
+      ReturnType<typeof loadPortableCharacterPack>
+    >;
+    vi.mocked(loadPortableCharacterPack).mockResolvedValue(pack);
+    const signal = new AbortController().signal;
+    expect(
+      await loadKlingCharacter("male", signal, undefined, "motion"),
+    ).toEqual({ pack, archive });
+    expect(fetched).toHaveBeenCalledExactlyOnceWith(
+      KLING_MOTION_CHARACTERS[0].packUrl,
+      { signal },
+    );
+    expect(KLING_CHARACTERS[0].packUrl).toContain("/kling-jump/exports/");
+    expect(KLING_KEYFRAME_CHARACTERS[0].packUrl).toContain(
+      "/kling-keyframes/exports/",
+    );
   });
 });

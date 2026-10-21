@@ -21,7 +21,7 @@ export async function loadKlingCharacter(
   const response = await fetch(character.packUrl, { signal });
   if (!response.ok)
     throw new Error(
-      `The ${variant === "keyframes" ? "keyframe candidate" : "original character"} could not be downloaded (HTTP ${response.status}).`,
+      `The ${variant === "motion" ? "motion candidate" : variant === "keyframes" ? "keyframe candidate" : "original character"} could not be downloaded (HTTP ${response.status}).`,
     );
   const archive = await response.blob();
   signal.throwIfAborted();

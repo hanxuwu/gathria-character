@@ -37,6 +37,16 @@ crouch-to-crouch repeated hop, not the original full one-shot. Original packs
 remain unchanged. Both candidate ZIPs contain source hashes, selection and
 timing provenance, including the remaining source blur and clipping.
 
+## Motion-flow candidate
+
+The [motion-flow candidate](../artwork/kling-motion/README.md) is a separate
+sprite-based derivative of the same original packs. It restores moving poses
+omitted by the 52-drawing studies and retains the complete original jump.
+No new images, video extraction or skeletal transformations are used. All 184
+selected RGBA crops are source-exact; two V3 pages preserve native dimensions.
+Reviewed pose-switch routes are optional playback metadata, not new drawings.
+Original and earlier keyframe archives remain unchanged.
+
 ## Native male skeletal candidate
 
 The visible reference is the exact approved transparent 704×1056 male frame.

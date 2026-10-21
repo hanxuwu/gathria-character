@@ -1,0 +1,90 @@
+
+> gathria-character@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:322835) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 28 tests using 2 workers
+
+(node:322867) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:322868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/baked-playback.spec.ts:112:3 › source pair → same-clock playback → native V2 export → independent reopen preserves source pixels (Web Crypto) (12.5s)
+  ✓   3 tests/e2e/baked-playback.spec.ts:112:3 › source pair → same-clock playback → native V2 export → independent reopen preserves source pixels (without Web Crypto) (6.7s)
+  ✓   4 tests/e2e/baked-playback.spec.ts:290:1 › invalid source and removed V1 packs cannot replace the loaded Kling character (1.9s)
+  ✓   5 tests/e2e/baked-playback.spec.ts:384:1 › optional source jump plays once, exports its timing, compares both characters and replays without Web Crypto (5.2s)
+  ✓   2 tests/e2e/keyframe-loops.spec.ts:62:3 › male keyframe candidate loops all five actions and exports independently (28.6s)
+  ✓   6 tests/e2e/baked-playback.spec.ts:565:1 › independent native multipage pack draws the jump page, holds landing, mirrors, scrubs and reexports all pages (2.5s)
+  ✓   8 tests/e2e/baked-playback.spec.ts:667:1 › prepared Kling originals defer the second download, release comparison cache and export the original archive (3.0s)
+  ✓   9 tests/e2e/baked-playback.spec.ts:745:1 › female workbench link loads only that prepared original and embedded mode hides duplicate navigation (855ms)
+  ✓   7 tests/e2e/keyframe-loops.spec.ts:62:3 › female keyframe candidate loops all five actions and exports independently (17.4s)
+  ✓  10 tests/e2e/motion-flow.spec.ts:27:3 › male: reviewed requests retain full jumps, pause safely and export independently (23.6s)
+  ✓  11 tests/e2e/keyframe-loops.spec.ts:130:1 › keyframe review is explicit, retains its variant on character changes, and leaves the original jump one-shot (13.4s)
+  ✓  13 tests/e2e/native-study.spec.ts:7:3 › male native candidate keeps the source rest pose and saves real editable joint poses (6.5s)
+  ✓  14 tests/e2e/native-study.spec.ts:7:3 › female native candidate keeps the source rest pose and saves real editable joint poses (6.7s)
+  ✓  15 tests/e2e/native-study.spec.ts:129:1 › the visible male skeleton entry retains poses and old study URLs still open the native candidate (4.5s)
+  ✓  16 tests/e2e/native-study.spec.ts:167:1 › opening a female project in a male entry preserves its identity and export filenames (2.6s)
+  ✓  12 tests/e2e/motion-flow.spec.ts:27:3 › female: reviewed requests retain full jumps, pause safely and export independently (24.8s)
+  ✓  17 tests/e2e/sprite-actions-errors.spec.ts:5:1 › derived metadata errors retain the accepted action project and playback (3.7s)
+  ✓  19 tests/e2e/sprite-actions.spec.ts:51:3 › male: action edits preserve source pixels through save, reopen and independent playback (28.3s)
+  ✓  18 tests/e2e/motion-flow.spec.ts:147:1 › requests cancel/reset/scrub, while comparison and authoring stay immediate (40.3s)
+  ✓  21 tests/e2e/workspace-shell.spec.ts:3:1 › library has three primary destinations, original previews and lazy character loading (903ms)
+  ✓  22 tests/e2e/workspace-shell.spec.ts:57:1 › workbench keeps native joint edits and undo history alive across tabs (3.4s)
+  ✓  23 tests/e2e/workspace-shell.spec.ts:129:1 › workbench follows trusted player selection without reloading the retained player (2.2s)
+  ✓  24 tests/e2e/workspace-shell.spec.ts:216:1 › mobile library and workbench navigation stay within the viewport and support keyboard tabs (2.1s)
+  ✘  20 tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback (20.1s)
+
+::error file=tests/e2e/sprite-actions.spec.ts,title=tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback,line=142,col=50::  1) tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback %0A    Error: expect(locator).toHaveText(expected) failed%0A%0A    Locator:  locator('.player-timing')%0A    Expected: "12 FPS · ONCE"%0A    Received: "24 FPS · LOOP"%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveText" locator('.player-timing') with timeout 5000ms%0A      - waiting for locator('.player-timing')%0A        14 × locator resolved to <span class="player-timing">24 FPS · LOOP</span>%0A           - unexpected value "24 FPS · LOOP"%0A%0A%0A      140 |       .setInputFiles(saved.path);%0A      141 |     await button(page, "Run").click();%0A    > 142 |     await expect(page.locator(".player-timing")).toHaveText("12 FPS · ONCE");%0A          |                                                  ^%0A      143 |     await expect(%0A      144 |       editor(page).getByLabel("Start frame", { exact: true }),%0A      145 |     ).toHaveValue("2");%0A        at /workspace/gathria-character/tests/e2e/sprite-actions.spec.ts:142:50
+(node:324641) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  25 tests/e2e/workspace-shell.spec.ts:247:1 › female library entry and character changes retain separate male and female joint edits (5.7s)
+  ✓  27 tests/e2e/workspace-shell.spec.ts:349:1 › an embedded cross-import updates the outer identity without replacing either retained session (5.6s)
+  ✓  26 tests/e2e/sprite-actions.spec.ts:200:1 › invalid ranges preserve edits; reset restores the original jump and byte-exact export (8.7s)
+  ✓  28 tests/e2e/sprite-actions.spec.ts:229:1 › an imported V2 pack can be arranged without inventing missing actions (2.5s)
+
+
+  1) tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('.player-timing')
+    Expected: "12 FPS · ONCE"
+    Received: "24 FPS · LOOP"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('.player-timing') with timeout 5000ms
+      - waiting for locator('.player-timing')
+        14 × locator resolved to <span class="player-timing">24 FPS · LOOP</span>
+           - unexpected value "24 FPS · LOOP"
+
+
+      140 |       .setInputFiles(saved.path);
+      141 |     await button(page, "Run").click();
+    > 142 |     await expect(page.locator(".player-timing")).toHaveText("12 FPS · ONCE");
+          |                                                  ^
+      143 |     await expect(
+      144 |       editor(page).getByLabel("Start frame", { exact: true }),
+      145 |     ).toHaveValue("2");
+        at /workspace/gathria-character/tests/e2e/sprite-actions.spec.ts:142:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/sprite-actions-female-acti-57e75-en-and-independent-playback/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/sprite-actions-female-acti-57e75-en-and-independent-playback/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sprite-actions-female-acti-57e75-en-and-independent-playback/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sprite-actions-female-acti-57e75-en-and-independent-playback/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback
+  27 passed (2.5m)
+::notice title=🎭 Playwright Run Summary::  1 failed%0A    tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback %0A  27 passed (2.5m)

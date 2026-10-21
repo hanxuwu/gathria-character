@@ -1,0 +1,18 @@
+{
+  "runId": 39539397324,
+  "jobId": 119023420423,
+  "commit": "fd914ef832efd735a746d662e6a009a81fa5bd71",
+  "conclusion": "failure",
+  "failedStep": "Run npm run test:e2e",
+  "passedSteps": ["npm ci", "typecheck", "unit tests", "production build", "Chromium installation"],
+  "artifact": {"id": 12318766924, "name": "browser-test-results", "bytes": 212148283, "expired": false},
+  "attempts": [
+    {"method": "gh run download named browser-test-results artifact", "result": "GitHub redirect succeeded; Azure signed download returned Forbidden"},
+    {"method": "gh api job logs with fresh query parameter", "result": "GitHub redirect succeeded; Azure signed download returned Forbidden"}
+  ],
+  "exactFailedTests": null,
+  "rootCause": "Unverified because detailed logs and artifact download unavailable",
+  "retriesStopped": true,
+  "codeChanged": false,
+  "proposal": "Enable Playwright built-in github reporter alongside list under CI, preserving all assertions and retry policy, so future failures expose test names/assertions through GitHub check annotations. Do not claim this fixes historical failure."
+}
