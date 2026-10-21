@@ -1,13 +1,12 @@
 import { strToU8, zipSync } from "fflate";
 import { readBoundedArchive } from "../core/bounded-archive";
-import { decodeSourceRgbaPng } from "../core/baked-source";
 import {
   readPortableCharacterPackArchive,
-  validateRgbaPngScanlines,
   type PortableCharacterPackArchive,
 } from "../core/pack";
 import { BAKED_MAX_ARCHIVE_BYTES } from "../core/pack-v2";
 import { sha256 } from "../core/sha256";
+import { checkPageHeader, validateGarmentPage } from "./garment-pages";
 import {
   WARDROBE_MAX_ITEMS,
   WARDROBE_MAX_PAGES,
@@ -30,7 +29,6 @@ import {
 const zipTime = () => new Date(2020, 0, 1, 0, 0, 0);
 const decoder = new TextDecoder("utf-8", { fatal: true });
 const DOCUMENT_MAX_BYTES = 64 * 1024;
-const signature = [137, 80, 78, 71, 13, 10, 26, 10];
 const SOURCE_CACHE_MAX_BYTES = 96 * 1024 * 1024;
 const sourceCache = new Map<
   string,
@@ -66,6 +64,46 @@ function sourceArchive(
   }
   return structuredClone(cached.archive);
 }
+const GARMENT_ARCHIVE_CACHE_BYTES = 64 * 1024 * 1024;
+const garmentArchives = new Map<
+  string,
+  { files: Record<string, Uint8Array>; bytes: number }
+>();
+function garmentFiles(hash: string, load: () => Record<string, Uint8Array>) {
+  const cached =
+    garmentArchives.get(hash) ??
+    (() => {
+      // Stored ZIP entries can be subarrays of the caller-visible archive.
+      // Own the buffers on insertion as well as on return.
+      const files = Object.fromEntries(
+        Object.entries(load()).map(([name, bytes]) => [
+          name,
+          new Uint8Array(bytes),
+        ]),
+      );
+      return {
+        files,
+        bytes: Object.values(files).reduce((n, bytes) => n + bytes.length, 0),
+      };
+    })();
+  garmentArchives.delete(hash);
+  garmentArchives.set(hash, cached);
+  let bytes = [...garmentArchives.values()].reduce(
+    (n, entry) => n + entry.bytes,
+    0,
+  );
+  while (
+    garmentArchives.size > WARDROBE_MAX_ITEMS ||
+    bytes > GARMENT_ARCHIVE_CACHE_BYTES
+  ) {
+    const oldest = garmentArchives.keys().next().value!;
+    bytes -= garmentArchives.get(oldest)!.bytes;
+    garmentArchives.delete(oldest);
+  }
+  // Mutable public bytes/pages must never alias the private verified ZIP cache.
+  return structuredClone(cached.files);
+}
+
 export interface WardrobeValidationOptions {
   /** False is for preview preflight only; import and persistence always decode. */
   decodeGarments?: boolean;
@@ -88,60 +126,13 @@ function canonicalItems(items: WardrobeGarment[]) {
     a.manifest.id < b.manifest.id ? -1 : a.manifest.id > b.manifest.id ? 1 : 0,
   );
 }
-function checkPageHeader(bytes: Uint8Array, width: number, height: number) {
-  if (bytes.length < 45 || !signature.every((n, i) => bytes[i] === n))
-    throw Error("Garment page must be an intact RGBA PNG.");
-  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
-  if (
-    view.getUint32(8) !== 13 ||
-    view.getUint32(12) !== 0x49484452 ||
-    view.getUint32(16) !== width ||
-    view.getUint32(20) !== height
-  )
-    throw Error("Garment PNG dimensions do not match the declared atlas.");
-  if (bytes[24] !== 8 || bytes[25] !== 6 || bytes[26] || bytes[27] || bytes[28])
-    throw Error("Garment PNG must be non-interlaced 8-bit RGBA.");
-}
-async function strictPngCompression(
-  bytes: Uint8Array,
-  width: number,
-  height: number,
-) {
-  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength),
-    chunks: Uint8Array[] = [];
-  for (let offset = 8; offset < bytes.length; ) {
-    if (offset + 12 > bytes.length) throw Error("Truncated garment PNG chunk.");
-    const size = view.getUint32(offset),
-      end = offset + size + 12;
-    if (end > bytes.length) throw Error("Invalid garment PNG chunk bounds.");
-    const type = view.getUint32(offset + 4);
-    if ([0x6163544c, 0x6663544c, 0x66644154].includes(type))
-      throw Error("Garment PNG must be static, not APNG.");
-    if (type === 0x49444154 && size)
-      chunks.push(bytes.subarray(offset + 8, end - 4));
-    offset = end;
-  }
-  await validateRgbaPngScanlines(chunks, width, height, false);
-}
-
-/** Own pixels are replacement RGBA, including transparent removal pixels. */
+/** Public validation never accepts a caller-supplied cache key. */
 export async function validateWardrobePagePixels(
   patch: Uint8Array,
   ownership: Uint8Array,
   dimensions: { width: number; height: number },
 ): Promise<void> {
-  checkPageHeader(patch, dimensions.width, dimensions.height);
-  checkPageHeader(ownership, dimensions.width, dimensions.height);
-  await strictPngCompression(patch, dimensions.width, dimensions.height);
-  await strictPngCompression(ownership, dimensions.width, dimensions.height);
-  const p = decodeSourceRgbaPng(patch, dimensions),
-    mask = decodeSourceRgbaPng(ownership, dimensions);
-  for (let i = 3; i < mask.pixels.length; i += 4) {
-    if (mask.pixels[i] !== 0 && mask.pixels[i] !== 255)
-      throw Error("Garment ownership alpha must be binary 0 or 255.");
-    if (!mask.pixels[i] && p.pixels[i])
-      throw Error("Garment artwork extends outside its declared ownership.");
-  }
+  await validateGarmentPage(patch, ownership, dimensions);
 }
 
 export async function readWardrobeGarment(
@@ -159,17 +150,22 @@ export async function readWardrobeGarment(
     allowed[`ownership-${i}.png`] = WARDROBE_MAX_ITEM_BYTES;
     paired.push([`patches-${i}.png`, `ownership-${i}.png`]);
   }
+  if (bytes.length > WARDROBE_MAX_ITEM_BYTES)
+    throw Error("Garment archive exceeds its size limit.");
   const copied = new Uint8Array(bytes);
-  const files = readBoundedArchive(copied, {
-    label: "Garment archive",
-    maxArchiveBytes: WARDROBE_MAX_ITEM_BYTES,
-    maxExpandedBytes: WARDROBE_MAX_ITEM_BYTES,
-    minFiles: 3,
-    maxFiles: 1 + WARDROBE_MAX_PAGES * 2,
-    files: allowed,
-    required: ["manifest.json", "patches-0.png", "ownership-0.png"],
-    paired,
-  });
+  const hash = await sha256(copied);
+  const files = garmentFiles(hash, () =>
+    readBoundedArchive(copied, {
+      label: "Garment archive",
+      maxArchiveBytes: WARDROBE_MAX_ITEM_BYTES,
+      maxExpandedBytes: WARDROBE_MAX_ITEM_BYTES,
+      minFiles: 3,
+      maxFiles: 1 + WARDROBE_MAX_PAGES * 2,
+      files: allowed,
+      required: ["manifest.json", "patches-0.png", "ownership-0.png"],
+      paired,
+    }),
+  );
   const manifest = validateWardrobeGarmentManifest(
     parse(files["manifest.json"], "Garment manifest"),
     registration,
@@ -186,10 +182,15 @@ export async function readWardrobeGarment(
     checkPageHeader(patch, page.width, page.height);
     checkPageHeader(ownership, page.width, page.height);
     if (options.decodeGarments !== false)
-      await validateWardrobePagePixels(patch, ownership, page);
+      await validateGarmentPage(
+        patch,
+        ownership,
+        page,
+        `${hash}:${pages.length}`,
+      );
     pages.push({ patch, ownership });
   }
-  return { bytes: copied, sha256: await sha256(copied), manifest, pages };
+  return { bytes: copied, sha256: hash, manifest, pages };
 }
 
 async function createBase(source: Uint8Array, registrationBytes: Uint8Array) {

@@ -2,7 +2,9 @@ import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { strToU8, unzipSync, zipSync } from "fflate";
 import { encodeSourceRgbaPng } from "../core/baked-source";
+import { crc32 } from "../core/bounded-archive";
 import { createBakedCharacterPack } from "../core/pack";
+import { createWardrobeCompositor } from "./compositor";
 import type {
   BakedCharacterRecipe,
   CharacterPackV2Manifest,
@@ -33,6 +35,22 @@ const json = (value: unknown) => strToU8(JSON.stringify(value));
 const png = (width: number, height: number, pixels: Uint8Array) =>
   encodeSourceRgbaPng({ width, height, pixels, colorChunks: [] });
 const zipTime = new Date("2020-01-01T00:00:00.000Z");
+
+function withAnimationControl(image: Uint8Array) {
+  // A well-formed ancillary APNG chunk passes the preview's RGBA header check;
+  // persistence must still reject it, even after the archive has been cached.
+  const chunk = new Uint8Array(20),
+    view = new DataView(chunk.buffer);
+  view.setUint32(0, 8);
+  chunk.set(strToU8("acTL"), 4);
+  view.setUint32(8, 1);
+  view.setUint32(16, crc32(chunk.subarray(4, 16)));
+  const output = new Uint8Array(image.length + chunk.length);
+  output.set(image.subarray(0, 33));
+  output.set(chunk, 33);
+  output.set(image.subarray(33), 33 + chunk.length);
+  return output;
+}
 
 async function fixture() {
   const manifest: CharacterPackV2Manifest = {
@@ -302,6 +320,138 @@ describe("source-bound wardrobe registration and assets", () => {
     await expect(
       read({ ...g.files, "unreviewed.png": g.files["patches-0.png"] }),
     ).rejects.toThrow(/Unexpected ZIP path/);
+  });
+  it.each([0, 6] as const)(
+    "isolates cached garments from caller-owned ZIP, page and manifest mutations at compression level %i",
+    async (level) => {
+      const f = await fixture(),
+        original = garment(f.registration, f.registrationBytes),
+        g = {
+          ...original,
+          bytes: zipSync(original.files, { level, mtime: zipTime }),
+        },
+        input = new Uint8Array(g.bytes),
+        read = (bytes: Uint8Array) =>
+          readWardrobeGarment(bytes, f.registration, sha(f.registrationBytes));
+      const first = await read(input);
+      input.fill(0);
+      expect(first.bytes).toEqual(g.bytes);
+      first.bytes.fill(0);
+      first.pages[0].patch.fill(0);
+      first.pages[0].ownership.fill(0);
+      first.manifest.frames[0].offset.y = 7;
+
+      const restored = await read(new Uint8Array(g.bytes));
+      expect(restored.bytes).toEqual(g.bytes);
+      expect(restored.sha256).toBe(sha(g.bytes));
+      expect(restored.manifest).toEqual(g.manifest);
+      expect(restored.pages[0]).toEqual({
+        patch: g.files["patches-0.png"],
+        ownership: g.files["ownership-0.png"],
+      });
+      await expect(read(first.bytes)).rejects.toThrow();
+
+      // A new archive retaining the same item ID must not inherit the old pixels.
+      const changedPixels = new Uint8Array(g.pixels);
+      changedPixels[8] = 25;
+      const changedPatch = png(4, 2, changedPixels),
+        changed = await read(
+          zipSync({ ...g.files, "patches-0.png": changedPatch }),
+        );
+      expect(changed.manifest.id).toBe(restored.manifest.id);
+      expect(changed.sha256).not.toBe(restored.sha256);
+      expect(changed.pages[0].patch).toEqual(changedPatch);
+      expect((await read(g.bytes)).pages[0].patch).toEqual(
+        g.files["patches-0.png"],
+      );
+    },
+  );
+  it.each(["partial ownership", "unowned artwork", "APNG"] as const)(
+    "does not promote a header-only %s preview to strict import or persistence validation",
+    async (kind) => {
+      const f = await fixture(),
+        g = garment(f.registration, f.registrationBytes),
+        files = { ...g.files };
+      if (kind === "partial ownership") {
+        const ownership = new Uint8Array(g.ownership);
+        ownership[3] = 128;
+        files["ownership-0.png"] = png(4, 2, ownership);
+      } else if (kind === "unowned artwork") {
+        const pixels = new Uint8Array(g.pixels);
+        pixels[7] = 255;
+        files["patches-0.png"] = png(4, 2, pixels);
+      } else {
+        files["patches-0.png"] = withAnimationControl(files["patches-0.png"]);
+      }
+      const bytes = zipSync(files),
+        item = await readWardrobeGarment(
+          bytes,
+          f.registration,
+          sha(f.registrationBytes),
+          { decodeGarments: false },
+        ),
+        message =
+          kind === "partial ownership"
+            ? /binary/
+            : kind === "unowned artwork"
+              ? /outside its declared ownership/
+              : /APNG/;
+      expect(item.bytes).toEqual(bytes);
+      const project = await createWardrobeProject(
+        f.source,
+        f.registrationBytes,
+      );
+      project.items = [item];
+      project.document.items = [{ id: item.manifest.id, sha256: item.sha256 }];
+      if (kind === "APNG") {
+        // The synchronous preview decoder can read the static image pixels of
+        // this ancillary-chunk fixture. Its warmed RGBA cache is not evidence
+        // that strict static-PNG validation has succeeded.
+        const renderer = await createWardrobeCompositor(
+          selectWardrobeGarment(project, "top", item.manifest.id),
+        );
+        try {
+          expect(renderer.renderFrame(7).pixels).toHaveLength(8 * 8 * 4);
+        } finally {
+          renderer.dispose();
+        }
+      }
+      for (let attempt = 0; attempt < 2; attempt++)
+        await expect(
+          readWardrobeGarment(bytes, f.registration, sha(f.registrationBytes)),
+        ).rejects.toThrow(message);
+      await expect(exportWardrobeProject(project)).rejects.toThrow(message);
+    },
+  );
+  it("rechecks current registration and character binding after a garment is cached", async () => {
+    const f = await fixture(),
+      g = garment(f.registration, f.registrationBytes);
+    await readWardrobeGarment(
+      g.bytes,
+      f.registration,
+      sha(f.registrationBytes),
+    );
+    const newRegistration = structuredClone(f.registration);
+    newRegistration.frames[0].points.neck.y = 3;
+    await expect(
+      readWardrobeGarment(g.bytes, newRegistration, sha(json(newRegistration))),
+    ).rejects.toThrow(/registration checksum/);
+
+    // Even a caller retaining the old checksum cannot reuse a manifest that is
+    // bound to a different character in the supplied registration object.
+    newRegistration.characterId = "another-character";
+    await expect(
+      readWardrobeGarment(g.bytes, newRegistration, sha(f.registrationBytes)),
+    ).rejects.toThrow(/characterId/);
+    expect(
+      (
+        await readWardrobeGarment(
+          g.bytes,
+          f.registration,
+          sha(f.registrationBytes),
+        )
+      ).manifest,
+    ).toEqual(g.manifest);
   });
 });
 
