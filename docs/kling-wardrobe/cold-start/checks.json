@@ -1,0 +1,46 @@
+{
+  "scope": "Checks executed for this cold-start worker batch; historical loading-reuse counts are not reused.",
+  "runtimeCommit": "c1f9a9ae102e0c8330472675cf87a7e65622b48c",
+  "baselineCommit": "d0bf0ad7bf2611da60ed0782aa1456a6dea636b9",
+  "runtimeSources": {
+    "src/core/baked-source.ts": "7294e784fffbc2d467a1e8fdbea79769f39ff3f8590ff1ed1f9d9e24756c6fa9",
+    "src/core/source-preparation.ts": "791a62cbaf2e3e08aa3a8789ca5d764df04f2d7830ddd813ee2b45f282a62667",
+    "src/core/source-preparation.worker.ts": "e9c0a2732e3e75c2bce5b351e0cd1933926126c745993e3322be32a008a4699b",
+    "src/wardrobe/project.ts": "84736bf44c1479ddd9109f2325622dfe08d75a7512af97666b85b95a1e175422",
+    "src/wardrobe/compositor.ts": "30631a7be9f5e66a12cda3bfdda9b9a8771fed468737c75dfa5da98a1236635a",
+    "src/wardrobe/WardrobeEditor.tsx": "5c808e1e6a9213a5d2c7090957376895373f88a2fa8b8ecc4d9ef39f1e485a60"
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "unit": {
+    "command": "npm test -- --reporter=json --outputFile=/tmp/kling-cold-start/unit.json",
+    "exitCode": 0,
+    "filesPassed": 13,
+    "testsPassed": 180,
+    "startTime": "2026-10-21T23:41:22.341000+00:00"
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "typescriptAndProductionBuild": true
+  },
+  "browser": {
+    "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/wardrobe.spec.ts tests/e2e/baked-playback.spec.ts tests/e2e/wardrobe-loading.spec.ts --reporter=json",
+    "stats": {
+      "startTime": "2026-10-21T23:40:09.054Z",
+      "duration": 30620.296000000002,
+      "expected": 18,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": []
+  },
+  "baselineBuildProvenance": {
+    "description": "All 73 baseline build files match the retained PR28 candidate inventory exactly. That runtime is unchanged by the documentation commit and main merge. Comparison used maps by filename (inventory ordering differs).",
+    "retainedInventory": "../loading-reuse/browser-comparison.json",
+    "filesMatched": 73
+  }
+}

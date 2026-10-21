@@ -319,12 +319,19 @@ async function validateSourceCompression(
   }
   await validateRgbaPngScanlines(chunks, width, height, false);
 }
-/** Lossless RGBA8 PNG decode. No Canvas premultiplication, threshold or recolor.
- * Bounded before allocating and streaming inflation cannot exceed declared rows. */
-export function decodeSourceRgbaPng(
+interface SourcePngData {
+  width: number;
+  height: number;
+  idats: Uint8Array[];
+  colorChunks: Uint8Array[];
+}
+
+/** Shared structure/CRC checks. The synchronous API deliberately retains its
+ * existing acceptance rules; importing a static atlas performs its own preflight. */
+function parseSourceRgbaPng(
   bytes: Uint8Array,
   expected?: { width: number; height: number },
-): RgbaPng {
+): SourcePngData {
   if (
     bytes.length < 45 ||
     bytes.length > MAX_ARCHIVE ||
@@ -387,26 +394,10 @@ export function decodeSourceRgbaPng(
     p = end;
   }
   if (!ended || !width || !height) fail("Incomplete source PNG.");
-  const stride = width * 4,
-    scan = new Uint8Array((stride + 1) * height);
-  let written = 0;
-  try {
-    const inflater = new Unzlib((chunk) => {
-      if (written + chunk.length > scan.length)
-        fail("PNG inflation exceeds declared size.");
-      scan.set(chunk, written);
-      written += chunk.length;
-    });
-    for (const idat of idats)
-      for (let i = 0; i < idat.length; i += 1024)
-        inflater.push(idat.subarray(i, i + 1024), false);
-    // A legal zero-length final IDAT must still finalize/validate the stream.
-    inflater.push(new Uint8Array(), true);
-  } catch {
-    return fail("Source PNG cannot be decoded within its declared dimensions.");
-  }
-  if (written !== scan.length)
-    fail("PNG decoded row count does not match dimensions.");
+  return { width, height, idats, colorChunks };
+}
+
+function checkSourceAdler(scan: Uint8Array, idats: Uint8Array[]): void {
   // fflate validates decompression bounds but does not check zlib's Adler-32.
   // The four trailer bytes may span IDAT chunks (including empty chunks).
   const tail: number[] = [];
@@ -418,6 +409,11 @@ export function decodeSourceRgbaPng(
     adler32(scan) !== new DataView(new Uint8Array(tail).buffer).getUint32(0)
   )
     fail("Source PNG zlib checksum mismatch.");
+}
+
+function unfilterSourceRgba(scan: Uint8Array, source: SourcePngData): RgbaPng {
+  const { width, height, colorChunks } = source;
+  const stride = width * 4;
   const pixels = new Uint8Array(stride * height);
   for (let y = 0; y < height; y++) {
     const filter = scan[y * (stride + 1)];
@@ -442,6 +438,98 @@ export function decodeSourceRgbaPng(
   }
   return { width, height, pixels, colorChunks };
 }
+
+/** Lossless RGBA8 PNG decode. No Canvas premultiplication, threshold or recolor.
+ * Bounded before allocating and streaming inflation cannot exceed declared rows. */
+export function decodeSourceRgbaPng(
+  bytes: Uint8Array,
+  expected?: { width: number; height: number },
+): RgbaPng {
+  const source = parseSourceRgbaPng(bytes, expected);
+  const { width, height, idats } = source;
+  const scan = new Uint8Array((width * 4 + 1) * height);
+  let written = 0;
+  try {
+    const inflater = new Unzlib((chunk) => {
+      if (written + chunk.length > scan.length)
+        fail("PNG inflation exceeds declared size.");
+      scan.set(chunk, written);
+      written += chunk.length;
+    });
+    for (const idat of idats)
+      for (let i = 0; i < idat.length; i += 1024)
+        inflater.push(idat.subarray(i, i + 1024), false);
+    // A legal zero-length final IDAT must still finalize/validate the stream.
+    inflater.push(new Uint8Array(), true);
+  } catch {
+    return fail("Source PNG cannot be decoded within its declared dimensions.");
+  }
+  if (written !== scan.length)
+    fail("PNG decoded row count does not match dimensions.");
+  checkSourceAdler(scan, idats);
+  return unfilterSourceRgba(scan, source);
+}
+
+/** Native, strict zlib inflation with the same raw RGBA reconstruction as the
+ * synchronous codec. Input is snapshotted before yielding; no browser image
+ * decoder, premultiplication or implicit color conversion is involved. */
+export async function decodeSourceRgbaPngAsync(
+  bytes: Uint8Array,
+  expected?: { width: number; height: number },
+  options: { signal?: AbortSignal } = {},
+): Promise<RgbaPng> {
+  const { signal } = options;
+  const cancelled = () =>
+    new DOMException("PNG decoding cancelled.", "AbortError");
+  const abort = () => {
+    if (signal?.aborted) throw cancelled();
+  };
+  abort();
+  // Reject oversized input before copying it. All remaining header/CRC/budget
+  // checks stay shared with the synchronous codec, before scan allocation.
+  if (bytes.length > MAX_ARCHIVE) fail("Source image must be an intact PNG.");
+  const source = parseSourceRgbaPng(new Uint8Array(bytes), expected);
+  const { width, height, idats } = source;
+  const scan = new Uint8Array((width * 4 + 1) * height);
+  let written = 0;
+  const reader = new Blob(idats)
+    .stream()
+    .pipeThrough(new DecompressionStream("deflate"))
+    .getReader();
+  const onAbort = () => {
+    void reader.cancel(cancelled()).catch(() => undefined);
+  };
+  signal?.addEventListener("abort", onAbort, { once: true });
+  try {
+    while (true) {
+      abort();
+      const { done, value } = await reader.read();
+      abort();
+      if (done) break;
+      if (written + value.length > scan.length)
+        fail("PNG inflation exceeds declared size.");
+      scan.set(value, written);
+      written += value.length;
+    }
+  } catch {
+    await reader.cancel().catch(() => undefined);
+    abort();
+    return fail(
+      "Source PNG cannot be decoded within its declared dimensions; invalid compressed image data.",
+    );
+  } finally {
+    signal?.removeEventListener("abort", onAbort);
+    reader.releaseLock();
+  }
+  if (written !== scan.length)
+    fail("PNG decoded row count does not match dimensions.");
+  // DecompressionStream also checks Adler-32 and exact stream end. Keeping the
+  // explicit trailer check preserves parity for IDAT splits and empty chunks.
+  checkSourceAdler(scan, idats);
+  abort();
+  return unfilterSourceRgba(scan, source);
+}
+
 function pngChunk(type: string, data: Uint8Array): Uint8Array {
   const bytes = new Uint8Array(data.length + 12),
     v = new DataView(bytes.buffer);

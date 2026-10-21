@@ -1,12 +1,13 @@
 # Implementation status
 
-Current review batch: **Kling wardrobe loading reuse**, branch
-`perf/kling-wardrobe-loading`, based on merged main `93d2034`.
-Import and composition now share privately cached, content-verified garment
-pages; outfit switches reuse checked ZIP entries. First outfit selection is
-42–50% faster in the retained local comparison; returning to an existing look
-is 92–94% faster. Original cold opening remains roughly 12–14 seconds and was
-not optimized. [Measurements, actual exports and limits](kling-wardrobe/loading-reuse/README.md).
+Current review batch: **Kling wardrobe cold-start preparation**, branch
+`perf/kling-cold-start`, based on merged main `d0bf0ad`.
+Cold source ZIP parsing and lossless PNG preparation now run in cancellable
+workers, with bounded native zlib decoding, actual progress and full appearance
+validation before playback. Worker infrastructure failure retains checked fallback
+behavior. [Measurements, actual exports and limits](kling-wardrobe/cold-start/README.md).
+The previous [garment loading reuse](kling-wardrobe/loading-reuse/README.md) remains
+in place: private checked archives/pages speed up first and repeat outfit selection.
 
 The registered wardrobe uses the complete motion candidates introduced at
 `b5edec14df9a748fa35a069d977fd4e0fba195aa`; original default packs and optional
@@ -21,7 +22,8 @@ source packs, original registration and anchors stay unchanged.
 [complete outfits](kling-wardrobe/full-outfits/README.md) remain the before baseline.
 The subsequent [loading experiment](kling-wardrobe/fit-polish/loading/README.md)
 is retained for review but not adopted: measured browser startup gains were
-inconsistent, so the shipping decoder remains unchanged.
+inconsistent. That row-filter experiment remains excluded; this batch changes
+decompression and thread placement while retaining the pixel reconstruction.
 
 The preceding [dress fitting V2](kling-wardrobe/fit-v2/README.md) remains the
 female before baseline. Its direct-playback replay and retained atlas decoding

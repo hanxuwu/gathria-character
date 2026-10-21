@@ -261,6 +261,7 @@ export default function WardrobeEditor({
   const projectInput = useRef<HTMLInputElement>(null);
   const garmentInput = useRef<HTMLInputElement>(null);
   const request = useRef(0);
+  const preparation = useRef<AbortController | null>(null);
   const current = useRef<Session | null>(null);
   const callbacks = useRef({ onCharacterChange });
   callbacks.current = { onCharacterChange };
@@ -288,18 +289,32 @@ export default function WardrobeEditor({
     });
     setSession(next);
   }
+  function beginPreparation() {
+    preparation.current?.abort();
+    const controller = new AbortController();
+    preparation.current = controller;
+    return { token: ++request.current, controller };
+  }
   async function accept(
     project: WardrobeProject,
     character: KlingCharacterId,
     dirty: boolean,
     token: number,
+    signal: AbortSignal,
     preserveMotion = false,
   ) {
-    const renderer = await createWardrobeCompositor(project);
+    const renderer = await createWardrobeCompositor(project, { signal });
     try {
       await validateWardrobeAppearance(renderer, {
+        signal,
+        onSourceProgress: (completedPages, totalPages) => {
+          if (token === request.current && !signal.aborted)
+            setStatus(
+              `Preparing character artwork: ${completedPages} / ${totalPages}…`,
+            );
+        },
         onProgress: (completedFrames, totalFrames) => {
-          if (token === request.current)
+          if (token === request.current && !signal.aborted)
             setStatus(
               `Checking clothing across all poses: ${completedFrames} / ${totalFrames}…`,
             );
@@ -315,7 +330,7 @@ export default function WardrobeEditor({
       // Decode and compose before replacing the accepted session. A bad item must
       // not leave the user looking at a blank preview or lose their open outfit.
       renderer.renderFrame(clip.frames[position]);
-      if (token !== request.current) {
+      if (token !== request.current || signal.aborted) {
         renderer.dispose();
         return;
       }
@@ -339,10 +354,10 @@ export default function WardrobeEditor({
   }
 
   useEffect(() => {
-    const token = ++request.current;
-    const controller = new AbortController();
+    const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
+    setStatus("Opening the clothing library…");
     void (async () => {
       try {
         const data = JSON.parse(
@@ -353,6 +368,7 @@ export default function WardrobeEditor({
         const library = readCatalog(data);
         if (token !== request.current) return;
         setCatalog(library);
+        setStatus("Loading character artwork…");
         const entry = library.characters.find(
           (item) => item.key === initialCharacter,
         )!;
@@ -360,8 +376,12 @@ export default function WardrobeEditor({
           fetchBytes(entry.sourceUrl, 64 * 1024 * 1024, controller.signal),
           fetchBytes(entry.registrationUrl, 1024 * 1024, controller.signal),
         ]);
-        const project = await createWardrobeProject(source, registration);
-        await accept(project, entry.key, false, token);
+        if (token !== request.current) return;
+        setStatus("Preparing this character…");
+        const project = await createWardrobeProject(source, registration, [], {
+          signal: controller.signal,
+        });
+        await accept(project, entry.key, false, token, controller.signal);
         if (token === request.current)
           setStatus(
             "Original outfit. Choose a complete look or combine individual pieces.",
@@ -382,6 +402,7 @@ export default function WardrobeEditor({
   useEffect(
     () => () => {
       request.current++;
+      preparation.current?.abort();
       current.current?.renderer.dispose();
       current.current = null;
       rendered.current = null;
@@ -563,13 +584,13 @@ export default function WardrobeEditor({
   ) {
     const open = current.current;
     if (!open || busy) return;
-    const token = ++request.current;
+    const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
     setStatus("Preparing clothing for this character…");
     try {
       const next = await transform(open.project);
-      await accept(next, open.character, true, token, true);
+      await accept(next, open.character, true, token, controller.signal, true);
       if (token === request.current) setStatus(message);
     } catch (failure) {
       if (token === request.current)
@@ -625,7 +646,7 @@ export default function WardrobeEditor({
   }
   async function chooseCharacter(character: KlingCharacterId) {
     if (busy || !catalog || character === session?.character) return;
-    const token = ++request.current;
+    const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
     setStatus("Opening this character’s wardrobe…");
@@ -634,15 +655,23 @@ export default function WardrobeEditor({
       const target = catalog.characters.find(
         (candidate) => candidate.key === character,
       )!;
-      const next =
-        cached?.project ??
-        (await createWardrobeProject(
-          ...(await Promise.all([
-            fetchBytes(target.sourceUrl, 64 * 1024 * 1024),
-            fetchBytes(target.registrationUrl, 1024 * 1024),
-          ])),
-        ));
-      await accept(next, character, cached?.dirty ?? false, token);
+      let next = cached?.project;
+      if (!next) {
+        const [source, registration] = await Promise.all([
+          fetchBytes(target.sourceUrl, 64 * 1024 * 1024, controller.signal),
+          fetchBytes(target.registrationUrl, 1024 * 1024, controller.signal),
+        ]);
+        next = await createWardrobeProject(source, registration, [], {
+          signal: controller.signal,
+        });
+      }
+      await accept(
+        next,
+        character,
+        cached?.dirty ?? false,
+        token,
+        controller.signal,
+      );
       if (token === request.current)
         setStatus(
           cached
@@ -730,7 +759,7 @@ export default function WardrobeEditor({
   }
   async function importProject(file?: File) {
     if (!file || busy) return;
-    const token = ++request.current;
+    const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
     setStatus("Checking the saved wardrobe…");
@@ -739,6 +768,7 @@ export default function WardrobeEditor({
         throw Error("Wardrobe projects must be at most 128 MiB.");
       const next = await importWardrobeProject(
         new Uint8Array(await file.arrayBuffer()),
+        { signal: controller.signal },
       );
       const target =
         catalog?.characters.find(
@@ -756,7 +786,7 @@ export default function WardrobeEditor({
         throw Error(
           "This project does not belong to either supported Kling character.",
         );
-      await accept(next, target.key, false, token);
+      await accept(next, target.key, false, token, controller.signal);
       if (token === request.current)
         setStatus("Saved outfit and action settings restored.");
     } catch (failure) {
