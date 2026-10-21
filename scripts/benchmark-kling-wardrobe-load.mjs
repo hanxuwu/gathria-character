@@ -46,6 +46,15 @@ assert(
     looks.every((look) => ["day", "wedding"].includes(look)) &&
     new Set(looks).size === looks.length,
 );
+const revisit = args.revisit;
+assert(
+  !revisit || looks.includes(revisit),
+  "Revisit must be one of the initial looks.",
+);
+const stagesToTry = [
+  ...looks.map((look) => ({ preset: look, stage: look })),
+  ...(revisit ? [{ preset: revisit, stage: `${revisit}-revisit` }] : []),
+];
 const frozenRef = args.ref ?? "ec9bd75";
 try {
   await access(output);
@@ -167,6 +176,7 @@ const report = {
     totalMemory: totalmem(),
     rounds,
     looks,
+    revisit: revisit ?? null,
     viewport: { width: 1440, height: 1000 },
     browser: "Chromium headless",
     chromiumPath,
@@ -289,14 +299,14 @@ function browserInstrumentation() {
     }).observe({ type: "longtask", buffered: true });
   } catch {}
 }
-async function ready(page, text) {
+async function ready(page, text, after = -1) {
   await page.waitForFunction(
-    (text) =>
+    ({ text, after }) =>
       document.querySelector('#wardrobe-panel [role="alert"]') ||
-      window.__wardrobeLoadProbe?.ready.some((entry) =>
-        entry.status.includes(text),
+      window.__wardrobeLoadProbe?.ready.some(
+        (entry) => entry.at > after && entry.status.includes(text),
       ),
-    text,
+    { text, after },
     { timeout: 120000 },
   );
   const alerts = await page
@@ -304,11 +314,11 @@ async function ready(page, text) {
     .allTextContents();
   assert.deepEqual(alerts, []);
   return page.evaluate(
-    (text) =>
-      window.__wardrobeLoadProbe.ready.find((entry) =>
-        entry.status.includes(text),
+    ({ text, after }) =>
+      window.__wardrobeLoadProbe.ready.find(
+        (entry) => entry.at > after && entry.status.includes(text),
       ),
-    text,
+    { text, after },
   );
 }
 async function preview(page) {
@@ -342,7 +352,9 @@ function stages(run, from, to, logicalAssets) {
     wanted.length,
     `Expected actual asset transfers: ${run.label}/${run.character}`,
   );
-  const lastTransferEnd = Math.max(...assets.map((item) => item.end));
+  const lastTransferEnd = assets.length
+    ? Math.max(...assets.map((item) => item.end))
+    : from;
   const tasks = run.probe.longTasks.filter(
     (task) => task.start >= from && task.start < to,
   );
@@ -433,22 +445,26 @@ try {
         const initial = await ready(page, "Original outfit.");
         run.initialReadyAt = initial.at;
         run.initialPreview = await preview(page);
-        for (const look of looks) {
-          const preset = entry.presets.find((item) => item.id === look);
+        for (const look of stagesToTry) {
+          const preset = entry.presets.find((item) => item.id === look.preset);
           assert(preset);
           await page
             .locator("#wardrobe-panel")
             .getByRole("button", { name: preset.name, exact: true })
             .click();
-          const accepted = await ready(page, `${preset.name} selected.`);
           const clicked = await page.evaluate(
             (name) =>
-              window.__wardrobeLoadProbe.clicks.find(
+              window.__wardrobeLoadProbe.clicks.findLast(
                 (entry) => entry.text === name,
               ),
             preset.name,
           );
           assert(clicked);
+          const accepted = await ready(
+            page,
+            `${preset.name} selected.`,
+            clicked.at,
+          );
           const selection = {};
           for (const [slot, label] of Object.entries({
             top: "Top",
@@ -462,7 +478,8 @@ try {
                 .inputValue()) || null;
           assert.deepEqual(selection, preset.selection);
           run.looks.push({
-            look,
+            look: look.stage,
+            preset: look.preset,
             selection,
             clickAt: clicked.at,
             readyAt: accepted.at,
@@ -520,7 +537,10 @@ try {
       : (sorted[middle - 1] + sorted[middle]) / 2;
   };
   for (const character of ["male", "female"])
-    for (const stage of ["original", ...looks]) {
+    for (const stage of [
+      "original",
+      ...stagesToTry.map((look) => look.stage),
+    ]) {
       const runs = report.runs.filter((run) => run.character === character);
       const get = (run) =>
         stage === "original"

@@ -1,0 +1,39 @@
+{
+  "scope": "Checks actually executed for the wardrobe loading-reuse change, not historical clothing tests.",
+  "runtimeCommit": "562827b3e17c908bb8e3a15130b9e6a145301b81",
+  "runtimeSources": {
+    "src/wardrobe/project.ts": "caa4c8216398a6d2f82168db2cd4b764680531e4196874998e6272379185751b",
+    "src/wardrobe/compositor.ts": "02e46992ccd8d0818b3b28ebb3fb8e2a6703074dbf36768d9493ccd38169e7e2",
+    "src/wardrobe/garment-pages.ts": "c607203a7f25c7f2e800267670af681bfea15978a40a0acfbebbdc0eb6378222",
+    "src/core/baked-source.ts": "fa90d1e2ba9391af0e0c44e5b224d8661d513e711b5ffa2f278cbf73608b7a57"
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "unit": {
+    "command": "npm test",
+    "exitCode": 0,
+    "filesPassed": 12,
+    "testsPassed": 161,
+    "startTime": "2026-10-21T22:56:09Z",
+    "durationSeconds": 13.41
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "typescriptAndProductionBuild": true
+  },
+  "browser": {
+    "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/wardrobe.spec.ts tests/e2e/baked-playback.spec.ts --reporter=json",
+    "stats": {
+      "startTime": "2026-10-21T23:02:07.786Z",
+      "duration": 34483.566,
+      "expected": 15,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": []
+  }
+}

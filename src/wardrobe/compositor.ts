@@ -26,6 +26,7 @@ import {
   type WardrobeProject,
 } from "./contract";
 import { validateWardrobeProject } from "./project";
+import { decodedGarmentPage, type DecodedGarmentPage } from "./garment-pages";
 
 const MAX_TEXT_BYTES = 256 * 1024;
 type ProtectionSpan = {
@@ -34,12 +35,6 @@ type ProtectionSpan = {
   label: ProtectedRegion["label"];
 };
 type ProtectionRows = Map<number, ProtectionSpan[]>;
-type DecodedGarmentPage = {
-  page: number;
-  patch: RgbaPng;
-  /** Alpha only: RGB channels have no ownership semantics. */
-  ownership: Uint8Array;
-};
 type SelectedGarment = {
   item: WardrobeGarment;
   frames: Map<number, WardrobeGarmentFrame>;
@@ -112,22 +107,6 @@ function cacheSourcePage(key: string, image: RgbaPng): void {
   }
 }
 const validAppearances = new Set<string>();
-const garmentPages = new Map<string, DecodedGarmentPage>();
-const GARMENT_CACHE_BYTES = 192 * 1024 * 1024;
-function cacheGarmentPage(key: string, image: DecodedGarmentPage): void {
-  garmentPages.set(key, image);
-  let bytes = [...garmentPages.values()].reduce(
-    (sum, page) =>
-      sum + page.patch.pixels.byteLength + page.ownership.byteLength,
-    0,
-  );
-  while (garmentPages.size > 8 || bytes > GARMENT_CACHE_BYTES) {
-    const oldest = garmentPages.keys().next().value!;
-    const old = garmentPages.get(oldest)!;
-    garmentPages.delete(oldest);
-    bytes -= old.patch.pixels.byteLength + old.ownership.byteLength;
-  }
-}
 
 function extractFrame(page: RgbaPng, frame: SpriteFrame): RgbaPng {
   const pixels = new Uint8Array(frame.width * frame.height * 4);
@@ -248,33 +227,13 @@ class RegisteredWardrobeCompositor {
     page: number,
   ): DecodedGarmentPage {
     const key = `${selected.item.sha256}:${page}`;
-    const cached = garmentPages.get(key);
-    if (cached) {
-      garmentPages.delete(key);
-      garmentPages.set(key, cached);
-      return cached;
-    }
     const spec = selected.item.manifest.pages[page],
       files = selected.item.pages[page];
     if (!spec || !files)
       throw Error(
         `Garment ${selected.item.manifest.id} is missing page ${page}.`,
       );
-    const patch = decodeSourceRgbaPng(files.patch, spec);
-    const decodedOwnership = decodeSourceRgbaPng(files.ownership, spec);
-    const ownership = new Uint8Array(spec.width * spec.height);
-    // Recheck at the decoded-pixel boundary; callers can mutate typed arrays.
-    for (let i = 3; i < decodedOwnership.pixels.length; i += 4) {
-      const alpha = decodedOwnership.pixels[i];
-      if (alpha !== 0 && alpha !== 255)
-        throw Error("Garment ownership must use binary alpha.");
-      if (alpha === 0 && patch.pixels[i] !== 0)
-        throw Error("Garment has visible pixels outside its ownership mask.");
-      ownership[(i - 3) / 4] = alpha;
-    }
-    const image = { page, patch, ownership };
-    cacheGarmentPage(key, image);
-    return image;
+    return decodedGarmentPage(key, files.patch, files.ownership, spec);
   }
 
   private frame(frameId: number): SpriteFrame {

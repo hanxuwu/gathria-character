@@ -1,12 +1,18 @@
 # Implementation status
 
-Current review batch: **Kling clothing fit polish**, branch
-`fix/kling-wardrobe-fit-polish`, based on merged main `c89e5ad`.
+Current review batch: **Kling wardrobe loading reuse**, branch
+`perf/kling-wardrobe-loading`, based on merged main `93d2034`.
+Import and composition now share privately cached, content-verified garment
+pages; outfit switches reuse checked ZIP entries. First outfit selection is
+42–50% faster in the retained local comparison; returning to an existing look
+is 92–94% faster. Original cold opening remains roughly 12–14 seconds and was
+not optimized. [Measurements, actual exports and limits](kling-wardrobe/loading-reuse/README.md).
+
 The registered wardrobe uses the complete motion candidates introduced at
 `b5edec14df9a748fa35a069d977fd4e0fba195aa`; original default packs and optional
 skeletal candidates remain unchanged.
 
-Latest candidate: **clothing seam and hem fit polish**. Male top V2 removes
+Current artwork: **clothing seam and hem fit polish**. Male top V2 removes
 copied interior tank ink, joins shoulder sampling and fits the jacket's real
 lower contour. Female dress V4 repairs painted hem extraction and its foreground
 leg/shoe boundary. Separate versioned garment IDs preserve existing projects;

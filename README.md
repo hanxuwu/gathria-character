@@ -33,6 +33,10 @@ all five actions in either direction. **Original** restores the source pixels.
 Save an editable project to continue changing clothes, or export a CharacterPack
 for the independent player. [Latest clothing comparisons and downloads](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
 
+The [loading-reuse review](docs/kling-wardrobe/loading-reuse/README.md) records
+faster first clothing selection and repeat switching, with unchanged exported
+artwork. Original cold opening remains a separate performance limitation.
+
 `/workbench.html?character=female&mode=rig` opens the female skeleton directly;
 use `character=male` for the male. `/skin-studio.html?character=female` is the
 standalone view. Existing male links retain their default behavior. There are three primary destinations and four HTML build entries.
