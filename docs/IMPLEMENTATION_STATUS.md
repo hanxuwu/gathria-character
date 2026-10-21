@@ -1,7 +1,9 @@
 # Implementation status
 
-Current batch: **Kling motion cadence and action flow**, based on main `fd914ef`,
-branch `feat/kling-motion-flow`.
+Current batch: **Kling registered wardrobe**, based on motion-flow commit
+`b5edec14df9a748fa35a069d977fd4e0fba195aa`, branch `feat/kling-wardrobe`.
+The wardrobe uses those complete motion candidates; original default packs and
+optional skeletal candidates remain unchanged.
 
 The primary workflow uses the two original Kling characters' own sprite frames.
 The two registered skeletal candidates remain optional. Original playback is the
@@ -10,6 +12,15 @@ remain unchanged. New action projects can explicitly adjust clip selection and
 timing without changing any source PNG bytes.
 
 Implemented:
+
+- A third workbench tool, Wardrobe, with direct male/female library entries.
+  Seventeen per-pose authoring anchors, source/registration-bound garment banks,
+  12 casual/wedding clothing items across the two bodies, independent slots,
+  all five actions and both facings, source comparison and anchor overlays.
+  Editable projects embed source, registration and clothes for offline reopening.
+  Actual composited CharacterPacks remain independently playable in V3 format.
+  All-frame preflight checks ownership and protects the original head/hand pixels.
+  Downloadable authoring kits retain complete per-pose masks and inventories.
 
 - Separate motion-flow candidates restore moving source poses (88 male / 96
   female drawings). Reviewed phase routes queue action changes at support or
@@ -27,18 +38,19 @@ Implemented:
 - The independent player consumes edited packs without loading authoring tools.
 - Each native skeleton: fifteen 704×1056 parts, four static poses, joint edits,
   undo/reset, project save/reopen, PNG and V2 still-pack export.
-- Three primary destinations; separate male/female skeleton buttons and retained
+- Three primary destinations; direct wardrobe and separate male/female skeleton buttons and retained
   editing sessions. Loaded project identity follows imports in both editor and
   outer workbench.
 - Independent V2/V3 and Kling source ZIP loading, local validation and HTTP SHA fallback.
-- Current verification and actual UI/export evidence are recorded in the
-  [motion review](KLING_MOTION_REVIEW.md). The earlier 120 unit / 25 Chromium
-  counts belong to the keyframe batch, not this one. The subsequent main E2E
-  failure is documented separately; it is not relabeled as a passing run.
+- Current verification, actual UI exports and independent playback evidence are
+  recorded in the [wardrobe review](kling-wardrobe/README.md). Earlier motion,
+  keyframe and skeleton test counts belong to their respective commits.
 
 Not implemented: sprite redraw/interpolation, arbitrary frame reordering,
-interactive per-frame hold editing or alignment, interchangeable outfits/expressions, complete
-skeletal animation cycles, independent wrist controls, or production game integration. Existing
+interactive per-frame hold editing or alignment, interchangeable expressions, complete
+skeletal animation cycles, independent wrist controls, or production game integration.
+Wardrobe requires complete pose-specific clothing assets; arbitrary single-image
+autofitting, new sleeve silhouettes and physical cloth simulation are not implemented. Existing
 shoulder/shorts deformation limits and female hidden-paint shading differences
 remain visible and documented. Technical success is not user visual acceptance.
 
@@ -46,6 +58,7 @@ Non-Kling characters, old skin/identity/wardrobe authoring, unrelated labs and
 earlier redrawn mother studies were removed in the previous cleanup. They remain
 recoverable from Git history; this batch does not reintroduce them.
 
+[Registered wardrobe and exports](kling-wardrobe/README.md) ·
 [Motion cadence and action flow](KLING_MOTION_REVIEW.md) ·
 [Keyframe loops and visual limits](KLING_KEYFRAMES_REVIEW.md) ·
 [Sprite actions and persistence contract](SPRITE_ACTIONS_REVIEW.md) ·

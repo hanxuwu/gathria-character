@@ -1,5 +1,12 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { ArrowUpRight, Bone, Film, Info } from "lucide-react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
+import { ArrowUpRight, Bone, Film, Info, Shirt } from "lucide-react";
 import {
   KLING_CHARACTERS,
   type KlingCharacterId,
@@ -7,7 +14,8 @@ import {
 import { MainNavigation } from "./MainNavigation";
 import "./workspace.css";
 
-type WorkbenchTab = "original" | "rig";
+const WardrobeEditor = lazy(() => import("../wardrobe/WardrobeEditor"));
+type WorkbenchTab = "original" | "wardrobe" | "rig";
 
 export function CharacterWorkbench() {
   const query = new URLSearchParams(window.location.search);
@@ -25,15 +33,20 @@ export function CharacterWorkbench() {
     name: string;
   }>({ id: character.id, name: character.name });
   const initial: WorkbenchTab =
-    query.get("mode") === "rig" ||
-    ["kling-male", "kling-female"].includes(query.get("study") ?? "")
-      ? "rig"
-      : "original";
+    query.get("mode") === "wardrobe"
+      ? "wardrobe"
+      : query.get("mode") === "rig" ||
+          ["kling-male", "kling-female"].includes(query.get("study") ?? "")
+        ? "rig"
+        : "original";
   const [tab, setTab] = useState<WorkbenchTab>(initial);
   const [visited, setVisited] = useState<Set<WorkbenchTab>>(
     () => new Set([initial]),
   );
   const [rigCharacter, setRigCharacter] = useState<KlingCharacterId>(
+    character.id,
+  );
+  const [wardrobeCharacter, setWardrobeCharacter] = useState<KlingCharacterId>(
     character.id,
   );
   const [visitedRigs, setVisitedRigs] = useState<Set<KlingCharacterId>>(
@@ -48,6 +61,7 @@ export function CharacterWorkbench() {
   const rigName = `Kling ${loadedRigCharacter}`;
   const rigLabel = `${loadedRigCharacter === "female" ? "Female" : "Male"} skeleton`;
   const originalButton = useRef<HTMLButtonElement>(null);
+  const wardrobeButton = useRef<HTMLButtonElement>(null);
   const rigButton = useRef<HTMLButtonElement>(null);
   const originalFrame = useRef<HTMLIFrameElement>(null);
   const rigFrames = useRef<
@@ -126,20 +140,27 @@ export function CharacterWorkbench() {
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    const identity = tab === "rig" ? loadedRigCharacter : selection.id;
+    const identity =
+      tab === "rig"
+        ? loadedRigCharacter
+        : tab === "wardrobe"
+          ? wardrobeCharacter
+          : selection.id;
     if (identity) url.searchParams.set("character", identity);
     else url.searchParams.delete("character");
     window.history.replaceState(null, "", url);
-  }, [tab, loadedRigCharacter, selection]);
+  }, [tab, loadedRigCharacter, wardrobeCharacter, selection]);
 
   function select(next: WorkbenchTab) {
     setVisited((previous) => new Set([...previous, next]));
     setTab(next);
     const url = new URL(window.location.href);
     if (next === "rig") url.searchParams.set("character", loadedRigCharacter);
+    else if (next === "wardrobe")
+      url.searchParams.set("character", wardrobeCharacter);
     else if (selection.id) url.searchParams.set("character", selection.id);
     else url.searchParams.delete("character");
-    if (next === "rig") url.searchParams.set("mode", "rig");
+    if (next !== "original") url.searchParams.set("mode", next);
     else url.searchParams.delete("mode");
     // Older direct study links still open here; a tab change owns the mode.
     url.searchParams.delete("study");
@@ -149,16 +170,22 @@ export function CharacterWorkbench() {
   function navigateTabs(event: KeyboardEvent) {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
+    const tabs: WorkbenchTab[] = ["original", "wardrobe", "rig"];
     const next =
       event.key === "Home"
-        ? "original"
+        ? tabs[0]
         : event.key === "End"
-          ? "rig"
-          : tab === "original"
-            ? "rig"
-            : "original";
+          ? tabs[2]
+          : tabs[
+              (tabs.indexOf(tab) +
+                (event.key === "ArrowRight" ? 1 : -1) +
+                tabs.length) %
+                tabs.length
+            ];
     select(next);
-    (next === "original" ? originalButton : rigButton).current?.focus();
+    ({ original: originalButton, wardrobe: wardrobeButton, rig: rigButton })[
+      next
+    ].current?.focus();
   }
 
   return (
@@ -171,12 +198,16 @@ export function CharacterWorkbench() {
             <h1>
               {tab === "original"
                 ? selection.name
-                : `${rigName} · skeleton candidate`}
+                : tab === "wardrobe"
+                  ? `Kling ${wardrobeCharacter} · wardrobe`
+                  : `${rigName} · skeleton candidate`}
             </h1>
             <p>
               {tab === "original"
                 ? "Inspect the original sprite frames, arrange actions and export a reusable character pack."
-                : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
+                : tab === "wardrobe"
+                  ? "Choose clothing, inspect it through every movement and save a reusable outfit."
+                  : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
             </p>
           </div>
           <a className="workbench-back" href="/">
@@ -201,6 +232,18 @@ export function CharacterWorkbench() {
             onClick={() => select("original")}
           >
             <Film size={18} aria-hidden="true" /> Sprite actions
+          </button>
+          <button
+            id="wardrobe-tab"
+            ref={wardrobeButton}
+            type="button"
+            role="tab"
+            aria-controls="wardrobe-panel"
+            aria-selected={tab === "wardrobe"}
+            tabIndex={tab === "wardrobe" ? 0 : -1}
+            onClick={() => select("wardrobe")}
+          >
+            <Shirt size={18} aria-hidden="true" /> Wardrobe
           </button>
           <button
             id="rig-tab"
@@ -282,6 +325,29 @@ export function CharacterWorkbench() {
                 notifyVisibility(originalFrame.current, tab === "original")
               }
             />
+          )}
+        </section>
+        <section
+          role="tabpanel"
+          id="wardrobe-panel"
+          aria-labelledby="wardrobe-tab"
+          hidden={tab !== "wardrobe"}
+          className="workbench-panel"
+        >
+          {visited.has("wardrobe") && (
+            <Suspense
+              fallback={
+                <p className="workbench-panel-note" role="status">
+                  Opening the wardrobe…
+                </p>
+              }
+            >
+              <WardrobeEditor
+                initialCharacter={character.id}
+                active={tab === "wardrobe"}
+                onCharacterChange={setWardrobeCharacter}
+              />
+            </Suspense>
           )}
         </section>
         <section

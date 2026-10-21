@@ -76,3 +76,21 @@ surfaces, not original extracted layers. The head, neck, face, visible outfit
 and standing proportions are unchanged, and actual standing composition is
 RGBA-identical to the source. All four non-animated static pose exports and
 [limitations](KLING_FEMALE_NATIVE_REVIEW.md) are documented separately.
+
+## Registered sprite wardrobe
+
+The [wardrobe source record](../artwork/kling-wardrobe/source/README.md) documents
+one development-time OpenAI image-generation result for casual and wedding
+clothing. Its generated faces, bodies and backdrop are discarded. Runtime
+clothing patches use only registered garment artwork and explicit material
+variants; original source poses, skin, faces, scale and motion timing remain the
+reference. The separate design sheet is not used as evidence of app output.
+
+The two authoring registrations cover all 88 male and 96 female motion poses,
+with 17 points per pose, manually reviewed visible landmarks, inferred hidden
+joints and source-bound ownership masks. These are authoring guides rather than
+original skeletal measurements. Dress folds are offline registered artwork,
+not recovered video layers or physical cloth simulation. Complete preparation
+scripts, template inventories and exact source/registration hashes accompany
+the assets. See the [format](kling-wardrobe/FORMAT.md) and
+[actual export review](kling-wardrobe/README.md) for scope and limitations.

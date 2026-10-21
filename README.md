@@ -17,20 +17,33 @@ npm run dev
 
 Open the address Vite prints. In **Character library**, use **Open character** on
 either card to inspect and arrange its **Sprite actions**. The default action
-settings preserve the original video playback. Separate **Edit Kling male/female
-skeleton** buttons retain the optional skeletal candidates.
+settings preserve the original video playback. **Dress Kling male/female** opens
+the registered wardrobe; separate **Edit Kling male/female skeleton** buttons
+retain the optional skeletal candidates.
 
 | Main destination                             | Available now                                                        |
 | -------------------------------------------- | -------------------------------------------------------------------- |
-| `/`                                          | Two original character cards and separate skeleton buttons           |
-| `/workbench.html?character=male` or `female` | Sprite action editing and optional persistent skeletal sessions      |
+| `/`                                          | Two originals, wardrobe and optional skeleton entries                |
+| `/workbench.html?character=male` or `female` | Sprite actions, wardrobe and persistent skeletal sessions            |
 | `/player.html`                               | Independent CharacterPack V2/V3 and Kling source ZIP playback/export |
+
+`/workbench.html?character=female&mode=wardrobe` opens the female wardrobe;
+use `character=male` for the male. Choose **Everyday** or **Wedding**, then inspect
+all five actions in either direction. **Original** restores the source pixels.
+Save an editable project to continue changing clothes, or export a CharacterPack
+for the independent player. [Wardrobe review and downloads](docs/kling-wardrobe/README.md).
 
 `/workbench.html?character=female&mode=rig` opens the female skeleton directly;
 use `character=male` for the male. `/skin-studio.html?character=female` is the
 standalone view. Existing male links retain their default behavior. There are three primary destinations and four HTML build entries.
 
 ## What is ready
+
+- Source-bound wardrobe: 17 authoring anchors per pose, registered tops, bottoms,
+  full-body dresses and shoes, casual/wedding presets, five actions, source
+  comparison, anchor overlay, portable editable projects and baked CharacterPack
+  exports. Future clothing imports require a complete registered pose bank;
+  one standing PNG is not automatically fitted to every action.
 
 - Motion-flow candidates restore fast moving source poses and schedule action
   changes at reviewed support/landing boundaries. Full jump recovery returns
@@ -53,8 +66,10 @@ standalone view. Existing male links retain their default behavior. There are th
   ordinary HTTP contexts. No runtime image-generation API or server upload.
 
 The skeletal poses are **standing, walk contact, run flight and raised arms**;
-these are not complete animation cycles. Clothing and expression are fixed.
-Wardrobe, facial layers and continuous skeletal animation remain future work.
+these are not complete animation cycles. Clothing and expression in the skeletal
+candidates are fixed. Wardrobe uses separate source-sprite motion packs and does
+not change those skeletons. Facial layers and continuous skeletal animation
+remain future work.
 Shoulder/armhole/shorts deformation and hidden-paint shading limitations remain
 visible and are documented; this is not a claim of natural finished animation.
 
@@ -70,6 +85,9 @@ visible and are documented; this is not a claim of natural finished animation.
   painting, fifteen parts, registration and editable project.
 - `artwork/kling-native-female`: female-specific source, supplementary paint,
   fifteen parts, registrations and editable project.
+- `artwork/kling-wardrobe`: garment design provenance, registrations and preparation review.
+- `docs/kling-wardrobe`: clothing library, authoring kits, review and actual exports.
+- `src/wardrobe`: source-bound project, compositor and wardrobe editor.
 - `src/core`: bounded archive/PNG validation, native packs and source conversion.
 - `src/consumer`: independent player and two-character catalog.
 - `src/skeletal`: native candidate and character-neutral limb geometry.
