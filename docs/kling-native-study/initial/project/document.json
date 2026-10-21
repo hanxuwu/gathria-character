@@ -1,0 +1,515 @@
+{
+  "format": "gathria-native-pose-study",
+  "version": 1,
+  "name": "Kling male — native layered candidate",
+  "frame": {
+    "width": 704,
+    "height": 1056
+  },
+  "anchor": [
+    352,
+    1000
+  ],
+  "pivot": [
+    365,
+    741
+  ],
+  "neck": [
+    356,
+    526
+  ],
+  "chains": {
+    "nearArm": [
+      [
+        270,
+        582
+      ],
+      [
+        228,
+        669
+      ],
+      [
+        199,
+        752
+      ]
+    ],
+    "farArm": [
+      [
+        452,
+        583
+      ],
+      [
+        476,
+        670
+      ],
+      [
+        513,
+        751
+      ]
+    ],
+    "nearLeg": [
+      [
+        310,
+        773
+      ],
+      [
+        290,
+        855
+      ],
+      [
+        260,
+        936
+      ]
+    ],
+    "farLeg": [
+      [
+        425,
+        773
+      ],
+      [
+        425,
+        856
+      ],
+      [
+        420,
+        934
+      ]
+    ]
+  },
+  "mesh": {
+    "blendRadius": 30,
+    "volume": 0.65
+  },
+  "drawOrder": [
+    "far-arm",
+    "far-leg",
+    "near-leg",
+    "pelvis",
+    "torso",
+    "near-arm",
+    "head"
+  ],
+  "parts": [
+    {
+      "id": "head",
+      "file": "parts/head.png",
+      "parent": "torso",
+      "pivot": [
+        356,
+        526
+      ]
+    },
+    {
+      "id": "torso",
+      "file": "parts/torso.png",
+      "parent": "pelvis",
+      "pivot": [
+        365,
+        741
+      ]
+    },
+    {
+      "id": "pelvis",
+      "file": "parts/pelvis.png",
+      "parent": "root",
+      "pivot": [
+        365,
+        741
+      ]
+    },
+    {
+      "id": "near-shoe",
+      "file": "parts/near-shoe.png",
+      "parent": "near-shin",
+      "pivot": [
+        260,
+        936
+      ]
+    },
+    {
+      "id": "far-shoe",
+      "file": "parts/far-shoe.png",
+      "parent": "far-shin",
+      "pivot": [
+        420,
+        934
+      ]
+    },
+    {
+      "id": "near-upper-arm",
+      "file": "parts/near-upper-arm.png",
+      "parent": "torso",
+      "pivot": [
+        270,
+        582
+      ]
+    },
+    {
+      "id": "near-forearm",
+      "file": "parts/near-forearm.png",
+      "parent": "near-upper-arm",
+      "pivot": [
+        228,
+        669
+      ]
+    },
+    {
+      "id": "near-hand",
+      "file": "parts/near-hand.png",
+      "parent": "near-forearm",
+      "pivot": [
+        199,
+        752
+      ]
+    },
+    {
+      "id": "near-thigh",
+      "file": "parts/near-thigh.png",
+      "parent": "pelvis",
+      "pivot": [
+        310,
+        773
+      ]
+    },
+    {
+      "id": "near-shin",
+      "file": "parts/near-shin.png",
+      "parent": "near-thigh",
+      "pivot": [
+        290,
+        855
+      ]
+    },
+    {
+      "id": "far-upper-arm",
+      "file": "parts/far-upper-arm.png",
+      "parent": "torso",
+      "pivot": [
+        452,
+        583
+      ]
+    },
+    {
+      "id": "far-forearm",
+      "file": "parts/far-forearm.png",
+      "parent": "far-upper-arm",
+      "pivot": [
+        476,
+        670
+      ]
+    },
+    {
+      "id": "far-hand",
+      "file": "parts/far-hand.png",
+      "parent": "far-forearm",
+      "pivot": [
+        513,
+        751
+      ]
+    },
+    {
+      "id": "far-thigh",
+      "file": "parts/far-thigh.png",
+      "parent": "pelvis",
+      "pivot": [
+        425,
+        773
+      ]
+    },
+    {
+      "id": "far-shin",
+      "file": "parts/far-shin.png",
+      "parent": "far-thigh",
+      "pivot": [
+        425,
+        856
+      ]
+    }
+  ],
+  "poses": [
+    {
+      "id": "standing",
+      "label": "Standing",
+      "body": {
+        "translation": [
+          0,
+          0
+        ],
+        "rotation": 0
+      },
+      "chains": {
+        "nearArm": [
+          [
+            270,
+            582
+          ],
+          [
+            228,
+            669
+          ],
+          [
+            199,
+            752
+          ]
+        ],
+        "farArm": [
+          [
+            452,
+            583
+          ],
+          [
+            476,
+            670
+          ],
+          [
+            513,
+            751
+          ]
+        ],
+        "nearLeg": [
+          [
+            310,
+            773
+          ],
+          [
+            290,
+            855
+          ],
+          [
+            260,
+            936
+          ]
+        ],
+        "farLeg": [
+          [
+            425,
+            773
+          ],
+          [
+            425,
+            856
+          ],
+          [
+            420,
+            934
+          ]
+        ]
+      }
+    },
+    {
+      "id": "walk-contact",
+      "label": "Walk contact",
+      "body": {
+        "translation": [
+          0,
+          -2
+        ],
+        "rotation": -0.03490658503988659
+      },
+      "chains": {
+        "nearArm": [
+          [
+            264.508851,
+            583.412311
+          ],
+          [
+            261.52603,
+            679.973705
+          ],
+          [
+            288.316247,
+            763.713088
+          ]
+        ],
+        "farArm": [
+          [
+            446.432881,
+            578.059993
+          ],
+          [
+            434.53139,
+            667.521462
+          ],
+          [
+            421.446439,
+            755.605423
+          ]
+        ],
+        "nearLeg": [
+          [
+            311.150288,
+            772.899979
+          ],
+          [
+            329.120842,
+            855.368514
+          ],
+          [
+            330.141233,
+            941.739567
+          ]
+        ],
+        "farLeg": [
+          [
+            426.080234,
+            768.886537
+          ],
+          [
+            396.335694,
+            846.373712
+          ],
+          [
+            358.83993,
+            914.952628
+          ]
+        ]
+      }
+    },
+    {
+      "id": "run-flight",
+      "label": "Run flight",
+      "body": {
+        "translation": [
+          0,
+          -65
+        ],
+        "rotation": -0.12217304763960307
+      },
+      "chains": {
+        "nearArm": [
+          [
+            251.33089,
+            529.76275
+          ],
+          [
+            301.42039,
+            612.370509
+          ],
+          [
+            388.539656,
+            600.528487
+          ]
+        ],
+        "farArm": [
+          [
+            432.096159,
+            508.575075
+          ],
+          [
+            397.445869,
+            591.907886
+          ],
+          [
+            462.094805,
+            653.149334
+          ]
+        ],
+        "nearLeg": [
+          [
+            314.309781,
+            714.464291
+          ],
+          [
+            386.116075,
+            758.824815
+          ],
+          [
+            358.96121,
+            840.822456
+          ]
+        ],
+        "farLeg": [
+          [
+            428.452588,
+            700.449316
+          ],
+          [
+            383.247548,
+            770.058973
+          ],
+          [
+            305.616124,
+            760.983621
+          ]
+        ]
+      }
+    },
+    {
+      "id": "celebrate",
+      "label": "Celebrate",
+      "body": {
+        "translation": [
+          0,
+          -5
+        ],
+        "rotation": 0
+      },
+      "chains": {
+        "nearArm": [
+          [
+            270,
+            577
+          ],
+          [
+            212.901365,
+            499.072175
+          ],
+          [
+            205.635042,
+            411.45254
+          ]
+        ],
+        "farArm": [
+          [
+            452,
+            578
+          ],
+          [
+            508.277632,
+            507.446275
+          ],
+          [
+            504.314964,
+            418.483939
+          ]
+        ],
+        "nearLeg": [
+          [
+            310,
+            768
+          ],
+          [
+            290,
+            850
+          ],
+          [
+            260,
+            931
+          ]
+        ],
+        "farLeg": [
+          [
+            425,
+            768
+          ],
+          [
+            425,
+            851
+          ],
+          [
+            420,
+            929
+          ]
+        ]
+      }
+    }
+  ],
+  "source": {
+    "name": "Original Kling male frame348 with separately authored hidden coverage",
+    "sha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f",
+    "referenceSha256": "212a33aa40a370d4d5de6cc2eb276cd1927f7b04ad907372938f8d870c130e2f",
+    "frameIndex": 348,
+    "timeSeconds": 14.5,
+    "provenance": "Visible artwork is copied pixel-for-pixel from approved male source frame348; source PNG SHA256 is recorded. Hidden shoulder, vest-side, shorts and ankle coverage is newly authored using OpenAI image_gen, masked and registered offline. These derived skeletal static poses are not original video frames, not a completed animation library, and not an extracted original layer file."
+  }
+}

@@ -343,3 +343,21 @@ authored color variation at source palette settings; V1/V2 clothing and historic
 projects retain their previous results. The actual application exports, matched
 comparisons and limitations are recorded in
 [the study review](THEO_POSE_STUDY_REVIEW.md).
+
+## Native Kling male layered candidate
+
+The visible source is the exact approved transparent Kling male frame 348
+(14.50 seconds), retained at 704×1056 with unchanged RGBA. This batch uses no
+replacement character drawing. One development-time OpenAI image-generation
+call supplied separately authored hidden shoulder/shorts/ankle coverage. The
+complete generated sheet, exact prompt, source hashes and final patch boxes are
+retained in [the source record](../artwork/kling-native-study/source/README.md).
+A generated vest-side patch was tested and removed after posing exposed a
+floating fragment; the original vest is retained unchanged.
+
+Fifteen full-canvas source PNG parts compose locally using explicit registrations
+and a versioned native skeletal candidate profile. Standing reconstruction is
+RGBA-identical to the source; the other three posed renders are new skeletal
+derivatives, not extracted video frames. No runtime generation API is used.
+[Native review and limitations](KLING_NATIVE_STUDY_REVIEW.md) distinguish this
+four-static-pose study from original playback, legacy skins and future animation.

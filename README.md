@@ -4,6 +4,12 @@ Start in the **Character Library** with the two original Kling characters. The t
 
 A standalone, browser-local character toolkit. Original Kling characters retain five source-video actions and portable native CharacterPack V3 export. Existing skeletal projects retain wardrobe, binding, motion editing, undo/redo, save/reopen and baked export. [Workspace review and current verification](docs/KLING_WORKSPACE_REVIEW.md).
 
+The opt-in **Kling male HD study** uses the original 704×1056 standing frame as
+fifteen registered parts. Open `/workbench.html?mode=rig&study=kling-male` for
+source comparison, four static skeletal poses, joint edits, project save/reopen
+and native export. This preserves the existing defaults; it is not a completed
+animation or wardrobe system. [Native candidate review](docs/KLING_NATIVE_STUDY_REVIEW.md).
+
 The **classic editor**, now at `/editor.html`, retains **Polished Art V6 with repaired compact running (`motionVersion: 3`)**. V6 proportions, source art, idle and walk pixels are preserved. V7 remains available for comparison and saved-file compatibility. Opening saved V1–V7 configurations preserves their original artwork and available actions. Classic configuration save and CharacterPack V1 export remain unchanged.
 
 ![Four everyday looks from actual character exports](docs/everyday/lineup-idle-2x.png)

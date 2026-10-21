@@ -1,7 +1,19 @@
 # Implementation status
 
-**Current batch: Kling library, workbench and prepared-pack loading.** Based on
-merged main `d20a335`, on `feat/kling-character-workspace` (draft PR #19).
+**Current batch: native Kling male layered skeletal candidate.** Based on merged
+main `180cc5d`, on `feat/kling-native-rig-study`. Exact original 704×1056 source
+standing art is separated into fifteen parts, with separately disclosed hidden
+coverage. A native candidate profile supports four static poses, joint edits,
+smooth-alpha rendering, project save/reopen and independent V2 still-hold export.
+Default original playback and historical skeleton projects remain unchanged.
+This is a male-only, neutral-expression, fixed-outfit pose study; continuous
+animation, female registration and editable wardrobe remain later milestones.
+
+[Candidate review and remaining visual limits](KLING_NATIVE_STUDY_REVIEW.md) ·
+[Actual exports and verification](kling-native-study/README.md).
+
+**Historical batch: Kling library, workbench and prepared-pack loading.** Based on
+merged main `d20a335`, on `feat/kling-character-workspace` (PR #19, now merged).
 Three primary destinations organize the original male/female playback and the
 complete existing skeletal editor. Classic editing is preserved at
 `/editor.html`; the old specialist URLs remain available. Native originals load
