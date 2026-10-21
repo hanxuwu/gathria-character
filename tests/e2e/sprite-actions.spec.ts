@@ -138,6 +138,16 @@ for (const character of ["male", "female"] as const) {
     await page
       .getByLabel("Open action project", { exact: true })
       .setInputFiles(saved.path);
+    // Source loading resets the current action to Idle, then the editor restores
+    // this ZIP's saved settings. Wait for that completed state before choosing
+    // Run; a click during the import's transient enabled state can be discarded.
+    await expect(editor(page).getByRole("status")).toContainText(
+      "Restored this source’s action edits.",
+      { timeout: 120000 },
+    );
+    await expect(
+      editor(page).getByLabel("Start frame", { exact: true }),
+    ).toBeEnabled({ timeout: 120000 });
     await button(page, "Run").click();
     await expect(page.locator(".player-timing")).toHaveText("12 FPS · ONCE");
     await expect(

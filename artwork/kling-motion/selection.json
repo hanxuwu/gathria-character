@@ -1,0 +1,1774 @@
+{
+  "format": "gathria-kling-motion-selection",
+  "version": 1,
+  "status": "review-candidate",
+  "baselineCommit": "fd914ef832efd735a746d662e6a009a81fa5bd71",
+  "rules": [
+    "Existing approved native RGBA only; no new art or extraction",
+    "Restore moving poses when holds harm cadence, retain source-clock timing",
+    "Full one-shot jump includes actual upright recovery; prior hop remains separate",
+    "Routes schedule existing poses; they cannot invent anticipation or celebration outro"
+  ],
+  "characters": {
+    "male": {
+      "sourcePack": "docs/kling-jump/exports/male.character.zip",
+      "sourcePackSha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+      "previousPack": "docs/kling-keyframes/exports/male.character.zip",
+      "previousPackSha256": "92c3f1b2cfd316ba83f2b3e1b3bd8371b105415a4f2c667b8675bec972ae5500",
+      "actions": {
+        "idle": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 24,
+          "keys": [
+            {
+              "frameId": 0,
+              "ticks": 6,
+              "phase": "rest reference",
+              "sourceFrame": 336
+            },
+            {
+              "frameId": 6,
+              "ticks": 6,
+              "phase": "small breathing variation",
+              "sourceFrame": 342
+            },
+            {
+              "frameId": 12,
+              "ticks": 6,
+              "phase": "small breathing variation",
+              "sourceFrame": 348
+            },
+            {
+              "frameId": 18,
+              "ticks": 6,
+              "phase": "return toward rest",
+              "sourceFrame": 354
+            }
+          ]
+        },
+        "walk": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 27,
+          "keys": [
+            {
+              "frameId": 24,
+              "ticks": 2,
+              "phase": "near leg passing",
+              "sourceFrame": 26
+            },
+            {
+              "frameId": 26,
+              "ticks": 2,
+              "phase": "near leg reaches forward",
+              "sourceFrame": 28
+            },
+            {
+              "frameId": 28,
+              "ticks": 2,
+              "phase": "near heel contact / forward extension",
+              "sourceFrame": 30
+            },
+            {
+              "frameId": 30,
+              "ticks": 2,
+              "phase": "near leg support",
+              "sourceFrame": 32
+            },
+            {
+              "frameId": 32,
+              "ticks": 2,
+              "phase": "far leg recovery",
+              "sourceFrame": 34
+            },
+            {
+              "frameId": 34,
+              "ticks": 2,
+              "phase": "far leg passing",
+              "sourceFrame": 36
+            },
+            {
+              "frameId": 36,
+              "ticks": 1,
+              "phase": "far knee forward",
+              "sourceFrame": 38
+            },
+            {
+              "frameId": 37,
+              "ticks": 2,
+              "sourceFrame": 39,
+              "phase": "restored source transition after 36"
+            },
+            {
+              "frameId": 39,
+              "ticks": 1,
+              "phase": "far leg reaches forward",
+              "sourceFrame": 41
+            },
+            {
+              "frameId": 40,
+              "ticks": 2,
+              "sourceFrame": 42,
+              "phase": "restored source transition after 39"
+            },
+            {
+              "frameId": 42,
+              "ticks": 1,
+              "phase": "far heel contact / forward extension",
+              "sourceFrame": 44
+            },
+            {
+              "frameId": 43,
+              "ticks": 2,
+              "sourceFrame": 45,
+              "phase": "restored source transition after 42"
+            },
+            {
+              "frameId": 45,
+              "ticks": 1,
+              "phase": "far leg support",
+              "sourceFrame": 47
+            },
+            {
+              "frameId": 46,
+              "ticks": 2,
+              "sourceFrame": 48,
+              "phase": "restored source transition after 45"
+            },
+            {
+              "frameId": 48,
+              "ticks": 2,
+              "phase": "near leg recovery",
+              "sourceFrame": 50
+            },
+            {
+              "frameId": 50,
+              "ticks": 1,
+              "phase": "near leg passing / cycle join",
+              "sourceFrame": 52
+            }
+          ]
+        },
+        "run": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 16,
+          "keys": [
+            {
+              "frameId": 51,
+              "ticks": 1,
+              "phase": "near leg forward flight",
+              "sourceFrame": 140
+            },
+            {
+              "frameId": 52,
+              "ticks": 1,
+              "sourceFrame": 141,
+              "phase": "restored source transition after 51"
+            },
+            {
+              "frameId": 53,
+              "ticks": 1,
+              "phase": "near leg landing",
+              "sourceFrame": 142
+            },
+            {
+              "frameId": 54,
+              "ticks": 1,
+              "sourceFrame": 143,
+              "phase": "restored source transition after 53"
+            },
+            {
+              "frameId": 55,
+              "ticks": 1,
+              "phase": "near support and compression",
+              "sourceFrame": 144
+            },
+            {
+              "frameId": 56,
+              "ticks": 1,
+              "phase": "far knee passing forward",
+              "sourceFrame": 145
+            },
+            {
+              "frameId": 57,
+              "ticks": 1,
+              "sourceFrame": 146,
+              "phase": "restored source transition after 56"
+            },
+            {
+              "frameId": 58,
+              "ticks": 1,
+              "phase": "far lead launch",
+              "sourceFrame": 147
+            },
+            {
+              "frameId": 59,
+              "ticks": 1,
+              "phase": "far leg forward flight",
+              "sourceFrame": 148
+            },
+            {
+              "frameId": 60,
+              "ticks": 1,
+              "sourceFrame": 149,
+              "phase": "restored source transition after 59"
+            },
+            {
+              "frameId": 61,
+              "ticks": 1,
+              "phase": "far leg landing",
+              "sourceFrame": 150
+            },
+            {
+              "frameId": 62,
+              "ticks": 1,
+              "sourceFrame": 151,
+              "phase": "restored source transition after 61"
+            },
+            {
+              "frameId": 63,
+              "ticks": 1,
+              "phase": "far support and compression",
+              "sourceFrame": 152
+            },
+            {
+              "frameId": 64,
+              "ticks": 1,
+              "phase": "near knee passing forward",
+              "sourceFrame": 153
+            },
+            {
+              "frameId": 65,
+              "ticks": 1,
+              "phase": "near lead recovery",
+              "sourceFrame": 154
+            },
+            {
+              "frameId": 66,
+              "ticks": 1,
+              "phase": "near lead launch / cycle join",
+              "sourceFrame": 155
+            }
+          ]
+        },
+        "jump": {
+          "fps": 24,
+          "loop": false,
+          "ticks": 39,
+          "keys": [
+            {
+              "frameId": 83,
+              "ticks": 1,
+              "sourceFrame": 171,
+              "phase": "anticipation"
+            },
+            {
+              "frameId": 84,
+              "ticks": 1,
+              "sourceFrame": 172,
+              "phase": "anticipation"
+            },
+            {
+              "frameId": 85,
+              "ticks": 1,
+              "sourceFrame": 173,
+              "phase": "anticipation"
+            },
+            {
+              "frameId": 86,
+              "ticks": 1,
+              "sourceFrame": 174,
+              "phase": "anticipation"
+            },
+            {
+              "frameId": 87,
+              "ticks": 1,
+              "sourceFrame": 175,
+              "phase": "anticipation"
+            },
+            {
+              "frameId": 88,
+              "ticks": 1,
+              "sourceFrame": 176,
+              "phase": "anticipation"
+            },
+            {
+              "frameId": 89,
+              "ticks": 1,
+              "sourceFrame": 177,
+              "phase": "anticipation"
+            },
+            {
+              "frameId": 90,
+              "ticks": 1,
+              "sourceFrame": 178,
+              "phase": "takeoff"
+            },
+            {
+              "frameId": 91,
+              "ticks": 1,
+              "sourceFrame": 179,
+              "phase": "takeoff"
+            },
+            {
+              "frameId": 92,
+              "ticks": 1,
+              "sourceFrame": 180,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 93,
+              "ticks": 1,
+              "sourceFrame": 181,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 94,
+              "ticks": 1,
+              "sourceFrame": 182,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 95,
+              "ticks": 1,
+              "sourceFrame": 183,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 96,
+              "ticks": 1,
+              "sourceFrame": 184,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 97,
+              "ticks": 1,
+              "sourceFrame": 185,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 98,
+              "ticks": 1,
+              "sourceFrame": 186,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 99,
+              "ticks": 1,
+              "sourceFrame": 187,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 100,
+              "ticks": 1,
+              "sourceFrame": 188,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 101,
+              "ticks": 1,
+              "sourceFrame": 189,
+              "phase": "flight / apex"
+            },
+            {
+              "frameId": 102,
+              "ticks": 1,
+              "sourceFrame": 190,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 103,
+              "ticks": 1,
+              "sourceFrame": 191,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 104,
+              "ticks": 1,
+              "sourceFrame": 192,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 105,
+              "ticks": 1,
+              "sourceFrame": 193,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 106,
+              "ticks": 1,
+              "sourceFrame": 194,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 107,
+              "ticks": 1,
+              "sourceFrame": 195,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 108,
+              "ticks": 1,
+              "sourceFrame": 196,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 109,
+              "ticks": 1,
+              "sourceFrame": 197,
+              "phase": "landing compression"
+            },
+            {
+              "frameId": 110,
+              "ticks": 1,
+              "sourceFrame": 198,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 111,
+              "ticks": 1,
+              "sourceFrame": 199,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 112,
+              "ticks": 1,
+              "sourceFrame": 200,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 113,
+              "ticks": 1,
+              "sourceFrame": 201,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 114,
+              "ticks": 1,
+              "sourceFrame": 202,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 115,
+              "ticks": 1,
+              "sourceFrame": 203,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 116,
+              "ticks": 1,
+              "sourceFrame": 204,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 117,
+              "ticks": 1,
+              "sourceFrame": 205,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 118,
+              "ticks": 1,
+              "sourceFrame": 206,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 119,
+              "ticks": 1,
+              "sourceFrame": 207,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 120,
+              "ticks": 1,
+              "sourceFrame": 208,
+              "phase": "standing recovery"
+            },
+            {
+              "frameId": 121,
+              "ticks": 1,
+              "sourceFrame": 209,
+              "phase": "standing recovery"
+            }
+          ],
+          "rationale": "Full original39frame one-shot with standing recovery; old crouch-hop candidate remains separate. No newloopisclaimed."
+        },
+        "celebrate": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 16,
+          "keys": [
+            {
+              "frameId": 67,
+              "ticks": 3,
+              "phase": "low crouch / cycle join",
+              "sourceFrame": 253
+            },
+            {
+              "frameId": 70,
+              "ticks": 1,
+              "phase": "begin rise / elbows lift",
+              "sourceFrame": 256
+            },
+            {
+              "frameId": 71,
+              "ticks": 1,
+              "sourceFrame": 257,
+              "phase": "restored source transition after 70"
+            },
+            {
+              "frameId": 72,
+              "ticks": 1,
+              "phase": "arms opening upward",
+              "sourceFrame": 258
+            },
+            {
+              "frameId": 73,
+              "ticks": 1,
+              "sourceFrame": 259,
+              "phase": "restored source transition after 72"
+            },
+            {
+              "frameId": 74,
+              "ticks": 1,
+              "phase": "approach raised-arm peak",
+              "sourceFrame": 260
+            },
+            {
+              "frameId": 75,
+              "ticks": 2,
+              "phase": "raised-arm peak",
+              "sourceFrame": 261
+            },
+            {
+              "frameId": 77,
+              "ticks": 1,
+              "phase": "arms descend",
+              "sourceFrame": 263
+            },
+            {
+              "frameId": 78,
+              "ticks": 1,
+              "sourceFrame": 264,
+              "phase": "restored source transition after 77"
+            },
+            {
+              "frameId": 79,
+              "ticks": 1,
+              "phase": "lowered arms / bend knees",
+              "sourceFrame": 265
+            },
+            {
+              "frameId": 80,
+              "ticks": 1,
+              "sourceFrame": 266,
+              "phase": "restored source transition after 79"
+            },
+            {
+              "frameId": 81,
+              "ticks": 1,
+              "phase": "return to low crouch",
+              "sourceFrame": 267
+            },
+            {
+              "frameId": 82,
+              "ticks": 1,
+              "phase": "low crouch / cycle join",
+              "sourceFrame": 268
+            }
+          ]
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 0,
+          "entryFrameId": 34,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 0,
+          "entryFrameId": 55,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 0,
+          "entryFrameId": 83,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 0,
+          "entryFrameId": 67,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 34,
+          "entryFrameId": 0,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 34,
+          "entryFrameId": 55,
+          "reason": "Near/farsupportpassingphasealigned."
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 48,
+          "entryFrameId": 63,
+          "reason": "Near/farsupportpassingphasealigned."
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 34,
+          "entryFrameId": 83,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 34,
+          "entryFrameId": 67,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 55,
+          "entryFrameId": 0,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 55,
+          "entryFrameId": 34,
+          "reason": "Near/farsupportpassingphasealigned."
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 63,
+          "entryFrameId": 48,
+          "reason": "Near/farsupportpassingphasealigned."
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 55,
+          "entryFrameId": 83,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 55,
+          "entryFrameId": 67,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exitFrameId": 121,
+          "entryFrameId": 0,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair."
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exitFrameId": 121,
+          "entryFrameId": 34,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair."
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exitFrameId": 121,
+          "entryFrameId": 55,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair."
+        },
+        {
+          "from": "jump",
+          "to": "celebrate",
+          "exitFrameId": 121,
+          "entryFrameId": 67,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair."
+        },
+        {
+          "from": "celebrate",
+          "to": "idle",
+          "exitFrameId": 82,
+          "entryFrameId": 0,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "celebrate",
+          "to": "walk",
+          "exitFrameId": 82,
+          "entryFrameId": 34,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "celebrate",
+          "to": "run",
+          "exitFrameId": 82,
+          "entryFrameId": 55,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "celebrate",
+          "to": "jump",
+          "exitFrameId": 82,
+          "entryFrameId": 83,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 6,
+          "entryFrameId": 34,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 12,
+          "entryFrameId": 34,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 18,
+          "entryFrameId": 34,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 6,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 12,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 18,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 6,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 12,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 18,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 6,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 12,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 18,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0."
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 48,
+          "entryFrameId": 0,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 48,
+          "entryFrameId": 83,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 48,
+          "entryFrameId": 67,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 63,
+          "entryFrameId": 0,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 63,
+          "entryFrameId": 83,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 63,
+          "entryFrameId": 67,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings."
+        }
+      ]
+    },
+    "female": {
+      "sourcePack": "docs/kling-jump/exports/female.character.zip",
+      "sourcePackSha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+      "previousPack": "docs/kling-keyframes/exports/female.character.zip",
+      "previousPackSha256": "75adf7fee4aa3887a96fa55de04717f308ccf5c975426912a785325668a9d340",
+      "actions": {
+        "idle": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 24,
+          "keys": [
+            {
+              "frameId": 0,
+              "ticks": 6,
+              "phase": "subtle standing hold",
+              "sourceFrame": 336
+            },
+            {
+              "frameId": 6,
+              "ticks": 6,
+              "phase": "subtle standing hold",
+              "sourceFrame": 342
+            },
+            {
+              "frameId": 12,
+              "ticks": 6,
+              "phase": "subtle standing hold",
+              "sourceFrame": 348
+            },
+            {
+              "frameId": 18,
+              "ticks": 6,
+              "phase": "subtle standing hold",
+              "sourceFrame": 354
+            }
+          ],
+          "rationale": "Four near-identical idle drawings preserve the subtle source breathing; no locomotion is held."
+        },
+        "walk": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 27,
+          "keys": [
+            {
+              "frameId": 24,
+              "ticks": 1,
+              "phase": "passing recovery",
+              "sourceFrame": 26
+            },
+            {
+              "frameId": 25,
+              "ticks": 1,
+              "phase": "heel approach",
+              "sourceFrame": 27
+            },
+            {
+              "frameId": 26,
+              "ticks": 1,
+              "phase": "extension approach",
+              "sourceFrame": 28
+            },
+            {
+              "frameId": 27,
+              "ticks": 1,
+              "phase": "front extension",
+              "sourceFrame": 29
+            },
+            {
+              "frameId": 28,
+              "ticks": 2,
+              "phase": "front extension hold",
+              "sourceFrame": 30
+            },
+            {
+              "frameId": 30,
+              "ticks": 1,
+              "phase": "lowering front foot",
+              "sourceFrame": 32
+            },
+            {
+              "frameId": 31,
+              "ticks": 1,
+              "phase": "near-leg contact",
+              "sourceFrame": 33
+            },
+            {
+              "frameId": 32,
+              "ticks": 1,
+              "phase": "near-leg loading",
+              "sourceFrame": 34
+            },
+            {
+              "frameId": 33,
+              "ticks": 1,
+              "phase": "near-leg loading",
+              "sourceFrame": 35
+            },
+            {
+              "frameId": 34,
+              "ticks": 1,
+              "phase": "near-leg stance",
+              "sourceFrame": 36
+            },
+            {
+              "frameId": 35,
+              "ticks": 1,
+              "phase": "near-leg passing",
+              "sourceFrame": 37
+            },
+            {
+              "frameId": 36,
+              "ticks": 1,
+              "phase": "leg crossing",
+              "sourceFrame": 38
+            },
+            {
+              "frameId": 37,
+              "ticks": 1,
+              "phase": "far-leg lift",
+              "sourceFrame": 39
+            },
+            {
+              "frameId": 38,
+              "ticks": 1,
+              "phase": "far-leg recovery",
+              "sourceFrame": 40
+            },
+            {
+              "frameId": 39,
+              "ticks": 1,
+              "phase": "far-leg advance",
+              "sourceFrame": 41
+            },
+            {
+              "frameId": 40,
+              "ticks": 1,
+              "phase": "far-leg approach",
+              "sourceFrame": 42
+            },
+            {
+              "frameId": 41,
+              "ticks": 2,
+              "phase": "far-leg extension hold",
+              "sourceFrame": 43
+            },
+            {
+              "frameId": 43,
+              "ticks": 1,
+              "phase": "far-foot lowering",
+              "sourceFrame": 45
+            },
+            {
+              "frameId": 44,
+              "ticks": 1,
+              "phase": "far-leg contact",
+              "sourceFrame": 46
+            },
+            {
+              "frameId": 45,
+              "ticks": 1,
+              "phase": "far-leg loading",
+              "sourceFrame": 47
+            },
+            {
+              "frameId": 46,
+              "ticks": 1,
+              "phase": "far-leg stance",
+              "sourceFrame": 48
+            },
+            {
+              "frameId": 47,
+              "ticks": 1,
+              "phase": "far-leg passing",
+              "sourceFrame": 49
+            },
+            {
+              "frameId": 48,
+              "ticks": 1,
+              "phase": "leg crossing",
+              "sourceFrame": 50
+            },
+            {
+              "frameId": 49,
+              "ticks": 1,
+              "phase": "near-leg lift",
+              "sourceFrame": 51
+            },
+            {
+              "frameId": 50,
+              "ticks": 1,
+              "phase": "near-leg recovery",
+              "sourceFrame": 52
+            }
+          ],
+          "rationale": "Restore moving contact, loading and passing drawings. Only29 and42 remain omitted;28/41 hold the nearly fully extended foot for two ticks.27-tick source cycle remains unchanged. Torso-angle drift is inherited source motion, not repaired by frame selection."
+        },
+        "run": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 16,
+          "keys": [
+            {
+              "frameId": 51,
+              "ticks": 1,
+              "phase": "near-leg flight",
+              "sourceFrame": 140
+            },
+            {
+              "frameId": 52,
+              "ticks": 1,
+              "phase": "near-leg flight descent",
+              "sourceFrame": 141
+            },
+            {
+              "frameId": 53,
+              "ticks": 1,
+              "phase": "near-leg contact",
+              "sourceFrame": 142
+            },
+            {
+              "frameId": 54,
+              "ticks": 1,
+              "phase": "near-leg loading",
+              "sourceFrame": 143
+            },
+            {
+              "frameId": 55,
+              "ticks": 1,
+              "phase": "near-leg passing support",
+              "sourceFrame": 144
+            },
+            {
+              "frameId": 56,
+              "ticks": 1,
+              "phase": "near-leg toe-off",
+              "sourceFrame": 145
+            },
+            {
+              "frameId": 57,
+              "ticks": 1,
+              "phase": "far-leg flight ascent",
+              "sourceFrame": 146
+            },
+            {
+              "frameId": 58,
+              "ticks": 1,
+              "phase": "far-leg flight",
+              "sourceFrame": 147
+            },
+            {
+              "frameId": 59,
+              "ticks": 1,
+              "phase": "far-leg flight",
+              "sourceFrame": 148
+            },
+            {
+              "frameId": 60,
+              "ticks": 1,
+              "phase": "far-leg flight descent",
+              "sourceFrame": 149
+            },
+            {
+              "frameId": 61,
+              "ticks": 1,
+              "phase": "far-leg contact",
+              "sourceFrame": 150
+            },
+            {
+              "frameId": 62,
+              "ticks": 1,
+              "phase": "far-leg loading",
+              "sourceFrame": 151
+            },
+            {
+              "frameId": 63,
+              "ticks": 1,
+              "phase": "far-leg passing support",
+              "sourceFrame": 152
+            },
+            {
+              "frameId": 64,
+              "ticks": 1,
+              "phase": "far-leg toe-off",
+              "sourceFrame": 153
+            },
+            {
+              "frameId": 65,
+              "ticks": 1,
+              "phase": "near-leg flight ascent",
+              "sourceFrame": 154
+            },
+            {
+              "frameId": 66,
+              "ticks": 1,
+              "phase": "near-leg flight",
+              "sourceFrame": 155
+            }
+          ],
+          "rationale": "Restore52,56,60,64: all four source intermediates move limbs substantially; a two-tick hold then jump damages the fast16-tick cadence. Keep every original source run drawing."
+        },
+        "jump": {
+          "fps": 24,
+          "loop": false,
+          "ticks": 39,
+          "keys": [
+            {
+              "frameId": 83,
+              "ticks": 1,
+              "phase": "anticipation",
+              "sourceFrame": 171
+            },
+            {
+              "frameId": 84,
+              "ticks": 1,
+              "phase": "anticipation",
+              "sourceFrame": 172
+            },
+            {
+              "frameId": 85,
+              "ticks": 1,
+              "phase": "anticipation",
+              "sourceFrame": 173
+            },
+            {
+              "frameId": 86,
+              "ticks": 1,
+              "phase": "anticipation",
+              "sourceFrame": 174
+            },
+            {
+              "frameId": 87,
+              "ticks": 1,
+              "phase": "anticipation",
+              "sourceFrame": 175
+            },
+            {
+              "frameId": 88,
+              "ticks": 1,
+              "phase": "anticipation",
+              "sourceFrame": 176
+            },
+            {
+              "frameId": 89,
+              "ticks": 1,
+              "phase": "anticipation",
+              "sourceFrame": 177
+            },
+            {
+              "frameId": 90,
+              "ticks": 1,
+              "phase": "takeoff",
+              "sourceFrame": 178
+            },
+            {
+              "frameId": 91,
+              "ticks": 1,
+              "phase": "takeoff",
+              "sourceFrame": 179
+            },
+            {
+              "frameId": 92,
+              "ticks": 1,
+              "phase": "ascent",
+              "sourceFrame": 180
+            },
+            {
+              "frameId": 93,
+              "ticks": 1,
+              "phase": "ascent",
+              "sourceFrame": 181
+            },
+            {
+              "frameId": 94,
+              "ticks": 1,
+              "phase": "ascent",
+              "sourceFrame": 182
+            },
+            {
+              "frameId": 95,
+              "ticks": 1,
+              "phase": "ascent",
+              "sourceFrame": 183
+            },
+            {
+              "frameId": 96,
+              "ticks": 1,
+              "phase": "apex",
+              "sourceFrame": 184
+            },
+            {
+              "frameId": 97,
+              "ticks": 1,
+              "phase": "apex",
+              "sourceFrame": 185
+            },
+            {
+              "frameId": 98,
+              "ticks": 1,
+              "phase": "apex",
+              "sourceFrame": 186
+            },
+            {
+              "frameId": 99,
+              "ticks": 1,
+              "phase": "descent",
+              "sourceFrame": 187
+            },
+            {
+              "frameId": 100,
+              "ticks": 1,
+              "phase": "descent",
+              "sourceFrame": 188
+            },
+            {
+              "frameId": 101,
+              "ticks": 1,
+              "phase": "descent",
+              "sourceFrame": 189
+            },
+            {
+              "frameId": 102,
+              "ticks": 1,
+              "phase": "landing",
+              "sourceFrame": 190
+            },
+            {
+              "frameId": 103,
+              "ticks": 1,
+              "phase": "landing",
+              "sourceFrame": 191
+            },
+            {
+              "frameId": 104,
+              "ticks": 1,
+              "phase": "landing",
+              "sourceFrame": 192
+            },
+            {
+              "frameId": 105,
+              "ticks": 1,
+              "phase": "landing compression",
+              "sourceFrame": 193
+            },
+            {
+              "frameId": 106,
+              "ticks": 1,
+              "phase": "landing compression",
+              "sourceFrame": 194
+            },
+            {
+              "frameId": 107,
+              "ticks": 1,
+              "phase": "landing compression",
+              "sourceFrame": 195
+            },
+            {
+              "frameId": 108,
+              "ticks": 1,
+              "phase": "landing compression",
+              "sourceFrame": 196
+            },
+            {
+              "frameId": 109,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 197
+            },
+            {
+              "frameId": 110,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 198
+            },
+            {
+              "frameId": 111,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 199
+            },
+            {
+              "frameId": 112,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 200
+            },
+            {
+              "frameId": 113,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 201
+            },
+            {
+              "frameId": 114,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 202
+            },
+            {
+              "frameId": 115,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 203
+            },
+            {
+              "frameId": 116,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 204
+            },
+            {
+              "frameId": 117,
+              "ticks": 1,
+              "phase": "standing recovery",
+              "sourceFrame": 205
+            },
+            {
+              "frameId": 118,
+              "ticks": 1,
+              "phase": "settled standing",
+              "sourceFrame": 206
+            },
+            {
+              "frameId": 119,
+              "ticks": 1,
+              "phase": "settled standing",
+              "sourceFrame": 207
+            },
+            {
+              "frameId": 120,
+              "ticks": 1,
+              "phase": "settled standing",
+              "sourceFrame": 208
+            },
+            {
+              "frameId": 121,
+              "ticks": 1,
+              "phase": "settled standing",
+              "sourceFrame": 209
+            }
+          ],
+          "rationale": "Original39-tick anticipation, takeoff, flight, landing and upright recovery. Do not loop the old cropped107-to87 crouch seam. After121, automatic idle or pending requested action. Original tiny apex scalp clipping stays disclosed."
+        },
+        "celebrate": {
+          "fps": 24,
+          "loop": true,
+          "ticks": 16,
+          "keys": [
+            {
+              "frameId": 67,
+              "ticks": 3,
+              "phase": "low cheerful bounce hold",
+              "sourceFrame": 253
+            },
+            {
+              "frameId": 70,
+              "ticks": 1,
+              "phase": "arms rise",
+              "sourceFrame": 256
+            },
+            {
+              "frameId": 71,
+              "ticks": 1,
+              "phase": "arms rise",
+              "sourceFrame": 257
+            },
+            {
+              "frameId": 72,
+              "ticks": 1,
+              "phase": "arms rise",
+              "sourceFrame": 258
+            },
+            {
+              "frameId": 73,
+              "ticks": 1,
+              "phase": "arms rise",
+              "sourceFrame": 259
+            },
+            {
+              "frameId": 74,
+              "ticks": 1,
+              "phase": "arms rise",
+              "sourceFrame": 260
+            },
+            {
+              "frameId": 75,
+              "ticks": 3,
+              "phase": "raised arms peak hold",
+              "sourceFrame": 261
+            },
+            {
+              "frameId": 78,
+              "ticks": 1,
+              "phase": "arms lower",
+              "sourceFrame": 264
+            },
+            {
+              "frameId": 79,
+              "ticks": 1,
+              "phase": "arms lower",
+              "sourceFrame": 265
+            },
+            {
+              "frameId": 80,
+              "ticks": 1,
+              "phase": "arms lower",
+              "sourceFrame": 266
+            },
+            {
+              "frameId": 81,
+              "ticks": 1,
+              "phase": "arms lower",
+              "sourceFrame": 267
+            },
+            {
+              "frameId": 82,
+              "ticks": 1,
+              "phase": "arms lower",
+              "sourceFrame": 268
+            }
+          ],
+          "rationale": "Keep low and high settled poses held3ticks, but restore all arm rise/lower drawings71,73,79,81, avoiding large angular jumps. Arms remain raised even at the lowest source pose; no true standing-to-celebrate bridge exists."
+        }
+      },
+      "routes": [
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 34,
+          "entryFrameId": 55,
+          "reason": "Near leg planted beneath torso; enter corresponding support/pass phase before toe-off."
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 46,
+          "entryFrameId": 63,
+          "reason": "Far leg planted beneath torso; enter opposite support/pass phase."
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 55,
+          "entryFrameId": 35,
+          "reason": "Near-leg support completes; continue same leg crossing into slower passing pose."
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 63,
+          "entryFrameId": 47,
+          "reason": "Far-leg support completes; continue opposite-leg slower passing pose."
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 0,
+          "entryFrameId": 24,
+          "reason": "Canonical narrow stance at start of source walk; avoids entering long airborne stride."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 0,
+          "entryFrameId": 55,
+          "reason": "Enter grounded near-leg passing support, not the source flight first frame51."
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 35,
+          "entryFrameId": 0,
+          "reason": "Near-leg planted, trailing leg near body; avoid long double-extension cut."
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 48,
+          "entryFrameId": 0,
+          "reason": "Opposite passing stance, legs close; remaining foot correction visible."
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 55,
+          "entryFrameId": 0,
+          "reason": "Near-leg passing support; feet near torso, no airborne freeze."
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 63,
+          "entryFrameId": 0,
+          "reason": "Opposite-leg passing support, same bounded stopping policy."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 0,
+          "entryFrameId": 83,
+          "reason": "Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible."
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 35,
+          "entryFrameId": 83,
+          "reason": "Request waits for near-leg support before full jump anticipation; no airborne interruption."
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 48,
+          "entryFrameId": 83,
+          "reason": "Opposite passing support before jump anticipation."
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 55,
+          "entryFrameId": 83,
+          "reason": "Grounded near-leg support before existing two-foot anticipation pose; not a newly drawn running leap."
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 63,
+          "entryFrameId": 83,
+          "reason": "Opposite grounded support before full jump."
+        },
+        {
+          "from": "celebrate",
+          "to": "jump",
+          "exitFrameId": 82,
+          "entryFrameId": 83,
+          "reason": "Leave at lowest source hand/torso point, then existing jump crouch. Expression and arm change remain a cut."
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exitFrameId": 121,
+          "entryFrameId": 0,
+          "reason": "Complete true landing and upright recovery before idle; never cut during airborne frames."
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exitFrameId": 121,
+          "entryFrameId": 24,
+          "reason": "Only after full recovery to standing; enter canonical narrow walk start."
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exitFrameId": 121,
+          "entryFrameId": 55,
+          "reason": "Only after full recovery to standing; enter grounded run support."
+        },
+        {
+          "from": "jump",
+          "to": "celebrate",
+          "exitFrameId": 121,
+          "entryFrameId": 67,
+          "reason": "Only after full recovery. Source celebrate begins hands already raised; visible arm cut remains."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 0,
+          "entryFrameId": 67,
+          "reason": "Enter lowest source celebrate pose; no arms-down lead-in exists."
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 35,
+          "entryFrameId": 67,
+          "reason": "Grounded passing stop into lowest celebrate pose; source arm jump remains."
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 48,
+          "entryFrameId": 67,
+          "reason": "Other grounded passing stop into lowest celebrate pose."
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 55,
+          "entryFrameId": 67,
+          "reason": "Wait for grounded near-leg support, then low celebrate pose."
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 63,
+          "entryFrameId": 67,
+          "reason": "Wait for grounded far-leg support, then low celebrate pose."
+        },
+        {
+          "from": "celebrate",
+          "to": "idle",
+          "exitFrameId": 82,
+          "entryFrameId": 0,
+          "reason": "Wait for low/bent-knee end pose, minimizing arm drop. Still no true arms-down exit source frame."
+        },
+        {
+          "from": "celebrate",
+          "to": "walk",
+          "exitFrameId": 82,
+          "entryFrameId": 24,
+          "reason": "Low celebrate ending then narrow grounded walk start; arm/expression cut explicit."
+        },
+        {
+          "from": "celebrate",
+          "to": "run",
+          "exitFrameId": 82,
+          "entryFrameId": 55,
+          "reason": "Low celebrate ending then grounded run support; arm/expression cut explicit."
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 6,
+          "entryFrameId": 24,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Canonical narrow stance at start of source walk; avoids entering long airborne stride."
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 12,
+          "entryFrameId": 24,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Canonical narrow stance at start of source walk; avoids entering long airborne stride."
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 18,
+          "entryFrameId": 24,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Canonical narrow stance at start of source walk; avoids entering long airborne stride."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 6,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter grounded near-leg passing support, not the source flight first frame51."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 12,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter grounded near-leg passing support, not the source flight first frame51."
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 18,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter grounded near-leg passing support, not the source flight first frame51."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 6,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 12,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible."
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 18,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 6,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter lowest source celebrate pose; no arms-down lead-in exists."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 12,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter lowest source celebrate pose; no arms-down lead-in exists."
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 18,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter lowest source celebrate pose; no arms-down lead-in exists."
+        }
+      ]
+    }
+  }
+}

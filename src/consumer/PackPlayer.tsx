@@ -3,6 +3,7 @@ import {
   Suspense,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -49,6 +50,12 @@ import {
   type KlingVariant,
 } from "./kling-catalog";
 import { loadKlingCharacter } from "./kling-packs";
+import {
+  advanceMotionFlow,
+  readMotionFlow,
+  requestMotionAction,
+  type MotionState,
+} from "./motion-flow";
 import { MainNavigation } from "../workspace/MainNavigation";
 
 const SpriteActionEditor = lazy(() => import("./SpriteActionEditor"));
@@ -61,9 +68,12 @@ export function PackPlayer() {
   const authoring =
     new URLSearchParams(window.location.search).get("authoring") === "1";
   const requestedVariant: KlingVariant =
-    new URLSearchParams(window.location.search).get("variant") === "keyframes"
-      ? "keyframes"
-      : "original";
+    new URLSearchParams(window.location.search).get("variant") === "motion"
+      ? "motion"
+      : new URLSearchParams(window.location.search).get("variant") ===
+          "keyframes"
+        ? "keyframes"
+        : "original";
   const [editorBasePack, setEditorBasePack] =
     useState<LoadedCharacterPack | null>(null);
   const [authoringBusy, setAuthoringBusy] = useState(false);
@@ -95,6 +105,10 @@ export function PackPlayer() {
   const [comparisonRequested, setComparisonRequested] = useState(false);
   const [downloadPack, setDownloadPack] = useState<Blob | null>(null);
   const [framePosition, setFramePosition] = useState(0);
+  const [waitForPose, setWaitForPose] = useState(false);
+  const [pendingAction, setPendingAction] =
+    useState<PortableAnimationName | null>(null);
+  const motionStateRef = useRef<MotionState | null>(null);
   const sourceEntries = useRef(new Map<string, SourceEntry>());
   const [files, setFiles] = useState<{
     png?: File;
@@ -114,6 +128,22 @@ export function PackPlayer() {
     ? klingCharacters(catalogVariant)
     : sourceBundle?.characters;
   const studyMetadata = pack?.config?.sourceMetadata?.keyframeStudy;
+  const motionMetadata = pack?.config?.sourceMetadata?.motionFlow;
+  const motionStudy =
+    !!motionMetadata &&
+    typeof motionMetadata === "object" &&
+    !Array.isArray(motionMetadata) &&
+    motionMetadata.format === "gathria-motion-flow";
+  const motionProfile = useMemo(
+    () => (pack ? readMotionFlow(pack.manifest, pack.config) : null),
+    [pack],
+  );
+  const motionEnabled =
+    !!motionProfile &&
+    waitForPose &&
+    !authoring &&
+    !comparisonRequested &&
+    !comparisonPack;
   const keyframeStudy =
     !!studyMetadata &&
     typeof studyMetadata === "object" &&
@@ -121,15 +151,17 @@ export function PackPlayer() {
     studyMetadata.format === "gathria-kling-keyframe-study";
   const originalCharacterId = isKlingCharacterId(characterId)
     ? characterId
-    : keyframeStudy &&
-        typeof studyMetadata === "object" &&
-        studyMetadata !== null &&
-        !Array.isArray(studyMetadata) &&
-        isKlingCharacterId(studyMetadata.characterId)
-      ? studyMetadata.characterId
-      : isKlingCharacterId(pack?.config?.characterId)
-        ? pack.config.characterId
-        : null;
+    : motionProfile
+      ? motionProfile.characterId
+      : keyframeStudy &&
+          typeof studyMetadata === "object" &&
+          studyMetadata !== null &&
+          !Array.isArray(studyMetadata) &&
+          isKlingCharacterId(studyMetadata.characterId)
+        ? studyMetadata.characterId
+        : isKlingCharacterId(pack?.config?.characterId)
+          ? pack.config.characterId
+          : null;
   const selectedClip = pack
     ? animationFor(pack.manifest, animation)
     : undefined;
@@ -165,6 +197,15 @@ export function PackPlayer() {
     ? Math.floor((canvasHeight - frameHeight * zoom) / 2) +
       pack.manifest.anchor.y * zoom
     : 338;
+
+  const clearPendingMotion = useCallback(() => {
+    motionStateRef.current = null;
+    setPendingAction(null);
+  }, []);
+
+  useEffect(() => {
+    clearPendingMotion();
+  }, [motionEnabled, motionProfile, clearPendingMotion]);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -221,8 +262,29 @@ export function PackPlayer() {
     let request = 0;
     function draw(now: number) {
       if (!context || !canvas) return;
-      if (previous !== undefined && playing && presentationActive)
-        elapsedRef.current += (now - previous) * speed;
+      let activeAnimation = animation;
+      const delta =
+        previous !== undefined && playing && presentationActive
+          ? (now - previous) * speed
+          : 0;
+      if (motionEnabled && motionProfile) {
+        const before = motionStateRef.current ?? {
+          action: animation,
+          elapsedMs: elapsedRef.current,
+          pending: null,
+        };
+        const next =
+          delta > 0 ? advanceMotionFlow(motionProfile, before, delta) : before;
+        motionStateRef.current = next;
+        elapsedRef.current = next.elapsedMs;
+        activeAnimation = next.action;
+        if (next.action !== animation) {
+          frameRef.current = -1;
+          setAnimation(next.action);
+          setCompleted(false);
+        }
+        if (before.pending !== next.pending) setPendingAction(next.pending);
+      } else elapsedRef.current += delta;
       previous = now;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
       context.clearRect(0, 0, canvasRenderWidth, canvasHeight);
@@ -239,7 +301,16 @@ export function PackPlayer() {
       context.stroke();
       context.setLineDash([]);
       if (pack) {
-        const frame = frameAtTime(pack.manifest, animation, elapsedRef.current);
+        const frame = frameAtTime(
+          pack.manifest,
+          activeAnimation,
+          elapsedRef.current,
+        );
+        canvas.dataset.action = activeAnimation;
+        canvas.dataset.elapsedMs = String(elapsedRef.current);
+        canvas.dataset.pendingAction = motionStateRef.current?.pending ?? "";
+        canvas.dataset.frameId = String(frame.id);
+        canvas.dataset.framePage = String(frame.page ?? 0);
         drawCharacterFrame(
           context,
           imageForFrame(pack, frame),
@@ -251,11 +322,11 @@ export function PackPlayer() {
         );
         if (
           comparisonPack &&
-          animationFor(comparisonPack.manifest, animation)
+          animationFor(comparisonPack.manifest, activeAnimation)
         ) {
           const comparisonFrame = frameAtTime(
             comparisonPack.manifest,
-            animation,
+            activeAnimation,
             elapsedRef.current,
           );
           drawCharacterFrame(
@@ -272,15 +343,17 @@ export function PackPlayer() {
           frameRef.current = frame.id;
           setFrameId(frame.id);
         }
-        const clip = animationFor(pack.manifest, animation)!;
+        const clip = animationFor(pack.manifest, activeAnimation)!;
         const position = Math.floor(
           (Math.max(0, elapsedRef.current) * clip.fps) / 1000,
         );
-        setFramePosition(
-          clip.loop
-            ? position % clip.frames.length
-            : Math.min(position, clip.frames.length - 1),
-        );
+        const framePosition = clip.loop
+          ? position % clip.frames.length
+          : Math.min(position, clip.frames.length - 1);
+        // Keep RAF/recording observers on the exact pixels painted this tick;
+        // React's labels may commit a render later than the canvas bitmap.
+        canvas.dataset.framePosition = String(framePosition);
+        setFramePosition(framePosition);
         context.strokeStyle = "#7762d6";
         context.beginPath();
         context.moveTo(attachment.x - 5, attachment.y + 0.5);
@@ -289,7 +362,7 @@ export function PackPlayer() {
         context.lineTo(attachment.x + 0.5, attachment.y + 5);
         context.stroke();
         const comparisonClip = comparisonPack
-          ? animationFor(comparisonPack.manifest, animation)
+          ? animationFor(comparisonPack.manifest, activeAnimation)
           : undefined;
         // Keep a longer compared one-shot playing after the selected character
         // has landed. The shorter character holds its authored final frame.
@@ -299,11 +372,15 @@ export function PackPlayer() {
           comparisonClip.loop ||
           animationHasEnded(
             comparisonPack.manifest,
-            animation,
+            activeAnimation,
             elapsedRef.current,
           );
         if (
-          animationHasEnded(pack.manifest, animation, elapsedRef.current) &&
+          animationHasEnded(
+            pack.manifest,
+            activeAnimation,
+            elapsedRef.current,
+          ) &&
           comparisonEnded
         ) {
           setCompleted(true);
@@ -331,6 +408,8 @@ export function PackPlayer() {
     canvasHeight,
     attachmentY,
     playbackRevision,
+    motionEnabled,
+    motionProfile,
   ]);
 
   const openPack = useCallback(
@@ -343,6 +422,7 @@ export function PackPlayer() {
       pendingFetchRef.current?.abort();
       const controller = new AbortController();
       pendingFetchRef.current = controller;
+      clearPendingMotion();
       setBusy(true);
       setLoadingMessage("Opening and validating your pack…");
       setError("");
@@ -353,6 +433,7 @@ export function PackPlayer() {
         frameRef.current = -1;
         setFrameId(loaded.manifest.animations.idle.frames[0]);
         setPack(loaded);
+        setWaitForPose(!!readMotionFlow(loaded.manifest, loaded.config));
         setEditorBasePack(loaded);
         setModifiedActions(false);
         modifiedActionsRef.current = false;
@@ -390,7 +471,7 @@ export function PackPlayer() {
         if (request === requestRef.current) setBusy(false);
       }
     },
-    [],
+    [clearPendingMotion],
   );
 
   async function sourceEntry(
@@ -452,9 +533,11 @@ export function PackPlayer() {
           );
           return entry.pack;
         },
-        variant === "keyframes"
-          ? "Kling keyframe loop study · review candidate"
-          : "Kling original-video character · prepared pack",
+        variant === "motion"
+          ? "Kling motion & transitions · review candidate"
+          : variant === "keyframes"
+            ? "Kling keyframe loop study · review candidate"
+            : "Kling original-video character · prepared pack",
         () => {
           setKlingCatalog(true);
           setCatalogVariant(variant);
@@ -491,6 +574,7 @@ export function PackPlayer() {
     pendingFetchRef.current?.abort();
     const controller = new AbortController();
     pendingFetchRef.current = controller;
+    clearPendingMotion();
     setBusy(true);
     setLoadingMessage("Opening and validating your pack…");
     setError("");
@@ -516,6 +600,10 @@ export function PackPlayer() {
         const previousId = characterId;
         setCharacterId(id);
         setPack(entry.pack);
+        setWaitForPose(
+          !!readMotionFlow(entry.pack.manifest, entry.pack.config),
+        );
+        if (motionStudy) elapsedRef.current = 0;
         setEditorBasePack(entry.pack);
         setModifiedActions(false);
         modifiedActionsRef.current = false;
@@ -573,9 +661,23 @@ export function PackPlayer() {
     }, png.name);
   }
 
-  function chooseAnimation(value: PortableAnimationName) {
+  function chooseAnimation(value: PortableAnimationName, immediate = false) {
     const clip = pack ? animationFor(pack.manifest, value) : undefined;
     if (!clip) return;
+    if (motionEnabled && playing && !immediate) {
+      const state = requestMotionAction(
+        motionStateRef.current ?? {
+          action: animation,
+          elapsedMs: elapsedRef.current,
+          pending: null,
+        },
+        value,
+      );
+      motionStateRef.current = state;
+      setPendingAction(state.pending);
+      return;
+    }
+    clearPendingMotion();
     elapsedRef.current = 0;
     frameRef.current = -1;
     setFrameId(clip.frames[0]);
@@ -588,6 +690,7 @@ export function PackPlayer() {
 
   function scrubFrame(index: number) {
     if (!selectedClip) return;
+    clearPendingMotion();
     elapsedRef.current = (index * 1000) / selectedClip.fps + 0.00001;
     setFramePosition(index);
     setPlaying(false);
@@ -597,6 +700,7 @@ export function PackPlayer() {
 
   const previewActionSettings = useCallback(
     (next: LoadedCharacterPack, modified: boolean) => {
+      clearPendingMotion();
       setPack(next);
       setModifiedActions(modified);
       if (modified || modifiedActionsRef.current) {
@@ -609,7 +713,7 @@ export function PackPlayer() {
       modifiedActionsRef.current = modified;
       setPlaybackRevision((value) => value + 1);
     },
-    [],
+    [clearPendingMotion],
   );
 
   const openActionSource = useCallback(
@@ -626,7 +730,7 @@ export function PackPlayer() {
   );
 
   function replayAnimation() {
-    chooseAnimation(animation);
+    chooseAnimation(animation, true);
     setPlaying(true);
   }
 
@@ -832,15 +936,41 @@ export function PackPlayer() {
                   <strong>
                     {modifiedActions
                       ? "Original artwork · edited action settings"
-                      : keyframeStudy
-                        ? "Original artwork · keyframe loop study"
-                        : "Original artwork · baked playback"}
+                      : motionStudy
+                        ? "Original artwork · motion & transitions study"
+                        : keyframeStudy
+                          ? "Original artwork · keyframe loop study"
+                          : "Original artwork · baked playback"}
                   </strong>
                   <br />
                   These frames preserve the supplied character artwork.
                   Clothing, colors and expressions are part of the image and
                   cannot be edited separately.
                 </p>
+                {motionStudy && (
+                  <p data-testid="motion-study-note">
+                    <strong>
+                      Motion &amp; transitions · review candidate.
+                    </strong>{" "}
+                    Existing source poses with reviewed switching points. Jump
+                    plays its full landing and upright recovery, then returns to
+                    Idle. No blended or generated frames.
+                    {originalCharacterId && (
+                      <>
+                        {" "}
+                        <a
+                          href={`/player.html?kling=${originalCharacterId}&variant=keyframes`}
+                        >
+                          Open continuous-hop keyframes V1
+                        </a>
+                        {" · "}
+                        <a href={`/player.html?kling=${originalCharacterId}`}>
+                          Open original playback
+                        </a>
+                      </>
+                    )}
+                  </p>
+                )}
                 {keyframeStudy && (
                   <p data-testid="keyframe-study-note">
                     <strong>Keyframe loop study · review candidate.</strong>{" "}
@@ -885,6 +1015,7 @@ export function PackPlayer() {
                           checked={comparisonRequested}
                           disabled={sourceBlocked}
                           onChange={(event) => {
+                            clearPendingMotion();
                             setComparisonRequested(event.target.checked);
                             if (!event.target.checked) {
                               setComparisonPack(null);
@@ -910,12 +1041,12 @@ export function PackPlayer() {
                     onClick={() =>
                       downloadBlob(
                         downloadPack,
-                        `${characterId || "baked-character"}${keyframeStudy ? "-keyframes" : ""}.character.zip`,
+                        `${characterId || "baked-character"}${motionStudy ? "-motion" : keyframeStudy ? "-keyframes" : ""}.character.zip`,
                       )
                     }
                   >
                     {authoring
-                      ? keyframeStudy
+                      ? keyframeStudy || motionStudy
                         ? "Export source CharacterPack"
                         : "Export original CharacterPack"
                       : "Export selected CharacterPack"}
@@ -951,6 +1082,7 @@ export function PackPlayer() {
                       ?.page ?? 0
                   }
                   data-comparison={Boolean(comparisonPack)}
+                  data-motion-flow={motionEnabled}
                   aria-label={
                     pack
                       ? `${pack.manifest.name}, ${animation}, facing ${facing}, frame ${frameId}`
@@ -1073,6 +1205,58 @@ export function PackPlayer() {
                   )}
                 </button>
               </div>
+              {motionStudy && (
+                <div
+                  className="player-motion-note"
+                  data-testid="motion-flow-controls"
+                >
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={waitForPose}
+                      disabled={
+                        !motionProfile ||
+                        authoring ||
+                        comparisonRequested ||
+                        !!comparisonPack
+                      }
+                      onChange={(event) => {
+                        clearPendingMotion();
+                        setWaitForPose(event.target.checked);
+                      }}
+                    />{" "}
+                    Wait for a matching pose
+                  </label>
+                  {!motionProfile ? (
+                    <p>
+                      Matching-pose switching is unavailable: this pack’s action
+                      settings no longer match its reviewed routes.
+                    </p>
+                  ) : authoring ? (
+                    <p>
+                      Matching-pose switching is off while authoring, so action
+                      and frame inspection stay immediate.
+                    </p>
+                  ) : comparisonRequested || comparisonPack ? (
+                    <p>
+                      Matching-pose switching is off during comparison. Shared
+                      elapsed time does not synchronize the two performances’
+                      poses.
+                    </p>
+                  ) : (
+                    <p>
+                      {waitForPose
+                        ? "During playback, action requests wait for a reviewed exit. Paused selections switch immediately."
+                        : "Actions switch immediately. Enable matching poses to compare the reviewed transitions."}
+                    </p>
+                  )}
+                  <p data-testid="motion-pending" aria-live="polite">
+                    {pendingAction
+                      ? `Next: ${pendingAction} · waiting for the current pose${animation === "jump" ? " and full landing recovery" : ""}.`
+                      : "No action waiting."}
+                  </p>
+                </div>
+              )}
               <p className="player-motion-note">
                 {modifiedActions
                   ? "Edited frame selection and timing · Original image pixels are preserved."
@@ -1094,7 +1278,9 @@ export function PackPlayer() {
                 <p className="player-motion-note" id="player-one-shot-note">
                   {completed
                     ? "Finished · Holding the final frame. Replay to start again."
-                    : "Plays once · Holds the final frame until you replay or choose another action."}
+                    : motionEnabled && animation === "jump"
+                      ? "Plays the complete jump once, including recovery, then follows the waiting action or returns to Idle."
+                      : "Plays once · Holds the final frame until you replay or choose another action."}
                 </p>
               )}
               {selectedClip && (
@@ -1185,7 +1371,7 @@ export function PackPlayer() {
                   className="player-reset"
                   disabled={!pack}
                   onClick={() => {
-                    chooseAnimation("idle");
+                    chooseAnimation("idle", true);
                     setPlaying(true);
                     setSpeed(1);
                     setFacing("right");

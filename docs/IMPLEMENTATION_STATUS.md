@@ -1,7 +1,7 @@
 # Implementation status
 
-Current batch: **Kling keyframe loop candidates**, based on `0702235` from
-the sprite action work in PR #23, branch `feat/kling-loop-keyframes`.
+Current batch: **Kling motion cadence and action flow**, based on main `fd914ef`,
+branch `feat/kling-motion-flow`.
 
 The primary workflow uses the two original Kling characters' own sprite frames.
 The two registered skeletal candidates remain optional. Original playback is the
@@ -11,6 +11,11 @@ timing without changing any source PNG bytes.
 
 Implemented:
 
+- Separate motion-flow candidates restore moving source poses (88 male / 96
+  female drawings). Reviewed phase routes queue action changes at support or
+  landing boundaries; the complete one-shot jump recovers upright before the
+  next action or idle. Paused inspection remains immediate. Independent ZIPs
+  carry exact action snapshots and routes, which are disabled after clip edits.
 - Separate male/female keyframe loop candidates with 52 distinct source drawings
   each, explicit pose holds, all five repeating actions and existing V2 export.
   Jump is a repeated crouched hop; the original remains a full one-shot. A visible
@@ -26,10 +31,10 @@ Implemented:
   editing sessions. Loaded project identity follows imports in both editor and
   outer workbench.
 - Independent V2/V3 and Kling source ZIP loading, local validation and HTTP SHA fallback.
-- Current verification: 120 unit tests, build/typecheck and all 25 Chromium E2E
-  tests passed. Actual candidate export/save/reopen and 20 independent looping
-  cases are recorded in the [keyframe review](KLING_KEYFRAMES_REVIEW.md).
-  Older sprite-action and female-candidate counts describe their own batches.
+- Current verification and actual UI/export evidence are recorded in the
+  [motion review](KLING_MOTION_REVIEW.md). The earlier 120 unit / 25 Chromium
+  counts belong to the keyframe batch, not this one. The subsequent main E2E
+  failure is documented separately; it is not relabeled as a passing run.
 
 Not implemented: sprite redraw/interpolation, arbitrary frame reordering,
 interactive per-frame hold editing or alignment, interchangeable outfits/expressions, complete
@@ -41,6 +46,7 @@ Non-Kling characters, old skin/identity/wardrobe authoring, unrelated labs and
 earlier redrawn mother studies were removed in the previous cleanup. They remain
 recoverable from Git history; this batch does not reintroduce them.
 
+[Motion cadence and action flow](KLING_MOTION_REVIEW.md) ·
 [Keyframe loops and visual limits](KLING_KEYFRAMES_REVIEW.md) ·
 [Sprite actions and persistence contract](SPRITE_ACTIONS_REVIEW.md) ·
 [Female review and verification](KLING_FEMALE_NATIVE_REVIEW.md) ·

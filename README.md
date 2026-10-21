@@ -32,6 +32,10 @@ standalone view. Existing male links retain their default behavior. There are th
 
 ## What is ready
 
+- Motion-flow candidates restore fast moving source poses and schedule action
+  changes at reviewed support/landing boundaries. Full jump recovery returns
+  to idle in the independent player; prior loop studies remain separate.
+  [Open motion and transition review](docs/kling-motion/README.md).
 - Separate keyframe loop candidates: **52 original drawings per character**,
   five repeating actions, explicit review entry and portable V2 packs. The
   repeated-hop jump is separate from the unchanged original one-shot.
@@ -60,6 +64,8 @@ visible and are documented; this is not a claim of natural finished animation.
 - `artwork/kling-jump`: unchanged five-action source, previews and provenance.
 - `artwork/kling-keyframes`: phase-based selection, source IDs and pose holds;
   no new artwork. Candidate exports and evidence are in `docs/kling-keyframes`.
+- `artwork/kling-motion`: restored source poses and explicit action-transition
+  routes; actual V3 packs and evidence are in `docs/kling-motion`.
 - `artwork/kling-native-study`: exact male reference, hidden-joint supplementary
   painting, fifteen parts, registration and editable project.
 - `artwork/kling-native-female`: female-specific source, supplementary paint,

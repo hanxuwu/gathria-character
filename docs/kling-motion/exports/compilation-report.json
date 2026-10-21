@@ -1,0 +1,2000 @@
+{
+  "format": "gathria-kling-motion-compilation",
+  "version": 1,
+  "passed": true,
+  "profileSha256": "d0f2397998970a8eb3044aa1d7836d256b4d4fa8cf4dc73c2f9571dd4b18d219",
+  "packs": [
+    {
+      "character": "male",
+      "sourceSha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+      "packSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "packBytes": 22641075,
+      "uniqueFrames": 88,
+      "nativeSize": [
+        704,
+        1056
+      ],
+      "anchor": {
+        "x": 352,
+        "y": 998,
+        "units": "pixels",
+        "origin": "top-left"
+      },
+      "pages": [
+        {
+          "file": "spritesheet.png",
+          "width": 6336,
+          "height": 5280,
+          "frameWidth": 704,
+          "frameHeight": 1056,
+          "columns": 9,
+          "rows": 5
+        },
+        {
+          "file": "spritesheet-1.png",
+          "width": 6336,
+          "height": 5280,
+          "frameWidth": 704,
+          "frameHeight": 1056,
+          "columns": 9,
+          "rows": 5
+        }
+      ],
+      "actions": {
+        "idle": {
+          "uniqueFrames": 4,
+          "ticks": 24,
+          "durationMs": 1000.0,
+          "loop": true,
+          "sourceFrameIds": [
+            0,
+            6,
+            12,
+            18
+          ]
+        },
+        "walk": {
+          "uniqueFrames": 16,
+          "ticks": 27,
+          "durationMs": 1125.0,
+          "loop": true,
+          "sourceFrameIds": [
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            37,
+            39,
+            40,
+            42,
+            43,
+            45,
+            46,
+            48,
+            50
+          ]
+        },
+        "run": {
+          "uniqueFrames": 16,
+          "ticks": 16,
+          "durationMs": 666.6666666666666,
+          "loop": true,
+          "sourceFrameIds": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ]
+        },
+        "jump": {
+          "uniqueFrames": 39,
+          "ticks": 39,
+          "durationMs": 1625.0,
+          "loop": false,
+          "sourceFrameIds": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ]
+        },
+        "celebrate": {
+          "uniqueFrames": 13,
+          "ticks": 16,
+          "durationMs": 666.6666666666666,
+          "loop": true,
+          "sourceFrameIds": [
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+          ]
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 0,
+          "entryFrameId": 34,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 6,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 0,
+          "entryFrameId": 55,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 6,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 0,
+          "entryFrameId": 83,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 0,
+          "entryFrameId": 67,
+          "reason": "Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 34,
+          "entryFrameId": 0,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 34,
+          "entryFrameId": 55,
+          "reason": "Near/farsupportpassingphasealigned.",
+          "exit": 12,
+          "entry": 4
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 48,
+          "entryFrameId": 63,
+          "reason": "Near/farsupportpassingphasealigned.",
+          "exit": 26,
+          "entry": 12
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 34,
+          "entryFrameId": 83,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 34,
+          "entryFrameId": 67,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 55,
+          "entryFrameId": 0,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 55,
+          "entryFrameId": 34,
+          "reason": "Near/farsupportpassingphasealigned.",
+          "exit": 5,
+          "entry": 10
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 63,
+          "entryFrameId": 48,
+          "reason": "Near/farsupportpassingphasealigned.",
+          "exit": 13,
+          "entry": 24
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 55,
+          "entryFrameId": 83,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 55,
+          "entryFrameId": 67,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exitFrameId": 121,
+          "entryFrameId": 0,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair.",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exitFrameId": 121,
+          "entryFrameId": 34,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair.",
+          "exit": 39,
+          "entry": 10
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exitFrameId": 121,
+          "entryFrameId": 55,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair.",
+          "exit": 39,
+          "entry": 4
+        },
+        {
+          "from": "jump",
+          "to": "celebrate",
+          "exitFrameId": 121,
+          "entryFrameId": 67,
+          "reason": "Jumpmustfinishfullstandingrecovery; do notinterruptmidair.",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "idle",
+          "exitFrameId": 82,
+          "entryFrameId": 0,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "walk",
+          "exitFrameId": 82,
+          "entryFrameId": 34,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 16,
+          "entry": 10
+        },
+        {
+          "from": "celebrate",
+          "to": "run",
+          "exitFrameId": 82,
+          "entryFrameId": 55,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 16,
+          "entry": 4
+        },
+        {
+          "from": "celebrate",
+          "to": "jump",
+          "exitFrameId": 82,
+          "entryFrameId": 83,
+          "reason": "Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 6,
+          "entryFrameId": 34,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 12,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 12,
+          "entryFrameId": 34,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 18,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 18,
+          "entryFrameId": 34,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 24,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 6,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 12,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 12,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 18,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 18,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 24,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 6,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 12,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 18,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 6,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 12,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 18,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Idle can switch immediately at anycurrentrestpose; do notqueueforID0solelybecause thissampleanchoris0.",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 48,
+          "entryFrameId": 0,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 26,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 48,
+          "entryFrameId": 83,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 26,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 48,
+          "entryFrameId": 67,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 26,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 63,
+          "entryFrameId": 0,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 63,
+          "entryFrameId": 83,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 63,
+          "entryFrameId": 67,
+          "reason": "Opposite-leg grounded passing support. Grounded/lowered-armscutpoint; does notcreate missingtransitiondrawings.",
+          "exit": 13,
+          "entry": 0
+        }
+      ],
+      "decodedBytes": 267632640,
+      "frameFidelity": [
+        {
+          "frameId": 0,
+          "rgbaSha256": "b28d08c36d6cdd0a3cedd7a81fea6620ae670561204186392f85e71bf58be722",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 6,
+          "rgbaSha256": "ee4c66544d6eac24c42452816f8b5f397e5b4c79a3ce1d09d33c73158997c49a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 12,
+          "rgbaSha256": "ac909493c521e112f994c9a41bb2912e3a770112eb1e664ee88f8efe92daf75e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 18,
+          "rgbaSha256": "dcf15a6527ef1ebf28c74b4929e8653ba7af8dc0600397a6b6fcc083200561a3",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 24,
+          "rgbaSha256": "0244f0781502021d21f059c116bfbd82afec890ad886635d8f5ab9d3ea431424",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 26,
+          "rgbaSha256": "1756268c3fce7b5aef5afa32c6edca754af112edeb2aba6f3a0bf1c1b9925319",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 28,
+          "rgbaSha256": "9d30bbf78126e3e7c469220d5a9d31178e1515966564dc7ae32913b8699d0ea3",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 30,
+          "rgbaSha256": "37bb3d9d8f7342c3660f752bc15633d61ff2a753423c09e70c5d2212c0d58357",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 32,
+          "rgbaSha256": "f3508c9cacd9e737a053ec7b95e534fd4f9160389fa153dbaa34a27a6c4cb850",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 34,
+          "rgbaSha256": "b7324647769b76a9b5e95ccb30a873aa56c26901ff7248faa6b7713751c63e59",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 36,
+          "rgbaSha256": "8f10ec669102e035332d919067c83e680ea1738eff794b6355da35c972527fbf",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 37,
+          "rgbaSha256": "dd809e651399d5ba893e05870e99022263e294b8f2c766af96ba4376166be580",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 39,
+          "rgbaSha256": "2a23f872b13eac6f6dcd4c7367e022497e79a031f8c316bc602924d06679618f",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 40,
+          "rgbaSha256": "5739ad878fe268278b7746691f1aa0dedbdc861efa8ec87913b8b95e4eaeafe2",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 42,
+          "rgbaSha256": "f8f971b6bcbde02f36f0b667dc1eb5de395db0fbd61f096a45cd325dd1d2dd1e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 43,
+          "rgbaSha256": "cac386ebcf631d276fbf7c0cef520a352add89033ed1c078093296f425779242",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 45,
+          "rgbaSha256": "95b535d81022a0f8aabf17c40cbd7f2d7e53158fab85bb8f7cbbb965a807bfcd",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 46,
+          "rgbaSha256": "321fbf4c11d30d971e9f920bc3cd31c28887c2a6ba6cf6077f9aa26a8e25b6de",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 48,
+          "rgbaSha256": "f865986ae9efaadbdf5379bc58f3ce7849e9d77d469da77749324aa61d116539",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 50,
+          "rgbaSha256": "2321d5a585745eee37904e5261af5b2b1b965c44e0141e61a86b65f08279d7d2",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 51,
+          "rgbaSha256": "619704beaa2be88c0fd36c150951418fa5198e5ec596aaf7e357233d8b923685",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 52,
+          "rgbaSha256": "4663fcddad457f0513c80945539eb9ba6135155fb3112b09c8f5652835fb8ba0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 53,
+          "rgbaSha256": "30a3d89e13057973d516ebdb4a3d95318e35c2f25c762c8d9a456b878f059c94",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 54,
+          "rgbaSha256": "0e47352bdbd8b535f7e7527e0ed8813302b9e8171faa3bd62e6b88eaa3761905",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 55,
+          "rgbaSha256": "131c3656c8fdc712f4e65fd89ec6aa45e9d45ac6ca928d8495a799a0138cacd1",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 56,
+          "rgbaSha256": "6ad04063e4d5edbcefc43228d32d6082ae0aa6e6ab2e9a8c529e327465f35984",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 57,
+          "rgbaSha256": "06259f66874b8ebb81f0ae755ad411e218aec9ed6eabd9dcc70b62af51bdaf1b",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 58,
+          "rgbaSha256": "99ec63b9c036d05536719b46827498ec846043464707d27eca3c5688c698bd3e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 59,
+          "rgbaSha256": "5717885f3e6c9e4cbfb54009d4d261e968278d36473dcbc7c1eec03694af49ff",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 60,
+          "rgbaSha256": "cb75ba5275ce3ff819bb3b81f3be0f0977a52fa97cb817e5326261f2ee5fff12",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 61,
+          "rgbaSha256": "74ae6aa644f7af828593a6bf0a41d530a1c3246fbe8555be6b9284e76c850fad",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 62,
+          "rgbaSha256": "72e7a36bdb4c563f8ca5719c3c8263a15426a53fa12a575da3470b48bcafe533",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 63,
+          "rgbaSha256": "4ee656a4100b8b7855ef643080e999ef8b4ebbe15dae0cb34759968363ace1ec",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 64,
+          "rgbaSha256": "d419d86c9a18dff76af32a8fcc479e0b1ca13b07fa49849eb4caf2c5083c216a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 65,
+          "rgbaSha256": "89caec13adc46d48d5026ac57986fe0a19d71c944c360a086ebd21fb480bb11c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 66,
+          "rgbaSha256": "9aa408e7879f9d0ed059bcd0ba51def63bba3589d43aa6fd68f3200b14b59484",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 67,
+          "rgbaSha256": "a62091bf5c2d97e1735a7c318f13ee312f586d817793b566ea931c30fd815bde",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 70,
+          "rgbaSha256": "6de759b4ade63314c2bf32c557de83992cbb39dc61f3aa28cba57034bca4c25e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 71,
+          "rgbaSha256": "45cb00df885ab965067ca9cc2d14478dd05c2305a271cc01af1623d60062fca9",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 72,
+          "rgbaSha256": "dcb3ebb1a92f79e24d5534082449866910a887cb31462852c31e7c2b69fd7223",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 73,
+          "rgbaSha256": "bcf97084a87f2dc5f2d7dbaf27dbcc2ef4776253d6c58aca8121444a499f504c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 74,
+          "rgbaSha256": "ca24cea31c1f7e61705cfc665c5e4bb9c342fecbd0029020a34ea2dfc35bcfc5",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 75,
+          "rgbaSha256": "90af1c37f8893223ccefdb868ee2cf4546e0ffc64ca60314cb062877aecf98c7",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 77,
+          "rgbaSha256": "45edc744a81547eb753128768ab45c7c7354cef8a5b813ac359e196f2c53e6d0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 78,
+          "rgbaSha256": "e85f6c3bb6db1b2a342924372e890c84a8899dec92224265b3834e58b127accf",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 79,
+          "rgbaSha256": "ab01aa2a225f8898e5cf3c3357ba3f5972d7e782c9e360055b5c2fa0bb0ebf07",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 80,
+          "rgbaSha256": "401797872d2b797280f5488ca89105a087828383b756ae3a90c040d6992ae2c5",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 81,
+          "rgbaSha256": "d8a28b3e2b163852f19e65c2e663fb36b2b8c308a2088a6f9d0d41642988c647",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 82,
+          "rgbaSha256": "30bc10104ec148a4dd55d083f444d39ed673e76d2c913bf365c6a6b57611bd21",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 83,
+          "rgbaSha256": "d433b8bff6e8ace657fe94485c4bba1432e2f39d24a6f3b1b6493aef5e5bab48",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 84,
+          "rgbaSha256": "d3e6bd4a20395d6d4e8c072a329fbfe488755182c2ea44a2ff25cc9364e47e99",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 85,
+          "rgbaSha256": "93f0fe4fa1ef32b64d4ad81fba253829328ef412a51bd5765a6a59b49b9125a5",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 86,
+          "rgbaSha256": "c1cb860b6dff237abafa19afd34852ef882f3662f117a0716740b3320705e920",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 87,
+          "rgbaSha256": "cefef9b5666e709ab3b85869f85123692dff6f94ebf9379819ad5df39902ec16",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 88,
+          "rgbaSha256": "b5cc2c5e1d4e4bccf1f234ad663c25d5d26c5104cecc72acedbfe19e4cf18943",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 89,
+          "rgbaSha256": "fc98b7c512ccca73ab49ec690597e730065f63fa0d3c8f6c0b7cf4f0eb1ac9f0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 90,
+          "rgbaSha256": "2a13525d675e5a4e86378ce9b496194d0d620330c51846fd455c9df174f6c66c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 91,
+          "rgbaSha256": "7afdf20672bdc829976d80748581c30d53060b87fb5026962da4b685600841a3",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 92,
+          "rgbaSha256": "39ce840d960a53f3488597ebd805e9dde8353a4f61c390969e11d7eeeb1bd39f",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 93,
+          "rgbaSha256": "bcd3214f9724e473301de082a36b207b0faf0520007e3e0d3da3a907cfff5326",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 94,
+          "rgbaSha256": "00f16c1e34e7189a36fd0acc6d41aa6e32b703fe1dfc22ddce7a6751aeebacb8",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 95,
+          "rgbaSha256": "e6e77d6fc2cd22232a97088285326f7a655e0e1b1c87616f367c82780f7a3838",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 96,
+          "rgbaSha256": "d59f5ba0f814e7a0aa35eec65dcee44876060133e1b3bfe94b6cbc564143ab17",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 97,
+          "rgbaSha256": "8ccfb43d5fd2f7b2e9f62436adf7d2ee696da75659a2a19ca3769d47b5c88d0f",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 98,
+          "rgbaSha256": "4ab8304c4588cba563cfcfc28cae87a7cd8b0b0a87aa89abb0b7147cb7cd1664",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 99,
+          "rgbaSha256": "620733bc5f439b323d36a8f848377f992dde8872593dfecf3e8263d2328ccf41",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 100,
+          "rgbaSha256": "14cec495fc3663348603e9664b2a27b3a80dc04f289326e75c025999de2eb642",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 101,
+          "rgbaSha256": "82b0983d54cc8c028ec4f8dc8cbeca8566d78ac2a6be01cbbdbe1be586abf7e6",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 102,
+          "rgbaSha256": "c64b64ae5ac2483a1c08ade0a597063231d59de21c22b895dcffedeb67cb8639",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 103,
+          "rgbaSha256": "4cab8499752875beae5405d77fcfa336095c384e16a12c527cd522f437a05d37",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 104,
+          "rgbaSha256": "4b268c66b1c14c29cc4200fd0456c9eda5501dd1ca805db48838026e10b4a835",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 105,
+          "rgbaSha256": "f3970cb9237eeed6dd23b88fcb0322f3048716b808e409125d53bf5fce32ffcf",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 106,
+          "rgbaSha256": "5d4ee64eaa110f23160cabd6d798a9d60182797cbdc027d765c1c6d457a8715f",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 107,
+          "rgbaSha256": "24a84b091fe12ce654315ca87c555d02ffaff080d5b5dff639302ab3ba486d81",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 108,
+          "rgbaSha256": "5113e853b42cc5dc32a6ccf31ac7cb568760e676dc25dbcd640c1765554f70e9",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 109,
+          "rgbaSha256": "fc927664df1d743ba01e2583e70af36f58e7aa5fd1203ae2db538c4c7e765e0a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 110,
+          "rgbaSha256": "a8ef01dba129e0e06485774f4d7482185e8f8dc45996473a13caeb5b11e01de0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 111,
+          "rgbaSha256": "be8abaed290bdeac0e5160e3bc0311178154f2d96813c0404657bc4180a2ab24",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 112,
+          "rgbaSha256": "b0102cd4a6e02789a65e65be07e9083262beb7949db644d1432fb72f95ef66a7",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 113,
+          "rgbaSha256": "80576f2cdd5bd362fdb022c93625a6f4093bf487f28c3c53a4306f3795d493a8",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 114,
+          "rgbaSha256": "5223ca5b064e7cef55793328ade2ce5776bd93455943c478f70c479fea965e3a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 115,
+          "rgbaSha256": "01b8ffd60dc368dc8518f6209e0d360d009bb6f064d2234fb62e6de49eb26ce9",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 116,
+          "rgbaSha256": "5d0d9e43605c5c9041981e82ee2972ce48d206bca924ebdc28ba329ff66560ac",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 117,
+          "rgbaSha256": "dc8732a41f5659831b3c0028ebf99f24f2cca17e9af7ab0906b7dae4f1c5f1fd",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 118,
+          "rgbaSha256": "d0fa09cb4fecff843d069a220d2898d63585bd386ed0b74638e3b689921b4be0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 119,
+          "rgbaSha256": "ac12245f807aa8a355f08dd66dc34e177450af92b023737be36616e7d270390b",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 120,
+          "rgbaSha256": "508c55ca1ff462237391468c540950d3197e0b468461eeb45277f10ae10d66ce",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 121,
+          "rgbaSha256": "18046a3756080fe025d4cfd9f8d20bb21e4698b5c4f75261acf0d66fc2933ab9",
+          "exactSourceRgba": true
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "sourceSha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+      "packSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "packBytes": 24565426,
+      "uniqueFrames": 96,
+      "nativeSize": [
+        704,
+        1056
+      ],
+      "anchor": {
+        "x": 352,
+        "y": 998,
+        "units": "pixels",
+        "origin": "top-left"
+      },
+      "pages": [
+        {
+          "file": "spritesheet.png",
+          "width": 6336,
+          "height": 6336,
+          "frameWidth": 704,
+          "frameHeight": 1056,
+          "columns": 9,
+          "rows": 6
+        },
+        {
+          "file": "spritesheet-1.png",
+          "width": 6336,
+          "height": 6336,
+          "frameWidth": 704,
+          "frameHeight": 1056,
+          "columns": 9,
+          "rows": 6
+        }
+      ],
+      "actions": {
+        "idle": {
+          "uniqueFrames": 4,
+          "ticks": 24,
+          "durationMs": 1000.0,
+          "loop": true,
+          "sourceFrameIds": [
+            0,
+            6,
+            12,
+            18
+          ]
+        },
+        "walk": {
+          "uniqueFrames": 25,
+          "ticks": 27,
+          "durationMs": 1125.0,
+          "loop": true,
+          "sourceFrameIds": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ]
+        },
+        "run": {
+          "uniqueFrames": 16,
+          "ticks": 16,
+          "durationMs": 666.6666666666666,
+          "loop": true,
+          "sourceFrameIds": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ]
+        },
+        "jump": {
+          "uniqueFrames": 39,
+          "ticks": 39,
+          "durationMs": 1625.0,
+          "loop": false,
+          "sourceFrameIds": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ]
+        },
+        "celebrate": {
+          "uniqueFrames": 12,
+          "ticks": 16,
+          "durationMs": 666.6666666666666,
+          "loop": true,
+          "sourceFrameIds": [
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            78,
+            79,
+            80,
+            81,
+            82
+          ]
+        }
+      },
+      "routes": [
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 34,
+          "entryFrameId": 55,
+          "reason": "Near leg planted beneath torso; enter corresponding support/pass phase before toe-off.",
+          "exit": 11,
+          "entry": 4
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exitFrameId": 46,
+          "entryFrameId": 63,
+          "reason": "Far leg planted beneath torso; enter opposite support/pass phase.",
+          "exit": 23,
+          "entry": 12
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 55,
+          "entryFrameId": 35,
+          "reason": "Near-leg support completes; continue same leg crossing into slower passing pose.",
+          "exit": 5,
+          "entry": 11
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exitFrameId": 63,
+          "entryFrameId": 47,
+          "reason": "Far-leg support completes; continue opposite-leg slower passing pose.",
+          "exit": 13,
+          "entry": 23
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 0,
+          "entryFrameId": 24,
+          "reason": "Canonical narrow stance at start of source walk; avoids entering long airborne stride.",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 0,
+          "entryFrameId": 55,
+          "reason": "Enter grounded near-leg passing support, not the source flight first frame51.",
+          "exit": 6,
+          "entry": 4
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 35,
+          "entryFrameId": 0,
+          "reason": "Near-leg planted, trailing leg near body; avoid long double-extension cut.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exitFrameId": 48,
+          "entryFrameId": 0,
+          "reason": "Opposite passing stance, legs close; remaining foot correction visible.",
+          "exit": 25,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 55,
+          "entryFrameId": 0,
+          "reason": "Near-leg passing support; feet near torso, no airborne freeze.",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exitFrameId": 63,
+          "entryFrameId": 0,
+          "reason": "Opposite-leg passing support, same bounded stopping policy.",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 0,
+          "entryFrameId": 83,
+          "reason": "Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible.",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 35,
+          "entryFrameId": 83,
+          "reason": "Request waits for near-leg support before full jump anticipation; no airborne interruption.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exitFrameId": 48,
+          "entryFrameId": 83,
+          "reason": "Opposite passing support before jump anticipation.",
+          "exit": 25,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 55,
+          "entryFrameId": 83,
+          "reason": "Grounded near-leg support before existing two-foot anticipation pose; not a newly drawn running leap.",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exitFrameId": 63,
+          "entryFrameId": 83,
+          "reason": "Opposite grounded support before full jump.",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "jump",
+          "exitFrameId": 82,
+          "entryFrameId": 83,
+          "reason": "Leave at lowest source hand/torso point, then existing jump crouch. Expression and arm change remain a cut.",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exitFrameId": 121,
+          "entryFrameId": 0,
+          "reason": "Complete true landing and upright recovery before idle; never cut during airborne frames.",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exitFrameId": 121,
+          "entryFrameId": 24,
+          "reason": "Only after full recovery to standing; enter canonical narrow walk start.",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exitFrameId": 121,
+          "entryFrameId": 55,
+          "reason": "Only after full recovery to standing; enter grounded run support.",
+          "exit": 39,
+          "entry": 4
+        },
+        {
+          "from": "jump",
+          "to": "celebrate",
+          "exitFrameId": 121,
+          "entryFrameId": 67,
+          "reason": "Only after full recovery. Source celebrate begins hands already raised; visible arm cut remains.",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 0,
+          "entryFrameId": 67,
+          "reason": "Enter lowest source celebrate pose; no arms-down lead-in exists.",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 35,
+          "entryFrameId": 67,
+          "reason": "Grounded passing stop into lowest celebrate pose; source arm jump remains.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exitFrameId": 48,
+          "entryFrameId": 67,
+          "reason": "Other grounded passing stop into lowest celebrate pose.",
+          "exit": 25,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 55,
+          "entryFrameId": 67,
+          "reason": "Wait for grounded near-leg support, then low celebrate pose.",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exitFrameId": 63,
+          "entryFrameId": 67,
+          "reason": "Wait for grounded far-leg support, then low celebrate pose.",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "idle",
+          "exitFrameId": 82,
+          "entryFrameId": 0,
+          "reason": "Wait for low/bent-knee end pose, minimizing arm drop. Still no true arms-down exit source frame.",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "walk",
+          "exitFrameId": 82,
+          "entryFrameId": 24,
+          "reason": "Low celebrate ending then narrow grounded walk start; arm/expression cut explicit.",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "run",
+          "exitFrameId": 82,
+          "entryFrameId": 55,
+          "reason": "Low celebrate ending then grounded run support; arm/expression cut explicit.",
+          "exit": 16,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 6,
+          "entryFrameId": 24,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Canonical narrow stance at start of source walk; avoids entering long airborne stride.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 12,
+          "entryFrameId": 24,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Canonical narrow stance at start of source walk; avoids entering long airborne stride.",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exitFrameId": 18,
+          "entryFrameId": 24,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Canonical narrow stance at start of source walk; avoids entering long airborne stride.",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 6,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter grounded near-leg passing support, not the source flight first frame51.",
+          "exit": 12,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 12,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter grounded near-leg passing support, not the source flight first frame51.",
+          "exit": 18,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exitFrameId": 18,
+          "entryFrameId": 55,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter grounded near-leg passing support, not the source flight first frame51.",
+          "exit": 24,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 6,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 12,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible.",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exitFrameId": 18,
+          "entryFrameId": 83,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Start full source anticipation. Source83 already crouched; hard-cut anticipation remains visible.",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 6,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter lowest source celebrate pose; no arms-down lead-in exists.",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 12,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter lowest source celebrate pose; no arms-down lead-in exists.",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exitFrameId": 18,
+          "entryFrameId": 67,
+          "reason": "Exit the next complete rest hold (at most 250ms at 1x). Enter lowest source celebrate pose; no arms-down lead-in exists.",
+          "exit": 24,
+          "entry": 0
+        }
+      ],
+      "decodedBytes": 321159168,
+      "frameFidelity": [
+        {
+          "frameId": 0,
+          "rgbaSha256": "aed0f61bb224a39ed44fd5719194c2e65ad2ccec52be7328829fabe278bade3e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 6,
+          "rgbaSha256": "95faf01803f14e2da2eeefd5af6bf73befc2efb9e0656446900ebfce7b3fa056",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 12,
+          "rgbaSha256": "7911c88d007c7641df1639e6eeb537431f677478b9b804f5cdb2b3c5e7540ebc",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 18,
+          "rgbaSha256": "3d246fffa28f13cfa0ea7c683aefe406189293f9a92c0c304fc6922968a27478",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 24,
+          "rgbaSha256": "68ccd395c665eb7bfd85b2b8d92511d044adeb69774bd3158c19966a0af102f5",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 25,
+          "rgbaSha256": "0c9fbf8ce213eea1618df5b39ef5d7bcb4656aed7b0ae4860da4224c179d8189",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 26,
+          "rgbaSha256": "d1f328e96dd69822c5f01e7f2876d4e49ec4a7d47b4ccce98acfbce4833bc90d",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 27,
+          "rgbaSha256": "37ab928c24d8add20c601657510935294e2bb5123f4d5b61cbe2a9ac4908f30f",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 28,
+          "rgbaSha256": "f43b11bffa6e22e539efe06cd0fd210cbd00a2ae47e7dfe8ba3d3657de81ee0b",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 30,
+          "rgbaSha256": "5990b8be317f8534c8409f5c01286723025d478f006b156036938954ce4174f8",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 31,
+          "rgbaSha256": "ff7aec010af1ee2864536355412413d8ef4e5f6e783f1e3d0d163545c17a884d",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 32,
+          "rgbaSha256": "54e10272a9656e4410c8380aa2dc20298d79cb796dbb64e23af29470b9b7c595",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 33,
+          "rgbaSha256": "fed72a7debcada32a46e6568dbff3a7948477fee5876396eeba0c12cf2299b63",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 34,
+          "rgbaSha256": "aaac979034abbd809309120cd09a248f1512f56599cce7becb98c8c39c0f1af0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 35,
+          "rgbaSha256": "a2b83550f3673ed003365a0d6e45b48f97b70c999aec1214794b05fbdf1a541c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 36,
+          "rgbaSha256": "c4b529101a9719e88d46cffc1adddd69f3f323a2a7d980f2a310a412fadb2491",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 37,
+          "rgbaSha256": "11fa59f410b0e33e50e3c567467d4d8cdb442d6c7a034b05c36cdee33748d060",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 38,
+          "rgbaSha256": "313b4031f3b1ef1695b5d05f45f237c400ec36ec8f5bc9b40915590095d2b807",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 39,
+          "rgbaSha256": "41c07d6dd43dfb762c6191014209afa4cc70c7d44632c54d44a0bd5a7777aa96",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 40,
+          "rgbaSha256": "db58a1f41366f4c2a3ca7fab950c57f8437d4e42017e0c23cac3836b24cac713",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 41,
+          "rgbaSha256": "b704b2ffaa93f9827f4f6c853d895d144ed2a7b089844c0fc86cf44294f7ac61",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 43,
+          "rgbaSha256": "d9ced37230e9c78b611dafbe3d36b00ba448feffd5dac65f8399b79602785f45",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 44,
+          "rgbaSha256": "bc8912fbea46ede8dc52de4a5a5cebd9863522b855c5a3c98a54668cafcb86ea",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 45,
+          "rgbaSha256": "ff42a0dd8b0f184ea6d3ce3b87b29362d7caaec5403671f3a80ff8d6ff115ed4",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 46,
+          "rgbaSha256": "ac0e528cb6c25c5ce7b2e1e94e9872a4e379e4c0e43fbfe11216414d26d88fe6",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 47,
+          "rgbaSha256": "f7ae19af3bf01447b0be343382b2900a36d7394e07e0b307b8310f7601ae0306",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 48,
+          "rgbaSha256": "8eaa4f9b8968c6f3a40625efde9a08dcc1445ee06f9158caec6483c47ce6d4c7",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 49,
+          "rgbaSha256": "fa9971445f6279121e74f9f2658659dbef1660c53eab711a6478327d56c66562",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 50,
+          "rgbaSha256": "46ea6b8e211b3502d7cdb279e7bed1438bc38e93963a9fa097978c3144ebbbea",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 51,
+          "rgbaSha256": "f2ea68d9bb18ff0bf8f469f9f43c182ce6de41998d55adba3f61e577e99d1009",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 52,
+          "rgbaSha256": "f257d560db904dac698bac39a2a3adfc989d84eacb3924c5eb8be55767c83edd",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 53,
+          "rgbaSha256": "de689e2c6befaef12fb586545ba8fecf9ce3259cfe1d8fb61fa412df50dab143",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 54,
+          "rgbaSha256": "5edcc12eca3d6accab2697bbb35d1de7b4570eceee5d87be5536247b434b7e61",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 55,
+          "rgbaSha256": "13c3721d7a559070e934a67782ca740fee74a8a72528715cb0013ab91a0297d1",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 56,
+          "rgbaSha256": "cacd3594d7bc5fe08441f74169e1052118a979aedfea7b122daa00d215e74d8e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 57,
+          "rgbaSha256": "77ad44ed1d57b4712dc1fbf8cb49635e4f8cd17e9a14fd2eef696405fb006e62",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 58,
+          "rgbaSha256": "e3808a40b29a19844130c530112ed874c346b8e7ecb775fe61db8852eb3c56bf",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 59,
+          "rgbaSha256": "136e1bb4bf2e432dbc3985d32820df325d7599d2a7e9bd5aa3aa8f3168c34d9a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 60,
+          "rgbaSha256": "22dfb18332e03bf60f086c18c50ceccd770397c43a64471b8552d2e58b1e49b7",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 61,
+          "rgbaSha256": "6756482be801f1c824c157958d98131ffd46e22b54b153767208355833ad2e20",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 62,
+          "rgbaSha256": "a068199b022e8926ff563db97ed63ec8327a375e2715d944374b11ddb5dfab1e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 63,
+          "rgbaSha256": "7bc09e46199424196547b1b96defdacb6ddf4ecffc52af25a1cbbf92bc0923d9",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 64,
+          "rgbaSha256": "a79ac8e13cedb56861e420b08bce0c564b9e4088ca0d0ec24cbf369b708b36a1",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 65,
+          "rgbaSha256": "43e990dd575b78004c8e61d4438f5ffe41fd94b85e30b8a8ba20ca6107231ac6",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 66,
+          "rgbaSha256": "b41e15cdbe699a1616f0d55ab6da46fa089957ebc36ea6af0eee8947c3527f9a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 67,
+          "rgbaSha256": "06f35c8c68fe7cb78a8a34f207ccabe6d8da692d9831515c97fab0c9dde084d3",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 70,
+          "rgbaSha256": "51f24d35705d60af6850e1e8457d60aff7db8b05e2d17a0a76bafd44fd3ab0aa",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 71,
+          "rgbaSha256": "e0aceeec65fe3fc9b0faaabe0752c50d79622c440d522d144d24868243b84662",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 72,
+          "rgbaSha256": "dc72725286f3401327845b3558b6290b03eba9af4433790a4e5e09a151f6bfa6",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 73,
+          "rgbaSha256": "289c5bcefee34b5249fc84a19e261e2522b769a0b0f9b6b4b568cf2e0ba6b46b",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 74,
+          "rgbaSha256": "f01bd03a5dba376a7e1ee575dcf533c6b555c93e237a48afe4d3bd5a53c6ce9d",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 75,
+          "rgbaSha256": "bc98a12efc08172a890e809edfbea8d12dfeca74ec64fa74e026814dc360a036",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 78,
+          "rgbaSha256": "a57f8e8f0d3ab786cdd07d4712223a4605d786d5122dc8e1adec1f201d6b21ac",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 79,
+          "rgbaSha256": "e58cf57b773f0c0d4694f13ecff2f967dc30f5d2fec6ff32be34063169ccec35",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 80,
+          "rgbaSha256": "bff4240f48575292aef28b1b142159ac524a4fb7e3202d8fa7d3d1e86e78fca8",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 81,
+          "rgbaSha256": "6aa8223d3304027aac1350bae281ba2ccb520d3afc2ec8022e09592bcafc69d3",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 82,
+          "rgbaSha256": "e5357e39f44e19c7245f8758776a4b2d2d361ee5bc2c082fe760e1f56837b749",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 83,
+          "rgbaSha256": "4b0e576ec30f7df9e0eb006f7e4d552a390ae351ce4e39c43fba783ef7267d9d",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 84,
+          "rgbaSha256": "5e55b52aa7b67f96c33a2a601fc104d62dc3ef5421592daa7dee40aff15ae77e",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 85,
+          "rgbaSha256": "d51ac9b7bf8450785318c8fa5d7c7d6351537286ed4b257c4508a440942ab22a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 86,
+          "rgbaSha256": "78fa4e0d4a0371c59e5e47809c455a4a4aa3bacef07393e032876f4c622f1249",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 87,
+          "rgbaSha256": "f582ac8b822bc20eb278ed5c810bdad173025eb862246155679401fe73a67829",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 88,
+          "rgbaSha256": "bb0b17f164b7bfa8eb0d5818c0a643d71344264d2801bc9307afb7817a7fe1f8",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 89,
+          "rgbaSha256": "255a3801a0cbe4810e3773aedb994a8911dc684852372a4382382fff3f74ea28",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 90,
+          "rgbaSha256": "4e0198688cb60c414c6ef20a16f1b6feecbfe2fd0ff6925f2a597b6418321263",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 91,
+          "rgbaSha256": "1d9923635e08c9579ca784579d7158c753878dcb0f80d00944b5008bf061ee89",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 92,
+          "rgbaSha256": "0bba3eb4449084831324892027a4540f0fcc491fe85ac2f9f7dc3d89620db77c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 93,
+          "rgbaSha256": "74190d3948ddb84144a4d55af4bebed2c84dfb1c618d23f347a741476302cc48",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 94,
+          "rgbaSha256": "449b05562e21e3bf2cf3a524bc1f238078e83f5834d78bd8f8845ebadd9683a0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 95,
+          "rgbaSha256": "7a4f9df6bd893c0221c70d0317e02ac879feaa58e51715511f225a88f00a653b",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 96,
+          "rgbaSha256": "d8e6a3ea2de90fb720fc8b33bd0d78fb51d30ca7d7b933105261a0e48476e2f8",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 97,
+          "rgbaSha256": "dea99f1dab28f74a643d1b3085a43508ef06f97b5090cc6cfdb7ae7fb695e090",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 98,
+          "rgbaSha256": "2899be52d6fac55e7e3f578a4371bff44cbfcd0518722529b8ddff0a0e8fd823",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 99,
+          "rgbaSha256": "93f1d3e6b167e1f3ad6d99bfc610361411dcde613f55f1f6eef1b753924472e5",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 100,
+          "rgbaSha256": "1a0b738890e7da888faad4fc586dd4ff1446cc6f01ef2864496536f6d4890da5",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 101,
+          "rgbaSha256": "a1cdd87a3bb8fae4e4b337756424e4428d7a9e5627846fa4e90ec1ca55a84443",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 102,
+          "rgbaSha256": "a62bae821b9a21c8deec183b85b5ee86ca8320f10be2ae47a7f863a2a7225967",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 103,
+          "rgbaSha256": "a318a8dd4d72398d92d6732550effd2df7299ee83689286750c6b36c17b9209c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 104,
+          "rgbaSha256": "59d097efe73e59791b9708c8ccd6ce5a13fe5f9bea5dc00ea051dd0edfc2d17c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 105,
+          "rgbaSha256": "c5b7dd7c27250c3479d8ac6e4d533c66dbe53fa4de2402a53efb7aad02b79049",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 106,
+          "rgbaSha256": "247aad3f3977c0669ec2dbea49b4455867038c4751f422f9ac6520a85e993e29",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 107,
+          "rgbaSha256": "27ec0e3ddc954a621499c203ac02c6eecf9127913dfb838cf79d3d3072a3d57a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 108,
+          "rgbaSha256": "30bc2a04eca64e124a198a61dd61f9bfa48f5467d517986e38445cf7d204be50",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 109,
+          "rgbaSha256": "0e4a077c070a5e0446f08e34e4614535cbc2aca1dfe8669166f758fc85511375",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 110,
+          "rgbaSha256": "32d7d1d44ec4fbd592a37099689ac2180c7630d3aea60b365cbf47f40a955fca",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 111,
+          "rgbaSha256": "417307ee9c905fecb7067020fdea5b1eb9caefceb2a27fe1948c4b1094b96fb0",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 112,
+          "rgbaSha256": "08c1ed59cc184f0c92bf14e799a296789903ec8951ac4831380c87b2513e4288",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 113,
+          "rgbaSha256": "cd82b1afdc47c26ff9e17e2db064f36a4130956cca1ef5e51918566766018a56",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 114,
+          "rgbaSha256": "848fc9b6fbd413a6f90586c135cadd25a5a3645c1b57b41fa31f6aa61f9bb07f",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 115,
+          "rgbaSha256": "63a5cd11bbf42eb194c77ea7f926160c2c767cf7d4f7a58640cfb5a2f13f8913",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 116,
+          "rgbaSha256": "a46e4d0b96d0bd551162870f8965c454aaeba088df98827f08af87a1e7764e3f",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 117,
+          "rgbaSha256": "176968e730fcf893d97c832a26bfdb35207c5b02a42ff667a376b090b412ef8c",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 118,
+          "rgbaSha256": "c2f5297a9b962ac343f9b970359a1a7e0ccb71f53b5a921f02cd161f99d1493b",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 119,
+          "rgbaSha256": "017b978e08dd90193871437fc49f608b58cbffc5b6c71e8684ede1d6b9b2baeb",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 120,
+          "rgbaSha256": "1049df661afc3d91121b6bbf487bc3074c00f7ebe1ec984c2736f755098d034a",
+          "exactSourceRgba": true
+        },
+        {
+          "frameId": 121,
+          "rgbaSha256": "34c2347a464050c0939b577f3e0843b91fbee11ac7da0d895a8b48a650c50da7",
+          "exactSourceRgba": true
+        }
+      ]
+    }
+  ]
+}

@@ -241,6 +241,16 @@ export function CharacterWorkbench() {
             </p>
             {selection.id && (
               <a
+                href={`/player.html?kling=${selection.id}&variant=motion`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Review motion &amp; transitions{" "}
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            )}
+            {selection.id && (
+              <a
                 href={`/player.html?kling=${selection.id}&variant=keyframes`}
                 target="_blank"
                 rel="noreferrer"

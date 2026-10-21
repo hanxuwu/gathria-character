@@ -27,7 +27,7 @@ export const KLING_CHARACTERS = [
 ] as const;
 
 export type KlingCharacterId = (typeof KLING_CHARACTERS)[number]["id"];
-export type KlingVariant = "original" | "keyframes";
+export type KlingVariant = "original" | "keyframes" | "motion";
 
 /** Explicit review candidates; original entries and default URLs stay unchanged. */
 export const KLING_KEYFRAME_CHARACTERS = [
@@ -49,8 +49,31 @@ export const KLING_KEYFRAME_CHARACTERS = [
   },
 ] as const;
 
+export const KLING_MOTION_CHARACTERS = [
+  {
+    id: "male",
+    name: "Kling male · motion & transitions",
+    packUrl: new URL(
+      "../../docs/kling-motion/exports/male.character.zip",
+      import.meta.url,
+    ).href,
+  },
+  {
+    id: "female",
+    name: "Kling female · motion & transitions",
+    packUrl: new URL(
+      "../../docs/kling-motion/exports/female.character.zip",
+      import.meta.url,
+    ).href,
+  },
+] as const;
+
 export function klingCharacters(variant: KlingVariant) {
-  return variant === "keyframes" ? KLING_KEYFRAME_CHARACTERS : KLING_CHARACTERS;
+  return variant === "motion"
+    ? KLING_MOTION_CHARACTERS
+    : variant === "keyframes"
+      ? KLING_KEYFRAME_CHARACTERS
+      : KLING_CHARACTERS;
 }
 
 export function isKlingCharacterId(id: unknown): id is KlingCharacterId {
