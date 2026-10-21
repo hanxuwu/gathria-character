@@ -1,11 +1,13 @@
 import { strToU8, zipSync } from "fflate";
 import { readBoundedArchive } from "../core/bounded-archive";
-import {
-  readPortableCharacterPackArchive,
-  type PortableCharacterPackArchive,
-} from "../core/pack";
+import type { PortableCharacterPackArchive } from "../core/pack";
 import { BAKED_MAX_ARCHIVE_BYTES } from "../core/pack-v2";
 import { sha256 } from "../core/sha256";
+import {
+  assertSourcePreparationActive,
+  prepareSourceArchive,
+  type SourcePreparationOptions,
+} from "../core/source-preparation";
 import { checkPageHeader, validateGarmentPage } from "./garment-pages";
 import {
   WARDROBE_MAX_ITEMS,
@@ -37,13 +39,16 @@ const sourceCache = new Map<
 
 /** A hash-verified private cache avoids repeating CRC scans of an unchanged
  * 25 MiB source at every outfit selection. Public typed arrays never alias it. */
-function sourceArchive(
+async function sourceArchive(
   bytes: Uint8Array,
   hash: string,
-): PortableCharacterPackArchive {
+  options: SourcePreparationOptions,
+): Promise<PortableCharacterPackArchive> {
+  assertSourcePreparationActive(options);
   let cached = sourceCache.get(hash);
   if (!cached) {
-    const archive = readPortableCharacterPackArchive(new Uint8Array(bytes));
+    const archive = await prepareSourceArchive(bytes, options);
+    assertSourcePreparationActive(options);
     cached = {
       archive,
       bytes:
@@ -104,7 +109,7 @@ function garmentFiles(hash: string, load: () => Record<string, Uint8Array>) {
   return structuredClone(cached.files);
 }
 
-export interface WardrobeValidationOptions {
+export interface WardrobeValidationOptions extends SourcePreparationOptions {
   /** False is for preview preflight only; import and persistence always decode. */
   decodeGarments?: boolean;
 }
@@ -141,6 +146,7 @@ export async function readWardrobeGarment(
   registrationSha256: string,
   options: WardrobeValidationOptions = {},
 ): Promise<WardrobeGarment> {
+  assertSourcePreparationActive(options);
   const allowed: Record<string, number> = {
     "manifest.json": WARDROBE_MAX_METADATA_BYTES,
   };
@@ -154,6 +160,7 @@ export async function readWardrobeGarment(
     throw Error("Garment archive exceeds its size limit.");
   const copied = new Uint8Array(bytes);
   const hash = await sha256(copied);
+  assertSourcePreparationActive(options);
   const files = garmentFiles(hash, () =>
     readBoundedArchive(copied, {
       label: "Garment archive",
@@ -175,6 +182,7 @@ export async function readWardrobeGarment(
     throw Error("Garment archive has undeclared pages.");
   const pages: WardrobeGarment["pages"] = [];
   for (const page of manifest.pages) {
+    assertSourcePreparationActive(options);
     const patch = files[page.file],
       ownership = files[page.maskFile];
     if (!patch || !ownership)
@@ -190,10 +198,16 @@ export async function readWardrobeGarment(
       );
     pages.push({ patch, ownership });
   }
+  assertSourcePreparationActive(options);
   return { bytes: copied, sha256: hash, manifest, pages };
 }
 
-async function createBase(source: Uint8Array, registrationBytes: Uint8Array) {
+async function createBase(
+  source: Uint8Array,
+  registrationBytes: Uint8Array,
+  options: SourcePreparationOptions,
+) {
+  assertSourcePreparationActive(options);
   if (source.length > BAKED_MAX_ARCHIVE_BYTES)
     throw Error("Original CharacterPack must be at most 64 MiB.");
   if (registrationBytes.length > WARDROBE_MAX_METADATA_BYTES)
@@ -201,19 +215,22 @@ async function createBase(source: Uint8Array, registrationBytes: Uint8Array) {
   const bytes = new Uint8Array(source),
     registered = new Uint8Array(registrationBytes);
   const sourceSha256 = await sha256(bytes),
-    archive = sourceArchive(bytes, sourceSha256);
+    archive = await sourceArchive(bytes, sourceSha256, options);
+  assertSourcePreparationActive(options);
   const registration = validateWardrobeRegistration(
     parse(registered, "Wardrobe registration"),
     archive,
     sourceSha256,
   );
+  const registrationSha256 = await sha256(registered);
+  assertSourcePreparationActive(options);
   return {
     source: bytes,
     archive,
     registrationBytes: registered,
     registration,
     sourceSha256,
-    registrationSha256: await sha256(registered),
+    registrationSha256,
   };
 }
 function checkInventory(
@@ -246,12 +263,14 @@ export async function createWardrobeProject(
   source: Uint8Array,
   registrationBytes: Uint8Array,
   items: Uint8Array[] = [],
+  options: SourcePreparationOptions = {},
 ): Promise<WardrobeProject> {
+  assertSourcePreparationActive(options);
   if (items.length > WARDROBE_MAX_ITEMS)
     throw Error(
       `A wardrobe project supports at most ${WARDROBE_MAX_ITEMS} garments.`,
     );
-  const base = await createBase(source, registrationBytes),
+  const base = await createBase(source, registrationBytes, options),
     garments: WardrobeGarment[] = [];
   // Serial decode bounds peak memory; rejected imports never mutate a live project.
   for (const bytes of items)
@@ -260,9 +279,11 @@ export async function createWardrobeProject(
         bytes,
         base.registration,
         base.registrationSha256,
+        { signal: options.signal },
       ),
     );
   const inventory = canonicalItems(garments);
+  assertSourcePreparationActive(options);
   checkInventory({ ...base, items: inventory });
   return {
     source: base.source,
@@ -348,8 +369,13 @@ export async function validateWardrobeProject(
   project: WardrobeProject,
   options: WardrobeValidationOptions = {},
 ): Promise<WardrobeProject> {
+  assertSourcePreparationActive(options);
   checkInventory(project);
-  const base = await createBase(project.source, project.registrationBytes);
+  const base = await createBase(
+    project.source,
+    project.registrationBytes,
+    options,
+  );
   if (base.sourceSha256 !== project.document.sourceSha256)
     throw Error("Wardrobe source checksum mismatch.");
   if (base.registrationSha256 !== project.document.registrationSha256)
@@ -365,6 +391,7 @@ export async function validateWardrobeProject(
       ),
     );
   checkInventory({ ...base, items });
+  assertSourcePreparationActive(options);
   const document = validateWardrobeDocument(project.document, {
     archive: base.archive,
     items,
@@ -408,7 +435,9 @@ export async function exportWardrobeProject(
 
 export async function importWardrobeProject(
   bytes: Uint8Array,
+  options: SourcePreparationOptions = {},
 ): Promise<WardrobeProject> {
+  assertSourcePreparationActive(options);
   const allowed: Record<string, number> = {
     "document.json": DOCUMENT_MAX_BYTES,
     "source.character.zip": BAKED_MAX_ARCHIVE_BYTES,
@@ -448,6 +477,7 @@ export async function importWardrobeProject(
     );
   const itemBytes: Uint8Array[] = [];
   for (let i = 0; i < raw.items.length; i++) {
+    assertSourcePreparationActive(options);
     const bytes = files[`item-${i}.zip`];
     if (!bytes) throw Error("Wardrobe project is missing an embedded garment.");
     const ref = wardrobeObject(raw.items[i], "Item reference", [
@@ -462,6 +492,7 @@ export async function importWardrobeProject(
     files["source.character.zip"],
     files["registration.json"],
     itemBytes,
+    options,
   );
   const document = validateWardrobeDocument(raw, project);
   if (document.sourceSha256 !== project.document.sourceSha256)

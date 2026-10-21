@@ -185,7 +185,7 @@ const report = {
     execution:
       "Sequential; two builds served by identical loopback servers with no compression, no-store headers, and all build files preloaded in memory before timing.",
     timing:
-      "Navigation start / captured preset click to the first observed ready canvas and non-busy status. Resource responseEnd values define transfer boundaries; these do not isolate import, validation, or PNG decoding.",
+      "Navigation start / captured preset click to the first observed ready canvas and non-busy status. First canvas is observed after application pixel drawing and frame metadata assignment, not a hardware display timestamp. Resource responseEnd values define transfer boundaries; these do not isolate import, validation, or PNG decoding. Blocking time sums max(0, main-thread long-task duration - 50 ms) within each stage.",
     limitations:
       "Small, order-balanced same-host sample. No browser instrumentation enters application functions. CPU contention and JIT/runtime variation may hide or exaggerate gains; report all runs and ranges. Startup and first-use preset results are separate; presets share the already-decoded source within that case.",
   },
@@ -245,6 +245,7 @@ function browserInstrumentation() {
     longTasks: [],
     ready: [],
     clicks: [],
+    firstRenderedCanvasAt: null,
   });
   let previous = "";
   const observe = () => {
@@ -259,6 +260,8 @@ function browserInstrumentation() {
       busy,
       frameId: canvas?.dataset.renderedFrameId ?? null,
     };
+    if (snapshot.frameId && state.firstRenderedCanvasAt === null)
+      state.firstRenderedCanvasAt = performance.now();
     const key = JSON.stringify(snapshot);
     if (key === previous) return;
     previous = key;
@@ -368,6 +371,10 @@ function stages(run, from, to, logicalAssets) {
     ),
     longTaskTotalMs: tasks.reduce((sum, task) => sum + task.duration, 0),
     longTaskMaxMs: Math.max(0, ...tasks.map((task) => task.duration)),
+    blockingTimeMs: tasks.reduce(
+      (sum, task) => sum + Math.max(0, task.duration - 50),
+      0,
+    ),
     assets,
   };
 }
@@ -392,6 +399,7 @@ try {
           startedAt: new Date().toISOString(),
           hostBefore: { loadAverage: loadavg(), freeMemory: freemem() },
           looks: [],
+          sourceWorkers: [],
         };
         report.runs.push(run);
         browser = await chromium.launch({
@@ -406,6 +414,17 @@ try {
         });
         await context.addInitScript(browserInstrumentation);
         const page = await context.newPage();
+        page.on("worker", (worker) => {
+          if (!worker.url().includes("source-preparation.worker")) return;
+          const observation = {
+            url: new URL(worker.url()).pathname,
+            closed: false,
+          };
+          run.sourceWorkers.push(observation);
+          worker.on("close", () => {
+            observation.closed = true;
+          });
+        });
         const cdp = await context.newCDPSession(page);
         await cdp.send("Network.enable");
         await cdp.send("Network.setCacheDisabled", { cacheDisabled: true });
@@ -504,6 +523,8 @@ try {
           entry.sourceUrl.slice(1),
           entry.registrationUrl.slice(1),
         ]);
+        assert(Number.isFinite(run.probe.firstRenderedCanvasAt));
+        run.initial.firstRenderedCanvasMs = run.probe.firstRenderedCanvasAt;
         const seen = new Set();
         for (const selected of run.looks) {
           const paths = Object.values(selected.selection)
@@ -567,6 +588,22 @@ try {
           minMs: Math.min(...ms),
           maxMs: Math.max(...ms),
         };
+        for (const metric of [
+          "longTaskTotalMs",
+          "longTaskMaxMs",
+          "blockingTimeMs",
+          ...(stage === "original" ? ["firstRenderedCanvasMs"] : []),
+        ]) {
+          const values = runs
+            .filter((run) => run.label === label)
+            .map((run) => get(run)[metric]);
+          summary[label][metric] = {
+            values,
+            median: median(values),
+            min: Math.min(...values),
+            max: Math.max(...values),
+          };
+        }
       }
       summary.medianChangeMs =
         summary.candidate.medianMs - summary.baseline.medianMs;

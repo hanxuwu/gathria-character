@@ -5,6 +5,7 @@ import {
   BAKED_SOURCE_ACTIONS,
   convertSourceCharacter,
   decodeSourceRgbaPng,
+  decodeSourceRgbaPngAsync,
   encodeSourceRgbaPng,
   importBakedSourceArchive,
   inspectBakedArchiveKind,
@@ -590,6 +591,133 @@ describe("bounded exact RGBA PNG codec", () => {
     expect(() => decodeSourceRgbaPng(badZlib)).toThrow("zlib checksum");
     expect(() => decodeSourceRgbaPng(independentPng(0).slice(0, -1))).toThrow(
       "Truncated",
+    );
+  });
+});
+
+describe("asynchronous exact RGBA PNG decode", () => {
+  it.each([0, 1, 2, 3, 4])(
+    "matches synchronous filter %i, including hidden RGB and partial alpha",
+    async (filter) => {
+      const png = independentPng(filter);
+      const decoded = await decodeSourceRgbaPngAsync(png, { width, height });
+      expect(decoded).toEqual(decodeSourceRgbaPng(png, { width, height }));
+      expect(decoded.pixels).toEqual(pixels(9));
+    },
+  );
+
+  it("retains exact color chunks and split Adler bytes across empty IDATs", async () => {
+    const png = independentPng(4),
+      length = new DataView(png.buffer).getUint32(33),
+      compressed = png.subarray(41, 41 + length);
+    const profiles = [
+      pngChunk("sRGB", new Uint8Array([0])),
+      pngChunk("gAMA", new Uint8Array([0, 0, 177, 143])),
+    ];
+    const split = concat(
+      png.subarray(0, 33),
+      ...profiles,
+      pngChunk("IDAT", compressed.subarray(0, compressed.length - 4)),
+      ...Array.from(compressed.subarray(-4)).flatMap((byte) => [
+        pngChunk("IDAT", new Uint8Array()),
+        pngChunk("IDAT", new Uint8Array([byte])),
+      ]),
+      pngChunk("IDAT", new Uint8Array()),
+      pngChunk("IEND", new Uint8Array()),
+    );
+    const output = await decodeSourceRgbaPngAsync(split);
+    expect(output).toEqual(decodeSourceRgbaPng(split));
+    expect(output.colorChunks).toEqual(profiles);
+    expect(output.pixels).toEqual(pixels(9));
+  });
+
+  it("owns input bytes while asynchronous inflation is pending", async () => {
+    const input = independentPng(2);
+    const expected = decodeSourceRgbaPng(input);
+    const pending = decodeSourceRgbaPngAsync(input);
+    input.fill(0);
+    expect(await pending).toEqual(expected);
+  });
+
+  it("rejects bad PNG CRC, Adler, filters, dimensions and truncated data", async () => {
+    const corrupt = independentPng(0);
+    corrupt[50] ^= 1;
+    await expect(decodeSourceRgbaPngAsync(corrupt)).rejects.toThrow("checksum");
+    const badZlib = independentPng(0),
+      view = new DataView(badZlib.buffer),
+      length = view.getUint32(33);
+    badZlib[41 + length - 1] ^= 1;
+    view.setUint32(41 + length, crc32(badZlib.subarray(37, 41 + length)));
+    await expect(decodeSourceRgbaPngAsync(badZlib)).rejects.toThrow(
+      "compressed image data",
+    );
+    await expect(
+      decodeSourceRgbaPngAsync(independentPng(0, 2)),
+    ).rejects.toThrow("8-bit RGBA");
+    await expect(
+      decodeSourceRgbaPngAsync(independentPng(0, 6, 1)),
+    ).rejects.toThrow("declared dimensions");
+    await expect(decodeSourceRgbaPngAsync(independentPng(5))).rejects.toThrow(
+      "row filter",
+    );
+    await expect(
+      decodeSourceRgbaPngAsync(independentPng(0), { width: width + 1, height }),
+    ).rejects.toThrow("canvas");
+    await expect(
+      decodeSourceRgbaPngAsync(independentPng(0).subarray(0, -1)),
+    ).rejects.toThrow("Truncated");
+    const valid = independentPng(0),
+      validLength = new DataView(valid.buffer).getUint32(33),
+      truncatedStream = concat(
+        valid.subarray(0, 33),
+        pngChunk("IDAT", valid.subarray(41, 41 + validLength - 2)),
+        pngChunk("IEND", new Uint8Array()),
+      );
+    await expect(decodeSourceRgbaPngAsync(truncatedStream)).rejects.toThrow(
+      "compressed image data",
+    );
+  });
+
+  it("rejects invalid stored DEFLATE and trailing streams with valid PNG checksums", async () => {
+    const stored = independentPng(0, 6, 0, true),
+      view = new DataView(stored.buffer),
+      length = view.getUint32(33);
+    stored[46] ^= 1;
+    view.setUint32(41 + length, crc32(stored.subarray(37, 41 + length)));
+    const valid = independentPng(0),
+      validLength = new DataView(valid.buffer).getUint32(33);
+    for (const extra of [new Uint8Array([0]), zlibSync(new Uint8Array([0]))]) {
+      const trailing = concat(
+        valid.subarray(0, 33),
+        pngChunk("IDAT", concat(valid.subarray(41, 41 + validLength), extra)),
+        pngChunk("IEND", new Uint8Array()),
+      );
+      await expect(decodeSourceRgbaPngAsync(trailing)).rejects.toThrow(
+        "compressed image data",
+      );
+    }
+    await expect(decodeSourceRgbaPngAsync(stored)).rejects.toThrow(
+      "compressed image data",
+    );
+  });
+
+  it("rejects abort before work and during pending inflation without returning pixels", async () => {
+    const before = new AbortController();
+    before.abort();
+    await expect(
+      decodeSourceRgbaPngAsync(independentPng(0), undefined, {
+        signal: before.signal,
+      }),
+    ).rejects.toMatchObject({ name: "AbortError" });
+    const during = new AbortController();
+    const pending = decodeSourceRgbaPngAsync(independentPng(0), undefined, {
+      signal: during.signal,
+    });
+    during.abort();
+    await expect(pending).rejects.toMatchObject({ name: "AbortError" });
+    // An aborted stream must not poison another decode in the same runtime.
+    expect((await decodeSourceRgbaPngAsync(independentPng(0))).pixels).toEqual(
+      pixels(9),
     );
   });
 });

@@ -11,6 +11,11 @@ import {
   validatePortableManifest,
 } from "../core/pack";
 import { BAKED_MAX_ARCHIVE_BYTES } from "../core/pack-v2";
+import {
+  assertSourcePreparationActive,
+  prepareSourcePng,
+  type SourcePreparationOptions,
+} from "../core/source-preparation";
 import type {
   BakedCharacterPackManifest,
   BakedCharacterRecipe,
@@ -222,6 +227,33 @@ class RegisteredWardrobeCompositor {
     return image;
   }
 
+  private async ensureSourcePage(
+    page: number,
+    options: SourcePreparationOptions,
+  ): Promise<void> {
+    assertSourcePreparationActive(options);
+    this.assertOpen();
+    const key = `${this.project.document.sourceSha256}:${page}`;
+    if (sourcePages.has(key)) {
+      this.source(page);
+      return;
+    }
+    const archive = this.project.archive;
+    const sheet =
+      page === 0
+        ? this.manifest.spritesheet
+        : this.manifest.schemaVersion === 3
+          ? this.manifest.additionalSheets[page - 1]
+          : undefined;
+    const png = page === 0 ? archive.png : archive.additionalPngs?.[page - 1];
+    if (!sheet || !png)
+      throw Error(`Source atlas page ${page} is unavailable.`);
+    const image = await prepareSourcePng(png, sheet, options);
+    assertSourcePreparationActive(options);
+    this.assertOpen();
+    cacheSourcePage(key, image);
+  }
+
   private garmentPage(
     selected: SelectedGarment,
     page: number,
@@ -356,6 +388,18 @@ class RegisteredWardrobeCompositor {
       this.assertOpen();
     };
     abort();
+    const sourcePageCount = new Set(frames.map((frame) => frame.page ?? 0))
+      .size;
+    const preparedPages = new Set<number>();
+    options.onSourceProgress?.(0, sourcePageCount);
+    const preparePage = async (page: number) => {
+      await this.ensureSourcePage(page, options);
+      abort();
+      if (!preparedPages.has(page)) {
+        preparedPages.add(page);
+        options.onSourceProgress?.(preparedPages.size, sourcePageCount);
+      }
+    };
     if (validAppearances.has(this.appearanceKey)) {
       options.onProgress?.(0, frames.length);
       // A previously validated look may have been evicted while another
@@ -363,7 +407,7 @@ class RegisteredWardrobeCompositor {
       // the middle of the next running or jumping loop. No pixels are changed.
       for (const page of new Set(frames.map((frame) => frame.page ?? 0))) {
         abort();
-        this.source(page);
+        await preparePage(page);
         await new Promise<void>((resolve) => setTimeout(resolve, 0));
       }
       for (const selected of this.selected)
@@ -383,6 +427,7 @@ class RegisteredWardrobeCompositor {
     options.onProgress?.(0, frames.length);
     for (let i = 0; i < frames.length; i++) {
       abort();
+      await preparePage(frames[i].page ?? 0);
       this.renderFrame(frames[i].id);
       options.onProgress?.(i + 1, frames.length);
       // Give progress, cancellation and the current preview a chance to paint.
@@ -404,6 +449,7 @@ export type WardrobeCompositor = RegisteredWardrobeCompositor;
 
 export interface WardrobeAppearanceOptions {
   onProgress?: (completedFrames: number, totalFrames: number) => void;
+  onSourceProgress?: (completedPages: number, totalPages: number) => void;
   signal?: AbortSignal;
 }
 
@@ -419,12 +465,16 @@ export async function validateWardrobeAppearance(
 
 export async function createWardrobeCompositor(
   project: WardrobeProject,
+  options: SourcePreparationOptions = {},
 ): Promise<WardrobeCompositor> {
   // Import has validated every garment. At preview boundaries recheck immutable
   // byte bindings, but defer each selected page's pixel validation until use.
-  return new RegisteredWardrobeCompositor(
-    await validateWardrobeProject(project, { decodeGarments: false }),
-  );
+  const verified = await validateWardrobeProject(project, {
+    ...options,
+    decodeGarments: false,
+  });
+  assertSourcePreparationActive(options);
+  return new RegisteredWardrobeCompositor(verified);
 }
 
 export async function exportWardrobeFramePng(
