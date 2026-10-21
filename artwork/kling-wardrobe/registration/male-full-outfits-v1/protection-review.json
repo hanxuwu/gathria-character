@@ -1,0 +1,1453 @@
+{
+  "format": "gathria-source-protection-review",
+  "version": 1,
+  "oldRegistrationSha256": "7b49caa860b56b88256ae7c9d8c299812b0974e82f54a377558522ba62ff16c1",
+  "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+  "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+  "landmarksAndHeadPolygonsUnchanged": true,
+  "corrections": [
+    {
+      "frameId": 36,
+      "label": "farHand",
+      "polygon": [
+        {
+          "x": 505,
+          "y": 736
+        },
+        {
+          "x": 481,
+          "y": 736
+        },
+        {
+          "x": 484,
+          "y": 739
+        },
+        {
+          "x": 490,
+          "y": 757
+        },
+        {
+          "x": 492,
+          "y": 768
+        },
+        {
+          "x": 493,
+          "y": 782
+        },
+        {
+          "x": 495,
+          "y": 788
+        },
+        {
+          "x": 505,
+          "y": 777
+        },
+        {
+          "x": 509,
+          "y": 769
+        },
+        {
+          "x": 509,
+          "y": 762
+        },
+        {
+          "x": 511,
+          "y": 763
+        },
+        {
+          "x": 511,
+          "y": 758
+        },
+        {
+          "x": 509,
+          "y": 759
+        },
+        {
+          "x": 511,
+          "y": 754
+        },
+        {
+          "x": 509,
+          "y": 753
+        }
+      ],
+      "reassignedTo": "farLeg",
+      "reason": "The far fist touches the thigh; remove the large thigh lobe while retaining the visible hand along the body edge.",
+      "removedPixels": 6932,
+      "addedPixels": 0,
+      "removedVisiblePixels": 6925,
+      "addedVisiblePixels": 0,
+      "removedMask": "036-farHand-removed.png",
+      "removedMaskSha256": "ecd999518a217b4656d6926450c22df6e50e9a9bec175aad5c9552670c3740f9",
+      "addedMask": "036-farHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 36,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 228,
+          "y": 783
+        },
+        {
+          "x": 228,
+          "y": 787
+        },
+        {
+          "x": 234,
+          "y": 793
+        },
+        {
+          "x": 243,
+          "y": 795
+        },
+        {
+          "x": 248,
+          "y": 798
+        },
+        {
+          "x": 253,
+          "y": 799
+        },
+        {
+          "x": 268,
+          "y": 801
+        },
+        {
+          "x": 281,
+          "y": 798
+        },
+        {
+          "x": 294,
+          "y": 793
+        },
+        {
+          "x": 304,
+          "y": 786
+        },
+        {
+          "x": 305,
+          "y": 777
+        },
+        {
+          "x": 308,
+          "y": 773
+        },
+        {
+          "x": 308,
+          "y": 746
+        },
+        {
+          "x": 301,
+          "y": 731
+        },
+        {
+          "x": 295,
+          "y": 725
+        }
+      ],
+      "reassignedTo": "nearLeg",
+      "reason": "The touching thigh was included in the source skin component under the hanging fist. Follow the visible dark finger-bottom contour.",
+      "removedPixels": 4337,
+      "addedPixels": 0,
+      "removedVisiblePixels": 4322,
+      "addedVisiblePixels": 0,
+      "removedMask": "036-nearHand-removed.png",
+      "removedMaskSha256": "22740074774ed5b153e13fa73e44f9c0968746543f52af0f21d2ab9adaf4d147",
+      "addedMask": "036-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 37,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 317,
+          "y": 721
+        },
+        {
+          "x": 258,
+          "y": 764
+        },
+        {
+          "x": 248,
+          "y": 774
+        },
+        {
+          "x": 254,
+          "y": 783
+        },
+        {
+          "x": 264,
+          "y": 791
+        },
+        {
+          "x": 282,
+          "y": 797
+        },
+        {
+          "x": 303,
+          "y": 797
+        },
+        {
+          "x": 320,
+          "y": 791
+        },
+        {
+          "x": 330,
+          "y": 781
+        },
+        {
+          "x": 330,
+          "y": 771
+        },
+        {
+          "x": 336,
+          "y": 766
+        },
+        {
+          "x": 336,
+          "y": 750
+        },
+        {
+          "x": 332,
+          "y": 736
+        }
+      ],
+      "reassignedTo": "nearLeg",
+      "reason": "Replace the connected thigh lobe below the fist with the observed rounded finger-bottom contour.",
+      "removedPixels": 4767,
+      "addedPixels": 0,
+      "removedVisiblePixels": 4734,
+      "addedVisiblePixels": 0,
+      "removedMask": "037-nearHand-removed.png",
+      "removedMaskSha256": "55a178794ee6788ad1a172e5a57feda667a571f9f0981642df64506d40c5cdfb",
+      "addedMask": "037-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 39,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 381,
+          "y": 733
+        },
+        {
+          "x": 371,
+          "y": 719
+        },
+        {
+          "x": 360,
+          "y": 710
+        },
+        {
+          "x": 353,
+          "y": 708
+        },
+        {
+          "x": 297,
+          "y": 737
+        },
+        {
+          "x": 298,
+          "y": 762
+        },
+        {
+          "x": 300,
+          "y": 770
+        },
+        {
+          "x": 308,
+          "y": 783
+        },
+        {
+          "x": 321,
+          "y": 795
+        },
+        {
+          "x": 337,
+          "y": 796
+        },
+        {
+          "x": 352,
+          "y": 789
+        },
+        {
+          "x": 360,
+          "y": 778
+        },
+        {
+          "x": 369,
+          "y": 768
+        },
+        {
+          "x": 375,
+          "y": 765
+        },
+        {
+          "x": 381,
+          "y": 748
+        }
+      ],
+      "reassignedTo": "nearLeg",
+      "reason": "The segmentation followed exposed thigh instead of the fist edge. The revised bottom edge follows the actual fist outline.",
+      "removedPixels": 4422,
+      "addedPixels": 0,
+      "removedVisiblePixels": 4395,
+      "addedVisiblePixels": 0,
+      "removedMask": "039-nearHand-removed.png",
+      "removedMaskSha256": "3f0ee1f5a06e58813838cc57dc87eac4c9fdfc84f45c7ac6566f77877ab0caea",
+      "addedMask": "039-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 48,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 327,
+          "y": 735
+        },
+        {
+          "x": 246,
+          "y": 747
+        },
+        {
+          "x": 246,
+          "y": 769
+        },
+        {
+          "x": 248,
+          "y": 775
+        },
+        {
+          "x": 250,
+          "y": 779
+        },
+        {
+          "x": 258,
+          "y": 788
+        },
+        {
+          "x": 265,
+          "y": 793
+        },
+        {
+          "x": 274,
+          "y": 797
+        },
+        {
+          "x": 290,
+          "y": 795
+        },
+        {
+          "x": 307,
+          "y": 789
+        },
+        {
+          "x": 322,
+          "y": 778
+        },
+        {
+          "x": 324,
+          "y": 771
+        },
+        {
+          "x": 322,
+          "y": 765
+        },
+        {
+          "x": 331,
+          "y": 758
+        },
+        {
+          "x": 330,
+          "y": 742
+        }
+      ],
+      "reassignedTo": "nearLeg",
+      "reason": "Remove the bent-thigh crescent attached to the hand component. Preserve the source knuckles and fingertip outline.",
+      "removedPixels": 6854,
+      "addedPixels": 14,
+      "removedVisiblePixels": 6823,
+      "addedVisiblePixels": 6,
+      "removedMask": "048-nearHand-removed.png",
+      "removedMaskSha256": "b90b1ae7bd82adc6a40aec6bf7a3d520ce4878fe990749a9f42daa0fefee16e0",
+      "addedMask": "048-nearHand-added.png",
+      "addedMaskSha256": "fc45b7af3c106da0a5598795407d3ac74baef0b1c7cb5fbaef8e754feee8e11e"
+    },
+    {
+      "frameId": 64,
+      "label": "farHand",
+      "polygon": [
+        {
+          "x": 532,
+          "y": 630
+        },
+        {
+          "x": 544,
+          "y": 621
+        },
+        {
+          "x": 565,
+          "y": 617
+        },
+        {
+          "x": 589,
+          "y": 619
+        },
+        {
+          "x": 601,
+          "y": 628
+        },
+        {
+          "x": 608,
+          "y": 642
+        },
+        {
+          "x": 611,
+          "y": 666
+        },
+        {
+          "x": 607,
+          "y": 693
+        },
+        {
+          "x": 596,
+          "y": 708
+        },
+        {
+          "x": 579,
+          "y": 715
+        },
+        {
+          "x": 560,
+          "y": 712
+        },
+        {
+          "x": 538,
+          "y": 704
+        },
+        {
+          "x": 523,
+          "y": 698
+        }
+      ],
+      "reassignedTo": "farArm",
+      "reason": "The old wrist-axis cut crossed the actual fingers and overprotected forearm. Source-native contour review protects the whole fist, with a conservative wrist cut where the video gives no crease.",
+      "removedPixels": 3365,
+      "addedPixels": 3599,
+      "removedVisiblePixels": 3359,
+      "addedVisiblePixels": 3225,
+      "removedMask": "064-farHand-removed.png",
+      "removedMaskSha256": "f5902dbf5075dafac8bcb4e085f478451011bed07db255bb329fee17b646be6c",
+      "addedMask": "064-farHand-added.png",
+      "addedMaskSha256": "8f739bca9ca7ad82e607a92c0de3b96ea9a44a163dac12e44c4efe52395f9506"
+    },
+    {
+      "frameId": 83,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 308,
+          "y": 652
+        },
+        {
+          "x": 313,
+          "y": 730
+        },
+        {
+          "x": 321,
+          "y": 730
+        },
+        {
+          "x": 334,
+          "y": 725
+        },
+        {
+          "x": 347,
+          "y": 726
+        },
+        {
+          "x": 354,
+          "y": 723
+        },
+        {
+          "x": 361,
+          "y": 704
+        },
+        {
+          "x": 366,
+          "y": 684
+        },
+        {
+          "x": 365,
+          "y": 663
+        },
+        {
+          "x": 354,
+          "y": 652
+        },
+        {
+          "x": 344,
+          "y": 648
+        },
+        {
+          "x": 334,
+          "y": 648
+        },
+        {
+          "x": 325,
+          "y": 646
+        },
+        {
+          "x": 317,
+          "y": 647
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The returning fist was grouped with the shoulder cap. Follow the visible upper fist crease and preserve the full finger silhouette.",
+      "removedPixels": 1113,
+      "addedPixels": 2,
+      "removedVisiblePixels": 1113,
+      "addedVisiblePixels": 2,
+      "removedMask": "083-nearHand-removed.png",
+      "removedMaskSha256": "51a7f12104d59083b5d8650912af2e66d33b89de1414ce15b12f384dba0b012a",
+      "addedMask": "083-nearHand-added.png",
+      "addedMaskSha256": "906afdf1096a8ad139c383b1a0ac0d0214eff6992905c5874c43b8fa9fc10c46"
+    },
+    {
+      "frameId": 84,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 301,
+          "y": 643
+        },
+        {
+          "x": 303,
+          "y": 722
+        },
+        {
+          "x": 309,
+          "y": 722
+        },
+        {
+          "x": 327,
+          "y": 714
+        },
+        {
+          "x": 341,
+          "y": 714
+        },
+        {
+          "x": 347,
+          "y": 706
+        },
+        {
+          "x": 354,
+          "y": 679
+        },
+        {
+          "x": 351,
+          "y": 651
+        },
+        {
+          "x": 346,
+          "y": 644
+        },
+        {
+          "x": 338,
+          "y": 640
+        },
+        {
+          "x": 327,
+          "y": 639
+        },
+        {
+          "x": 318,
+          "y": 637
+        },
+        {
+          "x": 310,
+          "y": 638
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The returning fist was grouped with the shoulder cap. Follow the visible upper fist crease and preserve the full finger silhouette.",
+      "removedPixels": 1132,
+      "addedPixels": 0,
+      "removedVisiblePixels": 1132,
+      "addedVisiblePixels": 0,
+      "removedMask": "084-nearHand-removed.png",
+      "removedMaskSha256": "5212d7888545615e3da327c27e0b07c60cbbe9156433e673f97ef3e5158cabc1",
+      "addedMask": "084-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 85,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 295,
+          "y": 637
+        },
+        {
+          "x": 301,
+          "y": 716
+        },
+        {
+          "x": 308,
+          "y": 716
+        },
+        {
+          "x": 323,
+          "y": 706
+        },
+        {
+          "x": 330,
+          "y": 708
+        },
+        {
+          "x": 338,
+          "y": 707
+        },
+        {
+          "x": 342,
+          "y": 703
+        },
+        {
+          "x": 350,
+          "y": 671
+        },
+        {
+          "x": 350,
+          "y": 660
+        },
+        {
+          "x": 345,
+          "y": 653
+        },
+        {
+          "x": 342,
+          "y": 640
+        },
+        {
+          "x": 336,
+          "y": 636
+        },
+        {
+          "x": 321,
+          "y": 633
+        },
+        {
+          "x": 312,
+          "y": 631
+        },
+        {
+          "x": 304,
+          "y": 632
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The returning fist was grouped with the shoulder cap. Follow the visible upper fist crease and preserve the full finger silhouette.",
+      "removedPixels": 1091,
+      "addedPixels": 0,
+      "removedVisiblePixels": 1091,
+      "addedVisiblePixels": 0,
+      "removedMask": "085-nearHand-removed.png",
+      "removedMaskSha256": "85acde96a7dabc197fb1ebfa5d4ab46c94c9a21e81f3fb6d8bd7e16f5fb3c37c",
+      "addedMask": "085-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 86,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 295,
+          "y": 637
+        },
+        {
+          "x": 305,
+          "y": 714
+        },
+        {
+          "x": 308,
+          "y": 715
+        },
+        {
+          "x": 321,
+          "y": 706
+        },
+        {
+          "x": 338,
+          "y": 705
+        },
+        {
+          "x": 346,
+          "y": 684
+        },
+        {
+          "x": 346,
+          "y": 671
+        },
+        {
+          "x": 348,
+          "y": 669
+        },
+        {
+          "x": 348,
+          "y": 660
+        },
+        {
+          "x": 343,
+          "y": 653
+        },
+        {
+          "x": 341,
+          "y": 641
+        },
+        {
+          "x": 336,
+          "y": 636
+        },
+        {
+          "x": 321,
+          "y": 633
+        },
+        {
+          "x": 312,
+          "y": 631
+        },
+        {
+          "x": 304,
+          "y": 632
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The returning fist was grouped with the shoulder cap. Follow the visible upper fist crease and preserve the full finger silhouette.",
+      "removedPixels": 1007,
+      "addedPixels": 0,
+      "removedVisiblePixels": 1005,
+      "addedVisiblePixels": 0,
+      "removedMask": "086-nearHand-removed.png",
+      "removedMaskSha256": "f93979d5901f662a9aa0e415c56ede811d87ba3a361956e8cf47163bacc94bcd",
+      "addedMask": "086-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 87,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 296,
+          "y": 638
+        },
+        {
+          "x": 304,
+          "y": 716
+        },
+        {
+          "x": 310,
+          "y": 715
+        },
+        {
+          "x": 321,
+          "y": 707
+        },
+        {
+          "x": 337,
+          "y": 707
+        },
+        {
+          "x": 345,
+          "y": 687
+        },
+        {
+          "x": 348,
+          "y": 662
+        },
+        {
+          "x": 342,
+          "y": 654
+        },
+        {
+          "x": 341,
+          "y": 642
+        },
+        {
+          "x": 332,
+          "y": 636
+        },
+        {
+          "x": 322,
+          "y": 634
+        },
+        {
+          "x": 313,
+          "y": 632
+        },
+        {
+          "x": 305,
+          "y": 633
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The original hand polygon included the shoulder cap above the returning fist. Begin at the visible upper fist crease; shoulder skin is owned by the sleeve.",
+      "removedPixels": 1062,
+      "addedPixels": 0,
+      "removedVisiblePixels": 1061,
+      "addedVisiblePixels": 0,
+      "removedMask": "087-nearHand-removed.png",
+      "removedMaskSha256": "b9ed82b4ab3a7e122bce72300a681287789acede65ac54b3f27a857b22211555",
+      "addedMask": "087-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 88,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 297,
+          "y": 641
+        },
+        {
+          "x": 303,
+          "y": 720
+        },
+        {
+          "x": 323,
+          "y": 710
+        },
+        {
+          "x": 325,
+          "y": 712
+        },
+        {
+          "x": 337,
+          "y": 711
+        },
+        {
+          "x": 347,
+          "y": 690
+        },
+        {
+          "x": 350,
+          "y": 665
+        },
+        {
+          "x": 345,
+          "y": 657
+        },
+        {
+          "x": 345,
+          "y": 648
+        },
+        {
+          "x": 340,
+          "y": 642
+        },
+        {
+          "x": 323,
+          "y": 637
+        },
+        {
+          "x": 314,
+          "y": 635
+        },
+        {
+          "x": 306,
+          "y": 636
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The returning fist was grouped with the shoulder cap. Follow the visible upper fist crease and preserve the full finger silhouette.",
+      "removedPixels": 1100,
+      "addedPixels": 0,
+      "removedVisiblePixels": 1097,
+      "addedVisiblePixels": 0,
+      "removedMask": "088-nearHand-removed.png",
+      "removedMaskSha256": "efcf725c7b8b202c7d72df2cce0c8b94132ed98dae6859aef0b30ec1fe96194c",
+      "addedMask": "088-nearHand-added.png",
+      "addedMaskSha256": "e491e0b0beb76b8eb682f1ef934e8970c766b51603a917832dc1ca5d33153cce"
+    },
+    {
+      "frameId": 105,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 280,
+          "y": 701
+        },
+        {
+          "x": 295,
+          "y": 699
+        },
+        {
+          "x": 310,
+          "y": 700
+        },
+        {
+          "x": 322,
+          "y": 708
+        },
+        {
+          "x": 326,
+          "y": 725
+        },
+        {
+          "x": 326,
+          "y": 744
+        },
+        {
+          "x": 324,
+          "y": 761
+        },
+        {
+          "x": 314,
+          "y": 772
+        },
+        {
+          "x": 304,
+          "y": 778
+        },
+        {
+          "x": 280,
+          "y": 779
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The old wrist-axis cut crossed the actual fingers and overprotected forearm. Source-native contour review protects the whole fist, with a conservative wrist cut where the video gives no crease.",
+      "removedPixels": 3074,
+      "addedPixels": 532,
+      "removedVisiblePixels": 3057,
+      "addedVisiblePixels": 532,
+      "removedMask": "105-nearHand-removed.png",
+      "removedMaskSha256": "421327046cb9bb2dfb7368cd31648fab98d63feaf8830d731225932f7c4d5a36",
+      "addedMask": "105-nearHand-added.png",
+      "addedMaskSha256": "e3c8e4acdf600b8a4919b36990bf74b639a0c7dc590c6d64bd7b8fa698ee77d9"
+    },
+    {
+      "frameId": 106,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 292,
+          "y": 689
+        },
+        {
+          "x": 310,
+          "y": 682
+        },
+        {
+          "x": 328,
+          "y": 683
+        },
+        {
+          "x": 344,
+          "y": 687
+        },
+        {
+          "x": 353,
+          "y": 698
+        },
+        {
+          "x": 358,
+          "y": 715
+        },
+        {
+          "x": 357,
+          "y": 735
+        },
+        {
+          "x": 348,
+          "y": 754
+        },
+        {
+          "x": 338,
+          "y": 768
+        },
+        {
+          "x": 316,
+          "y": 776
+        },
+        {
+          "x": 286,
+          "y": 773
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The old wrist-axis cut crossed the actual fingers and overprotected forearm. Source-native contour review protects the whole fist, with a conservative wrist cut where the video gives no crease.",
+      "removedPixels": 3067,
+      "addedPixels": 2937,
+      "removedVisiblePixels": 3046,
+      "addedVisiblePixels": 2937,
+      "removedMask": "106-nearHand-removed.png",
+      "removedMaskSha256": "eafa28642e544673628e2c1105084b856fc6078fc1f70890caadb209dc19b875",
+      "addedMask": "106-nearHand-added.png",
+      "addedMaskSha256": "d7ff96359a22e041e49b6726146fbc77a74e209b540b39205c0adf436cec18a4"
+    },
+    {
+      "frameId": 107,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 298,
+          "y": 683
+        },
+        {
+          "x": 320,
+          "y": 677
+        },
+        {
+          "x": 339,
+          "y": 681
+        },
+        {
+          "x": 354,
+          "y": 691
+        },
+        {
+          "x": 362,
+          "y": 707
+        },
+        {
+          "x": 364,
+          "y": 726
+        },
+        {
+          "x": 355,
+          "y": 741
+        },
+        {
+          "x": 350,
+          "y": 756
+        },
+        {
+          "x": 340,
+          "y": 765
+        },
+        {
+          "x": 316,
+          "y": 770
+        },
+        {
+          "x": 292,
+          "y": 767
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The old wrist-axis cut crossed the actual fingers and overprotected forearm. Source-native contour review protects the whole fist, with a conservative wrist cut where the video gives no crease.",
+      "removedPixels": 3215,
+      "addedPixels": 3386,
+      "removedVisiblePixels": 3188,
+      "addedVisiblePixels": 3386,
+      "removedMask": "107-nearHand-removed.png",
+      "removedMaskSha256": "7f7bba16907f9b609802afae2cef7b3c437e0ccd4718c43830e8bc0b5f4bd9e8",
+      "addedMask": "107-nearHand-added.png",
+      "addedMaskSha256": "4c768499af999f35801cc9f4e3e5523f0713934d415f93aae18fa2c1a50eb04a"
+    },
+    {
+      "frameId": 108,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 294,
+          "y": 676
+        },
+        {
+          "x": 317,
+          "y": 670
+        },
+        {
+          "x": 337,
+          "y": 675
+        },
+        {
+          "x": 350,
+          "y": 684
+        },
+        {
+          "x": 355,
+          "y": 699
+        },
+        {
+          "x": 359,
+          "y": 713
+        },
+        {
+          "x": 350,
+          "y": 730
+        },
+        {
+          "x": 345,
+          "y": 747
+        },
+        {
+          "x": 333,
+          "y": 756
+        },
+        {
+          "x": 313,
+          "y": 762
+        },
+        {
+          "x": 286,
+          "y": 759
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The old wrist-axis cut crossed the actual fingers and overprotected forearm. Source-native contour review protects the whole fist, with a conservative wrist cut where the video gives no crease.",
+      "removedPixels": 3048,
+      "addedPixels": 2058,
+      "removedVisiblePixels": 3023,
+      "addedVisiblePixels": 2058,
+      "removedMask": "108-nearHand-removed.png",
+      "removedMaskSha256": "3aede720e0a39de16d40257d664b2de092302aa265406b95f1ee3d2e34eac909",
+      "addedMask": "108-nearHand-added.png",
+      "addedMaskSha256": "779721f7ef9a70020dadb9a290dd2595aef767e62991a088160e81c404969c77"
+    },
+    {
+      "frameId": 109,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 284,
+          "y": 677
+        },
+        {
+          "x": 305,
+          "y": 670
+        },
+        {
+          "x": 328,
+          "y": 673
+        },
+        {
+          "x": 343,
+          "y": 681
+        },
+        {
+          "x": 350,
+          "y": 693
+        },
+        {
+          "x": 352,
+          "y": 710
+        },
+        {
+          "x": 346,
+          "y": 727
+        },
+        {
+          "x": 339,
+          "y": 743
+        },
+        {
+          "x": 326,
+          "y": 756
+        },
+        {
+          "x": 309,
+          "y": 762
+        },
+        {
+          "x": 290,
+          "y": 760
+        },
+        {
+          "x": 270,
+          "y": 750
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The old wrist-axis cut crossed the actual fingers and overprotected forearm. Source-native contour review protects the whole fist, with a conservative wrist cut where the video gives no crease.",
+      "removedPixels": 2264,
+      "addedPixels": 1252,
+      "removedVisiblePixels": 2253,
+      "addedVisiblePixels": 1252,
+      "removedMask": "109-nearHand-removed.png",
+      "removedMaskSha256": "218716da836ef3c7866a213336af02b3781e2c5ce5e5b864b78f0ca2c17b3c39",
+      "addedMask": "109-nearHand-added.png",
+      "addedMaskSha256": "fa10fe751eb63fe1cfc793e06764bb31a56daecd5f6777fac1e0a5aa5367ddea"
+    },
+    {
+      "frameId": 110,
+      "label": "farHand",
+      "polygon": [
+        {
+          "x": 515,
+          "y": 650
+        },
+        {
+          "x": 530,
+          "y": 644
+        },
+        {
+          "x": 552,
+          "y": 638
+        },
+        {
+          "x": 574,
+          "y": 641
+        },
+        {
+          "x": 589,
+          "y": 651
+        },
+        {
+          "x": 600,
+          "y": 668
+        },
+        {
+          "x": 606,
+          "y": 690
+        },
+        {
+          "x": 606,
+          "y": 712
+        },
+        {
+          "x": 596,
+          "y": 728
+        },
+        {
+          "x": 576,
+          "y": 733
+        },
+        {
+          "x": 554,
+          "y": 729
+        },
+        {
+          "x": 539,
+          "y": 719
+        },
+        {
+          "x": 525,
+          "y": 709
+        },
+        {
+          "x": 513,
+          "y": 686
+        },
+        {
+          "x": 507,
+          "y": 668
+        }
+      ],
+      "reassignedTo": "farArm",
+      "reason": "The original diagonal wrist cut omitted the visible thumb base. Follow the full source thumb and finger silhouette, preserving a conservative wrist margin.",
+      "removedPixels": 22,
+      "addedPixels": 2619,
+      "removedVisiblePixels": 20,
+      "addedVisiblePixels": 1404,
+      "removedMask": "110-farHand-removed.png",
+      "removedMaskSha256": "4699fb0d1f135d0402a5ebf2b3e33022ec9d8dd4769ba78d756d52932a1e3158",
+      "addedMask": "110-farHand-added.png",
+      "addedMaskSha256": "86dac0b4dac012b736d4a31aa44ab88f80d2077b6566c7e63e39a6c3e31be949"
+    },
+    {
+      "frameId": 110,
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 267,
+          "y": 678
+        },
+        {
+          "x": 287,
+          "y": 672
+        },
+        {
+          "x": 309,
+          "y": 674
+        },
+        {
+          "x": 326,
+          "y": 682
+        },
+        {
+          "x": 336,
+          "y": 695
+        },
+        {
+          "x": 338,
+          "y": 713
+        },
+        {
+          "x": 328,
+          "y": 732
+        },
+        {
+          "x": 314,
+          "y": 746
+        },
+        {
+          "x": 299,
+          "y": 756
+        },
+        {
+          "x": 282,
+          "y": 760
+        },
+        {
+          "x": 267,
+          "y": 752
+        },
+        {
+          "x": 254,
+          "y": 738
+        }
+      ],
+      "reassignedTo": "nearArm",
+      "reason": "The old wrist-axis cut crossed the actual fingers and overprotected forearm. Source-native contour review protects the whole fist, with a conservative wrist cut where the video gives no crease.",
+      "removedPixels": 2422,
+      "addedPixels": 1242,
+      "removedVisiblePixels": 2406,
+      "addedVisiblePixels": 1242,
+      "removedMask": "110-nearHand-removed.png",
+      "removedMaskSha256": "dce3a7e5a2db3d8f24b1d3c5a150b0c2bc6e5a785945110a7d3671471e5bd1fc",
+      "addedMask": "110-nearHand-added.png",
+      "addedMaskSha256": "d66ec5d2534c7a1c56aa93c4a0afd950fd324b470eed17e522d97fae328b53dd"
+    }
+  ],
+  "limitations": [
+    "Wrist cuts without a visible crease conservatively preserve skin contiguous with the fist. These are authored ownership boundaries, not recovered original video layers.",
+    "Source colour, source alpha, source frame sequence, timing, dimensions and anchor are unchanged."
+  ],
+  "reboundGarments": [
+    {
+      "id": "teal-top",
+      "path": "docs/kling-wardrobe/garments/male-full-outfits-v1/teal-top.zip",
+      "sha256": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc",
+      "bytes": 1992387,
+      "originalArchiveUnchanged": true,
+      "allOtherAtlasAndOwnershipPixelsUnchanged": true,
+      "newProtectedIntersectionPixels": 0,
+      "handEdgeRepairs": [
+        {
+          "frameId": 105,
+          "newlyProtectedVisibleHandEdgePixels": 2
+        },
+        {
+          "frameId": 106,
+          "newlyProtectedVisibleHandEdgePixels": 63
+        },
+        {
+          "frameId": 107,
+          "newlyProtectedVisibleHandEdgePixels": 81
+        },
+        {
+          "frameId": 108,
+          "newlyProtectedVisibleHandEdgePixels": 72
+        },
+        {
+          "frameId": 109,
+          "newlyProtectedVisibleHandEdgePixels": 184
+        },
+        {
+          "frameId": 110,
+          "newlyProtectedVisibleHandEdgePixels": 81
+        }
+      ]
+    },
+    {
+      "id": "ochre-shorts",
+      "path": "docs/kling-wardrobe/garments/male-full-outfits-v1/ochre-shorts.zip",
+      "sha256": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a",
+      "bytes": 1683540,
+      "originalArchiveUnchanged": true,
+      "allOtherAtlasAndOwnershipPixelsUnchanged": true,
+      "newProtectedIntersectionPixels": 0,
+      "handEdgeRepairs": [
+        {
+          "frameId": 109,
+          "newlyProtectedVisibleHandEdgePixels": 65
+        },
+        {
+          "frameId": 110,
+          "newlyProtectedVisibleHandEdgePixels": 21
+        }
+      ]
+    },
+    {
+      "id": "navy-waistcoat",
+      "path": "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-waistcoat.zip",
+      "sha256": "de0b42bcb3d3e2361779c4aa81b6ebc34a5cab050db920b8054be0e2be45b8f1",
+      "bytes": 2252141,
+      "originalArchiveUnchanged": true,
+      "allOtherAtlasAndOwnershipPixelsUnchanged": true,
+      "newProtectedIntersectionPixels": 0,
+      "handEdgeRepairs": [
+        {
+          "frameId": 105,
+          "newlyProtectedVisibleHandEdgePixels": 2
+        },
+        {
+          "frameId": 106,
+          "newlyProtectedVisibleHandEdgePixels": 63
+        },
+        {
+          "frameId": 107,
+          "newlyProtectedVisibleHandEdgePixels": 81
+        },
+        {
+          "frameId": 108,
+          "newlyProtectedVisibleHandEdgePixels": 72
+        },
+        {
+          "frameId": 109,
+          "newlyProtectedVisibleHandEdgePixels": 184
+        },
+        {
+          "frameId": 110,
+          "newlyProtectedVisibleHandEdgePixels": 81
+        }
+      ]
+    },
+    {
+      "id": "navy-shorts",
+      "path": "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-shorts.zip",
+      "sha256": "131a5a8da2501f93509f8a253522cd890fe7020b4738db8631be4707c996079a",
+      "bytes": 1440915,
+      "originalArchiveUnchanged": true,
+      "allOtherAtlasAndOwnershipPixelsUnchanged": true,
+      "newProtectedIntersectionPixels": 0,
+      "handEdgeRepairs": [
+        {
+          "frameId": 109,
+          "newlyProtectedVisibleHandEdgePixels": 65
+        },
+        {
+          "frameId": 110,
+          "newlyProtectedVisibleHandEdgePixels": 21
+        }
+      ]
+    },
+    {
+      "id": "brown-shoes",
+      "path": "docs/kling-wardrobe/garments/male-full-outfits-v1/brown-shoes.zip",
+      "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693",
+      "bytes": 1968858,
+      "originalArchiveUnchanged": true,
+      "allOtherAtlasAndOwnershipPixelsUnchanged": true,
+      "newProtectedIntersectionPixels": 0,
+      "handEdgeRepairs": []
+    }
+  ],
+  "unchangedLegacyFiles": {
+    "docs/kling-wardrobe/templates/male.wardrobe-template.zip": "60c3d4c1e0cb487f59ca07fb65ed34e755e1eada11ffe26ebcc4da53f48f190f",
+    "docs/kling-wardrobe/garments/male/teal-top.zip": "855b6666c829076b715c5cf89df3e1485a8cbe62f1a3b3e6f5cda7bfd586a30a",
+    "docs/kling-wardrobe/garments/male/ochre-shorts.zip": "0a4639754d877b25a74b63d76f0ffa983844d6164df664c02efbfa198137c6aa",
+    "docs/kling-wardrobe/garments/male/navy-waistcoat.zip": "1efeeb4244309b96635aff7f318fa11637c5336ab0888798c9ad6c69a5ce88de",
+    "docs/kling-wardrobe/garments/male/navy-shorts.zip": "29cc0af0c14197438b978c07493926e1c465d593edafee0352cec5836c4dc596",
+    "docs/kling-wardrobe/garments/male/brown-shoes.zip": "6f8a8142748e673ec346c34c09f25bbd6521ca661637b752c2f3f09bc19527f2"
+  },
+  "templateSha256": "411c636eaf487fb0ab3b4ae91938c96f9d3b87e342aa6ee73e90a3b012a1858e",
+  "decodedMasks": 616,
+  "protectionDifferenceArchiveSha256": "8e6c7f6f8612de3dda2e9d2dd20589bc70ef49d07680e47831539b80c9e25a67"
+}
