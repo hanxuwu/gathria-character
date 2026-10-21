@@ -213,7 +213,11 @@ def prepare_frame(item, original, guide, semantic, limbs, garment_points=None):
         patch[mask,:3]=np.rint(np.clip(color[mask],0,255)).astype(np.uint8)
         patch[mask,3]=original[mask,3]
         owned |= mask
-    protected=protected_mask(guide)
+    # Semantic hand/head edges may extend a few pixels beyond the registered
+    # polygons and can overlap the torso mask. Protect their UNION after both
+    # torso and sleeves are assigned, retaining the exact original RGBA there.
+    protected=(protected_mask(guide) | semantic['head'] | semantic['nearHand']
+        | semantic['farHand'] | semantic['shoes'] | limbs['neckSkin'])
     owned &= ~protected & (original[:,:,3]>0)
     patch[~owned]=0
     assert not (owned&protected).any()
@@ -247,7 +251,10 @@ def validate_package(item, patches, originals, author):
             assert np.array_equal(full,patches[fid][0]) and np.array_equal(owned,patches[fid][1])
             assert not np.any(full[~owned])
             assert np.array_equal(full[owned,3],originals[fid][owned,3])
-            protected_changes+=int((owned&protected_mask(author.guides[fid])).sum())
+            semantic=author.semantic(fid);limbs=author.for_frame(fid,originals[fid])
+            protected=(protected_mask(author.guides[fid]) | semantic['head']
+                | semantic['nearHand'] | semantic['farHand'] | semantic['shoes'] | limbs['neckSkin'])
+            protected_changes+=int((owned&protected).sum())
         assert protected_changes==0
     return {'id':item,'sha256':sha(path.read_bytes()),'bytes':path.stat().st_size,
         'zipCRC':'passed','decodedFrames':88,'decodedPNGs':len(pages)*2,

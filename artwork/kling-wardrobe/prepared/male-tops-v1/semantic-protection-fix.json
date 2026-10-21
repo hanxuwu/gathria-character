@@ -1,0 +1,130 @@
+{
+  "reason": "Exact semantic near-hand pixels overlapped torso mask beyond polygon boundary. Final ownership excludes union of polygon, head, hands, shoes and preserved neck.",
+  "baselineCommit": "0e76eb1",
+  "baselineSnapshots": "/tmp/kling-male-tops-before-semantic-fix",
+  "totalRemovedOwnershipPixels": 4,
+  "items": [
+    {
+      "id": "teal-camp-shirt-v1",
+      "beforeSha256": "1d588cfe78d3bce268c4814f735c0d8468bf4ea7d6e9fddfcfcd0ef491af6882",
+      "afterSha256": "56098d36b96d9aeb7c1403ecc5031e57249e749c96fc7acf7075201a6f8ae994",
+      "unchangedFrames": 87,
+      "changedFrames": [
+        64
+      ],
+      "removedOwnershipPixels": 2,
+      "changedComposedPixels": 2,
+      "unaffectedRGBAAndOwnership": "byte-identical",
+      "manifestAndAtlasLayout": "identical",
+      "changes": [
+        {
+          "frameId": 64,
+          "x": 290,
+          "y": 686,
+          "oldPatchRGBA": [
+            42,
+            84,
+            91,
+            255
+          ],
+          "newPatchRGBA": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "restoredSourceRGBA": [
+            184,
+            145,
+            116,
+            255
+          ]
+        },
+        {
+          "frameId": 64,
+          "x": 301,
+          "y": 693,
+          "oldPatchRGBA": [
+            42,
+            84,
+            91,
+            255
+          ],
+          "newPatchRGBA": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "restoredSourceRGBA": [
+            191,
+            152,
+            125,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "id": "navy-suit-jacket-v1",
+      "beforeSha256": "bad67b774f4a14a710ea704e260e9d5a0bf087f5da51ae66de07c93248725277",
+      "afterSha256": "a2171b53e1b9be4c4e6f8774676fb50060fa2563fba5ce6fcc9d05647db4c5b3",
+      "unchangedFrames": 87,
+      "changedFrames": [
+        64
+      ],
+      "removedOwnershipPixels": 2,
+      "changedComposedPixels": 2,
+      "unaffectedRGBAAndOwnership": "byte-identical",
+      "manifestAndAtlasLayout": "identical",
+      "changes": [
+        {
+          "frameId": 64,
+          "x": 290,
+          "y": 686,
+          "oldPatchRGBA": [
+            22,
+            31,
+            50,
+            255
+          ],
+          "newPatchRGBA": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "restoredSourceRGBA": [
+            184,
+            145,
+            116,
+            255
+          ]
+        },
+        {
+          "frameId": 64,
+          "x": 301,
+          "y": 693,
+          "oldPatchRGBA": [
+            23,
+            31,
+            52,
+            255
+          ],
+          "newPatchRGBA": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "restoredSourceRGBA": [
+            191,
+            152,
+            125,
+            255
+          ]
+        }
+      ]
+    }
+  ]
+}
