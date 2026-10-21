@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "format": "gathria-character-pack",
+  "name": "Kling male — native layered candidate — static pose holds",
+  "generator": "gathria-native-pose-study-v1",
+  "spritesheet": {
+    "file": "spritesheet.png",
+    "width": 2816,
+    "height": 1056,
+    "frameWidth": 704,
+    "frameHeight": 1056,
+    "columns": 4,
+    "rows": 1
+  },
+  "frames": [
+    {
+      "id": 0,
+      "x": 0,
+      "y": 0,
+      "width": 704,
+      "height": 1056
+    },
+    {
+      "id": 1,
+      "x": 704,
+      "y": 0,
+      "width": 704,
+      "height": 1056
+    },
+    {
+      "id": 2,
+      "x": 1408,
+      "y": 0,
+      "width": 704,
+      "height": 1056
+    },
+    {
+      "id": 3,
+      "x": 2112,
+      "y": 0,
+      "width": 704,
+      "height": 1056
+    }
+  ],
+  "animations": {
+    "idle": {
+      "frames": [
+        0
+      ],
+      "fps": 1,
+      "loop": false
+    },
+    "walk": {
+      "frames": [
+        1
+      ],
+      "fps": 1,
+      "loop": false
+    },
+    "run": {
+      "frames": [
+        2
+      ],
+      "fps": 1,
+      "loop": false
+    },
+    "celebrate": {
+      "frames": [
+        3
+      ],
+      "fps": 1,
+      "loop": false
+    }
+  },
+  "facing": {
+    "native": "right",
+    "right": "none",
+    "left": "mirror-x"
+  },
+  "anchor": {
+    "x": 352,
+    "y": 1000,
+    "units": "pixels",
+    "origin": "top-left"
+  },
+  "scale": {
+    "pixelArt": false,
+    "integerOnly": false,
+    "recommended": 0.5
+  },
+  "configuration": "character.json",
+  "capabilities": {
+    "renderMode": "baked",
+    "editableAppearance": false
+  }
+}

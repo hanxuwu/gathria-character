@@ -1,0 +1,71 @@
+{
+  "scope": "Current native Kling male layered candidate batch only; earlier documents retain historical results.",
+  "recordedAt": "2026-10-21T00:02:42.804060+00:00",
+  "baselineCommit": "180cc5d6f3373c76db6cd9bc535f0213ac141a5a",
+  "implementationCommit": "bb164f007ce1f08dc07de13518418845cb51bad8",
+  "branch": "feat/kling-native-rig-study",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "passed": true,
+      "log": "checks/typecheck.log"
+    },
+    {
+      "command": "npm test -- --maxWorkers=1",
+      "passed": true,
+      "testFiles": 48,
+      "tests": 595,
+      "log": "checks/unit.log"
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "log": "checks/build.log"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 74,
+      "log": "checks/e2e.log"
+    },
+    {
+      "command": "node scripts/verify-kling-native-study.mjs",
+      "passed": true,
+      "inputsUnchanged": true,
+      "report": "final/evidence-index.json"
+    },
+    {
+      "command": "python scripts/render-kling-native-study-review.py",
+      "passed": true,
+      "decodedPngs": 46,
+      "crcCheckedZips": 2,
+      "report": "final/artifact-validation.json"
+    }
+  ],
+  "originalStandingRgbaDifferentPixels": 0,
+  "editorPoseDirectionCases": 8,
+  "independentPlayerCases": 8,
+  "editorClosedBeforeIndependentPlayer": true,
+  "allSourceAndRuntimeInputHashesRechecked": true,
+  "legacyProtection": "baseline-protection.json",
+  "visualReview": {
+    "basis": "Actual UI PNG/ZIP exports at native size and integer zoom; original/reconstruction and initial/final joint comparisons.",
+    "improvements": [
+      "Original standing identity and RGBA preserved",
+      "Shoulder gaps and ownership slivers reduced",
+      "Shoes remain attached to the shin angle and ankle",
+      "Clearer walk contact and visible raised hands"
+    ],
+    "remaining": [
+      "Near-armhole notches",
+      "Rounded/compressed shoulders in extreme raises",
+      "Far upper arm narrows beside the vest in run flight",
+      "Angular shorts/inner-thigh folds and compressed knee in deep bends",
+      "Original source matte fringes",
+      "Fixed neutral face and outfit"
+    ],
+    "userVisualAcceptance": false,
+    "completedAnimationCycles": false,
+    "productionGathriaIntegrationVerified": false
+  }
+}

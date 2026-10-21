@@ -1,0 +1,15 @@
+# Native pose-study holds / CharacterPack V2
+
+NATIVE KLING MALE CANDIDATE — FOUR STATIC POSE HOLDS
+
+Visible artwork is copied pixel-for-pixel from approved male source frame348; source PNG SHA256 is recorded. Hidden shoulder, vest-side, shorts and ankle coverage is newly authored using OpenAI image_gen, masked and registered offline. These derived skeletal static poses are not original video frames, not a completed animation library, and not an extracted original layer file.
+Derived static skeletal candidate. This pack contains rendered pose holds; the editable native project is a separate archive.
+
+Standing, walk contact, run flight and celebration are four still poses, not completed animation cycles. Selectors idle/walk/run/celebrate each hold one frame at1FPS with loop=false. No jump is supplied. Native pixels and smooth alpha use704×1056; facing left mirrors each frame.
+
+This is derived skeletal rendering from registered original parts plus explicitly disclosed reconstructed hidden regions. It is not an exact video frame for the three posed states. The separate native-study project retains source PNGs, registrations, joints and editable static poses. Do not import it as legacy SkinV1.
+
+Source indices0–3 refer to authored static poses in native-study.project.zip, not video frame indices. Reference original source metadata is retained separately. Existing approved video playback is unchanged.
+Project SHA256: 6ec950e76a42b8dbcb274eddd82804002bb569c2e655e14dd2a8edc212a74120
+
+Load with the independent V2 player using manifest rectangles and anchor, smooth fractional display scaling, and the non-looping hold semantics. No model API or editor is required for playback.
