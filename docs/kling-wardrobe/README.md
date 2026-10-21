@@ -97,6 +97,15 @@ The `exports/` directory contains the four actual UI-downloaded CharacterPacks,
 editable projects and transparent PNGs. `review/` images and GIFs are decoded
 from those exported packs, not the generation reference or preparation previews.
 
+- [Four looks / five actions GIF](review/four-looks-actions-right.gif)
+- [Four looks / running together GIF](review/four-looks-run-right.gif)
+
+These overview GIFs use 0.375× display and cut between action samples; they do
+not demonstrate motion transitions. Jump plays once in each overview cycle.
+`scripts/render-kling-wardrobe-overview.py` reproduces them from the four exported
+ZIPs; [overview validation](review/overview-index.json) records source hashes,
+decoded frame counts and exact preview durations.
+
 - [Male original / casual / wedding, 1×](review/male-comparison-1x.png)
 - [Female original / casual / wedding, 1×](review/female-comparison-1x.png)
 - [Male comparison, 2×](review/male-comparison-2x.png) · [Female comparison, 2×](review/female-comparison-2x.png)
