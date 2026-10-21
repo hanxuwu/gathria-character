@@ -1,0 +1,815 @@
+{
+  "format": "gathria-sprite-action-evidence",
+  "version": 1,
+  "startedAt": "2026-10-21T02:35:06.354Z",
+  "phase": "review",
+  "scope": "Metadata-only clip arrangement. Edited samples deliberately change timing/frame selection for workflow verification; they are not improved/approved animations.",
+  "inputHashes": {
+    "docs/kling-jump/exports/female.character.zip": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+    "docs/kling-jump/exports/male.character.zip": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+    "index.html": "2eb6a93b44840d381b05609cc9f82ab4f2baaf35b99c5a930b6e23c328cdc66a",
+    "player.html": "c21b823dd640430eeb3b5edfc36008d835c030647f42f03781124bbcfde18165",
+    "skin-studio.html": "8a8ee6963effc186855f8f3b92a1b56347292019b0964716fb6363b3523221ab",
+    "src/consumer/PackPlayer.tsx": "e8ee54dcbcc147981bae338e58efd7397f40f2feb315e3dda5d64a7ecf148fa2",
+    "src/consumer/SpriteActionEditor.tsx": "78a729fba6becd9ce082acef1c5ab53bb4cfcceddc7f12f8291dd759c1c16060",
+    "src/consumer/kling-catalog.ts": "46c1e40947f417b7a1cf213e8ee83ef63a6f769dc5010fbf8aee737ba9409e27",
+    "src/consumer/kling-packs.test.ts": "996057a76502d3b4461400cc3e73fda8687e4b6a8541a4af8001840a715ad63d",
+    "src/consumer/kling-packs.ts": "bed34a0258b2c6680451c29cd42ba0a7c5acf067f26b587c5a80b7f7021d4112",
+    "src/consumer/main.tsx": "11b7ae34966e906bed2911fc32b98646fa60b82fc7487c2784110a1b096fed4c",
+    "src/consumer/player.css": "010e2e09bbecbb7af0125466518b35eeaed3150cde39595fece369adbfe219cd",
+    "src/consumer/player.test.ts": "950f297177fe50cc46171b527706e793d2c55baa866b10d7ed821cdd80fad7b7",
+    "src/consumer/player.ts": "8ce2f5a1a70d244739aff3f5e1bebebe98dd1b547d2414eaf727b6c0d4bd6ea4",
+    "src/consumer/sprite-actions.css": "474d96c3ea2676b83ab032d68270881423dd99f337caeed3b669ee10278eb374",
+    "src/core/baked-source.test.ts": "835947af4b8963b2f2ba5f75e760633a22f3a9c79632b4f16bf67e294632757b",
+    "src/core/baked-source.ts": "c98e6f37f46a2e2377112eaf30b51d5fb86070447bb8fa723b49100b6372cce4",
+    "src/core/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/core/pack-v2.test.ts": "74f5da3d07d63208c17668d4453a5397b77fc545eefc756fb13d2ef9a7c8f927",
+    "src/core/pack-v2.ts": "ff497c58c58e054a0590e36a6de5020446d7e31ba945d7c405e8123c5afd82e1",
+    "src/core/pack-v3.test.ts": "85d18347b183a7d01f2569b062a8fee1d0a2fcb119b13c7f3a6d3096aa2f7b9a",
+    "src/core/pack-v3.ts": "1e1a7bd8e1324e0e95de1dfeda0b31c04f1fa1409211fb808147e632dd7bedef",
+    "src/core/pack.ts": "77eeb7c8dc49a4ab79d7b0466b433d967f78e1de35d67c326ed34ccc5792940c",
+    "src/core/sha256.test.ts": "4bcca339955914b841693cfc81b391b81a14c6d9341ed8d49f3c78e7adcb93d5",
+    "src/core/sha256.ts": "9dadabe2eade2c115bb3f61da9920c24b00b5c13808956dd6e9116523d20d4b9",
+    "src/core/sprite-actions.test.ts": "753ee8b3852512488d4bab85c2c7c22ce75d0b54d509fbe6a654e40752dea13a",
+    "src/core/sprite-actions.ts": "8d8472e36b449f92091c79358190fb420e17c3d2a74cf5ae2fefd932999d8570",
+    "src/core/types.ts": "4f22876a4957b84bb2450042534d6a661d4f273edab41eb901aee85ea7b58670",
+    "src/skeletal/NativeStudy.tsx": "253580fc52369e72aeacc12db19e9e8cc1687a4496c8faca2b5f3f507f0ca9cf",
+    "src/skeletal/geometry.test.ts": "27a820d5cd3defdf07876b67dcd4921eff152aa58559a554f39065614c4f5c91",
+    "src/skeletal/geometry.ts": "197cf4eac53b77b7cdfac9e6ef54b7a4cebb48cabace7d1de9fd863b4826a3ff",
+    "src/skeletal/main.tsx": "9b0df8847245e674c43761a55e8aefd31024e705d1d1662e9546a03edf83b356",
+    "src/skeletal/native-study.css": "a84350341c60f5e15c2a82f70e239118ce01609c3d61016a4e088fa8de52312f",
+    "src/skeletal/native-study.test.ts": "ee247d6573150d07b3a50b9b990faebd4ea313d2a1a495b21a4fec9dae01d71b",
+    "src/skeletal/native-study.ts": "0a2c15bc1522a1129d932f3897d40f20216eccae63bf83d7dc99750778071aa0",
+    "src/workspace/Library.tsx": "7e6c1bf74528dd9b48049c19ce633c3c49cde351bbe8924fbc9abab3091970ee",
+    "src/workspace/MainNavigation.tsx": "a1e7e9c1944cd907644f5cf5fa9c3434cb4f8ef342ed6fcc33a4e5866ffddcd6",
+    "src/workspace/Workbench.tsx": "4ddb2f877b0b92a0ffd6153ed7734efb5b0a87d536d74996e307d1b730a1d3db",
+    "src/workspace/main.tsx": "860ee0100634905205c0ce85ff53672f69c5a4f5ed67825a8f10a440c866b3f2",
+    "src/workspace/navigation.css": "27566e1d525c5797a57573461a218b7aa4d41c43a76c98bbfec7580e4aedcc57",
+    "src/workspace/workbench-main.tsx": "fc3d7cb2ecf80631d3ef7b4faa084a368d498bd19273cf14338bd2dafafc23a3",
+    "src/workspace/workspace.css": "db291caabd5858969a9b310ed45583ef2028a000770ff26e5e0dc23ee53e37f1",
+    "vite.config.ts": "5db54edaef02bec9ef8951c08d4a6e9272f2a7b1907470accaf17098f7bcdc36",
+    "workbench.html": "60d6ab4516fcfa7dbf37221202a97ec1c9fc4118ae60707ba45d0618723a602f"
+  },
+  "downloads": [
+    {
+      "file": "male-edited.sprite-project.zip",
+      "bytes": 30331396,
+      "sha256": "83b2342cad4a26aa19d2521442f0fd40be684cae6addaac36ca8ad0925bcecee",
+      "retained": false,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "document.json",
+          "bytes": 633
+        },
+        {
+          "file": "original.character.zip",
+          "bytes": 30330913
+        },
+        {
+          "file": "original.character.zip/spritesheet.png",
+          "bytes": 17834326,
+          "decoded": true,
+          "dimensions": [
+            7744,
+            7392
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "original.character.zip/spritesheet-1.png",
+          "bytes": 12486606,
+          "decoded": true,
+          "dimensions": [
+            6336,
+            5280
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "original.character.zip/manifest.json",
+          "bytes": 17531
+        },
+        {
+          "file": "original.character.zip/character.json",
+          "bytes": 81624
+        },
+        {
+          "file": "original.character.zip/PROVENANCE.txt",
+          "bytes": 905
+        },
+        {
+          "file": "original.character.zip/INTEGRATION.md",
+          "bytes": 1316
+        }
+      ]
+    },
+    {
+      "file": "male-edited.character.zip",
+      "bytes": 30331424,
+      "sha256": "f1e41f4a605cc796c96a86075a19e766419ce36128ee5cb655b7dd0c019a410e",
+      "retained": false,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "spritesheet.png",
+          "bytes": 17834326,
+          "decoded": true,
+          "dimensions": [
+            7744,
+            7392
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "spritesheet-1.png",
+          "bytes": 12486606,
+          "decoded": true,
+          "dimensions": [
+            6336,
+            5280
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "manifest.json",
+          "bytes": 17400
+        },
+        {
+          "file": "character.json",
+          "bytes": 83078
+        },
+        {
+          "file": "PROVENANCE.txt",
+          "bytes": 1507
+        },
+        {
+          "file": "INTEGRATION.md",
+          "bytes": 1320
+        }
+      ]
+    },
+    {
+      "file": "male-reset.character.zip",
+      "bytes": 30330913,
+      "sha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+      "retained": false,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "spritesheet.png",
+          "bytes": 17834326,
+          "decoded": true,
+          "dimensions": [
+            7744,
+            7392
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "spritesheet-1.png",
+          "bytes": 12486606,
+          "decoded": true,
+          "dimensions": [
+            6336,
+            5280
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "manifest.json",
+          "bytes": 17531
+        },
+        {
+          "file": "character.json",
+          "bytes": 81624
+        },
+        {
+          "file": "PROVENANCE.txt",
+          "bytes": 905
+        },
+        {
+          "file": "INTEGRATION.md",
+          "bytes": 1316
+        }
+      ]
+    },
+    {
+      "file": "female-edited.sprite-project.zip",
+      "bytes": 30287294,
+      "sha256": "544c143cc80684d060281d8346031553af0345263e9bd463d74e6e98995b2476",
+      "retained": false,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "document.json",
+          "bytes": 633
+        },
+        {
+          "file": "original.character.zip",
+          "bytes": 30286811
+        },
+        {
+          "file": "original.character.zip/spritesheet.png",
+          "bytes": 17855044,
+          "decoded": true,
+          "dimensions": [
+            7744,
+            7392
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "original.character.zip/spritesheet-1.png",
+          "bytes": 12421776,
+          "decoded": true,
+          "dimensions": [
+            6336,
+            5280
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "original.character.zip/manifest.json",
+          "bytes": 17533
+        },
+        {
+          "file": "original.character.zip/character.json",
+          "bytes": 81864
+        },
+        {
+          "file": "original.character.zip/PROVENANCE.txt",
+          "bytes": 907
+        },
+        {
+          "file": "original.character.zip/INTEGRATION.md",
+          "bytes": 1316
+        }
+      ]
+    },
+    {
+      "file": "female-edited.character.zip",
+      "bytes": 30287323,
+      "sha256": "ea1e105bf4caca605769788d2c86bbb0129f3467daa63f61bb928ff3bd52b6c8",
+      "retained": false,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "spritesheet.png",
+          "bytes": 17855044,
+          "decoded": true,
+          "dimensions": [
+            7744,
+            7392
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "spritesheet-1.png",
+          "bytes": 12421776,
+          "decoded": true,
+          "dimensions": [
+            6336,
+            5280
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "manifest.json",
+          "bytes": 17402
+        },
+        {
+          "file": "character.json",
+          "bytes": 83318
+        },
+        {
+          "file": "PROVENANCE.txt",
+          "bytes": 1509
+        },
+        {
+          "file": "INTEGRATION.md",
+          "bytes": 1320
+        }
+      ]
+    },
+    {
+      "file": "female-reset.character.zip",
+      "bytes": 30286811,
+      "sha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+      "retained": false,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "spritesheet.png",
+          "bytes": 17855044,
+          "decoded": true,
+          "dimensions": [
+            7744,
+            7392
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "spritesheet-1.png",
+          "bytes": 12421776,
+          "decoded": true,
+          "dimensions": [
+            6336,
+            5280
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "manifest.json",
+          "bytes": 17533
+        },
+        {
+          "file": "character.json",
+          "bytes": 81864
+        },
+        {
+          "file": "PROVENANCE.txt",
+          "bytes": 907
+        },
+        {
+          "file": "INTEGRATION.md",
+          "bytes": 1316
+        }
+      ]
+    },
+    {
+      "file": "imported-v2-stills.sprite-project.zip",
+      "bytes": 1393605,
+      "sha256": "1493d6c607f00992151fc13734f702d3b4e277ecfc8881842d90736b2996e857",
+      "retained": true,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "document.json",
+          "bytes": 536
+        },
+        {
+          "file": "original.character.zip",
+          "bytes": 1393154
+        },
+        {
+          "file": "original.character.zip/spritesheet.png",
+          "bytes": 1395543,
+          "decoded": true,
+          "dimensions": [
+            2816,
+            1056
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "original.character.zip/manifest.json",
+          "bytes": 1569
+        },
+        {
+          "file": "original.character.zip/character.json",
+          "bytes": 3205
+        },
+        {
+          "file": "original.character.zip/PROVENANCE.txt",
+          "bytes": 1741
+        },
+        {
+          "file": "original.character.zip/INTEGRATION.md",
+          "bytes": 1982
+        }
+      ]
+    },
+    {
+      "file": "imported-v2-stills.character.zip",
+      "bytes": 1399833,
+      "sha256": "75d1bc4b82c67db07ee3d61f433c114b0077847bce929c97425fe22e52c037a9",
+      "retained": true,
+      "source": "Actual UI download",
+      "crcChecked": true,
+      "members": [
+        {
+          "file": "spritesheet.png",
+          "bytes": 1395543,
+          "decoded": true,
+          "dimensions": [
+            2816,
+            1056
+          ],
+          "mode": "RGBA"
+        },
+        {
+          "file": "manifest.json",
+          "bytes": 1569
+        },
+        {
+          "file": "character.json",
+          "bytes": 4538
+        },
+        {
+          "file": "PROVENANCE.txt",
+          "bytes": 2048
+        },
+        {
+          "file": "INTEGRATION.md",
+          "bytes": 1513
+        }
+      ]
+    }
+  ],
+  "characterCases": [
+    {
+      "character": "male",
+      "sourcePackSha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+      "sourceArchiveInSavedProjectUnchanged": true,
+      "editedRun": {
+        "frames": [
+          52,
+          53,
+          54,
+          55,
+          56
+        ],
+        "fps": 12,
+        "loop": false
+      },
+      "allOtherActionsUnchanged": true,
+      "atlas": [
+        {
+          "file": "spritesheet.png",
+          "bytes": 17834326,
+          "originalSha256": "795540459a9c4b7d453d671f8db3a5246885d0d76550b5b07b6037eb8c9a8e04",
+          "exportedSha256": "795540459a9c4b7d453d671f8db3a5246885d0d76550b5b07b6037eb8c9a8e04",
+          "byteExact": true
+        },
+        {
+          "file": "spritesheet-1.png",
+          "bytes": 12486606,
+          "originalSha256": "09299efee451b63da2bd9bb52fa7ee293b8e7ad3762121a3cc2cccedb75f02fd",
+          "exportedSha256": "09299efee451b63da2bd9bb52fa7ee293b8e7ad3762121a3cc2cccedb75f02fd",
+          "byteExact": true
+        }
+      ],
+      "frameRectsAndAnchorUnchanged": true,
+      "saveReopenRetainedSettings": true,
+      "resetExportByteExact": true,
+      "originalJumpPreserved": true,
+      "largeDownloadsRetained": false,
+      "retentionReason": "Avoid duplicate native atlases; hashes, settings, metadata, screenshots and reproducible browser script retained."
+    },
+    {
+      "character": "female",
+      "sourcePackSha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+      "sourceArchiveInSavedProjectUnchanged": true,
+      "editedRun": {
+        "frames": [
+          52,
+          53,
+          54,
+          55,
+          56
+        ],
+        "fps": 12,
+        "loop": false
+      },
+      "allOtherActionsUnchanged": true,
+      "atlas": [
+        {
+          "file": "spritesheet.png",
+          "bytes": 17855044,
+          "originalSha256": "f05395ce5ebd8599aa93524ee4636cbb9e10f887970881844002d09d7f0536f3",
+          "exportedSha256": "f05395ce5ebd8599aa93524ee4636cbb9e10f887970881844002d09d7f0536f3",
+          "byteExact": true
+        },
+        {
+          "file": "spritesheet-1.png",
+          "bytes": 12421776,
+          "originalSha256": "78ec0d070f15a8a9a80c08b58f99692845aff2f287a16f4f43768ed45cb9284d",
+          "exportedSha256": "78ec0d070f15a8a9a80c08b58f99692845aff2f287a16f4f43768ed45cb9284d",
+          "byteExact": true
+        }
+      ],
+      "frameRectsAndAnchorUnchanged": true,
+      "saveReopenRetainedSettings": true,
+      "resetExportByteExact": true,
+      "originalJumpPreserved": true,
+      "largeDownloadsRetained": false,
+      "retentionReason": "Avoid duplicate native atlases; hashes, settings, metadata, screenshots and reproducible browser script retained."
+    }
+  ],
+  "independentPlayback": [
+    {
+      "character": "male",
+      "facing": "right",
+      "frames": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "fps": 12,
+      "loop": false,
+      "stoppedAtLastFrame": true,
+      "finalFrameHeld": true,
+      "editorClosed": true
+    },
+    {
+      "character": "male",
+      "facing": "left",
+      "frames": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "fps": 12,
+      "loop": false,
+      "stoppedAtLastFrame": true,
+      "finalFrameHeld": true,
+      "editorClosed": true
+    },
+    {
+      "character": "female",
+      "facing": "right",
+      "frames": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "fps": 12,
+      "loop": false,
+      "stoppedAtLastFrame": true,
+      "finalFrameHeld": true,
+      "editorClosed": true
+    },
+    {
+      "character": "female",
+      "facing": "left",
+      "frames": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "fps": 12,
+      "loop": false,
+      "stoppedAtLastFrame": true,
+      "finalFrameHeld": true,
+      "editorClosed": true
+    },
+    {
+      "character": "imported-v2-stills",
+      "facing": "right",
+      "frames": [
+        2
+      ],
+      "fps": 2,
+      "loop": false,
+      "stoppedAtLastFrame": true,
+      "finalFrameHeld": true,
+      "editorClosed": true
+    },
+    {
+      "character": "imported-v2-stills",
+      "facing": "left",
+      "frames": [
+        2
+      ],
+      "fps": 2,
+      "loop": false,
+      "stoppedAtLastFrame": true,
+      "finalFrameHeld": true,
+      "editorClosed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "male-action-editor.png",
+      "sha256": "e09fc5523b6165f0512e3caebdc6410aaa26c08a3a055744af66478d4668bddc",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "male-preview.png",
+      "sha256": "352f7533a9984459c22b0c702ce1195926db08f4083247b2e8592d51f2aa87bf",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "male-independent-right.png",
+      "sha256": "cadab2feba196d017fb59d7b937058b5f36223ec920d12aec8f02edb4db4bd2f",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "male-independent-left.png",
+      "sha256": "8aa207ce1cd88ab89049d8a6bae4be1f3012b9043319fa8ecc95d32ea14bcd4e",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "female-action-editor.png",
+      "sha256": "c2d857ecb73c2abad84552b61e34f5eda23cff2138b4b1cfc24092c65f861e01",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "female-preview.png",
+      "sha256": "bf00fff3f945b845a3bea6928a3c62a26ed9941e27abac5fb27c9c6f5389c59b",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "female-independent-right.png",
+      "sha256": "d74eb40d68eb5f06b93e63c058109a07da06329a6474aa275c56bf44561c40fe",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "female-independent-left.png",
+      "sha256": "06a604cb505c37e9983ff5ccbac14a6a2f73fd1900a876acdae2483bb624527a",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "workbench-desktop.png",
+      "sha256": "044c1977bee84d73123c94564217291ac50cfcecf0794f45b8da86b63ced8629",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "workbench-editor-desktop.png",
+      "sha256": "d2fb260386be98df090b3df62d7ddce1bfbe8c82cfdded875af5f1c340c9291b",
+      "source": "Actual Workbench viewport, scrolled to action settings"
+    },
+    {
+      "file": "workbench-narrow.png",
+      "sha256": "3da504c15b588ca1d7cf1bc2accd04e3aee66166e99aa997e31303e2d8d6896d",
+      "source": "Actual browser display"
+    },
+    {
+      "file": "workbench-editor-narrow.png",
+      "sha256": "6256b56edd748c71fc579d7ffb9c2f1e60c77a30e77229bf59e6f2517667d6fe",
+      "source": "Actual Workbench viewport, scrolled to action settings"
+    }
+  ],
+  "responsiveLayouts": [
+    {
+      "name": "desktop",
+      "shell": {
+        "viewport": 1440,
+        "document": 1440
+      },
+      "player": {
+        "viewport": 1382,
+        "document": 1382
+      },
+      "horizontalOverflow": false
+    },
+    {
+      "name": "narrow",
+      "shell": {
+        "viewport": 390,
+        "document": 390
+      },
+      "player": {
+        "viewport": 364,
+        "document": 364
+      },
+      "horizontalOverflow": false
+    }
+  ],
+  "errors": [],
+  "forbiddenIndependentRequests": [],
+  "externalRequests": [],
+  "importedV2": {
+    "source": "Existing female skeletal stills CharacterPack (small real package, not newly authored character animation)",
+    "missingJumpRemainsUnavailable": true,
+    "atlas": [
+      {
+        "file": "spritesheet.png",
+        "bytes": 1395543,
+        "originalSha256": "2531c540c4d7c758ac2e7314d21a5366342c32fa85fe2f82d56bb5b7c4796804",
+        "exportedSha256": "2531c540c4d7c758ac2e7314d21a5366342c32fa85fe2f82d56bb5b7c4796804",
+        "byteExact": true
+      }
+    ],
+    "retainedSampleProjectAndPack": true
+  },
+  "pngValidation": [
+    {
+      "file": "female-independent-left.png",
+      "dimensions": [
+        825,
+        849
+      ],
+      "decoded": true,
+      "bytes": 65728
+    },
+    {
+      "file": "workbench-narrow.png",
+      "dimensions": [
+        390,
+        844
+      ],
+      "decoded": true,
+      "bytes": 54845
+    },
+    {
+      "file": "female-action-editor.png",
+      "dimensions": [
+        823,
+        1322
+      ],
+      "decoded": true,
+      "bytes": 270389
+    },
+    {
+      "file": "workbench-editor-desktop.png",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "decoded": true,
+      "bytes": 183613
+    },
+    {
+      "file": "workbench-desktop.png",
+      "dimensions": [
+        1440,
+        1100
+      ],
+      "decoded": true,
+      "bytes": 113712
+    },
+    {
+      "file": "male-preview.png",
+      "dimensions": [
+        825,
+        2264
+      ],
+      "decoded": true,
+      "bytes": 354156
+    },
+    {
+      "file": "female-preview.png",
+      "dimensions": [
+        825,
+        2264
+      ],
+      "decoded": true,
+      "bytes": 351803
+    },
+    {
+      "file": "female-independent-right.png",
+      "dimensions": [
+        825,
+        849
+      ],
+      "decoded": true,
+      "bytes": 65715
+    },
+    {
+      "file": "workbench-editor-narrow.png",
+      "dimensions": [
+        390,
+        844
+      ],
+      "decoded": true,
+      "bytes": 64507
+    },
+    {
+      "file": "male-independent-right.png",
+      "dimensions": [
+        825,
+        849
+      ],
+      "decoded": true,
+      "bytes": 64984
+    },
+    {
+      "file": "male-independent-left.png",
+      "dimensions": [
+        825,
+        849
+      ],
+      "decoded": true,
+      "bytes": 65066
+    },
+    {
+      "file": "male-action-editor.png",
+      "dimensions": [
+        823,
+        1322
+      ],
+      "decoded": true,
+      "bytes": 273080
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-10-21T02:36:06.585Z",
+  "workbenchViewportRecapturedAt": "2026-10-21T02:38:36.408Z"
+}

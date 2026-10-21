@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -43,11 +50,21 @@ import {
 import { loadKlingCharacter } from "./kling-packs";
 import { MainNavigation } from "../workspace/MainNavigation";
 
+const SpriteActionEditor = lazy(() => import("./SpriteActionEditor"));
+
 type SourceEntry = { pack: LoadedCharacterPack; archive: Blob };
 
 export function PackPlayer() {
   const embedded =
     new URLSearchParams(window.location.search).get("embedded") === "1";
+  const authoring =
+    new URLSearchParams(window.location.search).get("authoring") === "1";
+  const [editorBasePack, setEditorBasePack] =
+    useState<LoadedCharacterPack | null>(null);
+  const [authoringBusy, setAuthoringBusy] = useState(false);
+  const [authoringDraft, setAuthoringDraft] = useState(false);
+  const [modifiedActions, setModifiedActions] = useState(false);
+  const modifiedActionsRef = useRef(false);
   const [pack, setPack] = useState<LoadedCharacterPack | null>(null);
   const [animation, setAnimation] = useState<PortableAnimationName>("idle");
   const [facing, setFacing] = useState<Facing>("right");
@@ -93,6 +110,7 @@ export function PackPlayer() {
     ? animationFor(pack.manifest, animation)
     : undefined;
   const isBaked = !!pack;
+  const sourceBlocked = busy || authoringBusy || authoringDraft;
   const zoomChoices = [...new Set([0.25, 0.5, 0.75, 1, 1.5, 2, zoom])].sort(
     (a, b) => a - b,
   );
@@ -311,6 +329,9 @@ export function PackPlayer() {
         frameRef.current = -1;
         setFrameId(loaded.manifest.animations.idle.frames[0]);
         setPack(loaded);
+        setEditorBasePack(loaded);
+        setModifiedActions(false);
+        modifiedActionsRef.current = false;
         setSource(label);
         setAnimation("idle");
         setFacing(loaded.manifest.facing.native);
@@ -458,6 +479,9 @@ export function PackPlayer() {
         const previousId = characterId;
         setCharacterId(id);
         setPack(entry.pack);
+        setEditorBasePack(entry.pack);
+        setModifiedActions(false);
+        modifiedActionsRef.current = false;
         setDownloadPack(entry.archive);
         if (comparisonPack)
           setComparisonPack(
@@ -534,6 +558,36 @@ export function PackPlayer() {
     setPlaybackRevision((value) => value + 1);
   }
 
+  const previewActionSettings = useCallback(
+    (next: LoadedCharacterPack, modified: boolean) => {
+      setPack(next);
+      setModifiedActions(modified);
+      if (modified || modifiedActionsRef.current) {
+        elapsedRef.current = 0;
+        frameRef.current = -1;
+        setFramePosition(0);
+        setCompleted(false);
+        setPlaying(false);
+      }
+      modifiedActionsRef.current = modified;
+      setPlaybackRevision((value) => value + 1);
+    },
+    [],
+  );
+
+  const openActionSource = useCallback(
+    (archive: Blob, loaded: LoadedCharacterPack) => {
+      void openPack(
+        async () => loaded,
+        "Saved sprite action project",
+        () => {
+          setDownloadPack(archive);
+        },
+      );
+    },
+    [openPack],
+  );
+
   function replayAnimation() {
     chooseAnimation(animation);
     setPlaying(true);
@@ -587,7 +641,7 @@ export function PackPlayer() {
                 event.preventDefault();
                 setDragging(false);
                 const file = event.dataTransfer.files[0];
-                if (file) openZip(file);
+                if (file && !sourceBlocked) openZip(file);
               }}
             >
               <div className="player-upload-icon">
@@ -608,10 +662,10 @@ export function PackPlayer() {
                   id="player-zip"
                   type="file"
                   accept=".zip,application/zip"
-                  disabled={busy}
+                  disabled={sourceBlocked}
                   onChange={(event) => {
                     const file = event.target.files?.[0];
-                    if (file) openZip(file);
+                    if (file && !sourceBlocked) openZip(file);
                     event.target.value = "";
                   }}
                 />
@@ -623,7 +677,7 @@ export function PackPlayer() {
             <button
               className="player-source-button"
               onClick={() => void openKlingExample()}
-              disabled={busy}
+              disabled={sourceBlocked}
             >
               <span className="player-sample-icon">
                 <Layers3 size={19} />
@@ -645,6 +699,7 @@ export function PackPlayer() {
               </label>
               <input
                 id="player-png"
+                disabled={sourceBlocked}
                 type="file"
                 accept="image/png,.png"
                 onChange={(event) =>
@@ -659,6 +714,7 @@ export function PackPlayer() {
               </label>
               <input
                 id="player-manifest"
+                disabled={sourceBlocked}
                 type="file"
                 accept="application/json,.json"
                 onChange={(event) =>
@@ -673,6 +729,7 @@ export function PackPlayer() {
               </label>
               <input
                 id="player-config"
+                disabled={sourceBlocked}
                 type="file"
                 accept="application/json,.json"
                 onChange={(event) =>
@@ -685,7 +742,7 @@ export function PackPlayer() {
               <button
                 className="player-button player-button-secondary"
                 onClick={openSeparateFiles}
-                disabled={busy || !files.png || !files.metadata}
+                disabled={sourceBlocked || !files.png || !files.metadata}
               >
                 Load selected files <ArrowRight size={15} />
               </button>
@@ -735,7 +792,11 @@ export function PackPlayer() {
             {isBaked && (
               <div className="player-baked-controls">
                 <p>
-                  <strong>Original artwork · baked playback</strong>
+                  <strong>
+                    {modifiedActions
+                      ? "Original artwork · edited action settings"
+                      : "Original artwork · baked playback"}
+                  </strong>
                   <br />
                   These frames preserve the supplied character artwork.
                   Clothing, colors and expressions are part of the image and
@@ -749,7 +810,7 @@ export function PackPlayer() {
                         id="player-character"
                         aria-label="Character"
                         value={characterId}
-                        disabled={busy}
+                        disabled={sourceBlocked}
                         onChange={(event) =>
                           void selectSourceCharacter(event.target.value)
                         }
@@ -766,7 +827,7 @@ export function PackPlayer() {
                         <input
                           type="checkbox"
                           checked={comparisonRequested}
-                          disabled={busy}
+                          disabled={sourceBlocked}
                           onChange={(event) => {
                             setComparisonRequested(event.target.checked);
                             if (!event.target.checked) {
@@ -789,7 +850,7 @@ export function PackPlayer() {
                 {downloadPack && (
                   <button
                     className="player-button player-button-secondary"
-                    disabled={busy}
+                    disabled={sourceBlocked}
                     onClick={() =>
                       downloadBlob(
                         downloadPack,
@@ -797,7 +858,9 @@ export function PackPlayer() {
                       )
                     }
                   >
-                    Export selected CharacterPack
+                    {authoring
+                      ? "Export original CharacterPack"
+                      : "Export selected CharacterPack"}
                   </button>
                 )}
                 {comparisonPack && (
@@ -873,7 +936,12 @@ export function PackPlayer() {
                     ).map((value) => (
                       <button
                         key={value}
-                        disabled={!pack || !animationFor(pack.manifest, value)}
+                        disabled={
+                          !pack ||
+                          authoringDraft ||
+                          authoringBusy ||
+                          !animationFor(pack.manifest, value)
+                        }
                         aria-describedby={
                           (value === "run" || value === "jump") &&
                           pack &&
@@ -948,8 +1016,9 @@ export function PackPlayer() {
                 </button>
               </div>
               <p className="player-motion-note">
-                Source playback · Motion inside each supplied frame is
-                preserved.
+                {modifiedActions
+                  ? "Edited frame selection and timing · Original image pixels are preserved."
+                  : "Source playback · Motion inside each supplied frame is preserved."}
               </p>
               {pack && !pack.manifest.animations.run && (
                 <p className="player-motion-note" id="player-run-unavailable">
@@ -984,6 +1053,42 @@ export function PackPlayer() {
                     onChange={(event) => scrubFrame(Number(event.target.value))}
                   />
                 </label>
+              )}
+              {authoring && selectedClip && pack && (
+                <div className="player-frame-steps">
+                  <button
+                    className="player-reset"
+                    disabled={framePosition === 0}
+                    onClick={() => scrubFrame(Math.max(0, framePosition - 1))}
+                  >
+                    Previous frame
+                  </button>
+                  <button
+                    className="player-reset"
+                    disabled={framePosition >= selectedClip.frames.length - 1}
+                    onClick={() =>
+                      scrubFrame(
+                        Math.min(
+                          selectedClip.frames.length - 1,
+                          framePosition + 1,
+                        ),
+                      )
+                    }
+                  >
+                    Next frame
+                  </button>
+                  <span data-testid="sprite-source-frame">
+                    Atlas frame {frameId}
+                    {(() => {
+                      const origin = pack.config?.derivation.frames.find(
+                        (frame) => frame.frameId === frameId,
+                      );
+                      return origin
+                        ? ` · source index ${origin.sourceFrame} · ${origin.timeSeconds.toFixed(3)} s`
+                        : " · source index unavailable";
+                    })()}
+                  </span>
+                </div>
               )}
               <div className="player-control-row player-secondary-controls">
                 <label htmlFor="player-speed">
@@ -1046,6 +1151,23 @@ export function PackPlayer() {
                 </span>
               </div>
             </div>
+            {authoring && (
+              <Suspense
+                fallback={<p role="status">Loading sprite action tools…</p>}
+              >
+                <SpriteActionEditor
+                  archive={downloadPack}
+                  basePack={editorBasePack}
+                  animation={animation}
+                  facing={facing}
+                  busy={busy}
+                  onPreview={previewActionSettings}
+                  onOpenSource={openActionSource}
+                  onBusy={setAuthoringBusy}
+                  onDraft={setAuthoringDraft}
+                />
+              </Suspense>
+            )}
           </section>
         </div>
 

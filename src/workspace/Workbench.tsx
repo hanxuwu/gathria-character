@@ -175,7 +175,7 @@ export function CharacterWorkbench() {
             </h1>
             <p>
               {tab === "original"
-                ? "Explore the original artwork. Keep every movement and detail."
+                ? "Inspect the original sprite frames, arrange actions and export a reusable character pack."
                 : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
             </p>
           </div>
@@ -200,7 +200,7 @@ export function CharacterWorkbench() {
             tabIndex={tab === "original" ? 0 : -1}
             onClick={() => select("original")}
           >
-            <Film size={18} aria-hidden="true" /> Original playback
+            <Film size={18} aria-hidden="true" /> Sprite actions
           </button>
           <button
             id="rig-tab"
@@ -228,9 +228,9 @@ export function CharacterWorkbench() {
             <p>
               {selection.id ? (
                 <>
-                  <strong>Original Kling artwork.</strong> Five actions, both
-                  directions and portable export. This version has fixed
-                  clothing; it is not yet bound to the editable skeleton.
+                  <strong>Original Kling sprite frames.</strong> Inspect and
+                  trim actions, adjust timing and save your project. Clothing
+                  and expression remain part of each original image.
                 </>
               ) : (
                 <>
@@ -248,7 +248,7 @@ export function CharacterWorkbench() {
               target="_blank"
               rel="noreferrer"
             >
-              Open player separately{" "}
+              Open source player separately{" "}
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           </div>
@@ -256,8 +256,8 @@ export function CharacterWorkbench() {
             <iframe
               className="workbench-frame"
               ref={originalFrame}
-              title="Original Kling playback"
-              src={`/player.html?kling=${character.id}&embedded=1`}
+              title="Sprite action workspace"
+              src={`/player.html?kling=${character.id}&embedded=1&authoring=1`}
               onLoad={() =>
                 notifyVisibility(originalFrame.current, tab === "original")
               }

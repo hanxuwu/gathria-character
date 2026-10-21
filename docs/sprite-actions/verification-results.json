@@ -1,0 +1,43 @@
+{
+  "baseCommit": "d583cdabc4da35b9db852200c423668bce2a8fd4",
+  "branch": "feat/kling-sprite-actions",
+  "recordedAt": "2026-10-21T02:39:54.970178+00:00",
+  "scope": "Current batch executions only; historical female and source review counts are not additional executions.",
+  "commands": [
+    {
+      "command": "npm test",
+      "passed": true,
+      "tests": 119,
+      "files": 9,
+      "log": "logs/unit.txt"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 21,
+      "log": "logs/e2e.txt",
+      "note": "Complete existing+sprite-action suite at this point. Subsequent runtime change is limited to action-button CSS (font/width/margin), checked by final actual UI capture."
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/sprite-actions-errors.spec.ts",
+      "passed": true,
+      "tests": 1,
+      "note": "Added focused regression after the full suite: valid near-limit metadata rejection retains previous project and playback; runtime unchanged."
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "log": "logs/build.txt",
+      "note": "Final runtime build including tsc -b and final button CSS."
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium node scripts/verify-sprite-actions.mjs",
+      "passed": true,
+      "index": "review/evidence-index.json",
+      "note": "Real UI downloads and editor-closed independent playback; same frozen runtime for desktop/narrow capture. See index for capture corrections."
+    }
+  ],
+  "sourcePreservation": "source-preservation.json",
+  "review": "README.md",
+  "visualAcceptance": "No new artwork, natural-motion improvement or user visual acceptance claimed. Review concerns source preservation and editing workflow."
+}

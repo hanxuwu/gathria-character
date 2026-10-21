@@ -1,0 +1,37 @@
+> gathria-character@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:307670) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:307683) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 2 workers
+
+(node:307705) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:307704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 tests/e2e/baked-playback.spec.ts:112:3 › source pair → same-clock playback → native V2 export → independent reopen preserves source pixels (Web Crypto) (8.3s)
+  ✓   1 tests/e2e/native-study.spec.ts:7:3 › male native candidate keeps the source rest pose and saves real editable joint poses (11.4s)
+  ✓   3 tests/e2e/baked-playback.spec.ts:112:3 › source pair → same-clock playback → native V2 export → independent reopen preserves source pixels (without Web Crypto) (6.5s)
+  ✓   5 tests/e2e/baked-playback.spec.ts:290:1 › invalid source and removed V1 packs cannot replace the loaded Kling character (1.7s)
+  ✓   4 tests/e2e/native-study.spec.ts:7:3 › female native candidate keeps the source rest pose and saves real editable joint poses (9.2s)
+  ✓   6 tests/e2e/baked-playback.spec.ts:384:1 › optional source jump plays once, exports its timing, compares both characters and replays without Web Crypto (6.2s)
+  ✓   8 tests/e2e/baked-playback.spec.ts:565:1 › independent native multipage pack draws the jump page, holds landing, mirrors, scrubs and reexports all pages (2.9s)
+  ✓   7 tests/e2e/native-study.spec.ts:129:1 › the visible male skeleton entry retains poses and old study URLs still open the native candidate (6.2s)
+  ✓   9 tests/e2e/baked-playback.spec.ts:667:1 › prepared Kling originals defer the second download, release comparison cache and export the original archive (3.7s)
+  ✓  10 tests/e2e/native-study.spec.ts:167:1 › opening a female project in a male entry preserves its identity and export filenames (3.7s)
+  ✓  11 tests/e2e/baked-playback.spec.ts:745:1 › female workbench link loads only that prepared original and embedded mode hides duplicate navigation (1.5s)
+  ✓  13 tests/e2e/workspace-shell.spec.ts:3:1 › library has three primary destinations, original previews and lazy character loading (891ms)
+  ✓  14 tests/e2e/workspace-shell.spec.ts:57:1 › workbench keeps native joint edits and undo history alive across tabs (3.6s)
+  ✓  15 tests/e2e/workspace-shell.spec.ts:129:1 › workbench follows trusted player selection without reloading the retained player (3.6s)
+  ✓  16 tests/e2e/workspace-shell.spec.ts:216:1 › mobile library and workbench navigation stay within the viewport and support keyboard tabs (2.8s)
+  ✓  17 tests/e2e/workspace-shell.spec.ts:247:1 › female library entry and character changes retain separate male and female joint edits (6.0s)
+  ✓  18 tests/e2e/workspace-shell.spec.ts:349:1 › an embedded cross-import updates the outer identity without replacing either retained session (6.0s)
+  ✓  12 tests/e2e/sprite-actions.spec.ts:51:3 › male: action edits preserve source pixels through save, reopen and independent playback (30.3s)
+  ✓  19 tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback (19.4s)
+  ✓  20 tests/e2e/sprite-actions.spec.ts:200:1 › invalid ranges preserve edits; reset restores the original jump and byte-exact export (6.9s)
+  ✓  21 tests/e2e/sprite-actions.spec.ts:229:1 › an imported V2 pack can be arranged without inventing missing actions (2.2s)
+
+  21 passed (1.5m)
