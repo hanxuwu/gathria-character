@@ -7,6 +7,7 @@ import { createBakedCharacterPack } from "../../src/core/pack";
 import type {
   BakedCharacterRecipe,
   CharacterPackV2Manifest,
+  PortableAnimationName,
 } from "../../src/core/types";
 import {
   WARDROBE_ANCHORS,
@@ -20,7 +21,7 @@ const sha = (bytes: Uint8Array) =>
 const json = (value: unknown) => strToU8(JSON.stringify(value));
 const stamp = new Date("2020-01-01T00:00:00.000Z");
 
-async function character(key: "male" | "female") {
+async function character(key: "male" | "female", motionFlow = false) {
   const manifest: CharacterPackV2Manifest = {
     schemaVersion: 2,
     format: "gathria-character-pack",
@@ -71,6 +72,28 @@ async function character(key: "male" | "female") {
       ],
     },
   };
+  if (motionFlow) {
+    const names = Object.keys(manifest.animations) as PortableAnimationName[];
+    config.sourceMetadata = {
+      motionFlow: {
+        format: "gathria-motion-flow",
+        version: 1,
+        characterId: key,
+        actions: JSON.parse(JSON.stringify(manifest.animations)),
+        routes: names.flatMap((from) =>
+          names
+            .filter((to) => to !== from)
+            .map((to) => ({
+              from,
+              to,
+              exit: manifest.animations[from]!.frames.length,
+              entry: 0,
+            })),
+        ),
+        returnToIdle: ["jump"],
+      },
+    };
+  }
   const pixels = new Uint8Array(16 * 8 * 4);
   for (let y = 0; y < 8; y++)
     for (let x = 0; x < 16; x++)
@@ -243,10 +266,13 @@ async function character(key: "male" | "female") {
   };
 }
 
-export async function installWardrobeFixture(page: Page) {
+export async function installWardrobeFixture(
+  page: Page,
+  options: { motionFlow?: boolean } = {},
+) {
   const [male, female] = await Promise.all([
-    character("male"),
-    character("female"),
+    character("male", options.motionFlow),
+    character("female", options.motionFlow),
   ]);
   const files = new Map<string, Uint8Array>();
   for (const fixture of [male, female]) {

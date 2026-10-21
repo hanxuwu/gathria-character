@@ -255,3 +255,139 @@ test("a clothing file that touches the head in a later pose is rejected before r
     await preview.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL()),
   ).toBe(original);
 });
+
+test("a completed direct-playback jump can be replayed without a separate restart", async ({
+  page,
+}) => {
+  await installWardrobeFixture(page);
+  await page.clock.install({ time: new Date("2026-10-21T14:00:00Z") });
+  await page.goto("/workbench.html?character=male&mode=wardrobe");
+  const wardrobe = page.locator("#wardrobe-panel");
+  await expect(wardrobe.getByRole("status")).toContainText("Original outfit.");
+  await page.clock.pauseAt(new Date("2026-10-21T15:00:00Z"));
+  const canvas = wardrobe.getByTestId("wardrobe-preview");
+  await wardrobe
+    .getByLabel("Wardrobe action", { exact: true })
+    .selectOption("jump");
+  await wardrobe
+    .getByRole("button", { name: "Play wardrobe animation" })
+    .click();
+  await page.clock.runFor(450);
+  await expect(
+    wardrobe.getByRole("button", { name: "Play wardrobe animation" }),
+  ).toBeVisible();
+  await expect(canvas).toHaveAttribute("data-frame-position", "2");
+  await wardrobe
+    .getByRole("button", { name: "Play wardrobe animation" })
+    .click();
+  await page.clock.runFor(50);
+  await expect(
+    wardrobe.getByRole("button", { name: "Pause wardrobe animation" }),
+  ).toBeVisible();
+  await expect(canvas).toHaveAttribute("data-frame-position", "0");
+  await page.clock.runFor(400);
+  await expect(
+    wardrobe.getByRole("button", { name: "Play wardrobe animation" }),
+  ).toBeVisible();
+  await expect(canvas).toHaveAttribute("data-frame-position", "2");
+});
+
+test("an outfit preflight keeps the queued landing, current pose and facing intact", async ({
+  page,
+}, testInfo) => {
+  const fixtures = await installWardrobeFixture(page, { motionFlow: true });
+  await page.clock.install({ time: new Date("2026-10-21T14:00:00Z") });
+  await page.goto("/workbench.html?character=female&mode=wardrobe");
+  const wardrobe = page.locator("#wardrobe-panel");
+  await expect(wardrobe.getByRole("status")).toContainText("Original outfit.");
+  await page.clock.pauseAt(new Date("2026-10-21T15:00:00Z"));
+  const canvas = wardrobe.getByTestId("wardrobe-preview");
+  await wardrobe
+    .getByLabel("Wardrobe action", { exact: true })
+    .selectOption("jump");
+  await wardrobe.getByLabel("Wardrobe facing").selectOption("left");
+  await wardrobe.getByLabel("Wardrobe frame", { exact: true }).fill("1");
+  const original = await canvas.evaluate((el: HTMLCanvasElement) =>
+    el.toDataURL(),
+  );
+  await wardrobe
+    .getByRole("button", { name: "Play wardrobe animation" })
+    .click();
+  await page.clock.runFor(17);
+  await wardrobe
+    .getByLabel("Wardrobe action", { exact: true })
+    .selectOption("walk");
+  await expect(
+    wardrobe.getByText("Jump → Walk at the next prepared boundary"),
+  ).toBeVisible();
+  let finishFetch!: () => void;
+  const fetchGate = new Promise<void>((resolve) => {
+    finishFetch = resolve;
+  });
+  await page.route("**/fixture-wardrobe/female-fullBody.zip", async (route) => {
+    await fetchGate;
+    await route.fulfill({
+      body: Buffer.from(
+        fixtures.female.items.find((item) => item.slot === "fullBody")!.bytes,
+      ),
+    });
+  });
+  await wardrobe.getByRole("button", { name: "Wedding", exact: true }).click();
+  await expect(wardrobe.locator(".wardrobe-editor")).toHaveAttribute(
+    "aria-busy",
+    "true",
+  );
+  await page.clock.runFor(2000);
+  await expect(canvas).toHaveAttribute("data-frame-position", "1");
+  expect(await canvas.evaluate((el: HTMLCanvasElement) => el.toDataURL())).toBe(
+    original,
+  );
+  finishFetch();
+  // Validation yields between poses using a timer, independent of animation.
+  await expect(wardrobe.getByRole("status")).toContainText("1 / 2");
+  await page.clock.runFor(1);
+  await expect(wardrobe.getByRole("status")).toContainText("Wedding selected");
+  await expect(canvas).toHaveAttribute("data-frame-position", "1");
+  await expect(canvas).toHaveAttribute("data-action", "jump");
+  await expect(canvas).toHaveAttribute("data-facing", "left");
+  await expect(canvas).toHaveAttribute("data-pending-action", "walk");
+  expect(
+    await canvas.evaluate((el: HTMLCanvasElement) => el.toDataURL()),
+  ).not.toBe(original);
+  await page.clock.runFor(150);
+  await expect(canvas).toHaveAttribute("data-action", "jump");
+  await expect(canvas).toHaveAttribute("data-frame-position", "2");
+  await wardrobe
+    .getByRole("button", { name: "Pause wardrobe animation" })
+    .click();
+  await page.clock.runFor(1500);
+  await expect(canvas).toHaveAttribute("data-action", "jump");
+  await expect(canvas).toHaveAttribute("data-pending-action", "walk");
+  await wardrobe
+    .getByRole("button", { name: "Play wardrobe animation" })
+    .click();
+  await page.clock.runFor(160);
+  await expect(canvas).toHaveAttribute("data-action", "walk");
+  await expect(canvas).toHaveAttribute("data-pending-action", "");
+  await expect(
+    wardrobe.getByLabel("Wardrobe action", { exact: true }),
+  ).toHaveValue("walk");
+  await wardrobe
+    .getByRole("button", { name: "Pause wardrobe animation" })
+    .click();
+  const downloading = page.waitForEvent("download");
+  await wardrobe.getByRole("button", { name: /Save wardrobe/ }).click();
+  const path = testInfo.outputPath("landed.wardrobe.zip");
+  await (await downloading).saveAs(path);
+  const saved = await importWardrobeProject(
+    new Uint8Array(await readFile(path)),
+  );
+  expect(saved.document.preview).toEqual({ action: "walk", facing: "left" });
+  expect(saved.document.selection.fullBody).toBe("female-fullBody");
+  expect(saved.archive.manifest.anchor).toEqual({
+    x: 4,
+    y: 7,
+    units: "pixels",
+    origin: "top-left",
+  });
+});

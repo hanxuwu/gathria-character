@@ -41,3 +41,14 @@ silently replace the accepted Kling characters.
 See `docs/kling-wardrobe/FORMAT.md` for the actual editable project and garment
 format, and the batch review for validation, exported evidence and remaining
 visual limitations.
+
+## Dress fitting revision 2
+
+The existing design and clothing-only cutouts are reused without a new image
+generation call. `prepare-kling-wardrobe-dresses.py --fit-revision=2` applies the
+offline garment-only helpers in `kling_dress_fit.py`: a complete waist colour
+transition, alpha compositing between overlapping cloth, and continuous side
+clearance that rejoins the existing hem. The original body pixels and guides
+are not transformed. Original garment ZIPs remain available; new versions use
+`coral-daydress-v2` and `ivory-wedding-dress-v2` IDs. See the actual-export evidence
+in `docs/kling-wardrobe/fit-v2/` for improvements and remaining limitations.

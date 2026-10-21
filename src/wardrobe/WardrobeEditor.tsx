@@ -714,6 +714,20 @@ export default function WardrobeEditor({
       dirty: true,
     });
   }
+  function togglePlayback() {
+    if (!playing && clip && !clip.loop) {
+      const duration = (clip.frames.length * 1000) / clip.fps;
+      // Imported/edited clips can use direct playback without motion routes.
+      // Once that one-shot has ended, Play should replay it, not stop again.
+      if (motion.current.elapsedMs >= duration) {
+        motion.current = { action: shownAction, elapsedMs: 0, pending: null };
+        tick.current = 0;
+        setFrameIndex(0);
+        setPending(null);
+      }
+    }
+    setPlaying(!playing);
+  }
   async function importProject(file?: File) {
     if (!file || busy) return;
     const token = ++request.current;
@@ -1093,7 +1107,7 @@ export default function WardrobeEditor({
                     : "Play wardrobe animation"
                 }
                 disabled={busy}
-                onClick={() => setPlaying(!playing)}
+                onClick={togglePlayback}
               >
                 {playing ? (
                   <Pause size={16} aria-hidden="true" />
