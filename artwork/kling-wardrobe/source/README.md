@@ -67,3 +67,15 @@ alpha and ownership exactly, preserving a narrow outer ink strip while
 distributing clearance through interior fabric. No new female art generation
 was used. See `prepared/female-dresses-v3/verification.json` in the parent
 wardrobe directory for the per-pose audit.
+
+## Clothing fit polish: male top V2 and female dress V4
+
+This revision reuses both recorded design sheets without a new image-generation
+call. The male correction limits preserved source ink to the external contour,
+joins local shoulder material sampling and uses the traced jacket hem rather
+than padded rectangular ownership. Female V4 re-extracts the existing painted
+curves/lace and samples premultiplied colour/alpha to avoid background fragments.
+Source anatomy, pose guides and registrations are unchanged. See the new
+[male fitting record](../prepared/fit-polish/male/README.md) and
+[female hem record](../prepared/dress-fit-v4/README.md); final acceptance uses
+[actual application exports](../../../docs/kling-wardrobe/fit-polish/README.md).

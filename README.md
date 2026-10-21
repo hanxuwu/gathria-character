@@ -31,7 +31,7 @@ retain the optional skeletal candidates.
 use `character=male` for the male. Choose **Everyday** or **Wedding**, then inspect
 all five actions in either direction. **Original** restores the source pixels.
 Save an editable project to continue changing clothes, or export a CharacterPack
-for the independent player. [Wardrobe review and downloads](docs/kling-wardrobe/README.md).
+for the independent player. [Latest clothing comparisons and downloads](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
 
 `/workbench.html?character=female&mode=rig` opens the female skeleton directly;
 use `character=male` for the male. `/skin-studio.html?character=female` is the

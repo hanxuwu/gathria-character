@@ -1,0 +1,602 @@
+{
+  "format": "gathria-kling-fit-polish-asset-audit",
+  "version": 1,
+  "startedAt": "2026-10-21T21:44:31.619962+00:00",
+  "baselineCommit": "c89e5add8d8b1a134e7cb3d7576c6370590cb57e",
+  "scope": "Baseline byte-preservation only; candidate assets not yet checked.",
+  "passed": true,
+  "immutableInputs": [
+    {
+      "file": "artwork/kling-wardrobe/registration/female/README.md",
+      "bytes": 7028,
+      "sha256": "df54cf98441bd678f243627239e41663d7a26aaac57723bc60766c8a5c61503e",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/manual-ownership-corrections.json",
+      "bytes": 7569,
+      "sha256": "1bccf7e9e514651c722eb709d956375078667ec435afd2ec6c8c69c4a2a4e7cb",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/ownership-regression.json",
+      "bytes": 3998,
+      "sha256": "09bd063f36a2ad1469d9da0aff80ab903c36849e5e90b115786fd26f396afe55",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/registration.json",
+      "bytes": 465066,
+      "sha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review-summary.json",
+      "bytes": 1478,
+      "sha256": "639e32d0b4915e1870e1597a92ee2d10ffd5c2aa57713b3cfe5dad0d494c7657",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/celebrate-registration-review.jpg",
+      "bytes": 209552,
+      "sha256": "2616ad80bf5a385681c5555e8de9821a200f481fc5aee5977e54dd0939d4d2e1",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/frame-0.jpg",
+      "bytes": 94868,
+      "sha256": "0b22cae463de37eaa0c53a3b89f9bc6b6bbb723e7bffe623abfe27a9fc215644",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/frame-105.jpg",
+      "bytes": 82519,
+      "sha256": "29230e6a6a96e71d44fc0d04a7af9c9fdc84e27abe9994170ed3178652cbe143",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/frame-40.jpg",
+      "bytes": 84207,
+      "sha256": "fe09e52f727777b718b01e1123867c75146c559778056808c77082cd775379e9",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/frame-58.jpg",
+      "bytes": 89323,
+      "sha256": "776a0925363d6e31f0a401f0fbfe0dd967b37d615e6a182cc219af1decdab639",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/frame-75.jpg",
+      "bytes": 97072,
+      "sha256": "8b72ae170064336106d02fca37c0ba11b74194f4d4eb2ce2534e20703c59bae5",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/frame-89-protection-and-material.png",
+      "bytes": 608045,
+      "sha256": "0d781a5ea0988d6d03f4eb46edfc90654edfe14931b3fc8aae0daf3fafa08a7e",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/frame-95.jpg",
+      "bytes": 92460,
+      "sha256": "d1264e430a58d35b08b4d31e21315fbecab04a4e52a369b6a099d4c234af5e35",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/idle-registration-review.jpg",
+      "bytes": 62841,
+      "sha256": "64161836d34ba64dc41f2b693e68a238b5461cfbfc2376744b6f2456d94b00f2",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/jump-registration-review.jpg",
+      "bytes": 608757,
+      "sha256": "1a558e814790b104ac09f1c1257dc4f26da1827388d72f7ab77e50ad101056d8",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/material-preparation-celebrate.jpg",
+      "bytes": 324735,
+      "sha256": "eccbbe0f10d41434373e9856f16612ccf36cadcdf6e06db431f594dbec17ca29",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/material-preparation-idle.jpg",
+      "bytes": 111057,
+      "sha256": "29ec71040e0192bce371b5d6a386043f7e82096460da9cb69262feca2386f1d2",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/material-preparation-jump.jpg",
+      "bytes": 1107830,
+      "sha256": "49362dce42a60c0fa26ffacf36219fe2eea7f882bd476b7f8f83d2324dcd4d5c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/material-preparation-run.jpg",
+      "bytes": 385027,
+      "sha256": "a94307cb7d590b39c31540eba1abc402e36800b7523650be818e775a7b72acb5",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/material-preparation-walk.jpg",
+      "bytes": 653553,
+      "sha256": "3e9ae0efdcc8ab3771984b14c23cbfc7165c795699c3b4f3d6ea002aaf9c64e3",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/run-registration-review.jpg",
+      "bytes": 243930,
+      "sha256": "b32d1ba2835c82818383f43c65a5e4f159ebe37e7d708fec3610f1216921f382",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/shoe-ownership-comparison.jpg",
+      "bytes": 143580,
+      "sha256": "3d62619ad223dd4496ffa2a2e0c5174bddc4a750e3468309747c4192d7705532",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/tank-64-ownership-comparison.jpg",
+      "bytes": 117663,
+      "sha256": "4a238f7ba3a85665750461abd75549644bfe0b2693aeb130145c4576fa7c13b2",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/review/walk-registration-review.jpg",
+      "bytes": 385935,
+      "sha256": "071a02610ccb99db268031a2dcc63da361856440658397ef10b8a8d5f058552e",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/semantic-cleanup.json",
+      "bytes": 6340,
+      "sha256": "9685515c5d184c6515ad05dac467e829972dc75f5d263092e64c4997d910618c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/validation.json",
+      "bytes": 2940,
+      "sha256": "ddb5f22c294553bd45f685e21f69371baa34ee24d96bde3c5219ba8ddd69fe8c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-full-outfits-v1/README.md",
+      "bytes": 2548,
+      "sha256": "b986f101e426b6040d14ea4a9801e6e354afaad0ff6326ab28b9fcb6bbae82c7",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-full-outfits-v1/authored-corrections.json",
+      "bytes": 20807,
+      "sha256": "c8672579e6d28dfeae08230acbfd2b5853e97a7e0396d0a749cd83e72b4773a8",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-full-outfits-v1/hand-protection-before-after.png",
+      "bytes": 1449392,
+      "sha256": "c121674ab4dacc8f5d26f2edd73db4b087ac77457cc7e497e8bd47a73dd48b5c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-full-outfits-v1/protection-differences.zip",
+      "bytes": 16123,
+      "sha256": "8e6c7f6f8612de3dda2e9d2dd20589bc70ef49d07680e47831539b80c9e25a67",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-full-outfits-v1/protection-review.json",
+      "bytes": 33634,
+      "sha256": "caad4b96f55dc62c8dfa7c6087aec894fa63b329456e5dbbb0d78fb452cda801",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-full-outfits-v1/registration.json",
+      "bytes": 337561,
+      "sha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/README.md",
+      "bytes": 2477,
+      "sha256": "278765eb05860b5ba2f66bcceba17abb3956db934a1917e6a0dded7bd350b4ea",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/celebrate-ownership-review.png",
+      "bytes": 413338,
+      "sha256": "783d824f28afcde22baa5718626e8ac986a1d81c41a3be9837ebce315807d15b",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/idle-ownership-review.png",
+      "bytes": 106801,
+      "sha256": "83eb3f354bbcc60c2c755a8aa19cb6f5b89449285f18c409f2fc0511a25240b0",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/index.json",
+      "bytes": 442390,
+      "sha256": "e3c8632007c465ec606b89131926a991d91a51633e8a686cbec9bdcb348cd4af",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/jump-ownership-review.png",
+      "bytes": 1132096,
+      "sha256": "4044c3aed23867212e3c80fd5fd3ef1f4caafc9527a92507c701c993ac34316f",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/keyposes-ownership-review.png",
+      "bytes": 437300,
+      "sha256": "fb7805aa2cf45945690084584daad52918068d856f3b2628442a8a277e8a3494",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/masks.zip",
+      "bytes": 1201818,
+      "sha256": "32adce13d9de80597105360b95d0a4c56d7dccfde3458482da3209652b262f27",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/run-ownership-review.png",
+      "bytes": 463571,
+      "sha256": "ed42babf844ac612c9ef6288f44f316f9b936836d604e1eb20daa4a124ea870a",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male-limbs-v1/walk-ownership-review.png",
+      "bytes": 446698,
+      "sha256": "83d1035f6fab047ac2ad4f66d05b312f69a2395c494fdef7e1ce0fbf45b4ef43",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male/README.md",
+      "bytes": 5650,
+      "sha256": "43902468d6bcb350507e031b9158c99cfb601a1988a1cf4de291e94247e9bada",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male/mask-hashes.json",
+      "bytes": 69082,
+      "sha256": "de16af8c13416fddb7c162ac4e28e5eeb1b971b58e2c33aa2acbfbc01adf89c6",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male/registration.json",
+      "bytes": 340639,
+      "sha256": "7b49caa860b56b88256ae7c9d8c299812b0974e82f54a377558522ba62ff16c1",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male/reviewed-mask-corrections.json",
+      "bytes": 10828,
+      "sha256": "aee2adaa2373d7dbd9d4fafc5a9e2ad8c4b220d7fa2e21767ff3bd4747bf6583",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male/reviewed-poses.json",
+      "bytes": 94145,
+      "sha256": "c611650ade29b60e8be1c6456dd6f7dee2a6d3b1c31729a3b80e1ae815ca76eb",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male/verification.json",
+      "bytes": 3508,
+      "sha256": "1d80ca15c6c71e43bd212597f6b4b0cb9319d56b880b6b09c8a70b04c5de93cf",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/source/full-outfits-v1/README.md",
+      "bytes": 1632,
+      "sha256": "dea7ea843012199ea2b08d373989995ad99de95a160cd3cf553d4c754c728071",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/source/full-outfits-v1/designs.png",
+      "bytes": 1724305,
+      "sha256": "0c6d2169b8daf2a8277ff0613978d0cc7929699fb34aeb591b009779bc172d4c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/source/full-outfits-v1/prompt.txt",
+      "bytes": 1837,
+      "sha256": "ae10b0f2ca9229cd73e6551170578647ae031a8a2cf70809d7577108416dd985",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "artwork/kling-wardrobe/source/outfit-designs.png",
+      "bytes": 1852193,
+      "sha256": "d2d620656123d6de2b9042c68383d204bbdae9f43aba84a66ab1666648ebc043",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-jump/exports/female.character.zip",
+      "bytes": 30286811,
+      "sha256": "30d948fec451783bbebf51c7768e68f4f30c6e37db4d88aa394677c415c17bfe",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-jump/exports/male.character.zip",
+      "bytes": 30330913,
+      "sha256": "4362880f2b6a7f4b663e112202ab385b56583bc8221466875e4691c4a973a56d",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-motion/exports/female.character.zip",
+      "bytes": 24565426,
+      "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-motion/exports/male.character.zip",
+      "bytes": 22641075,
+      "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day.character.zip",
+      "bytes": 29602746,
+      "sha256": "2211d147bf502472669b622943a97f8e5fc8a7291ea99dc3518380886002327b",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day.wardrobe.zip",
+      "bytes": 32582458,
+      "sha256": "0fc4770f9d0b7b5b84602f45cf92a235dbc6ee5a18f952b75dec8751c3e54c3f",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding.character.zip",
+      "bytes": 30098815,
+      "sha256": "fb5b89467f2529132920f0ca28646057a0dfe9fbae9f46804f63a43cf42a8a6d",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding.wardrobe.zip",
+      "bytes": 41831663,
+      "sha256": "ebddc916e487a61be5222aa52a9115f7e604430afc8c9e1d4f84ba7fe6a49b89",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day.character.zip",
+      "bytes": 27774677,
+      "sha256": "a8d377c6e336384b5f435469207c059043bfda872c8fc3809c17d9a3f8f6efaa",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day.wardrobe.zip",
+      "bytes": 32462983,
+      "sha256": "f3bbf4687caa98524c3ace2171d7562bd4275b59e6e3c42aa110c71f2bfd2070",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding.character.zip",
+      "bytes": 26094877,
+      "sha256": "6e59e6c185acffaa690f222b75b1d535aaeab57a37459660adc9f3edce86ef72",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding.wardrobe.zip",
+      "bytes": 44787799,
+      "sha256": "042cfc3d1a0da97325d527db4652855ae0b107648a729a37139b545dbb43f89e",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/brown-shoes.zip",
+      "bytes": 2249345,
+      "sha256": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress-v2.zip",
+      "bytes": 7967333,
+      "sha256": "85142e0a840d256748a3e675131506f65097fcaae77b6843417041a674cd8a37",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress-v3.zip",
+      "bytes": 7956976,
+      "sha256": "075d2220a51f3d627e75d69ac0ec36649d681272bb8e5a52df5bc66e461b0d6c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress.zip",
+      "bytes": 7661514,
+      "sha256": "fae154e975eed157f30451936913d8339585012091b07f23944470704472b400",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v2.zip",
+      "bytes": 9258663,
+      "sha256": "6e53bdb3e1ab4045536a1c619c42fb177b826974f4dc565a827a36c3bf5c57d7",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v3.zip",
+      "bytes": 9249048,
+      "sha256": "1cae860dd498944737fda769f3c2b1dc526041d1fbf60523f977e1e9f7039cad",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress.zip",
+      "bytes": 8727784,
+      "sha256": "ec50681fdf5a7fc1c41e08c22f4f0adf1de683f52ade3721380e33e46e641a9d",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/navy-shorts.zip",
+      "bytes": 1429702,
+      "sha256": "443069207301deb7f920f897d9fadc18b441cb6f20dfa8f2f5c1e5370188bb85",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/navy-waistcoat.zip",
+      "bytes": 2297040,
+      "sha256": "b5ab6f95830f381e26560def9e7654396ed336bbebb1115aa9e0c107d237a997",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ochre-shorts.zip",
+      "bytes": 1675358,
+      "sha256": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/teal-top.zip",
+      "bytes": 2180841,
+      "sha256": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male-full-outfits-v1/brown-shoes.zip",
+      "bytes": 1968858,
+      "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-shorts.zip",
+      "bytes": 1440915,
+      "sha256": "131a5a8da2501f93509f8a253522cd890fe7020b4738db8631be4707c996079a",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-waistcoat.zip",
+      "bytes": 2252141,
+      "sha256": "de0b42bcb3d3e2361779c4aa81b6ebc34a5cab050db920b8054be0e2be45b8f1",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male-full-outfits-v1/ochre-shorts.zip",
+      "bytes": 1683540,
+      "sha256": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male-full-outfits-v1/teal-top.zip",
+      "bytes": 1992387,
+      "sha256": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/brown-shoes.zip",
+      "bytes": 1968859,
+      "sha256": "6f8a8142748e673ec346c34c09f25bbd6521ca661637b752c2f3f09bc19527f2",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-shorts.zip",
+      "bytes": 1441020,
+      "sha256": "29cc0af0c14197438b978c07493926e1c465d593edafee0352cec5836c4dc596",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-suit-jacket-v1.zip",
+      "bytes": 6808025,
+      "sha256": "a2171b53e1b9be4c4e6f8774676fb50060fa2563fba5ce6fcc9d05647db4c5b3",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-suit-trousers-v1.zip",
+      "bytes": 3547490,
+      "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-waistcoat.zip",
+      "bytes": 2252780,
+      "sha256": "1efeeb4244309b96635aff7f318fa11637c5336ab0888798c9ad6c69a5ce88de",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/ochre-chinos-v1.zip",
+      "bytes": 5355500,
+      "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/ochre-shorts.zip",
+      "bytes": 1683700,
+      "sha256": "0a4639754d877b25a74b63d76f0ffa983844d6164df664c02efbfa198137c6aa",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/teal-camp-shirt-v1.zip",
+      "bytes": 4416775,
+      "sha256": "56098d36b96d9aeb7c1403ecc5031e57249e749c96fc7acf7075201a6f8ae994",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/teal-top.zip",
+      "bytes": 1993253,
+      "sha256": "855b6666c829076b715c5cf89df3e1485a8cbe62f1a3b3e6f5cda7bfd586a30a",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/female.json",
+      "bytes": 465066,
+      "sha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+      "bytes": 337561,
+      "sha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/male.json",
+      "bytes": 340639,
+      "sha256": "7b49caa860b56b88256ae7c9d8c299812b0974e82f54a377558522ba62ff16c1",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/README.md",
+      "bytes": 6551,
+      "sha256": "b2c7514348f95da03511272a9b264fa6bc42415656e080abe1536bd29abc714c",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/female.wardrobe-template.zip",
+      "bytes": 27675089,
+      "sha256": "bef7e79eccb85e1a83c951b372adb0d5904563bdac451a75519be605ca4ec5c6",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/inventory.json",
+      "bytes": 1824,
+      "sha256": "5f161b10955f6d49e8e1305317b14cd8857414a585d77a5d34e53b9765032bf4",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/male-full-outfits-v1.wardrobe-template.zip",
+      "bytes": 24030303,
+      "sha256": "411c636eaf487fb0ab3b4ae91938c96f9d3b87e342aa6ee73e90a3b012a1858e",
+      "byteExactToBaseline": true
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/male.wardrobe-template.zip",
+      "bytes": 24375731,
+      "sha256": "60c3d4c1e0cb487f59ca07fb65ed34e755e1eada11ffe26ebcc4da53f48f190f",
+      "byteExactToBaseline": true
+    }
+  ],
+  "completedAt": "2026-10-21T21:44:33.520695+00:00",
+  "auditScript": {
+    "file": "scripts/verify-kling-fit-polish-assets.py",
+    "bytes": 14904,
+    "sha256": "94955a4fe3aa8cbefba95e1bad9d62440f4c4c3748a982a634abd686e4158e8e"
+  },
+  "parserDependency": {
+    "file": "scripts/verify-kling-full-outfit-ownership.py",
+    "bytes": 47409,
+    "sha256": "4376b3e3cdfbfc4b55f3f403d1a6a88ffa8b1786e8b93cddb86b3cb13ea2e49f"
+  },
+  "commonDependency": {
+    "file": "scripts/kling_wardrobe_common.py",
+    "bytes": 5577,
+    "sha256": "870aa7498047a740f38a9afbd2d847bef1a13e1a40cf7c013fadfe4f315ad721"
+  }
+}
