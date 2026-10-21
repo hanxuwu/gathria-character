@@ -1,0 +1,5665 @@
+{
+  "format": "gathria-wardrobe-fit-polish-browser-evidence",
+  "version": 1,
+  "startedAt": "2026-10-21T22:01:56.429Z",
+  "commitAtCapture": "ec9bd75d6d29341657ad65df141a731171db9d03",
+  "production": true,
+  "baselineCommit": "c89e5add8d8b1a134e7cb3d7576c6370590cb57e",
+  "historicalBaseline": "docs/kling-wardrobe/fit-polish/baseline.json",
+  "faviconHarness": {
+    "urlPath": "/favicon.ico",
+    "status": 204,
+    "reason": "Only the optional browser icon request is fulfilled by this harness; no application request or error is suppressed."
+  },
+  "inputHashes": {
+    "docs/kling-motion/exports/female.character.zip": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+    "docs/kling-motion/exports/male.character.zip": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+    "docs/kling-wardrobe/catalog.json": "fefa6672f3878caa11dd3b6ec404ce58a7a0464da864211f742684ab105ec889",
+    "docs/kling-wardrobe/fit-polish/baseline.json": "2badfce64d27b4fab9d5ae0b7da65a7ecfb7dd5ee68d9041b3f23442e005f8b4",
+    "docs/kling-wardrobe/full-outfits/exports/female-day-frame-104.png": "508a4a88a862af11bf377bfc36b33cf7e3a269f439a0d12df77505448bfc4518",
+    "docs/kling-wardrobe/full-outfits/exports/female-day-frame-58.png": "ee47c8bb288f60952816ccc27552e7f36bce4f009301fead871d70377a316445",
+    "docs/kling-wardrobe/full-outfits/exports/female-day-frame-89.png": "064542a6d8e38638cd838f2e8041cf1a6a31471ad39c8a674cf89fbed022fd29",
+    "docs/kling-wardrobe/full-outfits/exports/female-day.character.zip": "2211d147bf502472669b622943a97f8e5fc8a7291ea99dc3518380886002327b",
+    "docs/kling-wardrobe/full-outfits/exports/female-day.wardrobe.zip": "0fc4770f9d0b7b5b84602f45cf92a235dbc6ee5a18f952b75dec8751c3e54c3f",
+    "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-104.png": "d8448c947025ee97d7900023fbc1a1de292cd3ca10c819fb62b2153f2679d53c",
+    "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-58.png": "4b429e28cc1166285b0d65d731ba7e9082d632eda67251156b8d85fc12c9e848",
+    "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-89.png": "b9b61b7a14db0757c10e8ebb01fac38f1dc9669b10bd0e8578e225e7cb1ebf1f",
+    "docs/kling-wardrobe/full-outfits/exports/female-wedding.character.zip": "fb5b89467f2529132920f0ca28646057a0dfe9fbae9f46804f63a43cf42a8a6d",
+    "docs/kling-wardrobe/full-outfits/exports/female-wedding.wardrobe.zip": "ebddc916e487a61be5222aa52a9115f7e604430afc8c9e1d4f84ba7fe6a49b89",
+    "docs/kling-wardrobe/full-outfits/exports/male-day-frame-0.png": "5d9bb468ee0ad37d53a2383b7dd9a7e24e2c7584757382de865fca5cf0e42952",
+    "docs/kling-wardrobe/full-outfits/exports/male-day-frame-104.png": "c34bda2f5c9d04e4f678582f7813b2f0ae7ace9c426f80501205798e4095e0d6",
+    "docs/kling-wardrobe/full-outfits/exports/male-day-frame-121.png": "0251e21d0a42087f7952612273997b38b5dcd7ee28b95ff6d37357d5017716e7",
+    "docs/kling-wardrobe/full-outfits/exports/male-day-frame-51.png": "01b457faee0e4d242000dcb3dba5ad3ee50c89b83bcb297eb08460a33ac5d736",
+    "docs/kling-wardrobe/full-outfits/exports/male-day-frame-64.png": "9ff5561fd153bf98988fbfb88542df82610e9ec1f80d657e05f03d51ea45b9e3",
+    "docs/kling-wardrobe/full-outfits/exports/male-day-frame-87.png": "a0a76600dd0bd224c57864a4541c8322f4c1d92d23cffe6f76f90d7e6fb83e32",
+    "docs/kling-wardrobe/full-outfits/exports/male-day.character.zip": "a8d377c6e336384b5f435469207c059043bfda872c8fc3809c17d9a3f8f6efaa",
+    "docs/kling-wardrobe/full-outfits/exports/male-day.wardrobe.zip": "f3bbf4687caa98524c3ace2171d7562bd4275b59e6e3c42aa110c71f2bfd2070",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-0.png": "820f789a27d2b317d4411def70b3c495fbb9bbd5189e8b55c988caf50bc2a58b",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-104.png": "c69e9a902fc16729ca1f3de5ec777ceb3c5296c8662fc40e28b8d79d6f090ddc",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-121.png": "54629b4fe56b0ab8d8fa88a64e14547143de8cf9fb486e4bd810d56ea45dc972",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-51.png": "be104c31eaddb989eefb707c7a48ab1e63342bcf07604304732f9aa6864a26d4",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-64.png": "9d1ee6121cbefd03755c8e39699df47d37f06bb258f86c675752fc819c3dffdb",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-87.png": "841edc5765dd8748cf693e7c02d11eccb76c00d11aa34a851cbb0428847733d1",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding.character.zip": "6e59e6c185acffaa690f222b75b1d535aaeab57a37459660adc9f3edce86ef72",
+    "docs/kling-wardrobe/full-outfits/exports/male-wedding.wardrobe.zip": "042cfc3d1a0da97325d527db4652855ae0b107648a729a37139b545dbb43f89e",
+    "docs/kling-wardrobe/garments/female/brown-shoes.zip": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5",
+    "docs/kling-wardrobe/garments/female/coral-daydress-v4.zip": "3cbbced4480a55dcd931244cdebc275fc62a021e470832bd06f7b192e164c046",
+    "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v4.zip": "0b904c7bf0778222a00fd7189246a117785c672e51c5b529986a041da67665ee",
+    "docs/kling-wardrobe/garments/female/navy-shorts.zip": "443069207301deb7f920f897d9fadc18b441cb6f20dfa8f2f5c1e5370188bb85",
+    "docs/kling-wardrobe/garments/female/navy-waistcoat.zip": "b5ab6f95830f381e26560def9e7654396ed336bbebb1115aa9e0c107d237a997",
+    "docs/kling-wardrobe/garments/female/ochre-shorts.zip": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e",
+    "docs/kling-wardrobe/garments/female/teal-top.zip": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/brown-shoes.zip": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-shorts.zip": "131a5a8da2501f93509f8a253522cd890fe7020b4738db8631be4707c996079a",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-waistcoat.zip": "de0b42bcb3d3e2361779c4aa81b6ebc34a5cab050db920b8054be0e2be45b8f1",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/ochre-shorts.zip": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/teal-top.zip": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc",
+    "docs/kling-wardrobe/garments/male/navy-suit-jacket-v2.zip": "0b0bfaa112b9c17f161adb498a6b99d28fc5407768f5d0eecc6740c2ef0a1a9c",
+    "docs/kling-wardrobe/garments/male/navy-suit-trousers-v1.zip": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c",
+    "docs/kling-wardrobe/garments/male/ochre-chinos-v1.zip": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33",
+    "docs/kling-wardrobe/garments/male/teal-camp-shirt-v2.zip": "c3b738d35fc92bccaedd130a7f7cf98f5c882a5615f18e24cfe710272ab81f49",
+    "docs/kling-wardrobe/registration/female.json": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+    "docs/kling-wardrobe/registration/male-full-outfits-v1.json": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+    "scripts/kling-fit-polish-evidence-config.json": "b5af9f1ce74d4e82b7d3d0a2394152a2c7478da3579f358ee190a9eba20d2704",
+    "scripts/verify-kling-fit-polish.mjs": "0761e51aa6b0eabd9f9cb6f4b4aa27b5130c85c47a10f7eac517ae7774b1c69a",
+    "src/consumer/PackPlayer.tsx": "e0ba8a10b934d2618c4b6d4e2f2f5c627074a6afc3d95b39651a4091e1a639fb",
+    "src/consumer/SpriteActionEditor.tsx": "3fb228a155071b5a34f5c2dea93b02bf5cfcb3b68757985d0f1012e86033f3c4",
+    "src/consumer/kling-catalog.ts": "7136d9e65d8e9db55308e9ccded09af2c7d0fdfe1df2885cc04012c7a5fb1c2c",
+    "src/consumer/kling-packs.test.ts": "df60bcf90f02e600ed8578bf7210dc4ad1e9595dc7c3a0cf5082939389ca4236",
+    "src/consumer/kling-packs.ts": "eaec182b9bbdcb3195afe4ad873e8f095a9f97ad7bb7fccd918e37f523c58a24",
+    "src/consumer/main.tsx": "11b7ae34966e906bed2911fc32b98646fa60b82fc7487c2784110a1b096fed4c",
+    "src/consumer/motion-flow.test.ts": "d13d1e77610f8de8d15093d614d1aad0dfd49693258d483a376660c18873bbb7",
+    "src/consumer/motion-flow.ts": "ee2aeb395599ad6ae22d48a8b3d5fae26f3bc2f7793faf7d9eec1d23e3cfff55",
+    "src/consumer/player.css": "010e2e09bbecbb7af0125466518b35eeaed3150cde39595fece369adbfe219cd",
+    "src/consumer/player.test.ts": "950f297177fe50cc46171b527706e793d2c55baa866b10d7ed821cdd80fad7b7",
+    "src/consumer/player.ts": "954d921fcab534927f35fca9a6076b166cc241bec316cf4de46c81de197d6409",
+    "src/consumer/sprite-actions.css": "474d96c3ea2676b83ab032d68270881423dd99f337caeed3b669ee10278eb374",
+    "src/core/baked-source.test.ts": "835947af4b8963b2f2ba5f75e760633a22f3a9c79632b4f16bf67e294632757b",
+    "src/core/baked-source.ts": "fa90d1e2ba9391af0e0c44e5b224d8661d513e711b5ffa2f278cbf73608b7a57",
+    "src/core/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/core/pack-v2.test.ts": "74f5da3d07d63208c17668d4453a5397b77fc545eefc756fb13d2ef9a7c8f927",
+    "src/core/pack-v2.ts": "ff497c58c58e054a0590e36a6de5020446d7e31ba945d7c405e8123c5afd82e1",
+    "src/core/pack-v3.test.ts": "f6259439b2344519cf09bfcb6b19573b502f27d28020436085ed922621997b02",
+    "src/core/pack-v3.ts": "1e1a7bd8e1324e0e95de1dfeda0b31c04f1fa1409211fb808147e632dd7bedef",
+    "src/core/pack.ts": "f728d5a36b77bf53f7727d30fdb8ada54cc13edf8af7feec2f02c2b0636de8aa",
+    "src/core/sha256.test.ts": "4bcca339955914b841693cfc81b391b81a14c6d9341ed8d49f3c78e7adcb93d5",
+    "src/core/sha256.ts": "9dadabe2eade2c115bb3f61da9920c24b00b5c13808956dd6e9116523d20d4b9",
+    "src/core/sprite-actions.test.ts": "753ee8b3852512488d4bab85c2c7c22ce75d0b54d509fbe6a654e40752dea13a",
+    "src/core/sprite-actions.ts": "8d8472e36b449f92091c79358190fb420e17c3d2a74cf5ae2fefd932999d8570",
+    "src/core/types.ts": "4f22876a4957b84bb2450042534d6a661d4f273edab41eb901aee85ea7b58670",
+    "src/skeletal/NativeStudy.tsx": "253580fc52369e72aeacc12db19e9e8cc1687a4496c8faca2b5f3f507f0ca9cf",
+    "src/skeletal/geometry.test.ts": "27a820d5cd3defdf07876b67dcd4921eff152aa58559a554f39065614c4f5c91",
+    "src/skeletal/geometry.ts": "197cf4eac53b77b7cdfac9e6ef54b7a4cebb48cabace7d1de9fd863b4826a3ff",
+    "src/skeletal/main.tsx": "9b0df8847245e674c43761a55e8aefd31024e705d1d1662e9546a03edf83b356",
+    "src/skeletal/native-study.css": "a84350341c60f5e15c2a82f70e239118ce01609c3d61016a4e088fa8de52312f",
+    "src/skeletal/native-study.test.ts": "ee247d6573150d07b3a50b9b990faebd4ea313d2a1a495b21a4fec9dae01d71b",
+    "src/skeletal/native-study.ts": "0a2c15bc1522a1129d932f3897d40f20216eccae63bf83d7dc99750778071aa0",
+    "src/wardrobe/WardrobeEditor.tsx": "4a6608db18495672d0d0d6c9f7e1935fd4b1abb872357f1f58db156f49f1998c",
+    "src/wardrobe/catalog-assets.ts": "705733d13d5d7d6cdcc6ad4a7611bb6866d02b100fa5b1ea64de9ddec5635331",
+    "src/wardrobe/compositor.test.ts": "4c37b13437bf38fed7ee7fe82655eb36bd4ff56620457db59708125db4bfbb89",
+    "src/wardrobe/compositor.ts": "18a811abc84d4ab333c76a0fe53baf245eadcd1a3a8070b5edde20b6c0c0731d",
+    "src/wardrobe/contract.ts": "ea996f9fa2aefd474d626bfff0e8dfcee6b5e16cc6ab335a5a34ef5ee52660ca",
+    "src/wardrobe/project.test.ts": "df693b13dd591a4361252b28a19c038335db8acbb43b971112261bbd4ee0939d",
+    "src/wardrobe/project.ts": "274890f7de212061927ca37e40fea1b5e91cf4f8ee8fa4cf498160cc7966ff25",
+    "src/wardrobe/wardrobe.css": "5522dd0511e040c1ab24db74fa3ec6ee26f257a69b70ac27109a0acbf9242282",
+    "src/workspace/Library.tsx": "fec5733691cc838110d139ca3a1f07b68b7ae1671b2bfac627c521448c8d989e",
+    "src/workspace/MainNavigation.tsx": "a1e7e9c1944cd907644f5cf5fa9c3434cb4f8ef342ed6fcc33a4e5866ffddcd6",
+    "src/workspace/Workbench.tsx": "0397e2ffbf0c0a63f4c5c4d7a649b131e513f846ca2a16182f454ffaae070a67",
+    "src/workspace/main.tsx": "860ee0100634905205c0ce85ff53672f69c5a4f5ed67825a8f10a440c866b3f2",
+    "src/workspace/navigation.css": "27566e1d525c5797a57573461a218b7aa4d41c43a76c98bbfec7580e4aedcc57",
+    "src/workspace/workbench-main.tsx": "fc3d7cb2ecf80631d3ef7b4faa084a368d498bd19273cf14338bd2dafafc23a3",
+    "src/workspace/workspace.css": "c395ad30113d85d322a5b9644282d3448ca756bc9714a4e7040bda5bbb286612",
+    "vite.config.ts": "5db54edaef02bec9ef8951c08d4a6e9272f2a7b1907470accaf17098f7bcdc36"
+  },
+  "scope": "Male fit-polish outfits and female V3 day/wedding actual UI exports; explicit old-project pixel comparisons; mixed tops/trousers/shoes; queued transitions; independent five-action/two-facing playback after closing all wardrobe contexts.",
+  "observationMethod": "MutationObserver reads metadata published with the painted bitmap at normal speed. Missed positions and intervals are recorded rather than hidden; functional evidence is separate from visual review.",
+  "timingLimits": "Other checks may run on the same host. Recorded intervals describe this capture, not an isolated performance benchmark or a frame-delivery guarantee.",
+  "downloads": [
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-legacy.png",
+      "kind": "legacy-png",
+      "bytes": 342161,
+      "sha256": "5d9bb468ee0ad37d53a2383b7dd9a7e24e2c7584757382de865fca5cf0e42952",
+      "members": [
+        {
+          "name": "male-day-legacy.png",
+          "bytes": 342161,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ],
+      "matchedReferencePixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-legacy.png",
+      "kind": "legacy-png",
+      "bytes": 320948,
+      "sha256": "820f789a27d2b317d4411def70b3c495fbb9bbd5189e8b55c988caf50bc2a58b",
+      "members": [
+        {
+          "name": "male-wedding-legacy.png",
+          "bytes": 320948,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ],
+      "matchedReferencePixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-0.png",
+      "kind": "png",
+      "bytes": 341610,
+      "sha256": "5a9ef979d356c73fa121e9653f18818bfb5a591336e27e02bf11082d5747631b",
+      "members": [
+        {
+          "name": "male-day-frame-0.png",
+          "bytes": 341610,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-51.png",
+      "kind": "png",
+      "bytes": 362174,
+      "sha256": "357d81749cac8e6cc539e48ae45fddfb5852fef324027fc6670d29916d040fc8",
+      "members": [
+        {
+          "name": "male-day-frame-51.png",
+          "bytes": 362174,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-64.png",
+      "kind": "png",
+      "bytes": 298599,
+      "sha256": "372622c0e5f268fad381ae2af30569477ec5ae9eba587b9bc91dd7c21df4008e",
+      "members": [
+        {
+          "name": "male-day-frame-64.png",
+          "bytes": 298599,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-87.png",
+      "kind": "png",
+      "bytes": 286273,
+      "sha256": "0a2e837c12976cbfe602603f3c976cfec0aad17084e4d8b0132a58db477cd071",
+      "members": [
+        {
+          "name": "male-day-frame-87.png",
+          "bytes": 286273,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-104.png",
+      "kind": "png",
+      "bytes": 290246,
+      "sha256": "2dd6bf01b5066c76f187c33d268abb1c2d55001e500d8a4c5a0275eca3ab2037",
+      "members": [
+        {
+          "name": "male-day-frame-104.png",
+          "bytes": 290246,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-121.png",
+      "kind": "png",
+      "bytes": 348148,
+      "sha256": "e621d5b3e048be821e83b84d96d39f78f22ecdbc44ba099f4168b637f57963cc",
+      "members": [
+        {
+          "name": "male-day-frame-121.png",
+          "bytes": 348148,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day.wardrobe.zip",
+      "kind": "project",
+      "bytes": 32467190,
+      "sha256": "d829367076c4498a3909f34ee6ab60d905d6bf4ed0c185b180bcc70dbcf4f319",
+      "members": [
+        {
+          "name": "male-day.wardrobe.zip/document.json",
+          "bytes": 700
+        },
+        {
+          "name": "male-day.wardrobe.zip/source.character.zip/spritesheet.png",
+          "bytes": 11505075,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-day.wardrobe.zip/source.character.zip/spritesheet-1.png",
+          "bytes": 11409977,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-day.wardrobe.zip/source.character.zip/manifest.json",
+          "bytes": 13430
+        },
+        {
+          "name": "male-day.wardrobe.zip/source.character.zip/character.json",
+          "bytes": 87782
+        },
+        {
+          "name": "male-day.wardrobe.zip/source.character.zip/PROVENANCE.txt",
+          "bytes": 1554
+        },
+        {
+          "name": "male-day.wardrobe.zip/source.character.zip/INTEGRATION.md",
+          "bytes": 811
+        },
+        {
+          "name": "male-day.wardrobe.zip/source.character.zip",
+          "bytes": 22641075,
+          "crcChecked": true
+        },
+        {
+          "name": "male-day.wardrobe.zip/registration.json",
+          "bytes": 337561
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-0.zip/manifest.json",
+          "bytes": 10159
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-0.zip/ownership-0.png",
+          "bytes": 113507,
+          "decoded": true,
+          "size": [
+            2048,
+            3671
+          ]
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-0.zip/patches-0.png",
+          "bytes": 5260597,
+          "decoded": true,
+          "size": [
+            2048,
+            3671
+          ]
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-0.zip",
+          "bytes": 5355500,
+          "crcChecked": true
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-1.zip/manifest.json",
+          "bytes": 10105
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-1.zip/ownership-0.png",
+          "bytes": 119137,
+          "decoded": true,
+          "size": [
+            2048,
+            3372
+          ]
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-1.zip/patches-0.png",
+          "bytes": 4312673,
+          "decoded": true,
+          "size": [
+            2048,
+            3372
+          ]
+        },
+        {
+          "name": "male-day.wardrobe.zip/item-1.zip",
+          "bytes": 4420980,
+          "crcChecked": true
+        },
+        {
+          "name": "male-day.wardrobe.zip",
+          "bytes": 32467190,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day.character.zip",
+      "kind": "pack",
+      "bytes": 27775666,
+      "sha256": "ef79934d3c80d7a6b42f1fcb34ae7b84718b29c480c0b273290d59414d234ff8",
+      "members": [
+        {
+          "name": "male-day.character.zip/spritesheet.png",
+          "bytes": 13848334,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-day.character.zip/spritesheet-1.png",
+          "bytes": 13912695,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-day.character.zip/manifest.json",
+          "bytes": 13442
+        },
+        {
+          "name": "male-day.character.zip/character.json",
+          "bytes": 92818
+        },
+        {
+          "name": "male-day.character.zip/PROVENANCE.txt",
+          "bytes": 5879
+        },
+        {
+          "name": "male-day.character.zip/INTEGRATION.md",
+          "bytes": 1352
+        },
+        {
+          "name": "male-day.character.zip",
+          "bytes": 27775666,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-mixed-frame-58.png",
+      "kind": "mixed-png",
+      "bytes": 290648,
+      "sha256": "9e7744b161a56b8635a7186a035d60b68f74c0eb5ee57b3fdb8801fee766d021",
+      "members": [
+        {
+          "name": "male-day-mixed-frame-58.png",
+          "bytes": 290648,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-mixed-frame-74.png",
+      "kind": "mixed-png",
+      "bytes": 326212,
+      "sha256": "323f9ae27e32b0ba68a3513c15aec5015a67fba4762339c620f1d81a3195badd",
+      "members": [
+        {
+          "name": "male-day-mixed-frame-74.png",
+          "bytes": 326212,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-mixed-frame-104.png",
+      "kind": "mixed-png",
+      "bytes": 265715,
+      "sha256": "ad8e983ed2485a9f8dcbb75a62da3d25c77f2202d10764055df69534f9fb0f7f",
+      "members": [
+        {
+          "name": "male-day-mixed-frame-104.png",
+          "bytes": 265715,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-0.png",
+      "kind": "png",
+      "bytes": 319228,
+      "sha256": "9d1c84eecbbb205ef79a751fbc88747fdef89345c3b7e8b145012f3a0aad82c5",
+      "members": [
+        {
+          "name": "male-wedding-frame-0.png",
+          "bytes": 319228,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-51.png",
+      "kind": "png",
+      "bytes": 338792,
+      "sha256": "ccf2a3282834c1fc42e2bb1145a66b43d0ea1bdda76424c0590908cbc0e7a68c",
+      "members": [
+        {
+          "name": "male-wedding-frame-51.png",
+          "bytes": 338792,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-64.png",
+      "kind": "png",
+      "bytes": 290734,
+      "sha256": "0ac2d35ca7e47b28a8da7b45b448b6c762ebf3f2056a29b74bd918d49f1485f1",
+      "members": [
+        {
+          "name": "male-wedding-frame-64.png",
+          "bytes": 290734,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-87.png",
+      "kind": "png",
+      "bytes": 261692,
+      "sha256": "13c59b98288c3b3de15b0b751af1c56071d0e792960c784bea2e23cbe572dc14",
+      "members": [
+        {
+          "name": "male-wedding-frame-87.png",
+          "bytes": 261692,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-104.png",
+      "kind": "png",
+      "bytes": 266926,
+      "sha256": "6f38f30da6052e6004c650759eb12eb9ba913e2ca6ddb1be7f975d600e91cc3f",
+      "members": [
+        {
+          "name": "male-wedding-frame-104.png",
+          "bytes": 266926,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-121.png",
+      "kind": "png",
+      "bytes": 326117,
+      "sha256": "29910b477476c6d3ae8708d43b4f5c0313a0436b911d1209374eb9d4a401d476",
+      "members": [
+        {
+          "name": "male-wedding-frame-121.png",
+          "bytes": 326117,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding.wardrobe.zip",
+      "kind": "project",
+      "bytes": 44526310,
+      "sha256": "e9b74ae1a26a07e0dabecbe60b09de7c06d04c6487d6c6bb8c6f87bb8ca7a2d7",
+      "members": [
+        {
+          "name": "male-wedding.wardrobe.zip/document.json",
+          "bytes": 1103
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/source.character.zip/spritesheet.png",
+          "bytes": 11505075,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/source.character.zip/spritesheet-1.png",
+          "bytes": 11409977,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/source.character.zip/manifest.json",
+          "bytes": 13430
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/source.character.zip/character.json",
+          "bytes": 87782
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/source.character.zip/PROVENANCE.txt",
+          "bytes": 1554
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/source.character.zip/INTEGRATION.md",
+          "bytes": 811
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/source.character.zip",
+          "bytes": 22641075,
+          "crcChecked": true
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/registration.json",
+          "bytes": 337561
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-0.zip/manifest.json",
+          "bytes": 10036
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-0.zip/ownership-0.png",
+          "bytes": 93019,
+          "decoded": true,
+          "size": [
+            2048,
+            2293
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-0.zip/patches-0.png",
+          "bytes": 1893902,
+          "decoded": true,
+          "size": [
+            2048,
+            2293
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-0.zip",
+          "bytes": 1968858,
+          "crcChecked": true
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-1.zip/manifest.json",
+          "bytes": 10158
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-1.zip/ownership-0.png",
+          "bytes": 125740,
+          "decoded": true,
+          "size": [
+            2048,
+            3969
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-1.zip/ownership-1.png",
+          "bytes": 64855,
+          "decoded": true,
+          "size": [
+            2048,
+            2128
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-1.zip/patches-0.png",
+          "bytes": 4228061,
+          "decoded": true,
+          "size": [
+            2048,
+            3969
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-1.zip/patches-1.png",
+          "bytes": 2161282,
+          "decoded": true,
+          "size": [
+            2048,
+            2128
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-1.zip",
+          "bytes": 6542329,
+          "crcChecked": true
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-2.zip/manifest.json",
+          "bytes": 10171
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-2.zip/ownership-0.png",
+          "bytes": 113507,
+          "decoded": true,
+          "size": [
+            2048,
+            3671
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-2.zip/patches-0.png",
+          "bytes": 3453171,
+          "decoded": true,
+          "size": [
+            2048,
+            3671
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-2.zip",
+          "bytes": 3547490,
+          "crcChecked": true
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-3.zip/manifest.json",
+          "bytes": 10159
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-3.zip/ownership-0.png",
+          "bytes": 113507,
+          "decoded": true,
+          "size": [
+            2048,
+            3671
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-3.zip/patches-0.png",
+          "bytes": 5260597,
+          "decoded": true,
+          "size": [
+            2048,
+            3671
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-3.zip",
+          "bytes": 5355500,
+          "crcChecked": true
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-4.zip/manifest.json",
+          "bytes": 10105
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-4.zip/ownership-0.png",
+          "bytes": 119137,
+          "decoded": true,
+          "size": [
+            2048,
+            3372
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-4.zip/patches-0.png",
+          "bytes": 4312673,
+          "decoded": true,
+          "size": [
+            2048,
+            3372
+          ]
+        },
+        {
+          "name": "male-wedding.wardrobe.zip/item-4.zip",
+          "bytes": 4420980,
+          "crcChecked": true
+        },
+        {
+          "name": "male-wedding.wardrobe.zip",
+          "bytes": 44526310,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding.character.zip",
+      "kind": "pack",
+      "bytes": 25999163,
+      "sha256": "617c92eb3a60f05e6999c7ec190998f9c788a1c8569f6baf59360437fb21a00f",
+      "members": [
+        {
+          "name": "male-wedding.character.zip/spritesheet.png",
+          "bytes": 12988381,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-wedding.character.zip/spritesheet-1.png",
+          "bytes": 12995179,
+          "decoded": true,
+          "size": [
+            6336,
+            5280
+          ]
+        },
+        {
+          "name": "male-wedding.character.zip/manifest.json",
+          "bytes": 13442
+        },
+        {
+          "name": "male-wedding.character.zip/character.json",
+          "bytes": 94465
+        },
+        {
+          "name": "male-wedding.character.zip/PROVENANCE.txt",
+          "bytes": 6584
+        },
+        {
+          "name": "male-wedding.character.zip/INTEGRATION.md",
+          "bytes": 1352
+        },
+        {
+          "name": "male-wedding.character.zip",
+          "bytes": 25999163,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-mixed-frame-58.png",
+      "kind": "mixed-png",
+      "bytes": 322381,
+      "sha256": "637bb8f77348c8a42f07c646b1dd9aac36be0fb3372b464a7f5be28883ba194e",
+      "members": [
+        {
+          "name": "male-wedding-mixed-frame-58.png",
+          "bytes": 322381,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-mixed-frame-74.png",
+      "kind": "mixed-png",
+      "bytes": 367335,
+      "sha256": "7c7452af064e7a4f74dc453b15b162cc2f8be8ea64a9647fea75354b8497646f",
+      "members": [
+        {
+          "name": "male-wedding-mixed-frame-74.png",
+          "bytes": 367335,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-mixed-frame-104.png",
+      "kind": "mixed-png",
+      "bytes": 290963,
+      "sha256": "4772947bdfff14d08eceae37a52e89d3afd72c44b5e8ffa8825a4145bc010614",
+      "members": [
+        {
+          "name": "male-wedding-mixed-frame-104.png",
+          "bytes": 290963,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-legacy.png",
+      "kind": "legacy-png",
+      "bytes": 290956,
+      "sha256": "064542a6d8e38638cd838f2e8041cf1a6a31471ad39c8a674cf89fbed022fd29",
+      "members": [
+        {
+          "name": "female-day-legacy.png",
+          "bytes": 290956,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ],
+      "matchedReferencePixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-legacy.png",
+      "kind": "legacy-png",
+      "bytes": 285884,
+      "sha256": "b9b61b7a14db0757c10e8ebb01fac38f1dc9669b10bd0e8578e225e7cb1ebf1f",
+      "members": [
+        {
+          "name": "female-wedding-legacy.png",
+          "bytes": 285884,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ],
+      "matchedReferencePixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-0.png",
+      "kind": "png",
+      "bytes": 342782,
+      "sha256": "eacf2ca1b5d8288cfe9d65787a362b73691173f9a1d21745153de2a722c41238",
+      "members": [
+        {
+          "name": "female-day-frame-0.png",
+          "bytes": 342782,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-58.png",
+      "kind": "png",
+      "bytes": 305487,
+      "sha256": "b8155f8e15d1a3aad13ccacbbfdee3737785e42e8caf2a6d596a4417812afbce",
+      "members": [
+        {
+          "name": "female-day-frame-58.png",
+          "bytes": 305487,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-89.png",
+      "kind": "png",
+      "bytes": 290925,
+      "sha256": "570a8613e30b95906f9b1c95e257541f5a1f49014c7a104edd4d88ecfabee4b5",
+      "members": [
+        {
+          "name": "female-day-frame-89.png",
+          "bytes": 290925,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-104.png",
+      "kind": "png",
+      "bytes": 287622,
+      "sha256": "fb7263b975fef8d96520a6dce5958f826822dfd39402a13056d16b521d924821",
+      "members": [
+        {
+          "name": "female-day-frame-104.png",
+          "bytes": 287622,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day.wardrobe.zip",
+      "kind": "project",
+      "bytes": 32454626,
+      "sha256": "e8d668ed5a3e6af714faaf75e296da57fd5ac3502883a08048f2f45e1815b22f",
+      "members": [
+        {
+          "name": "female-day.wardrobe.zip/document.json",
+          "bytes": 558
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/spritesheet.png",
+          "bytes": 12373841,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/spritesheet-1.png",
+          "bytes": 12560035,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/manifest.json",
+          "bytes": 14392
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/character.json",
+          "bytes": 88854
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/PROVENANCE.txt",
+          "bytes": 1554
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/INTEGRATION.md",
+          "bytes": 811
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip",
+          "bytes": 24565426,
+          "crcChecked": true
+        },
+        {
+          "name": "female-day.wardrobe.zip/registration.json",
+          "bytes": 465066
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/manifest.json",
+          "bytes": 11499
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/ownership-0.png",
+          "bytes": 99885,
+          "decoded": true,
+          "size": [
+            2048,
+            3913
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/ownership-1.png",
+          "bytes": 78006,
+          "decoded": true,
+          "size": [
+            2048,
+            3257
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/patches-0.png",
+          "bytes": 4158897,
+          "decoded": true,
+          "size": [
+            2048,
+            3913
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/patches-1.png",
+          "bytes": 3526393,
+          "decoded": true,
+          "size": [
+            2048,
+            3257
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip",
+          "bytes": 7829142,
+          "crcChecked": true
+        },
+        {
+          "name": "female-day.wardrobe.zip",
+          "bytes": 32454626,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day.character.zip",
+      "kind": "pack",
+      "bytes": 29616689,
+      "sha256": "d2eafb81d664caf71362b47a06328d9162806e000b7be8bb54f54ae55111ad54",
+      "members": [
+        {
+          "name": "female-day.character.zip/spritesheet.png",
+          "bytes": 14495241,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.character.zip/spritesheet-1.png",
+          "bytes": 15107233,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.character.zip/manifest.json",
+          "bytes": 14404
+        },
+        {
+          "name": "female-day.character.zip/character.json",
+          "bytes": 93171
+        },
+        {
+          "name": "female-day.character.zip/PROVENANCE.txt",
+          "bytes": 5636
+        },
+        {
+          "name": "female-day.character.zip/INTEGRATION.md",
+          "bytes": 1352
+        },
+        {
+          "name": "female-day.character.zip",
+          "bytes": 29616689,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-0.png",
+      "kind": "png",
+      "bytes": 351022,
+      "sha256": "fd7ae1467fe1e80698cac125ca01ed403f475887c38877f64d02aaa90ad6eb71",
+      "members": [
+        {
+          "name": "female-wedding-frame-0.png",
+          "bytes": 351022,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-58.png",
+      "kind": "png",
+      "bytes": 311001,
+      "sha256": "3488941742117a740f8388ba2cfa0605cf88283cfde4b0635ebbbc1a4ba9bc5a",
+      "members": [
+        {
+          "name": "female-wedding-frame-58.png",
+          "bytes": 311001,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-89.png",
+      "kind": "png",
+      "bytes": 285196,
+      "sha256": "1f0647f71bbcb60fe1131e53618384bcf10f17efda32fdb370a4c32e272f5f37",
+      "members": [
+        {
+          "name": "female-wedding-frame-89.png",
+          "bytes": 285196,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-104.png",
+      "kind": "png",
+      "bytes": 283813,
+      "sha256": "05bd0c30342d0ad6a11d407f9f701a560943c295983c0031448418325c7ab300",
+      "members": [
+        {
+          "name": "female-wedding-frame-104.png",
+          "bytes": 283813,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding.wardrobe.zip",
+      "kind": "project",
+      "bytes": 41692982,
+      "sha256": "a25630c06e4bf8833b67fe891e2b25ef85300265227e5a0e2d76432e3ea70fe6",
+      "members": [
+        {
+          "name": "female-wedding.wardrobe.zip/document.json",
+          "bytes": 697
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/spritesheet.png",
+          "bytes": 12373841,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/spritesheet-1.png",
+          "bytes": 12560035,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/manifest.json",
+          "bytes": 14392
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/character.json",
+          "bytes": 88854
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/PROVENANCE.txt",
+          "bytes": 1554
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/INTEGRATION.md",
+          "bytes": 811
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip",
+          "bytes": 24565426,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/registration.json",
+          "bytes": 465066
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/manifest.json",
+          "bytes": 11499
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/ownership-0.png",
+          "bytes": 99885,
+          "decoded": true,
+          "size": [
+            2048,
+            3913
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/ownership-1.png",
+          "bytes": 78006,
+          "decoded": true,
+          "size": [
+            2048,
+            3257
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/patches-0.png",
+          "bytes": 4158897,
+          "decoded": true,
+          "size": [
+            2048,
+            3913
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/patches-1.png",
+          "bytes": 3526393,
+          "decoded": true,
+          "size": [
+            2048,
+            3257
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip",
+          "bytes": 7829142,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/manifest.json",
+          "bytes": 11551
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/ownership-0.png",
+          "bytes": 95529,
+          "decoded": true,
+          "size": [
+            2048,
+            3700
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/ownership-1.png",
+          "bytes": 92095,
+          "decoded": true,
+          "size": [
+            2048,
+            3797
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/ownership-2.png",
+          "bytes": 38064,
+          "decoded": true,
+          "size": [
+            2048,
+            1637
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/patches-0.png",
+          "bytes": 3675561,
+          "decoded": true,
+          "size": [
+            2048,
+            3700
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/patches-1.png",
+          "bytes": 3926226,
+          "decoded": true,
+          "size": [
+            2048,
+            3797
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/patches-2.png",
+          "bytes": 1467190,
+          "decoded": true,
+          "size": [
+            2048,
+            1637
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip",
+          "bytes": 9238200,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip",
+          "bytes": 41692982,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding.character.zip",
+      "kind": "pack",
+      "bytes": 30086815,
+      "sha256": "c076eea3b405266488b63bf12c875030db13ef1115760283d3108ad5dae1c66f",
+      "members": [
+        {
+          "name": "female-wedding.character.zip/spritesheet.png",
+          "bytes": 14782112,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-wedding.character.zip/spritesheet-1.png",
+          "bytes": 15290479,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-wedding.character.zip/manifest.json",
+          "bytes": 14404
+        },
+        {
+          "name": "female-wedding.character.zip/character.json",
+          "bytes": 93189
+        },
+        {
+          "name": "female-wedding.character.zip/PROVENANCE.txt",
+          "bytes": 5640
+        },
+        {
+          "name": "female-wedding.character.zip/INTEGRATION.md",
+          "bytes": 1352
+        },
+        {
+          "name": "female-wedding.character.zip",
+          "bytes": 30086815,
+          "crcChecked": true
+        }
+      ]
+    }
+  ],
+  "poses": [
+    {
+      "character": "male",
+      "look": "day",
+      "frameId": 0,
+      "action": "idle",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-0.png"
+    },
+    {
+      "character": "male",
+      "look": "day",
+      "frameId": 51,
+      "action": "run",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-51.png"
+    },
+    {
+      "character": "male",
+      "look": "day",
+      "frameId": 64,
+      "action": "run",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-64.png"
+    },
+    {
+      "character": "male",
+      "look": "day",
+      "frameId": 87,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-87.png"
+    },
+    {
+      "character": "male",
+      "look": "day",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-104.png"
+    },
+    {
+      "character": "male",
+      "look": "day",
+      "frameId": 121,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-frame-121.png"
+    },
+    {
+      "character": "male",
+      "look": "day-mixed",
+      "frameId": 58,
+      "action": "run",
+      "facing": "right",
+      "mixed": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-mixed-frame-58.png"
+    },
+    {
+      "character": "male",
+      "look": "day-mixed",
+      "frameId": 74,
+      "action": "celebrate",
+      "facing": "right",
+      "mixed": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-mixed-frame-74.png"
+    },
+    {
+      "character": "male",
+      "look": "day-mixed",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixed": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-mixed-frame-104.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "frameId": 0,
+      "action": "idle",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-0.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "frameId": 51,
+      "action": "run",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-51.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "frameId": 64,
+      "action": "run",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-64.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "frameId": 87,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-87.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-104.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "frameId": 121,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-frame-121.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding-mixed",
+      "frameId": 58,
+      "action": "run",
+      "facing": "right",
+      "mixed": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-mixed-frame-58.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding-mixed",
+      "frameId": 74,
+      "action": "celebrate",
+      "facing": "right",
+      "mixed": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-mixed-frame-74.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding-mixed",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixed": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-mixed-frame-104.png"
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "frameId": 0,
+      "action": "idle",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-0.png"
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "frameId": 58,
+      "action": "run",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-58.png"
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "frameId": 89,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-89.png"
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-frame-104.png"
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "frameId": 0,
+      "action": "idle",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-0.png"
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "frameId": 58,
+      "action": "run",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-58.png"
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "frameId": 89,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-89.png"
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixed": false,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-frame-104.png"
+    }
+  ],
+  "legacy": [
+    {
+      "character": "male",
+      "look": "day",
+      "oldProject": "docs/kling-wardrobe/full-outfits/exports/male-day.wardrobe.zip",
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "reference": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-0.png",
+      "originalNativePixelsUnchanged": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-day-legacy.png"
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "oldProject": "docs/kling-wardrobe/full-outfits/exports/male-wedding.wardrobe.zip",
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "reference": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-0.png",
+      "originalNativePixelsUnchanged": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/male-wedding-legacy.png"
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "oldProject": "docs/kling-wardrobe/full-outfits/exports/female-day.wardrobe.zip",
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "coral-daydress-v3",
+        "shoes": null
+      },
+      "reference": "docs/kling-wardrobe/full-outfits/exports/female-day-frame-89.png",
+      "originalNativePixelsUnchanged": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-day-legacy.png"
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "oldProject": "docs/kling-wardrobe/full-outfits/exports/female-wedding.wardrobe.zip",
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "ivory-wedding-dress-v3",
+        "shoes": null
+      },
+      "reference": "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-89.png",
+      "originalNativePixelsUnchanged": true,
+      "file": "docs/kling-wardrobe/fit-polish/exports/female-wedding-legacy.png"
+    }
+  ],
+  "projects": [
+    {
+      "character": "male",
+      "look": "day",
+      "selection": {
+        "top": "teal-camp-shirt-v2",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "project": "docs/kling-wardrobe/fit-polish/exports/male-day.wardrobe.zip",
+      "pack": "docs/kling-wardrobe/fit-polish/exports/male-day.character.zip",
+      "reopened": true,
+      "exactSourceBytes": true,
+      "actionMetadataAnchorFacingPreserved": true,
+      "exactNativePngVersusPackFrames": [
+        0,
+        51,
+        64,
+        87,
+        104,
+        121
+      ]
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "selection": {
+        "top": "navy-suit-jacket-v2",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "project": "docs/kling-wardrobe/fit-polish/exports/male-wedding.wardrobe.zip",
+      "pack": "docs/kling-wardrobe/fit-polish/exports/male-wedding.character.zip",
+      "reopened": true,
+      "exactSourceBytes": true,
+      "actionMetadataAnchorFacingPreserved": true,
+      "exactNativePngVersusPackFrames": [
+        0,
+        51,
+        64,
+        87,
+        104,
+        121
+      ]
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "coral-daydress-v4",
+        "shoes": null
+      },
+      "project": "docs/kling-wardrobe/fit-polish/exports/female-day.wardrobe.zip",
+      "pack": "docs/kling-wardrobe/fit-polish/exports/female-day.character.zip",
+      "reopened": true,
+      "exactSourceBytes": true,
+      "actionMetadataAnchorFacingPreserved": true,
+      "exactNativePngVersusPackFrames": [
+        0,
+        58,
+        89,
+        104
+      ]
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "ivory-wedding-dress-v4",
+        "shoes": null
+      },
+      "project": "docs/kling-wardrobe/fit-polish/exports/female-wedding.wardrobe.zip",
+      "pack": "docs/kling-wardrobe/fit-polish/exports/female-wedding.character.zip",
+      "reopened": true,
+      "exactSourceBytes": true,
+      "actionMetadataAnchorFacingPreserved": true,
+      "exactNativePngVersusPackFrames": [
+        0,
+        58,
+        89,
+        104
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "mode": "wardrobe",
+      "character": "male",
+      "look": "day",
+      "from": "walk",
+      "to": "run",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.20000004768371582
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 52.90000003576279
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 100,
+          "pending": "",
+          "atMs": 110.80000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 3,
+          "elapsedMs": 133.40000000000146,
+          "pending": "",
+          "atMs": 136.60000002384186
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 183.3000000000029,
+          "pending": "",
+          "atMs": 192.9000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 216.70000000000073,
+          "pending": "run",
+          "atMs": 219.4000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "run",
+          "atMs": 259.7000000476837
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 7,
+          "elapsedMs": 300,
+          "pending": "run",
+          "atMs": 302.9000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 350,
+          "pending": "run",
+          "atMs": 360.10000002384186
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 9,
+          "elapsedMs": 383.40000000000146,
+          "pending": "run",
+          "atMs": 386.30000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 433.3000000000029,
+          "pending": "run",
+          "atMs": 442.4000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 11,
+          "elapsedMs": 466.6000000000022,
+          "pending": "run",
+          "atMs": 469.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 166.66666666666666,
+          "pending": "",
+          "atMs": 509.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 216.66666666666666,
+          "pending": "",
+          "atMs": 558.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 266.66666666666663,
+          "pending": "",
+          "atMs": 609.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 299.96666666666954,
+          "pending": "",
+          "atMs": 642.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 333.36666666666736,
+          "pending": "",
+          "atMs": 675.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 383.36666666666736,
+          "pending": "",
+          "atMs": 726.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 416.66666666666663,
+          "pending": "",
+          "atMs": 759.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 466.66666666666663,
+          "pending": "",
+          "atMs": 810.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 516.6666666666666,
+          "pending": "",
+          "atMs": 859.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 549.9666666666695,
+          "pending": "",
+          "atMs": 891.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 583.3666666666674,
+          "pending": "",
+          "atMs": 928
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 633.2666666666688,
+          "pending": "",
+          "atMs": 977.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 1014.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 1061.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 100,
+          "pending": "",
+          "atMs": 1110.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 133.3000000000029,
+          "pending": "",
+          "atMs": 1143.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 183.3000000000029,
+          "pending": "",
+          "atMs": 1191.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 216.60000000000218,
+          "pending": "",
+          "atMs": 1225.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "",
+          "atMs": 1262.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 299.90000000000146,
+          "pending": "",
+          "atMs": 1309.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 350,
+          "pending": "",
+          "atMs": 1358.5
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 383.3000000000029,
+          "pending": "",
+          "atMs": 1392.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 433.3000000000029,
+          "pending": "",
+          "atMs": 1442
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 466.6000000000022,
+          "pending": "",
+          "atMs": 1475.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 516.6000000000022,
+          "pending": "",
+          "atMs": 1525.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 550,
+          "pending": "",
+          "atMs": 1561.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 599.9000000000015,
+          "pending": "",
+          "atMs": 1609.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 633.3000000000029,
+          "pending": "",
+          "atMs": 1642.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 16.63333333333628,
+          "pending": "",
+          "atMs": 1692.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 49.933333333335554,
+          "pending": "",
+          "atMs": 1725.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 99.93333333333555,
+          "pending": "",
+          "atMs": 1775.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 133.23333333333483,
+          "pending": "",
+          "atMs": 1809.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 183.23333333333483,
+          "pending": "",
+          "atMs": 1860.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 216.63333333333628,
+          "pending": "",
+          "atMs": 1892.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 266.5333333333341,
+          "pending": "",
+          "atMs": 1942.5
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 299.93333333333555,
+          "pending": "",
+          "atMs": 1976.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 333.33333333333337,
+          "pending": "",
+          "atMs": 2009.5
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 383.2333333333348,
+          "pending": "",
+          "atMs": 2059.900000035763
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 433.2333333333348,
+          "pending": "",
+          "atMs": 2108.600000023842
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 466.6333333333363,
+          "pending": "",
+          "atMs": 2142
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 516.5333333333341,
+          "pending": "",
+          "atMs": 2192.900000035763
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 549.9333333333356,
+          "pending": "",
+          "atMs": 2225.900000035763
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 599.9333333333356,
+          "pending": "",
+          "atMs": 2276.2000000476837
+        }
+      ],
+      "requests": [
+        {
+          "target": "run",
+          "atMs": 201.10000002384186
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "character": "male",
+      "look": "day",
+      "from": "jump",
+      "to": "walk",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "jump",
+          "frameId": 83,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.10000002384185791
+        },
+        {
+          "action": "jump",
+          "frameId": 84,
+          "position": 1,
+          "elapsedMs": 49.96800000000076,
+          "pending": "",
+          "atMs": 61.30000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 85,
+          "position": 2,
+          "elapsedMs": 83.36800000000221,
+          "pending": "",
+          "atMs": 93.80000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 86,
+          "position": 3,
+          "elapsedMs": 133.26800000000003,
+          "pending": "",
+          "atMs": 144.30000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 87,
+          "position": 4,
+          "elapsedMs": 183.3680000000022,
+          "pending": "",
+          "atMs": 194.10000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 88,
+          "position": 5,
+          "elapsedMs": 216.66800000000148,
+          "pending": "walk",
+          "atMs": 227.10000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 89,
+          "position": 6,
+          "elapsedMs": 266.5679999999993,
+          "pending": "walk",
+          "atMs": 278.10000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 90,
+          "position": 7,
+          "elapsedMs": 299.96800000000076,
+          "pending": "walk",
+          "atMs": 309.80000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 91,
+          "position": 8,
+          "elapsedMs": 333.3680000000022,
+          "pending": "walk",
+          "atMs": 342.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 92,
+          "position": 9,
+          "elapsedMs": 383.3680000000022,
+          "pending": "walk",
+          "atMs": 395.30000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 93,
+          "position": 10,
+          "elapsedMs": 416.6680000000015,
+          "pending": "walk",
+          "atMs": 428.2000000476837
+        },
+        {
+          "action": "jump",
+          "frameId": 94,
+          "position": 11,
+          "elapsedMs": 466.6680000000015,
+          "pending": "walk",
+          "atMs": 478.10000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 95,
+          "position": 12,
+          "elapsedMs": 516.5679999999993,
+          "pending": "walk",
+          "atMs": 528.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 96,
+          "position": 13,
+          "elapsedMs": 549.9680000000008,
+          "pending": "walk",
+          "atMs": 563
+        },
+        {
+          "action": "jump",
+          "frameId": 97,
+          "position": 14,
+          "elapsedMs": 599.9680000000008,
+          "pending": "walk",
+          "atMs": 609.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 98,
+          "position": 15,
+          "elapsedMs": 633.268,
+          "pending": "walk",
+          "atMs": 643.8000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 99,
+          "position": 16,
+          "elapsedMs": 683.268,
+          "pending": "walk",
+          "atMs": 692.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 100,
+          "position": 17,
+          "elapsedMs": 716.5679999999993,
+          "pending": "walk",
+          "atMs": 726.8000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 101,
+          "position": 18,
+          "elapsedMs": 766.5679999999993,
+          "pending": "walk",
+          "atMs": 779.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "position": 19,
+          "elapsedMs": 799.8680000000022,
+          "pending": "walk",
+          "atMs": 812.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "elapsedMs": 849.8680000000022,
+          "pending": "walk",
+          "atMs": 863.3000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 104,
+          "position": 21,
+          "elapsedMs": 883.3680000000022,
+          "pending": "walk",
+          "atMs": 894.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 105,
+          "position": 22,
+          "elapsedMs": 933.268,
+          "pending": "walk",
+          "atMs": 947.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 106,
+          "position": 23,
+          "elapsedMs": 966.6680000000015,
+          "pending": "walk",
+          "atMs": 978.8000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 107,
+          "position": 24,
+          "elapsedMs": 1016.6680000000015,
+          "pending": "walk",
+          "atMs": 1027.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 108,
+          "position": 25,
+          "elapsedMs": 1049.9680000000008,
+          "pending": "walk",
+          "atMs": 1060
+        },
+        {
+          "action": "jump",
+          "frameId": 109,
+          "position": 26,
+          "elapsedMs": 1099.9680000000008,
+          "pending": "walk",
+          "atMs": 1110.800000011921
+        },
+        {
+          "action": "jump",
+          "frameId": 110,
+          "position": 27,
+          "elapsedMs": 1133.3680000000022,
+          "pending": "walk",
+          "atMs": 1143.7000000476837
+        },
+        {
+          "action": "jump",
+          "frameId": 111,
+          "position": 28,
+          "elapsedMs": 1183.268,
+          "pending": "walk",
+          "atMs": 1194.2000000476837
+        },
+        {
+          "action": "jump",
+          "frameId": 112,
+          "position": 29,
+          "elapsedMs": 1216.5679999999993,
+          "pending": "walk",
+          "atMs": 1231.800000011921
+        },
+        {
+          "action": "jump",
+          "frameId": 113,
+          "position": 30,
+          "elapsedMs": 1266.6680000000015,
+          "pending": "walk",
+          "atMs": 1278.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 114,
+          "position": 31,
+          "elapsedMs": 1299.9680000000008,
+          "pending": "walk",
+          "atMs": 1311.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 115,
+          "position": 32,
+          "elapsedMs": 1349.9680000000008,
+          "pending": "walk",
+          "atMs": 1362.5
+        },
+        {
+          "action": "jump",
+          "frameId": 116,
+          "position": 33,
+          "elapsedMs": 1383.268,
+          "pending": "walk",
+          "atMs": 1395.2000000476837
+        },
+        {
+          "action": "jump",
+          "frameId": 117,
+          "position": 34,
+          "elapsedMs": 1433.268,
+          "pending": "walk",
+          "atMs": 1445.800000011921
+        },
+        {
+          "action": "jump",
+          "frameId": 118,
+          "position": 35,
+          "elapsedMs": 1466.6680000000015,
+          "pending": "walk",
+          "atMs": 1477.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 119,
+          "position": 36,
+          "elapsedMs": 1516.5679999999993,
+          "pending": "walk",
+          "atMs": 1530.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 120,
+          "position": 37,
+          "elapsedMs": 1549.8680000000022,
+          "pending": "walk",
+          "atMs": 1563.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 121,
+          "position": 38,
+          "elapsedMs": 1599.8680000000022,
+          "pending": "walk",
+          "atMs": 1610
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 424.9346666666667,
+          "pending": "",
+          "atMs": 1650.1000000238419
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 11,
+          "elapsedMs": 474.9346666666667,
+          "pending": "",
+          "atMs": 1687.7000000476837
+        },
+        {
+          "action": "walk",
+          "frameId": 36,
+          "position": 12,
+          "elapsedMs": 508.33466666666817,
+          "pending": "",
+          "atMs": 1728.2000000476837
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 13,
+          "elapsedMs": 558.234666666666,
+          "pending": "",
+          "atMs": 1777.4000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 14,
+          "elapsedMs": 591.534666666669,
+          "pending": "",
+          "atMs": 1803.7000000476837
+        },
+        {
+          "action": "walk",
+          "frameId": 39,
+          "position": 15,
+          "elapsedMs": 641.6346666666675,
+          "pending": "",
+          "atMs": 1859.5
+        },
+        {
+          "action": "walk",
+          "frameId": 40,
+          "position": 16,
+          "elapsedMs": 674.8346666666682,
+          "pending": "",
+          "atMs": 1898
+        },
+        {
+          "action": "walk",
+          "frameId": 40,
+          "position": 17,
+          "elapsedMs": 724.9346666666668,
+          "pending": "",
+          "atMs": 1937.800000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 42,
+          "position": 18,
+          "elapsedMs": 758.234666666666,
+          "pending": "",
+          "atMs": 1977.4000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 43,
+          "position": 19,
+          "elapsedMs": 808.234666666666,
+          "pending": "",
+          "atMs": 2027.1000000238419
+        },
+        {
+          "action": "walk",
+          "frameId": 43,
+          "position": 20,
+          "elapsedMs": 841.534666666669,
+          "pending": "",
+          "atMs": 2053.900000035763
+        },
+        {
+          "action": "walk",
+          "frameId": 45,
+          "position": 21,
+          "elapsedMs": 891.6346666666675,
+          "pending": "",
+          "atMs": 2116
+        },
+        {
+          "action": "walk",
+          "frameId": 46,
+          "position": 22,
+          "elapsedMs": 924.8346666666682,
+          "pending": "",
+          "atMs": 2146
+        },
+        {
+          "action": "walk",
+          "frameId": 46,
+          "position": 23,
+          "elapsedMs": 974.8346666666682,
+          "pending": "",
+          "atMs": 2187.2000000476837
+        },
+        {
+          "action": "walk",
+          "frameId": 48,
+          "position": 24,
+          "elapsedMs": 1008.234666666666,
+          "pending": "",
+          "atMs": 2229.5
+        },
+        {
+          "action": "walk",
+          "frameId": 48,
+          "position": 25,
+          "elapsedMs": 1058.234666666666,
+          "pending": "",
+          "atMs": 2271.800000011921
+        }
+      ],
+      "requests": [
+        {
+          "target": "walk",
+          "atMs": 200.4000000357628
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "character": "male",
+      "look": "wedding",
+      "from": "walk",
+      "to": "run",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 1,
+          "elapsedMs": 49.89999999999418,
+          "pending": "",
+          "atMs": 59.30000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 100,
+          "pending": "",
+          "atMs": 116.20000004768372
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 3,
+          "elapsedMs": 133.3000000000029,
+          "pending": "",
+          "atMs": 142.80000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 183.39999999999418,
+          "pending": "",
+          "atMs": 199
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 216.6999999999971,
+          "pending": "run",
+          "atMs": 225.80000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "run",
+          "atMs": 268.5
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 7,
+          "elapsedMs": 299.8999999999942,
+          "pending": "run",
+          "atMs": 309.5
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 350,
+          "pending": "run",
+          "atMs": 366.60000002384186
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 9,
+          "elapsedMs": 383.3000000000029,
+          "pending": "run",
+          "atMs": 393
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 433.3000000000029,
+          "pending": "run",
+          "atMs": 451.5
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 11,
+          "elapsedMs": 466.59999999999127,
+          "pending": "run",
+          "atMs": 476.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 166.66666666666666,
+          "pending": "",
+          "atMs": 518.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 216.66666666666666,
+          "pending": "",
+          "atMs": 566.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 266.5666666666608,
+          "pending": "",
+          "atMs": 618.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 299.96666666666954,
+          "pending": "",
+          "atMs": 650.5
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 349.96666666666954,
+          "pending": "",
+          "atMs": 699.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 383.2666666666579,
+          "pending": "",
+          "atMs": 733
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 433.3666666666637,
+          "pending": "",
+          "atMs": 782.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 466.66666666666663,
+          "pending": "",
+          "atMs": 818
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 516.6666666666666,
+          "pending": "",
+          "atMs": 865.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 549.9666666666695,
+          "pending": "",
+          "atMs": 898.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 599.9666666666695,
+          "pending": "",
+          "atMs": 951.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 633.2666666666579,
+          "pending": "",
+          "atMs": 983.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 1016.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 49.89999999999418,
+          "pending": "",
+          "atMs": 1067.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 99.89999999999418,
+          "pending": "",
+          "atMs": 1116.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 133.3000000000029,
+          "pending": "",
+          "atMs": 1149.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 183.3000000000029,
+          "pending": "",
+          "atMs": 1198.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 216.6999999999971,
+          "pending": "",
+          "atMs": 1234.5
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 266.59999999999127,
+          "pending": "",
+          "atMs": 1282.5
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 299.8999999999942,
+          "pending": "",
+          "atMs": 1316.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 350,
+          "pending": "",
+          "atMs": 1365.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 383.3000000000029,
+          "pending": "",
+          "atMs": 1399.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 433.3000000000029,
+          "pending": "",
+          "atMs": 1450.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 466.59999999999127,
+          "pending": "",
+          "atMs": 1481.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 516.5999999999913,
+          "pending": "",
+          "atMs": 1532.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 549.8999999999942,
+          "pending": "",
+          "atMs": 1565.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 599.8999999999942,
+          "pending": "",
+          "atMs": 1615.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 633.1999999999971,
+          "pending": "",
+          "atMs": 1648.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 16.63333333333628,
+          "pending": "",
+          "atMs": 1699.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 49.93333333332464,
+          "pending": "",
+          "atMs": 1732.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 83.33333333333337,
+          "pending": "",
+          "atMs": 1765.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 133.23333333332755,
+          "pending": "",
+          "atMs": 1815.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 183.33333333333337,
+          "pending": "",
+          "atMs": 1865
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 216.53333333333046,
+          "pending": "",
+          "atMs": 1898.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 266.53333333333046,
+          "pending": "",
+          "atMs": 1953.5
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 299.93333333332464,
+          "pending": "",
+          "atMs": 1982.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 349.93333333332464,
+          "pending": "",
+          "atMs": 2032.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 383.23333333332755,
+          "pending": "",
+          "atMs": 2066.400000035763
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 433.23333333332755,
+          "pending": "",
+          "atMs": 2116
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 466.53333333333046,
+          "pending": "",
+          "atMs": 2148.5
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 516.5333333333305,
+          "pending": "",
+          "atMs": 2199.900000035763
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 549.9333333333246,
+          "pending": "",
+          "atMs": 2233
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 599.9333333333246,
+          "pending": "",
+          "atMs": 2282.5
+        }
+      ],
+      "requests": [
+        {
+          "target": "run",
+          "atMs": 200.30000001192093
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "character": "male",
+      "look": "wedding",
+      "from": "jump",
+      "to": "walk",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "jump",
+          "frameId": 83,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.40000003576278687
+        },
+        {
+          "action": "jump",
+          "frameId": 84,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 73
+        },
+        {
+          "action": "jump",
+          "frameId": 85,
+          "position": 2,
+          "elapsedMs": 83.40000000000873,
+          "pending": "",
+          "atMs": 104.40000003576279
+        },
+        {
+          "action": "jump",
+          "frameId": 86,
+          "position": 3,
+          "elapsedMs": 133.40000000000873,
+          "pending": "",
+          "atMs": 155.69999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 87,
+          "position": 4,
+          "elapsedMs": 183.40000000000873,
+          "pending": "",
+          "atMs": 204.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 88,
+          "position": 5,
+          "elapsedMs": 216.6999999999971,
+          "pending": "walk",
+          "atMs": 238.60000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 89,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "walk",
+          "atMs": 271.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 90,
+          "position": 7,
+          "elapsedMs": 299.90000000000873,
+          "pending": "walk",
+          "atMs": 322.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 91,
+          "position": 8,
+          "elapsedMs": 333.40000000000873,
+          "pending": "walk",
+          "atMs": 355.60000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 92,
+          "position": 9,
+          "elapsedMs": 383.3000000000029,
+          "pending": "walk",
+          "atMs": 405.30000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 93,
+          "position": 10,
+          "elapsedMs": 416.6999999999971,
+          "pending": "walk",
+          "atMs": 439.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 94,
+          "position": 11,
+          "elapsedMs": 466.6000000000058,
+          "pending": "walk",
+          "atMs": 488.80000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 95,
+          "position": 12,
+          "elapsedMs": 500,
+          "pending": "walk",
+          "atMs": 521.8000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 96,
+          "position": 13,
+          "elapsedMs": 550,
+          "pending": "walk",
+          "atMs": 572.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 97,
+          "position": 14,
+          "elapsedMs": 600,
+          "pending": "walk",
+          "atMs": 622.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 98,
+          "position": 15,
+          "elapsedMs": 633.4000000000087,
+          "pending": "walk",
+          "atMs": 658.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 99,
+          "position": 16,
+          "elapsedMs": 683.3000000000029,
+          "pending": "walk",
+          "atMs": 705.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 100,
+          "position": 17,
+          "elapsedMs": 716.6999999999971,
+          "pending": "walk",
+          "atMs": 738.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 101,
+          "position": 18,
+          "elapsedMs": 766.6000000000058,
+          "pending": "walk",
+          "atMs": 789.8000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "position": 19,
+          "elapsedMs": 800,
+          "pending": "walk",
+          "atMs": 822.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "elapsedMs": 849.9000000000087,
+          "pending": "walk",
+          "atMs": 873.5
+        },
+        {
+          "action": "jump",
+          "frameId": 104,
+          "position": 21,
+          "elapsedMs": 883.3000000000029,
+          "pending": "walk",
+          "atMs": 904.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 105,
+          "position": 22,
+          "elapsedMs": 916.6999999999971,
+          "pending": "walk",
+          "atMs": 938
+        },
+        {
+          "action": "jump",
+          "frameId": 106,
+          "position": 23,
+          "elapsedMs": 966.6000000000058,
+          "pending": "walk",
+          "atMs": 988.5
+        },
+        {
+          "action": "jump",
+          "frameId": 107,
+          "position": 24,
+          "elapsedMs": 1000,
+          "pending": "walk",
+          "atMs": 1022.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 108,
+          "position": 25,
+          "elapsedMs": 1050,
+          "pending": "walk",
+          "atMs": 1074.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 109,
+          "position": 26,
+          "elapsedMs": 1100,
+          "pending": "walk",
+          "atMs": 1122.800000011921
+        },
+        {
+          "action": "jump",
+          "frameId": 110,
+          "position": 27,
+          "elapsedMs": 1133.300000000003,
+          "pending": "walk",
+          "atMs": 1157.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 111,
+          "position": 28,
+          "elapsedMs": 1183.300000000003,
+          "pending": "walk",
+          "atMs": 1205.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 112,
+          "position": 29,
+          "elapsedMs": 1216.699999999997,
+          "pending": "walk",
+          "atMs": 1238.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 113,
+          "position": 30,
+          "elapsedMs": 1266.6000000000058,
+          "pending": "walk",
+          "atMs": 1288.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 114,
+          "position": 31,
+          "elapsedMs": 1299.9000000000087,
+          "pending": "walk",
+          "atMs": 1322.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 115,
+          "position": 32,
+          "elapsedMs": 1350,
+          "pending": "walk",
+          "atMs": 1371.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 116,
+          "position": 33,
+          "elapsedMs": 1383.300000000003,
+          "pending": "walk",
+          "atMs": 1404.699999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 117,
+          "position": 34,
+          "elapsedMs": 1416.699999999997,
+          "pending": "walk",
+          "atMs": 1438.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 118,
+          "position": 35,
+          "elapsedMs": 1466.6000000000058,
+          "pending": "walk",
+          "atMs": 1488.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 119,
+          "position": 36,
+          "elapsedMs": 1516.699999999997,
+          "pending": "walk",
+          "atMs": 1540.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 120,
+          "position": 37,
+          "elapsedMs": 1549.9000000000087,
+          "pending": "walk",
+          "atMs": 1572.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 121,
+          "position": 38,
+          "elapsedMs": 1599.9000000000087,
+          "pending": "walk",
+          "atMs": 1623.5
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 424.9666666666696,
+          "pending": "",
+          "atMs": 1657.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 11,
+          "elapsedMs": 474.8666666666638,
+          "pending": "",
+          "atMs": 1699
+        },
+        {
+          "action": "walk",
+          "frameId": 36,
+          "position": 12,
+          "elapsedMs": 508.2666666666725,
+          "pending": "",
+          "atMs": 1738.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 13,
+          "elapsedMs": 558.2666666666726,
+          "pending": "",
+          "atMs": 1788.800000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 14,
+          "elapsedMs": 591.6666666666667,
+          "pending": "",
+          "atMs": 1815.6000000238419
+        },
+        {
+          "action": "walk",
+          "frameId": 39,
+          "position": 15,
+          "elapsedMs": 641.5666666666755,
+          "pending": "",
+          "atMs": 1871.800000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 40,
+          "position": 16,
+          "elapsedMs": 674.9666666666697,
+          "pending": "",
+          "atMs": 1905.9000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 40,
+          "position": 17,
+          "elapsedMs": 724.8666666666638,
+          "pending": "",
+          "atMs": 1949.300000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 42,
+          "position": 18,
+          "elapsedMs": 758.2666666666726,
+          "pending": "",
+          "atMs": 1988.800000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 43,
+          "position": 19,
+          "elapsedMs": 808.2666666666726,
+          "pending": "",
+          "atMs": 2038.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 43,
+          "position": 20,
+          "elapsedMs": 841.5666666666755,
+          "pending": "",
+          "atMs": 2065.800000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 45,
+          "position": 21,
+          "elapsedMs": 891.5666666666755,
+          "pending": "",
+          "atMs": 2122.100000023842
+        },
+        {
+          "action": "walk",
+          "frameId": 46,
+          "position": 22,
+          "elapsedMs": 924.9666666666697,
+          "pending": "",
+          "atMs": 2156.100000023842
+        },
+        {
+          "action": "walk",
+          "frameId": 46,
+          "position": 23,
+          "elapsedMs": 974.8666666666638,
+          "pending": "",
+          "atMs": 2198.900000035763
+        },
+        {
+          "action": "walk",
+          "frameId": 48,
+          "position": 24,
+          "elapsedMs": 1008.2666666666726,
+          "pending": "",
+          "atMs": 2238.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 48,
+          "position": 25,
+          "elapsedMs": 1058.1666666666667,
+          "pending": "",
+          "atMs": 2282
+        }
+      ],
+      "requests": [
+        {
+          "target": "walk",
+          "atMs": 205.4000000357628
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "character": "female",
+      "look": "day",
+      "from": "walk",
+      "to": "run",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.09999996423721313
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 64.79999995231628
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 100,
+          "pending": "",
+          "atMs": 112.19999998807907
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 133.29999999999927,
+          "pending": "",
+          "atMs": 145.69999998807907
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 166.70000000000073,
+          "pending": "",
+          "atMs": 181.19999998807907
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 216.70000000000073,
+          "pending": "run",
+          "atMs": 221.89999997615814
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "run",
+          "atMs": 261.89999997615814
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 300,
+          "pending": "run",
+          "atMs": 311.5
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 350,
+          "pending": "run",
+          "atMs": 361.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 383.2999999999993,
+          "pending": "run",
+          "atMs": 395.39999997615814
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 416.7000000000007,
+          "pending": "run",
+          "atMs": 429.39999997615814
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 174.9333333333319,
+          "pending": "",
+          "atMs": 478.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 208.33333333333334,
+          "pending": "",
+          "atMs": 512.5
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.33333333333337,
+          "pending": "",
+          "atMs": 561
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 308.2333333333312,
+          "pending": "",
+          "atMs": 611.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.63333333333264,
+          "pending": "",
+          "atMs": 644.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.63333333333264,
+          "pending": "",
+          "atMs": 695.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 425.0333333333341,
+          "pending": "",
+          "atMs": 730.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.9333333333319,
+          "pending": "",
+          "atMs": 777.5
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.2333333333312,
+          "pending": "",
+          "atMs": 811.2999999523163
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.2333333333312,
+          "pending": "",
+          "atMs": 861.5
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.6333333333326,
+          "pending": "",
+          "atMs": 895.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 625.0333333333341,
+          "pending": "",
+          "atMs": 928
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.266666666665287,
+          "pending": "",
+          "atMs": 977.2999999523163
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 41.66666666666674,
+          "pending": "",
+          "atMs": 1010.5
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.66666666666674,
+          "pending": "",
+          "atMs": 1061.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 141.56666666666456,
+          "pending": "",
+          "atMs": 1111.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 174.96666666666601,
+          "pending": "",
+          "atMs": 1144.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 224.86666666666747,
+          "pending": "",
+          "atMs": 1194.5
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.2666666666653,
+          "pending": "",
+          "atMs": 1229.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 291.66666666666674,
+          "pending": "",
+          "atMs": 1262.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.56666666666456,
+          "pending": "",
+          "atMs": 1311.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.56666666666456,
+          "pending": "",
+          "atMs": 1361.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.966666666666,
+          "pending": "",
+          "atMs": 1394.2999999523163
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.86666666666747,
+          "pending": "",
+          "atMs": 1444.5
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.2666666666653,
+          "pending": "",
+          "atMs": 1477.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.2666666666653,
+          "pending": "",
+          "atMs": 1527.2999999523163
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.5666666666646,
+          "pending": "",
+          "atMs": 1560.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.5666666666646,
+          "pending": "",
+          "atMs": 1610.2999999523163
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.299999999999386,
+          "pending": "",
+          "atMs": 1643.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 58.20000000000084,
+          "pending": "",
+          "atMs": 1693.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.59999999999866,
+          "pending": "",
+          "atMs": 1728.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 141.59999999999866,
+          "pending": "",
+          "atMs": 1777.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 174.89999999999793,
+          "pending": "",
+          "atMs": 1810.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 224.89999999999793,
+          "pending": "",
+          "atMs": 1860.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.2999999999994,
+          "pending": "",
+          "atMs": 1894
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 308.2999999999994,
+          "pending": "",
+          "atMs": 1943.8999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.59999999999866,
+          "pending": "",
+          "atMs": 1977.5
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.5000000000001,
+          "pending": "",
+          "atMs": 2028.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 425.0000000000001,
+          "pending": "",
+          "atMs": 2061.599999964237
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.89999999999793,
+          "pending": "",
+          "atMs": 2112.2999999523163
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.20000000000084,
+          "pending": "",
+          "atMs": 2145.5
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.2999999999994,
+          "pending": "",
+          "atMs": 2194.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.5999999999987,
+          "pending": "",
+          "atMs": 2230.2999999523163
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.5000000000001,
+          "pending": "",
+          "atMs": 2278.699999988079
+        }
+      ],
+      "requests": [
+        {
+          "target": "run",
+          "atMs": 200.79999995231628
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "character": "female",
+      "look": "day",
+      "from": "jump",
+      "to": "walk",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "jump",
+          "frameId": 83,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.09999996423721313
+        },
+        {
+          "action": "jump",
+          "frameId": 84,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 67.79999995231628
+        },
+        {
+          "action": "jump",
+          "frameId": 85,
+          "position": 2,
+          "elapsedMs": 83.40000000000146,
+          "pending": "",
+          "atMs": 101.39999997615814
+        },
+        {
+          "action": "jump",
+          "frameId": 86,
+          "position": 3,
+          "elapsedMs": 133.40000000000146,
+          "pending": "",
+          "atMs": 151.39999997615814
+        },
+        {
+          "action": "jump",
+          "frameId": 87,
+          "position": 4,
+          "elapsedMs": 183.3000000000029,
+          "pending": "",
+          "atMs": 200.29999995231628
+        },
+        {
+          "action": "jump",
+          "frameId": 88,
+          "position": 5,
+          "elapsedMs": 216.70000000000073,
+          "pending": "walk",
+          "atMs": 234.0999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 89,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "walk",
+          "atMs": 267.19999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 90,
+          "position": 7,
+          "elapsedMs": 300,
+          "pending": "walk",
+          "atMs": 319.69999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 91,
+          "position": 8,
+          "elapsedMs": 349.90000000000146,
+          "pending": "walk",
+          "atMs": 367.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 92,
+          "position": 9,
+          "elapsedMs": 383.3000000000029,
+          "pending": "walk",
+          "atMs": 400.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 93,
+          "position": 10,
+          "elapsedMs": 416.7000000000007,
+          "pending": "walk",
+          "atMs": 437
+        },
+        {
+          "action": "jump",
+          "frameId": 94,
+          "position": 11,
+          "elapsedMs": 466.6000000000022,
+          "pending": "walk",
+          "atMs": 484.89999997615814
+        },
+        {
+          "action": "jump",
+          "frameId": 95,
+          "position": 12,
+          "elapsedMs": 500,
+          "pending": "walk",
+          "atMs": 517.3999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 96,
+          "position": 13,
+          "elapsedMs": 550,
+          "pending": "walk",
+          "atMs": 567.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 97,
+          "position": 14,
+          "elapsedMs": 600,
+          "pending": "walk",
+          "atMs": 619.0999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 98,
+          "position": 15,
+          "elapsedMs": 633.3000000000029,
+          "pending": "walk",
+          "atMs": 652
+        },
+        {
+          "action": "jump",
+          "frameId": 99,
+          "position": 16,
+          "elapsedMs": 683.3000000000029,
+          "pending": "walk",
+          "atMs": 702.2999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 100,
+          "position": 17,
+          "elapsedMs": 716.6000000000022,
+          "pending": "walk",
+          "atMs": 735.1999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 101,
+          "position": 18,
+          "elapsedMs": 750,
+          "pending": "walk",
+          "atMs": 768.8999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "position": 19,
+          "elapsedMs": 800,
+          "pending": "walk",
+          "atMs": 817.8999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "elapsedMs": 850,
+          "pending": "walk",
+          "atMs": 868
+        },
+        {
+          "action": "jump",
+          "frameId": 104,
+          "position": 21,
+          "elapsedMs": 883.3000000000029,
+          "pending": "walk",
+          "atMs": 900.3999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 105,
+          "position": 22,
+          "elapsedMs": 933.3000000000029,
+          "pending": "walk",
+          "atMs": 952.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 106,
+          "position": 23,
+          "elapsedMs": 966.7000000000007,
+          "pending": "walk",
+          "atMs": 986.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 107,
+          "position": 24,
+          "elapsedMs": 1000,
+          "pending": "walk",
+          "atMs": 1017.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 108,
+          "position": 25,
+          "elapsedMs": 1050,
+          "pending": "walk",
+          "atMs": 1067.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 109,
+          "position": 26,
+          "elapsedMs": 1100,
+          "pending": "walk",
+          "atMs": 1118.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 110,
+          "position": 27,
+          "elapsedMs": 1133.300000000003,
+          "pending": "walk",
+          "atMs": 1151.699999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 111,
+          "position": 28,
+          "elapsedMs": 1166.7000000000007,
+          "pending": "walk",
+          "atMs": 1185.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 112,
+          "position": 29,
+          "elapsedMs": 1216.6000000000022,
+          "pending": "walk",
+          "atMs": 1235.199999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 113,
+          "position": 30,
+          "elapsedMs": 1250,
+          "pending": "walk",
+          "atMs": 1268.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 114,
+          "position": 31,
+          "elapsedMs": 1300,
+          "pending": "walk",
+          "atMs": 1317.8999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 115,
+          "position": 32,
+          "elapsedMs": 1350,
+          "pending": "walk",
+          "atMs": 1368.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 116,
+          "position": 33,
+          "elapsedMs": 1383.300000000003,
+          "pending": "walk",
+          "atMs": 1400.3999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 117,
+          "position": 34,
+          "elapsedMs": 1433.300000000003,
+          "pending": "walk",
+          "atMs": 1455.2999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 118,
+          "position": 35,
+          "elapsedMs": 1466.6000000000022,
+          "pending": "walk",
+          "atMs": 1488
+        },
+        {
+          "action": "jump",
+          "frameId": 119,
+          "position": 36,
+          "elapsedMs": 1500,
+          "pending": "walk",
+          "atMs": 1518
+        },
+        {
+          "action": "jump",
+          "frameId": 120,
+          "position": 37,
+          "elapsedMs": 1549.9000000000015,
+          "pending": "walk",
+          "atMs": 1567.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 121,
+          "position": 38,
+          "elapsedMs": 1599.9000000000015,
+          "pending": "walk",
+          "atMs": 1618.5
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 8.200000000000728,
+          "pending": "",
+          "atMs": 1651.8999999761581
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 58.20000000000073,
+          "pending": "",
+          "atMs": 1701.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 91.60000000000218,
+          "pending": "",
+          "atMs": 1735.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 141.60000000000218,
+          "pending": "",
+          "atMs": 1786
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 175,
+          "pending": "",
+          "atMs": 1820
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 224.90000000000146,
+          "pending": "",
+          "atMs": 1861.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 258.3000000000029,
+          "pending": "",
+          "atMs": 1900.5
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 308.2000000000007,
+          "pending": "",
+          "atMs": 1950.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 341.6000000000022,
+          "pending": "",
+          "atMs": 1987.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 391.6000000000022,
+          "pending": "",
+          "atMs": 2037.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 424.90000000000146,
+          "pending": "",
+          "atMs": 2067.899999976158
+        },
+        {
+          "action": "walk",
+          "frameId": 35,
+          "position": 11,
+          "elapsedMs": 474.90000000000146,
+          "pending": "",
+          "atMs": 2118.599999964237
+        },
+        {
+          "action": "walk",
+          "frameId": 36,
+          "position": 12,
+          "elapsedMs": 508.2000000000007,
+          "pending": "",
+          "atMs": 2151.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 13,
+          "elapsedMs": 558.2000000000007,
+          "pending": "",
+          "atMs": 2202.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 38,
+          "position": 14,
+          "elapsedMs": 591.6000000000022,
+          "pending": "",
+          "atMs": 2233.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 39,
+          "position": 15,
+          "elapsedMs": 641.6000000000022,
+          "pending": "",
+          "atMs": 2284.5
+        }
+      ],
+      "requests": [
+        {
+          "target": "walk",
+          "atMs": 200.69999998807907
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "character": "female",
+      "look": "wedding",
+      "from": "walk",
+      "to": "run",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 64.09999996423721
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 100,
+          "pending": "",
+          "atMs": 114.30000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 133.40000000000873,
+          "pending": "",
+          "atMs": 147.30000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 166.70000000001164,
+          "pending": "",
+          "atMs": 181
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 216.70000000001164,
+          "pending": "run",
+          "atMs": 224
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "run",
+          "atMs": 264.69999998807907
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 300,
+          "pending": "run",
+          "atMs": 313.69999998807907
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 350,
+          "pending": "run",
+          "atMs": 364.30000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 383.3000000000029,
+          "pending": "run",
+          "atMs": 397.39999997615814
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 433.40000000000873,
+          "pending": "run",
+          "atMs": 447.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 175.03333333334498,
+          "pending": "",
+          "atMs": 481.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 208.33333333333334,
+          "pending": "",
+          "atMs": 515.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.33333333333337,
+          "pending": "",
+          "atMs": 564.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 291.7333333333421,
+          "pending": "",
+          "atMs": 597.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.6333333333363,
+          "pending": "",
+          "atMs": 651.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.6333333333363,
+          "pending": "",
+          "atMs": 699.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.9333333333392,
+          "pending": "",
+          "atMs": 732.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 458.33333333333337,
+          "pending": "",
+          "atMs": 766.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.33333333333337,
+          "pending": "",
+          "atMs": 818
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.3333333333334,
+          "pending": "",
+          "atMs": 870.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.6333333333363,
+          "pending": "",
+          "atMs": 898.5
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.6333333333363,
+          "pending": "",
+          "atMs": 950.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.266666666672563,
+          "pending": "",
+          "atMs": 983.8999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 41.66666666666674,
+          "pending": "",
+          "atMs": 1016.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.66666666666674,
+          "pending": "",
+          "atMs": 1067.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 141.56666666667547,
+          "pending": "",
+          "atMs": 1115.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 175.06666666667547,
+          "pending": "",
+          "atMs": 1147
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 224.96666666666965,
+          "pending": "",
+          "atMs": 1198.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.26666666667256,
+          "pending": "",
+          "atMs": 1232.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 291.66666666666674,
+          "pending": "",
+          "atMs": 1265.5
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.66666666666674,
+          "pending": "",
+          "atMs": 1316.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.5666666666755,
+          "pending": "",
+          "atMs": 1364.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.96666666666965,
+          "pending": "",
+          "atMs": 1398.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.96666666666965,
+          "pending": "",
+          "atMs": 1447.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.26666666667256,
+          "pending": "",
+          "atMs": 1481.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.2666666666726,
+          "pending": "",
+          "atMs": 1532.5
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.5666666666755,
+          "pending": "",
+          "atMs": 1567.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.6666666666667,
+          "pending": "",
+          "atMs": 1613.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.300000000003024,
+          "pending": "",
+          "atMs": 1647.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 58.300000000003024,
+          "pending": "",
+          "atMs": 1697.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.60000000000593,
+          "pending": "",
+          "atMs": 1731.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 141.60000000000593,
+          "pending": "",
+          "atMs": 1781.8999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 175.0000000000001,
+          "pending": "",
+          "atMs": 1816.5999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 225.0000000000001,
+          "pending": "",
+          "atMs": 1864.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.300000000003,
+          "pending": "",
+          "atMs": 1897.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 308.300000000003,
+          "pending": "",
+          "atMs": 1946.5
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.60000000000593,
+          "pending": "",
+          "atMs": 1980.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.60000000000593,
+          "pending": "",
+          "atMs": 2030.0999999642372
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.90000000000884,
+          "pending": "",
+          "atMs": 2065.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.90000000000884,
+          "pending": "",
+          "atMs": 2115.199999988079
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.300000000003,
+          "pending": "",
+          "atMs": 2147.5
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.300000000003,
+          "pending": "",
+          "atMs": 2196.899999976158
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.6000000000059,
+          "pending": "",
+          "atMs": 2230.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.6000000000059,
+          "pending": "",
+          "atMs": 2280.399999976158
+        }
+      ],
+      "requests": [
+        {
+          "target": "run",
+          "atMs": 200.30000001192093
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "character": "female",
+      "look": "wedding",
+      "from": "jump",
+      "to": "walk",
+      "facing": "right",
+      "gapsOver90Ms": [],
+      "observations": [
+        {
+          "action": "jump",
+          "frameId": 83,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.09999996423721313
+        },
+        {
+          "action": "jump",
+          "frameId": 84,
+          "position": 1,
+          "elapsedMs": 50.03399999999965,
+          "pending": "",
+          "atMs": 58.5
+        },
+        {
+          "action": "jump",
+          "frameId": 85,
+          "position": 2,
+          "elapsedMs": 99.93400000000838,
+          "pending": "",
+          "atMs": 108
+        },
+        {
+          "action": "jump",
+          "frameId": 86,
+          "position": 3,
+          "elapsedMs": 133.2340000000113,
+          "pending": "",
+          "atMs": 141.79999995231628
+        },
+        {
+          "action": "jump",
+          "frameId": 87,
+          "position": 4,
+          "elapsedMs": 183.33400000000256,
+          "pending": "",
+          "atMs": 192
+        },
+        {
+          "action": "jump",
+          "frameId": 88,
+          "position": 5,
+          "elapsedMs": 216.63400000000547,
+          "pending": "walk",
+          "atMs": 226.39999997615814
+        },
+        {
+          "action": "jump",
+          "frameId": 89,
+          "position": 6,
+          "elapsedMs": 266.63400000000547,
+          "pending": "walk",
+          "atMs": 274.5
+        },
+        {
+          "action": "jump",
+          "frameId": 90,
+          "position": 7,
+          "elapsedMs": 299.9340000000084,
+          "pending": "walk",
+          "atMs": 307.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 91,
+          "position": 8,
+          "elapsedMs": 350.03399999999965,
+          "pending": "walk",
+          "atMs": 357.5
+        },
+        {
+          "action": "jump",
+          "frameId": 92,
+          "position": 9,
+          "elapsedMs": 383.2340000000113,
+          "pending": "walk",
+          "atMs": 392.69999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 93,
+          "position": 10,
+          "elapsedMs": 433.2340000000113,
+          "pending": "walk",
+          "atMs": 443.5
+        },
+        {
+          "action": "jump",
+          "frameId": 94,
+          "position": 11,
+          "elapsedMs": 466.63400000000547,
+          "pending": "walk",
+          "atMs": 476.19999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 95,
+          "position": 12,
+          "elapsedMs": 516.6340000000055,
+          "pending": "walk",
+          "atMs": 526.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 96,
+          "position": 13,
+          "elapsedMs": 549.9340000000084,
+          "pending": "walk",
+          "atMs": 558.5
+        },
+        {
+          "action": "jump",
+          "frameId": 97,
+          "position": 14,
+          "elapsedMs": 583.3340000000026,
+          "pending": "walk",
+          "atMs": 591.8999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 98,
+          "position": 15,
+          "elapsedMs": 633.2340000000113,
+          "pending": "walk",
+          "atMs": 641.2999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 99,
+          "position": 16,
+          "elapsedMs": 683.2340000000113,
+          "pending": "walk",
+          "atMs": 692.3999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 100,
+          "position": 17,
+          "elapsedMs": 716.6340000000055,
+          "pending": "walk",
+          "atMs": 727.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 101,
+          "position": 18,
+          "elapsedMs": 766.6340000000055,
+          "pending": "walk",
+          "atMs": 775.1999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "position": 19,
+          "elapsedMs": 799.9340000000084,
+          "pending": "walk",
+          "atMs": 809.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "elapsedMs": 833.3340000000026,
+          "pending": "walk",
+          "atMs": 841.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 104,
+          "position": 21,
+          "elapsedMs": 883.2340000000113,
+          "pending": "walk",
+          "atMs": 891.5
+        },
+        {
+          "action": "jump",
+          "frameId": 105,
+          "position": 22,
+          "elapsedMs": 933.2340000000113,
+          "pending": "walk",
+          "atMs": 941.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 106,
+          "position": 23,
+          "elapsedMs": 966.5339999999997,
+          "pending": "walk",
+          "atMs": 974.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 107,
+          "position": 24,
+          "elapsedMs": 1016.6340000000055,
+          "pending": "walk",
+          "atMs": 1027
+        },
+        {
+          "action": "jump",
+          "frameId": 108,
+          "position": 25,
+          "elapsedMs": 1049.9340000000084,
+          "pending": "walk",
+          "atMs": 1058.199999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 109,
+          "position": 26,
+          "elapsedMs": 1083.3340000000026,
+          "pending": "walk",
+          "atMs": 1097.5
+        },
+        {
+          "action": "jump",
+          "frameId": 110,
+          "position": 27,
+          "elapsedMs": 1133.2340000000113,
+          "pending": "walk",
+          "atMs": 1141.3999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 111,
+          "position": 28,
+          "elapsedMs": 1183.2340000000113,
+          "pending": "walk",
+          "atMs": 1192.2999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 112,
+          "position": 29,
+          "elapsedMs": 1216.5339999999997,
+          "pending": "walk",
+          "atMs": 1227.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 113,
+          "position": 30,
+          "elapsedMs": 1266.5339999999997,
+          "pending": "walk",
+          "atMs": 1275.699999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 114,
+          "position": 31,
+          "elapsedMs": 1299.8340000000026,
+          "pending": "walk",
+          "atMs": 1308.199999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 115,
+          "position": 32,
+          "elapsedMs": 1333.3340000000026,
+          "pending": "walk",
+          "atMs": 1342.5
+        },
+        {
+          "action": "jump",
+          "frameId": 116,
+          "position": 33,
+          "elapsedMs": 1383.2340000000113,
+          "pending": "walk",
+          "atMs": 1392
+        },
+        {
+          "action": "jump",
+          "frameId": 117,
+          "position": 34,
+          "elapsedMs": 1433.2340000000113,
+          "pending": "walk",
+          "atMs": 1442.199999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 118,
+          "position": 35,
+          "elapsedMs": 1466.5339999999997,
+          "pending": "walk",
+          "atMs": 1475.5
+        },
+        {
+          "action": "jump",
+          "frameId": 119,
+          "position": 36,
+          "elapsedMs": 1516.5339999999997,
+          "pending": "walk",
+          "atMs": 1527.0999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 120,
+          "position": 37,
+          "elapsedMs": 1549.8340000000026,
+          "pending": "walk",
+          "atMs": 1557.699999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 121,
+          "position": 38,
+          "elapsedMs": 1599.9340000000084,
+          "pending": "walk",
+          "atMs": 1608.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 8.234000000011292,
+          "pending": "",
+          "atMs": 1641
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 58.23400000001129,
+          "pending": "",
+          "atMs": 1693.0999999642372
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 91.53399999999965,
+          "pending": "",
+          "atMs": 1726.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 141.53399999999965,
+          "pending": "",
+          "atMs": 1774.5
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 174.83400000000256,
+          "pending": "",
+          "atMs": 1807.5999999642372
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 224.83400000000256,
+          "pending": "",
+          "atMs": 1852
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 258.2340000000113,
+          "pending": "",
+          "atMs": 1892
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 308.2340000000113,
+          "pending": "",
+          "atMs": 1942.5
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 341.53399999999965,
+          "pending": "",
+          "atMs": 1975.5
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 391.53399999999965,
+          "pending": "",
+          "atMs": 2024.8999999761581
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 424.9340000000084,
+          "pending": "",
+          "atMs": 2060
+        },
+        {
+          "action": "walk",
+          "frameId": 35,
+          "position": 11,
+          "elapsedMs": 474.83400000000256,
+          "pending": "",
+          "atMs": 2108.2999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 36,
+          "position": 12,
+          "elapsedMs": 508.2340000000113,
+          "pending": "",
+          "atMs": 2140.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 13,
+          "elapsedMs": 558.1340000000055,
+          "pending": "",
+          "atMs": 2192.2999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 38,
+          "position": 14,
+          "elapsedMs": 591.5339999999997,
+          "pending": "",
+          "atMs": 2230.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 39,
+          "position": 15,
+          "elapsedMs": 641.5339999999997,
+          "pending": "",
+          "atMs": 2277.899999976158
+        }
+      ],
+      "requests": [
+        {
+          "target": "walk",
+          "atMs": 200.39999997615814
+        }
+      ]
+    }
+  ],
+  "playback": [],
+  "recordings": [],
+  "mixed": [
+    {
+      "character": "male",
+      "look": "day",
+      "selection": {
+        "top": "teal-camp-shirt-v2",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "frameIds": [
+        58,
+        74,
+        104
+      ],
+      "allFramesPreflightPassed": true
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "selection": {
+        "top": "navy-suit-jacket-v2",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "frameIds": [
+        58,
+        74,
+        104
+      ],
+      "allFramesPreflightPassed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/kling-wardrobe/fit-polish/browser/male-day-workbench.png",
+      "bytes": 255348,
+      "sha256": "f8d31348cb0afca0dbbb180d0806908bc7bd3fc49e8f37283d9463baaa19d138",
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/browser/male-wedding-workbench.png",
+      "bytes": 246968,
+      "sha256": "8629e65381dd563eeb94ef6b89a5d02755247663d74c3e6c29c9f98dfcc963a0",
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/browser/female-day-workbench.png",
+      "bytes": 258122,
+      "sha256": "b561311219c623e24f3c071c7bca97aa2147365ecd3bab8830d08500b1934660",
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-polish/browser/female-wedding-workbench.png",
+      "bytes": 262522,
+      "sha256": "fd4aa04bb7dbdb38739ccf8af72a04d7a195f572b6078a9822fc7e4a686e5fa7",
+      "decoded": true
+    }
+  ],
+  "timings": [
+    {
+      "label": "male-original-open",
+      "durationMs": 12800.839649
+    },
+    {
+      "label": "male-current-profile-open",
+      "durationMs": 13766.674785999996
+    },
+    {
+      "label": "male-day-preflight",
+      "durationMs": 10979.540833
+    },
+    {
+      "label": "male-wedding-preflight",
+      "durationMs": 9155.577066999991
+    },
+    {
+      "label": "female-original-open",
+      "durationMs": 14147.287994999991
+    },
+    {
+      "label": "female-current-profile-open",
+      "durationMs": 16840.567117
+    },
+    {
+      "label": "female-day-preflight",
+      "durationMs": 9018.032801000023
+    },
+    {
+      "label": "female-wedding-preflight",
+      "durationMs": 11330.331780999957
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "failedResponses": [],
+  "forbiddenIndependentRequests": [],
+  "externalRequests": [],
+  "assetResponses": [
+    {
+      "url": "/assets/catalog-47XTUTz1.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/male.character-B4Z55ggC.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/male-full-outfits-v1-CbrBXr12.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/catalog-47XTUTz1.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/male.character-B4Z55ggC.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/male-full-outfits-v1-CbrBXr12.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/teal-camp-shirt-v2-CseQFv9t.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/ochre-chinos-v1-7u5SPqGR.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/navy-suit-trousers-v1-aIed4CVb.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/brown-shoes-Dlo6KNNm.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/navy-suit-jacket-v2-ChbLMuSI.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/catalog-47XTUTz1.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/female.character-m4yGetXB.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/female-C8fgXt8E.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/catalog-47XTUTz1.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/female.character-m4yGetXB.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/female-C8fgXt8E.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/coral-daydress-v4-C0J471Di.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/ivory-wedding-dress-v4-Coeebpl_.zip",
+      "status": 200,
+      "independent": false
+    }
+  ],
+  "workbenchClosedAt": "2026-10-21T22:08:01.121Z",
+  "passed": false,
+  "failure": "browserContext.newPage: Executable doesn't exist at /home/agent/.cache/ms-playwright/ffmpeg-1013/ffmpeg-linux\n╔═════════════════════════════════════════════════════════════════╗\n║ Video rendering requires ffmpeg binary.                         ║\n║ Downloading it will not affect any of the system-wide settings. ║\n║ Please run the following command:                               ║\n║                                                                 ║\n║     npx playwright install ffmpeg                               ║\n║                                                                 ║\n║ <3 Playwright Team                                              ║\n╚═════════════════════════════════════════════════════════════════╝\n    at /workspace/gathria-character/scripts/verify-kling-fit-polish.mjs:908:34",
+  "finishedAt": "2026-10-21T22:08:01.222Z"
+}

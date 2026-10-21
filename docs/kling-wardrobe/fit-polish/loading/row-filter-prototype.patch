@@ -1,0 +1,61 @@
+diff --git a/src/core/baked-source.ts b/src/core/baked-source.ts
+index 2fe0176..74cfdda 100644
+--- a/src/core/baked-source.ts
++++ b/src/core/baked-source.ts
+@@ -420,24 +420,39 @@ export function decodeSourceRgbaPng(
+     fail("Source PNG zlib checksum mismatch.");
+   const pixels = new Uint8Array(stride * height);
+   for (let y = 0; y < height; y++) {
+-    const filter = scan[y * (stride + 1)];
++    const row = y * stride,
++      inputRow = y * (stride + 1) + 1;
++    const filter = scan[inputRow - 1];
+     if (filter > 4) fail("Unsupported PNG row filter.");
+-    for (let x = 0; x < stride; x++) {
+-      const i = y * stride + x,
+-        a = x >= 4 ? pixels[i - 4] : 0,
+-        b = y ? pixels[i - stride] : 0,
+-        c = y && x >= 4 ? pixels[i - stride - 4] : 0;
+-      const prediction =
+-        filter === 0
+-          ? 0
+-          : filter === 1
+-            ? a
+-            : filter === 2
+-              ? b
+-              : filter === 3
+-                ? Math.floor((a + b) / 2)
+-                : paeth(a, b, c);
+-      pixels[i] = (scan[y * (stride + 1) + x + 1] + prediction) & 255;
++    if (filter === 0) {
++      pixels.set(scan.subarray(inputRow, inputRow + stride), row);
++      continue;
++    }
++    if (filter === 1) {
++      for (let x = 0; x < stride; x++) {
++        const i = row + x;
++        pixels[i] = (scan[inputRow + x] + (x >= 4 ? pixels[i - 4] : 0)) & 255;
++      }
++    } else if (filter === 2) {
++      for (let x = 0; x < stride; x++) {
++        const i = row + x;
++        pixels[i] = (scan[inputRow + x] + (y ? pixels[i - stride] : 0)) & 255;
++      }
++    } else if (filter === 3) {
++      for (let x = 0; x < stride; x++) {
++        const i = row + x,
++          a = x >= 4 ? pixels[i - 4] : 0,
++          b = y ? pixels[i - stride] : 0;
++        pixels[i] = (scan[inputRow + x] + Math.floor((a + b) / 2)) & 255;
++      }
++    } else {
++      for (let x = 0; x < stride; x++) {
++        const i = row + x,
++          a = x >= 4 ? pixels[i - 4] : 0,
++          b = y ? pixels[i - stride] : 0,
++          c = y && x >= 4 ? pixels[i - stride - 4] : 0;
++        pixels[i] = (scan[inputRow + x] + paeth(a, b, c)) & 255;
++      }
+     }
+   }
+   return { width, height, pixels, colorChunks };

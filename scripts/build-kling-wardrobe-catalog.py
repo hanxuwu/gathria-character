@@ -15,8 +15,8 @@ for char in ['male','female']:
     assert data['sourceSha256']==sha(source)
     items=[]
     ids=['teal-top','ochre-shorts','navy-waistcoat','navy-shorts','brown-shoes']
-    if char=='female':ids+=['coral-daydress-v3','ivory-wedding-dress-v3']
-    else:ids+=['teal-camp-shirt-v1','navy-suit-jacket-v1','ochre-chinos-v1','navy-suit-trousers-v1']
+    if char=='female':ids+=['coral-daydress-v4','ivory-wedding-dress-v4']
+    else:ids+=['teal-camp-shirt-v2','navy-suit-jacket-v2','ochre-chinos-v1','navy-suit-trousers-v1']
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
@@ -25,8 +25,8 @@ for char in ['male','female']:
         assert m['id']==item_id and m['sourceSha256']==sha(source) and m['registrationSha256']==sha(reg),f'Stale garment {p}'
         items.append({'id':item_id,'name':m['name'],'slot':m['slot'],'url':'/'+str(p.relative_to(ROOT))})
     presets=[{'id':'original','name':'Original','selection':select()}]
-    day=select('teal-camp-shirt-v1','ochre-chinos-v1') if char=='male' else select(fullBody='coral-daydress-v3')
-    wedding=select('navy-suit-jacket-v1','navy-suit-trousers-v1',shoes='brown-shoes') if char=='male' else select(fullBody='ivory-wedding-dress-v3')
+    day=select('teal-camp-shirt-v2','ochre-chinos-v1') if char=='male' else select(fullBody='coral-daydress-v4')
+    wedding=select('navy-suit-jacket-v2','navy-suit-trousers-v1',shoes='brown-shoes') if char=='male' else select(fullBody='ivory-wedding-dress-v4')
     presets.extend([{'id':'day','name':'Everyday','selection':day},{'id':'wedding','name':'Wedding','selection':wedding}])
     presets.extend([{'id':'separates','name':'Everyday separates','selection':select('teal-top','ochre-shorts')},{'id':'formal-separates','name':'Formal separates','selection':select('navy-waistcoat','navy-shorts',shoes='brown-shoes')}])
     characters.append({'key':char,'name':f'Kling {char}','characterId':data['characterId'],'sourceUrl':'/'+str(source.relative_to(ROOT)),'registrationUrl':'/'+str(dest.relative_to(ROOT)),'templateUrl':f'/docs/kling-wardrobe/templates/{profile}.wardrobe-template.zip','items':items,'presets':presets})

@@ -1,0 +1,93 @@
+{
+  "scope": "Read-only visual review of actual application-exported PNGs; animation sampling and final media review are recorded separately. No user acceptance implied.",
+  "beforeDirectory": "docs/kling-wardrobe/full-outfits/exports",
+  "afterDirectory": "docs/kling-wardrobe/fit-polish/exports",
+  "matchedPairs": 18,
+  "male": {
+    "looks": [
+      "day",
+      "wedding"
+    ],
+    "sourceFrames": [
+      0,
+      51,
+      64,
+      87,
+      104,
+      121
+    ],
+    "improvements": [
+      "Reduced shoulder/sleeve domain edges and copied armpit ink.",
+      "Reduced duplicate tank waistband in standing/crouching suit; distinct original-donor jacket tails."
+    ],
+    "remaining": [
+      "Flat casual collar constrained by original round neck opening.",
+      "Dense projected folds on deep bends and straight near wrist/cuff edge in frame87.",
+      "Suit centre/side hem ink remains somewhat segmented."
+    ]
+  },
+  "female": {
+    "looks": [
+      "day",
+      "wedding"
+    ],
+    "sourceFrames": [
+      58,
+      89,
+      104
+    ],
+    "improvements": [
+      "Coral painted dark hem is continuous where colour-threshold extraction previously left gaps.",
+      "Ivory reference-background triangle and thin shoe-side line removed; original leg/shoe occlusion restored."
+    ],
+    "remaining": [
+      "Existing fine pink/skin-like edge at bodice/skirt waist join, particularly crouched89/104.",
+      "Broad folds retain pose-fitted behaviour, not new cloth physics.",
+      "Source motion blur in89 retained."
+    ]
+  },
+  "identity": "No new face/body proportion change or obvious new seam found in these sampled same-pose pairs; exact source/protection checks are in assets.json and exports.json.",
+  "reviewers": [
+    "root",
+    "independent fit_regression_audit agent"
+  ],
+  "finalMediaSampling": {
+    "source": "Decoded actual comparison GIF frames and actual-export-derived integer-zoom boards. This is temporal sampling, distinct from continuous human playback approval.",
+    "gifSamples": {
+      "male-run-comparison-right.gif": [
+        0,
+        4,
+        8,
+        12,
+        15
+      ],
+      "male-jump-comparison-left.gif": [
+        0,
+        9,
+        19,
+        29,
+        38
+      ],
+      "female-run-comparison-right.gif": [
+        0,
+        4,
+        8,
+        12,
+        15
+      ],
+      "female-jump-comparison-left.gif": [
+        0,
+        9,
+        19,
+        29,
+        38
+      ]
+    },
+    "integerZoomBoards": [
+      "male-crouched-shoulders-waist-104-2x.png",
+      "male-collar-shoulders-0-2x.png",
+      "female-skirt-outline-58-2x.png"
+    ],
+    "finding": "Improvements to waist/shoulder/hem remain visible across sampled source phases; source identity and pose progression are unchanged. Existing stiff compressed folds and female bodice/waist join remain. Frame sequence/time integrity is verified independently in media-index.json; actual continuous playback and observed timing are recorded in browser/evidence-index.json and WebMs."
+  }
+}

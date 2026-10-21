@@ -1,12 +1,12 @@
 # Kling wardrobe: casual and wedding
 
-**Latest candidate:** [complete male outfits and female dress outline V3](full-outfits/README.md).
-The male catalog adds short sleeves, long sleeves and full-length trousers;
-female catalog dresses preserve their V2 silhouettes with lighter outer ink.
-Older garments, source packs and editable projects remain available. The
-[previous dress-fitting batch](fit-v2/README.md) supplies the female comparison
-baseline. Verification and evidence below are the initial batch's historical
-record; the new batch has its own reports and actual exports.
+**Latest candidate:** [clothing seam and hem fit polish](fit-polish/README.md).
+Male top V2 improves shoulder sampling, collar fitting and jacket hem ownership;
+female dress V4 restores painted hem boundaries and removes donor-background
+fragments. Old sources, registration and saved projects retain their original
+assets. The [complete-outfits batch](full-outfits/README.md) is the immediate
+before baseline. Verification below describes the initial wardrobe batch; each
+later batch has its own evidence and execution results.
 
 This batch adds a usable wardrobe around the **two approved Kling characters**.
 It keeps their source-drawn faces, body proportions, motions and native attachment
@@ -31,7 +31,7 @@ show the original beside the result, or show the registered anchors. Jump keeps
 its complete one-shot recovery; action changes use the motion source's support
 and landing routes. These are in-place sprites, not a simulated world movement.
 
-**Save project** keeps the original source, registration, loaded garment banks,
+**Save wardrobe** keeps the original source, registration, loaded garment banks,
 selection and action/direction in one self-contained ZIP. Reopen it to continue
 editing without the catalog. **Export CharacterPack** bakes the selected clothes
 into ordinary V3 PNG pages for `/player.html`; the player does not need wardrobe
@@ -46,7 +46,7 @@ Use distinct versioned IDs for new garment revisions.
 | Character | Available items                                                                                                                       | Presets                                                           |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | Male      | Teal top, ochre shorts, navy waistcoat, navy shorts, brown shoes; teal camp shirt, ochre chinos, navy suit jacket, navy suit trousers | Original, Everyday, Wedding, Everyday separates, Formal separates |
-| Female    | Teal top, ochre shorts, navy waistcoat, navy shorts, brown shoes; coral day dress V3, ivory wedding dress V3                          | Original, Everyday, Wedding, Everyday separates, Formal separates |
+| Female    | Teal top, ochre shorts, navy waistcoat, navy shorts, brown shoes; coral day dress V4, ivory wedding dress V4                          | Original, Everyday, Wedding, Everyday separates, Formal separates |
 
 These are **16 separately registered items** across the two bodies. Male
 Everyday and Wedding now use full outfits; the original sleeveless designs

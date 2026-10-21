@@ -1,0 +1,30 @@
+{
+  "stage": "clothing fit candidate before PNG decode optimization",
+  "checks": [
+    {
+      "command": "npm test",
+      "passed": true,
+      "tests": 155,
+      "testFiles": 12
+    },
+    {
+      "command": "npm run typecheck",
+      "passed": true
+    },
+    {
+      "command": "npm run build",
+      "passed": true
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 36
+    },
+    {
+      "command": "python -m unittest discover -s scripts -p 'test_kling_dress_fit.py'",
+      "passed": true,
+      "tests": 4
+    }
+  ],
+  "scope": "Executed in this batch. These runtime tests do not replace final-art asset audits or actual exported visual review."
+}
