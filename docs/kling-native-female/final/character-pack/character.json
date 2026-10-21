@@ -1,0 +1,66 @@
+{
+  "format": "gathria-baked-character",
+  "schemaVersion": 1,
+  "name": "Kling female — native layered candidate — static pose holds",
+  "characterId": "kling-female-native-study",
+  "source": {
+    "kind": "unified-archive",
+    "name": "native-study.project.zip",
+    "sha256": "0043f1a9b1e70dc1667a82b4fa270e7d3a8632caa96d3444586cec8b5fa72c65"
+  },
+  "provenance": "Visible artwork is copied pixel-for-pixel from approved female source frame 348; source PNG SHA256 is recorded. Hidden shoulder, upper-arm and ankle coverage uses newly authored OpenAI image_gen paint, explicitly masked and registered offline. Hip allowances reuse sampled original shorts cloth after generated cloth produced a shading mismatch; these reconstructed hidden surfaces are not recovered original layers. Generated vest and shorts remain source material only. Female joints, armholes, hems and shoe openings are registered separately from the male. These derived skeletal static poses are not original video frames or a completed animation library.\nDerived static skeletal candidate. This pack contains rendered pose holds; the editable native project is a separate archive.",
+  "derivation": {
+    "method": "Source indices0–3 refer to authored static poses in native-study.project.zip, not video frame indices. Reference original source metadata is retained separately. Existing approved video playback is unchanged.",
+    "frames": [
+      {
+        "frameId": 0,
+        "sourceFrame": 0,
+        "timeSeconds": 0
+      },
+      {
+        "frameId": 1,
+        "sourceFrame": 1,
+        "timeSeconds": 0
+      },
+      {
+        "frameId": 2,
+        "sourceFrame": 2,
+        "timeSeconds": 0
+      },
+      {
+        "frameId": 3,
+        "sourceFrame": 3,
+        "timeSeconds": 0
+      }
+    ]
+  },
+  "sourceMetadata": {
+    "staticPoseStudy": true,
+    "poses": [
+      {
+        "id": "standing",
+        "label": "Standing"
+      },
+      {
+        "id": "walk-contact",
+        "label": "Walk contact"
+      },
+      {
+        "id": "run-flight",
+        "label": "Run flight"
+      },
+      {
+        "id": "celebrate",
+        "label": "Celebrate"
+      }
+    ],
+    "originalReference": {
+      "name": "Original Kling female frame348 with separately authored hidden coverage",
+      "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+      "referenceSha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+      "frameIndex": 348,
+      "timeSeconds": 14.5,
+      "provenance": "Visible artwork is copied pixel-for-pixel from approved female source frame 348; source PNG SHA256 is recorded. Hidden shoulder, upper-arm and ankle coverage uses newly authored OpenAI image_gen paint, explicitly masked and registered offline. Hip allowances reuse sampled original shorts cloth after generated cloth produced a shading mismatch; these reconstructed hidden surfaces are not recovered original layers. Generated vest and shorts remain source material only. Female joints, armholes, hems and shoe openings are registered separately from the male. These derived skeletal static poses are not original video frames or a completed animation library."
+    }
+  }
+}

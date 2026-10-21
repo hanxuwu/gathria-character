@@ -345,7 +345,8 @@ body {
   border-radius: 0 0 10px 10px;
   overflow: hidden;
 }
-.workbench-panel[hidden] {
+.workbench-panel[hidden],
+.workbench-frame[hidden] {
   display: none;
 }
 .workbench-panel-note {

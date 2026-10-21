@@ -40,3 +40,16 @@ cleanup and no runtime generation API is used.
 
 Non-Kling artwork and earlier alternative mother drawings were removed from the
 active repository; their provenance and assets remain in Git history at `158efad`.
+
+## Native female skeletal candidate
+
+[Female source, prompt and hashes](../artwork/kling-native-female/source/README.md)
+retain the exact approved female frame348 (14.50s), separately registered at
+704×1056. One development-time OpenAI image generation produced supplementary
+arm, vest, leg and shorts paint. The compiler uses only masked shoulder/upper-arm
+and ankle samples; hip allowances reuse the original shorts texture after the
+generated cloth showed a shading mismatch. These are reconstructed hidden
+surfaces, not original extracted layers. The head, neck, face, visible outfit
+and standing proportions are unchanged, and actual standing composition is
+RGBA-identical to the source. All four non-animated static pose exports and
+[limitations](KLING_FEMALE_NATIVE_REVIEW.md) are documented separately.

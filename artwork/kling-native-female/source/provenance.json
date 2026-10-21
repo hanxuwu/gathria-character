@@ -1,0 +1,24 @@
+{
+  "reference": {
+    "path": "reference.png",
+    "sha256": "b96581a512eb45d8624353f0ff725c36f538840e39b17b254bafe624f7216db3",
+    "copiedVerbatimFrom": "artwork/kling-jump/prepared/female-library-preview.png",
+    "originalVideoFrame": 348,
+    "seconds": 14.5,
+    "frame": [704, 1056],
+    "character": "female"
+  },
+  "supplement": {
+    "path": "hidden-joints.png",
+    "sha256": "98ef19b7abe04da60443c9f194993cedf9f21df4754c2c1d811f3d1c6192b9c8",
+    "provider": "OpenAI image_gen",
+    "createdAt": "2026-10-21",
+    "reference": "reference.png",
+    "prompt": "generation-prompt.txt",
+    "frame": [1024, 1536],
+    "transparentBackgroundRequested": true,
+    "generationCalls": 1,
+    "purpose": "Newly authored occluded joint coverage in the approved female style; not extracted original video layers. Original visible source remains unchanged.",
+    "note": "Generated PNG is retained unchanged and includes peripheral translucent glow. Only explicitly registered interior coverage may be sampled; preparation records actual selected regions."
+  }
+}

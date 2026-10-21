@@ -77,8 +77,8 @@ explicitly discloses skeletal derivation and hidden paint.
 
 This batch has one neutral expression and fixed vest/shorts/shoes. Hands are
 separate source parts but currently follow the forearm; independent wrist
-controls, separate face/clothing layers, wardrobe items and female registration
-remain later work. Four poses do not demonstrate smooth animation transitions,
+controls, separate face/clothing layers, wardrobe items remain later work. An independently registered
+[female candidate](KLING_FEMALE_NATIVE_REVIEW.md) is now available. Four poses do not demonstrate smooth animation transitions,
 source-video motion fidelity or production Gathria integration.
 
 ## Review and verification

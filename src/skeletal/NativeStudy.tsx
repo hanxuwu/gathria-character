@@ -24,12 +24,20 @@ import {
 } from "./native-study";
 import "./native-study.css";
 
-const candidateUrl = new URL(
-  "../../artwork/kling-native-study/prepared/project.zip",
-  import.meta.url,
-).href;
-const embedded =
-  new URLSearchParams(window.location.search).get("embedded") === "1";
+const query = new URLSearchParams(window.location.search);
+const initialCharacter =
+  query.get("character") === "female" ? "female" : "male";
+const candidateUrls = {
+  male: new URL(
+    "../../artwork/kling-native-study/prepared/project.zip",
+    import.meta.url,
+  ).href,
+  female: new URL(
+    "../../artwork/kling-native-female/prepared/project.zip",
+    import.meta.url,
+  ).href,
+};
+const embedded = query.get("embedded") === "1";
 const chainNames: Record<NativeChain, string> = {
   nearArm: "Near arm",
   farArm: "Far arm",
@@ -186,13 +194,24 @@ export function NativeStudy() {
     setStatus(
       `Loaded: ${next.document.name}. Four static poses; native artwork retained.`,
     );
+    if (embedded && window.parent !== window)
+      window.parent.postMessage(
+        {
+          type: "gathria:native-study-project-loaded",
+          characterId:
+            next.document.characterId === "kling-female-native-study"
+              ? "female"
+              : "male",
+        },
+        window.location.origin,
+      );
   }
   async function openBuiltIn(signal?: AbortSignal) {
     const token = ++request.current;
     setBusy(true);
     setError("");
     try {
-      const response = await fetch(candidateUrl, { signal });
+      const response = await fetch(candidateUrls[initialCharacter], { signal });
       if (!response.ok)
         throw Error(`Candidate download failed (${response.status}).`);
       const next = await importNativeStudyArchive(
@@ -224,6 +243,14 @@ export function NativeStudy() {
     [prepared, poseId, facing],
   );
   const activePose = project?.document.poses.find((p) => p.id === poseId);
+  // Legacy documents omit identity and retain their original male behavior.
+  // A loaded female project always owns its label and exports, regardless of URL.
+  const loadedCharacter = project
+    ? project.document.characterId === "kling-female-native-study"
+      ? "female"
+      : "male"
+    : initialCharacter;
+  const filenamePrefix = `kling-${loadedCharacter}`;
   useEffect(() => {
     if (!project) return;
     const angles = anglesFor(project, poseId)[chain];
@@ -287,7 +314,7 @@ export function NativeStudy() {
             <p className="native-study-eyebrow">
               Native skeletal candidate · review study
             </p>
-            <h1>Kling male, built from the original.</h1>
+            <h1>Kling {loadedCharacter}, built from the original.</h1>
             <p>
               One fixed standing reference. Registered parts. Four skeletal
               stills.
@@ -397,7 +424,10 @@ export function NativeStudy() {
                 <figure>
                   <figcaption>
                     <strong>Original reference</strong>
-                    <span>Frame 348 · fixed standing pose</span>
+                    <span>
+                      Frame {project.document.source.frameIndex} · fixed
+                      standing pose
+                    </span>
                   </figcaption>
                   <NativeCanvas
                     original
@@ -544,7 +574,7 @@ export function NativeStudy() {
                               [await exportNativeStudyProject(project)],
                               { type: "application/zip" },
                             ),
-                            "kling-male-native-study.project.zip",
+                            `${filenamePrefix}-native-study.project.zip`,
                           ),
                       )
                     }
@@ -575,7 +605,7 @@ export function NativeStudy() {
                           });
                           downloadBlob(
                             new Blob([png], { type: "image/png" }),
-                            `kling-male-${poseId}-${facing}.png`,
+                            `${filenamePrefix}-${poseId}-${facing}.png`,
                           );
                         },
                       )
@@ -592,7 +622,7 @@ export function NativeStudy() {
                         async () =>
                           downloadBlob(
                             await createNativeStudyHoldPack(project),
-                            "kling-male-native-static-holds.character.zip",
+                            `${filenamePrefix}-native-static-holds.character.zip`,
                           ),
                       )
                     }

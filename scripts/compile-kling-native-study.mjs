@@ -3,7 +3,10 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 
 const root = new URL("../", import.meta.url);
-const directory = new URL("artwork/kling-native-study/prepared/", root);
+const directory = new URL(
+  `${(process.env.NATIVE_STUDY_DIR ?? "artwork/kling-native-study/prepared").replace(/\/$/, "")}/`,
+  root,
+);
 const server = await createServer({
   server: { middlewareMode: true },
   appType: "custom",
