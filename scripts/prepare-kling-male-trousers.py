@@ -5,8 +5,10 @@ Only RGB inside documented garment donor contours is sampled. Native body
 poses/identity are not warped; complete source-bound patches are baked offline.
 """
 import argparse
+import io
 import json
 from pathlib import Path
+from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 import numpy as np
 from scipy import ndimage as nd
 from PIL import Image, ImageDraw, ImageFont
@@ -82,9 +84,55 @@ def donor_field(source,s,cross,target_fraction,width,donor_side,donor):
  coord[:,:,1]=np.minimum(coord[:,:,1],896)
  return sample(source,coord[:,:,0],coord[:,:,1])
 
-def fitted_bottom(original,guide,masks,semantic,donor,source):
+def supported_leg_surface(original,masks,semantic):
+ """Retain anatomical source surfaces, never isolated dark shoe/matte islands.
+
+ A source surface needs a substantial connected warm skin core or continuity
+ with a substantial registered shorts surface. A few warm antialias pixels in
+ a dark sole fragment cannot validate it. Nothing depends on the chosen donor.
+ """
+ visible=original[:,:,3]>0
+ legs=(masks['nearLeg']|masks['farLeg'])&visible
+ shorts=semantic['shorts']&visible
+ red,green,_=original[:,:,:3].astype(np.int16).transpose(2,0,1)
+ warm=legs&(red>150)&(green>75)&(red-green>24)
+ warm_labels,_=nd.label(warm)
+ warm_sizes=np.bincount(warm_labels.ravel())
+ warm_seed=(warm_labels>0)&(warm_sizes[warm_labels]>=80)
+ short_labels,_=nd.label(shorts)
+ short_sizes=np.bincount(short_labels.ravel())
+ short_seed=(short_labels>0)&(short_sizes[short_labels]>=80)
+ surfaces,_=nd.label(legs|shorts)
+ supported_ids=np.unique(surfaces[warm_seed|short_seed])
+ supported_ids=supported_ids[supported_ids>0]
+ supported=np.isin(surfaces,supported_ids)
+ excluded=legs&~supported
+ return legs&supported,excluded,{
+  'surfaceLabels':surfaces,'warmLabels':warm_labels,'warmSizes':warm_sizes,
+  'shortsSeed':short_seed,
+ }
+
+def fringe_record(frame_id,original,excluded,classification):
+ labels,count=nd.label(excluded);components=[]
+ for label in range(1,count+1):
+  mask=labels==label;yy,xx=np.where(mask)
+  warm_ids=np.unique(classification['warmLabels'][mask]);warm_ids=warm_ids[warm_ids>0]
+  components.append({
+   'pixels':int(mask.sum()),'bounds':[int(xx.min()),int(yy.min()),int(xx.max()+1),int(yy.max()+1)],
+   'largestConnectedWarmCorePixels':int(classification['warmSizes'][warm_ids].max()) if len(warm_ids) else 0,
+   'validatedShortsSeedPixels':int((mask&classification['shortsSeed']).sum()),
+   'alphaMin':int(original[mask,3].min()),'alphaMax':int(original[mask,3].max()),
+   'sourcePixelsSha256':sha(original[mask].tobytes()),
+  })
+ buffer=io.BytesIO();Image.fromarray(excluded.astype(np.uint8)*255).save(buffer,format='PNG',compress_level=9)
+ data=buffer.getvalue()
+ return data,{'frameId':frame_id,'file':f'{frame_id:03}.png','maskSha256':sha(data),
+  'excludedSourcePixels':int(excluded.sum()),'sourcePixelsSha256':sha(original[excluded].tobytes()),'components':components}
+
+def fitted_bottom(original,guide,masks,semantic,donor,source,source_support=None):
  points=guide['points'];shape=original.shape[:2];yy,xx=np.indices(shape)
- shorts=semantic['shorts'];skinlegs=masks['nearLeg']|masks['farLeg']
+ shorts=semantic['shorts']
+ skinlegs,excluded,_=source_support if source_support is not None else supported_leg_surface(original,masks,semantic)
  core=(shorts|skinlegs)&(original[:,:,3]>0)
  protected=protected_mask(guide)
  core &= ~protected
@@ -167,6 +215,7 @@ def fitted_bottom(original,guide,masks,semantic,donor,source):
  color=np.rint(color*(1-line[...,None])+edge_tone*line[...,None]).astype(np.uint8)
  patch[owned,:3]=color[owned];patch[owned,3]=np.rint(alpha[owned]*255).astype(np.uint8)
  patch[~owned]=0
+ assert not (owned&excluded).any()
  return patch,owned
 
 def main():
@@ -174,7 +223,7 @@ def main():
  OUTPUT.mkdir(parents=True,exist_ok=True)
  source=np.asarray(Image.open(DESIGN).convert('RGB'),dtype=float)
  author=MaleLimbOwnership();_,manifest,_,frames=load_source('male')
- catalog=[];audit=[]
+ catalog=[];audit=[];fringe_files={};fringe_records={}
  for look,donor in DONORS.items():
   mask=poly(donor['polygon'])
   # Exclude shoe whites at irregular donor cuffs; this is a clothing-local
@@ -191,16 +240,25 @@ def main():
   for fid,original in frames.items():
    if args.preview_only and fid not in KEYS:continue
    semantic=author.semantic(fid);masks=author.for_frame(fid,original);guide={**author.guides[fid], 'points':author.points(fid)}
-   patch,owned=fitted_bottom(original,guide,masks,semantic,donor,cloth)
+   source_support=supported_leg_surface(original,masks,semantic)
+   supported,excluded,classification=source_support
+   data,record=fringe_record(fid,original,excluded,classification)
+   if fid in fringe_records:assert fringe_records[fid]==record
+   fringe_records[fid]=record;fringe_files[record['file']]=data
+   if fid==64:
+    assert masks['farLeg'][877,360] and supported[877,360], 'Actual rear-leg wedge must retain clothing ownership'
+   patch,owned=fitted_bottom(original,guide,masks,semantic,donor,cloth,source_support)
    protected=protected_mask(guide)&(original[:,:,3]>0)
    assert not (owned&protected).any(),fid
    assert not (owned&(masks['nearArm']|masks['farArm'])).any(),fid
    assert not (patch[~owned,3]>0).any()
    composed=original.copy();composed[owned]=patch[owned]
+   assert np.array_equal(composed[excluded],original[excluded])
    patches[fid]=(patch,owned)
    if fid in KEYS:
     Image.fromarray(composed).save(OUTPUT/f'{look}-{fid:03}.png');previews[fid]=composed
-   audit.append({'look':look,'frameId':fid,'ownedPixels':int(owned.sum()),'protectedPixelsChanged':0,'sourceArmPixelsChanged':0})
+   audit.append({'look':look,'frameId':fid,'ownedPixels':int(owned.sum()),'protectedPixelsChanged':0,'sourceArmPixelsChanged':0,
+    'excludedSourceLegFringePixels':int(excluded.sum()),'excludedSourceLegFringeMaskSha256':record['maskSha256']})
   cell=(352,558);sheet=Image.new('RGB',(cell[0]*5,cell[1]*((len(previews)+4)//5)),'#efece2');draw=ImageDraw.Draw(sheet)
   font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',18)
   for i,(fid,a) in enumerate(previews.items()):
@@ -208,10 +266,28 @@ def main():
    sheet.paste(image,(x,y+28),image);draw.text((x+6,y+4),f'{look} / source {fid}',font=font,fill='#303d34')
   sheet.save(OUTPUT/f'{look}-contact.png')
   if not args.preview_only:
-   provenance=f'OpenAI image-generation garment reference full-outfits-v1/designs.png SHA256 {sha(DESIGN.read_bytes())}. Manual clothing-only donor contours and continuous registered leg/waist UV fields; only cloth RGB sampled. Original Kling body, head, hands, feet and source poses are not regenerated. Three-pixel cloth allowance only into transparent space; original material ownership determines occlusion. Complete offline pose bank; no runtime image API. See recorded prompt and donor JSON.'
+   provenance=f'OpenAI image-generation garment reference full-outfits-v1/designs.png SHA256 {sha(DESIGN.read_bytes())}. Manual clothing-only donor contours and continuous registered leg/waist UV fields; only cloth RGB sampled. Original Kling body, head, hands, feet and source poses are not regenerated. Source sole/matte fragments without a connected warm skin or registered shorts core are preserved source-exact before allowance; source-fringe-exclusions.json records native masks and classification. Three-pixel cloth allowance only into transparent space; original material ownership determines occlusion. Complete offline pose bank; no runtime image API. See recorded prompt and donor JSON.'
    catalog.append(save_garment('male',donor['id'],donor['name'],'bottom',author.registration_bytes,patches,provenance))
  (OUTPUT/'donors.json').write_text(json.dumps(DONORS,indent=2)+'\n')
  (OUTPUT/'ownership-audit.json').write_text(json.dumps(audit,indent=2)+'\n')
+ if not args.preview_only:
+  fringe_path=OUTPUT/'source-fringe-exclusions.zip'
+  with ZipFile(fringe_path,'w',compression=ZIP_DEFLATED,compresslevel=9) as archive:
+   for name,data in sorted(fringe_files.items()):
+    info=ZipInfo(name,(1980,1,1,0,0,0));info.compress_type=ZIP_DEFLATED;archive.writestr(info,data)
+  with ZipFile(fringe_path) as delivered:
+   assert delivered.testzip() is None
+   for record in fringe_records.values():
+    data=delivered.read(record['file']);assert sha(data)==record['maskSha256']
+    mask=np.asarray(Image.open(io.BytesIO(data)));assert mask.shape==(1056,704)
+    assert set(np.unique(mask)).issubset({0,255}) and int((mask>0).sum())==record['excludedSourcePixels']
+  report={'format':'gathria-source-leg-fringe-exclusions','version':1,
+   'sourceSha256':author.source_sha256,'registrationSha256':sha(author.registration_bytes),
+   'maskArchive':'source-fringe-exclusions.zip','maskArchiveSha256':sha(fringe_path.read_bytes()),
+   'method':'Four-connected source leg/shorts surfaces are supported by a connected warm source-leg core of at least80 pixels (R>150,G>75,R-G>24), or a connected source-visible semantic shorts core of at least80 pixels. Unsupported source leg components remain exact source pixels before transparent cloth allowance. Donor colours never enter classification.',
+   'decodedMasks':len(fringe_records),'originalRearLegWedge64Preserved':{'x':360,'y':877},
+   'frames':[fringe_records[fid] for fid in sorted(fringe_records)]}
+  (OUTPUT/'source-fringe-exclusions.json').write_text(json.dumps(report,indent=2)+'\n')
  if not args.preview_only:(OUTPUT/'catalog-items.json').write_text(json.dumps(catalog,indent=2)+'\n')
  print(json.dumps({'previewOnly':args.preview_only,'items':catalog,'output':str(OUTPUT)},indent=2))
 
