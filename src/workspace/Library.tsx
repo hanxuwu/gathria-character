@@ -1,6 +1,6 @@
-import { ArrowRight, Bone, Check, FolderOpen, ShieldCheck } from "lucide-react";
+import { ArrowRight, Bone, Check, ShieldCheck } from "lucide-react";
 import { KLING_CHARACTERS } from "../consumer/kling-catalog";
-import { AdvancedTools, MainNavigation } from "./MainNavigation";
+import { MainNavigation } from "./MainNavigation";
 import "./workspace.css";
 
 export function CharacterLibrary() {
@@ -18,8 +18,8 @@ export function CharacterLibrary() {
             </h1>
             <p className="library-intro__copy">
               Start with an original Kling character, explore its movements,
-              <br className="desktop-break" /> or open the skeleton tools to
-              keep creating.
+              <br className="desktop-break" /> or shape the male skeleton
+              candidate from the same artwork.
             </p>
           </div>
           <div className="library-local-note">
@@ -86,52 +86,38 @@ export function CharacterLibrary() {
                     Open character <ArrowRight size={16} aria-hidden="true" />
                   </a>
                   <span className="library-character__capability">
-                    Playback &amp; export · clothing is fixed
+                    Five video actions · clothing is fixed
                   </span>
+                  {character.id === "male" ? (
+                    <div className="library-character__skeleton">
+                      <a
+                        className="workspace-button workspace-button--secondary"
+                        href="/workbench.html?character=male&mode=rig"
+                      >
+                        <Bone size={18} aria-hidden="true" />
+                        <span>Edit Kling male skeleton</span>
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </a>
+                      <span className="library-character__capability">
+                        Four static poses · adjustable joints · save and export
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="library-character__skeleton-status">
+                      Female skeleton editing is not available yet.
+                    </p>
+                  )}
                 </div>
               </article>
             ))}
           </div>
           <p className="library-originals-note">
-            The originals remain your visual reference. Review the separate{" "}
-            <a href="/workbench.html?mode=rig&study=kling-male">
-              Kling male HD skeleton study
-            </a>{" "}
-            for native layered parts and four static poses. Full skeletal
-            animation and interchangeable clothing are still in development.
+            Original playback preserves both characters from the video. The male
+            skeleton candidate uses registered layers and four editable static
+            poses; continuous skeletal animation and interchangeable clothing
+            remain in development.
           </p>
         </section>
-
-        <section
-          className="library-rig-card"
-          aria-labelledby="skeleton-heading"
-        >
-          <div className="library-rig-card__icon">
-            <Bone size={28} aria-hidden="true" />
-          </div>
-          <div>
-            <p className="workspace-eyebrow">Create with a skeleton</p>
-            <h2 id="skeleton-heading">Your tools, ready when you are.</h2>
-            <p>
-              Keep working with clothing, expressions, joint bindings and
-              motion.
-              <br className="desktop-break" /> Open a saved project or start
-              with the existing editable characters.
-            </p>
-            <span className="library-rig-card__note">
-              Current editable characters use the V6 body. Your Kling originals
-              stay separate.
-            </span>
-          </div>
-          <a
-            className="workspace-button workspace-button--secondary"
-            href="/workbench.html?mode=rig"
-          >
-            <FolderOpen size={17} aria-hidden="true" /> Open skeleton workspace{" "}
-            <ArrowRight size={16} aria-hidden="true" />
-          </a>
-        </section>
-        <AdvancedTools />
       </main>
       <footer className="workspace-footer">
         <span>Gathria Characters</span>

@@ -7,12 +7,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         library: "index.html",
-        editor: "editor.html",
         workbench: "workbench.html",
         player: "player.html",
-        rigLab: "rig-lab.html",
         skinStudio: "skin-studio.html",
-        motherStudy: "mother-study.html",
       },
     },
   },

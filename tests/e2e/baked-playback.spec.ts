@@ -287,37 +287,54 @@ for (const withoutSubtle of [false, true]) {
   });
 }
 
-test("incomplete source is rejected without replacing a loaded legacy character", async ({
+test("invalid source and removed V1 packs cannot replace the loaded Kling character", async ({
   page,
 }) => {
   await page.goto("/player.html");
-  await page
-    .getByRole("button", {
-      name: "Try Mira’s example pack · original Art V1",
-      exact: true,
-    })
-    .click();
-  await expect(page.getByRole("status")).toContainText("Loaded: Mira");
-  await expect(page.getByTestId("consumer-canvas")).toHaveCSS(
-    "image-rendering",
-    "pixelated",
-  );
-  await expect(page.getByLabel("Pixel scale", { exact: true })).toHaveValue(
-    "4",
-  );
+  await page.locator("#player-zip").setInputFiles({
+    name: "source.zip",
+    mimeType: "application/zip",
+    buffer: sourceFixture().buffer,
+  });
+  await expect(page.getByRole("status")).toContainText("Loaded: Male fixture");
+  await expect(page.getByLabel("Display scale", { exact: true })).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Celebrate", exact: true }),
-  ).toHaveCount(0);
+  ).toBeEnabled();
   await page.locator("#player-zip").setInputFiles({
     name: "incomplete-source.zip",
     mimeType: "application/zip",
     buffer: sourceFixture(true).buffer,
   });
   await expect(page.getByRole("alert")).toContainText("Missing source frame");
-  await expect(page.getByRole("status")).toContainText("Loaded: Mira");
+  await expect(page.getByRole("status")).toContainText("Loaded: Male fixture");
   await expect(page.getByTestId("consumer-canvas")).toHaveAttribute(
     "aria-label",
-    /Mira/,
+    /Male fixture/,
+  );
+  const unsupported = zipSync({
+    "manifest.json": strToU8(
+      JSON.stringify({ schemaVersion: 1, format: "gathria-character-pack" }),
+    ),
+    "character.json": strToU8("{}"),
+    "spritesheet.png": new Uint8Array([1]),
+    "PROVENANCE.txt": strToU8("Legacy"),
+    "INTEGRATION.md": strToU8("Legacy"),
+  });
+  await page
+    .locator("#player-zip")
+    .setInputFiles({
+      name: "legacy.character.zip",
+      mimeType: "application/zip",
+      buffer: Buffer.from(unsupported),
+    });
+  await expect(page.getByRole("alert")).toContainText(
+    "Legacy CharacterPack V1 is not supported",
+  );
+  await expect(page.getByRole("status")).toContainText("Loaded: Male fixture");
+  await expect(page.getByTestId("consumer-canvas")).toHaveAttribute(
+    "aria-label",
+    /Male fixture/,
   );
 });
 

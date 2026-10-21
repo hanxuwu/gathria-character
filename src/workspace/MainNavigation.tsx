@@ -44,27 +44,3 @@ export function MainNavigation({
     </header>
   );
 }
-
-export function AdvancedTools() {
-  return (
-    <details className="gathria-advanced">
-      <summary>Advanced tools &amp; earlier versions</summary>
-      <div className="gathria-advanced__links">
-        <a href="/editor.html">
-          Classic character editor{" "}
-          <span>Earlier artwork &amp; saved configurations</span>
-        </a>
-        <a href="/skin-studio.html">
-          Standalone Skin Studio{" "}
-          <span>The full skeletal authoring workspace</span>
-        </a>
-        <a href="/rig-lab.html">
-          Rig laboratory <span>Mesh and motion experiments</span>
-        </a>
-        <a href="/mother-study.html">
-          Earlier mother study <span>Four static pose studies</span>
-        </a>
-      </div>
-    </details>
-  );
-}

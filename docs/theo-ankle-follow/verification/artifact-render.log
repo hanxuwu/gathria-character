@@ -1,6 +1,0 @@
-/workspace/gathria-character/scripts/render-theo-ankle-follow-review.py:234: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
-  changed=sum(any(pixel) for pixel in diff.getdata())
-/workspace/gathria-character/scripts/render-theo-ankle-follow-review.py:236: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
-  regression.append({'action':action,'frameId':key,'changedPixels':changed,'differenceBounds':diff.convert('RGB').getbbox(),'alphaChangedPixels':sum(value!=0 for value in alpha_diff.getdata()),'beforeBounds':a.getbbox(),'afterBounds':b.getbbox(),'top100RowsExact':a.crop((0,0,192,100)).tobytes()==b.crop((0,0,192,100)).tobytes()})
-All-file integrity: {'json': 10, 'md': 4, 'txt': 4, 'png': 71, 'gif': 16, 'zip': 17}
-Validated 17 archives, 144 exported poses, 16 GIFs, 10 isolated playback cases.

@@ -59,48 +59,13 @@
 .gathria-navigation__links a:hover {
   background: #eff1eb;
 }
-.gathria-navigation a:focus-visible,
-.gathria-advanced a:focus-visible,
-.gathria-advanced summary:focus-visible {
+.gathria-navigation a:focus-visible {
   outline: 3px solid #b48358;
   outline-offset: 4px;
 }
 .gathria-navigation--compact {
   padding-top: 15px;
   padding-bottom: 15px;
-}
-.gathria-advanced {
-  border-top: 1px solid #dedfd5;
-  padding-top: 20px;
-  color: #697468;
-  font:
-    13px/1.5 Inter,
-    ui-sans-serif,
-    system-ui,
-    sans-serif;
-}
-.gathria-advanced summary {
-  cursor: pointer;
-  width: fit-content;
-  padding: 4px 0;
-}
-.gathria-advanced__links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-  padding: 22px 0 10px;
-}
-.gathria-advanced__links a {
-  color: #354c3d;
-  text-decoration: none;
-  font-weight: 600;
-}
-.gathria-advanced__links a span {
-  display: block;
-  margin-top: 5px;
-  color: #788174;
-  font-size: 12px;
-  font-weight: 400;
 }
 @media (max-width: 700px) {
   .gathria-navigation {
@@ -118,8 +83,5 @@
   .gathria-navigation__links a {
     padding: 9px 10px;
     font-size: 12px;
-  }
-  .gathria-advanced__links {
-    grid-template-columns: repeat(2, 1fr);
   }
 }

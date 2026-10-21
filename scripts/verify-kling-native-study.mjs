@@ -11,6 +11,7 @@ import {
   mkdtemp,
   rm,
 } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -51,6 +52,7 @@ const inputs = execFileSync(
 )
   .trim()
   .split("\n")
+  .filter((file) => existsSync(new URL(file, root)))
   .sort();
 const hashes = async () =>
   Object.fromEntries(

@@ -1,5 +1,4 @@
 import { Inflate, zipSync, strToU8 } from "fflate";
-import { parseCharacterConfig } from "./config";
 import { BAKED_MAX_PAGES, validateMultipageBakedManifest } from "./pack-v3";
 import {
   BAKED_MAX_ARCHIVE_BYTES,
@@ -7,12 +6,6 @@ import {
   validateBakedManifest,
 } from "./pack-v2";
 import type {
-  Animation,
-  PlaybackAnimationName,
-  CharacterConfig,
-  CharacterPackManifest,
-  GeneratedCharacter,
-  SpriteFrame,
   BakedCharacterRecipe,
   CharacterPackV2Manifest,
   CharacterPackV3Manifest,
@@ -25,9 +18,7 @@ export { validateMultipageBakedManifest } from "./pack-v3";
 export interface LoadedCharacterPack<
   Manifest extends
     PortableCharacterPackManifest = PortableCharacterPackManifest,
-  Config extends CharacterConfig | BakedCharacterRecipe =
-    | CharacterConfig
-    | BakedCharacterRecipe,
+  Config extends BakedCharacterRecipe = BakedCharacterRecipe,
 > {
   manifest: Manifest;
   image: HTMLImageElement;
@@ -36,9 +27,6 @@ export interface LoadedCharacterPack<
   config?: Config;
 }
 
-const MAX_DIMENSION = 4096;
-const MAX_FRAMES = 1024;
-const MAX_ARCHIVE_BYTES = 32 * 1024 * 1024;
 const MAX_TEXT_BYTES = 256 * 1024;
 const REQUIRED_FILES = [
   "spritesheet.png",
@@ -57,208 +45,6 @@ function record(value: unknown, path: string): Record<string, unknown> {
     fail(`${path} must be an object.`);
   return value as Record<string, unknown>;
 }
-function integer(
-  value: unknown,
-  path: string,
-  min: number,
-  max: number,
-): number {
-  if (
-    typeof value !== "number" ||
-    !Number.isSafeInteger(value) ||
-    value < min ||
-    value > max
-  ) {
-    fail(`${path} must be an integer from ${min} to ${max}.`);
-  }
-  return value;
-}
-function number(
-  value: unknown,
-  path: string,
-  min: number,
-  max: number,
-): number {
-  if (
-    typeof value !== "number" ||
-    !Number.isFinite(value) ||
-    value < min ||
-    value > max
-  ) {
-    fail(`${path} must be a finite number from ${min} to ${max}.`);
-  }
-  return value;
-}
-function text(value: unknown, path: string, maxLength = 120): string {
-  if (typeof value !== "string" || !value.trim() || value.length > maxLength) {
-    fail(`${path} must be nonempty text of at most ${maxLength} characters.`);
-  }
-  return value;
-}
-function exact(value: unknown, expected: unknown, path: string): void {
-  if (value !== expected)
-    fail(`${path} must be ${JSON.stringify(expected)} for CharacterPack v1.`);
-}
-
-/** Validate and copy the portable contract; no generator or editor state is used. */
-export function validateManifest(value: unknown): CharacterPackManifest {
-  const data = record(value, "Manifest");
-  exact(data.schemaVersion, 1, "schemaVersion");
-  exact(data.format, "gathria-character-pack", "format");
-  const name = text(data.name, "name", 80);
-  const generator = text(data.generator, "generator");
-  const sheet = record(data.spritesheet, "spritesheet");
-  exact(sheet.file, "spritesheet.png", "spritesheet.file");
-  const width = integer(sheet.width, "spritesheet.width", 1, MAX_DIMENSION);
-  const height = integer(sheet.height, "spritesheet.height", 1, MAX_DIMENSION);
-  const frameWidth = integer(
-    sheet.frameWidth,
-    "spritesheet.frameWidth",
-    1,
-    width,
-  );
-  const frameHeight = integer(
-    sheet.frameHeight,
-    "spritesheet.frameHeight",
-    1,
-    height,
-  );
-  const columns = integer(sheet.columns, "spritesheet.columns", 1, MAX_FRAMES);
-  const rows = integer(sheet.rows, "spritesheet.rows", 1, MAX_FRAMES);
-  if (columns * frameWidth !== width || rows * frameHeight !== height) {
-    fail(
-      "Spritesheet dimensions must exactly equal its frame dimensions multiplied by columns and rows.",
-    );
-  }
-  if (columns * rows > MAX_FRAMES)
-    fail(`A spritesheet may contain at most ${MAX_FRAMES} frames.`);
-  if (
-    !Array.isArray(data.frames) ||
-    data.frames.length < 1 ||
-    data.frames.length > columns * rows
-  ) {
-    fail(
-      "frames must contain at least one rectangle and no more rectangles than spritesheet grid cells.",
-    );
-  }
-  const ids = new Set<number>();
-  const cells = new Set<string>();
-  const frames: SpriteFrame[] = data.frames.map((item, index) => {
-    const frame = record(item, `frames[${index}]`);
-    const id = integer(frame.id, `frames[${index}].id`, 0, 65535);
-    if (ids.has(id))
-      fail(`Frame ID ${id} is duplicated. Give every frame a unique ID.`);
-    ids.add(id);
-    const x = integer(frame.x, `frames[${index}].x`, 0, width - frameWidth);
-    const y = integer(frame.y, `frames[${index}].y`, 0, height - frameHeight);
-    exact(frame.width, frameWidth, `frames[${index}].width`);
-    exact(frame.height, frameHeight, `frames[${index}].height`);
-    if (x % frameWidth || y % frameHeight)
-      fail(`Frame ${id} must align to the spritesheet grid.`);
-    const cell = `${x},${y}`;
-    if (cells.has(cell))
-      fail(
-        `Frame ${id} overlaps another frame. Each grid cell must be unique.`,
-      );
-    cells.add(cell);
-    return { id, x, y, width: frameWidth, height: frameHeight };
-  });
-  const animationData = record(data.animations, "animations");
-  function animation(key: PlaybackAnimationName): Animation {
-    const item = record(animationData[key], `animations.${key}`);
-    if (
-      !Array.isArray(item.frames) ||
-      item.frames.length < 1 ||
-      item.frames.length > MAX_FRAMES
-    ) {
-      fail(
-        `animations.${key}.frames must contain 1–${MAX_FRAMES} frame IDs in playback order.`,
-      );
-    }
-    const refs = item.frames.map((ref, i) => {
-      const id = integer(ref, `animations.${key}.frames[${i}]`, 0, 65535);
-      if (!ids.has(id))
-        fail(`animations.${key} references missing frame ${id}.`);
-      return id;
-    });
-    const fps = number(item.fps, `animations.${key}.fps`, 0.1, 60);
-    if (typeof item.loop !== "boolean")
-      fail(`animations.${key}.loop must be true or false.`);
-    return { frames: refs, fps, loop: item.loop };
-  }
-  const facing = record(data.facing, "facing");
-  exact(facing.native, "right", "facing.native");
-  exact(facing.right, "none", "facing.right");
-  exact(facing.left, "mirror-x", "facing.left");
-  const anchor = record(data.anchor, "anchor");
-  exact(anchor.units, "pixels", "anchor.units");
-  exact(anchor.origin, "top-left", "anchor.origin");
-  // An anchor may lie on a frame boundary (e.g. a baseline at frameHeight).
-  const anchorX = number(anchor.x, "anchor.x", 0, frameWidth);
-  const anchorY = number(anchor.y, "anchor.y", 0, frameHeight);
-  const scale = record(data.scale, "scale");
-  exact(scale.pixelArt, true, "scale.pixelArt");
-  exact(scale.integerOnly, true, "scale.integerOnly");
-  const recommended = integer(scale.recommended, "scale.recommended", 1, 16);
-  exact(data.configuration, "character.json", "configuration");
-  return {
-    schemaVersion: 1,
-    format: "gathria-character-pack",
-    name,
-    generator,
-    spritesheet: {
-      file: "spritesheet.png",
-      width,
-      height,
-      frameWidth,
-      frameHeight,
-      columns,
-      rows,
-    },
-    frames,
-    animations: {
-      idle: animation("idle"),
-      walk: animation("walk"),
-      ...("run" in animationData ? { run: animation("run") } : {}),
-      ...("jump" in animationData ? { jump: animation("jump") } : {}),
-    },
-    facing: { native: "right", right: "none", left: "mirror-x" },
-    anchor: { x: anchorX, y: anchorY, units: "pixels", origin: "top-left" },
-    scale: { pixelArt: true, recommended, integerOnly: true },
-    configuration: "character.json",
-  };
-}
-
-function validateConfigForManifest(
-  value: unknown,
-  manifest: CharacterPackManifest,
-): CharacterConfig {
-  let config: CharacterConfig;
-  try {
-    config = parseCharacterConfig(value);
-  } catch (error) {
-    fail(
-      `character.json: ${error instanceof Error ? error.message : "Invalid character configuration."}`,
-    );
-  }
-  if (config.name !== manifest.name)
-    fail(
-      "character.json name must match the name in manifest.json. Export both files from the same character.",
-    );
-  if (
-    config.schemaVersion === 2 &&
-    config.artworkVersion === 6 &&
-    (config.motionVersion === 1 ||
-      config.motionVersion === 2 ||
-      config.motionVersion === 3) &&
-    !manifest.animations.run
-  )
-    fail(
-      "character.json enables running but manifest.json has no run animation. Export both files from the same character.",
-    );
-  return config;
-}
-
 function parseJson(bytes: Uint8Array, name: string): unknown {
   if (bytes.length > MAX_TEXT_BYTES)
     fail(
@@ -305,7 +91,7 @@ interface ZipEntry {
 // Preflight before allocating inflated buffers. No ZIP path is ever written to disk.
 function inspectArchive(
   bytes: Uint8Array,
-  maxBytes = MAX_ARCHIVE_BYTES,
+  maxBytes = BAKED_MAX_ARCHIVE_BYTES,
   allowMultipage = false,
 ): ZipEntry[] {
   if (bytes.length < 22 || bytes.length > maxBytes)
@@ -458,70 +244,6 @@ function crc32(bytes: Uint8Array): number {
   return (crc ^ 0xffffffff) >>> 0;
 }
 
-/** Pure byte validation shared by browser import and tests (image decoding follows in the browser). */
-export function readCharacterPackArchive(bytes: Uint8Array): {
-  manifest: CharacterPackManifest;
-  config: CharacterConfig;
-  png: Uint8Array;
-} {
-  const entries = inspectArchive(bytes);
-  const files: Record<string, Uint8Array> = {};
-  for (const entry of entries) {
-    const compressed = bytes.subarray(
-      entry.dataStart,
-      entry.dataStart + entry.compressed,
-    );
-    if (entry.method === 0) files[entry.name] = compressed;
-    else {
-      // Small compressed chunks bound temporary allocations, even when an archive lies about inflated size.
-      const output = new Uint8Array(entry.size);
-      let written = 0;
-      try {
-        const inflate = new Inflate((chunk) => {
-          if (written + chunk.length > entry.size)
-            fail("Inflated ZIP data exceeds its declared size.");
-          output.set(chunk, written);
-          written += chunk.length;
-        });
-        if (!compressed.length) fail("Missing compressed data.");
-        for (let start = 0; start < compressed.length; start += 1024) {
-          const end = Math.min(start + 1024, compressed.length);
-          inflate.push(
-            compressed.subarray(start, end),
-            end === compressed.length,
-          );
-        }
-      } catch {
-        fail(
-          `Could not decompress ${entry.name} within its declared size. The ZIP may be damaged; export it again.`,
-        );
-      }
-      if (written !== entry.size)
-        fail(
-          `${entry.name} failed its ZIP size check. Export the package again.`,
-        );
-      files[entry.name] = output;
-    }
-    if (
-      files[entry.name].length !== entry.size ||
-      crc32(files[entry.name]) !== entry.crc
-    )
-      fail(
-        `${entry.name} failed its ZIP checksum or size check. Export the package again.`,
-      );
-  }
-  const manifest = validateManifest(
-    parseJson(files["manifest.json"], "manifest.json"),
-  );
-  const config = validateConfigForManifest(
-    parseJson(files["character.json"], "character.json"),
-    manifest,
-  );
-  const png = files["spritesheet.png"];
-  checkPngHeader(png, manifest);
-  return { manifest, config, png };
-}
-
 async function decodePng(
   bytes: Uint8Array,
   manifest: PngDimensions,
@@ -552,45 +274,18 @@ async function decodePng(
   }
 }
 
-export async function loadCharacterPack(
-  file: Blob,
-): Promise<LoadedCharacterPack<CharacterPackManifest, CharacterConfig>> {
-  if (file.size > MAX_ARCHIVE_BYTES)
-    fail("CharacterPack ZIP must be at most 32 MiB.");
-  const { manifest, config, png } = readCharacterPackArchive(
-    new Uint8Array(await file.arrayBuffer()),
-  );
-  return { manifest, config, image: await decodePng(png, manifest) };
-}
-
-export async function loadCharacterFiles(
-  png: Blob,
-  metadata: unknown,
-  config?: unknown,
-): Promise<LoadedCharacterPack<CharacterPackManifest, CharacterConfig>> {
-  const manifest = validateManifest(metadata);
-  const parsedConfig =
-    config === undefined
-      ? undefined
-      : validateConfigForManifest(config, manifest);
-  if (png.size > MAX_ARCHIVE_BYTES)
-    fail("spritesheet.png must be at most 32 MiB.");
-  const image = await decodePng(
-    new Uint8Array(await png.arrayBuffer()),
-    manifest,
-  );
-  return { manifest, image, config: parsedConfig };
-}
-
-/** Opt-in portable dispatch; the original V1 validators and loaders keep their limits. */
+/** Native baked contracts only; unrelated legacy generator packs are unsupported. */
 export function validatePortableManifest(
   value: unknown,
 ): PortableCharacterPackManifest {
   const data = record(value, "Manifest");
-  if (data.schemaVersion === 1) return validateManifest(value);
+  if (data.schemaVersion === 1)
+    fail(
+      "Legacy CharacterPack V1 is not supported in the Kling workspace. Open a Kling CharacterPack V2/V3 or unified source ZIP.",
+    );
   if (data.schemaVersion === 2) return validateBakedManifest(value);
   if (data.schemaVersion === 3) return validateMultipageBakedManifest(value);
-  fail("Unsupported CharacterPack schemaVersion. Expected 1, 2 or 3.");
+  fail("Unsupported CharacterPack schemaVersion. Expected 2 or 3.");
 }
 
 function readPortableZipEntry(bytes: Uint8Array, entry: ZipEntry): Uint8Array {
@@ -778,12 +473,6 @@ async function validateBakedPngPixels(
 
 export type PortableCharacterPackArchive =
   | {
-      manifest: CharacterPackManifest;
-      config: CharacterConfig;
-      png: Uint8Array;
-      additionalPngs?: never;
-    }
-  | {
       manifest: CharacterPackV2Manifest;
       config: BakedCharacterRecipe;
       png: Uint8Array;
@@ -799,8 +488,8 @@ export type PortableCharacterPackArchive =
 export function readPortableCharacterPackArchive(
   bytes: Uint8Array,
 ): PortableCharacterPackArchive {
-  // Inspect at most eight bounded root entries before reading the version. V1/V2
-  // are then rechecked with their original strict five-file envelopes.
+  // Inspect at most eight bounded root entries before reading the version. V2
+  // is then rechecked with its strict five-file envelope.
   const entries = inspectArchive(bytes, BAKED_MAX_ARCHIVE_BYTES, true);
   const manifestEntry = entries.find(
     (entry) => entry.name === "manifest.json",
@@ -808,7 +497,6 @@ export function readPortableCharacterPackArchive(
   const manifest = validatePortableManifest(
     parseJson(readPortableZipEntry(bytes, manifestEntry), "manifest.json"),
   );
-  if (manifest.schemaVersion === 1) return readCharacterPackArchive(bytes);
   if (manifest.schemaVersion === 2)
     inspectArchive(bytes, BAKED_MAX_ARCHIVE_BYTES);
   const allowed = new Set<string>(REQUIRED_FILES);
@@ -846,7 +534,7 @@ export async function loadPortableCharacterPack(
   file: Blob,
 ): Promise<LoadedCharacterPack> {
   if (file.size > BAKED_MAX_ARCHIVE_BYTES)
-    fail("CharacterPack ZIP must be at most 64 MiB (V1: 32 MiB).");
+    fail("CharacterPack ZIP must be at most 64 MiB.");
   const archive = readPortableCharacterPackArchive(
     new Uint8Array(await file.arrayBuffer()),
   );
@@ -876,8 +564,6 @@ export async function loadPortableCharacterFiles(
     fail(
       "Multipage CharacterPack V3 requires the complete ZIP; a single PNG cannot supply every atlas page.",
     );
-  if (manifest.schemaVersion === 1)
-    return loadCharacterFiles(png, metadata, config);
   if (png.size > BAKED_MAX_ARCHIVE_BYTES)
     fail("Baked spritesheet.png must be at most 64 MiB.");
   const parsedConfig =
@@ -916,7 +602,7 @@ export async function createBakedCharacterPack(
   const pixels = new Uint8Array(await png.arrayBuffer());
   await validateBakedPngPixels(pixels, manifest);
   const provenance = `Baked source character: ${validatedRecipe.name}\n\n${validatedRecipe.provenance}\n\nSource kind: ${validatedRecipe.source.kind}\nSource file: ${validatedRecipe.source.name}\nSHA256: ${validatedRecipe.source.sha256}\n\nDerivation: ${validatedRecipe.derivation.method}\n\ncharacter.json records source frame indices and times. This export retains the supplied RGBA spritesheet PNG bytes. It does not promise skeletal layers, editable clothing, generated poses, or runtime AI.\n`;
-  const integration = `# CharacterPack V2: baked source playback\n\nLoad manifest.json and spritesheet.png; read character.json as a gathria-baked-character recipe, not a legacy character appearance configuration.\n\nRender each referenced frame rectangle at its native aspect ratio. The PNG is 8-bit RGBA with smooth alpha. Honor scale.pixelArt=false and scale.integerOnly=false; use smooth image sampling for a fractional display scale. The recommended scale is only a viewing preference, never a change to exported source pixels.\n\nUse each animation's frame IDs in their listed order at its declared FPS. Repeated IDs are deliberate holds. Honor loop; a non-looping action stops on its final frame. celebrate and jump are distinct actions. Disable unavailable actions rather than inventing substitutes.\n\nThe native view is right; left is a horizontal mirror. Apply the declared frame-relative anchor consistently. These source clips contain their authored in-frame motion; do not normalize individual poses or add world displacement unless your scene explicitly requests it.\n\nThis pack supports baked playback only (editableAppearance=false). It does not contain a reusable skeleton, wardrobe layers, or a claim that missing/occluded source detail was reconstructed. Source provenance and selection are in character.json and PROVENANCE.txt. Runtime playback requires neither the editor nor a model API.\n\nLimits: 8192 pixels per sheet dimension, 64 Mi pixels decoded, at most 1024 unique frames, 64 MiB ZIP/PNG and 256 KiB per text file. Legacy V1 packs keep their original 4096-pixel/32-MiB limits and integer pixel rendering.\n`;
+  const integration = `# CharacterPack V2: baked source playback\n\nLoad manifest.json and spritesheet.png; read character.json as a gathria-baked-character recipe, not a legacy character appearance configuration.\n\nRender each referenced frame rectangle at its native aspect ratio. The PNG is 8-bit RGBA with smooth alpha. Honor scale.pixelArt=false and scale.integerOnly=false; use smooth image sampling for a fractional display scale. The recommended scale is only a viewing preference, never a change to exported source pixels.\n\nUse each animation's frame IDs in their listed order at its declared FPS. Repeated IDs are deliberate holds. Honor loop; a non-looping action stops on its final frame. celebrate and jump are distinct actions. Disable unavailable actions rather than inventing substitutes.\n\nThe native view is right; left is a horizontal mirror. Apply the declared frame-relative anchor consistently. These source clips contain their authored in-frame motion; do not normalize individual poses or add world displacement unless your scene explicitly requests it.\n\nThis pack supports baked playback only (editableAppearance=false). It does not contain a reusable skeleton, wardrobe layers, or a claim that missing/occluded source detail was reconstructed. Source provenance and selection are in character.json and PROVENANCE.txt. Runtime playback requires neither the editor nor a model API.\n\nLimits: 8192 pixels per sheet dimension, 64 Mi pixels decoded, at most 1024 unique frames, 64 MiB ZIP/PNG and 256 KiB per text file.\n`;
   const files = {
     "manifest.json": strToU8(JSON.stringify(manifest, null, 2)),
     "character.json": strToU8(JSON.stringify(validatedRecipe, null, 2)),
@@ -959,7 +645,7 @@ async function createMultipageBakedCharacterPack(
     "manifest.json": JSON.stringify(manifest, null, 2),
     "character.json": JSON.stringify(validatedRecipe, null, 2),
     "PROVENANCE.txt": `Baked source character: ${validatedRecipe.name}\n\n${validatedRecipe.provenance}\n\nSource kind: ${validatedRecipe.source.kind}\nSource file: ${validatedRecipe.source.name}\nSHA256: ${validatedRecipe.source.sha256}\nDerivation: ${validatedRecipe.derivation.method}\nAll PNG bytes are retained unchanged. No runtime AI, skeletal reconstruction or generated frames.\n`,
-    "INTEGRATION.md": `# CharacterPack V3: multipage original artwork\n\nLoad manifest.json, character.json and every declared PNG. Page 0 is spritesheet; pages 1 onward are additionalSheets in order. Each frame has an explicit page index and an unscaled rectangle within that page. All pages share native frame dimensions and the frame-relative anchor. Do not combine pages into an oversized image or resize artwork.\n\nPlay each animation's frame IDs in order at its declared FPS. Respect loop: a one-shot jump holds its last frame and can be explicitly replayed. Jump and celebrate remain distinct. Missing actions are unavailable. Render right natively and left with mirror-x around the anchor. Fractional display zoom uses smooth sampling; exported pixels stay native.\n\nThis baked recipe is not editable wardrobe or skeletal data. Provenance and source frame/timing maps are in character.json. The complete ZIP supports independent playback. A single PNG with metadata cannot represent V3. Older V1/V2-only consumers must reject schemaVersion 3 explicitly.\n\nLimits: 2–4 PNG pages, each at most 8192 pixels per dimension and 64 Mi pixels decoded; at most 128 Mi decoded pixels across all pages, 1024 total grid cells/unique frames, 64 MiB ZIP/aggregate PNG bytes, 256 KiB per text file. V1/V2 limits and file envelopes remain unchanged.\n`,
+    "INTEGRATION.md": `# CharacterPack V3: multipage original artwork\n\nLoad manifest.json, character.json and every declared PNG. Page 0 is spritesheet; pages 1 onward are additionalSheets in order. Each frame has an explicit page index and an unscaled rectangle within that page. All pages share native frame dimensions and the frame-relative anchor. Do not combine pages into an oversized image or resize artwork.\n\nPlay each animation's frame IDs in order at its declared FPS. Respect loop: a one-shot jump holds its last frame and can be explicitly replayed. Jump and celebrate remain distinct. Missing actions are unavailable. Render right natively and left with mirror-x around the anchor. Fractional display zoom uses smooth sampling; exported pixels stay native.\n\nThis baked recipe is not editable wardrobe or skeletal data. Provenance and source frame/timing maps are in character.json. The complete ZIP supports independent playback. A single PNG with metadata cannot represent V3. Consumers that only support V2 must reject schemaVersion 3 explicitly.\n\nLimits: 2–4 PNG pages, each at most 8192 pixels per dimension and 64 Mi pixels decoded; at most 128 Mi decoded pixels across all pages, 1024 total grid cells/unique frames, 64 MiB ZIP/aggregate PNG bytes, 256 KiB per text file. The V2 limits and file envelope remain unchanged.\n`,
   };
   for (const [name, content] of Object.entries(text)) {
     const bytes = strToU8(content);
@@ -971,164 +657,6 @@ async function createMultipageBakedCharacterPack(
   if (archive.length > BAKED_MAX_ARCHIVE_BYTES)
     fail("Generated baked CharacterPack exceeds the 64 MiB archive limit.");
   return new Blob([archive], { type: "application/zip" });
-}
-
-export async function pixelsToPng(
-  generated: GeneratedCharacter,
-): Promise<Blob> {
-  const manifest = validateManifest(generated.manifest);
-  if (
-    generated.width !== manifest.spritesheet.width ||
-    generated.height !== manifest.spritesheet.height ||
-    generated.pixels.length !== generated.width * generated.height * 4
-  ) {
-    fail(
-      "Generated pixel buffer dimensions do not match its manifest. Generate the character again.",
-    );
-  }
-  const canvas = document.createElement("canvas");
-  canvas.width = generated.width;
-  canvas.height = generated.height;
-  const context = canvas.getContext("2d");
-  if (!context) fail("This browser cannot create a 2D canvas for PNG export.");
-  context.putImageData(
-    new ImageData(
-      new Uint8ClampedArray(generated.pixels),
-      generated.width,
-      generated.height,
-    ),
-    0,
-    0,
-  );
-  return new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
-      (blob) =>
-        blob
-          ? resolve(blob)
-          : reject(new Error("PNG export failed. Try exporting again.")),
-      "image/png",
-    );
-  });
-}
-
-const PROVENANCE = `Gathria Character — CharacterPack v1\n\nThe bundled deterministic pixel artwork is drawn from original procedural shapes and poses authored for this project. No external image assets, photos, paid APIs, or AI generation are used.\n\nGenerated sprites may be used, modified, and redistributed, including commercially, under the MIT License below. Retain its copyright and permission notice when redistributing. No visible in-game credit is required. This permission covers this project's original artwork; it grants no rights to third-party trademarks or identities.\n\nPrototype format: integration with the Gathria runtime is unverified.\n\nMIT License
-
-Copyright (c) 2026 Gathria Character contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-`;
-const INTEGRATION = `# CharacterPack v1\n\nRead manifest.json and decode spritesheet.png as an RGBA image. Validate schemaVersion = 1 and format = "gathria-character-pack", then validate PNG dimensions against spritesheet.width/height.\n\nframes contains grid-aligned source rectangles, each with a unique numeric id. Resolve animation frame references by id (not by array index). Play animations.idle or animations.walk at their declared fps; loop only when loop is true.\n\nDraw the source rectangle at a positive integer scale with image smoothing disabled. Coordinates are pixels from the top-left. anchor.x/y are frame-local placement coordinates: draw the frame with its anchor at your world position. For left-facing output mirror the frame horizontally around its anchor; for right-facing output draw it unchanged. Keep the same world anchor when flipping. Do not flip the entire spritesheet.\n\ncharacter.json is editable source configuration, not required for playback. This pack contains all assets needed by a consumer; do not regenerate them. See the repository docs/CHARACTER_PACK_V1.md for the complete contract and the standalone player at player.html for an implementation.\n\nFrame dimensions and timing are prototype choices, not verified Gathria requirements. Gathria integration remains unverified pending inspection of its actual runtime.\n`;
-
-const ILLUSTRATED_PROVENANCE = PROVENANCE.replace(
-  "The bundled deterministic pixel artwork is drawn from original procedural shapes and poses authored for this project. No external image assets, photos, paid APIs, or AI generation are used.",
-  "Artwork version 3 uses AI-assisted illustration assets created for this project with OpenAI's image generation tool, then extracted into masked layers and composed by a deterministic local renderer. Source banks and preparation scripts are included in the repository. User-supplied images guided the visual style; those reference images are not bundled in this pack. No photos, remote services, or model calls are used during character customization, generation, export, or playback.",
-);
-
-export async function createCharacterPack(
-  config: CharacterConfig,
-  generated: GeneratedCharacter,
-): Promise<Blob> {
-  const manifest = validateManifest(generated.manifest);
-  const validatedConfig = validateConfigForManifest(config, manifest);
-  const running =
-    validatedConfig.schemaVersion === 2 &&
-    validatedConfig.artworkVersion === 6 &&
-    (validatedConfig.motionVersion === 1 ||
-      validatedConfig.motionVersion === 2 ||
-      validatedConfig.motionVersion === 3);
-  const png = await pixelsToPng(generated);
-  if (png.size > MAX_ARCHIVE_BYTES)
-    fail(
-      "Generated PNG exceeds the 32 MiB CharacterPack limit. Reduce the sheet dimensions or frame count.",
-    );
-  const bytes = zipSync(
-    {
-      "spritesheet.png": [
-        new Uint8Array(await png.arrayBuffer()),
-        { level: 0 },
-      ],
-      "manifest.json": strToU8(JSON.stringify(manifest, null, 2) + "\n"),
-      "character.json": strToU8(
-        JSON.stringify(validatedConfig, null, 2) + "\n",
-      ),
-      "PROVENANCE.txt": strToU8(
-        validatedConfig.schemaVersion === 2 &&
-          validatedConfig.artworkVersion >= 3
-          ? validatedConfig.artworkVersion === 7
-            ? ILLUSTRATED_PROVENANCE.replace(
-                "Artwork version 3",
-                "Artwork version 7",
-              ).replace(
-                "Prototype format:",
-                "V7 uses new AI-assisted complete bride/groom expression sources created with OpenAI image generation during development. Source sheets and exact prompts: artwork/harmonized-source/. The groom received a neck/collar refinement, and a separate hand-free gown backplate supports animated arms. scripts/prepare-harmonized-assets.py registers neck/waist/sole landmarks, shares a face-weighted 96-color palette across each identity, and extracts material-aware layers. Runtime is local and deterministic with no model calls. V1–V6 remain preserved. See docs/ART_HARMONY_V7.md.\n\nPrototype format:",
-              )
-            : validatedConfig.artworkVersion === 6
-              ? ILLUSTRATED_PROVENANCE.replace(
-                  "Artwork version 3",
-                  "Artwork version 6",
-                ).replace(
-                  "Prototype format:",
-                  "Version 6 technically re-cuts the existing AI-assisted V5 wedding sources into clean anatomical layers, retains full authored face states, and applies a quieter deterministic gait. No new model-generated artwork was introduced in this revision. See scripts/prepare-polished-assets.py and docs/ART_POLISH_V6.md.\n\n" +
-                    (running
-                      ? validatedConfig.motionVersion === 3
-                        ? "Motion version 3 corrects arm material ownership and leg joint connections only in the compact V6 run cycle. The original V6 idle and walk atlas rows, cadence, proportions and motion versions 1 and 2 remain preserved. It reuses the existing AI-assisted source artwork with local technical masks and joint composition; no new model-generated artwork or runtime model calls are used. See src/core/running-rig-v3.ts and docs/RUN_CONNECTIONS_REVIEW.md.\n\n"
-                        : validatedConfig.motionVersion === 2
-                          ? "Motion version 2 refines the running key poses into a compact side-facing cycle using the preserved V6 layers. The original V6 idle and walk atlas rows remain byte-identical; motion version 1 retains its original renderer. No new AI-generated artwork or runtime model calls are used for running. See src/core/running-rig-v2.ts and docs/RUNNING_V2_REVIEW.md.\n\n"
-                          : "Motion version 1 adds locally composed running poses from the preserved V6 layers. The original V6 idle and walk atlas rows remain byte-identical. No new AI-generated artwork or runtime model calls are used for running. See docs/RUNNING_REVIEW.md.\n\n"
-                      : "") +
-                    "Prototype format:",
-                )
-              : validatedConfig.artworkVersion === 5
-                ? ILLUSTRATED_PROVENANCE.replace(
-                    "Artwork version 3",
-                    "Artwork version 5",
-                  ).replace(
-                    "Prototype format:",
-                    "Version 5 uses complete authored heads and wedding layers produced offline with OpenAI image generation. Repository sources: artwork/cohesive-source/character-expression-bank.png and garment-backplate.png. scripts/prepare-cohesive-assets.py registers neck/waist/sole landmarks, thresholds alpha, extracts overlapping layers and assigns recolor masks; the garment backplate removes embedded standing hands. Waves/crop use three authored expressions; bob/crest retain their illustrated open-eye face. Runtime composition and playback remain local and deterministic. See artwork/cohesive-source/README.md for production history.\n\nPrototype format:",
-                  )
-                : validatedConfig.artworkVersion === 4
-                  ? ILLUSTRATED_PROVENANCE.replace(
-                      "Artwork version 3",
-                      "Artwork version 4",
-                    ).replace(
-                      "Prototype format:",
-                      "Version 4 adds deterministic expressions, motion and an AI-assisted rose hairpiece.\n\nPrototype format:",
-                    )
-                  : ILLUSTRATED_PROVENANCE
-          : PROVENANCE,
-      ),
-      "INTEGRATION.md": strToU8(
-        running
-          ? INTEGRATION.replace(
-              "Play animations.idle or animations.walk at their declared fps; loop only when loop is true.",
-              "Play animations.idle, animations.walk or the optional animations.run at their declared fps; loop only when loop is true. Running uses 12 frames at 18 FPS. Old packs can omit run; consumers must disable unavailable actions instead of inventing run frames. The atlas appends running below the unchanged V6 idle/walk rows. These are in-place clips: world movement, if desired, is supplied separately by the consuming scene.",
-            )
-          : INTEGRATION,
-      ),
-    },
-    { level: 6 },
-  );
-  if (bytes.length > MAX_ARCHIVE_BYTES)
-    fail(
-      "Generated ZIP exceeds the 32 MiB CharacterPack limit. Reduce the sheet dimensions or frame count.",
-    );
-  return new Blob([bytes], { type: "application/zip" });
 }
 
 export function safeFilename(name: string): string {

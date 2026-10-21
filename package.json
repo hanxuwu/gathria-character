@@ -10,7 +10,6 @@
     "typecheck": "tsc -b",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "samples": "node scripts/generate-samples.mjs",
     "format": "prettier --write src scripts tests docs *.json *.ts *.html *.md .github/workflows/verify.yml"
   },
   "dependencies": {

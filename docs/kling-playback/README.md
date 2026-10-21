@@ -1,5 +1,10 @@
 # Original Kling characters — review
 
+> Historical source/artwork delivery record. For the current Kling-only workspace,
+> supported files and fresh checks, see [the cleanup review](../KLING_FOCUS_REVIEW.md).
+> Unrelated legacy editor/CharacterPack V1 compatibility described below was
+> intentionally removed; the Kling sources and exports remain unchanged.
+
 This page preserves the original four-action delivery. The current player sample
 also includes a one-shot jump: [five-action preview and packs](../kling-jump/README.md).
 

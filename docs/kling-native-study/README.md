@@ -3,7 +3,7 @@
 Start the app with `npm ci` and `npm run dev`, then open
 `/workbench.html?mode=rig&study=kling-male` or
 `/skin-studio.html?study=kling-male`. The library also links the candidate.
-Original playback and default Skin Studio remain available.
+Original playback remains available; this is now the only skeletal workspace.
 
 This is the **original male standing artwork**, partitioned into fifteen native
 parts, plus disclosed hidden joint coverage. Standing is RGBA-identical to the
@@ -12,7 +12,11 @@ pose studies**, not completed motion cycles.
 
 ![Actual exported four-pose review](final/review/four-poses-right-1x.png)
 
-## Actual app exports
+## Retained actual app exports
+
+These screenshots/exports document the candidate before cleanup; current
+workflow screenshots and checks are linked in the cleanup review. Artwork is
+unchanged. Historical records retain the inputs and test counts of their run.
 
 - [Original vs layered reconstruction, 1×](final/review/source-reconstruction-1x.png)
   · [2×](final/review/source-reconstruction-2x.png)
@@ -27,8 +31,8 @@ pose studies**, not completed motion cycles.
 - [Download the static-pose CharacterPack](final/kling-male-native-stills.character.zip)
 - [Actual browser/export verification](final/evidence-index.json)
 - [PNG and ZIP validation](final/artifact-validation.json)
-- [Original artwork, renderers and player protection](baseline-protection.json)
-- [Current test results](verification-results.json)
+- [Current cleanup verification](../KLING_FOCUS_REVIEW.md)
+- [Historical candidate verification](https://github.com/hanxuwu/gathria-character/blob/158efad/docs/kling-native-study/verification-results.json)
 
 The `initial` folder preserves the first actual UI export for comparison.
 Its capture overlapped development and is explicitly **not final validation**.

@@ -1,8 +1,0 @@
-REFERENCE MOTHER CANDIDATE — STATIC POSE STUDY
-
-These are three still poses, NOT completed idle, walk or run animation cycles. The CharacterPack v1 compatibility selectors map idle to Standing, walk to Walk contact and run to Run flight. Each selector holds one frame at 1 FPS with loop=false. Celebration is deliberately excluded; it is not a jump animation.
-
-ARTWORK SOURCE
-Reference mother candidate 1. User-supplied Kling video standing frame 348 at 14.50 seconds; user PNG viewed in conversation only. Full master and supplemental hidden joint paint generated with OpenAI image generation at development time. Prompts and originals retained in artwork/reference-mother/source. Master SHA256 d9bed3928e8907ad1587196f8867335d0ae6da59c66bb7649daa15e92df69f86. Offline masks and uniform registration in scripts/prepare-reference-mother.py. Visible master pixels retained; supplementary hidden areas are newly painted, not original extracted layers. Only neutral face authored; required expression slots alias neutral. Explicit four-pose study is authoritative; project container generic motion clips are not reviewed animation cycles. No runtime API.
-
-The candidate is composed locally from registered RGBA parts and explicit static joint coordinates. No runtime image-generation calls are made. Legacy defaults, motion clips and saved configurations are unchanged. character.json is only a legacy appearance reference, not a recipe that reproduces this imported character. Retain the separate pose-study archive (project.rig.zip + poses.json + registration metadata) to reproduce all four candidate poses. Opening project.rig.zip in ordinary Skin Studio uses its ordinary motion path, not these explicit review poses.

@@ -9,7 +9,7 @@ test("native candidate keeps the source rest pose and saves real editable joint 
   test.setTimeout(120000);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/skin-studio.html?study=kling-male");
+  await page.goto("/skin-studio.html");
   await expect(page.getByRole("status")).toContainText("Loaded:");
   const canvas = page.locator("#native-posed-canvas");
   await expect(canvas).toHaveAttribute("width", "704");
@@ -111,7 +111,7 @@ test("native candidate keeps the source rest pose and saves real editable joint 
   expect(errors).toEqual([]);
 });
 
-test("workbench opts into the native study without replacing the ordinary skeleton editor", async ({
+test("the visible male skeleton entry retains poses and old study URLs still open the native candidate", async ({
   page,
 }) => {
   await page.route(/\/(male|female)\.character\.zip(?:\?.*)?$/, (route) =>
@@ -122,7 +122,7 @@ test("workbench opts into the native study without replacing the ordinary skelet
   );
   await page.goto("/");
   await page
-    .getByRole("link", { name: "Kling male HD skeleton study", exact: true })
+    .getByRole("link", { name: "Edit Kling male skeleton", exact: true })
     .click();
   const frame = page.frameLocator('iframe[title="Skeleton and motion editor"]');
   await expect(frame.getByRole("status")).toContainText("Loaded:");
@@ -133,20 +133,20 @@ test("workbench opts into the native study without replacing the ordinary skelet
   await page
     .getByRole("tab", { name: "Original playback", exact: true })
     .click();
-  await page
-    .getByRole("tab", { name: "Skeleton & motion", exact: true })
-    .click();
+  await page.getByRole("tab", { name: "Male skeleton", exact: true }).click();
   await expect(frame.getByLabel("Review pose", { exact: true })).toHaveValue(
     "celebrate",
   );
   await expect(frame.getByLabel("Bones", { exact: true })).toBeChecked();
-  await page.goto("/workbench.html?mode=rig");
+  await page.goto("/workbench.html?mode=rig&study=kling-male");
   await expect(
     page.locator('iframe[title="Skeleton and motion editor"]'),
   ).toHaveAttribute("src", "/skin-studio.html?embedded=1");
+  await expect(frame.getByRole("status")).toContainText("Loaded:");
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  await expect(page).not.toHaveURL(/mode=rig|study=kling-male/);
+  await page.reload();
   await expect(
-    page
-      .frameLocator('iframe[title="Skeleton and motion editor"]')
-      .getByLabel("Character name", { exact: true }),
-  ).toBeVisible();
+    page.getByRole("tab", { name: "Original playback" }),
+  ).toHaveAttribute("aria-selected", "true");
 });

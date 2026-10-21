@@ -1,3 +1,0 @@
-Reference mother candidate — four static review poses.
-
-This is a pose-study archive, not a legacy authoring project ZIP. To reproduce it in source code, importProject(project.rig.zip), parseMotherPoseStudy(poses.json, project), then prepareRig(project.rig, project.skin, project.motions).pose(entry.pose, 'neutral'). mother-study.html displays the bundled candidate; it does not currently import pose-study archives. The ordinary Skin Studio can edit the embedded project but its ordinary motion clips are not these four review poses. No completed animation cycles are supplied. HD source parts are a separate download.

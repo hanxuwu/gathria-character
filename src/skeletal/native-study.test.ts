@@ -4,7 +4,7 @@ import { strToU8, unzipSync, zipSync } from "fflate";
 import { readPortableCharacterPackArchive } from "../core/pack";
 import { decodeSourceRgbaPng } from "../core/baked-source";
 import { sha256 } from "../core/sha256";
-import { createLimbMesh } from "../experiments/denim-rig/mesh";
+import { createLimbMesh } from "./geometry";
 import {
   NATIVE_PARTS,
   NATIVE_POSES,
@@ -88,6 +88,9 @@ describe("native source registration and deterministic composition", () => {
       const right = prepared.render(id);
       expect(right).toHaveLength(704 * 1056 * 4);
       expect(same(prepared.render(id), right)).toBe(true);
+      // Cleanup must preserve every existing pose, not only the standing source.
+      const approved = decodeSourceRgbaPng(read(`${id}.png`));
+      expect(same(right, approved.pixels)).toBe(true);
       expect(same(prepared.render(id, "left"), mirrorNativePixels(right))).toBe(
         true,
       );

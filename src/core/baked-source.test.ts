@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { strToU8, unzipSync, zipSync, zlibSync } from "fflate";
-import { crc32 } from "../skeletal/bounded-archive";
+import { crc32 } from "./bounded-archive";
 import {
   BAKED_SOURCE_ACTIONS,
   convertSourceCharacter,

@@ -1,18 +1,14 @@
 import { describe, expect, it, vi } from "vitest";
-import type { CharacterPackManifest } from "../core/types";
+import type { CharacterPackV2Manifest } from "../core/types";
 import {
   animationHasEnded,
   drawCharacterFrame,
   frameAtTime,
   imageForFrame,
 } from "./player";
-import {
-  GATHRIA_COMPATIBILITY,
-  toProposedGathriaCharacter,
-} from "../compat/gathria";
 
-const manifest: CharacterPackManifest = {
-  schemaVersion: 1,
+const manifest: CharacterPackV2Manifest = {
+  schemaVersion: 2,
   format: "gathria-character-pack",
   name: "External fixture",
   generator: "independent-test-author",
@@ -36,7 +32,8 @@ const manifest: CharacterPackManifest = {
   },
   facing: { native: "right", right: "none", left: "mirror-x" },
   anchor: { x: 2, y: 15, units: "pixels", origin: "top-left" },
-  scale: { pixelArt: true, recommended: 3, integerOnly: true },
+  scale: { pixelArt: false, recommended: 0.5, integerOnly: false },
+  capabilities: { renderMode: "baked", editableAppearance: false },
   configuration: "character.json",
 };
 
@@ -60,7 +57,7 @@ describe("independent metadata playback", () => {
     );
   });
 
-  it("does not invent jump playback for a legacy pack", () => {
+  it("does not invent jump playback for a pack without it", () => {
     expect(() => frameAtTime(manifest, "jump", 0)).toThrow(
       "Animation jump is not available in this pack.",
     );
@@ -70,7 +67,7 @@ describe("independent metadata playback", () => {
   });
 
   it("plays jump in declared order, includes repeated holds, then rests on its final frame", () => {
-    const jumping: CharacterPackManifest = {
+    const jumping: CharacterPackV2Manifest = {
       ...manifest,
       animations: {
         ...manifest.animations,
@@ -90,7 +87,7 @@ describe("independent metadata playback", () => {
   });
 
   it("plays optional run clips using their declared order and timing", () => {
-    const running: CharacterPackManifest = {
+    const running: CharacterPackV2Manifest = {
       ...manifest,
       animations: {
         ...manifest.animations,
@@ -124,7 +121,7 @@ describe("independent metadata playback", () => {
       3,
       { x: 100, y: 200 },
     );
-    expect(context.imageSmoothingEnabled).toBe(false);
+    expect(context.imageSmoothingEnabled).toBe(true);
     expect(context.translate).toHaveBeenCalledWith(100, 200);
     expect(context.scale).toHaveBeenCalledWith(-3, 3);
     expect(context.drawImage).toHaveBeenCalledWith(
@@ -139,41 +136,6 @@ describe("independent metadata playback", () => {
       16,
     );
     expect(context.restore).toHaveBeenCalledOnce();
-  });
-
-  it("keeps proposed compatibility mapping independent of editor dimensions", () => {
-    const mapped = toProposedGathriaCharacter(manifest, "/custom.png");
-    expect(mapped.texture).toBe("/custom.png");
-    expect(mapped.origin).toEqual({ x: 0.25, y: 0.9375 });
-    expect(mapped.clips.walk).toEqual({
-      frameIds: [10, 90, 30],
-      framesPerSecond: 4,
-      repeat: false,
-    });
-    expect(mapped.atlas).toEqual(manifest.frames);
-    expect(mapped.atlas).not.toBe(manifest.frames);
-  });
-
-  it("preserves optional jump metadata in the unverified scene adapter", () => {
-    expect(toProposedGathriaCharacter(manifest).clips).not.toHaveProperty(
-      "jump",
-    );
-    const jumping: CharacterPackManifest = {
-      ...manifest,
-      animations: {
-        ...manifest.animations,
-        jump: { frames: [30, 90, 10], fps: 12, loop: false },
-      },
-    };
-    const mapped = toProposedGathriaCharacter(jumping);
-    expect(mapped.clips.jump).toEqual({
-      frameIds: [30, 90, 10],
-      framesPerSecond: 12,
-      repeat: false,
-    });
-    jumping.animations.jump!.frames[0] = 10;
-    expect(mapped.clips.jump?.frameIds).toEqual([30, 90, 10]);
-    expect(GATHRIA_COMPATIBILITY.status).toBe("UNVERIFIED");
   });
 });
 

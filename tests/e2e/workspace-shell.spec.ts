@@ -38,18 +38,25 @@ test("library has three primary destinations, original previews and lazy charact
     page.getByRole("link", { name: "Open character" }).nth(1),
   ).toHaveAttribute("href", "/workbench.html?character=female");
   expect(archiveRequests).toEqual([]);
-  await page
-    .getByText("Advanced tools & earlier versions", { exact: true })
-    .click();
+  const male = page.locator(".library-character--male");
   await expect(
-    page.getByRole("link", { name: /Classic character editor/ }),
-  ).toHaveAttribute("href", "/editor.html");
+    male.getByRole("link", { name: "Edit Kling male skeleton", exact: true }),
+  ).toHaveAttribute("href", "/workbench.html?character=male&mode=rig");
   await expect(
-    page.getByRole("link", { name: /Rig laboratory/ }),
-  ).toHaveAttribute("href", "/rig-lab.html");
+    page
+      .locator(".library-character--female")
+      .getByText("Female skeleton editing is not available yet.", {
+        exact: true,
+      }),
+  ).toBeVisible();
+  await expect(
+    page.locator(
+      'a[href="/editor.html"], a[href="/rig-lab.html"], a[href="/mother-study.html"]',
+    ),
+  ).toHaveCount(0);
 });
 
-test("workbench keeps the real skeletal editor and undo history alive across tabs", async ({
+test("workbench keeps native joint edits and undo history alive across tabs", async ({
   page,
 }) => {
   const archiveRequests: string[] = [];
@@ -60,8 +67,8 @@ test("workbench keeps the real skeletal editor and undo history alive across tab
     if (request.isNavigationRequest() && request.url().includes("player.html"))
       originalPageLoads++;
   });
-  // The original pack's own import/playback is covered by native loader tests.
-  // Fail it quickly here to exercise isolation of a live, edited skeleton session.
+  // The original packs are checked independently; a failed original load must
+  // not disturb the live native skeleton session or its undo history.
   await page.route(/\/(male|female)\.character\.zip(?:\?.*)?$/, (route) =>
     route.fulfill({
       status: 503,
@@ -70,23 +77,35 @@ test("workbench keeps the real skeletal editor and undo history alive across tab
   );
   await page.goto("/workbench.html?mode=rig");
   await expect(
-    page.getByRole("tab", { name: "Skeleton & motion" }),
+    page.getByRole("tab", { name: "Male skeleton" }),
   ).toHaveAttribute("aria-selected", "true");
   await expect(
     page.locator('iframe[title="Original Kling playback"]'),
   ).toHaveCount(0);
-  expect(archiveRequests.filter((url) => /kling/.test(url))).toEqual([]);
   const studio = page.frameLocator(
     'iframe[title="Skeleton and motion editor"]',
   );
-  const name = studio.getByLabel("Character name", { exact: true });
-  await name.fill("My retained skeleton project");
-  await name.press("Tab");
+  await expect(studio.getByRole("status")).toContainText("Loaded:");
+  expect(
+    archiveRequests.filter((url) =>
+      /\/(male|female)\.character\.zip/.test(url),
+    ),
+  ).toEqual([]);
+  const pose = studio.getByLabel("Review pose", { exact: true });
+  const upper = studio.getByLabel("Upper rotation (degrees)", { exact: true });
+  const canvas = studio.locator("#native-posed-canvas");
+  const pixels = () =>
+    canvas.evaluate((element: HTMLCanvasElement) => element.toDataURL());
+  await pose.selectOption("run-flight");
+  const before = await pixels();
+  const originalAngle = await upper.inputValue();
+  const editedAngle = String(Number(originalAngle) + 8);
+  await upper.fill(editedAngle);
+  await studio.getByRole("button", { name: "Apply joint angles" }).click();
+  await expect(studio.getByRole("status")).toContainText("Pose updated");
+  expect(await pixels()).not.toBe(before);
   await studio.getByLabel("Bones", { exact: true }).check();
-  await studio.getByLabel("Action", { exact: true }).selectOption("run");
-  const before = await studio
-    .locator("#skin-posed-canvas")
-    .evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL());
+  const withBones = await pixels();
   await page.getByRole("tab", { name: "Original playback" }).click();
   await expect(
     page.getByText("Original Kling artwork.", { exact: true }),
@@ -94,42 +113,15 @@ test("workbench keeps the real skeletal editor and undo history alive across tab
   await expect(
     page.locator('iframe[title="Original Kling playback"]'),
   ).toHaveCount(1);
-  await page.getByRole("tab", { name: "Skeleton & motion" }).click();
-  await expect(name).toHaveValue("My retained skeleton project");
+  await page.getByRole("tab", { name: "Male skeleton" }).click();
+  await expect(pose).toHaveValue("run-flight");
+  await expect(upper).toHaveValue(editedAngle);
   await expect(studio.getByLabel("Bones", { exact: true })).toBeChecked();
-  await expect(studio.getByLabel("Action", { exact: true })).toHaveValue("run");
-  await expect
-    .poll(() =>
-      studio
-        .locator("#skin-posed-canvas")
-        .evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL()),
-    )
-    .toBe(before);
-  await studio.getByRole("button", { name: "Undo edit", exact: true }).click();
-  await expect(name).not.toHaveValue("My retained skeleton project");
-  await studio.getByRole("button", { name: "Redo edit", exact: true }).click();
-  await expect(name).toHaveValue("My retained skeleton project");
-  const canvas = studio.locator("#skin-posed-canvas");
-  const stoppedFrame = await canvas.getAttribute("data-frame");
-  await studio.getByRole("button", { name: "Play", exact: true }).click();
-  await expect
-    .poll(() => canvas.getAttribute("data-frame"))
-    .not.toBe(stoppedFrame);
-  await page.getByRole("tab", { name: "Original playback" }).click();
-  const hiddenFrames = await canvas.evaluate(async (element) => {
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    const before = element.getAttribute("data-frame");
-    await new Promise((resolve) => setTimeout(resolve, 250));
-    return [before, element.getAttribute("data-frame")];
-  });
-  expect(hiddenFrames[0]).toBe(hiddenFrames[1]);
-  await page.getByRole("tab", { name: "Skeleton & motion" }).click();
-  await expect(
-    studio.getByRole("button", { name: "Pause", exact: true }),
-  ).toBeVisible();
-  await expect
-    .poll(() => canvas.getAttribute("data-frame"))
-    .not.toBe(hiddenFrames[1]);
+  expect(await pixels()).toBe(withBones);
+  await studio.getByLabel("Bones", { exact: true }).uncheck();
+  await studio.getByRole("button", { name: "Undo pose edit" }).click();
+  await expect(upper).toHaveValue(originalAngle);
+  expect(await pixels()).toBe(before);
   expect(originalPageLoads).toBe(1);
   await expect(
     page.locator('iframe[title="Skeleton and motion editor"]'),
@@ -185,6 +177,20 @@ test("workbench follows trusted player selection without reloading the retained 
     page.getByRole("link", { name: "Open player separately" }),
   ).toHaveAttribute("href", "/player.html?kling=female");
   await expect(page).toHaveURL(/character=female/);
+  await page.getByRole("tab", { name: "Male skeleton" }).click();
+  await expect(
+    page.getByRole("heading", {
+      name: "Kling male · skeleton candidate",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(/Female skeleton editing is not available yet/),
+  ).toBeVisible();
+  await page.getByRole("tab", { name: "Original playback" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Kling female", exact: true }),
+  ).toBeVisible();
   await expect(
     page.locator('iframe[title="Original Kling playback"]'),
   ).toHaveAttribute("src", "/player.html?kling=male&embedded=1");
@@ -213,14 +219,14 @@ test("mobile library and workbench navigation stay within the viewport and suppo
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(
-    page.getByRole("link", { name: "Open skeleton workspace" }),
+    page.getByRole("link", { name: "Edit Kling male skeleton" }),
   ).toBeVisible();
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);
-  await page.getByRole("link", { name: "Open skeleton workspace" }).click();
-  await expect(page).toHaveURL(/workbench\.html\?mode=rig/);
-  const rigTab = page.getByRole("tab", { name: "Skeleton & motion" });
+  await page.getByRole("link", { name: "Edit Kling male skeleton" }).click();
+  await expect(page).toHaveURL(/workbench\.html\?character=male&mode=rig/);
+  const rigTab = page.getByRole("tab", { name: "Male skeleton" });
   await rigTab.focus();
   await page.route(/\/(male|female)\.character\.zip(?:\?.*)?$/, (route) =>
     route.fulfill({ status: 503, body: "Unavailable for keyboard test" }),

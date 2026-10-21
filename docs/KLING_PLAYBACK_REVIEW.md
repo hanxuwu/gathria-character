@@ -1,5 +1,10 @@
 # Original Kling character playback
 
+> Historical source/artwork delivery record. For the current Kling-only workspace,
+> supported files and fresh checks, see [the cleanup review](KLING_FOCUS_REVIEW.md).
+> Unrelated legacy editor/CharacterPack V1 compatibility described below was
+> intentionally removed; the Kling sources and exports remain unchanged.
+
 This opt-in batch uses the two supplied original videos, not the regenerated
 reference-mother illustration or its skeletal reconstruction. The existing
 Studio, Skin Studio, default V6 characters and historical exports stay intact.

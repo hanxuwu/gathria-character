@@ -1,8 +1,9 @@
 # Original-video baked character sources
 
 User-supplied Kling originals, received for faithful playback on 20 October
-2026 (UTC). The male file already exists at
-[`../reference-mother/source/reference-video.mp4`](../reference-mother/source/reference-video.mp4).
+2026 (UTC). The male original is now retained at
+[`source/male.mp4`](source/male.mp4). Its bytes and SHA256 are unchanged after
+relocation from the older mother-study directory during Kling-only cleanup.
 The female original is [`source/female.mp4`](source/female.mp4). Both remain
 untouched; exact SHA256 values are in [`source/selection.json`](source/selection.json).
 No new image-generation call, redrawing or skeleton fitting is used in this batch.
@@ -19,7 +20,7 @@ player's adapter creates a versioned native V2 baked pack without resampling.
 Actual application exports and review images live in `docs/kling-playback`.
 Only those exports, not conceptual mockups, are used in the review animation.
 
-Storage decision: reuse the existing male original, retain the new female
+Storage decision: retain the exact male original under the Kling sources, retain the female
 original once, package derived source PNGs once, and keep the two independently
 usable exported packs as delivery artifacts. Do not unpack duplicate source
 frame directories into Git. Small source-standing crops are retained for

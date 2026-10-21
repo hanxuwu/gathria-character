@@ -5,7 +5,6 @@ import {
   createBakedCharacterPack,
   loadPortableCharacterFiles,
   loadPortableCharacterPack,
-  readCharacterPackArchive,
   readPortableCharacterPackArchive,
   validateBakedManifest,
   validateMultipageBakedManifest,
@@ -148,7 +147,6 @@ describe("native multipage CharacterPack V3", () => {
     expect(reopened.additionalPngs).toEqual([png(200)]);
     expect(packed["spritesheet-1.png"]).toEqual(png(200));
     expect(() => validateBakedManifest(input)).toThrow("schemaVersion");
-    expect(() => readCharacterPackArchive(bytes)).toThrow("five documented");
   });
 
   it.each([

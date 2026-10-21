@@ -243,53 +243,28 @@ body {
   margin: 16px 0 29px;
   line-height: 1.65;
 }
-.library-rig-card {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  padding: 26px 29px;
-  background: #edf0e6;
-  border: 1px solid #dce3d3;
-  border-radius: 12px;
-  margin: 0 0 31px;
+.library-character__skeleton {
+  margin-top: 20px;
+  padding-top: 17px;
+  border-top: 1px solid #dde3d6;
+  width: 100%;
 }
-.library-rig-card__icon {
-  display: flex;
-  width: 57px;
-  height: 57px;
-  align-items: center;
-  justify-content: center;
+.library-character__skeleton .workspace-button {
+  width: 100%;
+  min-height: 48px;
+}
+.library-character__skeleton .workspace-button svg {
   flex-shrink: 0;
-  background: #e0e6d6;
-  border-radius: 12px;
-  color: #71815e;
 }
-.library-rig-card h2 {
-  margin: 0;
-  font-family: Georgia, serif;
-  font-size: 25px;
-  font-weight: 400;
-  letter-spacing: -0.5px;
-}
-.library-rig-card p:not(.workspace-eyebrow) {
-  color: #77806b;
-  font-size: 11px;
-  line-height: 1.7;
-  margin: 9px 0;
-}
-.library-rig-card .workspace-eyebrow {
-  margin-bottom: 6px;
-  font-size: 8px;
-}
-.library-rig-card__note {
-  color: #8b937f;
-  font-size: 9px;
-  line-height: 1.5;
+.library-character__skeleton .library-character__capability {
   display: block;
+  color: #6c795f;
 }
-.library-rig-card > a {
-  margin-left: auto;
-  flex-shrink: 0;
+.library-character__content > .library-character__skeleton-status {
+  border-top: 1px solid #e4e1d8;
+  margin-top: 20px;
+  padding-top: 17px;
+  color: #7b796c;
 }
 .workspace-footer {
   max-width: 1240px;
@@ -436,12 +411,6 @@ body {
   .library-character__art {
     min-height: 310px;
   }
-  .library-rig-card {
-    flex-wrap: wrap;
-  }
-  .library-rig-card > a {
-    margin-left: 79px;
-  }
   .desktop-break {
     display: none;
   }
@@ -492,24 +461,6 @@ body {
   .workspace-count {
     font-size: 9px;
   }
-  .library-rig-card {
-    padding: 23px 20px;
-    gap: 17px;
-  }
-  .library-rig-card > div:nth-child(2) {
-    flex: 1;
-  }
-  .library-rig-card h2 {
-    font-size: 22px;
-  }
-  .library-rig-card > a {
-    margin-left: 0;
-    width: 100%;
-  }
-  .library-rig-card__icon {
-    width: 42px;
-    height: 42px;
-  }
   .workspace-footer {
     padding: 16px 20px 22px;
     font-size: 9px;
@@ -555,9 +506,6 @@ body {
   .workbench-save-note {
     margin-left: 8px;
     margin-right: 8px;
-  }
-  .workbench-main .gathria-advanced {
-    margin: 0 8px;
   }
 }
 @media (max-width: 370px) {

@@ -1,5 +1,10 @@
 # Original Kling jump: implementation and review
 
+> Historical source/artwork delivery record. For the current Kling-only workspace,
+> supported files and fresh checks, see [the cleanup review](KLING_FOCUS_REVIEW.md).
+> Unrelated legacy editor/CharacterPack V1 compatibility described below was
+> intentionally removed; the Kling sources and exports remain unchanged.
+
 The existing independent player now offers a genuine one-shot **Jump** for both
 original Kling characters. Open `/player.html`, choose **Try the Kling character
 pair**, then **Jump**. It plays the original takeoff/airborne/landing sequence,

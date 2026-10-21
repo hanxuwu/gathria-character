@@ -6,20 +6,20 @@ import {
   type RgbaPng,
 } from "../core/baked-source";
 import { sha256 } from "../core/sha256";
-import type { Matrix } from "../core/illustrated-canvas";
 import {
   createLimbMesh,
   deformLimbMesh,
   type LimbMesh,
-} from "../experiments/denim-rig/mesh";
+  type Matrix,
+  type Point,
+} from "./geometry";
 import { createBakedCharacterPack } from "../core/pack";
 import {
   validateBakedManifest,
   validateBakedCharacterRecipe,
 } from "../core/pack-v2";
-import type { Point } from "../core/pixel-art";
 
-/** Native candidate contract. This never upgrades the 192×256 Skin V1 family. */
+/** Native Kling candidate contract with explicitly registered source anatomy. */
 export const NATIVE_PARTS = [
   "head",
   "torso",
