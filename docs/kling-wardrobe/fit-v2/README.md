@@ -166,6 +166,11 @@ python3 scripts/render-kling-wardrobe-fit-v2.py
 The preparation command needs the reviewed per-pose masks described in the
 [authoring kit guide](../templates/README.md). Preserve old reports; the focused
 browser script writes this directory and requires a fresh run name for retries.
+`scripts/verify-kling-player-transitions.mjs <fresh-label> --warm-actions`
+records a separate actual-player transition run. The accompanying
+`scripts/verify-kling-player-bitmap-parity.mjs` reproduces the exported-pixel
+decoder comparison; copy its prior report before rerunning. Browser scripts
+accept `CHROMIUM_PATH` when Chromium is not installed at `/usr/bin/chromium`.
 
 ## Visual limits
 
