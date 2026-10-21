@@ -21,10 +21,21 @@ const expectedItems = Number(
     ?.split("=")[1] ?? 12,
 );
 assert(Number.isSafeInteger(expectedItems) && expectedItems > 0);
-const outputDir = resolve(root, "docs/kling-wardrobe");
+const reportDirectory = process.argv
+  .find((arg) => arg.startsWith("--report-dir="))
+  ?.slice("--report-dir=".length);
+assert(
+  !reportDirectory || stage === "assets",
+  "--report-dir is supported only with --stage=assets; legacy export verification keeps its original evidence paths.",
+);
+const outputDir = resolve(root, reportDirectory ?? "docs/kling-wardrobe");
+assert(
+  outputDir.startsWith(root + sep),
+  "Report directory escaped repository.",
+);
 const assetReportPath = resolve(outputDir, "verification-assets.json");
 const reportPath = resolve(outputDir, "verification.json");
-const catalogPath = resolve(outputDir, "catalog.json");
+const catalogPath = resolve(root, "docs/kling-wardrobe/catalog.json");
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const round = (value) => Math.round(value * 1000) / 1000;
 const describeFile = async (path) => {

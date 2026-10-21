@@ -5,6 +5,14 @@ Current batch: **Kling registered wardrobe**, based on motion-flow commit
 The wardrobe uses those complete motion candidates; original default packs and
 optional skeletal candidates remain unchanged.
 
+Follow-up: **dress fitting V2** improves the female waist overlap and side
+clearance using distinct garment IDs; older saved clothes remain unchanged.
+Completed direct-playback one-shots now replay with Play. [Current refinement,
+actual exports and verification](kling-wardrobe/fit-v2/README.md).
+Independent playback retains decoded atlas pages where supported to avoid the
+first cross-page stall reproduced after exercising all actions; source pixels,
+frame sequences and action timing stay unchanged.
+
 The primary workflow uses the two original Kling characters' own sprite frames.
 The two registered skeletal candidates remain optional. Original playback is the
 visual baseline: source artwork, resolution, alpha, anchors and existing archives

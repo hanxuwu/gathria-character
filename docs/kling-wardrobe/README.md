@@ -1,5 +1,10 @@
 # Kling wardrobe: casual and wedding
 
+**Latest refinement:** [dress fitting V2 and actual comparisons](fit-v2/README.md).
+New catalog projects use the revised female dresses; saved V1 projects retain
+their original embedded clothes. The evidence and test counts below describe
+the initial wardrobe batch and remain available for before/after review.
+
 This batch adds a usable wardrobe around the **two approved Kling characters**.
 It keeps their source-drawn faces, body proportions, motions and native attachment
 point. Clothing is authored offline for every source pose, then composed locally
