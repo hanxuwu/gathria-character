@@ -1,9 +1,12 @@
 # Kling wardrobe: casual and wedding
 
-**Latest refinement:** [dress fitting V2 and actual comparisons](fit-v2/README.md).
-New catalog projects use the revised female dresses; saved V1 projects retain
-their original embedded clothes. The evidence and test counts below describe
-the initial wardrobe batch and remain available for before/after review.
+**Latest candidate:** [complete male outfits and female dress outline V3](full-outfits/README.md).
+The male catalog adds short sleeves, long sleeves and full-length trousers;
+female catalog dresses preserve their V2 silhouettes with lighter outer ink.
+Older garments, source packs and editable projects remain available. The
+[previous dress-fitting batch](fit-v2/README.md) supplies the female comparison
+baseline. Verification and evidence below are the initial batch's historical
+record; the new batch has its own reports and actual exports.
 
 This batch adds a usable wardrobe around the **two approved Kling characters**.
 It keeps their source-drawn faces, body proportions, motions and native attachment
@@ -40,17 +43,18 @@ Use distinct versioned IDs for new garment revisions.
 
 ## Clothing and anchors
 
-| Character | Available items                                                           | Presets                                                           |
-| --------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Male      | Teal top, ochre shorts, navy wedding waistcoat, navy shorts, brown shoes  | Original, Everyday, Wedding                                       |
-| Female    | The five compatible separates above, coral day dress, ivory wedding dress | Original, Everyday, Wedding, Everyday separates, Formal separates |
+| Character | Available items                                                                                                                       | Presets                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Male      | Teal top, ochre shorts, navy waistcoat, navy shorts, brown shoes; teal camp shirt, ochre chinos, navy suit jacket, navy suit trousers | Original, Everyday, Wedding, Everyday separates, Formal separates |
+| Female    | Teal top, ochre shorts, navy waistcoat, navy shorts, brown shoes; coral day dress V3, ivory wedding dress V3                          | Original, Everyday, Wedding, Everyday separates, Formal separates |
 
-These are 12 separately registered items across the two bodies. The first male
-formal design is a sleeveless waistcoat with tailored shorts; it is not a new
-long-sleeved suit. Teal top, shorts and shoes are explicitly material/palette
-variants of the original contours. The waistcoat transfers painted bow tie and
-tailoring details; the dresses preserve original bodice shading with a new
-material palette and add painted skirt, fold and hem artwork. Sleeveless designs preserve the original drawn arm poses.
+These are **16 separately registered items** across the two bodies. Male
+Everyday and Wedding now use full outfits; the original sleeveless designs
+remain available as separates. Teal top, shorts and shoes remain explicitly
+material/palette variants of the source contours. New shirts, jackets and
+trousers transfer clothing-only painted details onto complete, independently
+reviewed source-pose banks. The dresses keep source bodice shading and painted
+skirt/fold artwork. None of these items redraws the approved head or body pose.
 
 Each of the 88 male / 96 female unique source poses has 17 native-coordinate
 points: neck, shoulders, waist ends, hips, elbows, wrists, knees, ankles and toes.
@@ -64,7 +68,7 @@ Foreground arms remain in front of dress bodices, hems cover the appropriate
 legs/shoes, and full-body clothes remove the old top/shorts inside ownership.
 Guide points alone cannot solve occlusion or recover hidden anatomy.
 
-[Format and validation](FORMAT.md) · [Male registration](registration/male.json)
+[Format and validation](FORMAT.md) · [Male full-outfit registration](registration/male-full-outfits-v1.json)
 · [Female registration](registration/female.json) · [Authoring kits](templates/README.md).
 
 ## Artwork and corrections
@@ -134,7 +138,7 @@ timing rounded only to GIF's centisecond resolution; jump plays once. Native
 The browser directory contains four complete independent-player recordings
 with action changes after the workbench has been closed.
 
-## Verification in this batch
+## Historical verification: initial wardrobe batch
 
 - TypeScript, production Vite build, **152 unit tests** and **32 Chromium E2E
   tests** passed on this working tree. The four focused wardrobe E2E cases use
@@ -205,8 +209,10 @@ Some blurred ankle/hand boundaries contain mixed material colors in the source;
 they cannot be perfectly separated without new underpainting. First-load
 decoding and full-pose garment validation also take seconds on this machine;
 the browser report separates these cold-load timings from warm playback.
-New long sleeves, long trousers, exposed hidden skin or different body views
-need additional pose-specific artwork and visual review. Anchor validity,
+The new complete male outfits add reviewed long-sleeve and long-trouser pose
+banks; they do not provide general single-image fitting. Exposed hidden skin,
+new clothing silhouettes and different body views still need additional
+pose-specific artwork and visual review. Anchor validity,
 protected-pixel equality and passing tests do not prove aesthetic perfection.
 Production Gathria integration and user visual acceptance remain unverified.
 

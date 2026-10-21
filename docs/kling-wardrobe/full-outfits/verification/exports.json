@@ -1,0 +1,3927 @@
+{
+  "format": "gathria-kling-full-outfits-export-verification",
+  "version": 1,
+  "startedAt": "2026-10-21T20:25:54.028Z",
+  "captureRun": "",
+  "baselineCommit": "881c7a28957a405b26d0fd29bdbfb9f42df4993f",
+  "scope": "Four actual UI CharacterPack/project downloads, every decoded RGBA atlas pixel, current source-bound protection, native PNG and mixed-outfit exports. Technical verification is separate from visual acceptance.",
+  "preservedFiles": [
+    {
+      "file": "docs/kling-motion/exports/female.character.zip",
+      "bytes": 24565426,
+      "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23"
+    },
+    {
+      "file": "docs/kling-motion/exports/male.character.zip",
+      "bytes": 22641075,
+      "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-day.character.zip",
+      "bytes": 29198409,
+      "sha256": "7733906d72119c9317b3c771df22c85b67e6c5cc86a1cfbea572fc9608efa9d7"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-day.wardrobe.zip",
+      "bytes": 32286996,
+      "sha256": "153e707df03f14c3ee0bfae2c031f484d8566a8ad48a170bb30938b6102cf835"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-wedding.character.zip",
+      "bytes": 29384644,
+      "sha256": "29af91e75e7daf03eb487a01310a573ea1c03d6bdaea55f42253e7088df6aa5f"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-wedding.wardrobe.zip",
+      "bytes": 41014934,
+      "sha256": "7758b3e0bb6bec21763cb94b57f55613740cd043ae0e526b796e4f9358092f9d"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-day.character.zip",
+      "bytes": 25287278,
+      "sha256": "175fda2f6f1ddc00d1320e2b92daa003744141fb95a7eebf27710954b200a75a"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-day.wardrobe.zip",
+      "bytes": 26368310,
+      "sha256": "2156ee7a624b5c1998d4b7becdd072318183e364df385267a6a97c6ec9c36c29"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-wedding.character.zip",
+      "bytes": 25304549,
+      "sha256": "37bebcaa1b6efc432c59b957679e69ceb059f51a90cb72fcf5f059bd74494c85"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-wedding.wardrobe.zip",
+      "bytes": 32031402,
+      "sha256": "8aee56bed9fe6cca568025ddcefc3e43c8e210170af30cf8ff1d7074f6d45c9e"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day.character.zip",
+      "bytes": 29611666,
+      "sha256": "b70f6826d63d21a0ab28c911b602d37979798c28598525fb97edd6b75b8d7694"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day.wardrobe.zip",
+      "bytes": 48982410,
+      "sha256": "47b5c1ab0242a5114fc9bec69106413bf18c39ebe8a4319dd609bff9177f59eb"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding.character.zip",
+      "bytes": 30106451,
+      "sha256": "242182d43e34854295c20677d126b3c1ff448c08f2d4f49e8c59108c28a156a8"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding.wardrobe.zip",
+      "bytes": 60490704,
+      "sha256": "e98476e5631ef9cea7e18a60efea20592a51ad754e773136d5f0302e2bdf05bd"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/brown-shoes.zip",
+      "bytes": 2249345,
+      "sha256": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress-v2.zip",
+      "bytes": 7967333,
+      "sha256": "85142e0a840d256748a3e675131506f65097fcaae77b6843417041a674cd8a37"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress.zip",
+      "bytes": 7661514,
+      "sha256": "fae154e975eed157f30451936913d8339585012091b07f23944470704472b400"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v2.zip",
+      "bytes": 9258663,
+      "sha256": "6e53bdb3e1ab4045536a1c619c42fb177b826974f4dc565a827a36c3bf5c57d7"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress.zip",
+      "bytes": 8727784,
+      "sha256": "ec50681fdf5a7fc1c41e08c22f4f0adf1de683f52ade3721380e33e46e641a9d"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/navy-shorts.zip",
+      "bytes": 1429702,
+      "sha256": "443069207301deb7f920f897d9fadc18b441cb6f20dfa8f2f5c1e5370188bb85"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/navy-waistcoat.zip",
+      "bytes": 2297040,
+      "sha256": "b5ab6f95830f381e26560def9e7654396ed336bbebb1115aa9e0c107d237a997"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ochre-shorts.zip",
+      "bytes": 1675358,
+      "sha256": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/teal-top.zip",
+      "bytes": 2180841,
+      "sha256": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/brown-shoes.zip",
+      "bytes": 1968859,
+      "sha256": "6f8a8142748e673ec346c34c09f25bbd6521ca661637b752c2f3f09bc19527f2"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-shorts.zip",
+      "bytes": 1441020,
+      "sha256": "29cc0af0c14197438b978c07493926e1c465d593edafee0352cec5836c4dc596"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-waistcoat.zip",
+      "bytes": 2252780,
+      "sha256": "1efeeb4244309b96635aff7f318fa11637c5336ab0888798c9ad6c69a5ce88de"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/ochre-shorts.zip",
+      "bytes": 1683700,
+      "sha256": "0a4639754d877b25a74b63d76f0ffa983844d6164df664c02efbfa198137c6aa"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/teal-top.zip",
+      "bytes": 1993253,
+      "sha256": "855b6666c829076b715c5cf89df3e1485a8cbe62f1a3b3e6f5cda7bfd586a30a"
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/female.json",
+      "bytes": 465066,
+      "sha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953"
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/male.json",
+      "bytes": 340639,
+      "sha256": "7b49caa860b56b88256ae7c9d8c299812b0974e82f54a377558522ba62ff16c1"
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/female.wardrobe-template.zip",
+      "bytes": 27675089,
+      "sha256": "bef7e79eccb85e1a83c951b372adb0d5904563bdac451a75519be605ca4ec5c6"
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/male.wardrobe-template.zip",
+      "bytes": 24375731,
+      "sha256": "60c3d4c1e0cb487f59ca07fb65ed34e755e1eada11ffe26ebcc4da53f48f190f"
+    }
+  ],
+  "exports": [
+    {
+      "character": "male",
+      "look": "day",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-day.character.zip",
+        "bytes": 27774677,
+        "sha256": "a8d377c6e336384b5f435469207c059043bfda872c8fc3809c17d9a3f8f6efaa"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-day.wardrobe.zip",
+        "bytes": 32462983,
+        "sha256": "f3bbf4687caa98524c3ace2171d7562bd4275b59e6e3c42aa110c71f2bfd2070"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 88,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "0cac8cff9be73303a010ed7cf1c504157d89ec83818856e1b1871bb49002e065",
+          "rgbaSha256": "6c721d98f50539e87981ff38ca5ef886461aadf413458b2cc36ae66aa52d74e4",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "2a4f629a6a26108077638afe879ce904cab4f3421d6450dc37a8f7fc435b69ee",
+          "rgbaSha256": "a41263f8e7faf66601582fdbdbeb5986214baa7300b2e66d79dab061924fae0d",
+          "fullPagePixelsExact": true
+        }
+      ]
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding.character.zip",
+        "bytes": 26094877,
+        "sha256": "6e59e6c185acffaa690f222b75b1d535aaeab57a37459660adc9f3edce86ef72"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding.wardrobe.zip",
+        "bytes": 44787799,
+        "sha256": "042cfc3d1a0da97325d527db4652855ae0b107648a729a37139b545dbb43f89e"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 88,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "90b92f5644ce2cae3b65dff6c5e40e3227d3af53f79e32aa5d8878cdd9207101",
+          "rgbaSha256": "ec9d188dcfe56e8b1a3f5ea71c9d1ddd109b0eccd6e7462d6b3084d8787a4f0a",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "37d528605b79cb1a14d2bce92c76dfcb58a98a8dd0baf21387f5ca67a8d11d7b",
+          "rgbaSha256": "4a7b71d296e7767006a9c7c49d3a233e4899a5bc1bb39cacf5e4fcdd0d8b0217",
+          "fullPagePixelsExact": true
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-day.character.zip",
+        "bytes": 29602746,
+        "sha256": "2211d147bf502472669b622943a97f8e5fc8a7291ea99dc3518380886002327b"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-day.wardrobe.zip",
+        "bytes": 32582458,
+        "sha256": "0fc4770f9d0b7b5b84602f45cf92a235dbc6ee5a18f952b75dec8751c3e54c3f"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 96,
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "coral-daydress-v3",
+        "shoes": null
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "2af8b9717fb0fb816556f0a6c00e320e6b8853c9f564d6b4caa2ab8cd3f675e1",
+          "rgbaSha256": "4a0bf6f6223028d54c8ce12653445b8b88072302a9f360a571a3eb21305c9d5e",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "29eb689133a6c3f2fc2c677e0d392076e736e1ea50fb0504aa23dd1820bebba0",
+          "rgbaSha256": "37ef1d96d85f21f3ea67d9ff6d4b2837f886c239e8d16d4cb37e7bf1c4c9c28d",
+          "fullPagePixelsExact": true
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding.character.zip",
+        "bytes": 30098815,
+        "sha256": "fb5b89467f2529132920f0ca28646057a0dfe9fbae9f46804f63a43cf42a8a6d"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding.wardrobe.zip",
+        "bytes": 41831663,
+        "sha256": "ebddc916e487a61be5222aa52a9115f7e604430afc8c9e1d4f84ba7fe6a49b89"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 96,
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "ivory-wedding-dress-v3",
+        "shoes": null
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "f5c410d7de3487586605e52a94394ec7a7689596d8658154da984834cd93f087",
+          "rgbaSha256": "9f794217d27cb678cc5f042459d6084fac6fc89b97d04e332115e6a53b0c444d",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "9c5766d515c2813703bb75e13ccd817b8768f3f51a497c848aa2b440dceab79d",
+          "rgbaSha256": "65e53af52a8b58666508ffca234cbebde92d5759dd7b1c282f2eb89da61dcb26",
+          "fullPagePixelsExact": true
+        }
+      ]
+    }
+  ],
+  "nativePngs": [
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-0.png",
+      "bytes": 342161,
+      "sha256": "5d9bb468ee0ad37d53a2383b7dd9a7e24e2c7584757382de865fca5cf0e42952",
+      "character": "male",
+      "look": "day",
+      "frameId": 0,
+      "rgbaSha256": "8b7638e79b837802f86b11c5eee9993a93f1a45e70f8b484d8d466fc34d05d74",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-28.png",
+      "bytes": 357732,
+      "sha256": "38c0c7aefda2ed365da7648d7026ffc3ceb19a5c821ff678cf1812da47c7a066",
+      "character": "male",
+      "look": "day",
+      "frameId": 28,
+      "rgbaSha256": "698d0e1a0200244a127fc66b6c2d07659b77ffc27d3dc3a5e0cbc37cda4c2ee9",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-51.png",
+      "bytes": 361775,
+      "sha256": "01b457faee0e4d242000dcb3dba5ad3ee50c89b83bcb297eb08460a33ac5d736",
+      "character": "male",
+      "look": "day",
+      "frameId": 51,
+      "rgbaSha256": "62d47832cc882e2cc32d033e5d40895f494627a206932fea9027874041a8a366",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-58.png",
+      "bytes": 320336,
+      "sha256": "f86d19175de371807d9e771716b4477a3384e7b52885ace0a3809410663ac43f",
+      "character": "male",
+      "look": "day",
+      "frameId": 58,
+      "rgbaSha256": "18eece19978251221dd8022eb4647322a44cf90653f944327c94c024157aeeb5",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-62.png",
+      "bytes": 291421,
+      "sha256": "018eebb3b41d5d5804677f46f2ac54b781e1f51a2314ab6843a43e42e3c53c53",
+      "character": "male",
+      "look": "day",
+      "frameId": 62,
+      "rgbaSha256": "05d6048a759bc3e427075806ef9b0b5e82ef91ee4bf9414617b59a5eeada93dd",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-64.png",
+      "bytes": 298749,
+      "sha256": "9ff5561fd153bf98988fbfb88542df82610e9ec1f80d657e05f03d51ea45b9e3",
+      "character": "male",
+      "look": "day",
+      "frameId": 64,
+      "rgbaSha256": "dc84a11ba6e41eb2ba8a2b6f61c362d63ca0d312a7c113f1d04590eee7c5f072",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-74.png",
+      "bytes": 357043,
+      "sha256": "766f09623d845c526b402b2e896ecc0a8717a976a6fc71b4a887ab116424c3fd",
+      "character": "male",
+      "look": "day",
+      "frameId": 74,
+      "rgbaSha256": "750b05aa8b8a9170e28fe202b25f1f53a11492e8be39529697a39fd5520689c6",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-87.png",
+      "bytes": 286619,
+      "sha256": "a0a76600dd0bd224c57864a4541c8322f4c1d92d23cffe6f76f90d7e6fb83e32",
+      "character": "male",
+      "look": "day",
+      "frameId": 87,
+      "rgbaSha256": "4c515adcee7790f70a83a60bc7bfc1f238eb8e651ef572899cb9aa18d61ad184",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-96.png",
+      "bytes": 337627,
+      "sha256": "df69de55d2f7991a9e9c9d4e50c23017df9bd18c67ed30eb2aa7b830f3d67f3c",
+      "character": "male",
+      "look": "day",
+      "frameId": 96,
+      "rgbaSha256": "ee0c56a6a895f9aeb4623693123ee759bc784f027c4377ae65b755651dce9b40",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-104.png",
+      "bytes": 289122,
+      "sha256": "c34bda2f5c9d04e4f678582f7813b2f0ae7ace9c426f80501205798e4095e0d6",
+      "character": "male",
+      "look": "day",
+      "frameId": 104,
+      "rgbaSha256": "2db780ab56afd2773ae0070382e7a5ee2635bea9613f2d1a836946317909936e",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-121.png",
+      "bytes": 348340,
+      "sha256": "0251e21d0a42087f7952612273997b38b5dcd7ee28b95ff6d37357d5017716e7",
+      "character": "male",
+      "look": "day",
+      "frameId": 121,
+      "rgbaSha256": "9594702bbe87b94c5a87cd8325aa46ae892880a09c8affba36339896119cdf97",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-0.png",
+      "bytes": 320948,
+      "sha256": "820f789a27d2b317d4411def70b3c495fbb9bbd5189e8b55c988caf50bc2a58b",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 0,
+      "rgbaSha256": "2fcf7b453ba2658f06b99e47028f405d0e650aa27dde7b62c1fe3e1e5cf43968",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-28.png",
+      "bytes": 338152,
+      "sha256": "18c3dc7ac52d937b6a4be5fa9d1629d81ff739b82d884cc39f4b5188e427eaf0",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 28,
+      "rgbaSha256": "82f2956285d8d6970630de4d49ca3752c023cd0c1497145b5d8363fae694c05f",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-51.png",
+      "bytes": 338123,
+      "sha256": "be104c31eaddb989eefb707c7a48ab1e63342bcf07604304732f9aa6864a26d4",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 51,
+      "rgbaSha256": "0ddfb072b103041ef0bef1ff67fc914328f3dad4a33fc3da9b51b0adc5c771ca",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-58.png",
+      "bytes": 293923,
+      "sha256": "f306f9ead925f74a7052a9a1bf40e0960287bfb68ac804bbd626f17ad5a057a7",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 58,
+      "rgbaSha256": "a14060ac4d4757e26d4e19bf606ea1d1a2301ebfc831750b34e21f9f19894055",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-62.png",
+      "bytes": 270808,
+      "sha256": "888934adb73c8a540979bb35d92df9f818a71f69b04629b207ca36aa18651efb",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 62,
+      "rgbaSha256": "af69e2632efd917a8d5cbabaf29aa7751151cb6d9991a4047e2c8ea16e549732",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-64.png",
+      "bytes": 289560,
+      "sha256": "9d1ee6121cbefd03755c8e39699df47d37f06bb258f86c675752fc819c3dffdb",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 64,
+      "rgbaSha256": "2147a7a490ff2ccff275000cd0377827cba59ca248741cd9ba19e8874ea56495",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-74.png",
+      "bytes": 337918,
+      "sha256": "51e23f0955b2d1a6fe481ed44579a3b7ba6543644856697a40b0a34d67bbfb0e",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 74,
+      "rgbaSha256": "d90f4e4dee241b525afbc4da03941a29a36d725e47d432022103481948cc16c4",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-87.png",
+      "bytes": 265682,
+      "sha256": "841edc5765dd8748cf693e7c02d11eccb76c00d11aa34a851cbb0428847733d1",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 87,
+      "rgbaSha256": "7faee5ffc88fb2ef21fd3091e27c15d21365e0b93838b0de291e491f8d367d0c",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-96.png",
+      "bytes": 316695,
+      "sha256": "f73544e1bb1f74e83f844788e972fe47f3b336eaa9016e29031ec1e38f5ab9b4",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 96,
+      "rgbaSha256": "be9066f5316db94c0699f5c92e95c4a383781d42f301abb89462b752590a38c4",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-104.png",
+      "bytes": 266836,
+      "sha256": "c69e9a902fc16729ca1f3de5ec777ceb3c5296c8662fc40e28b8d79d6f090ddc",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 104,
+      "rgbaSha256": "3606f82e336b66d75c5af891aba15e992903b82ceed97c77fbfc0143d9896a2f",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-121.png",
+      "bytes": 327806,
+      "sha256": "54629b4fe56b0ab8d8fa88a64e14547143de8cf9fb486e4bd810d56ea45dc972",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 121,
+      "rgbaSha256": "c11941aaacfeafa2c7f9e3f06a34a2e69a91ba33b4b77080c714dfd165b0ffe6",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-frame-58.png",
+      "bytes": 304922,
+      "sha256": "ee47c8bb288f60952816ccc27552e7f36bce4f009301fead871d70377a316445",
+      "character": "female",
+      "look": "day",
+      "frameId": 58,
+      "rgbaSha256": "0b4cb02af6321b3c0fa2fbb005eb0fef033005582988772f64aab9b12b77bc26",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-frame-89.png",
+      "bytes": 290956,
+      "sha256": "064542a6d8e38638cd838f2e8041cf1a6a31471ad39c8a674cf89fbed022fd29",
+      "character": "female",
+      "look": "day",
+      "frameId": 89,
+      "rgbaSha256": "e8fe0d296849e731dae40097c3ad47139cc9ea67dcb1bc90599d4829728289ac",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-frame-104.png",
+      "bytes": 288164,
+      "sha256": "508a4a88a862af11bf377bfc36b33cf7e3a269f439a0d12df77505448bfc4518",
+      "character": "female",
+      "look": "day",
+      "frameId": 104,
+      "rgbaSha256": "07b160b868eb6d87dbdb18c8a01ba882306e4ec8e3846c2b0e6313445b8a2ec5",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-58.png",
+      "bytes": 310465,
+      "sha256": "4b429e28cc1166285b0d65d731ba7e9082d632eda67251156b8d85fc12c9e848",
+      "character": "female",
+      "look": "wedding",
+      "frameId": 58,
+      "rgbaSha256": "61b54e4f62cdd455beb95240825db171a02ac2fd11fa867e9594b01f5e7dc75c",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-89.png",
+      "bytes": 285884,
+      "sha256": "b9b61b7a14db0757c10e8ebb01fac38f1dc9669b10bd0e8578e225e7cb1ebf1f",
+      "character": "female",
+      "look": "wedding",
+      "frameId": 89,
+      "rgbaSha256": "09334c67b6c1d54ff15c531c9f2a8bfc3bf40c45a2d521276b76241569d619af",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-104.png",
+      "bytes": 284447,
+      "sha256": "d8448c947025ee97d7900023fbc1a1de292cd3ca10c819fb62b2153f2679d53c",
+      "character": "female",
+      "look": "wedding",
+      "frameId": 104,
+      "rgbaSha256": "3312868d522ef51c38e382432a97077775ef9e527281d010a765e79fff76f89c",
+      "exactPackAndProjectPixels": true
+    }
+  ],
+  "mixedPngs": [
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-mixed-frame-58.png",
+      "bytes": 290735,
+      "sha256": "bcb2516a5c1cd137f09da37db047f5efe505871ee9d6f6c6ab0d1f5f78bb3d8c",
+      "character": "male",
+      "look": "day",
+      "frameId": 58,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "rgbaSha256": "1a1333d9bc46e3f8842da11d158961ee4aabf9e57dd5eab0e5d4d821bb7fa5f4",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-mixed-frame-74.png",
+      "bytes": 325705,
+      "sha256": "5f892704c65ee61c3c60da246d36089fe0d8754c4815225d87d9b083ad7fceab",
+      "character": "male",
+      "look": "day",
+      "frameId": 74,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "rgbaSha256": "3fb3fdc9d9abf70b75dd07ee32a32f20701a3d5b2925ca05191e3362848b4a88",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-mixed-frame-104.png",
+      "bytes": 264592,
+      "sha256": "e1b13d70a8b83757e3ee8d4002e9d54ace82c36812110535f3c50ae03f87d114",
+      "character": "male",
+      "look": "day",
+      "frameId": 104,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "rgbaSha256": "60039b3ae0e6dcf68df5496aeab79b6849e0f901c396fe66fe13859afc6a2f36",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-mixed-frame-58.png",
+      "bytes": 320880,
+      "sha256": "a5d5a0a75c1c6926a41869854f4b96ba56874837e4973fb03baed1bfec545199",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 58,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "rgbaSha256": "55b60d8725c2cecbd7754dd7ff9245bdfcab5fc336f85c61426bb687c67f156f",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-mixed-frame-74.png",
+      "bytes": 367560,
+      "sha256": "087180e6f8b19bc79e22084bc58ed9e1a13db7d73759e00bf4a73c8e19fe7177",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 74,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "rgbaSha256": "124145ea5a4fb2f4bf75a109fb14f46bf868f2d816729d73972ae4c3eb511af1",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-mixed-frame-104.png",
+      "bytes": 288959,
+      "sha256": "d006c077a2ac95298f342b770a7f25e38423ca28e2589d7e98569bf6c1f03e81",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 104,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "rgbaSha256": "1f1c4bbc5dc323632434e4080cfe48aaa86ca5f0ec47f9fccfbc3a24d7a8fce3",
+      "exactProjectPixels": true
+    }
+  ],
+  "legacyPngs": [
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-legacy.png",
+      "bytes": 318420,
+      "sha256": "9ae100281e705656e8ce833db948360b99195e3e755f3969a3a13a5b41cf7451",
+      "character": "male",
+      "look": "day",
+      "reference": "docs/kling-wardrobe/exports/male-day.png",
+      "rgbaSha256": "366e1e2b1cf8e2970a770f9bbd3e23982d7c410b78fb37ee5e72c1024575ea21",
+      "previousPixelsExact": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-legacy.png",
+      "bytes": 316627,
+      "sha256": "16216b13aa43a80a6a00b1fa2ba55e6e5b7c815a2c5413e9f73655dcd2a0ca3b",
+      "character": "male",
+      "look": "wedding",
+      "reference": "docs/kling-wardrobe/exports/male-wedding.png",
+      "rgbaSha256": "d3d3514cca41d68c16beb2a61a3a5c16a0c22f8ba6bf5fd88b7c8e9519b28877",
+      "previousPixelsExact": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-legacy.png",
+      "bytes": 291561,
+      "sha256": "29d36e392ea499f55f70ed0ced7d80b2810e7028035364309686c949329c71f3",
+      "character": "female",
+      "look": "day",
+      "reference": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-89.png",
+      "rgbaSha256": "f188383bcd135c2125fa1b1bb7d92ad9a1ac8009b091e682f34395ae1b23ab83",
+      "previousPixelsExact": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-legacy.png",
+      "bytes": 286201,
+      "sha256": "eef172362559a54bf5a19e7f2d0522346d90fe77cacfb65ca2b683d5b73152a6",
+      "character": "female",
+      "look": "wedding",
+      "reference": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-89.png",
+      "rgbaSha256": "51194baf15d0d0d89a837d5d5c682ae116b875263f8986d6903e359213955709",
+      "previousPixelsExact": true
+    }
+  ],
+  "browserEvidence": {
+    "file": "docs/kling-wardrobe/full-outfits/browser/evidence-index.json",
+    "bytes": 667004,
+    "sha256": "b5b296f8b4d0367252b24c7a10534699288361190b341390a142c6aec19a7f95",
+    "rawStrictPassed": false,
+    "rawReport": {
+      "file": "docs/kling-wardrobe/full-outfits/browser/evidence-index.strict.json",
+      "bytes": 663652,
+      "sha256": "671edec9bc5d8fb906ae3b1d400727b35d520696898e54d282c3cde9586419c1"
+    },
+    "reviewSHA256": "821a9b5c2a5d4a27c119c8c8aa570b528fecdb2cc908ae77cdf30d933e756a80",
+    "ancillaryException": {
+      "kind": "ancillary-favicon-404",
+      "originalConsoleEntry": {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:5193/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      "corroboratingHttpProbe": {
+        "checkedAt": "2026-10-21T20:10:27.849Z",
+        "method": "GET",
+        "url": "http://127.0.0.1:5193/favicon.ico",
+        "status": 404,
+        "headers": {
+          "connection": "keep-alive",
+          "date": "Wed, 21 Oct 2026 20:10:27 GMT",
+          "keep-alive": "timeout=5",
+          "transfer-encoding": "chunked",
+          "vary": "Origin"
+        },
+        "responseBytes": 0,
+        "responseSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "purpose": "Separate exact-URL probe of the unchanged production build after strict capture closed its server. This corroborates, and does not replay, the recorded browser icon request."
+      },
+      "reason": "The only strict failure is the missing browser icon. No page error, character asset HTTP failure, external request or independent-authoring request is excluded."
+    },
+    "note": "Raw strict capture failed on the sole favicon 404; explicit reviewed functional proof was verified without suppressing the raw failure."
+  },
+  "sourcePixelChecks": {
+    "outfits": [
+      {
+        "character": "male",
+        "look": "day",
+        "templateSha256": "411c636eaf487fb0ab3b4ae91938c96f9d3b87e342aa6ee73e90a3b012a1858e",
+        "inventoryFilesVerified": 622,
+        "sourceAndRegistrationEmbeddedExact": true,
+        "frames": [
+          {
+            "frameId": 0,
+            "protectedOpaquePixels": 114938,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46090,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8b7638e79b837802f86b11c5eee9993a93f1a45e70f8b484d8d466fc34d05d74"
+          },
+          {
+            "frameId": 6,
+            "protectedOpaquePixels": 114928,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46102,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0674389c49491f055f333ef67790760df94ed096a7516e46b8c3060a4cc4446a"
+          },
+          {
+            "frameId": 12,
+            "protectedOpaquePixels": 114951,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46120,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b43c3607188f6a6740a2cee0ce5db9ae8309e5930531b6f38954b7aa8854dc9c"
+          },
+          {
+            "frameId": 18,
+            "protectedOpaquePixels": 114946,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46114,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a1b570c2fd763e4d21bb5ad0e11780a16d22d71a9b3f4bc3ad684b5e26e0ec43"
+          },
+          {
+            "frameId": 24,
+            "protectedOpaquePixels": 117737,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39093,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "cfc5b3851fab1cc32dae28f7227abfdf597b86748f06581b1ce6722447cb7e6c"
+          },
+          {
+            "frameId": 26,
+            "protectedOpaquePixels": 117253,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38868,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3136fed34aedadcdd11470e74e0d8573f4669a632c797e414c479af4f0966ad8"
+          },
+          {
+            "frameId": 28,
+            "protectedOpaquePixels": 116926,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39316,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "698d0e1a0200244a127fc66b6c2d07659b77ffc27d3dc3a5e0cbc37cda4c2ee9"
+          },
+          {
+            "frameId": 30,
+            "protectedOpaquePixels": 116877,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39472,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e127259b988275e5494ebdbf8ab2c58fbc5bdd3ede8e29becaead54113b07225"
+          },
+          {
+            "frameId": 32,
+            "protectedOpaquePixels": 117333,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40994,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a4507f58852f916b88d95fb708efd187f7297b84a8351d7c59b8541efc1a1b97"
+          },
+          {
+            "frameId": 34,
+            "protectedOpaquePixels": 113651,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 42620,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e1e1403416df715f887bb70391add1f5a6f6d70ecb45b4441b3a01840b0a5eec"
+          },
+          {
+            "frameId": 36,
+            "protectedOpaquePixels": 111987,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36806,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3a9fdbb9e7209c5003ce536269959895a457848e7c28f960dbfb64f32cc41a31"
+          },
+          {
+            "frameId": 37,
+            "protectedOpaquePixels": 111656,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33695,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3cd2bfe4a099ac818f48411dfa87106a2d4bf99026fedf7a97e6df27317296be"
+          },
+          {
+            "frameId": 39,
+            "protectedOpaquePixels": 112741,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30826,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a974ac9811a0c088f3df62b84b5ee3495f1fdc21ac1e681246193e99a26ed18b"
+          },
+          {
+            "frameId": 40,
+            "protectedOpaquePixels": 112431,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30717,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ae17c43d1331037657eae82b2716c6696e1b69931e73e6442e3412170582064d"
+          },
+          {
+            "frameId": 42,
+            "protectedOpaquePixels": 112144,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30787,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "56c4ca0cd0abbca83d4a30109ea743a75882091dc4d4c8a5ddc1d0038258f130"
+          },
+          {
+            "frameId": 43,
+            "protectedOpaquePixels": 111918,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30914,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0ec480d37ad5854b8f1b9a87cb959c45853d2a8f08aa59bc681fc3a1a9568ef6"
+          },
+          {
+            "frameId": 45,
+            "protectedOpaquePixels": 111878,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32071,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "49bd09c1099ceec9a592c1fb5d0cf050a5c61ab6423244f9a5b157abcade5022"
+          },
+          {
+            "frameId": 46,
+            "protectedOpaquePixels": 112219,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32720,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d08e3349cc252b92582b8c0826b4a9610187f905fcecdaa5de2b7e04eb62ad4e"
+          },
+          {
+            "frameId": 48,
+            "protectedOpaquePixels": 111626,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35093,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "03516fd81d48c04b581b98a74fc7679b9871603d496ed7eb95f3bc62cbe77d66"
+          },
+          {
+            "frameId": 50,
+            "protectedOpaquePixels": 116853,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39182,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "cd00dec99b402a92ff30f1dab853a9fbf740ea771d5ea3ca206e280ead58ed90"
+          },
+          {
+            "frameId": 51,
+            "protectedOpaquePixels": 118355,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38522,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "62d47832cc882e2cc32d033e5d40895f494627a206932fea9027874041a8a366"
+          },
+          {
+            "frameId": 52,
+            "protectedOpaquePixels": 118913,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39508,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d6084956dbdcef360f05c59ef78c843808c16edf03d413f0627816cdebd9e93d"
+          },
+          {
+            "frameId": 53,
+            "protectedOpaquePixels": 114826,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39083,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "413d0d2c1edd881605b8af6aa3ebc9cd5990b793d65c009e63c6c6eb127e9b9f"
+          },
+          {
+            "frameId": 54,
+            "protectedOpaquePixels": 118900,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36441,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a983a675aebe5ee0814233099a1678ae67e3a9825483084b020acf388daecf76"
+          },
+          {
+            "frameId": 55,
+            "protectedOpaquePixels": 118029,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31306,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c844b3d0235ead04a7e01883b9be409b4d6ef48c978cc9c1e1c0b2ade60d9f86"
+          },
+          {
+            "frameId": 56,
+            "protectedOpaquePixels": 112750,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27875,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "36190a06700039e288be4a19bcdc85e295260b353b698202b9006ffe57c20183"
+          },
+          {
+            "frameId": 57,
+            "protectedOpaquePixels": 110018,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30339,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "477beee682b9d7bafd8387e591fbb03312b45a199156d8346df49ae14678a2d8"
+          },
+          {
+            "frameId": 58,
+            "protectedOpaquePixels": 114765,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31993,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "18eece19978251221dd8022eb4647322a44cf90653f944327c94c024157aeeb5"
+          },
+          {
+            "frameId": 59,
+            "protectedOpaquePixels": 115382,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34026,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f9f6294c30fcd94bb2907f133c42a9d464b04bb1ed98b088b657d65e75090bc6"
+          },
+          {
+            "frameId": 60,
+            "protectedOpaquePixels": 114511,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33207,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8872576e472440f0c509a300a450da83d03a2e00919c9582775568b72dd73d10"
+          },
+          {
+            "frameId": 61,
+            "protectedOpaquePixels": 113484,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31216,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9238ba96598e0d778959a0fd9959478400a3040ffbaa3ca475cd72adb1162305"
+          },
+          {
+            "frameId": 62,
+            "protectedOpaquePixels": 112344,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 28818,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "05d6048a759bc3e427075806ef9b0b5e82ef91ee4bf9414617b59a5eeada93dd"
+          },
+          {
+            "frameId": 63,
+            "protectedOpaquePixels": 116948,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30277,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "fd5804ef439b298633cbcd9e8d3f48733c598c1d42d423fd7a522074b93f1d2a"
+          },
+          {
+            "frameId": 64,
+            "protectedOpaquePixels": 119310,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34313,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "dc84a11ba6e41eb2ba8a2b6f61c362d63ca0d312a7c113f1d04590eee7c5f072"
+          },
+          {
+            "frameId": 65,
+            "protectedOpaquePixels": 121032,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35512,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e7bfffa25a44f556e579b9c7e5214a10ec2e902d3a6180d7684a47278611cce2"
+          },
+          {
+            "frameId": 66,
+            "protectedOpaquePixels": 121003,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36175,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b00828086cb9f7160d71e0046cef73d9e8cf1730ce640bb80ca546461c3680f4"
+          },
+          {
+            "frameId": 67,
+            "protectedOpaquePixels": 116921,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43363,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "143ae4334c8c88521610a3d6468b8892208984cd7316d53dd202eb3f350e6408"
+          },
+          {
+            "frameId": 70,
+            "protectedOpaquePixels": 118077,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 44391,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "54a4be65469f2e77dd78c761b78cde6e8718910fd7c943c631736dcccf754ac9"
+          },
+          {
+            "frameId": 71,
+            "protectedOpaquePixels": 121886,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45908,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8a4aaad64964322db2e6049ade26a69062eceb6e9c7f0d8a78b2fa35c1d94655"
+          },
+          {
+            "frameId": 72,
+            "protectedOpaquePixels": 121705,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46886,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d8170fc00033967b82c0ca354fa3dd46380227f7d0f059b042779d36361b83fd"
+          },
+          {
+            "frameId": 73,
+            "protectedOpaquePixels": 121608,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47925,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3628e5a8af690d708758799bb38e5725013c7346ba17a7bda36535da401657d0"
+          },
+          {
+            "frameId": 74,
+            "protectedOpaquePixels": 121073,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48530,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "750b05aa8b8a9170e28fe202b25f1f53a11492e8be39529697a39fd5520689c6"
+          },
+          {
+            "frameId": 75,
+            "protectedOpaquePixels": 119950,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48742,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a3a1f0610bb4a8f210ca4e6403f3de5ea11e84a81bd8decf6ac0978461a7aabb"
+          },
+          {
+            "frameId": 77,
+            "protectedOpaquePixels": 119904,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48526,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f383e5e1e0c7bcd4612e8104eda35275aacf91cac3130e8e4e2f825f886cb2ca"
+          },
+          {
+            "frameId": 78,
+            "protectedOpaquePixels": 120616,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47960,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0c2c4b8ce0dbd851805a666b0a05d38dd771475f59475271dd285bf6da5c4997"
+          },
+          {
+            "frameId": 79,
+            "protectedOpaquePixels": 117269,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47338,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a29cc70fbd72f06fae13da98bb1f695d581ce229d20bcd4415ce9c2f79da5ad4"
+          },
+          {
+            "frameId": 80,
+            "protectedOpaquePixels": 117247,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46365,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8f78cf2c145444ffe43e5e02f2b8f5880d2ca4e5195bc8fbc9874bdf7dcb8837"
+          },
+          {
+            "frameId": 81,
+            "protectedOpaquePixels": 116760,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45101,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "52d90e0712f72a52df577aa19820fa334dd79bc8869d081806bc15a15db7dcb0"
+          },
+          {
+            "frameId": 82,
+            "protectedOpaquePixels": 116959,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 44081,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "17282b6f7ad254b1223caa33cc15bcb91cb46800835fb266f533a9afa4b28dc7"
+          },
+          {
+            "frameId": 83,
+            "protectedOpaquePixels": 119161,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29051,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "67b16535f6cfb644cef4530d52980895bb62e075051ec288eb695d430df7917f"
+          },
+          {
+            "frameId": 84,
+            "protectedOpaquePixels": 120086,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29625,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "194312d968d0a69ae6e64297ca824472370357029fdf59c54ef739588d00e6ff"
+          },
+          {
+            "frameId": 85,
+            "protectedOpaquePixels": 119436,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29396,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d5726ff68d916e960e877513ebde6481f97860628c7e84b1643650f70a17c74b"
+          },
+          {
+            "frameId": 86,
+            "protectedOpaquePixels": 116879,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29117,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3c78fcaf37954c00e60c89bd52c59be912bc656e950f0f92cee406f0582b2f2d"
+          },
+          {
+            "frameId": 87,
+            "protectedOpaquePixels": 117012,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 28993,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4c515adcee7790f70a83a60bc7bfc1f238eb8e651ef572899cb9aa18d61ad184"
+          },
+          {
+            "frameId": 88,
+            "protectedOpaquePixels": 117777,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29132,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "86b469bedb41d825e843f4db8942692f9204515759616e119d953e0ba66d2da2"
+          },
+          {
+            "frameId": 89,
+            "protectedOpaquePixels": 122258,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32662,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4e5ee538d7d0ebc73faed689d468e27facd9a20a9c46c95fe3a53fb3483e0bd2"
+          },
+          {
+            "frameId": 90,
+            "protectedOpaquePixels": 121263,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43296,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4c65a9d4a9ba64163f131ee47158b3de1fa2ed4e5fa2c305f64c94fb65a1fb14"
+          },
+          {
+            "frameId": 91,
+            "protectedOpaquePixels": 119870,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48443,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "164b919f40d38dcd962bf1d77cc8e8d7e5155e84f28838ac9247f295ba7fde95"
+          },
+          {
+            "frameId": 92,
+            "protectedOpaquePixels": 119714,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47657,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a4af2286ade476a8e600ebb7418147a88ee74fa513640fb83f2abbd632cb1825"
+          },
+          {
+            "frameId": 93,
+            "protectedOpaquePixels": 118548,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45828,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "29981ecbe00cd516f7a6586f793a7c07e5fa6600220726e1d3dd6ddd5bede677"
+          },
+          {
+            "frameId": 94,
+            "protectedOpaquePixels": 115980,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43418,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4b57c53c40eb6d802109fbba05f4368412fe2d77061ed155eaa03624a74937be"
+          },
+          {
+            "frameId": 95,
+            "protectedOpaquePixels": 117237,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41130,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1c5eeb3673c7d85603f6fa2e6b20946d7ce71ecea6707c80d083784d336621a6"
+          },
+          {
+            "frameId": 96,
+            "protectedOpaquePixels": 116149,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39364,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ee0c56a6a895f9aeb4623693123ee759bc784f027c4377ae65b755651dce9b40"
+          },
+          {
+            "frameId": 97,
+            "protectedOpaquePixels": 113882,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39242,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2af087e03728fefffcea6bb795b73311b782f80293b20a1741c93b276682eefe"
+          },
+          {
+            "frameId": 98,
+            "protectedOpaquePixels": 113617,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40479,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "928b8d3eeb69db7d12b92b74a10b7678855ca460968e6f360c5ee33bd64f7c86"
+          },
+          {
+            "frameId": 99,
+            "protectedOpaquePixels": 112818,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43754,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a5a89eae44c53897139d8e0457eb04fa54abadf873a646157aab343edaf71398"
+          },
+          {
+            "frameId": 100,
+            "protectedOpaquePixels": 113748,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46589,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f9fd2525321319aaeba654bc33fc1b2c78440dbeb75a0a76f619aef1e46f27d1"
+          },
+          {
+            "frameId": 101,
+            "protectedOpaquePixels": 116447,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48187,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "06df5116d512975f600d0aaceeebbd47213c8012774ed455063ec60b1cd10b3c"
+          },
+          {
+            "frameId": 102,
+            "protectedOpaquePixels": 114927,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45114,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1d77eeecf19dd72e513875159b882e2d38419f876f809d223acc0a1db4dd1359"
+          },
+          {
+            "frameId": 103,
+            "protectedOpaquePixels": 116095,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38013,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c14752cd58c4f40dd7854625fba9d06fc499bd78cd6c200b1cd4c9b4990320cb"
+          },
+          {
+            "frameId": 104,
+            "protectedOpaquePixels": 118866,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31900,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2db780ab56afd2773ae0070382e7a5ee2635bea9613f2d1a836946317909936e"
+          },
+          {
+            "frameId": 105,
+            "protectedOpaquePixels": 118100,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26788,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8b89a425e2ac4edd68baa688e0be6cc5df0e7cec4e74b1c640db379732030945"
+          },
+          {
+            "frameId": 106,
+            "protectedOpaquePixels": 120897,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24312,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8ed5bdd857db68283209b76554427e973de3099066fa5af7684e9e322a34a6a2"
+          },
+          {
+            "frameId": 107,
+            "protectedOpaquePixels": 120290,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24645,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "27c8e3d882e7efbfc14df9ad14a669f98dab9d3a56a1c559019f413d9ab3be2f"
+          },
+          {
+            "frameId": 108,
+            "protectedOpaquePixels": 120372,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26585,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "cef287044b9c7760cfe3d3c3c3041b91c2bb667805d4241a07774d1b789d0e7b"
+          },
+          {
+            "frameId": 109,
+            "protectedOpaquePixels": 120633,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29397,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a36ccfcfe3b777ecd4eae2dd4f1a6fe1de5bf188fbfa784df1ba586abb3f5273"
+          },
+          {
+            "frameId": 110,
+            "protectedOpaquePixels": 121857,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32700,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4b7ae846275376bd4b9ff52936c2006478bb4ecc63a02efd828e3bc2466ce601"
+          },
+          {
+            "frameId": 111,
+            "protectedOpaquePixels": 118615,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36591,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1c4201fec929f30844a0e1827a973458c0157ffde3fa5ad4791ee699e023be63"
+          },
+          {
+            "frameId": 112,
+            "protectedOpaquePixels": 116653,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40039,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d952c55d706ed53e46a965816f4f4f02d40024658cfa1647f7fa890a6011adce"
+          },
+          {
+            "frameId": 113,
+            "protectedOpaquePixels": 113361,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 42657,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c81fddb2cae52b12009ec4f6d93e533ffa58faaa27c5f5cf184366c8506bb9fa"
+          },
+          {
+            "frameId": 114,
+            "protectedOpaquePixels": 113341,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 44577,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ba4890486ea0457f46a031e76e35bb34d1fb1123d373a6c343e7125df08be749"
+          },
+          {
+            "frameId": 115,
+            "protectedOpaquePixels": 113273,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45930,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b6e8227b4e89715026fed0a660997c00cf45e90bdfb90f27079fc6815689455c"
+          },
+          {
+            "frameId": 116,
+            "protectedOpaquePixels": 112963,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46753,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d6e81cbef1c6265dc0a91f1af398d423b6f82ce2daec7eafdd7f9c16df417a6b"
+          },
+          {
+            "frameId": 117,
+            "protectedOpaquePixels": 112390,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46665,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1258e46b9686821a8f8774855cc6035f60938d78bb562058361ae87e51197d70"
+          },
+          {
+            "frameId": 118,
+            "protectedOpaquePixels": 112225,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46654,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a9ab55d3b24b60c24d11e53a02b7cdf73e2baded883391a2f60d262c3fcb6d5b"
+          },
+          {
+            "frameId": 119,
+            "protectedOpaquePixels": 112158,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46506,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "071054017c0edacbf302b43cd98984287dae10ecfb46f20c108ccd51858eeeda"
+          },
+          {
+            "frameId": 120,
+            "protectedOpaquePixels": 112441,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46368,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "20d273365e64c4658d8535e0c0ca6444d2c9f16537cc1c8028828db127b665f1"
+          },
+          {
+            "frameId": 121,
+            "protectedOpaquePixels": 112607,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46288,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9594702bbe87b94c5a87cd8325aa46ae892880a09c8affba36339896119cdf97"
+          }
+        ],
+        "seamRegressionProbes": [],
+        "reviewedSemanticOwnershipCorrections": [],
+        "allPngsDecoded": true,
+        "allZipCrcsValid": true,
+        "protectedHeadHandsExact": true,
+        "noOpaqueClothingCoverageHoles": true,
+        "transparentFrameMargins": true
+      },
+      {
+        "character": "male",
+        "look": "wedding",
+        "templateSha256": "411c636eaf487fb0ab3b4ae91938c96f9d3b87e342aa6ee73e90a3b012a1858e",
+        "inventoryFilesVerified": 622,
+        "sourceAndRegistrationEmbeddedExact": true,
+        "frames": [
+          {
+            "frameId": 0,
+            "protectedOpaquePixels": 114938,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46090,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2fcf7b453ba2658f06b99e47028f405d0e650aa27dde7b62c1fe3e1e5cf43968"
+          },
+          {
+            "frameId": 6,
+            "protectedOpaquePixels": 114928,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46102,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0eacd89ab728b8dbb9ff90a86fb0a41c3cde7701585ef188d216fa91ca0dfa5b"
+          },
+          {
+            "frameId": 12,
+            "protectedOpaquePixels": 114951,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46120,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c56fe6bbdbb2eca956cfec2721ee399fba74d4b43d9358252ee5e6214aa95f06"
+          },
+          {
+            "frameId": 18,
+            "protectedOpaquePixels": 114946,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46114,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "947265dbdc052c6eb2f94dc951ff081e8ed52ccf7e38b1eafbb5afdcd25cdf06"
+          },
+          {
+            "frameId": 24,
+            "protectedOpaquePixels": 117737,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39093,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "182e38325f5b7781f3208eee86981b9716ff8b677713d1c06073eabe3622645d"
+          },
+          {
+            "frameId": 26,
+            "protectedOpaquePixels": 117253,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38868,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "afaa949b84efdfcc316690a622ac23e8c3726f5405dac41456fe31ba21900ad6"
+          },
+          {
+            "frameId": 28,
+            "protectedOpaquePixels": 116926,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39316,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "82f2956285d8d6970630de4d49ca3752c023cd0c1497145b5d8363fae694c05f"
+          },
+          {
+            "frameId": 30,
+            "protectedOpaquePixels": 116877,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39472,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "80f4935b24b36f7ed67abf6284ab11debba810f9cc53cc3486f2d862b4775112"
+          },
+          {
+            "frameId": 32,
+            "protectedOpaquePixels": 117333,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40994,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c17e0e8d48760d8a34051f9f98c31a07b72f0bde2c2b9f4a89c9b531149e7fb1"
+          },
+          {
+            "frameId": 34,
+            "protectedOpaquePixels": 113651,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 42620,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "96c752bcfc3db0da3b2075a484f126ed28742290f5031fadeed5437cd1323bb6"
+          },
+          {
+            "frameId": 36,
+            "protectedOpaquePixels": 111987,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36806,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "daf2fdc529a0094d6fec197d456c56f5b439adab614f196eccb223b22f7c5561"
+          },
+          {
+            "frameId": 37,
+            "protectedOpaquePixels": 111656,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33695,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ad44214337e61260034f3c19114b6235683438d96f2aeb04d2e8116b0b82ee1b"
+          },
+          {
+            "frameId": 39,
+            "protectedOpaquePixels": 112741,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30826,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "77a05c8132981eb8a75cddffebb5c73e6e9f3be18ade073e55e15c1f3ee5b070"
+          },
+          {
+            "frameId": 40,
+            "protectedOpaquePixels": 112431,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30717,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "838e2ceba0055014c1240278aeeacf1e3e8740bb9451f22ff54881f9dfd47f73"
+          },
+          {
+            "frameId": 42,
+            "protectedOpaquePixels": 112144,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30787,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "20dcbd2e7b81ce6a865e77b1e1bcfc16e7e3acd24d1e6227d2f2a2eab29322cd"
+          },
+          {
+            "frameId": 43,
+            "protectedOpaquePixels": 111918,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30914,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7e611237767448ab1ebda5d5edf1545f72e5666a99fc21de4079a2dacf269d28"
+          },
+          {
+            "frameId": 45,
+            "protectedOpaquePixels": 111878,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32071,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9c54b0c1a8b43f56b80df0987c50d88ebe2a8d02c2bd28cba6dfa65aa7a1f8e4"
+          },
+          {
+            "frameId": 46,
+            "protectedOpaquePixels": 112219,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32720,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "43870ac2cfed3c91696b18bb413212fa6b4c050ee7fc9b8c574f8378bcd7eecd"
+          },
+          {
+            "frameId": 48,
+            "protectedOpaquePixels": 111626,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35093,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8264e7b69058668f278c732eaa7b2e0f25892a1e358d0f82017681c827d974e4"
+          },
+          {
+            "frameId": 50,
+            "protectedOpaquePixels": 116853,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39182,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a668e0047e90e9d889a9d38ae333bdccef41b2604a0075882a40ea0becda53a9"
+          },
+          {
+            "frameId": 51,
+            "protectedOpaquePixels": 118355,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38522,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0ddfb072b103041ef0bef1ff67fc914328f3dad4a33fc3da9b51b0adc5c771ca"
+          },
+          {
+            "frameId": 52,
+            "protectedOpaquePixels": 118913,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39508,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3424ea746f3c338929b55c9d1735f19310d3c75924e15f5650c181087dc4f571"
+          },
+          {
+            "frameId": 53,
+            "protectedOpaquePixels": 114826,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39083,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "fbc123c0524efc60e2a42aa113bedafe12a56eefcd25760d27c7b4098209da9a"
+          },
+          {
+            "frameId": 54,
+            "protectedOpaquePixels": 118896,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36441,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c421ff51cf1e25ec2cc6bc1b200f41fec088bc7350a3529bfd595adc6c7e11d7"
+          },
+          {
+            "frameId": 55,
+            "protectedOpaquePixels": 118029,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31306,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9338b95c609c5b26a199af6b3823d38522cf719c49be101533711dc4e0b942b8"
+          },
+          {
+            "frameId": 56,
+            "protectedOpaquePixels": 112750,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27875,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e8c0b6c6928e703d26c8019e64e2b517d0eb315d0dc50cb6ca31a6c3f645d628"
+          },
+          {
+            "frameId": 57,
+            "protectedOpaquePixels": 110018,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30339,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1bc0c397ae8b3b0e8583679dfdff078e25141fe921557ad3745e98d5bf3f7df4"
+          },
+          {
+            "frameId": 58,
+            "protectedOpaquePixels": 114765,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31993,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a14060ac4d4757e26d4e19bf606ea1d1a2301ebfc831750b34e21f9f19894055"
+          },
+          {
+            "frameId": 59,
+            "protectedOpaquePixels": 115382,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34026,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "07f68df4a4c8fce701af71b2c6b62e87dfcb93ea28003540bb98e7b84198d56b"
+          },
+          {
+            "frameId": 60,
+            "protectedOpaquePixels": 114511,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33207,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "06266b007905b94755e4d1c8f91d244ce96b4acdddbe2b5ba4125a300d791178"
+          },
+          {
+            "frameId": 61,
+            "protectedOpaquePixels": 113484,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31216,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "fcee3db9260a5b238760f6665d90c2d06103916807cbe15e7e9e6ffa7e9068ee"
+          },
+          {
+            "frameId": 62,
+            "protectedOpaquePixels": 112344,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 28818,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "af69e2632efd917a8d5cbabaf29aa7751151cb6d9991a4047e2c8ea16e549732"
+          },
+          {
+            "frameId": 63,
+            "protectedOpaquePixels": 116948,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30277,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "efe96a9e8fa399c30a7be63c1454335c1390fd48fce8dd645fb5274027efe734"
+          },
+          {
+            "frameId": 64,
+            "protectedOpaquePixels": 119310,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34313,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2147a7a490ff2ccff275000cd0377827cba59ca248741cd9ba19e8874ea56495"
+          },
+          {
+            "frameId": 65,
+            "protectedOpaquePixels": 121032,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35512,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7cb552fb1c3002d02b1feea76c5721d1bf4317973697b0f206dec709c175177e"
+          },
+          {
+            "frameId": 66,
+            "protectedOpaquePixels": 121003,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36175,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "81cd863598132b50ce1da13997bcab41fa0ed993ece69feed5f79065d6252ae8"
+          },
+          {
+            "frameId": 67,
+            "protectedOpaquePixels": 116921,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43363,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "386d5c672308ae48e8cdd6a9cd3a9dd9eb29085367a3a1c421546b9e5a4b14ec"
+          },
+          {
+            "frameId": 70,
+            "protectedOpaquePixels": 118077,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 44391,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "00f0971bcf19b95218643318339d9382fd222f6e27012f4daeef270aaa90ead8"
+          },
+          {
+            "frameId": 71,
+            "protectedOpaquePixels": 121886,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45908,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "68b937b25f9985999417eb3a40303f4a2b86aa189dbd79ab85ac3d0bd2ff82c1"
+          },
+          {
+            "frameId": 72,
+            "protectedOpaquePixels": 121705,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46886,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "834e14814126c2a9096f7e961a1bda664fab2348f02b8850831ea5d0ef0a2619"
+          },
+          {
+            "frameId": 73,
+            "protectedOpaquePixels": 121608,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47925,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "93c0b07bebc2289e6431914ad5fcc642b1e998db8535c438868b9b8e69d1a0b4"
+          },
+          {
+            "frameId": 74,
+            "protectedOpaquePixels": 121073,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48530,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d90f4e4dee241b525afbc4da03941a29a36d725e47d432022103481948cc16c4"
+          },
+          {
+            "frameId": 75,
+            "protectedOpaquePixels": 119950,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48742,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "6b405c4d3487d760e3be9701f351e9c3f722130e64939b8246b0af08d2e14ef1"
+          },
+          {
+            "frameId": 77,
+            "protectedOpaquePixels": 119904,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48526,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "40d40c752b586195d5bfc1c9eff9301129c9952d7031b57ba8033a78e537b859"
+          },
+          {
+            "frameId": 78,
+            "protectedOpaquePixels": 120616,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47960,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "175b0cdea82ac84543e26f27f8d70f253f3dc2e018d71fe30c32e7d6d9ff3c8f"
+          },
+          {
+            "frameId": 79,
+            "protectedOpaquePixels": 117269,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47338,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ba03c05a0b3c052346f38b05220a7c12822e722da86c4db61039f6211a812584"
+          },
+          {
+            "frameId": 80,
+            "protectedOpaquePixels": 117247,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46365,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "be411f95e24d55b9633750d5900335921262dfea9f877bd3cf5228d4ce52f23b"
+          },
+          {
+            "frameId": 81,
+            "protectedOpaquePixels": 116760,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45101,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b52d06a6981043738fb5c809d973dede78f9a8c341582bf775ebb0c98b8ee211"
+          },
+          {
+            "frameId": 82,
+            "protectedOpaquePixels": 116959,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 44081,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "433f9981f02de73ce02405b0447ab8cd91e8a7f3ecf4cb1c782d622de3622d0e"
+          },
+          {
+            "frameId": 83,
+            "protectedOpaquePixels": 119161,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29051,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "77040978572740e039fc2f10a05bfc4130b9e3fcb0c0bf11faf31ceb46799975"
+          },
+          {
+            "frameId": 84,
+            "protectedOpaquePixels": 120086,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29625,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "cca9298afc833e2df2341db861b77079a902cb0b20f4669feb5e6a00547e9df7"
+          },
+          {
+            "frameId": 85,
+            "protectedOpaquePixels": 119436,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29396,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "63a71f3be80c40687d88efd48af379188d74fd431845a29236992d9dd31d3fc2"
+          },
+          {
+            "frameId": 86,
+            "protectedOpaquePixels": 116879,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29117,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "022d51765e6901e9bf4580f56fa77faba2ebf5a93de1ccd2f659b79ac03a088d"
+          },
+          {
+            "frameId": 87,
+            "protectedOpaquePixels": 117012,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 28993,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7faee5ffc88fb2ef21fd3091e27c15d21365e0b93838b0de291e491f8d367d0c"
+          },
+          {
+            "frameId": 88,
+            "protectedOpaquePixels": 117777,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29132,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "99c4c3928c43d24c764ac8d707030fd002d47f4c70d33519e1dfb9c49edb6f94"
+          },
+          {
+            "frameId": 89,
+            "protectedOpaquePixels": 122258,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32662,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "222f5bd0adb990887f684dce0349b03253b42f54874ca93017c9ca090efe6f74"
+          },
+          {
+            "frameId": 90,
+            "protectedOpaquePixels": 121263,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43296,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "45b16cf7401cc113a98107510f5d663191f2f013db7886c0f74b4b2e6d7c48cd"
+          },
+          {
+            "frameId": 91,
+            "protectedOpaquePixels": 119870,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48443,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "cd28d5c4ba0a25a3024283c3166a4049ef36405c695a3bb0ba4b7281a18adcaa"
+          },
+          {
+            "frameId": 92,
+            "protectedOpaquePixels": 119714,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 47657,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f79cc5e3454e2de9e979dd8b7eeb3017f6e21ee4a38eef49356fba6b1e069825"
+          },
+          {
+            "frameId": 93,
+            "protectedOpaquePixels": 118548,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45828,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "bb2bcac94004c5191475f446313fc00477e0e30745748e0a33d6e20ef307d138"
+          },
+          {
+            "frameId": 94,
+            "protectedOpaquePixels": 115980,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43418,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0ace96483986eb1c3201848bcd24d7d8757e11319f7f10c892c97744d8ca4935"
+          },
+          {
+            "frameId": 95,
+            "protectedOpaquePixels": 117237,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41130,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "27a6d4f3c3ab43b94b21e94b8155b68a420baf24b22005695975a8863bcecc8e"
+          },
+          {
+            "frameId": 96,
+            "protectedOpaquePixels": 116149,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39364,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "be9066f5316db94c0699f5c92e95c4a383781d42f301abb89462b752590a38c4"
+          },
+          {
+            "frameId": 97,
+            "protectedOpaquePixels": 113882,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39242,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "750cd68f39c528cc4b9b5bf13335d48ff7407b6c2a7fc29883fab689059c747a"
+          },
+          {
+            "frameId": 98,
+            "protectedOpaquePixels": 113617,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40479,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b2c3b6bda4f029d49a6c4c587cbf94d367a7b6880d4840fd78a267370d9df82b"
+          },
+          {
+            "frameId": 99,
+            "protectedOpaquePixels": 112818,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 43754,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f39be7b56a8846b19acf96a92896b334c6277a1a8fe7a6ce94b64e1895c5c8b7"
+          },
+          {
+            "frameId": 100,
+            "protectedOpaquePixels": 113748,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46589,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9cdaaeac1e8ba315df83685e8d72c4c0c4bc13e8f7d914478351b5b965fa7230"
+          },
+          {
+            "frameId": 101,
+            "protectedOpaquePixels": 116447,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 48187,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9cec198f391971481245a8dd1a0d8a3f1710fe23f5e6348eae3759f63b838ade"
+          },
+          {
+            "frameId": 102,
+            "protectedOpaquePixels": 114927,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45114,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e9f9242c175e3f7a82de4dc10186110a86b00fd1c1f3497809e1eefd99cb3e0a"
+          },
+          {
+            "frameId": 103,
+            "protectedOpaquePixels": 116095,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38013,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "72611c7a15d0d1f139d556c125576b32b45364d4cc997894fe9e748d12a5e594"
+          },
+          {
+            "frameId": 104,
+            "protectedOpaquePixels": 118866,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31900,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3606f82e336b66d75c5af891aba15e992903b82ceed97c77fbfc0143d9896a2f"
+          },
+          {
+            "frameId": 105,
+            "protectedOpaquePixels": 118100,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26788,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "6be0ff7bc2ba922c432bb19c341f858346db421f0d126ea74c9667b1af1f52ef"
+          },
+          {
+            "frameId": 106,
+            "protectedOpaquePixels": 120897,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24312,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f74a89d56f0d3f5f55a2704a91bbc5af981a389cc90f8ec974c51695538ff4b3"
+          },
+          {
+            "frameId": 107,
+            "protectedOpaquePixels": 120290,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24645,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f5e53f37346713c128710e5dc5b2888c04d9b860a48e67e5e9840c8d99514bab"
+          },
+          {
+            "frameId": 108,
+            "protectedOpaquePixels": 120372,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26585,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7718fb4a6dfbd88643957fbfe2775d6aefc2d5465f063c4fbf0db431be5c1da1"
+          },
+          {
+            "frameId": 109,
+            "protectedOpaquePixels": 120633,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29397,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3bc79649010f2e9d87bf48f31a432c8cf0b38eaf245da5248395f291cef41e66"
+          },
+          {
+            "frameId": 110,
+            "protectedOpaquePixels": 121857,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32700,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "09a5527af74f7eb1667112f79a43d2e9a07ce4c803918c13c226db5bfeac2044"
+          },
+          {
+            "frameId": 111,
+            "protectedOpaquePixels": 118615,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36591,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3745a99c167f45b8e994b7d46f4133fb33ebc3290397589386041c7acfd163da"
+          },
+          {
+            "frameId": 112,
+            "protectedOpaquePixels": 116653,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40039,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "825588893d24d8e2dfff05cb02a612ceec867785356575301f5787fbdacce9e7"
+          },
+          {
+            "frameId": 113,
+            "protectedOpaquePixels": 113361,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 42657,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3ea66c47bafc3a332155d1ef353a79a19c5d3feba03e74f970a5099d454aea96"
+          },
+          {
+            "frameId": 114,
+            "protectedOpaquePixels": 113341,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 44577,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d24cf30b94438c87307eec419944f758a67d541059cf727714f80b47a693a949"
+          },
+          {
+            "frameId": 115,
+            "protectedOpaquePixels": 113273,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 45930,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "5df99482dcc9d70373cf713bac226cc0b946d9095fd73b047c629a0334a35333"
+          },
+          {
+            "frameId": 116,
+            "protectedOpaquePixels": 112963,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46753,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ffcc414e4acb27394e2db5a0dc526c5987cfdf2da41a0c51a049099c7b4f57eb"
+          },
+          {
+            "frameId": 117,
+            "protectedOpaquePixels": 112390,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46665,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0d90978cb906831f538ac9063dd16e73671141ebd50c466866850fbd7c03b00d"
+          },
+          {
+            "frameId": 118,
+            "protectedOpaquePixels": 112225,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46654,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "80ba3d87d6506a460df69cf351fc97a17bef214dcb6556849193737fcab7267a"
+          },
+          {
+            "frameId": 119,
+            "protectedOpaquePixels": 112158,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46506,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f7d09dc92199f754d299794be7ebc632e26ca14e497cd2b963a402706ca9188f"
+          },
+          {
+            "frameId": 120,
+            "protectedOpaquePixels": 112441,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46368,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4846d067f45c10c7668c7ab3de99b5bdb977e26dc04452e74331d347c5be0306"
+          },
+          {
+            "frameId": 121,
+            "protectedOpaquePixels": 112607,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 46288,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c11941aaacfeafa2c7f9e3f06a34a2e69a91ba33b4b77080c714dfd165b0ffe6"
+          }
+        ],
+        "seamRegressionProbes": [],
+        "reviewedSemanticOwnershipCorrections": [
+          {
+            "frameId": 54,
+            "x": 202,
+            "y": 780,
+            "source": [
+              255,
+              0,
+              255,
+              9
+            ],
+            "actual": [
+              19,
+              12,
+              7,
+              9
+            ],
+            "reason": "Reviewed rear shoe/edge pixel, duplicated in nearHand and shoes semantic masks; not inside registered protection.",
+            "oldShoeAndOldPackExact": true,
+            "newTopBottomOwns": false
+          },
+          {
+            "frameId": 54,
+            "x": 206,
+            "y": 800,
+            "source": [
+              206,
+              153,
+              148,
+              255
+            ],
+            "actual": [
+              88,
+              56,
+              34,
+              255
+            ],
+            "reason": "Reviewed rear shoe/edge pixel, duplicated in nearHand and shoes semantic masks; not inside registered protection.",
+            "oldShoeAndOldPackExact": true,
+            "newTopBottomOwns": false
+          },
+          {
+            "frameId": 54,
+            "x": 207,
+            "y": 800,
+            "source": [
+              202,
+              149,
+              144,
+              255
+            ],
+            "actual": [
+              84,
+              53,
+              32,
+              255
+            ],
+            "reason": "Reviewed rear shoe/edge pixel, duplicated in nearHand and shoes semantic masks; not inside registered protection.",
+            "oldShoeAndOldPackExact": true,
+            "newTopBottomOwns": false
+          },
+          {
+            "frameId": 54,
+            "x": 206,
+            "y": 801,
+            "source": [
+              206,
+              153,
+              148,
+              255
+            ],
+            "actual": [
+              88,
+              56,
+              34,
+              255
+            ],
+            "reason": "Reviewed rear shoe/edge pixel, duplicated in nearHand and shoes semantic masks; not inside registered protection.",
+            "oldShoeAndOldPackExact": true,
+            "newTopBottomOwns": false
+          }
+        ],
+        "allPngsDecoded": true,
+        "allZipCrcsValid": true,
+        "protectedHeadHandsExact": true,
+        "noOpaqueClothingCoverageHoles": true,
+        "transparentFrameMargins": true
+      },
+      {
+        "character": "female",
+        "look": "day",
+        "templateSha256": "bef7e79eccb85e1a83c951b372adb0d5904563bdac451a75519be605ca4ec5c6",
+        "inventoryFilesVerified": 1061,
+        "sourceAndRegistrationEmbeddedExact": true,
+        "frames": [
+          {
+            "frameId": 0,
+            "protectedOpaquePixels": 118599,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39196,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "07eb4a77b1e20f64fa2c23c6ff88919a91618549ae71a6096bba4bd4152d7d5d"
+          },
+          {
+            "frameId": 6,
+            "protectedOpaquePixels": 118577,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39244,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "db665046cf175f93e31fb32561d21378f0dac70e06313d37cf2a3cc08084a201"
+          },
+          {
+            "frameId": 12,
+            "protectedOpaquePixels": 118589,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39243,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1491812d817c4b60d551d07177408ba22d078bd6bc5a4c6b28149d6e5b0494e2"
+          },
+          {
+            "frameId": 18,
+            "protectedOpaquePixels": 118604,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39226,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "579bcc71c999836b56be9bcfd6df349c9ace9d17d34ced01308a766aaa56c0f0"
+          },
+          {
+            "frameId": 24,
+            "protectedOpaquePixels": 123971,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33093,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0a8575daf5efa23250a1372442ff15d7423ff8066c0d264a77d3776e8f2054cc"
+          },
+          {
+            "frameId": 25,
+            "protectedOpaquePixels": 123831,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32831,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c135be8bd3fae4cfaddf18e53a942e7a0bb58b4607bf7b14657501b29f61787c"
+          },
+          {
+            "frameId": 26,
+            "protectedOpaquePixels": 123867,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33101,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ececd91910f0fe3ffaaab9c1339d5fddfc21db5532575f88462a3aca5afb5580"
+          },
+          {
+            "frameId": 27,
+            "protectedOpaquePixels": 124631,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33487,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "54acbe5678ff16a9dbae61e9d8ab0be7314afb4a228409e4aac49987eaacf836"
+          },
+          {
+            "frameId": 28,
+            "protectedOpaquePixels": 124367,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33686,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "42d5cbd7cce7d7bb2e6c019f0cee89090b4dd5ffa89228b70e3aae2e191881e0"
+          },
+          {
+            "frameId": 30,
+            "protectedOpaquePixels": 124400,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33865,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f4c96b945a5bce91e797efe2fe0115e04857571992256a06e8202da6de0a137d"
+          },
+          {
+            "frameId": 31,
+            "protectedOpaquePixels": 123849,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34315,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ce525bbb31c2adc56921ebddeb9ec102241beafe5d6cd0d4e2da5cfb99953787"
+          },
+          {
+            "frameId": 32,
+            "protectedOpaquePixels": 123980,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35265,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "5968f83e7632ac81060238bf7f844d6cbc4a7388307c3e69944a242da433cd54"
+          },
+          {
+            "frameId": 33,
+            "protectedOpaquePixels": 124330,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36122,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "82b920224478bdd378271a3cc0b83fd283db797212fc426fd8a1a1c4a63687b7"
+          },
+          {
+            "frameId": 34,
+            "protectedOpaquePixels": 124449,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36663,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "00d723c430e26e20bea5028cd5aa4ccd469e9192e61cf6cc7daf16221b48fe15"
+          },
+          {
+            "frameId": 35,
+            "protectedOpaquePixels": 121311,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34970,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "650619b243e23c97b53297a11eb1b44b74304c60229f2955536c76797f739a5c"
+          },
+          {
+            "frameId": 36,
+            "protectedOpaquePixels": 120728,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32720,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c1a502acea0e43ef43d28d9ec669f148965228980a730c9197018b5f8448ea1d"
+          },
+          {
+            "frameId": 37,
+            "protectedOpaquePixels": 121957,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29684,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b3b3323f9ad07d3a7e86391f1ddd2d29dabe120cf6e75b65e47c9b65237b5784"
+          },
+          {
+            "frameId": 38,
+            "protectedOpaquePixels": 117143,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27494,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "137377259cb1b03e143ea7b88f3a467a678037e95a6caaaffcc0d13a3fec7e16"
+          },
+          {
+            "frameId": 39,
+            "protectedOpaquePixels": 119742,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26137,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "caea6788c2b3ca3c6d9d5ebdc28125e2ffa6dceec58dcddb8e703810da31abaf"
+          },
+          {
+            "frameId": 40,
+            "protectedOpaquePixels": 118952,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26111,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "348597c36b51f8f31d3a646e6ae2b227a53c089e136c440f921715b41429dd93"
+          },
+          {
+            "frameId": 41,
+            "protectedOpaquePixels": 117474,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26274,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a8a75284301705c8d92ee6abbf82976b01241c4663093b40aecf6b9c154745f2"
+          },
+          {
+            "frameId": 43,
+            "protectedOpaquePixels": 117729,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26309,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d82e50efe95db9820d90f113bf8f955904cd3c0d1a3bdee2533183eab4e67e89"
+          },
+          {
+            "frameId": 44,
+            "protectedOpaquePixels": 117777,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26700,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2369b5fe2ee31705ef5b7551ea969517deab4212fff674593da519db6cd8525d"
+          },
+          {
+            "frameId": 45,
+            "protectedOpaquePixels": 117341,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27353,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "54bae31fdcb4838fe151b0b25235c759c249942fddd1e5c7327f7cdb7468753e"
+          },
+          {
+            "frameId": 46,
+            "protectedOpaquePixels": 117528,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27575,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "aaa5fb7e03a47bb4edc049b3806be0b6fc4892c70ed19fdf6e84dd66589125f3"
+          },
+          {
+            "frameId": 47,
+            "protectedOpaquePixels": 122220,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29200,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9e5afde06430586cc25e124f00d2b7227263f1b655d9a49fa926c471c190bd20"
+          },
+          {
+            "frameId": 48,
+            "protectedOpaquePixels": 121230,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31936,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e473dc85948a576be22fc6c6a0b400d3fdd74be245cea08a30b98b8725c95205"
+          },
+          {
+            "frameId": 49,
+            "protectedOpaquePixels": 124591,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33235,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f887e3801aacb082234ad65ce3d063d5b8d58f55838b02178e8e170090320508"
+          },
+          {
+            "frameId": 50,
+            "protectedOpaquePixels": 123336,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33425,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2dfc7bc1e0433bc49493e1d3a5075f7ab7ce914bc84ea24d0d21315eb39ca654"
+          },
+          {
+            "frameId": 51,
+            "protectedOpaquePixels": 126436,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32604,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "16f8109526505ddfbf4435d82dd2ab9a795be9f32af6acca57296083d76e932f"
+          },
+          {
+            "frameId": 52,
+            "protectedOpaquePixels": 126406,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33462,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7695150a39d3f5d6cb59eaba40752a7db7e166101ad1a2fb6ccd5eefdee5ede7"
+          },
+          {
+            "frameId": 53,
+            "protectedOpaquePixels": 124803,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32857,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ca60dd05291e87a840165cc81a039c4770e0536f4cb80f0bb0863f89b87f6f9a"
+          },
+          {
+            "frameId": 54,
+            "protectedOpaquePixels": 125016,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31533,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f74fc86b3a9d0e05dcbd6025952398ab1e97eb9bca90768197ec77616839a530"
+          },
+          {
+            "frameId": 55,
+            "protectedOpaquePixels": 122952,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26306,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a3cbfcf688003fb7d7d893cd57ea30542ee8ae56ae2ac9226b55af0052ee7be8"
+          },
+          {
+            "frameId": 56,
+            "protectedOpaquePixels": 116746,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 22843,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "99d0206d6daf403bdfc2de7137d78ad743c929f5306ccc895060ccd2a0143b21"
+          },
+          {
+            "frameId": 57,
+            "protectedOpaquePixels": 118947,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 22288,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "216dc041e1a57f3db79a360c68bc3bb298ac3ea8451f17903a6b5fc4bcf85267"
+          },
+          {
+            "frameId": 58,
+            "protectedOpaquePixels": 122552,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25851,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0b4cb02af6321b3c0fa2fbb005eb0fef033005582988772f64aab9b12b77bc26"
+          },
+          {
+            "frameId": 59,
+            "protectedOpaquePixels": 122823,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27813,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2272cfb0236151f6e83e44b9917ae8c06a77e9b5437762dd36839b3d991589da"
+          },
+          {
+            "frameId": 60,
+            "protectedOpaquePixels": 121816,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27585,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "953d24f84b8974fa433b4bdc3b6e5236eb1af48ecc747fe628dd50ebc6dbc171"
+          },
+          {
+            "frameId": 61,
+            "protectedOpaquePixels": 117789,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 23837,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "44df98723a5df46fe7f0ed4ba360d6c3e6c8ff5a842bd4da2b9dff1f69c40f42"
+          },
+          {
+            "frameId": 62,
+            "protectedOpaquePixels": 113360,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 20638,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7332d2cbceaddf6f9ccaf6502b512629202325e646d4abe9ce19bc58c8f6b8af"
+          },
+          {
+            "frameId": 63,
+            "protectedOpaquePixels": 124970,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24077,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d8763f1a76d67086b987822e52eab1745a9f71d740f292eb8b76379f9272d684"
+          },
+          {
+            "frameId": 64,
+            "protectedOpaquePixels": 124095,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 28011,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c697fc97ae87828641154b46c5919089c38b7721524a4cde1b16d467540bc472"
+          },
+          {
+            "frameId": 65,
+            "protectedOpaquePixels": 126330,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30339,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c5f828e75713fcc48421b4eb25d747d6453a7a14c12a0840a76d28c80b4e5237"
+          },
+          {
+            "frameId": 66,
+            "protectedOpaquePixels": 127123,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30958,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "508651ec7c7b55750e6497030130680f2b7acbb808f81483574a8b6fe61af2c0"
+          },
+          {
+            "frameId": 67,
+            "protectedOpaquePixels": 120422,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35997,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b40209904e1c6e0ba1a61b521e503130f81f041e299e6f6707af011f7e1c4463"
+          },
+          {
+            "frameId": 70,
+            "protectedOpaquePixels": 121446,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37003,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e4c613c6ca486f1954c2b9a5da9c595d098ad628fe32c4843d92a069c2c293e2"
+          },
+          {
+            "frameId": 71,
+            "protectedOpaquePixels": 121597,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37940,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1dd2039ca4792cc4e05126e8377aca1a1e4e50ca52f609119b5b22da2937a41b"
+          },
+          {
+            "frameId": 72,
+            "protectedOpaquePixels": 121039,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39078,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c2fb978eae4f1ead8606330d70220ee1fb2ad89c7aa175d33ee9726376b1e943"
+          },
+          {
+            "frameId": 73,
+            "protectedOpaquePixels": 121366,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40217,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e3dffd2aba1d909bd84f6fd90a8671936994d99e5a3226513e2dd427572524f4"
+          },
+          {
+            "frameId": 74,
+            "protectedOpaquePixels": 123142,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41159,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b9ae827c84a7f9d0e259836478ada501a1484ce9c40d597515f8ec65dc1e5cf2"
+          },
+          {
+            "frameId": 75,
+            "protectedOpaquePixels": 122674,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41628,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d236f503ae792e288936440e778839509780379555ddf92ad67d45d55b8e667e"
+          },
+          {
+            "frameId": 78,
+            "protectedOpaquePixels": 120861,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40609,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a9d36d595c373574742a552c8d5448ebc749af295a588a83d5d4a7a70f065635"
+          },
+          {
+            "frameId": 79,
+            "protectedOpaquePixels": 119446,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39921,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f62529067ea9c28b70c987ea2ac31f91f1864836b9387df0847da8349fbeb731"
+          },
+          {
+            "frameId": 80,
+            "protectedOpaquePixels": 118728,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39049,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c52f51d6ec53a65797ab4b27573a5e3bfc2538e85b2322afdb7bdd58a420d371"
+          },
+          {
+            "frameId": 81,
+            "protectedOpaquePixels": 119615,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37870,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "471d9d2352ec8e45b6392a6555cdf0106e9160a3a52de3600c58d9f0e85517ca"
+          },
+          {
+            "frameId": 82,
+            "protectedOpaquePixels": 119533,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36931,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "aecd8baee8a11d3330e31943616ef5b51857a78df663dbcb6198a20ae1cf6b57"
+          },
+          {
+            "frameId": 83,
+            "protectedOpaquePixels": 119215,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 23922,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b92bb8b3a4b248ce7f39d5a3e577e5dca2c175974525519344f7816ee26904d0"
+          },
+          {
+            "frameId": 84,
+            "protectedOpaquePixels": 119361,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25239,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f911ee6644cb06dee4bf6c484cfb14b606993110e21077257a501a3c0a81a70a"
+          },
+          {
+            "frameId": 85,
+            "protectedOpaquePixels": 119519,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25406,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "fa531dc0a078a56b61a4f8f14e683378a48bda22b4a608c2c02d12c24f5fd0dc"
+          },
+          {
+            "frameId": 86,
+            "protectedOpaquePixels": 115252,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25134,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "454cc70933850f6d34f283aeda7f5388b8287c96f72a7bd195763325b5d73b42"
+          },
+          {
+            "frameId": 87,
+            "protectedOpaquePixels": 115188,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24978,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "fc5ce40fe6792c426cdf18c2da160b791c4ae485dfd220e714464257f136efd3"
+          },
+          {
+            "frameId": 88,
+            "protectedOpaquePixels": 115807,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25235,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e7a61151ab0c8ef71b78c40ad6b65091a9722e6b70f44d6868ec19e30afc6036"
+          },
+          {
+            "frameId": 89,
+            "protectedOpaquePixels": 119823,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26696,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e8fe0d296849e731dae40097c3ad47139cc9ea67dcb1bc90599d4829728289ac"
+          },
+          {
+            "frameId": 90,
+            "protectedOpaquePixels": 121136,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36321,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "dee6ffa5f5c620f01f179538e896c4bf80e54837cc3a6bb856c703b80fe35b27"
+          },
+          {
+            "frameId": 91,
+            "protectedOpaquePixels": 122317,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41131,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f804252e35b164e5ef2284a3812dcfffd4de52a7db059b5b596f678ef07e375c"
+          },
+          {
+            "frameId": 92,
+            "protectedOpaquePixels": 119541,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40599,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "71abf63429d43d5dfd1c762a0091e4f5e1d602eb10c358bde55fa95d250b65b8"
+          },
+          {
+            "frameId": 93,
+            "protectedOpaquePixels": 118144,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38984,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "6d68d81f8b10755ba59d1c6e5e3f3ae73d4981a1be0b07266299bd1ff33ae10f"
+          },
+          {
+            "frameId": 94,
+            "protectedOpaquePixels": 116354,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37161,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4516fabdea0ee6305a8c8e2d8e247221e634b326437dd485c2c2e6ea3df191d7"
+          },
+          {
+            "frameId": 95,
+            "protectedOpaquePixels": 115369,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34667,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "a5f3303bc039ffafc8f4d2fec8d81c1d71bfea62802c942d541b44e4d7d5f414"
+          },
+          {
+            "frameId": 96,
+            "protectedOpaquePixels": 114932,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33062,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "40cb899f1669ce94d96e561473c4111d338524fd9d43c52a2268485e83431540"
+          },
+          {
+            "frameId": 97,
+            "protectedOpaquePixels": 114394,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32761,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e296692b000ed316587f39855e38402c1c3464865c3fee4ce874d4d6e5fd1a4b"
+          },
+          {
+            "frameId": 98,
+            "protectedOpaquePixels": 115675,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33909,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3661d3eed22474ea3502fec5b079d8be93204a1c19e973c7a9ba0419b1f86c9a"
+          },
+          {
+            "frameId": 99,
+            "protectedOpaquePixels": 115915,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35897,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f5985ecc3b8ce96d6ce63f7de94c520d862150f407b3680ebe92d4e3ddfa82b8"
+          },
+          {
+            "frameId": 100,
+            "protectedOpaquePixels": 116956,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38086,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4ee17d9f6a6cee684ae339e7a13f52a05173c4cf5cd1c62f166e2f442c7843bd"
+          },
+          {
+            "frameId": 101,
+            "protectedOpaquePixels": 118792,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38813,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "21a2493da8f9498cc3dc657eb817a49e9fa7b2a3aa6bcc492c36b8b881fdc0ce"
+          },
+          {
+            "frameId": 102,
+            "protectedOpaquePixels": 119571,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34586,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2743771da97c635e3e9057260ce6429f4301655ad73aad063edaefaa3405f913"
+          },
+          {
+            "frameId": 103,
+            "protectedOpaquePixels": 121953,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27711,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "95b846506574d7bb33ae518617a8ebffc6dc2e7aab34c2ad4bf9b0d5c23eafd5"
+          },
+          {
+            "frameId": 104,
+            "protectedOpaquePixels": 120237,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26248,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "07b160b868eb6d87dbdb18c8a01ba882306e4ec8e3846c2b0e6313445b8a2ec5"
+          },
+          {
+            "frameId": 105,
+            "protectedOpaquePixels": 118869,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 21766,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "55a49eb9ed00c7834cfb25655c8a47f27c19152a2c8d382029def7b4a2539942"
+          },
+          {
+            "frameId": 106,
+            "protectedOpaquePixels": 118575,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 19729,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3607796d585e51c088f2927fd6fe75f8adbbcdad2cd6ae789b9abea10f574add"
+          },
+          {
+            "frameId": 107,
+            "protectedOpaquePixels": 117728,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 20215,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "02dd74e29e35adb7c8c8ac160ca4283b373e2760004d0b1d9d5e6707b3d8decc"
+          },
+          {
+            "frameId": 108,
+            "protectedOpaquePixels": 117731,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 21686,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "25048b8b62314918bd3979d556df78685a5b59f38340dd5be726a2a443405c9e"
+          },
+          {
+            "frameId": 109,
+            "protectedOpaquePixels": 118122,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 23807,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "10d4f95b08d6acf1dd2c301a52768279cc1ba92fe5566741e641ae14cc4df4a4"
+          },
+          {
+            "frameId": 110,
+            "protectedOpaquePixels": 119699,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27794,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3d74b4cf20c374da58f80bffacc5973f8320f0271a8826742d3c8c2025e58ce8"
+          },
+          {
+            "frameId": 111,
+            "protectedOpaquePixels": 118998,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31045,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e930f6f55b7bb23d29eab32ce054b67ee44263396ac73bb4dc1cefc84750ec9d"
+          },
+          {
+            "frameId": 112,
+            "protectedOpaquePixels": 117839,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33732,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "dc7d54c9247f392b057cf36e932c6ba30c16820eba4f1315ad6b6621e1b85324"
+          },
+          {
+            "frameId": 113,
+            "protectedOpaquePixels": 116050,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36209,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "61ef8faaa4bf894595d3b9ddda63dbc27762478433a2dac70458d9c7c678db49"
+          },
+          {
+            "frameId": 114,
+            "protectedOpaquePixels": 118161,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37285,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b1105a1edbac380ccf5874fa15f30afd160d33ed966b7032ec77779f8454c3be"
+          },
+          {
+            "frameId": 115,
+            "protectedOpaquePixels": 117887,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38745,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9368f1b70ec3a74bb84c07f29e723bf08b4d810557bd5761bc31dbcd77656cc9"
+          },
+          {
+            "frameId": 116,
+            "protectedOpaquePixels": 117684,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39121,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3acd98504d1cbc8ac96d8da21d2ab4a4d14650d8e40905dea7a06db4d1141ed9"
+          },
+          {
+            "frameId": 117,
+            "protectedOpaquePixels": 117381,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39352,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "6cb22a1d130316d50533f66f3f80b59147291c483c7390c7e9834a67ea3c6f7b"
+          },
+          {
+            "frameId": 118,
+            "protectedOpaquePixels": 117158,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39316,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "cf4a9b32ddcae5a32a0223a234402930ac3e04e93443c91de5048c4a54b24668"
+          },
+          {
+            "frameId": 119,
+            "protectedOpaquePixels": 118276,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39151,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b534f3581ff676d7ae2c051a99763908cc73a1357d045687208f7a8106b0672f"
+          },
+          {
+            "frameId": 120,
+            "protectedOpaquePixels": 118281,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38991,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "def2c55dabd87ac2bf57e1b6dd3165cd0659ea678a812fb0e739994fd757657d"
+          },
+          {
+            "frameId": 121,
+            "protectedOpaquePixels": 118550,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38934,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1aef3c169ef22f6aaff57c74cc8aec680b0af744b8f52e864f1c3366820c9d8b"
+          }
+        ],
+        "seamRegressionProbes": [
+          {
+            "frameId": 89,
+            "x": 291,
+            "y": 742,
+            "rgba": [
+              235,
+              117,
+              96,
+              255
+            ],
+            "luminance": 140.571,
+            "minimumLuminance": 110
+          },
+          {
+            "frameId": 89,
+            "x": 335,
+            "y": 754,
+            "rgba": [
+              250,
+              133,
+              112,
+              255
+            ],
+            "luminance": 156.358,
+            "minimumLuminance": 110
+          }
+        ],
+        "reviewedSemanticOwnershipCorrections": [],
+        "allPngsDecoded": true,
+        "allZipCrcsValid": true,
+        "protectedHeadHandsExact": true,
+        "noOpaqueClothingCoverageHoles": true,
+        "transparentFrameMargins": true
+      },
+      {
+        "character": "female",
+        "look": "wedding",
+        "templateSha256": "bef7e79eccb85e1a83c951b372adb0d5904563bdac451a75519be605ca4ec5c6",
+        "inventoryFilesVerified": 1061,
+        "sourceAndRegistrationEmbeddedExact": true,
+        "frames": [
+          {
+            "frameId": 0,
+            "protectedOpaquePixels": 118599,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39196,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ac24db4f1afef89cb65b2f99cd471ead7e25ce26694951a956052fab0bdf9616"
+          },
+          {
+            "frameId": 6,
+            "protectedOpaquePixels": 118577,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39244,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "368c1813aefbafd1f28e35fc99a9210e0483c958d35019862353f498c5737caf"
+          },
+          {
+            "frameId": 12,
+            "protectedOpaquePixels": 118589,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39243,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c6a7eeb34893ffcb718771b7c63797576ce2bdc1dacf94b9d6346e5a43471651"
+          },
+          {
+            "frameId": 18,
+            "protectedOpaquePixels": 118604,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39226,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7ab4ae961f5426bdb730558b5a8f2925c7714fe480c55217e4220d23b5e16dc2"
+          },
+          {
+            "frameId": 24,
+            "protectedOpaquePixels": 123971,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33093,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "4db00434f6190bf286ab091b0426caa5953723dc59fbd301302026f103b30675"
+          },
+          {
+            "frameId": 25,
+            "protectedOpaquePixels": 123831,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32831,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "65e0cfa96b8af15fa0603e967279958b1f9c434f056fe80d85b71737bca734d4"
+          },
+          {
+            "frameId": 26,
+            "protectedOpaquePixels": 123867,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33101,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9054121785c0968224b5708c328f874a5772afa34bf89a5171614410ba18f8ee"
+          },
+          {
+            "frameId": 27,
+            "protectedOpaquePixels": 124631,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33487,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9d74b45e83afbce4740d3e1de8e739335081bde2f69ca24f7418d70f1e2fa557"
+          },
+          {
+            "frameId": 28,
+            "protectedOpaquePixels": 124367,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33686,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "08209f9a4ef64c5623cb38a85df7404c3fc3b5834fdddcc5e64904638ef3633c"
+          },
+          {
+            "frameId": 30,
+            "protectedOpaquePixels": 124400,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33865,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "811c05a449c23c9c4d34dbd682e37a1febdf201dcc4579a97b51f32063ada82e"
+          },
+          {
+            "frameId": 31,
+            "protectedOpaquePixels": 123849,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34315,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1ce059cd4ae5badf0a318126f8443f54851cc71059bfb4278046f3f9c8a34bae"
+          },
+          {
+            "frameId": 32,
+            "protectedOpaquePixels": 123980,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35265,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "022c6e518d64f7972b9bd0f787b3ae5a205b977b593bb554f4b347fa93825a63"
+          },
+          {
+            "frameId": 33,
+            "protectedOpaquePixels": 124330,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36122,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "56b4ea0be63c4e2d3bc7f6bd94dc99cdaa2c20a2ebe2bd08842c517064ef9812"
+          },
+          {
+            "frameId": 34,
+            "protectedOpaquePixels": 124449,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36663,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3d9df808e04188d7914fb4d67335fc69fb1f83feb94282a27e6ea187a1e0c73c"
+          },
+          {
+            "frameId": 35,
+            "protectedOpaquePixels": 121311,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34970,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "8e861a756da400b0f379a20302c8b3ca8c8b5ca10c7fd49e8c4fa4b48f80ec06"
+          },
+          {
+            "frameId": 36,
+            "protectedOpaquePixels": 120728,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32720,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "7a254f718c6069a7131dcd2d4316eff380e999692480e6afac20f77fcf5d4a0a"
+          },
+          {
+            "frameId": 37,
+            "protectedOpaquePixels": 121957,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29684,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1051833eec6cf9d928a169c2c19ca8d30f2dc9dd05b3982b0e1a3c294bb841b3"
+          },
+          {
+            "frameId": 38,
+            "protectedOpaquePixels": 117143,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27494,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "82b1f9b2e1e720f9fc1d967b28352bfca4982f09629dfdcdb3ab5482754ed288"
+          },
+          {
+            "frameId": 39,
+            "protectedOpaquePixels": 119742,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26137,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "54a0ca6f8f04be679f847aa3d15475831a1b05212ae1b8ce3ee2829e1f298b9d"
+          },
+          {
+            "frameId": 40,
+            "protectedOpaquePixels": 118952,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26111,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "23669e22a87033a419c348147789e05c675757f1c2066791d0a8bfdf472560e0"
+          },
+          {
+            "frameId": 41,
+            "protectedOpaquePixels": 117474,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26274,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c185fbf58b1202686f9386deda0639175a50fa2799d532b1ca8c8e8171da392d"
+          },
+          {
+            "frameId": 43,
+            "protectedOpaquePixels": 117729,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26309,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9d0a32f6c188f354d9511d9c2f4749230ab5b170e6c7d927d41b6e2372b75d0a"
+          },
+          {
+            "frameId": 44,
+            "protectedOpaquePixels": 117777,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26700,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "10bee126d4f8480eeb0b7d2f8e2fa50bc785ff8bd41458791358890fd874a284"
+          },
+          {
+            "frameId": 45,
+            "protectedOpaquePixels": 117341,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27353,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "369066b2f8ae8e1e6acd094c6f84c3db7f17c55a8d26731fec45fc1e472f1dbf"
+          },
+          {
+            "frameId": 46,
+            "protectedOpaquePixels": 117528,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27575,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "88b77eab2a7f4dd3f8b1d75cc3a1edefe148ebb38523e0ad6f87b9f564c305dd"
+          },
+          {
+            "frameId": 47,
+            "protectedOpaquePixels": 122220,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 29200,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c30b866e27b55896e9e7b30af8969287ffe5a2febed20900cee2c2b5d3d30d1c"
+          },
+          {
+            "frameId": 48,
+            "protectedOpaquePixels": 121230,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31936,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "485a205fc257bf9f1d35f485174bd36b35b4c587c9d539546c94fd3921bf4fd7"
+          },
+          {
+            "frameId": 49,
+            "protectedOpaquePixels": 124591,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33235,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "55bb2c70fba49ab6ccac2b67fd41d70fb15e2ce815483200274635bb2700e12e"
+          },
+          {
+            "frameId": 50,
+            "protectedOpaquePixels": 123336,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33425,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1219c8a9c396ac9c69ffd3503cd571b0ede42c8960080171a2efe1a22d6e883b"
+          },
+          {
+            "frameId": 51,
+            "protectedOpaquePixels": 126436,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32604,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "921ee1abbbfee1cbfc8debbda7e938060d9bf0c13f9605f6021dead6963d636a"
+          },
+          {
+            "frameId": 52,
+            "protectedOpaquePixels": 126406,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33462,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "668717db0d966c15c730184b01b6834218716e74b5be4f4cd6b8a7f691dc2eaa"
+          },
+          {
+            "frameId": 53,
+            "protectedOpaquePixels": 124803,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32857,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "89e9102dd1a4bd06efa2c6e5f8e715aaf2526b5b234616bf5018e484939a768f"
+          },
+          {
+            "frameId": 54,
+            "protectedOpaquePixels": 125016,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31533,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "40e92b9afdb10f072b82c8927330580889e127066b3392e46b7b3205a72fc013"
+          },
+          {
+            "frameId": 55,
+            "protectedOpaquePixels": 122952,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26306,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "59aa24899ef8060a5128571a60145a0acc2c48cd21628a5c94267813fcc2c1bc"
+          },
+          {
+            "frameId": 56,
+            "protectedOpaquePixels": 116746,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 22843,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "d5c8a3718e1b6fe62fdd2c22755516e4afea3991b93aa887b7b50c09c10f1e34"
+          },
+          {
+            "frameId": 57,
+            "protectedOpaquePixels": 118947,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 22288,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f4efbdac0a0141392a54845388b40a86940c8f72a556cdcddf48c2e6c619b6c9"
+          },
+          {
+            "frameId": 58,
+            "protectedOpaquePixels": 122552,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25851,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "61b54e4f62cdd455beb95240825db171a02ac2fd11fa867e9594b01f5e7dc75c"
+          },
+          {
+            "frameId": 59,
+            "protectedOpaquePixels": 122823,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27813,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0017be8098483a1ba5a22de50039c7b0ae6e64262691391c90de214d3b4f9d98"
+          },
+          {
+            "frameId": 60,
+            "protectedOpaquePixels": 121816,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27585,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "78eff6953f9d9aeea2135b6f7cd45bc7d2e0ef54621526efd03288bda8c8a918"
+          },
+          {
+            "frameId": 61,
+            "protectedOpaquePixels": 117789,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 23837,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ee71478080ed2b63127f54f18a4ee0dee8ed72985d279227d57a448cb9343687"
+          },
+          {
+            "frameId": 62,
+            "protectedOpaquePixels": 113360,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 20638,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ff1e3335e0e0ed6ae1148bddbff5162744c299820b555d9e06d42e821a6e8fad"
+          },
+          {
+            "frameId": 63,
+            "protectedOpaquePixels": 124970,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24077,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c43dd1458bd1ba17a3d66290c7e1913c6c7089d720ff8cc89ac3cf9e477ddc52"
+          },
+          {
+            "frameId": 64,
+            "protectedOpaquePixels": 124095,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 28011,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "49884386a21609340e3b1883e7d5d2967889af9225c926bc78c021b0d7c78314"
+          },
+          {
+            "frameId": 65,
+            "protectedOpaquePixels": 126330,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30339,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "f1f720642cefac390437dcf46fd447f1e00a4a66a88521daedf4f07d421bdc71"
+          },
+          {
+            "frameId": 66,
+            "protectedOpaquePixels": 127123,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 30958,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "70f17dbc18611efad139714fb3133967563b8ec2ca1132982e9cb2c0cb67f6bf"
+          },
+          {
+            "frameId": 67,
+            "protectedOpaquePixels": 120422,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35997,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ccedb7e09b54c2a60c5a64a693808db5c9fe42a1f9705388574d2e3be6195017"
+          },
+          {
+            "frameId": 70,
+            "protectedOpaquePixels": 121446,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37003,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "fe23a46bde565e2de4b2473dd25dcbcde882d5c898b0f00a785d63e2093d0d7c"
+          },
+          {
+            "frameId": 71,
+            "protectedOpaquePixels": 121597,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37940,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "b2174ac0e91976777d2dc32a8a2de9d970cf7c48411ee13d7bc11042666545a7"
+          },
+          {
+            "frameId": 72,
+            "protectedOpaquePixels": 121039,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39078,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3a61ca07fb49502cede14ed835bece13b6f76b743b35dc20cf6a327c2121fd46"
+          },
+          {
+            "frameId": 73,
+            "protectedOpaquePixels": 121366,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40217,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9380e5598dca2a731a9f1011f0361b4f8eb6613c070b49e58ec4f5e849ce8f6c"
+          },
+          {
+            "frameId": 74,
+            "protectedOpaquePixels": 123142,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41159,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "638f7e841aa51d5a3442a2370f94356508aa31e305cc4fe7a5e72720f3de422d"
+          },
+          {
+            "frameId": 75,
+            "protectedOpaquePixels": 122674,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41628,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c30b914da523b33d1e6c8873c7c048831607898049ba5e19f0cc9c656c057e96"
+          },
+          {
+            "frameId": 78,
+            "protectedOpaquePixels": 120861,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40609,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0ad5b82d3da85ece5990dd640360f4a8ca20d65ab96f276d7004e185ef6dd782"
+          },
+          {
+            "frameId": 79,
+            "protectedOpaquePixels": 119446,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39921,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "73c4f14fce7794be170e1bfa9477767a04cc5fa222e67800fbeb792b9446c3e2"
+          },
+          {
+            "frameId": 80,
+            "protectedOpaquePixels": 118728,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39049,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "956f5f52ada3b5824e52f04402a68eed4d2bac8ff13e75aff7f99dbc38e12f5f"
+          },
+          {
+            "frameId": 81,
+            "protectedOpaquePixels": 119615,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37870,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "27b6fa3a8e795b9e9897c730e11d6f6c7b6d5e70d9a2cca2bd52e7a4fb84e72c"
+          },
+          {
+            "frameId": 82,
+            "protectedOpaquePixels": 119533,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36931,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0e76f4b3df19fe8ee1660930643a20ba5861e0fd69217c56cc07f907821bdd3b"
+          },
+          {
+            "frameId": 83,
+            "protectedOpaquePixels": 119215,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 23922,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ee239739f6c7ebd7bdba810bf49e63278a2e93383482226b4ee5c5e0117d775c"
+          },
+          {
+            "frameId": 84,
+            "protectedOpaquePixels": 119361,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25239,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "770326e51f1bb2bda83d7680f6ba97d6fbf05b6ea60d35b97ca16f7519b5efc6"
+          },
+          {
+            "frameId": 85,
+            "protectedOpaquePixels": 119519,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25406,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9e6e727e176eb8f5e824e786341eb5868b6382e8757945bb42ccdbf9b60605e1"
+          },
+          {
+            "frameId": 86,
+            "protectedOpaquePixels": 115252,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25134,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "1cba2bf133b06c43c243e0a2634c005905f7b7143d99c2f58c72cc006f9b9adf"
+          },
+          {
+            "frameId": 87,
+            "protectedOpaquePixels": 115188,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 24978,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "85c441d9f7dd731a170182ab0eaef01376f47c47a71aa016c0af31daf4875f47"
+          },
+          {
+            "frameId": 88,
+            "protectedOpaquePixels": 115807,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 25235,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2425bc9f20dac63458715583e206ce20df318672f51d5bda3f4a803fef0a01a0"
+          },
+          {
+            "frameId": 89,
+            "protectedOpaquePixels": 119823,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26696,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "09334c67b6c1d54ff15c531c9f2a8bfc3bf40c45a2d521276b76241569d619af"
+          },
+          {
+            "frameId": 90,
+            "protectedOpaquePixels": 121136,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36321,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "07b69c94305516bc12f9b0cd362463b4c4c1d5d13aa282ea63cb79d44e3d37f6"
+          },
+          {
+            "frameId": 91,
+            "protectedOpaquePixels": 122317,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 41131,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c87ed73778bdef46526489b4303779902e846434c733ff56ad8287fade213787"
+          },
+          {
+            "frameId": 92,
+            "protectedOpaquePixels": 119541,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 40599,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "40b94afb9ca58cf374af2f6a7cf41882959c68ffa084b3e425bf25d98878c512"
+          },
+          {
+            "frameId": 93,
+            "protectedOpaquePixels": 118144,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38984,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "96d8a43016bef967e25b4888ebe5b02ee0360943f8d93bfaf71930e32749571f"
+          },
+          {
+            "frameId": 94,
+            "protectedOpaquePixels": 116354,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37161,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "fc9b8f4c8da2b26532cae1bcf29c6f169074cb405df2189aa7884bffcb767a07"
+          },
+          {
+            "frameId": 95,
+            "protectedOpaquePixels": 115369,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34667,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3b739bfd0660bfb9cd596d55769cb520c236c85c51535c1ab5dbd3ee739b7607"
+          },
+          {
+            "frameId": 96,
+            "protectedOpaquePixels": 114932,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33062,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "6a9d5e21d1e4aa044edb29f5dfb8ff4e1b144c935776d8f0df173bbb1bcc3b43"
+          },
+          {
+            "frameId": 97,
+            "protectedOpaquePixels": 114394,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 32761,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "06cb452cccc677f1ef72cd89a9c89091c5d46157bb9bff0a98908e775573afa3"
+          },
+          {
+            "frameId": 98,
+            "protectedOpaquePixels": 115675,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33909,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "dfd630217d4237134edde2286001cc2bb0e35e739ef95b2cf921823a78decd8f"
+          },
+          {
+            "frameId": 99,
+            "protectedOpaquePixels": 115915,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 35897,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "87daa2f32faabf2111a4607d66ba0c151d4f141096ab6d6dcc0d4c78b20b0873"
+          },
+          {
+            "frameId": 100,
+            "protectedOpaquePixels": 116956,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38086,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "e82bf2272f2eb6df47339c7804cd2e918829fb6e9507057ae8baf6b176a1f272"
+          },
+          {
+            "frameId": 101,
+            "protectedOpaquePixels": 118792,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38813,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c8fba2d9a625974969000db94a905e93cd40f98cd56a0fc9cfd4483bb66b17bf"
+          },
+          {
+            "frameId": 102,
+            "protectedOpaquePixels": 119571,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 34586,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "5ad846913117f782c043dc50a08ea7e922278903da21a0111728b8ea32d3b841"
+          },
+          {
+            "frameId": 103,
+            "protectedOpaquePixels": 121953,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27711,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "338529b5302d65e70c421666ed4f63131758dfdeeee0ec2077b4e88aa77a4335"
+          },
+          {
+            "frameId": 104,
+            "protectedOpaquePixels": 120237,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 26248,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3312868d522ef51c38e382432a97077775ef9e527281d010a765e79fff76f89c"
+          },
+          {
+            "frameId": 105,
+            "protectedOpaquePixels": 118869,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 21766,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "dd024ec0e1255251ba87f898798eee6c54b6ab32df6e98411baabf6f7cdbbdfb"
+          },
+          {
+            "frameId": 106,
+            "protectedOpaquePixels": 118575,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 19729,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "3c5bdb5b59a1aaf11b16d3773685402cd18c2c4861008ea8df3867754c923cef"
+          },
+          {
+            "frameId": 107,
+            "protectedOpaquePixels": 117728,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 20215,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "6b6c6ed4927064565d567caf2717caf27bf9af367083ca5ecbb726e6c97924ce"
+          },
+          {
+            "frameId": 108,
+            "protectedOpaquePixels": 117731,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 21686,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "839d80004e478faac942692381e1287b8e6d2539bbce00101c8940b34c3c7f0b"
+          },
+          {
+            "frameId": 109,
+            "protectedOpaquePixels": 118122,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 23807,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "9fecc294d95623eeac21633f640fa9955724aed6c5365b94db03a4e572e4b543"
+          },
+          {
+            "frameId": 110,
+            "protectedOpaquePixels": 119699,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 27794,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "ad2510138304acbf32c530de42201477093233973402741ecd41f4cd1cf20cc6"
+          },
+          {
+            "frameId": 111,
+            "protectedOpaquePixels": 118998,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 31045,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "79a443a7e9beeee50669fd15063b7208729c2e2e38394928f05ea32bd8335291"
+          },
+          {
+            "frameId": 112,
+            "protectedOpaquePixels": 117839,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 33732,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "797dce0012759cec8c0da98accf1d38ac61a1d75741eb8e1c5631d1b8dd2920e"
+          },
+          {
+            "frameId": 113,
+            "protectedOpaquePixels": 116050,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 36209,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "05dbecfe104f417897f54a10a83b47cf056b889172a78e4701be25221ca1817d"
+          },
+          {
+            "frameId": 114,
+            "protectedOpaquePixels": 118161,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 37285,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2b4b63ea649244e8d30fb71739cb16f9143d237de702bb4a59dab2a06ab22a7f"
+          },
+          {
+            "frameId": 115,
+            "protectedOpaquePixels": 117887,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38745,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "bf2b5bf7b4e56b464da050c9f72f959d831c989c9af8e6732430a8835ec10a11"
+          },
+          {
+            "frameId": 116,
+            "protectedOpaquePixels": 117684,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39121,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "0b6abbe902e8b8ac82bde28c5101d7820fbb5c6a6c3e0aca4159b352d139ea59"
+          },
+          {
+            "frameId": 117,
+            "protectedOpaquePixels": 117381,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39352,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "2f721ac913b11b9ed0789bc0449d34c957796da6459638e51d793ba189c370a4"
+          },
+          {
+            "frameId": 118,
+            "protectedOpaquePixels": 117158,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39316,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "061dcd62e4ca90956ff008b9478387442e46e5ffacbdf55750d53e69a02a493f"
+          },
+          {
+            "frameId": 119,
+            "protectedOpaquePixels": 118276,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 39151,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c195a6a1e54dfb89fe4566edb72bbe36ca81c220e9f8060e92eca542c0b9f995"
+          },
+          {
+            "frameId": 120,
+            "protectedOpaquePixels": 118281,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38991,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "cde2517d3263437e34876613a5ea148a7756f620721da6d85fa6841306d23e9d"
+          },
+          {
+            "frameId": 121,
+            "protectedOpaquePixels": 118550,
+            "changedProtectedPixels": 0,
+            "originalOpaqueClothingPixels": 38934,
+            "transparentCoverageHoles": 0,
+            "rgbaSha256": "c36644d5df76835fe0af5ef96491f300e660a068bf478be60cef1603e94c0cbb"
+          }
+        ],
+        "seamRegressionProbes": [],
+        "reviewedSemanticOwnershipCorrections": [],
+        "allPngsDecoded": true,
+        "allZipCrcsValid": true,
+        "protectedHeadHandsExact": true,
+        "noOpaqueClothingCoverageHoles": true,
+        "transparentFrameMargins": true
+      }
+    ]
+  },
+  "completedAt": "2026-10-21T20:28:25.519Z",
+  "passed": true
+}

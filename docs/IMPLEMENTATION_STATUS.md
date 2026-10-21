@@ -5,13 +5,16 @@ Current batch: **Kling registered wardrobe**, based on motion-flow commit
 The wardrobe uses those complete motion candidates; original default packs and
 optional skeletal candidates remain unchanged.
 
-Follow-up: **dress fitting V2** improves the female waist overlap and side
-clearance using distinct garment IDs; older saved clothes remain unchanged.
-Completed direct-playback one-shots now replay with Play. [Current refinement,
-actual exports and verification](kling-wardrobe/fit-v2/README.md).
-Independent playback retains decoded atlas pages where supported to avoid the
-first cross-page stall reproduced after exercising all actions; source pixels,
-frame sequences and action timing stay unchanged.
+Latest candidate: **complete male casual/wedding outfits and female dress V3**.
+Male tops include short and long sleeves, with independent full-length trousers;
+female V3 reduces stretched skirt-edge ink without changing V2 alpha or outline.
+A separate male registration profile corrects hand-protection overreach into
+thigh/shoulder cloth areas. Old source packs, registration, garment archives and
+saved projects remain unchanged. [Current review and actual evidence](kling-wardrobe/full-outfits/README.md).
+
+The preceding [dress fitting V2](kling-wardrobe/fit-v2/README.md) remains the
+female before baseline. Its direct-playback replay and retained atlas decoding
+fixes remain in place without changing source pixels or action timing.
 
 The primary workflow uses the two original Kling characters' own sprite frames.
 The two registered skeletal candidates remain optional. Original playback is the
@@ -23,7 +26,7 @@ Implemented:
 
 - A third workbench tool, Wardrobe, with direct male/female library entries.
   Seventeen per-pose authoring anchors, source/registration-bound garment banks,
-  12 casual/wedding clothing items across the two bodies, independent slots,
+  16 casual/wedding clothing items across the two bodies, independent slots,
   all five actions and both facings, source comparison and anchor overlays.
   Editable projects embed source, registration and clothes for offline reopening.
   Actual composited CharacterPacks remain independently playable in V3 format.
@@ -58,7 +61,8 @@ Not implemented: sprite redraw/interpolation, arbitrary frame reordering,
 interactive per-frame hold editing or alignment, interchangeable expressions, complete
 skeletal animation cycles, independent wrist controls, or production game integration.
 Wardrobe requires complete pose-specific clothing assets; arbitrary single-image
-autofitting, new sleeve silhouettes and physical cloth simulation are not implemented. Existing
+autofitting and physical cloth simulation are not implemented. The new sleeve
+items have finite source-specific pose banks, not a general sleeve generator. Existing
 shoulder/shorts deformation limits and female hidden-paint shading differences
 remain visible and documented. Technical success is not user visual acceptance.
 

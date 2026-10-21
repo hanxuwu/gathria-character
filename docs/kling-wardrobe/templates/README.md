@@ -10,6 +10,14 @@ pose.
 | [Male](male.wardrobe-template.zip)     |            88 |                    616 | 24,375,731 |
 | [Female](female.wardrobe-template.zip) |            96 |                  1,056 | 27,675,089 |
 
+For the complete male shirt/jacket/trouser catalog, use the new
+[male full-outfit kit](male-full-outfits-v1.wardrobe-template.zip). It contains
+all 88 source poses and the same 17 landmarks, with explicitly reviewed hand
+protection and matching semantic masks. The original male kit above remains
+frozen for old saved projects and garments. See the
+[profile correction record](../../../artwork/kling-wardrobe/registration/male-full-outfits-v1/protection-review.json).
+The female kit above is also the current V3 dress authoring kit.
+
 Each kit includes:
 
 - The exact original `source.character.zip`; no changed faces, proportions,
@@ -98,3 +106,16 @@ The review-sheet scripts use DejaVu Sans at
 `/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf`; install that font or adapt the
 review-sheet font path on another platform. The actual semantic masks do not
 contain rendered text.
+
+## Rebuild the male full-outfit profile
+
+After the frozen baseline kits exist, run
+`python scripts/prepare-kling-male-full-profile.py`. The authored contour
+corrections are stored separately under
+`artwork/kling-wardrobe/registration/male-full-outfits-v1/`. The builder preserves
+the old files, verifies original source/landmarks/head protection, records the
+exact added/removed protection masks and produces separate rebound copies of
+the five old items for the new profile. Derived copies trim only old clothing pixels newly identified as visible
+hand edges; every other decoded atlas and ownership pixel stays unchanged.
+The original five garment ZIPs are preserved byte-for-byte. The new full-outfit scripts consume the new kit; they never replace
+the source sprite poses with generated reference anatomy.

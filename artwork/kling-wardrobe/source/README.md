@@ -52,3 +52,18 @@ clearance that rejoins the existing hem. The original body pixels and guides
 are not transformed. Original garment ZIPs remain available; new versions use
 `coral-daydress-v2` and `ivory-wedding-dress-v2` IDs. See the actual-export evidence
 in `docs/kling-wardrobe/fit-v2/` for improvements and remaining limitations.
+
+## Complete male outfits and female outline V3
+
+[full-outfits-v1/README.md](full-outfits-v1/README.md) records the additional
+OpenAI garment design sheet and exact prompt. Only manually delimited clothing
+RGB is used; the generated character anatomy and tinted background are discarded.
+`prepare-kling-male-tops.py` and `prepare-kling-male-trousers.py` bake all 88 source
+poses with reviewed limb ownership. A new male registration/profile records
+hand-boundary corrections; original registrations and archives remain frozen.
+
+Female V3 reuses the existing source sheet. It keeps the V2 garment silhouette,
+alpha and ownership exactly, preserving a narrow outer ink strip while
+distributing clearance through interior fabric. No new female art generation
+was used. See `prepared/female-dresses-v3/verification.json` in the parent
+wardrobe directory for the per-pose audit.

@@ -34,7 +34,26 @@ component bounds, and connected-core evidence. Re-running the preparation
 script regenerates both. `footwear-fringe-fix.json` compares decoded new trouser
 patches and ownership against commit `44d346b`, records exact changed frame and
 pixel counts, and checks that ownership only shrinks and unrelated pixels stay
-identical. The visible rear-leg wedge in frame 64 remains clothed.
+identical. Each bank changes 21 of 88 poses; the other 67 decoded RGBA patches
+and ownership masks remain bit-exact. Each removes 3,239 ownership pixels:
+1,948 source-visible fragments restore the source and 1,291 transparent
+allowance pixels disappear. In frame 92, removing a 21-pixel leg-matte strip
+also leaves a connected 12-pixel shorts-matte strip below the existing
+20-pixel component threshold; that strip restores the source too. The visible
+rear-leg wedge in frame 64 remains clothed.
+
+`source-fringe-review.png` shows the original source crops and pink boundaries
+of all 27 excluded components of at least 20 pixels, across 21 poses. They are
+shoe/sole or fist-edge fringes and one-pixel antialiased silhouette strips; no
+whole exposed leg surface is removed. This is a source-mask diagnostic, not an
+application export.
+
+Frozen corrected archives:
+
+| Archive                     |     Bytes | SHA256                                                             |
+| --------------------------- | --------: | ------------------------------------------------------------------ |
+| `ochre-chinos-v1.zip`       | 5,355,500 | `c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33` |
+| `navy-suit-trousers-v1.zip` | 3,547,490 | `f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c` |
 
 The two full banks contain all 88 source frames each. Ownership audits protect
 head/neck/hands and leave original arm/shoe surfaces unchanged. The prepared

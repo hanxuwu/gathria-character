@@ -40,7 +40,7 @@ standalone view. Existing male links retain their default behavior. There are th
 ## What is ready
 
 - Source-bound wardrobe: 17 authoring anchors per pose, registered tops, bottoms,
-  full-body dresses and shoes, casual/wedding presets, five actions, source
+  full-body dresses and shoes, complete male casual/wedding outfits, five actions, source
   comparison, anchor overlay, portable editable projects and baked CharacterPack
   exports. Future clothing imports require a complete registered pose bank;
   one standing PNG is not automatically fitted to every action.
