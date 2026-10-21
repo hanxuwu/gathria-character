@@ -1,6 +1,7 @@
 # Kling wardrobe: casual and wedding
 
-**Latest performance batch:** [verified garment loading reuse](loading-reuse/README.md).
+**Latest performance batch:** [background cold-start preparation](cold-start/README.md).
+Earlier: [verified garment loading reuse](loading-reuse/README.md).
 It reduces first clothing selection and repeat-switch waits without changing
 artwork or export formats. Original cold opening is still expensive.
 
