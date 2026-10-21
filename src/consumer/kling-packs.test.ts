@@ -1,5 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { loadPortableCharacterPack } from "../core/pack";
+import {
+  loadPortableCharacterPack,
+  releaseCharacterImages,
+} from "../core/pack";
 import {
   KLING_CHARACTERS,
   KLING_KEYFRAME_CHARACTERS,
@@ -9,6 +12,10 @@ import { loadKlingCharacter } from "./kling-packs";
 
 vi.mock("../core/pack", () => ({
   loadPortableCharacterPack: vi.fn(),
+  characterPackImages: (pack: { image: unknown; images?: unknown[] }) => [
+    ...new Set([pack.image, ...(pack.images ?? [])]),
+  ],
+  releaseCharacterImages: vi.fn(),
 }));
 
 afterEach(() => {
@@ -17,6 +24,28 @@ afterEach(() => {
 });
 
 describe("prepared Kling loading", () => {
+  it("releases a newly decoded pack when the request was aborted during decoding", async () => {
+    const controller = new AbortController();
+    const image = { close: vi.fn() };
+    const pack = { image, images: [image] } as unknown as Awaited<
+      ReturnType<typeof loadPortableCharacterPack>
+    >;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        blob: async () => new Blob(["fixture"]),
+      }),
+    );
+    vi.mocked(loadPortableCharacterPack).mockImplementationOnce(async () => {
+      controller.abort();
+      return pack;
+    });
+    await expect(
+      loadKlingCharacter("female", controller.signal),
+    ).rejects.toMatchObject({ name: "AbortError" });
+    expect(releaseCharacterImages).toHaveBeenCalledExactlyOnceWith([image]);
+  });
   it("downloads only the chosen archive, validates it, and preserves its export bytes", async () => {
     const archive = new Blob([new Uint8Array([1, 2, 3])]);
     const fetched = vi.fn().mockResolvedValue({

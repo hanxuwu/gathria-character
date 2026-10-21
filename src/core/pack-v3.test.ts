@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { strToU8, unzipSync, zipSync, zlibSync } from "fflate";
 import { crc32 } from "./bounded-archive";
 import {
@@ -9,8 +9,12 @@ import {
   validateBakedManifest,
   validateMultipageBakedManifest,
   validatePortableManifest,
+  characterPackImages,
+  releaseCharacterImages,
 } from "./pack";
 import type { BakedCharacterRecipe, CharacterPackV3Manifest } from "./types";
+
+afterEach(() => vi.unstubAllGlobals());
 
 function concat(...parts: Uint8Array[]) {
   const result = new Uint8Array(parts.reduce((n, p) => n + p.length, 0));
@@ -128,6 +132,42 @@ function files() {
 }
 
 describe("native multipage CharacterPack V3", () => {
+  it("owns one decoded bitmap per validated page and releases aliased page zero once", async () => {
+    const images = [0, 1].map(() => ({ width: 2, height: 1, close: vi.fn() }));
+    vi.stubGlobal(
+      "createImageBitmap",
+      vi.fn().mockResolvedValueOnce(images[0]).mockResolvedValueOnce(images[1]),
+    );
+    const pack = await loadPortableCharacterPack(new Blob([zipSync(files())]));
+    expect(pack.image).toBe(images[0]);
+    expect(pack.images).toEqual(images);
+    releaseCharacterImages(characterPackImages(pack));
+    for (const image of images) expect(image.close).toHaveBeenCalledTimes(1);
+  });
+
+  it("closes earlier decoded pages when a later page cannot decode", async () => {
+    const image = { width: 2, height: 1, close: vi.fn() };
+    vi.stubGlobal(
+      "createImageBitmap",
+      vi
+        .fn()
+        .mockResolvedValueOnce(image)
+        .mockRejectedValueOnce(Error("Decode failed")),
+    );
+    vi.stubGlobal(
+      "Image",
+      class {
+        onerror?: () => void;
+        set src(_value: string) {
+          queueMicrotask(() => this.onerror?.());
+        }
+      },
+    );
+    await expect(
+      loadPortableCharacterPack(new Blob([zipSync(files())])),
+    ).rejects.toThrow("could not be decoded");
+    expect(image.close).toHaveBeenCalledTimes(1);
+  });
   it("round-trips every PNG byte, page assignment, one-shot timing and provenance without changing V2", async () => {
     const input = manifest();
     expect(validatePortableManifest(input)).toEqual(input);

@@ -14,6 +14,8 @@ import {
 import {
   downloadBlob,
   loadPortableCharacterPack,
+  characterPackImages,
+  releaseCharacterImages,
   safeFilename,
   type LoadedCharacterPack,
 } from "../core/pack";
@@ -278,19 +280,24 @@ export default function SpriteActionEditor({
     }
   }
   async function perform(action: () => Promise<void>) {
+    const token = request.current;
     setWorking(true);
     onBusy(true);
     setError("");
     try {
       await action();
     } catch (failure) {
-      setError(failure instanceof Error ? failure.message : String(failure));
+      if (token === request.current)
+        setError(failure instanceof Error ? failure.message : String(failure));
     } finally {
-      setWorking(false);
-      onBusy(false);
+      if (token === request.current) {
+        setWorking(false);
+        onBusy(false);
+      }
     }
   }
   async function openProject(file: File) {
+    const token = ++request.current;
     await perform(async () => {
       if (file.size > SPRITE_PROJECT_MAX_BYTES)
         throw Error("Action project exceeds its supported file limit.");
@@ -303,7 +310,12 @@ export default function SpriteActionEditor({
       const sourceArchive = new Blob([project.source], {
         type: "application/zip",
       });
+      if (token !== request.current) return;
       const loaded = await loadPortableCharacterPack(sourceArchive);
+      if (token !== request.current) {
+        releaseCharacterImages(characterPackImages(loaded));
+        return;
+      }
       const next = { project, history: [], saved: true };
       cache(next);
       onOpenSource(sourceArchive, loaded);

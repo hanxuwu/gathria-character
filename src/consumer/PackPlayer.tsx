@@ -26,6 +26,9 @@ import {
   loadPortableCharacterPack,
   createBakedCharacterPack,
   downloadBlob,
+  characterPackImages,
+  releaseCharacterImages,
+  type LoadedCharacterImage,
   type LoadedCharacterPack,
 } from "../core/pack";
 import type { PortableAnimationName, Facing } from "../core/types";
@@ -110,6 +113,9 @@ export function PackPlayer() {
     useState<PortableAnimationName | null>(null);
   const motionStateRef = useRef<MotionState | null>(null);
   const sourceEntries = useRef(new Map<string, SourceEntry>());
+  const retainedImages = useRef(new Set<LoadedCharacterImage>());
+  const ownedImages = useRef(new Set<LoadedCharacterImage>());
+  const imageLifetime = useRef(0);
   const [files, setFiles] = useState<{
     png?: File;
     metadata?: File;
@@ -412,6 +418,42 @@ export function PackPlayer() {
     motionProfile,
   ]);
 
+  // Edited action previews share their base pack's atlas pages. Release only
+  // surfaces no longer used by any displayed, editable, or cached source pack.
+  useEffect(() => {
+    const active = new Set<LoadedCharacterImage>();
+    for (const owner of [
+      pack,
+      editorBasePack,
+      comparisonPack,
+      ...[...sourceEntries.current.values()].map((entry) => entry.pack),
+    ]) {
+      if (owner)
+        for (const image of characterPackImages(owner)) active.add(image);
+    }
+    const retired = [...retainedImages.current].filter(
+      (image) => !active.has(image),
+    );
+    releaseCharacterImages(retired);
+    for (const image of retired) ownedImages.current.delete(image);
+    for (const image of active) ownedImages.current.add(image);
+    retainedImages.current = active;
+  });
+
+  useEffect(() => {
+    const lifetime = ++imageLifetime.current;
+    return () => {
+      // Wait until every drawing effect has stopped. StrictMode immediately
+      // starts a fresh lifetime, so its rehearsal cleanup must not close pages.
+      queueMicrotask(() => {
+        if (imageLifetime.current !== lifetime) return;
+        releaseCharacterImages(ownedImages.current);
+        ownedImages.current.clear();
+        retainedImages.current.clear();
+      });
+    };
+  }, []);
+
   const openPack = useCallback(
     async (
       operation: (signal: AbortSignal) => Promise<LoadedCharacterPack>,
@@ -428,7 +470,12 @@ export function PackPlayer() {
       setError("");
       try {
         const loaded = await operation(controller.signal);
-        if (request !== requestRef.current) return;
+        if (request !== requestRef.current) {
+          releaseCharacterImages(characterPackImages(loaded));
+          return;
+        }
+        for (const image of characterPackImages(loaded))
+          ownedImages.current.add(image);
         elapsedRef.current = 0;
         frameRef.current = -1;
         setFrameId(loaded.manifest.animations.idle.frames[0]);
@@ -579,8 +626,9 @@ export function PackPlayer() {
     setLoadingMessage("Opening and validating your pack…");
     setError("");
     try {
+      const cachedEntry = sourceEntries.current.get(id);
       const entry =
-        sourceEntries.current.get(id) ??
+        cachedEntry ??
         (klingCatalog && isKlingCharacterId(id)
           ? await loadKlingCharacter(
               id,
@@ -591,7 +639,13 @@ export function PackPlayer() {
               catalogVariant,
             )
           : await sourceEntry(sourceBundle!, id));
-      if (request !== requestRef.current) return;
+      if (request !== requestRef.current) {
+        if (!cachedEntry)
+          releaseCharacterImages(characterPackImages(entry.pack));
+        return;
+      }
+      for (const image of characterPackImages(entry.pack))
+        ownedImages.current.add(image);
       sourceEntries.current.set(id, entry);
       if (compare) {
         setComparisonPack(entry.pack);
