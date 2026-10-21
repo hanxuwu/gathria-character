@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { loadPortableCharacterPack } from "../core/pack";
-import { KLING_CHARACTERS } from "./kling-catalog";
+import { KLING_CHARACTERS, KLING_KEYFRAME_CHARACTERS } from "./kling-catalog";
 import { loadKlingCharacter } from "./kling-packs";
 
 vi.mock("../core/pack", () => ({
@@ -51,6 +51,36 @@ describe("prepared Kling loading", () => {
     });
     expect(loadPortableCharacterPack).not.toHaveBeenCalled();
     expect(fetched).toHaveBeenCalledTimes(1);
+  });
+
+  it("loads only an explicitly requested keyframe candidate and keeps its exported archive", async () => {
+    const archive = new Blob([new Uint8Array([4, 5, 6])]);
+    const fetched = vi.fn().mockResolvedValue({
+      ok: true,
+      blob: async () => archive,
+    });
+    vi.stubGlobal("fetch", fetched);
+    const pack = { manifest: { name: "Keyframe loop study" } } as Awaited<
+      ReturnType<typeof loadPortableCharacterPack>
+    >;
+    vi.mocked(loadPortableCharacterPack).mockResolvedValue(pack);
+    const controller = new AbortController();
+    const result = await loadKlingCharacter(
+      "female",
+      controller.signal,
+      undefined,
+      "keyframes",
+    );
+    expect(fetched).toHaveBeenCalledExactlyOnceWith(
+      KLING_KEYFRAME_CHARACTERS[1].packUrl,
+      { signal: controller.signal },
+    );
+    expect(fetched).not.toHaveBeenCalledWith(
+      KLING_CHARACTERS[1].packUrl,
+      expect.anything(),
+    );
+    expect(loadPortableCharacterPack).toHaveBeenCalledExactlyOnceWith(archive);
+    expect(result).toEqual({ pack, archive });
   });
 
   it("rejects a failed download without decoding its error response", async () => {

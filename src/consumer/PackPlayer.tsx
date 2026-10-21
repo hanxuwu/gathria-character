@@ -43,9 +43,10 @@ import {
 } from "./player";
 
 import {
-  KLING_CHARACTERS,
+  klingCharacters,
   isKlingCharacterId,
   type KlingCharacterId,
+  type KlingVariant,
 } from "./kling-catalog";
 import { loadKlingCharacter } from "./kling-packs";
 import { MainNavigation } from "../workspace/MainNavigation";
@@ -59,6 +60,10 @@ export function PackPlayer() {
     new URLSearchParams(window.location.search).get("embedded") === "1";
   const authoring =
     new URLSearchParams(window.location.search).get("authoring") === "1";
+  const requestedVariant: KlingVariant =
+    new URLSearchParams(window.location.search).get("variant") === "keyframes"
+      ? "keyframes"
+      : "original";
   const [editorBasePack, setEditorBasePack] =
     useState<LoadedCharacterPack | null>(null);
   const [authoringBusy, setAuthoringBusy] = useState(false);
@@ -76,6 +81,8 @@ export function PackPlayer() {
   const [busy, setBusy] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
   const [klingCatalog, setKlingCatalog] = useState(false);
+  const [catalogVariant, setCatalogVariant] =
+    useState<KlingVariant>("original");
   const [error, setError] = useState("");
   const [source, setSource] = useState("");
   const [frameId, setFrameId] = useState(0);
@@ -104,8 +111,25 @@ export function PackPlayer() {
   const [canvasWidth, setCanvasWidth] = useState(640);
   const [playbackRevision, setPlaybackRevision] = useState(0);
   const sourceCharacters = klingCatalog
-    ? KLING_CHARACTERS
+    ? klingCharacters(catalogVariant)
     : sourceBundle?.characters;
+  const studyMetadata = pack?.config?.sourceMetadata?.keyframeStudy;
+  const keyframeStudy =
+    !!studyMetadata &&
+    typeof studyMetadata === "object" &&
+    !Array.isArray(studyMetadata) &&
+    studyMetadata.format === "gathria-kling-keyframe-study";
+  const originalCharacterId = isKlingCharacterId(characterId)
+    ? characterId
+    : keyframeStudy &&
+        typeof studyMetadata === "object" &&
+        studyMetadata !== null &&
+        !Array.isArray(studyMetadata) &&
+        isKlingCharacterId(studyMetadata.characterId)
+      ? studyMetadata.characterId
+      : isKlingCharacterId(pack?.config?.characterId)
+        ? pack.config.characterId
+        : null;
   const selectedClip = pack
     ? animationFor(pack.manifest, animation)
     : undefined;
@@ -414,18 +438,26 @@ export function PackPlayer() {
   }
 
   const openKlingExample = useCallback(
-    (id: KlingCharacterId = "male") => {
+    (id: KlingCharacterId = "male", variant: KlingVariant = "original") => {
       let entry: SourceEntry;
       void openPack(
         async (signal) => {
-          entry = await loadKlingCharacter(id, signal, (stage) => {
-            if (!signal.aborted) setLoadingMessage(stage);
-          });
+          entry = await loadKlingCharacter(
+            id,
+            signal,
+            (stage) => {
+              if (!signal.aborted) setLoadingMessage(stage);
+            },
+            variant,
+          );
           return entry.pack;
         },
-        "Kling original-video character · prepared pack",
+        variant === "keyframes"
+          ? "Kling keyframe loop study · review candidate"
+          : "Kling original-video character · prepared pack",
         () => {
           setKlingCatalog(true);
+          setCatalogVariant(variant);
           setCharacterId(id);
           setDownloadPack(entry.archive);
           sourceEntries.current.set(id, entry);
@@ -438,7 +470,7 @@ export function PackPlayer() {
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("kling");
     const start = window.setTimeout(() => {
-      if (isKlingCharacterId(id)) openKlingExample(id);
+      if (isKlingCharacterId(id)) openKlingExample(id, requestedVariant);
     }, 0);
     return () => {
       window.clearTimeout(start);
@@ -446,7 +478,7 @@ export function PackPlayer() {
       pendingFetchRef.current?.abort();
       sourceEntries.current.clear();
     };
-  }, [openKlingExample]);
+  }, [openKlingExample, requestedVariant]);
 
   function retainSourceEntries(ids: string[]) {
     for (const id of sourceEntries.current.keys())
@@ -466,9 +498,14 @@ export function PackPlayer() {
       const entry =
         sourceEntries.current.get(id) ??
         (klingCatalog && isKlingCharacterId(id)
-          ? await loadKlingCharacter(id, controller.signal, (stage) => {
-              if (!controller.signal.aborted) setLoadingMessage(stage);
-            })
+          ? await loadKlingCharacter(
+              id,
+              controller.signal,
+              (stage) => {
+                if (!controller.signal.aborted) setLoadingMessage(stage);
+              },
+              catalogVariant,
+            )
           : await sourceEntry(sourceBundle!, id));
       if (request !== requestRef.current) return;
       sourceEntries.current.set(id, entry);
@@ -795,13 +832,32 @@ export function PackPlayer() {
                   <strong>
                     {modifiedActions
                       ? "Original artwork · edited action settings"
-                      : "Original artwork · baked playback"}
+                      : keyframeStudy
+                        ? "Original artwork · keyframe loop study"
+                        : "Original artwork · baked playback"}
                   </strong>
                   <br />
                   These frames preserve the supplied character artwork.
                   Clothing, colors and expressions are part of the image and
                   cannot be edited separately.
                 </p>
+                {keyframeStudy && (
+                  <p data-testid="keyframe-study-note">
+                    <strong>Keyframe loop study · review candidate.</strong>{" "}
+                    This preset repeats all five actions. Jump is a repeated hop
+                    that lands in a crouch; the original full jump stays a
+                    one-shot. Original frame pixels are unchanged. Loop quality
+                    remains under review.
+                    {originalCharacterId && (
+                      <>
+                        {" "}
+                        <a href={`/player.html?kling=${originalCharacterId}`}>
+                          Open original playback
+                        </a>
+                      </>
+                    )}
+                  </p>
+                )}
                 {sourceCharacters && (
                   <div className="player-source-selection">
                     <label htmlFor="player-character">
@@ -854,12 +910,14 @@ export function PackPlayer() {
                     onClick={() =>
                       downloadBlob(
                         downloadPack,
-                        `${characterId || "baked-character"}.character.zip`,
+                        `${characterId || "baked-character"}${keyframeStudy ? "-keyframes" : ""}.character.zip`,
                       )
                     }
                   >
                     {authoring
-                      ? "Export original CharacterPack"
+                      ? keyframeStudy
+                        ? "Export source CharacterPack"
+                        : "Export original CharacterPack"
                       : "Export selected CharacterPack"}
                   </button>
                 )}

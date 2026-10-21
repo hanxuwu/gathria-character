@@ -24,6 +24,19 @@ holds its landing. Left-facing output mirrors the original right-facing images.
 Any motion softness, source-pose drift or matte fringe in those images belongs
 to the retained extraction and is not claimed to be newly corrected.
 
+## Separate keyframe loop candidates
+
+[Selection record](../artwork/kling-keyframes/README.md) and
+[review exports](kling-keyframes/README.md) retain 52 distinct drawings per
+character from the existing five-action packs. No new art, extraction,
+interpolation, recentering or skeletal deformation is used. The compact V2
+atlas is re-encoded, but every selected native RGBA frame matches its source
+exactly; original frame IDs, video mapping and anchor remain intact.
+Repeated IDs encode explicit holds at 24 FPS. Jump is a separately labeled
+crouch-to-crouch repeated hop, not the original full one-shot. Original packs
+remain unchanged. Both candidate ZIPs contain source hashes, selection and
+timing provenance, including the remaining source blur and clipping.
+
 ## Native male skeletal candidate
 
 The visible reference is the exact approved transparent 704×1056 male frame.

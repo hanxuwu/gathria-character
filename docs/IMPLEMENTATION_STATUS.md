@@ -1,7 +1,7 @@
 # Implementation status
 
-Current batch: **Original sprite action authoring**, based on `d583cda` from
-the female native candidate in PR #22, branch `feat/kling-sprite-actions`.
+Current batch: **Kling keyframe loop candidates**, based on `0702235` from
+the sprite action work in PR #23, branch `feat/kling-loop-keyframes`.
 
 The primary workflow uses the two original Kling characters' own sprite frames.
 The two registered skeletal candidates remain optional. Original playback is the
@@ -11,6 +11,10 @@ timing without changing any source PNG bytes.
 
 Implemented:
 
+- Separate male/female keyframe loop candidates with 52 distinct source drawings
+  each, explicit pose holds, all five repeating actions and existing V2 export.
+  Jump is a repeated crouched hop; the original remains a full one-shot. A visible
+  review link opens the candidates without replacing default playback or art.
 - Original male/female idle, walk, run, jump and celebrate, comparison and V3 export.
 - Sprite action workspace: frame stepping, first/last frame inspection,
   contiguous range selection, FPS and loop settings, undo/reset, self-contained
@@ -22,12 +26,13 @@ Implemented:
   editing sessions. Loaded project identity follows imports in both editor and
   outer workbench.
 - Independent V2/V3 and Kling source ZIP loading, local validation and HTTP SHA fallback.
-- Current verification and actual UI evidence are recorded in the
-  [sprite actions review](sprite-actions/README.md). Historical female-candidate
-  counts (113 unit tests and 17 Chromium E2E tests) describe the previous batch.
+- Current verification: 120 unit tests, build/typecheck and all 25 Chromium E2E
+  tests passed. Actual candidate export/save/reopen and 20 independent looping
+  cases are recorded in the [keyframe review](KLING_KEYFRAMES_REVIEW.md).
+  Older sprite-action and female-candidate counts describe their own batches.
 
 Not implemented: sprite redraw/interpolation, arbitrary frame reordering,
-per-frame durations or alignment, interchangeable outfits/expressions, complete
+interactive per-frame hold editing or alignment, interchangeable outfits/expressions, complete
 skeletal animation cycles, independent wrist controls, or production game integration. Existing
 shoulder/shorts deformation limits and female hidden-paint shading differences
 remain visible and documented. Technical success is not user visual acceptance.
@@ -36,6 +41,7 @@ Non-Kling characters, old skin/identity/wardrobe authoring, unrelated labs and
 earlier redrawn mother studies were removed in the previous cleanup. They remain
 recoverable from Git history; this batch does not reintroduce them.
 
+[Keyframe loops and visual limits](KLING_KEYFRAMES_REVIEW.md) ·
 [Sprite actions and persistence contract](SPRITE_ACTIONS_REVIEW.md) ·
 [Female review and verification](KLING_FEMALE_NATIVE_REVIEW.md) ·
 [Female actual exports and downloads](kling-native-female/README.md) ·

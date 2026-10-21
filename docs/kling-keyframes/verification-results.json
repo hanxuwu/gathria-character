@@ -1,0 +1,108 @@
+{
+  "format": "gathria-kling-keyframe-verification",
+  "version": 1,
+  "recordedAtUtc": "2026-10-21T03:23:53.651391+00:00",
+  "baselineCommit": "070223559bb15db879a099f2f960a1f9ea20aa6b",
+  "branch": "feat/kling-loop-keyframes",
+  "passed": true,
+  "commands": [
+    {
+      "command": "npm test",
+      "passed": true,
+      "tests": 120,
+      "files": 9,
+      "log": "logs/unit.log"
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "includes": "tsc -b and vite build",
+      "log": "logs/build.log"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 25,
+      "log": "logs/e2e.log"
+    },
+    {
+      "command": "python3 -m py_compile scripts/compile-kling-keyframes.py scripts/render-kling-keyframes.py",
+      "passed": true
+    }
+  ],
+  "compiler": {
+    "report": "exports/compilation-report.json",
+    "sourceRgbaFramesChecked": 104,
+    "distinctFramesPerCharacter": 52,
+    "zipCrcAndPngDecode": true,
+    "reproducibility": [
+      {
+        "file": "exports/male.character.zip",
+        "sha256": "92c3f1b2cfd316ba83f2b3e1b3bd8371b105415a4f2c667b8675bec972ae5500",
+        "recompiledBytesIdentical": true
+      },
+      {
+        "file": "exports/female.character.zip",
+        "sha256": "75adf7fee4aa3887a96fa55de04717f308ccf5c975426912a785325668a9d340",
+        "recompiledBytesIdentical": true
+      },
+      {
+        "file": "exports/compilation-report.json",
+        "sha256": "db7c545179a270978c4ca2355644e8c41dfc937d7aea1bd88432da4a8d16a364",
+        "recompiledBytesIdentical": true
+      }
+    ]
+  },
+  "comparisons": {
+    "report": "review/media-validation.json",
+    "gifs": 20,
+    "pngs": 12,
+    "decodeHashesFramesDurationsLoopsVerified": true,
+    "gifLimit": "Palette-limited 0.5x presentation. Centisecond timing differs by at most 5 ms per cycle; CharacterPack 24 Hz timing remains authoritative."
+  },
+  "browser": {
+    "report": "browser/evidence-index.json",
+    "log": "logs/browser.log",
+    "uiDownloadedArchives": 10,
+    "independentCases": 20,
+    "decodedPngs": 24,
+    "wrapsPerCase": 2,
+    "inspectionSpeed": 0.5,
+    "maxObservedCycleErrorMs": 12.400000005960464,
+    "originalDefaultsAndOneShotPreserved": true,
+    "inputHashesRechecked": true,
+    "authoringContextClosedBeforeIndependentPlayback": true
+  },
+  "sourcePreservation": {
+    "report": "source-preservation.json",
+    "protectedFiles": 506,
+    "changedFiles": 0
+  },
+  "visualReview": {
+    "status": "candidate-awaiting-user-review",
+    "reviewed": [
+      "native original-vs-candidate jump wrap boards",
+      "male/female source motion-phase contact sheets",
+      "selected keyframe boards",
+      "actual continuous browser wrap observations in both directions"
+    ],
+    "decisions": [
+      "Phase-based chronological selection with explicit holds, not uniform deletion",
+      "Retain real jump apex instead of omitting all clipped apex frames",
+      "Separate repeated hop from unchanged original upright-recovery one-shot"
+    ],
+    "remainingLimits": [
+      "Slight arm/torso mismatch at repeated-hop seam",
+      "Original motion blur and walk torso-angle drift",
+      "Small source scalp clipping at jump apex",
+      "Held poses appear more stepped than full source playback",
+      "Male/female hop periods differ; not phase-synchronized",
+      "Clothing/face remain baked into complete-character images"
+    ]
+  },
+  "peerReview": {
+    "readOnly": true,
+    "blockingFindings": 0,
+    "checked": "Selection/source hashes, expanded hold timelines, sparse IDs, chronological starts, metadata mappings, archive CRC, media hashes, GIF timing and V2 bounds"
+  }
+}
