@@ -1,0 +1,163 @@
+{
+  "frames": 88,
+  "landmarksPerFrame": 17,
+  "decodedNativeBinaryMasks": 616,
+  "registrationSha256": "7b49caa860b56b88256ae7c9d8c299812b0974e82f54a377558522ba62ff16c1",
+  "registrationBytes": 340639,
+  "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+  "protectedGarmentPolygonIntersections": [],
+  "emptyOccludedHandMasks": [
+    [
+      37,
+      "farHand"
+    ],
+    [
+      39,
+      "farHand"
+    ],
+    [
+      40,
+      "farHand"
+    ],
+    [
+      42,
+      "farHand"
+    ],
+    [
+      43,
+      "farHand"
+    ],
+    [
+      45,
+      "farHand"
+    ],
+    [
+      46,
+      "farHand"
+    ],
+    [
+      48,
+      "farHand"
+    ],
+    [
+      56,
+      "farHand"
+    ],
+    [
+      57,
+      "farHand"
+    ],
+    [
+      61,
+      "farHand"
+    ],
+    [
+      62,
+      "farHand"
+    ]
+  ],
+  "verified": {
+    "sourceZipHash": true,
+    "exactSourceFrameCoverage": true,
+    "originalVideoFrameMappings": true,
+    "finiteInBoundsLandmarks": true,
+    "native704x1056BinaryMasks": true,
+    "everyVisibleWristHasHandProtection": true,
+    "noGarmentPixelsProtectedAsBody": true,
+    "crossedArm062HemOwnedByTank": true,
+    "all88SourceCropsExactRgba": true,
+    "semanticMasksMutuallyExclusive": true,
+    "everySourceVisiblePixelHasOneSemanticOwner": true,
+    "semanticMasksWithinSourceAlpha": true,
+    "reviewedShoeAndClothPixelProbes": true,
+    "protectedSkinPixelPreserved": true,
+    "registrationUnchangedAfterSemanticRefinement": true
+  },
+  "visualAcceptance": "authoring proposals only; future garment-specific visual review required",
+  "semanticAudit": {
+    "exactSourceCrops": 88,
+    "semanticOverlapPixels": 0,
+    "unclassifiedVisiblePixels": [],
+    "outsideSourcePixels": 0
+  },
+  "maskInventorySha256": "de16af8c13416fddb7c162ac4e28e5eeb1b971b58e2c33aa2acbfbc01adf89c6",
+  "reviewedSemanticCorrections": {
+    "frames": [
+      51,
+      52,
+      54,
+      55,
+      56,
+      57,
+      59,
+      64,
+      65,
+      95,
+      96,
+      97,
+      98
+    ],
+    "pixelRegressionProbes": [
+      {
+        "frameId": 56,
+        "x": 335,
+        "y": 885,
+        "region": "shoes",
+        "description": "Hidden rear shoe pale upper"
+      },
+      {
+        "frameId": 64,
+        "x": 275,
+        "y": 869,
+        "region": "shoes",
+        "description": "Foreground shoe pink side shading"
+      },
+      {
+        "frameId": 64,
+        "x": 351,
+        "y": 889,
+        "region": "shoes",
+        "description": "Foreground shoe warm collar"
+      },
+      {
+        "frameId": 64,
+        "x": 300,
+        "y": 689,
+        "region": "tank",
+        "description": "Visible cloth beside forearm outside hand protection"
+      },
+      {
+        "frameId": 64,
+        "x": 290,
+        "y": 691,
+        "region": "skin",
+        "description": "Actual protected forearm shading must stay skin"
+      },
+      {
+        "frameId": 65,
+        "x": 190,
+        "y": 919,
+        "region": "shoes",
+        "description": "Warm rear heel fragment"
+      },
+      {
+        "frameId": 98,
+        "x": 361,
+        "y": 750,
+        "region": "shoes",
+        "description": "Airborne shoe pink heel shading"
+      }
+    ],
+    "sourceZipHashVerified": true,
+    "correctedFramesMatchOriginalRgba": true,
+    "registrationUnchanged": true
+  },
+  "toolVersions": {
+    "CPython": "3.12.14",
+    "Pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "opencv-python-headless": "5.0.0.93",
+    "cv2": "5.0.0"
+  }
+}

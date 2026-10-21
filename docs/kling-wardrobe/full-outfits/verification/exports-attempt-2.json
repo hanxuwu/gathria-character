@@ -1,0 +1,808 @@
+{
+  "format": "gathria-kling-full-outfits-export-verification",
+  "version": 1,
+  "startedAt": "2026-10-21T20:19:28.447Z",
+  "captureRun": "",
+  "baselineCommit": "881c7a28957a405b26d0fd29bdbfb9f42df4993f",
+  "scope": "Four actual UI CharacterPack/project downloads, every decoded RGBA atlas pixel, current source-bound protection, native PNG and mixed-outfit exports. Technical verification is separate from visual acceptance.",
+  "preservedFiles": [
+    {
+      "file": "docs/kling-motion/exports/female.character.zip",
+      "bytes": 24565426,
+      "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23"
+    },
+    {
+      "file": "docs/kling-motion/exports/male.character.zip",
+      "bytes": 22641075,
+      "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-day.character.zip",
+      "bytes": 29198409,
+      "sha256": "7733906d72119c9317b3c771df22c85b67e6c5cc86a1cfbea572fc9608efa9d7"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-day.wardrobe.zip",
+      "bytes": 32286996,
+      "sha256": "153e707df03f14c3ee0bfae2c031f484d8566a8ad48a170bb30938b6102cf835"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-wedding.character.zip",
+      "bytes": 29384644,
+      "sha256": "29af91e75e7daf03eb487a01310a573ea1c03d6bdaea55f42253e7088df6aa5f"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-wedding.wardrobe.zip",
+      "bytes": 41014934,
+      "sha256": "7758b3e0bb6bec21763cb94b57f55613740cd043ae0e526b796e4f9358092f9d"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-day.character.zip",
+      "bytes": 25287278,
+      "sha256": "175fda2f6f1ddc00d1320e2b92daa003744141fb95a7eebf27710954b200a75a"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-day.wardrobe.zip",
+      "bytes": 26368310,
+      "sha256": "2156ee7a624b5c1998d4b7becdd072318183e364df385267a6a97c6ec9c36c29"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-wedding.character.zip",
+      "bytes": 25304549,
+      "sha256": "37bebcaa1b6efc432c59b957679e69ceb059f51a90cb72fcf5f059bd74494c85"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-wedding.wardrobe.zip",
+      "bytes": 32031402,
+      "sha256": "8aee56bed9fe6cca568025ddcefc3e43c8e210170af30cf8ff1d7074f6d45c9e"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day.character.zip",
+      "bytes": 29611666,
+      "sha256": "b70f6826d63d21a0ab28c911b602d37979798c28598525fb97edd6b75b8d7694"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day.wardrobe.zip",
+      "bytes": 48982410,
+      "sha256": "47b5c1ab0242a5114fc9bec69106413bf18c39ebe8a4319dd609bff9177f59eb"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding.character.zip",
+      "bytes": 30106451,
+      "sha256": "242182d43e34854295c20677d126b3c1ff448c08f2d4f49e8c59108c28a156a8"
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding.wardrobe.zip",
+      "bytes": 60490704,
+      "sha256": "e98476e5631ef9cea7e18a60efea20592a51ad754e773136d5f0302e2bdf05bd"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/brown-shoes.zip",
+      "bytes": 2249345,
+      "sha256": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress-v2.zip",
+      "bytes": 7967333,
+      "sha256": "85142e0a840d256748a3e675131506f65097fcaae77b6843417041a674cd8a37"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress.zip",
+      "bytes": 7661514,
+      "sha256": "fae154e975eed157f30451936913d8339585012091b07f23944470704472b400"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v2.zip",
+      "bytes": 9258663,
+      "sha256": "6e53bdb3e1ab4045536a1c619c42fb177b826974f4dc565a827a36c3bf5c57d7"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress.zip",
+      "bytes": 8727784,
+      "sha256": "ec50681fdf5a7fc1c41e08c22f4f0adf1de683f52ade3721380e33e46e641a9d"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/navy-shorts.zip",
+      "bytes": 1429702,
+      "sha256": "443069207301deb7f920f897d9fadc18b441cb6f20dfa8f2f5c1e5370188bb85"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/navy-waistcoat.zip",
+      "bytes": 2297040,
+      "sha256": "b5ab6f95830f381e26560def9e7654396ed336bbebb1115aa9e0c107d237a997"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ochre-shorts.zip",
+      "bytes": 1675358,
+      "sha256": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/teal-top.zip",
+      "bytes": 2180841,
+      "sha256": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/brown-shoes.zip",
+      "bytes": 1968859,
+      "sha256": "6f8a8142748e673ec346c34c09f25bbd6521ca661637b752c2f3f09bc19527f2"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-shorts.zip",
+      "bytes": 1441020,
+      "sha256": "29cc0af0c14197438b978c07493926e1c465d593edafee0352cec5836c4dc596"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/navy-waistcoat.zip",
+      "bytes": 2252780,
+      "sha256": "1efeeb4244309b96635aff7f318fa11637c5336ab0888798c9ad6c69a5ce88de"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/ochre-shorts.zip",
+      "bytes": 1683700,
+      "sha256": "0a4639754d877b25a74b63d76f0ffa983844d6164df664c02efbfa198137c6aa"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/teal-top.zip",
+      "bytes": 1993253,
+      "sha256": "855b6666c829076b715c5cf89df3e1485a8cbe62f1a3b3e6f5cda7bfd586a30a"
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/female.json",
+      "bytes": 465066,
+      "sha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953"
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/male.json",
+      "bytes": 340639,
+      "sha256": "7b49caa860b56b88256ae7c9d8c299812b0974e82f54a377558522ba62ff16c1"
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/female.wardrobe-template.zip",
+      "bytes": 27675089,
+      "sha256": "bef7e79eccb85e1a83c951b372adb0d5904563bdac451a75519be605ca4ec5c6"
+    },
+    {
+      "file": "docs/kling-wardrobe/templates/male.wardrobe-template.zip",
+      "bytes": 24375731,
+      "sha256": "60c3d4c1e0cb487f59ca07fb65ed34e755e1eada11ffe26ebcc4da53f48f190f"
+    }
+  ],
+  "exports": [
+    {
+      "character": "male",
+      "look": "day",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-day.character.zip",
+        "bytes": 27774677,
+        "sha256": "a8d377c6e336384b5f435469207c059043bfda872c8fc3809c17d9a3f8f6efaa"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-day.wardrobe.zip",
+        "bytes": 32462983,
+        "sha256": "f3bbf4687caa98524c3ace2171d7562bd4275b59e6e3c42aa110c71f2bfd2070"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 88,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "0cac8cff9be73303a010ed7cf1c504157d89ec83818856e1b1871bb49002e065",
+          "rgbaSha256": "6c721d98f50539e87981ff38ca5ef886461aadf413458b2cc36ae66aa52d74e4",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "2a4f629a6a26108077638afe879ce904cab4f3421d6450dc37a8f7fc435b69ee",
+          "rgbaSha256": "a41263f8e7faf66601582fdbdbeb5986214baa7300b2e66d79dab061924fae0d",
+          "fullPagePixelsExact": true
+        }
+      ]
+    },
+    {
+      "character": "male",
+      "look": "wedding",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding.character.zip",
+        "bytes": 26094877,
+        "sha256": "6e59e6c185acffaa690f222b75b1d535aaeab57a37459660adc9f3edce86ef72"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding.wardrobe.zip",
+        "bytes": 44787799,
+        "sha256": "042cfc3d1a0da97325d527db4652855ae0b107648a729a37139b545dbb43f89e"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 88,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "90b92f5644ce2cae3b65dff6c5e40e3227d3af53f79e32aa5d8878cdd9207101",
+          "rgbaSha256": "ec9d188dcfe56e8b1a3f5ea71c9d1ddd109b0eccd6e7462d6b3084d8787a4f0a",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 5280,
+          "pngSha256": "37d528605b79cb1a14d2bce92c76dfcb58a98a8dd0baf21387f5ca67a8d11d7b",
+          "rgbaSha256": "4a7b71d296e7767006a9c7c49d3a233e4899a5bc1bb39cacf5e4fcdd0d8b0217",
+          "fullPagePixelsExact": true
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "look": "day",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-day.character.zip",
+        "bytes": 29602746,
+        "sha256": "2211d147bf502472669b622943a97f8e5fc8a7291ea99dc3518380886002327b"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-day.wardrobe.zip",
+        "bytes": 32582458,
+        "sha256": "0fc4770f9d0b7b5b84602f45cf92a235dbc6ee5a18f952b75dec8751c3e54c3f"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 96,
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "coral-daydress-v3",
+        "shoes": null
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "2af8b9717fb0fb816556f0a6c00e320e6b8853c9f564d6b4caa2ab8cd3f675e1",
+          "rgbaSha256": "4a0bf6f6223028d54c8ce12653445b8b88072302a9f360a571a3eb21305c9d5e",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "29eb689133a6c3f2fc2c677e0d392076e736e1ea50fb0504aa23dd1820bebba0",
+          "rgbaSha256": "37ef1d96d85f21f3ea67d9ff6d4b2837f886c239e8d16d4cb37e7bf1c4c9c28d",
+          "fullPagePixelsExact": true
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "look": "wedding",
+      "pack": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding.character.zip",
+        "bytes": 30098815,
+        "sha256": "fb5b89467f2529132920f0ca28646057a0dfe9fbae9f46804f63a43cf42a8a6d"
+      },
+      "project": {
+        "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding.wardrobe.zip",
+        "bytes": 41831663,
+        "sha256": "ebddc916e487a61be5222aa52a9115f7e604430afc8c9e1d4f84ba7fe6a49b89"
+      },
+      "sourceEmbeddedExact": true,
+      "currentRegistrationExact": true,
+      "sourceMetadataExact": true,
+      "sourcePoses": 96,
+      "selection": {
+        "top": null,
+        "bottom": null,
+        "fullBody": "ivory-wedding-dress-v3",
+        "shoes": null
+      },
+      "pages": [
+        {
+          "page": 0,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "f5c410d7de3487586605e52a94394ec7a7689596d8658154da984834cd93f087",
+          "rgbaSha256": "9f794217d27cb678cc5f042459d6084fac6fc89b97d04e332115e6a53b0c444d",
+          "fullPagePixelsExact": true
+        },
+        {
+          "page": 1,
+          "width": 6336,
+          "height": 6336,
+          "pngSha256": "9c5766d515c2813703bb75e13ccd817b8768f3f51a497c848aa2b440dceab79d",
+          "rgbaSha256": "65e53af52a8b58666508ffca234cbebde92d5759dd7b1c282f2eb89da61dcb26",
+          "fullPagePixelsExact": true
+        }
+      ]
+    }
+  ],
+  "nativePngs": [
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-0.png",
+      "bytes": 342161,
+      "sha256": "5d9bb468ee0ad37d53a2383b7dd9a7e24e2c7584757382de865fca5cf0e42952",
+      "character": "male",
+      "look": "day",
+      "frameId": 0,
+      "rgbaSha256": "8b7638e79b837802f86b11c5eee9993a93f1a45e70f8b484d8d466fc34d05d74",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-28.png",
+      "bytes": 357732,
+      "sha256": "38c0c7aefda2ed365da7648d7026ffc3ceb19a5c821ff678cf1812da47c7a066",
+      "character": "male",
+      "look": "day",
+      "frameId": 28,
+      "rgbaSha256": "698d0e1a0200244a127fc66b6c2d07659b77ffc27d3dc3a5e0cbc37cda4c2ee9",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-51.png",
+      "bytes": 361775,
+      "sha256": "01b457faee0e4d242000dcb3dba5ad3ee50c89b83bcb297eb08460a33ac5d736",
+      "character": "male",
+      "look": "day",
+      "frameId": 51,
+      "rgbaSha256": "62d47832cc882e2cc32d033e5d40895f494627a206932fea9027874041a8a366",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-58.png",
+      "bytes": 320336,
+      "sha256": "f86d19175de371807d9e771716b4477a3384e7b52885ace0a3809410663ac43f",
+      "character": "male",
+      "look": "day",
+      "frameId": 58,
+      "rgbaSha256": "18eece19978251221dd8022eb4647322a44cf90653f944327c94c024157aeeb5",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-62.png",
+      "bytes": 291421,
+      "sha256": "018eebb3b41d5d5804677f46f2ac54b781e1f51a2314ab6843a43e42e3c53c53",
+      "character": "male",
+      "look": "day",
+      "frameId": 62,
+      "rgbaSha256": "05d6048a759bc3e427075806ef9b0b5e82ef91ee4bf9414617b59a5eeada93dd",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-64.png",
+      "bytes": 298749,
+      "sha256": "9ff5561fd153bf98988fbfb88542df82610e9ec1f80d657e05f03d51ea45b9e3",
+      "character": "male",
+      "look": "day",
+      "frameId": 64,
+      "rgbaSha256": "dc84a11ba6e41eb2ba8a2b6f61c362d63ca0d312a7c113f1d04590eee7c5f072",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-74.png",
+      "bytes": 357043,
+      "sha256": "766f09623d845c526b402b2e896ecc0a8717a976a6fc71b4a887ab116424c3fd",
+      "character": "male",
+      "look": "day",
+      "frameId": 74,
+      "rgbaSha256": "750b05aa8b8a9170e28fe202b25f1f53a11492e8be39529697a39fd5520689c6",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-87.png",
+      "bytes": 286619,
+      "sha256": "a0a76600dd0bd224c57864a4541c8322f4c1d92d23cffe6f76f90d7e6fb83e32",
+      "character": "male",
+      "look": "day",
+      "frameId": 87,
+      "rgbaSha256": "4c515adcee7790f70a83a60bc7bfc1f238eb8e651ef572899cb9aa18d61ad184",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-96.png",
+      "bytes": 337627,
+      "sha256": "df69de55d2f7991a9e9c9d4e50c23017df9bd18c67ed30eb2aa7b830f3d67f3c",
+      "character": "male",
+      "look": "day",
+      "frameId": 96,
+      "rgbaSha256": "ee0c56a6a895f9aeb4623693123ee759bc784f027c4377ae65b755651dce9b40",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-104.png",
+      "bytes": 289122,
+      "sha256": "c34bda2f5c9d04e4f678582f7813b2f0ae7ace9c426f80501205798e4095e0d6",
+      "character": "male",
+      "look": "day",
+      "frameId": 104,
+      "rgbaSha256": "2db780ab56afd2773ae0070382e7a5ee2635bea9613f2d1a836946317909936e",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-frame-121.png",
+      "bytes": 348340,
+      "sha256": "0251e21d0a42087f7952612273997b38b5dcd7ee28b95ff6d37357d5017716e7",
+      "character": "male",
+      "look": "day",
+      "frameId": 121,
+      "rgbaSha256": "9594702bbe87b94c5a87cd8325aa46ae892880a09c8affba36339896119cdf97",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-0.png",
+      "bytes": 320948,
+      "sha256": "820f789a27d2b317d4411def70b3c495fbb9bbd5189e8b55c988caf50bc2a58b",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 0,
+      "rgbaSha256": "2fcf7b453ba2658f06b99e47028f405d0e650aa27dde7b62c1fe3e1e5cf43968",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-28.png",
+      "bytes": 338152,
+      "sha256": "18c3dc7ac52d937b6a4be5fa9d1629d81ff739b82d884cc39f4b5188e427eaf0",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 28,
+      "rgbaSha256": "82f2956285d8d6970630de4d49ca3752c023cd0c1497145b5d8363fae694c05f",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-51.png",
+      "bytes": 338123,
+      "sha256": "be104c31eaddb989eefb707c7a48ab1e63342bcf07604304732f9aa6864a26d4",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 51,
+      "rgbaSha256": "0ddfb072b103041ef0bef1ff67fc914328f3dad4a33fc3da9b51b0adc5c771ca",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-58.png",
+      "bytes": 293923,
+      "sha256": "f306f9ead925f74a7052a9a1bf40e0960287bfb68ac804bbd626f17ad5a057a7",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 58,
+      "rgbaSha256": "a14060ac4d4757e26d4e19bf606ea1d1a2301ebfc831750b34e21f9f19894055",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-62.png",
+      "bytes": 270808,
+      "sha256": "888934adb73c8a540979bb35d92df9f818a71f69b04629b207ca36aa18651efb",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 62,
+      "rgbaSha256": "af69e2632efd917a8d5cbabaf29aa7751151cb6d9991a4047e2c8ea16e549732",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-64.png",
+      "bytes": 289560,
+      "sha256": "9d1ee6121cbefd03755c8e39699df47d37f06bb258f86c675752fc819c3dffdb",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 64,
+      "rgbaSha256": "2147a7a490ff2ccff275000cd0377827cba59ca248741cd9ba19e8874ea56495",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-74.png",
+      "bytes": 337918,
+      "sha256": "51e23f0955b2d1a6fe481ed44579a3b7ba6543644856697a40b0a34d67bbfb0e",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 74,
+      "rgbaSha256": "d90f4e4dee241b525afbc4da03941a29a36d725e47d432022103481948cc16c4",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-87.png",
+      "bytes": 265682,
+      "sha256": "841edc5765dd8748cf693e7c02d11eccb76c00d11aa34a851cbb0428847733d1",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 87,
+      "rgbaSha256": "7faee5ffc88fb2ef21fd3091e27c15d21365e0b93838b0de291e491f8d367d0c",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-96.png",
+      "bytes": 316695,
+      "sha256": "f73544e1bb1f74e83f844788e972fe47f3b336eaa9016e29031ec1e38f5ab9b4",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 96,
+      "rgbaSha256": "be9066f5316db94c0699f5c92e95c4a383781d42f301abb89462b752590a38c4",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-104.png",
+      "bytes": 266836,
+      "sha256": "c69e9a902fc16729ca1f3de5ec777ceb3c5296c8662fc40e28b8d79d6f090ddc",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 104,
+      "rgbaSha256": "3606f82e336b66d75c5af891aba15e992903b82ceed97c77fbfc0143d9896a2f",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-frame-121.png",
+      "bytes": 327806,
+      "sha256": "54629b4fe56b0ab8d8fa88a64e14547143de8cf9fb486e4bd810d56ea45dc972",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 121,
+      "rgbaSha256": "c11941aaacfeafa2c7f9e3f06a34a2e69a91ba33b4b77080c714dfd165b0ffe6",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-frame-58.png",
+      "bytes": 304922,
+      "sha256": "ee47c8bb288f60952816ccc27552e7f36bce4f009301fead871d70377a316445",
+      "character": "female",
+      "look": "day",
+      "frameId": 58,
+      "rgbaSha256": "0b4cb02af6321b3c0fa2fbb005eb0fef033005582988772f64aab9b12b77bc26",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-frame-89.png",
+      "bytes": 290956,
+      "sha256": "064542a6d8e38638cd838f2e8041cf1a6a31471ad39c8a674cf89fbed022fd29",
+      "character": "female",
+      "look": "day",
+      "frameId": 89,
+      "rgbaSha256": "e8fe0d296849e731dae40097c3ad47139cc9ea67dcb1bc90599d4829728289ac",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-frame-104.png",
+      "bytes": 288164,
+      "sha256": "508a4a88a862af11bf377bfc36b33cf7e3a269f439a0d12df77505448bfc4518",
+      "character": "female",
+      "look": "day",
+      "frameId": 104,
+      "rgbaSha256": "07b160b868eb6d87dbdb18c8a01ba882306e4ec8e3846c2b0e6313445b8a2ec5",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-58.png",
+      "bytes": 310465,
+      "sha256": "4b429e28cc1166285b0d65d731ba7e9082d632eda67251156b8d85fc12c9e848",
+      "character": "female",
+      "look": "wedding",
+      "frameId": 58,
+      "rgbaSha256": "61b54e4f62cdd455beb95240825db171a02ac2fd11fa867e9594b01f5e7dc75c",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-89.png",
+      "bytes": 285884,
+      "sha256": "b9b61b7a14db0757c10e8ebb01fac38f1dc9669b10bd0e8578e225e7cb1ebf1f",
+      "character": "female",
+      "look": "wedding",
+      "frameId": 89,
+      "rgbaSha256": "09334c67b6c1d54ff15c531c9f2a8bfc3bf40c45a2d521276b76241569d619af",
+      "exactPackAndProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-frame-104.png",
+      "bytes": 284447,
+      "sha256": "d8448c947025ee97d7900023fbc1a1de292cd3ca10c819fb62b2153f2679d53c",
+      "character": "female",
+      "look": "wedding",
+      "frameId": 104,
+      "rgbaSha256": "3312868d522ef51c38e382432a97077775ef9e527281d010a765e79fff76f89c",
+      "exactPackAndProjectPixels": true
+    }
+  ],
+  "mixedPngs": [
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-mixed-frame-58.png",
+      "bytes": 290735,
+      "sha256": "bcb2516a5c1cd137f09da37db047f5efe505871ee9d6f6c6ab0d1f5f78bb3d8c",
+      "character": "male",
+      "look": "day",
+      "frameId": 58,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "rgbaSha256": "1a1333d9bc46e3f8842da11d158961ee4aabf9e57dd5eab0e5d4d821bb7fa5f4",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-mixed-frame-74.png",
+      "bytes": 325705,
+      "sha256": "5f892704c65ee61c3c60da246d36089fe0d8754c4815225d87d9b083ad7fceab",
+      "character": "male",
+      "look": "day",
+      "frameId": 74,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "rgbaSha256": "3fb3fdc9d9abf70b75dd07ee32a32f20701a3d5b2925ca05191e3362848b4a88",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-mixed-frame-104.png",
+      "bytes": 264592,
+      "sha256": "e1b13d70a8b83757e3ee8d4002e9d54ace82c36812110535f3c50ae03f87d114",
+      "character": "male",
+      "look": "day",
+      "frameId": 104,
+      "selection": {
+        "top": "teal-camp-shirt-v1",
+        "bottom": "navy-suit-trousers-v1",
+        "fullBody": null,
+        "shoes": "brown-shoes"
+      },
+      "rgbaSha256": "60039b3ae0e6dcf68df5496aeab79b6849e0f901c396fe66fe13859afc6a2f36",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-mixed-frame-58.png",
+      "bytes": 320880,
+      "sha256": "a5d5a0a75c1c6926a41869854f4b96ba56874837e4973fb03baed1bfec545199",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 58,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "rgbaSha256": "55b60d8725c2cecbd7754dd7ff9245bdfcab5fc336f85c61426bb687c67f156f",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-mixed-frame-74.png",
+      "bytes": 367560,
+      "sha256": "087180e6f8b19bc79e22084bc58ed9e1a13db7d73759e00bf4a73c8e19fe7177",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 74,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "rgbaSha256": "124145ea5a4fb2f4bf75a109fb14f46bf868f2d816729d73972ae4c3eb511af1",
+      "exactProjectPixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-mixed-frame-104.png",
+      "bytes": 288959,
+      "sha256": "d006c077a2ac95298f342b770a7f25e38423ca28e2589d7e98569bf6c1f03e81",
+      "character": "male",
+      "look": "wedding",
+      "frameId": 104,
+      "selection": {
+        "top": "navy-suit-jacket-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "rgbaSha256": "1f1c4bbc5dc323632434e4080cfe48aaa86ca5f0ec47f9fccfbc3a24d7a8fce3",
+      "exactProjectPixels": true
+    }
+  ],
+  "legacyPngs": [
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-day-legacy.png",
+      "bytes": 318420,
+      "sha256": "9ae100281e705656e8ce833db948360b99195e3e755f3969a3a13a5b41cf7451",
+      "character": "male",
+      "look": "day",
+      "reference": "docs/kling-wardrobe/exports/male-day.png",
+      "rgbaSha256": "366e1e2b1cf8e2970a770f9bbd3e23982d7c410b78fb37ee5e72c1024575ea21",
+      "previousPixelsExact": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/male-wedding-legacy.png",
+      "bytes": 316627,
+      "sha256": "16216b13aa43a80a6a00b1fa2ba55e6e5b7c815a2c5413e9f73655dcd2a0ca3b",
+      "character": "male",
+      "look": "wedding",
+      "reference": "docs/kling-wardrobe/exports/male-wedding.png",
+      "rgbaSha256": "d3d3514cca41d68c16beb2a61a3a5c16a0c22f8ba6bf5fd88b7c8e9519b28877",
+      "previousPixelsExact": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-day-legacy.png",
+      "bytes": 291561,
+      "sha256": "29d36e392ea499f55f70ed0ced7d80b2810e7028035364309686c949329c71f3",
+      "character": "female",
+      "look": "day",
+      "reference": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-89.png",
+      "rgbaSha256": "f188383bcd135c2125fa1b1bb7d92ad9a1ac8009b091e682f34395ae1b23ab83",
+      "previousPixelsExact": true
+    },
+    {
+      "file": "docs/kling-wardrobe/full-outfits/exports/female-wedding-legacy.png",
+      "bytes": 286201,
+      "sha256": "eef172362559a54bf5a19e7f2d0522346d90fe77cacfb65ca2b683d5b73152a6",
+      "character": "female",
+      "look": "wedding",
+      "reference": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-89.png",
+      "rgbaSha256": "51194baf15d0d0d89a837d5d5c682ae116b875263f8986d6903e359213955709",
+      "previousPixelsExact": true
+    }
+  ],
+  "browserEvidence": {
+    "file": "docs/kling-wardrobe/full-outfits/browser/evidence-index.json",
+    "bytes": 667004,
+    "sha256": "b5b296f8b4d0367252b24c7a10534699288361190b341390a142c6aec19a7f95",
+    "rawStrictPassed": false,
+    "rawReport": {
+      "file": "docs/kling-wardrobe/full-outfits/browser/evidence-index.strict.json",
+      "bytes": 663652,
+      "sha256": "671edec9bc5d8fb906ae3b1d400727b35d520696898e54d282c3cde9586419c1"
+    },
+    "reviewSHA256": "821a9b5c2a5d4a27c119c8c8aa570b528fecdb2cc908ae77cdf30d933e756a80",
+    "ancillaryException": {
+      "kind": "ancillary-favicon-404",
+      "originalConsoleEntry": {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:5193/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      "corroboratingHttpProbe": {
+        "checkedAt": "2026-10-21T20:10:27.849Z",
+        "method": "GET",
+        "url": "http://127.0.0.1:5193/favicon.ico",
+        "status": 404,
+        "headers": {
+          "connection": "keep-alive",
+          "date": "Wed, 21 Oct 2026 20:10:27 GMT",
+          "keep-alive": "timeout=5",
+          "transfer-encoding": "chunked",
+          "vary": "Origin"
+        },
+        "responseBytes": 0,
+        "responseSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "purpose": "Separate exact-URL probe of the unchanged production build after strict capture closed its server. This corroborates, and does not replay, the recorded browser icon request."
+      },
+      "reason": "The only strict failure is the missing browser icon. No page error, character asset HTTP failure, external request or independent-authoring request is excluded."
+    },
+    "note": "Raw strict capture failed on the sole favicon 404; explicit reviewed functional proof was verified without suppressing the raw failure."
+  },
+  "passed": false,
+  "failure": "Error: Command failed: python3 -c \nfrom pathlib import Path\nfrom io import BytesIO\nimport hashlib,json,sys,zipfile\nimport numpy as np\nfrom PIL import Image\nroot=Path(sys.argv[1]);directory=Path(sys.argv[2]);catalog=json.loads((root/'docs/kling-wardrobe/catalog.json').read_text())\ndef digest(data):return hashlib.sha256(data).hexdigest()\ndef read_pack(data):\n with zipfile.ZipFile(BytesIO(data)) as z:\n  assert z.testzip() is None\n  m=json.loads(z.read('manifest.json'))\n  pages=[np.asarray(Image.open(BytesIO(z.read(p['file']))).convert('RGBA')) for p in [m['spritesheet'],*m.get('additionalSheets',[])]]\n  frames={f['id']:pages[f.get('page',0)][f['y']:f['y']+f['height'],f['x']:f['x']+f['width']] for f in m['frames']}\n return m,frames\nresult=[]\nfor character in ['male','female']:\n entry=next(e for e in catalog['characters'] if e['key']==character)\n kit_path=root/entry['templateUrl'].lstrip('/')\n source_data=(root/entry['sourceUrl'].lstrip('/')).read_bytes()\n with zipfile.ZipFile(kit_path) as kit:\n  assert kit.testzip() is None\n  inventory=json.loads(kit.read('inventory.json'))\n  for item in inventory['files']:\n   data=kit.read(item['file']);assert len(data)==item['bytes'] and digest(data)==item['sha256']\n  assert kit.read('source.character.zip')==source_data\n  assert kit.read('registration.json')==(root/entry['registrationUrl'].lstrip('/')).read_bytes()\n  manifest,source=read_pack(source_data)\n  for look in ['day','wedding']:\n   stem=directory/f'{character}-{look}'\n   with zipfile.ZipFile(str(stem)+'.wardrobe.zip') as project:\n    assert project.testzip() is None\n    for name in project.namelist():\n     if name.endswith('.zip'):\n      with zipfile.ZipFile(BytesIO(project.read(name))) as nested:\n       assert nested.testzip() is None\n       for file in nested.namelist():\n        if file.endswith('.png'):\n         im=Image.open(BytesIO(nested.read(file)));im.load();assert im.width>0 and im.height>0\n   actual_manifest,actual=read_pack(Path(str(stem)+'.character.zip').read_bytes())\n   assert actual_manifest['frames']==manifest['frames'] and actual.keys()==source.keys()\n   frames=[];probes=[]\n   for fid,base in source.items():\n    out=actual[fid]\n    regions={name:np.asarray(Image.open(BytesIO(kit.read(f'masks/{fid:03d}/{name}.png'))))>0 for name in ['tank','shorts','head','nearHand','farHand']}\n    protected=(regions['head']|regions['nearHand']|regions['farHand'])&(base[:,:,3]>0)\n    changed=np.any(base!=out,axis=2);count=int((changed&protected).sum())\n    assert count==0,(character,look,fid,'protected head/hand pixels changed',count)\n    # Antialiased fringe may be cleaned by a new cloth outline, but opaque\n    # original clothing cannot leave an empty interior hole.\n    coverage=(regions['tank']|regions['shorts'])&(base[:,:,3]>=128)\n    holes=int((coverage&(out[:,:,3]==0)).sum())\n    assert holes==0,(character,look,fid,'transparent opaque-clothing holes',holes)\n    assert (out[:,:,3]==0).any() and (out[:,:,3]>0).any()\n    assert not out[0,:,3].any() and not out[-1,:,3].any() and not out[:,0,3].any() and not out[:,-1,3].any(),(character,look,fid,'clipped frame margin')\n    if character=='female' and look=='day' and fid==89:\n     for x,y in [(291,742),(335,754)]:\n      pixel=out[y,x];luma=float(np.dot(pixel[:3],[.2126,.7152,.0722]))\n      assert pixel[3]==255 and luma>110,(look,fid,x,y,'old tank ink at cloth seam',pixel.tolist())\n      probes.append({'frameId':fid,'x':x,'y':y,'rgba':pixel.tolist(),'luminance':round(luma,3),'minimumLuminance':110})\n    frames.append({'frameId':fid,'protectedOpaquePixels':int(protected.sum()),'changedProtectedPixels':count,'originalOpaqueClothingPixels':int(coverage.sum()),'transparentCoverageHoles':holes,'rgbaSha256':digest(out.tobytes())})\n   result.append({'character':character,'look':look,'templateSha256':digest(kit_path.read_bytes()),'inventoryFilesVerified':len(inventory['files']),'sourceAndRegistrationEmbeddedExact':True,'frames':frames,'seamRegressionProbes':probes,'allPngsDecoded':True,'allZipCrcsValid':True,'protectedHeadHandsExact':True,'noOpaqueClothingCoverageHoles':True,'transparentFrameMargins':True})\nprint(json.dumps({'outfits':result}))\n /workspace/gathria-character /workspace/gathria-character/docs/kling-wardrobe/full-outfits/exports\nTraceback (most recent call last):\n  File \"<string>\", line 48, in <module>\nAssertionError: ('male', 'wedding', 54, 'protected head/hand pixels changed', 4)\n\n    at genericNodeError (node:internal/errors:985:15)\n    at wrappedFn (node:internal/errors:539:14)\n    at checkExecSyncError (node:child_process:942:11)\n    at execFileSync (node:child_process:978:15)\n    at main (file:///workspace/gathria-character/scripts/verify-kling-full-outfits-exports.mjs:527:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///workspace/gathria-character/scripts/verify-kling-full-outfits-exports.mjs:537:3",
+  "completedAt": "2026-10-21T20:21:35.375Z"
+}

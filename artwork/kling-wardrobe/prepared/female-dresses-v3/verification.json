@@ -1,0 +1,1203 @@
+{
+  "scope": "Offline clothing-patch audit; browser-export visual evidence is separate.",
+  "baselineCommit": "881c7a28957a405b26d0fd29bdbfb9f42df4993f",
+  "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+  "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+  "inputFiles": {
+    "scripts/kling_dress_fit.py": "dc78814be6dbc572c0cd0ccfcb5355034b84ddc01d6620f602f743131b65434c",
+    "scripts/prepare-kling-wardrobe-dresses.py": "967fb926764aff89f0469e26e0ffa38095736ec9e3e4545a42121049afc02c50",
+    "scripts/test_kling_dress_fit.py": "a562ad19e8d50d5e8a41bdd8b5e620262fc7ce87962ef85b03005114b1940b0b",
+    "scripts/verify-kling-dress-outline.py": "6b3ca70be33d92a3c8b60c5b5afb5235c06c905293184b5bca502b78bb52c21e"
+  },
+  "legacyFiles": [
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress.zip",
+      "sha256": "fae154e975eed157f30451936913d8339585012091b07f23944470704472b400",
+      "bytes": 7661514
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress-v2.zip",
+      "sha256": "85142e0a840d256748a3e675131506f65097fcaae77b6843417041a674cd8a37",
+      "bytes": 7967333
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress.zip",
+      "sha256": "ec50681fdf5a7fc1c41e08c22f4f0adf1de683f52ade3721380e33e46e641a9d",
+      "bytes": 8727784
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v2.zip",
+      "sha256": "6e53bdb3e1ab4045536a1c619c42fb177b826974f4dc565a827a36c3bf5c57d7",
+      "bytes": 9258663
+    }
+  ],
+  "garments": [
+    {
+      "file": "docs/kling-wardrobe/garments/female/coral-daydress-v3.zip",
+      "sha256": "075d2220a51f3d627e75d69ac0ec36649d681272bb8e5a52df5bc66e461b0d6c",
+      "frames": [
+        {
+          "frameId": 0,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 6,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 12,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 18,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 24,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 25,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 26,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 27,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 28,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 30,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 31,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 32,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 33,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 34,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 35,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 36,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 37,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 38,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 39,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 40,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 41,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 43,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 44,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 45,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 46,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 47,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 48,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 49,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 50,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 51,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 52,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 53,
+          "changedClothPixels": 2794,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 54,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 55,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 56,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 57,
+          "changedClothPixels": 4125,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 58,
+          "changedClothPixels": 3903,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 59,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 60,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 61,
+          "changedClothPixels": 4042,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 62,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 63,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 64,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 65,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 66,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 67,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 70,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 71,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 72,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 73,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 74,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 75,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 78,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 79,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 80,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 81,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 82,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 83,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 84,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 85,
+          "changedClothPixels": 2652,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 86,
+          "changedClothPixels": 3382,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 87,
+          "changedClothPixels": 3373,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 88,
+          "changedClothPixels": 3238,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 89,
+          "changedClothPixels": 3226,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 90,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 91,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 92,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 93,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 94,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 95,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 96,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 97,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 98,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 99,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 100,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 101,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 102,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 103,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 104,
+          "changedClothPixels": 3798,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 105,
+          "changedClothPixels": 4014,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 106,
+          "changedClothPixels": 4050,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 107,
+          "changedClothPixels": 3736,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 108,
+          "changedClothPixels": 2967,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 109,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 110,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 111,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 112,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 113,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 114,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 115,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 116,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 117,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 118,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 119,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 120,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 121,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        }
+      ],
+      "changedFrames": 14
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v3.zip",
+      "sha256": "1cae860dd498944737fda769f3c2b1dc526041d1fbf60523f977e1e9f7039cad",
+      "frames": [
+        {
+          "frameId": 0,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 6,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 12,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 18,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 24,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 25,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 26,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 27,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 28,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 30,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 31,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 32,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 33,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 34,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 35,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 36,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 37,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 38,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 39,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 40,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 41,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 43,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 44,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 45,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 46,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 47,
+          "changedClothPixels": 4640,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 48,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 49,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 50,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 51,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 52,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 53,
+          "changedClothPixels": 4805,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 54,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 55,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 56,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 57,
+          "changedClothPixels": 5561,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 58,
+          "changedClothPixels": 5806,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 59,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 60,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 61,
+          "changedClothPixels": 5774,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 62,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 63,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 64,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 65,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 66,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 67,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 70,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 71,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 72,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 73,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 74,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 75,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 78,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 79,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 80,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 81,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 82,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 83,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 84,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 85,
+          "changedClothPixels": 4069,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 86,
+          "changedClothPixels": 4949,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 87,
+          "changedClothPixels": 4928,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 88,
+          "changedClothPixels": 4823,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 89,
+          "changedClothPixels": 5041,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 90,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 91,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 92,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 93,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 94,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 95,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 96,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 97,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 98,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 99,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 100,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 101,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 102,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 103,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 104,
+          "changedClothPixels": 5619,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 105,
+          "changedClothPixels": 5796,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 106,
+          "changedClothPixels": 5260,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 107,
+          "changedClothPixels": 4980,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 108,
+          "changedClothPixels": 4383,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 109,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 110,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 111,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 112,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 113,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 114,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 115,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 116,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 117,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 118,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 119,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 120,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        },
+        {
+          "frameId": 121,
+          "changedClothPixels": 0,
+          "alphaAndOwnershipIdentical": true,
+          "protectedChanged": 0
+        }
+      ],
+      "changedFrames": 15
+    }
+  ],
+  "passed": true
+}

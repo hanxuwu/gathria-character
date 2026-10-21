@@ -1,0 +1,70 @@
+# Native male long-trouser pose banks
+
+Generated offline with `python scripts/prepare-kling-male-trousers.py` from
+`source/full-outfits-v1/designs.png` (relative to the wardrobe artwork directory).
+The exact tool prompt/output and source use boundary are preserved there.
+
+`donors.json` records the clothing-only contours and hip/knee/ankle coordinates
+inside the painted reference. The source-matched leg owners come from
+`kling_male_limb_ownership.py` and the separately versioned full-outfit kit.
+The 17 original registered source guides and source pixels remain unchanged;
+local garment-authoring adjustments affect only the garment texture mapping.
+
+The sampler excludes generated skin/shoes/background and extends interior
+cloth, not outline or footwear pixels, at irregular donor cuffs. Continuous
+coordinates around the knee avoid a hard upper/lower-leg material cut. The
+visible source hip width determines the pocket/waist texture field, preventing
+clamped donor-edge bars. Crossed legs retain source surface ownership. A small
+cloth allowance extends only into transparent space.
+
+The trouser-only source-surface check rejects disconnected shoe-sole and matte
+fragments that the shared semantic skin mask had assigned to a leg. A retained
+four-connected leg/shorts surface must contain either a connected warm source
+skin core of at least 80 pixels (`R > 150`, `G > 75`, `R - G > 24`), or continuity
+with a connected source-visible registered shorts core of at least 80 pixels.
+This uses original source pixels and semantic ownership, never donor color.
+Unsupported leg fragments stay source-exact before adding the three-pixel
+transparent cloth allowance. The existing rule preserving source components
+smaller than 20 pixels still applies to remaining candidate material. No shared
+limb helper, registration, head/hand protection, source pose or top changed.
+
+`source-fringe-exclusions.zip` contains all 88 native binary exclusion masks;
+`source-fringe-exclusions.json` records their SHA256 hashes, source pixel hashes,
+component bounds, and connected-core evidence. Re-running the preparation
+script regenerates both. `footwear-fringe-fix.json` compares decoded new trouser
+patches and ownership against commit `44d346b`, records exact changed frame and
+pixel counts, and checks that ownership only shrinks and unrelated pixels stay
+identical. Each bank changes 21 of 88 poses; the other 67 decoded RGBA patches
+and ownership masks remain bit-exact. Each removes 3,239 ownership pixels:
+1,948 source-visible fragments restore the source and 1,291 transparent
+allowance pixels disappear. In frame 92, removing a 21-pixel leg-matte strip
+also leaves a connected 12-pixel shorts-matte strip below the existing
+20-pixel component threshold; that strip restores the source too. The visible
+rear-leg wedge in frame 64 remains clothed.
+
+`source-fringe-review.png` shows the original source crops and pink boundaries
+of all 27 excluded components of at least 20 pixels, across 21 poses. They are
+shoe/sole or fist-edge fringes and one-pixel antialiased silhouette strips; no
+whole exposed leg surface is removed. This is a source-mask diagnostic, not an
+application export.
+
+Frozen corrected archives:
+
+| Archive                     |     Bytes | SHA256                                                             |
+| --------------------------- | --------: | ------------------------------------------------------------------ |
+| `ochre-chinos-v1.zip`       | 5,355,500 | `c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33` |
+| `navy-suit-trousers-v1.zip` | 3,547,490 | `f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c` |
+
+The two full banks contain all 88 source frames each. Ownership audits protect
+head/neck/hands and leave original arm/shoe surfaces unchanged. The prepared
+PNGs are authoring diagnostics, not application-export evidence. Actual UI
+exports, standalone playback, native comparisons and GIFs live in
+`docs/kling-wardrobe/full-outfits/`.
+
+Limits: these are fitted painted folds, not per-frame hand-redrawn cloth or
+physical simulation. Extreme bends compress or redistribute fold detail; the
+pants follow the existing source legs instead of replacing their proportions.
+Original blur and mixed matte edges remain. Frame 64 retains a small angular
+cuff point where it joins the existing connected lower-leg contour; this repair
+removes detached under-shoe islands without redesigning that source pose.
+Technical checks do not establish user visual approval.

@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "characters": [
+    {
+      "key": "male",
+      "name": "Kling male",
+      "characterId": "kling-male-motion-v1",
+      "sourceUrl": "/docs/kling-motion/exports/male.character.zip",
+      "registrationUrl": "/docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+      "templateUrl": "/docs/kling-wardrobe/templates/male-full-outfits-v1.wardrobe-template.zip",
+      "items": [
+        {
+          "id": "teal-top",
+          "name": "Teal cotton top",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male-full-outfits-v1/teal-top.zip"
+        },
+        {
+          "id": "ochre-shorts",
+          "name": "Ochre cotton shorts",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/male-full-outfits-v1/ochre-shorts.zip"
+        },
+        {
+          "id": "navy-waistcoat",
+          "name": "Navy wedding waistcoat",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male-full-outfits-v1/navy-waistcoat.zip"
+        },
+        {
+          "id": "navy-shorts",
+          "name": "Navy tailored shorts",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/male-full-outfits-v1/navy-shorts.zip"
+        },
+        {
+          "id": "brown-shoes",
+          "name": "Brown formal shoes",
+          "slot": "shoes",
+          "url": "/docs/kling-wardrobe/garments/male-full-outfits-v1/brown-shoes.zip"
+        },
+        {
+          "id": "teal-camp-shirt-v1",
+          "name": "Teal camp shirt",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/teal-camp-shirt-v1.zip"
+        },
+        {
+          "id": "navy-suit-jacket-v1",
+          "name": "Navy wedding suit jacket",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/navy-suit-jacket-v1.zip"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "name": "Ochre full-length chinos",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/male/ochre-chinos-v1.zip"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "name": "Navy full-length suit trousers",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/male/navy-suit-trousers-v1.zip"
+        }
+      ],
+      "presets": [
+        {
+          "id": "original",
+          "name": "Original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "day",
+          "name": "Everyday",
+          "selection": {
+            "top": "teal-camp-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "wedding",
+          "name": "Wedding",
+          "selection": {
+            "top": "navy-suit-jacket-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "separates",
+          "name": "Everyday separates",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "formal-separates",
+          "name": "Formal separates",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          }
+        }
+      ]
+    },
+    {
+      "key": "female",
+      "name": "Kling female",
+      "characterId": "kling-female-motion-v1",
+      "sourceUrl": "/docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "/docs/kling-wardrobe/registration/female.json",
+      "templateUrl": "/docs/kling-wardrobe/templates/female.wardrobe-template.zip",
+      "items": [
+        {
+          "id": "teal-top",
+          "name": "Teal cotton top",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/female/teal-top.zip"
+        },
+        {
+          "id": "ochre-shorts",
+          "name": "Ochre cotton shorts",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/female/ochre-shorts.zip"
+        },
+        {
+          "id": "navy-waistcoat",
+          "name": "Navy wedding waistcoat",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/female/navy-waistcoat.zip"
+        },
+        {
+          "id": "navy-shorts",
+          "name": "Navy tailored shorts",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/female/navy-shorts.zip"
+        },
+        {
+          "id": "brown-shoes",
+          "name": "Brown formal shoes",
+          "slot": "shoes",
+          "url": "/docs/kling-wardrobe/garments/female/brown-shoes.zip"
+        },
+        {
+          "id": "coral-daydress-v3",
+          "name": "Coral day dress \u00b7 refined fit",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/coral-daydress-v3.zip"
+        },
+        {
+          "id": "ivory-wedding-dress-v3",
+          "name": "Ivory wedding dress \u00b7 refined fit",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/ivory-wedding-dress-v3.zip"
+        }
+      ],
+      "presets": [
+        {
+          "id": "original",
+          "name": "Original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "day",
+          "name": "Everyday",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v3",
+            "shoes": null
+          }
+        },
+        {
+          "id": "wedding",
+          "name": "Wedding",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v3",
+            "shoes": null
+          }
+        },
+        {
+          "id": "separates",
+          "name": "Everyday separates",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "formal-separates",
+          "name": "Formal separates",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          }
+        }
+      ]
+    }
+  ]
+}

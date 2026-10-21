@@ -1,0 +1,2976 @@
+{
+  "format": "gathria-wardrobe-fit-v2-browser-evidence",
+  "version": 1,
+  "startedAt": "2026-10-21T14:25:28.023Z",
+  "commitAtCapture": "151b4bb34ecc9d50e473620f39e32d5c3bc0f5dc",
+  "production": true,
+  "inputHashes": {
+    "docs/kling-motion/exports/female.character.zip": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+    "docs/kling-wardrobe/catalog.json": "e327a4c6a98f87bc01b4762342f38e382de53a32457c209af16d1493bc0ce372",
+    "docs/kling-wardrobe/exports/female-day.wardrobe.zip": "153e707df03f14c3ee0bfae2c031f484d8566a8ad48a170bb30938b6102cf835",
+    "docs/kling-wardrobe/exports/female-wedding.wardrobe.zip": "7758b3e0bb6bec21763cb94b57f55613740cd043ae0e526b796e4f9358092f9d",
+    "docs/kling-wardrobe/garments/female/brown-shoes.zip": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5",
+    "docs/kling-wardrobe/garments/female/coral-daydress-v2.zip": "cd517bd4a80ea270ca97ebebade06f0edaf1df7a4b38c8d5f0d1a59266171051",
+    "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v2.zip": "561f3d65c24b9a1cf57c117cf36ab92014b795c08c1a0e0cd42d515e9865dff5",
+    "docs/kling-wardrobe/garments/female/navy-shorts.zip": "443069207301deb7f920f897d9fadc18b441cb6f20dfa8f2f5c1e5370188bb85",
+    "docs/kling-wardrobe/garments/female/navy-waistcoat.zip": "b5ab6f95830f381e26560def9e7654396ed336bbebb1115aa9e0c107d237a997",
+    "docs/kling-wardrobe/garments/female/ochre-shorts.zip": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e",
+    "docs/kling-wardrobe/garments/female/teal-top.zip": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7",
+    "docs/kling-wardrobe/registration/female.json": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+    "src/consumer/PackPlayer.tsx": "62687a581c8d24493283e0823e5adcc6f07095d429f3139b14bc46fa4585580e",
+    "src/consumer/SpriteActionEditor.tsx": "78a729fba6becd9ce082acef1c5ab53bb4cfcceddc7f12f8291dd759c1c16060",
+    "src/consumer/kling-catalog.ts": "7136d9e65d8e9db55308e9ccded09af2c7d0fdfe1df2885cc04012c7a5fb1c2c",
+    "src/consumer/kling-packs.test.ts": "afb3f0eaeb5e9ff0bfbfc877a2e94f6b0241ceb666c6ae25e123ce8d8cf9928a",
+    "src/consumer/kling-packs.ts": "8841da2c58b2f73168d27f40a934cebbe15c2890c4a6fe4f6c84b11a53ee5cd7",
+    "src/consumer/main.tsx": "11b7ae34966e906bed2911fc32b98646fa60b82fc7487c2784110a1b096fed4c",
+    "src/consumer/motion-flow.test.ts": "d13d1e77610f8de8d15093d614d1aad0dfd49693258d483a376660c18873bbb7",
+    "src/consumer/motion-flow.ts": "ee2aeb395599ad6ae22d48a8b3d5fae26f3bc2f7793faf7d9eec1d23e3cfff55",
+    "src/consumer/player.css": "010e2e09bbecbb7af0125466518b35eeaed3150cde39595fece369adbfe219cd",
+    "src/consumer/player.test.ts": "950f297177fe50cc46171b527706e793d2c55baa866b10d7ed821cdd80fad7b7",
+    "src/consumer/player.ts": "8ce2f5a1a70d244739aff3f5e1bebebe98dd1b547d2414eaf727b6c0d4bd6ea4",
+    "src/consumer/sprite-actions.css": "474d96c3ea2676b83ab032d68270881423dd99f337caeed3b669ee10278eb374",
+    "src/core/baked-source.test.ts": "835947af4b8963b2f2ba5f75e760633a22f3a9c79632b4f16bf67e294632757b",
+    "src/core/baked-source.ts": "fa90d1e2ba9391af0e0c44e5b224d8661d513e711b5ffa2f278cbf73608b7a57",
+    "src/core/bounded-archive.ts": "ba121a420f7e08145516e041f5a96ef7081eb91a5448a80e487c3d338bf4aee9",
+    "src/core/pack-v2.test.ts": "74f5da3d07d63208c17668d4453a5397b77fc545eefc756fb13d2ef9a7c8f927",
+    "src/core/pack-v2.ts": "ff497c58c58e054a0590e36a6de5020446d7e31ba945d7c405e8123c5afd82e1",
+    "src/core/pack-v3.test.ts": "85d18347b183a7d01f2569b062a8fee1d0a2fcb119b13c7f3a6d3096aa2f7b9a",
+    "src/core/pack-v3.ts": "1e1a7bd8e1324e0e95de1dfeda0b31c04f1fa1409211fb808147e632dd7bedef",
+    "src/core/pack.ts": "77eeb7c8dc49a4ab79d7b0466b433d967f78e1de35d67c326ed34ccc5792940c",
+    "src/core/sha256.test.ts": "4bcca339955914b841693cfc81b391b81a14c6d9341ed8d49f3c78e7adcb93d5",
+    "src/core/sha256.ts": "9dadabe2eade2c115bb3f61da9920c24b00b5c13808956dd6e9116523d20d4b9",
+    "src/core/sprite-actions.test.ts": "753ee8b3852512488d4bab85c2c7c22ce75d0b54d509fbe6a654e40752dea13a",
+    "src/core/sprite-actions.ts": "8d8472e36b449f92091c79358190fb420e17c3d2a74cf5ae2fefd932999d8570",
+    "src/core/types.ts": "4f22876a4957b84bb2450042534d6a661d4f273edab41eb901aee85ea7b58670",
+    "src/skeletal/NativeStudy.tsx": "253580fc52369e72aeacc12db19e9e8cc1687a4496c8faca2b5f3f507f0ca9cf",
+    "src/skeletal/geometry.test.ts": "27a820d5cd3defdf07876b67dcd4921eff152aa58559a554f39065614c4f5c91",
+    "src/skeletal/geometry.ts": "197cf4eac53b77b7cdfac9e6ef54b7a4cebb48cabace7d1de9fd863b4826a3ff",
+    "src/skeletal/main.tsx": "9b0df8847245e674c43761a55e8aefd31024e705d1d1662e9546a03edf83b356",
+    "src/skeletal/native-study.css": "a84350341c60f5e15c2a82f70e239118ce01609c3d61016a4e088fa8de52312f",
+    "src/skeletal/native-study.test.ts": "ee247d6573150d07b3a50b9b990faebd4ea313d2a1a495b21a4fec9dae01d71b",
+    "src/skeletal/native-study.ts": "0a2c15bc1522a1129d932f3897d40f20216eccae63bf83d7dc99750778071aa0",
+    "src/wardrobe/WardrobeEditor.tsx": "4a6608db18495672d0d0d6c9f7e1935fd4b1abb872357f1f58db156f49f1998c",
+    "src/wardrobe/catalog-assets.ts": "705733d13d5d7d6cdcc6ad4a7611bb6866d02b100fa5b1ea64de9ddec5635331",
+    "src/wardrobe/compositor.test.ts": "4c37b13437bf38fed7ee7fe82655eb36bd4ff56620457db59708125db4bfbb89",
+    "src/wardrobe/compositor.ts": "18a811abc84d4ab333c76a0fe53baf245eadcd1a3a8070b5edde20b6c0c0731d",
+    "src/wardrobe/contract.ts": "ea996f9fa2aefd474d626bfff0e8dfcee6b5e16cc6ab335a5a34ef5ee52660ca",
+    "src/wardrobe/project.test.ts": "df693b13dd591a4361252b28a19c038335db8acbb43b971112261bbd4ee0939d",
+    "src/wardrobe/project.ts": "274890f7de212061927ca37e40fea1b5e91cf4f8ee8fa4cf498160cc7966ff25",
+    "src/wardrobe/wardrobe.css": "5522dd0511e040c1ab24db74fa3ec6ee26f257a69b70ac27109a0acbf9242282",
+    "src/workspace/Library.tsx": "fec5733691cc838110d139ca3a1f07b68b7ae1671b2bfac627c521448c8d989e",
+    "src/workspace/MainNavigation.tsx": "a1e7e9c1944cd907644f5cf5fa9c3434cb4f8ef342ed6fcc33a4e5866ffddcd6",
+    "src/workspace/Workbench.tsx": "0397e2ffbf0c0a63f4c5c4d7a649b131e513f846ca2a16182f454ffaae070a67",
+    "src/workspace/main.tsx": "860ee0100634905205c0ce85ff53672f69c5a4f5ed67825a8f10a440c866b3f2",
+    "src/workspace/navigation.css": "27566e1d525c5797a57573461a218b7aa4d41c43a76c98bbfec7580e4aedcc57",
+    "src/workspace/workbench-main.tsx": "fc3d7cb2ecf80631d3ef7b4faa084a368d498bd19273cf14338bd2dafafc23a3",
+    "src/workspace/workspace.css": "c395ad30113d85d322a5b9644282d3448ca756bc9714a4e7040bda5bbb286612",
+    "vite.config.ts": "5db54edaef02bec9ef8951c08d4a6e9272f2a7b1907470accaf17098f7bcdc36"
+  },
+  "scope": "Female day/wedding V2 actual UI exports, explicit V1 reopen, source-registered poses and mixed shoes, queued transitions, independent five-action/two-facing playback after closing wardrobe.",
+  "observationMethod": "MutationObserver reads metadata published with the painted bitmap at normal speed. Missed positions and intervals are recorded rather than hidden; functional evidence is separate from visual review.",
+  "downloads": [
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-legacy-v1.png",
+      "kind": "legacy-png",
+      "bytes": 338173,
+      "sha256": "c96c7c001bfd4a69ee07964e7c08dc8e800a7aed78e6b61f85c5bf0cd9631570",
+      "members": [
+        {
+          "name": "female-day-legacy-v1.png",
+          "bytes": 338173,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ],
+      "matchedReferencePixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-legacy-v1.png",
+      "kind": "legacy-png",
+      "bytes": 344147,
+      "sha256": "5c1e45c3acf85f5c64380977d5c8b95f0f165c51927dc6dcba5761fe958c9527",
+      "members": [
+        {
+          "name": "female-wedding-legacy-v1.png",
+          "bytes": 344147,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ],
+      "matchedReferencePixels": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-87.png",
+      "kind": "png",
+      "bytes": 297984,
+      "sha256": "5062761adc80c29c3a1d6975ac13ce357468d014cc79ee0be641976c9a5715ba",
+      "members": [
+        {
+          "name": "female-day-frame-87.png",
+          "bytes": 297984,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-89.png",
+      "kind": "png",
+      "bytes": 287753,
+      "sha256": "ff5d236e3e9bbaaf3acd50b215472ac8e70b3ef03ae607c9c74b8ac4e241850e",
+      "members": [
+        {
+          "name": "female-day-frame-89.png",
+          "bytes": 287753,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-58.png",
+      "kind": "png",
+      "bytes": 302286,
+      "sha256": "b1dea981d3d15b8dca5028c13ca918c587fd0fe28224eac30e19109a14df64a7",
+      "members": [
+        {
+          "name": "female-day-frame-58.png",
+          "bytes": 302286,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-64.png",
+      "kind": "png",
+      "bytes": 288525,
+      "sha256": "e6d2136652fcbc72ccf1c426dbdeae702950aea8686a583666a879700a14a2e8",
+      "members": [
+        {
+          "name": "female-day-frame-64.png",
+          "bytes": 288525,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-104.png",
+      "kind": "png",
+      "bytes": 284803,
+      "sha256": "a6fcd01f2711a9a7a42d1c4f5104d2254fa6daa14f7b7ee788a102968399456c",
+      "members": [
+        {
+          "name": "female-day-frame-104.png",
+          "bytes": 284803,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day.wardrobe.zip",
+      "kind": "project",
+      "bytes": 48723309,
+      "sha256": "bc474208a9ba0116e388de7074753e17a5b8c1463af9c916489b653b1f952549",
+      "members": [
+        {
+          "name": "female-day.wardrobe.zip/document.json",
+          "bytes": 815
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/spritesheet.png",
+          "bytes": 12373841,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/spritesheet-1.png",
+          "bytes": 12560035,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/manifest.json",
+          "bytes": 14392
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/character.json",
+          "bytes": 88854
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/PROVENANCE.txt",
+          "bytes": 1554
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip/INTEGRATION.md",
+          "bytes": 811
+        },
+        {
+          "name": "female-day.wardrobe.zip/source.character.zip",
+          "bytes": 24565426,
+          "crcChecked": true
+        },
+        {
+          "name": "female-day.wardrobe.zip/registration.json",
+          "bytes": 465066
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/manifest.json",
+          "bytes": 11057
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/ownership-0.png",
+          "bytes": 105651,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/ownership-1.png",
+          "bytes": 89863,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/patches-0.png",
+          "bytes": 3977202,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip/patches-1.png",
+          "bytes": 3529327,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-0.zip",
+          "bytes": 7661514,
+          "crcChecked": true
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-1.zip/manifest.json",
+          "bytes": 11227
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-1.zip/ownership-0.png",
+          "bytes": 105427,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-1.zip/ownership-1.png",
+          "bytes": 89498,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-1.zip/patches-0.png",
+          "bytes": 3997897,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-1.zip/patches-1.png",
+          "bytes": 3555900,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-1.zip",
+          "bytes": 7708232,
+          "crcChecked": true
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip/manifest.json",
+          "bytes": 11113
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip/ownership-0.png",
+          "bytes": 98269,
+          "decoded": true,
+          "size": [
+            2048,
+            3705
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip/ownership-1.png",
+          "bytes": 94700,
+          "decoded": true,
+          "size": [
+            2048,
+            3799
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip/ownership-2.png",
+          "bytes": 39130,
+          "decoded": true,
+          "size": [
+            2048,
+            1642
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip/patches-0.png",
+          "bytes": 3472854,
+          "decoded": true,
+          "size": [
+            2048,
+            3705
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip/patches-1.png",
+          "bytes": 3694262,
+          "decoded": true,
+          "size": [
+            2048,
+            3799
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip/patches-2.png",
+          "bytes": 1385767,
+          "decoded": true,
+          "size": [
+            2048,
+            1642
+          ]
+        },
+        {
+          "name": "female-day.wardrobe.zip/item-2.zip",
+          "bytes": 8727784,
+          "crcChecked": true
+        },
+        {
+          "name": "female-day.wardrobe.zip",
+          "bytes": 48723309,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day.character.zip",
+      "kind": "pack",
+      "bytes": 29285590,
+      "sha256": "7848b9f30161314e35fd5a1ae0c9394a733d6dff27564974f82cb84f7d1b1b63",
+      "members": [
+        {
+          "name": "female-day.character.zip/spritesheet.png",
+          "bytes": 14338611,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.character.zip/spritesheet-1.png",
+          "bytes": 14933059,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-day.character.zip/manifest.json",
+          "bytes": 14404
+        },
+        {
+          "name": "female-day.character.zip/character.json",
+          "bytes": 92637
+        },
+        {
+          "name": "female-day.character.zip/PROVENANCE.txt",
+          "bytes": 5369
+        },
+        {
+          "name": "female-day.character.zip/INTEGRATION.md",
+          "bytes": 1352
+        },
+        {
+          "name": "female-day.character.zip",
+          "bytes": 29285590,
+          "crcChecked": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-58.png",
+      "kind": "png",
+      "bytes": 301370,
+      "sha256": "0617075e01c379ee942997109a1b7eb3780ce2226aca02b2b7f1ca057c5cf384",
+      "members": [
+        {
+          "name": "female-day-brown-shoes-frame-58.png",
+          "bytes": 301370,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-87.png",
+      "kind": "png",
+      "bytes": 293249,
+      "sha256": "75f7bb3dd1ce8d0ff1464a5651907a035492a7af1057fdcb526c50c9b7c1f71c",
+      "members": [
+        {
+          "name": "female-day-brown-shoes-frame-87.png",
+          "bytes": 293249,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-89.png",
+      "kind": "png",
+      "bytes": 283075,
+      "sha256": "54a701e0c1929986c179ed2df5885ad1f796f623a2fbb5aa985d4bbe01cb703b",
+      "members": [
+        {
+          "name": "female-day-brown-shoes-frame-89.png",
+          "bytes": 283075,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-104.png",
+      "kind": "png",
+      "bytes": 281115,
+      "sha256": "037d0abac22e09ccf24e9fcd9cb6fde046fa23e6eb123b1a5ad8a8c9ee329f4f",
+      "members": [
+        {
+          "name": "female-day-brown-shoes-frame-104.png",
+          "bytes": 281115,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-87.png",
+      "kind": "png",
+      "bytes": 290887,
+      "sha256": "6583b5acf8353d1c2e409657a1c401cc4d479b7638d63386803362cd690bb9e8",
+      "members": [
+        {
+          "name": "female-wedding-frame-87.png",
+          "bytes": 290887,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-89.png",
+      "kind": "png",
+      "bytes": 279085,
+      "sha256": "bc6ad1b0024d3e585e7d41aeb694c323056ed4c35f6e6f8c9083bc5361b9e687",
+      "members": [
+        {
+          "name": "female-wedding-frame-89.png",
+          "bytes": 279085,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-58.png",
+      "kind": "png",
+      "bytes": 304222,
+      "sha256": "c2a74d1247c8dc133bba40b0144578d584fa540079f5eed986f738a26a29e1b9",
+      "members": [
+        {
+          "name": "female-wedding-frame-58.png",
+          "bytes": 304222,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-64.png",
+      "kind": "png",
+      "bytes": 292271,
+      "sha256": "5b902973bc2e49abdbf10c9278be1de4b06dda0126a52748dcef0a3e0bab8104",
+      "members": [
+        {
+          "name": "female-wedding-frame-64.png",
+          "bytes": 292271,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-104.png",
+      "kind": "png",
+      "bytes": 277340,
+      "sha256": "a1a4a661f586663f5969a086acfbab2442091d09d83fb696685d21492a112b5f",
+      "members": [
+        {
+          "name": "female-wedding-frame-104.png",
+          "bytes": 277340,
+          "decoded": true,
+          "size": [
+            704,
+            1056
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding.wardrobe.zip",
+      "kind": "project",
+      "bytes": 59746688,
+      "sha256": "0493f2c2ab4338c58517b5bec3596f6d3d5162893445d8f46403835b9841a524",
+      "members": [
+        {
+          "name": "female-wedding.wardrobe.zip/document.json",
+          "bytes": 1077
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/spritesheet.png",
+          "bytes": 12373841,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/spritesheet-1.png",
+          "bytes": 12560035,
+          "decoded": true,
+          "size": [
+            6336,
+            6336
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/manifest.json",
+          "bytes": 14392
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/character.json",
+          "bytes": 88854
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/PROVENANCE.txt",
+          "bytes": 1554
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip/INTEGRATION.md",
+          "bytes": 811
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/source.character.zip",
+          "bytes": 24565426,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/registration.json",
+          "bytes": 465066
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/manifest.json",
+          "bytes": 10857
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/ownership-0.png",
+          "bytes": 95995,
+          "decoded": true,
+          "size": [
+            2048,
+            2520
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip/patches-0.png",
+          "bytes": 2172800,
+          "decoded": true,
+          "size": [
+            2048,
+            2520
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-0.zip",
+          "bytes": 2249345,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/manifest.json",
+          "bytes": 11057
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/ownership-0.png",
+          "bytes": 105651,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/ownership-1.png",
+          "bytes": 89863,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/patches-0.png",
+          "bytes": 3977202,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip/patches-1.png",
+          "bytes": 3529327,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-1.zip",
+          "bytes": 7661514,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-2.zip/manifest.json",
+          "bytes": 11227
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-2.zip/ownership-0.png",
+          "bytes": 105427,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-2.zip/ownership-1.png",
+          "bytes": 89498,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-2.zip/patches-0.png",
+          "bytes": 3997897,
+          "decoded": true,
+          "size": [
+            2048,
+            3919
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-2.zip/patches-1.png",
+          "bytes": 3555900,
+          "decoded": true,
+          "size": [
+            2048,
+            3630
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-2.zip",
+          "bytes": 7708232,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip/manifest.json",
+          "bytes": 11113
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip/ownership-0.png",
+          "bytes": 98269,
+          "decoded": true,
+          "size": [
+            2048,
+            3705
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip/ownership-1.png",
+          "bytes": 94700,
+          "decoded": true,
+          "size": [
+            2048,
+            3799
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip/ownership-2.png",
+          "bytes": 39130,
+          "decoded": true,
+          "size": [
+            2048,
+            1642
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip/patches-0.png",
+          "bytes": 3472854,
+          "decoded": true,
+          "size": [
+            2048,
+            3705
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip/patches-1.png",
+          "bytes": 3694262,
+          "decoded": true,
+          "size": [
+            2048,
+            3799
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip/patches-2.png",
+          "bytes": 1385767,
+          "decoded": true,
+          "size": [
+            2048,
+            1642
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-3.zip",
+          "bytes": 8727784,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip/manifest.json",
+          "bytes": 11284
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip/ownership-0.png",
+          "bytes": 97927,
+          "decoded": true,
+          "size": [
+            2048,
+            3705
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip/ownership-1.png",
+          "bytes": 94346,
+          "decoded": true,
+          "size": [
+            2048,
+            3799
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip/ownership-2.png",
+          "bytes": 39108,
+          "decoded": true,
+          "size": [
+            2048,
+            1642
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip/patches-0.png",
+          "bytes": 3487364,
+          "decoded": true,
+          "size": [
+            2048,
+            3705
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip/patches-1.png",
+          "bytes": 3719108,
+          "decoded": true,
+          "size": [
+            2048,
+            3799
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip/patches-2.png",
+          "bytes": 1393061,
+          "decoded": true,
+          "size": [
+            2048,
+            1642
+          ]
+        },
+        {
+          "name": "female-wedding.wardrobe.zip/item-4.zip",
+          "bytes": 8773746,
+          "crcChecked": true
+        },
+        {
+          "name": "female-wedding.wardrobe.zip",
+          "bytes": 59746688,
+          "crcChecked": true
+        }
+      ]
+    }
+  ],
+  "poses": [
+    {
+      "look": "day",
+      "frameId": 87,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-87.png"
+    },
+    {
+      "look": "day",
+      "frameId": 89,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-89.png"
+    },
+    {
+      "look": "day",
+      "frameId": 58,
+      "action": "run",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-58.png"
+    },
+    {
+      "look": "day",
+      "frameId": 64,
+      "action": "run",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-64.png"
+    },
+    {
+      "look": "day",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-frame-104.png"
+    },
+    {
+      "look": "day",
+      "frameId": 58,
+      "action": "run",
+      "facing": "right",
+      "mixedShoes": true,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-58.png"
+    },
+    {
+      "look": "day",
+      "frameId": 87,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": true,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-87.png"
+    },
+    {
+      "look": "day",
+      "frameId": 89,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": true,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-89.png"
+    },
+    {
+      "look": "day",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": true,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-brown-shoes-frame-104.png"
+    },
+    {
+      "look": "wedding",
+      "frameId": 87,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-87.png"
+    },
+    {
+      "look": "wedding",
+      "frameId": 89,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-89.png"
+    },
+    {
+      "look": "wedding",
+      "frameId": 58,
+      "action": "run",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-58.png"
+    },
+    {
+      "look": "wedding",
+      "frameId": 64,
+      "action": "run",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-64.png"
+    },
+    {
+      "look": "wedding",
+      "frameId": 104,
+      "action": "jump",
+      "facing": "right",
+      "mixedShoes": false,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-frame-104.png"
+    }
+  ],
+  "legacy": [
+    {
+      "look": "day",
+      "oldProject": "docs/kling-wardrobe/exports/female-day.wardrobe.zip",
+      "selectedId": "coral-daydress",
+      "originalNativePixelsUnchanged": true,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-day-legacy-v1.png"
+    },
+    {
+      "look": "wedding",
+      "oldProject": "docs/kling-wardrobe/exports/female-wedding.wardrobe.zip",
+      "selectedId": "ivory-wedding-dress",
+      "originalNativePixelsUnchanged": true,
+      "file": "docs/kling-wardrobe/fit-v2/exports/female-wedding-legacy-v1.png"
+    }
+  ],
+  "projects": [
+    {
+      "look": "day",
+      "selectedId": "coral-daydress-v2",
+      "project": "docs/kling-wardrobe/fit-v2/exports/female-day.wardrobe.zip",
+      "pack": "docs/kling-wardrobe/fit-v2/exports/female-day.character.zip",
+      "reopened": true,
+      "exactSourceBytes": true,
+      "actionMetadataAnchorFacingPreserved": true,
+      "exactNativePngVersusPackFrames": [
+        87,
+        89,
+        58,
+        64,
+        104
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "mode": "wardrobe",
+      "look": "day",
+      "from": "walk",
+      "to": "run",
+      "facing": "right",
+      "observations": [
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.10000002384185791
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 72
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 100,
+          "pending": "",
+          "atMs": 122.5
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 133.3000000000029,
+          "pending": "",
+          "atMs": 146.69999998807907
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 183.3000000000029,
+          "pending": "",
+          "atMs": 204.10000002384186
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 216.60000000000582,
+          "pending": "run",
+          "atMs": 225.80000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "run",
+          "atMs": 268.10000002384186
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 299.8999999999942,
+          "pending": "run",
+          "atMs": 315.60000002384186
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 349.8999999999942,
+          "pending": "run",
+          "atMs": 359.19999998807907
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 383.3000000000029,
+          "pending": "run",
+          "atMs": 392.39999997615814
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 433.3000000000029,
+          "pending": "run",
+          "atMs": 442.69999998807907
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 174.93333333333916,
+          "pending": "",
+          "atMs": 476.5
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 224.93333333333916,
+          "pending": "",
+          "atMs": 524.5
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.23333333332755,
+          "pending": "",
+          "atMs": 556.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 308.23333333332755,
+          "pending": "",
+          "atMs": 609.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.6333333333363,
+          "pending": "",
+          "atMs": 643.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 375.03333333333046,
+          "pending": "",
+          "atMs": 676.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.9333333333392,
+          "pending": "",
+          "atMs": 725.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 458.33333333333337,
+          "pending": "",
+          "atMs": 760.8000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.23333333332755,
+          "pending": "",
+          "atMs": 815.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.2333333333276,
+          "pending": "",
+          "atMs": 859.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.5333333333305,
+          "pending": "",
+          "atMs": 893.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.6333333333363,
+          "pending": "",
+          "atMs": 940.1999999880791
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.266666666672563,
+          "pending": "",
+          "atMs": 972.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 58.26666666667256,
+          "pending": "",
+          "atMs": 1023.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.56666666666092,
+          "pending": "",
+          "atMs": 1056
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 141.56666666666092,
+          "pending": "",
+          "atMs": 1106.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 174.86666666666383,
+          "pending": "",
+          "atMs": 1140.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 224.96666666666965,
+          "pending": "",
+          "atMs": 1194.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.26666666667256,
+          "pending": "",
+          "atMs": 1223
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 308.26666666667256,
+          "pending": "",
+          "atMs": 1295
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.5666666666609,
+          "pending": "",
+          "atMs": 1331.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.66666666666674,
+          "pending": "",
+          "atMs": 1357.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.96666666666965,
+          "pending": "",
+          "atMs": 1399.5
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.86666666666383,
+          "pending": "",
+          "atMs": 1444.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.16666666666674,
+          "pending": "",
+          "atMs": 1483
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.2666666666726,
+          "pending": "",
+          "atMs": 1527.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.5666666666609,
+          "pending": "",
+          "atMs": 1556.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.5666666666609,
+          "pending": "",
+          "atMs": 1610.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.300000000003024,
+          "pending": "",
+          "atMs": 1649.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 58.300000000003024,
+          "pending": "",
+          "atMs": 1697
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.60000000000593,
+          "pending": "",
+          "atMs": 1722.5
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 141.60000000000593,
+          "pending": "",
+          "atMs": 1778.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 174.8999999999943,
+          "pending": "",
+          "atMs": 1809.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 224.8999999999943,
+          "pending": "",
+          "atMs": 1864.3999999761581
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.1999999999972,
+          "pending": "",
+          "atMs": 1889.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 308.1999999999972,
+          "pending": "",
+          "atMs": 1945.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.5000000000001,
+          "pending": "",
+          "atMs": 1991.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 391.60000000000593,
+          "pending": "",
+          "atMs": 2033
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.8999999999943,
+          "pending": "",
+          "atMs": 2056.600000023842
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.8999999999943,
+          "pending": "",
+          "atMs": 2118.100000023842
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.1999999999972,
+          "pending": "",
+          "atMs": 2148.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 558.1999999999972,
+          "pending": "",
+          "atMs": 2197.5
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.5000000000001,
+          "pending": "",
+          "atMs": 2229.699999988079
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 641.5000000000001,
+          "pending": "",
+          "atMs": 2294.5
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.233333333327664,
+          "pending": "",
+          "atMs": 2312.5
+        }
+      ],
+      "requests": [
+        {
+          "target": "run",
+          "atMs": 209.30000001192093
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "look": "day",
+      "from": "jump",
+      "to": "walk",
+      "facing": "right",
+      "observations": [
+        {
+          "action": "jump",
+          "frameId": 83,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0
+        },
+        {
+          "action": "jump",
+          "frameId": 84,
+          "position": 1,
+          "elapsedMs": 49.93399999999383,
+          "pending": "",
+          "atMs": 50.69999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 85,
+          "position": 2,
+          "elapsedMs": 100.03399999999965,
+          "pending": "",
+          "atMs": 105.09999996423721
+        },
+        {
+          "action": "jump",
+          "frameId": 86,
+          "position": 3,
+          "elapsedMs": 133.23399999999674,
+          "pending": "",
+          "atMs": 142.79999995231628
+        },
+        {
+          "action": "jump",
+          "frameId": 87,
+          "position": 4,
+          "elapsedMs": 183.333999999988,
+          "pending": "",
+          "atMs": 190.79999995231628
+        },
+        {
+          "action": "jump",
+          "frameId": 88,
+          "position": 5,
+          "elapsedMs": 216.63399999999092,
+          "pending": "walk",
+          "atMs": 230.19999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 89,
+          "position": 6,
+          "elapsedMs": 266.6339999999909,
+          "pending": "walk",
+          "atMs": 271
+        },
+        {
+          "action": "jump",
+          "frameId": 90,
+          "position": 7,
+          "elapsedMs": 299.93399999999383,
+          "pending": "walk",
+          "atMs": 321.69999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 91,
+          "position": 8,
+          "elapsedMs": 333.333999999988,
+          "pending": "walk",
+          "atMs": 376.89999997615814
+        },
+        {
+          "action": "jump",
+          "frameId": 92,
+          "position": 9,
+          "elapsedMs": 383.23399999999674,
+          "pending": "walk",
+          "atMs": 410.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 93,
+          "position": 10,
+          "elapsedMs": 433.333999999988,
+          "pending": "walk",
+          "atMs": 453.2999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 94,
+          "position": 11,
+          "elapsedMs": 466.6339999999909,
+          "pending": "walk",
+          "atMs": 501.5
+        },
+        {
+          "action": "jump",
+          "frameId": 95,
+          "position": 12,
+          "elapsedMs": 516.6339999999909,
+          "pending": "walk",
+          "atMs": 528
+        },
+        {
+          "action": "jump",
+          "frameId": 96,
+          "position": 13,
+          "elapsedMs": 550.0339999999997,
+          "pending": "walk",
+          "atMs": 574.2999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 97,
+          "position": 14,
+          "elapsedMs": 599.9339999999938,
+          "pending": "walk",
+          "atMs": 606.1999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 98,
+          "position": 15,
+          "elapsedMs": 633.2339999999967,
+          "pending": "walk",
+          "atMs": 641.0999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 99,
+          "position": 16,
+          "elapsedMs": 683.333999999988,
+          "pending": "walk",
+          "atMs": 695.8999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 100,
+          "position": 17,
+          "elapsedMs": 716.6339999999909,
+          "pending": "walk",
+          "atMs": 731.8999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 101,
+          "position": 18,
+          "elapsedMs": 766.6339999999909,
+          "pending": "walk",
+          "atMs": 780.5999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "position": 19,
+          "elapsedMs": 799.9339999999938,
+          "pending": "walk",
+          "atMs": 803.8999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "elapsedMs": 849.9339999999938,
+          "pending": "walk",
+          "atMs": 866.5
+        },
+        {
+          "action": "jump",
+          "frameId": 104,
+          "position": 21,
+          "elapsedMs": 883.333999999988,
+          "pending": "walk",
+          "atMs": 902.3999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 105,
+          "position": 22,
+          "elapsedMs": 933.333999999988,
+          "pending": "walk",
+          "atMs": 936.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 106,
+          "position": 23,
+          "elapsedMs": 966.6339999999909,
+          "pending": "walk",
+          "atMs": 987.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 107,
+          "position": 24,
+          "elapsedMs": 1016.6339999999909,
+          "pending": "walk",
+          "atMs": 1021
+        },
+        {
+          "action": "jump",
+          "frameId": 108,
+          "position": 25,
+          "elapsedMs": 1049.9339999999938,
+          "pending": "walk",
+          "atMs": 1056.5
+        },
+        {
+          "action": "jump",
+          "frameId": 109,
+          "position": 26,
+          "elapsedMs": 1099.9339999999938,
+          "pending": "walk",
+          "atMs": 1111.7999999523163
+        },
+        {
+          "action": "jump",
+          "frameId": 110,
+          "position": 27,
+          "elapsedMs": 1133.2339999999967,
+          "pending": "walk",
+          "atMs": 1140
+        },
+        {
+          "action": "jump",
+          "frameId": 111,
+          "position": 28,
+          "elapsedMs": 1183.2339999999967,
+          "pending": "walk",
+          "atMs": 1195.5
+        },
+        {
+          "action": "jump",
+          "frameId": 112,
+          "position": 29,
+          "elapsedMs": 1216.633999999991,
+          "pending": "walk",
+          "atMs": 1247.699999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 113,
+          "position": 30,
+          "elapsedMs": 1266.633999999991,
+          "pending": "walk",
+          "atMs": 1297.5
+        },
+        {
+          "action": "jump",
+          "frameId": 114,
+          "position": 31,
+          "elapsedMs": 1299.9339999999938,
+          "pending": "walk",
+          "atMs": 1317.3999999761581
+        },
+        {
+          "action": "jump",
+          "frameId": 115,
+          "position": 32,
+          "elapsedMs": 1349.9339999999938,
+          "pending": "walk",
+          "atMs": 1358.199999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 116,
+          "position": 33,
+          "elapsedMs": 1383.333999999988,
+          "pending": "walk",
+          "atMs": 1403
+        },
+        {
+          "action": "jump",
+          "frameId": 117,
+          "position": 34,
+          "elapsedMs": 1433.2339999999967,
+          "pending": "walk",
+          "atMs": 1444
+        },
+        {
+          "action": "jump",
+          "frameId": 118,
+          "position": 35,
+          "elapsedMs": 1466.633999999991,
+          "pending": "walk",
+          "atMs": 1482.0999999642372
+        },
+        {
+          "action": "jump",
+          "frameId": 119,
+          "position": 36,
+          "elapsedMs": 1516.5339999999997,
+          "pending": "walk",
+          "atMs": 1527
+        },
+        {
+          "action": "jump",
+          "frameId": 120,
+          "position": 37,
+          "elapsedMs": 1549.9339999999938,
+          "pending": "walk",
+          "atMs": 1561.699999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 121,
+          "position": 38,
+          "elapsedMs": 1599.833999999988,
+          "pending": "walk",
+          "atMs": 1615.0999999642372
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 8.23399999999674,
+          "pending": "",
+          "atMs": 1644.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 58.33399999998801,
+          "pending": "",
+          "atMs": 1697.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 91.63399999999092,
+          "pending": "",
+          "atMs": 1731.0999999642372
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 141.63399999999092,
+          "pending": "",
+          "atMs": 1767.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 174.833999999988,
+          "pending": "",
+          "atMs": 1807.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 224.93399999999383,
+          "pending": "",
+          "atMs": 1844.2999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 258.23399999999674,
+          "pending": "",
+          "atMs": 1883.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 308.23399999999674,
+          "pending": "",
+          "atMs": 1951.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 341.53399999999965,
+          "pending": "",
+          "atMs": 1981.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 391.6339999999909,
+          "pending": "",
+          "atMs": 2020.5
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 424.93399999999383,
+          "pending": "",
+          "atMs": 2054.2999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 35,
+          "position": 11,
+          "elapsedMs": 474.93399999999383,
+          "pending": "",
+          "atMs": 2117.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 36,
+          "position": 12,
+          "elapsedMs": 508.23399999999674,
+          "pending": "",
+          "atMs": 2144.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 13,
+          "elapsedMs": 558.2339999999967,
+          "pending": "",
+          "atMs": 2189.2999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 38,
+          "position": 14,
+          "elapsedMs": 591.5339999999997,
+          "pending": "",
+          "atMs": 2217.599999964237
+        },
+        {
+          "action": "walk",
+          "frameId": 39,
+          "position": 15,
+          "elapsedMs": 641.5339999999997,
+          "pending": "",
+          "atMs": 2287.7999999523163
+        },
+        {
+          "action": "walk",
+          "frameId": 40,
+          "position": 16,
+          "elapsedMs": 674.833999999988,
+          "pending": "",
+          "atMs": 2313.399999976158
+        }
+      ],
+      "requests": [
+        {
+          "target": "walk",
+          "atMs": 200.29999995231628
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "look": "wedding",
+      "from": "walk",
+      "to": "run",
+      "facing": "right",
+      "observations": [
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.10000002384185791
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 69.70000004768372
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 83.39999999999418,
+          "pending": "",
+          "atMs": 108.90000003576279
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 133.39999999999418,
+          "pending": "",
+          "atMs": 157.80000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 166.79999999998836,
+          "pending": "",
+          "atMs": 192.60000002384186
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 216.70000000001164,
+          "pending": "run",
+          "atMs": 230.4000000357628
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 250.10000000000582,
+          "pending": "run",
+          "atMs": 270.80000001192093
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 300,
+          "pending": "run",
+          "atMs": 320.5
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 333.3999999999942,
+          "pending": "run",
+          "atMs": 355.7000000476837
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 383.29999999998836,
+          "pending": "run",
+          "atMs": 404.7000000476837
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 416.70000000001164,
+          "pending": "run",
+          "atMs": 436.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 175.03333333334498,
+          "pending": "",
+          "atMs": 487.10000002384186
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 208.43333333333916,
+          "pending": "",
+          "atMs": 524.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.4333333333392,
+          "pending": "",
+          "atMs": 569.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 308.4333333333392,
+          "pending": "",
+          "atMs": 620.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.73333333332755,
+          "pending": "",
+          "atMs": 656.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 375.033333333345,
+          "pending": "",
+          "atMs": 686.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 425.033333333345,
+          "pending": "",
+          "atMs": 736.5
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 458.4333333333392,
+          "pending": "",
+          "atMs": 771.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.33333333333337,
+          "pending": "",
+          "atMs": 820.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 541.7333333333276,
+          "pending": "",
+          "atMs": 856.3000000119209
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.7333333333276,
+          "pending": "",
+          "atMs": 905.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 625.033333333345,
+          "pending": "",
+          "atMs": 937.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.366666666678384,
+          "pending": "",
+          "atMs": 989.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 41.76666666667256,
+          "pending": "",
+          "atMs": 1021.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.66666666666674,
+          "pending": "",
+          "atMs": 1073.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 125.06666666666092,
+          "pending": "",
+          "atMs": 1108
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 175.06666666666092,
+          "pending": "",
+          "atMs": 1157.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 208.36666666667838,
+          "pending": "",
+          "atMs": 1187.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.3666666666784,
+          "pending": "",
+          "atMs": 1238.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 291.66666666666674,
+          "pending": "",
+          "atMs": 1270.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.66666666666674,
+          "pending": "",
+          "atMs": 1320.5
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 375.0666666666609,
+          "pending": "",
+          "atMs": 1353.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 424.9666666666551,
+          "pending": "",
+          "atMs": 1402.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 458.3666666666784,
+          "pending": "",
+          "atMs": 1437.9000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.3666666666784,
+          "pending": "",
+          "atMs": 1487.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 541.6666666666667,
+          "pending": "",
+          "atMs": 1520.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.6666666666667,
+          "pending": "",
+          "atMs": 1570.4000000357628
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 625.0666666666609,
+          "pending": "",
+          "atMs": 1604.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 51,
+          "position": 0,
+          "elapsedMs": 8.299999999988472,
+          "pending": "",
+          "atMs": 1656.1000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 52,
+          "position": 1,
+          "elapsedMs": 41.700000000011755,
+          "pending": "",
+          "atMs": 1686.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 53,
+          "position": 2,
+          "elapsedMs": 91.60000000000593,
+          "pending": "",
+          "atMs": 1736.800000011921
+        },
+        {
+          "action": "run",
+          "frameId": 54,
+          "position": 3,
+          "elapsedMs": 125.00000000000011,
+          "pending": "",
+          "atMs": 1769.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "position": 4,
+          "elapsedMs": 175.0000000000001,
+          "pending": "",
+          "atMs": 1820.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 56,
+          "position": 5,
+          "elapsedMs": 225.0000000000001,
+          "pending": "",
+          "atMs": 1869.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 57,
+          "position": 6,
+          "elapsedMs": 258.3999999999943,
+          "pending": "",
+          "atMs": 1906.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 58,
+          "position": 7,
+          "elapsedMs": 291.70000000001176,
+          "pending": "",
+          "atMs": 1937.7000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 59,
+          "position": 8,
+          "elapsedMs": 341.60000000000593,
+          "pending": "",
+          "atMs": 1996.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 60,
+          "position": 9,
+          "elapsedMs": 375.0000000000001,
+          "pending": "",
+          "atMs": 2023.6000000238419
+        },
+        {
+          "action": "run",
+          "frameId": 61,
+          "position": 10,
+          "elapsedMs": 425.0000000000001,
+          "pending": "",
+          "atMs": 2069.900000035763
+        },
+        {
+          "action": "run",
+          "frameId": 62,
+          "position": 11,
+          "elapsedMs": 474.8999999999943,
+          "pending": "",
+          "atMs": 2122.600000023842
+        },
+        {
+          "action": "run",
+          "frameId": 63,
+          "position": 12,
+          "elapsedMs": 508.2999999999885,
+          "pending": "",
+          "atMs": 2156.2000000476837
+        },
+        {
+          "action": "run",
+          "frameId": 64,
+          "position": 13,
+          "elapsedMs": 541.7000000000118,
+          "pending": "",
+          "atMs": 2186.600000023842
+        },
+        {
+          "action": "run",
+          "frameId": 65,
+          "position": 14,
+          "elapsedMs": 591.7000000000118,
+          "pending": "",
+          "atMs": 2241.300000011921
+        },
+        {
+          "action": "run",
+          "frameId": 66,
+          "position": 15,
+          "elapsedMs": 625.0000000000001,
+          "pending": "",
+          "atMs": 2273.100000023842
+        }
+      ],
+      "requests": [
+        {
+          "target": "run",
+          "atMs": 200.4000000357628
+        }
+      ]
+    },
+    {
+      "mode": "wardrobe",
+      "look": "wedding",
+      "from": "jump",
+      "to": "walk",
+      "facing": "right",
+      "observations": [
+        {
+          "action": "jump",
+          "frameId": 83,
+          "position": 0,
+          "elapsedMs": 0,
+          "pending": "",
+          "atMs": 0.19999998807907104
+        },
+        {
+          "action": "jump",
+          "frameId": 84,
+          "position": 1,
+          "elapsedMs": 50,
+          "pending": "",
+          "atMs": 65.10000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 85,
+          "position": 2,
+          "elapsedMs": 83.40000000002328,
+          "pending": "",
+          "atMs": 99.80000001192093
+        },
+        {
+          "action": "jump",
+          "frameId": 86,
+          "position": 3,
+          "elapsedMs": 133.30000000001746,
+          "pending": "",
+          "atMs": 150
+        },
+        {
+          "action": "jump",
+          "frameId": 87,
+          "position": 4,
+          "elapsedMs": 183.40000000002328,
+          "pending": "",
+          "atMs": 201.19999998807907
+        },
+        {
+          "action": "jump",
+          "frameId": 88,
+          "position": 5,
+          "elapsedMs": 216.70000000001164,
+          "pending": "walk",
+          "atMs": 234.10000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 89,
+          "position": 6,
+          "elapsedMs": 250,
+          "pending": "walk",
+          "atMs": 265.60000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 90,
+          "position": 7,
+          "elapsedMs": 300,
+          "pending": "walk",
+          "atMs": 317.60000002384186
+        },
+        {
+          "action": "jump",
+          "frameId": 91,
+          "position": 8,
+          "elapsedMs": 350,
+          "pending": "walk",
+          "atMs": 367.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 92,
+          "position": 9,
+          "elapsedMs": 383.4000000000233,
+          "pending": "walk",
+          "atMs": 399.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 93,
+          "position": 10,
+          "elapsedMs": 416.70000000001164,
+          "pending": "walk",
+          "atMs": 432.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 94,
+          "position": 11,
+          "elapsedMs": 466.70000000001164,
+          "pending": "walk",
+          "atMs": 482
+        },
+        {
+          "action": "jump",
+          "frameId": 95,
+          "position": 12,
+          "elapsedMs": 500,
+          "pending": "walk",
+          "atMs": 515.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 96,
+          "position": 13,
+          "elapsedMs": 550,
+          "pending": "walk",
+          "atMs": 564.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 97,
+          "position": 14,
+          "elapsedMs": 600,
+          "pending": "walk",
+          "atMs": 615.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 98,
+          "position": 15,
+          "elapsedMs": 633.3000000000175,
+          "pending": "walk",
+          "atMs": 649.5
+        },
+        {
+          "action": "jump",
+          "frameId": 99,
+          "position": 16,
+          "elapsedMs": 666.7000000000116,
+          "pending": "walk",
+          "atMs": 683.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 100,
+          "position": 17,
+          "elapsedMs": 716.6000000000058,
+          "pending": "walk",
+          "atMs": 732
+        },
+        {
+          "action": "jump",
+          "frameId": 101,
+          "position": 18,
+          "elapsedMs": 750,
+          "pending": "walk",
+          "atMs": 765
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "position": 19,
+          "elapsedMs": 799.9000000000233,
+          "pending": "walk",
+          "atMs": 815.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "elapsedMs": 849.9000000000233,
+          "pending": "walk",
+          "atMs": 867
+        },
+        {
+          "action": "jump",
+          "frameId": 104,
+          "position": 21,
+          "elapsedMs": 883.3000000000175,
+          "pending": "walk",
+          "atMs": 897.8000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 105,
+          "position": 22,
+          "elapsedMs": 916.7000000000116,
+          "pending": "walk",
+          "atMs": 931.6999999880791
+        },
+        {
+          "action": "jump",
+          "frameId": 106,
+          "position": 23,
+          "elapsedMs": 966.6000000000058,
+          "pending": "walk",
+          "atMs": 980.8000000119209
+        },
+        {
+          "action": "jump",
+          "frameId": 107,
+          "position": 24,
+          "elapsedMs": 1000,
+          "pending": "walk",
+          "atMs": 1014.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 108,
+          "position": 25,
+          "elapsedMs": 1049.9000000000233,
+          "pending": "walk",
+          "atMs": 1064.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 109,
+          "position": 26,
+          "elapsedMs": 1100,
+          "pending": "walk",
+          "atMs": 1114.9000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 110,
+          "position": 27,
+          "elapsedMs": 1133.3000000000175,
+          "pending": "walk",
+          "atMs": 1147.699999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 111,
+          "position": 28,
+          "elapsedMs": 1183.3000000000175,
+          "pending": "walk",
+          "atMs": 1197.5
+        },
+        {
+          "action": "jump",
+          "frameId": 112,
+          "position": 29,
+          "elapsedMs": 1216.6000000000058,
+          "pending": "walk",
+          "atMs": 1232.199999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 113,
+          "position": 30,
+          "elapsedMs": 1250,
+          "pending": "walk",
+          "atMs": 1265.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 114,
+          "position": 31,
+          "elapsedMs": 1300,
+          "pending": "walk",
+          "atMs": 1315.6000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 115,
+          "position": 32,
+          "elapsedMs": 1350,
+          "pending": "walk",
+          "atMs": 1365.800000011921
+        },
+        {
+          "action": "jump",
+          "frameId": 116,
+          "position": 33,
+          "elapsedMs": 1383.3000000000175,
+          "pending": "walk",
+          "atMs": 1397.300000011921
+        },
+        {
+          "action": "jump",
+          "frameId": 117,
+          "position": 34,
+          "elapsedMs": 1433.3000000000175,
+          "pending": "walk",
+          "atMs": 1447.4000000357628
+        },
+        {
+          "action": "jump",
+          "frameId": 118,
+          "position": 35,
+          "elapsedMs": 1466.6000000000058,
+          "pending": "walk",
+          "atMs": 1481.199999988079
+        },
+        {
+          "action": "jump",
+          "frameId": 119,
+          "position": 36,
+          "elapsedMs": 1500,
+          "pending": "walk",
+          "atMs": 1514.300000011921
+        },
+        {
+          "action": "jump",
+          "frameId": 120,
+          "position": 37,
+          "elapsedMs": 1550,
+          "pending": "walk",
+          "atMs": 1566.1000000238419
+        },
+        {
+          "action": "jump",
+          "frameId": 121,
+          "position": 38,
+          "elapsedMs": 1599.9000000000233,
+          "pending": "walk",
+          "atMs": 1614.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "position": 0,
+          "elapsedMs": 8.300000000017462,
+          "pending": "",
+          "atMs": 1648.6000000238419
+        },
+        {
+          "action": "walk",
+          "frameId": 25,
+          "position": 1,
+          "elapsedMs": 58.30000000001746,
+          "pending": "",
+          "atMs": 1697.699999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "position": 2,
+          "elapsedMs": 91.60000000000582,
+          "pending": "",
+          "atMs": 1731.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 27,
+          "position": 3,
+          "elapsedMs": 141.60000000000582,
+          "pending": "",
+          "atMs": 1781
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 4,
+          "elapsedMs": 175,
+          "pending": "",
+          "atMs": 1814.6000000238419
+        },
+        {
+          "action": "walk",
+          "frameId": 28,
+          "position": 5,
+          "elapsedMs": 224.90000000002328,
+          "pending": "",
+          "atMs": 1858.300000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 30,
+          "position": 6,
+          "elapsedMs": 258.20000000001164,
+          "pending": "",
+          "atMs": 1899.800000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "position": 7,
+          "elapsedMs": 308.20000000001164,
+          "pending": "",
+          "atMs": 1947.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 32,
+          "position": 8,
+          "elapsedMs": 341.6000000000058,
+          "pending": "",
+          "atMs": 1981.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 33,
+          "position": 9,
+          "elapsedMs": 391.5,
+          "pending": "",
+          "atMs": 2030.6000000238419
+        },
+        {
+          "action": "walk",
+          "frameId": 34,
+          "position": 10,
+          "elapsedMs": 425,
+          "pending": "",
+          "atMs": 2064.199999988079
+        },
+        {
+          "action": "walk",
+          "frameId": 35,
+          "position": 11,
+          "elapsedMs": 474.9000000000233,
+          "pending": "",
+          "atMs": 2114.100000023842
+        },
+        {
+          "action": "walk",
+          "frameId": 36,
+          "position": 12,
+          "elapsedMs": 508.30000000001746,
+          "pending": "",
+          "atMs": 2147.300000011921
+        },
+        {
+          "action": "walk",
+          "frameId": 37,
+          "position": 13,
+          "elapsedMs": 558.3000000000175,
+          "pending": "",
+          "atMs": 2197.900000035763
+        },
+        {
+          "action": "walk",
+          "frameId": 38,
+          "position": 14,
+          "elapsedMs": 591.5,
+          "pending": "",
+          "atMs": 2230.600000023842
+        },
+        {
+          "action": "walk",
+          "frameId": 39,
+          "position": 15,
+          "elapsedMs": 625,
+          "pending": "",
+          "atMs": 2264.199999988079
+        }
+      ],
+      "requests": [
+        {
+          "target": "walk",
+          "atMs": 201.60000002384186
+        }
+      ]
+    }
+  ],
+  "playback": [],
+  "screenshots": [
+    {
+      "file": "docs/kling-wardrobe/fit-v2/browser/female-day-workbench.png",
+      "bytes": 258303,
+      "sha256": "59a41f2d5a5e38d492a86dcd5aac58b9a42ad3136784e001994b6e45f8f08d4e",
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-wardrobe/fit-v2/browser/female-wedding-workbench.png",
+      "bytes": 261359,
+      "sha256": "5e16c562df9f2a4c0726c990b443798225a88d452f439892e3ee0139a17d53f8",
+      "decoded": true
+    }
+  ],
+  "timings": [
+    {
+      "label": "female-original-open",
+      "durationMs": 21483.994178
+    },
+    {
+      "label": "day-v2-preflight",
+      "durationMs": 19206.257043000005
+    },
+    {
+      "label": "wedding-v2-preflight",
+      "durationMs": 13995.369687000028
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:5189/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "failedResponses": [],
+  "forbiddenIndependentRequests": [],
+  "externalRequests": [],
+  "assetResponses": [
+    {
+      "url": "/assets/catalog-BvghDl99.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/female.character-m4yGetXB.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/female-C8fgXt8E.json",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/coral-daydress-v2-rscXTAa8.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/brown-shoes-CYicIa8Z.zip",
+      "status": 200,
+      "independent": false
+    },
+    {
+      "url": "/assets/ivory-wedding-dress-v2-BXU9tboc.zip",
+      "status": 200,
+      "independent": false
+    }
+  ],
+  "passed": false,
+  "failure": "page.waitForFunction: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /usr/bin/chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-M9s0uw --remote-debugging-pipe --no-startup-window\n<launched> pid=380883\n[pid=380883][err] [380883:380883:1021/142528.588790:ERROR:third_party/crashpad/crashpad/util/file/filesystem_posix.cc:63] mkdir : No such file or directory (2)\n[pid=380883][err] chrome_crashpad_handler: --database is required\n[pid=380883][err] Try 'chrome_crashpad_handler --help' for more information.\n[pid=380883][err] [380883:380907:1021/142528.694725:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=380883][err] [380883:380907:1021/142528.695294:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380907:1021/142528.703071:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=380883][err] [380883:380907:1021/142528.711918:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=380883][err] [380883:380907:1021/142528.715958:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] Fontconfig error: No writable cache directories\n[pid=380883][err] [380883:380919:1021/142528.730400:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 380922: Read-only file system (30)\n[pid=380883][err] [380883:380907:1021/142528.873825:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380919:1021/142528.883242:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 380950: Read-only file system (30)\n[pid=380883][err] [380883:380883:1021/142528.909168:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380883:1021/142528.911761:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380907:1021/142528.920059:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380907:1021/142528.920085:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380883:1021/142528.928844:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380907:1021/142528.929819:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380907:1021/142528.936329:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=380883][err] [380883:380907:1021/142528.936523:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\n[pid=380883][err] [380883:380883:1021/142528.936901:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380883:1021/142528.936965:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380907:1021/142528.937019:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380883:1021/142528.937456:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380883:1021/142528.938260:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: \n[pid=380883][err] [380883:380883:1021/142528.941910:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380907:1021/142528.942217:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380883:1021/142528.949956:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] [380883:380907:1021/142528.950029:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[pid=380883][err] [380883:380883:1021/142528.953620:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[pid=380883][err] \n[pid=380883][err] (process:380883): dconf-CRITICAL **: 14:25:28.961: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n[pid=380883][err] \n[pid=380883][err] (process:380883): dconf-CRITICAL **: 14:25:28.972: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n[pid=380883][err] \n[pid=380883][err] (process:380883): dconf-CRITICAL **: 14:25:28.974: unable to create directory '/home/agent/.cache/dconf': Read-only file system.  dconf will not work properly.\n[pid=380883][err] [380883:380919:1021/142529.024435:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 380970: Read-only file system (30)\n[pid=380883][err] [380883:380919:1021/142529.085070:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 380980: Read-only file system (30)\n[pid=380883][err] [380883:380919:1021/142529.093332:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 380983: Read-only file system (30)\n[pid=380883][err] [380883:380919:1021/142828.742043:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 381886: Read-only file system (30)\n[pid=380883][err] Warning: vkCreateInstance: Found no drivers!\n[pid=380883][err] Warning: vkCreateInstance failed with VK_ERROR_INCOMPATIBLE_DRIVER\n[pid=380883][err]     at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n[pid=380883][err] \n    at ready (/workspace/gathria-character/scripts/verify-kling-wardrobe-fit-v2.mjs:177:14)\n    at /workspace/gathria-character/scripts/verify-kling-wardrobe-fit-v2.mjs:589:11",
+  "finishedAt": "2026-10-21T14:29:16.537Z"
+}

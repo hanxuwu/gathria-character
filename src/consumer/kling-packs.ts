@@ -1,4 +1,8 @@
-import { loadPortableCharacterPack } from "../core/pack";
+import {
+  characterPackImages,
+  loadPortableCharacterPack,
+  releaseCharacterImages,
+} from "../core/pack";
 import {
   klingCharacters,
   type KlingCharacterId,
@@ -27,6 +31,7 @@ export async function loadKlingCharacter(
   signal.throwIfAborted();
   onStage?.(`Validating ${character.name} and decoding source artwork…`);
   const pack = await loadPortableCharacterPack(archive);
+  if (signal.aborted) releaseCharacterImages(characterPackImages(pack));
   signal.throwIfAborted();
   return { pack, archive };
 }

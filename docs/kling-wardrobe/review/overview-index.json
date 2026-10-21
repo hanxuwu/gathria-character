@@ -1,0 +1,81 @@
+{
+  "source": "Actual UI-exported CharacterPacks; no new artwork or movement generated.",
+  "note": "GIF is a reduced-size palette preview. Sections are explicit cuts, not a motion-transition demonstration.",
+  "displayScale": 0.375,
+  "sources": [
+    {
+      "file": "docs/kling-wardrobe/exports/male-day.character.zip",
+      "sha256": "175fda2f6f1ddc00d1320e2b92daa003744141fb95a7eebf27710954b200a75a"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/male-wedding.character.zip",
+      "sha256": "37bebcaa1b6efc432c59b957679e69ceb059f51a90cb72fcf5f059bd74494c85"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-day.character.zip",
+      "sha256": "7733906d72119c9317b3c771df22c85b67e6c5cc86a1cfbea572fc9608efa9d7"
+    },
+    {
+      "file": "docs/kling-wardrobe/exports/female-wedding.character.zip",
+      "sha256": "29af91e75e7daf03eb487a01310a573ea1c03d6bdaea55f42253e7088df6aa5f"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/kling-wardrobe/review/four-looks-actions-right.gif",
+      "bytes": 13867579,
+      "sha256": "bb6e7a259f2aaee76d0808489260b724ab3eb2f1210a3725903c6d16af7b1cd1",
+      "decodedFrames": 169,
+      "logicalFrames": 197,
+      "totalDurationMs": 8210,
+      "sections": [
+        {
+          "action": "idle",
+          "repeats": 1,
+          "startMs": 0,
+          "endMs": 1000
+        },
+        {
+          "action": "walk",
+          "repeats": 2,
+          "startMs": 1000,
+          "endMs": 3250
+        },
+        {
+          "action": "run",
+          "repeats": 3,
+          "startMs": 3250,
+          "endMs": 5250
+        },
+        {
+          "action": "jump",
+          "repeats": 1,
+          "startMs": 5250,
+          "endMs": 6875
+        },
+        {
+          "action": "celebrate",
+          "repeats": 2,
+          "startMs": 6875,
+          "endMs": 8208
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-wardrobe/review/four-looks-run-right.gif",
+      "bytes": 1430993,
+      "sha256": "1861d69d98c3429080a9ce4e637a4865bdc7c4c3fa19e5337121f4f09a544396",
+      "decodedFrames": 16,
+      "logicalFrames": 16,
+      "totalDurationMs": 670,
+      "sections": [
+        {
+          "action": "run",
+          "repeats": 1,
+          "startMs": 0,
+          "endMs": 667
+        }
+      ]
+    }
+  ]
+}

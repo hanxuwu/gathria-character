@@ -321,13 +321,11 @@ test("invalid source and removed V1 packs cannot replace the loaded Kling charac
     "PROVENANCE.txt": strToU8("Legacy"),
     "INTEGRATION.md": strToU8("Legacy"),
   });
-  await page
-    .locator("#player-zip")
-    .setInputFiles({
-      name: "legacy.character.zip",
-      mimeType: "application/zip",
-      buffer: Buffer.from(unsupported),
-    });
+  await page.locator("#player-zip").setInputFiles({
+    name: "legacy.character.zip",
+    mimeType: "application/zip",
+    buffer: Buffer.from(unsupported),
+  });
   await expect(page.getByRole("alert")).toContainText(
     "Legacy CharacterPack V1 is not supported",
   );
@@ -472,10 +470,10 @@ async function multipageJumpFixture() {
   const jump = new Uint8Array(width * 3 * height * 4);
   for (let y = 5; y < 44; y++) {
     for (let x = 8; x < 20; x++) {
-      primary.set([40, 160, 70, 255], (y * width + x) * 4);
+      primary.set([40, 160, 70, x === 8 ? 113 : 255], (y * width + x) * 4);
       for (let frame = 0; frame < 3; frame++) {
         jump.set(
-          [220, 70 + frame * 30, 130, 255],
+          [220, 70 + frame * 30, 130, x === 8 ? 113 : 255],
           (y * width * 3 + frame * width + x + frame * 2) * 4,
         );
       }
@@ -768,4 +766,133 @@ test("female workbench link loads only that prepared original and embedded mode 
   await expect(
     page.getByRole("button", { name: "Jump", exact: true }),
   ).toBeEnabled();
+});
+
+test("bitmap atlas pages preserve translucent pixels and mirroring compared with the HTML fallback", async ({
+  page,
+}) => {
+  const input = await multipageJumpFixture();
+  const snapshots: string[][] = [];
+  for (const fallback of [false, true]) {
+    if (fallback)
+      await page.addInitScript(() =>
+        Object.defineProperty(window, "createImageBitmap", {
+          value: undefined,
+        }),
+      );
+    await page.goto("/player.html");
+    await page.locator("#player-zip").setInputFiles({
+      name: "alpha.character.zip",
+      mimeType: "application/zip",
+      buffer: input,
+    });
+    await expect(page.getByRole("status")).toContainText(
+      "Loaded: Native paged jump",
+    );
+    await page
+      .getByRole("button", { name: "Pause animation", exact: true })
+      .click();
+    const images: string[] = [];
+    for (const action of ["Idle", "Jump"])
+      for (const facing of ["Right", "Left"]) {
+        await page.getByRole("button", { name: action, exact: true }).click();
+        await page.locator("#player-frame").fill("0");
+        await page.getByRole("button", { name: facing, exact: true }).click();
+        const canvas = page.getByTestId("consumer-canvas");
+        await expect(canvas).toHaveAttribute(
+          "data-frame-page",
+          action === "Idle" ? "0" : "1",
+        );
+        await expect(canvas).toHaveAttribute(
+          "aria-label",
+          new RegExp(`facing ${facing.toLowerCase()}`),
+        );
+        images.push(
+          await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL()),
+        );
+      }
+    snapshots.push(images);
+  }
+  expect(snapshots[1]).toEqual(snapshots[0]);
+  expect(snapshots[0][0]).not.toEqual(snapshots[0][1]);
+});
+
+test("shared action previews retain bitmap pages and replaced or hidden sources release them", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const stats = { created: 0, closed: 0 };
+    Object.assign(window, { __bitmapStats: stats });
+    const create = window.createImageBitmap.bind(window);
+    window.createImageBitmap = (async (...args: Parameters<typeof create>) => {
+      const bitmap = await create(...args);
+      stats.created++;
+      return bitmap;
+    }) as typeof createImageBitmap;
+    const close = ImageBitmap.prototype.close;
+    ImageBitmap.prototype.close = function () {
+      stats.closed++;
+      close.call(this);
+    };
+  });
+  const fixtures = {
+    male: await preparedKlingFixture("male"),
+    female: await preparedKlingFixture("female"),
+  };
+  await page.route(
+    /\/docs\/kling-jump\/exports\/(male|female)\.character\.zip(?:\?.*)?$/,
+    async (route) => {
+      await route.fulfill({
+        body: fixtures[
+          route.request().url().includes("/female.") ? "female" : "male"
+        ],
+        contentType: "application/zip",
+      });
+    },
+  );
+  const stats = () =>
+    page.evaluate(
+      () =>
+        (
+          window as unknown as {
+            __bitmapStats: { created: number; closed: number };
+          }
+        ).__bitmapStats,
+    );
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/player.html?kling=male&authoring=1");
+  const editor = page.getByRole("region", { name: "Sprite action editor" });
+  await expect(editor.getByLabel("Start frame", { exact: true })).toBeEnabled();
+  expect(await stats()).toEqual({ created: 2, closed: 0 });
+  await page.getByRole("button", { name: "Run", exact: true }).click();
+  await editor.getByLabel("Action FPS", { exact: true }).fill("6");
+  await page
+    .getByRole("button", { name: "Apply action settings", exact: true })
+    .click();
+  await expect(page.locator(".player-timing")).toHaveText("6 FPS · LOOP");
+  await page
+    .getByRole("button", { name: "Reset action to source", exact: true })
+    .click();
+  expect(await stats()).toEqual({ created: 2, closed: 0 });
+  await page.getByLabel("Character", { exact: true }).selectOption("female");
+  await expect(page.locator(".player-status")).toContainText(
+    "Loaded: Prepared female fixture",
+  );
+  await expect.poll(stats).toEqual({ created: 4, closed: 2 });
+  await expect(editor.getByLabel("Start frame", { exact: true })).toBeEnabled();
+  await page.getByLabel("Compare both characters", { exact: true }).check();
+  await expect(page.getByTestId("consumer-canvas")).toHaveAttribute(
+    "data-comparison",
+    "true",
+  );
+  await expect.poll(stats).toEqual({ created: 6, closed: 2 });
+  await page.getByLabel("Compare both characters", { exact: true }).uncheck();
+  await expect.poll(stats).toEqual({ created: 6, closed: 4 });
+  await page.getByRole("button", { name: "Left", exact: true }).click();
+  await expect(page.getByTestId("consumer-canvas")).toHaveAttribute(
+    "aria-label",
+    /facing left/,
+  );
+  expect(errors).toEqual([]);
 });

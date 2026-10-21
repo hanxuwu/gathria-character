@@ -507,6 +507,9 @@ async function encodeAtlasPng(image: RgbaPng): Promise<Uint8Array> {
   return next.value;
 }
 
+/** Lossless page encoding with periodic browser yields for large authored packs. */
+export { encodeAtlasPng as encodeSourceRgbaPngAsync };
+
 function sourceFileLimit(path: string): number {
   if (path === "manifest.json" || path === "README.md") return MAX_TEXT;
   if (

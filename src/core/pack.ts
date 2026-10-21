@@ -15,16 +15,33 @@ import type {
 export { validateBakedCharacterRecipe, validateBakedManifest } from "./pack-v2";
 export { validateMultipageBakedManifest } from "./pack-v3";
 
+export type LoadedCharacterImage = HTMLImageElement | ImageBitmap;
+
 export interface LoadedCharacterPack<
   Manifest extends
     PortableCharacterPackManifest = PortableCharacterPackManifest,
   Config extends BakedCharacterRecipe = BakedCharacterRecipe,
 > {
   manifest: Manifest;
-  image: HTMLImageElement;
+  image: LoadedCharacterImage;
   /** V3 pages, including image as page zero. */
-  images?: HTMLImageElement[];
+  images?: LoadedCharacterImage[];
   config?: Config;
+}
+
+/** Pack previews may share pages; callers must retain every active owner's images. */
+export function characterPackImages(
+  pack: Pick<LoadedCharacterPack, "image" | "images">,
+): LoadedCharacterImage[] {
+  return [...new Set([pack.image, ...(pack.images ?? [])])];
+}
+
+export function releaseCharacterImages(
+  images: Iterable<LoadedCharacterImage>,
+): void {
+  for (const image of new Set(images)) {
+    if ("close" in image) image.close();
+  }
 }
 
 const MAX_TEXT_BYTES = 256 * 1024;
@@ -247,9 +264,30 @@ function crc32(bytes: Uint8Array): number {
 async function decodePng(
   bytes: Uint8Array,
   manifest: PngDimensions,
-): Promise<HTMLImageElement> {
+): Promise<LoadedCharacterImage> {
   checkPngHeader(bytes, manifest);
-  const url = URL.createObjectURL(new Blob([bytes], { type: "image/png" }));
+  const blob = new Blob([bytes], { type: "image/png" });
+  if (typeof createImageBitmap === "function") {
+    let bitmap: ImageBitmap | undefined;
+    try {
+      // Own one decoded surface per page. Large HTML images may be evicted from
+      // the browser's decoded-image cache between actions, delaying a page switch.
+      bitmap = await createImageBitmap(blob);
+    } catch {
+      // Older browsers may expose the API but reject PNG decoding.
+    }
+    if (bitmap) {
+      if (
+        bitmap.width !== manifest.spritesheet.width ||
+        bitmap.height !== manifest.spritesheet.height
+      ) {
+        bitmap.close();
+        fail("Decoded PNG dimensions do not match manifest.json.");
+      }
+      return bitmap;
+    }
+  }
+  const url = URL.createObjectURL(blob);
   try {
     const image = new Image();
     await new Promise<void>((resolve, reject) => {
@@ -262,6 +300,9 @@ async function decodePng(
         );
       image.src = url;
     });
+    // onload confirms the file, while decode prepares the decoded raster before
+    // playback can reach an additional atlas page.
+    if (typeof image.decode === "function") await image.decode();
     if (
       image.naturalWidth !== manifest.spritesheet.width ||
       image.naturalHeight !== manifest.spritesheet.height
@@ -545,9 +586,14 @@ export async function loadPortableCharacterPack(
     // Validate every page before the browser allocates decoded image surfaces.
     for (const [i, bytes] of pages.entries())
       await validateBakedPngPixels(bytes, { spritesheet: sheets[i] });
-    const images: HTMLImageElement[] = [];
-    for (const [i, bytes] of pages.entries())
-      images.push(await decodePng(bytes, { spritesheet: sheets[i] }));
+    const images: LoadedCharacterImage[] = [];
+    try {
+      for (const [i, bytes] of pages.entries())
+        images.push(await decodePng(bytes, { spritesheet: sheets[i] }));
+    } catch (cause) {
+      releaseCharacterImages(images);
+      throw cause;
+    }
     return { manifest, config, image: images[0], images };
   }
   if (manifest.schemaVersion === 2) await validateBakedPngPixels(png, manifest);

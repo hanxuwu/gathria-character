@@ -1,4 +1,4 @@
-import type { LoadedCharacterPack } from "../core/pack";
+import type { LoadedCharacterImage, LoadedCharacterPack } from "../core/pack";
 import type {
   PortableAnimationName,
   Animation,
@@ -91,7 +91,7 @@ export function drawCharacterFrame(
 export function imageForFrame(
   pack: Pick<LoadedCharacterPack, "manifest" | "image" | "images">,
   frame: SpriteFrame,
-): HTMLImageElement {
+): LoadedCharacterImage {
   if (pack.manifest.schemaVersion !== 3) return pack.image;
   const image =
     frame.page === undefined ? undefined : pack.images?.[frame.page];

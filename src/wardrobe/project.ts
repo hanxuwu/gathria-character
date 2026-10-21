@@ -1,0 +1,472 @@
+import { strToU8, zipSync } from "fflate";
+import { readBoundedArchive } from "../core/bounded-archive";
+import { decodeSourceRgbaPng } from "../core/baked-source";
+import {
+  readPortableCharacterPackArchive,
+  validateRgbaPngScanlines,
+  type PortableCharacterPackArchive,
+} from "../core/pack";
+import { BAKED_MAX_ARCHIVE_BYTES } from "../core/pack-v2";
+import { sha256 } from "../core/sha256";
+import {
+  WARDROBE_MAX_ITEMS,
+  WARDROBE_MAX_PAGES,
+  WARDROBE_MAX_ITEM_BYTES,
+  WARDROBE_MAX_PROJECT_BYTES,
+  WARDROBE_MAX_METADATA_BYTES,
+  validateWardrobeDocument,
+  validateWardrobeRegistration,
+  validateWardrobeGarmentManifest,
+  wardrobeObject,
+  type WardrobeDocument,
+  type WardrobeGarment,
+  type WardrobeProject,
+  type WardrobeRegistration,
+  type WardrobeSlot,
+} from "./contract";
+
+// fflate writes DOS timestamps with local getters, not UTC getters. Construct
+// the same local wall-clock value at export time so ZIP bytes match across zones.
+const zipTime = () => new Date(2020, 0, 1, 0, 0, 0);
+const decoder = new TextDecoder("utf-8", { fatal: true });
+const DOCUMENT_MAX_BYTES = 64 * 1024;
+const signature = [137, 80, 78, 71, 13, 10, 26, 10];
+const SOURCE_CACHE_MAX_BYTES = 96 * 1024 * 1024;
+const sourceCache = new Map<
+  string,
+  { archive: PortableCharacterPackArchive; bytes: number }
+>();
+
+/** A hash-verified private cache avoids repeating CRC scans of an unchanged
+ * 25 MiB source at every outfit selection. Public typed arrays never alias it. */
+function sourceArchive(
+  bytes: Uint8Array,
+  hash: string,
+): PortableCharacterPackArchive {
+  let cached = sourceCache.get(hash);
+  if (!cached) {
+    const archive = readPortableCharacterPackArchive(new Uint8Array(bytes));
+    cached = {
+      archive,
+      bytes:
+        archive.png.length +
+        (archive.additionalPngs ?? []).reduce((n, page) => n + page.length, 0),
+    };
+    sourceCache.set(hash, cached);
+    while (
+      sourceCache.size > 2 ||
+      [...sourceCache.values()].reduce((n, entry) => n + entry.bytes, 0) >
+        SOURCE_CACHE_MAX_BYTES
+    )
+      sourceCache.delete(sourceCache.keys().next().value!);
+  } else {
+    // Refresh insertion order for an inexpensive two-entry LRU.
+    sourceCache.delete(hash);
+    sourceCache.set(hash, cached);
+  }
+  return structuredClone(cached.archive);
+}
+export interface WardrobeValidationOptions {
+  /** False is for preview preflight only; import and persistence always decode. */
+  decodeGarments?: boolean;
+}
+function parse(
+  bytes: Uint8Array,
+  name: string,
+  max = WARDROBE_MAX_METADATA_BYTES,
+): unknown {
+  if (!bytes || bytes.length > max)
+    throw Error(`${name} is missing or exceeds its metadata limit.`);
+  try {
+    return JSON.parse(decoder.decode(bytes));
+  } catch {
+    throw Error(`${name} must be valid UTF-8 JSON.`);
+  }
+}
+function canonicalItems(items: WardrobeGarment[]) {
+  return [...items].sort((a, b) =>
+    a.manifest.id < b.manifest.id ? -1 : a.manifest.id > b.manifest.id ? 1 : 0,
+  );
+}
+function checkPageHeader(bytes: Uint8Array, width: number, height: number) {
+  if (bytes.length < 45 || !signature.every((n, i) => bytes[i] === n))
+    throw Error("Garment page must be an intact RGBA PNG.");
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  if (
+    view.getUint32(8) !== 13 ||
+    view.getUint32(12) !== 0x49484452 ||
+    view.getUint32(16) !== width ||
+    view.getUint32(20) !== height
+  )
+    throw Error("Garment PNG dimensions do not match the declared atlas.");
+  if (bytes[24] !== 8 || bytes[25] !== 6 || bytes[26] || bytes[27] || bytes[28])
+    throw Error("Garment PNG must be non-interlaced 8-bit RGBA.");
+}
+async function strictPngCompression(
+  bytes: Uint8Array,
+  width: number,
+  height: number,
+) {
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength),
+    chunks: Uint8Array[] = [];
+  for (let offset = 8; offset < bytes.length; ) {
+    if (offset + 12 > bytes.length) throw Error("Truncated garment PNG chunk.");
+    const size = view.getUint32(offset),
+      end = offset + size + 12;
+    if (end > bytes.length) throw Error("Invalid garment PNG chunk bounds.");
+    const type = view.getUint32(offset + 4);
+    if ([0x6163544c, 0x6663544c, 0x66644154].includes(type))
+      throw Error("Garment PNG must be static, not APNG.");
+    if (type === 0x49444154 && size)
+      chunks.push(bytes.subarray(offset + 8, end - 4));
+    offset = end;
+  }
+  await validateRgbaPngScanlines(chunks, width, height, false);
+}
+
+/** Own pixels are replacement RGBA, including transparent removal pixels. */
+export async function validateWardrobePagePixels(
+  patch: Uint8Array,
+  ownership: Uint8Array,
+  dimensions: { width: number; height: number },
+): Promise<void> {
+  checkPageHeader(patch, dimensions.width, dimensions.height);
+  checkPageHeader(ownership, dimensions.width, dimensions.height);
+  await strictPngCompression(patch, dimensions.width, dimensions.height);
+  await strictPngCompression(ownership, dimensions.width, dimensions.height);
+  const p = decodeSourceRgbaPng(patch, dimensions),
+    mask = decodeSourceRgbaPng(ownership, dimensions);
+  for (let i = 3; i < mask.pixels.length; i += 4) {
+    if (mask.pixels[i] !== 0 && mask.pixels[i] !== 255)
+      throw Error("Garment ownership alpha must be binary 0 or 255.");
+    if (!mask.pixels[i] && p.pixels[i])
+      throw Error("Garment artwork extends outside its declared ownership.");
+  }
+}
+
+export async function readWardrobeGarment(
+  bytes: Uint8Array,
+  registration: WardrobeRegistration,
+  registrationSha256: string,
+  options: WardrobeValidationOptions = {},
+): Promise<WardrobeGarment> {
+  const allowed: Record<string, number> = {
+    "manifest.json": WARDROBE_MAX_METADATA_BYTES,
+  };
+  const paired: Array<readonly [string, string]> = [];
+  for (let i = 0; i < WARDROBE_MAX_PAGES; i++) {
+    allowed[`patches-${i}.png`] = WARDROBE_MAX_ITEM_BYTES;
+    allowed[`ownership-${i}.png`] = WARDROBE_MAX_ITEM_BYTES;
+    paired.push([`patches-${i}.png`, `ownership-${i}.png`]);
+  }
+  const copied = new Uint8Array(bytes);
+  const files = readBoundedArchive(copied, {
+    label: "Garment archive",
+    maxArchiveBytes: WARDROBE_MAX_ITEM_BYTES,
+    maxExpandedBytes: WARDROBE_MAX_ITEM_BYTES,
+    minFiles: 3,
+    maxFiles: 1 + WARDROBE_MAX_PAGES * 2,
+    files: allowed,
+    required: ["manifest.json", "patches-0.png", "ownership-0.png"],
+    paired,
+  });
+  const manifest = validateWardrobeGarmentManifest(
+    parse(files["manifest.json"], "Garment manifest"),
+    registration,
+    registrationSha256,
+  );
+  if (Object.keys(files).length !== 1 + manifest.pages.length * 2)
+    throw Error("Garment archive has undeclared pages.");
+  const pages: WardrobeGarment["pages"] = [];
+  for (const page of manifest.pages) {
+    const patch = files[page.file],
+      ownership = files[page.maskFile];
+    if (!patch || !ownership)
+      throw Error("Garment archive is missing a declared atlas page.");
+    checkPageHeader(patch, page.width, page.height);
+    checkPageHeader(ownership, page.width, page.height);
+    if (options.decodeGarments !== false)
+      await validateWardrobePagePixels(patch, ownership, page);
+    pages.push({ patch, ownership });
+  }
+  return { bytes: copied, sha256: await sha256(copied), manifest, pages };
+}
+
+async function createBase(source: Uint8Array, registrationBytes: Uint8Array) {
+  if (source.length > BAKED_MAX_ARCHIVE_BYTES)
+    throw Error("Original CharacterPack must be at most 64 MiB.");
+  if (registrationBytes.length > WARDROBE_MAX_METADATA_BYTES)
+    throw Error("Wardrobe registration exceeds its metadata limit.");
+  const bytes = new Uint8Array(source),
+    registered = new Uint8Array(registrationBytes);
+  const sourceSha256 = await sha256(bytes),
+    archive = sourceArchive(bytes, sourceSha256);
+  const registration = validateWardrobeRegistration(
+    parse(registered, "Wardrobe registration"),
+    archive,
+    sourceSha256,
+  );
+  return {
+    source: bytes,
+    archive,
+    registrationBytes: registered,
+    registration,
+    sourceSha256,
+    registrationSha256: await sha256(registered),
+  };
+}
+function checkInventory(
+  project: Pick<WardrobeProject, "source" | "registrationBytes" | "items">,
+) {
+  if (project.items.length > WARDROBE_MAX_ITEMS)
+    throw Error(
+      `A wardrobe project supports at most ${WARDROBE_MAX_ITEMS} garments.`,
+    );
+  if (
+    new Set(project.items.map((i) => i.manifest.id)).size !==
+    project.items.length
+  )
+    throw Error(
+      "Garment ids must be unique; remove or version an existing garment before replacing it.",
+    );
+  if (
+    project.source.length +
+      project.registrationBytes.length +
+      project.items.reduce(
+        (sum, i) => sum + i.bytes.length,
+        DOCUMENT_MAX_BYTES,
+      ) >
+    WARDROBE_MAX_PROJECT_BYTES
+  )
+    throw Error("Wardrobe project exceeds its 128 MiB embedded asset budget.");
+}
+
+export async function createWardrobeProject(
+  source: Uint8Array,
+  registrationBytes: Uint8Array,
+  items: Uint8Array[] = [],
+): Promise<WardrobeProject> {
+  if (items.length > WARDROBE_MAX_ITEMS)
+    throw Error(
+      `A wardrobe project supports at most ${WARDROBE_MAX_ITEMS} garments.`,
+    );
+  const base = await createBase(source, registrationBytes),
+    garments: WardrobeGarment[] = [];
+  // Serial decode bounds peak memory; rejected imports never mutate a live project.
+  for (const bytes of items)
+    garments.push(
+      await readWardrobeGarment(
+        bytes,
+        base.registration,
+        base.registrationSha256,
+      ),
+    );
+  const inventory = canonicalItems(garments);
+  checkInventory({ ...base, items: inventory });
+  return {
+    source: base.source,
+    archive: base.archive,
+    registrationBytes: base.registrationBytes,
+    registration: base.registration,
+    items: inventory,
+    document: {
+      format: "gathria-wardrobe-project",
+      version: 1,
+      sourceSha256: base.sourceSha256,
+      registrationSha256: base.registrationSha256,
+      items: inventory.map((item) => ({
+        id: item.manifest.id,
+        sha256: item.sha256,
+      })),
+      selection: { top: null, bottom: null, fullBody: null, shoes: null },
+      preview: { action: "idle", facing: "right" },
+    },
+  };
+}
+
+export async function addWardrobeGarment(
+  project: WardrobeProject,
+  bytes: Uint8Array,
+): Promise<WardrobeProject> {
+  const garment = await readWardrobeGarment(
+    bytes,
+    project.registration,
+    project.document.registrationSha256,
+  );
+  const items = canonicalItems([...project.items, garment]);
+  checkInventory({ ...project, items });
+  const document = validateWardrobeDocument(
+    {
+      ...project.document,
+      items: items.map((item) => ({
+        id: item.manifest.id,
+        sha256: item.sha256,
+      })),
+    },
+    { ...project, items },
+  );
+  return { ...project, items, document };
+}
+export function selectWardrobeGarment(
+  project: WardrobeProject,
+  slot: WardrobeSlot,
+  id: string | null,
+): WardrobeProject {
+  if (!["top", "bottom", "fullBody", "shoes"].includes(slot))
+    throw Error("Unsupported garment slot.");
+  const selection = { ...project.document.selection, [slot]: id };
+  if (id !== null && slot === "fullBody") {
+    selection.top = null;
+    selection.bottom = null;
+  }
+  if (id !== null && (slot === "top" || slot === "bottom"))
+    selection.fullBody = null;
+  return {
+    ...project,
+    document: validateWardrobeDocument(
+      { ...project.document, selection },
+      project,
+    ),
+  };
+}
+export function updateWardrobePreview(
+  project: WardrobeProject,
+  preview: WardrobeDocument["preview"],
+): WardrobeProject {
+  return {
+    ...project,
+    document: validateWardrobeDocument(
+      { ...project.document, preview },
+      project,
+    ),
+  };
+}
+
+/** Reconstruct from original bytes; never trust mutable parsed caches at export. */
+export async function validateWardrobeProject(
+  project: WardrobeProject,
+  options: WardrobeValidationOptions = {},
+): Promise<WardrobeProject> {
+  checkInventory(project);
+  const base = await createBase(project.source, project.registrationBytes);
+  if (base.sourceSha256 !== project.document.sourceSha256)
+    throw Error("Wardrobe source checksum mismatch.");
+  if (base.registrationSha256 !== project.document.registrationSha256)
+    throw Error("Wardrobe registration checksum mismatch.");
+  const items: WardrobeGarment[] = [];
+  for (const item of project.items)
+    items.push(
+      await readWardrobeGarment(
+        item.bytes,
+        base.registration,
+        base.registrationSha256,
+        options,
+      ),
+    );
+  checkInventory({ ...base, items });
+  const document = validateWardrobeDocument(project.document, {
+    archive: base.archive,
+    items,
+  });
+  const normalized = canonicalItems(items);
+  document.items = normalized.map((item) => ({
+    id: item.manifest.id,
+    sha256: item.sha256,
+  }));
+  return {
+    source: base.source,
+    archive: base.archive,
+    registrationBytes: base.registrationBytes,
+    registration: base.registration,
+    items: normalized,
+    document,
+  };
+}
+export const verifyWardrobeProject = validateWardrobeProject;
+
+export async function exportWardrobeProject(
+  project: WardrobeProject,
+): Promise<Uint8Array> {
+  const verified = await validateWardrobeProject(project);
+  const doc = strToU8(JSON.stringify(verified.document, null, 2));
+  if (doc.length > DOCUMENT_MAX_BYTES)
+    throw Error("Wardrobe project document exceeds its metadata limit.");
+  const files: Parameters<typeof zipSync>[0] = {
+    "document.json": doc,
+    "source.character.zip": [verified.source, { level: 0 }],
+    "registration.json": verified.registrationBytes,
+  };
+  verified.items.forEach((item, i) => {
+    files[`item-${i}.zip`] = [item.bytes, { level: 0 }];
+  });
+  const bytes = zipSync(files, { level: 6, mtime: zipTime() });
+  if (bytes.length > WARDROBE_MAX_PROJECT_BYTES)
+    throw Error("Wardrobe project ZIP exceeds 128 MiB.");
+  return bytes;
+}
+
+export async function importWardrobeProject(
+  bytes: Uint8Array,
+): Promise<WardrobeProject> {
+  const allowed: Record<string, number> = {
+    "document.json": DOCUMENT_MAX_BYTES,
+    "source.character.zip": BAKED_MAX_ARCHIVE_BYTES,
+    "registration.json": WARDROBE_MAX_METADATA_BYTES,
+  };
+  for (let i = 0; i < WARDROBE_MAX_ITEMS; i++)
+    allowed[`item-${i}.zip`] = WARDROBE_MAX_ITEM_BYTES;
+  const files = readBoundedArchive(bytes, {
+    label: "Wardrobe project",
+    maxArchiveBytes: WARDROBE_MAX_PROJECT_BYTES,
+    maxExpandedBytes: WARDROBE_MAX_PROJECT_BYTES,
+    minFiles: 3,
+    maxFiles: 3 + WARDROBE_MAX_ITEMS,
+    files: allowed,
+    required: ["document.json", "source.character.zip", "registration.json"],
+  });
+  const raw = wardrobeObject(
+    parse(files["document.json"], "Wardrobe document", DOCUMENT_MAX_BYTES),
+    "Wardrobe project document",
+    [
+      "format",
+      "version",
+      "sourceSha256",
+      "registrationSha256",
+      "items",
+      "selection",
+      "preview",
+    ],
+  );
+  if (
+    !Array.isArray(raw.items) ||
+    raw.items.length > WARDROBE_MAX_ITEMS ||
+    Object.keys(files).length !== 3 + raw.items.length
+  )
+    throw Error(
+      "Wardrobe project item references do not match its embedded assets.",
+    );
+  const itemBytes: Uint8Array[] = [];
+  for (let i = 0; i < raw.items.length; i++) {
+    const bytes = files[`item-${i}.zip`];
+    if (!bytes) throw Error("Wardrobe project is missing an embedded garment.");
+    const ref = wardrobeObject(raw.items[i], "Item reference", [
+      "id",
+      "sha256",
+    ]);
+    if (ref.sha256 !== (await sha256(bytes)))
+      throw Error("Wardrobe embedded garment checksum mismatch.");
+    itemBytes.push(bytes);
+  }
+  const project = await createWardrobeProject(
+    files["source.character.zip"],
+    files["registration.json"],
+    itemBytes,
+  );
+  const document = validateWardrobeDocument(raw, project);
+  if (document.sourceSha256 !== project.document.sourceSha256)
+    throw Error("Wardrobe source checksum mismatch.");
+  if (document.registrationSha256 !== project.document.registrationSha256)
+    throw Error("Wardrobe registration checksum mismatch.");
+  document.items = project.document.items;
+  return { ...project, document };
+}
