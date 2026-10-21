@@ -92,10 +92,10 @@ export function PackPlayer() {
   const selectedClip = pack
     ? animationFor(pack.manifest, animation)
     : undefined;
-  const isBaked = !!pack && pack.manifest.schemaVersion !== 1;
-  const zoomChoices = isBaked
-    ? [...new Set([0.25, 0.5, 0.75, 1, 1.5, 2, zoom])].sort((a, b) => a - b)
-    : [1, 2, 3, 4, 5, 6, 7, 8];
+  const isBaked = !!pack;
+  const zoomChoices = [...new Set([0.25, 0.5, 0.75, 1, 1.5, 2, zoom])].sort(
+    (a, b) => a - b,
+  );
   const frameHeight = Math.max(
     pack?.manifest.spritesheet.frameHeight ?? 0,
     comparisonPack?.manifest.spritesheet.frameHeight ?? 0,
@@ -315,17 +315,15 @@ export function PackPlayer() {
         setAnimation("idle");
         setFacing(loaded.manifest.facing.native);
         setZoom(
-          loaded.manifest.schemaVersion !== 1
-            ? ([0.25, 0.5, 0.75, 1]
-                .filter(
-                  (value) =>
-                    value <= loaded.manifest.scale.recommended &&
-                    value * loaded.manifest.spritesheet.frameHeight <= 512 &&
-                    value * loaded.manifest.spritesheet.frameWidth <=
-                      (stageRef.current?.clientWidth ?? 640) - 48,
-                )
-                .at(-1) ?? 0.25)
-            : Math.min(8, Math.max(1, loaded.manifest.scale.recommended)),
+          [0.25, 0.5, 0.75, 1]
+            .filter(
+              (value) =>
+                value <= loaded.manifest.scale.recommended &&
+                value * loaded.manifest.spritesheet.frameHeight <= 512 &&
+                value * loaded.manifest.spritesheet.frameWidth <=
+                  (stageRef.current?.clientWidth ?? 640) - 48,
+            )
+            .at(-1) ?? 0.25,
         );
         setFramePosition(0);
         setSourceBundle(null);
@@ -384,9 +382,7 @@ export function PackPlayer() {
       },
       label,
       (loaded) => {
-        setDownloadPack(
-          entry?.archive ?? (loaded.manifest.schemaVersion !== 1 ? file : null),
-        );
+        setDownloadPack(entry?.archive ?? file);
         if (bundle && entry) {
           setSourceBundle(bundle);
           setCharacterId(selectedId);
@@ -488,60 +484,6 @@ export function PackPlayer() {
     } finally {
       if (request === requestRef.current) setBusy(false);
     }
-  }
-
-  function openExample(
-    artworkVersion:
-      | 1
-      | 2
-      | 3
-      | 4
-      | 6
-      | 7
-      | "corrected-running"
-      | "everyday"
-      | "running"
-      | "running-v1",
-  ) {
-    void openPack(
-      async () => {
-        const response = await fetch(
-          artworkVersion === "corrected-running"
-            ? "/samples/run-connections/denim-daytrip.character.zip"
-            : artworkVersion === "everyday"
-              ? "/samples/everyday/denim-daytrip.character.zip"
-              : artworkVersion === "running"
-                ? "/samples/running-v2/dress.character.zip"
-                : artworkVersion === "running-v1"
-                  ? "/samples/running/dress.character.zip"
-                  : artworkVersion === 7
-                    ? "/samples/harmonized/dress-joyful.character.zip"
-                    : artworkVersion === 6
-                      ? "/samples/polished/dress-joyful.character.zip"
-                      : artworkVersion === 4
-                        ? "/samples/expressive/mira.character.zip"
-                        : artworkVersion === 3
-                          ? "/samples/detailed/mira.character.zip"
-                          : artworkVersion === 2
-                            ? "/samples/v2/mira.character.zip"
-                            : "/samples/mira.character.zip",
-        );
-        if (!response.ok)
-          throw new Error(
-            `The example pack could not be downloaded (HTTP ${response.status}).`,
-          );
-        return loadPortableCharacterPack(await response.blob());
-      },
-      artworkVersion === "corrected-running"
-        ? "denim-daytrip.character.zip · Art V6 · Motion V3 · bundled example"
-        : artworkVersion === "everyday"
-          ? "denim-daytrip.character.zip · Art V6 · Motion V2 · bundled example"
-          : artworkVersion === "running"
-            ? "dress.character.zip · Art V6 · Motion V2 · bundled example"
-            : artworkVersion === "running-v1"
-              ? "dress.character.zip · Art V6 · Motion V1 · preserved example"
-              : `${artworkVersion >= 6 ? "dress-joyful" : "mira"}.character.zip · Art V${artworkVersion} bundled example`,
-    );
   }
 
   function openSeparateFiles() {
@@ -691,82 +633,6 @@ export function PackPlayer() {
                 <strong>Try the Kling character pair</strong>
               </span>
               <ArrowRight size={17} />
-            </button>
-            <button
-              className="player-sample-button"
-              onClick={() => openExample("corrected-running")}
-              disabled={busy}
-            >
-              <span className="player-sample-icon">
-                <Layers3 size={19} />
-              </span>
-              <span>
-                Just exploring?<strong>Try the denim daytrip pack</strong>
-              </span>
-              <ArrowRight size={17} />
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample("everyday")}
-              disabled={busy}
-            >
-              Try the original denim pack · Motion V2
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample("running")}
-              disabled={busy}
-            >
-              Try the running wedding pack
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample("running-v1")}
-              disabled={busy}
-            >
-              Try the original running pack · Motion V1
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample(6)}
-              disabled={busy}
-            >
-              Try the polished wedding pack · Art V6
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample(7)}
-              disabled={busy}
-            >
-              Try the V7 wedding pack
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample(4)}
-              disabled={busy}
-            >
-              Try Mira’s expressive pack · Art V4
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample(3)}
-              disabled={busy}
-            >
-              Try Mira’s Art V3 pack · detailed
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample(2)}
-              disabled={busy}
-            >
-              Try Mira’s Art V2 pack · classic
-            </button>
-            <button
-              className="player-legacy-sample"
-              onClick={() => openExample(1)}
-              disabled={busy}
-            >
-              Try Mira’s example pack · original Art V1
             </button>
             <details className="player-separate-files">
               <summary>Have individual files?</summary>
@@ -942,10 +808,7 @@ export function PackPlayer() {
                 )}
               </div>
             )}
-            <div
-              className={`player-stage ${isBaked ? "player-smooth" : ""}`}
-              ref={stageRef}
-            >
+            <div className="player-stage player-smooth" ref={stageRef}>
               <div
                 className="player-stage-surface"
                 style={{ width: canvasRenderWidth }}
@@ -955,9 +818,7 @@ export function PackPlayer() {
                     ? `${pack.manifest.name}${comparisonPack ? ` + ${comparisonPack.manifest.name}` : ""}`
                     : "YOUR NEXT ADVENTURER"}
                 </span>
-                <span className="player-stage-zoom">
-                  {zoom}× {isBaked ? "SOURCE SCALE" : "PIXEL SCALE"}
-                </span>
+                <span className="player-stage-zoom">{zoom}× SOURCE SCALE</span>
                 <canvas
                   ref={canvasRef}
                   style={{ height: canvasHeight }}
@@ -1008,13 +869,7 @@ export function PackPlayer() {
                     aria-labelledby="player-motion-label"
                   >
                     {(
-                      [
-                        "idle",
-                        "walk",
-                        "run",
-                        "jump",
-                        ...(isBaked ? ["celebrate" as const] : []),
-                      ] as const
+                      ["idle", "walk", "run", "jump", "celebrate"] as const
                     ).map((value) => (
                       <button
                         key={value}
@@ -1093,9 +948,8 @@ export function PackPlayer() {
                 </button>
               </div>
               <p className="player-motion-note">
-                {isBaked
-                  ? "Source playback · Motion inside each supplied frame is preserved."
-                  : "In-place playback · The character stays in one place."}
+                Source playback · Motion inside each supplied frame is
+                preserved.
               </p>
               {pack && !pack.manifest.animations.run && (
                 <p className="player-motion-note" id="player-run-unavailable">
@@ -1149,10 +1003,10 @@ export function PackPlayer() {
                   </select>
                 </label>
                 <label htmlFor="player-zoom">
-                  {isBaked ? "Display scale" : "Pixel scale"}
+                  Display scale
                   <select
                     id="player-zoom"
-                    aria-label={isBaked ? "Display scale" : "Pixel scale"}
+                    aria-label="Display scale"
                     value={zoom}
                     disabled={!pack}
                     onChange={(event) => setZoom(Number(event.target.value))}
@@ -1233,8 +1087,7 @@ export function PackPlayer() {
                   {pack.manifest.animations.jump
                     ? ` · Jump ${pack.manifest.animations.jump.fps} fps`
                     : " · Jump unavailable"}
-                  {pack.manifest.schemaVersion !== 1 &&
-                  pack.manifest.animations.celebrate
+                  {pack.manifest.animations.celebrate
                     ? ` · Celebrate ${pack.manifest.animations.celebrate.fps} fps`
                     : ""}
                 </dd>
@@ -1247,9 +1100,7 @@ export function PackPlayer() {
                 <dt>Configuration</dt>
                 <dd>
                   {pack.config
-                    ? "format" in pack.config
-                      ? "Included · baked source recipe"
-                      : `Included · Art V${pack.config.schemaVersion === 1 ? 1 : pack.config.artworkVersion}`
+                    ? "Included · baked source recipe"
                     : "Not provided · optional"}
                 </dd>
               </div>
@@ -1261,11 +1112,11 @@ export function PackPlayer() {
           <footer className="player-footer">
             <span>Small characters. Big stories.</span>
             <p>
-              Standalone pack formats v1, v2 & v3 <span>·</span> Gathria runtime
+              Kling CharacterPack V2 & V3 <span>·</span> Gathria runtime
               compatibility is unverified.
             </p>
-            <a href="/editor.html">
-              Back to the classic studio <ArrowUpRight size={14} />
+            <a href="/">
+              Back to character library <ArrowUpRight size={14} />
             </a>
           </footer>
         )}

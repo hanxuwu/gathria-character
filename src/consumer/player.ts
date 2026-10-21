@@ -7,16 +7,11 @@ import type {
   SpriteFrame,
 } from "../core/types";
 
-/** Optional source actions do not change the legacy skeletal action contract. */
+/** Only actions declared by a native source pack are available. */
 export function animationFor(
   manifest: PortableCharacterPackManifest,
   name: PortableAnimationName,
 ): Animation | undefined {
-  if (name === "celebrate") {
-    return manifest.schemaVersion !== 1
-      ? manifest.animations.celebrate
-      : undefined;
-  }
   return manifest.animations[name];
 }
 
@@ -74,8 +69,8 @@ export function drawCharacterFrame(
   attachment: { x: number; y: number },
 ): void {
   context.save();
-  context.imageSmoothingEnabled = manifest.schemaVersion !== 1;
-  if (manifest.schemaVersion !== 1) context.imageSmoothingQuality = "high";
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = "high";
   context.translate(attachment.x, attachment.y);
   context.scale(manifest.facing[facing] === "mirror-x" ? -zoom : zoom, zoom);
   context.drawImage(

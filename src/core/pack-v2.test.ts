@@ -1,21 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { strToU8, unzipSync, zipSync } from "fflate";
-import { DEFAULT_CONFIG } from "./config";
 import {
   createBakedCharacterPack,
   loadPortableCharacterPack,
-  readCharacterPackArchive,
   readPortableCharacterPackArchive,
   validateBakedCharacterRecipe,
   validateBakedManifest,
-  validateManifest,
   validatePortableManifest,
+  safeFilename,
 } from "./pack";
-import type {
-  BakedCharacterRecipe,
-  CharacterPackManifest,
-  CharacterPackV2Manifest,
-} from "./types";
+import type { BakedCharacterRecipe, CharacterPackV2Manifest } from "./types";
 
 // Two native RGBA pixels, including partial alpha. No browser/canvas encoder involved.
 const png = new Uint8Array(
@@ -78,16 +72,6 @@ function recipe(): BakedCharacterRecipe {
     },
   };
 }
-function legacy(): CharacterPackManifest {
-  const { capabilities: _, ...data } = manifest();
-  return {
-    ...data,
-    name: DEFAULT_CONFIG.name,
-    schemaVersion: 1,
-    scale: { pixelArt: true, integerOnly: true, recommended: 2 },
-    animations: { idle: data.animations.idle, walk: data.animations.walk },
-  };
-}
 function archiveFiles(
   data = manifest(),
   config: unknown = recipe(),
@@ -119,7 +103,7 @@ describe("native baked CharacterPack V2", () => {
     );
   });
 
-  it("allows native 768×1024 cells above V1's atlas limit without changing V1", () => {
+  it("allows native 768×1024 cells within explicit atlas limits", () => {
     const data = manifest();
     data.spritesheet = {
       file: "spritesheet.png",
@@ -139,10 +123,6 @@ describe("native baked CharacterPack V2", () => {
     }));
     data.anchor = { ...data.anchor, x: 384, y: 960 };
     expect(validateBakedManifest(data)).toEqual(data);
-    expect(() => validateManifest(data)).toThrow("schemaVersion");
-    expect(() =>
-      validateManifest({ ...legacy(), spritesheet: data.spritesheet }),
-    ).toThrow("4096");
     data.spritesheet.width = 8448;
     expect(() => validateBakedManifest(data)).toThrow("8192");
   });
@@ -189,7 +169,10 @@ describe("native baked CharacterPack V2", () => {
 
   it("requires truthful versioned source recipes and complete unique frame derivations", () => {
     expect(() =>
-      validateBakedCharacterRecipe(DEFAULT_CONFIG, manifest()),
+      validateBakedCharacterRecipe(
+        { schemaVersion: 1, name: "Legacy appearance" },
+        manifest(),
+      ),
     ).toThrow("gathria-baked-character");
     for (const changed of [
       { ...recipe(), name: "Other source" },
@@ -246,25 +229,20 @@ describe("native baked CharacterPack V2", () => {
     expect(new TextDecoder().decode(files["PROVENANCE.txt"])).toContain(
       recipe().source.sha256,
     );
-    expect(() => readCharacterPackArchive(bytes)).toThrow("schemaVersion");
   });
 
-  it("dispatches V1 without adding actions, source capabilities or relaxed limits", () => {
+  it("rejects removed legacy CharacterPack V1 explicitly", () => {
     const files = archiveFiles();
-    files["manifest.json"] = strToU8(JSON.stringify(legacy()));
-    files["character.json"] = strToU8(JSON.stringify(DEFAULT_CONFIG));
-    const bytes = zipSync(files);
-    expect(readPortableCharacterPackArchive(bytes)).toEqual(
-      readCharacterPackArchive(bytes),
+    const unsupported = { ...manifest(), schemaVersion: 1 };
+    files["manifest.json"] = strToU8(JSON.stringify(unsupported));
+    expect(() => readPortableCharacterPackArchive(zipSync(files))).toThrow(
+      "Legacy CharacterPack V1 is not supported",
     );
-    expect(validatePortableManifest(legacy())).toEqual(legacy());
+    expect(() => validatePortableManifest(unsupported)).toThrow(
+      "Legacy CharacterPack V1 is not supported",
+    );
     expect(() => validatePortableManifest({ schemaVersion: 4 })).toThrow(
       "schemaVersion",
-    );
-    // A highly compressible oversized PNG still must fail V1's declared size guard.
-    files["spritesheet.png"] = new Uint8Array(33 * 1024 * 1024);
-    expect(() => readPortableCharacterPackArchive(zipSync(files))).toThrow(
-      "uncompressed size limit",
     );
   });
 
@@ -347,5 +325,69 @@ describe("native baked CharacterPack V2", () => {
     await expect(
       createBakedCharacterPack(recipe(), manifest(), new Blob([apng])),
     ).rejects.toThrow("APNG");
+  });
+});
+
+describe("native ZIP safety", () => {
+  it.each([
+    new Uint8Array(),
+    new Uint8Array(40),
+    zipSync(archiveFiles()).slice(0, -3),
+  ])("rejects malformed or truncated archives", (bytes) => {
+    expect(() => readPortableCharacterPackArchive(bytes)).toThrow();
+  });
+
+  it("rejects extra files, traversal paths, and duplicate filenames", () => {
+    const files = archiveFiles();
+    expect(() =>
+      readPortableCharacterPackArchive(
+        zipSync({ ...files, "extra.txt": strToU8("extra") }),
+      ),
+    ).toThrow("Unexpected ZIP path");
+    files["../outside.txt"] = files["PROVENANCE.txt"];
+    delete files["PROVENANCE.txt"];
+    expect(() => readPortableCharacterPackArchive(zipSync(files))).toThrow(
+      "Unexpected ZIP path",
+    );
+
+    const duplicate = zipSync(archiveFiles());
+    const oldName = strToU8("INTEGRATION.md");
+    const newName = strToU8("PROVENANCE.txt");
+    for (let i = 0; i <= duplicate.length - oldName.length; i++) {
+      if (oldName.every((value, j) => duplicate[i + j] === value))
+        duplicate.set(newName, i);
+    }
+    expect(() => readPortableCharacterPackArchive(duplicate)).toThrow(
+      "duplicate file",
+    );
+  });
+
+  it("checks CRC32 integrity before accepting asset contents", () => {
+    const bytes = zipSync(archiveFiles(), { level: 0 });
+    const view = new DataView(bytes.buffer);
+    const imageStart = 30 + view.getUint16(26, true) + view.getUint16(28, true);
+    bytes[imageStart + 40] ^= 1;
+    expect(() => readPortableCharacterPackArchive(bytes)).toThrow(
+      "spritesheet.png failed its ZIP checksum",
+    );
+  });
+
+  it("bounds actual inflated output even if the ZIP lies about the declared size", () => {
+    const bytes = zipSync(archiveFiles(), { level: 6 });
+    const view = new DataView(bytes.buffer);
+    const directory = view.getUint32(bytes.length - 6, true);
+    view.setUint32(directory + 24, 1, true);
+    view.setUint32(22, 1, true);
+    expect(() => readPortableCharacterPackArchive(bytes)).toThrow(
+      "within its declared size",
+    );
+  });
+});
+describe("download filenames", () => {
+  it("normalizes names and removes paths, punctuation, and unsupported characters", () => {
+    expect(safeFilename("Kling / Example")).toBe("kling-example");
+    expect(safeFilename("../../")).toBe("character");
+    expect(safeFilename("こんにちは")).toBe("character");
+    expect(safeFilename("x".repeat(100))).toHaveLength(64);
   });
 });

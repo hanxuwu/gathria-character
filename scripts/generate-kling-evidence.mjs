@@ -430,36 +430,15 @@ try {
   });
   await independent.close();
 
-  const legacyContext = await browser.newContext({
-    viewport: { width: 1440, height: 1000 },
-  });
-  const legacy = await legacyContext.newPage();
-  track(legacy, "legacy compatibility");
-  await legacy.goto(`${baseURL}/player.html`);
-  await legacy
-    .locator("#player-zip")
-    .setInputFiles(
-      fileURLToPath(new URL("public/samples/mira.character.zip", root)),
-    );
-  await expect(legacy.getByRole("status")).toContainText("Loaded:");
-  await expect(legacy.getByTestId("consumer-canvas")).toHaveCSS(
-    "image-rendering",
-    "pixelated",
-  );
-  await expect(
-    legacy.getByRole("button", { name: "Celebrate", exact: true }),
-  ).toHaveCount(0);
-  await expect(
-    legacy.getByRole("button", { name: "Run", exact: true }),
-  ).toBeDisabled();
-  await scrub(legacy, "walk", 0, "left");
-  await shot(legacy, "legacy-v1-player");
-  report.checks.push({
-    check:
-      "Unmodified V1 Mira sample loads with legacy pixel display, idle/walk, missing run disabled, no celebrate mutation",
-    result: "passed",
-  });
+  // The optional earlier Kling source archive remains relevant; the removed
+  // V1 Mira/editor compatibility is intentionally outside the focused app.
   if (process.env.KLING_LEGACY_SOURCE) {
+    const legacyContext = await browser.newContext({
+      viewport: { width: 1440, height: 1000 },
+    });
+    const legacy = await legacyContext.newPage();
+    track(legacy, "earlier Kling source compatibility");
+    await legacy.goto(`${baseURL}/player.html`);
     log(
       "Checking original uploaded 384×576 external source archive compatibility",
     );
@@ -483,12 +462,12 @@ try {
       sha256: sha(legacyBytes),
       bytes: legacyBytes.length,
     });
+    await legacyContext.close();
   } else
     report.checks.push({
       check: "Original uploaded 384×576 external archive",
       result: "not run; set KLING_LEGACY_SOURCE to its path",
     });
-  await legacyContext.close();
   assert.deepEqual(report.browserErrors, []);
 } finally {
   await browser.close();

@@ -8,9 +8,9 @@ Three additional skeletal poses test the joints; they are derived stills, not
 extracted video frames or completed animation cycles.
 
 Open `/workbench.html?mode=rig&study=kling-male` from the library's native-study
-link, or `/skin-studio.html?study=kling-male` directly. The default Skin Studio,
-original Kling player, classic editor and historical files retain their existing
-behavior. There are still three primary navigation destinations.
+button, or `/skin-studio.html` directly. The workspace now contains only Kling
+original playback and this native candidate. There are three primary navigation
+destinations; unrelated classic editors and skin projects were removed.
 
 ## What is implemented
 
@@ -61,11 +61,11 @@ that unnecessary supplement was removed; its source sheet remains retained.
 
 ## Compatibility and scope
 
-The existing Skin V1 family intentionally requires 192×256 crisp art. This
-candidate adds the explicit `gathria-native-pose-study` version 1 profile under
-`src/skeletal`, reusing the existing limb-mesh geometry and matrix concepts with
-native premultiplied sampling and source-over composition. It does not relax old
-validators, change old renderers or silently reinterpret older projects.
+The explicit `gathria-native-pose-study` version 1 profile lives under
+`src/skeletal`. Shared limb-mesh geometry is now isolated in `geometry.ts`, with
+native premultiplied sampling and source-over composition. The unrelated
+192×256 Skin V1 family and its editor have been removed. Current Kling native
+projects retain the same registration, validation and pixel output.
 
 The native project ZIP contains all fifteen PNGs, the immutable source image,
 registered document and checksums. Archive ordering/timestamps are canonical;
@@ -86,14 +86,10 @@ source-video motion fidelity or production Gathria integration.
 [Actual exported previews, source comparison, projects and validation](kling-native-study/README.md).
 Visual acceptance is separate from technical checks and remains with the user.
 
-Current-batch verification: TypeScript and production build passed; **595 unit
-tests across 48 files and 74 Chromium browser tests passed**. Frozen-input actual
-UI evidence covers eight pose/direction exports, edited-project save/reopen and
-eight independent-player cases after the editor closed. All 46 delivery PNGs
-decode; both exported ZIPs pass CRC checks. The 2,563 protected existing files
-under the legacy source/artwork scopes are unchanged against merged main.
-[Commands, logs and visual limits](kling-native-study/verification-results.json)
-record this run separately from earlier milestone results.
+The candidate implementation was verified before cleanup. The current cleanup
+adds four-pose pixel equality checks and revalidates the retained workflows.
+[Current verification and scope](KLING_FOCUS_REVIEW.md) distinguishes this run
+from the historical native-study evidence retained below.
 
 The final visual inspection confirms unchanged standing identity/proportions,
 connected selected limbs and shoe/ankle parenting, clearer forward/back walking

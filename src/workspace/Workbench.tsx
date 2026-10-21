@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { ArrowUpRight, Bone, Film, Info } from "lucide-react";
 import { KLING_CHARACTERS } from "../consumer/kling-catalog";
-import { AdvancedTools, MainNavigation } from "./MainNavigation";
+import { MainNavigation } from "./MainNavigation";
 import "./workspace.css";
 
 type WorkbenchTab = "original" | "rig";
 
 export function CharacterWorkbench() {
   const query = new URLSearchParams(window.location.search);
-  const [nativeStudy] = useState(() => query.get("study") === "kling-male");
   const [character] = useState(
     () =>
       KLING_CHARACTERS.find((entry) => entry.id === query.get("character")) ??
@@ -19,7 +18,9 @@ export function CharacterWorkbench() {
     name: string;
   }>({ id: character.id, name: character.name });
   const initial: WorkbenchTab =
-    query.get("mode") === "rig" || nativeStudy ? "rig" : "original";
+    query.get("mode") === "rig" || query.get("study") === "kling-male"
+      ? "rig"
+      : "original";
   const [tab, setTab] = useState<WorkbenchTab>(initial);
   const [visited, setVisited] = useState<Set<WorkbenchTab>>(
     () => new Set([initial]),
@@ -76,6 +77,8 @@ export function CharacterWorkbench() {
     else url.searchParams.delete("character");
     if (next === "rig") url.searchParams.set("mode", "rig");
     else url.searchParams.delete("mode");
+    // Older direct study links still open here; a tab change owns the mode.
+    url.searchParams.delete("study");
     window.history.replaceState(null, "", url);
   }
 
@@ -104,16 +107,12 @@ export function CharacterWorkbench() {
             <h1>
               {tab === "original"
                 ? selection.name
-                : nativeStudy
-                  ? "Kling male · HD skeleton study"
-                  : "Skeleton & motion"}
+                : "Kling male · skeleton candidate"}
             </h1>
             <p>
               {tab === "original"
                 ? "Explore the original artwork. Keep every movement and detail."
-                : nativeStudy
-                  ? "A native-size layered candidate. Compare four skeletal poses with the original standing reference."
-                  : "The complete editable workspace, with your bindings, clothing and motion tools."}
+                : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
             </p>
           </div>
           <a className="workbench-back" href="/">
@@ -149,7 +148,7 @@ export function CharacterWorkbench() {
             tabIndex={tab === "rig" ? 0 : -1}
             onClick={() => select("rig")}
           >
-            <Bone size={18} aria-hidden="true" /> Skeleton &amp; motion
+            <Bone size={18} aria-hidden="true" /> Male skeleton
           </button>
           <span>Tab changes keep your open sessions.</span>
         </div>
@@ -211,41 +210,13 @@ export function CharacterWorkbench() {
           <div className="workbench-panel-note">
             <Info size={17} aria-hidden="true" />
             <p>
-              {nativeStudy ? (
-                <>
-                  <strong>Native Kling candidate.</strong> Registered parts and
-                  four static poses at original resolution. Clothing and
-                  expression are fixed; these are not completed animation
-                  cycles.
-                </>
-              ) : (
-                <>
-                  <strong>Existing editable characters.</strong> Clothing,
-                  expressions, bones, mesh, joint binding, motion editing,
-                  undo/redo and project export remain available. The separate{" "}
-                  <a
-                    href="/workbench.html?mode=rig&study=kling-male"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Kling HD study
-                  </a>{" "}
-                  reviews native part binding and four static poses.
-                </>
-              )}
+              <strong>Kling male skeleton candidate.</strong> Four static poses
+              with adjustable joints, save/reopen and export. Clothing and
+              expression are fixed. Female skeleton editing is not available
+              yet.
             </p>
-            <a
-              href={
-                nativeStudy
-                  ? "/skin-studio.html?study=kling-male"
-                  : "/skin-studio.html"
-              }
-              target="_blank"
-              rel="noreferrer"
-            >
-              {nativeStudy
-                ? "Open HD study separately"
-                : "Open Skin Studio separately"}{" "}
+            <a href="/skin-studio.html" target="_blank" rel="noreferrer">
+              Open male skeleton separately{" "}
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           </div>
@@ -254,11 +225,7 @@ export function CharacterWorkbench() {
               className="workbench-frame workbench-frame--rig"
               ref={rigFrame}
               title="Skeleton and motion editor"
-              src={
-                nativeStudy
-                  ? "/skin-studio.html?embedded=1&study=kling-male"
-                  : "/skin-studio.html?embedded=1"
-              }
+              src="/skin-studio.html?embedded=1"
               onLoad={() => notifyVisibility(rigFrame.current, tab === "rig")}
             />
           )}
@@ -268,7 +235,6 @@ export function CharacterWorkbench() {
           Switching tabs preserves your session; reloading the page does not
           save it.
         </p>
-        <AdvancedTools />
       </main>
     </div>
   );

@@ -1,7 +1,15 @@
 // Real native-pack UI evidence. No mock assets or source artwork changes.
 import { createServer } from "vite";
 import { chromium, expect } from "@playwright/test";
-import { readFile, writeFile, mkdir, mkdtemp, rm } from "node:fs/promises";
+import {
+  readFile,
+  writeFile,
+  mkdir,
+  mkdtemp,
+  rm,
+  readdir,
+} from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
@@ -11,8 +19,19 @@ import { unzipSync } from "fflate";
 import assert from "node:assert/strict";
 
 const root = new URL("../", import.meta.url);
-const output = new URL("docs/kling-workspace/", root);
+const outputPath =
+  process.env.KLING_WORKSPACE_OUTPUT || "docs/kling-focus/workspace/";
+assert(
+  /^docs\/[a-z0-9/-]+\/$/.test(outputPath),
+  "Use a repository docs directory",
+);
+const output = new URL(outputPath, root);
 await mkdir(output, { recursive: true });
+assert.equal(
+  (await readdir(output)).length,
+  0,
+  "Keep prior evidence; choose a new KLING_WORKSPACE_OUTPUT.",
+);
 const downloads = await mkdtemp(join(tmpdir(), "gathria-workspace-exports-"));
 const sha = (value) => createHash("sha256").update(value).digest("hex");
 const runtimeFiles = execFileSync(
@@ -30,7 +49,8 @@ const runtimeFiles = execFileSync(
   { cwd: fileURLToPath(root), encoding: "utf8" },
 )
   .trim()
-  .split("\n");
+  .split("\n")
+  .filter((file) => existsSync(new URL(file, root)));
 const runtimeHashes = async () =>
   Object.fromEntries(
     await Promise.all(
@@ -57,10 +77,21 @@ const report = {
   errors: [],
   screenshots: [],
   characters: [],
+  forbiddenRequests: [],
 };
 const log = (message) => console.log(new Date().toISOString(), message);
-const track = (page) =>
+const track = (page) => {
   page.on("pageerror", (error) => report.errors.push(error.message));
+  page.on("request", (request) => {
+    const path = new URL(request.url()).pathname;
+    if (
+      /\/(editor|rig-lab|mother-study)\.html$|\/src\/(editor|experiments)\/|\/public\/samples\/|\/samples\//.test(
+        path,
+      )
+    )
+      report.forbiddenRequests.push(path);
+  });
+};
 const snapshot = async (page, name, fullPage = false) => {
   const path = new URL(`${name}.png`, output);
   await page.screenshot({ path: fileURLToPath(path), fullPage });
@@ -101,6 +132,29 @@ try {
     .evaluateAll((images) =>
       Promise.all(images.map((image) => image.decode())),
     );
+  const skeletonEntry = page.getByRole("link", {
+    name: "Edit Kling male skeleton",
+    exact: true,
+  });
+  await expect(skeletonEntry).toBeVisible();
+  const entryBounds = await skeletonEntry.boundingBox();
+  assert(
+    entryBounds && entryBounds.height >= 40,
+    "Native skeleton entry must be an obvious usable control",
+  );
+  await expect(
+    page.getByText(/Female skeleton editing is not available/i),
+  ).toBeVisible();
+  await expect(
+    page.locator(
+      'a[href*="editor.html"],a[href*="rig-lab.html"],a[href*="mother-study.html"]',
+    ),
+  ).toHaveCount(0);
+  report.clearMaleSkeletonEntry = {
+    label: "Edit Kling male skeleton",
+    height: entryBounds.height,
+    femaleUnavailableExplicit: true,
+  };
   await snapshot(page, "library-desktop", true);
   assert(
     !libraryRequests.some((url) => url.endsWith(".zip")),
@@ -283,13 +337,32 @@ try {
   await snapshot(workbench, "workbench-original", true);
   await workbench.getByRole("tab", { name: /Skeleton/i }).click();
   const rig = workbench.frameLocator('iframe[src*="skin-studio.html"]');
+  await expect(rig.getByRole("status")).toContainText("Loaded:", {
+    timeout: 120000,
+  });
   await expect(
-    rig.getByRole("heading", { name: "Skin & skeleton studio", exact: true }),
+    rig.getByRole("heading", {
+      name: "Kling male, built from the original.",
+      exact: true,
+    }),
   ).toBeVisible();
   await rig.getByLabel("Bones", { exact: true }).check();
-  await rig.getByLabel("Action", { exact: true }).selectOption("run");
+  await rig
+    .getByLabel("Review pose", { exact: true })
+    .selectOption("run-flight");
+  await rig.getByLabel("Limb", { exact: true }).selectOption("nearArm");
+  const upper = rig.getByLabel("Upper rotation (degrees)", { exact: true });
+  const editedUpper = String(Number(await upper.inputValue()) + 5);
+  await upper.fill(editedUpper);
+  await rig
+    .getByRole("button", { name: "Apply joint angles", exact: true })
+    .click();
+  await expect(rig.getByRole("status")).toContainText("Pose updated");
+  const editedPixels = await rig
+    .locator("#native-posed-canvas")
+    .evaluate((canvas) => canvas.toDataURL());
   await rig.locator("body").evaluate(() => window.scrollTo(0, 0));
-  await snapshot(workbench, "workbench-skeleton", true);
+  await snapshot(workbench, "workbench-skeleton-edited", true);
   await workbench.getByRole("tab", { name: /Original/i }).click();
   await expect(originalFrame.getByTestId("consumer-canvas")).toHaveAttribute(
     "data-frame-position",
@@ -297,33 +370,62 @@ try {
   );
   await workbench.getByRole("tab", { name: /Skeleton/i }).click();
   await expect(rig.getByLabel("Bones", { exact: true })).toBeChecked();
-  await expect(rig.getByLabel("Action", { exact: true })).toHaveValue("run");
+  await expect(rig.getByLabel("Review pose", { exact: true })).toHaveValue(
+    "run-flight",
+  );
+  await expect(upper).toHaveValue(editedUpper);
+  assert.equal(
+    await rig
+      .locator("#native-posed-canvas")
+      .evaluate((canvas) => canvas.toDataURL()),
+    editedPixels,
+  );
+  await expect(
+    rig.getByRole("button", { name: "Undo pose edit", exact: true }),
+  ).toBeEnabled();
   report.tabSessionsPreserved = true;
   const saved = workbench.waitForEvent("download");
   await rig
-    .getByRole("button", { name: "Save project ZIP", exact: true })
+    .getByRole("button", { name: "Save native project", exact: true })
     .click();
-  const projectPath = new URL("verified-skeleton.rig.zip", output);
+  const projectPath = new URL("edited-native-study.project.zip", output);
   await (await saved).saveAs(fileURLToPath(projectPath));
   const projectBytes = await readFile(projectPath);
   const projectMembers = unzipSync(projectBytes);
-  assert(
-    Object.keys(projectMembers).some((file) => file.endsWith(".png")),
-    "Project must contain artwork",
+  const projectDocument = JSON.parse(
+    Buffer.from(projectMembers["document.json"]),
+  );
+  assert.equal(projectDocument.format, "gathria-native-pose-study");
+  assert.equal(
+    Object.keys(projectMembers).filter(
+      (file) => file.startsWith("parts/") && file.endsWith(".png"),
+    ).length,
+    15,
   );
   report.skeletonProject = {
     sha256: sha(projectBytes),
     members: Object.keys(projectMembers).length,
     crcDecoded: true,
+    actualAngleEditSaved: true,
   };
   await rig
-    .getByLabel("Import project file", { exact: true })
+    .getByLabel("Native project ZIP", { exact: true })
     .setInputFiles(fileURLToPath(projectPath));
-  await expect(rig.locator(".skin-notice")).toContainText("project opened", {
-    timeout: 30000,
-  });
-  await expect(rig.getByLabel("Action", { exact: true })).toHaveValue("run");
-  report.skeletonProject.reopened = true;
+  await expect(rig.getByRole("status")).toContainText(
+    "Native project reopened",
+    { timeout: 120000 },
+  );
+  await rig
+    .getByLabel("Review pose", { exact: true })
+    .selectOption("run-flight");
+  await expect(upper).toHaveValue(editedUpper);
+  assert.equal(
+    await rig
+      .locator("#native-posed-canvas")
+      .evaluate((canvas) => canvas.toDataURL()),
+    editedPixels,
+  );
+  report.skeletonProject.reopenedExactly = true;
   await workbench.setViewportSize({ width: 390, height: 844 });
   await rig.locator("body").evaluate(() => window.scrollTo(0, 0));
   await snapshot(workbench, "workbench-mobile", true);
@@ -335,6 +437,7 @@ try {
   );
   await workspaceContext.close();
   assert.deepEqual(report.errors, []);
+  assert.deepEqual(report.forbiddenRequests, []);
   report.runtimeHashesAfter = await runtimeHashes();
   assert.deepEqual(
     report.runtimeHashesAfter,

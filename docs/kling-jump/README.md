@@ -1,5 +1,10 @@
 # Original Kling characters — now with Jump
 
+> Historical source/artwork delivery record. For the current Kling-only workspace,
+> supported files and fresh checks, see [the cleanup review](../KLING_FOCUS_REVIEW.md).
+> Unrelated legacy editor/CharacterPack V1 compatibility described below was
+> intentionally removed; the Kling sources and exports remain unchanged.
+
 Open `/player.html` after `npm run dev`, click **Try the Kling character pair**,
 then choose **Jump**. It plays once, holds the landing/recovery pose, and offers
 **Replay**. Both characters retain Idle, Walk, Run and Celebrate, left/right

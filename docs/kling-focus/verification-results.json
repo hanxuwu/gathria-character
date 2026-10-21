@@ -1,0 +1,41 @@
+{
+  "scope": "Current Kling-only cleanup. Removed-product test counts are intentionally excluded; retained data integrity and playback are tested.",
+  "baseline": "158efad0ced33390b2f394850436f94b24b408ee",
+  "recordedAt": "2026-10-21T00:57:54.248599+00:00",
+  "commands": [
+    {
+      "command": "npm run typecheck",
+      "passed": true,
+      "log": "checks/typecheck.log"
+    },
+    {
+      "command": "npm test -- --maxWorkers=1",
+      "passed": true,
+      "files": 8,
+      "tests": 109,
+      "log": "checks/unit.log"
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "htmlEntries": 4,
+      "log": "checks/build.log"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 13,
+      "log": "checks/e2e.log"
+    }
+  ],
+  "browserEvidence": "browser-evidence.json",
+  "sourcePreservation": "source-preservation.json",
+  "scopeLimits": [
+    "No new character art or motion",
+    "Male skeleton remains four static poses with known deformation limitations",
+    "Female skeleton/wardrobe not implemented",
+    "Unrelated V1/config/skin/wardrobe files intentionally unsupported",
+    "Production Gathria integration unverified"
+  ],
+  "userVisualAcceptance": false
+}

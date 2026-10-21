@@ -6,7 +6,7 @@ original **24 fps**. A jump is **39 frames / 1.625 seconds**, played once and th
 held at the recovered final stance. It is separate from the existing celebration.
 
 Sources and hashes remain in [source/selection.json](source/selection.json).
-The male video is reused from `artwork/reference-mother/source/reference-video.mp4`;
+The male video is reused from `artwork/kling-playback/source/male.mp4`;
 the female video is reused from `artwork/kling-playback/source/female.mp4`.
 No AI drawing, skeleton fitting, frame interpolation or new artwork is involved.
 
