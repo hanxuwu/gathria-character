@@ -1,3 +1,4 @@
+import { appearanceFixture } from "../appearance/fixture.test-support";
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { strToU8, unzipSync, zipSync } from "fflate";
@@ -20,6 +21,9 @@ import {
 } from "./contract";
 import {
   addWardrobeGarment,
+  addWardrobeAppearanceBank,
+  selectWardrobeAppearance,
+  getWardrobeAppearanceSelection,
   createWardrobeProject,
   exportWardrobeProject,
   importWardrobeProject,
@@ -602,5 +606,140 @@ describe("self-contained wardrobe projects", () => {
       p = await createWardrobeProject(f.source, f.registrationBytes, [g.bytes]);
     await expect(addWardrobeGarment(p, g.bytes)).rejects.toThrow(/unique/);
     expect(p.items).toHaveLength(1);
+  });
+});
+
+describe("wardrobe V2 independent appearance persistence", () => {
+  it("keeps old clothing-only V1 ZIPs byte-stable without appearance fields", async () => {
+    const f = await fixture(),
+      project = await createWardrobeProject(f.source, f.registrationBytes);
+    const first = await exportWardrobeProject(project),
+      files = unzipSync(first);
+    expect(Object.keys(files)).toEqual([
+      "document.json",
+      "source.character.zip",
+      "registration.json",
+    ]);
+    expect(
+      JSON.parse(new TextDecoder().decode(files["document.json"])),
+    ).not.toHaveProperty("appearance");
+    expect(
+      await exportWardrobeProject(await importWardrobeProject(first)),
+    ).toEqual(first);
+    expect(getWardrobeAppearanceSelection(project)).toEqual({
+      hairId: null,
+      faceId: null,
+      hairColor: "chestnut",
+    });
+    expect(project.document.version).toBe(1);
+    expect(() =>
+      selectWardrobeAppearance(project, { hairId: "soft-crop" }),
+    ).toThrow(/Load an appearance bank/);
+  });
+  it("saves hair, coordinated face, hair color, clothing and preview independently, then reopens offline", async () => {
+    const f = await fixture(),
+      shirt = garment(f.registration, f.registrationBytes),
+      bank = appearanceFixture(f.registration, sha(f.registrationBytes));
+    let project = await createWardrobeProject(f.source, f.registrationBytes, [
+      shirt.bytes,
+    ]);
+    project = selectWardrobeGarment(project, "top", shirt.manifest.id);
+    project = updateWardrobePreview(project, {
+      action: "jump",
+      facing: "left",
+    });
+    project = await addWardrobeAppearanceBank(project, bank.bytes);
+    expect(project.document).toMatchObject({
+      version: 2,
+      selection: { top: shirt.manifest.id },
+      preview: { action: "jump", facing: "left" },
+    });
+    project = selectWardrobeAppearance(project, {
+      hairId: "soft-crop",
+      faceId: "gentle",
+      hairColor: "copper",
+    });
+    project = selectWardrobeGarment(project, "top", null);
+    expect(getWardrobeAppearanceSelection(project)).toEqual({
+      hairId: "soft-crop",
+      faceId: "gentle",
+      hairColor: "copper",
+    });
+    const bytes = await exportWardrobeProject(project),
+      files = unzipSync(bytes);
+    expect(files["appearance.zip"]).toEqual(bank.bytes);
+    expect(files["source.character.zip"]).toEqual(f.source);
+    const restored = await importWardrobeProject(bytes);
+    expect(restored.document).toEqual(project.document);
+    expect(restored.appearanceBank?.bytes).toEqual(bank.bytes);
+    expect(await exportWardrobeProject(restored)).toEqual(bytes);
+    const sameBank = await addWardrobeAppearanceBank(restored, bank.bytes);
+    expect(getWardrobeAppearanceSelection(sameBank)).toEqual(
+      getWardrobeAppearanceSelection(restored),
+    );
+    const original = selectWardrobeAppearance(restored, {
+      hairId: null,
+      faceId: null,
+    });
+    expect(original.document.preview).toEqual({
+      action: "jump",
+      facing: "left",
+    });
+    expect(original.source).toEqual(f.source);
+  });
+  it("rejects missing, extra, mismatched or wrong-version embedded appearance banks", async () => {
+    const f = await fixture(),
+      base = await createWardrobeProject(f.source, f.registrationBytes),
+      bank = appearanceFixture(f.registration, sha(f.registrationBytes));
+    const project = await addWardrobeAppearanceBank(base, bank.bytes),
+      files = unzipSync(await exportWardrobeProject(project));
+    const { ["appearance.zip"]: _bank, ...missing } = files;
+    await expect(importWardrobeProject(zipSync(missing))).rejects.toThrow(
+      /appearance bank/,
+    );
+    const v1files = unzipSync(await exportWardrobeProject(base));
+    await expect(
+      importWardrobeProject(
+        zipSync({ ...v1files, "appearance.zip": bank.bytes }),
+      ),
+    ).rejects.toThrow(/appearance bank/);
+    const raw = JSON.parse(new TextDecoder().decode(files["document.json"]));
+    raw.appearance.bankSha256 = "0".repeat(64);
+    await expect(
+      importWardrobeProject(zipSync({ ...files, "document.json": json(raw) })),
+    ).rejects.toThrow(/checksum/);
+    raw.version = 1;
+    await expect(
+      importWardrobeProject(
+        zipSync({ ...missing, "document.json": json(raw) }),
+      ),
+    ).rejects.toThrow(/V1 cannot/);
+    const foreign = appearanceFixture(
+      { ...f.registration, characterId: "other-character" },
+      sha(f.registrationBytes),
+    );
+    await expect(
+      addWardrobeAppearanceBank(base, foreign.bytes),
+    ).rejects.toThrow(/characterId/);
+  });
+  it("revalidates original bank bytes rather than trusting public head geometry or page caches", async () => {
+    const f = await fixture(),
+      bank = appearanceFixture(f.registration, sha(f.registrationBytes));
+    const project = await addWardrobeAppearanceBank(
+      await createWardrobeProject(f.source, f.registrationBytes),
+      bank.bytes,
+    );
+    project.appearanceBank!.manifest.poses[0].headBounds.height = 8;
+    project.appearanceBank!.manifest.styles = [];
+    project.appearanceBank!.pages[0].patch.fill(0);
+    const restored = await validateWardrobeProject(project, {
+      decodeGarments: false,
+    });
+    expect(restored.appearanceBank!.manifest).toEqual(bank.manifest);
+    expect(restored.appearanceBank!.pages[0].patch).toEqual(
+      bank.files["patches-0.png"],
+    );
+    project.appearanceBank!.bytes.fill(0);
+    await expect(exportWardrobeProject(project)).rejects.toThrow();
   });
 });

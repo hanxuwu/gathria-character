@@ -29,9 +29,17 @@ retain the optional skeletal candidates.
 
 `/workbench.html?character=female&mode=wardrobe` opens the female wardrobe;
 use `character=male` for the male. Choose **Everyday** or **Wedding**, then inspect
-all five actions in either direction. **Original** restores the source pixels.
+all five actions in either direction. **Original** restores the original clothing.
+In **Hair & face**, choose **Soft crop** or **Soft bob**, a hair color and an
+optional **Gentle** face. Both hairstyles work on either character. **Reset
+appearance** restores the original head; clothing and head choices are independent.
 Save an editable project to continue changing clothes, or export a CharacterPack
 for the independent player. [Latest clothing comparisons and downloads](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
+
+[Hair, face, actual animation previews and downloads](docs/kling-appearance/README.md).
+Existing projects open with their original appearance. New head choices are
+stored with their source-bound assets in an editable V2 wardrobe project;
+ordinary baked CharacterPacks still play independently.
 
 The [cold-start review](docs/kling-wardrobe/cold-start/README.md) records faster
 opening and reduced interface blocking through background source preparation,
@@ -74,8 +82,10 @@ standalone view. Existing male links retain their default behavior. There are th
 The skeletal poses are **standing, walk contact, run flight and raised arms**;
 these are not complete animation cycles. Clothing and expression in the skeletal
 candidates are fixed. Wardrobe uses separate source-sprite motion packs and does
-not change those skeletons. Facial layers and continuous skeletal animation
-remain future work.
+not change those skeletons. Its optional head layers provide two short hairstyles,
+three hair colors and a restrained gentle facial preset, while original action
+blinks/laughter remain intact. Freeform face editing, long-hair simulation and
+continuous skeletal animation remain future work.
 Shoulder/armhole/shorts deformation and hidden-paint shading limitations remain
 visible and are documented; this is not a claim of natural finished animation.
 
@@ -94,6 +104,8 @@ visible and are documented; this is not a claim of natural finished animation.
 - `artwork/kling-wardrobe`: garment design provenance, registrations and preparation review.
 - `docs/kling-wardrobe`: clothing library, authoring kits, review and actual exports.
 - `src/wardrobe`: source-bound project, compositor and wardrobe editor.
+- `src/appearance`: checked head-appearance banks, selection and alpha composition.
+- `artwork/kling-appearance`: hair donors, prompts, head guides and preparation provenance.
 - `src/core`: bounded archive/PNG validation, native packs and source conversion.
 - `src/consumer`: independent player and two-character catalog.
 - `src/skeletal`: native candidate and character-neutral limb geometry.

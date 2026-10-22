@@ -1,6 +1,16 @@
 # Implementation status
 
-Current review batch: **Kling wardrobe cold-start preparation**, branch
+Current review batch: **Kling hair and gentle face customization**, branch
+`feat/kling-head-customization`, based on merged main `1dc3e56`.
+The existing wardrobe now offers two short hairstyles on both approved Kling
+characters, three hair colors and a source-derived gentle face preset. Original
+blinks, half-blinks and laughter are retained. Separate head registrations cover
+all 184 motion poses; active appearances add transparent headroom and translate
+the ground anchor without scaling source pixels. Editable wardrobe V2 embeds
+the head assets; V1 and independent CharacterPack V2/V3 remain supported.
+[Current appearance review, verification and limits](kling-appearance/README.md).
+
+Previous batch: **Kling wardrobe cold-start preparation**, branch
 `perf/kling-cold-start`, based on merged main `d0bf0ad`.
 Cold source ZIP parsing and lossless PNG preparation now run in cancellable
 workers, with bounded native zlib decoding, actual progress and full appearance

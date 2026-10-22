@@ -140,6 +140,17 @@
   display: block;
   margin: 14px 0;
 }
+.wardrobe-appearance {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d5ddce;
+}
+.wardrobe-appearance > button {
+  width: 100%;
+}
+.wardrobe-editor:not([aria-busy="true"]) .wardrobe-appearance :disabled {
+  cursor: default;
+}
 .wardrobe-slot select {
   width: 100%;
 }

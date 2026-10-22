@@ -11,6 +11,7 @@ import {
   readPortableCharacterPackArchive,
 } from "../core/pack";
 import { crc32 } from "../core/bounded-archive";
+import type { AppearanceBankManifest } from "../appearance/contract";
 import type {
   BakedCharacterPackManifest,
   BakedCharacterRecipe,
@@ -24,7 +25,9 @@ import {
 } from "./contract";
 import {
   addWardrobeGarment,
+  addWardrobeAppearanceBank,
   createWardrobeProject,
+  selectWardrobeAppearance,
   selectWardrobeGarment,
 } from "./project";
 import {
@@ -51,6 +54,106 @@ const pixel = (image: RgbaPng, x: number, y: number) =>
       (y * image.width + x + 1) * 4,
     ),
   );
+
+async function withAppearance(
+  project: WardrobeProject,
+): Promise<WardrobeProject> {
+  const patch = rgba(2, 1, [200, 120, 50, 128]);
+  patch.pixels.set([180, 130, 90, 255], 4);
+  const ids = project.registration.frames.map((frame) => frame.frameId);
+  const anchors = {
+    headCenter: { x: 3, y: 0.5 },
+    crown: { x: 3, y: 0 },
+    chin: { x: 3, y: 1 },
+    nearEye: { x: 2, y: 0.5 },
+    farEye: { x: 4, y: 0.5 },
+    mouth: { x: 3, y: 0.75 },
+  };
+  const manifest: AppearanceBankManifest = {
+    format: "gathria-sprite-appearance-bank",
+    version: 1,
+    id: "fixture-head",
+    name: "Fixture head appearance",
+    sourceSha256: project.document.sourceSha256,
+    registrationSha256: project.document.registrationSha256,
+    characterId: project.registration.characterId,
+    frameWidth: 6,
+    frameHeight: 6,
+    padding: { left: 1, top: 2, right: 1, bottom: 0 },
+    poses: project.registration.frames.map((frame) => ({
+      frameId: frame.frameId,
+      sourceFrame: frame.sourceFrame,
+      anchors,
+      headBounds: { x: 0, y: 0, width: 6, height: 1 },
+      hairBounds: { x: 0, y: -2, width: 6, height: 3 },
+      facePolygon: [
+        { x: 2, y: 0 },
+        { x: 3, y: 0 },
+        { x: 3, y: 1 },
+        { x: 2, y: 1 },
+      ],
+      foreground: [],
+    })),
+    pages: [
+      {
+        file: "patches-0.png",
+        maskFile: "ownership-0.png",
+        width: 2,
+        height: 1,
+      },
+    ],
+    styles: [
+      {
+        id: "soft-crop",
+        name: "Soft crop",
+        slot: "hair",
+        layers: [
+          {
+            role: "hair-front",
+            frames: ids.map((frameId) => ({
+              frameId,
+              mode: "paint",
+              page: 0,
+              rect: { x: 0, y: 0, width: 1, height: 1 },
+              offset: { x: 2, y: -1 },
+            })),
+          },
+        ],
+      },
+      {
+        id: "gentle",
+        name: "Gentle smile",
+        slot: "face",
+        layers: [
+          {
+            role: "face",
+            frames: ids.map((frameId, index) =>
+              index === 1
+                ? { frameId, mode: "source", reason: "Preserve original blink" }
+                : {
+                    frameId,
+                    mode: "paint",
+                    page: 0,
+                    rect: { x: 1, y: 0, width: 1, height: 1 },
+                    offset: { x: 2, y: 0 },
+                  },
+            ),
+          },
+        ],
+      },
+    ],
+    provenance:
+      "Authored head fixture; original source pixels and poses preserved.",
+  };
+  return addWardrobeAppearanceBank(
+    project,
+    zipSync({
+      "manifest.json": strToU8(JSON.stringify(manifest)),
+      "patches-0.png": encodeSourceRgbaPng(patch),
+      "ownership-0.png": encodeSourceRgbaPng(rgba(2, 1, [255, 255, 255, 255])),
+    }),
+  );
+}
 
 async function fixture(multipage = true): Promise<WardrobeProject> {
   const sheet = {
@@ -576,6 +679,146 @@ describe("registered wardrobe composition", () => {
       expect(progress).toEqual(multipage ? [0, 1, 2] : [0, 1]);
     },
   );
+
+  it("keeps original/null appearance geometry and byte-identical legacy export, including when a bank is loaded", async () => {
+    const original = await fixture();
+    const loaded = await withAppearance(original);
+    const untouched = await createWardrobeCompositor(loaded);
+    expect(untouched.manifest).toEqual(original.archive.manifest);
+    expect(untouched.padding).toEqual({ left: 0, top: 0, right: 0, bottom: 0 });
+    expect(await exportWardrobeCharacterPack(loaded)).toEqual(original.source);
+    untouched.dispose();
+    const dressed = selectWardrobeGarment(
+      await addWardrobeGarment(original, garment(original)),
+      "top",
+      "casual-top",
+    );
+    const oldExport = await exportWardrobeCharacterPack(dressed);
+    const withBank = await withAppearance(dressed);
+    expect(await exportWardrobeCharacterPack(withBank)).toEqual(oldExport);
+    const selected = selectWardrobeAppearance(withBank, {
+      hairId: "soft-crop",
+      faceId: "gentle",
+    });
+    const cleared = selectWardrobeAppearance(selected, {
+      hairId: null,
+      faceId: null,
+      hairColor: "copper",
+    });
+    expect(await exportWardrobeCharacterPack(cleared)).toEqual(oldExport);
+  });
+
+  it("exports padded head appearance and clothing from multiple source pages as standalone pixels with unchanged action identity", async () => {
+    const original = await fixture();
+    const dressed = selectWardrobeGarment(
+      await addWardrobeGarment(original, garment(original)),
+      "top",
+      "casual-top",
+    );
+    const project = selectWardrobeAppearance(await withAppearance(dressed), {
+      hairId: "soft-crop",
+      faceId: "gentle",
+    });
+    const compositor = await createWardrobeCompositor(project);
+    expect(compositor.sourceManifest).toEqual(original.archive.manifest);
+    expect(compositor.manifest.anchor).toEqual({
+      ...original.archive.manifest.anchor,
+      x: 4,
+      y: 8,
+    });
+    expect(compositor.manifest.spritesheet).toMatchObject({
+      frameWidth: 8,
+      frameHeight: 8,
+      columns: 2,
+      rows: 1,
+    });
+    expect(await validateWardrobeAppearance(compositor)).toMatchObject({
+      frames: 2,
+    });
+    const sourceRenderer = await createWardrobeCompositor(original);
+    for (const id of [7, 29]) {
+      const before = sourceRenderer.renderSourceFrame(id),
+        comparison = compositor.renderSourceFrame(id),
+        after = compositor.renderFrame(id);
+      expect(pixel(after, 3, 1)).toEqual([200, 120, 50, 128]);
+      expect(pixel(after, 3, 2)).toEqual(
+        id === 7 ? [180, 130, 90, 255] : pixel(before, 2, 0),
+      );
+      for (let y = 0; y < 6; y++)
+        for (let x = 0; x < 6; x++)
+          expect(pixel(comparison, x + 1, y + 2)).toEqual(pixel(before, x, y));
+      expect(pixel(after, 6, 6)).toEqual(pixel(before, 5, 4)); // Hidden RGB outside ownership retained.
+      expect(pixel(after, 2, 2)).toEqual(pixel(before, 1, 0)); // Original soft-alpha face contour retained.
+    }
+    const bytes = await exportWardrobeCharacterPack(project);
+    expect(await exportWardrobeCharacterPack(project)).toEqual(bytes);
+    const pack = readPortableCharacterPackArchive(bytes);
+    expect(pack.manifest.schemaVersion).toBe(2); // Two native pages repacked into one small output page.
+    expect(pack.manifest.animations).toEqual(
+      original.archive.manifest.animations,
+    );
+    expect(pack.config.derivation.frames).toEqual(
+      original.archive.config.derivation.frames,
+    );
+    expect(pack.config.sourceMetadata?.appearance).toMatchObject({
+      bankSha256: project.appearanceBank!.sha256,
+      padding: compositor.padding,
+      sourcePixelsRescaled: false,
+      actionTimingUnchanged: true,
+    });
+    const sheet = decodeSourceRgbaPng(pack.png);
+    for (const frame of pack.manifest.frames) {
+      const expected = compositor.renderFrame(frame.id);
+      for (let y = 0; y < frame.height; y++)
+        for (let x = 0; x < frame.width; x++)
+          expect(pixel(sheet, frame.x + x, frame.y + y)).toEqual(
+            pixel(expected, x, y),
+          );
+    }
+    const png = decodeSourceRgbaPng(await exportWardrobeFramePng(project, 29));
+    expect(png).toEqual(compositor.renderFrame(29));
+    compositor.dispose();
+    sourceRenderer.dispose();
+  });
+
+  it("rejects invalid face alpha in an unpreviewed pose before accepting or exporting the look", async () => {
+    const project = await withAppearance(await fixture());
+    const files = unzipSync(project.appearanceBank!.bytes);
+    const manifest = JSON.parse(
+      new TextDecoder().decode(files["manifest.json"]),
+    ) as AppearanceBankManifest;
+    const face = manifest.styles.find((style) => style.id === "gentle")!
+      .layers[0];
+    // This crop is inside the legal face area, but the actual source pixel is
+    // an antialiased contour. An opaque replacement must not thicken that face.
+    face.frames[1] = {
+      frameId: 29,
+      mode: "paint",
+      page: 0,
+      rect: { x: 1, y: 0, width: 1, height: 1 },
+      offset: { x: 1, y: 0 },
+    };
+    manifest.poses[1].facePolygon = [
+      { x: 1, y: 0 },
+      { x: 3, y: 0 },
+      { x: 3, y: 1 },
+      { x: 1, y: 1 },
+    ];
+    files["manifest.json"] = strToU8(JSON.stringify(manifest));
+    const invalid = selectWardrobeAppearance(
+      await addWardrobeAppearanceBank(project, zipSync(files)),
+      { faceId: "gentle" },
+    );
+    const compositor = await createWardrobeCompositor(invalid);
+    expect(() => compositor.renderFrame(7)).not.toThrow();
+    await expect(validateWardrobeAppearance(compositor)).rejects.toThrow(
+      /retain original source alpha/,
+    );
+    await expect(exportWardrobeCharacterPack(invalid)).rejects.toThrow(
+      /retain original source alpha/,
+    );
+    compositor.dispose();
+  });
 
   it("returns exact original pack after clearing wardrobe and rejects tampered parsed/source bindings", async () => {
     const original = await fixture();

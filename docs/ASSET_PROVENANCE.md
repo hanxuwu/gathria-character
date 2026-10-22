@@ -1,5 +1,18 @@
 # Kling asset provenance
 
+## Optional Kling hair and gentle face
+
+The [head appearance source record](../artwork/kling-appearance/README.md)
+retains two development-time OpenAI hair design sheets, exact prompts, cutouts,
+source hashes and per-pose authoring guides. Only hair is taken from the generated
+portraits. Original Kling face/body pixels remain the baseline; the optional
+gentle preset locally remaps original facial pixels and retains action blinks
+and laughter. Foreground hands and clothes remain protected. These are authored
+derivatives, not recovered video layers. No runtime image API is used.
+
+Actual visual evidence comes from application exports in
+[the appearance review](kling-appearance/README.md), not those design sheets.
+
 The visual baseline is the user-supplied original male/female Kling videos.
 Source extraction keeps one fixed crop/scale per character; it does not redraw
 faces or independently resize body parts. Standing source frame 348 (14.50 s)

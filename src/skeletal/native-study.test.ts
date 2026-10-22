@@ -336,8 +336,10 @@ describe("native study validation and editable portable project", () => {
       new Uint8Array(await blob.arrayBuffer()),
     );
     expect(pack.manifest.schemaVersion).toBe(2);
+    // The bounded PNG compressor changed to fix invalid deflate distances.
+    // Keep a deterministic archive hash and, below, the pre-change RGBA hash.
     expect(await sha256(new Uint8Array(await blob.arrayBuffer()))).toBe(
-      "a8785f0b21aa4c3217099f8248e6ac3d76dc1c64bc0cd8f95c9dcab9053259e4",
+      "e0a898f6e4285f49f74ee9f865bda28ee68be42fba8f74888068bc5bec48496f",
     );
     expect(pack.manifest.spritesheet.frameWidth).toBe(704);
     expect(pack.manifest.spritesheet.frameHeight).toBe(1056);
@@ -358,6 +360,9 @@ describe("native study validation and editable portable project", () => {
       width: 2816,
       height: 1056,
     });
+    expect(await sha256(png.pixels)).toBe(
+      "f42317c08e90431dda79b337fbd29c0f0220dbdd5529584f142df145560667e7",
+    );
     const first = new Uint8Array(704 * 1056 * 4);
     for (let y = 0; y < 1056; y++)
       first.set(
