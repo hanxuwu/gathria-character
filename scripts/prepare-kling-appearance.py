@@ -11,6 +11,8 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw
 from kling_wardrobe_common import ROOT, load_source, json_bytes, sha, png_bytes, protected_mask
+from kling_hair_ear_fit import fit_ear_hair, blur_hair
+from kling_hair_donor_mask import clean_donor
 
 ART=ROOT/'artwork/kling-appearance'
 PADDING={'left':32,'top':128,'right':32,'bottom':0}
@@ -43,7 +45,7 @@ def donor(style,character):
     if n>1:
         keep2=np.isin(labels,np.flatnonzero(stats[:,4]>100)); keep2 &= labels!=0
         img[~keep2]=0
-    return img
+    return clean_donor(img,style,character)
 
 def fit_reference(style,character):
     rgba=donor(style,character)
@@ -107,13 +109,16 @@ def build(character):
         layer['frames'].append(item);entries.append((item,crop,own))
     for style,name in [('soft-crop','Soft crop'),('soft-bob','Soft bob')]:
         original,M=fit_reference(style,character);layer={'role':'hair-front','frames':[]}
+        reference=next(row for row in heads['frames'] if row['frameId']==0)
         Image.fromarray(original).save(ART/f'source/{character}-{style}-cutout.png')
         for row in heads['frames']:
             fid=row['frameId'];T=np.vstack([row['headTransform'],[0,0,1]])@np.vstack([M,[0,0,1]])
             T=T[:2];T[:,2]+=[padding['left'],padding['top']]
             # Match only new hair to the existing source motion blur around jump.
             blur={88:.65,89:1.6,90:1.8,91:.7,100:.6,101:1.6,102:1.6,103:.65}.get(fid,0)
-            rgba=warp_rgba(original,T,(W,H),blur);owned=rgba[:,:,3]>0
+            rgba=warp_rgba(original,T,(W,H))
+            rgba=fit_ear_hair(original,M,row,reference,padding,(W,H),rgba)
+            rgba=blur_hair(rgba,blur);owned=rgba[:,:,3]>0
             assert not owned[[0,-1],:].any() and not owned[:,[0,-1]].any(), f'Hair clipped: {character}/{style}/{fid}'
             yy,xx=np.where(owned);b=(int(xx.min()-padding['left']),int(yy.min()-padding['top']),int(xx.max()+1-padding['left']),int(yy.max()+1-padding['top']))
             old=bounds.get(fid,b);bounds[fid]=(min(old[0],b[0]),min(old[1],b[1]),max(old[2],b[2]),max(old[3],b[3]))
@@ -145,8 +150,8 @@ def build(character):
         file=f'patches-{p}.png';mfile=f'ownership-{p}.png'
         files[file]=png_bytes(atlas);files[mfile]=png_bytes(mask)
         pages.append({'file':file,'maskFile':mfile,'width':width,'height':height})
-    provenance='Hair: OpenAI image generation, 2026-10-22, approved Kling portraits as reference. Only hair cutouts used; generated faces/clothes discarded. Explicit reviewed hairline masks, premultiplied affine resampling, native pose head registration, new-hair-only blur matching on reviewed fast jump poses; no body rescale. Sources and prompts: artwork/kling-appearance/source. '+PROVENANCE
-    bank={'format':'gathria-sprite-appearance-bank','version':1,'id':f'kling-{character}-appearance-v1','name':f'Kling {character} hair and gentle face',
+    provenance='Hair: OpenAI image generation, 2026-10-22, approved Kling portraits as reference. Only hair cutouts used; generated faces/clothes discarded. Explicit reviewed hairline masks, premultiplied resampling, native pose head registration. Revision 2 locally follows the independently registered original ear during facial squash while locking crown and central fringe; no source ear or face warp. New-hair-only blur matching on reviewed fast jump poses; no body rescale. Sources and prompts: artwork/kling-appearance/source. '+PROVENANCE
+    bank={'format':'gathria-sprite-appearance-bank','version':1,'id':f'kling-{character}-appearance-v2','name':f'Kling {character} hair and gentle face',
       'sourceSha256':sha(source),'registrationSha256':sha(reg_bytes),'characterId':reg['characterId'],'frameWidth':704,'frameHeight':1056,'padding':PADDING,'poses':poses,'pages':pages,'styles':styles,'provenance':provenance}
     files['manifest.json']=json_bytes(bank)
     target=ROOT/f'docs/kling-appearance/banks/{character}.zip';target.parent.mkdir(parents=True,exist_ok=True)
@@ -159,4 +164,12 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--character',choices=['male','female','both']);args=parser.parse_args()
     if args.character:
         for char in (['male','female'] if args.character=='both' else [args.character]):build(char)
+        # Cutout PNGs are reproducible derived assets. Keep their audit hashes
+        # synchronized with this preparation run; original donors stay intact.
+        record_path=ART/'source-hashes.json'
+        records=json.loads(record_path.read_text())
+        for record in records:
+            data=(ROOT/record['file']).read_bytes()
+            record.update(sha256=sha(data),bytes=len(data))
+        record_path.write_text(json.dumps(records,indent=2)+'\n')
     else:proposal()

@@ -20,6 +20,7 @@ jobs:
           cache-dependency-path: scripts/requirements-kling-wardrobe.txt
       - run: python -m pip install -r scripts/requirements-kling-wardrobe.txt
       - run: python scripts/test_kling_dress_fit.py
+      - run: python scripts/test_kling_hair_ear_fit.py
       - run: npm ci
       - run: npm run typecheck
       - run: npm test

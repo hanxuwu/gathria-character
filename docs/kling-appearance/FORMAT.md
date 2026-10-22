@@ -29,6 +29,11 @@ and face. A loaded but inactive bank does not change source frame geometry.
 
 ## Appearance bank V1
 
+Content revision 2 (`kling-male-appearance-v2` / `kling-female-appearance-v2`)
+repairs the ear-follow registration and donor cutout edges without changing this
+schema. Existing V2 wardrobe projects use their embedded bank bytes and SHA,
+so their appearance is not silently regenerated from the newer catalog bank.
+
 `manifest.json` identifies `gathria-sprite-appearance-bank`, version 1. It binds
 both the exact original source ZIP SHA and original clothing-registration SHA,
 character ID and native dimensions. It contains:
