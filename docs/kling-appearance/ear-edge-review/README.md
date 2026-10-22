@@ -102,10 +102,12 @@ the hair donor illustrations.
   PNG decoding checks. GIF centisecond rounding does not alter CharacterPack
   timing.
 
-Visual review of the exported crouch/recovery sequence confirms the extra scalp
-band is removed and the original ear structure remains visible. Run, jump and
-celebration samples, both short styles and all exported head poses were also
-inspected. The source's minor chroma-key edge colors remain as noted below.
+Visual review covered the exported crouch/recovery sequence, both short styles
+on both characters, and selected run/jump/celebration poses. The extra scalp band
+is removed and the original ear structure remains visible. Full exported head
+contact sheets are supplied for further review; this is not a claim of manual
+acceptance of every pose. The source's minor chroma-key edge colors remain as
+noted below.
 
 Final browser and exported artifact results are recorded in
 [artifact validation](artifact-validation.json),
