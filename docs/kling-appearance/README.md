@@ -41,9 +41,77 @@ self-contained V2 project. **Export CharacterPack** bakes the chosen look for
 
 ## Actual application evidence
 
-Final capture and artifact validation are recorded here after the application
-exports, project reopen checks and independent playback finish. Source design
-sheets in `artwork/` are not substitutes for these results.
+All previews below are decoded from actual application downloads. Each GIF shows
+the original beside the edited character at matching placement and 0.5x scale,
+through idle, walk, run, jump and celebrate. The PNG detail boards retain native
+pixels or use integer enlargement. Source design sheets are not implementation
+evidence.
+
+| Look            | Right / left animation                                                                                      | Independent CharacterPack                                                | Editable V2 project                                                     |
+| --------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| Male everyday   | [Right](review/male-day-five-actions-right.gif) / [Left](review/male-day-five-actions-left.gif)             | [ZIP](review/evidence/final-male/exports/male-day.character.zip)         | [ZIP](review/evidence/final-male/exports/male-day.wardrobe.zip)         |
+| Male wedding    | [Right](review/male-wedding-five-actions-right.gif) / [Left](review/male-wedding-five-actions-left.gif)     | [ZIP](review/evidence/final-male/exports/male-wedding.character.zip)     | [ZIP](review/evidence/final-male/exports/male-wedding.wardrobe.zip)     |
+| Female everyday | [Right](review/female-day-five-actions-right.gif) / [Left](review/female-day-five-actions-left.gif)         | [ZIP](review/evidence/final-female/exports/female-day.character.zip)     | [ZIP](review/evidence/final-female/exports/female-day.wardrobe.zip)     |
+| Female wedding  | [Right](review/female-wedding-five-actions-right.gif) / [Left](review/female-wedding-five-actions-left.gif) | [ZIP](review/evidence/final-female/exports/female-wedding.character.zip) | [ZIP](review/evidence/final-female/exports/female-wedding.wardrobe.zip) |
+
+| Review                                    | Male                                                                                           | Female                                                                                             |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Both hairstyles and face choices          | [Lineup](review/male-appearance-lineup.png)                                                    | [Lineup](review/female-appearance-lineup.png)                                                      |
+| Face and hairline detail                  | [1x](review/male-face-detail-1x.png) / [2x](review/male-face-detail-2x.png)                    | [1x](review/female-face-detail-1x.png) / [2x](review/female-face-detail-2x.png)                    |
+| Three hair colors                         | [Native](review/male-hair-colors-1x.png)                                                       | [Native](review/female-hair-colors-1x.png)                                                         |
+| Five-action keyframes, native size        | [Everyday](review/male-day-keyframes-1x.png) / [Wedding](review/male-wedding-keyframes-1x.png) | [Everyday](review/female-day-keyframes-1x.png) / [Wedding](review/female-wedding-keyframes-1x.png) |
+| Same-frame seam and jump-fit corrections  | [Comparison](review/male-iteration-comparison.png)                                             | [Comparison](review/female-iteration-comparison.png)                                               |
+| Actual wardrobe UI                        | [Screenshot](review/evidence/final-male/male-day-workbench.png)                                | [Screenshot](review/evidence/final-female/female-day-workbench.png)                                |
+| Independent player after closing wardrobe | [Screenshot](review/evidence/final-male/male-day-independent.png)                              | [Screenshot](review/evidence/final-female/female-day-independent.png)                              |
+
+## Verification performed in this batch
+
+- **209 unit tests**, TypeScript checking and the production build passed. The
+  built appearance-bank files were also checked against the final bank hashes.
+- **8 Chromium workflow tests** passed: two appearance tests and six existing
+  wardrobe regressions, including lazy loading, failed-load rollback, independent
+  clothes/head resets, editable save/reopen and portable export.
+- Actual browser captures downloaded **48 PNGs, 4 V2 projects and 4
+  CharacterPacks**. The projects were reopened. After the wardrobe was closed,
+  independent playback passed **40 combinations**: two characters, two outfits,
+  five actions and two directions. Every action frame position was observed.
+- All **368 exported character frames** preserve exact original RGBA outside
+  selected garment, hair and inner-face ownership, including invisible RGB.
+  Original animation sequences and timing remain unchanged. Two separately
+  downloaded female left-facing PNGs exactly match the corresponding mirrored
+  right-facing outputs.
+- All ZIP entries passed integrity checks and all downloaded PNGs decoded.
+  The **8 GIFs and 14 review PNGs** were decoded and checked. Each GIF lasts
+  **5,080 ms**, with 88 male or 96 female frames; durations use cumulative
+  centisecond rounding while CharacterPacks retain source timing.
+
+Machine-readable records: [artifact validation](review/artifact-validation.json),
+[male browser capture](review/evidence/final-male/evidence-index.json),
+[female browser capture](review/evidence/final-female/evidence-index.json).
+Capture records include input hashes and the commit present at capture; earlier
+iteration captures are retained separately from the `final-*` results. Playback
+reported no application errors, external requests or editor-module imports.
+The only console error was a missing favicon; the longest observed frame
+scheduling interval was 109.5 ms, so this does not claim perfect realtime timing.
+
+Visual review covered all 184 head poses, with native detail checks for the
+hairline, ears, raised-hand occlusion, jump blur and original closed-eye/laughing
+expressions. Thin seams and the exposed female crown edge improved in the saved
+same-frame comparisons. These checks are our review, not user visual acceptance.
+
+To reproduce without overwriting the saved capture records:
+
+```sh
+APPEARANCE_RUN=repeat-male APPEARANCE_CHARACTER=male node scripts/capture-kling-appearance.mjs
+APPEARANCE_RUN=repeat-female APPEARANCE_CHARACTER=female node scripts/capture-kling-appearance.mjs
+python scripts/render-kling-appearance-review.py --run repeat
+```
+
+The capture script starts its own Vite server and launches Chromium from
+`/usr/bin/chromium` (or `CHROMIUM_PATH`). Install the Python dependencies in
+`scripts/requirements-kling-wardrobe.txt` for the review renderer. The renderer
+updates the top-level review boards and validation report from the selected
+captures; retain those changes as a new review if rerunning.
 
 ## Visual scope and limitations
 
