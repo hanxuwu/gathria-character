@@ -10,6 +10,13 @@ the ground anchor without scaling source pixels. Editable wardrobe V2 embeds
 the head assets; V1 and independent CharacterPack V2/V3 remain supported.
 [Current appearance review, verification and limits](kling-appearance/README.md).
 
+Follow-up correction: appearance content revision 2 locally follows the source
+ear during crouching while retaining the stable crown/fringe, and removes donor
+skin trapped along hair cutout edges. The original ear/face/body and action
+timing stay intact. Existing saved V2 projects retain their embedded older bank;
+new catalog sessions use the corrected bank. [Matched ear-edge comparisons and
+current exports](kling-appearance/ear-edge-review/README.md).
+
 Previous batch: **Kling wardrobe cold-start preparation**, branch
 `perf/kling-cold-start`, based on merged main `d0bf0ad`.
 Cold source ZIP parsing and lossless PNG preparation now run in cancellable
