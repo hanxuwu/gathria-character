@@ -15,6 +15,8 @@ from kling_hair_ear_fit import fit_ear_hair, blur_hair
 from kling_hair_donor_mask import clean_donor
 from kling_hair_occlusion import hair_occlusion_bounds
 from kling_hair_foreground import HAND_PROVENANCE, reviewed_hand_foreground
+from kling_hair_ear_overlap import male_ear_overlap
+from kling_hair_rear_lock import male_bob_rear_donor, male_bob_rear_fit
 
 ART=ROOT/'artwork/kling-appearance'
 PADDING={'left':32,'top':128,'right':32,'bottom':0}
@@ -112,22 +114,32 @@ def build(character):
         item={'frameId':fid,'mode':'paint','page':0,'rect':{'x':0,'y':0,'width':w,'height':h},'offset':{'x':x+offset[0],'y':y+offset[1]}}
         layer['frames'].append(item);entries.append((item,crop,own))
     for style,name in [('soft-crop','Soft crop'),('soft-bob','Soft bob')]:
-        original,M=fit_reference(style,character);layer={'role':'hair-front','frames':[]}
+        original,M=fit_reference(style,character)
         reference=next(row for row in heads['frames'] if row['frameId']==0)
         Image.fromarray(original).save(ART/f'source/{character}-{style}-cutout.png')
-        for row in heads['frames']:
-            fid=row['frameId'];T=np.vstack([row['headTransform'],[0,0,1]])@np.vstack([M,[0,0,1]])
-            T=T[:2];T[:,2]+=[padding['left'],padding['top']]
-            # Match only new hair to the existing source motion blur around jump.
-            blur={88:.65,89:1.6,90:1.8,91:.7,100:.6,101:1.6,102:1.6,103:.65}.get(fid,0)
-            rgba=warp_rgba(original,T,(W,H))
-            rgba=fit_ear_hair(original,M,row,reference,padding,(W,H),rgba)
-            rgba=blur_hair(rgba,blur);owned=rgba[:,:,3]>0
-            assert not owned[[0,-1],:].any() and not owned[:,[0,-1]].any(), f'Hair clipped: {character}/{style}/{fid}'
-            yy,xx=np.where(owned);b=(int(xx.min()-padding['left']),int(yy.min()-padding['top']),int(xx.max()+1-padding['left']),int(yy.max()+1-padding['top']))
-            old=bounds.get(fid,b);bounds[fid]=(min(old[0],b[0]),min(old[1],b[1]),max(old[2],b[2]),max(old[3],b[3]))
-            add(layer,fid,rgba,owned,(-padding['left'],-padding['top']))
-        styles.append({'id':style,'name':name,'slot':'hair','layers':[layer]})
+        donors=[('hair-front',original,M)]
+        if character=='male' and style=='soft-bob':
+            rear=male_bob_rear_donor(np.array(Image.open(ART/'source/soft-bob-design.png').convert('RGBA')))
+            Image.fromarray(rear).save(ART/'source/male-soft-bob-rear-cutout.png')
+            donors.insert(0,('hair-back',rear,male_bob_rear_fit(M)))
+        layers=[]
+        for role,art,fit in donors:
+            layer={'role':role,'frames':[]}
+            for row in heads['frames']:
+                fid=row['frameId'];T=np.vstack([row['headTransform'],[0,0,1]])@np.vstack([fit,[0,0,1]])
+                T=T[:2];T[:,2]+=[padding['left'],padding['top']]
+                # Match only new hair to the existing source motion blur around jump.
+                blur={88:.65,89:1.6,90:1.8,91:.7,100:.6,101:1.6,102:1.6,103:.65}.get(fid,0)
+                rgba=warp_rgba(art,T,(W,H))
+                overlap=male_ear_overlap(reference) if character=='male' else None
+                rgba=fit_ear_hair(art,fit,row,reference,padding,(W,H),rgba,overlap)
+                rgba=blur_hair(rgba,blur);owned=rgba[:,:,3]>0
+                assert not owned[[0,-1],:].any() and not owned[:,[0,-1]].any(), f'Hair clipped: {character}/{style}/{role}/{fid}'
+                yy,xx=np.where(owned);b=(int(xx.min()-padding['left']),int(yy.min()-padding['top']),int(xx.max()+1-padding['left']),int(yy.max()+1-padding['top']))
+                old=bounds.get(fid,b);bounds[fid]=(min(old[0],b[0]),min(old[1],b[1]),max(old[2],b[2]),max(old[3],b[3]))
+                add(layer,fid,rgba,owned,(-padding['left'],-padding['top']))
+            layers.append(layer)
+        styles.append({'id':style,'name':name,'slot':'hair','layers':layers})
     layer={'role':'face','frames':[]}
     for row in heads['frames']:
         result=prepare_gentle_face(frames[row['frameId']],row)
@@ -157,7 +169,9 @@ def build(character):
     provenance='Hair: OpenAI image generation, 2026-10-22, approved Kling portraits as reference. Only hair cutouts used; generated faces/clothes discarded. Explicit reviewed hairline masks, premultiplied resampling, native pose head registration. Revision 2 locally follows the independently registered original ear during facial squash while locking crown and central fringe; no source ear or face warp. New-hair-only blur matching on reviewed fast jump poses; no body rescale. Sources and prompts: artwork/kling-appearance/source. '+PROVENANCE
     provenance+=' Revision 3 adds an explicit three-source-pixel top/side hair occlusion envelope for original scalp raster remnants. The lower head edge, foreground masks, face ownership and all atlas PNG bytes remain unchanged.'
     if character=='female':provenance+=HAND_PROVENANCE
-    bank={'format':'gathria-sprite-appearance-bank','version':1,'id':f'kling-{character}-appearance-v3','name':f'Kling {character} hair and gentle face',
+    if character=='male':provenance+=' Revision 4 fits existing front hair locally over the upper ear and restores a reviewed pure-hair donor rear lock behind the original ear/head for soft bob. A rear-only registration tucks the lower lock behind the source head/neck. No new image generation, source face repaint or body deformation. Existing original poses, face layer and timing retained.'
+    revision=4 if character=='male' else 3
+    bank={'format':'gathria-sprite-appearance-bank','version':1,'id':f'kling-{character}-appearance-v{revision}','name':f'Kling {character} hair and gentle face',
       'sourceSha256':sha(source),'registrationSha256':sha(reg_bytes),'characterId':reg['characterId'],'frameWidth':704,'frameHeight':1056,'padding':PADDING,'poses':poses,'pages':pages,'styles':styles,'provenance':provenance}
     files['manifest.json']=json_bytes(bank)
     target=ROOT/f'docs/kling-appearance/banks/{character}.zip';target.parent.mkdir(parents=True,exist_ok=True)
@@ -174,6 +188,10 @@ if __name__=='__main__':
         # synchronized with this preparation run; original donors stay intact.
         record_path=ART/'source-hashes.json'
         records=json.loads(record_path.read_text())
+        rear_path='artwork/kling-appearance/source/male-soft-bob-rear-cutout.png'
+        if (ROOT/rear_path).exists() and not any(row['file']==rear_path for row in records):
+            records.append({'file':rear_path})
+            records.sort(key=lambda row:row['file'])
         for record in records:
             data=(ROOT/record['file']).read_bytes()
             record.update(sha256=sha(data),bytes=len(data))

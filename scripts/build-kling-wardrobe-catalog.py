@@ -6,12 +6,13 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/kling-wardrobe'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def select(top=None,bottom=None,fullBody=None,shoes=None):return dict(top=top,bottom=bottom,fullBody=fullBody,shoes=shoes)
 characters=[]
-# Released first-batch and ear-fit revision 2 appearance banks. Exact hashes
+# Released first-batch, ear-fit revision 2 and male boundary revision 3 banks. Exact hashes
 # make custom/future assets ineligible for an accidental downgrade.
 previous_appearance={
     'male':[
         '3dc7c537beea678be7cf5e707713b755fbb0694aa441cb0579105c962aad6bef',
         '2da8187aca98d6245cc7fad1ac0b93b3a0bad52e175a35fc22f6c7c51e72a794',
+        'f79a742a88eb5001418154307025303e91899c08058263e87ad54d8995c937f9',
     ],
     'female':[
         '2cb788fcbe9bd623b57ccb3cb7385199a7bd04213af2c726e12c738d219e84fa',

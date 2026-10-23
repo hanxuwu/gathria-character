@@ -1,6 +1,13 @@
 # Implementation status
 
-Current follow-up: **appearance workflow and raster-fringe stability**. Existing
+Current follow-up: **male ear overlap**. The bob's missing donor rear strand is
+restored behind the original ear/head, and existing front hair locally overlaps
+the upper ear. Male bank content is revision 4; source pixels, face layers,
+registrations, timing and female revision 3 remain unchanged. Existing projects
+retain their embedded banks until an explicit preview and save-copy update.
+[Actual exports, compatibility checks and remaining limits](kling-appearance/ear-overlap-review/README.md).
+
+Previous follow-up: **appearance workflow and raster-fringe stability**. Existing
 short styles now have real-export thumbnails and named color swatches. Older
 embedded banks can be explicitly compared at the same pose and saved as an
 updated copy, preserving the original session and its settings. Content revision

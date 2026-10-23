@@ -53,6 +53,16 @@ revision 3; only bank metadata changes. Older application builds that reject
 unknown bank fields require this updated reader for new V3-content projects;
 baked CharacterPack exports remain independent of appearance-bank metadata.
 
+Male content revision 4 (`kling-male-appearance-v4`) refits the existing front
+hair over the upper ear and restores the soft bob's existing donor rear lock as
+an explicit `hair-back` layer. The existing renderer places that lock behind the
+original ear, head and clothing. This is an authored hair update, not another
+schema or source-body change: the original face layer, anchors, source frames,
+padding and action timing are retained. Female content remains revision 3 and
+its bank bytes are unchanged. Male revisions 1, 2 and 3 remain reproducible from
+their embedded banks; an exact-hash catalog match offers an explicit preview and
+separate updated copy. No saved file is silently upgraded or rewritten.
+
 `manifest.json` identifies `gathria-sprite-appearance-bank`, version 1. It binds
 both the exact original source ZIP SHA and original clothing-registration SHA,
 character ID and native dimensions. It contains:
@@ -71,8 +81,9 @@ character ID and native dimensions. It contains:
 Only hair uses the hair-color transform. Face patches preserve source alpha and
 are confined to the inner face; garments still cannot paint the head or hands.
 Front hair respects foreground hands and body/clothes. Rear-hair layers, when
-present, compose behind existing pixels. The two initial short hairstyles use
-front layers only.
+present, compose behind existing pixels. The original short-style banks use
+front layers only; male revision 4 soft bob adds a rear layer. Soft crop and
+the unchanged female revision 3 styles retain front-only layers.
 
 Imports verify bounded ZIP structure, complete PNG streams, ownership and every
 pose before acceptance. A bounded cache remembers a successful full validation

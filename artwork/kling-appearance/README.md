@@ -50,8 +50,8 @@ entries. Foreground hand regions remain protected.
 
 Runtime banks live in `docs/kling-appearance/banks/{male,female}.zip`; each binds
 to the immutable source and clothing-registration SHA-256. Front hair has its
-own ownership and source-over alpha. The format also supports a rear-hair layer,
-but these short styles use one front layer with body/hand occlusion. No source
+own ownership and source-over alpha. Male bob revision 4 also uses a rear-hair
+layer; other current short styles use one front layer with body/hand occlusion. No source
 skin-color deletion is performed.
 
 ### Ear-edge revision (bank content revision 2)
@@ -96,9 +96,37 @@ All 20 atlas and ownership PNG entries are byte-identical to revision 2. No new
 generation, painting, resampling, head/face registration or source extraction was
 performed. The full preparation script now emits the same metadata rule.
 
-Current bank IDs end in `appearance-v3`. Old embedded banks keep their exact
+That revision's bank IDs end in `appearance-v3`. Old embedded banks keep their exact
 behavior; the workbench's explicit preview/save-copy flow opts into this update.
-[Current review and metadata verification](../../docs/kling-appearance/stability-review/README.md).
+[Revision 3 review and metadata verification](../../docs/kling-appearance/stability-review/README.md).
+
+### Male ear overlap (content revision 4)
+
+The bob donor contains a continuous strand behind and beneath its near ear.
+The earlier single front-hair cutout removed that strand, leaving an oversized
+transparent opening between the original Kling ear and the new hair. Following
+the ear's motion alone could not close the missing rear silhouette.
+
+`scripts/kling_hair_rear_lock.py` recovers only that existing hair with a reviewed
+source-coordinate polygon. `source/male-soft-bob-rear-cutout.png` retains original
+donor RGB and natural lower-edge alpha; no donor skin or new painted pixels are
+introduced. A rear-only horizontal registration and shear tuck its lower end
+behind the original head/neck. The existing renderer's `hair-back` layer places
+it behind the original ear, head, hands and clothing.
+
+`scripts/kling_hair_ear_overlap.py` also moves the male styles' existing hair
+locally over the upper ear: a bounded smooth displacement of at most (10, 13)
+native pixels near the reference ear, composed with the prior per-pose ear fit.
+The crown, central fringe and original face are not transformed. Premultiplied
+sampling and the existing new-hair-only jump blur are retained. All 88 male poses
+are rebuilt; the female bank remains byte-identical revision 3. The original
+generated design sheets, four front cutouts and source registrations are unchanged.
+
+This is an offline reuse of the retained generated donor, not a new image-generation
+call or a recovered original video layer. Male bank ID is now
+`kling-male-appearance-v4`; schema stays V1. Existing saved banks keep their original
+result until explicitly previewed and saved as a separate updated copy.
+[Matched application exports and compatibility audit](../../docs/kling-appearance/ear-overlap-review/README.md).
 
 Active appearances add transparent padding (left/right 32, top 128, bottom 0),
 giving 768×1184 frames and anchor (384,1126). This is an integer translation of

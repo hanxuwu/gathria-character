@@ -6,6 +6,7 @@ This remaps the NEW hair donor, never the approved source face or ear pixels.
 """
 import cv2
 import numpy as np
+from kling_hair_ear_overlap import inverse_overlap_map
 
 
 def ear_fit(reference, row):
@@ -42,10 +43,10 @@ def inverse_ear_map(x, y, local, center, radii):
     return sx, sy
 
 
-def fit_ear_hair(rgba, donor_fit, row, reference, padding, size, baseline):
+def fit_ear_hair(rgba, donor_fit, row, reference, padding, size, baseline, overlap=None):
     """Sample the donor once with premultiplied alpha; keep remote pixels exact."""
     local, center, radii = ear_fit(reference, row)
-    if np.allclose(local, np.eye(3), atol=1e-7):
+    if overlap is None and np.allclose(local, np.eye(3), atol=1e-7):
         return baseline.copy()
     head = np.vstack([row['headTransform'], [0, 0, 1]])
     head[:2, 2] += [padding['left'], padding['top']]
@@ -55,6 +56,9 @@ def fit_ear_hair(rgba, donor_fit, row, reference, padding, size, baseline):
     y = inverse_head[1, 0] * xx + inverse_head[1, 1] * yy + inverse_head[1, 2]
     owned = ear_weight(x, y, center, radii) > 0
     sx, sy = inverse_ear_map(x[owned], y[owned], local, center, radii)
+    if overlap is not None:
+        sx, sy = inverse_overlap_map(sx, sy, overlap['center'],
+                                     overlap['radii'], overlap['displacement'])
     donor_inverse = np.linalg.inv(np.vstack([donor_fit, [0, 0, 1]]))
     mx = donor_inverse[0, 0] * sx + donor_inverse[0, 1] * sy + donor_inverse[0, 2]
     my = donor_inverse[1, 0] * sx + donor_inverse[1, 1] * sy + donor_inverse[1, 2]

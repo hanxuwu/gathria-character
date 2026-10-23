@@ -16,15 +16,25 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--run', default='final', help='Actual stability capture prefix; expects <run>-male and <run>-female.')
 parser.add_argument('--male-run', help='Exact male capture directory, overriding --run.')
 parser.add_argument('--female-run', help='Exact female capture directory, overriding --run.')
+parser.add_argument('--character', choices=('male', 'female', 'both'), default='both')
+parser.add_argument('--evidence-root', default='docs/kling-appearance/stability-review/workflow',
+                    help='Directory containing the checked actual capture runs.')
+parser.add_argument('--source-prefix', default='thumbnail',
+                    help='Frame-0 export label in the capture, e.g. thumbnail or detail.')
 args = parser.parse_args()
 DEST = ROOT / 'src/appearance/previews'
 DEST.mkdir(exist_ok=True)
-records = []
-for character in ('male', 'female'):
+characters = ('male', 'female') if args.character == 'both' else (args.character,)
+record_path = DEST / 'provenance.json'
+records = [row for row in json.loads(record_path.read_text())
+           if not any(row['file'].startswith(character + '-') for character in characters)] if record_path.exists() else []
+for character in characters:
     bank = ROOT / f'docs/kling-appearance/banks/{character}.zip'
     run = getattr(args, f'{character}_run') or f'{args.run}-{character}'
-    evidence_dir = ROOT / f'docs/kling-appearance/stability-review/workflow/{run}'
+    evidence_dir = ROOT / args.evidence_root / run
     evidence = json.loads((evidence_dir / 'evidence-index.json').read_text())
+    if evidence.get('passed') is not True:
+        raise ValueError(f'{character}: actual capture is incomplete or failed')
     bank_sha = hashlib.sha256(bank.read_bytes()).hexdigest()
     if evidence['inputs'][str(bank.relative_to(ROOT))] != bank_sha:
         raise ValueError(f'{character}: evidence bank differs from current bank; capture again before updating thumbnails')
@@ -39,7 +49,7 @@ for character in ('male', 'female'):
     bottom = pose['anchors']['chin']['y'] + padding['top'] + 12
     crop = tuple(map(int, (left, top, right, bottom)))
     for style in ('soft-crop', 'soft-bob'):
-        source = evidence_dir / f'{character}-thumbnail-{style}-0-right.png'
+        source = evidence_dir / f'{character}-{args.source_prefix}-{style}-0-right.png'
         source_sha = hashlib.sha256(source.read_bytes()).hexdigest()
         captured = next(row for row in evidence['downloads'] if row['file'] == str(source.relative_to(ROOT)))
         if captured['sha256'] != source_sha:
@@ -68,5 +78,7 @@ for character in ('male', 'female'):
             'resampling': 'Lanczos display thumbnail only',
             'appearance': {'hairId': style, 'faceId': 'gentle', 'hairColor': 'chestnut'},
         })
-(DEST / 'provenance.json').write_text(json.dumps(records, indent=2) + '\n')
-print(f'Wrote {len(records)} real-export style thumbnails.')
+records.sort(key=lambda row: (0 if row['file'].startswith('male-') else 1,
+                              0 if 'soft-crop' in row['file'] else 1))
+record_path.write_text(json.dumps(records, indent=2) + '\n')
+print(f'Updated {len(characters) * 2} real-export style thumbnails.')

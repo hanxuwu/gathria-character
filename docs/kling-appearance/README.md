@@ -1,6 +1,11 @@
 # Kling hair and gentle face review
 
-**Current batch:** [appearance workflow and motion review](stability-review/README.md)
+**Current correction:** [male ear overlap](ear-overlap-review/README.md) restores
+the bob's missing rear strand and fits the front hair over the upper ear. Actual
+before/after exports retain the original face, ear, body and motion. Male bank
+content is revision 4; female revision 3 is unchanged.
+
+**Previous batch:** [appearance workflow and motion review](stability-review/README.md)
 adds real-export style cards, named color swatches and explicit preview/save-copy
 updates for old projects. Content revision 3 fixes fine rectangular hair seams
 without changing the original face or any atlas PNG bytes.
