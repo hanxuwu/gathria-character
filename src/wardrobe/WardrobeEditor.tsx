@@ -76,6 +76,7 @@ import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
 import NamedLooks from "./NamedLooks";
+import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
 
 interface CatalogItem {
@@ -260,23 +261,6 @@ function readCatalog(value: unknown): Catalog {
   });
   return { version: 1, characters };
 }
-async function fetchBytes(
-  url: string,
-  maximum: number,
-  signal?: AbortSignal,
-): Promise<Uint8Array> {
-  const response = await fetch(url, { signal });
-  if (!response.ok)
-    throw Error(
-      `Could not open ${new URL(url, window.location.href).pathname} (${response.status}).`,
-    );
-  if (Number(response.headers.get("content-length")) > maximum)
-    throw Error("This file exceeds the supported size.");
-  const bytes = new Uint8Array(await response.arrayBuffer());
-  if (!bytes.length || bytes.length > maximum)
-    throw Error("This file is empty or exceeds the supported size.");
-  return bytes;
-}
 function saveBytes(
   bytes: Uint8Array,
   filename: string,
@@ -322,6 +306,8 @@ export default function WardrobeEditor({
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [busy, setBusy] = useState(false);
+  const [cancellable, setCancellable] = useState(false);
+  const [downloads] = useState(() => createWardrobeDownloads());
   const [status, setStatus] = useState("Opening the clothing library…");
   const [error, setError] = useState("");
   const [playing, setPlaying] = useState(false);
@@ -379,7 +365,41 @@ export default function WardrobeEditor({
     preparation.current?.abort();
     const controller = new AbortController();
     preparation.current = controller;
+    setCancellable(true);
     return { token: ++request.current, controller };
+  }
+  function fetchBytes(
+    url: string,
+    maximum: number,
+    signal?: AbortSignal,
+    hash?: string,
+  ) {
+    return downloads.load(url, maximum, {
+      signal,
+      sha256: hash,
+      onProgress: (value) => {
+        if (signal?.aborted || maximum < 2 * 1024 * 1024) return;
+        const mb = (n: number) => (n / 1024 / 1024).toFixed(1);
+        setStatus(
+          value.cached
+            ? "Reusing verified artwork from this session…"
+            : `Downloading artwork: ${mb(value.loaded)}${value.total ? ` / ${mb(value.total)}` : ""} MB…`,
+        );
+      },
+    });
+  }
+  function cancelPreparation() {
+    preparation.current?.abort();
+    request.current++;
+    preparingAppearancePreview.current = false;
+    setBusy(false);
+    setCancellable(false);
+    setError("");
+    setStatus(
+      current.current
+        ? "Preparation canceled. Your accepted outfit is unchanged."
+        : "Loading canceled. Retry when you are ready.",
+    );
   }
   async function accept(
     project: WardrobeProject,
@@ -774,7 +794,12 @@ export default function WardrobeEditor({
     try {
       const candidate = await prepareAppearanceUpgrade(
         open.project,
-        await fetchBytes(url, APPEARANCE_MAX_BYTES, controller.signal),
+        await fetchBytes(
+          url,
+          APPEARANCE_MAX_BYTES,
+          controller.signal,
+          revision.bankSha256,
+        ),
         revision,
         { signal: controller.signal },
       );
@@ -866,7 +891,7 @@ export default function WardrobeEditor({
           );
         next = await addWardrobeAppearanceBank(
           next,
-          await fetchBytes(url, APPEARANCE_MAX_BYTES, signal),
+          await fetchBytes(url, APPEARANCE_MAX_BYTES, signal, expected),
           { signal },
         );
         if (
@@ -914,7 +939,12 @@ export default function WardrobeEditor({
             );
           next = await addWardrobeGarment(
             next,
-            await fetchBytes(item!.url, WARDROBE_MAX_ITEM_BYTES, signal),
+            await fetchBytes(
+              item!.url,
+              WARDROBE_MAX_ITEM_BYTES,
+              signal,
+              ref.sha256,
+            ),
           );
           exactLookAsset(
             ref,
@@ -924,7 +954,7 @@ export default function WardrobeEditor({
         if (bankHash && next.appearanceBank?.sha256 !== bankHash)
           next = await addWardrobeAppearanceBank(
             next,
-            await fetchBytes(bankUrl!, APPEARANCE_MAX_BYTES, signal),
+            await fetchBytes(bankUrl!, APPEARANCE_MAX_BYTES, signal, bankHash),
             { signal },
           );
         if (!look.appearance) next = { ...next, appearanceBank: undefined };
@@ -953,6 +983,7 @@ export default function WardrobeEditor({
   async function ensureItem(
     base: WardrobeProject,
     id: string,
+    signal?: AbortSignal,
   ): Promise<WardrobeProject> {
     base = retainOutfitAndCustomItems(base, entry?.items ?? []);
     if (base.items.some((item) => item.manifest.id === id)) return base;
@@ -963,7 +994,7 @@ export default function WardrobeEditor({
       );
     const next = await addWardrobeGarment(
       base,
-      await fetchBytes(item.url, WARDROBE_MAX_ITEM_BYTES),
+      await fetchBytes(item.url, WARDROBE_MAX_ITEM_BYTES, signal, item.sha256),
     );
     const added = next.items.find((candidate) => candidate.manifest.id === id);
     if (
@@ -976,10 +1007,10 @@ export default function WardrobeEditor({
   }
   function chooseItem(slot: WardrobeSlot, id: string) {
     void changeProject(
-      async (base) =>
+      async (base, signal) =>
         retainOutfitAndCustomItems(
           selectWardrobeGarment(
-            id ? await ensureItem(base, id) : base,
+            id ? await ensureItem(base, id, signal) : base,
             slot,
             id || null,
           ),
@@ -989,14 +1020,14 @@ export default function WardrobeEditor({
     );
   }
   function choosePreset(selection: WardrobeSelection, name: string) {
-    void changeProject(async (base) => {
+    void changeProject(async (base, signal) => {
       let next = base;
       for (const slot of WARDROBE_SLOTS)
         next = selectWardrobeGarment(next, slot, null);
       for (const slot of WARDROBE_SLOTS)
         if (selection[slot])
           next = selectWardrobeGarment(
-            await ensureItem(next, selection[slot]!),
+            await ensureItem(next, selection[slot]!, signal),
             slot,
             selection[slot],
           );
@@ -1173,6 +1204,7 @@ export default function WardrobeEditor({
     const open = current.current;
     if (!open || busy || appearancePreview || frameId === undefined) return;
     setBusy(true);
+    setCancellable(false);
     setError("");
     setStatus(
       kind === "pack"
@@ -1317,6 +1349,16 @@ export default function WardrobeEditor({
         {busy && <span className="wardrobe-spinner" aria-hidden="true" />}
         {status}
       </p>
+      {busy && cancellable && (
+        <button type="button" onClick={cancelPreparation}>
+          Cancel preparation
+        </button>
+      )}
+      {!busy && !session && !error && (
+        <button type="button" onClick={() => setRetry((value) => value + 1)}>
+          Retry loading
+        </button>
+      )}
       {session && project && registration && outputSheet && outputAnchor && (
         <div className="wardrobe-layout">
           <aside className="wardrobe-controls" aria-label="Clothing selection">
