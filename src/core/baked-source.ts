@@ -418,22 +418,35 @@ function unfilterSourceRgba(scan: Uint8Array, source: SourcePngData): RgbaPng {
   for (let y = 0; y < height; y++) {
     const filter = scan[y * (stride + 1)];
     if (filter > 4) fail("Unsupported PNG row filter.");
+    const row = y * stride,
+      input = y * (stride + 1) + 1;
+    // Large binary ownership atlases commonly use None/Up. Resolve the row
+    // filter once, not once per channel. All five filters reconstruct raw RGBA,
+    // including RGB below zero alpha, with the same modulo-256 arithmetic.
+    if (filter === 0) {
+      pixels.set(scan.subarray(input, input + stride), row);
+      continue;
+    }
+    if (filter === 1) {
+      for (let x = 0; x < stride; x++)
+        pixels[row + x] = scan[input + x] + (x >= 4 ? pixels[row + x - 4] : 0);
+      continue;
+    }
+    if (filter === 2) {
+      if (!y) pixels.set(scan.subarray(input, input + stride), row);
+      else
+        for (let x = 0; x < stride; x++)
+          pixels[row + x] = scan[input + x] + pixels[row + x - stride];
+      continue;
+    }
     for (let x = 0; x < stride; x++) {
-      const i = y * stride + x,
+      const i = row + x,
         a = x >= 4 ? pixels[i - 4] : 0,
         b = y ? pixels[i - stride] : 0,
         c = y && x >= 4 ? pixels[i - stride - 4] : 0;
       const prediction =
-        filter === 0
-          ? 0
-          : filter === 1
-            ? a
-            : filter === 2
-              ? b
-              : filter === 3
-                ? Math.floor((a + b) / 2)
-                : paeth(a, b, c);
-      pixels[i] = (scan[y * (stride + 1) + x + 1] + prediction) & 255;
+        filter === 3 ? Math.floor((a + b) / 2) : paeth(a, b, c);
+      pixels[i] = (scan[input + x] + prediction) & 255;
     }
   }
   return { width, height, pixels, colorChunks };
