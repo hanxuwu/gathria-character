@@ -331,7 +331,7 @@ export class AppearanceRenderer {
             if (
               layer.role === "hair-front" &&
               (foreground ||
-                (!inRect(pose.headBounds, fx, fy) &&
+                (!inRect(pose.hairOcclusionBounds ?? pose.headBounds, fx, fy) &&
                   native &&
                   (sourceAlpha !== 0 || dressed.pixels[original + 3] !== 0)))
             )

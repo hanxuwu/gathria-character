@@ -1,9 +1,14 @@
 # Kling hair and gentle face review
 
-**Latest correction:** [hair/ear-edge review](ear-edge-review/README.md) follows
+**Current batch:** [appearance workflow and motion review](stability-review/README.md)
+adds real-export style cards, named color swatches and explicit preview/save-copy
+updates for old projects. Content revision 3 fixes fine rectangular hair seams
+without changing the original face or any atlas PNG bytes.
+
+**Previous correction:** [hair/ear-edge review](ear-edge-review/README.md) follows
 the original ear during crouching and removes donor-skin edge residue. The
 first-batch artifacts below remain as the earlier baseline; the correction's
-page contains the newer exports and matched before/after comparisons.
+page contains that revision's exports and matched before/after comparisons.
 
 The two approved Kling characters now have optional **Soft crop** and **Soft bob**
 hairstyles, **Chestnut / Espresso / Copper** hair colors, and an **Original / Gentle**

@@ -13,6 +13,8 @@ from PIL import Image, ImageDraw
 from kling_wardrobe_common import ROOT, load_source, json_bytes, sha, png_bytes, protected_mask
 from kling_hair_ear_fit import fit_ear_hair, blur_hair
 from kling_hair_donor_mask import clean_donor
+from kling_hair_occlusion import hair_occlusion_bounds
+from kling_hair_foreground import HAND_PROVENANCE, reviewed_hand_foreground
 
 ART=ROOT/'artwork/kling-appearance'
 PADDING={'left':32,'top':128,'right':32,'bottom':0}
@@ -97,6 +99,8 @@ def build(character):
         x0=max(0,min(p['x'] for p in poly)-2);y0=max(0,min(p['y'] for p in poly)-2)
         x1=min(704,max(p['x'] for p in poly)+2);y1=min(1056,max(p['y'] for p in poly)+2)
         pose['headBounds']={'x':x0,'y':y0,'width':x1-x0,'height':y1-y0}
+        pose['hairOcclusionBounds']=hair_occlusion_bounds(pose['headBounds'],704,1056)
+        pose['foreground']=reviewed_hand_foreground(character,pose)
         poses.append(pose)
     pose_by={p['frameId']:p for p in poses}
     padding=PADDING;W=704+padding['left']+padding['right'];H=1056+padding['top']
@@ -151,7 +155,9 @@ def build(character):
         files[file]=png_bytes(atlas);files[mfile]=png_bytes(mask)
         pages.append({'file':file,'maskFile':mfile,'width':width,'height':height})
     provenance='Hair: OpenAI image generation, 2026-10-22, approved Kling portraits as reference. Only hair cutouts used; generated faces/clothes discarded. Explicit reviewed hairline masks, premultiplied resampling, native pose head registration. Revision 2 locally follows the independently registered original ear during facial squash while locking crown and central fringe; no source ear or face warp. New-hair-only blur matching on reviewed fast jump poses; no body rescale. Sources and prompts: artwork/kling-appearance/source. '+PROVENANCE
-    bank={'format':'gathria-sprite-appearance-bank','version':1,'id':f'kling-{character}-appearance-v2','name':f'Kling {character} hair and gentle face',
+    provenance+=' Revision 3 adds an explicit three-source-pixel top/side hair occlusion envelope for original scalp raster remnants. The lower head edge, foreground masks, face ownership and all atlas PNG bytes remain unchanged.'
+    if character=='female':provenance+=HAND_PROVENANCE
+    bank={'format':'gathria-sprite-appearance-bank','version':1,'id':f'kling-{character}-appearance-v3','name':f'Kling {character} hair and gentle face',
       'sourceSha256':sha(source),'registrationSha256':sha(reg_bytes),'characterId':reg['characterId'],'frameWidth':704,'frameHeight':1056,'padding':PADDING,'poses':poses,'pages':pages,'styles':styles,'provenance':provenance}
     files['manifest.json']=json_bytes(bank)
     target=ROOT/f'docs/kling-appearance/banks/{character}.zip';target.parent.mkdir(parents=True,exist_ok=True)

@@ -1,0 +1,133 @@
+{
+  "baselineCommit": "055e95116cd441be7a630554409738b4a0b67ef9",
+  "sourcePack": "docs/kling-motion/exports/female.character.zip",
+  "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+  "beforePack": "docs/kling-appearance/ear-edge-review/evidence/final-female/exports/female-soft-bob.character.zip",
+  "beforeSha256": "c9396894351c1aad275fdf36627543f60c556a8e7d3b76496d181a4aad6904db",
+  "review": "The source has uninterrupted thumb skin. Old foreground polygons cut an inward notch through it, so front hair paints two triangular wedges over the hand. The additions follow that opaque source hand only; no color deletion, alpha fringe changes or repainting.",
+  "neighborReview": {
+    "frameIds": [
+      75,
+      80
+    ],
+    "note": "77 is absent from the selected export frame set. 75 and 80 are the immediate selected neighbors; no analogous interior hair wedge was found in these native hand crops. The partially transparent pale source edge remains a separate limitation."
+  },
+  "frames": [
+    {
+      "frameId": 78,
+      "additionalSourceForegroundPolygon": [
+        {
+          "x": 150,
+          "y": 414
+        },
+        {
+          "x": 163,
+          "y": 403
+        },
+        {
+          "x": 163,
+          "y": 409
+        },
+        {
+          "x": 160,
+          "y": 417
+        },
+        {
+          "x": 159,
+          "y": 422
+        },
+        {
+          "x": 163,
+          "y": 430
+        }
+      ],
+      "additionalPixelCenterOwnership": 111,
+      "addedBoundsInclusive": [
+        151,
+        404,
+        162,
+        427
+      ],
+      "everyProtectedSourcePixelOpaque": true,
+      "sampleSourcePosition": [
+        152,
+        413
+      ],
+      "originalRgba": [
+        248,
+        167,
+        129,
+        255
+      ],
+      "beforeRgba": [
+        68,
+        29,
+        18,
+        255
+      ]
+    },
+    {
+      "frameId": 79,
+      "additionalSourceForegroundPolygon": [
+        {
+          "x": 145,
+          "y": 445
+        },
+        {
+          "x": 150,
+          "y": 441
+        },
+        {
+          "x": 169,
+          "y": 430
+        },
+        {
+          "x": 169,
+          "y": 441
+        },
+        {
+          "x": 167,
+          "y": 451
+        },
+        {
+          "x": 165,
+          "y": 460
+        },
+        {
+          "x": 168,
+          "y": 470
+        },
+        {
+          "x": 156,
+          "y": 470
+        }
+      ],
+      "additionalPixelCenterOwnership": 361,
+      "addedBoundsInclusive": [
+        150,
+        430,
+        168,
+        469
+      ],
+      "everyProtectedSourcePixelOpaque": true,
+      "sampleSourcePosition": [
+        155,
+        441
+      ],
+      "originalRgba": [
+        248,
+        129,
+        95,
+        255
+      ],
+      "beforeRgba": [
+        81,
+        36,
+        23,
+        255
+      ]
+    }
+  ],
+  "diagnosticImage": "docs/kling-appearance/stability-review/hand-foreground-before-6x.png",
+  "diagnosticImageSha256": "c9c34591be853a439d4d92fc7351403e249aaac1813761df887f008f19bf119b"
+}

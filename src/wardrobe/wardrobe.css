@@ -389,3 +389,151 @@
     animation: none;
   }
 }
+
+.appearance-style-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.wardrobe-editor .appearance-style-choices button {
+  flex-direction: column;
+  padding: 7px 5px;
+  gap: 3px;
+  font-size: 11px;
+}
+.appearance-style-choices img {
+  width: 100%;
+  height: auto;
+  max-height: 104px;
+  object-fit: contain;
+}
+.wardrobe-editor .appearance-style-choices button[aria-pressed="true"],
+.wardrobe-editor .appearance-color-choices button[aria-pressed="true"] {
+  border-color: #3f6150;
+  background: #e7edde;
+  box-shadow: inset 0 0 0 1px #3f6150;
+}
+.appearance-example-note {
+  margin: 7px 0 10px;
+}
+.appearance-color-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  margin: -4px 0 14px;
+}
+.wardrobe-editor .appearance-color-choices button {
+  flex-direction: column;
+  gap: 5px;
+  padding: 7px 2px;
+  font-size: 10px;
+}
+.appearance-color-swatch {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #2d211d55;
+  border-radius: 50%;
+}
+.appearance-update-entry {
+  border-top: 1px solid #d5ddce;
+  padding-top: 10px;
+  margin-top: 12px;
+}
+.appearance-update-entry p {
+  font-size: 11px;
+  line-height: 1.65;
+}
+.wardrobe-editor .appearance-update-entry button {
+  width: 100%;
+  font-size: 11px;
+  border-color: #98ad8d;
+}
+.wardrobe-editor button:focus-visible {
+  outline: 3px solid #b48358;
+  outline-offset: 3px;
+}
+.appearance-update-dialog {
+  width: min(1120px, calc(100vw - 30px));
+  max-width: calc(100vw - 30px);
+  max-height: calc(100dvh - 30px);
+  border: 1px solid #c7d0bd;
+  border-radius: 12px;
+  padding: 22px;
+  background: #fffefa;
+  color: #344b3f;
+  box-shadow: 0 15px 60px #15251b40;
+  overflow: auto;
+}
+.appearance-update-dialog::backdrop {
+  background: #1c2e25a6;
+}
+.appearance-update-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+.appearance-update-heading h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+  font-weight: 500;
+}
+.appearance-update-heading p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.appearance-update-dialog .wardrobe-stage {
+  margin-top: 16px;
+  max-height: 60vh;
+}
+.appearance-update-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.appearance-update-footer p {
+  flex: 1;
+  min-width: 220px;
+  margin: 0 auto 0 0;
+  font-size: 11px;
+  line-height: 1.65;
+  color: #6c7c61;
+}
+.appearance-update-footer .wardrobe-primary {
+  background: #3f6150;
+  border-color: #3f6150;
+  color: white;
+}
+.appearance-copy-saved {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #3f6150;
+}
+@media (max-width: 690px) {
+  .appearance-style-choices img {
+    max-height: 120px;
+  }
+  .appearance-update-dialog {
+    padding: 14px;
+  }
+  .appearance-update-footer p {
+    flex-basis: 100%;
+  }
+  .appearance-update-footer button {
+    flex: 1;
+  }
+}
+
+/* Fit compares the entire common canvas, including the same floor anchor. Native
+   and 2× modes deliberately retain scrollable pixels for seam inspection. */
+.appearance-update-dialog .wardrobe-stage--fit.wardrobe-stage--compare canvas {
+  max-height: calc(60vh - 70px);
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}

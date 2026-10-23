@@ -37,6 +37,11 @@ Save an editable project to continue changing clothes, or export a CharacterPack
 for the independent player. [Latest clothing comparisons and downloads](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
 
 [Hair, face, actual animation previews and downloads](docs/kling-appearance/README.md).
+Hair cards and named color swatches offer a quick selection alongside the existing
+controls. Older saved appearances have **Preview updated appearance** for a
+same-frame comparison, followed by **Save updated copy**. Reopen the downloaded
+copy to use it; the original open project and unsaved edits stay unchanged.
+[Current workflow, motion review and limits](docs/kling-appearance/stability-review/README.md).
 Existing projects open with their original appearance. New head choices are
 stored with their source-bound assets in an editable V2 wardrobe project;
 ordinary baked CharacterPacks still play independently.

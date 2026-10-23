@@ -1,0 +1,2504 @@
+{
+  "format": "gathria-head-boundary-export-validation",
+  "version": 2,
+  "baselineCommit": "055e95116cd441be7a630554409738b4a0b67ef9",
+  "scope": "Actual browser day CharacterPacks and selected both-style PNGs; exact RGBA deltas against retained pre-fix exports. Only the explicit three-pixel top/side hair allowance and two source-backed female hand polygons may differ. Face pixels and all other pixels remain exact. The hand changes restore the original opaque source RGBA. This does not claim the source artwork itself is free from blemishes.",
+  "packs": [
+    {
+      "character": "male",
+      "hairstyle": "soft-crop",
+      "baselinePack": "docs/kling-appearance/ear-edge-review/evidence/final-male/exports/male-soft-crop.character.zip",
+      "baselineSha256": "2a23b7c3fd63e3472872868661dbee2bdce919bcbec18952beb0c41a75c7173c",
+      "capturedPack": "/tmp/gathria-appearance-stability/final-male/male-day.character.zip",
+      "capturedSha256": "e990c06d1a41d782d57a0dd589488bf31c2f3af5f2c5eefa0359c1755130dd0b",
+      "capturedPackRetainedInRepository": false,
+      "captureIndex": "docs/kling-appearance/stability-review/workflow/final-male/evidence-index.json",
+      "appearanceBankSha256": "f79a742a88eb5001418154307025303e91899c08058263e87ad54d8995c937f9",
+      "uniqueFrames": 88,
+      "changedFrames": 18,
+      "changedPixels": 315,
+      "actionsAndAnchorExact": true,
+      "captureIndexPassedAndHashesMatched": true,
+      "frameChecks": [
+        {
+          "frameId": 0,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 6,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 12,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 18,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 24,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 26,
+          "changedPixels": 14,
+          "boundaryAllowanceChangedPixels": 14,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            593,
+            438,
+            593,
+            453
+          ]
+        },
+        {
+          "frameId": 28,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 30,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 32,
+          "changedPixels": 22,
+          "boundaryAllowanceChangedPixels": 22,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            593,
+            442,
+            593,
+            463
+          ]
+        },
+        {
+          "frameId": 34,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 36,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 37,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 39,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 40,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 42,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 43,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 45,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 46,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 48,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 50,
+          "changedPixels": 38,
+          "boundaryAllowanceChangedPixels": 38,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            595,
+            424,
+            595,
+            461
+          ]
+        },
+        {
+          "frameId": 51,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 52,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 53,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 54,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 55,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 56,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 57,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 58,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 59,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 60,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 61,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 62,
+          "changedPixels": 29,
+          "boundaryAllowanceChangedPixels": 29,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            404,
+            320,
+            437,
+            320
+          ]
+        },
+        {
+          "frameId": 63,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 64,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 65,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 66,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 67,
+          "changedPixels": 20,
+          "boundaryAllowanceChangedPixels": 20,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            559,
+            472,
+            559,
+            491
+          ]
+        },
+        {
+          "frameId": 70,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 71,
+          "changedPixels": 5,
+          "boundaryAllowanceChangedPixels": 5,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            177,
+            562,
+            179,
+            565
+          ]
+        },
+        {
+          "frameId": 72,
+          "changedPixels": 2,
+          "boundaryAllowanceChangedPixels": 2,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            561,
+            452,
+            561,
+            453
+          ]
+        },
+        {
+          "frameId": 73,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 74,
+          "changedPixels": 30,
+          "boundaryAllowanceChangedPixels": 30,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            171,
+            528,
+            173,
+            539
+          ]
+        },
+        {
+          "frameId": 75,
+          "changedPixels": 19,
+          "boundaryAllowanceChangedPixels": 19,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            167,
+            502,
+            169,
+            519
+          ]
+        },
+        {
+          "frameId": 77,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 78,
+          "changedPixels": 4,
+          "boundaryAllowanceChangedPixels": 4,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            167,
+            497,
+            169,
+            500
+          ]
+        },
+        {
+          "frameId": 79,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 80,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 81,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 82,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 83,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 84,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 85,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 86,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 87,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 88,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 89,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 90,
+          "changedPixels": 28,
+          "boundaryAllowanceChangedPixels": 28,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            635,
+            440,
+            635,
+            467
+          ]
+        },
+        {
+          "frameId": 91,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 92,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 93,
+          "changedPixels": 28,
+          "boundaryAllowanceChangedPixels": 28,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            595,
+            308,
+            595,
+            335
+          ]
+        },
+        {
+          "frameId": 94,
+          "changedPixels": 40,
+          "boundaryAllowanceChangedPixels": 40,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            587,
+            284,
+            587,
+            323
+          ]
+        },
+        {
+          "frameId": 95,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 96,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 97,
+          "changedPixels": 2,
+          "boundaryAllowanceChangedPixels": 2,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            577,
+            294,
+            577,
+            295
+          ]
+        },
+        {
+          "frameId": 98,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 99,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 100,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 101,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 102,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 103,
+          "changedPixels": 4,
+          "boundaryAllowanceChangedPixels": 4,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            605,
+            526,
+            605,
+            529
+          ]
+        },
+        {
+          "frameId": 104,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 105,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 106,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 107,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 108,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 109,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 110,
+          "changedPixels": 2,
+          "boundaryAllowanceChangedPixels": 2,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            613,
+            498,
+            613,
+            531
+          ]
+        },
+        {
+          "frameId": 111,
+          "changedPixels": 12,
+          "boundaryAllowanceChangedPixels": 12,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            599,
+            484,
+            599,
+            495
+          ]
+        },
+        {
+          "frameId": 112,
+          "changedPixels": 16,
+          "boundaryAllowanceChangedPixels": 16,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            585,
+            458,
+            585,
+            473
+          ]
+        },
+        {
+          "frameId": 113,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 114,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 115,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 116,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 117,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 118,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 119,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 120,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 121,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-bob",
+      "baselinePack": "docs/kling-appearance/ear-edge-review/evidence/final-female/exports/female-soft-bob.character.zip",
+      "baselineSha256": "c9396894351c1aad275fdf36627543f60c556a8e7d3b76496d181a4aad6904db",
+      "capturedPack": "/tmp/gathria-appearance-stability/final-female-hand-fix/female-day.character.zip",
+      "capturedSha256": "f13eeac580babd0417a5784238d2334abb4cdb0044927d166b93abd25271e167",
+      "capturedPackRetainedInRepository": false,
+      "captureIndex": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/evidence-index.json",
+      "appearanceBankSha256": "bce748e1e8afea823e23e51b15491d8f02f9ba4d04e3cb53f18ca8c77e8a1ee9",
+      "uniqueFrames": 96,
+      "changedFrames": 62,
+      "changedPixels": 2370,
+      "actionsAndAnchorExact": true,
+      "captureIndexPassedAndHashesMatched": true,
+      "frameChecks": [
+        {
+          "frameId": 0,
+          "changedPixels": 32,
+          "boundaryAllowanceChangedPixels": 32,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            579,
+            412,
+            579,
+            443
+          ]
+        },
+        {
+          "frameId": 6,
+          "changedPixels": 32,
+          "boundaryAllowanceChangedPixels": 32,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            579,
+            412,
+            579,
+            443
+          ]
+        },
+        {
+          "frameId": 12,
+          "changedPixels": 32,
+          "boundaryAllowanceChangedPixels": 32,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            579,
+            412,
+            579,
+            443
+          ]
+        },
+        {
+          "frameId": 18,
+          "changedPixels": 32,
+          "boundaryAllowanceChangedPixels": 32,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            579,
+            412,
+            579,
+            443
+          ]
+        },
+        {
+          "frameId": 24,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 25,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 26,
+          "changedPixels": 14,
+          "boundaryAllowanceChangedPixels": 14,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            587,
+            412,
+            587,
+            425
+          ]
+        },
+        {
+          "frameId": 27,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 28,
+          "changedPixels": 10,
+          "boundaryAllowanceChangedPixels": 10,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            585,
+            422,
+            585,
+            435
+          ]
+        },
+        {
+          "frameId": 30,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 31,
+          "changedPixels": 22,
+          "boundaryAllowanceChangedPixels": 22,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            587,
+            418,
+            587,
+            439
+          ]
+        },
+        {
+          "frameId": 32,
+          "changedPixels": 18,
+          "boundaryAllowanceChangedPixels": 18,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            589,
+            416,
+            589,
+            433
+          ]
+        },
+        {
+          "frameId": 33,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 34,
+          "changedPixels": 41,
+          "boundaryAllowanceChangedPixels": 41,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            196,
+            408,
+            591,
+            437
+          ]
+        },
+        {
+          "frameId": 35,
+          "changedPixels": 28,
+          "boundaryAllowanceChangedPixels": 28,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            591,
+            404,
+            591,
+            431
+          ]
+        },
+        {
+          "frameId": 36,
+          "changedPixels": 14,
+          "boundaryAllowanceChangedPixels": 14,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            591,
+            410,
+            591,
+            423
+          ]
+        },
+        {
+          "frameId": 37,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 38,
+          "changedPixels": 4,
+          "boundaryAllowanceChangedPixels": 4,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            589,
+            410,
+            589,
+            418
+          ]
+        },
+        {
+          "frameId": 39,
+          "changedPixels": 27,
+          "boundaryAllowanceChangedPixels": 27,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            587,
+            404,
+            587,
+            431
+          ]
+        },
+        {
+          "frameId": 40,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 41,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 43,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 44,
+          "changedPixels": 26,
+          "boundaryAllowanceChangedPixels": 26,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            587,
+            420,
+            587,
+            445
+          ]
+        },
+        {
+          "frameId": 45,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 46,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 47,
+          "changedPixels": 24,
+          "boundaryAllowanceChangedPixels": 24,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            593,
+            412,
+            593,
+            435
+          ]
+        },
+        {
+          "frameId": 48,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 49,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 50,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 51,
+          "changedPixels": 22,
+          "boundaryAllowanceChangedPixels": 22,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            605,
+            388,
+            605,
+            409
+          ]
+        },
+        {
+          "frameId": 52,
+          "changedPixels": 34,
+          "boundaryAllowanceChangedPixels": 34,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            601,
+            394,
+            601,
+            427
+          ]
+        },
+        {
+          "frameId": 53,
+          "changedPixels": 14,
+          "boundaryAllowanceChangedPixels": 14,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            599,
+            430,
+            599,
+            443
+          ]
+        },
+        {
+          "frameId": 54,
+          "changedPixels": 5,
+          "boundaryAllowanceChangedPixels": 5,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            599,
+            444,
+            599,
+            449
+          ]
+        },
+        {
+          "frameId": 55,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 56,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 57,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 58,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 59,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 60,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 61,
+          "changedPixels": 28,
+          "boundaryAllowanceChangedPixels": 28,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            601,
+            420,
+            601,
+            447
+          ]
+        },
+        {
+          "frameId": 62,
+          "changedPixels": 32,
+          "boundaryAllowanceChangedPixels": 32,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            410,
+            294,
+            601,
+            453
+          ]
+        },
+        {
+          "frameId": 63,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 64,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 65,
+          "changedPixels": 20,
+          "boundaryAllowanceChangedPixels": 20,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            607,
+            400,
+            607,
+            419
+          ]
+        },
+        {
+          "frameId": 66,
+          "changedPixels": 12,
+          "boundaryAllowanceChangedPixels": 12,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            607,
+            392,
+            607,
+            403
+          ]
+        },
+        {
+          "frameId": 67,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 70,
+          "changedPixels": 20,
+          "boundaryAllowanceChangedPixels": 20,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            563,
+            448,
+            563,
+            467
+          ]
+        },
+        {
+          "frameId": 71,
+          "changedPixels": 19,
+          "boundaryAllowanceChangedPixels": 19,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            179,
+            558,
+            181,
+            567
+          ]
+        },
+        {
+          "frameId": 72,
+          "changedPixels": 46,
+          "boundaryAllowanceChangedPixels": 46,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            177,
+            540,
+            179,
+            574
+          ]
+        },
+        {
+          "frameId": 73,
+          "changedPixels": 104,
+          "boundaryAllowanceChangedPixels": 104,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            175,
+            406,
+            559,
+            574
+          ]
+        },
+        {
+          "frameId": 74,
+          "changedPixels": 115,
+          "boundaryAllowanceChangedPixels": 115,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            171,
+            514,
+            557,
+            546
+          ]
+        },
+        {
+          "frameId": 75,
+          "changedPixels": 112,
+          "boundaryAllowanceChangedPixels": 112,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            167,
+            494,
+            553,
+            532
+          ]
+        },
+        {
+          "frameId": 78,
+          "changedPixels": 136,
+          "boundaryAllowanceChangedPixels": 25,
+          "sourceHandRestoredPixels": 111,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            165,
+            480,
+            551,
+            561
+          ]
+        },
+        {
+          "frameId": 79,
+          "changedPixels": 249,
+          "boundaryAllowanceChangedPixels": 8,
+          "sourceHandRestoredPixels": 241,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            166,
+            516,
+            549,
+            590
+          ]
+        },
+        {
+          "frameId": 80,
+          "changedPixels": 6,
+          "boundaryAllowanceChangedPixels": 6,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            167,
+            562,
+            169,
+            563
+          ]
+        },
+        {
+          "frameId": 81,
+          "changedPixels": 5,
+          "boundaryAllowanceChangedPixels": 5,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            171,
+            564,
+            553,
+            592
+          ]
+        },
+        {
+          "frameId": 82,
+          "changedPixels": 13,
+          "boundaryAllowanceChangedPixels": 13,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            175,
+            460,
+            555,
+            614
+          ]
+        },
+        {
+          "frameId": 83,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 84,
+          "changedPixels": 10,
+          "boundaryAllowanceChangedPixels": 10,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            641,
+            540,
+            641,
+            549
+          ]
+        },
+        {
+          "frameId": 85,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 86,
+          "changedPixels": 25,
+          "boundaryAllowanceChangedPixels": 25,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            643,
+            554,
+            643,
+            579
+          ]
+        },
+        {
+          "frameId": 87,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 88,
+          "changedPixels": 1,
+          "boundaryAllowanceChangedPixels": 1,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            647,
+            556,
+            647,
+            556
+          ]
+        },
+        {
+          "frameId": 89,
+          "changedPixels": 58,
+          "boundaryAllowanceChangedPixels": 58,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            438,
+            356,
+            645,
+            537
+          ]
+        },
+        {
+          "frameId": 90,
+          "changedPixels": 38,
+          "boundaryAllowanceChangedPixels": 38,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            420,
+            280,
+            461,
+            280
+          ]
+        },
+        {
+          "frameId": 91,
+          "changedPixels": 20,
+          "boundaryAllowanceChangedPixels": 20,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            621,
+            356,
+            621,
+            375
+          ]
+        },
+        {
+          "frameId": 92,
+          "changedPixels": 12,
+          "boundaryAllowanceChangedPixels": 12,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            605,
+            320,
+            605,
+            331
+          ]
+        },
+        {
+          "frameId": 93,
+          "changedPixels": 38,
+          "boundaryAllowanceChangedPixels": 38,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            593,
+            286,
+            593,
+            323
+          ]
+        },
+        {
+          "frameId": 94,
+          "changedPixels": 18,
+          "boundaryAllowanceChangedPixels": 18,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            587,
+            276,
+            587,
+            293
+          ]
+        },
+        {
+          "frameId": 95,
+          "changedPixels": 100,
+          "boundaryAllowanceChangedPixels": 100,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            388,
+            132,
+            583,
+            285
+          ]
+        },
+        {
+          "frameId": 96,
+          "changedPixels": 30,
+          "boundaryAllowanceChangedPixels": 30,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            579,
+            258,
+            579,
+            287
+          ]
+        },
+        {
+          "frameId": 97,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 98,
+          "changedPixels": 8,
+          "boundaryAllowanceChangedPixels": 8,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            573,
+            276,
+            573,
+            283
+          ]
+        },
+        {
+          "frameId": 99,
+          "changedPixels": 30,
+          "boundaryAllowanceChangedPixels": 30,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            569,
+            278,
+            569,
+            307
+          ]
+        },
+        {
+          "frameId": 100,
+          "changedPixels": 16,
+          "boundaryAllowanceChangedPixels": 16,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            567,
+            308,
+            567,
+            323
+          ]
+        },
+        {
+          "frameId": 101,
+          "changedPixels": 112,
+          "boundaryAllowanceChangedPixels": 112,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            376,
+            236,
+            571,
+            403
+          ]
+        },
+        {
+          "frameId": 102,
+          "changedPixels": 176,
+          "boundaryAllowanceChangedPixels": 176,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            366,
+            308,
+            451,
+            310
+          ]
+        },
+        {
+          "frameId": 103,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 104,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 105,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 106,
+          "changedPixels": 32,
+          "boundaryAllowanceChangedPixels": 32,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            637,
+            560,
+            637,
+            591
+          ]
+        },
+        {
+          "frameId": 107,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 108,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 109,
+          "changedPixels": 38,
+          "boundaryAllowanceChangedPixels": 38,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            625,
+            508,
+            625,
+            545
+          ]
+        },
+        {
+          "frameId": 110,
+          "changedPixels": 18,
+          "boundaryAllowanceChangedPixels": 18,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            613,
+            484,
+            613,
+            503
+          ]
+        },
+        {
+          "frameId": 111,
+          "changedPixels": 1,
+          "boundaryAllowanceChangedPixels": 1,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            599,
+            468,
+            599,
+            468
+          ]
+        },
+        {
+          "frameId": 112,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 113,
+          "changedPixels": 34,
+          "boundaryAllowanceChangedPixels": 34,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            573,
+            418,
+            573,
+            451
+          ]
+        },
+        {
+          "frameId": 114,
+          "changedPixels": 32,
+          "boundaryAllowanceChangedPixels": 32,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            565,
+            412,
+            565,
+            443
+          ]
+        },
+        {
+          "frameId": 115,
+          "changedPixels": 22,
+          "boundaryAllowanceChangedPixels": 22,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            559,
+            414,
+            559,
+            435
+          ]
+        },
+        {
+          "frameId": 116,
+          "changedPixels": 27,
+          "boundaryAllowanceChangedPixels": 27,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            555,
+            410,
+            555,
+            477
+          ]
+        },
+        {
+          "frameId": 117,
+          "changedPixels": 41,
+          "boundaryAllowanceChangedPixels": 41,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            553,
+            402,
+            553,
+            477
+          ]
+        },
+        {
+          "frameId": 118,
+          "changedPixels": 21,
+          "boundaryAllowanceChangedPixels": 21,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            555,
+            412,
+            555,
+            477
+          ]
+        },
+        {
+          "frameId": 119,
+          "changedPixels": 0,
+          "boundaryAllowanceChangedPixels": 0,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": null
+        },
+        {
+          "frameId": 120,
+          "changedPixels": 36,
+          "boundaryAllowanceChangedPixels": 36,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            561,
+            406,
+            561,
+            441
+          ]
+        },
+        {
+          "frameId": 121,
+          "changedPixels": 28,
+          "boundaryAllowanceChangedPixels": 28,
+          "sourceHandRestoredPixels": 0,
+          "onlyExplicitBoundaryOrTwoHandRepairs": true,
+          "faceAndOtherPixelsExact": true,
+          "restoredHandExactSourceRgba": true,
+          "changedPixelBoundsInclusive": [
+            565,
+            410,
+            565,
+            437
+          ]
+        }
+      ]
+    }
+  ],
+  "actualPngSamples": [
+    {
+      "character": "male",
+      "hairstyle": "soft-crop",
+      "png": "docs/kling-appearance/stability-review/workflow/final-male/male-thumbnail-soft-crop-0-right.png",
+      "sha256": "a746b788843672d8ebfc70be4c89bd5e50f5870a75f67ad0bcbe32a986642c9d",
+      "frameId": 0,
+      "changedPixels": 0,
+      "boundaryAllowanceChangedPixels": 0,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": null
+    },
+    {
+      "character": "male",
+      "hairstyle": "soft-crop",
+      "png": "docs/kling-appearance/stability-review/workflow/final-male/male-guard-soft-crop-90-right.png",
+      "sha256": "d85fde094eed5c20adc62d609e34307d46357467c1c6f54ccaf04a47ff3261c9",
+      "frameId": 90,
+      "changedPixels": 28,
+      "boundaryAllowanceChangedPixels": 28,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        635,
+        440,
+        635,
+        467
+      ]
+    },
+    {
+      "character": "male",
+      "hairstyle": "soft-bob",
+      "png": "docs/kling-appearance/stability-review/workflow/final-male/male-thumbnail-soft-bob-0-right.png",
+      "sha256": "95eae3d5d42a0b53a3a38f01d6a94552d61ef26ed83db10e953a29a9a447bf3a",
+      "frameId": 0,
+      "changedPixels": 0,
+      "boundaryAllowanceChangedPixels": 0,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": null
+    },
+    {
+      "character": "male",
+      "hairstyle": "soft-bob",
+      "png": "docs/kling-appearance/stability-review/workflow/final-male/male-guard-soft-bob-90-right.png",
+      "sha256": "f55fc819cf348fdffa139c0bd005c7e128bf07fe9654ad5abb7ce31c9cb29ddb",
+      "frameId": 90,
+      "changedPixels": 28,
+      "boundaryAllowanceChangedPixels": 28,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        635,
+        440,
+        635,
+        467
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-crop",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-thumbnail-soft-crop-0-right.png",
+      "sha256": "efe6c03e15031fc63af0d7ed320c2feaf9e3bf6a67c968a11c7cd088fbce5ebc",
+      "frameId": 0,
+      "changedPixels": 32,
+      "boundaryAllowanceChangedPixels": 32,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        579,
+        412,
+        579,
+        443
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-crop",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-hand-soft-crop-78-right.png",
+      "sha256": "588a0996fc5e950cd303f2c8eb6d88b55733199297bc7ee66605ed5b619376b0",
+      "frameId": 78,
+      "changedPixels": 5,
+      "boundaryAllowanceChangedPixels": 3,
+      "sourceHandRestoredPixels": 2,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        165,
+        480,
+        184,
+        542
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-crop",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-hand-soft-crop-79-right.png",
+      "sha256": "76528314ab74f4b4fe30399a7820276804d1a6032f315f49a15f5ba07af106e2",
+      "frameId": 79,
+      "changedPixels": 1,
+      "boundaryAllowanceChangedPixels": 1,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        166,
+        516,
+        166,
+        516
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-bob",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-thumbnail-soft-bob-0-right.png",
+      "sha256": "4a738ca710663ff5e6658a7d51aefa3eca75e4c56d845fc4a0d94c18004103b6",
+      "frameId": 0,
+      "changedPixels": 32,
+      "boundaryAllowanceChangedPixels": 32,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        579,
+        412,
+        579,
+        443
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-bob",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-hand-soft-bob-78-right.png",
+      "sha256": "cdeb495e04e9b4eaee71b620dea8f0a65822f4e3cd02afff4913746d61a332a4",
+      "frameId": 78,
+      "changedPixels": 136,
+      "boundaryAllowanceChangedPixels": 25,
+      "sourceHandRestoredPixels": 111,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        165,
+        480,
+        551,
+        561
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-bob",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-hand-soft-bob-79-right.png",
+      "sha256": "dff79fe66749996269469e279342959756bc83f19c028c3a11f00ee5d8a5f777",
+      "frameId": 79,
+      "changedPixels": 249,
+      "boundaryAllowanceChangedPixels": 8,
+      "sourceHandRestoredPixels": 241,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        166,
+        516,
+        549,
+        590
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-bob",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-hand-soft-bob-75-right.png",
+      "sha256": "5c4ccd1f553bfdaee9ea4ee6ad4657fd1d117937446d6afab69739706a34e4e7",
+      "frameId": 75,
+      "changedPixels": 112,
+      "boundaryAllowanceChangedPixels": 112,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        167,
+        494,
+        553,
+        532
+      ]
+    },
+    {
+      "character": "female",
+      "hairstyle": "soft-bob",
+      "png": "docs/kling-appearance/stability-review/workflow/final-female-hand-fix/female-hand-soft-bob-80-right.png",
+      "sha256": "8b1554a4bfe183bed83cd61959feeff75f185a62f34b0fdd209f83e2ac1233ef",
+      "frameId": 80,
+      "changedPixels": 6,
+      "boundaryAllowanceChangedPixels": 6,
+      "sourceHandRestoredPixels": 0,
+      "onlyExplicitBoundaryOrTwoHandRepairs": true,
+      "faceAndOtherPixelsExact": true,
+      "restoredHandExactSourceRgba": true,
+      "changedPixelBoundsInclusive": [
+        167,
+        562,
+        169,
+        563
+      ]
+    }
+  ]
+}

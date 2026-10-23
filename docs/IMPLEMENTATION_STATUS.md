@@ -1,5 +1,17 @@
 # Implementation status
 
+Current follow-up: **appearance workflow and raster-fringe stability**. Existing
+short styles now have real-export thumbnails and named color swatches. Older
+embedded banks can be explicitly compared at the same pose and saved as an
+updated copy, preserving the original session and its settings. Content revision
+3 adds a three-pixel top/side hair occlusion envelope to cover original scalp
+raster remnants; all atlas PNG bytes, face ownership, lower head edges and source
+timing remain unchanged. Old banks retain their exact previous occlusion behavior.
+Two reviewed foreground additions also prevent female celebration poses 78/79
+from drawing hair over the original thumb and wrist. Original hand pixels and
+all existing masks are retained; no source artwork is repainted.
+[Current checks, workflow evidence and remaining visual issues](kling-appearance/stability-review/README.md).
+
 Current review batch: **Kling hair and gentle face customization**, branch
 `feat/kling-head-customization`, based on merged main `1dc3e56`.
 The existing wardrobe now offers two short hairstyles on both approved Kling

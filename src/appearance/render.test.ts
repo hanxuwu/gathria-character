@@ -220,6 +220,37 @@ describe("registered head appearance rendering", () => {
     );
   });
 
+  it("covers registered scalp fringe without changing legacy occlusion, hands or the lower body", () => {
+    const source = image(8, 8, [100, 120, 140, 255]);
+    source.pixels.set([255, 0, 255, 4], (2 * 8 + 5) * 4);
+    source.pixels.set([121, 121, 81, 233], (2 * 8 + 6) * 4);
+    const data = bank("hair-front", { x: 0, y: 0 }, [120, 65, 35, 255], 8, 8);
+    data.manifest.frameWidth = data.manifest.frameHeight = 8;
+    const p = data.manifest.poses[0];
+    p.headBounds = { x: 2, y: 2, width: 3, height: 2 };
+    p.hairBounds = { x: 0, y: 0, width: 8, height: 8 };
+    p.foreground = [box(5, 3, 1, 1)];
+    const legacy = renderer(data).render(7, source, source);
+    expect(pixel(legacy, 6, 3)).toEqual([255, 0, 255, 4]);
+    expect(pixel(legacy, 7, 3)).toEqual([121, 121, 81, 233]);
+
+    p.hairOcclusionBounds = { x: 1, y: 1, width: 6, height: 3 };
+    const updated = renderer(data).render(7, source, source);
+    for (const [x, y] of [
+      [5, 2],
+      [6, 2],
+      [2, 1],
+    ])
+      expect(pixel(updated, x + 1, y + 1)).toEqual([120, 65, 35, 255]);
+    expect(pixel(updated, 6, 4)).toEqual(pixel(source, 5, 3)); // hand stays in front
+    for (let y = 4; y < 8; y++)
+      for (let x = 0; x < 8; x++)
+        expect(pixel(updated, x + 1, y + 1)).toEqual(pixel(source, x, y));
+    // Input source remains exact, including near-transparent RGB.
+    expect(pixel(source, 5, 2)).toEqual([255, 0, 255, 4]);
+    expect(pixel(source, 6, 2)).toEqual([121, 121, 81, 233]);
+  });
+
   it("tints only registered hair and rejects profile mismatch or out-of-padding artwork", () => {
     const source = image(4, 4, [100, 120, 140, 255]);
     const colored = renderer(

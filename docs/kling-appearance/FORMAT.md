@@ -27,12 +27,31 @@ Loading a bank is explicit; old V1 projects are not silently upgraded. Clothing
 presets preserve the independent head choice; **Reset appearance** clears hair
 and face. A loaded but inactive bank does not change source frame geometry.
 
+The catalog pins the current bank and its released predecessor hashes alongside
+the exact source/registration hashes. **Preview updated appearance** checks those
+bindings and keeps the candidate separate from the open project. **Save updated
+copy** preserves the original clothing, hair/face/color and saved action/facing.
+Dialog inspection controls do not change those saved settings. Unknown/custom
+banks cannot be inferred to be older from their ID and are not automatically
+replaced. Cancelling or saving a copy leaves the current session unchanged.
+
 ## Appearance bank V1
 
 Content revision 2 (`kling-male-appearance-v2` / `kling-female-appearance-v2`)
 repairs the ear-follow registration and donor cutout edges without changing this
 schema. Existing V2 wardrobe projects use their embedded bank bytes and SHA,
 so their appearance is not silently regenerated from the newer catalog bank.
+
+Content revision 3 adds an optional per-pose `hairOcclusionBounds`. It extends
+the original `headBounds` only upward and sideways by at most three source pixels;
+its bottom is identical. This distinguishes original scalp raster remnants from
+body/garment occlusion without alpha or skin-color thresholds. Explicit foreground
+hand/arm masks still take precedence, and facial ownership still uses the unchanged
+`headBounds` and inner-face polygon. Absent this field, the renderer uses the old
+head bounds exactly. All revision-2 atlas/ownership PNG bytes are retained in
+revision 3; only bank metadata changes. Older application builds that reject
+unknown bank fields require this updated reader for new V3-content projects;
+baked CharacterPack exports remain independent of appearance-bank metadata.
 
 `manifest.json` identifies `gathria-sprite-appearance-bank`, version 1. It binds
 both the exact original source ZIP SHA and original clothing-registration SHA,

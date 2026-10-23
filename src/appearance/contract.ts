@@ -39,6 +39,9 @@ export interface AppearancePose {
   anchors: Record<(typeof APPEARANCE_ANCHORS)[number], Point>;
   /** Native source coordinates; the original head/body is never rescaled. */
   headBounds: Rect;
+  /** Optional raster fringe envelope for hair only. Older banks retain their
+   * exact headBounds occlusion; face ownership and lower body never expand. */
+  hairOcclusionBounds?: Rect;
   facePolygon: Point[];
   /** Hair may extend into declared transparent output padding. */
   hairBounds: Rect;
@@ -311,6 +314,7 @@ export function validateAppearanceBankManifest(
       "sourceFrame",
       "anchors",
       "headBounds",
+      "hairOcclusionBounds",
       "facePolygon",
       "hairBounds",
       "foreground",
@@ -353,6 +357,30 @@ export function validateAppearanceBankManifest(
       headBounds.y + headBounds.height > headMaxY
     )
       fail("Appearance head bounds exceed immutable source head protection.");
+    let hairOcclusionBounds: Rect | undefined;
+    if (p.hairOcclusionBounds !== undefined) {
+      hairOcclusionBounds = rect(
+        p.hairOcclusionBounds,
+        "Hair occlusion bounds",
+        native,
+      );
+      const h = hairOcclusionBounds;
+      // Raster remnants just outside the authored head box are still scalp,
+      // not clothing. Permit a small, explicit top/side fringe only. The lower
+      // boundary and all foreground hand/arm masks remain authoritative.
+      if (
+        h.x > headBounds.x ||
+        h.y > headBounds.y ||
+        h.x < headBounds.x - 3 ||
+        h.y < headBounds.y - 3 ||
+        h.x + h.width < headBounds.x + headBounds.width ||
+        h.x + h.width > headBounds.x + headBounds.width + 3 ||
+        Math.abs(h.y + h.height - (headBounds.y + headBounds.height)) > 1e-6
+      )
+        fail(
+          "Hair occlusion bounds may extend only the top and sides by at most three source pixels.",
+        );
+    }
     const rawAnchors = object(p.anchors, "Head anchors", APPEARANCE_ANCHORS);
     const anchors = {} as AppearancePose["anchors"];
     for (const key of APPEARANCE_ANCHORS)
@@ -362,6 +390,7 @@ export function validateAppearanceBankManifest(
       sourceFrame: p.sourceFrame as number,
       anchors,
       headBounds,
+      ...(hairOcclusionBounds ? { hairOcclusionBounds } : {}),
       facePolygon: polygon(p.facePolygon, "Inner face polygon", headBounds),
       hairBounds: rect(p.hairBounds, "Hair bounds", padded),
       foreground: array(p.foreground, "Head foreground regions", 0, 8).map(

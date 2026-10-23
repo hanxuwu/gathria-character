@@ -1,0 +1,123 @@
+{
+  "format": "gathria-appearance-stability-workflow",
+  "version": 1,
+  "run": "ui-final",
+  "uiOnly": true,
+  "startedAt": "2026-10-23T01:28:08.943Z",
+  "commitAtCapture": "055e95116cd441be7a630554409738b4a0b67ef9",
+  "scope": "Final desktop/mobile UI captures reopening the freshly verified actual projects after their real frame-0 exports refreshed the hairstyle thumbnails. No repeated pack/playback tests are claimed in this UI-only record.",
+  "inputs": {
+    "docs/kling-appearance/review/evidence/final-male/exports/male-day.wardrobe.zip": "1a4dd9cc5f596451166573de8803199b99ae9367c2b46b2ac809ead853a16e19",
+    "docs/kling-appearance/banks/male.zip": "f79a742a88eb5001418154307025303e91899c08058263e87ad54d8995c937f9",
+    "docs/kling-motion/exports/male.character.zip": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+    "docs/kling-appearance/review/evidence/final-female/exports/female-day.wardrobe.zip": "1dadfba840826e14cc18eec1ec63bd8c02ab3da9b4b46999373dbea201d71194",
+    "docs/kling-appearance/banks/female.zip": "3c6666a6b7abe2161b6313a141be56fcfff199bc67741d8ee15aa48477353e74",
+    "docs/kling-motion/exports/female.character.zip": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23"
+  },
+  "downloads": [],
+  "screenshots": [
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/male-appearance-controls-desktop.png",
+      "bytes": 350123,
+      "sha256": "7efe3311cdf32a3bc7a4085e1c41862b7e9a1a49d97236bbc588058b1a281e79"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/male-appearance-controls-mobile.png",
+      "bytes": 263581,
+      "sha256": "effc2108975a5c06cd01ef9036020df2a035235b86dd4fbb9781604237a3f864"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/male-update-preview-desktop.png",
+      "bytes": 337254,
+      "sha256": "f652fd2271334f5ebc8d7e3ee9b028de7f60748829e597758bcd347735c2ac05"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/male-update-preview-mobile.png",
+      "bytes": 204908,
+      "sha256": "a515e2fbd0c6d6cbdaaaa405dfe7d0e507f03fc123e8b49a51377bd4a5da9c35"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/female-appearance-controls-desktop.png",
+      "bytes": 358384,
+      "sha256": "a03bb437e5391665f34cb07d22014192679c954c27032ad23e31fa001f3fb061"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/female-appearance-controls-mobile.png",
+      "bytes": 271631,
+      "sha256": "1c6c2100a8e42bea4c79aed9cad59a9e0e9540e277b0439572076d981e44cae1"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/female-update-preview-desktop.png",
+      "bytes": 343584,
+      "sha256": "accabcbd508122ba46dab03e908bc5ed4ae59775a3437652a41f444b6b9ddfe3"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-final/female-update-preview-mobile.png",
+      "bytes": 205556,
+      "sha256": "60ca5753ae1996f949304760803ce33867329d64ae339a7da01f45b5bd1f3707"
+    }
+  ],
+  "upgrades": [],
+  "selections": [
+    {
+      "character": "male",
+      "projectPath": "/tmp/gathria-appearance-stability/final-male/male-day.wardrobe.zip",
+      "layout": {
+        "viewport": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "character": "male",
+      "dialogLayout": {
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "left": 15,
+        "right": 375,
+        "top": 38.15625,
+        "bottom": 805.828125
+      }
+    },
+    {
+      "character": "female",
+      "projectPath": "/tmp/gathria-appearance-stability/final-female/female-day.wardrobe.zip",
+      "layout": {
+        "viewport": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "character": "female",
+      "dialogLayout": {
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "left": 15,
+        "right": 375,
+        "top": 38.15625,
+        "bottom": 805.828125
+      }
+    }
+  ],
+  "packs": [],
+  "playback": [],
+  "errors": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:5194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "failedRequests": [],
+  "externalRequests": [],
+  "forbiddenIndependentRequests": [],
+  "editorsClosedAt": "2026-10-23T01:31:40.766Z",
+  "passed": true,
+  "finishedAt": "2026-10-23T01:31:41.046Z",
+  "observationLimits": "Playback observes published canvas frame positions at 1x. Any missed positions remain in the report; it does not prove every browser paint occurred. Native CharacterPack timing is independently preserved; GIF rounds to centiseconds."
+}

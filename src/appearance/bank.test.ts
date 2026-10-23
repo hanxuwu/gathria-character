@@ -150,6 +150,48 @@ describe("source-bound head appearance banks", () => {
       ),
     ).rejects.toThrow(/immutable source head/);
   });
+  it("accepts explicit hair-only fringe bounds and rejects lower-body expansion", async () => {
+    const extended = await read(
+      edit((m) => {
+        m.poses[0].hairOcclusionBounds = { x: 0, y: 0, width: 8, height: 3 };
+      }),
+    );
+    expect(extended.manifest.poses[0].headBounds).toEqual(
+      fixture().manifest.poses[0].headBounds,
+    );
+    expect(extended.manifest.poses[0].hairOcclusionBounds).toEqual({
+      x: 0,
+      y: 0,
+      width: 8,
+      height: 3,
+    });
+    await expect(
+      read(
+        edit((m) => {
+          m.poses[0].hairOcclusionBounds = { x: 0, y: 0, width: 8, height: 4 };
+        }),
+      ),
+    ).rejects.toThrow(/only the top and sides/);
+    await expect(
+      read(
+        edit((m) => {
+          m.poses[0].hairOcclusionBounds = { x: 2, y: 0, width: 4, height: 3 };
+        }),
+      ),
+    ).rejects.toThrow(/only the top and sides/);
+    const large = structuredClone(registration);
+    large.frameWidth = 30;
+    const f = appearanceFixture(large, registrationSha256);
+    f.manifest.poses[0].hairOcclusionBounds = {
+      x: 0,
+      y: 0,
+      width: 20,
+      height: 3,
+    };
+    expect(() =>
+      validateAppearanceBankManifest(f.manifest, large, registrationSha256),
+    ).toThrow(/only the top and sides/);
+  });
   it("checks actual owned pixels against head regions before accepting any style", async () => {
     await expect(
       read(
