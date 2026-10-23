@@ -316,9 +316,9 @@
       },
       "appearanceLibraries": [
         {
-          "url": "/docs/kling-appearance/banks/volume/male-airy-tousle.zip",
-          "sha256": "69da5fe0f14f58e09dfeda8c530cd7f252e3884803765003d1327a97579dec7d",
-          "bankId": "kling-male-airy-tousle-v1",
+          "url": "/docs/kling-appearance/banks/volume-v5/male-airy-tousle.zip",
+          "sha256": "fb4ad55ccd50324f1302281fb7cb6b8a8714a979d9435b11db29b17288a8bc34",
+          "bankId": "kling-male-airy-tousle-v5",
           "styles": [
             {
               "id": "airy-tousle",
@@ -330,6 +330,9 @@
               "name": "Gentle",
               "slot": "face"
             }
+          ],
+          "previousBankSha256s": [
+            "69da5fe0f14f58e09dfeda8c530cd7f252e3884803765003d1327a97579dec7d"
           ]
         },
         {
@@ -494,6 +497,20 @@
           "slot": "fullBody",
           "url": "/docs/kling-wardrobe/garments/female/ivory-wedding-dress-v5.zip",
           "sha256": "8044019ae60a826dd055dc618bdd70b68d89d6aa650e4af6eab37f602b2e880f"
+        },
+        {
+          "id": "coral-daydress-v6",
+          "name": "Coral soft waist",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/coral-daydress-v6.zip",
+          "sha256": "de50d587eeccb76e528aa5c84a1dc5e22bb49617bce5f990cacf179b82a8e8fb"
+        },
+        {
+          "id": "ivory-wedding-dress-v6",
+          "name": "Ivory soft waist",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/ivory-wedding-dress-v6.zip",
+          "sha256": "71834f3bbbca8b30c54a2ad54badaf8c7869e11c7750ddc335a41a8daff653a9"
         }
       ],
       "presets": [
@@ -544,6 +561,26 @@
             "top": null,
             "bottom": null,
             "fullBody": "ivory-wedding-dress-v5",
+            "shoes": null
+          }
+        },
+        {
+          "id": "day-soft-waist",
+          "name": "Everyday soft waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v6",
+            "shoes": null
+          }
+        },
+        {
+          "id": "wedding-soft-waist",
+          "name": "Wedding soft waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v6",
             "shoes": null
           }
         },
@@ -702,9 +739,9 @@
           ]
         },
         {
-          "url": "/docs/kling-appearance/banks/volume-v4/female-ribbon-pony.zip",
-          "sha256": "1553568d6a804dec3b202ac7e8db90af3bbde0c8a42abe4b68367b75e6d09c85",
-          "bankId": "kling-female-ribbon-pony-v4",
+          "url": "/docs/kling-appearance/banks/volume-v5/female-ribbon-pony.zip",
+          "sha256": "9d2baa5937ed6b25c06c6f88b1b63abf227ee685d0613ce30822a0fccc392180",
+          "bankId": "kling-female-ribbon-pony-v5",
           "styles": [
             {
               "id": "ribbon-pony",
@@ -720,7 +757,8 @@
           "previousBankSha256s": [
             "1d596b05f189dc5b87e75577e8320dca8cdc2a64da075868479ede224a871504",
             "706e9a5e833c573517564f9915bdab717a5742b3c19842c67078527a4da888e8",
-            "d3e5e5b2d1f6b343aa6176eba83c0a10e4acf28671458c30cd7e03512fab22c7"
+            "d3e5e5b2d1f6b343aa6176eba83c0a10e4acf28671458c30cd7e03512fab22c7",
+            "1553568d6a804dec3b202ac7e8db90af3bbde0c8a42abe4b68367b75e6d09c85"
           ]
         },
         {
