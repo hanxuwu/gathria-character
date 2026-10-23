@@ -3,6 +3,8 @@ import type { WardrobeProject, WardrobeGarment } from "./contract";
 import { validateWardrobeProject } from "./project";
 import { decodedGarmentPage } from "./garment-pages";
 import { encodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
+import type { PortableAnimationName } from "../core/types";
+import { poseNeighborhood } from "./pose-neighborhood";
 import { sha256 } from "../core/sha256";
 
 /** Fresh native-coordinate images; authoring always uses the right-facing pose. */
@@ -48,6 +50,7 @@ export async function exportClothingRecipeKit(
   project: WardrobeProject,
   itemId: string,
   frameId?: number,
+  neighborhood?: { action: PortableAnimationName; position: number },
 ): Promise<Uint8Array> {
   const verified = await validateWardrobeProject(project);
   const item = verified.items.find((i) => i.manifest.id === itemId);
@@ -81,7 +84,29 @@ export async function exportClothingRecipeKit(
     }>,
   };
   const poseFiles: Record<string, Uint8Array> = {};
-  if (frameId !== undefined) {
+  const clip = neighborhood
+    ? verified.archive.manifest.animations[neighborhood.action]
+    : undefined;
+  if (neighborhood && !clip)
+    throw Error("This character has no requested action.");
+  const neighbors =
+    neighborhood && clip
+      ? poseNeighborhood(clip, neighborhood.position)
+      : undefined;
+  if (
+    neighbors &&
+    neighbors.find((p) => p.role === "Current")?.frameId !== frameId
+  )
+    throw Error(
+      "The painting-kit pose must match the selected action position.",
+    );
+  const poseIds = neighbors
+    ? [...new Set(neighbors.map((p) => p.frameId))]
+    : frameId === undefined
+      ? []
+      : [frameId];
+  for (const poseId of poseIds) {
+    const frameId = poseId;
     const { image, mask } = clothingPose(item, frameId);
     const imageName = `pose-${frameId}.png`,
       maskName = `mask-${frameId}.png`;
@@ -92,27 +117,47 @@ export async function exportClothingRecipeKit(
       image: { file: imageName, sha256: await sha256(poseFiles[imageName]) },
       mask: { file: maskName, sha256: await sha256(poseFiles[maskName]) },
     });
-    poseFiles["pose-guide.json"] = strToU8(
+    poseFiles[neighbors ? `pose-${frameId}-guide.json` : "pose-guide.json"] =
+      strToU8(
+        JSON.stringify(
+          {
+            sourceSha256: verified.document.sourceSha256,
+            registrationSha256: verified.document.registrationSha256,
+            nativeFacing: "right",
+            frameId,
+            width: image.width,
+            height: image.height,
+            registration: verified.registration.frames.find(
+              (f) => f.frameId === frameId,
+            ),
+            actions: Object.entries(verified.archive.manifest.animations)
+              .filter(([, clip]) => clip?.frames.includes(frameId))
+              .map(([name]) => name),
+          },
+          null,
+          2,
+        ) + "\n",
+      );
+  }
+  if (neighbors && neighborhood && clip)
+    poseFiles["neighbors-guide.json"] = strToU8(
       JSON.stringify(
         {
+          action: neighborhood.action,
+          position: neighborhood.position,
+          loop: clip.loop,
+          fps: clip.fps,
+          nativeFacing: "right",
+          neighbors,
+          uniquePoseIds: poseIds,
           sourceSha256: verified.document.sourceSha256,
           registrationSha256: verified.document.registrationSha256,
-          nativeFacing: "right",
-          frameId,
-          width: image.width,
-          height: image.height,
-          registration: verified.registration.frames.find(
-            (f) => f.frameId === frameId,
-          ),
-          actions: Object.entries(verified.archive.manifest.animations)
-            .filter(([, clip]) => clip?.frames.includes(frameId))
-            .map(([name]) => name),
+          note: "Repeated IDs are holds, not additional paintings. One-shot boundaries do not wrap. All files use native right-facing coordinates. Keep this order when reviewing temporal continuity.",
         },
         null,
         2,
       ) + "\n",
     );
-  }
   const instructions = `# Clothing variant authoring kit
 
 This kit contains the exact selected clothing, its source-bound anchors and a
@@ -145,7 +190,7 @@ The pose always faces right, regardless of the current preview direction. Do not
 resize or move it. Paint inside the white mask, keep alpha, update the image
 SHA-256 in recipe.json after editing, then build with the command above. The
 included unedited recipe reproduces the artwork exactly under a new item ID.
-pose-guide.json includes this source pose's anchors and action membership.
+${neighbors ? "Each pose-ID-guide.json records its anchors; neighbors-guide.json records the exact action positions, holds and boundary behavior." : "pose-guide.json includes this source pose’s anchors and action membership."}
 Inspect neighboring frames for temporal continuity after any repaint.`
 }
 `;

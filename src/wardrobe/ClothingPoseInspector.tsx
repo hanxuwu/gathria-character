@@ -1,45 +1,63 @@
 import { useEffect, useRef, useState } from "react";
 import type { WardrobeGarment } from "./contract";
 import { clothingPose } from "./recipe-kit";
+import { poseNeighborhood, type PoseClip } from "./pose-neighborhood";
 
 export default function ClothingPoseInspector({
   item,
   frameId,
   disabled,
   onExport,
+  clip,
+  position,
+  onExportNeighbors,
 }: {
   item: WardrobeGarment;
   frameId: number;
   disabled: boolean;
   onExport: () => void;
+  clip: PoseClip;
+  position: number;
+  onExportNeighbors: () => void;
 }) {
-  const canvas = useRef<HTMLCanvasElement>(null);
+  const canvases = useRef<Record<string, HTMLCanvasElement | null>>({});
+  const neighbors = poseNeighborhood(
+    clip,
+    Math.min(position, clip.frames.length - 1),
+  );
   const [open, setOpen] = useState(false),
     [mask, setMask] = useState(false),
     [error, setError] = useState("");
   useEffect(() => {
-    if (!open || !canvas.current) return;
+    if (!open) return;
     try {
-      const pose = clothingPose(item, frameId),
-        image = mask ? pose.mask : pose.image;
-      canvas.current.width = image.width;
-      canvas.current.height = image.height;
-      canvas.current
-        .getContext("2d")!
-        .putImageData(
-          new ImageData(
-            new Uint8ClampedArray(image.pixels),
-            image.width,
-            image.height,
-          ),
-          0,
-          0,
-        );
+      for (const neighbor of poseNeighborhood(
+        clip,
+        Math.min(position, clip.frames.length - 1),
+      )) {
+        const canvas = canvases.current[neighbor.role];
+        if (!canvas) continue;
+        const pose = clothingPose(item, neighbor.frameId),
+          image = mask ? pose.mask : pose.image;
+        canvas.width = image.width;
+        canvas.height = image.height;
+        canvas
+          .getContext("2d")!
+          .putImageData(
+            new ImageData(
+              new Uint8ClampedArray(image.pixels),
+              image.width,
+              image.height,
+            ),
+            0,
+            0,
+          );
+      }
       setError("");
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     }
-  }, [item, frameId, open, mask]);
+  }, [item, frameId, clip, position, open, mask]);
   return (
     <div className="clothing-pose-inspector">
       <label>
@@ -64,15 +82,31 @@ export default function ClothingPoseInspector({
             Show editable area
           </label>
           {error && <p role="alert">{error}</p>}
-          <canvas
-            ref={canvas}
-            aria-label="Native clothing pose"
-            hidden={Boolean(error)}
-          />
+          <div className="clothing-pose-neighbors">
+            {neighbors.map((neighbor) => (
+              <figure key={neighbor.role}>
+                <figcaption>
+                  {neighbor.role} · position {neighbor.position + 1} · pose{" "}
+                  {neighbor.frameId}
+                </figcaption>
+                <canvas
+                  ref={(node) => {
+                    canvases.current[neighbor.role] = node;
+                  }}
+                  aria-label={
+                    neighbor.role === "Current"
+                      ? "Native clothing pose"
+                      : `${neighbor.role} native clothing pose`
+                  }
+                  hidden={Boolean(error)}
+                />
+              </figure>
+            ))}
+          </div>
           <p>
-            Use the action and frame controls to inspect the next pose. White in
-            the editable-area view belongs to this clothing; the rest is
-            protected.
+            Previous and next follow this action’s order; only looping actions
+            wrap. White in the editable-area view belongs to this clothing; the
+            rest is protected.
           </p>
           <button
             type="button"
@@ -80,6 +114,13 @@ export default function ClothingPoseInspector({
             onClick={onExport}
           >
             Download this pose for painting
+          </button>
+          <button
+            type="button"
+            disabled={disabled || Boolean(error)}
+            onClick={onExportNeighbors}
+          >
+            Download neighboring poses for painting
           </button>
         </>
       )}

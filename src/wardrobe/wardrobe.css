@@ -611,3 +611,22 @@
   background: repeating-conic-gradient(#eee 0% 25%, #fafafa 0% 50%) 50% / 16px
     16px;
 }
+.clothing-pose-neighbors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.clothing-pose-neighbors figure {
+  margin: 0.7rem 0;
+  min-width: 0;
+}
+.clothing-pose-neighbors figcaption {
+  font-size: 0.7rem;
+  overflow-wrap: anywhere;
+}
+.clothing-pose-neighbors canvas {
+  margin: 0.3rem 0;
+}
+.clothing-pose-inspector button + button {
+  margin-top: 0.5rem;
+}

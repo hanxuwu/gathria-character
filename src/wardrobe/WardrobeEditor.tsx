@@ -1307,7 +1307,52 @@ export default function WardrobeEditor({
     }
   }
 
-  async function exportRecipe(itemId: string, poseId?: number) {
+  async function exportGif() {
+    const open = current.current;
+    if (!open || busy || appearancePreview) return;
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Preparing action GIF…");
+    try {
+      const { exportWardrobeActionGif } = await import("./action-gif");
+      const bytes = await exportWardrobeActionGif(
+        open.renderer,
+        shownAction,
+        facing,
+        {
+          signal: controller.signal,
+          onProgress: (done, total) => {
+            if (token === request.current)
+              setStatus(`Preparing action GIF: ${done} / ${total}…`);
+          },
+        },
+      );
+      if (token !== request.current || controller.signal.aborted) return;
+      saveBytes(
+        bytes,
+        `${safeFilename(`kling-${open.character}-wardrobe`)}-${shownAction}-${facing}-half.gif`,
+        "image/gif",
+      );
+      setStatus(
+        "Action GIF saved at half native size, original timing and the selected direction, on a cream background.",
+      );
+    } catch (failure) {
+      if (token === request.current && !controller.signal.aborted)
+        setError(failureText(failure));
+    } finally {
+      if (token === request.current) {
+        setBusy(false);
+        setCancellable(false);
+      }
+    }
+  }
+
+  async function exportRecipe(
+    itemId: string,
+    poseId?: number,
+    neighbors = false,
+  ) {
     if (!current.current || busy) return;
     setBusy(true);
     setError("");
@@ -1317,10 +1362,11 @@ export default function WardrobeEditor({
         current.current.project,
         itemId,
         poseId,
+        neighbors ? { action: shownAction, position: frameIndex } : undefined,
       );
       saveBytes(
         bytes,
-        `${itemId}${poseId === undefined ? "" : `-pose-${poseId}`}.clothing-recipe.zip`,
+        `${itemId}${neighbors ? `-${shownAction}-neighbors` : poseId === undefined ? "" : `-pose-${poseId}`}.clothing-recipe.zip`,
       );
       setStatus(
         "Clothing recipe saved. Edit it offline, then import the new clothing item.",
@@ -1345,8 +1391,12 @@ export default function WardrobeEditor({
   const recommendedIds =
     session?.character === "female"
       ? [
-          "day-soft-waist",
-          "wedding-soft-waist",
+          entry?.presets.some((p) => p.id === "day-native-folds")
+            ? "day-native-folds"
+            : "day-soft-waist",
+          entry?.presets.some((p) => p.id === "wedding-native-folds")
+            ? "wedding-native-folds"
+            : "wedding-soft-waist",
           "sage-pinafore",
           "ivory-refined",
         ]
@@ -1354,9 +1404,11 @@ export default function WardrobeEditor({
           entry?.presets.some((p) => p.id === "day-soft-cuff")
             ? "day-soft-cuff"
             : "day-refined",
-          entry?.presets.some((p) => p.id === "wedding-soft-cuff")
-            ? "wedding-soft-cuff"
-            : "wedding-refined",
+          entry?.presets.some((p) => p.id === "wedding-reviewed-sleeve")
+            ? "wedding-reviewed-sleeve"
+            : entry?.presets.some((p) => p.id === "wedding-soft-cuff")
+              ? "wedding-soft-cuff"
+              : "wedding-refined",
           "oat-weekend",
           "forest-weekend",
         ];
@@ -1849,6 +1901,11 @@ export default function WardrobeEditor({
                       <ClothingPoseInspector
                         item={chosen}
                         frameId={frameId}
+                        clip={clip!}
+                        position={frameIndex}
+                        onExportNeighbors={() =>
+                          void exportRecipe(chosen.manifest.id, frameId, true)
+                        }
                         disabled={busy || Boolean(appearancePreview)}
                         onExport={() =>
                           void exportRecipe(chosen.manifest.id, frameId)
@@ -1876,6 +1933,17 @@ export default function WardrobeEditor({
               >
                 Save current PNG
               </button>
+              <button
+                type="button"
+                disabled={busy || Boolean(appearancePreview)}
+                onClick={() => void exportGif()}
+              >
+                Download action GIF
+              </button>
+              <p className="wardrobe-hint">
+                GIF: current action and direction, half native size, cream
+                background, original speed. One-shot actions play once.
+              </p>
               <a href="/player.html" target="_blank" rel="noreferrer">
                 Open independent player ↗
               </a>

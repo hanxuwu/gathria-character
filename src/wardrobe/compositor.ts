@@ -572,9 +572,12 @@ function exportMetadata(
       ? "gathria-kling-wardrobe-appearance-v1"
       : "gathria-kling-wardrobe-v1",
   });
-  const note = hasAppearance
-    ? "Wardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands remain protected according to the selected garment’s explicit hand-boundary review, when present; appearance cannot change the dressed body. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame IDs, action order, FPS, loop flags and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project."
-    : "Wardrobe: registered per-frame garment RGBA patches replace only their declared ownership pixels. Body pixels outside garment ownership are retained exactly from the source CharacterPack. Garment silhouettes are authored derivatives, not clothing extracted from the Kling source video. Head/hand protection is checked in every composed frame; an item-scoped V2 hand-boundary review is recorded when used. Original frame rectangles, action frame order, FPS, loop flags, source-frame/time mapping and anchor are unchanged. The output is baked playback; editable wardrobe data belongs in the separate self-contained wardrobe project.";
+  const originalNote = hasAppearance
+    ? "Wardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands and the dressed body remain protected. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame IDs, action order, FPS, loop flags and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project."
+    : "Wardrobe V1: registered per-frame garment RGBA patches replace only their declared ownership pixels. Body pixels outside garment ownership are retained exactly from the source CharacterPack. Garment silhouettes are authored derivatives, not clothing extracted from the Kling source video. Head/hand protection is checked in every composed frame. Original frame rectangles, action frame order, FPS, loop flags, source-frame/time mapping and anchor are unchanged. The output is baked playback; editable wardrobe data belongs in the separate self-contained wardrobe project.";
+  const note = selected.some((item) => item.manifest.version === 2)
+    ? `${originalNote} Selected V2 garment hand-boundary reviews explicitly reassign proximal forearm pixels to sleeves while retaining the reviewed distal hand; details are recorded per item below.`
+    : originalNote;
   const wardrobeMetadata: { [key: string]: JsonValue } = {
     format: "gathria-baked-wardrobe",
     version: 1,
@@ -587,10 +590,14 @@ function exportMetadata(
       slot: item.manifest.slot,
       name: item.manifest.name,
       provenance: item.manifest.provenance,
-      garmentVersion: item.manifest.version,
-      handProtectionReviews: JSON.parse(
-        JSON.stringify(item.manifest.handProtectionReviews ?? []),
-      ),
+      ...(item.manifest.version === 2
+        ? {
+            garmentVersion: 2,
+            handProtectionReviews: JSON.parse(
+              JSON.stringify(item.manifest.handProtectionReviews),
+            ),
+          }
+        : {}),
     })),
     preservedOutsideOwnership: true,
     frameGeometryAndTimingUnchanged: !hasAppearance,
