@@ -40,6 +40,7 @@ import {
   addWardrobeGarment,
   createWardrobeProject,
   exportWardrobeProject,
+  getWardrobeAppearanceSelection,
   importWardrobeProject,
   selectWardrobeAppearance,
   selectWardrobeGarment,
@@ -59,18 +60,23 @@ import {
 } from "../appearance/upgrade";
 import AppearanceUpdatePreview from "./AppearanceUpdatePreview";
 import {
-  appearanceStyleChoices,
+  libraryAppearanceChoices,
+  isLibraryAppearance,
+  validateAppearanceLibraryBanks,
+  type AppearanceLibraryBank,
   validateAppearanceStyleSummaries,
   type AppearanceStyleSummary,
 } from "../appearance/catalog";
 import "./wardrobe.css";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
+import { retainOutfitAndCustomItems } from "./library-inventory";
 
 interface CatalogItem {
   id: string;
   name: string;
   slot: WardrobeSlot;
   url: string;
+  sha256?: string;
 }
 interface CatalogCharacter {
   key: KlingCharacterId;
@@ -82,6 +88,7 @@ interface CatalogCharacter {
   appearanceBankUrl?: string;
   appearanceRevision?: AppearanceCatalogRevision;
   appearanceStyles?: AppearanceStyleSummary[];
+  appearanceLibraries?: AppearanceLibraryBank[];
   items: CatalogItem[];
   presets: Array<{ id: string; name: string; selection: WardrobeSelection }>;
 }
@@ -186,7 +193,8 @@ function readCatalog(value: unknown): Catalog {
         typeof item.id !== "string" ||
         ids.has(item.id) ||
         typeof item.name !== "string" ||
-        !WARDROBE_SLOTS.includes(item.slot)
+        !WARDROBE_SLOTS.includes(item.slot) ||
+        (item.sha256 !== undefined && !/^[a-f0-9]{64}$/.test(item.sha256))
       )
         throw Error("The clothing library has an invalid item.");
       ids.add(item.id);
@@ -233,6 +241,12 @@ function readCatalog(value: unknown): Catalog {
         entry.appearanceStyles === undefined
           ? undefined
           : validateAppearanceStyleSummaries(entry.appearanceStyles),
+      appearanceLibraries:
+        entry.appearanceLibraries === undefined
+          ? undefined
+          : validateAppearanceLibraryBanks(entry.appearanceLibraries).map(
+              (bank) => ({ ...bank, url: localUrl(bank.url) }),
+            ),
       items,
       presets,
     };
@@ -552,12 +566,17 @@ export default function WardrobeEditor({
   const upgradeAvailability = project
     ? getAppearanceUpgradeAvailability(project, entry?.appearanceRevision)
     : null;
-  const showLibraryThumbnails =
-    !project?.appearanceBank ||
-    project.appearanceBank.sha256 === entry?.appearanceRevision?.bankSha256;
-  const appearanceStyles = appearanceStyleChoices(
+  const showLibraryThumbnails = isLibraryAppearance(
+    project?.appearanceBank?.sha256,
+    entry?.appearanceRevision?.bankSha256,
+    entry?.appearanceLibraries,
+  );
+  const appearanceStyles = libraryAppearanceChoices(
     project?.appearanceBank?.manifest,
+    project?.appearanceBank?.sha256,
+    entry?.appearanceRevision?.bankSha256,
     entry?.appearanceStyles,
+    entry?.appearanceLibraries,
   );
 
   useLayoutEffect(() => {
@@ -796,29 +815,49 @@ export default function WardrobeEditor({
   }
   function chooseAppearance(selection: Partial<AppearanceSelection>) {
     void changeProject(async (base, signal) => {
-      let next = base;
-      if (!next.appearanceBank && (selection.hairId || selection.faceId)) {
-        if (!entry?.appearanceBankUrl)
+      let next = retainOutfitAndCustomItems(base, entry?.items ?? []);
+      const wanted = { ...getWardrobeAppearanceSelection(next), ...selection };
+      const has = (id: string | null) =>
+        !id ||
+        next.appearanceBank?.manifest.styles.some((style) => style.id === id);
+      if (
+        (!next.appearanceBank && (wanted.hairId || wanted.faceId)) ||
+        !has(wanted.hairId) ||
+        !has(wanted.faceId)
+      ) {
+        const library = entry?.appearanceLibraries?.find(
+          (bank) =>
+            wanted.hairId &&
+            bank.styles.some((style) => style.id === wanted.hairId),
+        );
+        const url = library?.url ?? entry?.appearanceBankUrl;
+        const expected =
+          library?.sha256 ?? entry?.appearanceRevision?.bankSha256;
+        if (!url)
           throw Error(
             "Hair and face options are not available for this character.",
           );
         next = await addWardrobeAppearanceBank(
           next,
-          await fetchBytes(
-            entry.appearanceBankUrl,
-            APPEARANCE_MAX_BYTES,
-            signal,
-          ),
+          await fetchBytes(url, APPEARANCE_MAX_BYTES, signal),
           { signal },
         );
+        if (
+          (expected && next.appearanceBank?.sha256 !== expected) ||
+          (library && next.appearanceBank?.manifest.id !== library.bankId)
+        )
+          throw Error("The appearance file does not match its library entry.");
       }
-      return selectWardrobeAppearance(next, selection);
+      return next.appearanceBank
+        ? selectWardrobeAppearance(next, wanted)
+        : next;
     }, "Appearance updated. Your clothing and original movement are preserved.");
   }
   async function ensureItem(
     base: WardrobeProject,
     id: string,
   ): Promise<WardrobeProject> {
+    base = retainOutfitAndCustomItems(base, entry?.items ?? []);
     if (base.items.some((item) => item.manifest.id === id)) return base;
     const item = entry?.items.find((candidate) => candidate.id === id);
     if (!item)
@@ -830,17 +869,24 @@ export default function WardrobeEditor({
       await fetchBytes(item.url, WARDROBE_MAX_ITEM_BYTES),
     );
     const added = next.items.find((candidate) => candidate.manifest.id === id);
-    if (!added || added.manifest.slot !== item.slot)
+    if (
+      !added ||
+      added.manifest.slot !== item.slot ||
+      (item.sha256 && added.sha256 !== item.sha256)
+    )
       throw Error("The clothing file does not match its library entry.");
     return next;
   }
   function chooseItem(slot: WardrobeSlot, id: string) {
     void changeProject(
       async (base) =>
-        selectWardrobeGarment(
-          id ? await ensureItem(base, id) : base,
-          slot,
-          id || null,
+        retainOutfitAndCustomItems(
+          selectWardrobeGarment(
+            id ? await ensureItem(base, id) : base,
+            slot,
+            id || null,
+          ),
+          entry?.items ?? [],
         ),
       "Outfit updated. Check its silhouette through each movement.",
     );
@@ -857,7 +903,7 @@ export default function WardrobeEditor({
             slot,
             selection[slot],
           );
-      return next;
+      return retainOutfitAndCustomItems(next, entry?.items ?? []);
     }, `${name} selected. Clothing follows the original movement frames.`);
   }
   async function chooseCharacter(character: KlingCharacterId) {
@@ -1431,6 +1477,11 @@ export default function WardrobeEditor({
             <p className="wardrobe-hint">
               New clothing must match this character’s registered poses.
               Incompatible files leave your outfit unchanged.
+            </p>
+            <p className="wardrobe-hint">
+              Projects keep your current look and custom clothing. Other library
+              clothes and hairstyles load when selected; the saved look remains
+              self-contained for reopening and export.
             </p>
             <details className="wardrobe-guides">
               <summary>Fitting guides</summary>

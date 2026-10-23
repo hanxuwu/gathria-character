@@ -9,7 +9,7 @@ export const wardrobeCatalogUrl = new URL(
 const bundled = import.meta.glob<string>(
   [
     "../../docs/kling-wardrobe/{garments,registration,templates}/**/*.{zip,json}",
-    "../../docs/kling-appearance/banks/*.zip",
+    "../../docs/kling-appearance/banks/**/*.zip",
   ],
   { query: "?url&no-inline", import: "default", eager: true },
 );

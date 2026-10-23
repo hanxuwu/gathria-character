@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import type { AppearanceBankManifest } from "./contract";
 import {
   appearanceStyleChoices,
+  libraryAppearanceChoices,
+  validateAppearanceLibraryBanks,
   validateAppearanceStyleSummaries,
 } from "./catalog";
 
@@ -71,5 +73,59 @@ describe("appearance library choices", () => {
     expect(validated).toEqual(input);
     expect(validated).not.toBe(input);
     expect(validated[0]).not.toBe(input[0]);
+  });
+});
+
+describe("independently loaded hair banks", () => {
+  const base = [
+    { id: "old-hair", name: "Old hair", slot: "hair" as const },
+    { id: "gentle", name: "Gentle", slot: "face" as const },
+  ];
+  const library = [
+    {
+      url: "/new.zip",
+      sha256: "b".repeat(64),
+      bankId: "new-hair-v1",
+      styles: [
+        { id: "new-hair", name: "New hair", slot: "hair" as const },
+        base[1],
+      ],
+    },
+  ];
+  it("offers released styles across banks without duplicating the preserved face", () => {
+    for (const hash of [undefined, "a".repeat(64), "b".repeat(64)])
+      expect(
+        libraryAppearanceChoices(
+          undefined,
+          hash,
+          "a".repeat(64),
+          base,
+          library,
+        ).map((s) => s.id),
+      ).toEqual(["old-hair", "gentle", "new-hair"]);
+  });
+  it("keeps unknown and historical saved banks authoritative", () => {
+    const saved = {
+      styles: [
+        { id: "saved", name: "Saved", slot: "hair" as const, layers: [] },
+      ],
+    };
+    expect(
+      libraryAppearanceChoices(saved, "custom", "a".repeat(64), base, library),
+    ).toBe(saved.styles);
+  });
+  it("validates bounded bank IDs, hashes and style metadata", () => {
+    expect(validateAppearanceLibraryBanks(library)).toEqual(library);
+    for (const bad of [
+      null,
+      Array(9).fill(library[0]),
+      [library[0], library[0]],
+      [{ ...library[0], sha256: "missing" }],
+      [{ ...library[0], bankId: "../../evil" }],
+      [{ ...library[0], styles: [] }],
+    ])
+      expect(() => validateAppearanceLibraryBanks(bad)).toThrow(
+        /appearance library/,
+      );
   });
 });

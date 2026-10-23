@@ -6,6 +6,9 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/kling-wardrobe'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def select(top=None,bottom=None,fullBody=None,shoes=None):return dict(top=top,bottom=bottom,fullBody=fullBody,shoes=shoes)
 characters=[]
+volume_source=ROOT/'artwork/kling-collection/source/volume-v1'
+volume_looks=json.loads((volume_source/'looks.json').read_text())
+volume_hair=json.loads((volume_source/'hair-donors.json').read_text())
 # Released first-batch, ear-fit and boundary/ear-overlap revision banks. Exact hashes
 # make custom/future assets ineligible for an accidental downgrade.
 previous_appearance={
@@ -32,13 +35,14 @@ for char in ['male','female']:
     ids=['teal-top','ochre-shorts','navy-waistcoat','navy-shorts','brown-shoes']
     if char=='female':ids+=['coral-daydress-v4','ivory-wedding-dress-v4','mist-blue-dress-v1','lavender-pleat-dress-v1']
     else:ids+=['teal-camp-shirt-v2','navy-suit-jacket-v2','ochre-chinos-v1','navy-suit-trousers-v1','cream-camp-shirt-v1','forest-work-shirt-v1']
+    ids += [look['selection']['top'] or look['selection']['fullBody'] for look in volume_looks if look['character']==char]
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
         with zipfile.ZipFile(p) as z:
             assert z.testzip() is None;m=json.loads(z.read('manifest.json'))
         assert m['id']==item_id and m['sourceSha256']==sha(source) and m['registrationSha256']==sha(reg),f'Stale garment {p}'
-        items.append({'id':item_id,'name':m['name'],'slot':m['slot'],'url':'/'+str(p.relative_to(ROOT))})
+        items.append({'id':item_id,'name':m['name'],'slot':m['slot'],'url':'/'+str(p.relative_to(ROOT)), 'sha256':sha(p)})
     presets=[{'id':'original','name':'Original','selection':select()}]
     day=select('teal-camp-shirt-v2','ochre-chinos-v1') if char=='male' else select(fullBody='coral-daydress-v4')
     wedding=select('navy-suit-jacket-v2','navy-suit-trousers-v1',shoes='brown-shoes') if char=='male' else select(fullBody='ivory-wedding-dress-v4')
@@ -54,6 +58,7 @@ for char in ['male','female']:
             {'id':'lavender-afternoon','name':'Lavender afternoon','selection':select(fullBody='lavender-pleat-dress-v1')},
         ])
     presets.extend([{'id':'separates','name':'Everyday separates','selection':select('teal-top','ochre-shorts')},{'id':'formal-separates','name':'Formal separates','selection':select('navy-waistcoat','navy-shorts',shoes='brown-shoes')}])
+    presets.extend([{k:look[k] for k in ('id','name','selection')} for look in volume_looks if look['character']==char])
     characters.append({'key':char,'name':f'Kling {char}','characterId':data['characterId'],'sourceUrl':'/'+str(source.relative_to(ROOT)),'registrationUrl':'/'+str(dest.relative_to(ROOT)),'templateUrl':f'/docs/kling-wardrobe/templates/{profile}.wardrobe-template.zip','items':items,'presets':presets})
     appearance=ROOT/f'docs/kling-appearance/banks/{char}.zip'
     if appearance.exists():
@@ -69,5 +74,15 @@ for char in ['male','female']:
             'bankSha256':sha(appearance),
             'previousBankSha256s':[value for value in previous_appearance[char] if value!=sha(appearance)],
         }
+    libraries=[]
+    for style,definition in volume_hair.items():
+        if definition['character']!=char:continue
+        p=ROOT/f'docs/kling-appearance/banks/volume/{char}-{style}.zip'
+        with zipfile.ZipFile(p) as z:
+            assert z.testzip() is None
+            m=json.loads(z.read('manifest.json'))
+        assert m['characterId']==data['characterId'] and m['sourceSha256']==sha(source) and m['registrationSha256']==sha(reg)
+        libraries.append({'url':'/'+str(p.relative_to(ROOT)), 'sha256':sha(p), 'bankId':m['id'], 'styles':[{k:s[k] for k in ('id','name','slot')} for s in m['styles']]})
+    characters[-1]['appearanceLibraries']=libraries
 (OUT/'catalog.json').write_text(json.dumps({'version':1,'characters':characters},indent=2)+'\n')
 print(f'Published {len(characters)} registered bodies / {sum(len(c["items"]) for c in characters)} garment items / {sum(len(c["presets"]) for c in characters)} outfit presets')

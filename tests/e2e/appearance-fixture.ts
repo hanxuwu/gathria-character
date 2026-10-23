@@ -13,11 +13,12 @@ import { installWardrobeFixture } from "./wardrobe-fixture";
 // Synthetic pixels test controls and file contracts, never visual quality.
 export async function installAppearanceFixture(
   page: Page,
-  options: { expandedStyles?: boolean } = {},
+  options: { expandedStyles?: boolean; libraryBank?: boolean } = {},
 ) {
   const fixtures = await installWardrobeFixture(page);
   let bankRequests = 0;
   const banks = new Map<string, Uint8Array>();
+  const libraries: Record<string, unknown[]> = {};
   const catalogStyles: Record<
     string,
     Array<Pick<AppearanceStyle, "id" | "name" | "slot">>
@@ -216,6 +217,24 @@ export async function installAppearanceFixture(
       previousBankSha256s: [sha(previous)],
     };
     banks.set(`/fixture-appearance/${fixture.key}.zip`, current);
+    if (options.libraryBank) {
+      const hair = structuredClone(manifest.styles[0]);
+      hair.id = "volume-hair";
+      hair.name = "Volume hair";
+      const styles = [hair, manifest.styles.find((s) => s.id === "gentle")!];
+      const id = `${fixture.key}-volume-bank`;
+      const bytes = makeBank(id, previousPixels, styles);
+      const url = `/fixture-appearance/${fixture.key}-volume.zip`;
+      banks.set(url, bytes);
+      libraries[fixture.key] = [
+        {
+          url,
+          bankId: id,
+          sha256: sha(bytes),
+          styles: styles.map(({ id, name, slot }) => ({ id, name, slot })),
+        },
+      ];
+    }
   }
   await page.route("**/docs/kling-wardrobe/catalog.json", (route) =>
     route.fulfill({
@@ -225,6 +244,7 @@ export async function installAppearanceFixture(
           ...fixture.entry,
           appearanceBankUrl: `/fixture-appearance/${fixture.key}.zip`,
           appearanceRevision: revisions[fixture.key],
+          appearanceLibraries: libraries[fixture.key],
           ...(options.expandedStyles
             ? { appearanceStyles: catalogStyles[fixture.key] }
             : {}),

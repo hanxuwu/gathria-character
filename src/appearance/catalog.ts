@@ -6,6 +6,78 @@ export type AppearanceStyleSummary = Pick<
   "id" | "name" | "slot"
 >;
 
+/** Optional source-bound banks loaded only when a new style is chosen. The
+ * existing embedded bank remains authoritative until that explicit choice. */
+export interface AppearanceLibraryBank {
+  url: string;
+  sha256: string;
+  bankId: string;
+  styles: AppearanceStyleSummary[];
+}
+
+export function validateAppearanceLibraryBanks(
+  value: unknown,
+): AppearanceLibraryBank[] {
+  if (!Array.isArray(value) || value.length > 8)
+    throw Error("The appearance library must contain at most eight banks.");
+  const ids = new Set<string>();
+  return value.map((v) => {
+    if (
+      !v ||
+      typeof v !== "object" ||
+      Array.isArray(v) ||
+      Object.keys(v).some(
+        (k) => !["url", "sha256", "bankId", "styles"].includes(k),
+      ) ||
+      typeof v.url !== "string" ||
+      !v.url ||
+      typeof v.sha256 !== "string" ||
+      !/^[a-f0-9]{64}$/.test(v.sha256) ||
+      typeof v.bankId !== "string" ||
+      !/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$/.test(v.bankId) ||
+      ids.has(v.bankId)
+    )
+      throw Error("The appearance library contains an invalid bank.");
+    ids.add(v.bankId);
+    return {
+      url: v.url,
+      sha256: v.sha256,
+      bankId: v.bankId,
+      styles: validateAppearanceStyleSummaries(v.styles),
+    };
+  });
+}
+
+export function isLibraryAppearance(
+  hash: string | undefined,
+  baseHash: string | undefined,
+  banks: readonly AppearanceLibraryBank[] = [],
+): boolean {
+  return (
+    !hash || hash === baseHash || banks.some((bank) => bank.sha256 === hash)
+  );
+}
+
+export function libraryAppearanceChoices(
+  bank: Pick<AppearanceBankManifest, "styles"> | undefined,
+  hash: string | undefined,
+  baseHash: string | undefined,
+  baseStyles?: readonly AppearanceStyleSummary[],
+  libraries: readonly AppearanceLibraryBank[] = [],
+): readonly AppearanceStyleSummary[] {
+  if (!isLibraryAppearance(hash, baseHash, libraries))
+    return appearanceStyleChoices(bank, baseStyles);
+  const choices = new Map<string, AppearanceStyleSummary>();
+  // A separate style bank is not the base catalog. Older catalogs can omit
+  // summaries, in which case retain the established original choices too.
+  for (const style of baseStyles ??
+    appearanceStyleChoices(hash === baseHash ? bank : undefined))
+    choices.set(style.id, style);
+  for (const library of libraries)
+    for (const style of library.styles) choices.set(style.id, style);
+  return [...choices.values()];
+}
+
 const LEGACY_STYLES: readonly AppearanceStyleSummary[] = [
   { id: "soft-crop", name: "Soft crop", slot: "hair" },
   { id: "soft-bob", name: "Soft bob", slot: "hair" },
