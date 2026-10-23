@@ -929,10 +929,14 @@ export default function WardrobeEditor({
               : entry?.items.find(
                   (i) => i.id === ref.id && i.sha256 === ref.sha256,
                 );
-            const stored =
-              !embedded && !item
-                ? await readLocalMaterial("garment", ref.sha256, signal)
-                : null;
+            const stored = !embedded
+              ? await readLocalMaterial(
+                  "garment",
+                  ref.sha256,
+                  signal,
+                  Boolean(item),
+                )
+              : null;
             if (!embedded && !item && !stored) exactLookAsset(ref, []);
             return {
               ref,
@@ -949,8 +953,13 @@ export default function WardrobeEditor({
             : entry?.appearanceLibraries?.find((b) => b.sha256 === bankHash)
                 ?.url;
         const storedBank =
-          bankHash && base.appearanceBank?.sha256 !== bankHash && !bankUrl
-            ? await readLocalMaterial("appearance", bankHash, signal)
+          bankHash && base.appearanceBank?.sha256 !== bankHash
+            ? await readLocalMaterial(
+                "appearance",
+                bankHash,
+                signal,
+                Boolean(bankUrl),
+              )
             : null;
         if (
           bankHash &&
@@ -1341,7 +1350,16 @@ export default function WardrobeEditor({
           "sage-pinafore",
           "ivory-refined",
         ]
-      : ["day-refined", "wedding-refined", "oat-weekend", "forest-weekend"];
+      : [
+          entry?.presets.some((p) => p.id === "day-soft-cuff")
+            ? "day-soft-cuff"
+            : "day-refined",
+          entry?.presets.some((p) => p.id === "wedding-soft-cuff")
+            ? "wedding-soft-cuff"
+            : "wedding-refined",
+          "oat-weekend",
+          "forest-weekend",
+        ];
   const hasRecommended = outfitPresets.some((p) =>
     recommendedIds.includes(p.id),
   );
