@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { KlingCharacterId } from "../consumer/kling-catalog";
 import type { WardrobeProject } from "./contract";
+import { retainLookMaterials } from "./local-materials";
 import {
   LOOKS_KEY,
   LOOKS_PER_CHARACTER,
@@ -25,6 +26,7 @@ export default function NamedLooks({
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [unreadable, setUnreadable] = useState(false);
+  const [saving, setSaving] = useState(false);
   useEffect(() => {
     const read = () => {
       try {
@@ -60,8 +62,12 @@ export default function NamedLooks({
       );
     }
   }
-  function save() {
-    persist((rows) => {
+  async function save() {
+    if (saving) return;
+    setSaving(true);
+    setMessage("Saving this look and its artwork…");
+    try {
+      const rows = readNamedLooks(localStorage.getItem(LOOKS_KEY));
       const existing = rows.find(
         (l) => l.character === character && l.name === name.trim(),
       );
@@ -69,21 +75,37 @@ export default function NamedLooks({
         existing?.id ??
         `look-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
       const next = captureNamedLook(project, character, name, id);
-      return [...rows.filter((l) => l.id !== id), next];
-    }, `${name.trim()} saved in this browser.`);
+      // Keep the old recipe intact if artwork storage fails. Re-read other
+      // tabs' recipes after the async operation instead of overwriting them.
+      writeNamedLooks([...rows.filter((l) => l.id !== id), next]);
+      await retainLookMaterials(project, next);
+      persist(
+        (current) => [...current.filter((l) => l.id !== id), next],
+        `${next.name} and its artwork saved in this browser.`,
+      );
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "Could not save this look. Use Save wardrobe for a portable copy.",
+      );
+    } finally {
+      setSaving(false);
+    }
   }
   const replacing = available.some((l) => l.name === name.trim());
   return (
     <section className="wardrobe-named-looks" aria-label="Saved looks">
       <h2>Saved looks</h2>
       <p className="wardrobe-hint">
-        Keep up to 12 combinations per character in this browser. Save wardrobe
-        also keeps the actual artwork in a portable ZIP.
+        Keep up to 12 combinations per character, including their artwork, in
+        this browser. Browser data clearing removes them. Save wardrobe keeps a
+        portable backup.
       </p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          save();
+          void save();
         }}
       >
         <label>
@@ -93,12 +115,13 @@ export default function NamedLooks({
             maxLength={60}
             value={name}
             onChange={(e) => setName(e.target.value)}
-            disabled={disabled || unreadable}
+            disabled={disabled || unreadable || saving}
           />
         </label>
         <button
           disabled={
             disabled ||
+            saving ||
             unreadable ||
             !name.trim() ||
             (!replacing && available.length >= LOOKS_PER_CHARACTER)
@@ -112,7 +135,7 @@ export default function NamedLooks({
           <li key={look.id}>
             <button
               type="button"
-              disabled={disabled}
+              disabled={disabled || saving}
               onClick={() => onApply(look)}
               aria-label={`Apply look ${look.name}`}
             >
@@ -120,7 +143,7 @@ export default function NamedLooks({
             </button>
             <button
               type="button"
-              disabled={disabled || unreadable}
+              disabled={disabled || unreadable || saving}
               aria-label={`Delete look ${look.name}`}
               onClick={() =>
                 persist(

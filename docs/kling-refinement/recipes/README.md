@@ -41,6 +41,16 @@ a CharacterPack. Importing the authoring kit itself is intentionally unsupported
 
 ## Pose corrections
 
+In **Fitting guides**, select the currently worn item, pause/scrub to the pose,
+then enable **Inspect clothing layer**. **Show editable area** displays the
+binary ownership mask. **Download this pose for painting** includes the actual
+native clothing layer, mask, source anchors and a ready-bound pose override.
+The downloaded pose always faces **right**, even when the preview faces left.
+Paint inside the white mask, preserve alpha/coordinates and update the image
+SHA-256 in the recipe. The unedited kit builds the same artwork under a new ID.
+When making a full-bank material variant, remove an unedited pose override;
+otherwise that one pose intentionally replaces the material change.
+
 A `poseOverrides` entry has `frameId`, `image` and `mask`. Both files use the
 native 704 × 1056 registered frame coordinates, including transparent pixels:
 
@@ -79,9 +89,12 @@ pose paint, hash/category errors, ownership/alpha rejection and invalid IDs.
 The TypeScript test checks exact downloaded base/registration bytes, selected
 item eligibility and rejection of damaged inputs.
 
-Custom variants need the saved `.wardrobe.zip` when reopening. Named looks keep
-material IDs and hashes rather than embedding large custom artwork in browser
-storage. After a reload, reopen that wardrobe project before applying its named
-look. If only a different library revision with the same ID is available, the
-workbench rejects it instead of silently substituting. The review includes an
-Ocean linen wardrobe project as a portable example.
+**Save look** now retains exact ZIP artwork in this browser. After refreshing,
+custom materials saved this way restore without reopening a project. Recipes
+still bind exact IDs and SHA-256 hashes; damaged or unavailable artwork never
+silently becomes a different revision. The shared artwork store is bounded to
+256 MiB and never evicts materials. Deleted looks currently leave reusable
+material bytes in the store. Keep `.wardrobe.zip` files for transfer or recovery;
+browser storage is not a backup. For older looks saved before this change,
+reopen the wardrobe project and save the look again to retain its artwork.
+See the [current actual authoring review](../../kling-polish/README.md).

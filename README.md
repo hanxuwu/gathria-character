@@ -28,8 +28,12 @@ retain the optional skeletal candidates.
 | `/player.html`                               | Independent CharacterPack V2/V3 and Kling source ZIP playback/export |
 
 `/workbench.html?character=female&mode=wardrobe` opens the female wardrobe;
-use `character=male` for the male. Choose **Everyday** or **Wedding**, then inspect
+use `character=male` for the male. Choose a recommended everyday or wedding look, then inspect
 all five actions in either direction. **Original** restores the original clothing.
+**More outfits and earlier versions** reveals the rest of the catalog; existing
+projects retain their original assets. The [Sprints 11–15 review](docs/kling-polish/README.md)
+covers softer crouched waist joins, two sculpted hair shading revisions,
+downloadable paintable poses and exact custom-material look restoration.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.
@@ -44,7 +48,8 @@ refined ponytail and **Ivory refined** outfit, exact-frame connection inspection
 named looks and cancellable loading. In the wardrobe, **Inspect connections**
 shows original/current crops; arrows and **Preview speed** help examine motion
 without changing exports. **Saved looks** stores up to 12 combinations per
-character in this browser. **Save wardrobe** remains the portable backup with
+character and their exact artwork in this browser. Refreshing preserves custom
+materials saved this way; browser-data clearing does not. **Save wardrobe** remains the portable backup with
 the actual artwork. Verified downloads are reused within a bounded 96 MiB
 session cache; **Cancel preparation** retains the last accepted outfit.
 

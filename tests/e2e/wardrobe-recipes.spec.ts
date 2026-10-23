@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { expect, test } from "@playwright/test";
 import { unzipSync, strFromU8 } from "fflate";
 import { installWardrobeFixture } from "./wardrobe-fixture";
+import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 
 test("a larger lazy clothing catalog exports the exact selected authoring kit without loading unused items", async ({
   page,
@@ -62,4 +63,59 @@ test("a larger lazy clothing catalog exports the exact selected authoring kit wi
       .evaluate((c: HTMLCanvasElement) => c.toDataURL()),
   ).toBe(before);
   expect(unused).toEqual([]);
+});
+
+test("a paintable pose kit exports the native layer, binary ownership and source anchors", async ({
+  page,
+}) => {
+  const { male } = await installWardrobeFixture(page);
+  await page.goto("/workbench.html?character=male&mode=wardrobe");
+  const p = page.locator("#wardrobe-panel");
+  await expect(p.getByRole("status")).toContainText("Original outfit.");
+  await p.getByRole("button", { name: "Daily", exact: true }).click();
+  await expect(p.getByRole("status")).toContainText("Daily selected");
+  await p.getByLabel("Wardrobe facing", { exact: true }).selectOption("left");
+  await p.locator("summary").filter({ hasText: "Fitting guides" }).click();
+  await p.getByLabel("Inspect clothing layer", { exact: true }).check();
+  await expect(p.getByLabel("Native clothing pose")).toHaveAttribute(
+    "width",
+    "8",
+  );
+  await p.getByLabel("Show editable area", { exact: true }).check();
+  const download = page.waitForEvent("download");
+  await p
+    .getByRole("button", {
+      name: "Download this pose for painting",
+      exact: true,
+    })
+    .click();
+  const d = await download;
+  expect(await d.failure()).toBeNull();
+  const files = unzipSync(await readFile((await d.path())!));
+  const recipe = JSON.parse(strFromU8(files["recipe.json"]));
+  const override = recipe.poseOverrides[0];
+  const guide = JSON.parse(strFromU8(files["pose-guide.json"]));
+  expect(guide.nativeFacing).toBe("right");
+  expect(guide.frameId).toBe(override.frameId);
+  expect(guide.registration.points).toBeTruthy();
+  expect(files["registration.json"]).toEqual(male.registrationBytes);
+  const shape = { width: 8, height: 8 };
+  const image = decodeSourceRgbaPng(files[override.image.file], shape);
+  const mask = decodeSourceRgbaPng(files[override.mask.file], shape);
+  expect(
+    createHash("sha256").update(files[override.image.file]).digest("hex"),
+  ).toBe(override.image.sha256);
+  expect(
+    createHash("sha256").update(files[override.mask.file]).digest("hex"),
+  ).toBe(override.mask.sha256);
+  let selected = 0;
+  for (let i = 0; i < mask.pixels.length; i += 4) {
+    expect([0, 255]).toContain(mask.pixels[i]);
+    expect(mask.pixels[i + 1]).toBe(mask.pixels[i]);
+    expect(mask.pixels[i + 2]).toBe(mask.pixels[i]);
+    expect(mask.pixels[i + 3]).toBe(255);
+    if (mask.pixels[i]) selected++;
+    else expect(image.pixels[i + 3]).toBe(0);
+  }
+  expect(selected).toBeGreaterThan(0);
 });
