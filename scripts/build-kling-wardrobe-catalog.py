@@ -47,6 +47,8 @@ for char in ['male','female']:
     ids += [item for item in soft_waist if (OUT/f'garments/{char}/{item}.zip').exists()]
     soft_cuff=['teal-camp-shirt-v4','navy-suit-jacket-v4'] if char=='male' else []
     ids += [item for item in soft_cuff if (OUT/f'garments/{char}/{item}.zip').exists()]
+    reviewed=['navy-suit-jacket-v5'] if char=='male' else ['coral-daydress-v7','ivory-wedding-dress-v7']
+    ids += [item for item in reviewed if (OUT/f'garments/{char}/{item}.zip').exists()]
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
@@ -75,6 +77,10 @@ for char in ['male','female']:
             {'id':'day-soft-waist','name':'Everyday soft waist','selection':select(fullBody=soft_waist[0])},
             {'id':'wedding-soft-waist','name':'Wedding soft waist','selection':select(fullBody=soft_waist[1])},
         ])
+    if char=='male' and 'navy-suit-jacket-v5' in ids:
+        presets.append({'id':'wedding-reviewed-sleeve','name':'Wedding reviewed sleeve','selection':select('navy-suit-jacket-v5','navy-suit-trousers-v1',shoes='brown-shoes')})
+    if char=='female' and all(item in ids for item in reviewed):
+        presets.extend([{'id':'day-native-folds','name':'Everyday native folds','selection':select(fullBody=reviewed[0])},{'id':'wedding-native-folds','name':'Wedding native folds','selection':select(fullBody=reviewed[1])}])
     if char=='male':
         presets.extend([
             {'id':'cream-navy','name':'Cream & navy','selection':select('cream-camp-shirt-v1','navy-suit-trousers-v1')},

@@ -34,73 +34,26 @@ import type {
 } from "../core/types";
 import {
   WARDROBE_COMPOSITION_ORDER,
-  type ProtectedRegion,
   type RegisteredFrame,
   type WardrobeGarment,
   type WardrobeGarmentFrame,
   type WardrobeProject,
 } from "./contract";
 import { validateWardrobeProject } from "./project";
+import {
+  prepareProtection,
+  protectedAt,
+  reviewedRegions,
+  type ProtectionRows,
+} from "./protection";
 import { decodedGarmentPage, type DecodedGarmentPage } from "./garment-pages";
 
 const MAX_TEXT_BYTES = 256 * 1024;
-type ProtectionSpan = {
-  left: number;
-  right: number;
-  label: ProtectedRegion["label"];
-};
-type ProtectionRows = Map<number, ProtectionSpan[]>;
 type SelectedGarment = {
+  reviewedProtection: Map<number, ProtectionRows>;
   item: WardrobeGarment;
   frames: Map<number, WardrobeGarmentFrame>;
 };
-
-/** Compact scanline intervals, not a full RGBA/mask image per pose. Polygon
- * work occurs once per registration, never once per clothing pixel per frame. */
-function prepareProtection(regions: ProtectedRegion[]): ProtectionRows {
-  const rows: ProtectionRows = new Map();
-  for (const region of regions) {
-    const polygon = region.polygon;
-    const top = Math.max(
-      0,
-      Math.ceil(Math.min(...polygon.map((p) => p.y)) - 0.5),
-    );
-    const bottom = Math.floor(Math.max(...polygon.map((p) => p.y)) - 0.5);
-    for (let y = top; y <= bottom; y++) {
-      const cy = y + 0.5,
-        crossings: number[] = [];
-      const spans = rows.get(y) ?? [];
-      const add = (a: number, b: number) => {
-        const left = Math.ceil(Math.min(a, b) - 0.5 - 1e-9);
-        const right = Math.floor(Math.max(a, b) - 0.5 + 1e-9);
-        if (left <= right) spans.push({ left, right, label: region.label });
-      };
-      for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-        const a = polygon[j],
-          b = polygon[i];
-        if (a.y > cy !== b.y > cy)
-          crossings.push(a.x + ((cy - a.y) * (b.x - a.x)) / (b.y - a.y));
-        // Exact horizontal edges and vertex centers are protected as boundaries.
-        if (Math.abs(a.y - cy) < 1e-9 && Math.abs(b.y - cy) < 1e-9)
-          add(a.x, b.x);
-        else if (Math.abs(a.y - cy) < 1e-9) add(a.x, a.x);
-      }
-      crossings.sort((a, b) => a - b);
-      for (let i = 0; i + 1 < crossings.length; i += 2)
-        add(crossings[i], crossings[i + 1]);
-      if (spans.length) rows.set(y, spans);
-    }
-  }
-  return rows;
-}
-
-function protectedAt(
-  x: number,
-  spans: ProtectionSpan[] | undefined,
-): string | undefined {
-  for (const span of spans ?? [])
-    if (x >= span.left && x <= span.right) return span.label;
-}
 
 // Both Kling pages stay warm across loops and clothing selections. These
 // buffers are never exposed to a caller; all rendered results are fresh copies.
@@ -216,6 +169,19 @@ class RegisteredWardrobeCompositor {
       return [
         {
           item,
+          reviewedProtection: new Map(
+            [
+              ...new Set(
+                item.manifest.handProtectionReviews?.map((r) => r.frameId) ??
+                  [],
+              ),
+            ].map((frameId) => [
+              frameId,
+              prepareProtection(
+                reviewedRegions(this.registered.get(frameId)!, item.manifest),
+              ),
+            ]),
+          ),
           frames: new Map(
             item.manifest.frames.map((frame) => [frame.frameId, frame]),
           ),
@@ -331,8 +297,10 @@ class RegisteredWardrobeCompositor {
     sourceX: number,
     sourceY: number,
   ): void {
-    const protectedRegions = this.protection.get(frame.id)!;
     for (const selected of this.selected) {
+      const protectedRegions =
+        selected.reviewedProtection.get(frame.id) ??
+        this.protection.get(frame.id)!;
       const crop = selected.frames.get(frame.id);
       if (!crop)
         throw Error(
@@ -605,8 +573,8 @@ function exportMetadata(
       : "gathria-kling-wardrobe-v1",
   });
   const note = hasAppearance
-    ? "Wardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands and the dressed body remain protected. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame IDs, action order, FPS, loop flags and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project."
-    : "Wardrobe V1: registered per-frame garment RGBA patches replace only their declared ownership pixels. Body pixels outside garment ownership are retained exactly from the source CharacterPack. Garment silhouettes are authored derivatives, not clothing extracted from the Kling source video. Head/hand protection is checked in every composed frame. Original frame rectangles, action frame order, FPS, loop flags, source-frame/time mapping and anchor are unchanged. The output is baked playback; editable wardrobe data belongs in the separate self-contained wardrobe project.";
+    ? "Wardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands remain protected according to the selected garment’s explicit hand-boundary review, when present; appearance cannot change the dressed body. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame IDs, action order, FPS, loop flags and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project."
+    : "Wardrobe: registered per-frame garment RGBA patches replace only their declared ownership pixels. Body pixels outside garment ownership are retained exactly from the source CharacterPack. Garment silhouettes are authored derivatives, not clothing extracted from the Kling source video. Head/hand protection is checked in every composed frame; an item-scoped V2 hand-boundary review is recorded when used. Original frame rectangles, action frame order, FPS, loop flags, source-frame/time mapping and anchor are unchanged. The output is baked playback; editable wardrobe data belongs in the separate self-contained wardrobe project.";
   const wardrobeMetadata: { [key: string]: JsonValue } = {
     format: "gathria-baked-wardrobe",
     version: 1,
@@ -619,6 +587,10 @@ function exportMetadata(
       slot: item.manifest.slot,
       name: item.manifest.name,
       provenance: item.manifest.provenance,
+      garmentVersion: item.manifest.version,
+      handProtectionReviews: JSON.parse(
+        JSON.stringify(item.manifest.handProtectionReviews ?? []),
+      ),
     })),
     preservedOutsideOwnership: true,
     frameGeometryAndTimingUnchanged: !hasAppearance,

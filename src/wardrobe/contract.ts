@@ -5,6 +5,7 @@ import {
 } from "../appearance/contract";
 import type { PortableCharacterPackArchive } from "../core/pack";
 import type { Facing, PortableAnimationName } from "../core/types";
+import { assertHandReviewSubset } from "./protection";
 
 /** Versioned native-frame authoring guides; these are not an inferred runtime rig. */
 export const WARDROBE_ANCHORS = [
@@ -52,6 +53,14 @@ export interface RegisteredFrame {
   points: Record<WardrobeAnchorName, WardrobeAnchor>;
   protected: ProtectedRegion[];
 }
+/** Explicit garment-authoring correction, not a change to the source or anchors.
+ * V2 may shrink a reviewed hand region for a long sleeve, never the head. */
+export interface HandProtectionReview {
+  frameId: number;
+  label: "nearHand" | "farHand";
+  polygon: Point[];
+  reason: string;
+}
 export interface WardrobeRegistration {
   format: "gathria-wardrobe-registration";
   version: 1;
@@ -87,7 +96,7 @@ export interface WardrobeGarmentFrame {
 }
 export interface WardrobeGarmentManifest {
   format: "gathria-sprite-garment";
-  version: 1;
+  version: 1 | 2;
   id: string;
   name: string;
   slot: WardrobeSlot;
@@ -99,6 +108,7 @@ export interface WardrobeGarmentManifest {
   pages: WardrobeGarmentPage[];
   frames: WardrobeGarmentFrame[];
   provenance: string;
+  handProtectionReviews?: HandProtectionReview[];
 }
 export interface WardrobeGarment {
   bytes: Uint8Array;
@@ -392,8 +402,12 @@ export function validateWardrobeGarmentManifest(
     "pages",
     "frames",
     "provenance",
+    "handProtectionReviews",
   ]);
-  if (data.format !== "gathria-sprite-garment" || data.version !== 1)
+  if (
+    data.format !== "gathria-sprite-garment" ||
+    ![1, 2].includes(data.version as number)
+  )
     fail("Unsupported garment format/version.");
   const itemId = id(data.id),
     name = text(data.name, "Garment name");
@@ -501,9 +515,68 @@ export function validateWardrobeGarmentManifest(
   });
   if (usedPages.size !== pages.length)
     fail("Every garment atlas page must be used.");
+  let handProtectionReviews: HandProtectionReview[] | undefined;
+  if (data.version === 1 && data.handProtectionReviews !== undefined)
+    fail("Hand protection reviews require garment V2.");
+  if (data.version === 2) {
+    if (data.slot !== "top" && data.slot !== "fullBody")
+      fail(
+        "Only sleeved tops or full-body clothing may review hand protection.",
+      );
+    const reviewed = new Set<string>();
+    handProtectionReviews = array(
+      data.handProtectionReviews,
+      "Hand protection reviews",
+      1,
+      32,
+    ).map((raw) => {
+      const review = wardrobeObject(raw, "Hand protection review", [
+        "frameId",
+        "label",
+        "polygon",
+        "reason",
+      ]);
+      const frameId = number(
+        review.frameId,
+        "Reviewed frameId",
+        0,
+        Number.MAX_SAFE_INTEGER,
+        true,
+      );
+      if (review.label !== "nearHand" && review.label !== "farHand")
+        fail(
+          "Only nearHand or farHand protection can be reviewed; head protection is immutable.",
+        );
+      const key = `${frameId}:${review.label}`;
+      const original = registration.frames
+        .find((f) => f.frameId === frameId)
+        ?.protected.find((r) => r.label === review.label);
+      if (!original || reviewed.has(key))
+        fail(
+          "Hand review must name one existing, distinct protected hand and source pose.",
+        );
+      reviewed.add(key);
+      const polygon = array(review.polygon, "Reviewed hand polygon", 3, 64).map(
+        (p) =>
+          point(
+            p,
+            "Reviewed hand point",
+            registration.frameWidth,
+            registration.frameHeight,
+          ),
+      );
+      assertHandReviewSubset(original, polygon);
+      return {
+        frameId,
+        label: review.label,
+        polygon,
+        reason: text(review.reason, "Hand review reason", 1000),
+      };
+    });
+  }
   return {
     format: "gathria-sprite-garment",
-    version: 1,
+    version: data.version as 1 | 2,
     id: itemId,
     name,
     slot: data.slot as WardrobeSlot,
@@ -515,6 +588,7 @@ export function validateWardrobeGarmentManifest(
     pages,
     frames,
     provenance: text(data.provenance, "Garment provenance", 8192),
+    ...(handProtectionReviews ? { handProtectionReviews } : {}),
   };
 }
 

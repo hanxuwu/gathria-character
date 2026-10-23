@@ -27,6 +27,8 @@ import {
   addWardrobeGarment,
   addWardrobeAppearanceBank,
   createWardrobeProject,
+  exportWardrobeProject,
+  importWardrobeProject,
   selectWardrobeAppearance,
   selectWardrobeGarment,
 } from "./project";
@@ -372,7 +374,132 @@ function garment(
   });
 }
 
+function reviewedSleeve(project: WardrobeProject): Uint8Array {
+  const files = unzipSync(garment(project, "reviewed-sleeve"));
+  const m = JSON.parse(
+    new TextDecoder().decode(files["manifest.json"]),
+  ) as WardrobeGarmentManifest;
+  m.version = 2;
+  m.frames[0].offset.x = 0;
+  m.handProtectionReviews = [
+    {
+      frameId: 7,
+      label: "nearHand",
+      polygon: [
+        { x: 0, y: 3 },
+        { x: 1, y: 3 },
+        { x: 1, y: 4 },
+        { x: 0, y: 4 },
+      ],
+      reason:
+        "The proximal pixel belongs to the sleeved forearm; retain the distal fist.",
+    },
+  ];
+  for (const file of ["patches-0.png", "ownership-0.png"]) {
+    const image = decodeSourceRgbaPng(files[file]);
+    image.pixels.fill(0, 3 * 4, 4 * 4); // Distal hand stays protected and unowned.
+    files[file] = encodeSourceRgbaPng(image);
+  }
+  files["manifest.json"] = strToU8(JSON.stringify(m));
+  return zipSync(files);
+}
+
 describe("registered wardrobe composition", () => {
+  it("keeps a reviewed sleeve local to one garment and pose, preserves the fist, and round-trips its review", async () => {
+    const original = await fixture();
+    const originalRenderer = await createWardrobeCompositor(original);
+    const source = originalRenderer.renderFrame(7);
+    originalRenderer.dispose();
+    const project = selectWardrobeGarment(
+      await addWardrobeGarment(original, reviewedSleeve(original)),
+      "top",
+      "reviewed-sleeve",
+    );
+    const reopened = await importWardrobeProject(
+      await exportWardrobeProject(project),
+    );
+    expect(reopened.registrationBytes).toEqual(original.registrationBytes);
+    expect(reopened.items[0].manifest.handProtectionReviews).toEqual(
+      project.items[0].manifest.handProtectionReviews,
+    );
+    const renderer = await createWardrobeCompositor(reopened);
+    expect(pixel(renderer.renderFrame(7), 0, 2)).toEqual([12, 67, 89, 180]);
+    expect(pixel(renderer.renderFrame(7), 0, 3)).toEqual(pixel(source, 0, 3));
+    const pack = readPortableCharacterPackArchive(
+      await exportWardrobeCharacterPack(reopened),
+    );
+    expect(pack.config.sourceMetadata?.wardrobe).toMatchObject({
+      items: [
+        {
+          garmentVersion: 2,
+          handProtectionReviews:
+            project.items[0].manifest.handProtectionReviews,
+        },
+      ],
+    });
+    renderer.dispose();
+    const ordinary = unzipSync(reviewedSleeve(original));
+    const m = JSON.parse(new TextDecoder().decode(ordinary["manifest.json"]));
+    m.version = 1;
+    delete m.handProtectionReviews;
+    ordinary["manifest.json"] = strToU8(JSON.stringify(m));
+    const old = selectWardrobeGarment(
+      await addWardrobeGarment(original, zipSync(ordinary)),
+      "top",
+      "reviewed-sleeve",
+    );
+    const oldRenderer = await createWardrobeCompositor(old);
+    expect(() => oldRenderer.renderFrame(7)).toThrow(/nearHand/);
+    oldRenderer.dispose();
+  });
+
+  it("rejects head reviews, empty or expanded hand boundaries, and V1 review metadata", async () => {
+    const project = await fixture();
+    for (const mutate of [
+      (m: any) => {
+        m.handProtectionReviews[0].label = "head";
+      },
+      (m: any) => {
+        m.version = 1;
+      },
+      (m: any) => {
+        m.handProtectionReviews[0].polygon[1].x = 3;
+      },
+      (m: any) => {
+        m.handProtectionReviews[0].polygon = [
+          { x: 0, y: 3 },
+          { x: 0.1, y: 3 },
+          { x: 0, y: 3.1 },
+        ];
+      },
+      (m: any) => {
+        m.handProtectionReviews.push(m.handProtectionReviews[0]);
+      },
+    ]) {
+      const files = unzipSync(reviewedSleeve(project));
+      const m = JSON.parse(new TextDecoder().decode(files["manifest.json"]));
+      mutate(m);
+      files["manifest.json"] = strToU8(JSON.stringify(m));
+      await expect(
+        addWardrobeGarment(project, zipSync(files)),
+      ).rejects.toThrow();
+    }
+    const files = unzipSync(reviewedSleeve(project));
+    for (const file of ["patches-0.png", "ownership-0.png"]) {
+      const image = decodeSourceRgbaPng(files[file]);
+      image.pixels.fill(255, 12, 16);
+      files[file] = encodeSourceRgbaPng(image);
+    }
+    const dressed = selectWardrobeGarment(
+      await addWardrobeGarment(project, zipSync(files)),
+      "top",
+      "reviewed-sleeve",
+    );
+    const renderer = await createWardrobeCompositor(dressed);
+    expect(() => renderer.renderFrame(7)).toThrow(/nearHand/);
+    renderer.dispose();
+  });
+
   it("rejects a differently profiled clothing PNG rather than silently reinterpreting its colors", async () => {
     const original = await fixture();
     const files = unzipSync(garment(original, "profiled-top"));
