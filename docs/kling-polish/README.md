@@ -131,6 +131,9 @@ deploying. Older sprint test records are separate from this batch's results.
 
 - Extreme crouch still shows some stretched waist cloth and a faint compressed
   edge. The cutout is improved; this is not a complete pose-redrawing system.
+- Existing male bent-elbow sleeve/cuff edges can still look hard. The male
+  clothing in this batch is a regression check, not a new repaint. Motion blur
+  already present in some source jump frames is also retained.
 - The head/body preserves source expression and pose changes. Gentle is an
   optional edit; this does not add three independently selectable facial rigs.
 - New silhouettes or sleeve lengths still need source-bound artwork for every
