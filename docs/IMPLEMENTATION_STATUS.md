@@ -1,6 +1,50 @@
 # Implementation status
 
-Current review batch: **Kling wardrobe cold-start preparation**, branch
+Current expansion: **male Side part and female Tucked bun**. Each character
+has one additional source-bound hairstyle, with separate front/back hair and
+the existing three colors, face choices, clothes and motion. Released atlas
+PNG bytes and previous style mappings are retained; new patches are appended.
+Catalog style summaries expose the new choices before the bank loads, while
+saved/custom banks retain their own styles until explicitly upgraded as a copy.
+[Actual exports, preservation checks and limits](kling-appearance/expansion-review/README.md).
+
+Previous follow-up: **male ear overlap**. The bob's missing donor rear strand is
+restored behind the original ear/head, and existing front hair locally overlaps
+the upper ear. Male bank content is revision 4; source pixels, face layers,
+registrations, timing and female revision 3 remain unchanged. Existing projects
+retain their embedded banks until an explicit preview and save-copy update.
+[Actual exports, compatibility checks and remaining limits](kling-appearance/ear-overlap-review/README.md).
+
+Previous follow-up: **appearance workflow and raster-fringe stability**. Existing
+short styles now have real-export thumbnails and named color swatches. Older
+embedded banks can be explicitly compared at the same pose and saved as an
+updated copy, preserving the original session and its settings. Content revision
+3 adds a three-pixel top/side hair occlusion envelope to cover original scalp
+raster remnants; all atlas PNG bytes, face ownership, lower head edges and source
+timing remain unchanged. Old banks retain their exact previous occlusion behavior.
+Two reviewed foreground additions also prevent female celebration poses 78/79
+from drawing hair over the original thumb and wrist. Original hand pixels and
+all existing masks are retained; no source artwork is repainted.
+[Current checks, workflow evidence and remaining visual issues](kling-appearance/stability-review/README.md).
+
+Current review batch: **Kling hair and gentle face customization**, branch
+`feat/kling-head-customization`, based on merged main `1dc3e56`.
+The existing wardrobe now offers two short hairstyles on both approved Kling
+characters, three hair colors and a source-derived gentle face preset. Original
+blinks, half-blinks and laughter are retained. Separate head registrations cover
+all 184 motion poses; active appearances add transparent headroom and translate
+the ground anchor without scaling source pixels. Editable wardrobe V2 embeds
+the head assets; V1 and independent CharacterPack V2/V3 remain supported.
+[Current appearance review, verification and limits](kling-appearance/README.md).
+
+Follow-up correction: appearance content revision 2 locally follows the source
+ear during crouching while retaining the stable crown/fringe, and removes donor
+skin trapped along hair cutout edges. The original ear/face/body and action
+timing stay intact. Existing saved V2 projects retain their embedded older bank;
+new catalog sessions use the corrected bank. [Matched ear-edge comparisons and
+current exports](kling-appearance/ear-edge-review/README.md).
+
+Previous batch: **Kling wardrobe cold-start preparation**, branch
 `perf/kling-cold-start`, based on merged main `d0bf0ad`.
 Cold source ZIP parsing and lossless PNG preparation now run in cancellable
 workers, with bounded native zlib decoding, actual progress and full appearance

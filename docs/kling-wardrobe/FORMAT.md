@@ -1,5 +1,10 @@
 # Kling wardrobe V1: editable assets and independent playback
 
+The clothing contract below remains V1. Optional hair/face customization adds
+an editable **project V2** and a separate head bank; see
+[head appearance and compatibility](../kling-appearance/FORMAT.md). Existing
+clothing protections and V1 projects remain unchanged.
+
 This wardrobe uses the approved Kling source sprites. Clothing is prepared for
 each source pose **offline**; the browser replaces registered garment pixels in
 the original frames. It does not redraw the head, infer a skeleton during
@@ -18,7 +23,7 @@ source CharacterPack.
 | Editable wardrobe project ZIP | Continue dressing without network access | Exact original CharacterPack, registration JSON, embedded garment ZIPs, slot selection and preview action/direction |
 | Exported `.character.zip`     | Independent player / consumer            | Composited PNG pages plus ordinary CharacterPack V2/V3 metadata; no wardrobe runtime is required                    |
 
-Editable project and garment files have their own version `1`. They do not
+Clothing-only editable projects and garment files have their own version `1`. They do not
 redefine CharacterPack V2/V3. Baked exports retain
 `capabilities.editableAppearance=false`: clothing is already in their pixels.
 Keep the editable project when later changes are needed.

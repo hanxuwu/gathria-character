@@ -1,0 +1,156 @@
+{
+  "format": "gathria-kling-appearance-browser-evidence",
+  "version": 1,
+  "quick": true,
+  "production": false,
+  "startedAt": "2026-10-22T18:45:34.054Z",
+  "commitAtCapture": "1dc3e56fbd0563eb84f3ed7a79cf8d4ab6860617",
+  "scope": "Real catalog assets selected and downloaded through the existing wardrobe controls. Original pixels, facial source expressions and action timing are separately checked. Functional success is not user visual approval.",
+  "inputHashes": {
+    "docs/kling-wardrobe/catalog.json": "8eced94407689a25571f3db22ff7f964075f502ca1235aa085ff0f489985b851",
+    "docs/kling-motion/exports/female.character.zip": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+    "docs/kling-appearance/banks/female.zip": "2cb788fcbe9bd623b57ccb3cb7385199a7bd04213af2c726e12c738d219e84fa",
+    "docs/kling-wardrobe/registration/female.json": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953"
+  },
+  "downloads": [
+    {
+      "file": "docs/kling-appearance/review/evidence/quick-final-female/png/female-soft-crop-51-right.png",
+      "sha256": "6532c3c308dba85c6bafaf81eb825fca14c289e9fd2df16f718282b490a2953b",
+      "bytes": 399141,
+      "kind": "png",
+      "character": "female",
+      "label": "soft-crop",
+      "action": "run",
+      "position": 0,
+      "frameId": 51,
+      "facing": "right",
+      "decoded": [
+        {
+          "name": "female-soft-crop-51-right.png",
+          "bytes": 399141,
+          "dimensions": [
+            768,
+            1184
+          ],
+          "alphaExtrema": [
+            0,
+            255
+          ],
+          "decoded": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-appearance/review/evidence/quick-final-female/png/female-soft-crop-89-right.png",
+      "sha256": "34779a3832f8ac83968feab22db5b56fbdea0881b4db671edae140f2f98b5ad5",
+      "bytes": 321339,
+      "kind": "png",
+      "character": "female",
+      "label": "soft-crop",
+      "action": "jump",
+      "position": 6,
+      "frameId": 89,
+      "facing": "right",
+      "decoded": [
+        {
+          "name": "female-soft-crop-89-right.png",
+          "bytes": 321339,
+          "dimensions": [
+            768,
+            1184
+          ],
+          "alphaExtrema": [
+            0,
+            255
+          ],
+          "decoded": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-appearance/review/evidence/quick-final-female/png/female-soft-bob-51-right.png",
+      "sha256": "4220099dafdafc6cc60b21af7a60f33aa5fae731dbcaff70894d09c000a9a47f",
+      "bytes": 414848,
+      "kind": "png",
+      "character": "female",
+      "label": "soft-bob",
+      "action": "run",
+      "position": 0,
+      "frameId": 51,
+      "facing": "right",
+      "decoded": [
+        {
+          "name": "female-soft-bob-51-right.png",
+          "bytes": 414848,
+          "dimensions": [
+            768,
+            1184
+          ],
+          "alphaExtrema": [
+            0,
+            255
+          ],
+          "decoded": true
+        }
+      ]
+    },
+    {
+      "file": "docs/kling-appearance/review/evidence/quick-final-female/png/female-soft-bob-89-right.png",
+      "sha256": "2b0e68f007c60b94cf6fc58f3232c138204573c3035eba97e089219d3157e705",
+      "bytes": 327496,
+      "kind": "png",
+      "character": "female",
+      "label": "soft-bob",
+      "action": "jump",
+      "position": 6,
+      "frameId": 89,
+      "facing": "right",
+      "decoded": [
+        {
+          "name": "female-soft-bob-89-right.png",
+          "bytes": 327496,
+          "dimensions": [
+            768,
+            1184
+          ],
+          "alphaExtrema": [
+            0,
+            255
+          ],
+          "decoded": true
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/kling-appearance/review/evidence/quick-final-female/female-quick-workbench.png",
+      "bytes": 302797,
+      "sha256": "15945c36ea7e5662f12d86a9e6946e45fbe1e02bfb47a1813298367f65dea876"
+    }
+  ],
+  "selections": [],
+  "projects": [],
+  "packs": [],
+  "playback": [],
+  "errors": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:5177/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "failedRequests": [],
+  "externalRequests": [],
+  "forbiddenIndependentRequests": [],
+  "workbenchClosedAt": "2026-10-22T18:46:20.531Z",
+  "passed": true,
+  "finishedAt": "2026-10-22T18:46:20.632Z",
+  "observationLimits": "MutationObserver observes actual published bitmap metadata, not every engine tick. Missing positions and scheduling gaps are reported; visual loop quality requires review of decoded exported frames."
+}

@@ -9,7 +9,13 @@ export type DecodedGarmentPage = {
 };
 type CachedPage = { image: DecodedGarmentPage; strict: boolean };
 const pages = new Map<string, CachedPage>();
-const MAX_BYTES = 192 * 1024 * 1024;
+// The current largest shipped frame (tucked bun + Gentle + dress + shoes)
+// needs 222.3 MiB across its RGBA/ownership pages. A 192 MiB LRU repeatedly
+// evicts a page needed by that same frame, making preflight and playback decode
+// every frame again. Keep a bounded working set with modest headroom; archive,
+// project and decoded-artwork validation limits remain unchanged.
+export const GARMENT_CACHE_MAX_BYTES = 256 * 1024 * 1024;
+export const GARMENT_CACHE_MAX_PAGES = 8;
 function imageBytes(image: DecodedGarmentPage): number {
   return (
     image.patch.pixels.byteLength +
@@ -28,7 +34,10 @@ function remember(key: string, entry: CachedPage): void {
     (sum, { image }) => sum + imageBytes(image),
     0,
   );
-  while (pages.size > 8 || bytes > MAX_BYTES) {
+  while (
+    pages.size > GARMENT_CACHE_MAX_PAGES ||
+    bytes > GARMENT_CACHE_MAX_BYTES
+  ) {
     const oldest = pages.keys().next().value!;
     const old = pages.get(oldest)!.image;
     pages.delete(oldest);

@@ -1,0 +1,4959 @@
+{
+  "playbackObserverSummary": {
+    "initialCombinations": 40,
+    "initialUnobservedPositions": 3,
+    "targetedRechecks": [
+      {
+        "file": "docs/kling-appearance/ear-edge-review/evidence/recheck-male/evidence-index.json",
+        "sha256": "76b119ca21c3050e606c441be23444f23a47424833aa67a197b5bea30a57e5d8",
+        "warmupSequences": 1,
+        "targetedSequences": 1
+      },
+      {
+        "file": "docs/kling-appearance/ear-edge-review/evidence/recheck-female/evidence-index.json",
+        "sha256": "5ced4f6c826ddbaca020d3097620ccd2eb8e5858577c84a55d81247075ee63a2",
+        "warmupSequences": 2,
+        "targetedSequences": 2
+      }
+    ],
+    "remainingUnobservedCombinations": [],
+    "scope": "Initial scheduling misses remain in original captures; only the affected combinations were observed again after an explicitly recorded warmup. This is not a guarantee of perfect realtime playback."
+  },
+  "inputEvidence": [
+    "docs/kling-appearance/ear-edge-review/evidence/final-male/evidence-index.json",
+    "docs/kling-appearance/ear-edge-review/evidence/final-female/evidence-index.json"
+  ],
+  "unchangedFacesAndGuides": [
+    {
+      "character": "male",
+      "oldBankSha256": "3dc7c537beea678be7cf5e707713b755fbb0694aa441cb0579105c962aad6bef",
+      "newBankSha256": "2da8187aca98d6245cc7fad1ac0b93b3a0bad52e175a35fc22f6c7c51e72a794",
+      "poseFieldsExact": [
+        "frameId",
+        "sourceFrame",
+        "anchors",
+        "facePolygon",
+        "foreground",
+        "headBounds"
+      ],
+      "gentleFaceLayersExact": true,
+      "frames": [
+        {
+          "frameId": 0,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "7cdf32fef4286490dc14fa88708c4368fd04dfcba96aeda91843ef55ddea9f21",
+          "maskSha256": "9dd27e3f3d2aa14299619ec3f20e0bf1ea285d7d647e824f90aa6e4231907654"
+        },
+        {
+          "frameId": 6,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "ddc3c310afdccfc1522e708f2e38e9e8d85dcb3f544d8b684d76fddc5a3307e9",
+          "maskSha256": "a0467d40918da6325a09fdf2fd59a693c1ad167c4071a481db29e731ddaafccc"
+        },
+        {
+          "frameId": 12,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "8c8e268728999df0c6dbab6fecbb01701f4623b521d147bae92d2454c3e8485a",
+          "maskSha256": "cf67767b66d2161faabddd695d474b0e41edb2197686dc11b388584952fc8018"
+        },
+        {
+          "frameId": 18,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "7ad30b9430666ad178e9904344873f1ce6219730c4c045fd26c12e58cd877dba",
+          "maskSha256": "0fb562a6f945a34d6c3e97d623806a4cef8b368af7b95bedbbe773a076a8ebe6"
+        },
+        {
+          "frameId": 24,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "d4480d5052a19496628fea9f323e6368d49584e0967178c03debc84b28ca795c",
+          "maskSha256": "948056099943789ac7be1041a856174af7e64a1c1edaac70f92f3828d3f882f2"
+        },
+        {
+          "frameId": 26,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "ecdce5bf459ca4336205f93f0d33a896035a079dd974350236d80e92eb629373",
+          "maskSha256": "20d92403bb5147a636a7c5ed36d23b87945f1f253c689aa41a37c26eab40c53e"
+        },
+        {
+          "frameId": 28,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "37c2f6ccc18018a0e1dfe2cb5f2f48eff51826c404ab80f20e89eb05c1ec8121",
+          "maskSha256": "fee22f179f55f6eb9378a4151e72145fa811f239a73d84f793808fbc21c962b7"
+        },
+        {
+          "frameId": 30,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "80a3cc7f0a8f19ae824c87e7bbdb8c9109004c089cd7ceb94f89c01a55edc1cd",
+          "maskSha256": "d139bc9cb68f8e59cc81a65c03b3ad459733d629a2e9e0d25b2d8a679a83a997"
+        },
+        {
+          "frameId": 32,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "55b464c8e3270cbd2acfa78f1b3641c9f936bb08c664f02cb3a1063fbb0359db",
+          "maskSha256": "9512c589fb6b53276b7ad0fb73e2538264e953c67703d572e95f22895867cfb6"
+        },
+        {
+          "frameId": 34,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "f04046beb17121e493e54b0a9b4c6b9eebf795556b8196a73df83a5611525f3f",
+          "maskSha256": "12a4dc7f26b6a0eda12ff68ab54ad7f27caf19e100b0355b0ad2fe30d4bd84e6"
+        },
+        {
+          "frameId": 36,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "c09b84cf063fd258a79b38123a12a0e9cbf68d5578d4356e871645c7fa9697b4",
+          "maskSha256": "00bda818f2e0ae5962c415374fa859cc2d682eb45baca09cd6ac158c3eff6eb6"
+        },
+        {
+          "frameId": 37,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "b5edd6399f7f738cae6ebbf4548627dbd8a1aa5bfbbf267bfaecfb4c9ce74317",
+          "maskSha256": "8ad7ad5672a82eeac3911b24ec326a3cc39280ec6dd4fb2bede9ea07ca4fa203"
+        },
+        {
+          "frameId": 39,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "9f3af3c43ede28fd2352246dc83c0a9bc00d81a890f54f2c312a3da7f0772b32",
+          "maskSha256": "733f939bce21b23d39f72ba58709c96d2317ad7352e68bb7e64f8a6d3ce531b6"
+        },
+        {
+          "frameId": 40,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "704a4ee671c1824b064557c4d4daa40564308e2930250f4c890113c947cb2806",
+          "maskSha256": "9415e3584916c2046c4ada2456114b72b0b93d3d4efd054b1cb331705b22a729"
+        },
+        {
+          "frameId": 42,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "44e7e4bc785ae3a9e27066793d0c51d00c1dbfd7c7458bd87e839edbccb4f252",
+          "maskSha256": "33e4036df282333fa67c4126a4828785c124a8e6990706efeed0ac84ff412e41"
+        },
+        {
+          "frameId": 43,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "27278319cc0d4ce9a9bfba4a53ff8ca187ad9c2ff98e6c5ad97fddd563c7cceb",
+          "maskSha256": "42cd3ce6219313e4b7baa210796672ee9b05eb9445de9e094098eca9269e52ad"
+        },
+        {
+          "frameId": 45,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "24d3d2b5582098ec43cfbc775b3c8bc070924a3709853a07629d3111e80561da",
+          "maskSha256": "c0ffbc489f4a7d53bfe01b90881adbf5c809bef900117adeec3ad1abb8cc1815"
+        },
+        {
+          "frameId": 46,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "28b6336f9929a1d0a4d5017461f4da814d8f649991092c1e21d28151e68d835a",
+          "maskSha256": "e9240abefd9e7932db980297d5e4231f27409095b966365dd14ac17fa22f4a6c"
+        },
+        {
+          "frameId": 48,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "799afeee387cb2ec95675ca57d4f9867afc4fa04d0684ca1bd3edc4bbfbe6b13",
+          "maskSha256": "b23c46dcf5312c966942ba963d11dbeb8f5003edc19c7ff7a240864903597492"
+        },
+        {
+          "frameId": 50,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "d682ae6bd4ddd4a639f9940d873df1e491f843fa0e307abe7381b9dba0202a14",
+          "maskSha256": "3ed7c1885bb611560771e8a2f36ba862886cfe0c71a700c8388114b29a2a09ad"
+        },
+        {
+          "frameId": 51,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "96131e56099512c3412b0321b7399a44045724ec9a90002ac7fe559b76a47bc3",
+          "maskSha256": "6c7000c63ccd30e704c15917bb056f0c3b89414935430613695902bb47bef5d1"
+        },
+        {
+          "frameId": 52,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "f5e47aa129d944565fc65c6cc6f98db6941565660cf8e7ebf629bb87fd58061c",
+          "maskSha256": "040b7461aee403841e86ceedb4b6b295197b89f3e2e5fe6a976d14baeba70139"
+        },
+        {
+          "frameId": 53,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "a626bbd30fd75a7407150620467f3114fb3ceb66984b3852981c5f41377c5bcc",
+          "maskSha256": "5ac347ec88afa1316c879deb5969ae159c1704c73d0eb7a8af8e6b8b2448f923"
+        },
+        {
+          "frameId": 54,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1a9cec20500cf10807e2cf20d38c01edac63508c7ea7b6e119210c5dc2b6ede6",
+          "maskSha256": "191071d694ec8291753d04acdcc2e3e1604f7a3027d21eb2d88f5cb567558188"
+        },
+        {
+          "frameId": 55,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "03549b493e69de203515fe61cf58da9985ca9f80b107deacad15cc74a2d24e9f",
+          "maskSha256": "d7cc6f1a5245662bb1a1fad7fed809c93a2c683daa48e63c47c4b9db93ee37d9"
+        },
+        {
+          "frameId": 56,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "d94a88131b6a27eacacedc415b9c3d59169310941e3a542c81c1e77579b0119d",
+          "maskSha256": "d9d4c8a62465a5d46b18e280fc3c017b794e95cbd6cd37247c2e14a4de0b2f33"
+        },
+        {
+          "frameId": 57,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1af64a789b90f11522daade435c0963b5ca7d23e0fcddd77ab8ab551721d9d42",
+          "maskSha256": "2f868308c8af1926a2df2a5719dc354fbc92f02677e0758afe2e3e017e71b79f"
+        },
+        {
+          "frameId": 58,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "f5e04851d88bd0be2292bf70ab3ce7a3f9d5a97ab2bffdcf84ac53b4c982f510",
+          "maskSha256": "1858bc0065fe82ed2468a9af5c85b05bb630626e0d8fc28406f1327e18245347"
+        },
+        {
+          "frameId": 59,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "e5c63f9a416573958c8bc30aac75b88c8d06432ba5ae4c1f25a6aa158a034d29",
+          "maskSha256": "b8a0c9c490f20df30d0a1a9bc076d89f15e3e65138e7256ca3fbd4275e3780cb"
+        },
+        {
+          "frameId": 60,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "79216e7826af96a8f7bf35e42b272b668e39596e6285cb1a6c855d2ee88ec611",
+          "maskSha256": "e72dd7cfc1c1eb1a5f25b811ed9020fd96b4a718af0e5314728d97255d22c26f"
+        },
+        {
+          "frameId": 61,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "ba7633f0506278cad7bfa92178f526afde3b836ab9eef7f3a9842dd9a88f4931",
+          "maskSha256": "2fc1f9489a461922cc837876a6fbd97bb5b6afa664fd2eeda26b10ac0ccbdd49"
+        },
+        {
+          "frameId": 62,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "64b76b08eb558b88a1e3475961c6ea3e478393ed277d260712f9d05ba96e71e3",
+          "maskSha256": "ece8c89a65a6c1a8258d6de0543a6d469419bfc5b9a016d4acec49f09c396789"
+        },
+        {
+          "frameId": 63,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "435ae8689513317a14795362a7127d8ca9be45d5826eba28c349c5f449508701",
+          "maskSha256": "8dc9843c52e3587ada16f6374281a7ed01c1ac50c34aa22819fbe39cfad6a9bf"
+        },
+        {
+          "frameId": 64,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "bbbe79435f484c3af948e6f6f36f783476f7c0390158d77e3dfe01bea85d52cb",
+          "maskSha256": "328f56787d7b69c6f9c008057940ce2aa9ce779d4faa0d9aaa8634737031aaa2"
+        },
+        {
+          "frameId": 65,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "b2b650aea38146ed4fd5ec23ee49214ecb58335877be019468c7624250be2193",
+          "maskSha256": "b3495bc76fee8f439d03fef4b93f39ec91e3f094823d2f1389054f03dc9f125e"
+        },
+        {
+          "frameId": 66,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "38e2dc05219ef91e30614eec2872f775f45146660c65ff332e7db2f4834942fb",
+          "maskSha256": "d091a4405ab61f3f3a0c37a017364ec2a917b91ada8b05436637dcdef52b1afc"
+        },
+        {
+          "frameId": 67,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 70,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 71,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 72,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 73,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 74,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 75,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 77,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 78,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 79,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 80,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 81,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 82,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 83,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 84,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 85,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 86,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 87,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 88,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 89,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 90,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 91,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 92,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "48151fad4c55bd310db0f6294b5814df8a4225a41a18936afd64c347b4e72315",
+          "maskSha256": "9f5b59a0eeae078c71493bbb5bc6b7112aa42911ae642e6465f80422173cac9d"
+        },
+        {
+          "frameId": 93,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "b24a18f383529fa7b82dc2f4020c292eafd69d4982e9b96dd76198903c9bd3cb",
+          "maskSha256": "5a704d1b6fe752b445e9bc6b895c4951fdd5d7ead38d746c67bdae307e655605"
+        },
+        {
+          "frameId": 94,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "faf5b53c55c9c4e0796594ad59ba4c43f8cf2dd3e102621b48d2ca6f88383012",
+          "maskSha256": "5a2a3aa956ee5cce2cdab28583008a22e3f1ccff9c5721a00bfca142948c71e4"
+        },
+        {
+          "frameId": 95,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "f4651ad9891418e8928f018b84a7c4e44524fdc35178a52991521d1830f6b7c8",
+          "maskSha256": "0d80d0ebbd96391a533ff1a39ceb7f8c7adb0847f2ecbe4f5ba6d4eb3e9acfca"
+        },
+        {
+          "frameId": 96,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "29c9333541ba916c4f74c9ef25c1fedd798a06cbd628ce83375dda3a16e5ad77",
+          "maskSha256": "3f6eadff942165c3d6377c6ea883c5a47412f3cb0f004d0c07f993ed872ccbb2"
+        },
+        {
+          "frameId": 97,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "0f516715e6192ad927694830049d1628ae13d83fb6ab9418274384fe35581d4f",
+          "maskSha256": "cd2e679ced0231e5dd8303b84f5563f06a79cd1fc7797d096c934c078ff70606"
+        },
+        {
+          "frameId": 98,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "bc1e9ea7a6a995aa73eb8b1c71856cf6336533d3d881dd89e73724ee2e55c607",
+          "maskSha256": "4a3fab523a822e28bdcb9e2611c4c5e673af3d8270921130c8fc7554e61e9a51"
+        },
+        {
+          "frameId": 99,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "87bb85dc235de2e0e536ca89a0023aeb6b67fb2ecb4712a452024ca53ea4161b",
+          "maskSha256": "57cd688ab0e807e94df35e87470fd8858d8c0e95b90c9e1a22a30e552e2d7bc3"
+        },
+        {
+          "frameId": 100,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "5bab93ca4fda71e8f1ba67c3d4781dd482ff5fa757d046e65f9c591d25ae715c",
+          "maskSha256": "6ff5b013dc810b4765b8f6f2dc796259483a0d88246f11342739e3a8ee229b88"
+        },
+        {
+          "frameId": 101,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 102,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 103,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 104,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 105,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 106,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 107,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 108,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 109,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 110,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 111,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 112,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "14cbec497a89f4c176f37372b9dca39dcb0d507b2f37c90b79fe74d2f98027b2",
+          "maskSha256": "cdb2417fdb2321711cc79475d3e63281a29f9afcfeafae0b3fd6fca5d00d4463"
+        },
+        {
+          "frameId": 113,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "926cd3b2956c78c1063949481b8c778461b25f6fa2ce6003f45cbcc4d796f752",
+          "maskSha256": "9533c4dc32fab3a601a81f3c8bb435fa1102f58002c38cd92108b9dfa6a6e823"
+        },
+        {
+          "frameId": 114,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "083677ded50d4d20c1d5d4102aad63d3c23f5c74d1a0bd2f5fed5558f2cc3ec8",
+          "maskSha256": "0fad264ee1818a69bf23633315a5168456e3ddd277f0647a3eaa21e177ee2cda"
+        },
+        {
+          "frameId": 115,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "52b5102aa0c50ee7bf0f209f153bd535b6b4af67b3fda8b43bd8843de394c4d4",
+          "maskSha256": "f12af3a3c6b003abdb87b08707428c65bbaea0fa772a711728f9e1355c4b0271"
+        },
+        {
+          "frameId": 116,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "bc3a17f7aca6d2d9534d85777159ca7b5be5f3bc9a5109bef4741c8fb9fe9ae3",
+          "maskSha256": "7af9d343633efdccde6f9668b00242ffe0c732d896831c50cc63b570146fc210"
+        },
+        {
+          "frameId": 117,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "09525a0664f3320bcd80cdcb0ff80c909ba4c936b2fd32758ebf7cfb9c248a1f",
+          "maskSha256": "e7693fd9f57603f8c80b23fd95530b59c3a8984471b580df3aa2c04273ee60a5"
+        },
+        {
+          "frameId": 118,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "e64395346b18d3bb1aaf3a2dfd10f0df71f5eaf36f17dbac8e23c1726007466b",
+          "maskSha256": "b2e357c00573b14c38c051ad3c674e258551b3e9c3c1ea121bd493239e52ff91"
+        },
+        {
+          "frameId": 119,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "48b54dd2a09a9dc0142d3177f17ac40e225841076bb7b25b4b53f6251023bfcd",
+          "maskSha256": "a9a64c4b9cb5657fbaa8a2561c1c3d5024763b74bc8a814db6239c62ce01d8ad"
+        },
+        {
+          "frameId": 120,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1ee757bcefe430220d0f25beb2ca3cceb238e2576c027a31ed72fe1d4d8f5961",
+          "maskSha256": "6648394f395317407243506061bd140b2520d45de884ea0eed6b96323692ad78"
+        },
+        {
+          "frameId": 121,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "7dd6b49ddc006d1b60a55a151f79929e3e114e9118d8c7920f93f3cb31c20148",
+          "maskSha256": "bdb814b065c664f766e7abcc921ed48218574452ba21c3d7cdc490df00ed6023"
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "oldBankSha256": "2cb788fcbe9bd623b57ccb3cb7385199a7bd04213af2c726e12c738d219e84fa",
+      "newBankSha256": "257098ca3777d56fbbb1bd261eba65c0374d52b6917aaea333e808df447de3e6",
+      "poseFieldsExact": [
+        "frameId",
+        "sourceFrame",
+        "anchors",
+        "facePolygon",
+        "foreground",
+        "headBounds"
+      ],
+      "gentleFaceLayersExact": true,
+      "frames": [
+        {
+          "frameId": 0,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "65fa8f0aa9016801f876671a1c8e82d56c317a8bf2cd259d5aa8a7c60f8de668",
+          "maskSha256": "28338d9dd7af81f2282cc27f4c055ed112a4d025cd39106f1ef94a5e7a4e8cb8"
+        },
+        {
+          "frameId": 6,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "8c1f9b2a40d242657423e718b8294bf9342597dc08483f6f8c459afbdbac344f",
+          "maskSha256": "67ab8c8072328d0188bd95391f102c3f780c8467e14e6b187aa780b1fb68e32b"
+        },
+        {
+          "frameId": 12,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1bdf11f2f187601afb38b559d1eedb66892e95062b0d1fb3f6658e2508542217",
+          "maskSha256": "c7eb83313d370a02d3119f6dd26fb7a9e72cc1d5c427c4a8b436100b09c718bd"
+        },
+        {
+          "frameId": 18,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "cf7c9fd31060cd9ac21c4e43146a8413bb3628e621ff246346a7182c5a8116d1",
+          "maskSha256": "0d0acf7280243bab6c9a27246245c62be27d11b2b93df6e59c266ebd1025ee71"
+        },
+        {
+          "frameId": 24,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "2cafce5dcc6ef34d8372a853f2aad92749dd5b7d6ee3d700aa0cb539fe0aa9de",
+          "maskSha256": "a5a2d7b7e7e21a094679f9cd61c38067dd577f337324d20e0cab46247557ceac"
+        },
+        {
+          "frameId": 25,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "fe2c1934ec3f5ff7f15698201d5f2213554b42fd5dcca69706ee953ba5148a04",
+          "maskSha256": "be5b3d33c5942c12d71218451bd61f797455d80e9dadd078cbb7647eccb2f439"
+        },
+        {
+          "frameId": 26,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "3cac086cdc1f6fbd6b58049e4f61993a6cc7045aad38f510794846f1bcbc17fd",
+          "maskSha256": "0ac7f33b49b067dfbb041261cf4fe27fc07bec874ebc80bc728aa3e2460a85f6"
+        },
+        {
+          "frameId": 27,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "a3af05dd66817597821131dd61c23fd6124ab0dee9ee005ba56b0a9bd962e6cb",
+          "maskSha256": "ea8cbe5c2a4584ac9e5b23dcc673cb82163e1e1aa9af4c11569775901cbdc067"
+        },
+        {
+          "frameId": 28,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "145af43613939d98257f37dd0c68cf4e289c317e5abb3eb473db2c7d8e8062b4",
+          "maskSha256": "140f683c3ebd4f5a5bba71cd6ce2f8276a3cea242ce5dd1678f627ad19c77f61"
+        },
+        {
+          "frameId": 30,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "6e3b4e4848439bec1bc3cf37f8a533602ff50baec5656cb5844e99c5cb1b7743",
+          "maskSha256": "c3103db0528a5b211e4c8031952eff3077215cd167628c2d5251ae3a4ceb1724"
+        },
+        {
+          "frameId": 31,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "c1bf2aff16b27b19f8c90171d7a8e3d9ecbaef6cba66d7db652c5529199e80cc",
+          "maskSha256": "46b2a5c98cbb50b75e7d253bd40b1686fa325ae466452d1bcd6c8bcec249c96a"
+        },
+        {
+          "frameId": 32,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "cb71f545a49a1c9e2bbab8dde9a578aa4a48a03681eb4fe7239f2968b4858cdf",
+          "maskSha256": "a3ef3c4e62d9be75a07b9309e5e6907f00223828c61565ec9c063c7ce3f8a613"
+        },
+        {
+          "frameId": 33,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "e2fdc0062cd49af9c24d7fe3c6989752a630ef820338480d869c36493ebae312",
+          "maskSha256": "9cfefa06e7f09d9d97d1c80e735bc6ec9cdd931f2d3041178437369e41cab1c6"
+        },
+        {
+          "frameId": 34,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "39c83a4c485d8ddc51b285662329dee779175baf7c9a5a9e0c6cc8eee3eb1364",
+          "maskSha256": "d611ff6dd9e7ce4ea9cc90b586b13dd74b93890769335649591add6cb593cfe8"
+        },
+        {
+          "frameId": 35,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "731bc04a85660fa1622537a7f101dbfa13d344e8e53227ae9441a36a31448a51",
+          "maskSha256": "499fa0f442e6d7774832a659e732851f7b7f26698652a885daa63ebcd17ad91c"
+        },
+        {
+          "frameId": 36,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "bc28cb0201fb9455cd088a261e807a16ffb0fc322551fa06b08e7ca552302795",
+          "maskSha256": "062be132e1f852b5ceaa3e8fc703d219c954763df932bbcaa70fe2ed73652ea4"
+        },
+        {
+          "frameId": 37,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1b7e23951ca332c97530813b04bba60af910be25e6140a598848cefab3da06e0",
+          "maskSha256": "6bf1fbf270fa5d340870f66e61de72ff32f66dea16ceff67cc9e003b751f28a2"
+        },
+        {
+          "frameId": 38,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1453063cfd4a9e10721af054d0b5306c9c88aeaa1e609d77c3553bdbbcb3b87c",
+          "maskSha256": "1c9a44815ab8fa0f945e70cc80fc70ad695c76c605484c654399be9dc57c1a87"
+        },
+        {
+          "frameId": 39,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "7dba221d8bf4b70e497f540b9879de52a9e4118bd87638dedab51d28309b59a5",
+          "maskSha256": "3fa426f1b90e5aa2757afb8e7dc8fe4f7da8edea5e62b0d5cce78ffc789aa0da"
+        },
+        {
+          "frameId": 40,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "b34a21b687eee947c6c0b6032ad59e0fccf8a7853b07fd13db966418e6e334ce",
+          "maskSha256": "68c01f1f0a93ab6b0fa5661168e0a99633616f6f38e8b11f178843d5b6683bd9"
+        },
+        {
+          "frameId": 41,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "6156d8564a15ea7a87044e7721a19c61148d55d2cc32309be9889c7f8145f804",
+          "maskSha256": "91e83ab9c02d62bb9c4f30dbb202088e2c8543a4ed74a4a43ac99a45907dfe43"
+        },
+        {
+          "frameId": 43,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "22f3999752ab571ecc39cf9a0389d11c71ab5d73044f01f5d46783067ef3e333",
+          "maskSha256": "1adfe44e282baecb817e0815a1ffcffc6ca143eb4ca55d28b8d8aebdddd1ef9a"
+        },
+        {
+          "frameId": 44,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "b2dcd455f1b43d502fb602a3c95da6eae37a3684860dfdad83855a410980309c",
+          "maskSha256": "09752178394d96568e44f4a0d83937114bd0e02f25cbac41088748298d0015fd"
+        },
+        {
+          "frameId": 45,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "0fe335c3e22b3dcacaf6538fd30b3a0c4e1392137903508c2b6c4706f8e668f5",
+          "maskSha256": "17a6837060aedb2b2a0e902c0d5506825778c8941726028edb4aa86e47d629d3"
+        },
+        {
+          "frameId": 46,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "9dfba2612c870b1039631d0037d57d3c6e4467fc6b9fbbfb68d4ea83cb3f1fe2",
+          "maskSha256": "2dba729070ae25a012f3a11430aa238f7eca5bbf7804fbfaf37f1929a969916e"
+        },
+        {
+          "frameId": 47,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "a14ff342bd87866f5ad1188411213612294a8c36f3100d7d9b3baa7d5de1acb3",
+          "maskSha256": "0b2d4aab138d8d0786c0af1a800605b5cec950a144572e095dc6c5cb63622c34"
+        },
+        {
+          "frameId": 48,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "60126b4257b0138256e93910af479186ef1d63fd3e298290300979497d34bcf8",
+          "maskSha256": "b629b362f861109df2dc91cef20049fbc79b71fbf5499e04a10c388583ab90e4"
+        },
+        {
+          "frameId": 49,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "359ddae73e2bab306a0a474ad07d80eec9fd50e13f6e97e539161cd377d66d93",
+          "maskSha256": "75130b2895832fce65de71f2f23efbe6d3e4222f72a2fb5b9fb9d6bfbec56eba"
+        },
+        {
+          "frameId": 50,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "3fdb7ab4c635b6f2c91ebea3001d47aa9b06b82c92d03b2e4036fedb280d6f45",
+          "maskSha256": "a036049f08fc1f5a5b23dd1c53bafffec56ae7c546b81bd3141b465432ff4817"
+        },
+        {
+          "frameId": 51,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "ca33d2ac1d08815d991e14177144f9493e80fc931f18bd8da0bfac8e6fd94050",
+          "maskSha256": "db1ccf28a20b1bee3a114023b3e5d28d4c45189636d9d344dad68fe643d3ad8d"
+        },
+        {
+          "frameId": 52,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "d1f01d85e0a598e54386a7eff166667bee10da771f13f0b9df15c67991002729",
+          "maskSha256": "c788ee146d74108ba43a0e278c4ade2d5e0325f970ba085a0974d8a91c72740f"
+        },
+        {
+          "frameId": 53,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "2997a294782133e634b56923b6604e2c1d29d3740c86971e75430f6744248702",
+          "maskSha256": "82dea22b08f977160510710addcac2bdf83b29a4d27347f4223320b57af4a5ec"
+        },
+        {
+          "frameId": 54,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "bb64dd22b1316bba6bf63079dc68a4dd0ef086a791689ae7979498e2981b4175",
+          "maskSha256": "23b5dd2e4b5ffb546832971a9ffb9e723e9057ba6b620a2300e08c1c65986941"
+        },
+        {
+          "frameId": 55,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "d7a10dc10380972bebcd97d2c8d44f1c704edb77d9a99815b87aafa9a86a4153",
+          "maskSha256": "4dca19f8afbfba7f650eb5e29b0211923bc09f5b123e7d21e68b58876ecc8c07"
+        },
+        {
+          "frameId": 56,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "42ad34e9b7080bdb47169cade7a9445e85605592cb73689994fdcd451e3065bc",
+          "maskSha256": "6dde37d76e9f26de887098c99a2167b7c8519ebeec67df9dbf73aceb64e04699"
+        },
+        {
+          "frameId": 57,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "ed5f3063ca827122efc223160090c703e235d5d3d1842c236be84dbd54e2d7ad",
+          "maskSha256": "c941dec6ff279775eaffbc423e2baa26b2d59dd5f754703ca5c29d3b8f97446e"
+        },
+        {
+          "frameId": 58,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "237aa88bbde7f8d3bc2240d110514da8aefe82ebfbae9c22894931d5a75a8137",
+          "maskSha256": "1f5b1b25c24f597fc2bc1cae0d16af9ba8ddeaf69f06c1c4ef408b1c5ccbc1d8"
+        },
+        {
+          "frameId": 59,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "4c3e53813f88131f6ba351682c1481c4fee55ea74f70600e2a6d2bb9c058a9b5",
+          "maskSha256": "3163e47421b404824898b3006c13021f686436784b76ede3667386128cd7768b"
+        },
+        {
+          "frameId": 60,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "ba1efaa1dafa887788c42b03ef8e550d631372c439f9bafc2d712386c577f90f",
+          "maskSha256": "0183e9d5e7d9ecfe6d085d5a484fceeb2d49ca853d3164e97a129cc8e30e51b9"
+        },
+        {
+          "frameId": 61,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "8d5c6605d54523314faf790a80eb66b198df086343a83791175ad5800b94950e",
+          "maskSha256": "42c5eac1c7fb7ca30820e80d82411b17eb9c04914cd348f578d1da42bbca8090"
+        },
+        {
+          "frameId": 62,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1d3611d20bb347ea712b2bd5be072eb5f5824021cd8e4374bb1224c1e6009da0",
+          "maskSha256": "b8c183a528119fe6d6d22e1f894ff651310d23556a423a203de83be1739b3799"
+        },
+        {
+          "frameId": 63,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "8b5090911590157e10c23df85f17dfeeff899ceae357186f2a8bf177a32e08c1",
+          "maskSha256": "641f9ee6b7285f779a40a7d8d64bebefebc48808ab3b148455819013b05b1c32"
+        },
+        {
+          "frameId": 64,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "a2400821c85aef28c45833d10f5bfa074238172e028aca6b1c3b9176a0a0b50b",
+          "maskSha256": "0cc63b13950fc50ae81b093a271ca9c34cd67c23f7ea72668068e330ee1f355a"
+        },
+        {
+          "frameId": 65,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "96991592263c12fad02bebc9a9dd1858e68051ee2c4fb1788c462f93a409dcac",
+          "maskSha256": "96cef08f13419de1e9237f4b996383c46821a1b8c140cd0f5dc0349dfb0fd99a"
+        },
+        {
+          "frameId": 66,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "4fd67529ce54e43f24b4117f812f762e36d57f22af680b5cdb2c9e635f4c9d11",
+          "maskSha256": "9e5d4376c0569a7cc23ae612585455ae6afa0c22b3cf99af91189c15c3246656"
+        },
+        {
+          "frameId": 67,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 70,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 71,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 72,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 73,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 74,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 75,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 78,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 79,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 80,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 81,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 82,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 83,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 84,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 85,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 86,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 87,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 88,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 89,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 90,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 91,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 92,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "496180282440471b1151183f8d160d91c4fbb57f0ead85b21df3a157943480f1",
+          "maskSha256": "16b2a7e02b00baa91077ddf71e2bd980edb17dbc69c28002d3c8659f4ae4ecf8"
+        },
+        {
+          "frameId": 93,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "aaeb4df8c70e6bfef699a6a75ec2625fab9cdde96617a1e4af736b5b60d46622",
+          "maskSha256": "148ab5feae1f629559e76570c755ad1a8b403afe98f7471ff91b535f5e32abb9"
+        },
+        {
+          "frameId": 94,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "445db2343ff115d9661f0ee9735c98b795e800f702bf1bf82b39f951f0a1b04b",
+          "maskSha256": "38c9b81978fa2dff2d652a03339b97eea4124c643100bc642cfcac922d27b989"
+        },
+        {
+          "frameId": 95,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "347b4f12c61eb1b8671270cbff6b19d0e91dcea6e90e87997f71e32ee9d78c33",
+          "maskSha256": "014266ad29dffe0a79f3aac01b673e26daeea3308596ecc42cdac73395da1587"
+        },
+        {
+          "frameId": 96,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "631d19f24de64f1dba7b62dad2e15a84bf3c47704920fdee416877cdb491766a",
+          "maskSha256": "a0590e7face73c41738be9779a8707bbe204dce8e0105567a004a13235f7d7a3"
+        },
+        {
+          "frameId": 97,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "f2ca0d5a84d4313e78e7b29d42b016da2cc5e9b66298ce3aad4e37e7fa2b7a4d",
+          "maskSha256": "898cd69ba37b9d0fdcfeffcf3de9b838d2626ce26fb85567f9e642006930312d"
+        },
+        {
+          "frameId": 98,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "f6f49e19f2bbd90955335ca53c9bf71688ced0bf16b0b6a265bf4952616ab982",
+          "maskSha256": "1c41f908f7a9326b47e445605b69a24729f3bd73958bd4187d0216fe0fc92cbc"
+        },
+        {
+          "frameId": 99,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "8e966c84e4c07d3592b8ecd2797b12c067a3f3b3217cf8643a5e9956972678a3",
+          "maskSha256": "b5051296e7ae73bc95670471bcecbe8f0bfbfab66092bcbf44f1be432ec1e924"
+        },
+        {
+          "frameId": 100,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "1e3fc59a2149520ce0e54daaf2437312f8d48d7063ed5fd4ffc3b238e79d1fb7",
+          "maskSha256": "a5de91a575e7799d8260094dc7afa02345503e1bdb1ed8e882c2927b5f41bf11"
+        },
+        {
+          "frameId": 101,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 102,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 103,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 104,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 105,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 106,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 107,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 108,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 109,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 110,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 111,
+          "mode": "source",
+          "exact": true
+        },
+        {
+          "frameId": 112,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "40a215162f4cee3c97b373fe71d5fdbf1484ebd4bc9d7d24244bd9dd3b0a5e1a",
+          "maskSha256": "e9e4ae39ceeb8f56886fa18092e70f18a81777fc1abbdb671a64167ce0c6c9dd"
+        },
+        {
+          "frameId": 113,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "d61795a9d29efed355da111693b2e697c44f6d21776913ac5f90b02ca0487167",
+          "maskSha256": "28d7b088578f81a5e13925c4c7eabaf4c142c01ebdc89d183fda076bf2161bfc"
+        },
+        {
+          "frameId": 114,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "a6006f9ab9fd56b718fe448073d5cb5c2617dd8dd9b8aac03300a0d4eb491e07",
+          "maskSha256": "a1d918bcaca08e7b0fd3a013f6659c2174144844769fc748e521056f05ebe0a4"
+        },
+        {
+          "frameId": 115,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "5eafaed80bb623212d794e21b5155427d7e55cf88f11f30c5fe0141834c11a73",
+          "maskSha256": "c78bdaf534ed09ce9943cc2b43da2aa8d167b90ee57fe08d26bc2a16bc1db756"
+        },
+        {
+          "frameId": 116,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "f7dd59721cbb4b3289a7e0fc7912fc30eea53345e8e51450e1a6eedcb335661e",
+          "maskSha256": "cc5d6d245d960107e4982d5c41506b9afb7c3af63ca7513cde2b060481165dd6"
+        },
+        {
+          "frameId": 117,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "9bd8235414c7014306af4b9af8ef103983a81f34f33f125fcb131578c1a5b07b",
+          "maskSha256": "4491f87ba8332b0c9a7e5972844ea6a17f30398846277346f0d2c0ff77bff4db"
+        },
+        {
+          "frameId": 118,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "ad093d82a8e9c5487f48840ab8c96f782fc73053ea36904380d93105fa1f510a",
+          "maskSha256": "5a2dc45396fc378076b745d60d67a5a6fd28b853eaaaf5923ad3cfe4d2ce7dfa"
+        },
+        {
+          "frameId": 119,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "7fde9b496256bb3be17112caef164facdab746cb87dafbcc9c426d8d2f48e656",
+          "maskSha256": "52fadbb8e8d183e426394e7bff6bde853b094676ffc2c3384cd37bedac7b50ba"
+        },
+        {
+          "frameId": 120,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "fe5f5e2ce5d2865fd6bb702b1241cef1f7be8ba8e431d769cb874b35b3b95e43",
+          "maskSha256": "82bd71664906466b59a2fa038cb1644149f412a2795e8e367ebdf80b40baa5af"
+        },
+        {
+          "frameId": 121,
+          "mode": "paint",
+          "exact": true,
+          "rgbaSha256": "06a851edd87956c410d1d97317e160743203f0e12cae787e068a3457b371c839",
+          "maskSha256": "d837f86c00ac4733c12b55ea7bcead25639ee4d457bd9da0af15fa9962902bfb"
+        }
+      ]
+    }
+  ],
+  "sourceInvariants": [
+    {
+      "pack": "docs/kling-appearance/ear-edge-review/evidence/final-male/exports/male-soft-crop.character.zip",
+      "baselineProject": "docs/kling-appearance/review/evidence/final-male/exports/male-day.wardrobe.zip",
+      "appearanceBank": "docs/kling-appearance/banks/male.zip",
+      "appearanceBankSha256": "2da8187aca98d6245cc7fad1ac0b93b3a0bad52e175a35fc22f6c7c51e72a794",
+      "selectedHair": "soft-crop",
+      "sourceRGBAExactOutsideSelectedOwnership": true,
+      "actionsAndTimingUnchanged": true,
+      "frames": [
+        {
+          "frameId": 0,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 743698
+        },
+        {
+          "frameId": 6,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 743258
+        },
+        {
+          "frameId": 12,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 743357
+        },
+        {
+          "frameId": 18,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 743298
+        },
+        {
+          "frameId": 24,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753876
+        },
+        {
+          "frameId": 26,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749294
+        },
+        {
+          "frameId": 28,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748155
+        },
+        {
+          "frameId": 30,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748503
+        },
+        {
+          "frameId": 32,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750527
+        },
+        {
+          "frameId": 34,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750844
+        },
+        {
+          "frameId": 36,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750542
+        },
+        {
+          "frameId": 37,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751965
+        },
+        {
+          "frameId": 39,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754328
+        },
+        {
+          "frameId": 40,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 755028
+        },
+        {
+          "frameId": 42,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757040
+        },
+        {
+          "frameId": 43,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757115
+        },
+        {
+          "frameId": 45,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756746
+        },
+        {
+          "frameId": 46,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 755820
+        },
+        {
+          "frameId": 48,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757077
+        },
+        {
+          "frameId": 50,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757768
+        },
+        {
+          "frameId": 51,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 739149
+        },
+        {
+          "frameId": 52,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741402
+        },
+        {
+          "frameId": 53,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744526
+        },
+        {
+          "frameId": 54,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 758827
+        },
+        {
+          "frameId": 55,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763964
+        },
+        {
+          "frameId": 56,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 758990
+        },
+        {
+          "frameId": 57,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751766
+        },
+        {
+          "frameId": 58,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748229
+        },
+        {
+          "frameId": 59,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747397
+        },
+        {
+          "frameId": 60,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749786
+        },
+        {
+          "frameId": 61,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754302
+        },
+        {
+          "frameId": 62,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760600
+        },
+        {
+          "frameId": 63,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763522
+        },
+        {
+          "frameId": 64,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759287
+        },
+        {
+          "frameId": 65,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745503
+        },
+        {
+          "frameId": 66,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 738948
+        },
+        {
+          "frameId": 67,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747686
+        },
+        {
+          "frameId": 70,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745426
+        },
+        {
+          "frameId": 71,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742986
+        },
+        {
+          "frameId": 72,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741621
+        },
+        {
+          "frameId": 73,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741314
+        },
+        {
+          "frameId": 74,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740436
+        },
+        {
+          "frameId": 75,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740160
+        },
+        {
+          "frameId": 77,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740684
+        },
+        {
+          "frameId": 78,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741981
+        },
+        {
+          "frameId": 79,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742494
+        },
+        {
+          "frameId": 80,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 743417
+        },
+        {
+          "frameId": 81,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745213
+        },
+        {
+          "frameId": 82,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746163
+        },
+        {
+          "frameId": 83,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761762
+        },
+        {
+          "frameId": 84,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760549
+        },
+        {
+          "frameId": 85,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760229
+        },
+        {
+          "frameId": 86,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761285
+        },
+        {
+          "frameId": 87,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761364
+        },
+        {
+          "frameId": 88,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 758436
+        },
+        {
+          "frameId": 89,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742535
+        },
+        {
+          "frameId": 90,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 728571
+        },
+        {
+          "frameId": 91,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 730139
+        },
+        {
+          "frameId": 92,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 728385
+        },
+        {
+          "frameId": 93,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 732359
+        },
+        {
+          "frameId": 94,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 738038
+        },
+        {
+          "frameId": 95,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741735
+        },
+        {
+          "frameId": 96,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744457
+        },
+        {
+          "frameId": 97,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744130
+        },
+        {
+          "frameId": 98,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740475
+        },
+        {
+          "frameId": 99,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 735731
+        },
+        {
+          "frameId": 100,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 731548
+        },
+        {
+          "frameId": 101,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729454
+        },
+        {
+          "frameId": 102,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 734376
+        },
+        {
+          "frameId": 103,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744742
+        },
+        {
+          "frameId": 104,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753974
+        },
+        {
+          "frameId": 105,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763046
+        },
+        {
+          "frameId": 106,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766968
+        },
+        {
+          "frameId": 107,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766586
+        },
+        {
+          "frameId": 108,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 762961
+        },
+        {
+          "frameId": 109,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759141
+        },
+        {
+          "frameId": 110,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754546
+        },
+        {
+          "frameId": 111,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750243
+        },
+        {
+          "frameId": 112,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740738
+        },
+        {
+          "frameId": 113,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742743
+        },
+        {
+          "frameId": 114,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742384
+        },
+        {
+          "frameId": 115,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741687
+        },
+        {
+          "frameId": 116,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740789
+        },
+        {
+          "frameId": 117,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741094
+        },
+        {
+          "frameId": 118,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740888
+        },
+        {
+          "frameId": 119,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741467
+        },
+        {
+          "frameId": 120,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741575
+        },
+        {
+          "frameId": 121,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742050
+        }
+      ]
+    },
+    {
+      "pack": "docs/kling-appearance/ear-edge-review/evidence/final-male/exports/male-soft-bob.character.zip",
+      "baselineProject": "docs/kling-appearance/review/evidence/final-male/exports/male-day.wardrobe.zip",
+      "appearanceBank": "docs/kling-appearance/banks/male.zip",
+      "appearanceBankSha256": "2da8187aca98d6245cc7fad1ac0b93b3a0bad52e175a35fc22f6c7c51e72a794",
+      "selectedHair": "soft-bob",
+      "sourceRGBAExactOutsideSelectedOwnership": true,
+      "actionsAndTimingUnchanged": true,
+      "frames": [
+        {
+          "frameId": 0,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729451
+        },
+        {
+          "frameId": 6,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 728947
+        },
+        {
+          "frameId": 12,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729051
+        },
+        {
+          "frameId": 18,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729004
+        },
+        {
+          "frameId": 24,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 739288
+        },
+        {
+          "frameId": 26,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 734679
+        },
+        {
+          "frameId": 28,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 733454
+        },
+        {
+          "frameId": 30,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 733836
+        },
+        {
+          "frameId": 32,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 735949
+        },
+        {
+          "frameId": 34,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 736232
+        },
+        {
+          "frameId": 36,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 736042
+        },
+        {
+          "frameId": 37,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 737327
+        },
+        {
+          "frameId": 39,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 739665
+        },
+        {
+          "frameId": 40,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 740340
+        },
+        {
+          "frameId": 42,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742453
+        },
+        {
+          "frameId": 43,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742515
+        },
+        {
+          "frameId": 45,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742096
+        },
+        {
+          "frameId": 46,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741109
+        },
+        {
+          "frameId": 48,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742419
+        },
+        {
+          "frameId": 50,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 743183
+        },
+        {
+          "frameId": 51,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 724459
+        },
+        {
+          "frameId": 52,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726720
+        },
+        {
+          "frameId": 53,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729954
+        },
+        {
+          "frameId": 54,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744132
+        },
+        {
+          "frameId": 55,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749209
+        },
+        {
+          "frameId": 56,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744313
+        },
+        {
+          "frameId": 57,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 737062
+        },
+        {
+          "frameId": 58,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 733456
+        },
+        {
+          "frameId": 59,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 732623
+        },
+        {
+          "frameId": 60,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 735067
+        },
+        {
+          "frameId": 61,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 739576
+        },
+        {
+          "frameId": 62,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745875
+        },
+        {
+          "frameId": 63,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748952
+        },
+        {
+          "frameId": 64,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744543
+        },
+        {
+          "frameId": 65,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 730912
+        },
+        {
+          "frameId": 66,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 724229
+        },
+        {
+          "frameId": 67,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 733273
+        },
+        {
+          "frameId": 70,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 731038
+        },
+        {
+          "frameId": 71,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 728610
+        },
+        {
+          "frameId": 72,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727276
+        },
+        {
+          "frameId": 73,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726990
+        },
+        {
+          "frameId": 74,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726120
+        },
+        {
+          "frameId": 75,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 725844
+        },
+        {
+          "frameId": 77,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726303
+        },
+        {
+          "frameId": 78,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727701
+        },
+        {
+          "frameId": 79,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 728098
+        },
+        {
+          "frameId": 80,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729020
+        },
+        {
+          "frameId": 81,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 730870
+        },
+        {
+          "frameId": 82,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 731722
+        },
+        {
+          "frameId": 83,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746751
+        },
+        {
+          "frameId": 84,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745380
+        },
+        {
+          "frameId": 85,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745017
+        },
+        {
+          "frameId": 86,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746069
+        },
+        {
+          "frameId": 87,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746160
+        },
+        {
+          "frameId": 88,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742995
+        },
+        {
+          "frameId": 89,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727099
+        },
+        {
+          "frameId": 90,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 712947
+        },
+        {
+          "frameId": 91,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 715063
+        },
+        {
+          "frameId": 92,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 713767
+        },
+        {
+          "frameId": 93,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 717989
+        },
+        {
+          "frameId": 94,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 723701
+        },
+        {
+          "frameId": 95,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727437
+        },
+        {
+          "frameId": 96,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729907
+        },
+        {
+          "frameId": 97,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729627
+        },
+        {
+          "frameId": 98,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 725987
+        },
+        {
+          "frameId": 99,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 721255
+        },
+        {
+          "frameId": 100,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 716960
+        },
+        {
+          "frameId": 101,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 714239
+        },
+        {
+          "frameId": 102,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 719018
+        },
+        {
+          "frameId": 103,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 729728
+        },
+        {
+          "frameId": 104,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 738969
+        },
+        {
+          "frameId": 105,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748236
+        },
+        {
+          "frameId": 106,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751955
+        },
+        {
+          "frameId": 107,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751689
+        },
+        {
+          "frameId": 108,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747943
+        },
+        {
+          "frameId": 109,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744329
+        },
+        {
+          "frameId": 110,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 739775
+        },
+        {
+          "frameId": 111,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 735596
+        },
+        {
+          "frameId": 112,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726173
+        },
+        {
+          "frameId": 113,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 728144
+        },
+        {
+          "frameId": 114,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 728032
+        },
+        {
+          "frameId": 115,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727480
+        },
+        {
+          "frameId": 116,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726561
+        },
+        {
+          "frameId": 117,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726947
+        },
+        {
+          "frameId": 118,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 726629
+        },
+        {
+          "frameId": 119,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727253
+        },
+        {
+          "frameId": 120,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727305
+        },
+        {
+          "frameId": 121,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 727836
+        }
+      ]
+    },
+    {
+      "pack": "docs/kling-appearance/ear-edge-review/evidence/final-female/exports/female-soft-crop.character.zip",
+      "baselineProject": "docs/kling-appearance/review/evidence/final-female/exports/female-day.wardrobe.zip",
+      "appearanceBank": "docs/kling-appearance/banks/female.zip",
+      "appearanceBankSha256": "257098ca3777d56fbbb1bd261eba65c0374d52b6917aaea333e808df447de3e6",
+      "selectedHair": "soft-crop",
+      "sourceRGBAExactOutsideSelectedOwnership": true,
+      "actionsAndTimingUnchanged": true,
+      "frames": [
+        {
+          "frameId": 0,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765254
+        },
+        {
+          "frameId": 6,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765168
+        },
+        {
+          "frameId": 12,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765155
+        },
+        {
+          "frameId": 18,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765218
+        },
+        {
+          "frameId": 24,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764334
+        },
+        {
+          "frameId": 25,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761431
+        },
+        {
+          "frameId": 26,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759160
+        },
+        {
+          "frameId": 27,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763214
+        },
+        {
+          "frameId": 28,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763329
+        },
+        {
+          "frameId": 30,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763050
+        },
+        {
+          "frameId": 31,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761677
+        },
+        {
+          "frameId": 32,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761374
+        },
+        {
+          "frameId": 33,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 762713
+        },
+        {
+          "frameId": 34,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765520
+        },
+        {
+          "frameId": 35,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767711
+        },
+        {
+          "frameId": 36,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 771809
+        },
+        {
+          "frameId": 37,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 775410
+        },
+        {
+          "frameId": 38,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764170
+        },
+        {
+          "frameId": 39,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765927
+        },
+        {
+          "frameId": 40,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766763
+        },
+        {
+          "frameId": 41,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 768346
+        },
+        {
+          "frameId": 43,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766394
+        },
+        {
+          "frameId": 44,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767829
+        },
+        {
+          "frameId": 45,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766945
+        },
+        {
+          "frameId": 46,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764154
+        },
+        {
+          "frameId": 47,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 777053
+        },
+        {
+          "frameId": 48,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 770664
+        },
+        {
+          "frameId": 49,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767963
+        },
+        {
+          "frameId": 50,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766264
+        },
+        {
+          "frameId": 51,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765406
+        },
+        {
+          "frameId": 52,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764187
+        },
+        {
+          "frameId": 53,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 762936
+        },
+        {
+          "frameId": 54,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 768744
+        },
+        {
+          "frameId": 55,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764561
+        },
+        {
+          "frameId": 56,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759777
+        },
+        {
+          "frameId": 57,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 770180
+        },
+        {
+          "frameId": 58,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 768881
+        },
+        {
+          "frameId": 59,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757951
+        },
+        {
+          "frameId": 60,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767619
+        },
+        {
+          "frameId": 61,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763839
+        },
+        {
+          "frameId": 62,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 771409
+        },
+        {
+          "frameId": 63,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765213
+        },
+        {
+          "frameId": 64,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 769621
+        },
+        {
+          "frameId": 65,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765151
+        },
+        {
+          "frameId": 66,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763445
+        },
+        {
+          "frameId": 67,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764574
+        },
+        {
+          "frameId": 70,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765023
+        },
+        {
+          "frameId": 71,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767804
+        },
+        {
+          "frameId": 72,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767865
+        },
+        {
+          "frameId": 73,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767670
+        },
+        {
+          "frameId": 74,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 770345
+        },
+        {
+          "frameId": 75,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 770461
+        },
+        {
+          "frameId": 78,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 770096
+        },
+        {
+          "frameId": 79,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 769962
+        },
+        {
+          "frameId": 80,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 768276
+        },
+        {
+          "frameId": 81,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 767522
+        },
+        {
+          "frameId": 82,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765566
+        },
+        {
+          "frameId": 83,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761662
+        },
+        {
+          "frameId": 84,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757121
+        },
+        {
+          "frameId": 85,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754053
+        },
+        {
+          "frameId": 86,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756113
+        },
+        {
+          "frameId": 87,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756481
+        },
+        {
+          "frameId": 88,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 755231
+        },
+        {
+          "frameId": 89,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753386
+        },
+        {
+          "frameId": 90,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754331
+        },
+        {
+          "frameId": 91,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760016
+        },
+        {
+          "frameId": 92,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 758727
+        },
+        {
+          "frameId": 93,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760046
+        },
+        {
+          "frameId": 94,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760271
+        },
+        {
+          "frameId": 95,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757520
+        },
+        {
+          "frameId": 96,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756495
+        },
+        {
+          "frameId": 97,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756858
+        },
+        {
+          "frameId": 98,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 761153
+        },
+        {
+          "frameId": 99,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763690
+        },
+        {
+          "frameId": 100,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 762120
+        },
+        {
+          "frameId": 101,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 762610
+        },
+        {
+          "frameId": 102,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747782
+        },
+        {
+          "frameId": 103,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759451
+        },
+        {
+          "frameId": 104,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760615
+        },
+        {
+          "frameId": 105,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760507
+        },
+        {
+          "frameId": 106,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759219
+        },
+        {
+          "frameId": 107,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 758459
+        },
+        {
+          "frameId": 108,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757478
+        },
+        {
+          "frameId": 109,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757292
+        },
+        {
+          "frameId": 110,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764287
+        },
+        {
+          "frameId": 111,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 769630
+        },
+        {
+          "frameId": 112,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760983
+        },
+        {
+          "frameId": 113,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759789
+        },
+        {
+          "frameId": 114,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 762364
+        },
+        {
+          "frameId": 115,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764066
+        },
+        {
+          "frameId": 116,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766206
+        },
+        {
+          "frameId": 117,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766593
+        },
+        {
+          "frameId": 118,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 766754
+        },
+        {
+          "frameId": 119,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763535
+        },
+        {
+          "frameId": 120,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 763992
+        },
+        {
+          "frameId": 121,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765524
+        }
+      ]
+    },
+    {
+      "pack": "docs/kling-appearance/ear-edge-review/evidence/final-female/exports/female-soft-bob.character.zip",
+      "baselineProject": "docs/kling-appearance/review/evidence/final-female/exports/female-day.wardrobe.zip",
+      "appearanceBank": "docs/kling-appearance/banks/female.zip",
+      "appearanceBankSha256": "257098ca3777d56fbbb1bd261eba65c0374d52b6917aaea333e808df447de3e6",
+      "selectedHair": "soft-bob",
+      "sourceRGBAExactOutsideSelectedOwnership": true,
+      "actionsAndTimingUnchanged": true,
+      "frames": [
+        {
+          "frameId": 0,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754622
+        },
+        {
+          "frameId": 6,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754465
+        },
+        {
+          "frameId": 12,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754474
+        },
+        {
+          "frameId": 18,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754557
+        },
+        {
+          "frameId": 24,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753101
+        },
+        {
+          "frameId": 25,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750184
+        },
+        {
+          "frameId": 26,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747925
+        },
+        {
+          "frameId": 27,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752011
+        },
+        {
+          "frameId": 28,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752179
+        },
+        {
+          "frameId": 30,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751765
+        },
+        {
+          "frameId": 31,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750407
+        },
+        {
+          "frameId": 32,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750087
+        },
+        {
+          "frameId": 33,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751379
+        },
+        {
+          "frameId": 34,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754287
+        },
+        {
+          "frameId": 35,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756471
+        },
+        {
+          "frameId": 36,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760539
+        },
+        {
+          "frameId": 37,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 764034
+        },
+        {
+          "frameId": 38,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752834
+        },
+        {
+          "frameId": 39,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754661
+        },
+        {
+          "frameId": 40,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 755545
+        },
+        {
+          "frameId": 41,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757142
+        },
+        {
+          "frameId": 43,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 755125
+        },
+        {
+          "frameId": 44,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756519
+        },
+        {
+          "frameId": 45,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 755583
+        },
+        {
+          "frameId": 46,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752844
+        },
+        {
+          "frameId": 47,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 765795
+        },
+        {
+          "frameId": 48,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759425
+        },
+        {
+          "frameId": 49,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756606
+        },
+        {
+          "frameId": 50,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754932
+        },
+        {
+          "frameId": 51,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754254
+        },
+        {
+          "frameId": 52,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753151
+        },
+        {
+          "frameId": 53,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751837
+        },
+        {
+          "frameId": 54,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757506
+        },
+        {
+          "frameId": 55,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753447
+        },
+        {
+          "frameId": 56,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748597
+        },
+        {
+          "frameId": 57,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759048
+        },
+        {
+          "frameId": 58,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757682
+        },
+        {
+          "frameId": 59,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746813
+        },
+        {
+          "frameId": 60,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756535
+        },
+        {
+          "frameId": 61,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752706
+        },
+        {
+          "frameId": 62,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 760322
+        },
+        {
+          "frameId": 63,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754102
+        },
+        {
+          "frameId": 64,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 758376
+        },
+        {
+          "frameId": 65,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753963
+        },
+        {
+          "frameId": 66,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752331
+        },
+        {
+          "frameId": 67,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753967
+        },
+        {
+          "frameId": 70,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754266
+        },
+        {
+          "frameId": 71,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757109
+        },
+        {
+          "frameId": 72,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757159
+        },
+        {
+          "frameId": 73,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756854
+        },
+        {
+          "frameId": 74,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759554
+        },
+        {
+          "frameId": 75,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759755
+        },
+        {
+          "frameId": 78,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759380
+        },
+        {
+          "frameId": 79,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 759263
+        },
+        {
+          "frameId": 80,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 757567
+        },
+        {
+          "frameId": 81,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756983
+        },
+        {
+          "frameId": 82,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754835
+        },
+        {
+          "frameId": 83,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750532
+        },
+        {
+          "frameId": 84,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745602
+        },
+        {
+          "frameId": 85,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742516
+        },
+        {
+          "frameId": 86,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 744576
+        },
+        {
+          "frameId": 87,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745096
+        },
+        {
+          "frameId": 88,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 743570
+        },
+        {
+          "frameId": 89,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 741723
+        },
+        {
+          "frameId": 90,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 742534
+        },
+        {
+          "frameId": 91,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748693
+        },
+        {
+          "frameId": 92,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748114
+        },
+        {
+          "frameId": 93,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749634
+        },
+        {
+          "frameId": 94,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 750018
+        },
+        {
+          "frameId": 95,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747270
+        },
+        {
+          "frameId": 96,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746232
+        },
+        {
+          "frameId": 97,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746925
+        },
+        {
+          "frameId": 98,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751330
+        },
+        {
+          "frameId": 99,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753850
+        },
+        {
+          "frameId": 100,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752127
+        },
+        {
+          "frameId": 101,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752154
+        },
+        {
+          "frameId": 102,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 737153
+        },
+        {
+          "frameId": 103,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 748297
+        },
+        {
+          "frameId": 104,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749393
+        },
+        {
+          "frameId": 105,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749096
+        },
+        {
+          "frameId": 106,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747874
+        },
+        {
+          "frameId": 107,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 747077
+        },
+        {
+          "frameId": 108,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 746062
+        },
+        {
+          "frameId": 109,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 745912
+        },
+        {
+          "frameId": 110,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752980
+        },
+        {
+          "frameId": 111,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 758346
+        },
+        {
+          "frameId": 112,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749860
+        },
+        {
+          "frameId": 113,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 749199
+        },
+        {
+          "frameId": 114,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 751852
+        },
+        {
+          "frameId": 115,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753580
+        },
+        {
+          "frameId": 116,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 755714
+        },
+        {
+          "frameId": 117,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756113
+        },
+        {
+          "frameId": 118,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 756228
+        },
+        {
+          "frameId": 119,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 752942
+        },
+        {
+          "frameId": 120,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 753382
+        },
+        {
+          "frameId": 121,
+          "unauthorizedChangedPixels": 0,
+          "rgbaComparedPixels": 754970
+        }
+      ]
+    }
+  ],
+  "actualPngMirrorChecks": [
+    {
+      "character": "male",
+      "style": "soft-crop",
+      "frameId": 86,
+      "exactRgbaHorizontalMirror": true
+    },
+    {
+      "character": "male",
+      "style": "soft-bob",
+      "frameId": 86,
+      "exactRgbaHorizontalMirror": true
+    },
+    {
+      "character": "female",
+      "style": "soft-crop",
+      "frameId": 86,
+      "exactRgbaHorizontalMirror": true
+    },
+    {
+      "character": "female",
+      "style": "soft-bob",
+      "frameId": 86,
+      "exactRgbaHorizontalMirror": true
+    }
+  ],
+  "renderedPoseCoverage": [
+    {
+      "character": "male",
+      "style": "soft-crop",
+      "poses": 88
+    },
+    {
+      "character": "male",
+      "style": "soft-bob",
+      "poses": 88
+    },
+    {
+      "character": "female",
+      "style": "soft-crop",
+      "poses": 96
+    },
+    {
+      "character": "female",
+      "style": "soft-bob",
+      "poses": 96
+    }
+  ],
+  "gifTiming": "cumulative centisecond rounding; source fps remains in CharacterPack",
+  "artifacts": [
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-soft-crop-five-actions-right.gif",
+      "sha256": "8a794de229184fed612b4d57c234f5b80b3595693b319585b6f3a1062816ddb3",
+      "bytes": 7193999,
+      "frames": 88,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 34,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        80,
+        90,
+        80,
+        80,
+        90,
+        80,
+        40,
+        90,
+        40,
+        80,
+        40,
+        90,
+        40,
+        80,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-soft-crop-five-actions-left.gif",
+      "sha256": "9f9fd3aaf992d2f93a4831c46cfb872642008b1ca61d6561799c3a16299b4b87",
+      "bytes": 7189418,
+      "frames": 88,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 34,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        80,
+        90,
+        80,
+        80,
+        90,
+        80,
+        40,
+        90,
+        40,
+        80,
+        40,
+        90,
+        40,
+        80,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-soft-crop-ear-jump-1x.gif",
+      "sha256": "40197303aa2f237314be7228cbd2247daa9b9304f34818ee935033375b9daa15",
+      "bytes": 1339796,
+      "frames": 39,
+      "sourcePositions": 39,
+      "consecutiveHoldsCombined": 0,
+      "size": [
+        370,
+        256
+      ],
+      "durationMs": 1630,
+      "durationsMs": [
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 1,
+      "inspectionCrop": "Same source ear guide per frame, stabilized only for edge inspection; full-body GIFs retain actual placement.",
+      "cropRecords": [
+        {
+          "frameId": 83,
+          "box": [
+            225,
+            525,
+            410,
+            725
+          ]
+        },
+        {
+          "frameId": 84,
+          "box": [
+            226,
+            545,
+            411,
+            745
+          ]
+        },
+        {
+          "frameId": 85,
+          "box": [
+            228,
+            557,
+            413,
+            757
+          ]
+        },
+        {
+          "frameId": 86,
+          "box": [
+            228,
+            563,
+            413,
+            763
+          ]
+        },
+        {
+          "frameId": 87,
+          "box": [
+            229,
+            564,
+            414,
+            764
+          ]
+        },
+        {
+          "frameId": 88,
+          "box": [
+            230,
+            560,
+            415,
+            760
+          ]
+        },
+        {
+          "frameId": 89,
+          "box": [
+            228,
+            517,
+            413,
+            717
+          ]
+        },
+        {
+          "frameId": 90,
+          "box": [
+            223,
+            444,
+            408,
+            644
+          ]
+        },
+        {
+          "frameId": 91,
+          "box": [
+            211,
+            370,
+            396,
+            570
+          ]
+        },
+        {
+          "frameId": 92,
+          "box": [
+            198,
+            339,
+            383,
+            539
+          ]
+        },
+        {
+          "frameId": 93,
+          "box": [
+            191,
+            319,
+            376,
+            519
+          ]
+        },
+        {
+          "frameId": 94,
+          "box": [
+            188,
+            305,
+            373,
+            505
+          ]
+        },
+        {
+          "frameId": 95,
+          "box": [
+            185,
+            298,
+            370,
+            498
+          ]
+        },
+        {
+          "frameId": 96,
+          "box": [
+            183,
+            294,
+            368,
+            494
+          ]
+        },
+        {
+          "frameId": 97,
+          "box": [
+            180,
+            295,
+            365,
+            495
+          ]
+        },
+        {
+          "frameId": 98,
+          "box": [
+            178,
+            302,
+            363,
+            502
+          ]
+        },
+        {
+          "frameId": 99,
+          "box": [
+            178,
+            317,
+            363,
+            517
+          ]
+        },
+        {
+          "frameId": 100,
+          "box": [
+            173,
+            341,
+            358,
+            541
+          ]
+        },
+        {
+          "frameId": 101,
+          "box": [
+            179,
+            410,
+            364,
+            610
+          ]
+        },
+        {
+          "frameId": 102,
+          "box": [
+            187,
+            476,
+            372,
+            676
+          ]
+        },
+        {
+          "frameId": 103,
+          "box": [
+            199,
+            528,
+            384,
+            728
+          ]
+        },
+        {
+          "frameId": 104,
+          "box": [
+            212,
+            558,
+            397,
+            758
+          ]
+        },
+        {
+          "frameId": 105,
+          "box": [
+            218,
+            568,
+            403,
+            768
+          ]
+        },
+        {
+          "frameId": 106,
+          "box": [
+            221,
+            569,
+            406,
+            769
+          ]
+        },
+        {
+          "frameId": 107,
+          "box": [
+            221,
+            560,
+            406,
+            760
+          ]
+        },
+        {
+          "frameId": 108,
+          "box": [
+            217,
+            542,
+            402,
+            742
+          ]
+        },
+        {
+          "frameId": 109,
+          "box": [
+            210,
+            518,
+            395,
+            718
+          ]
+        },
+        {
+          "frameId": 110,
+          "box": [
+            199,
+            491,
+            384,
+            691
+          ]
+        },
+        {
+          "frameId": 111,
+          "box": [
+            187,
+            470,
+            372,
+            670
+          ]
+        },
+        {
+          "frameId": 112,
+          "box": [
+            178,
+            457,
+            363,
+            657
+          ]
+        },
+        {
+          "frameId": 113,
+          "box": [
+            172,
+            450,
+            357,
+            650
+          ]
+        },
+        {
+          "frameId": 114,
+          "box": [
+            166,
+            445,
+            351,
+            645
+          ]
+        },
+        {
+          "frameId": 115,
+          "box": [
+            163,
+            443,
+            348,
+            643
+          ]
+        },
+        {
+          "frameId": 116,
+          "box": [
+            160,
+            442,
+            345,
+            642
+          ]
+        },
+        {
+          "frameId": 117,
+          "box": [
+            159,
+            442,
+            344,
+            642
+          ]
+        },
+        {
+          "frameId": 118,
+          "box": [
+            162,
+            443,
+            347,
+            643
+          ]
+        },
+        {
+          "frameId": 119,
+          "box": [
+            164,
+            444,
+            349,
+            644
+          ]
+        },
+        {
+          "frameId": 120,
+          "box": [
+            167,
+            445,
+            352,
+            645
+          ]
+        },
+        {
+          "frameId": 121,
+          "box": [
+            170,
+            446,
+            355,
+            646
+          ]
+        }
+      ],
+      "reviewLoop": "Repeats the original one-shot jump sequence for inspection only."
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-soft-crop-ear-jump-2x.gif",
+      "sha256": "41a532643c79a776ceacb527c0fb85b6ff75fb0f69bece3253002e48c649bf60",
+      "bytes": 3333032,
+      "frames": 39,
+      "sourcePositions": 39,
+      "consecutiveHoldsCombined": 0,
+      "size": [
+        740,
+        456
+      ],
+      "durationMs": 1630,
+      "durationsMs": [
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 2,
+      "inspectionCrop": "Same source ear guide per frame, stabilized only for edge inspection; full-body GIFs retain actual placement.",
+      "cropRecords": [
+        {
+          "frameId": 83,
+          "box": [
+            225,
+            525,
+            410,
+            725
+          ]
+        },
+        {
+          "frameId": 84,
+          "box": [
+            226,
+            545,
+            411,
+            745
+          ]
+        },
+        {
+          "frameId": 85,
+          "box": [
+            228,
+            557,
+            413,
+            757
+          ]
+        },
+        {
+          "frameId": 86,
+          "box": [
+            228,
+            563,
+            413,
+            763
+          ]
+        },
+        {
+          "frameId": 87,
+          "box": [
+            229,
+            564,
+            414,
+            764
+          ]
+        },
+        {
+          "frameId": 88,
+          "box": [
+            230,
+            560,
+            415,
+            760
+          ]
+        },
+        {
+          "frameId": 89,
+          "box": [
+            228,
+            517,
+            413,
+            717
+          ]
+        },
+        {
+          "frameId": 90,
+          "box": [
+            223,
+            444,
+            408,
+            644
+          ]
+        },
+        {
+          "frameId": 91,
+          "box": [
+            211,
+            370,
+            396,
+            570
+          ]
+        },
+        {
+          "frameId": 92,
+          "box": [
+            198,
+            339,
+            383,
+            539
+          ]
+        },
+        {
+          "frameId": 93,
+          "box": [
+            191,
+            319,
+            376,
+            519
+          ]
+        },
+        {
+          "frameId": 94,
+          "box": [
+            188,
+            305,
+            373,
+            505
+          ]
+        },
+        {
+          "frameId": 95,
+          "box": [
+            185,
+            298,
+            370,
+            498
+          ]
+        },
+        {
+          "frameId": 96,
+          "box": [
+            183,
+            294,
+            368,
+            494
+          ]
+        },
+        {
+          "frameId": 97,
+          "box": [
+            180,
+            295,
+            365,
+            495
+          ]
+        },
+        {
+          "frameId": 98,
+          "box": [
+            178,
+            302,
+            363,
+            502
+          ]
+        },
+        {
+          "frameId": 99,
+          "box": [
+            178,
+            317,
+            363,
+            517
+          ]
+        },
+        {
+          "frameId": 100,
+          "box": [
+            173,
+            341,
+            358,
+            541
+          ]
+        },
+        {
+          "frameId": 101,
+          "box": [
+            179,
+            410,
+            364,
+            610
+          ]
+        },
+        {
+          "frameId": 102,
+          "box": [
+            187,
+            476,
+            372,
+            676
+          ]
+        },
+        {
+          "frameId": 103,
+          "box": [
+            199,
+            528,
+            384,
+            728
+          ]
+        },
+        {
+          "frameId": 104,
+          "box": [
+            212,
+            558,
+            397,
+            758
+          ]
+        },
+        {
+          "frameId": 105,
+          "box": [
+            218,
+            568,
+            403,
+            768
+          ]
+        },
+        {
+          "frameId": 106,
+          "box": [
+            221,
+            569,
+            406,
+            769
+          ]
+        },
+        {
+          "frameId": 107,
+          "box": [
+            221,
+            560,
+            406,
+            760
+          ]
+        },
+        {
+          "frameId": 108,
+          "box": [
+            217,
+            542,
+            402,
+            742
+          ]
+        },
+        {
+          "frameId": 109,
+          "box": [
+            210,
+            518,
+            395,
+            718
+          ]
+        },
+        {
+          "frameId": 110,
+          "box": [
+            199,
+            491,
+            384,
+            691
+          ]
+        },
+        {
+          "frameId": 111,
+          "box": [
+            187,
+            470,
+            372,
+            670
+          ]
+        },
+        {
+          "frameId": 112,
+          "box": [
+            178,
+            457,
+            363,
+            657
+          ]
+        },
+        {
+          "frameId": 113,
+          "box": [
+            172,
+            450,
+            357,
+            650
+          ]
+        },
+        {
+          "frameId": 114,
+          "box": [
+            166,
+            445,
+            351,
+            645
+          ]
+        },
+        {
+          "frameId": 115,
+          "box": [
+            163,
+            443,
+            348,
+            643
+          ]
+        },
+        {
+          "frameId": 116,
+          "box": [
+            160,
+            442,
+            345,
+            642
+          ]
+        },
+        {
+          "frameId": 117,
+          "box": [
+            159,
+            442,
+            344,
+            642
+          ]
+        },
+        {
+          "frameId": 118,
+          "box": [
+            162,
+            443,
+            347,
+            643
+          ]
+        },
+        {
+          "frameId": 119,
+          "box": [
+            164,
+            444,
+            349,
+            644
+          ]
+        },
+        {
+          "frameId": 120,
+          "box": [
+            167,
+            445,
+            352,
+            645
+          ]
+        },
+        {
+          "frameId": 121,
+          "box": [
+            170,
+            446,
+            355,
+            646
+          ]
+        }
+      ],
+      "reviewLoop": "Repeats the original one-shot jump sequence for inspection only."
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-soft-bob-five-actions-right.gif",
+      "sha256": "8c74f9b2780e87a698654b48cb8623c12cb6412568ef8e9b983dc51924b475e3",
+      "bytes": 6817631,
+      "frames": 88,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 34,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        80,
+        90,
+        80,
+        80,
+        90,
+        80,
+        40,
+        90,
+        40,
+        80,
+        40,
+        90,
+        40,
+        80,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-soft-bob-five-actions-left.gif",
+      "sha256": "bd6f1a9c78e1c3b76a4780422121911b52546c74ec27b43327d0ea3574bba95c",
+      "bytes": 6808954,
+      "frames": 88,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 34,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        80,
+        90,
+        80,
+        80,
+        90,
+        80,
+        40,
+        90,
+        40,
+        80,
+        40,
+        90,
+        40,
+        80,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-soft-crop-five-actions-right.gif",
+      "sha256": "24ec5a7317393f97666e169d33301bc1dde9ff8b126bdd07c349e50f3eb65720",
+      "bytes": 7443757,
+      "frames": 96,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 26,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        40,
+        40,
+        40,
+        50,
+        80,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        130,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-soft-crop-five-actions-left.gif",
+      "sha256": "0c66dd80b8889c2b279e318dfe974a099aab34b04c0a8881c8e0b7a994dc3cb5",
+      "bytes": 7437670,
+      "frames": 96,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 26,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        40,
+        40,
+        40,
+        50,
+        80,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        130,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-soft-bob-five-actions-right.gif",
+      "sha256": "346d7eecce9791f6eaca7ec4c7a18eeed1870e6b4388df5702ae61c47e4f5cb8",
+      "bytes": 8346978,
+      "frames": 96,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 26,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        40,
+        40,
+        40,
+        50,
+        80,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        130,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-soft-bob-five-actions-left.gif",
+      "sha256": "ff982a8ef0e7a8699d64850e627a11f4748aac6d745b14750eda30061390a7f9",
+      "bytes": 8341826,
+      "frames": 96,
+      "sourcePositions": 122,
+      "consecutiveHoldsCombined": 26,
+      "size": [
+        768,
+        624
+      ],
+      "durationMs": 5080,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        40,
+        40,
+        40,
+        50,
+        80,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        80,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        120,
+        40,
+        40,
+        50,
+        40,
+        40,
+        130,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "decodedEveryFrame": true,
+      "previewScale": 0.5
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-all-heads.png",
+      "bytes": 9603598,
+      "sha256": "98952d96a97cecd821bf1d810e34718d3bb247209227e33448d7d62114f377a2",
+      "size": [
+        1856,
+        6240
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-ear-colors-2x.png",
+      "bytes": 179866,
+      "sha256": "998c2ff407f9c59b61f2ace1453f8dfa7b937268d770bbb27095784da5a5c034",
+      "size": [
+        740,
+        864
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-ear-comparison-1x.png",
+      "bytes": 833020,
+      "sha256": "b48f5c15ffcec4bc05eca5dde9d3ce5e3efcb2b921be05731bccaf27d08c3f21",
+      "size": [
+        390,
+        3708
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-ear-comparison-2x.png",
+      "bytes": 1105754,
+      "sha256": "c522708c5f4b7d84520a4d9013d6e34cb4979066f59489cd0b5b4614dd210a86",
+      "size": [
+        780,
+        6408
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/female-head-comparison-1x.png",
+      "bytes": 1279767,
+      "sha256": "3222fbcb1b50e6e840ad1722d11bd08b1322d92a31b1b6f7f0cda7f773ea80ae",
+      "size": [
+        1635,
+        2304
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-all-heads.png",
+      "bytes": 9046424,
+      "sha256": "a30b2637a2e2dc9eef77647b6f997ad7e860f488ddb1c27ccf951efa36ea53e8",
+      "size": [
+        1856,
+        5720
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-ear-colors-2x.png",
+      "bytes": 177562,
+      "sha256": "040b5e0d50271bfc11d14190b66a57fed7b51f07205f58aa0a9160feeab0c50f",
+      "size": [
+        740,
+        864
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-ear-comparison-1x.png",
+      "bytes": 831294,
+      "sha256": "fb16a60eaf0cfae85e5d02b4feb4f02540b7ff6354aa911989ac1bb9b9942429",
+      "size": [
+        390,
+        3708
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-ear-comparison-2x.png",
+      "bytes": 1105281,
+      "sha256": "49775ca54ec5608f1d41dc583609d6be7e304235994aa42905c412fd5a76bb1e",
+      "size": [
+        780,
+        6408
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/male-head-comparison-1x.png",
+      "bytes": 1386278,
+      "sha256": "b25e908d379dee41eb7fb9be59d81a148aa03c633b1d80acb02e906d0399f080",
+      "size": [
+        1644,
+        2298
+      ],
+      "decoded": true
+    },
+    {
+      "file": "docs/kling-appearance/ear-edge-review/screenshot-pose-ear-2x.png",
+      "bytes": 246860,
+      "sha256": "dccb6ecf5d360d7cf4be06659fce2340dd07a26c57db8d3ee8073b6b1c97bf68",
+      "size": [
+        780,
+        1424
+      ],
+      "decoded": true
+    }
+  ]
+}

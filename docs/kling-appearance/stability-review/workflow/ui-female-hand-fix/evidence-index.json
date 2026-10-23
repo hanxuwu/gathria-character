@@ -1,0 +1,81 @@
+{
+  "format": "gathria-appearance-stability-workflow",
+  "version": 1,
+  "run": "ui-female-hand-fix",
+  "uiOnly": true,
+  "startedAt": "2026-10-23T01:46:54.705Z",
+  "commitAtCapture": "055e95116cd441be7a630554409738b4a0b67ef9",
+  "scope": "Final desktop/mobile UI captures reopening the freshly verified actual projects after their real frame-0 exports refreshed the hairstyle thumbnails. No repeated pack/playback tests are claimed in this UI-only record.",
+  "inputs": {
+    "docs/kling-appearance/review/evidence/final-female/exports/female-day.wardrobe.zip": "1dadfba840826e14cc18eec1ec63bd8c02ab3da9b4b46999373dbea201d71194",
+    "docs/kling-appearance/banks/female.zip": "bce748e1e8afea823e23e51b15491d8f02f9ba4d04e3cb53f18ca8c77e8a1ee9",
+    "docs/kling-motion/exports/female.character.zip": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23"
+  },
+  "downloads": [],
+  "screenshots": [
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-female-hand-fix/female-appearance-controls-desktop.png",
+      "bytes": 358384,
+      "sha256": "a03bb437e5391665f34cb07d22014192679c954c27032ad23e31fa001f3fb061"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-female-hand-fix/female-appearance-controls-mobile.png",
+      "bytes": 271631,
+      "sha256": "1c6c2100a8e42bea4c79aed9cad59a9e0e9540e277b0439572076d981e44cae1"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-female-hand-fix/female-update-preview-desktop.png",
+      "bytes": 343584,
+      "sha256": "accabcbd508122ba46dab03e908bc5ed4ae59775a3437652a41f444b6b9ddfe3"
+    },
+    {
+      "file": "docs/kling-appearance/stability-review/workflow/ui-female-hand-fix/female-update-preview-mobile.png",
+      "bytes": 205556,
+      "sha256": "60ca5753ae1996f949304760803ce33867329d64ae339a7da01f45b5bd1f3707"
+    }
+  ],
+  "upgrades": [],
+  "selections": [
+    {
+      "character": "female",
+      "projectPath": "/tmp/gathria-appearance-stability/final-female-hand-fix/female-day.wardrobe.zip",
+      "layout": {
+        "viewport": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "character": "female",
+      "dialogLayout": {
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "left": 15,
+        "right": 375,
+        "top": 38.15625,
+        "bottom": 805.828125
+      }
+    }
+  ],
+  "packs": [],
+  "playback": [],
+  "errors": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:5194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "failedRequests": [],
+  "externalRequests": [],
+  "forbiddenIndependentRequests": [],
+  "editorsClosedAt": "2026-10-23T01:48:19.057Z",
+  "passed": true,
+  "finishedAt": "2026-10-23T01:48:19.261Z",
+  "observationLimits": "Playback observes published canvas frame positions at 1x. Any missed positions remain in the report; it does not prove every browser paint occurred. Native CharacterPack timing is independently preserved; GIF rounds to centiseconds."
+}

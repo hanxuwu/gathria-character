@@ -1,13 +1,16 @@
 import { KLING_MOTION_CHARACTERS } from "../consumer/kling-catalog";
 
-/** Static references make the complete clothing library available in dist. */
+/** Static references publish library files without fetching them on startup. */
 export const wardrobeCatalogUrl = new URL(
   "../../docs/kling-wardrobe/catalog.json",
   import.meta.url,
 ).href;
 
 const bundled = import.meta.glob<string>(
-  "../../docs/kling-wardrobe/{garments,registration,templates}/**/*.{zip,json}",
+  [
+    "../../docs/kling-wardrobe/{garments,registration,templates}/**/*.{zip,json}",
+    "../../docs/kling-appearance/banks/**/*.zip",
+  ],
   { query: "?url&no-inline", import: "default", eager: true },
 );
 const bundledPaths = new Map(

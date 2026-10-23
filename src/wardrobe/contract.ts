@@ -1,3 +1,8 @@
+import {
+  validateAppearanceSelection,
+  type AppearanceBank,
+  type AppearanceDocumentSelection,
+} from "../appearance/contract";
 import type { PortableCharacterPackArchive } from "../core/pack";
 import type { Facing, PortableAnimationName } from "../core/types";
 
@@ -102,9 +107,8 @@ export interface WardrobeGarment {
   pages: Array<{ patch: Uint8Array; ownership: Uint8Array }>;
 }
 export type WardrobeSelection = Record<WardrobeSlot, string | null>;
-export interface WardrobeDocument {
+interface WardrobeDocumentBase {
   format: "gathria-wardrobe-project";
-  version: 1;
   sourceSha256: string;
   registrationSha256: string;
   items: Array<{ id: string; sha256: string }>;
@@ -112,6 +116,13 @@ export interface WardrobeDocument {
   selection: WardrobeSelection;
   preview: { action: PortableAnimationName; facing: Facing };
 }
+/** V1 remains the original clothing-only document. Loading a head bank explicitly upgrades to V2. */
+export type WardrobeDocument =
+  | (WardrobeDocumentBase & { version: 1; appearance?: never })
+  | (WardrobeDocumentBase & {
+      version: 2;
+      appearance: AppearanceDocumentSelection;
+    });
 export interface WardrobeProject {
   document: WardrobeDocument;
   source: Uint8Array;
@@ -119,6 +130,7 @@ export interface WardrobeProject {
   registrationBytes: Uint8Array;
   registration: WardrobeRegistration;
   items: WardrobeGarment[];
+  appearanceBank?: AppearanceBank;
 }
 
 export const WARDROBE_MAX_ITEMS = 16;
@@ -508,7 +520,7 @@ export function validateWardrobeGarmentManifest(
 
 export function validateWardrobeDocument(
   value: unknown,
-  project: Pick<WardrobeProject, "archive" | "items">,
+  project: Pick<WardrobeProject, "archive" | "items" | "appearanceBank">,
 ): WardrobeDocument {
   const data = wardrobeObject(value, "Wardrobe project document", [
     "format",
@@ -518,9 +530,21 @@ export function validateWardrobeDocument(
     "items",
     "selection",
     "preview",
+    "appearance",
   ]);
-  if (data.format !== "gathria-wardrobe-project" || data.version !== 1)
+  if (
+    data.format !== "gathria-wardrobe-project" ||
+    (data.version !== 1 && data.version !== 2)
+  )
     fail("Unsupported wardrobe project format/version.");
+  if (data.version === 1 && ("appearance" in data || project.appearanceBank))
+    fail("Wardrobe V1 cannot contain an appearance bank or selection.");
+  if (data.version === 2 && !project.appearanceBank)
+    fail("Wardrobe V2 requires its embedded appearance bank.");
+  const appearance =
+    data.version === 2
+      ? validateAppearanceSelection(data.appearance, project.appearanceBank!)
+      : undefined;
   const sourceSha256 = wardrobeSha(data.sourceSha256, "Project sourceSha256"),
     registrationSha256 = wardrobeSha(
       data.registrationSha256,
@@ -575,7 +599,7 @@ export function validateWardrobeDocument(
     fail("Preview action is unavailable in the source pack.");
   if (preview.facing !== "right" && preview.facing !== "left")
     fail("Preview facing must be right or left.");
-  return {
+  const document: WardrobeDocument = {
     format: "gathria-wardrobe-project",
     version: 1,
     sourceSha256,
@@ -587,4 +611,5 @@ export function validateWardrobeDocument(
       facing: preview.facing,
     },
   };
+  return appearance ? { ...document, version: 2, appearance } : document;
 }

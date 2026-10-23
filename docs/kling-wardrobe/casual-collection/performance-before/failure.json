@@ -1,0 +1,27 @@
+{
+  "passed": false,
+  "failure": "page.waitForFunction: Timeout 240000ms exceeded.\n    at ready (/workspace/gathria-character/scripts/capture-kling-casual-collection.mjs:107:14)\n    at appearance (/workspace/gathria-character/scripts/capture-kling-casual-collection.mjs:250:9)\n    at async file:///workspace/gathria-character/scripts/capture-kling-casual-collection.mjs:450:7",
+  "alerts": [],
+  "inputs": {
+    "docs/kling-motion/exports/male.character.zip": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+    "docs/kling-wardrobe/registration/male-full-outfits-v1.json": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+    "docs/kling-appearance/banks/male.zip": "8f45a4afb5900096f5fce9c0e505c1bef31398f159520889dd5c7495fb67fc67",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/teal-top.zip": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/ochre-shorts.zip": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-waistcoat.zip": "de0b42bcb3d3e2361779c4aa81b6ebc34a5cab050db920b8054be0e2be45b8f1",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-shorts.zip": "131a5a8da2501f93509f8a253522cd890fe7020b4738db8631be4707c996079a",
+    "docs/kling-wardrobe/garments/male-full-outfits-v1/brown-shoes.zip": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693",
+    "docs/kling-wardrobe/garments/male/teal-camp-shirt-v2.zip": "c3b738d35fc92bccaedd130a7f7cf98f5c882a5615f18e24cfe710272ab81f49",
+    "docs/kling-wardrobe/garments/male/navy-suit-jacket-v2.zip": "0b0bfaa112b9c17f161adb498a6b99d28fc5407768f5d0eecc6740c2ef0a1a9c",
+    "docs/kling-wardrobe/garments/male/ochre-chinos-v1.zip": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33",
+    "docs/kling-wardrobe/garments/male/navy-suit-trousers-v1.zip": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c",
+    "docs/kling-wardrobe/garments/male/cream-camp-shirt-v1.zip": "db5b45e87e7813d7767aa501f7ad297637cf92acd8ff50f5d6c58b7955982b40",
+    "docs/kling-wardrobe/garments/male/forest-work-shirt-v1.zip": "4406d0c1bb5ef7cf0be59f39a304c1a2370d86cd3df1f7e1286858cbd09441ad"
+  },
+  "oldCacheMiB": 192,
+  "observedProgressAtTimeout": "71/88 male source poses",
+  "largestDefaultForestGentleWorkingSetMiB": 195.97,
+  "largestShippedOutfitWithOptionalShoesMiB": 222.26,
+  "diagnosis": "Active frame pages exceed LRU capacity, repeatedly evicting a page needed again within the next frame.",
+  "resolution": "Bounded cache becomes 256 MiB / 8 pages; native PNG pixels and all archive limits unchanged."
+}

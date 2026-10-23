@@ -7,6 +7,8 @@ import {
   RotateCcw,
   Shirt,
   Upload,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import {
   KLING_CHARACTERS,
@@ -22,18 +24,28 @@ import { downloadBlob, safeFilename } from "../core/pack";
 import { encodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
 import type { Facing, PortableAnimationName } from "../core/types";
 import {
+  APPEARANCE_HAIR_COLORS,
+  APPEARANCE_MAX_BYTES,
+  DEFAULT_APPEARANCE_SELECTION,
+  type AppearanceSelection,
+} from "../appearance/contract";
+import {
   WARDROBE_MAX_ITEM_BYTES,
   WARDROBE_MAX_PROJECT_BYTES,
   WARDROBE_SLOTS,
+  validateWardrobeDocument,
   type WardrobeProject,
   type WardrobeSelection,
   type WardrobeSlot,
 } from "./contract";
 import {
+  addWardrobeAppearanceBank,
   addWardrobeGarment,
   createWardrobeProject,
   exportWardrobeProject,
+  getWardrobeAppearanceSelection,
   importWardrobeProject,
+  selectWardrobeAppearance,
   selectWardrobeGarment,
   updateWardrobePreview,
 } from "./project";
@@ -43,14 +55,36 @@ import {
   validateWardrobeAppearance,
   type WardrobeCompositor,
 } from "./compositor";
+import {
+  getAppearanceUpgradeAvailability,
+  appearanceReleaseFor,
+  prepareAppearanceUpgrade,
+  validateAppearanceCatalogRevision,
+  type AppearanceCatalogRevision,
+} from "../appearance/upgrade";
+import AppearanceUpdatePreview from "./AppearanceUpdatePreview";
+import {
+  libraryAppearanceChoices,
+  isLibraryAppearance,
+  validateAppearanceLibraryBanks,
+  type AppearanceLibraryBank,
+  validateAppearanceStyleSummaries,
+  type AppearanceStyleSummary,
+} from "../appearance/catalog";
 import "./wardrobe.css";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
+import { retainOutfitAndCustomItems } from "./library-inventory";
+import ConnectionInspector from "./ConnectionInspector";
+import NamedLooks from "./NamedLooks";
+import { createWardrobeDownloads } from "./download-cache";
+import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
 
 interface CatalogItem {
   id: string;
   name: string;
   slot: WardrobeSlot;
   url: string;
+  sha256?: string;
 }
 interface CatalogCharacter {
   key: KlingCharacterId;
@@ -59,6 +93,10 @@ interface CatalogCharacter {
   sourceUrl: string;
   registrationUrl: string;
   templateUrl?: string;
+  appearanceBankUrl?: string;
+  appearanceRevision?: AppearanceCatalogRevision;
+  appearanceStyles?: AppearanceStyleSummary[];
+  appearanceLibraries?: AppearanceLibraryBank[];
   items: CatalogItem[];
   presets: Array<{ id: string; name: string; selection: WardrobeSelection }>;
 }
@@ -72,6 +110,28 @@ interface Session {
   renderer: WardrobeCompositor;
   dirty: boolean;
 }
+interface AppearancePreview {
+  project: WardrobeProject;
+  renderer: WardrobeCompositor;
+  original: WardrobeCompositor;
+  action: PortableAnimationName;
+  position: number;
+  facing: Facing;
+}
+// These are reviewed, actual application exports. Missing artwork remains a
+// named choice until its matching thumbnail is delivered, never a broken URL.
+const HAIR_PREVIEWS = import.meta.glob<string>("../appearance/previews/*.png", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+const hairPreview = (character: KlingCharacterId, styleId: string) =>
+  HAIR_PREVIEWS[`../appearance/previews/${character}-${styleId}.png`];
+const HAIR_SWATCHES = {
+  chestnut: "#74422e",
+  espresso: "#332623",
+  copper: "#ab5e37",
+};
 interface Props {
   initialCharacter: KlingCharacterId;
   active: boolean;
@@ -141,7 +201,8 @@ function readCatalog(value: unknown): Catalog {
         typeof item.id !== "string" ||
         ids.has(item.id) ||
         typeof item.name !== "string" ||
-        !WARDROBE_SLOTS.includes(item.slot)
+        !WARDROBE_SLOTS.includes(item.slot) ||
+        (item.sha256 !== undefined && !/^[a-f0-9]{64}$/.test(item.sha256))
       )
         throw Error("The clothing library has an invalid item.");
       ids.add(item.id);
@@ -178,28 +239,27 @@ function readCatalog(value: unknown): Catalog {
       sourceUrl: localUrl(entry.sourceUrl),
       registrationUrl: localUrl(entry.registrationUrl),
       templateUrl: entry.templateUrl ? localUrl(entry.templateUrl) : undefined,
+      appearanceBankUrl: entry.appearanceBankUrl
+        ? localUrl(entry.appearanceBankUrl)
+        : undefined,
+      appearanceRevision: entry.appearanceRevision
+        ? validateAppearanceCatalogRevision(entry.appearanceRevision)
+        : undefined,
+      appearanceStyles:
+        entry.appearanceStyles === undefined
+          ? undefined
+          : validateAppearanceStyleSummaries(entry.appearanceStyles),
+      appearanceLibraries:
+        entry.appearanceLibraries === undefined
+          ? undefined
+          : validateAppearanceLibraryBanks(entry.appearanceLibraries).map(
+              (bank) => ({ ...bank, url: localUrl(bank.url) }),
+            ),
       items,
       presets,
     };
   });
   return { version: 1, characters };
-}
-async function fetchBytes(
-  url: string,
-  maximum: number,
-  signal?: AbortSignal,
-): Promise<Uint8Array> {
-  const response = await fetch(url, { signal });
-  if (!response.ok)
-    throw Error(
-      `Could not open ${new URL(url, window.location.href).pathname} (${response.status}).`,
-    );
-  if (Number(response.headers.get("content-length")) > maximum)
-    throw Error("This file exceeds the supported size.");
-  const bytes = new Uint8Array(await response.arrayBuffer());
-  if (!bytes.length || bytes.length > maximum)
-    throw Error("This file is empty or exceeds the supported size.");
-  return bytes;
 }
 function saveBytes(
   bytes: Uint8Array,
@@ -246,6 +306,8 @@ export default function WardrobeEditor({
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [busy, setBusy] = useState(false);
+  const [cancellable, setCancellable] = useState(false);
+  const [downloads] = useState(() => createWardrobeDownloads());
   const [status, setStatus] = useState("Opening the clothing library…");
   const [error, setError] = useState("");
   const [playing, setPlaying] = useState(false);
@@ -255,7 +317,17 @@ export default function WardrobeEditor({
   const [zoom, setZoom] = useState("fit");
   const [anchors, setAnchors] = useState(false);
   const [compare, setCompare] = useState(false);
+  const [inspect, setInspect] = useState(false);
+  const [playbackRate, setPlaybackRate] = useState(1);
   const [retry, setRetry] = useState(0);
+  const [appearancePreview, setAppearancePreview] =
+    useState<AppearancePreview | null>(null);
+  const previewRenderer = useRef<WardrobeCompositor | null>(null);
+  const preparingAppearancePreview = useRef(false);
+  const resumeAfterPreview = useRef(false);
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  const updateAppearanceButton = useRef<HTMLButtonElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const originalCanvas = useRef<HTMLCanvasElement>(null);
   const projectInput = useRef<HTMLInputElement>(null);
@@ -293,7 +365,43 @@ export default function WardrobeEditor({
     preparation.current?.abort();
     const controller = new AbortController();
     preparation.current = controller;
+    setCancellable(true);
     return { token: ++request.current, controller };
+  }
+  function fetchBytes(
+    url: string,
+    maximum: number,
+    signal?: AbortSignal,
+    hash?: string,
+  ) {
+    return downloads.load(url, maximum, {
+      signal,
+      sha256: hash,
+      onProgress: (value) => {
+        if (signal?.aborted || maximum < 2 * 1024 * 1024) return;
+        const mb = (n: number) => (n / 1024 / 1024).toFixed(1);
+        setStatus(
+          value.cached
+            ? "Reusing verified artwork from this session…"
+            : `Downloading artwork: ${mb(value.loaded)}${value.total ? ` / ${mb(value.total)}` : ""} MB…`,
+        );
+      },
+    });
+  }
+  function cancelPreparation() {
+    preparation.current?.abort();
+    request.current++;
+    if (preparingAppearancePreview.current)
+      setPlaying(resumeAfterPreview.current && activeRef.current);
+    preparingAppearancePreview.current = false;
+    setBusy(false);
+    setCancellable(false);
+    setError("");
+    setStatus(
+      current.current
+        ? "Preparation canceled. Your accepted outfit is unchanged."
+        : "Loading canceled. Retry when you are ready.",
+    );
   }
   async function accept(
     project: WardrobeProject,
@@ -316,7 +424,7 @@ export default function WardrobeEditor({
         onProgress: (completedFrames, totalFrames) => {
           if (token === request.current && !signal.aborted)
             setStatus(
-              `Checking clothing across all poses: ${completedFrames} / ${totalFrames}…`,
+              `Checking your character across all poses: ${completedFrames} / ${totalFrames}…`,
             );
         },
       });
@@ -404,6 +512,8 @@ export default function WardrobeEditor({
       request.current++;
       preparation.current?.abort();
       current.current?.renderer.dispose();
+      previewRenderer.current?.dispose();
+      previewRenderer.current = null;
       current.current = null;
       rendered.current = null;
       savedSessions.current.clear();
@@ -421,7 +531,7 @@ export default function WardrobeEditor({
         const open = current.current!;
         const manifest = open.project.archive.manifest;
         const profile = readMotionFlow(manifest, open.project.archive.config);
-        const delta = previous === null ? 0 : now - previous;
+        const delta = previous === null ? 0 : (now - previous) * playbackRate;
         previous = now;
         const before = motion.current;
         let after: MotionState;
@@ -464,7 +574,7 @@ export default function WardrobeEditor({
     }
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
-  }, [active, playing, busy, session?.renderer]);
+  }, [active, playing, busy, session?.renderer, playbackRate]);
 
   const project = session?.project;
   const entry = catalog?.characters.find(
@@ -475,6 +585,40 @@ export default function WardrobeEditor({
   const facing = project?.document.preview.facing ?? "right";
   const requestedAction = project?.document.preview.action ?? "idle";
   const registration = project?.registration;
+  const outputSheet = session?.renderer.manifest.spritesheet;
+  const outputAnchor = session?.renderer.manifest.anchor;
+  const appearance =
+    project?.document.version === 2
+      ? project.document.appearance
+      : DEFAULT_APPEARANCE_SELECTION;
+  const appearanceAvailable = Boolean(
+    project?.appearanceBank || entry?.appearanceBankUrl,
+  );
+  const appearanceRelease = appearanceReleaseFor(
+    entry?.appearanceRevision,
+    entry?.appearanceBankUrl,
+    entry?.appearanceLibraries,
+    project?.appearanceBank?.sha256,
+  );
+  const upgradeAvailability = project
+    ? getAppearanceUpgradeAvailability(
+        project,
+        appearanceRelease?.revision,
+        entry?.appearanceLibraries,
+      )
+    : null;
+  const showLibraryThumbnails = isLibraryAppearance(
+    project?.appearanceBank?.sha256,
+    entry?.appearanceRevision?.bankSha256,
+    entry?.appearanceLibraries,
+  );
+  const appearanceStyles = libraryAppearanceChoices(
+    project?.appearanceBank?.manifest,
+    project?.appearanceBank?.sha256,
+    entry?.appearanceRevision?.bankSha256,
+    entry?.appearanceStyles,
+    entry?.appearanceLibraries,
+  );
 
   useLayoutEffect(() => {
     if (!session || frameId === undefined || !canvas.current) return;
@@ -512,6 +656,11 @@ export default function WardrobeEditor({
         }
         context.drawImage(image, 0, 0);
         if (overlay) {
+          context.save();
+          context.translate(
+            session!.renderer.padding.left,
+            session!.renderer.padding.top,
+          );
           const registered = session!.project.registration.frames.find(
             (candidate) => candidate.frameId === frameId,
           )!;
@@ -549,6 +698,7 @@ export default function WardrobeEditor({
           context.moveTo(anchor.x, anchor.y - 14);
           context.lineTo(anchor.x, anchor.y + 14);
           context.stroke();
+          context.restore();
         }
         context.restore();
         // Publish the observation metadata only after the matching bitmap is
@@ -579,18 +729,27 @@ export default function WardrobeEditor({
   async function changeProject(
     transform: (
       project: WardrobeProject,
+      signal: AbortSignal,
     ) => Promise<WardrobeProject> | WardrobeProject,
     message: string,
+    preserveMotion = true,
   ) {
     const open = current.current;
-    if (!open || busy) return;
+    if (!open || busy || appearancePreview) return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
-    setStatus("Preparing clothing for this character…");
+    setStatus("Preparing your character…");
     try {
-      const next = await transform(open.project);
-      await accept(next, open.character, true, token, controller.signal, true);
+      const next = await transform(open.project, controller.signal);
+      await accept(
+        next,
+        open.character,
+        true,
+        token,
+        controller.signal,
+        preserveMotion,
+      );
       if (token === request.current) setStatus(message);
     } catch (failure) {
       if (token === request.current)
@@ -599,10 +758,245 @@ export default function WardrobeEditor({
       if (token === request.current) setBusy(false);
     }
   }
+  function closeAppearancePreview() {
+    setAppearancePreview(null);
+    previewRenderer.current?.dispose();
+    previewRenderer.current = null;
+    setPlaying(resumeAfterPreview.current && active);
+    setStatus("Appearance preview closed. Your open outfit is unchanged.");
+    requestAnimationFrame(() => updateAppearanceButton.current?.focus());
+  }
+  useEffect(() => {
+    if (active) return;
+    if (previewRenderer.current) closeAppearancePreview();
+    if (preparingAppearancePreview.current) {
+      preparingAppearancePreview.current = false;
+      preparation.current?.abort();
+      request.current++;
+      setBusy(false);
+      setStatus("Appearance preview canceled. Your open outfit is unchanged.");
+    }
+  }, [active]);
+
+  async function previewAppearanceUpdate() {
+    const open = current.current;
+    const revision = appearanceRelease?.revision;
+    const url = appearanceRelease?.url;
+    if (!open || busy || appearancePreview || !revision || !url) return;
+    const { token, controller } = beginPreparation();
+    preparingAppearancePreview.current = true;
+    resumeAfterPreview.current = playing;
+    setPlaying(false);
+    setBusy(true);
+    setError("");
+    setStatus(
+      "Preparing an appearance update preview. Your open outfit is unchanged…",
+    );
+    let renderer: WardrobeCompositor | null = null;
+    try {
+      const candidate = await prepareAppearanceUpgrade(
+        open.project,
+        await fetchBytes(
+          url,
+          APPEARANCE_MAX_BYTES,
+          controller.signal,
+          revision.bankSha256,
+        ),
+        revision,
+        { signal: controller.signal },
+      );
+      renderer = await createWardrobeCompositor(candidate, {
+        signal: controller.signal,
+      });
+      await validateWardrobeAppearance(renderer, {
+        signal: controller.signal,
+        onProgress: (completed, total) => {
+          if (token === request.current && !controller.signal.aborted)
+            setStatus(
+              `Checking updated appearance: ${completed} / ${total} poses…`,
+            );
+        },
+      });
+      if (
+        token !== request.current ||
+        controller.signal.aborted ||
+        !activeRef.current
+      ) {
+        renderer.dispose();
+        if (token === request.current && !controller.signal.aborted)
+          setStatus(
+            "Appearance preview canceled. Your open outfit is unchanged.",
+          );
+        return;
+      }
+      previewRenderer.current = renderer;
+      setAppearancePreview({
+        project: candidate,
+        renderer,
+        original: open.renderer,
+        action: motion.current.action,
+        position: tick.current,
+        facing: open.project.document.preview.facing,
+      });
+      setStatus(
+        "Compare the updated appearance, then save a separate copy if you want to keep it.",
+      );
+    } catch (failure) {
+      renderer?.dispose();
+      if (token === request.current && !controller.signal.aborted) {
+        setError(`${failureText(failure)} Your open outfit is unchanged.`);
+        setPlaying(resumeAfterPreview.current && activeRef.current);
+      }
+    } finally {
+      if (token === request.current) {
+        preparingAppearancePreview.current = false;
+        setBusy(false);
+      }
+    }
+  }
+  async function saveAppearanceCopy(candidate: WardrobeProject) {
+    const character = current.current?.character;
+    if (!character)
+      throw Error("Open a character before saving an updated copy.");
+    const bytes = await exportWardrobeProject(candidate);
+    saveBytes(
+      bytes,
+      `${safeFilename(`kling-${character}-wardrobe`)}-appearance-updated.wardrobe.zip`,
+    );
+    setStatus(
+      "Updated appearance copy saved. Reopen the downloaded copy to use it; your original outfit is still open.",
+    );
+  }
+  function chooseAppearance(selection: Partial<AppearanceSelection>) {
+    void changeProject(async (base, signal) => {
+      let next = retainOutfitAndCustomItems(base, entry?.items ?? []);
+      const wanted = { ...getWardrobeAppearanceSelection(next), ...selection };
+      const has = (id: string | null) =>
+        !id ||
+        next.appearanceBank?.manifest.styles.some((style) => style.id === id);
+      if (
+        (!next.appearanceBank && (wanted.hairId || wanted.faceId)) ||
+        !has(wanted.hairId) ||
+        !has(wanted.faceId)
+      ) {
+        const library = entry?.appearanceLibraries?.find(
+          (bank) =>
+            wanted.hairId &&
+            bank.styles.some((style) => style.id === wanted.hairId),
+        );
+        const url = library?.url ?? entry?.appearanceBankUrl;
+        const expected =
+          library?.sha256 ?? entry?.appearanceRevision?.bankSha256;
+        if (!url)
+          throw Error(
+            "Hair and face options are not available for this character.",
+          );
+        next = await addWardrobeAppearanceBank(
+          next,
+          await fetchBytes(url, APPEARANCE_MAX_BYTES, signal, expected),
+          { signal },
+        );
+        if (
+          (expected && next.appearanceBank?.sha256 !== expected) ||
+          (library && next.appearanceBank?.manifest.id !== library.bankId)
+        )
+          throw Error("The appearance file does not match its library entry.");
+      }
+      return next.appearanceBank
+        ? selectWardrobeAppearance(next, wanted)
+        : next;
+    }, "Appearance updated. Your clothing and original movement are preserved.");
+  }
+  function applyLook(look: NamedLook) {
+    void changeProject(
+      async (base, signal) => {
+        checkLookSource(look, base);
+        // Resolve every reference before fetching or changing the accepted outfit.
+        const needed = look.items.map((ref) => {
+          const embedded = base.items.find(
+            (i) => i.manifest.id === ref.id && i.sha256 === ref.sha256,
+          );
+          return {
+            ref,
+            embedded,
+            item: embedded ? null : exactLookAsset(ref, entry?.items ?? []),
+          };
+        });
+        const bankHash = look.appearance?.bankSha256;
+        const bankUrl =
+          bankHash === entry?.appearanceRevision?.bankSha256
+            ? entry?.appearanceBankUrl
+            : entry?.appearanceLibraries?.find((b) => b.sha256 === bankHash)
+                ?.url;
+        if (bankHash && base.appearanceBank?.sha256 !== bankHash && !bankUrl)
+          throw Error(
+            "The exact saved appearance is unavailable. Reopen its saved wardrobe project; no replacement was applied.",
+          );
+        let next = base;
+        for (const slot of WARDROBE_SLOTS)
+          next = selectWardrobeGarment(next, slot, null);
+        // Release inactive library bytes before loading a different look, while
+        // retaining its already-embedded references and every custom import.
+        const requiredIds = new Set(look.items.map((item) => item.id));
+        next = retainOutfitAndCustomItems(
+          next,
+          (entry?.items ?? []).filter((item) => !requiredIds.has(item.id)),
+        );
+        for (const { ref, embedded, item } of needed) {
+          if (embedded) continue;
+          if (next.items.some((i) => i.manifest.id === ref.id))
+            throw Error(
+              "An imported item uses this name with different artwork. Reopen the saved wardrobe project.",
+            );
+          next = await addWardrobeGarment(
+            next,
+            await fetchBytes(
+              item!.url,
+              WARDROBE_MAX_ITEM_BYTES,
+              signal,
+              ref.sha256,
+            ),
+          );
+          exactLookAsset(
+            ref,
+            next.items.map((i) => ({ id: i.manifest.id, sha256: i.sha256 })),
+          );
+        }
+        if (bankHash && next.appearanceBank?.sha256 !== bankHash)
+          next = await addWardrobeAppearanceBank(
+            next,
+            await fetchBytes(bankUrl!, APPEARANCE_MAX_BYTES, signal, bankHash),
+            { signal },
+          );
+        if (!look.appearance) next = { ...next, appearanceBank: undefined };
+        if (bankHash && next.appearanceBank?.sha256 !== bankHash)
+          throw Error("The appearance file does not match the saved look.");
+        const { appearance: _old, ...document } = next.document;
+        next = {
+          ...next,
+          document: validateWardrobeDocument(
+            {
+              ...document,
+              version: look.appearance ? 2 : 1,
+              ...(look.appearance ? { appearance: look.appearance } : {}),
+              selection: look.selection,
+              preview: look.preview,
+            },
+            next,
+          ),
+        };
+        return retainOutfitAndCustomItems(next, entry?.items ?? []);
+      },
+      `${look.name} restored with its saved materials, action and facing.`,
+      false,
+    );
+  }
   async function ensureItem(
     base: WardrobeProject,
     id: string,
+    signal?: AbortSignal,
   ): Promise<WardrobeProject> {
+    base = retainOutfitAndCustomItems(base, entry?.items ?? []);
     if (base.items.some((item) => item.manifest.id === id)) return base;
     const item = entry?.items.find((candidate) => candidate.id === id);
     if (!item)
@@ -611,41 +1005,54 @@ export default function WardrobeEditor({
       );
     const next = await addWardrobeGarment(
       base,
-      await fetchBytes(item.url, WARDROBE_MAX_ITEM_BYTES),
+      await fetchBytes(item.url, WARDROBE_MAX_ITEM_BYTES, signal, item.sha256),
     );
     const added = next.items.find((candidate) => candidate.manifest.id === id);
-    if (!added || added.manifest.slot !== item.slot)
+    if (
+      !added ||
+      added.manifest.slot !== item.slot ||
+      (item.sha256 && added.sha256 !== item.sha256)
+    )
       throw Error("The clothing file does not match its library entry.");
     return next;
   }
   function chooseItem(slot: WardrobeSlot, id: string) {
     void changeProject(
-      async (base) =>
-        selectWardrobeGarment(
-          id ? await ensureItem(base, id) : base,
-          slot,
-          id || null,
+      async (base, signal) =>
+        retainOutfitAndCustomItems(
+          selectWardrobeGarment(
+            id ? await ensureItem(base, id, signal) : base,
+            slot,
+            id || null,
+          ),
+          entry?.items ?? [],
         ),
       "Outfit updated. Check its silhouette through each movement.",
     );
   }
   function choosePreset(selection: WardrobeSelection, name: string) {
-    void changeProject(async (base) => {
+    void changeProject(async (base, signal) => {
       let next = base;
       for (const slot of WARDROBE_SLOTS)
         next = selectWardrobeGarment(next, slot, null);
       for (const slot of WARDROBE_SLOTS)
         if (selection[slot])
           next = selectWardrobeGarment(
-            await ensureItem(next, selection[slot]!),
+            await ensureItem(next, selection[slot]!, signal),
             slot,
             selection[slot],
           );
-      return next;
+      return retainOutfitAndCustomItems(next, entry?.items ?? []);
     }, `${name} selected. Clothing follows the original movement frames.`);
   }
   async function chooseCharacter(character: KlingCharacterId) {
-    if (busy || !catalog || character === session?.character) return;
+    if (
+      busy ||
+      appearancePreview ||
+      !catalog ||
+      character === session?.character
+    )
+      return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -758,7 +1165,7 @@ export default function WardrobeEditor({
     setPlaying(!playing);
   }
   async function importProject(file?: File) {
-    if (!file || busy) return;
+    if (!file || busy || appearancePreview) return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -806,8 +1213,9 @@ export default function WardrobeEditor({
   }
   async function exportFile(kind: "project" | "pack" | "png") {
     const open = current.current;
-    if (!open || busy || frameId === undefined) return;
+    if (!open || busy || appearancePreview || frameId === undefined) return;
     setBusy(true);
+    setCancellable(false);
     setError("");
     setStatus(
       kind === "pack"
@@ -859,12 +1267,12 @@ export default function WardrobeEditor({
     WARDROBE_SLOTS.every((slot) => preset.selection[slot] === selected[slot]),
   );
   const original = WARDROBE_SLOTS.every((slot) => !selected[slot]);
-  const size = registration
+  const size = outputSheet
     ? {
         width:
-          zoom === "fit" ? undefined : registration.frameWidth * Number(zoom),
+          zoom === "fit" ? undefined : outputSheet.frameWidth * Number(zoom),
         height:
-          zoom === "fit" ? undefined : registration.frameHeight * Number(zoom),
+          zoom === "fit" ? undefined : outputSheet.frameHeight * Number(zoom),
       }
     : undefined;
 
@@ -876,7 +1284,7 @@ export default function WardrobeEditor({
           <select
             aria-label="Wardrobe character"
             value={session?.character ?? initialCharacter}
-            disabled={busy || !catalog}
+            disabled={busy || Boolean(appearancePreview) || !catalog}
             onChange={(event) =>
               void chooseCharacter(event.target.value as KlingCharacterId)
             }
@@ -892,19 +1300,19 @@ export default function WardrobeEditor({
           </select>
         </label>
         <p>
-          Keep the original face and movement. Clothing is prepared for each
-          pose.
+          Choose hair, expression and clothing while keeping the original
+          movement.
         </p>
         <button
           type="button"
-          disabled={busy}
+          disabled={busy || Boolean(appearancePreview)}
           onClick={() => projectInput.current?.click()}
         >
           <FolderOpen size={16} aria-hidden="true" /> Reopen wardrobe
         </button>
         <button
           type="button"
-          disabled={busy || !session}
+          disabled={busy || Boolean(appearancePreview) || !session}
           onClick={() => void exportFile("project")}
         >
           <Download size={16} aria-hidden="true" /> Save wardrobe
@@ -940,7 +1348,7 @@ export default function WardrobeEditor({
           {!session && (
             <button
               type="button"
-              disabled={busy}
+              disabled={busy || Boolean(appearancePreview)}
               onClick={() => setRetry((value) => value + 1)}
             >
               Retry loading
@@ -952,9 +1360,197 @@ export default function WardrobeEditor({
         {busy && <span className="wardrobe-spinner" aria-hidden="true" />}
         {status}
       </p>
-      {session && project && registration && (
+      {busy && cancellable && (
+        <button type="button" onClick={cancelPreparation}>
+          Cancel preparation
+        </button>
+      )}
+      {!busy && !session && !error && (
+        <button type="button" onClick={() => setRetry((value) => value + 1)}>
+          Retry loading
+        </button>
+      )}
+      {session && project && registration && outputSheet && outputAnchor && (
         <div className="wardrobe-layout">
           <aside className="wardrobe-controls" aria-label="Clothing selection">
+            <section className="wardrobe-appearance" aria-label="Hair and face">
+              <div className="wardrobe-section-title">
+                <h2>Hair &amp; face</h2>
+              </div>
+              <div
+                className="appearance-style-choices"
+                role="group"
+                aria-label="Hairstyle previews"
+              >
+                {appearanceStyles
+                  .filter((style) => style.slot === "hair")
+                  .map((style) => (
+                    <button
+                      type="button"
+                      key={style.id}
+                      aria-label={`Choose ${style.name}`}
+                      aria-pressed={appearance.hairId === style.id}
+                      disabled={
+                        busy ||
+                        Boolean(appearancePreview) ||
+                        !appearanceAvailable
+                      }
+                      onClick={() => chooseAppearance({ hairId: style.id })}
+                    >
+                      {showLibraryThumbnails &&
+                        hairPreview(session.character, style.id) && (
+                          <img
+                            src={hairPreview(session.character, style.id)}
+                            alt=""
+                            width={152}
+                            height={128}
+                          />
+                        )}
+                      <span>{style.name}</span>
+                    </button>
+                  ))}
+              </div>
+              <p className="wardrobe-hint appearance-example-note">
+                {showLibraryThumbnails
+                  ? "Style examples in Chestnut. Your chosen color and face appear in the live preview."
+                  : "Using the appearance saved in this project. Inspect its styles in the live preview."}
+              </p>
+              <label className="wardrobe-slot">
+                Hairstyle
+                <select
+                  aria-label="Hairstyle"
+                  value={appearance.hairId ?? ""}
+                  disabled={
+                    busy || Boolean(appearancePreview) || !appearanceAvailable
+                  }
+                  onChange={(event) =>
+                    chooseAppearance({ hairId: event.target.value || null })
+                  }
+                >
+                  <option value="">Original</option>
+                  {appearanceStyles
+                    .filter((style) => style.slot === "hair")
+                    .map((style) => (
+                      <option key={style.id} value={style.id}>
+                        {style.name}
+                      </option>
+                    ))}
+                </select>
+              </label>
+              <label className="wardrobe-slot">
+                Face
+                <select
+                  aria-label="Face"
+                  value={appearance.faceId ?? ""}
+                  disabled={
+                    busy || Boolean(appearancePreview) || !appearanceAvailable
+                  }
+                  onChange={(event) =>
+                    chooseAppearance({ faceId: event.target.value || null })
+                  }
+                >
+                  <option value="">Original</option>
+                  {appearanceStyles
+                    .filter((style) => style.slot === "face")
+                    .map((style) => (
+                      <option key={style.id} value={style.id}>
+                        {style.name}
+                      </option>
+                    ))}
+                </select>
+              </label>
+              <label className="wardrobe-slot">
+                Hair color
+                <select
+                  aria-label="Hair color"
+                  value={appearance.hairColor}
+                  disabled={
+                    busy || Boolean(appearancePreview) || !appearance.hairId
+                  }
+                  onChange={(event) =>
+                    chooseAppearance({
+                      hairColor: event.target
+                        .value as AppearanceSelection["hairColor"],
+                    })
+                  }
+                >
+                  {APPEARANCE_HAIR_COLORS.map((color) => (
+                    <option key={color} value={color}>
+                      {nameFor(color)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div
+                className="appearance-color-choices"
+                role="group"
+                aria-label="Hair color swatches"
+              >
+                {APPEARANCE_HAIR_COLORS.map((color) => (
+                  <button
+                    key={color}
+                    type="button"
+                    aria-label={`Use ${nameFor(color)}`}
+                    aria-pressed={appearance.hairColor === color}
+                    disabled={
+                      busy || Boolean(appearancePreview) || !appearance.hairId
+                    }
+                    onClick={() => chooseAppearance({ hairColor: color })}
+                  >
+                    <span
+                      className="appearance-color-swatch"
+                      style={{ backgroundColor: HAIR_SWATCHES[color] }}
+                      aria-hidden="true"
+                    />
+                    <span>{nameFor(color)}</span>
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                disabled={
+                  busy ||
+                  Boolean(appearancePreview) ||
+                  (!appearance.hairId && !appearance.faceId)
+                }
+                onClick={() => chooseAppearance(DEFAULT_APPEARANCE_SELECTION)}
+              >
+                <RotateCcw size={14} aria-hidden="true" /> Reset appearance
+              </button>
+              <p className="wardrobe-hint">
+                Hair and face choices stay with this character when you change
+                outfits. Gentle keeps the original action blinks and laughter.
+                Use Compare original to inspect the source face and movement.
+              </p>
+              {upgradeAvailability?.status === "available" &&
+                entry?.appearanceBankUrl && (
+                  <div className="appearance-update-entry">
+                    <p>
+                      {project.appearanceBank
+                        ? "A refined appearance is available. Preview it with your current outfit before saving a separate copy."
+                        : "You can add the current hair and face tools to a separate copy. Your original appearance is kept until you choose a style."}
+                    </p>
+                    <button
+                      ref={updateAppearanceButton}
+                      type="button"
+                      disabled={busy || Boolean(appearancePreview)}
+                      onClick={() => void previewAppearanceUpdate()}
+                    >
+                      Preview updated appearance
+                    </button>
+                  </div>
+                )}
+              {project.appearanceBank &&
+                upgradeAvailability?.status === "current" && (
+                  <p className="wardrobe-hint">
+                    This project uses the current appearance.
+                  </p>
+                )}
+              {project.appearanceBank &&
+                upgradeAvailability?.status === "unavailable" && (
+                  <p className="wardrobe-hint">{upgradeAvailability.reason}</p>
+                )}
+            </section>
             <div className="wardrobe-section-title">
               <Shirt size={18} aria-hidden="true" />
               <h2>Your outfit</h2>
@@ -967,7 +1563,7 @@ export default function WardrobeEditor({
               <button
                 type="button"
                 aria-pressed={original}
-                disabled={busy}
+                disabled={busy || Boolean(appearancePreview)}
                 onClick={() => choosePreset(EMPTY_SELECTION, "Original outfit")}
               >
                 Original
@@ -981,7 +1577,7 @@ export default function WardrobeEditor({
                     key={preset.id}
                     type="button"
                     aria-pressed={selectedPreset?.id === preset.id}
-                    disabled={busy}
+                    disabled={busy || Boolean(appearancePreview)}
                     onClick={() => choosePreset(preset.selection, preset.name)}
                   >
                     {preset.name}
@@ -1000,7 +1596,7 @@ export default function WardrobeEditor({
                   {SLOT_NAMES[slot]}
                   <select
                     aria-label={SLOT_NAMES[slot]}
-                    disabled={busy}
+                    disabled={busy || Boolean(appearancePreview)}
                     value={selected[slot] ?? ""}
                     onChange={(event) => chooseItem(slot, event.target.value)}
                   >
@@ -1020,10 +1616,16 @@ export default function WardrobeEditor({
               A dress or one-piece replaces both top and bottom. Shoes sit
               beneath trouser cuffs and hems.
             </p>
+            <NamedLooks
+              project={project}
+              character={session.character}
+              disabled={busy || Boolean(appearancePreview)}
+              onApply={applyLook}
+            />
             <button
               type="button"
               className="wardrobe-secondary"
-              disabled={busy}
+              disabled={busy || Boolean(appearancePreview)}
               onClick={() => garmentInput.current?.click()}
             >
               <Upload size={15} aria-hidden="true" /> Add clothing file
@@ -1031,6 +1633,11 @@ export default function WardrobeEditor({
             <p className="wardrobe-hint">
               New clothing must match this character’s registered poses.
               Incompatible files leave your outfit unchanged.
+            </p>
+            <p className="wardrobe-hint">
+              Projects keep your current look and custom clothing. Other library
+              clothes and hairstyles load when selected; the saved look remains
+              self-contained for reopening and export.
             </p>
             <details className="wardrobe-guides">
               <summary>Fitting guides</summary>
@@ -1040,7 +1647,7 @@ export default function WardrobeEditor({
               </p>
               <button
                 type="button"
-                disabled={busy}
+                disabled={busy || Boolean(appearancePreview)}
                 onClick={() =>
                   saveBytes(
                     project.registrationBytes,
@@ -1073,14 +1680,14 @@ export default function WardrobeEditor({
               <button
                 type="button"
                 className="wardrobe-primary"
-                disabled={busy}
+                disabled={busy || Boolean(appearancePreview)}
                 onClick={() => void exportFile("pack")}
               >
                 <Download size={16} aria-hidden="true" /> Export CharacterPack
               </button>
               <button
                 type="button"
-                disabled={busy}
+                disabled={busy || Boolean(appearancePreview)}
                 onClick={() => void exportFile("png")}
               >
                 Save current PNG
@@ -1090,7 +1697,7 @@ export default function WardrobeEditor({
               </a>
               <p className="wardrobe-hint">
                 The CharacterPack contains the finished animation. Save a
-                wardrobe project as well to change clothing later.
+                wardrobe project as well to change hair, face or clothing later.
               </p>
             </div>
           </aside>
@@ -1101,7 +1708,7 @@ export default function WardrobeEditor({
                 <select
                   aria-label="Wardrobe action"
                   value={requestedAction}
-                  disabled={busy}
+                  disabled={busy || Boolean(appearancePreview)}
                   onChange={(event) =>
                     chooseAction(event.target.value as PortableAnimationName)
                   }
@@ -1120,7 +1727,7 @@ export default function WardrobeEditor({
                 <select
                   aria-label="Wardrobe facing"
                   value={facing}
-                  disabled={busy}
+                  disabled={busy || Boolean(appearancePreview)}
                   onChange={(event) =>
                     chooseFacing(event.target.value as Facing)
                   }
@@ -1136,7 +1743,7 @@ export default function WardrobeEditor({
                     ? "Pause wardrobe animation"
                     : "Play wardrobe animation"
                 }
-                disabled={busy}
+                disabled={busy || Boolean(appearancePreview)}
                 onClick={togglePlayback}
               >
                 {playing ? (
@@ -1149,7 +1756,7 @@ export default function WardrobeEditor({
               <button
                 type="button"
                 aria-label="Restart wardrobe action"
-                disabled={busy}
+                disabled={busy || Boolean(appearancePreview)}
                 onClick={() => {
                   motion.current = {
                     action: requestedAction,
@@ -1164,6 +1771,18 @@ export default function WardrobeEditor({
               >
                 <RotateCcw size={16} aria-hidden="true" />
               </button>
+              <label>
+                Preview speed
+                <select
+                  aria-label="Wardrobe preview speed"
+                  value={playbackRate}
+                  onChange={(e) => setPlaybackRate(Number(e.target.value))}
+                >
+                  <option value={1}>1×</option>
+                  <option value={0.5}>0.5×</option>
+                  <option value={0.25}>0.25×</option>
+                </select>
+              </label>
               <label>
                 Size
                 <select
@@ -1189,6 +1808,17 @@ export default function WardrobeEditor({
               <label>
                 <input
                   type="checkbox"
+                  checked={inspect}
+                  onChange={(e) => {
+                    setInspect(e.target.checked);
+                    if (e.target.checked) setPlaying(false);
+                  }}
+                />
+                Inspect connections
+              </label>
+              <label>
+                <input
+                  type="checkbox"
                   checked={anchors}
                   onChange={(event) => setAnchors(event.target.checked)}
                 />{" "}
@@ -1208,8 +1838,8 @@ export default function WardrobeEditor({
                   <figcaption>Original · same frame</figcaption>
                   <canvas
                     ref={originalCanvas}
-                    width={registration.frameWidth}
-                    height={registration.frameHeight}
+                    width={outputSheet.frameWidth}
+                    height={outputSheet.frameHeight}
                     style={size}
                     role="img"
                     aria-label={`Original ${session.character}, ${shownAction}, frame ${frameId}, ${facing}`}
@@ -1226,8 +1856,8 @@ export default function WardrobeEditor({
                 </figcaption>
                 <canvas
                   ref={canvas}
-                  width={registration.frameWidth}
-                  height={registration.frameHeight}
+                  width={outputSheet.frameWidth}
+                  height={outputSheet.frameHeight}
                   style={size}
                   role="img"
                   aria-label={`Dressed ${session.character}, ${shownAction}, frame ${frameId}, ${facing}`}
@@ -1239,8 +1869,44 @@ export default function WardrobeEditor({
               </figure>
             </div>
             <div className="wardrobe-timeline">
+              <div className="wardrobe-frame-buttons">
+                <button
+                  type="button"
+                  aria-label="Previous wardrobe frame"
+                  disabled={
+                    busy ||
+                    Boolean(appearancePreview) ||
+                    !clip ||
+                    (!clip?.loop && frameIndex === 0)
+                  }
+                  onClick={() =>
+                    scrub(
+                      (frameIndex - 1 + clip!.frames.length) %
+                        clip!.frames.length,
+                    )
+                  }
+                >
+                  <ChevronLeft size={16} />
+                  Previous frame
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next wardrobe frame"
+                  disabled={
+                    busy ||
+                    Boolean(appearancePreview) ||
+                    !clip ||
+                    (!clip?.loop && frameIndex === clip.frames.length - 1)
+                  }
+                  onClick={() => scrub((frameIndex + 1) % clip!.frames.length)}
+                >
+                  Next frame
+                  <ChevronRight size={16} />
+                </button>
+              </div>
               <label htmlFor="wardrobe-frame">
-                Frame {frameIndex + 1} / {clip?.frames.length} · {clip?.fps} FPS
+                Frame {frameIndex + 1} / {clip?.frames.length} · {clip?.fps} FPS{" "}
+                · source {frameId}
               </label>
               <input
                 id="wardrobe-frame"
@@ -1250,20 +1916,40 @@ export default function WardrobeEditor({
                 max={(clip?.frames.length ?? 1) - 1}
                 step={1}
                 value={frameIndex}
-                disabled={busy}
+                disabled={busy || Boolean(appearancePreview)}
                 onChange={(event) => scrub(Number(event.target.value))}
               />
               <span>
-                Native {registration.frameWidth} × {registration.frameHeight} ·
-                attachment ({registration.anchor.x}, {registration.anchor.y})
+                Native {outputSheet.frameWidth} × {outputSheet.frameHeight} ·
+                attachment ({outputAnchor.x}, {outputAnchor.y})
               </span>
             </div>
+            {inspect && frameId !== undefined && (
+              <ConnectionInspector
+                project={project}
+                renderer={session.renderer}
+                frameId={frameId}
+                facing={facing}
+              />
+            )}
           </section>
         </div>
       )}
+      {appearancePreview && (
+        <AppearanceUpdatePreview
+          original={appearancePreview.original}
+          candidate={appearancePreview.renderer}
+          project={appearancePreview.project}
+          initialAction={appearancePreview.action}
+          initialPosition={appearancePreview.position}
+          initialFacing={appearancePreview.facing}
+          onClose={closeAppearancePreview}
+          onSave={saveAppearanceCopy}
+        />
+      )}
       <p className="wardrobe-local-note">
-        Clothing selection and exports stay in this browser. Save your wardrobe
-        before closing or reloading the page.
+        Your appearance, clothing and exports stay in this browser. Save your
+        wardrobe before closing or reloading the page.
       </p>
     </div>
   );

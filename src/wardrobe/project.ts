@@ -1,3 +1,9 @@
+import { readAppearanceBank } from "../appearance/bank";
+import {
+  APPEARANCE_MAX_BYTES,
+  DEFAULT_APPEARANCE_SELECTION,
+  type AppearanceSelection,
+} from "../appearance/contract";
 import { strToU8, zipSync } from "fflate";
 import { readBoundedArchive } from "../core/bounded-archive";
 import type { PortableCharacterPackArchive } from "../core/pack";
@@ -234,7 +240,10 @@ async function createBase(
   };
 }
 function checkInventory(
-  project: Pick<WardrobeProject, "source" | "registrationBytes" | "items">,
+  project: Pick<
+    WardrobeProject,
+    "source" | "registrationBytes" | "items" | "appearanceBank"
+  >,
 ) {
   if (project.items.length > WARDROBE_MAX_ITEMS)
     throw Error(
@@ -250,6 +259,7 @@ function checkInventory(
   if (
     project.source.length +
       project.registrationBytes.length +
+      (project.appearanceBank?.bytes.length ?? 0) +
       project.items.reduce(
         (sum, i) => sum + i.bytes.length,
         DOCUMENT_MAX_BYTES,
@@ -304,6 +314,59 @@ export async function createWardrobeProject(
       preview: { action: "idle", facing: "right" },
     },
   };
+}
+
+/** Explicitly attach a fully validated bank; clothing and preview selections stay intact. */
+export async function addWardrobeAppearanceBank(
+  project: WardrobeProject,
+  bytes: Uint8Array,
+  options: SourcePreparationOptions = {},
+): Promise<WardrobeProject> {
+  const appearanceBank = await readAppearanceBank(
+    bytes,
+    project.registration,
+    project.document.registrationSha256,
+    options,
+  );
+  const next = { ...project, appearanceBank };
+  checkInventory(next);
+  const previous =
+    project.document.version === 2 &&
+    project.document.appearance.bankSha256 === appearanceBank.sha256
+      ? project.document.appearance
+      : DEFAULT_APPEARANCE_SELECTION;
+  const document = validateWardrobeDocument(
+    {
+      ...project.document,
+      version: 2,
+      appearance: { ...previous, bankSha256: appearanceBank.sha256 },
+    },
+    next,
+  );
+  return { ...next, document };
+}
+export function getWardrobeAppearanceSelection(
+  project: WardrobeProject,
+): AppearanceSelection {
+  if (project.document.version === 1)
+    return { ...DEFAULT_APPEARANCE_SELECTION };
+  const { hairId, faceId, hairColor } = project.document.appearance;
+  return { hairId, faceId, hairColor };
+}
+export function selectWardrobeAppearance(
+  project: WardrobeProject,
+  selection: Partial<AppearanceSelection>,
+): WardrobeProject {
+  if (!project.appearanceBank || project.document.version !== 2)
+    throw Error("Load an appearance bank before selecting hair or expression.");
+  const document = validateWardrobeDocument(
+    {
+      ...project.document,
+      appearance: { ...project.document.appearance, ...selection },
+    },
+    project,
+  );
+  return { ...project, document };
 }
 
 export async function addWardrobeGarment(
@@ -390,11 +453,20 @@ export async function validateWardrobeProject(
         options,
       ),
     );
-  checkInventory({ ...base, items });
+  const appearanceBank = project.appearanceBank
+    ? await readAppearanceBank(
+        project.appearanceBank.bytes,
+        base.registration,
+        base.registrationSha256,
+        options,
+      )
+    : undefined;
+  checkInventory({ ...base, items, appearanceBank });
   assertSourcePreparationActive(options);
   const document = validateWardrobeDocument(project.document, {
     archive: base.archive,
     items,
+    appearanceBank,
   });
   const normalized = canonicalItems(items);
   document.items = normalized.map((item) => ({
@@ -407,6 +479,7 @@ export async function validateWardrobeProject(
     registrationBytes: base.registrationBytes,
     registration: base.registration,
     items: normalized,
+    ...(appearanceBank ? { appearanceBank } : {}),
     document,
   };
 }
@@ -427,6 +500,8 @@ export async function exportWardrobeProject(
   verified.items.forEach((item, i) => {
     files[`item-${i}.zip`] = [item.bytes, { level: 0 }];
   });
+  if (verified.appearanceBank)
+    files["appearance.zip"] = [verified.appearanceBank.bytes, { level: 0 }];
   const bytes = zipSync(files, { level: 6, mtime: zipTime() });
   if (bytes.length > WARDROBE_MAX_PROJECT_BYTES)
     throw Error("Wardrobe project ZIP exceeds 128 MiB.");
@@ -442,6 +517,7 @@ export async function importWardrobeProject(
     "document.json": DOCUMENT_MAX_BYTES,
     "source.character.zip": BAKED_MAX_ARCHIVE_BYTES,
     "registration.json": WARDROBE_MAX_METADATA_BYTES,
+    "appearance.zip": APPEARANCE_MAX_BYTES,
   };
   for (let i = 0; i < WARDROBE_MAX_ITEMS; i++)
     allowed[`item-${i}.zip`] = WARDROBE_MAX_ITEM_BYTES;
@@ -450,7 +526,7 @@ export async function importWardrobeProject(
     maxArchiveBytes: WARDROBE_MAX_PROJECT_BYTES,
     maxExpandedBytes: WARDROBE_MAX_PROJECT_BYTES,
     minFiles: 3,
-    maxFiles: 3 + WARDROBE_MAX_ITEMS,
+    maxFiles: 4 + WARDROBE_MAX_ITEMS,
     files: allowed,
     required: ["document.json", "source.character.zip", "registration.json"],
   });
@@ -465,12 +541,18 @@ export async function importWardrobeProject(
       "items",
       "selection",
       "preview",
+      "appearance",
     ],
   );
+  if (raw.version !== 1 && raw.version !== 2)
+    throw Error("Unsupported wardrobe project format/version.");
+  if ((raw.version === 2) !== !!files["appearance.zip"])
+    throw Error("Wardrobe project appearance bank does not match its version.");
   if (
     !Array.isArray(raw.items) ||
     raw.items.length > WARDROBE_MAX_ITEMS ||
-    Object.keys(files).length !== 3 + raw.items.length
+    Object.keys(files).length !==
+      3 + raw.items.length + (raw.version === 2 ? 1 : 0)
   )
     throw Error(
       "Wardrobe project item references do not match its embedded assets.",
@@ -488,12 +570,18 @@ export async function importWardrobeProject(
       throw Error("Wardrobe embedded garment checksum mismatch.");
     itemBytes.push(bytes);
   }
-  const project = await createWardrobeProject(
+  let project = await createWardrobeProject(
     files["source.character.zip"],
     files["registration.json"],
     itemBytes,
     options,
   );
+  if (raw.version === 2)
+    project = await addWardrobeAppearanceBank(
+      project,
+      files["appearance.zip"],
+      options,
+    );
   const document = validateWardrobeDocument(raw, project);
   if (document.sourceSha256 !== project.document.sourceSha256)
     throw Error("Wardrobe source checksum mismatch.");

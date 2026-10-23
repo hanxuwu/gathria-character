@@ -1,4 +1,5 @@
-import { Unzlib, Zlib } from "fflate";
+import { Unzlib } from "fflate";
+import { Deflate } from "pako/browser/deflate";
 import { crc32, readBoundedArchive } from "./bounded-archive";
 import { sha256 } from "./sha256";
 import {
@@ -560,7 +561,11 @@ function* encodeRgbaRows(image: RgbaPng): Generator<void, Uint8Array> {
   header[8] = 8;
   header[9] = 6;
   const compressed: Uint8Array[] = [];
-  const zlib = new Zlib({ level: 6 }, (chunk) => compressed.push(chunk));
+  // fflate's streaming compressor can emit invalid backwards distances for
+  // sparse, padded RGBA rows. Keep bounded row streaming with zlib's Deflate
+  // implementation; decoded pixels and color chunks remain unchanged.
+  const zlib = new Deflate({ level: 6, chunkSize: 64 * 1024 });
+  zlib.onData = (chunk) => compressed.push(chunk);
   const stride = width * 4;
   for (let y = 0; y < height; y++) {
     const row = new Uint8Array(stride + 1);
@@ -568,7 +573,8 @@ function* encodeRgbaRows(image: RgbaPng): Generator<void, Uint8Array> {
     for (let x = 0; x < stride; x++)
       row[x + 1] =
         (pixels[y * stride + x] - (y ? pixels[(y - 1) * stride + x] : 0)) & 255;
-    zlib.push(row, y === height - 1);
+    if (!zlib.push(row, y === height - 1))
+      fail(`PNG compression failed: ${zlib.msg || zlib.err}.`);
     if (y % 128 === 127) yield;
   }
   return join([
