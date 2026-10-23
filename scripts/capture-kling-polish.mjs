@@ -12,8 +12,11 @@ import { unzipSync } from "fflate";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const run = process.env.SPRINT_RUN || "temple-v4";
 assert(/^[a-z0-9-]+$/.test(run));
-const output = join(root, "docs/kling-polish/evidence", run);
-const temporary = join("/tmp/gathria-polish", run);
+const batch = process.env.SPRINT_BATCH || "kling-polish";
+assert(/^[a-z0-9-]+$/.test(batch));
+const fitV4 = process.env.SPRINT_FIT_V4 === "1";
+const output = join(root, "docs", batch, "evidence", run);
+const temporary = join(process.env.SPRINT_TEMP || "/tmp/gathria-polish", run);
 await mkdir(output, { recursive: true });
 await mkdir(temporary, { recursive: true });
 assert(
@@ -855,6 +858,7 @@ try {
         "ocean",
         "resume-ocean",
         "male-mix",
+        "female-mix",
       ].includes(study)
     ) {
       const character = study.startsWith("female") ? "female" : "male";
@@ -875,22 +879,51 @@ try {
         `${origin}/workbench.html?character=${character}&mode=wardrobe`,
       );
       await ready(page, "Original outfit.");
-      if (study === "male-mix") {
-        await outfit(page, "Wedding refined");
+      if (study === "male-mix" || study === "female-mix") {
+        const male = character === "male";
+        const top = fitV4 ? "teal-camp-shirt-v4" : "ocean-linen-shirt-v1";
+        const hair = male ? "airy-tousle" : "ribbon-pony";
+        const label = fitV4 ? `${character}-mixed` : "mixed-ocean-navy";
+        await outfit(
+          page,
+          male
+            ? fitV4
+              ? "Wedding soft cuff"
+              : "Wedding refined"
+            : "Everyday soft waist",
+        );
         await panel(page)
-          .getByLabel("Top", { exact: true })
-          .selectOption("ocean-linen-shirt-v1");
+          .getByLabel(male ? "Top" : "Shoes", { exact: true })
+          .selectOption(male ? top : "brown-shoes");
         await ready(page, "Outfit updated");
-        await appearance(page, "Hairstyle", "airy-tousle");
+        await appearance(page, "Hairstyle", hair);
         await appearance(page, "Face", "gentle");
         await chooseColor(page, "copper");
-        await capture(page, character, "mixed-ocean-navy", source, true);
+        await capture(page, character, label, source, true);
+        if (fitV4) {
+          const pack = report.packs.at(-1);
+          const portable = join(output, `${character}-${label}.wardrobe.zip`);
+          await copyFile(pack.project, portable);
+          pack.project = portable;
+          await panel(page)
+            .locator("summary")
+            .filter({ hasText: "Artwork stored in this browser" })
+            .click();
+          await expect(
+            panel(page).getByRole("button", {
+              name: "Remove unused artwork",
+              exact: true,
+            }),
+          ).toBeDisabled();
+          await screenshot(page, `${character}-saved-artwork-storage.png`);
+        }
         report.mixes.push({
           character,
-          top: "ocean-linen-shirt-v1",
-          bottom: "navy-suit-trousers-v1",
+          top: male ? top : null,
+          bottom: male ? "navy-suit-trousers-v1" : null,
+          fullBody: male ? null : "coral-daydress-v6",
           shoes: "brown-shoes",
-          hair: "airy-tousle",
+          hair,
           face: "gentle",
           hairColor: "copper",
           allSourcePosesPreflighted: true,
@@ -913,8 +946,16 @@ try {
       const label = study.includes("wedding") ? "Wedding" : "Everyday";
       await outfit(
         page,
-        study === "ocean" ? "Everyday refined" : `${label} refined`,
+        study === "ocean"
+          ? "Everyday refined"
+          : `${label} ${fitV4 && character === "female" ? "soft waist" : "refined"}`,
       );
+      if (fitV4)
+        await appearance(
+          page,
+          "Hairstyle",
+          character === "male" ? "airy-tousle" : "ribbon-pony",
+        );
       await capture(page, character, `${study}-before`, source);
       if (study === "ocean") {
         await panel(page)
@@ -994,7 +1035,9 @@ try {
       } else
         await outfit(
           page,
-          character === "female" ? `${label} soft waist` : `${label} refined`,
+          character === "female"
+            ? `${label} soft waist`
+            : `${label} ${fitV4 ? "soft cuff" : "refined"}`,
         );
       await capture(page, character, `${study}-after`, source, true);
       await context.close();
