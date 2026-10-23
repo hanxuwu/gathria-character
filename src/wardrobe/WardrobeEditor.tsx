@@ -33,6 +33,7 @@ import {
   WARDROBE_MAX_ITEM_BYTES,
   WARDROBE_MAX_PROJECT_BYTES,
   WARDROBE_SLOTS,
+  validateWardrobeDocument,
   type WardrobeProject,
   type WardrobeSelection,
   type WardrobeSlot,
@@ -74,6 +75,8 @@ import "./wardrobe.css";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
+import NamedLooks from "./NamedLooks";
+import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
 
 interface CatalogItem {
   id: string;
@@ -707,6 +710,7 @@ export default function WardrobeEditor({
       signal: AbortSignal,
     ) => Promise<WardrobeProject> | WardrobeProject,
     message: string,
+    preserveMotion = true,
   ) {
     const open = current.current;
     if (!open || busy || appearancePreview) return;
@@ -716,7 +720,14 @@ export default function WardrobeEditor({
     setStatus("Preparing your character…");
     try {
       const next = await transform(open.project, controller.signal);
-      await accept(next, open.character, true, token, controller.signal, true);
+      await accept(
+        next,
+        open.character,
+        true,
+        token,
+        controller.signal,
+        preserveMotion,
+      );
       if (token === request.current) setStatus(message);
     } catch (failure) {
       if (token === request.current)
@@ -868,6 +879,76 @@ export default function WardrobeEditor({
         ? selectWardrobeAppearance(next, wanted)
         : next;
     }, "Appearance updated. Your clothing and original movement are preserved.");
+  }
+  function applyLook(look: NamedLook) {
+    void changeProject(
+      async (base, signal) => {
+        checkLookSource(look, base);
+        // Resolve every reference before fetching or changing the accepted outfit.
+        const needed = look.items.map((ref) => {
+          const embedded = base.items.find(
+            (i) => i.manifest.id === ref.id && i.sha256 === ref.sha256,
+          );
+          return {
+            ref,
+            embedded,
+            item: embedded ? null : exactLookAsset(ref, entry?.items ?? []),
+          };
+        });
+        const bankHash = look.appearance?.bankSha256;
+        const bankUrl =
+          bankHash === entry?.appearanceRevision?.bankSha256
+            ? entry?.appearanceBankUrl
+            : entry?.appearanceLibraries?.find((b) => b.sha256 === bankHash)
+                ?.url;
+        if (bankHash && base.appearanceBank?.sha256 !== bankHash && !bankUrl)
+          throw Error(
+            "The exact saved appearance is unavailable. Reopen its saved wardrobe project; no replacement was applied.",
+          );
+        let next = base;
+        for (const { ref, embedded, item } of needed) {
+          if (embedded) continue;
+          if (next.items.some((i) => i.manifest.id === ref.id))
+            throw Error(
+              "An imported item uses this name with different artwork. Reopen the saved wardrobe project.",
+            );
+          next = await addWardrobeGarment(
+            next,
+            await fetchBytes(item!.url, WARDROBE_MAX_ITEM_BYTES, signal),
+          );
+          exactLookAsset(
+            ref,
+            next.items.map((i) => ({ id: i.manifest.id, sha256: i.sha256 })),
+          );
+        }
+        if (bankHash && next.appearanceBank?.sha256 !== bankHash)
+          next = await addWardrobeAppearanceBank(
+            next,
+            await fetchBytes(bankUrl!, APPEARANCE_MAX_BYTES, signal),
+            { signal },
+          );
+        if (!look.appearance) next = { ...next, appearanceBank: undefined };
+        if (bankHash && next.appearanceBank?.sha256 !== bankHash)
+          throw Error("The appearance file does not match the saved look.");
+        const { appearance: _old, ...document } = next.document;
+        next = {
+          ...next,
+          document: validateWardrobeDocument(
+            {
+              ...document,
+              version: look.appearance ? 2 : 1,
+              ...(look.appearance ? { appearance: look.appearance } : {}),
+              selection: look.selection,
+              preview: look.preview,
+            },
+            next,
+          ),
+        };
+        return retainOutfitAndCustomItems(next, entry?.items ?? []);
+      },
+      `${look.name} restored with its saved materials, action and facing.`,
+      false,
+    );
   }
   async function ensureItem(
     base: WardrobeProject,
@@ -1482,6 +1563,12 @@ export default function WardrobeEditor({
               A dress or one-piece replaces both top and bottom. Shoes sit
               beneath trouser cuffs and hems.
             </p>
+            <NamedLooks
+              project={project}
+              character={session.character}
+              disabled={busy || Boolean(appearancePreview)}
+              onApply={applyLook}
+            />
             <button
               type="button"
               className="wardrobe-secondary"

@@ -558,3 +558,42 @@
   height: auto;
   object-fit: contain;
 }
+.wardrobe-named-looks {
+  border-top: 1px solid var(--border, #d6ddcf);
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+.wardrobe-named-looks form {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.wardrobe-named-looks label {
+  display: grid;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 8rem;
+}
+.wardrobe-named-looks input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.65rem;
+  border: 1px solid #bfcbb9;
+  border-radius: 0.4rem;
+}
+.wardrobe-named-looks ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.wardrobe-named-looks li {
+  display: flex;
+  gap: 0.4rem;
+}
+.wardrobe-named-looks li button:first-child {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
