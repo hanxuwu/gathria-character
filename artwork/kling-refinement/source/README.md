@@ -19,3 +19,26 @@ the crown. The shipped method preserves the released crown and footprint.
 Reproduction: `PYTHONPATH=/tmp/kling-wardrobe-python python
 scripts/prepare-kling-temple-v4.py`. `--prototype` produces offline authoring
 previews only; actual browser-export evidence is recorded separately.
+
+## Supplementary jacket cloth
+
+`crouch-jacket-donor.png` was produced by the OpenAI image editing tool on
+2026-10-23 using frame 86 decoded from the actual application export
+`docs/kling-wardrobe/fit-polish/exports/male-wedding.character.zip`.
+The request was to soften the bent navy sleeves into believable fabric folds
+while retaining the pose, cuffs, silhouette, face, body and clothing design.
+The generator changed other pixels too; **only navy material inside the traced
+arm regions is sampled**. Its body, face, lighting halo and background are not
+used. The generated image is a supplementary donor, not a replacement frame.
+
+The sample is registered using shoulder, elbow and wrist correspondences and
+blended according to the source elbow bend, fading away at cuffs, shoulder joins
+and outside ink. Original sleeve ownership, alpha and anatomy remain fixed.
+A first attempt using rounded texture coordinates created conspicuous circular
+folds and was rejected before any release. The supplementary painting gave the
+better result; remaining cuff geometry is documented in the review.
+
+The other three primary outfit revisions use the existing published artwork:
+short-sleeve cut-plane coverage and small, continuous skirt-side allowances.
+They do not use the generated jacket donor. Every new bank records its exact
+baseline hash and processing method. No original clothing bank is overwritten.
