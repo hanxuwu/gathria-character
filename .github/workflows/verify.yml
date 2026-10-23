@@ -23,6 +23,7 @@ jobs:
       - run: python scripts/test_kling_hair_ear_fit.py
       - run: python scripts/test_kling_hair_ear_overlap.py
       - run: python scripts/test_kling_hair_expansion.py
+      - run: python scripts/test_kling_garment_recipe.py
       - run: npm ci
       - run: npm run typecheck
       - run: npm test

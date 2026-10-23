@@ -1,0 +1,235 @@
+diff --git a/src/appearance/bank.test.ts b/src/appearance/bank.test.ts
+index e6c774d..3fafbb8 100644
+--- a/src/appearance/bank.test.ts
++++ b/src/appearance/bank.test.ts
+@@ -62,6 +62,49 @@ const edit = (
+ };
+ 
+ describe("source-bound head appearance banks", () => {
++  it("checks all styles page by page without revisiting decoded atlas pages", async () => {
++    const f = fixture();
++    f.manifest.provenance += " Page-major preparation regression.";
++    f.manifest.pages = [0, 1, 2].map((i) => ({
++      ...f.manifest.pages[0],
++      file: `patches-${i}.png`,
++      maskFile: `ownership-${i}.png`,
++    }));
++    const hair = f.manifest.styles[0].layers[0].frames;
++    if (hair[1].mode === "paint") hair[1].page = 1;
++    const face = f.manifest.styles[1].layers[0].frames[0];
++    if (face.mode === "paint") face.page = 2;
++    const files = {
++      ...f.files,
++      "patches-1.png": f.files["patches-0.png"],
++      "ownership-1.png": f.files["ownership-0.png"],
++      "patches-2.png": f.files["patches-0.png"],
++      "ownership-2.png": f.files["ownership-0.png"],
++      "manifest.json": strToU8(JSON.stringify(f.manifest)),
++    };
++    const decode = vi.spyOn(garmentPages, "decodedGarmentPage");
++    try {
++      const bank = await read(zipSync(files));
++      expect(decode.mock.calls.map(([key]) => key.split(":").at(-1))).toEqual([
++        "0",
++        "1",
++        "2",
++      ]);
++      expect(bank.manifest).toEqual(f.manifest);
++      // An invalid face on the last page still rejects the complete bank.
++      if (face.mode === "paint") face.offset.x = 0;
++      await expect(
++        read(
++          zipSync({
++            ...files,
++            "manifest.json": strToU8(JSON.stringify(f.manifest)),
++          }),
++        ),
++      ).rejects.toThrow(/ownership exceeds/);
++    } finally {
++      decode.mockRestore();
++    }
++  });
+   it("validates every style and pose, including explicit source blinks and negative padded offsets", async () => {
+     const f = fixture(),
+       bank = await read(f.bytes);
+diff --git a/src/appearance/bank.ts b/src/appearance/bank.ts
+index b79d541..c058751 100644
+--- a/src/appearance/bank.ts
++++ b/src/appearance/bank.ts
+@@ -16,6 +16,8 @@ import {
+   APPEARANCE_MAX_PAGES,
+   validateAppearanceBankManifest,
+   type AppearanceBank,
++  type AppearanceFrame,
++  type AppearanceLayerRole,
+   type AppearancePose,
+ } from "./contract";
+ 
+@@ -110,6 +112,26 @@ export async function readAppearanceBank(
+   const validationKey = `${hash}:${registrationSha256}`;
+   const checked = checkedBanks.has(validationKey);
+   const pages: AppearanceBank["pages"] = [];
++  const poses = new Map<number, AppearancePose>(
++    manifest.poses.map((pose) => [pose.frameId, pose]),
++  );
++  const pageFrames = new Map<
++    number,
++    Array<{
++      styleId: string;
++      role: AppearanceLayerRole;
++      frame: Extract<AppearanceFrame, { mode: "paint" }>;
++    }>
++  >();
++  if (!checked)
++    for (const style of manifest.styles)
++      for (const layer of style.layers)
++        for (const frame of layer.frames) {
++          if (frame.mode !== "paint") continue;
++          const entries = pageFrames.get(frame.page) ?? [];
++          entries.push({ styleId: style.id, role: layer.role, frame });
++          pageFrames.set(frame.page, entries);
++        }
+   for (let i = 0; i < manifest.pages.length; i++) {
+     assertSourcePreparationActive(options);
+     const declared = manifest.pages[i],
+@@ -119,56 +141,51 @@ export async function readAppearanceBank(
+       throw Error("Appearance bank is missing an atlas page.");
+     checkPageHeader(patch, declared.width, declared.height);
+     checkPageHeader(ownership, declared.width, declared.height);
+-    if (!checked)
++    if (!checked) {
+       await validateGarmentPage(
+         patch,
+         ownership,
+         declared,
+         `appearance:${hash}:${i}`,
+       );
++      assertSourcePreparationActive(options);
++      // Finish every ownership check while this exact decoded page is hot.
++      // A bank plus clothing can exceed the bounded cache: style/frame order
++      // used to revisit and inflate the same large page repeatedly.
++      const decoded = decodedGarmentPage(
++        `appearance:${hash}:${i}`,
++        patch,
++        ownership,
++        declared,
++      );
++      for (const { styleId, role, frame } of pageFrames.get(i) ?? []) {
++        assertSourcePreparationActive(options);
++        const pose = poses.get(frame.frameId)!;
++        for (let y = 0; y < frame.rect.height; y++)
++          for (let x = 0; x < frame.rect.width; x++) {
++            const index =
++              (frame.rect.y + y) * declared.width + frame.rect.x + x;
++            if (!decoded.ownership[index]) continue;
++            const px = frame.offset.x + x + 0.5,
++              py = frame.offset.y + y + 0.5;
++            if (
++              role === "face"
++                ? !insideAppearancePolygon(px, py, pose.facePolygon)
++                : !insideRect(px, py, pose.hairBounds)
++            )
++              throw Error(
++                `Appearance ${styleId} ${role} ownership exceeds its registered region in frame ${frame.frameId}.`,
++              );
++          }
++        // Keep a progress/cancellation opportunity between source poses.
++        await new Promise<void>((resolve) => setTimeout(resolve, 0));
++      }
++    }
+     pages.push({
+       patch: new Uint8Array(patch),
+       ownership: new Uint8Array(ownership),
+     });
+   }
+-  if (!checked) {
+-    const poses = new Map<number, AppearancePose>(
+-      manifest.poses.map((pose) => [pose.frameId, pose]),
+-    );
+-    for (const style of manifest.styles)
+-      for (const layer of style.layers)
+-        for (const frame of layer.frames) {
+-          assertSourcePreparationActive(options);
+-          if (frame.mode === "source") continue;
+-          const page = pages[frame.page],
+-            declared = manifest.pages[frame.page];
+-          const { ownership } = decodedGarmentPage(
+-            `appearance:${hash}:${frame.page}`,
+-            page.patch,
+-            page.ownership,
+-            declared,
+-          );
+-          const pose = poses.get(frame.frameId)!;
+-          for (let y = 0; y < frame.rect.height; y++)
+-            for (let x = 0; x < frame.rect.width; x++) {
+-              const index =
+-                (frame.rect.y + y) * declared.width + frame.rect.x + x;
+-              if (!ownership[index]) continue;
+-              const px = frame.offset.x + x + 0.5,
+-                py = frame.offset.y + y + 0.5;
+-              if (
+-                layer.role === "face"
+-                  ? !insideAppearancePolygon(px, py, pose.facePolygon)
+-                  : !insideRect(px, py, pose.hairBounds)
+-              )
+-                throw Error(
+-                  `Appearance ${style.id} ${layer.role} ownership exceeds its registered region in frame ${frame.frameId}.`,
+-                );
+-            }
+-          // Keep a progress/cancellation opportunity between source poses.
+-          await new Promise<void>((resolve) => setTimeout(resolve, 0));
+-        }
+-  }
+   assertSourcePreparationActive(options);
+   // Promote only after every stream and every ownership region succeeded and
+   // the operation remains active. A failed/aborted read never becomes a hit.
+diff --git a/src/appearance/render.ts b/src/appearance/render.ts
+index 5420196..b1d906c 100644
+--- a/src/appearance/render.ts
++++ b/src/appearance/render.ts
+@@ -258,6 +258,18 @@ export class AppearanceRenderer {
+     ))
+       this.page(page);
+   }
++  /** Offline preflight may group equivalent page working sets. This does not
++   * change the public source frame order or animation timeline. */
++  preparationPages(frameId: number): number[] {
++    return [
++      ...new Set(
++        this.layers.flatMap((layer) => {
++          const frame = layer.frames.get(frameId);
++          return frame?.mode === "paint" ? [frame.page] : [];
++        }),
++      ),
++    ].sort((a, b) => a - b);
++  }
+   private page(page: number) {
+     const files = this.bank.pages[page],
+       spec = this.bank.manifest.pages[page];
+diff --git a/src/wardrobe/compositor.ts b/src/wardrobe/compositor.ts
+index c8cfacb..7954d4a 100644
+--- a/src/wardrobe/compositor.ts
++++ b/src/wardrobe/compositor.ts
+@@ -507,10 +507,19 @@ class RegisteredWardrobeCompositor {
+       return { frames: frames.length, cacheHit: true };
+     }
+     options.onProgress?.(0, frames.length);
+-    for (let i = 0; i < frames.length; i++) {
++    const workingSet = (frame: (typeof frames)[number]) =>
++      [
++        frame.page ?? 0,
++        ...(this.headAppearance?.preparationPages(frame.id) ?? []),
++        ...this.selected.map((selected) => selected.frames.get(frame.id)!.page),
++      ].join(":");
++    const preparationOrder = [...frames].sort((a, b) =>
++      workingSet(a).localeCompare(workingSet(b)),
++    );
++    for (let i = 0; i < preparationOrder.length; i++) {
+       abort();
+-      await preparePage(frames[i].page ?? 0);
+-      this.renderFrame(frames[i].id);
++      await preparePage(preparationOrder[i].page ?? 0);
++      this.renderFrame(preparationOrder[i].id);
+       options.onProgress?.(i + 1, frames.length);
+       // Give progress, cancellation and the current preview a chance to paint.
+       await new Promise<void>((resolve) => setTimeout(resolve, 0));
