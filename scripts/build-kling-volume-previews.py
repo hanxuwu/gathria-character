@@ -18,9 +18,9 @@ for look in looks:
  refined=source/f'final-{look["id"]}-refined/{char}-{look["id"]}-0-right.png'
  if refined.exists():path=refined
  bank=ROOT/f'docs/kling-appearance/banks/volume/{char}-{style}.zip'
- latest=ROOT/'docs/kling-sprints/evidence/pony-final-v3/female-pony-after-0-right.png'
+ latest=ROOT/'docs/kling-refinement/evidence/temple-v4/female-pony-after-0-right.png'
  if char=='female' and style=='ribbon-pony' and latest.exists():
-  path=latest;bank=ROOT/'docs/kling-appearance/banks/volume-v3/female-ribbon-pony.zip'
+  path=latest;bank=ROOT/'docs/kling-appearance/banks/volume-v4/female-ribbon-pony.zip'
  if not path.exists():raise FileNotFoundError(path)
  im=Image.open(path).convert('RGBA');im.load();assert im.size==(768,1184)
  crop=(40,120,730,700);tile=im.crop(crop);tile.thumbnail((152,128),Image.Resampling.LANCZOS)

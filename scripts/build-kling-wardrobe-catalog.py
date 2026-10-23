@@ -85,7 +85,7 @@ for char in ['male','female']:
         if definition['character']!=char:continue
         p=ROOT/f'docs/kling-appearance/banks/volume/{char}-{style}.zip'
         previous=[]
-        for revision in ['volume-v2','volume-v3']:
+        for revision in ['volume-v2','volume-v3','volume-v4']:
             revised=ROOT/f'docs/kling-appearance/banks/{revision}/{char}-{style}.zip'
             if revised.exists():previous.append(sha(p));p=revised
         with zipfile.ZipFile(p) as z:
