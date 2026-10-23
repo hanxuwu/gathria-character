@@ -17,7 +17,8 @@ const temporary = join("/tmp/gathria-sprints", run);
 await mkdir(output, { recursive: true });
 await mkdir(temporary, { recursive: true });
 assert(
-  !existsSync(join(output, "evidence-index.json")),
+  !existsSync(join(output, "evidence-index.json")) ||
+    process.env.SPRINT_RESUME === "1",
   "Use a fresh SPRINT_RUN; retain prior evidence.",
 );
 const actions = ["idle", "walk", "run", "jump", "celebrate"];
@@ -61,6 +62,24 @@ const report = {
   externalRequests: [],
   forbiddenIndependentRequests: [],
 };
+if (process.env.SPRINT_RESUME === "1") {
+  const previous = json(await readFile(join(output, "evidence-index.json")));
+  assert(previous.run === run && !previous.passed && previous.failure);
+  await writeFile(
+    join(output, "attempt-before-custom-material-restore.json"),
+    JSON.stringify(previous, null, 2) + "\n",
+  );
+  Object.assign(report, previous);
+  report.resolvedAttempts = [
+    ...(report.resolvedAttempts ?? []),
+    {
+      failure: report.failure,
+      resolution:
+        "Custom imported material requires reopening its self-contained project before applying a named look. No substitute applied.",
+    },
+  ];
+  delete report.failure;
+}
 const definitions = JSON.parse(
   await readFile(
     join(root, "artwork/kling-collection/source/volume-v1/looks.json"),
@@ -265,12 +284,19 @@ function verifyPack(pack, source) {
     m.frames.map((f) => f.id),
     source.frames.map((f) => f.id),
   );
-  assert.equal(m.spritesheet.frameWidth, 768);
-  assert.equal(m.spritesheet.frameHeight, 1184);
+  const padded = m.spritesheet.frameWidth === 768;
+  assert.equal(
+    m.spritesheet.frameWidth,
+    padded ? 768 : source.spritesheet.frameWidth,
+  );
+  assert.equal(
+    m.spritesheet.frameHeight,
+    padded ? 1184 : source.spritesheet.frameHeight,
+  );
   assert.deepEqual(m.anchor, {
     ...source.anchor,
-    x: source.anchor.x + 32,
-    y: source.anchor.y + 128,
+    x: source.anchor.x + (padded ? 32 : 0),
+    y: source.anchor.y + (padded ? 128 : 0),
   });
   return m;
 }
@@ -364,16 +390,32 @@ async function outfit(page, name) {
   await pause(page);
 }
 
-async function capture(page, character, look, source, final = false) {
-  for (const fid of [0, 55, 62, 86])
-    await png(page, character, look, source, fid);
-  await png(page, character, look, source, 55, "left");
-  const saved = await download(
-    page,
-    /Save wardrobe/,
-    `${character}-${look}.wardrobe.zip`,
-    "project",
-  );
+async function capture(
+  page,
+  character,
+  look,
+  source,
+  final = false,
+  resumedProject = null,
+) {
+  if (!resumedProject) {
+    for (const fid of [0, 55, 62, 86])
+      await png(page, character, look, source, fid);
+    await png(page, character, look, source, 55, "left");
+  } else await pose(page, source, 55, "left");
+  const resumedBytes = resumedProject ? await readFile(resumedProject) : null;
+  const saved = resumedBytes
+    ? {
+        path: resumedProject,
+        bytes: resumedBytes,
+        files: unzipSync(new Uint8Array(resumedBytes)),
+      }
+    : await download(
+        page,
+        /Save wardrobe/,
+        `${character}-${look}.wardrobe.zip`,
+        "project",
+      );
   const doc = json(saved.files["document.json"]);
   await writeFile(
     join(output, `${character}-${look}-recipe.json`),
@@ -399,6 +441,20 @@ async function capture(page, character, look, source, final = false) {
     await button(page, "Save look").click();
     await page.reload();
     await ready(page, "Original outfit.");
+    const library = catalog.characters.find((c) => c.key === character);
+    const custom = doc.items.some(
+      (item) =>
+        Object.values(doc.selection).includes(item.id) &&
+        !library.items.some(
+          (known) => known.id === item.id && known.sha256 === item.sha256,
+        ),
+    );
+    if (custom) {
+      await panel(page)
+        .getByLabel("Open wardrobe project file", { exact: true })
+        .setInputFiles(saved.path);
+      await ready(page, "Saved outfit and action settings restored");
+    }
     await button(page, `Apply look ${name}`).click();
     await ready(page, `${name} restored`);
     await expect(
@@ -416,13 +472,14 @@ async function capture(page, character, look, source, final = false) {
       reloadRestoredExactPixels: true,
       restoredAction: "run",
       restoredFacing: "left",
+      customMaterialsRestoredFromProject: custom,
     });
     await panel(page)
       .getByLabel("Inspect connections", { exact: true })
       .check();
     await panel(page)
       .getByLabel("Inspection area", { exact: true })
-      .selectOption(look.includes("ivory") ? "waist" : "head");
+      .selectOption(look.includes("pony") ? "head" : "waist");
     await download(
       page,
       "Save comparison PNG",
@@ -469,9 +526,157 @@ try {
     headless: true,
   });
   const cases = process.env.SPRINT_CASE
-    ? [process.env.SPRINT_CASE]
+    ? process.env.SPRINT_CASE.split(",")
     : ["pony", "ivory", "oat"];
   for (const study of cases) {
+    if (
+      [
+        "male-day",
+        "male-wedding",
+        "female-day",
+        "female-wedding",
+        "ocean",
+        "resume-ocean",
+        "male-mix",
+      ].includes(study)
+    ) {
+      const character = study.startsWith("female") ? "female" : "male";
+      const entry = catalog.characters.find((c) => c.key === character);
+      const source = json(
+        unzipSync(
+          new Uint8Array(await readFile(join(root, entry.sourceUrl.slice(1)))),
+        )["manifest.json"],
+      );
+      const context = await browser.newContext({
+        viewport: { width: 1440, height: 1000 },
+      });
+      watch(context);
+      const page = await context.newPage();
+      activePage = page;
+      page.setDefaultTimeout(60000);
+      await page.goto(
+        `${origin}/workbench.html?character=${character}&mode=wardrobe`,
+      );
+      await ready(page, "Original outfit.");
+      if (study === "male-mix") {
+        await outfit(page, "Wedding refined");
+        await panel(page)
+          .getByLabel("Top", { exact: true })
+          .selectOption("ocean-linen-shirt-v1");
+        await ready(page, "Outfit updated");
+        await appearance(page, "Hairstyle", "airy-tousle");
+        await appearance(page, "Face", "gentle");
+        await chooseColor(page, "copper");
+        await capture(page, character, "mixed-ocean-navy", source, true);
+        report.mixes.push({
+          character,
+          top: "ocean-linen-shirt-v1",
+          bottom: "navy-suit-trousers-v1",
+          shoes: "brown-shoes",
+          hair: "airy-tousle",
+          face: "gentle",
+          hairColor: "copper",
+          allSourcePosesPreflighted: true,
+        });
+        await context.close();
+        await persist();
+        continue;
+      }
+      if (study === "resume-ocean") {
+        const saved = join(temporary, "male-ocean-after.wardrobe.zip");
+        await panel(page)
+          .getByLabel("Open wardrobe project file", { exact: true })
+          .setInputFiles(saved);
+        await ready(page, "Saved outfit and action settings restored");
+        await capture(page, character, "ocean-after", source, true, saved);
+        await context.close();
+        await persist();
+        continue;
+      }
+      const label = study.includes("wedding") ? "Wedding" : "Everyday";
+      await outfit(page, study === "ocean" ? "Everyday refined" : label);
+      await capture(page, character, `${study}-before`, source);
+      if (study === "ocean") {
+        await panel(page)
+          .locator("summary")
+          .filter({ hasText: "Fitting guides" })
+          .click();
+        await panel(page)
+          .getByLabel("Recipe clothing", { exact: true })
+          .selectOption("teal-camp-shirt-v3");
+        const kit = await download(
+          page,
+          "Download clothing recipe",
+          "ocean-authoring-kit.zip",
+          "recipe",
+        );
+        const directory = join(temporary, "ocean-kit");
+        await mkdir(directory);
+        for (const [name, bytes] of Object.entries(kit.files)) {
+          assert(!name.includes("/") && !name.includes(".."));
+          await writeFile(join(directory, name), bytes);
+        }
+        const recipe = json(kit.files["recipe.json"]);
+        Object.assign(recipe.output, {
+          id: "ocean-linen-shirt-v1",
+          name: "Ocean linen shirt",
+        });
+        recipe.material = {
+          sourceRgb: [76, 124, 133],
+          targetRgb: [65, 96, 142],
+          tolerance: 0.23,
+        };
+        await writeFile(
+          join(directory, "recipe.json"),
+          JSON.stringify(recipe, null, 2) + "\n",
+        );
+        const derived = join(temporary, "ocean-from-downloaded-recipe.zip");
+        execFileSync(
+          "python",
+          [
+            "scripts/build-kling-garment-variant.py",
+            join(directory, "recipe.json"),
+            "--root",
+            directory,
+            "--output",
+            derived,
+          ],
+          { cwd: root, stdio: "pipe" },
+        );
+        const expected = await readFile(
+          join(
+            root,
+            "docs/kling-wardrobe/garments/male/ocean-linen-shirt-v1.zip",
+          ),
+        );
+        // File paths are recipe provenance, so compare artwork/bindings rather than ZIP hash.
+        const derivedFiles = unzipSync(new Uint8Array(await readFile(derived))),
+          expectedFiles = unzipSync(new Uint8Array(expected));
+        for (const name of Object.keys(expectedFiles).filter((n) =>
+          n.endsWith(".png"),
+        ))
+          assert.deepEqual(derivedFiles[name], expectedFiles[name]);
+        await panel(page)
+          .getByLabel("Import registered clothing file", { exact: true })
+          .setInputFiles(derived);
+        await ready(page, "Clothing added to the selection lists");
+        await panel(page)
+          .getByLabel("Top", { exact: true })
+          .selectOption("ocean-linen-shirt-v1");
+        await idle(page);
+        report.recipeWorkflow = {
+          downloadedKitSha256: sha(kit.bytes),
+          derivedSha256: sha(await readFile(derived)),
+          artworkMatchesPublishedRecipe: true,
+          nativeFrameCount: source.frames.length,
+          imported: true,
+        };
+      } else await outfit(page, `${label} refined`);
+      await capture(page, character, `${study}-after`, source, true);
+      await context.close();
+      await persist();
+      continue;
+    }
     assert(["pony", "ivory", "oat"].includes(study));
     const character = study === "oat" ? "male" : "female";
     const resume =
@@ -503,7 +708,10 @@ try {
       // Open the exact preceding release, using its real library bytes, to save
       // a historical project. Then return to the current unmodified catalog.
       const old = await readFile(
-        join(root, "docs/kling-appearance/banks/volume-v3/female-ribbon-pony.zip"),
+        join(
+          root,
+          "docs/kling-appearance/banks/volume-v3/female-ribbon-pony.zip",
+        ),
       );
       const m = json(unzipSync(new Uint8Array(old))["manifest.json"]);
       const historical = structuredClone(catalog);

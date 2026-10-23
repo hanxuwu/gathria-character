@@ -1,0 +1,39 @@
+{
+  "build": "TypeScript and production build passed",
+  "unitTests": {
+    "passed": 240,
+    "suites": 22
+  },
+  "focusedChromiumTests": {
+    "passed": 12
+  },
+  "pythonRecipeTests": {
+    "passed": 6
+  },
+  "browserEvidence": [
+    {
+      "run": "primary-fit-v3",
+      "packs": 10,
+      "playerCases": 50,
+      "allTimelinePositionsObserved": true,
+      "unexpectedRequests": 0
+    },
+    {
+      "run": "temple-v4",
+      "packs": 2,
+      "playerCases": 10,
+      "allTimelinePositionsObserved": true,
+      "unexpectedRequests": 0
+    },
+    {
+      "run": "outfit-mix",
+      "packs": 1,
+      "playerCases": 10,
+      "allTimelinePositionsObserved": true,
+      "unexpectedRequests": 0
+    }
+  ],
+  "historicalCountsIncluded": false,
+  "visualApproval": "Pending user review",
+  "rejectedExperiment": "Page-order runtime was restored after female loading regression; no speed gain claimed."
+}

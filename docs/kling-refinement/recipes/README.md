@@ -56,8 +56,9 @@ Paint an RGBA image; use a binary grayscale mask (0 or 255) selecting only
 existing clothing-owned pixels. Preserve their original alpha. The base garment
 manifest supplies the crop offsets and ownership atlas; `registration.json`
 supplies joints and occlusion guides. The builder rejects ownership expansion,
-alpha changes, wrong hashes, wrong body/source registrations, duplicate or
-unknown pose IDs, and files outside the recipe root. Review neighboring poses
+alpha changes, wrong hashes, category/slot mismatches, duplicate or
+unknown pose IDs, and files outside the recipe root. The browser separately
+checks the copied body/source registrations when importing. Review neighboring poses
 as well: a correct static repaint can still cause a visible temporal pop.
 
 The recipe copies source/registration bindings and every pose record exactly.
@@ -77,3 +78,10 @@ Six Python contract tests cover material preservation, deterministic output,
 pose paint, hash/category errors, ownership/alpha rejection and invalid IDs.
 The TypeScript test checks exact downloaded base/registration bytes, selected
 item eligibility and rejection of damaged inputs.
+
+Custom variants need the saved `.wardrobe.zip` when reopening. Named looks keep
+material IDs and hashes rather than embedding large custom artwork in browser
+storage. After a reload, reopen that wardrobe project before applying its named
+look. If only a different library revision with the same ID is available, the
+workbench rejects it instead of silently substituting. The review includes an
+Ocean linen wardrobe project as a portable example.

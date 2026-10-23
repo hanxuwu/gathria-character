@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Review real browser exports; no offline donor composites are used as evidence."""
 from pathlib import Path
-import importlib.util,io,json,zipfile
+import importlib.util,io,json,zipfile,hashlib
 import numpy as np
 from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
@@ -15,9 +15,38 @@ indexes=[i for i in indexes if i.get('passed')]
 packs={p['look']:p for i in indexes for p in i['packs']}
 assert 'pony-before' in packs and 'pony-after' in packs
 report={'packs':[],'pngs':[],'gifs':[],'beforeAfter':[],'actualDownloadChecks':[]}
+def protected_source(project_path,pack_path):
+    with zipfile.ZipFile(project_path) as z:
+        assert z.testzip() is None
+        d=json.loads(z.read('document.json'));sm,sf=h.decode_pack(io.BytesIO(z.read('source.character.zip')))
+        om,of=h.decode_pack(pack_path);dx=om['anchor']['x']-sm['anchor']['x'];dy=om['anchor']['y']-sm['anchor']['y'];layers=[]
+        def add(data,styles=None):
+            with zipfile.ZipFile(io.BytesIO(data)) as bank:
+                assert bank.testzip() is None;m=json.loads(bank.read('manifest.json'))
+                pages=[np.asarray(Image.open(io.BytesIO(bank.read(p['maskFile']))).convert('RGBA'))[:,:,3]>0 for p in m['pages']]
+                entries=m['frames'] if styles is None else [f for s in m['styles'] if s['id'] in styles for layer in s['layers'] for f in layer['frames']]
+                layers.append((pages,entries))
+        for i,item in enumerate(d['items']):
+            if item['id'] in d['selection'].values():add(z.read(f'item-{i}.zip'))
+        if 'appearance.zip' in z.namelist():add(z.read('appearance.zip'),{d['appearance']['hairId'],d['appearance']['faceId']})
+        checks=[]
+        for fid,frame in of.items():
+            source=np.asarray(sf[fid]);out=np.asarray(frame);original=np.zeros_like(out);original[dy:dy+source.shape[0],dx:dx+source.shape[1]]=source;allowed=np.zeros(out.shape[:2],bool)
+            for pages,entries in layers:
+                for e in entries:
+                    if e['frameId']!=fid or e.get('mode')=='source':continue
+                    r=e['rect'];mask=pages[e['page']][r['y']:r['y']+r['height'],r['x']:r['x']+r['width']]
+                    x=e['offset']['x']+dx;y=e['offset']['y']+dy;allowed[y:y+r['height'],x:x+r['width']] |= mask
+            assert not (np.any(out!=original,axis=2)&~allowed).any(),(pack_path,fid,'source protection')
+            assert out[:,:,3].min()==0 and out[:,:,3].max()==255
+            assert not out[0,:,3].any() and not out[-1,:,3].any() and not out[:,0,3].any() and not out[:,-1,3].any(),(pack_path,fid,'boundary')
+            checks.append({'frameId':fid,'unauthorizedChangedPixels':0,'nativeRgbaSha256':hashlib.sha256(frame.tobytes()).hexdigest()})
+        assert om['animations']==sm['animations']
+        assert (dx,dy) in [(0,0),(32,128)]
+        return {'project':str(project_path),'projectSha256':h.sha(project_path),'pack':str(pack_path),'sourceRgbaOutsideSelectedOwnershipExact':True,'actionsAndTimingUnchanged':True,'transparentFrameBoundaries':True,'frameChecks':checks}
 for key,p in packs.items():
     path=ROOT/p['file'];assert h.sha(path)==p['sha256']
-    report['packs'].append({'look':key,**check.protected_source(Path(p['project']),path)})
+    report['packs'].append({'look':key,**protected_source(Path(p['project']),path)})
     m,frames=h.decode_pack(path)
     for f in path.parent.glob(f'{p["character"]}-{key}-*-*.png'):
         parts=f.stem.split('-')
@@ -55,6 +84,9 @@ for study in sorted(key[:-6] for key in packs if key.endswith('-after') and key[
         if study=='pony':
             b=poses[fid]['headBounds'];left=b['x']+32-35;top=b['y']+128+b['height']*.40
             region=(int(left),int(top),int(left+260),int(top+270))
+        elif study.startswith('male') or study=='ocean':
+            p=regs[fid]['points'];wy=(p['waistLeft']['y']+p['waistRight']['y'])/2
+            region=(100,int(wy)-220,660,int(wy)+75)
         else:
             p=regs[fid]['points'];wy=(p['waistLeft']['y']+p['waistRight']['y'])/2+(128 if ap else 0)
             region=((172 if ap else 140),int(wy)-150,(642 if ap else 610),int(wy)+130)
