@@ -58,10 +58,11 @@ import {
   type AppearanceCatalogRevision,
 } from "../appearance/upgrade";
 import AppearanceUpdatePreview from "./AppearanceUpdatePreview";
-import maleCropPreview from "../appearance/previews/male-soft-crop.png";
-import maleBobPreview from "../appearance/previews/male-soft-bob.png";
-import femaleCropPreview from "../appearance/previews/female-soft-crop.png";
-import femaleBobPreview from "../appearance/previews/female-soft-bob.png";
+import {
+  appearanceStyleChoices,
+  validateAppearanceStyleSummaries,
+  type AppearanceStyleSummary,
+} from "../appearance/catalog";
 import "./wardrobe.css";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 
@@ -80,6 +81,7 @@ interface CatalogCharacter {
   templateUrl?: string;
   appearanceBankUrl?: string;
   appearanceRevision?: AppearanceCatalogRevision;
+  appearanceStyles?: AppearanceStyleSummary[];
   items: CatalogItem[];
   presets: Array<{ id: string; name: string; selection: WardrobeSelection }>;
 }
@@ -101,10 +103,15 @@ interface AppearancePreview {
   position: number;
   facing: Facing;
 }
-const HAIR_PREVIEWS: Record<KlingCharacterId, Record<string, string>> = {
-  male: { "soft-crop": maleCropPreview, "soft-bob": maleBobPreview },
-  female: { "soft-crop": femaleCropPreview, "soft-bob": femaleBobPreview },
-};
+// These are reviewed, actual application exports. Missing artwork remains a
+// named choice until its matching thumbnail is delivered, never a broken URL.
+const HAIR_PREVIEWS = import.meta.glob<string>("../appearance/previews/*.png", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+const hairPreview = (character: KlingCharacterId, styleId: string) =>
+  HAIR_PREVIEWS[`../appearance/previews/${character}-${styleId}.png`];
 const HAIR_SWATCHES = {
   chestnut: "#74422e",
   espresso: "#332623",
@@ -222,6 +229,10 @@ function readCatalog(value: unknown): Catalog {
       appearanceRevision: entry.appearanceRevision
         ? validateAppearanceCatalogRevision(entry.appearanceRevision)
         : undefined,
+      appearanceStyles:
+        entry.appearanceStyles === undefined
+          ? undefined
+          : validateAppearanceStyleSummaries(entry.appearanceStyles),
       items,
       presets,
     };
@@ -544,11 +555,10 @@ export default function WardrobeEditor({
   const showLibraryThumbnails =
     !project?.appearanceBank ||
     project.appearanceBank.sha256 === entry?.appearanceRevision?.bankSha256;
-  const appearanceStyles = project?.appearanceBank?.manifest.styles ?? [
-    { id: "soft-crop", name: "Soft crop", slot: "hair" },
-    { id: "soft-bob", name: "Soft bob", slot: "hair" },
-    { id: "gentle", name: "Gentle", slot: "face" },
-  ];
+  const appearanceStyles = appearanceStyleChoices(
+    project?.appearanceBank?.manifest,
+    entry?.appearanceStyles,
+  );
 
   useLayoutEffect(() => {
     if (!session || frameId === undefined || !canvas.current) return;
@@ -1192,9 +1202,9 @@ export default function WardrobeEditor({
                       onClick={() => chooseAppearance({ hairId: style.id })}
                     >
                       {showLibraryThumbnails &&
-                        HAIR_PREVIEWS[session.character][style.id] && (
+                        hairPreview(session.character, style.id) && (
                           <img
-                            src={HAIR_PREVIEWS[session.character][style.id]}
+                            src={hairPreview(session.character, style.id)}
                             alt=""
                             width={152}
                             height={128}

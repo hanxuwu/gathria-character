@@ -35,6 +35,15 @@ Dialog inspection controls do not change those saved settings. Unknown/custom
 banks cannot be inferred to be older from their ID and are not automatically
 replaced. Cancelling or saving a copy leaves the current session unchanged.
 
+The catalog's optional `appearanceStyles` lists each character's current
+`id`, `name` and `slot` before its bank is downloaded. Once a bank is loaded,
+its own style inventory takes precedence, including when an older project is
+reopened offline. New library choices become available to an old project only
+after explicitly updating a copy and opening that copy. Catalogs without this
+field retain the original Soft crop, Soft bob and Gentle choices. Library
+thumbnails come from actual exported frames and are hidden for mismatched saved
+banks; importing a custom bank does not attach unrelated library thumbnails.
+
 ## Appearance bank V1
 
 Content revision 2 (`kling-male-appearance-v2` / `kling-female-appearance-v2`)
@@ -58,10 +67,22 @@ hair over the upper ear and restores the soft bob's existing donor rear lock as
 an explicit `hair-back` layer. The existing renderer places that lock behind the
 original ear, head and clothing. This is an authored hair update, not another
 schema or source-body change: the original face layer, anchors, source frames,
-padding and action timing are retained. Female content remains revision 3 and
-its bank bytes are unchanged. Male revisions 1, 2 and 3 remain reproducible from
+padding and action timing are retained. That release retained female revision 3
+without changing its bank bytes. Male revisions 1, 2 and 3 remain reproducible from
 their embedded banks; an exact-hash catalog match offers an explicit preview and
 separate updated copy. No saved file is silently upgraded or rewritten.
+
+Male content revision 5 (`kling-male-appearance-v5`) adds **Side part**
+(`side-part`); female content revision 4 (`kling-female-appearance-v4`) adds
+**Tucked bun** (`tucked-bun`). Each bank gains exactly one character-specific
+hairstyle with front and rear layers. New atlas pages are appended, preserving
+all existing page PNG bytes and all existing style/frame mappings. Only the
+per-pose `hairBounds` envelope may grow to include the new hair; head/face bounds,
+joint anchors, foreground masks, original face patches, padding and motion
+remain unchanged. This is a content revision: appearance-bank schema V1 and
+wardrobe-project V2 remain the same, with the same explicit preview/copy upgrade
+for the exact released male V4 and female V3 hashes. Saved original banks and
+their selected hairstyle, face, color, clothing and preview settings remain intact.
 
 `manifest.json` identifies `gathria-sprite-appearance-bank`, version 1. It binds
 both the exact original source ZIP SHA and original clothing-registration SHA,

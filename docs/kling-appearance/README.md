@@ -1,6 +1,11 @@
 # Kling hair and gentle face review
 
-**Current correction:** [male ear overlap](ear-overlap-review/README.md) restores
+**Current expansion:** [male Side part and female Tucked bun](expansion-review/README.md)
+adds one hairstyle per character, preserving existing atlas PNGs and style
+mappings. Male content is revision 5 and female content is revision 4. The
+new choices use the existing colors, faces, clothing, motion and export flow.
+
+**Previous correction:** [male ear overlap](ear-overlap-review/README.md) restores
 the bob's missing rear strand and fits the front hair over the upper ear. Actual
 before/after exports retain the original face, ear, body and motion. Male bank
 content is revision 4; female revision 3 is unchanged.
@@ -15,10 +20,12 @@ the original ear during crouching and removes donor-skin edge residue. The
 first-batch artifacts below remain as the earlier baseline; the correction's
 page contains that revision's exports and matched before/after comparisons.
 
-The two approved Kling characters now have optional **Soft crop** and **Soft bob**
-hairstyles, **Chestnut / Espresso / Copper** hair colors, and an **Original / Gentle**
-face choice in the existing wardrobe. The original face, body and action timing
-remain the starting point. Both hairstyles work on either character.
+The original batch introduced **Soft crop** and **Soft bob** on both approved
+Kling characters, **Chestnut / Espresso / Copper** hair colors, and an
+**Original / Gentle** face choice. The current expansion adds **Side part** for
+male and **Tucked bun** for female. The original face, body and action timing
+remain the starting point. The tables and checks below document the first batch;
+use the current expansion link above for the latest materials and verification.
 
 ## Open it
 
@@ -79,7 +86,7 @@ evidence.
 | Actual wardrobe UI                        | [Screenshot](review/evidence/final-male/male-day-workbench.png)                                | [Screenshot](review/evidence/final-female/female-day-workbench.png)                                |
 | Independent player after closing wardrobe | [Screenshot](review/evidence/final-male/male-day-independent.png)                              | [Screenshot](review/evidence/final-female/female-day-independent.png)                              |
 
-## Verification performed in this batch
+## Original batch verification (historical)
 
 - **209 unit tests**, TypeScript checking and the production build passed. The
   built appearance-bank files were also checked against the final bank hashes.

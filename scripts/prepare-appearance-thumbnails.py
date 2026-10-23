@@ -21,6 +21,8 @@ parser.add_argument('--evidence-root', default='docs/kling-appearance/stability-
                     help='Directory containing the checked actual capture runs.')
 parser.add_argument('--source-prefix', default='thumbnail',
                     help='Frame-0 export label in the capture, e.g. thumbnail or detail.')
+parser.add_argument('--face-id', choices=('original', 'gentle'), default='gentle',
+                    help='Face preset actually used in the checked PNG exports.')
 args = parser.parse_args()
 DEST = ROOT / 'src/appearance/previews'
 DEST.mkdir(exist_ok=True)
@@ -48,7 +50,7 @@ for character in characters:
     right = max(head['x'] + head['width'], hair['x'] + hair['width']) + padding['left'] + 12
     bottom = pose['anchors']['chin']['y'] + padding['top'] + 12
     crop = tuple(map(int, (left, top, right, bottom)))
-    for style in ('soft-crop', 'soft-bob'):
+    for style in (row['id'] for row in manifest['styles'] if row['slot'] == 'hair'):
         source = evidence_dir / f'{character}-{args.source_prefix}-{style}-0-right.png'
         source_sha = hashlib.sha256(source.read_bytes()).hexdigest()
         captured = next(row for row in evidence['downloads'] if row['file'] == str(source.relative_to(ROOT)))
@@ -76,9 +78,10 @@ for character in characters:
             'crop': list(crop),
             'size': [152, 128],
             'resampling': 'Lanczos display thumbnail only',
-            'appearance': {'hairId': style, 'faceId': 'gentle', 'hairColor': 'chestnut'},
+            'appearance': {'hairId': style, 'faceId': None if args.face_id == 'original' else args.face_id, 'hairColor': 'chestnut'},
         })
 records.sort(key=lambda row: (0 if row['file'].startswith('male-') else 1,
-                              0 if 'soft-crop' in row['file'] else 1))
+                              0 if 'soft-crop' in row['file'] else 1 if 'soft-bob' in row['file'] else 2,
+                              row['file']))
 record_path.write_text(json.dumps(records, indent=2) + '\n')
-print(f'Updated {len(characters) * 2} real-export style thumbnails.')
+print(f'Updated {sum(any(row["file"].startswith(character + "-") for character in characters) for row in records)} real-export style thumbnails.')

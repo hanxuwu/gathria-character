@@ -4,16 +4,24 @@ import { strToU8, zipSync } from "fflate";
 import {
   APPEARANCE_ANCHORS,
   type AppearanceBankManifest,
+  type AppearanceStyle,
 } from "../../src/appearance/contract";
 import { encodeSourceRgbaPng } from "../../src/core/baked-source";
 import type { WardrobeRegistration } from "../../src/wardrobe/contract";
 import { installWardrobeFixture } from "./wardrobe-fixture";
 
 // Synthetic pixels test controls and file contracts, never visual quality.
-export async function installAppearanceFixture(page: Page) {
+export async function installAppearanceFixture(
+  page: Page,
+  options: { expandedStyles?: boolean } = {},
+) {
   const fixtures = await installWardrobeFixture(page);
   let bankRequests = 0;
   const banks = new Map<string, Uint8Array>();
+  const catalogStyles: Record<
+    string,
+    Array<Pick<AppearanceStyle, "id" | "name" | "slot">>
+  > = {};
   const variants: Record<
     string,
     {
@@ -132,6 +140,21 @@ export async function installAppearanceFixture(page: Page) {
       ],
       provenance: "Synthetic browser regression fixture. Not artwork evidence.",
     };
+    const legacyStyles = structuredClone(manifest.styles);
+    if (options.expandedStyles) {
+      // Reuse tiny fixture pixels to exercise metadata/UI, not new artwork.
+      const added = structuredClone(
+        manifest.styles[fixture.key === "male" ? 0 : 1],
+      );
+      added.id = fixture.key === "male" ? "side-part" : "tucked-bun";
+      added.name = fixture.key === "male" ? "Side part" : "Tucked bun";
+      manifest.styles.push(added);
+    }
+    catalogStyles[fixture.key] = manifest.styles.map(({ id, name, slot }) => ({
+      id,
+      name,
+      slot,
+    }));
     const pixels = new Uint8Array(20 * 2 * 4);
     const ownership = new Uint8Array(pixels.length);
     for (let i = 0; i < 40; i++) {
@@ -145,10 +168,14 @@ export async function installAppearanceFixture(page: Page) {
       );
       ownership.set([255, 255, 255, 255], i * 4);
     }
-    const makeBank = (id: string, patch: Uint8Array) =>
+    const makeBank = (
+      id: string,
+      patch: Uint8Array,
+      styles = manifest.styles,
+    ) =>
       zipSync(
         {
-          "manifest.json": strToU8(JSON.stringify({ ...manifest, id })),
+          "manifest.json": strToU8(JSON.stringify({ ...manifest, id, styles })),
           "patches-0.png": encodeSourceRgbaPng({
             width: 20,
             height: 2,
@@ -172,6 +199,7 @@ export async function installAppearanceFixture(page: Page) {
     const previous = makeBank(
       `${fixture.key}-appearance-previous`,
       previousPixels,
+      legacyStyles,
     );
     variants[fixture.key] = {
       current,
@@ -197,6 +225,9 @@ export async function installAppearanceFixture(page: Page) {
           ...fixture.entry,
           appearanceBankUrl: `/fixture-appearance/${fixture.key}.zip`,
           appearanceRevision: revisions[fixture.key],
+          ...(options.expandedStyles
+            ? { appearanceStyles: catalogStyles[fixture.key] }
+            : {}),
         })),
       },
     }),

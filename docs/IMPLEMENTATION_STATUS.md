@@ -1,6 +1,14 @@
 # Implementation status
 
-Current follow-up: **male ear overlap**. The bob's missing donor rear strand is
+Current expansion: **male Side part and female Tucked bun**. Each character
+has one additional source-bound hairstyle, with separate front/back hair and
+the existing three colors, face choices, clothes and motion. Released atlas
+PNG bytes and previous style mappings are retained; new patches are appended.
+Catalog style summaries expose the new choices before the bank loads, while
+saved/custom banks retain their own styles until explicitly upgraded as a copy.
+[Actual exports, preservation checks and limits](kling-appearance/expansion-review/README.md).
+
+Previous follow-up: **male ear overlap**. The bob's missing donor rear strand is
 restored behind the original ear/head, and existing front hair locally overlaps
 the upper ear. Male bank content is revision 4; source pixels, face layers,
 registrations, timing and female revision 3 remain unchanged. Existing projects

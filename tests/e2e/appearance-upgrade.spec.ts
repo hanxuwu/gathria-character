@@ -484,3 +484,93 @@ test("leaving the wardrobe cancels a pending update and cannot open a stale moda
     .click();
   await expect(page.getByTestId("appearance-update-after")).toBeVisible();
 });
+
+test("new character-specific hair is discoverable before loading while older embedded banks stay authoritative", async ({
+  page,
+}, testInfo) => {
+  const fixture = await installAppearanceFixture(page, {
+    expandedStyles: true,
+  });
+  await page.goto("/workbench.html?character=male&mode=wardrobe");
+  const wardrobe = page.locator("#wardrobe-panel");
+  await expect(wardrobe.getByRole("status")).toContainText("Original outfit.");
+  const hairstyle = wardrobe.getByLabel("Hairstyle", { exact: true });
+  await expect(
+    wardrobe.getByRole("button", { name: "Choose Side part", exact: true }),
+  ).toBeVisible();
+  await expect(hairstyle.locator('option[value="side-part"]')).toHaveCount(1);
+  await expect(hairstyle.locator('option[value="tucked-bun"]')).toHaveCount(0);
+  expect(fixture.bankRequests()).toBe(0);
+  await wardrobe
+    .getByRole("button", { name: "Choose Side part", exact: true })
+    .click();
+  await expect(wardrobe.getByRole("status")).toContainText(
+    "Appearance updated",
+  );
+  await expect(hairstyle).toHaveValue("side-part");
+  expect(fixture.bankRequests()).toBe(1);
+
+  await wardrobe
+    .getByLabel("Wardrobe character", { exact: true })
+    .selectOption("female");
+  await expect(wardrobe.getByRole("status")).toContainText("Original outfit.");
+  await expect(
+    wardrobe.getByRole("button", { name: "Choose Tucked bun", exact: true }),
+  ).toBeVisible();
+  await expect(hairstyle.locator('option[value="tucked-bun"]')).toHaveCount(1);
+  await expect(hairstyle.locator('option[value="side-part"]')).toHaveCount(0);
+  expect(fixture.bankRequests()).toBe(1);
+  await wardrobe
+    .getByRole("button", { name: "Choose Tucked bun", exact: true })
+    .click();
+  await expect(wardrobe.getByRole("status")).toContainText(
+    "Appearance updated",
+  );
+  await expect(hairstyle).toHaveValue("tucked-bun");
+  expect(fixture.bankRequests()).toBe(2);
+
+  // The current catalog must not advertise unavailable choices in an older
+  // embedded bank. Only an explicitly saved/reopened update gains the new style.
+  await openSaved(wardrobe, await savedProject(fixture));
+  await expect(hairstyle).toHaveValue("soft-crop");
+  await expect(hairstyle.locator('option[value="side-part"]')).toHaveCount(0);
+  await expect(
+    wardrobe.getByRole("button", { name: "Choose Side part", exact: true }),
+  ).toHaveCount(0);
+  expect(fixture.bankRequests()).toBe(2);
+  await wardrobe
+    .getByRole("button", { name: "Preview updated appearance", exact: true })
+    .click();
+  const dialog = page.getByRole("dialog", {
+    name: "Preview updated appearance",
+    exact: true,
+  });
+  await expect(dialog.getByTestId("appearance-update-after")).toBeVisible();
+  const download = page.waitForEvent("download");
+  await dialog
+    .getByRole("button", { name: "Save updated copy", exact: true })
+    .click();
+  const path = testInfo.outputPath("expanded-styles.wardrobe.zip");
+  await (await download).saveAs(path);
+  await dialog
+    .getByRole("button", { name: "Cancel preview", exact: true })
+    .click();
+  await wardrobe
+    .getByLabel("Open wardrobe project file", { exact: true })
+    .setInputFiles(path);
+  await expect(wardrobe.getByRole("status")).toContainText(
+    "Saved outfit and action settings restored",
+  );
+  await expect(
+    wardrobe.getByRole("button", { name: "Choose Side part", exact: true }),
+  ).toBeVisible();
+  await expect(hairstyle.locator('option[value="tucked-bun"]')).toHaveCount(0);
+  await wardrobe
+    .getByRole("button", { name: "Choose Side part", exact: true })
+    .click();
+  await expect(wardrobe.getByRole("status")).toContainText(
+    "Appearance updated",
+  );
+  await expect(hairstyle).toHaveValue("side-part");
+  expect(fixture.bankRequests()).toBe(3);
+});

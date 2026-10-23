@@ -1,0 +1,181 @@
+{
+  "generatedAt": "2026-10-23T05:56:25.541772+00:00",
+  "scope": "Current two-style expansion only. These checks were executed in this batch; historical 50-test browser runs and previous releases are not counted. Synthetic browser fixtures verify behavior and contracts, not artwork quality. Visual acceptance uses the separate actual-export review.",
+  "baseline": "4d2efafc6bfcef7185d43c8aac50e3594f505b94",
+  "bankSha256": {
+    "male": "8f45a4afb5900096f5fce9c0e505c1bef31398f159520889dd5c7495fb67fc67",
+    "female": "c4f7cf6e8980d73c0de2a46a1bc101caa0dab8d639c587545488b4654d69a714"
+  },
+  "auditedInputSha256": {
+    "scripts/kling_hair_expansion.py": "8ac40cedd0d44f05a3665079e0072e8d8010a520f05560f28992019a01a309ce",
+    "scripts/append-kling-hair-expansion.py": "a89d14973b1aaceb2cfe4c64257473874120cec85fd37d99a9ee0189bd1a995b",
+    "scripts/test_kling_hair_expansion.py": "584b934876dc213e870db291d779c4e1606f791e1e8185947255886ad6cca087",
+    "scripts/verify-kling-hair-expansion.py": "6deb0240b13b17fcb971e3e0fdfb16ceefe40f56a8f292750858b0b306a185b5",
+    "src/appearance/catalog.ts": "44f352c76a8932fe17c8b428e09461b93c2dda78f27205a5c385bae13ae1cad4",
+    "src/wardrobe/WardrobeEditor.tsx": "6dd8db72ae90ded46874a986ca710837d48fed89f087035de3b4b4383efe75bb",
+    "tests/e2e/appearance-fixture.ts": "560261ce93600c201640b0369295a64dfbb061b9dd242d74a46ebb05de516985",
+    "tests/e2e/appearance-upgrade.spec.ts": "e6ad6b4ce88e17d39bbaa5b472200aca5b1ba0369c4ff021a88cd234abd4ed8e",
+    "docs/kling-wardrobe/catalog.json": "d91857e1955a39dfd2e34b52ffea49ad6c95b1a66301f5f60f3b2a2bda7a6fac"
+  },
+  "checks": [
+    {
+      "name": "appearance browser regressions",
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/appearance.spec.ts tests/e2e/appearance-upgrade.spec.ts --reporter=list",
+      "result": "passed",
+      "tests": 12,
+      "files": 2,
+      "durationSeconds": 29.1,
+      "localLog": "/tmp/kling-hair-expansion-appearance-e2e.log",
+      "evidenceType": "synthetic browser behavior; not artwork",
+      "coverage": "Character-specific lazy hairstyle choices; no eager bank load; old embedded bank stays authoritative; explicit preview/save-copy/reopen gains new choices; existing original/custom/newer and cancellation/export behavior."
+    },
+    {
+      "name": "appearance unit regressions",
+      "command": "npm test -- src/appearance/bank.test.ts src/appearance/render.test.ts src/appearance/upgrade.test.ts src/appearance/catalog.test.ts",
+      "result": "passed",
+      "tests": 36,
+      "files": 4,
+      "durationSeconds": 1.3,
+      "localLog": "/tmp/kling-hair-expansion-unit.log",
+      "phase": "Final TS code, before generated banks/catalog were refreshed. The final catalog SHA binding is checked separately."
+    },
+    {
+      "name": "TypeScript",
+      "command": "npm run typecheck",
+      "result": "passed",
+      "exitCode": 0,
+      "localLog": "/tmp/kling-hair-expansion-typecheck.log"
+    },
+    {
+      "name": "new hairstyle geometry and ownership",
+      "command": "PYTHONPATH=/tmp/kling-wardrobe-python python scripts/test_kling_hair_expansion.py",
+      "result": "passed",
+      "tests": 4,
+      "durationSeconds": 3.59,
+      "registeredPoses": 184,
+      "maximumRoundTripErrorPixels": 0.00519214,
+      "minimumInverseJacobian": 0.42232225,
+      "localLog": "/tmp/kling-hair-expansion-python.log",
+      "coverage": "Combined ear-follow and new local overlap stay invertible; support never crosses the existing sampler; distant features fixed; deterministic nonmutating RGBA sampling; retained donor RGB exact; reviewed ears/foreheads/faces and other character excluded."
+    },
+    {
+      "name": "existing ear-fit regressions",
+      "command": "PYTHONPATH=/tmp/kling-wardrobe-python python scripts/test_kling_hair_ear_fit.py",
+      "result": "passed",
+      "tests": 6,
+      "durationSeconds": 2.593,
+      "localLog": "/tmp/kling-hair-expansion-ear-fit.log"
+    },
+    {
+      "name": "existing male ear-overlap regressions",
+      "command": "PYTHONPATH=/tmp/kling-wardrobe-python python scripts/test_kling_hair_ear_overlap.py",
+      "result": "passed",
+      "tests": 8,
+      "durationSeconds": 2.36,
+      "registeredPoses": 88,
+      "maximumRoundTripErrorPixels": 6.778e-05,
+      "minimumInverseJacobian": 0.57222308,
+      "localLog": "/tmp/kling-hair-expansion-ear-overlap.log"
+    },
+    {
+      "name": "final append-only asset audit",
+      "command": "python scripts/verify-kling-hair-expansion.py",
+      "result": "passed",
+      "report": "bank-compatibility-validation.json",
+      "unchangedFiles": 57,
+      "byteIdenticalOldPngEntries": 22,
+      "unchangedPoseRecordsExceptExactHairBoundsUnion": 184,
+      "decodedNewLayerFrames": 368,
+      "localLog": "/tmp/kling-hair-expansion-bank-validation.log"
+    },
+    {
+      "name": "final generated catalog hash bindings",
+      "command": "npm test -- src/appearance/upgrade.test.ts -t 'validates release descriptors'",
+      "result": "passed",
+      "tests": 1,
+      "skipped": 9,
+      "localLog": "/tmp/kling-hair-expansion-catalog-test.log",
+      "executedBy": "appearance_upgrade_core",
+      "phase": "After both final banks and catalog were refreshed. This repeats one case from the 36-test suite and is not an additional unique test."
+    },
+    {
+      "name": "production build with final six actual-export thumbnails",
+      "command": "npm run build",
+      "result": "passed",
+      "exitCode": 0,
+      "localLog": "/tmp/kling-hair-expansion-production-build.log",
+      "viteBuildSeconds": 2.74,
+      "exactCopiedAssets": [
+        {
+          "source": "docs/kling-appearance/banks/male.zip",
+          "built": "dist/assets/male-tJ4DGT09.zip",
+          "sha256": "8f45a4afb5900096f5fce9c0e505c1bef31398f159520889dd5c7495fb67fc67",
+          "bytes": 45427642
+        },
+        {
+          "source": "docs/kling-appearance/banks/female.zip",
+          "built": "dist/assets/female-B6M4BEAv.zip",
+          "sha256": "c4f7cf6e8980d73c0de2a46a1bc101caa0dab8d639c587545488b4654d69a714",
+          "bytes": 47057252
+        },
+        {
+          "source": "src/appearance/previews/male-soft-bob.png",
+          "built": "dist/assets/male-soft-bob-DdArkt64.png",
+          "sha256": "c7c42b951beca2cb3f61d25bbd450803900cedb522a88e40c53a14c9213d4a32",
+          "bytes": 24964
+        },
+        {
+          "source": "src/appearance/previews/female-tucked-bun.png",
+          "built": "dist/assets/female-tucked-bun-uz2UoOuz.png",
+          "sha256": "eb2d8cac18d3b05220f2cf25888a5e78e22f182e8534bd8f28e464acd9b4de1e",
+          "bytes": 28546
+        },
+        {
+          "source": "src/appearance/previews/male-side-part.png",
+          "built": "dist/assets/male-side-part-BWOINyAG.png",
+          "sha256": "e826a50d2aee6d0fd0041ff7cbce1270a3cecb132d6d6d82ea3eddd22a12d469",
+          "bytes": 24477
+        },
+        {
+          "source": "src/appearance/previews/female-soft-crop.png",
+          "built": "dist/assets/female-soft-crop-zP13G8uy.png",
+          "sha256": "67ac7da52e499c6699ec91f8c3daaa40d8d7e0a3fb0011d0c74970101893ca40",
+          "bytes": 26026
+        },
+        {
+          "source": "src/appearance/previews/female-soft-bob.png",
+          "built": "dist/assets/female-soft-bob-Dx0UAvbH.png",
+          "sha256": "66f1d28d7f7db97456e0ebac15b6d74620a55d23a52adf0d0ec48b49b54adef6",
+          "bytes": 27369
+        },
+        {
+          "source": "src/appearance/previews/male-soft-crop.png",
+          "built": "dist/assets/male-soft-crop-BMps9rlb.png",
+          "sha256": "377832016294b96934ada4ed94f4939ea6f3f89cb46560b1a7b88b24da923b28",
+          "bytes": 23323
+        }
+      ]
+    },
+    {
+      "name": "all-pose legacy hairBounds expansion audit",
+      "execution": "Read-only inline Python: git show 4d2efaf:<bank>, decode all old hair patches through Bank.crop, translate every nonzero-alpha pixel center by frame.offset, compare with its original hairBounds using the renderer half-pixel convention.",
+      "result": "passed",
+      "sourcePoseRecords": 184,
+      "legacyHairLayerFrames": 456,
+      "nonzeroAlphaPixels": 30395456,
+      "outOfBoundsPixels": 0,
+      "minimumPixelCenterMargin": 0.5,
+      "report": "bank-compatibility-validation.json#legacyHairBoundsAudit",
+      "localLog": "/tmp/kling-hair-expansion-legacy-bounds-audit.json",
+      "scope": "Added read-only follow-up audit; no unit/browser suite rerun and no bank/source changes."
+    }
+  ],
+  "resolvedDuringIteration": [
+    {
+      "finding": "The initial new male overlap extended outside the unchanged ear sampler, where its theoretical displacement reached 1.3972 pixels.",
+      "resolution": "Moved and narrowed only the new male profile to earTop(-12,0), radii(95,112), displacement(6,34). The four new regression tests now pass; legacy ear-fit helpers were not modified."
+    }
+  ],
+  "ci": "The new Python regression file runs alongside the two existing hair regression files in .github/workflows/verify.yml.",
+  "visualAcceptance": "Not established by these tests. Actual-export GIF/PNG/CharacterPack and independent-player evidence are reviewed separately."
+}

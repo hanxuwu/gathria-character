@@ -6,17 +6,19 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/kling-wardrobe'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def select(top=None,bottom=None,fullBody=None,shoes=None):return dict(top=top,bottom=bottom,fullBody=fullBody,shoes=shoes)
 characters=[]
-# Released first-batch, ear-fit revision 2 and male boundary revision 3 banks. Exact hashes
+# Released first-batch, ear-fit and boundary/ear-overlap revision banks. Exact hashes
 # make custom/future assets ineligible for an accidental downgrade.
 previous_appearance={
     'male':[
         '3dc7c537beea678be7cf5e707713b755fbb0694aa441cb0579105c962aad6bef',
         '2da8187aca98d6245cc7fad1ac0b93b3a0bad52e175a35fc22f6c7c51e72a794',
         'f79a742a88eb5001418154307025303e91899c08058263e87ad54d8995c937f9',
+        '0a443a618a9744650f3aa45168aa5469b396d5d07c9887e97428d50e77d629b3',
     ],
     'female':[
         '2cb788fcbe9bd623b57ccb3cb7385199a7bd04213af2c726e12c738d219e84fa',
         '257098ca3777d56fbbb1bd261eba65c0374d52b6917aaea333e808df447de3e6',
+        'bce748e1e8afea823e23e51b15491d8f02f9ba4d04e3cb53f18ca8c77e8a1ee9',
     ],
 }
 for char in ['male','female']:
@@ -50,6 +52,7 @@ for char in ['male','female']:
             head=json.loads(z.read('manifest.json'))
         assert head['characterId']==data['characterId'] and head['sourceSha256']==sha(source) and head['registrationSha256']==sha(reg),f'Stale appearance {appearance}'
         characters[-1]['appearanceBankUrl']='/'+str(appearance.relative_to(ROOT))
+        characters[-1]['appearanceStyles']=[{key:style[key] for key in ('id','name','slot')} for style in head['styles']]
         characters[-1]['appearanceRevision']={
             'characterId':head['characterId'],'sourceSha256':head['sourceSha256'],
             'registrationSha256':head['registrationSha256'],'bankId':head['id'],

@@ -145,3 +145,38 @@ python scripts/prepare-kling-appearance.py --character both
 Registration review JPGs are authoring overlays. Final visual review must use
 the actual application PNGs, GIFs and CharacterPacks documented in
 `docs/kling-appearance/README.md`.
+
+## Additional side part and tucked bun (2026-10-23)
+
+`source/expansion-design.png` is a new OpenAI-generated design donor. Its inputs
+were the exact original `male-reference.png`, `female-reference.png` and the
+existing bob design sheet as a rendering reference. The complete instruction
+is retained in `source/expansion-prompt.txt`. It adds a swept side part for the
+male and a compact low bun for the female. Generated faces, ears, necks and
+clothing are excluded from runtime assets.
+
+`scripts/kling_hair_expansion.py` retains explicit donor-coordinate front/rear
+polygons and hair-only fitting parameters. Four-times sampled polygon masks
+keep the original donor RGB, remove generated skin at hairline gaps, and split
+the rear locks/bun into a layer behind the unchanged source head and hands.
+Any rear lock geometry is newly authored supplementary artwork, not a recovered
+original Kling layer. No original face or body pixels are moved or repainted.
+
+`scripts/append-kling-hair-expansion.py` appends the two new styles from the
+immutable release `4d2efaf` instead of repacking old pages. Male content becomes
+revision 5 and female revision 4; the old style mappings and atlas PNG entries
+remain exact. The existing local ear-follow fit and reviewed fast-pose blur
+apply to the new hair only. Derived front/back cutouts and their source hashes
+are saved with the design sheet. Current reproduction is:
+
+```sh
+python scripts/append-kling-hair-expansion.py --character both
+python scripts/build-kling-wardrobe-catalog.py
+python scripts/verify-kling-hair-expansion.py
+```
+
+The earlier `prepare-kling-appearance.py` commands reproduce the previous
+two-style release; they do not include this appended expansion. The Git baseline
+must be available to reproduce the expansion. [Actual application exports and
+new-source visual limits](../../docs/kling-appearance/expansion-review/README.md)
+are distinct from the generated design donor.

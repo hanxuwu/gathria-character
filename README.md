@@ -30,8 +30,9 @@ retain the optional skeletal candidates.
 `/workbench.html?character=female&mode=wardrobe` opens the female wardrobe;
 use `character=male` for the male. Choose **Everyday** or **Wedding**, then inspect
 all five actions in either direction. **Original** restores the original clothing.
-In **Hair & face**, choose **Soft crop** or **Soft bob**, a hair color and an
-optional **Gentle** face. Both hairstyles work on either character. **Reset
+In **Hair & face**, choose **Soft crop**, **Soft bob**, or the character's new
+style (**Side part** for male, **Tucked bun** for female), a hair color and an
+optional **Gentle** face. The two original hairstyles work on either character. **Reset
 appearance** restores the original head; clothing and head choices are independent.
 Save an editable project to continue changing clothes, or export a CharacterPack
 for the independent player. [Latest clothing comparisons and downloads](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
@@ -41,7 +42,7 @@ Hair cards and named color swatches offer a quick selection alongside the existi
 controls. Older saved appearances have **Preview updated appearance** for a
 same-frame comparison, followed by **Save updated copy**. Reopen the downloaded
 copy to use it; the original open project and unsaved edits stay unchanged.
-[Current workflow, motion review and limits](docs/kling-appearance/stability-review/README.md).
+[Current hairstyle expansion, motion review and limits](docs/kling-appearance/expansion-review/README.md).
 Existing projects open with their original appearance. New head choices are
 stored with their source-bound assets in an editable V2 wardrobe project;
 ordinary baked CharacterPacks still play independently.
