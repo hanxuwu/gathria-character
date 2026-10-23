@@ -34,6 +34,10 @@ all five actions in either direction. **Original** restores the original clothin
 projects retain their original assets. The [Sprints 11–15 review](docs/kling-polish/README.md)
 covers softer crouched waist joins, two sculpted hair shading revisions,
 downloadable paintable poses and exact custom-material look restoration.
+The [Sprints 16–20 review](docs/kling-fit-workflow/README.md) adds two male cuff
+revisions, safe cleanup of unused saved artwork and exact local-material loading.
+Female dresses retain V6 after two rejected waist trials; comparisons and known
+limits are recorded alongside the actual exports.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.
@@ -52,6 +56,9 @@ character and their exact artwork in this browser. Refreshing preserves custom
 materials saved this way; browser-data clearing does not. **Save wardrobe** remains the portable backup with
 the actual artwork. Verified downloads are reused within a bounded 96 MiB
 session cache; **Cancel preparation** retains the last accepted outfit.
+**Saved looks → Artwork stored in this browser** shows storage usage and removes
+unused managed materials while keeping both characters' saved looks and the open
+project. Older entries are retained; safe cleanup requires HTTPS or localhost.
 
 [Hair, face, actual animation previews and downloads](docs/kling-appearance/README.md).
 Hair cards and named color swatches offer a quick selection alongside the existing

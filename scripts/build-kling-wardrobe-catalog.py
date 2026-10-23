@@ -45,6 +45,8 @@ for char in ['male','female']:
     ids += [item for item in new_primary if (OUT/f'garments/{char}/{item}.zip').exists()]
     soft_waist=['coral-daydress-v6','ivory-wedding-dress-v6'] if char=='female' else []
     ids += [item for item in soft_waist if (OUT/f'garments/{char}/{item}.zip').exists()]
+    soft_cuff=['teal-camp-shirt-v4','navy-suit-jacket-v4'] if char=='male' else []
+    ids += [item for item in soft_cuff if (OUT/f'garments/{char}/{item}.zip').exists()]
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
@@ -63,6 +65,11 @@ for char in ['male','female']:
         ])
     if char=='male' and 'ocean-linen-shirt-v1' in ids:
         presets.append({'id':'ocean-linen','name':'Ocean linen','selection':select('ocean-linen-shirt-v1','ochre-chinos-v1')})
+    if soft_cuff and all(item in ids for item in soft_cuff):
+        presets.extend([
+            {'id':'day-soft-cuff','name':'Everyday soft cuff','selection':select(soft_cuff[0],'ochre-chinos-v1')},
+            {'id':'wedding-soft-cuff','name':'Wedding soft cuff','selection':select(soft_cuff[1],'navy-suit-trousers-v1',shoes='brown-shoes')},
+        ])
     if soft_waist and all(item in ids for item in soft_waist):
         presets.extend([
             {'id':'day-soft-waist','name':'Everyday soft waist','selection':select(fullBody=soft_waist[0])},

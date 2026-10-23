@@ -1,7 +1,7 @@
 import { sha256 } from "../core/sha256";
 import { APPEARANCE_MAX_BYTES } from "../appearance/contract";
 import { WARDROBE_MAX_ITEM_BYTES, type WardrobeProject } from "./contract";
-import type { NamedLook } from "./named-looks";
+import { LOOKS_KEY, readNamedLooks, type NamedLook } from "./named-looks";
 
 const DATABASE = "gathria-look-materials-v1";
 const STORE = "materials";
@@ -13,7 +13,17 @@ type Entry = {
   hash: string;
   size: number;
   data: Blob;
+  /** Only writers participating in the cross-tab lock may opt into cleanup. */
+  managed?: 1;
 };
+const LOCK = "gathria-look-materials-write-v1";
+export function withLookStorageLock<T>(
+  operation: () => Promise<T>,
+): Promise<T> {
+  return globalThis.navigator?.locks
+    ? navigator.locks.request(LOCK, operation)
+    : operation();
+}
 const keyFor = (kind: Kind, hash: string) => `${kind}:${hash}`;
 const limitFor = (kind: Kind) =>
   kind === "garment" ? WARDROBE_MAX_ITEM_BYTES : APPEARANCE_MAX_BYTES;
@@ -56,6 +66,7 @@ function openDatabase(): Promise<IDBDatabase> {
 }
 
 /** Only hashes of already accepted immutable archive bytes are persisted.
+ * The caller holds withLookStorageLock until the recipe update completes.
  * Storage is a convenience, not a backup. It never evicts an existing look. */
 export async function retainLookMaterials(
   project: WardrobeProject,
@@ -74,6 +85,7 @@ export async function retainLookMaterials(
       hash,
       size: bytes.length,
       data: new Blob([bytes]),
+      ...(globalThis.navigator?.locks ? { managed: 1 as const } : {}),
     });
   };
   for (const ref of look.items) {
@@ -101,20 +113,30 @@ export async function retainLookMaterials(
         store = tx.objectStore(STORE);
       let size = 0,
         failure: Error | undefined;
-      const keys = new Set<string>();
+      const sizes = new Map<string, number>();
       const cursor = store.openCursor();
       cursor.onsuccess = () => {
         const row = cursor.result;
         if (row) {
           const e = row.value as Entry;
-          size += e.size;
-          keys.add(e.key);
+          if (!(e.data instanceof Blob)) {
+            failure = Error(
+              "Stored artwork is damaged. Reopen a saved wardrobe before saving this look.",
+            );
+            tx.abort();
+            return;
+          }
+          // Account for actual stored bytes, including repairs replacing an
+          // entry whose old size metadata is corrupt or stale.
+          size += e.data.size;
+          sizes.set(e.key, e.data.size);
           row.continue();
           return;
         }
-        size += entries
-          .filter((e) => !keys.has(e.key))
-          .reduce((sum, e) => sum + e.size, 0);
+        size += entries.reduce(
+          (sum, e) => sum + e.size - (sizes.get(e.key) ?? 0),
+          0,
+        );
         if (size > LOCAL_MATERIAL_BUDGET) {
           failure = Error(
             "Local artwork storage is full (256 MiB). Your saved looks are unchanged. Use Save wardrobe for a portable copy.",
@@ -143,15 +165,108 @@ export async function retainLookMaterials(
   }
 }
 
+export type LocalMaterialUsage = {
+  bytes: number;
+  count: number;
+  removableBytes: number;
+  removableCount: number;
+  cleanupAvailable: boolean;
+};
+function protectedKeys(project: WardrobeProject): Set<string> {
+  // Read both characters' recipes afresh. Unreadable storage must stop cleanup,
+  // never be interpreted as an empty library.
+  const looks = readNamedLooks(localStorage.getItem(LOOKS_KEY));
+  const keep = new Set<string>();
+  for (const look of looks) {
+    for (const item of look.items) keep.add(keyFor("garment", item.sha256));
+    if (look.appearance)
+      keep.add(keyFor("appearance", look.appearance.bankSha256));
+  }
+  // The open project may include imports not yet saved as a named look.
+  for (const item of project.items) keep.add(keyFor("garment", item.sha256));
+  if (project.appearanceBank)
+    keep.add(keyFor("appearance", project.appearanceBank.sha256));
+  return keep;
+}
+async function inspectMaterials(
+  project: WardrobeProject,
+  remove: boolean,
+): Promise<LocalMaterialUsage> {
+  const canClean = Boolean(globalThis.navigator?.locks);
+  if (remove && !canClean)
+    throw Error(
+      "Safe artwork cleanup needs HTTPS or localhost. Save wardrobe keeps a portable backup.",
+    );
+  const db = await openDatabase();
+  try {
+    // This executes within the same lock as saving artwork AND its look recipe.
+    const keep = protectedKeys(project);
+    return await new Promise<LocalMaterialUsage>((resolve, reject) => {
+      const tx = db.transaction(STORE, remove ? "readwrite" : "readonly");
+      const usage: LocalMaterialUsage = {
+        bytes: 0,
+        count: 0,
+        removableBytes: 0,
+        removableCount: 0,
+        cleanupAvailable: canClean,
+      };
+      const cursor = tx.objectStore(STORE).openCursor();
+      cursor.onsuccess = () => {
+        const row = cursor.result;
+        if (!row) return;
+        const entry = row.value as Entry;
+        const size = entry.data instanceof Blob ? entry.data.size : 0;
+        usage.bytes += size;
+        usage.count++;
+        // Older or unknown writers never opted into this locking protocol.
+        // Preserve their entries even when no current recipe references them.
+        if (canClean && entry.managed === 1 && !keep.has(entry.key)) {
+          usage.removableBytes += size;
+          usage.removableCount++;
+          if (remove) row.delete();
+        }
+        row.continue();
+      };
+      tx.oncomplete = () => resolve(usage);
+      tx.onabort = () =>
+        reject(
+          tx.error ??
+            Error("Artwork cleanup failed; stored materials are unchanged."),
+        );
+      tx.onerror = () => {
+        /* atomic abort reports failure */
+      };
+    });
+  } finally {
+    db.close();
+  }
+}
+export function localMaterialUsage(project: WardrobeProject) {
+  return withLookStorageLock(() => inspectMaterials(project, false));
+}
+export function removeUnusedMaterials(project: WardrobeProject) {
+  return withLookStorageLock(() => inspectMaterials(project, true));
+}
+
 export async function readLocalMaterial(
   kind: Kind,
   hash: string,
   signal?: AbortSignal,
+  optionalStorage = false,
 ): Promise<Uint8Array | null> {
   if (!/^[a-f0-9]{64}$/.test(hash))
     throw Error("Invalid saved material fingerprint.");
   signal?.throwIfAborted();
-  const db = await openDatabase();
+  let db: IDBDatabase;
+  try {
+    db = await openDatabase();
+  } catch (error) {
+    signal?.throwIfAborted();
+    // A catalog asset can still be fetched and hash-verified when IndexedDB
+    // itself is unavailable. A corrupt stored archive is NOT a cache miss.
+    if (optionalStorage) return null;
+    throw error;
+  }
   let entry: Entry | undefined;
   try {
     entry = await new Promise<Entry | undefined>((resolve, reject) => {

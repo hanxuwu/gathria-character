@@ -9,8 +9,10 @@ def mod(name,file):
     s=importlib.util.spec_from_file_location(name,ROOT/'scripts'/file);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 h=mod('sprint_review','render-kling-appearance-review.py')
 check=mod('sprint_check','render-kling-appearance-stability.py')
-OUT=ROOT/'docs/kling-polish/review';OUT.mkdir(parents=True,exist_ok=True)
-indexes=[json.loads(p.read_text()) for p in sorted((ROOT/'docs/kling-polish/evidence').glob('*/evidence-index.json'))]
+batch=os.environ.get('SPRINT_BATCH','kling-polish')
+assert batch.replace('-','').isalnum()
+OUT=ROOT/'docs'/batch/'review';OUT.mkdir(parents=True,exist_ok=True)
+indexes=[json.loads(p.read_text()) for p in sorted((ROOT/'docs'/batch/'evidence').glob('*/evidence-index.json'))]
 indexes=[i for i in indexes if i.get('passed')]
 packs={p['look']:p for i in indexes for p in i['packs']}
 only=[s for s in os.environ.get('POLISH_ONLY','').split(',') if s]
@@ -58,6 +60,7 @@ for key,p in packs.items():
         assert np.array_equal(np.asarray(actual),np.asarray(expected)),f
         report['actualDownloadChecks'].append({'file':str(f.relative_to(ROOT)),'exactToPackFrame':True})
     del frames
+    print(f'Verified actual pack: {key}',flush=True)
 
 def save(image,name):
     p=OUT/name;image.save(p);report['pngs'].append(check.artifact(p))
@@ -66,9 +69,20 @@ def board(rows):
     for r in rows:output.paste(r,(0,y));y+=r.height
     return output
 for study in sorted(key[:-6] for key in packs if key.endswith('-after') and key[:-6]+'-before' in packs):
+    print(f'Rendering actual before/after: {study}',flush=True)
     bm,before=h.decode_pack(ROOT/packs[f'{study}-before']['file'])
     am,after=h.decode_pack(ROOT/packs[f'{study}-after']['file'])
     assert bm['animations']==am['animations'] and bm['anchor']==am['anchor']
+    unchanged_pixels=None
+    if batch=='kling-fit-workflow':
+        # This batch changes cloth RGB only. Female candidates were rejected,
+        # so their retained V6 exports must match in every channel, every pose.
+        unchanged_pixels=True
+        for fid in after:
+            b=np.asarray(before[fid]);a=np.asarray(after[fid])
+            assert np.array_equal(b[:,:,3],a[:,:,3]),(study,fid,'alpha drift')
+            equal=np.array_equal(a,b);unchanged_pixels &= equal
+            if study.startswith('female'):assert equal,(study,fid,'retained V6 drift')
     # Exact-pixel boards are integer scale. Compact GIFs are explicitly 0.5x.
     for scale in [1,2]:
         row=h.join_row([h.sheet_tile(before[0],f'Before / {scale}x',1),h.sheet_tile(after[0],f'After / {scale}x',1)])
@@ -80,6 +94,21 @@ for study in sorted(key[:-6] for key in packs if key.endswith('-after') and key[
         if 'appearance.zip' in z.namelist():
             with zipfile.ZipFile(io.BytesIO(z.read('appearance.zip'))) as a:ap=json.loads(a.read('manifest.json'))
         registration=json.loads(z.read('registration.json'))
+        if batch=='kling-fit-workflow':
+            document=json.loads(z.read('document.json'));cloth=[]
+            for index,item in enumerate(document['items']):
+                if item['id'] not in document['selection'].values():continue
+                with zipfile.ZipFile(io.BytesIO(z.read(f'item-{index}.zip'))) as bank:
+                    meta=json.loads(bank.read('manifest.json'))
+                    pages=[np.asarray(Image.open(io.BytesIO(bank.read(p['maskFile']))).convert('RGBA'))[:,:,3]>0 for p in meta['pages']]
+                    cloth.append((pages,{f['frameId']:f for f in meta['frames']}))
+            dx=am['anchor']['x']-registration['anchor']['x'];dy=am['anchor']['y']-registration['anchor']['y']
+            for fid in after:
+                a=np.asarray(after[fid]);b=np.asarray(before[fid]);allowed=np.zeros(a.shape[:2],bool)
+                for pages,entries in cloth:
+                    f=entries[fid];r=f['rect'];o=f['offset'];x=o['x']+dx;y=o['y']+dy
+                    allowed[y:y+r['height'],x:x+r['width']] |= pages[f['page']][r['y']:r['y']+r['height'],r['x']:r['x']+r['width']]
+                assert not (np.any(a!=b,axis=2)&~allowed).any(),(study,fid,'unrelated appearance/body changed')
     poses={p['frameId']:p for p in ap['poses']} if ap else {};regs={p['frameId']:p for p in registration['frames']}
     rows=[]
     for fid in [0,55,62,86]:
@@ -87,8 +116,8 @@ for study in sorted(key[:-6] for key in packs if key.endswith('-after') and key[
             b=poses[fid]['headBounds'];left=b['x']+32-35;top=b['y']+128+b['height']*.40
             region=(int(left),int(top),int(left+260),int(top+270))
         elif study.startswith('male') or study=='ocean':
-            p=regs[fid]['points'];wy=(p['waistLeft']['y']+p['waistRight']['y'])/2
-            region=(100,int(wy)-220,660,int(wy)+75)
+            p=regs[fid]['points'];wy=(p['waistLeft']['y']+p['waistRight']['y'])/2+(128 if ap else 0)
+            region=((132 if ap else 100),int(wy)-220,(692 if ap else 660),int(wy)+75)
         else:
             p=regs[fid]['points'];wy=(p['waistLeft']['y']+p['waistRight']['y'])/2+(128 if ap else 0)
             region=((172 if ap else 140),int(wy)-150,(642 if ap else 610),int(wy)+130)
@@ -114,8 +143,30 @@ for study in sorted(key[:-6] for key in packs if key.endswith('-after') and key[
         positions=sorted(set([0,len(clip['frames'])//3,2*len(clip['frames'])//3,len(clip['frames'])-1]))
         keyframes.append(h.join_row([h.sheet_tile(after[clip['frames'][i]],f'{action} / {i} / source {clip["frames"][i]} / 1x',1) for i in positions]))
     save(board(keyframes),f'{study}-keyframes-1x.png')
-    report['beforeAfter'].append({'study':study,'sameFrameGeometry':True,'sameActionTiming':True,'frames':len(after)})
+    report['beforeAfter'].append({'study':study,'sameFrameGeometry':True,'sameActionTiming':True,'frames':len(after),**({'rgbaExactBeforeAfter':bool(unchanged_pixels),'alphaExactBeforeAfter':True} if unchanged_pixels is not None else {})})
     del before,after
+
+for key,p in packs.items():
+    if not key.endswith('-mixed'):continue
+    print(f'Rendering actual mix: {key}',flush=True)
+    manifest,frames=h.decode_pack(ROOT/p['file'])
+    for facing in ['right','left']:
+        for group,actions in [('five-actions',h.ACTIONS),('run',['run'])]:
+            images=[];durations=[]
+            for action in actions:
+                clip=manifest['animations'][action]
+                for fid in clip['frames']:
+                    frame=frames[fid]
+                    if facing=='left':frame=frame.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+                    images.append(h.sheet_tile(frame,f'{key} / {action} / {facing} / 0.5x'))
+                    durations.append(1000/clip['fps'])
+            h.write_gif(OUT/f'{key}-{group}-{facing}.gif',images,durations,report['gifs'])
+    rows=[]
+    for action in h.ACTIONS:
+        clip=manifest['animations'][action];positions=sorted(set([0,len(clip['frames'])//2,len(clip['frames'])-1]))
+        rows.append(h.join_row([h.sheet_tile(frames[clip['frames'][i]],f'{key} / {action} / source {clip["frames"][i]} / 1x',1) for i in positions]))
+    save(board(rows),f'{key}-keyframes-1x.png')
+    del frames
 
 report['notes']=['All review pixels originate from actual application downloads.', 'Five-action GIFs are repeating review montages; the player retains one-shot jump/celebrate semantics.', 'GIF durations round cumulative time to centiseconds; native PNG alpha and timing are checked before quantization.', 'Technical checks are not user visual acceptance.']
 report_name='verification-'+ '-'.join(only)+'.json' if only else 'verification.json'
