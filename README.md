@@ -30,12 +30,23 @@ retain the optional skeletal candidates.
 `/workbench.html?character=female&mode=wardrobe` opens the female wardrobe;
 use `character=male` for the male. Choose **Everyday** or **Wedding**, then inspect
 all five actions in either direction. **Original** restores the original clothing.
-In **Hair & face**, choose **Soft crop**, **Soft bob**, or the character's new
-style (**Side part** for male, **Tucked bun** for female), a hair color and an
-optional **Gentle** face. The two original hairstyles work on either character. **Reset
+In **Hair & face**, choose the original styles or the six fuller styles:
+**Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
+and **Braided crown**, then a hair color and an optional **Gentle** face.
+The two original hairstyles work on either character. **Reset
 appearance** restores the original head; clothing and head choices are independent.
 Save an editable project to continue changing clothes, or export a CharacterPack
-for the independent player. [Latest clothing comparisons and downloads](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
+for the independent player. [Earlier clothing fit review](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
+
+The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
+and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
+refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,
+named looks and cancellable loading. In the wardrobe, **Inspect connections**
+shows original/current crops; arrows and **Preview speed** help examine motion
+without changing exports. **Saved looks** stores up to 12 combinations per
+character in this browser. **Save wardrobe** remains the portable backup with
+the actual artwork. Verified downloads are reused within a bounded 96 MiB
+session cache; **Cancel preparation** retains the last accepted outfit.
 
 [Hair, face, actual animation previews and downloads](docs/kling-appearance/README.md).
 Hair cards and named color swatches offer a quick selection alongside the existing

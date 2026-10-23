@@ -1,0 +1,59 @@
+{
+  "scope": "This turn only. Synthetic workflow tests are separate from actual artwork exports. Counts are not added across repeated runs.",
+  "fullUnitSuite": {
+    "command": "npm test",
+    "files": 22,
+    "passed": 239
+  },
+  "finalRelatedUnits": {
+    "command": "npx vitest run src/appearance/upgrade.test.ts src/appearance/catalog.test.ts src/wardrobe/named-looks.test.ts src/wardrobe/download-cache.test.ts",
+    "passed": 25
+  },
+  "browserChecks": {
+    "passedDistinctCases": 26,
+    "files": [
+      "wardrobe-inspection.spec.ts",
+      "wardrobe-looks.spec.ts",
+      "appearance-library.spec.ts",
+      "wardrobe-loading.spec.ts",
+      "appearance-upgrade.spec.ts",
+      "appearance.spec.ts",
+      "wardrobe.spec.ts"
+    ],
+    "note": "An old expected download count was updated from 3 to 2 for verified-byte reuse; its case passed on rerun. Four named-look/library cases were rerun after final restore/cancel refinements."
+  },
+  "build": {
+    "command": "npm run build",
+    "typescriptPassed": true,
+    "productionPassed": true,
+    "includesFinalV3Banks": true
+  },
+  "actualPlayback": {
+    "finalLooks": 3,
+    "actionsPerLook": 5,
+    "directions": 2,
+    "finalCases": 30,
+    "intermediateV2CasesRetained": 20
+  },
+  "actualExportRuns": {
+    "final": {
+      "passed": true,
+      "file": "docs/kling-sprints/evidence/final/evidence-index.json"
+    },
+    "pony-final-v3": {
+      "passed": true,
+      "file": "docs/kling-sprints/evidence/pony-final-v3/evidence-index.json"
+    },
+    "waist-final-v3": {
+      "passed": true,
+      "file": "docs/kling-sprints/evidence/waist-final-v3/evidence-index.json"
+    }
+  },
+  "notClaimed": [
+    "User visual acceptance",
+    "Perfect seams in every pose",
+    "Instant first loading",
+    "New hair physics",
+    "New clothing beyond the existing nine-outfit collection"
+  ]
+}
