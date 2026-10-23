@@ -564,7 +564,11 @@ export default function WardrobeEditor({
     project?.appearanceBank || entry?.appearanceBankUrl,
   );
   const upgradeAvailability = project
-    ? getAppearanceUpgradeAvailability(project, entry?.appearanceRevision)
+    ? getAppearanceUpgradeAvailability(
+        project,
+        entry?.appearanceRevision,
+        entry?.appearanceLibraries,
+      )
     : null;
   const showLibraryThumbnails = isLibraryAppearance(
     project?.appearanceBank?.sha256,

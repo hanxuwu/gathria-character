@@ -316,6 +316,41 @@ describe("explicit source-bound appearance upgrade copies", () => {
       ).rejects.toThrow(/custom or unrecognized/);
     }
   });
+  it("recognizes exact library banks as current without accepting custom hashes or different sources", async () => {
+    const f = await upgradeFixture();
+    const bytes = f.bank("fixture-extra-style");
+    const project = await addWardrobeAppearanceBank(f.base, bytes);
+    const library = [
+      {
+        bankId: "fixture-extra-style",
+        sha256: sha(bytes),
+        url: "/fixture-extra-style.zip",
+        styles: project.appearanceBank!.manifest.styles,
+      },
+    ];
+    expect(
+      getAppearanceUpgradeAvailability(project, f.revision, library).status,
+    ).toBe("current");
+    for (const changed of [
+      { ...library[0], sha256: "c".repeat(64) },
+      { ...library[0], bankId: "different-bank" },
+    ]) {
+      expect(
+        getAppearanceUpgradeAvailability(project, f.revision, [changed]).status,
+      ).toBe("unavailable");
+    }
+    expect(
+      getAppearanceUpgradeAvailability(
+        project,
+        {
+          ...f.revision,
+          sourceSha256: "b".repeat(64),
+        },
+        library,
+      ).status,
+    ).toBe("unavailable");
+    expect(project.appearanceBank!.bytes).toEqual(bytes);
+  });
   it.each(["characterId", "sourceSha256", "registrationSha256"] as const)(
     "rejects different %s bindings before preparing",
     async (field) => {

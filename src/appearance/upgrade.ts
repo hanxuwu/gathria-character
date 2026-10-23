@@ -1,4 +1,5 @@
 import { sha256 } from "../core/sha256";
+import type { AppearanceLibraryBank } from "./catalog";
 import {
   assertSourcePreparationActive,
   type SourcePreparationOptions,
@@ -82,6 +83,7 @@ export function validateAppearanceCatalogRevision(
 export function getAppearanceUpgradeAvailability(
   project: WardrobeProject,
   revision?: AppearanceCatalogRevision,
+  libraryBanks: readonly AppearanceLibraryBank[] = [],
 ): AppearanceUpgradeAvailability {
   if (!revision)
     return {
@@ -119,7 +121,13 @@ export function getAppearanceUpgradeAvailability(
       status: "unavailable",
       reason: "The saved appearance does not match this project's source.",
     };
-  if (bank.sha256 === release.bankSha256)
+  if (
+    bank.sha256 === release.bankSha256 ||
+    libraryBanks.some(
+      (entry) =>
+        entry.sha256 === bank.sha256 && entry.bankId === bank.manifest.id,
+    )
+  )
     return {
       status: "current",
       reason: "This project already uses the current appearance assets.",

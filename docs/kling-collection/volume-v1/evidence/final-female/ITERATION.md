@@ -1,0 +1,3 @@
+This is the first, deliberately stopped female capture, retained for matched native before/after PNG comparisons. It is not a passed workflow validation. Honey garden and Harbor sailor were exported before refinement of the ponytail root, donor-only brow/strap fragments in Braided crown, and enclosed hem-mask holes in Honey garden. Final accepted capture runs use one isolated browser per look after those assets are refined. Do not use these two initial CharacterPacks as final delivery.
+
+The two superseded CharacterPack archives are intentionally not retained in the repository. Native PNGs and original export hashes remain; use the final capture folders for downloadable packs.
