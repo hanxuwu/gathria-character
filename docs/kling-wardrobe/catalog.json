@@ -62,6 +62,18 @@
           "name": "Navy full-length suit trousers",
           "slot": "bottom",
           "url": "/docs/kling-wardrobe/garments/male/navy-suit-trousers-v1.zip"
+        },
+        {
+          "id": "cream-camp-shirt-v1",
+          "name": "Cream camp shirt",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/cream-camp-shirt-v1.zip"
+        },
+        {
+          "id": "forest-work-shirt-v1",
+          "name": "Forest work shirt",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/forest-work-shirt-v1.zip"
         }
       ],
       "presets": [
@@ -91,6 +103,26 @@
           "selection": {
             "top": "navy-suit-jacket-v2",
             "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "cream-navy",
+          "name": "Cream & navy",
+          "selection": {
+            "top": "cream-camp-shirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "forest-weekend",
+          "name": "Forest weekend",
+          "selection": {
+            "top": "forest-work-shirt-v1",
+            "bottom": "ochre-chinos-v1",
             "fullBody": null,
             "shoes": "brown-shoes"
           }
@@ -202,6 +234,18 @@
           "name": "Ivory wedding dress",
           "slot": "fullBody",
           "url": "/docs/kling-wardrobe/garments/female/ivory-wedding-dress-v4.zip"
+        },
+        {
+          "id": "mist-blue-dress-v1",
+          "name": "Mist blue dress",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/mist-blue-dress-v1.zip"
+        },
+        {
+          "id": "lavender-pleat-dress-v1",
+          "name": "Lavender pleat dress",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/lavender-pleat-dress-v1.zip"
         }
       ],
       "presets": [
@@ -232,6 +276,26 @@
             "top": null,
             "bottom": null,
             "fullBody": "ivory-wedding-dress-v4",
+            "shoes": null
+          }
+        },
+        {
+          "id": "mist-blue",
+          "name": "Mist blue",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "mist-blue-dress-v1",
+            "shoes": null
+          }
+        },
+        {
+          "id": "lavender-afternoon",
+          "name": "Lavender afternoon",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "lavender-pleat-dress-v1",
             "shoes": null
           }
         },

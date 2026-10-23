@@ -30,8 +30,8 @@ for char in ['male','female']:
     assert data['sourceSha256']==sha(source)
     items=[]
     ids=['teal-top','ochre-shorts','navy-waistcoat','navy-shorts','brown-shoes']
-    if char=='female':ids+=['coral-daydress-v4','ivory-wedding-dress-v4']
-    else:ids+=['teal-camp-shirt-v2','navy-suit-jacket-v2','ochre-chinos-v1','navy-suit-trousers-v1']
+    if char=='female':ids+=['coral-daydress-v4','ivory-wedding-dress-v4','mist-blue-dress-v1','lavender-pleat-dress-v1']
+    else:ids+=['teal-camp-shirt-v2','navy-suit-jacket-v2','ochre-chinos-v1','navy-suit-trousers-v1','cream-camp-shirt-v1','forest-work-shirt-v1']
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
@@ -43,6 +43,16 @@ for char in ['male','female']:
     day=select('teal-camp-shirt-v2','ochre-chinos-v1') if char=='male' else select(fullBody='coral-daydress-v4')
     wedding=select('navy-suit-jacket-v2','navy-suit-trousers-v1',shoes='brown-shoes') if char=='male' else select(fullBody='ivory-wedding-dress-v4')
     presets.extend([{'id':'day','name':'Everyday','selection':day},{'id':'wedding','name':'Wedding','selection':wedding}])
+    if char=='male':
+        presets.extend([
+            {'id':'cream-navy','name':'Cream & navy','selection':select('cream-camp-shirt-v1','navy-suit-trousers-v1')},
+            {'id':'forest-weekend','name':'Forest weekend','selection':select('forest-work-shirt-v1','ochre-chinos-v1',shoes='brown-shoes')},
+        ])
+    else:
+        presets.extend([
+            {'id':'mist-blue','name':'Mist blue','selection':select(fullBody='mist-blue-dress-v1')},
+            {'id':'lavender-afternoon','name':'Lavender afternoon','selection':select(fullBody='lavender-pleat-dress-v1')},
+        ])
     presets.extend([{'id':'separates','name':'Everyday separates','selection':select('teal-top','ochre-shorts')},{'id':'formal-separates','name':'Formal separates','selection':select('navy-waistcoat','navy-shorts',shoes='brown-shoes')}])
     characters.append({'key':char,'name':f'Kling {char}','characterId':data['characterId'],'sourceUrl':'/'+str(source.relative_to(ROOT)),'registrationUrl':'/'+str(dest.relative_to(ROOT)),'templateUrl':f'/docs/kling-wardrobe/templates/{profile}.wardrobe-template.zip','items':items,'presets':presets})
     appearance=ROOT/f'docs/kling-appearance/banks/{char}.zip'
@@ -60,4 +70,4 @@ for char in ['male','female']:
             'previousBankSha256s':[value for value in previous_appearance[char] if value!=sha(appearance)],
         }
 (OUT/'catalog.json').write_text(json.dumps({'version':1,'characters':characters},indent=2)+'\n')
-print(f'Published {len(characters)} registered bodies / {sum(len(c["items"]) for c in characters)} garment items / original + everyday + wedding presets')
+print(f'Published {len(characters)} registered bodies / {sum(len(c["items"]) for c in characters)} garment items / {sum(len(c["presets"]) for c in characters)} outfit presets')
