@@ -22,6 +22,9 @@ try {
 }
 await mkdir(dirname(output), { recursive: true });
 const sha = (b) => createHash("sha256").update(b).digest("hex");
+const commonCatalogBytes = args.catalog
+  ? await readFile(resolve(args.catalog))
+  : null;
 const mime = {
   ".html": "text/html",
   ".js": "application/javascript",
@@ -82,6 +85,7 @@ const report = {
   startedAt: new Date().toISOString(),
   runs: [],
   assetHashes: {},
+  commonCatalogSha256: commonCatalogBytes ? sha(commonCatalogBytes) : null,
   passed: false,
 };
 let browser;
@@ -135,6 +139,13 @@ try {
       for (const character of ["female", "male"]) {
         const context = await browser.newContext();
         const page = await context.newPage();
+        if (commonCatalogBytes)
+          await page.route(/\/assets\/catalog-[^/]+\.json(?:\?.*)?$/, (route) =>
+            route.fulfill({
+              contentType: "application/json",
+              body: commonCatalogBytes,
+            }),
+          );
         page.setDefaultTimeout(240000);
         const errors = [];
         page.on("pageerror", (e) => errors.push(e.message));
@@ -176,6 +187,17 @@ try {
         );
         await ready(page, "Original outfit.");
         run.sourceOpenMs = Math.round(performance.now() - start);
+        if (
+          !(await page
+            .getByRole("button", { name: "Everyday", exact: true })
+            .isVisible())
+        )
+          await page
+            .getByRole("button", {
+              name: "More outfits and earlier versions",
+              exact: true,
+            })
+            .click();
         await measure(
           "first-outfit",
           () =>

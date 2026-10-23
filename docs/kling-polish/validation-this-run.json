@@ -1,0 +1,61 @@
+{
+  "baselineCommit": "0103b5cb37e9cfac030133072ceed86df66c6972",
+  "artCommit": "eacb905ae1eb8c8e78f20cbd86e5806b3cb1a1cd",
+  "workflowCommit": "86e4196f9836496cbf64b478a6502ca82ad20bc2",
+  "codecCommit": "49cdbd33085060638900effbbc06c9b45657e451",
+  "commands": [
+    {
+      "command": "npm run typecheck",
+      "passed": true
+    },
+    {
+      "command": "npm run build",
+      "passed": true
+    },
+    {
+      "command": "npm test",
+      "passed": true,
+      "files": 22,
+      "tests": 240
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "passed": true,
+      "tests": 61,
+      "duration": "4.3m"
+    },
+    {
+      "command": "python scripts/test_kling_garment_recipe.py",
+      "passed": true,
+      "tests": 6
+    },
+    {
+      "command": "/tmp/kling-polish-venv/bin/python scripts/verify-kling-polish-assets.py",
+      "passed": true,
+      "immutableArchives": 62,
+      "garmentRevisions": 2,
+      "appearanceRevisions": 2
+    }
+  ],
+  "actualCaptures": [
+    {
+      "report": "docs/kling-polish/evidence/waist-v6/evidence-index.json",
+      "packs": 8,
+      "isolatedPlaybackChecks": 40,
+      "passed": true
+    },
+    {
+      "report": "docs/kling-polish/evidence/hair-v5/evidence-index.json",
+      "packs": 4,
+      "isolatedPlaybackChecks": 20,
+      "passed": true
+    },
+    {
+      "report": "docs/kling-polish/evidence/authoring-v1/evidence-index.json",
+      "packs": 4,
+      "isolatedPlaybackChecks": 20,
+      "passed": true
+    }
+  ],
+  "note": "Executed in this batch; test counts in earlier sprint documents are not reused. Technical verification is distinct from visual acceptance."
+}

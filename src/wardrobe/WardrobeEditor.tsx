@@ -73,12 +73,14 @@ import {
 } from "../appearance/catalog";
 import "./wardrobe.css";
 import { exportClothingRecipeKit } from "./recipe-kit";
+import ClothingPoseInspector from "./ClothingPoseInspector";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
 import NamedLooks from "./NamedLooks";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
+import { readLocalMaterial } from "./local-materials";
 
 interface CatalogItem {
   id: string;
@@ -324,6 +326,7 @@ export default function WardrobeEditor({
   const [playbackRate, setPlaybackRate] = useState(1);
   const [retry, setRetry] = useState(0);
   const [recipeItemId, setRecipeItemId] = useState("");
+  const [showAllOutfits, setShowAllOutfits] = useState(false);
   const [appearancePreview, setAppearancePreview] =
     useState<AppearancePreview | null>(null);
   const previewRenderer = useRef<WardrobeCompositor | null>(null);
@@ -916,23 +919,45 @@ export default function WardrobeEditor({
       async (base, signal) => {
         checkLookSource(look, base);
         // Resolve every reference before fetching or changing the accepted outfit.
-        const needed = look.items.map((ref) => {
-          const embedded = base.items.find(
-            (i) => i.manifest.id === ref.id && i.sha256 === ref.sha256,
-          );
-          return {
-            ref,
-            embedded,
-            item: embedded ? null : exactLookAsset(ref, entry?.items ?? []),
-          };
-        });
+        const needed = await Promise.all(
+          look.items.map(async (ref) => {
+            const embedded = base.items.find(
+              (i) => i.manifest.id === ref.id && i.sha256 === ref.sha256,
+            );
+            const item = embedded
+              ? null
+              : entry?.items.find(
+                  (i) => i.id === ref.id && i.sha256 === ref.sha256,
+                );
+            const stored =
+              !embedded && !item
+                ? await readLocalMaterial("garment", ref.sha256, signal)
+                : null;
+            if (!embedded && !item && !stored) exactLookAsset(ref, []);
+            return {
+              ref,
+              embedded,
+              item,
+              stored,
+            };
+          }),
+        );
         const bankHash = look.appearance?.bankSha256;
         const bankUrl =
           bankHash === entry?.appearanceRevision?.bankSha256
             ? entry?.appearanceBankUrl
             : entry?.appearanceLibraries?.find((b) => b.sha256 === bankHash)
                 ?.url;
-        if (bankHash && base.appearanceBank?.sha256 !== bankHash && !bankUrl)
+        const storedBank =
+          bankHash && base.appearanceBank?.sha256 !== bankHash && !bankUrl
+            ? await readLocalMaterial("appearance", bankHash, signal)
+            : null;
+        if (
+          bankHash &&
+          base.appearanceBank?.sha256 !== bankHash &&
+          !bankUrl &&
+          !storedBank
+        )
           throw Error(
             "The exact saved appearance is unavailable. Reopen its saved wardrobe project; no replacement was applied.",
           );
@@ -946,7 +971,7 @@ export default function WardrobeEditor({
           next,
           (entry?.items ?? []).filter((item) => !requiredIds.has(item.id)),
         );
-        for (const { ref, embedded, item } of needed) {
+        for (const { ref, embedded, item, stored } of needed) {
           if (embedded) continue;
           if (next.items.some((i) => i.manifest.id === ref.id))
             throw Error(
@@ -954,12 +979,13 @@ export default function WardrobeEditor({
             );
           next = await addWardrobeGarment(
             next,
-            await fetchBytes(
-              item!.url,
-              WARDROBE_MAX_ITEM_BYTES,
-              signal,
-              ref.sha256,
-            ),
+            stored ??
+              (await fetchBytes(
+                item!.url,
+                WARDROBE_MAX_ITEM_BYTES,
+                signal,
+                ref.sha256,
+              )),
           );
           exactLookAsset(
             ref,
@@ -969,7 +995,13 @@ export default function WardrobeEditor({
         if (bankHash && next.appearanceBank?.sha256 !== bankHash)
           next = await addWardrobeAppearanceBank(
             next,
-            await fetchBytes(bankUrl!, APPEARANCE_MAX_BYTES, signal, bankHash),
+            storedBank ??
+              (await fetchBytes(
+                bankUrl!,
+                APPEARANCE_MAX_BYTES,
+                signal,
+                bankHash,
+              )),
             { signal },
           );
         if (!look.appearance) next = { ...next, appearanceBank: undefined };
@@ -1266,7 +1298,7 @@ export default function WardrobeEditor({
     }
   }
 
-  async function exportRecipe(itemId: string) {
+  async function exportRecipe(itemId: string, poseId?: number) {
     if (!current.current || busy) return;
     setBusy(true);
     setError("");
@@ -1275,8 +1307,12 @@ export default function WardrobeEditor({
       const bytes = await exportClothingRecipeKit(
         current.current.project,
         itemId,
+        poseId,
       );
-      saveBytes(bytes, `${itemId}.clothing-recipe.zip`);
+      saveBytes(
+        bytes,
+        `${itemId}${poseId === undefined ? "" : `-pose-${poseId}`}.clothing-recipe.zip`,
+      );
       setStatus(
         "Clothing recipe saved. Edit it offline, then import the new clothing item.",
       );
@@ -1293,6 +1329,25 @@ export default function WardrobeEditor({
     WARDROBE_SLOTS.every((slot) => preset.selection[slot] === selected[slot]),
   );
   const original = WARDROBE_SLOTS.every((slot) => !selected[slot]);
+  const outfitPresets =
+    entry?.presets.filter((preset) =>
+      WARDROBE_SLOTS.some((slot) => preset.selection[slot]),
+    ) ?? [];
+  const recommendedIds =
+    session?.character === "female"
+      ? [
+          "day-soft-waist",
+          "wedding-soft-waist",
+          "sage-pinafore",
+          "ivory-refined",
+        ]
+      : ["day-refined", "wedding-refined", "oat-weekend", "forest-weekend"];
+  const hasRecommended = outfitPresets.some((p) =>
+    recommendedIds.includes(p.id),
+  );
+  const recommended = (id: string) =>
+    !hasRecommended || recommendedIds.includes(id);
+  const moreOutfits = outfitPresets.some((p) => !recommended(p.id));
   const size = outputSheet
     ? {
         width:
@@ -1581,6 +1636,12 @@ export default function WardrobeEditor({
               <Shirt size={18} aria-hidden="true" />
               <h2>Your outfit</h2>
             </div>
+            {hasRecommended && (
+              <p className="wardrobe-hint">
+                Recommended starting looks. Your saved outfits keep their
+                original artwork.
+              </p>
+            )}
             <div
               className="wardrobe-presets"
               role="group"
@@ -1594,9 +1655,12 @@ export default function WardrobeEditor({
               >
                 Original
               </button>
-              {entry?.presets
-                .filter((preset) =>
-                  WARDROBE_SLOTS.some((slot) => preset.selection[slot]),
+              {outfitPresets
+                .filter(
+                  (preset) =>
+                    showAllOutfits ||
+                    recommended(preset.id) ||
+                    selectedPreset?.id === preset.id,
                 )
                 .map((preset) => (
                   <button
@@ -1610,6 +1674,18 @@ export default function WardrobeEditor({
                   </button>
                 ))}
             </div>
+            {moreOutfits && (
+              <button
+                className="wardrobe-more-outfits"
+                type="button"
+                aria-expanded={showAllOutfits}
+                onClick={() => setShowAllOutfits(!showAllOutfits)}
+              >
+                {showAllOutfits
+                  ? "Show recommended outfits"
+                  : "More outfits and earlier versions"}
+              </button>
+            )}
             {WARDROBE_SLOTS.map((slot) => {
               const choices = new Map<string, { id: string; name: string }>();
               for (const item of entry?.items ?? [])
@@ -1751,6 +1827,16 @@ export default function WardrobeEditor({
                       or local pose corrections. Your current outfit stays
                       intact.
                     </p>
+                    {frameId !== undefined && (
+                      <ClothingPoseInspector
+                        item={chosen}
+                        frameId={frameId}
+                        disabled={busy || Boolean(appearancePreview)}
+                        onExport={() =>
+                          void exportRecipe(chosen.manifest.id, frameId)
+                        }
+                      />
+                    )}
                   </>
                 );
               })()}

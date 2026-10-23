@@ -597,3 +597,17 @@
   flex: 1;
   overflow-wrap: anywhere;
 }
+.clothing-pose-inspector {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+.clothing-pose-inspector canvas {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin: 0.7rem 0;
+  background: repeating-conic-gradient(#eee 0% 25%, #fafafa 0% 50%) 50% / 16px
+    16px;
+}

@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 import { installWardrobeFixture } from "./wardrobe-fixture";
 import { installAppearanceFixture } from "./appearance-fixture";
 
-test("named clothes survive reload, restore action/facing and reject a changed asset hash", async ({
+test("named clothes survive reload, restore action/facing and retain an exact local asset after catalog changes", async ({
   page,
 }) => {
   const f = await installWardrobeFixture(page);
@@ -32,6 +32,9 @@ test("named clothes survive reload, restore action/facing and reject a changed a
     .evaluate((c: HTMLCanvasElement) => c.toDataURL());
   await p.getByLabel("Look name").fill("Daily left");
   await p.getByRole("button", { name: "Save look", exact: true }).click();
+  await expect(p.locator(".wardrobe-named-looks")).toContainText(
+    "artwork saved in this browser",
+  );
   await page.reload();
   await expect(p.getByRole("status")).toContainText("Original outfit.");
   await p
@@ -50,6 +53,20 @@ test("named clothes survive reload, restore action/facing and reject a changed a
       .evaluate((c: HTMLCanvasElement) => c.toDataURL()),
   ).toBe(before);
   entries[0].items[0].sha256 = "f".repeat(64);
+  await page.reload();
+  await expect(p.getByRole("status")).toContainText("Original outfit.");
+  await p.getByRole("button", { name: "Apply look Daily left" }).click();
+  await expect(p.getByRole("status")).toContainText("Daily left restored");
+  await expect(p.getByLabel("Top", { exact: true })).toHaveValue("male-top");
+  // If the local copy is gone too, the mismatched library revision must still fail.
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve, reject) => {
+        const request = indexedDB.deleteDatabase("gathria-look-materials-v1");
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
+      }),
+  );
   await page.reload();
   await expect(p.getByRole("status")).toContainText("Original outfit.");
   await p.getByRole("button", { name: "Apply look Daily left" }).click();
@@ -75,6 +92,9 @@ test("named hair and expression restore exactly, while an original look removes 
   const save = async (name: string) => {
     await p.getByLabel("Look name").fill(name);
     await p.getByRole("button", { name: "Save look", exact: true }).click();
+    await expect(p.locator(".wardrobe-named-looks")).toContainText(
+      "artwork saved in this browser",
+    );
   };
   await save("Original");
   for (const [label, value] of [

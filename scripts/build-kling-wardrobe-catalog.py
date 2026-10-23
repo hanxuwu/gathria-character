@@ -43,6 +43,8 @@ for char in ['male','female']:
         if refined_dress:ids.append(refined_dress)
     new_primary=['teal-camp-shirt-v3','navy-suit-jacket-v3','ocean-linen-shirt-v1'] if char=='male' else ['coral-daydress-v5','ivory-wedding-dress-v5']
     ids += [item for item in new_primary if (OUT/f'garments/{char}/{item}.zip').exists()]
+    soft_waist=['coral-daydress-v6','ivory-wedding-dress-v6'] if char=='female' else []
+    ids += [item for item in soft_waist if (OUT/f'garments/{char}/{item}.zip').exists()]
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
@@ -61,6 +63,11 @@ for char in ['male','female']:
         ])
     if char=='male' and 'ocean-linen-shirt-v1' in ids:
         presets.append({'id':'ocean-linen','name':'Ocean linen','selection':select('ocean-linen-shirt-v1','ochre-chinos-v1')})
+    if soft_waist and all(item in ids for item in soft_waist):
+        presets.extend([
+            {'id':'day-soft-waist','name':'Everyday soft waist','selection':select(fullBody=soft_waist[0])},
+            {'id':'wedding-soft-waist','name':'Wedding soft waist','selection':select(fullBody=soft_waist[1])},
+        ])
     if char=='male':
         presets.extend([
             {'id':'cream-navy','name':'Cream & navy','selection':select('cream-camp-shirt-v1','navy-suit-trousers-v1')},
@@ -94,7 +101,7 @@ for char in ['male','female']:
         if definition['character']!=char:continue
         p=ROOT/f'docs/kling-appearance/banks/volume/{char}-{style}.zip'
         previous=[]
-        for revision in ['volume-v2','volume-v3','volume-v4']:
+        for revision in ['volume-v2','volume-v3','volume-v4','volume-v5']:
             revised=ROOT/f'docs/kling-appearance/banks/{revision}/{char}-{style}.zip'
             if revised.exists():previous.append(sha(p));p=revised
         with zipfile.ZipFile(p) as z:

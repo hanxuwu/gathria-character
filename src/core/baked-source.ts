@@ -1,5 +1,4 @@
-import { Unzlib } from "fflate";
-import { Deflate } from "pako/browser/deflate";
+import { Deflate, Inflate } from "pako/browser";
 import { crc32, readBoundedArchive } from "./bounded-archive";
 import { sha256 } from "./sha256";
 import {
@@ -399,8 +398,8 @@ function parseSourceRgbaPng(
 }
 
 function checkSourceAdler(scan: Uint8Array, idats: Uint8Array[]): void {
-  // fflate validates decompression bounds but does not check zlib's Adler-32.
-  // The four trailer bytes may span IDAT chunks (including empty chunks).
+  // Explicit parity check for both codecs. The four trailer bytes may span
+  // IDAT chunks (including empty chunks).
   const tail: number[] = [];
   for (let k = idats.length - 1; k >= 0 && tail.length < 4; k--)
     for (let i = idats[k].length - 1; i >= 0 && tail.length < 4; i--)
@@ -451,19 +450,32 @@ export function decodeSourceRgbaPng(
   const scan = new Uint8Array((width * 4 + 1) * height);
   let written = 0;
   try {
-    const inflater = new Unzlib((chunk) => {
+    // Fixed-size output blocks avoid repeatedly growing/copying fflate's
+    // streaming buffers on large sparse ownership atlases. Output is still
+    // bounded before every write, including compressed data exceeding IHDR.
+    const inflater = new Inflate({ chunkSize: 64 * 1024, windowBits: 15 });
+    let stream: Parameters<Inflate["onStart"]>[0] | undefined;
+    inflater.onStart = (state) => {
+      stream = state;
+    };
+    inflater.onData = (chunk) => {
       if (written + chunk.length > scan.length)
         fail("PNG inflation exceeds declared size.");
       scan.set(chunk, written);
       written += chunk.length;
-    });
-    for (const idat of idats)
-      for (let i = 0; i < idat.length; i += 1024)
-        inflater.push(idat.subarray(i, i + 1024), false);
+    };
+    for (const idat of idats) {
+      if (!idat.length) continue;
+      if (inflater.ended || !inflater.push(idat, false) || stream?.avail_in)
+        fail("PNG contains invalid or trailing compressed data.");
+    }
     // A legal zero-length final IDAT must still finalize/validate the stream.
-    inflater.push(new Uint8Array(), true);
+    if (!inflater.ended) inflater.push(new Uint8Array(), true);
+    if (!inflater.ended || inflater.err) fail("Incomplete PNG zlib stream.");
   } catch {
-    return fail("Source PNG cannot be decoded within its declared dimensions.");
+    return fail(
+      "Source PNG cannot be decoded within its declared dimensions; invalid zlib checksum or compressed image data.",
+    );
   }
   if (written !== scan.length)
     fail("PNG decoded row count does not match dimensions.");
