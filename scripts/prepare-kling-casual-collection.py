@@ -179,7 +179,7 @@ def main():
                 result=save_garment(character,item,d['name'],d['slot'],registration_bytes,prepared,provenance)
                 # Decode every saved crop and assert it is exactly the authored RGBA and ownership.
                 reader=module('prepare-kling-male-fit-polish.py','casual_bank_reader')
-                written=reader.read_bank(ROOT/f'docs/kling-wardrobe/garments/{character}/{item}.zip')
+                written=reader.read_bank(ROOT/result['url'].lstrip('/'))
                 assert set(written)==set(prepared)
                 for fid in written:
                     assert np.array_equal(written[fid][0],prepared[fid][0])

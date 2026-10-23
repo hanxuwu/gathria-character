@@ -5,6 +5,7 @@ Only traced generated cloth is sampled. Faces, anatomy and motion stay sourced
 from the immutable Kling packs. Occluded donor cloth is authored completion.
 """
 import argparse
+from pathlib import Path
 from functools import lru_cache
 import importlib.util
 import json
@@ -92,11 +93,19 @@ def skirt_source(item):
     # Retain anti-aliased exterior hem where the source actually has alpha.
     hem_edge=(yy>d['sourceHem'][2]-30)&valid&~excluded
     result[hem_edge,3]=rgba[hem_edge,3]
+    if item == 'honey-garden-dress-v1':
+        # Warm daisy centres can resemble skin in the narrow hem classifier.
+        # Restore only ENCLOSED donor holes, leaving the exterior hem untouched.
+        opaque=result[:,:,3]>16
+        holes=nd.binary_fill_holes(opaque)&~opaque
+        nearest=nd.distance_transform_edt(~opaque,return_distances=False,return_indices=True)
+        result[holes,:3]=result[nearest[0][holes],nearest[1][holes],:3]
+        result[holes,3]=255
     return result
 
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument('--item',choices=list(RAW)); p.add_argument('--prototype',action='store_true'); args=p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument('--item',choices=list(RAW)); p.add_argument('--prototype',action='store_true'); p.add_argument('--output-dir',type=Path); args=p.parse_args()
     OUT.mkdir(parents=True,exist_ok=True); REVIEW.mkdir(parents=True,exist_ok=True)
     base.OUT=OUT; base.REVIEW=REVIEW
     def save(character,item,name,slot,registration,prepared,_legacy_provenance):
@@ -107,7 +116,8 @@ def main():
                     'Released male V2 sleeve ownership and female V4 skirt fitting, new painted bodices. '
                     'Original source head, exposed hands, body proportions, anchors and animation timing unchanged. '
                     'Offline registered 2D cloth drawings, not video-extracted layers or simulated cloth.')
-        return save_garment(character,item,name,slot,registration,prepared,provenance)
+        return save_garment(character,item,name,slot,registration,prepared,provenance,
+                            output=args.output_dir/f'{item}.zip' if args.output_dir else None)
     base.save_garment=save
     # Released fitting records provenance using designs.png. A temporary source
     # view points at the exact per-character donor; original donor files stay put.

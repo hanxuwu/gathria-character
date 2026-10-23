@@ -16,7 +16,8 @@ def rows(boards):
  for b in boards:out.paste(b,(0,y));y+=b.height
  return out
 
-def main(runs):
+def main(runs,batch="all"):
+ assert batch in ("all","male","female")
  review=DEST/'review';review.mkdir(parents=True,exist_ok=True)
  indexes=[]
  for run in runs:
@@ -26,9 +27,12 @@ def main(runs):
  base=json.loads((DEST/'baseline-hashes.json').read_text())
  for item in base['files']:assert helper.sha(ROOT/item['file'])==item['sha256'],(item['file'],'legacy changed')
  report['legacyFilesUnchanged']=len(base['files']);pack_frames={};gallery=[]
+ # Later captures supersede only the same look; initial evidence remains on disk.
+ latest={p['look']:path for path,index in indexes for p in index['packs']}
  for path,index in indexes:
   report['inputs'].append({'file':str(path.relative_to(ROOT)),'sha256':helper.sha(path)})
   for p in index['packs']:
+   if latest[p['look']]!=path:continue
    captured=Path(p['capturedPath']);retained=ROOT/p['file'];project=Path(p['projectPath'])
    assert helper.sha(captured)==helper.sha(retained)==p['sha256'];assert helper.sha(project)==p['projectSha256']
    m,frames=helper.decode_pack(retained)
@@ -75,9 +79,9 @@ def main(runs):
     imagepath=ROOT/item['file'];assert helper.sha(imagepath)==item['sha256'];report['artifacts'].append(stability.artifact(imagepath))
   for item in index['screenshots']:
    imagepath=ROOT/item['file'];assert helper.sha(imagepath)==item['sha256'];report['artifacts'].append(stability.artifact(imagepath))
- rows([helper.join_row(gallery[i:i+3]) for i in range(0,len(gallery),3)]).save(review/'nine-outfits-1x.png')
+ rows([helper.join_row(gallery[i:i+3]) for i in range(0,len(gallery),3)]).save(review/f'{batch}-outfits-1x.png')
  # Gallery at half resolution is explicitly a compact overview, not native proof.
- native=rows([helper.join_row(gallery[i:i+3]) for i in range(0,len(gallery),3)]);native.resize((native.width//2,native.height//2),Image.Resampling.LANCZOS).save(review/'nine-outfits-overview.png')
+ native=rows([helper.join_row(gallery[i:i+3]) for i in range(0,len(gallery),3)]);native.resize((native.width//2,native.height//2),Image.Resampling.LANCZOS).save(review/f'{batch}-outfits-overview.png')
  # Per-character run comparisons synchronize only identical source timelines.
  for character in sorted({p['character'] for p,m,frames in pack_frames.values()}):
   variants=[(p,m,f) for p,m,f in pack_frames.values() if p['character']==character]
@@ -94,7 +98,7 @@ def main(runs):
    helper.write_gif(review/f'{character}-outfits-run-{facing}.gif',images,[1000/clip['fps']]*len(images),report['artifacts'])
  for path in sorted(review.glob('*.png')):report['artifacts'].append(stability.artifact(path))
  report['counts']={'packs':len(report['packs']),'nativeFrames':sum(len(p['frameChecks']) for p in report['packs']),'mirrorPairs':len(report['mirrors']),'artifacts':len(report['artifacts']),'independentPlaybackCases':sum(len(i['playback']) for _,i in indexes),'savedProjectRoundtrips':sum(len(i['reopened'])for _,i in indexes)}
- (DEST/'artifact-validation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report['counts']))
+ (DEST/f'artifact-validation-{batch}.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report['counts']))
 
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--runs',nargs='+',default=['final']);a=p.parse_args();main(a.runs)
+ p=argparse.ArgumentParser();p.add_argument('--runs',nargs='+',default=['final']);p.add_argument('--batch',default='all',choices=['all','male','female']);a=p.parse_args();main(a.runs,a.batch)

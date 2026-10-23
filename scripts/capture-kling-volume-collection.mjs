@@ -405,12 +405,14 @@ try {
       report.inputs[path.slice(1)] = sha(
         await readFile(join(root, path.slice(1))),
       );
-    await appearance(page, "Hairstyle", oldHair);
-    await appearance(page, "Face", "");
-    await appearance(page, "Hair color", "chestnut");
+    if (!process.env.VOLUME_BASELINE_RUN && !process.env.VOLUME_LOOK) {
+      await appearance(page, "Hairstyle", oldHair);
+      await appearance(page, "Face", "");
+      await appearance(page, "Hair color", "chestnut");
+    }
     // Existing daily and wedding choices return exactly after changing garments.
     const oldHashes = {};
-    for (const name of ["Everyday", "Wedding"]) {
+    for (const name of process.env.VOLUME_LOOK ? [] : ["Everyday", "Wedding"]) {
       await outfit(page, name);
       oldHashes[name] = {};
       for (const fid of [0, 86]) {
@@ -432,11 +434,54 @@ try {
       await outfit(page, preset.name);
       const definition = definitions.find((d) => d.id === look);
       const hair = definition.hair;
-      await appearance(page, "Hairstyle", oldHair);
-      await appearance(page, "Hair color", "chestnut");
-      await appearance(page, "Face", "");
-      for (const fid of [0, 55, 86])
-        await png(page, character, `${look}-before-hair`, source, fid);
+      if (process.env.VOLUME_BASELINE_RUN) {
+        const baselineRun = process.env.VOLUME_BASELINE_RUN;
+        assert(/^[a-z0-9-]+$/.test(baselineRun));
+        const folder = join(
+          root,
+          "docs/kling-collection/volume-v1/evidence",
+          baselineRun,
+        );
+        const prior = json(await readFile(join(folder, "evidence-index.json")));
+        assert(prior.passed);
+        assert.deepEqual(
+          prior.packs.find((p) => p.look === look).selection,
+          preset.selection,
+        );
+        for (const item of entry.items.filter((i) =>
+          Object.values(preset.selection).includes(i.id),
+        ))
+          assert.equal(
+            prior.inputs[item.url.slice(1)],
+            report.inputs[item.url.slice(1)],
+          );
+        assert.equal(
+          prior.inputs[entry.appearanceBankUrl.slice(1)],
+          report.inputs[entry.appearanceBankUrl.slice(1)],
+        );
+        for (const fid of [0, 55, 86]) {
+          const filename = `${character}-${look}-before-hair-${fid}-right.png`;
+          const from = join(folder, filename),
+            dest = join(output, filename);
+          const old = prior.downloads.find((d) => d.file === rel(from));
+          const bytes = await readFile(from);
+          assert.equal(sha(bytes), old.sha256);
+          await copyFile(from, dest);
+          report.downloads.push({
+            ...old,
+            file: rel(dest),
+            origin: "reused matched actual app export",
+            reusedFrom: rel(from),
+            decoded: decode(dest, false),
+          });
+        }
+      } else {
+        await appearance(page, "Hairstyle", oldHair);
+        await appearance(page, "Hair color", "chestnut");
+        await appearance(page, "Face", "");
+        for (const fid of [0, 55, 86])
+          await png(page, character, `${look}-before-hair`, source, fid);
+      }
       await appearance(page, "Hairstyle", hair);
       await appearance(page, "Hair color", definition.color);
       const representatives = Object.fromEntries(
@@ -538,7 +583,7 @@ try {
       await persist();
     }
     // Genuine mixing, no new painted bodies: alternative trousers/shoes and old top.
-    if (character === "male") {
+    if (!process.env.VOLUME_LOOK && character === "male") {
       for (const [top, bottom, shoes] of [
         ["oat-henley-v1", "ochre-chinos-v1", "brown-shoes"],
         ["moss-knit-vest-v1", "navy-suit-trousers-v1", ""],
@@ -558,7 +603,7 @@ try {
         await png(page, character, `mix-${top}-${bottom}`, source, 55);
         report.mixes.push({ character, top, bottom, shoes, frameId: 55 });
       }
-    } else {
+    } else if (!process.env.VOLUME_LOOK) {
       await outfit(page, "Mist blue");
       await panel(page)
         .getByLabel("Shoes", { exact: true })
@@ -572,10 +617,12 @@ try {
         frameId: 55,
       });
     }
-    await appearance(page, "Hairstyle", oldHair);
-    await appearance(page, "Face", "");
-    await appearance(page, "Hair color", "chestnut");
-    for (const name of ["Everyday", "Wedding"]) {
+    if (!process.env.VOLUME_LOOK) {
+      await appearance(page, "Hairstyle", oldHair);
+      await appearance(page, "Face", "");
+      await appearance(page, "Hair color", "chestnut");
+    }
+    for (const name of process.env.VOLUME_LOOK ? [] : ["Everyday", "Wedding"]) {
       await outfit(page, name);
       for (const fid of [0, 86]) {
         await pose(page, source, fid);

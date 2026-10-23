@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Six separately loadable hair banks; released appearance banks stay immutable."""
 import argparse
+from pathlib import Path
 import copy
 import importlib.util
 import io
@@ -85,6 +86,13 @@ def donors(style):
         skin=(r>190)&(g>110)&(r-g>38)&(g-b>27)
         inside=mask>0; edge=cv2.distanceTransform(inside.astype(np.uint8),cv2.DIST_L2,5)<10
         rgba[skin&edge,3]=0
+        if role=='hair-front' and d.get('frontInkExclusions'):
+            # Only traced DONOR eyebrow tips: retain warm hair in the same
+            # region instead of cutting a polygon-shaped notch in the fringe.
+            roi=np.zeros((size,size),bool)
+            for poly in d['frontInkExclusions']:roi |= mask_polygon(poly,size)>0
+            brow=(r<115)&(g<65)&(b<45)
+            rgba[roi&brow,3]=0
         if role=='hair-back' and d.get('rearBridge'):
             # Supplementary hidden hair underneath the original ear: complete
             # the donor's ear cutout using adjacent REAR HAIR only. No donor
@@ -123,7 +131,7 @@ def add(entries,layer,fid,rgba,owned,offset):
     layer['frames'].append(f);entries.append((f,crop,own))
 
 
-def build(style,prototype=False):
+def build(style,prototype=False,output_dir=None):
     d=DEFINITIONS[style];char=d['character'];OUT.mkdir(parents=True,exist_ok=True)
     original_path=ROOT/f'docs/kling-appearance/banks/{char}.zip'
     with zipfile.ZipFile(original_path) as z:
@@ -200,7 +208,7 @@ def build(style,prototype=False):
     manifest.update(id=f'kling-{char}-{style}-v1',name=d['name']+' and Gentle',pages=pages,styles=[{'id':style,'name':d['name'],'slot':'hair','layers':layers},gentle],
                     provenance=f'OpenAI image generation 2026-10-23; new volume hair only, artwork/kling-collection/source/volume-v1/{d.get("image","hair-design.png")} SHA256 {sha((SOURCE/d.get("image","hair-design.png")).read_bytes())}. Reviewed front/rear donor polygons and source-eye fit in hair-donors.json. Generated faces/ears/body discarded; hidden rear-hair overlap under the original ear supplemented from adjacent donor hair, not recovered video layers. Local near-ear motion fitting and released source head transforms retained. Gentle pixels copied from immutable bank {sha(original_path.read_bytes())}; no original source pixel, body proportion, timing or anchor rescaled. Independently loaded appearance bank schema V1, not a replacement for released banks.')
     files['manifest.json']=json_bytes(manifest);assert sum(map(len,files.values()))<=64*1024*1024
-    target=ROOT/f'docs/kling-appearance/banks/volume/{char}-{style}.zip';target.parent.mkdir(parents=True,exist_ok=True)
+    target=(output_dir or ROOT/'docs/kling-appearance/banks/volume')/f'{char}-{style}.zip';target.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(target,'w') as z:
         for name,data in sorted(files.items()):
             info=zipfile.ZipInfo(name,(1980,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,data)
@@ -208,5 +216,5 @@ def build(style,prototype=False):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--style',choices=list(DEFINITIONS));p.add_argument('--prototype',action='store_true');args=p.parse_args()
-    for style in ([args.style] if args.style else DEFINITIONS):build(style,args.prototype)
+    p=argparse.ArgumentParser();p.add_argument('--style',choices=list(DEFINITIONS));p.add_argument('--prototype',action='store_true');p.add_argument('--output-dir',type=Path);args=p.parse_args()
+    for style in ([args.style] if args.style else DEFINITIONS):build(style,args.prototype,args.output_dir)
