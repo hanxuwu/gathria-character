@@ -317,6 +317,27 @@
   font-size: 10px;
   color: #849177;
 }
+.wardrobe-frame-buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.wardrobe-inspector {
+  margin-top: 18px;
+  border-top: 1px solid #d5ddce;
+  padding-top: 15px;
+}
+.wardrobe-inspector-scroll {
+  max-height: 580px;
+  max-width: 100%;
+  overflow: auto;
+  border: 1px solid #d5ddce;
+  border-radius: 8px;
+}
+.wardrobe-inspector-scroll canvas {
+  display: block;
+}
 .wardrobe-local-note {
   margin: 23px 0 0;
   color: #89917f;

@@ -7,6 +7,8 @@ import {
   RotateCcw,
   Shirt,
   Upload,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import {
   KLING_CHARACTERS,
@@ -70,6 +72,7 @@ import {
 import "./wardrobe.css";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
+import ConnectionInspector from "./ConnectionInspector";
 
 interface CatalogItem {
   id: string;
@@ -324,6 +327,8 @@ export default function WardrobeEditor({
   const [zoom, setZoom] = useState("fit");
   const [anchors, setAnchors] = useState(false);
   const [compare, setCompare] = useState(false);
+  const [inspect, setInspect] = useState(false);
+  const [playbackRate, setPlaybackRate] = useState(1);
   const [retry, setRetry] = useState(0);
   const [appearancePreview, setAppearancePreview] =
     useState<AppearancePreview | null>(null);
@@ -500,7 +505,7 @@ export default function WardrobeEditor({
         const open = current.current!;
         const manifest = open.project.archive.manifest;
         const profile = readMotionFlow(manifest, open.project.archive.config);
-        const delta = previous === null ? 0 : now - previous;
+        const delta = previous === null ? 0 : (now - previous) * playbackRate;
         previous = now;
         const before = motion.current;
         let after: MotionState;
@@ -543,7 +548,7 @@ export default function WardrobeEditor({
     }
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
-  }, [active, playing, busy, session?.renderer]);
+  }, [active, playing, busy, session?.renderer, playbackRate]);
 
   const project = session?.project;
   const entry = catalog?.characters.find(
@@ -1620,6 +1625,18 @@ export default function WardrobeEditor({
                 <RotateCcw size={16} aria-hidden="true" />
               </button>
               <label>
+                Preview speed
+                <select
+                  aria-label="Wardrobe preview speed"
+                  value={playbackRate}
+                  onChange={(e) => setPlaybackRate(Number(e.target.value))}
+                >
+                  <option value={1}>1×</option>
+                  <option value={0.5}>0.5×</option>
+                  <option value={0.25}>0.25×</option>
+                </select>
+              </label>
+              <label>
                 Size
                 <select
                   aria-label="Wardrobe preview size"
@@ -1640,6 +1657,17 @@ export default function WardrobeEditor({
                   onChange={(event) => setCompare(event.target.checked)}
                 />{" "}
                 Compare original
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={inspect}
+                  onChange={(e) => {
+                    setInspect(e.target.checked);
+                    if (e.target.checked) setPlaying(false);
+                  }}
+                />
+                Inspect connections
               </label>
               <label>
                 <input
@@ -1694,8 +1722,44 @@ export default function WardrobeEditor({
               </figure>
             </div>
             <div className="wardrobe-timeline">
+              <div className="wardrobe-frame-buttons">
+                <button
+                  type="button"
+                  aria-label="Previous wardrobe frame"
+                  disabled={
+                    busy ||
+                    Boolean(appearancePreview) ||
+                    !clip ||
+                    (!clip?.loop && frameIndex === 0)
+                  }
+                  onClick={() =>
+                    scrub(
+                      (frameIndex - 1 + clip!.frames.length) %
+                        clip!.frames.length,
+                    )
+                  }
+                >
+                  <ChevronLeft size={16} />
+                  Previous frame
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next wardrobe frame"
+                  disabled={
+                    busy ||
+                    Boolean(appearancePreview) ||
+                    !clip ||
+                    (!clip?.loop && frameIndex === clip.frames.length - 1)
+                  }
+                  onClick={() => scrub((frameIndex + 1) % clip!.frames.length)}
+                >
+                  Next frame
+                  <ChevronRight size={16} />
+                </button>
+              </div>
               <label htmlFor="wardrobe-frame">
-                Frame {frameIndex + 1} / {clip?.frames.length} · {clip?.fps} FPS
+                Frame {frameIndex + 1} / {clip?.frames.length} · {clip?.fps} FPS{" "}
+                · source {frameId}
               </label>
               <input
                 id="wardrobe-frame"
@@ -1713,6 +1777,14 @@ export default function WardrobeEditor({
                 attachment ({outputAnchor.x}, {outputAnchor.y})
               </span>
             </div>
+            {inspect && frameId !== undefined && (
+              <ConnectionInspector
+                project={project}
+                renderer={session.renderer}
+                frameId={frameId}
+                facing={facing}
+              />
+            )}
           </section>
         </div>
       )}
