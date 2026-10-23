@@ -1,0 +1,83 @@
+
+> gathria-character@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:605924) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:605937) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 61 tests using 2 workers
+
+(node:605972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:605971) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/appearance-upgrade.spec.ts:65:1 › hair thumbnails and named swatches change the same persisted appearance selection (3.7s)
+  ✓   2 tests/e2e/appearance-library.spec.ts:4:1 › changing separate library banks keeps face/color and rejects a mismatched download without losing the accepted look (5.6s)
+  ✓   4 tests/e2e/appearance-library.spec.ts:58:1 › canceling a library download preserves the accepted pixels and a later retry succeeds (2.5s)
+  ✓   3 tests/e2e/appearance-upgrade.spec.ts:106:1 › older appearance previews without changing the open outfit and saves a separate usable copy (7.5s)
+  ✓   5 tests/e2e/appearance.spec.ts:8:1 › appearance loads on selection, stays independent of clothing and restores original pixels (4.2s)
+  ✓   6 tests/e2e/appearance-upgrade.spec.ts:294:3 › a current appearance is preserved without offering a catalog downgrade (2.2s)
+  ✓   8 tests/e2e/appearance-upgrade.spec.ts:294:3 › a custom appearance is preserved without offering a catalog downgrade (2.3s)
+  ✓   9 tests/e2e/appearance-upgrade.spec.ts:294:3 › a newer appearance is preserved without offering a catalog downgrade (2.1s)
+  ✓   7 tests/e2e/appearance.spec.ts:94:1 › appearance failures keep the accepted outfit, then V2 reopens offline and exports padded standalone playback (6.5s)
+  ✓  10 tests/e2e/appearance-upgrade.spec.ts:318:1 › a mismatched replacement download fails without changing the accepted project (2.9s)
+  ✓  12 tests/e2e/appearance-upgrade.spec.ts:364:1 › a V1 project adds head options only in an explicitly saved copy (2.6s)
+  ✓  13 tests/e2e/appearance-upgrade.spec.ts:410:1 › a catalog revision bound to another source is not offered to the saved project (2.3s)
+  ✓  11 tests/e2e/baked-playback.spec.ts:112:3 › source pair → same-clock playback → native V2 export → independent reopen preserves source pixels (Web Crypto) (7.3s)
+  ✓  14 tests/e2e/appearance-upgrade.spec.ts:429:1 › leaving the wardrobe cancels a pending update and cannot open a stale modal (7.8s)
+  ✓  15 tests/e2e/baked-playback.spec.ts:112:3 › source pair → same-clock playback → native V2 export → independent reopen preserves source pixels (without Web Crypto) (8.0s)
+  ✓  17 tests/e2e/baked-playback.spec.ts:290:1 › invalid source and removed V1 packs cannot replace the loaded Kling character (2.8s)
+  ✓  16 tests/e2e/appearance-upgrade.spec.ts:488:1 › new character-specific hair is discoverable before loading while older embedded banks stay authoritative (5.5s)
+  ✓  18 tests/e2e/baked-playback.spec.ts:382:1 › optional source jump plays once, exports its timing, compares both characters and replays without Web Crypto (6.3s)
+  ✓  20 tests/e2e/baked-playback.spec.ts:563:1 › independent native multipage pack draws the jump page, holds landing, mirrors, scrubs and reexports all pages (2.8s)
+  ✓  21 tests/e2e/baked-playback.spec.ts:665:1 › prepared Kling originals defer the second download, release comparison cache and export the original archive (4.4s)
+  ✓  22 tests/e2e/baked-playback.spec.ts:743:1 › female workbench link loads only that prepared original and embedded mode hides duplicate navigation (1.2s)
+  ✓  23 tests/e2e/baked-playback.spec.ts:771:1 › bitmap atlas pages preserve translucent pixels and mirroring compared with the HTML fallback (4.7s)
+  ✓  24 tests/e2e/baked-playback.spec.ts:820:1 › shared action previews retain bitmap pages and replaced or hidden sources release them (3.7s)
+  ✓  19 tests/e2e/keyframe-loops.spec.ts:62:3 › male keyframe candidate loops all five actions and exports independently (29.0s)
+  ✓  25 tests/e2e/motion-flow.spec.ts:27:3 › male: reviewed requests retain full jumps, pause safely and export independently (32.3s)
+  ✓  26 tests/e2e/keyframe-loops.spec.ts:62:3 › female keyframe candidate loops all five actions and exports independently (25.5s)
+  ✓  28 tests/e2e/keyframe-loops.spec.ts:130:1 › keyframe review is explicit, retains its variant on character changes, and leaves the original jump one-shot (19.8s)
+  ✓  29 tests/e2e/native-study.spec.ts:7:3 › male native candidate keeps the source rest pose and saves real editable joint poses (8.3s)
+  ✓  27 tests/e2e/motion-flow.spec.ts:27:3 › female: reviewed requests retain full jumps, pause safely and export independently (33.3s)
+  ✓  30 tests/e2e/native-study.spec.ts:7:3 › female native candidate keeps the source rest pose and saves real editable joint poses (8.8s)
+  ✓  32 tests/e2e/native-study.spec.ts:129:1 › the visible male skeleton entry retains poses and old study URLs still open the native candidate (6.5s)
+  ✓  33 tests/e2e/native-study.spec.ts:167:1 › opening a female project in a male entry preserves its identity and export filenames (3.0s)
+  ✓  34 tests/e2e/sprite-actions-errors.spec.ts:5:1 › derived metadata errors retain the accepted action project and playback (5.6s)
+  ✓  35 tests/e2e/sprite-actions.spec.ts:51:3 › male: action edits preserve source pixels through save, reopen and independent playback (36.1s)
+  ✓  31 tests/e2e/motion-flow.spec.ts:147:1 › requests cancel/reset/scrub, while comparison and authoring stay immediate (56.1s)
+  ✓  37 tests/e2e/wardrobe-inspection.spec.ts:5:1 › frame inspection keeps source and dressed crops aligned without changing exported pixels (3.7s)
+  ✓  38 tests/e2e/wardrobe-loading.spec.ts:53:1 › cold preparation waits for real workers before enabling the exact source preview (2.1s)
+  ✓  39 tests/e2e/wardrobe-loading.spec.ts:109:1 › a browser without Worker keeps the same checked source pixels and wardrobe flow (2.8s)
+  ✓  40 tests/e2e/wardrobe-loading.spec.ts:156:1 › worker pixel validation rejects a corrupt source before playback and Retry recovers (2.4s)
+  ✓  41 tests/e2e/wardrobe-local-materials.spec.ts:5:1 › custom artwork survives refresh; corrupted stored bytes cannot replace the open outfit (5.9s)
+  ✓  42 tests/e2e/wardrobe-local-materials.spec.ts:45:1 › storage failure leaves recipes intact and offers the portable backup (2.6s)
+  ✓  36 tests/e2e/sprite-actions.spec.ts:51:3 › female: action edits preserve source pixels through save, reopen and independent playback (27.5s)
+  ✓  43 tests/e2e/wardrobe-looks.spec.ts:6:1 › named clothes survive reload, restore action/facing and retain an exact local asset after catalog changes (8.9s)
+  ✓  45 tests/e2e/wardrobe-looks.spec.ts:82:1 › named hair and expression restore exactly, while an original look removes the appearance bank (4.9s)
+  ✓  46 tests/e2e/wardrobe-recipes.spec.ts:8:1 › a larger lazy clothing catalog exports the exact selected authoring kit without loading unused items (2.6s)
+  ✓  47 tests/e2e/wardrobe-recipes.spec.ts:68:1 › a paintable pose kit exports the native layer, binary ownership and source anchors (3.2s)
+  ✓  44 tests/e2e/sprite-actions.spec.ts:210:1 › invalid ranges preserve edits; reset restores the original jump and byte-exact export (13.6s)
+  ✓  48 tests/e2e/wardrobe-recommendations.spec.ts:4:1 › recommended outfits keep earlier selections reachable and visible without changing the character (3.0s)
+  ✓  49 tests/e2e/sprite-actions.spec.ts:239:1 › an imported V2 pack can be arranged without inventing missing actions (4.5s)
+  ✓  51 tests/e2e/workspace-shell.spec.ts:3:1 › library has three primary destinations, original previews and lazy character loading (1.1s)
+  ✓  52 tests/e2e/workspace-shell.spec.ts:57:1 › workbench keeps native joint edits and undo history alive across tabs (4.8s)
+  ✓  50 tests/e2e/wardrobe.spec.ts:9:1 › wardrobe selects registered outfits, retains sessions, and rejects incompatible clothing atomically (9.8s)
+  ✓  53 tests/e2e/workspace-shell.spec.ts:129:1 › workbench follows trusted player selection without reloading the retained player (4.8s)
+  ✓  55 tests/e2e/workspace-shell.spec.ts:216:1 › mobile library and workbench navigation stay within the viewport and support keyboard tabs (3.4s)
+  ✓  54 tests/e2e/wardrobe.spec.ts:78:1 › wardrobe saves, reopens, exports every action, and restores the independent character without the workbench (8.1s)
+  ✓  57 tests/e2e/wardrobe.spec.ts:182:1 › corrupt saved projects retain the current outfit and the wardrobe fits a narrow screen (2.8s)
+  ✓  58 tests/e2e/wardrobe.spec.ts:222:1 › a clothing file that touches the head in a later pose is rejected before replacing the outfit (2.4s)
+  ✓  59 tests/e2e/wardrobe.spec.ts:259:1 › a completed direct-playback jump can be replayed without a separate restart (2.7s)
+  ✓  56 tests/e2e/workspace-shell.spec.ts:247:1 › female library entry and character changes retain separate male and female joint edits (8.9s)
+  ✓  60 tests/e2e/wardrobe.spec.ts:295:1 › an outfit preflight keeps the queued landing, current pose and facing intact (4.3s)
+  ✓  61 tests/e2e/workspace-shell.spec.ts:349:1 › an embedded cross-import updates the outer identity without replacing either retained session (7.1s)
+
+  61 passed (4.3m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

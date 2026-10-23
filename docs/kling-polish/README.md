@@ -14,6 +14,10 @@ clothing authoring/restore workflow. Old saved wardrobes retain their artwork.
 | Airy tousle | [GIF](review/male-hair-five-actions-right.gif) | [GIF](review/male-hair-five-actions-left.gif) | [1x](review/male-hair-keyframes-1x.png) · [ear/head 2x](review/male-hair-connections-2x.png) |
 | Ribbon pony | [GIF](review/female-hair-five-actions-right.gif) | [GIF](review/female-hair-five-actions-left.gif) | [1x](review/female-hair-keyframes-1x.png) · [ear/head 2x](review/female-hair-connections-2x.png) |
 
+[Original face / Gentle / source celebration at native size](review/expression-states-1x.png).
+The male [shirt regression](review/male-day-five-actions-right.gif) and
+[suit regression](review/male-wedding-five-actions-right.gif) are unchanged.
+
 Each GIF compares identical source frames before/after. Compact GIFs are labeled
 0.5x; PNG comparisons are native 1x or nearest-neighbor 2x. GIF palettes and
 centisecond durations are previews; the PNG/CharacterPack retains original RGBA
@@ -51,6 +55,27 @@ See [source provenance](../../artwork/kling-polish/source/README.md),
 [asset audit](asset-checks.json), [plan](PLAN.md) and
 [recipe instructions](../kling-refinement/recipes/README.md).
 
+## Try the authoring roundtrip
+
+Two custom materials, deliberately absent from the shipped clothing catalog,
+exercise the complete workflow. They are colorways of existing source-bound
+clothing, not two new silhouettes. The male shirt is mixed with suit trousers;
+both examples also retain hair and Gentle.
+
+| Example | Actual export comparison | Portable editable project | Independent CharacterPack | Native painting kit |
+| --- | --- | --- | --- | --- |
+| Sky shirt study | [Five actions](review/male-authoring-five-actions-right.gif) | [Wardrobe ZIP](evidence/authoring-v1/male-male-authoring-after.wardrobe.zip) | [CharacterPack ZIP](evidence/authoring-v1/male-male-authoring-after.character.zip) | [Pose 86 kit](evidence/authoring-v1/male-authoring-pose-kit.zip) |
+| Champagne dress study | [Five actions](review/female-authoring-five-actions-right.gif) | [Wardrobe ZIP](evidence/authoring-v1/female-female-authoring-after.wardrobe.zip) | [CharacterPack ZIP](evidence/authoring-v1/female-female-authoring-after.character.zip) | [Pose 86 kit](evidence/authoring-v1/female-authoring-pose-kit.zip) |
+
+The unedited downloaded pose kits rebuild every atlas page with identical pixels.
+The material recipes remove the no-op single-pose override, then apply color
+across all 88 male / 96 female poses. Import → mix → Save look → reload → Apply
+look preserves exact pixels **without reopening a project after refresh**.
+Portable wardrobe reopening and isolated CharacterPack playback are separately
+checked. Use **Open wardrobe project** for editable ZIPs and the independent
+player's **Choose character pack** for CharacterPacks; painting kits go to the
+offline recipe builder.
+
 ## Validation in this batch
 
 Executed here: TypeScript and production build; **240 unit tests**;
@@ -60,15 +85,47 @@ download, earlier-outfit access, mobile/keyboard use, saved wardrobes, source
 workers/cancellation, appearance upgrades and independent playback.
 
 [Waist capture](evidence/waist-v6/evidence-index.json) and
-[hair capture](evidence/hair-v5/evidence-index.json) contain **12 actual exports**
-and **60 isolated-player action/direction checks** after closing the editors.
+[hair capture](evidence/hair-v5/evidence-index.json), plus the
+[authoring capture](evidence/authoring-v1/evidence-index.json), contain
+**16 actual exports** and **80 isolated-player action/direction checks** after
+closing the editors. [This-run command record](validation-this-run.json)
+distinguishes these checks from earlier sprint history.
 [Decoded export verification](verification.json) checks exact downloaded PNG
 pixels against their pack, source protection, alpha, borders, frame order and
 timing, and decodes every generated GIF frame.
+The [authoring export verification](verification-male-authoring-female-authoring.json)
+adds the two custom materials. Together these cover **1,472 exported poses**,
+**80 directly downloaded same-frame PNGs**, and **32 GIFs**. GIF holds may combine
+identical consecutive positions while preserving cumulative duration.
 
-Final custom authoring evidence and production performance comparison are being
-completed before the review PR is opened. These are current-run results; older
-documents' test counts are not counted again here.
+One female authoring download was canceled when the execution environment's
+temporary disk filled. The failed attempt is preserved. Moving browser scratch
+files to the workspace disk and continuing from the saved project/material
+completed the same flow; no art was regenerated and no app validation was bypassed.
+
+## Preparation performance
+
+Two order-balanced production runs per character/build used identical current
+artwork and confirmed matching preview RGBA. Median first hairstyle preparation:
+male **12.93 → 9.00 s**, female **59.40 → 32.69 s**. First outfits:
+male **5.77 → 3.93 s**, female **5.93 → 3.80 s**. Female repeat selection improves;
+male repeat selection is slightly slower (**1.96 → 2.09 s**), so this is not a
+claim that every operation is faster. First female hair selection still involves
+a substantial wait. See [all samples, method and limits](performance/README.md).
+
+The lossless synchronous PNG decoder uses bounded inflate output blocks to
+avoid repeated buffer copying. Its raw RGBA reconstruction, source/ownership
+validation and decoded page-cache budget are retained. Truncated, corrupt and
+trailing compression streams are rejected. No runtime artwork API is added.
+
+Implementation is in `src/core/baked-source.ts`, `src/wardrobe/local-materials.ts`,
+`NamedLooks.tsx`, `ClothingPoseInspector.tsx`, `recipe-kit.ts` and
+`WardrobeEditor.tsx`; authoring preparation is in the two scripts named in source
+provenance. `scripts/capture-kling-polish.mjs`, `render-kling-polish.py` and
+`render-kling-polish-expressions.py` reproduce the actual review workflow.
+
+The completed batch is submitted as a draft for review, without merging or
+deploying. Older sprint test records are separate from this batch's results.
 
 ## Remaining limits
 

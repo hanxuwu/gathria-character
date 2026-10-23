@@ -6,11 +6,11 @@ timing remain authoritative. Existing banks and saved projects are immutable.
 
 | Sprint | Work | Review gate | Status |
 | --- | --- | --- | --- |
-| 11 | Correct compressed dress waist joins; inspect male raised-arm/waist poses | Actual same-frame exports, adjacent poses, five actions in both directions | In progress |
-| 12 | Two representative fuller hair revisions with clean ear ownership | Original head/face preserved, three source expression states, complete pose coverage | Planned |
-| 13 | Persistent exact-material look restore and clothing authoring inspection | Custom daily/occasion import, reload, mixes, saved project and standalone export | Planned |
-| 14 | Profile and improve first preparation without weakening validation | Same-machine cold/repeat measurements, exact pixels, cancellation/error recovery | Planned |
-| 15 | Recommended looks, old-version access and end-to-end review | Actual decoded GIF/PNG/ZIP, independent playback, regression and limits | Planned |
+| 11 | Correct compressed dress waist joins; inspect male raised-arm/waist poses | Actual same-frame exports, adjacent poses, five actions in both directions | Complete; residual waist stretch documented |
+| 12 | Two representative fuller hair revisions with clean ear ownership | Original head/face preserved, three source/expression states, complete pose coverage | Complete; shading-only revision |
+| 13 | Persistent exact-material look restore and clothing authoring inspection | Custom daily/occasion import, reload, mixes, saved project and standalone export | Complete; two actual custom-material roundtrips |
+| 14 | Profile and improve first preparation without weakening validation | Same-machine cold/repeat measurements, exact pixels, cancellation/error recovery | Complete; production results and small male repeat slowdown disclosed |
+| 15 | Recommended looks, old-version access and end-to-end review | Actual decoded GIF/PNG/ZIP, independent playback, regression and limits | Complete; 16 packs, 32 GIFs, 80 isolated playback checks |
 
 Each accepted stage is committed and pushed. Visual improvements and functional
 checks are reported separately. Two unsuccessful visual attempts on a problem
