@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-10-23T09:23:32.932794+00:00",
+  "baseline": "28845c2b389aefe9aad1dd70108967fbb6acc39b",
+  "scope": "Executed in this four-outfit collection batch. Earlier hairstyle/ear and earlier wardrobe runs are historical, not counted. Fixture tests do not establish visual quality. Actual-assets evidence is recorded separately.",
+  "checks": [
+    {
+      "command": "npx vitest run src/wardrobe/project.test.ts src/wardrobe/compositor.test.ts src/wardrobe/catalog-budget.test.ts",
+      "passed": true,
+      "tests": 34,
+      "durationSeconds": 3.28,
+      "phase": "Final bounded-cache change plus actual shipped catalog footprint guard; replaces the earlier 33-test run in totals."
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/wardrobe.spec.ts tests/e2e/wardrobe-loading.spec.ts --workers=1",
+      "passed": true,
+      "tests": 9,
+      "durationSeconds": 26.3,
+      "scope": "Existing UI behavioral fixtures; actual outfits tested by capture script",
+      "phase": "Re-executed after the bounded-cache change; earlier run not added again to totals."
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "includes": "TypeScript build + production Vite build",
+      "viteBuildSeconds": 4.57,
+      "exactBuiltAssets": [
+        {
+          "file": "docs/kling-wardrobe/garments/male/cream-camp-shirt-v1.zip",
+          "built": "dist/assets/cream-camp-shirt-v1-D9TFKix6.zip",
+          "sha256": "db5b45e87e7813d7767aa501f7ad297637cf92acd8ff50f5d6c58b7955982b40",
+          "bytes": 4318074
+        },
+        {
+          "file": "docs/kling-wardrobe/garments/male/forest-work-shirt-v1.zip",
+          "built": "dist/assets/forest-work-shirt-v1-CTREqj7k.zip",
+          "sha256": "4406d0c1bb5ef7cf0be59f39a304c1a2370d86cd3df1f7e1286858cbd09441ad",
+          "bytes": 4558278
+        },
+        {
+          "file": "docs/kling-wardrobe/garments/female/mist-blue-dress-v1.zip",
+          "built": "dist/assets/mist-blue-dress-v1-cmGsijob.zip",
+          "sha256": "c80080e68f7e54419f29b9488509e47c407feb8f93c5818c1f4d681507f7d690",
+          "bytes": 9137970
+        },
+        {
+          "file": "docs/kling-wardrobe/garments/female/lavender-pleat-dress-v1.zip",
+          "built": "dist/assets/lavender-pleat-dress-v1-CpKZ89kf.zip",
+          "sha256": "f33565ddc483736085b55a129002d2f81f7a2399f0e9e85676037bebbbb814ab",
+          "bytes": 9220533
+        }
+      ],
+      "phase": "Final bounded-cache code with final cloth banks; build includes TypeScript and exact built asset checks."
+    },
+    {
+      "command": "PYTHONPATH=/tmp/kling-wardrobe-python python3 -u scripts/verify-kling-casual-collection.py",
+      "passed": true,
+      "report": "asset-validation.json",
+      "decodedPosePatches": 368,
+      "unchangedLegacyFiles": 37
+    }
+  ],
+  "runtimeChanges": "Decoded garment/appearance page cache capacity changed from 192 MiB to 256 MiB, still at most 8 pages. This prevents cache thrash for active shipped combinations up to 222.3 MiB. Rendering rules, original pixels, schemas and archive validation limits unchanged.",
+  "offlineAuthoringVersions": {
+    "Pillow": "12.3.0",
+    "NumPy": "2.3.5",
+    "SciPy": "1.17.0"
+  },
+  "failedRun": {
+    "report": "performance-before/failure.json",
+    "cause": "Working set exceeded old 192 MiB cache; actual Forest + Side part + Gentle preflight timed out at 71/88 poses after 240 seconds. This is not counted as a passed run."
+  },
+  "actualEvidenceRuntimeNotes": {
+    "accepted-female": "Completed with final garment pixels under the prior 192 MiB cache; unchanged native PNG/ZIP output remains valid after cache-only adjustment.",
+    "accepted-male": "Fresh full capture under the 256 MiB cache, including the exact previously failing Forest/Gentle combination."
+  },
+  "cachePerformance": {
+    "before": "Forest weekend / Side part / Gentle exceeded 240000ms with 192 MiB cache, still at pose 71/88.",
+    "afterMilliseconds": 1786,
+    "afterCacheMiB": 256,
+    "scope": "Same actual male outfit/face switch in this local environment; not an overall cold-load claim.",
+    "pixelEvidence": "cache-pixel-validation.json"
+  }
+}
