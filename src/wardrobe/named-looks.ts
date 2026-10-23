@@ -24,7 +24,7 @@ export interface NamedLook {
   preview: WardrobeProject["document"]["preview"];
 }
 const identifier = (v: unknown): v is string =>
-  typeof v === "string" && /^[a-zA-Z0-9_-]{1,100}$/.test(v);
+  typeof v === "string" && /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$/.test(v);
 function fail(): never {
   throw Error(
     "Saved looks could not be read. Your wardrobe files are unchanged.",

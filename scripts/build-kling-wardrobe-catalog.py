@@ -36,7 +36,11 @@ for char in ['male','female']:
     if char=='female':ids+=['coral-daydress-v4','ivory-wedding-dress-v4','mist-blue-dress-v1','lavender-pleat-dress-v1']
     else:ids+=['teal-camp-shirt-v2','navy-suit-jacket-v2','ochre-chinos-v1','navy-suit-trousers-v1','cream-camp-shirt-v1','forest-work-shirt-v1']
     ids += [look['selection']['top'] or look['selection']['fullBody'] for look in volume_looks if look['character']==char]
-    if char=='female' and (OUT/'garments/female/ivory-celebration-dress-v2.zip').exists():ids.append('ivory-celebration-dress-v2')
+    refined_dress=None
+    if char=='female':
+        for version in [2,3]:
+            if (OUT/f'garments/female/ivory-celebration-dress-v{version}.zip').exists():refined_dress=f'ivory-celebration-dress-v{version}'
+        if refined_dress:ids.append(refined_dress)
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
@@ -60,7 +64,7 @@ for char in ['male','female']:
         ])
     presets.extend([{'id':'separates','name':'Everyday separates','selection':select('teal-top','ochre-shorts')},{'id':'formal-separates','name':'Formal separates','selection':select('navy-waistcoat','navy-shorts',shoes='brown-shoes')}])
     presets.extend([{k:look[k] for k in ('id','name','selection')} for look in volume_looks if look['character']==char])
-    if 'ivory-celebration-dress-v2' in ids:presets.append({'id':'ivory-refined','name':'Ivory refined','selection':select(fullBody='ivory-celebration-dress-v2')})
+    if refined_dress:presets.append({'id':'ivory-refined','name':'Ivory refined','selection':select(fullBody=refined_dress)})
     characters.append({'key':char,'name':f'Kling {char}','characterId':data['characterId'],'sourceUrl':'/'+str(source.relative_to(ROOT)),'registrationUrl':'/'+str(dest.relative_to(ROOT)),'templateUrl':f'/docs/kling-wardrobe/templates/{profile}.wardrobe-template.zip','items':items,'presets':presets})
     appearance=ROOT/f'docs/kling-appearance/banks/{char}.zip'
     if appearance.exists():
@@ -81,8 +85,9 @@ for char in ['male','female']:
         if definition['character']!=char:continue
         p=ROOT/f'docs/kling-appearance/banks/volume/{char}-{style}.zip'
         previous=[]
-        revised=ROOT/f'docs/kling-appearance/banks/volume-v2/{char}-{style}.zip'
-        if revised.exists():previous=[sha(p)];p=revised
+        for revision in ['volume-v2','volume-v3']:
+            revised=ROOT/f'docs/kling-appearance/banks/{revision}/{char}-{style}.zip'
+            if revised.exists():previous.append(sha(p));p=revised
         with zipfile.ZipFile(p) as z:
             assert z.testzip() is None
             m=json.loads(z.read('manifest.json'))

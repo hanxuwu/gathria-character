@@ -391,6 +391,8 @@ export default function WardrobeEditor({
   function cancelPreparation() {
     preparation.current?.abort();
     request.current++;
+    if (preparingAppearancePreview.current)
+      setPlaying(resumeAfterPreview.current && activeRef.current);
     preparingAppearancePreview.current = false;
     setBusy(false);
     setCancellable(false);
@@ -931,6 +933,15 @@ export default function WardrobeEditor({
             "The exact saved appearance is unavailable. Reopen its saved wardrobe project; no replacement was applied.",
           );
         let next = base;
+        for (const slot of WARDROBE_SLOTS)
+          next = selectWardrobeGarment(next, slot, null);
+        // Release inactive library bytes before loading a different look, while
+        // retaining its already-embedded references and every custom import.
+        const requiredIds = new Set(look.items.map((item) => item.id));
+        next = retainOutfitAndCustomItems(
+          next,
+          (entry?.items ?? []).filter((item) => !requiredIds.has(item.id)),
+        );
         for (const { ref, embedded, item } of needed) {
           if (embedded) continue;
           if (next.items.some((i) => i.manifest.id === ref.id))

@@ -74,10 +74,12 @@ def fill_waist(patch,owned,frame,record,masks):
     assert not (changes&protected).any()
     return result,own,int(changes.sum())
 
-def dresses(prototype):
+def dresses(prototype,revision=2):
     folder=OUT/'dress';folder.mkdir(parents=True,exist_ok=True)
     reader=module('waist_bank_reader','prepare-kling-male-fit-polish.py')
-    d=REPAIRS['dress'];oldpath=ROOT/f'docs/kling-wardrobe/garments/female/{d["base"]}.zip'
+    d=copy.deepcopy(REPAIRS['dress'])
+    if revision==3:d['id']='ivory-celebration-dress-v3'
+    oldpath=ROOT/f'docs/kling-wardrobe/garments/female/{d["base"]}.zip'
     bank=reader.read_bank(oldpath);_,_,_,frames=load_source('female')
     volume=module('waist_volume_donor','prepare-kling-volume-clothes.py')
     definition=volume.definition(d['base'])
@@ -106,6 +108,12 @@ def dresses(prototype):
             yy,xx=np.indices(owned.shape);p=rows[fid]['points'];wl,wr=p['waistLeft'],p['waistRight']
             wy=wl['y']+(xx-wl['x'])*(wr['y']-wl['y'])/max(1,wr['x']-wl['x'])
             protected=masks['head']|masks['nearHand']|masks['farHand']|masks['skin']
+            if revision==3:
+                # Existing cloth already covers some original leg pixels. Those
+                # are cloth material, not visible skin. Freezing that hidden skin
+                # also froze the brown donor artifact. Original visible skin and
+                # all head/hand regions remain protected.
+                protected=masks['head']|masks['nearHand']|masks['farHand']|(masks['skin']&~owned)
             band=(yy>wy-28)&(yy<wy+50)&owned&material_owned&~protected
             corrected=patch.copy();corrected[band]=material[band]
             new,own,_=fill_waist(corrected,owned,frames[fid],rows[fid],masks)
@@ -128,11 +136,11 @@ def dresses(prototype):
     board.save(folder/'waist-before-after-offline.png')
     if not prototype:
         result=save_garment('female',d['id'],d['name'],'fullBody',registration,prepared,
-          f'Local correction of immutable {d["base"]} SHA256 {sha(oldpath.read_bytes())}. Original OpenAI cloth donor and source fitting retained. Upper-sash boundary ink extrapolation replaced by adjacent ivory material; bounded waist concavities completed with adjacent existing cloth. Original skin, head, hands, source frame geometry and timing protected. Parameters: artwork/kling-collection/source/fit-v2/repairs.json. Supplementary cloth completion, not recovered video pixels.')
+          (f'Local correction of immutable {d["base"]} SHA256 {sha(oldpath.read_bytes())}. Original OpenAI cloth donor and source fitting retained. Upper-sash boundary ink extrapolation replaced by adjacent ivory material; bounded waist concavities completed with adjacent existing cloth. Visible original skin, head, hands, source frame geometry and timing protected. Revision {revision}: protection follows existing ownership for skin already hidden by cloth. Parameters: artwork/kling-collection/source/fit-v2/repairs.json. Supplementary cloth completion, not recovered video pixels.' if revision==3 else f'Local correction of immutable {d["base"]} SHA256 {sha(oldpath.read_bytes())}. Original OpenAI cloth donor and source fitting retained. Upper-sash boundary ink extrapolation replaced by adjacent ivory material; bounded waist concavities completed with adjacent existing cloth. Original skin, head, hands, source frame geometry and timing protected. Parameters: artwork/kling-collection/source/fit-v2/repairs.json. Supplementary cloth completion, not recovered video pixels.'))
         print(json.dumps(result),flush=True)
     (folder/'audit.json').write_text(json.dumps({'prototype':prototype,'baselineSha256':sha(oldpath.read_bytes()),'frames':audit},indent=2)+'\n')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--prototype',action='store_true');p.add_argument('--part',choices=['hair','dress','all'],default='all');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--prototype',action='store_true');p.add_argument('--part',choices=['hair','dress','all'],default='all');p.add_argument('--dress-version',type=int,choices=[2,3],default=2);a=p.parse_args()
     if a.part in ['hair','all']:hair(a.prototype)
-    if a.part in ['dress','all']:dresses(a.prototype)
+    if a.part in ['dress','all']:dresses(a.prototype,a.dress_version)

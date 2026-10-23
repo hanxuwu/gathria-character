@@ -28,6 +28,10 @@ it("stores only selected references and preserves the exact source, action and f
   expect(saved.preview).toEqual({ action: "run", facing: "left" });
   expect(saved.appearance).toBeNull();
   expect(readNamedLooks(null)).toEqual([]);
+  expect(
+    readNamedLooks(writeNamedLooks([{ ...look(), id: "custom.look-v2" }]))[0]
+      .id,
+  ).toBe("custom.look-v2");
 });
 it("refuses foreign anchors and unavailable hashes even if the display id matches", () => {
   expect(() =>

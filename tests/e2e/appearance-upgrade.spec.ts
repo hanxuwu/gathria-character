@@ -572,5 +572,7 @@ test("new character-specific hair is discoverable before loading while older emb
     "Appearance updated",
   );
   await expect(hairstyle).toHaveValue("side-part");
-  expect(fixture.bankRequests()).toBe(3);
+  // Explicit upgrade reuses the already verified current male bank. It still
+  // requires saving and reopening the copy; no old embedded bytes are replaced.
+  expect(fixture.bankRequests()).toBe(2);
 });
