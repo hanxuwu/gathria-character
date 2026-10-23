@@ -676,6 +676,9 @@ describe("asynchronous exact RGBA PNG decode", () => {
     await expect(decodeSourceRgbaPngAsync(truncatedStream)).rejects.toThrow(
       "compressed image data",
     );
+    expect(() => decodeSourceRgbaPng(truncatedStream)).toThrow(
+      "compressed image data",
+    );
   });
 
   it("rejects invalid stored DEFLATE and trailing streams with valid PNG checksums", async () => {
@@ -695,10 +698,23 @@ describe("asynchronous exact RGBA PNG decode", () => {
       await expect(decodeSourceRgbaPngAsync(trailing)).rejects.toThrow(
         "compressed image data",
       );
+      expect(() => decodeSourceRgbaPng(trailing)).toThrow(
+        "compressed image data",
+      );
+      const separate = concat(
+        valid.subarray(0, 33),
+        pngChunk("IDAT", valid.subarray(41, 41 + validLength)),
+        pngChunk("IDAT", extra),
+        pngChunk("IEND", new Uint8Array()),
+      );
+      expect(() => decodeSourceRgbaPng(separate)).toThrow(
+        "compressed image data",
+      );
     }
     await expect(decodeSourceRgbaPngAsync(stored)).rejects.toThrow(
       "compressed image data",
     );
+    expect(() => decodeSourceRgbaPng(stored)).toThrow("compressed image data");
   });
 
   it("rejects abort before work and during pending inflation without returning pixels", async () => {
