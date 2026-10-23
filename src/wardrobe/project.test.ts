@@ -6,6 +6,7 @@ import { encodeSourceRgbaPng } from "../core/baked-source";
 import { crc32 } from "../core/bounded-archive";
 import { createBakedCharacterPack } from "../core/pack";
 import { createWardrobeCompositor } from "./compositor";
+import { exportClothingRecipeKit } from "./recipe-kit";
 import type {
   BakedCharacterRecipe,
   CharacterPackV2Manifest,
@@ -215,6 +216,44 @@ function garment(
 }
 
 describe("source-bound wardrobe registration and assets", () => {
+  it("exports only worn clothing with its exact source-bound authoring inputs", async () => {
+    const f = await fixture();
+    const asset = garment(f.registration, f.registrationBytes);
+    const p = await createWardrobeProject(f.source, f.registrationBytes, [
+      asset.bytes,
+    ]);
+    await expect(exportClothingRecipeKit(p, asset.manifest.id)).rejects.toThrow(
+      /currently worn/,
+    );
+    const selected = await selectWardrobeGarment(p, "top", asset.manifest.id);
+    const files = unzipSync(
+      await exportClothingRecipeKit(selected, asset.manifest.id),
+    );
+    const recipe = JSON.parse(new TextDecoder().decode(files["recipe.json"]));
+    expect(recipe).toMatchObject({
+      format: "gathria-garment-recipe",
+      version: 1,
+      category: "shirt",
+      base: { sha256: sha(asset.bytes) },
+      output: { id: "top-fixture-variant-v1" },
+      poseOverrides: [],
+    });
+    expect(files["base.garment.zip"]).toEqual(asset.bytes);
+    expect(files["registration.json"]).toEqual(f.registrationBytes);
+    expect(new TextDecoder().decode(files["README.md"])).toContain(
+      "not a CharacterPack",
+    );
+    const damaged = {
+      ...selected,
+      items: selected.items.map((item) => ({
+        ...item,
+        bytes: new Uint8Array([1, 2, 3]),
+      })),
+    };
+    await expect(
+      exportClothingRecipeKit(damaged, asset.manifest.id),
+    ).rejects.toThrow();
+  });
   it("retains video frame identity, source attachment, and honest inferred landmarks", async () => {
     const f = await fixture(),
       p = await createWardrobeProject(f.source, f.registrationBytes);

@@ -41,6 +41,8 @@ for char in ['male','female']:
         for version in [2,3]:
             if (OUT/f'garments/female/ivory-celebration-dress-v{version}.zip').exists():refined_dress=f'ivory-celebration-dress-v{version}'
         if refined_dress:ids.append(refined_dress)
+    new_primary=['teal-camp-shirt-v3','navy-suit-jacket-v3','ocean-linen-shirt-v1'] if char=='male' else ['coral-daydress-v5','ivory-wedding-dress-v5']
+    ids += [item for item in new_primary if (OUT/f'garments/{char}/{item}.zip').exists()]
     for item_id in ids:
         directory='male-full-outfits-v1' if char=='male' and item_id in ids[:5] else char
         p=OUT/f'garments/{directory}/{item_id}.zip'
@@ -52,6 +54,13 @@ for char in ['male','female']:
     day=select('teal-camp-shirt-v2','ochre-chinos-v1') if char=='male' else select(fullBody='coral-daydress-v4')
     wedding=select('navy-suit-jacket-v2','navy-suit-trousers-v1',shoes='brown-shoes') if char=='male' else select(fullBody='ivory-wedding-dress-v4')
     presets.extend([{'id':'day','name':'Everyday','selection':day},{'id':'wedding','name':'Wedding','selection':wedding}])
+    if all(item in ids for item in new_primary[:2]):
+        presets.extend([
+            {'id':'day-refined','name':'Everyday refined','selection':select('teal-camp-shirt-v3','ochre-chinos-v1') if char=='male' else select(fullBody='coral-daydress-v5')},
+            {'id':'wedding-refined','name':'Wedding refined','selection':select('navy-suit-jacket-v3','navy-suit-trousers-v1',shoes='brown-shoes') if char=='male' else select(fullBody='ivory-wedding-dress-v5')},
+        ])
+    if char=='male' and 'ocean-linen-shirt-v1' in ids:
+        presets.append({'id':'ocean-linen','name':'Ocean linen','selection':select('ocean-linen-shirt-v1','ochre-chinos-v1')})
     if char=='male':
         presets.extend([
             {'id':'cream-navy','name':'Cream & navy','selection':select('cream-camp-shirt-v1','navy-suit-trousers-v1')},

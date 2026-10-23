@@ -72,6 +72,7 @@ import {
   type AppearanceStyleSummary,
 } from "../appearance/catalog";
 import "./wardrobe.css";
+import { exportClothingRecipeKit } from "./recipe-kit";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
@@ -189,7 +190,9 @@ function readCatalog(value: unknown): Catalog {
       seen.has(entry.key) ||
       typeof entry.name !== "string" ||
       !Array.isArray(entry.items) ||
-      entry.items.length > 16 ||
+      // Catalog metadata is lazy-loaded; the embedded project still limits
+      // itself to 16 actual garments and keeps its existing memory budgets.
+      entry.items.length > 64 ||
       !Array.isArray(entry.presets)
     )
       throw Error("The clothing library has an invalid character.");
@@ -320,6 +323,7 @@ export default function WardrobeEditor({
   const [inspect, setInspect] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [retry, setRetry] = useState(0);
+  const [recipeItemId, setRecipeItemId] = useState("");
   const [appearancePreview, setAppearancePreview] =
     useState<AppearancePreview | null>(null);
   const previewRenderer = useRef<WardrobeCompositor | null>(null);
@@ -1262,6 +1266,28 @@ export default function WardrobeEditor({
     }
   }
 
+  async function exportRecipe(itemId: string) {
+    if (!current.current || busy) return;
+    setBusy(true);
+    setError("");
+    setStatus("Preparing the selected clothing and its fitting guides…");
+    try {
+      const bytes = await exportClothingRecipeKit(
+        current.current.project,
+        itemId,
+      );
+      saveBytes(bytes, `${itemId}.clothing-recipe.zip`);
+      setStatus(
+        "Clothing recipe saved. Edit it offline, then import the new clothing item.",
+      );
+    } catch (e) {
+      setError(failureText(e));
+      setStatus("Your current outfit is unchanged.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   const selected = project?.document.selection ?? EMPTY_SELECTION;
   const selectedPreset = entry?.presets.find((preset) =>
     WARDROBE_SLOTS.every((slot) => preset.selection[slot] === selected[slot]),
@@ -1674,6 +1700,60 @@ export default function WardrobeEditor({
                   </p>
                 </>
               )}
+              {(() => {
+                const worn = project.items.filter(
+                  (item) =>
+                    item.manifest.slot !== "shoes" &&
+                    Object.values(project.document.selection).includes(
+                      item.manifest.id,
+                    ),
+                );
+                const chosen =
+                  worn.find((item) => item.manifest.id === recipeItemId) ??
+                  worn[0];
+                if (!chosen)
+                  return (
+                    <p>
+                      Choose a top, bottom or dress to make a clothing variant.
+                    </p>
+                  );
+                return (
+                  <>
+                    <label className="wardrobe-slot">
+                      Clothing to use as a starting point
+                      <select
+                        aria-label="Recipe clothing"
+                        value={chosen.manifest.id}
+                        disabled={busy || Boolean(appearancePreview)}
+                        onChange={(event) =>
+                          setRecipeItemId(event.target.value)
+                        }
+                      >
+                        {worn.map((item) => (
+                          <option
+                            key={item.manifest.id}
+                            value={item.manifest.id}
+                          >
+                            {item.manifest.name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <button
+                      type="button"
+                      disabled={busy || Boolean(appearancePreview)}
+                      onClick={() => void exportRecipe(chosen.manifest.id)}
+                    >
+                      Download clothing recipe
+                    </button>
+                    <p>
+                      A copy of this clothing with fitting guides for new colors
+                      or local pose corrections. Your current outfit stays
+                      intact.
+                    </p>
+                  </>
+                );
+              })()}
             </details>
             <div className="wardrobe-exports">
               <h3>Take this character with you</h3>
