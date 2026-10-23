@@ -56,6 +56,7 @@ import {
 } from "./compositor";
 import {
   getAppearanceUpgradeAvailability,
+  appearanceReleaseFor,
   prepareAppearanceUpgrade,
   validateAppearanceCatalogRevision,
   type AppearanceCatalogRevision,
@@ -568,10 +569,16 @@ export default function WardrobeEditor({
   const appearanceAvailable = Boolean(
     project?.appearanceBank || entry?.appearanceBankUrl,
   );
+  const appearanceRelease = appearanceReleaseFor(
+    entry?.appearanceRevision,
+    entry?.appearanceBankUrl,
+    entry?.appearanceLibraries,
+    project?.appearanceBank?.sha256,
+  );
   const upgradeAvailability = project
     ? getAppearanceUpgradeAvailability(
         project,
-        entry?.appearanceRevision,
+        appearanceRelease?.revision,
         entry?.appearanceLibraries,
       )
     : null;
@@ -740,8 +747,8 @@ export default function WardrobeEditor({
 
   async function previewAppearanceUpdate() {
     const open = current.current;
-    const revision = entry?.appearanceRevision;
-    const url = entry?.appearanceBankUrl;
+    const revision = appearanceRelease?.revision;
+    const url = appearanceRelease?.url;
     if (!open || busy || appearancePreview || !revision || !url) return;
     const { token, controller } = beginPreparation();
     preparingAppearancePreview.current = true;

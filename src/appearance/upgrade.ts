@@ -26,6 +26,33 @@ export interface AppearanceUpgradeAvailability {
   reason: string;
 }
 
+/** Resolve a release by exact current/previous bank bytes. A new library
+ * revision never silently upgrades a saved bank or guesses from its name. */
+export function appearanceReleaseFor(
+  revision: AppearanceCatalogRevision | undefined,
+  url: string | undefined,
+  libraries: readonly AppearanceLibraryBank[] = [],
+  savedHash?: string,
+): { revision: AppearanceCatalogRevision; url: string } | undefined {
+  if (!revision || !url) return undefined;
+  const bank = libraries.find(
+    (bank) =>
+      bank.sha256 === savedHash ||
+      (savedHash !== undefined &&
+        bank.previousBankSha256s?.includes(savedHash)),
+  );
+  if (!bank) return { revision, url };
+  return {
+    url: bank.url,
+    revision: {
+      ...revision,
+      bankId: bank.bankId,
+      bankSha256: bank.sha256,
+      previousBankSha256s: bank.previousBankSha256s ?? [],
+    },
+  };
+}
+
 export function validateAppearanceCatalogRevision(
   value: unknown,
 ): AppearanceCatalogRevision {

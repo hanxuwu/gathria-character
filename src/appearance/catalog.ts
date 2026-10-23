@@ -13,6 +13,7 @@ export interface AppearanceLibraryBank {
   sha256: string;
   bankId: string;
   styles: AppearanceStyleSummary[];
+  previousBankSha256s?: string[];
 }
 
 export function validateAppearanceLibraryBanks(
@@ -27,7 +28,14 @@ export function validateAppearanceLibraryBanks(
       typeof v !== "object" ||
       Array.isArray(v) ||
       Object.keys(v).some(
-        (k) => !["url", "sha256", "bankId", "styles"].includes(k),
+        (k) =>
+          ![
+            "url",
+            "sha256",
+            "bankId",
+            "styles",
+            "previousBankSha256s",
+          ].includes(k),
       ) ||
       typeof v.url !== "string" ||
       !v.url ||
@@ -39,11 +47,27 @@ export function validateAppearanceLibraryBanks(
     )
       throw Error("The appearance library contains an invalid bank.");
     ids.add(v.bankId);
+    if (
+      v.previousBankSha256s !== undefined &&
+      (!Array.isArray(v.previousBankSha256s) ||
+        v.previousBankSha256s.length > 16 ||
+        new Set(v.previousBankSha256s).size !== v.previousBankSha256s.length ||
+        v.previousBankSha256s.some(
+          (h: unknown) =>
+            typeof h !== "string" ||
+            !/^[a-f0-9]{64}$/.test(h) ||
+            h === v.sha256,
+        ))
+    )
+      throw Error("The appearance library has invalid previous-bank hashes.");
     return {
       url: v.url,
       sha256: v.sha256,
       bankId: v.bankId,
       styles: validateAppearanceStyleSummaries(v.styles),
+      ...(v.previousBankSha256s === undefined
+        ? {}
+        : { previousBankSha256s: [...v.previousBankSha256s] }),
     };
   });
 }

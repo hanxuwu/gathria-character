@@ -422,6 +422,13 @@
           "slot": "fullBody",
           "url": "/docs/kling-wardrobe/garments/female/sage-pinafore-v1.zip",
           "sha256": "5bf10070690b3d629800b253bf51222029c5230d441327dba084cfabc7f32a03"
+        },
+        {
+          "id": "ivory-celebration-dress-v2",
+          "name": "Ivory celebration dress \u00b7 refined waist",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/ivory-celebration-dress-v2.zip",
+          "sha256": "9f12e40a183238bdd4def9d1cb034e31b95b436a3c650e5bec1e4c056521c8b3"
         }
       ],
       "presets": [
@@ -544,6 +551,16 @@
             "fullBody": "sage-pinafore-v1",
             "shoes": "brown-shoes"
           }
+        },
+        {
+          "id": "ivory-refined",
+          "name": "Ivory refined",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-celebration-dress-v2",
+            "shoes": null
+          }
         }
       ],
       "appearanceBankUrl": "/docs/kling-appearance/banks/female.zip",
@@ -600,9 +617,9 @@
           ]
         },
         {
-          "url": "/docs/kling-appearance/banks/volume/female-ribbon-pony.zip",
-          "sha256": "1d596b05f189dc5b87e75577e8320dca8cdc2a64da075868479ede224a871504",
-          "bankId": "kling-female-ribbon-pony-v1",
+          "url": "/docs/kling-appearance/banks/volume-v2/female-ribbon-pony.zip",
+          "sha256": "706e9a5e833c573517564f9915bdab717a5742b3c19842c67078527a4da888e8",
+          "bankId": "kling-female-ribbon-pony-v2",
           "styles": [
             {
               "id": "ribbon-pony",
@@ -614,6 +631,9 @@
               "name": "Gentle",
               "slot": "face"
             }
+          ],
+          "previousBankSha256s": [
+            "1d596b05f189dc5b87e75577e8320dca8cdc2a64da075868479ede224a871504"
           ]
         },
         {

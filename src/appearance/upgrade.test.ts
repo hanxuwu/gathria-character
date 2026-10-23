@@ -27,6 +27,7 @@ import {
 import { appearanceFixture } from "./fixture.test-support";
 import {
   getAppearanceUpgradeAvailability,
+  appearanceReleaseFor,
   prepareAppearanceUpgrade,
   validateAppearanceCatalogRevision,
   type AppearanceCatalogRevision,
@@ -242,6 +243,45 @@ async function upgradeFixture() {
 }
 
 describe("explicit source-bound appearance upgrade copies", () => {
+  it("resolves additive library revisions by exact previous hashes and upgrades only a separate copy", async () => {
+    const f = await upgradeFixture();
+    const library = [
+      {
+        url: "/new-library.zip",
+        sha256: f.revision.bankSha256,
+        bankId: f.revision.bankId,
+        styles: f.old.appearanceBank!.manifest.styles,
+        previousBankSha256s: [f.old.appearanceBank!.sha256],
+      },
+    ];
+    const base = {
+      ...f.revision,
+      bankId: "base-catalog",
+      bankSha256: "c".repeat(64),
+      previousBankSha256s: [],
+    };
+    const release = appearanceReleaseFor(
+      base,
+      "/base.zip",
+      library,
+      f.old.appearanceBank!.sha256,
+    )!;
+    expect(release.url).toBe("/new-library.zip");
+    expect(
+      getAppearanceUpgradeAvailability(f.old, release.revision).status,
+    ).toBe("available");
+    const copy = await prepareAppearanceUpgrade(
+      f.old,
+      f.newBytes,
+      release.revision,
+    );
+    expect(copy.appearanceBank!.sha256).toBe(f.revision.bankSha256);
+    expect(f.old.appearanceBank!.bytes).toEqual(f.oldBytes);
+    expect(
+      appearanceReleaseFor(base, "/base.zip", library, "e".repeat(64))!
+        .revision,
+    ).toEqual(base);
+  });
   it("preserves the original project and all choices; saved copy embeds the exact new bank and reopens", async () => {
     const f = await upgradeFixture();
     const oldDocument = structuredClone(f.old.document);
