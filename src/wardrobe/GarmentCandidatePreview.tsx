@@ -430,7 +430,10 @@ export default function GarmentCandidatePreview({
       {notice && <p aria-live="polite">{notice}</p>}
       <div className="appearance-update-footer">
         {painting && (
-          <div data-testid="paint-import-summary">
+          <div
+            data-testid="paint-import-summary"
+            className="paint-import-summary"
+          >
             <p>
               {painting.report.poses.length} painted poses checked ·{" "}
               {painting.report.poses.reduce((n, p) => n + p.changedPixels, 0)}{" "}

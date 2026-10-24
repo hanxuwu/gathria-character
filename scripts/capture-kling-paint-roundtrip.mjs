@@ -135,11 +135,21 @@ async function pose(p, action, facing = "right", position = 0) {
   await pnel(p)
     .getByLabel("Wardrobe frame", { exact: true })
     .fill(String(position));
+  await expect(pnel(p).getByTestId("wardrobe-preview")).toHaveAttribute(
+    "data-frame-position",
+    String(position),
+  );
+  await expect(pnel(p).getByTestId("wardrobe-preview")).toHaveAttribute(
+    "data-rendered-action",
+    action,
+  );
 }
 async function snapshot(p) {
-  return pnel(p)
-    .getByTestId("wardrobe-preview")
-    .evaluate((c) => c.toDataURL());
+  return sha(
+    await pnel(p)
+      .getByTestId("wardrobe-preview")
+      .evaluate((c) => c.toDataURL()),
+  );
 }
 async function download(p, label, name, meta = {}, temporary = false) {
   const path = join(temporary ? temp : out, name);
@@ -354,6 +364,7 @@ try {
     await ready(p, "Wardrobe project saved");
     await btn(p, "Undo styling").click();
     await ready(p, "Styling change undone");
+    await pose(p, "run", "right", position);
     assert.equal(await snapshot(p), accepted);
     await pnel(p)
       .getByLabel("Open wardrobe project file", { exact: true })
