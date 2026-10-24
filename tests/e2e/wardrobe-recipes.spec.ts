@@ -80,6 +80,27 @@ test("a paintable pose kit exports the native layer, binary ownership and source
   await expect(
     p.getByLabel("Native clothing pose", { exact: true }),
   ).toHaveAttribute("width", "8");
+  await p
+    .getByRole("button", { name: "Open larger comparison", exact: true })
+    .click();
+  const comparison = p.getByRole("dialog", { name: "Adjacent clothing poses" });
+  await expect(comparison).toBeVisible();
+  const origins = await comparison
+    .locator("canvas")
+    .evaluateAll((nodes) =>
+      nodes.map((n) => [
+        (n as HTMLElement).dataset.cropX,
+        (n as HTMLElement).dataset.cropY,
+      ]),
+    );
+  expect(
+    origins.every((v) => JSON.stringify(v) === JSON.stringify(origins[0])),
+  ).toBe(true);
+  await page.keyboard.press("Escape");
+  await expect(comparison).toHaveCount(0);
+  await expect(
+    p.getByRole("button", { name: "Open larger comparison", exact: true }),
+  ).toBeFocused();
   await p.getByLabel("Show editable area", { exact: true }).check();
   const download = page.waitForEvent("download");
   await p

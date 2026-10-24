@@ -5,7 +5,9 @@ Open `workbench.html?character=male&mode=wardrobe` (or `female`).
 In **Fitting guides**, choose a worn clothing item and check **Inspect clothing
 layer**. Previous/current/next show native right-facing source layers at their
 actual action positions. Intentional held frame IDs remain visible as separate
-positions. Loops wrap; one-shot endpoints do not invent a neighbor. **Show
+positions. **Open larger comparison** shows a larger dialog using one common
+clothing-area crop for all views; Escape returns to the opener. Inspecting pauses
+playback. Downloads still use the full native frame. Loops wrap; one-shot endpoints do not invent a neighbor. **Show
 editable area** displays the binary ownership mask.
 
 **Download neighboring poses for painting** contains unique native pose PNGs,

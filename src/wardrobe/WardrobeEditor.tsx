@@ -1900,6 +1900,7 @@ export default function WardrobeEditor({
                     {frameId !== undefined && (
                       <ClothingPoseInspector
                         item={chosen}
+                        onInspect={() => setPlaying(false)}
                         frameId={frameId}
                         clip={clip!}
                         position={frameIndex}
