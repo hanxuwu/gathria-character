@@ -122,6 +122,46 @@ def landmarks(pack, action):
     return {"frames": rows, "crownTopRange": spread("crownTopY"), "upperSilhouetteXRange": spread("upperSilhouetteCenterX"), "soleRange": spread("opaqueBottomY")}
 
 
+def triple_run(reference, previous, current, character, look):
+    """Retained actual original export + retained r1 + new actual r2 UI export.
+
+    Original16@24 FPS and pixel8@12 FPS have the same 2/3-second cycle.
+    Display each original frame and hold each pixel drawing for two positions;
+    no synthesized in-between drawing, body fitting, or native export mutation.
+    """
+    packs = [reference, previous, current]
+    target_height = current.m["spritesheet"]["frameHeight"] * 2
+    scales = [target_height / reference.m["spritesheet"]["frameHeight"], 2, 2]
+    sizes = [(round(pack.m["spritesheet"]["frameWidth"] * scale), target_height) for pack, scale in zip(packs, scales)]
+    anchors = [(round(pack.m["anchor"]["x"] * scale), round(pack.m["anchor"]["y"] * scale)) for pack, scale in zip(packs, scales)]
+    left = max(anchor[0] for anchor in anchors)
+    right = max(size[0] - anchor[0] for size, anchor in zip(sizes, anchors))
+    above = max(anchor[1] for anchor in anchors)
+    below = max(size[1] - anchor[1] for size, anchor in zip(sizes, anchors))
+    width, height, gap, caption = left + right, above + below, 12, 62
+    clips = [pack.m["animations"]["run"] for pack in packs]
+    assert len(clips[0]["frames"]) == 16 and clips[0]["fps"] == 24
+    assert all(len(clip["frames"]) == 8 and clip["fps"] == 12 for clip in clips[1:])
+    assert all(clip["loop"] for clip in clips)
+    frames, mapping = [], []
+    for position in range(16):
+        ids = [clips[0]["frames"][position], clips[1]["frames"][position // 2], clips[2]["frames"][position // 2]]
+        board = Image.new("RGBA", (width * 3 + gap * 2, height + caption), (*MATTE, 255))
+        draw = ImageDraw.Draw(board)
+        for column, (pack, frame_id, size, anchor, title) in enumerate(zip(packs, ids, sizes, anchors, ["Original / retained actual export", "Pixel r1 / before", "Pixel r2 / current UI export"])):
+            image = pack.frame(frame_id).resize(size, Image.Resampling.LANCZOS if column == 0 else Image.Resampling.NEAREST)
+            x = column * (width + gap)
+            board.alpha_composite(image, (x + left - anchor[0], caption + above - anchor[1]))
+            draw.text((x + 5, 5), title, font=font, fill=(40, 60, 53))
+            draw.text((x + 5, 25), f"{character} / {look} / run right", font=font, fill=(40, 60, 53))
+            draw.text((x + 5, 43), "Display height normalized" if column == 0 else "Exact integer 2x / same 2/3s cycle", font=font, fill=(40, 60, 53))
+        frames.append(board.convert("RGB"))
+        mapping.append({"position": position, "originalFrameId": ids[0], "pixelR1FrameId": ids[1], "pixelR2FrameId": ids[2]})
+    path = REVIEW / f"{character}-{look}-run-original-r1-r2-right-2x.gif"
+    save_gif(frames, timings(clips[0]), path, True)
+    return {"file": str(path.relative_to(ROOT)), "originalSource": str(reference.path.relative_to(ROOT)), "originalSourceSha256": sha(reference.path.read_bytes()), "originalEvidence": "Retained actual prior application export, byte-identical immutable original pack; not newly re-exported this capture.", "beforeSource": str(previous.path.relative_to(ROOT)), "afterSource": str(current.path.relative_to(ROOT)), "displayScales": scales, "sharedPresentationAnchor": {"x": left, "y": caption + above}, "cycleSeconds": 2 / 3, "mapping": mapping, "interpolatedDrawings": False}
+
+
 def main():
     evidence_bytes = (OUT / "capture.json").read_bytes()
     evidence = json.loads(evidence_bytes)
@@ -190,6 +230,7 @@ def main():
         result["presentations"].extend(before_after(previous, after, key, character, look))
         reference = helpers.Pack(ROOT / f"docs/kling-themes/evidence/{character}-original-{look}.character.zip")
         result["presentations"].append(old.compare_themes(reference, after, character, look, REVIEW, font))
+        result["presentations"].append(triple_run(reference, previous, after, character, look))
         previous.close(); reference.close()
     for path in sorted(OUT.glob("*.png")):
         with Image.open(path) as image: image.load(); assert min(image.size) > 0
