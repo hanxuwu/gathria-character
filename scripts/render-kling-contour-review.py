@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Viewing media only: paired actual application CharacterPack exports."""
-import importlib.util,json,hashlib,math
+import os,importlib.util,json,hashlib,math,re,argparse
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont,ImageOps
 from kling_wardrobe_common import ROOT
 spec=importlib.util.spec_from_file_location('exports',ROOT/'scripts/verify-kling-contour-exports.py');exports=importlib.util.module_from_spec(spec);spec.loader.exec_module(exports)
-BASE=ROOT/'docs/kling-contour-review';OUT=BASE/'review';OUT.mkdir(exist_ok=True,parents=True)
+parser=argparse.ArgumentParser();parser.add_argument('--png-only',action='store_true');args=parser.parse_args()
+BASE=ROOT/os.environ.get('KLING_REVIEW_DIR','docs/kling-contour-review');OUT=BASE/'review';OUT.mkdir(exist_ok=True,parents=True)
 FONT=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',20);SMALL=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',14);BG='#eee9df';INK='#304036';records=[]
 def record(path,**meta):
  with Image.open(path) as im:
@@ -19,8 +20,16 @@ def tile(im,scale=1,background=BG):
  out=Image.new('RGB',im.size,background);out.paste(im,mask=im.getchannel('A'))
  return out if scale==1 else out.resize((round(im.width*scale),round(im.height*scale)),Image.Resampling.NEAREST if scale>=1 else Image.Resampling.LANCZOS)
 def pair(a,b,label,scale=1,background=BG):
- a,b=tile(a,scale,background),tile(b,scale,background);h=40;out=Image.new('RGB',(a.width*2,a.height+h),background);out.paste(a,(0,h));out.paste(b,(a.width,h));d=ImageDraw.Draw(out);d.text((12,10),label+' / before',font=FONT if scale>=1 else SMALL,fill=INK if background==BG else "#eeeadf");d.text((a.width+12,10),'after',font=FONT if scale>=1 else SMALL,fill=INK if background==BG else "#eeeadf");return out
-capture=BASE/'evidence/evidence-index.json';capture=capture if capture.exists() else BASE/'evidence/failed-attempt.json'
+ a,b=tile(a,scale,background),tile(b,scale,background)
+ out=Image.new('RGB',(a.width*2,a.height+40),background);out.paste(a,(0,40));out.paste(b,(a.width,40));d=ImageDraw.Draw(out)
+ font=FONT if a.width>=240 and scale>=1 else SMALL
+ left=label+' / before';right='after';ink=INK if background==BG else '#eeeadf'
+ if d.textbbox((0,0),left,font=font)[2]>a.width-16:
+  match=re.search(r'source (\d+)',label);left=(match[1]+' before') if match else 'Before';right='After'
+ d.text((8,10),left,font=font,fill=ink);d.text((a.width+8,10),right,font=font,fill=ink)
+ return out
+
+capture=BASE/'evidence/evidence-index.json';capture=capture if capture.exists() else BASE/'evidence/capture-progress.json'
 rows=json.loads(capture.read_text())['outfits'];assert len(rows)==4
 for row in rows:
  key=f'{row["character"]}-{row["look"]}';before=exports.Pack(ROOT/row['beforePack']);after=exports.Pack(ROOT/row['pack']['file']);fid=56 if row['character']=='male' else 86
@@ -43,6 +52,9 @@ for row in rows:
  for action in ['run','jump']:
   clip=after.m['animations'][action];times=[(math.floor((i+1)*100/clip['fps']+.5)-math.floor(i*100/clip['fps']+.5))*10 for i in range(len(clip['frames']))]
   for facing in ['right','left']:
+   path=OUT/f'{key}-{action}-{facing}-comparison.gif'
+   if args.png_only:
+    assert path.exists();record(path,sourceFrameOrder=clip['frames'],expectedDurationMs=sum(times),loop=clip['loop'],viewingScale=.5);continue
    frames=[]
    for i in clip['frames']:
     a,b=before.frame(i),after.frame(i)

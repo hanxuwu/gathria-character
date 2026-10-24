@@ -5,15 +5,22 @@ import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { join, relative } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { chromium, expect } from "@playwright/test";
 import { preview } from "vite";
 import { unzipSync } from "fflate";
 import { parseGIF, decompressFrames } from "gifuct-js";
 const root = fileURLToPath(new URL("../", import.meta.url));
-const output = join(root, "docs/kling-contour-review/evidence");
+const reviewRoot = resolve(
+  root,
+  process.env.KLING_REVIEW_DIR || "docs/kling-contour-review",
+);
+const output = join(reviewRoot, "evidence");
 const resume = process.env.POSE_RESUME === "1";
-const temp = "/workspace/.kling-contour-tmp/exports";
+const temp = resolve(
+  root,
+  process.env.KLING_REVIEW_TEMP || ".review-tmp/kling-contour",
+);
 await mkdir(output, { recursive: true });
 await mkdir(temp, { recursive: true });
 assert(
@@ -50,7 +57,7 @@ const server = await preview({
 });
 const origin = "http://127.0.0.1:5199";
 const browser = await chromium.launch({
-  executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
+  executablePath: process.env.CHROMIUM_PATH || undefined,
   headless: true,
   args: ["--disable-dev-shm-usage"],
 });

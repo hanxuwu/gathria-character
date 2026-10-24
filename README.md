@@ -41,6 +41,10 @@ The [Sprints 21–25 review](docs/kling-pose-review/README.md) adds an item-scop
 male crossing-sleeve repair and native female crouch-fold revisions, with old
 looks retained. It also adds neighboring-pose painting kits and direct action
 GIF downloads; actual comparisons and remaining contour limits are recorded.
+The [Sprints 26–30 review](docs/kling-contour-review/README.md) follows with a
+curved male crossing cuff and small female waist-edge repairs. **Inspect
+connections** offers contrasting backgrounds and silhouettes; **Download
+comparison GIF** saves synchronized original/current animation panels.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.

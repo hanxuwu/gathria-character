@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Decode every delivered app PNG/GIF/ZIP and compare source-bound changed pixels."""
-import io,json,zipfile,hashlib,importlib.util
+import os,io,json,zipfile,hashlib,importlib.util
 from pathlib import Path
 import numpy as np
 from PIL import Image,ImageOps
 from kling_wardrobe_common import ROOT
-BASE=ROOT/'docs/kling-contour-review';E=BASE/'evidence'
+BASE=ROOT/os.environ.get('KLING_REVIEW_DIR','docs/kling-contour-review');E=BASE/'evidence'
 sha=lambda b:hashlib.sha256(b).hexdigest()
 spec=importlib.util.spec_from_file_location('reader',ROOT/'scripts/prepare-kling-male-fit-polish.py');reader=importlib.util.module_from_spec(spec);spec.loader.exec_module(reader)
 class Pack:
