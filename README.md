@@ -55,6 +55,11 @@ The [Sprints 36–45 review workbench](docs/kling-review-workbench/README.md) ad
 differences, cancellable action scans, exact-look issue notes with local persistence,
 and portable notes/contact-sheet review bundles. Notes bind to actual material
 revisions; changed-pixel metrics help locate differences and are not art scores.
+The [Sprints 46–55 repairs](docs/kling-repair-handoff/README.md) add optional
+**Teal joined sleeve**, **Coral reviewed arm join** and **Ivory reviewed arm join**
+clothing pieces. **Preview imported clothing** compares all actions before
+explicit apply/discard. Review notes can be explicitly carried to a compatible
+new look with every copied issue reopened; existing presets remain unchanged.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.
@@ -96,6 +101,8 @@ first clothing selection and repeat switching.
 `/workbench.html?character=female&mode=rig` opens the female skeleton directly;
 use `character=male` for the male. `/skin-studio.html?character=female` is the
 standalone view. Existing male links retain their default behavior. There are three primary destinations and four HTML build entries.
+
+[Eight current combinations: feature summary and actual five-action GIFs](docs/kling-combination-gallery/README.md) compare everyday, wedding and mixed looks with independently selected hair and colors.
 
 ## What is ready
 

@@ -1,0 +1,14 @@
+{
+  "decision": "reject batching; retain original scan/sheet algorithms",
+  "reason": "Extra bounded image retention and fewer look switches did not improve measured elapsed time.",
+  "baselineMeanMs": 17356.65000000596,
+  "candidateMeanMs": 21236.55000001192,
+  "allPngBytesAndScanJsonExact": true,
+  "preservedTrial": "rejected-batching.patch",
+  "currentAcceptedChange": "Reuse a previously completed scan only for the exact same comparison/action/threshold; root integrates this in ReviewWorkbench. No image cache retained.",
+  "measuredRedundantScanMs": [
+    10818,
+    7342.400000035763
+  ],
+  "latencyClaim": "These are isolated Chromium benchmark timings, not an end-to-end UI speed guarantee."
+}

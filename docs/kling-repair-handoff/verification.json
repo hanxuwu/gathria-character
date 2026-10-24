@@ -1,0 +1,72 @@
+{
+  "format": "gathria-repair-handoff-verification",
+  "version": 1,
+  "recordedAt": "2026-10-24T05:11:05.655910+00:00",
+  "mergedPriorPr": 37,
+  "mergedBaseline": "891aaefd821fa680b239765646242d4680cbff11",
+  "testedImplementationCommit": "8b17e4dca42a3573d8c7a097e4491d6d380e629d",
+  "checksExecutedInThisBatch": {
+    "unit": {
+      "passed": true,
+      "logSha256": "3dd37ce7593d71c18daeb3e009416bcdcab84d7cd458c4594d9f8f808e95124b",
+      "command": "npm test",
+      "files": 32,
+      "tests": 309
+    },
+    "browser": {
+      "passed": true,
+      "logSha256": "ae98d0786badcb555d4a96541fe819d66fa785b45bc8bb8ce973348bba2b4dbe",
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test --workers=1",
+      "tests": 76
+    },
+    "build": {
+      "passed": true,
+      "logSha256": "f24678d8d4c60dcc33dee7774b124f6235eca55542ae9a9a59f000033a652661",
+      "command": "npm run build",
+      "includes": "tsc -b and production Vite build"
+    }
+  },
+  "readOnlyAssetChecks": [
+    "scripts/verify-kling-contour-assets.py",
+    "scripts/verify-kling-male-repair.py",
+    "scripts/verify-kling-female-repair.py"
+  ],
+  "productionCapture": {
+    "file": "evidence/evidence-index.json",
+    "sha256": "02994010b67d7ff26e6e47dbd1699f3d037b55b47b4426d14d111b6edeec56ab",
+    "freshFramePngs": 60,
+    "freshComparisonPngs": 30,
+    "freshComparisonGifs": 12,
+    "newCharacterPacks": 3,
+    "historicalBaselineCharacterPacks": 3,
+    "temporaryProjectZipReopenChecks": 3,
+    "independentPlaybackCases": 30,
+    "allEditorsClosedBeforeIndependentPlayback": true,
+    "runtimeAndNetworkErrors": 0
+  },
+  "decodedExportAudit": {
+    "file": "export-checks.json",
+    "sha256": "16e725920190f6ced1fa0240800e7da6afb76a677f3adf107e1d622bcad733d9",
+    "passed": true,
+    "beforeAfterPoses": 280,
+    "changedPoses": 5,
+    "unchangedRgbaPoses": 275,
+    "alphaAnchorsFrameLayoutsAndTimingsExact": true,
+    "sourceHashesStillExact": true,
+    "derivedDetailBoards": 5
+  },
+  "visualReview": {
+    "reviewer": "agent, from actual application exports",
+    "acceptedChanges": [
+      "Male run pose59: continuous sleeve overlap replaces the skin wedge.",
+      "Female coral/ivory run poses55/63: existing bodice shading replaces rectangular sash-color strips behind the crossing forearm."
+    ],
+    "remaining": [
+      "Male jump102 shoulder/neck shelf and other wedding crouch cuffs",
+      "Original source motion blur and some hair/ear boundaries",
+      "Broader garment drawing-style consistency"
+    ],
+    "userVisualAcceptance": false
+  },
+  "performanceDecision": "Rejected slower batching trial; retained scalar scan reuse with exact-input guards. See performance/README.md."
+}
