@@ -8,6 +8,7 @@ import {
   readThemeBundle,
   getThemeLook,
   assertCompleteTheme,
+  readThemeLook,
   type ThemeBundleInput,
 } from "./bundle";
 import {
@@ -23,6 +24,17 @@ import {
 } from "./session";
 import { THEME_MAX_BYTES, validateThemeManifest } from "./contract";
 import { assertPublishedThemeIdentity } from "./published";
+import type { ThemeCatalogEntry } from "./catalog";
+import {
+  addWorkspaceTheme,
+  createWorkspaceSession,
+  exportWorkspacePack,
+  getWorkspaceLook,
+  isPublishedPreview,
+  materializeWorkspaceSession,
+  openPublishedTheme,
+  prepareWorkspaceLook,
+} from "./workspace-session";
 
 afterEach(() => vi.restoreAllMocks());
 const sha = (bytes: Uint8Array) =>
@@ -530,5 +542,169 @@ describe("portable theme sessions", () => {
     expect(() => selectTheme(session, "male:unknown@1")).toThrow(
       /not embedded/,
     );
+  });
+});
+
+describe("published theme previews load only requested artwork", () => {
+  async function source() {
+    const bundle = await createThemeBundle(
+      input({
+        looks: [
+          { logicalId: "base", name: "Base", bytes: pack() },
+          { logicalId: "wedding", name: "Wedding", bytes: pack({ tint: 130 }) },
+        ],
+      }),
+    );
+    const load = vi.fn(async (options: preparation.SourcePreparationOptions) =>
+      readThemeBundle(bundle.bytes, options),
+    );
+    const loadLook = vi.fn(
+      async (id: string, options: preparation.SourcePreparationOptions) => {
+        const ref = bundle.manifest.looks.find((look) => look.logicalId === id);
+        if (!ref) return null;
+        return readThemeLook(
+          bundle.looks.find((look) => look.logicalId === id)!.bytes,
+          bundle.manifest,
+          ref,
+          options,
+        );
+      },
+    );
+    const entry: ThemeCatalogEntry = {
+      key: bundle.key,
+      name: bundle.manifest.name,
+      description: "Fixture",
+      character: "male",
+      sha256: bundle.sha256,
+      bytes: bundle.bytes.length,
+      manifest: structuredClone(bundle.manifest),
+      load,
+      loadLook,
+    };
+    return { entry, bundle, load, loadLook };
+  }
+  it("validates only the selected look and does not fetch the full archive", async () => {
+    const { entry, load, loadLook } = await source();
+    const decode = vi.spyOn(preparation, "prepareSourcePng");
+    const preview = await openPublishedTheme(entry, "base", {});
+    expect(isPublishedPreview(preview)).toBe(true);
+    expect("bytes" in preview).toBe(false);
+    expect(load).not.toHaveBeenCalled();
+    expect(loadLook.mock.calls.map(([id]) => id)).toEqual(["base"]);
+    expect(decode).toHaveBeenCalledTimes(1);
+    expect(preview.manifest.looks).toHaveLength(2);
+    expect(preview.looks.map((look) => look.logicalId)).toEqual(["base"]);
+    let session = createWorkspaceSession([preview]);
+    session = await prepareWorkspaceLook(session, "wedding", [entry], {});
+    expect(loadLook.mock.calls.map(([id]) => id)).toEqual(["base", "wedding"]);
+    expect(decode).toHaveBeenCalledTimes(2);
+    await prepareWorkspaceLook(session, "base", [entry], {});
+    expect(loadLook).toHaveBeenCalledTimes(2);
+    expect(load).not.toHaveBeenCalled();
+  });
+  it("saves an exact complete theme/session even when the other look was never opened", async () => {
+    const { entry, bundle, load, loadLook } = await source();
+    const session = createWorkspaceSession([
+      await openPublishedTheme(entry, "base", {}),
+    ]);
+    const complete = await materializeWorkspaceSession(session, [entry], {});
+    const reopened = await readThemeSession(await exportThemeSession(complete));
+    expect(load).toHaveBeenCalledTimes(1);
+    expect(loadLook).toHaveBeenCalledTimes(1);
+    expect(reopened.themes[0].bytes).toEqual(bundle.bytes);
+    expect(reopened.themes[0].looks.map((look) => look.logicalId)).toEqual([
+      "base",
+      "wedding",
+    ]);
+    expect(reopened.selection).toEqual(session.selection);
+    expect(session.themes[0].looks).toHaveLength(1);
+  });
+  it("exports only the requested exact pack, without downloading unrelated looks", async () => {
+    const { entry, bundle, load } = await source();
+    const session = createWorkspaceSession(
+      [await openPublishedTheme(entry, "wedding", {})],
+      {
+        themeKey: bundle.key,
+        lookId: "wedding",
+        action: "run",
+        facing: "left",
+      },
+    );
+    expect(await exportWorkspacePack(session, [entry], {})).toEqual(
+      bundle.looks[1].bytes,
+    );
+    expect(load).not.toHaveBeenCalled();
+    getWorkspaceLook(session)!.bytes[0] = 0;
+    await expect(exportWorkspacePack(session, [entry], {})).rejects.toThrow(
+      /checksum/,
+    );
+  });
+  it("keeps missing logical looks explicit and preserves accepted data on cancellation", async () => {
+    const { entry, bundle, loadLook } = await source();
+    const initial = createWorkspaceSession([
+      await openPublishedTheme(entry, "base", {}),
+    ]);
+    const missing = await prepareWorkspaceLook(
+      initial,
+      "unavailable",
+      [entry],
+      {},
+    );
+    expect(missing.selection.lookId).toBe("unavailable");
+    expect(getWorkspaceLook(missing)).toBeNull();
+    expect(loadLook).toHaveBeenCalledTimes(1);
+    const controller = new AbortController();
+    entry.loadLook = vi.fn(async () => {
+      controller.abort();
+      return bundle.looks[1];
+    });
+    await expect(
+      prepareWorkspaceLook(initial, "wedding", [entry], {
+        signal: controller.signal,
+      }),
+    ).rejects.toMatchObject({ name: "AbortError" });
+    expect(initial.selection.lookId).toBe("base");
+    expect(initial.themes[0].looks).toHaveLength(1);
+  });
+  it("upgrades a preview from a complete import and never overwrites an imported revision", async () => {
+    const { entry, bundle, load } = await source();
+    const preview = await openPublishedTheme(entry, "base", {});
+    const initial = createWorkspaceSession([preview]);
+    const imported = addWorkspaceTheme(initial, bundle);
+    expect(isPublishedPreview(imported.themes[0])).toBe(false);
+    expect(addWorkspaceTheme(imported, preview).themes[0]).toBe(bundle);
+    expect(
+      (await materializeWorkspaceSession(imported, [entry], {})).themes[0]
+        .bytes,
+    ).toEqual(bundle.bytes);
+    expect(load).not.toHaveBeenCalled();
+    expect(() =>
+      addWorkspaceTheme(imported, { ...bundle, sha256: "f".repeat(64) }),
+    ).toThrow(/different artwork/);
+  });
+  it("checks exact revision and manifest before materializing a published preview", async () => {
+    const { entry } = await source();
+    const session = createWorkspaceSession([
+      await openPublishedTheme(entry, "base", {}),
+    ]);
+    await expect(
+      materializeWorkspaceSession(
+        session,
+        [{ ...entry, sha256: "f".repeat(64) }],
+        {},
+      ),
+    ).rejects.toThrow(/exact published/);
+    session.themes[0].manifest.looks[1].name = "Changed name";
+    await expect(
+      materializeWorkspaceSession(session, [entry], {}),
+    ).rejects.toThrow(/changed since/);
+  });
+  it("retains the full-import path for catalogs without selected-look metadata", async () => {
+    const { entry, bundle, load } = await source();
+    delete entry.loadLook;
+    const result = await openPublishedTheme(entry, "base", {});
+    expect(isPublishedPreview(result)).toBe(false);
+    expect(load).toHaveBeenCalledTimes(1);
+    expect((result as typeof bundle).bytes).toEqual(bundle.bytes);
   });
 });

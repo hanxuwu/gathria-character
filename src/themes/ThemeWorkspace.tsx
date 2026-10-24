@@ -16,7 +16,7 @@ import {
   type LoadedCharacterPack,
 } from "../core/pack";
 import { assertSourcePreparationActive } from "../core/source-preparation";
-import type { Facing, PortableAnimationName } from "../core/types";
+import type { Animation, Facing, PortableAnimationName } from "../core/types";
 import { drawCharacterFrame, imageForFrame } from "../consumer/player";
 import type { KlingCharacterId } from "../consumer/kling-catalog";
 import { THEME_CATALOG } from "./catalog";
@@ -26,21 +26,23 @@ import {
   THEME_MAX_BYTES,
   THEME_SESSION_MAX_BYTES,
 } from "./contract";
+import { exportThemeSession, readThemeSession } from "./session";
 import {
-  addTheme,
-  createThemeSession,
-  exportSelectedThemePack,
-  exportThemeSession,
-  getSelectedTheme,
-  getSelectedThemeLook,
-  readThemeSession,
-  selectTheme,
-  selectThemeLook,
-  selectThemePlayback,
-  type ThemeSession,
-} from "./session";
+  addWorkspaceTheme as addTheme,
+  createWorkspaceSession as createThemeSession,
+  exportWorkspacePack,
+  getWorkspaceTheme as getSelectedTheme,
+  getWorkspaceLook as getSelectedThemeLook,
+  selectWorkspaceTheme as selectTheme,
+  selectWorkspacePlayback as selectThemePlayback,
+  openPublishedTheme,
+  prepareWorkspaceLook,
+  materializeWorkspaceTheme,
+  materializeWorkspaceSession,
+  type WorkspaceThemeSession as ThemeSession,
+} from "./workspace-session";
 import { themeActionGif, themeFramePng } from "./media";
-import { transferThemeMotion } from "./motion-phase";
+import { themeComparisonPosition, transferThemeMotion } from "./motion-phase";
 import { themePreviewBacking } from "./preview-budget";
 import { assertPublishedThemeIdentity } from "./published";
 import {
@@ -73,6 +75,7 @@ function ThemeCanvas({
   label,
   testId,
   plane,
+  framePosition,
 }: {
   pack: LoadedCharacterPack;
   frameId: number;
@@ -81,6 +84,7 @@ function ThemeCanvas({
   label: string;
   testId: string;
   plane?: ComparisonPlane;
+  framePosition: number;
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const container = useRef<HTMLDivElement>(null);
@@ -158,6 +162,7 @@ function ThemeCanvas({
           aria-label={label}
           data-testid={testId}
           data-frame-id={frameId}
+          data-frame-position={framePosition}
           data-facing={facing}
           data-sampling={pixel ? "nearest" : "smooth"}
           style={{
@@ -207,6 +212,12 @@ export default function ThemeWorkspace({
   const [keepMotionPhase, setKeepMotionPhase] = useState(true);
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);
+  const [referencePlayback, setReferencePlayback] = useState<{
+    clip: Animation;
+    referenceClip: Animation;
+    position: number;
+  } | null>(null);
+  const comparisonClock = useRef<Animation | undefined>(undefined);
   const [zoom, setZoom] = useState<"fit" | number>("fit");
   const [busy, setBusy] = useState("");
   const [message, setMessage] = useState("Choose a theme to begin.");
@@ -230,23 +241,38 @@ export default function ThemeWorkspace({
   const safePosition = clip ? Math.min(position, clip.frames.length - 1) : 0;
   const frameId = clip?.frames[safePosition];
   const requestedLookId = session?.selection.lookId;
+  const referenceMatches =
+    reference?.character === character &&
+    reference?.lookId === requestedLookId &&
+    reference?.sourceSha256 === theme?.manifest.reference.sourceSha256;
+  const referenceClip = referenceMatches
+    ? reference.pack.manifest.animations[action]
+    : undefined;
+  // Reference availability can change during playback without restarting the
+  // selected clip's clock. Stale samples are rejected by clip identity below.
+  comparisonClock.current = compare ? referenceClip : undefined;
   const originalEntry = THEME_CATALOG.find(
-    (entry) => entry.character === character && entry.isOriginal,
+    (entry) =>
+      entry.character === character &&
+      entry.isOriginal &&
+      entry.current !== false,
   );
   const items = [
-    ...THEME_CATALOG.filter((entry) => entry.character === character).map(
-      (entry) => ({
-        key: entry.key,
-        name: entry.name,
-        description: entry.description,
-        previewUrl: entry.previewUrl,
-      }),
-    ),
+    ...THEME_CATALOG.filter(
+      (entry) => entry.character === character && entry.current !== false,
+    ).map((entry) => ({
+      key: entry.key,
+      name: entry.name,
+      description: entry.description,
+      previewUrl: entry.previewUrl,
+    })),
     ...(session?.themes ?? [])
       .filter(
         (candidate) =>
           candidate.manifest.character === character &&
-          !THEME_CATALOG.some((entry) => entry.key === candidate.key),
+          !THEME_CATALOG.some(
+            (entry) => entry.key === candidate.key && entry.current !== false,
+          ),
       )
       .map((candidate) => ({
         key: candidate.key,
@@ -393,7 +419,11 @@ export default function ThemeWorkspace({
           throw Error(
             "This theme is not available in the catalog or saved session.",
           );
-        bundle = await entry.load({ signal });
+        bundle = await openPublishedTheme(
+          entry,
+          reset ? undefined : previous?.selection.lookId,
+          { signal },
+        );
       }
       assertSourcePreparationActive({ signal });
       assertPublishedThemeIdentity(bundle, THEME_CATALOG);
@@ -404,10 +434,16 @@ export default function ThemeWorkspace({
       if (reset)
         next = createThemeSession(next.themes, {
           themeKey: key,
-          lookId: bundle.looks[0].logicalId,
+          lookId: bundle.manifest.looks[0].logicalId,
           action: "idle",
           facing: previous?.selection.facing ?? "right",
         });
+      next = await prepareWorkspaceLook(
+        next,
+        next.selection.lookId,
+        THEME_CATALOG,
+        { signal },
+      );
       await commit(
         next,
         signal,
@@ -421,9 +457,9 @@ export default function ThemeWorkspace({
     const previous = currentSession.current;
     if (!previous) return;
     const motion = snapshotMotion();
-    await run("Opening look…", (signal) =>
+    await run("Opening look…", async (signal) =>
       commit(
-        selectThemeLook(previous, lookId),
+        await prepareWorkspaceLook(previous, lookId, THEME_CATALOG, { signal }),
         signal,
         "Look selected.",
         motion,
@@ -440,7 +476,9 @@ export default function ThemeWorkspace({
       return;
     const entry = THEME_CATALOG.find(
       (candidate) =>
-        candidate.character === initialCharacter && candidate.isOriginal,
+        candidate.character === initialCharacter &&
+        candidate.isOriginal &&
+        candidate.current !== false,
     );
     if (entry) void openTheme(entry.key, true);
     // First opening only; accepted session survives later tab changes.
@@ -461,7 +499,10 @@ export default function ThemeWorkspace({
         const bundle =
           currentSession.current?.themes.find(
             (candidate) => candidate.key === originalEntry.key,
-          ) ?? (await originalEntry.load({ signal: controller.signal }));
+          ) ??
+          (await openPublishedTheme(originalEntry, requestedLookId, {
+            signal: controller.signal,
+          }));
         assertPublishedThemeIdentity(bundle, THEME_CATALOG);
         if (
           bundle.manifest.reference.sourceSha256 !==
@@ -474,9 +515,18 @@ export default function ThemeWorkspace({
           );
           return;
         }
-        const referenceLook = bundle.looks.find(
-          (candidate) => candidate.logicalId === requestedLookId,
+        const referenceSession = await prepareWorkspaceLook(
+          createThemeSession([bundle], {
+            themeKey: bundle.key,
+            lookId: requestedLookId ?? bundle.manifest.looks[0].logicalId,
+            action,
+            facing,
+          }),
+          requestedLookId ?? bundle.manifest.looks[0].logicalId,
+          THEME_CATALOG,
+          { signal: controller.signal },
         );
+        const referenceLook = getSelectedThemeLook(referenceSession);
         if (!referenceLook) {
           assertSourcePreparationActive({ signal: controller.signal });
           setReference(null);
@@ -524,13 +574,30 @@ export default function ThemeWorkspace({
       // Freeze the last accepted frame while a theme is prepared, even before
       // React flushes the busy state. A canceled load resumes that same pose.
       if (operation.current) return;
-      const progress = Math.floor(((now - start) * clip.fps) / 1000);
+      const timelinePosition = ((now - start) * clip.fps) / 1000;
+      const progress = Math.floor(timelinePosition);
       if (!clip.loop && progress >= clip.frames.length) {
         setPosition(clip.frames.length - 1);
         setPlaying(false);
         return;
       }
       setPosition(clip.loop ? progress % clip.frames.length : progress);
+      const referenceClip = comparisonClock.current;
+      if (referenceClip) {
+        const referencePosition = themeComparisonPosition(
+          clip,
+          referenceClip,
+          timelinePosition,
+          true,
+        );
+        setReferencePlayback((previous) =>
+          previous?.clip === clip &&
+          previous.referenceClip === referenceClip &&
+          previous.position === referencePosition
+            ? previous
+            : { clip, referenceClip, position: referencePosition },
+        );
+      }
       handle = requestAnimationFrame(tick);
     };
     handle = requestAnimationFrame(tick);
@@ -599,15 +666,23 @@ export default function ThemeWorkspace({
     await run(`Preparing ${kind.toUpperCase()} download…`, async (signal) => {
       if (kind === "session")
         saveBytes(
-          await exportThemeSession(snapshot, { signal }),
+          await exportThemeSession(
+            await materializeWorkspaceSession(snapshot, THEME_CATALOG, {
+              signal,
+            }),
+            { signal },
+          ),
           `${name}.theme-session.zip`,
         );
       else if (kind === "theme") {
         assertSourcePreparationActive({ signal });
-        saveBytes(theme.bytes, `${safeFilename(theme.key)}.theme.zip`);
+        const complete = await materializeWorkspaceTheme(theme, THEME_CATALOG, {
+          signal,
+        });
+        saveBytes(complete.bytes, `${safeFilename(theme.key)}.theme.zip`);
       } else if (kind === "pack")
         saveBytes(
-          await exportSelectedThemePack(snapshot, { signal }),
+          await exportWorkspacePack(snapshot, THEME_CATALOG, { signal }),
           `${name}.character.zip`,
         );
       else {
@@ -640,18 +715,13 @@ export default function ThemeWorkspace({
     });
   }
 
-  const referenceMatches =
-    reference?.character === character &&
-    reference?.lookId === requestedLookId &&
-    reference?.sourceSha256 === theme?.manifest.reference.sourceSha256;
-  const referenceClip = referenceMatches
-    ? reference.pack.manifest.animations[action]
-    : undefined;
   const referencePosition =
-    referenceClip && clip
-      ? transferThemeMotion(clip, referenceClip, safePosition, playing, true)
-          .position
-      : 0;
+    playing &&
+    referencePlayback &&
+    referencePlayback.clip === clip &&
+    referencePlayback.referenceClip === referenceClip
+      ? referencePlayback.position
+      : themeComparisonPosition(clip, referenceClip, safePosition, playing);
   const comparison =
     compare && pack && referenceMatches
       ? createThemeComparisonPlanes(
@@ -674,7 +744,9 @@ export default function ThemeWorkspace({
               const next = event.target.value as KlingCharacterId;
               const entry = THEME_CATALOG.find(
                 (candidate) =>
-                  candidate.character === next && candidate.isOriginal,
+                  candidate.character === next &&
+                  candidate.isOriginal &&
+                  candidate.current !== false,
               );
               if (entry) void openTheme(entry.key, true);
             }}
@@ -730,6 +802,7 @@ export default function ThemeWorkspace({
         {items.map((entry) => (
           <button
             key={entry.key}
+            data-theme-key={entry.key}
             className="theme-card"
             aria-pressed={theme?.key === entry.key}
             disabled={!!busy}
@@ -805,7 +878,7 @@ export default function ThemeWorkspace({
                     {session!.selection.lookId} — unavailable in this theme
                   </option>
                 )}
-                {theme.looks.map((item) => (
+                {theme.manifest.looks.map((item) => (
                   <option key={item.logicalId} value={item.logicalId}>
                     {item.name}
                   </option>
@@ -908,6 +981,7 @@ export default function ThemeWorkspace({
                     label="Original Kling theme reference"
                     testId="theme-reference"
                     plane={planes?.[1]}
+                    framePosition={referencePosition}
                   />
                 ) : (
                   <p>
@@ -933,6 +1007,7 @@ export default function ThemeWorkspace({
                   label={`${theme.manifest.name} ${action} ${facing}`}
                   testId="theme-preview"
                   plane={planes?.[0]}
+                  framePosition={safePosition}
                 />
               ) : (
                 <div className="theme-empty-preview">

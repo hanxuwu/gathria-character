@@ -1,0 +1,11 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Edit the supplied 8-frame male WALK sprite sheet as a production animation continuity correction. Keep precisely the same warm pixel-art male identity, gray sleeveless tank top, navy shorts, cream-white low sneakers, thick brows, brown eyes, bald round head, short natural neck, right-facing three-quarter perspective, 8 existing walking limb poses in reading order, and 4 columns x 2 rows arrangement. Correct the distracting between-frame head/body wobble: use the FIRST character's head as the master model for ALL EIGHT drawings. Same skull silhouette, eye positions relative to skull, face perspective, ear size/position, cheek width, jaw, relaxed smile, neck length, shoulder width and torso length in every cell. In the existing second row the anatomy becomes visibly shorter and the face turns; correct those drawings to match the first row's exact identity and proportions. Keep the head steady and upright as the body walks, no nodding, no turning toward camera, no changing head size, no squash/stretch. The torso may have a tiny natural opposing sway, the arms and legs retain a clear alternating WALK rather than a run, both half-strides must use the SAME proportions. Ground the support shoe at local y=480 in EVERY cell, put top of head at local y=55 with at most 3 pixels natural cyclic variation. Crown center local x=192, head width about204 px; feet must stay completely inside each384x512 cell. Transparent 1536x1024 PNG exactly, eight complete bodies 4x2, empty gutters between cells, no text, no ground shadows, no visible background, no halo. Preserve the crisp dark stepped pixel outlines, discrete warm color clusters and original detailed rendering. This is a minimal continuity repair, not a redesign: preserve the source poses and all clothing design details, fix drawing inconsistency and stable head registration across the whole cycle.",
+  "referenced_image_paths": [
+    "/workspace/gathria-character/artwork/kling-themes/source/male-walk-v1.png"
+  ],
+  "transparent_background": true,
+  "role": "Continuity correction trial; not accepted or published without comparison.",
+  "outputFile": "artwork/kling-themes/source/stability-v2/male-walk-stable-v1.png",
+  "outputSha256": "cd2dd3a9bd71112bc99fbeecc64fe822e2bf65ea0790caad722a8330dbdf2582"
+}

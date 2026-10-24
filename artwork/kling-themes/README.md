@@ -84,8 +84,8 @@ Example recipe shape (filenames and timing must be chosen from real reviewed art
   "name": "Pixel storybook",
   "frameSize": [192, 272],
   "integerSample": 2,
-  "registrationPadding": {"left": 0, "top": 32, "right": 0, "bottom": 0},
-  "anchor": {"x": 96, "y": 251},
+  "registrationPadding": { "left": 0, "top": 32, "right": 0, "bottom": 0 },
+  "anchor": { "x": 96, "y": 251 },
   "provenance": "Actual generation source, references and preparation steps.",
   "actions": {
     "run": {
@@ -95,7 +95,16 @@ Example recipe shape (filenames and timing must be chosen from real reviewed art
       "count": 8,
       "fps": 12,
       "loop": true,
-      "translations": [[0,-32],[0,-32],[0,-32],[0,-32],[0,0],[0,0],[0,0],[0,0]]
+      "translations": [
+        [0, -32],
+        [0, -32],
+        [0, -32],
+        [0, -32],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0]
+      ]
     }
   }
 }
@@ -130,6 +139,32 @@ initial guide prompt was not retained; its request summary must not be quoted as
 an exact prompt. Production animation sources retain their full generation records.
 
 ## Catalog and outputs
+
+### Motion-stability revision 2
+
+Revision 1 remains byte-identical. The four parallel `*-v2.recipe.json` files
+select the reviewed source repairs and bounded registration changes documented
+in [source/stability-v2](source/stability-v2/README.md). They emit separate
+`*-v2.character.zip`, `*-v2.theme.zip` and `prepared/*/pixel-storybook-v2/`
+paths. All source trials, including rejected drawings, remain available.
+
+```sh
+python scripts/prepare-kling-theme-assets.py pixel --recipe artwork/kling-themes/source/male-pixel-storybook-v2.recipe.json
+python scripts/prepare-kling-theme-assets.py pixel --recipe artwork/kling-themes/source/male-pixel-storybook-wedding-v2.recipe.json
+python scripts/prepare-kling-theme-assets.py pixel --recipe artwork/kling-themes/source/female-pixel-storybook-v2.recipe.json
+python scripts/prepare-kling-theme-assets.py pixel --recipe artwork/kling-themes/source/female-pixel-storybook-wedding-v2.recipe.json
+```
+
+The catalog retains every published identity/hash and marks the latest revision
+of each theme `current`. Default cards use current revisions; old imported
+sessions remain tied to their saved version. Catalog metadata also includes the
+exact theme manifest and standalone look URLs/hashes. The generator verifies
+that each standalone look is byte-identical to the nested archive, enabling
+selected-look loading without creating alternate artwork or weakening import
+validation. Full portable theme exports still use the exact original envelope.
+
+The revision-2 source changes and actual application export evidence are reviewed
+in [the motion-stability delivery](../../docs/kling-theme-stability/README.md).
 
 `catalog-index.json` records exact published bundle hashes, lengths and preview
 paths. `src/themes/catalog.ts` verifies these hashes and all five actions before

@@ -1,0 +1,1078 @@
+{
+  "character": "male",
+  "id": "pixel-storybook",
+  "revision": 2,
+  "name": "Pixel storybook",
+  "lookId": "wedding",
+  "lookName": "Wedding look",
+  "frameSize": [
+    192,
+    272
+  ],
+  "integerSample": 2,
+  "anchor": {
+    "x": 96,
+    "y": 251
+  },
+  "provenance": "OpenAI image generation independently authored pixel wedding drawings guided by the exact retained application-export wedding look, its source-pose guides and the generated pixel style direction. The male look keeps its dark suit, ivory waistcoat, coral tie, chest flower and curly brown hair; the female look keeps its ivory wedding dress and braided crown. Generated PNG sheets and exact generation records are retained. Explicit crop rectangles follow transparent atlas gutters; integer whole-pose translations correct atlas placement and establish a newly authored jump trajectory. Common 2:1 nearest sampling and 32-pixel transparent top padding preserve the drawn anatomy. These are complete baked wedding looks, not interchangeable garment layers or pixel-exact video frames.",
+  "actions": {
+    "idle": {
+      "file": "male-wedding-idle-celebrate-v2.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          526
+        ],
+        [
+          384,
+          0,
+          384,
+          526
+        ],
+        [
+          768,
+          0,
+          384,
+          526
+        ],
+        [
+          1152,
+          0,
+          384,
+          526
+        ]
+      ],
+      "translations": [
+        [
+          -24,
+          -32
+        ],
+        [
+          -8,
+          -32
+        ],
+        [
+          8,
+          -30
+        ],
+        [
+          12,
+          -30
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "notes": "Version2 is an actual image-generation correction reducing the overly large idle/celebrate anatomy to match the existing wedding locomotion artwork. Source v1 is retained for review. This is authored replacement art, not runtime scaling. Explicit technical crops, integer translations and common 2:1 sampling only.",
+      "registrationMeasurements": [
+        {
+          "sourceCell": 0,
+          "crownCenterX": 215.0,
+          "opaqueFootY": 501,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 1,
+          "crownCenterX": 200.0,
+          "opaqueFootY": 502,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 2,
+          "crownCenterX": 184.5,
+          "opaqueFootY": 500,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 3,
+          "crownCenterX": 181.0,
+          "opaqueFootY": 500,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        }
+      ]
+    },
+    "walk": {
+      "file": "male-wedding-walk-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          -4,
+          -36
+        ],
+        [
+          0,
+          -36
+        ],
+        [
+          -20,
+          -36
+        ],
+        [
+          -8,
+          -38
+        ],
+        [
+          0,
+          24
+        ],
+        [
+          -4,
+          26
+        ],
+        [
+          -20,
+          26
+        ],
+        [
+          -10,
+          26
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas.",
+      "registrationMeasurements": [
+        {
+          "sourceCell": 0,
+          "crownCenterX": 195.0,
+          "opaqueFootY": 505,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 1,
+          "crownCenterX": 191.5,
+          "opaqueFootY": 507,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 2,
+          "crownCenterX": 211.0,
+          "opaqueFootY": 507,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 3,
+          "crownCenterX": 201.0,
+          "opaqueFootY": 508,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 4,
+          "crownCenterX": 193.0,
+          "opaqueFootY": 446,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 5,
+          "crownCenterX": 196.5,
+          "opaqueFootY": 444,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 6,
+          "crownCenterX": 212.0,
+          "opaqueFootY": 444,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 7,
+          "crownCenterX": 201.5,
+          "opaqueFootY": 444,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        }
+      ]
+    },
+    "run": {
+      "file": "male-wedding-run-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          6,
+          -38
+        ],
+        [
+          -4,
+          -40
+        ],
+        [
+          -10,
+          -44
+        ],
+        [
+          -8,
+          -46
+        ],
+        [
+          6,
+          16
+        ],
+        [
+          -4,
+          18
+        ],
+        [
+          -8,
+          16
+        ],
+        [
+          -8,
+          12
+        ]
+      ],
+      "fps": 12,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Original V1 complete-pose artwork is retained; the independent new-art trial was rejected because it increased vertical head steps. Revision2 uses a bounded zero-mean whole-pose Y adjustment only on the airborne positions0,3,4,7. Native Y deltas are[1, 0, 0, 1, -2, 0, 0, 0]. Contact positions1,2,5,6 retain their exact earlier vertical registration. Every airborne sole remains at or above249, above the250px ground. This revises the authored flight trajectory slightly to reduce irregular crown jumps without changing head-to-body geometry, anatomy, native dimensions, anchor, frame order, FPS or loop. Exact before/after crown/sole coordinates are recorded in registrationReview.actions.run.airborneRegistration. No runtime head lock, detached head or interpolation.",
+      "registrationMeasurements": [
+        {
+          "sourceCell": 0,
+          "crownCenterX": 202.5,
+          "opaqueFootY": 503,
+          "targetCrownX": 208,
+          "targetFootY": 464,
+          "revision2AirborneDeltaNativeY": 1,
+          "revision2NativeFootY": 248
+        },
+        {
+          "sourceCell": 1,
+          "crownCenterX": 212.0,
+          "opaqueFootY": 510,
+          "targetCrownX": 208,
+          "targetFootY": 470,
+          "revision2AirborneDeltaNativeY": 0,
+          "revision2NativeFootY": 250
+        },
+        {
+          "sourceCell": 2,
+          "crownCenterX": 218.0,
+          "opaqueFootY": 513,
+          "targetCrownX": 208,
+          "targetFootY": 470,
+          "revision2AirborneDeltaNativeY": 0,
+          "revision2NativeFootY": 250
+        },
+        {
+          "sourceCell": 3,
+          "crownCenterX": 217.0,
+          "opaqueFootY": 513,
+          "targetCrownX": 208,
+          "targetFootY": 466,
+          "revision2AirborneDeltaNativeY": 1,
+          "revision2NativeFootY": 249
+        },
+        {
+          "sourceCell": 4,
+          "crownCenterX": 202.5,
+          "opaqueFootY": 443,
+          "targetCrownX": 208,
+          "targetFootY": 458,
+          "revision2AirborneDeltaNativeY": -2,
+          "revision2NativeFootY": 245
+        },
+        {
+          "sourceCell": 5,
+          "crownCenterX": 212.0,
+          "opaqueFootY": 452,
+          "targetCrownX": 208,
+          "targetFootY": 470,
+          "revision2AirborneDeltaNativeY": 0,
+          "revision2NativeFootY": 250
+        },
+        {
+          "sourceCell": 6,
+          "crownCenterX": 216.5,
+          "opaqueFootY": 453,
+          "targetCrownX": 208,
+          "targetFootY": 470,
+          "revision2AirborneDeltaNativeY": 0,
+          "revision2NativeFootY": 250
+        },
+        {
+          "sourceCell": 7,
+          "crownCenterX": 217.0,
+          "opaqueFootY": 453,
+          "targetCrownX": 208,
+          "targetFootY": 464,
+          "revision2AirborneDeltaNativeY": 0,
+          "revision2NativeFootY": 248
+        }
+      ],
+      "airborneRegistration": {
+        "character": "male",
+        "look": "wedding",
+        "action": "run",
+        "basis": "V1 authored drawing; previous V2 horizontal registration retained where present. Airborne full-pose translations only.",
+        "deltaNativeY": [
+          1,
+          0,
+          0,
+          1,
+          -2,
+          0,
+          0,
+          0
+        ],
+        "sourceTranslationsBeforeAirAdjustment": [
+          [
+            6,
+            -40
+          ],
+          [
+            -4,
+            -40
+          ],
+          [
+            -10,
+            -44
+          ],
+          [
+            -8,
+            -48
+          ],
+          [
+            6,
+            20
+          ],
+          [
+            -4,
+            18
+          ],
+          [
+            -8,
+            16
+          ],
+          [
+            -8,
+            12
+          ]
+        ],
+        "sourceTranslationsAfterAirAdjustment": [
+          [
+            6,
+            -38
+          ],
+          [
+            -4,
+            -40
+          ],
+          [
+            -10,
+            -44
+          ],
+          [
+            -8,
+            -46
+          ],
+          [
+            6,
+            16
+          ],
+          [
+            -4,
+            18
+          ],
+          [
+            -8,
+            16
+          ],
+          [
+            -8,
+            12
+          ]
+        ],
+        "groundedFrameIndices": [
+          1,
+          2,
+          5,
+          6
+        ],
+        "airborneFrameIndices": [
+          0,
+          3,
+          4,
+          7
+        ],
+        "beforeCrownY": [
+          31,
+          33,
+          31,
+          29,
+          34,
+          33,
+          34,
+          31
+        ],
+        "afterCrownY": [
+          32,
+          33,
+          31,
+          30,
+          32,
+          33,
+          34,
+          31
+        ],
+        "beforeOpaqueBottomY": [
+          247,
+          250,
+          250,
+          248,
+          247,
+          250,
+          250,
+          248
+        ],
+        "afterOpaqueBottomY": [
+          248,
+          250,
+          250,
+          249,
+          245,
+          250,
+          250,
+          248
+        ],
+        "beforeMetrics": {
+          "range": 5,
+          "maxCyclicStep": 5,
+          "oppositeStrideDifferenceMean": 2.0
+        },
+        "afterMetrics": {
+          "range": 4,
+          "maxCyclicStep": 3,
+          "oppositeStrideDifferenceMean": 1.0
+        },
+        "checks": {
+          "everyContactPoseYUnchanged": true,
+          "contactPixelsUnchangedRelativeToXRegisteredCandidate": true,
+          "everyAirborneSoleAtOrAbove249": true,
+          "maxWholePoseAdjustmentNativePixels": 2,
+          "cycleMeanYOffset": 0,
+          "noVisiblePixelsClipped": true,
+          "noHeadBodyRelativeTransform": true
+        },
+        "scope": "This deliberately revises the authored airborne trajectory by1\u20132nativepixels. It is not source-video reconstruction, a head lock, geometry deformation or an animation timing change. All four planted/contact poses retain their prior Y and pixels relative to the horizontal-registration candidate. Airborne figures remain above the250px floor. The relative body/head geometry is unchanged."
+      }
+    },
+    "jump": {
+      "file": "male-wedding-jump-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ],
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          -16,
+          -48
+        ],
+        [
+          -36,
+          -54
+        ],
+        [
+          -20,
+          -52
+        ],
+        [
+          0,
+          -48
+        ],
+        [
+          -18,
+          28
+        ],
+        [
+          -26,
+          32
+        ],
+        [
+          0,
+          30
+        ],
+        [
+          8,
+          28
+        ]
+      ],
+      "fps": 8,
+      "loop": false,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas.",
+      "registrationMeasurements": [
+        {
+          "sourceCell": 0,
+          "crownCenterX": 217.5,
+          "opaqueFootY": 519,
+          "targetCrownX": 202,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 1,
+          "crownCenterX": 238.0,
+          "opaqueFootY": 524,
+          "targetCrownX": 202,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 2,
+          "crownCenterX": 212.5,
+          "opaqueFootY": 500,
+          "targetCrownX": 192,
+          "targetFootY": 448
+        },
+        {
+          "sourceCell": 3,
+          "crownCenterX": 191.5,
+          "opaqueFootY": 465,
+          "targetCrownX": 192,
+          "targetFootY": 416
+        },
+        {
+          "sourceCell": 4,
+          "crownCenterX": 210.0,
+          "opaqueFootY": 412,
+          "targetCrownX": 192,
+          "targetFootY": 440
+        },
+        {
+          "sourceCell": 5,
+          "crownCenterX": 217.5,
+          "opaqueFootY": 439,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 6,
+          "crownCenterX": 191.5,
+          "opaqueFootY": 440,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 7,
+          "crownCenterX": 185.0,
+          "opaqueFootY": 442,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        }
+      ]
+    },
+    "celebrate": {
+      "file": "male-wedding-idle-celebrate-v2.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          526,
+          384,
+          498
+        ],
+        [
+          384,
+          526,
+          384,
+          498
+        ],
+        [
+          768,
+          526,
+          384,
+          498
+        ],
+        [
+          1152,
+          526,
+          384,
+          498
+        ]
+      ],
+      "translations": [
+        [
+          -24,
+          42
+        ],
+        [
+          -12,
+          42
+        ],
+        [
+          6,
+          42
+        ],
+        [
+          8,
+          40
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "notes": "Version2 is an actual image-generation correction reducing the overly large idle/celebrate anatomy to match the existing wedding locomotion artwork. Source v1 is retained for review. This is authored replacement art, not runtime scaling. Explicit technical crops, integer translations and common 2:1 sampling only.",
+      "registrationMeasurements": [
+        {
+          "sourceCell": 4,
+          "crownCenterX": 216.5,
+          "opaqueFootY": 428,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 5,
+          "crownCenterX": 204.0,
+          "opaqueFootY": 428,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 6,
+          "crownCenterX": 186.0,
+          "opaqueFootY": 428,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        },
+        {
+          "sourceCell": 7,
+          "crownCenterX": 183.0,
+          "opaqueFootY": 429,
+          "targetCrownX": 192,
+          "targetFootY": 470
+        }
+      ]
+    }
+  },
+  "registrationPadding": {
+    "left": 0,
+    "top": 32,
+    "right": 0,
+    "bottom": 0
+  },
+  "registrationMethod": "Reviewed whole-pose integer translations: crown-center registration removes sheet layout drift; shoe-bottom target establishes contact and declared new flight height. No per-pose scaling, warping, redrawing, or reuse of source-video frame timing. Generated crown/pose anatomy remains unchanged.",
+  "registrationReview": {
+    "basisRecipe": "artwork/kling-themes/source/male-pixel-storybook-wedding.recipe.json",
+    "basisRecipeSha256": "6719dab0d9c1d7af505309516bdee625bb8af784e76728466bf197330e076c72",
+    "scope": "Revision2 retains every original wedding drawing. Only male run airborne whole-pose Y registration changes by1\u20132nativepixels; contacts and all other actions remain unchanged. No new-art wedding trial was selected.",
+    "diagnostic": "Measured actual exported V1 CharacterPack RGBA. Crown center is the midpoint of opaque bounds in the top75 native pixels; drawn head/yaw/height variation is not corrected or hidden by this measurement.",
+    "remaining": "Male wedding run face/hair variation remains in the original8drawings. New-art trial was rejected because it worsened crown jumps. Bounded airborne registration improves trajectory only; existing idle/celebrate drawing-size differences remain.",
+    "actions": {
+      "run": {
+        "airborneRegistration": {
+          "character": "male",
+          "look": "wedding",
+          "action": "run",
+          "basis": "V1 authored drawing; previous V2 horizontal registration retained where present. Airborne full-pose translations only.",
+          "deltaNativeY": [
+            1,
+            0,
+            0,
+            1,
+            -2,
+            0,
+            0,
+            0
+          ],
+          "sourceTranslationsBeforeAirAdjustment": [
+            [
+              6,
+              -40
+            ],
+            [
+              -4,
+              -40
+            ],
+            [
+              -10,
+              -44
+            ],
+            [
+              -8,
+              -48
+            ],
+            [
+              6,
+              20
+            ],
+            [
+              -4,
+              18
+            ],
+            [
+              -8,
+              16
+            ],
+            [
+              -8,
+              12
+            ]
+          ],
+          "sourceTranslationsAfterAirAdjustment": [
+            [
+              6,
+              -38
+            ],
+            [
+              -4,
+              -40
+            ],
+            [
+              -10,
+              -44
+            ],
+            [
+              -8,
+              -46
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              -4,
+              18
+            ],
+            [
+              -8,
+              16
+            ],
+            [
+              -8,
+              12
+            ]
+          ],
+          "groundedFrameIndices": [
+            1,
+            2,
+            5,
+            6
+          ],
+          "airborneFrameIndices": [
+            0,
+            3,
+            4,
+            7
+          ],
+          "beforeCrownY": [
+            31,
+            33,
+            31,
+            29,
+            34,
+            33,
+            34,
+            31
+          ],
+          "afterCrownY": [
+            32,
+            33,
+            31,
+            30,
+            32,
+            33,
+            34,
+            31
+          ],
+          "beforeOpaqueBottomY": [
+            247,
+            250,
+            250,
+            248,
+            247,
+            250,
+            250,
+            248
+          ],
+          "afterOpaqueBottomY": [
+            248,
+            250,
+            250,
+            249,
+            245,
+            250,
+            250,
+            248
+          ],
+          "beforeMetrics": {
+            "range": 5,
+            "maxCyclicStep": 5,
+            "oppositeStrideDifferenceMean": 2.0
+          },
+          "afterMetrics": {
+            "range": 4,
+            "maxCyclicStep": 3,
+            "oppositeStrideDifferenceMean": 1.0
+          },
+          "checks": {
+            "everyContactPoseYUnchanged": true,
+            "contactPixelsUnchangedRelativeToXRegisteredCandidate": true,
+            "everyAirborneSoleAtOrAbove249": true,
+            "maxWholePoseAdjustmentNativePixels": 2,
+            "cycleMeanYOffset": 0,
+            "noVisiblePixelsClipped": true,
+            "noHeadBodyRelativeTransform": true
+          },
+          "scope": "This deliberately revises the authored airborne trajectory by1\u20132nativepixels. It is not source-video reconstruction, a head lock, geometry deformation or an animation timing change. All four planted/contact poses retain their prior Y and pixels relative to the horizontal-registration candidate. Airborne figures remain above the250px floor. The relative body/head geometry is unchanged."
+        }
+      }
+    }
+  }
+}

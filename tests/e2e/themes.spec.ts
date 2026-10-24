@@ -83,7 +83,8 @@ async function fixture(
                         (_, index) => [7, 19, 31, 19][index % 4],
                       )
                     : [7, 19, 31, 19],
-            fps: action === "idle" ? 4 : 8,
+            fps:
+              action === "idle" ? 4 : action === "run" ? (pixel ? 12 : 24) : 8,
             loop: action !== "jump",
           },
         ]),
@@ -179,6 +180,7 @@ async function start(
   page: Page,
   delayedPixel?: (route: Route, bytes: Uint8Array) => Promise<void>,
   completePixel = false,
+  lazyPublished = false,
 ) {
   const fixtures = {
     male: {
@@ -199,12 +201,19 @@ async function start(
       isOriginal: kind === "original",
       sha256: data.theme.sha256,
       url: `/__theme_fixture/${character}-${kind}.zip`,
+      ...(lazyPublished
+        ? {
+            bytes: data.theme.bytes.length,
+            manifest: data.theme.manifest,
+            lookUrl: `/__theme_look/${character}-${kind}-`,
+          }
+        : {}),
     })),
   );
   await page.route("**/src/themes/catalog.ts*", (route) =>
     route.fulfill({
       contentType: "text/javascript",
-      body: `import {readThemeBundle} from '/src/themes/bundle.ts'; export const THEME_CATALOG=${JSON.stringify(entries)}.map(e=>({...e,load:async(options)=>readThemeBundle(new Uint8Array(await (await fetch(e.url,{signal:options.signal})).arrayBuffer()),options)}));`,
+      body: `import {readThemeBundle,readThemeLook} from '/src/themes/bundle.ts'; export const THEME_CATALOG=${JSON.stringify(entries)}.map(e=>({...e,load:async(options)=>readThemeBundle(new Uint8Array(await (await fetch(e.url,{signal:options.signal})).arrayBuffer()),options),...(e.manifest ? {loadLook:async(id,options)=>{const ref=e.manifest.looks.find(r=>r.logicalId===id);if(!ref)return null;return readThemeLook(new Uint8Array(await (await fetch(e.lookUrl+id+'.zip',{signal:options.signal})).arrayBuffer()),e.manifest,ref,options)}}:{})}));`,
     }),
   );
   await page.route("**/__theme_fixture/*.zip", async (route) => {
@@ -218,6 +227,23 @@ async function start(
     ];
     const bytes = fixtures[character][kind].theme.bytes;
     if (kind === "pixel" && delayedPixel) return delayedPixel(route, bytes);
+    await route.fulfill({
+      contentType: "application/zip",
+      body: Buffer.from(bytes),
+    });
+  });
+  await page.route("**/__theme_look/*.zip", async (route) => {
+    const [character, kind, logicalId] = new URL(route.request().url()).pathname
+      .split("/")
+      .pop()!
+      .replace(".zip", "")
+      .split("-") as [
+      "male" | "female",
+      "original" | "pixel",
+      "base" | "wedding",
+    ];
+    const data = fixtures[character][kind];
+    const bytes = logicalId === "base" ? data.pack : data.weddingPack;
     await route.fulfill({
       contentType: "application/zip",
       body: Buffer.from(bytes),
@@ -634,4 +660,128 @@ test("theme switching preserves normalized motion phase and playing state withou
   await expect(
     panel.getByRole("button", { name: "Play theme", exact: true }),
   ).toBeVisible();
+});
+
+test("comparison plays every original reference position between pixel key poses", async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date("2030-01-01T00:00:00Z") });
+  const { panel } = await start(page);
+  await panel.getByRole("button", { name: /^Pixel storybook/ }).click();
+  await expect(panel.getByRole("status")).toContainText(
+    "Pixel storybook selected",
+  );
+  await panel.getByRole("button", { name: "Run", exact: true }).click();
+  await panel.getByLabel("Compare Kling original", { exact: true }).check();
+  const reference = panel.getByTestId("theme-reference");
+  const pixel = panel.getByTestId("theme-preview");
+  await expect(reference).toBeVisible();
+  await page.clock.pauseAt(new Date("2030-01-01T00:01:00Z"));
+  await panel.getByRole("button", { name: "Play theme", exact: true }).click();
+  const referencePositions = new Set<number>([0]);
+  const pixelPositions = new Set<number>([0]);
+  let sawReferenceBetweenPixelPoses = false;
+  for (let step = 0; step < 34; step++) {
+    await page.clock.runFor(21);
+    const referencePosition = Number(
+      await reference.getAttribute("data-frame-position"),
+    );
+    const pixelPosition = Number(
+      await pixel.getAttribute("data-frame-position"),
+    );
+    referencePositions.add(referencePosition);
+    pixelPositions.add(pixelPosition);
+    if (
+      referencePosition % 2 === 1 &&
+      pixelPosition === Math.floor(referencePosition / 2)
+    )
+      sawReferenceBetweenPixelPoses = true;
+  }
+  expect([...referencePositions].sort((a, b) => a - b)).toEqual(
+    Array.from({ length: 16 }, (_, index) => index),
+  );
+  expect([...pixelPositions].sort((a, b) => a - b)).toEqual(
+    Array.from({ length: 8 }, (_, index) => index),
+  );
+  expect(sawReferenceBetweenPixelPoses).toBe(true);
+  await panel.getByRole("button", { name: "Pause theme", exact: true }).click();
+  await panel.getByLabel("Theme frame", { exact: true }).fill("3");
+  await expect(reference).toHaveAttribute("data-frame-position", "6");
+  await expect(pixel).toHaveAttribute("data-frame-position", "3");
+  await panel.getByLabel("Theme facing", { exact: true }).selectOption("left");
+  await expect(reference).toHaveAttribute("data-facing", "left");
+  await expect(pixel).toHaveAttribute("data-facing", "left");
+});
+
+test("published themes fetch only the selected look, retain accepted looks, and hydrate complete portable sessions on save", async ({
+  page,
+}) => {
+  const requested: string[] = [];
+  page.on("request", (request) => {
+    const pathname = new URL(request.url()).pathname;
+    if (pathname.startsWith("/__theme_")) requested.push(pathname);
+  });
+  const { panel, fixtures } = await start(page, undefined, true, true);
+  // Development StrictMode may abort/restart its initial effect. Even then no
+  // unrelated look or full theme is requested; production has one initial load.
+  expect(requested.length).toBeGreaterThan(0);
+  expect(
+    requested.every((path) => path === "/__theme_look/male-original-base.zip"),
+  ).toBe(true);
+  const initialRequests = requested.length;
+  await expect(
+    panel.getByLabel("Theme look", { exact: true }).locator("option"),
+  ).toHaveCount(2);
+  expect(await download(page, "Export theme CharacterPack")).toEqual(
+    fixtures.male.original.pack,
+  );
+  expect(requested).toHaveLength(initialRequests);
+  await panel.getByLabel("Theme look", { exact: true }).selectOption("wedding");
+  await expect(panel.getByRole("status")).toContainText("Look selected");
+  expect(requested.slice(initialRequests)).toEqual([
+    "/__theme_look/male-original-wedding.zip",
+  ]);
+  await panel.getByLabel("Theme look", { exact: true }).selectOption("base");
+  await expect(panel.getByRole("status")).toContainText("Look selected");
+  expect(requested).toHaveLength(initialRequests + 1);
+  await panel.getByRole("button", { name: /^Pixel storybook/ }).click();
+  await expect(panel.getByRole("status")).toContainText(
+    "Pixel storybook selected",
+  );
+  expect(requested.at(-1)).toBe("/__theme_look/male-pixel-base.zip");
+  expect(requested.some((path) => path.includes("pixel-wedding"))).toBe(false);
+  await panel.getByRole("button", { name: "Run", exact: true }).click();
+  await panel.getByLabel("Theme facing", { exact: true }).selectOption("left");
+  const bytes = await download(page, "Save theme session");
+  expect(requested.slice(-2)).toEqual([
+    "/__theme_fixture/male-original.zip",
+    "/__theme_fixture/male-pixel.zip",
+  ]);
+  const saved = await readThemeSession(bytes);
+  expect(
+    saved.themes.find((theme) => theme.manifest.rendering === "pixel")!.bytes,
+  ).toEqual(fixtures.male.pixel.theme.bytes);
+  expect(
+    saved.themes
+      .find((theme) => theme.manifest.rendering === "pixel")!
+      .looks.map((look) => look.logicalId),
+  ).toEqual(["base", "wedding"]);
+  const beforeReopen = requested.length;
+  await panel.getByLabel("Theme session file", { exact: true }).setInputFiles({
+    name: "complete.theme-session.zip",
+    mimeType: "application/zip",
+    buffer: Buffer.from(bytes),
+  });
+  await expect(panel.getByRole("status")).toContainText(
+    "Theme session restored",
+  );
+  await panel.getByLabel("Theme look", { exact: true }).selectOption("wedding");
+  await expect(panel.getByRole("status")).toContainText("Look selected");
+  expect(await download(page, "Export theme CharacterPack")).toEqual(
+    fixtures.male.pixel.weddingPack,
+  );
+  expect(requested).toHaveLength(beforeReopen);
+  await expect(panel.getByLabel("Theme facing", { exact: true })).toHaveValue(
+    "left",
+  );
 });

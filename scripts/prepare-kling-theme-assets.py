@@ -293,7 +293,10 @@ def build_pixel(recipe_path: Path) -> None:
         "The editor and theme catalog are not needed to play this CharacterPack.\n")
     character_pack = zip_bytes({"manifest.json": json.dumps(manifest, indent=2).encode(), "character.json": json.dumps(config, indent=2).encode(), "spritesheet.png": png(atlas), "PROVENANCE.txt": provenance_text.encode(), "INTEGRATION.md": integration_text.encode()})
     EXPORTS.mkdir(parents=True, exist_ok=True)
-    prefix = f"{character}-{identity}"
+    # Published revisions are immutable: v1 retains its existing filenames;
+    # later revisions receive separate archives and prepared artwork.
+    revision_suffix = "" if revision == 1 else f"-v{revision}"
+    prefix = f"{character}-{identity}{revision_suffix}"
     pack_suffix = "" if look_id == "base" else "-" + look_id
     (EXPORTS / f"{prefix}{pack_suffix}.character.zip").write_bytes(character_pack)
     theme_looks = []
@@ -322,7 +325,8 @@ def build_pixel(recipe_path: Path) -> None:
     }
     theme_bytes = zip_bytes({"theme.json": json.dumps(theme, indent=2).encode(), **theme_files})
     (EXPORTS / f"{prefix}.theme.zip").write_bytes(theme_bytes)
-    prepared = ART / "prepared" / character / identity
+    prepared_root = ART / "prepared" / character / f"{identity}{revision_suffix}"
+    prepared = prepared_root
     if look_id != "base": prepared = prepared / look_id
     prepared.mkdir(parents=True, exist_ok=True)
     atlas.save(prepared / "spritesheet.png")
@@ -331,7 +335,7 @@ def build_pixel(recipe_path: Path) -> None:
     # A later look changes the enclosing theme, while nested character packs stay
     # byte-identical. Keep every existing preparation record tied to that final
     # envelope rather than retaining an obsolete single-look bundle hash.
-    for record_path in (ART / "prepared" / character / identity).rglob("preparation.json"):
+    for record_path in prepared_root.rglob("preparation.json"):
         record = json.loads(record_path.read_text())
         record["themeSha256"] = SHA(theme_bytes)
         dump(record_path, record)
@@ -345,15 +349,33 @@ def catalog_index() -> None:
         raw = path.read_bytes()
         with zipfile.ZipFile(io.BytesIO(raw)) as z:
             theme = json.loads(z.read("theme.json"))
+            look_assets = []
+            for look in theme["looks"]:
+                if theme["id"] == "kling-original":
+                    pack_path = ROOT / (f"docs/kling-motion/exports/{theme['character']}.character.zip" if look["logicalId"] == "base" else f"docs/kling-paint-roundtrip/evidence/{theme['character']}-wedding-before.character.zip")
+                else:
+                    suffix = "" if look["logicalId"] == "base" else "-" + look["logicalId"]
+                    pack_path = path.with_name(path.name.removesuffix(".theme.zip") + suffix + ".character.zip")
+                pack_bytes = pack_path.read_bytes()
+                assert pack_bytes == z.read(look["file"]), "Lazy catalog look must be the exact nested published pack."
+                assert SHA(pack_bytes) == look["sha256"]
+                look_assets.append({"logicalId": look["logicalId"], "file": str(pack_path.relative_to(ROOT)), "sha256": look["sha256"], "bytes": len(pack_bytes)})
         character = theme["character"]
         original = theme["id"] == "kling-original"
-        preview = f"artwork/kling-jump/prepared/{character}-library-preview.png" if original else f"artwork/kling-themes/prepared/{character}/{theme['id']}/preview.png"
+        revision_suffix = "" if theme["revision"] == 1 else f"-v{theme['revision']}"
+        preview = f"artwork/kling-jump/prepared/{character}-library-preview.png" if original else f"artwork/kling-themes/prepared/{character}/{theme['id']}{revision_suffix}/preview.png"
         entries.append({
             "key": f"{character}:{theme['id']}@{theme['revision']}", "name": theme["name"], "character": character,
             "description": "Retained source and wedding artwork, with exact saved CharacterPack bytes." if original else "Independently authored pixel drawings, with their own anchors and animation timing. Full-look variant; no interchangeable garment layers.",
             "isOriginal": original, "file": str(path.relative_to(ROOT)), "preview": preview,
-            "sha256": SHA(raw), "bytes": len(raw),
+            "sha256": SHA(raw), "bytes": len(raw), "manifest": theme, "lookAssets": look_assets,
         })
+    latest = {}
+    for entry in entries:
+        group = (entry["character"], entry["manifest"]["id"])
+        latest[group] = max(latest.get(group, 0), entry["manifest"]["revision"])
+    for entry in entries:
+        entry["current"] = entry["manifest"]["revision"] == latest[(entry["character"], entry["manifest"]["id"])]
     dump(ART / "catalog-index.json", entries)
 
 
