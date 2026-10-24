@@ -39,6 +39,10 @@ The first script is restricted to source pose 59 and the recorded native sleeve
 window. It writes only this candidate and its provenance files. The independent
 checker decodes the old/new atlases, reconstructs every pose, checks protected
 regions and compares final RGBA against the original source composition.
+Its default CI invocation is read-only. It also binds both the authoring ZIP and
+the published `docs/kling-wardrobe/garments/male/teal-camp-shirt-v5.zip` to the
+hardcoded reviewed SHA-256 below. Use `--write-report` only when explicitly
+refreshing the authoring audit JSON.
 
 `asset-checks.json` records 88 decoded poses, 87 byte-exact pose patches and
 ownership masks, and a single 671-pixel displayed RGB change within

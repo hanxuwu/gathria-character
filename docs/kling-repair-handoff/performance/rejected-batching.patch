@@ -1,0 +1,478 @@
+diff --git a/src/wardrobe/review-analysis.test.ts b/src/wardrobe/review-analysis.test.ts
+index bd43e73..9d581d5 100644
+--- a/src/wardrobe/review-analysis.test.ts
++++ b/src/wardrobe/review-analysis.test.ts
+@@ -41,7 +41,7 @@ function comparison(loop = true) {
+       animations: { run: clip, jump: { ...clip, loop: false } },
+     } as LookComparison["manifest"],
+     renderFrame: vi.fn((id: number) => (id === 4 ? first : second)),
+-    renderSourceFrame: vi.fn(() => baseline),
++    renderSourceFrame: vi.fn((_id: number) => baseline),
+   };
+ }
+ 
+@@ -247,4 +247,67 @@ describe("sequential action diagnostics", () => {
+       "dimensions changed",
+     );
+   });
++  it("groups reference rendering and preserves ordered current-pose measurements", async () => {
++    const c = comparison();
++    const sequence: string[] = [];
++    c.renderSourceFrame.mockImplementation((id) => {
++      sequence.push(`r${id}`);
++      return image();
++    });
++    c.renderFrame.mockImplementation((id) => {
++      sequence.push(`c${id}`);
++      return image();
++    });
++    const result = await scanReviewAction(c, "run");
++    expect(sequence.slice(0, 2)).toEqual(["r4", "r8"]);
++    expect(sequence.slice(2)).toEqual(["c4", "c8", "c4"]);
++    expect(result.rows.map((r) => r.position)).toEqual([0, 1, 2, 3, 4]);
++    expect(result.rows.every((r) => r.metrics.changedPixels === 0)).toBe(true);
++  });
++  it("can abort while preparing a reference batch, before any current-pose work", async () => {
++    const c = comparison(),
++      controller = new AbortController();
++    const original = c.renderSourceFrame.getMockImplementation()!;
++    c.renderSourceFrame.mockImplementation((id) => {
++      controller.abort();
++      return original(id);
++    });
++    await expect(
++      scanReviewAction(c, "run", { signal: controller.signal }),
++    ).rejects.toMatchObject({ name: "AbortError" });
++    expect(c.renderFrame).not.toHaveBeenCalled();
++  });
++  it("splits pending reference pixels at the 32 MiB bound without retaining the whole action", async () => {
++    const c = comparison(),
++      frame = image(1024, 1024),
++      sequence: string[] = [];
++    c.manifest.spritesheet.frameWidth = 1024;
++    c.manifest.spritesheet.frameHeight = 1024;
++    c.manifest.frames = Array.from({ length: 10 }, (_, id) => ({
++      id,
++    })) as typeof c.manifest.frames;
++    c.manifest.animations.run!.frames = c.manifest.frames.map((f) => f.id);
++    c.renderSourceFrame.mockImplementation((id) => {
++      sequence.push(`r${id}`);
++      return frame;
++    });
++    c.renderFrame.mockImplementation((id) => {
++      sequence.push(`c${id}`);
++      return frame;
++    });
++    const result = await scanReviewAction(c, "run", {
++      roi: { x: 0, y: 0, width: 1, height: 1 },
++    });
++    expect(sequence).toEqual([
++      ...Array.from({ length: 8 }, (_, id) => `r${id}`),
++      ...Array.from({ length: 8 }, (_, id) => `c${id}`),
++      "r8",
++      "r9",
++      "c8",
++      "c9",
++    ]);
++    expect(result.rows.map((r) => r.frameId)).toEqual([
++      0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
++    ]);
++  });
+ });
+diff --git a/src/wardrobe/review-analysis.ts b/src/wardrobe/review-analysis.ts
+index 3bce2da..ba83f67 100644
+--- a/src/wardrobe/review-analysis.ts
++++ b/src/wardrobe/review-analysis.ts
+@@ -5,6 +5,8 @@ import type { LookComparison } from "./look-comparison";
+ 
+ export const REVIEW_MAX_PIXELS = 4_194_304;
+ export const REVIEW_MAX_POSITIONS = 600;
++/** Local per-scan reference buffers, never retained between calls. */
++export const REVIEW_SCAN_REFERENCE_BYTES = 32 * 1024 * 1024;
+ export const REVIEW_DEFAULT_THRESHOLD = 8;
+ 
+ export interface ReviewFrameMetrics {
+@@ -202,10 +204,10 @@ export interface ReviewActionScan {
+   heuristic: string;
+ }
+ 
+-/** A sequential diagnostic scan: at most current/previous/first RGBA frames
+- * remain live, plus scalar metrics per unique source pose. Repeated holds reuse
+- * pixels and metrics; a recurring non-adjacent pose may be rendered again for
+- * its temporal edge, without retaining a full action's image buffers. */
++/** Batch only reference rendering to avoid alternating two atlas working sets on
++ * every pose. At most 32 MiB of pending reference pixels plus current/previous/
++ * first RGBA frames remain live. Metrics and timeline order are unchanged; no
++ * complete animation cache survives this call. */
+ export async function scanReviewAction(
+   comparison: LookComparison,
+   action: PortableAnimationName,
+@@ -258,47 +260,75 @@ export async function scanReviewAction(
+   const durationMs = 1000 / clip.fps;
+   check();
+   options.onProgress?.(0, clip.frames.length);
+-  for (let position = 0; position < clip.frames.length; position++) {
+-    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+-    check();
+-    const frameId = clip.frames[position];
+-    const current = previousId === frameId ? previous! : render(frameId);
+-    if (!metrics.has(frameId))
+-      metrics.set(
++  const referenceCapacity = Math.max(
++    1,
++    Math.floor(
++      REVIEW_SCAN_REFERENCE_BYTES / (sheet.frameWidth * sheet.frameHeight * 4),
++    ),
++  );
++  for (let batchStart = 0; batchStart < clip.frames.length; ) {
++    const ids = new Set<number>();
++    let batchEnd = batchStart;
++    while (batchEnd < clip.frames.length) {
++      const id = clip.frames[batchEnd];
++      if (!metrics.has(id) && !ids.has(id)) {
++        if (ids.size >= referenceCapacity) break;
++        ids.add(id);
++      }
++      batchEnd++;
++    }
++    const references = new Map<number, RgbaPng>();
++    for (const id of ids) {
++      await new Promise<void>((resolve) => setTimeout(resolve, 0));
++      check();
++      references.set(id, render(id, true));
++      check();
++    }
++    for (let position = batchStart; position < batchEnd; position++) {
++      await new Promise<void>((resolve) => setTimeout(resolve, 0));
++      check();
++      const frameId = clip.frames[position];
++      const current = previousId === frameId ? previous! : render(frameId);
++      if (!metrics.has(frameId))
++        metrics.set(
++          frameId,
++          analyzeReviewFrame(
++            references.get(frameId)!,
++            current,
++            threshold,
++            options.roi,
++          ),
++        );
++      references.delete(frameId);
++      if (!first && clip.loop) first = current;
++      if (position === 0 || frameId !== previousId) {
++        holdStart = position;
++        holdFrames = 1;
++        while (clip.frames[position + holdFrames] === frameId) holdFrames++;
++      }
++      rows.push({
++        position,
+         frameId,
+-        analyzeReviewFrame(
+-          render(frameId, true),
+-          current,
+-          threshold,
+-          options.roi,
+-        ),
+-      );
+-    if (!first && clip.loop) first = current;
+-    if (position === 0 || frameId !== previousId) {
+-      holdStart = position;
+-      holdFrames = 1;
+-      while (clip.frames[position + holdFrames] === frameId) holdFrames++;
++        startMs: position * durationMs,
++        durationMs,
++        holdStartPosition: holdStart,
++        holdFrames,
++        holdDurationMs: holdFrames * durationMs,
++        metrics: metrics.get(frameId)!,
++        temporalDelta: previous
++          ? previousId === frameId
++            ? 0
++            : analyzeReviewFrame(previous, current, threshold, options.roi)
++                .meanDelta
++          : null,
++      });
++      previous = current;
++      previousId = frameId;
++      options.onProgress?.(position + 1, clip.frames.length);
++      check();
+     }
+-    rows.push({
+-      position,
+-      frameId,
+-      startMs: position * durationMs,
+-      durationMs,
+-      holdStartPosition: holdStart,
+-      holdFrames,
+-      holdDurationMs: holdFrames * durationMs,
+-      metrics: metrics.get(frameId)!,
+-      temporalDelta: previous
+-        ? previousId === frameId
+-          ? 0
+-          : analyzeReviewFrame(previous, current, threshold, options.roi)
+-              .meanDelta
+-        : null,
+-    });
+-    previous = current;
+-    previousId = frameId;
+-    options.onProgress?.(position + 1, clip.frames.length);
+-    check();
++    references.clear();
++    batchStart = batchEnd;
+   }
+   let seam: ReviewActionScan["seam"] = null;
+   if (clip.loop && first && previous) {
+diff --git a/src/wardrobe/review-sheets.test.ts b/src/wardrobe/review-sheets.test.ts
+index 0ed5b07..88cb8be 100644
+--- a/src/wardrobe/review-sheets.test.ts
++++ b/src/wardrobe/review-sheets.test.ts
+@@ -1,4 +1,4 @@
+-import { describe, expect, it } from "vitest";
++import { describe, expect, it, vi } from "vitest";
+ import { decodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
+ import type { LookComparison } from "./look-comparison";
+ import { compactGifFrame } from "./action-gif";
+@@ -184,7 +184,8 @@ describe("actual review-sheet PNG export", () => {
+         },
+       }),
+     ).rejects.toThrow("canceled");
+-    expect(f.count()).toBe(8);
++    // Two distinct reference tiles are reused; four current rows complete page one.
++    expect(f.count()).toBe(6);
+   });
+   it("rejects source dimensions changed during a long-running export", async () => {
+     const f = fixture([10]);
+@@ -193,4 +194,43 @@ describe("actual review-sheet PNG export", () => {
+       buildReviewContactSheets(f.comparison, "run", "right"),
+     ).rejects.toThrow("dimensions changed");
+   });
++  it("batches reference tiles without changing nonconsecutive pose timing", async () => {
++    const f = fixture([10, 20, 10, 20, 10]);
++    const sequence: string[] = [];
++    const reference = f.comparison.renderSourceFrame,
++      current = f.comparison.renderFrame;
++    f.comparison.renderSourceFrame = (id) => {
++      sequence.push(`r${id}`);
++      return reference(id);
++    };
++    f.comparison.renderFrame = (id) => {
++      sequence.push(`c${id}`);
++      return current(id);
++    };
++    const pages = await buildReviewContactSheets(f.comparison, "run", "left");
++    expect(sequence).toEqual(["r10", "r20", "c10", "c20", "c10", "c20", "c10"]);
++    expect(pages.flatMap((p) => p.rows).map((r) => r.position)).toEqual([
++      0, 1, 2, 3, 4,
++    ]);
++    expect(
++      pages.flatMap((p) => p.rows).reduce((sum, r) => sum + r.holdMs, 0),
++    ).toBe(250);
++  });
++  it("honors cancellation during reference preparation before rendering current artwork", async () => {
++    const f = fixture([10, 20]);
++    const controller = new AbortController();
++    const original = f.comparison.renderSourceFrame;
++    f.comparison.renderSourceFrame = (id) => {
++      controller.abort();
++      return original(id);
++    };
++    const current = vi.fn(f.comparison.renderFrame);
++    f.comparison.renderFrame = current;
++    await expect(
++      buildReviewContactSheets(f.comparison, "run", "right", {
++        signal: controller.signal,
++      }),
++    ).rejects.toMatchObject({ name: "AbortError" });
++    expect(current).not.toHaveBeenCalled();
++  });
+ });
+diff --git a/src/wardrobe/review-sheets.ts b/src/wardrobe/review-sheets.ts
+index 66313ba..85cb3ba 100644
+--- a/src/wardrobe/review-sheets.ts
++++ b/src/wardrobe/review-sheets.ts
+@@ -22,6 +22,8 @@ export interface ReviewContactSheet {
+ export const REVIEW_SHEET_MAX_PIXELS = 4_194_304;
+ export const REVIEW_SHEETS_MAX_TOTAL_PIXELS = 32_000_000;
+ export const REVIEW_SHEETS_MAX_BYTES = 64 * 1024 * 1024;
++/** Compact reference tiles for one batch only; not a global artwork cache. */
++export const REVIEW_SHEET_REFERENCE_BYTES = 16 * 1024 * 1024;
+ export const REVIEW_SHEET_GAP = 12;
+ export const REVIEW_SHEET_HEADER = 42;
+ export const REVIEW_SHEET_ROW_LABEL = 32;
+@@ -201,7 +203,9 @@ function paste(target: RgbaPng, input: RgbaPng, x: number, y: number) {
+     );
+ }
+ 
+-/** Scalar plan + one live page at a time; unchanged source artwork is never retained or edited. */
++/** One output page plus at most 16 MiB of half-native reference tiles. Rendering
++ * a reference batch before its current pages avoids repeatedly evicting either
++ * look's garment atlas from the shared, unchanged bounded page cache. */
+ export async function buildReviewContactSheets(
+   comparison: LookComparison,
+   action: PortableAnimationName,
+@@ -223,75 +227,110 @@ export async function buildReviewContactSheets(
+     result: ReviewContactSheet[] = [];
+   let bytes = 0;
+   options.onProgress?.(0, plan.pages.length);
+-  for (const [index, rows] of plan.pages.entries()) {
+-    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+-    check();
+-    const height =
+-      REVIEW_SHEET_HEADER +
+-      rows.length * (plan.panelHeight + REVIEW_SHEET_ROW_LABEL);
+-    const pixels = new Uint8Array(plan.width * height * 4);
+-    for (let i = 0; i < pixels.length; i += 4)
+-      pixels.set([238, 233, 223, 255], i);
+-    const image: RgbaPng = {
+-      width: plan.width,
+-      height,
+-      pixels,
+-      colorChunks: [],
+-    };
+-    text(image, `${action} ${facing} / PAGE ${index + 1} / HALF SIZE`, 6, 5);
+-    text(image, options.referenceLabel ?? "ORIGINAL", 6, 23);
+-    text(image, "CURRENT", plan.panelWidth + REVIEW_SHEET_GAP + 6, 23);
+-    for (const [row, data] of rows.entries()) {
++  const tileBytes = plan.panelWidth * plan.panelHeight * 4;
++  for (let batchStart = 0; batchStart < plan.pages.length; ) {
++    const ids = new Set<number>();
++    let batchEnd = batchStart;
++    while (batchEnd < plan.pages.length) {
++      const combined = new Set([
++        ...ids,
++        ...plan.pages[batchEnd].map((row) => row.frameId),
++      ]);
++      if (combined.size * tileBytes > REVIEW_SHEET_REFERENCE_BYTES) break;
++      for (const id of combined) ids.add(id);
++      batchEnd++;
++    }
++    if (batchEnd === batchStart)
++      throw Error("This review page exceeds the reference tile budget.");
++    const referenceTiles = new Map<number, RgbaPng>();
++    for (const id of ids) {
++      await new Promise<void>((resolve) => setTimeout(resolve, 0));
++      check();
++      const frame = comparison.renderSourceFrame(id);
++      if (
++        frame.width !== comparison.manifest.spritesheet.frameWidth ||
++        frame.height !== comparison.manifest.spritesheet.frameHeight ||
++        frame.pixels.length !== frame.width * frame.height * 4
++      )
++        throw Error("Review frame dimensions changed during export.");
++      referenceTiles.set(id, compactGifFrame(frame, facing));
++      check();
++    }
++    for (let index = batchStart; index < batchEnd; index++) {
++      const rows = plan.pages[index];
++      await new Promise<void>((resolve) => setTimeout(resolve, 0));
+       check();
+-      const y =
+-        REVIEW_SHEET_HEADER + row * (plan.panelHeight + REVIEW_SHEET_ROW_LABEL);
+-      text(
+-        image,
+-        `POSE ${data.frameId} / POS ${data.position}-${data.endPosition}`,
+-        6,
+-        y + 2,
+-      );
+-      text(
+-        image,
+-        `AT ${Math.round(data.startMs)}MS / HOLD ${Math.round(data.holdMs)}MS`,
+-        6,
+-        y + 17,
+-      );
+-      for (const [i, frame] of [
+-        comparison.renderSourceFrame(data.frameId),
+-        comparison.renderFrame(data.frameId),
+-      ].entries()) {
++      const height =
++        REVIEW_SHEET_HEADER +
++        rows.length * (plan.panelHeight + REVIEW_SHEET_ROW_LABEL);
++      const pixels = new Uint8Array(plan.width * height * 4);
++      for (let i = 0; i < pixels.length; i += 4)
++        pixels.set([238, 233, 223, 255], i);
++      const image: RgbaPng = {
++        width: plan.width,
++        height,
++        pixels,
++        colorChunks: [],
++      };
++      text(image, `${action} ${facing} / PAGE ${index + 1} / HALF SIZE`, 6, 5);
++      text(image, options.referenceLabel ?? "ORIGINAL", 6, 23);
++      text(image, "CURRENT", plan.panelWidth + REVIEW_SHEET_GAP + 6, 23);
++      for (const [row, data] of rows.entries()) {
++        check();
++        const y =
++          REVIEW_SHEET_HEADER +
++          row * (plan.panelHeight + REVIEW_SHEET_ROW_LABEL);
++        text(
++          image,
++          `POSE ${data.frameId} / POS ${data.position}-${data.endPosition}`,
++          6,
++          y + 2,
++        );
++        text(
++          image,
++          `AT ${Math.round(data.startMs)}MS / HOLD ${Math.round(data.holdMs)}MS`,
++          6,
++          y + 17,
++        );
++        paste(
++          image,
++          referenceTiles.get(data.frameId)!,
++          0,
++          y + REVIEW_SHEET_ROW_LABEL,
++        );
++        const frame = comparison.renderFrame(data.frameId);
+         if (
+           frame.width !== comparison.manifest.spritesheet.frameWidth ||
+           frame.height !== comparison.manifest.spritesheet.frameHeight ||
+           frame.pixels.length !== frame.width * frame.height * 4
+         )
+           throw Error("Review frame dimensions changed during export.");
+-        const panel = compactGifFrame(frame, facing);
+         paste(
+           image,
+-          panel,
+-          i * (plan.panelWidth + REVIEW_SHEET_GAP),
++          compactGifFrame(frame, facing),
++          plan.panelWidth + REVIEW_SHEET_GAP,
+           y + REVIEW_SHEET_ROW_LABEL,
+         );
++        await new Promise<void>((resolve) => setTimeout(resolve, 0));
++        check();
+       }
+-      await new Promise<void>((resolve) => setTimeout(resolve, 0));
++      const png = await encodeSourceRgbaPngAsync(image);
+       check();
++      bytes += png.byteLength;
++      if (bytes > REVIEW_SHEETS_MAX_BYTES)
++        throw Error("Review sheets exceed the 64 MiB export budget.");
++      result.push({
++        png,
++        page: index + 1,
++        width: image.width,
++        height,
++        scale: 0.5,
++        rows,
++      });
++      options.onProgress?.(index + 1, plan.pages.length);
+     }
+-    const png = await encodeSourceRgbaPngAsync(image);
+-    check();
+-    bytes += png.byteLength;
+-    if (bytes > REVIEW_SHEETS_MAX_BYTES)
+-      throw Error("Review sheets exceed the 64 MiB export budget.");
+-    result.push({
+-      png,
+-      page: index + 1,
+-      width: image.width,
+-      height,
+-      scale: 0.5,
+-      rows,
+-    });
+-    options.onProgress?.(index + 1, plan.pages.length);
++    referenceTiles.clear();
++    batchStart = batchEnd;
+   }
+   return result;
+ }

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Independently check the additive sleeve bank against its shipped parent."""
-import importlib.util,json,zipfile,io
+import argparse,json,zipfile,io
 import numpy as np
 from PIL import Image
 from kling_wardrobe_common import ROOT,load_source,protected_mask,sha
 OUT=ROOT/'artwork/kling-repair-handoff/male'
+PUBLISHED=ROOT/'docs/kling-wardrobe/garments/male/teal-camp-shirt-v5.zip'
+PINNED_SHA256='a41b45869fe0a3b63c613f8ade0b188a7e8b9040fee618fb3e9800c05543145e'
 
 def bank(path):
     result={}
@@ -26,9 +28,13 @@ def bank(path):
             assert not rgba[~own,3].any();result[f['frameId']]=(rgba,own)
     return m,result
 
-def main():
+def main(write_report=False):
     a=json.loads((OUT/'audit.json').read_text());beforepath=ROOT/a['baseline'];afterpath=OUT/'teal-camp-shirt-v5.zip'
     assert sha(beforepath.read_bytes())==a['baselineSha256'];assert sha(afterpath.read_bytes())==a['item']['sha256']
+    # Bind the actually served archive to the reviewed authoring candidate,
+    # independently of mutable catalog/audit metadata. This check only reads.
+    assert sha(afterpath.read_bytes())==PINNED_SHA256, 'Reviewed candidate changed; publish a new revision instead.'
+    assert sha(PUBLISHED.read_bytes())==PINNED_SHA256, 'Published Teal V5 differs from the reviewed candidate.'
     oldm,old=bank(beforepath);newm,new=bank(afterpath)
     with zipfile.ZipFile(ROOT/'docs/kling-wardrobe/templates/male-full-outfits-v1.wardrobe-template.zip') as z:reg=z.read('registration.json')
     rows={r['frameId']:r for r in json.loads(reg)['frames']}
@@ -51,5 +57,12 @@ def main():
         else:assert np.array_equal(x,y) and np.array_equal(xm,ym)
     assert len(changed)==1 and newlyowned==217
     result={'passed':True,'decodedFrames':len(new),'unchangedFrames':len(new)-len(changed),'changedFrames':changed,'newlyOwnedSleevePixels':newlyowned,'allBodyAlphaExact':True,'allProtectedAnatomyExact':True,'sourceSha256':sha(source),'registrationSha256':sha(reg),'baselineSha256':sha(beforepath.read_bytes()),'candidateSha256':sha(afterpath.read_bytes()),'applicationVisualReview':'required separately; these are asset invariants'}
-    (OUT/'asset-checks.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
-if __name__=='__main__':main()
+    result['publishedArchiveExact']=True
+    result['publishedArchive']=str(PUBLISHED.relative_to(ROOT))
+    if write_report:
+        (OUT/'asset-checks.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps(result))
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--write-report',action='store_true',help='Explicitly update the authoring audit; default CI mode is read-only.')
+    main(parser.parse_args().write_report)
