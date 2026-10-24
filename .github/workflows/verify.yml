@@ -24,6 +24,7 @@ jobs:
       - run: python scripts/test_kling_hair_ear_overlap.py
       - run: python scripts/test_kling_hair_expansion.py
       - run: python scripts/test_kling_garment_recipe.py
+      - run: python scripts/verify-kling-contour-assets.py
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
