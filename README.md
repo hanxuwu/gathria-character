@@ -45,6 +45,11 @@ The [Sprints 26–30 review](docs/kling-contour-review/README.md) follows with a
 curved male crossing cuff and small female waist-edge repairs. **Inspect
 connections** offers contrasting backgrounds and silhouettes; **Download
 comparison GIF** saves synchronized original/current animation panels.
+The [Sprints 31–35 workflow](docs/kling-look-workflow/README.md) adds exact
+**Undo styling / Redo styling**, **Pin current look** and pinned/current PNG/GIF
+comparisons. **Find an outfit** searches all versions; 37 outfit pictures come
+from actual application exports. History and pinned references stay in the
+current session; portable wardrobe and CharacterPack formats remain unchanged.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.
@@ -118,8 +123,8 @@ standalone view. Existing male links retain their default behavior. There are th
 The skeletal poses are **standing, walk contact, run flight and raised arms**;
 these are not complete animation cycles. Clothing and expression in the skeletal
 candidates are fixed. Wardrobe uses separate source-sprite motion packs and does
-not change those skeletons. Its optional head layers provide two short hairstyles,
-three hair colors and a restrained gentle facial preset, while original action
+not change those skeletons. Its optional head layers provide registered short,
+curled and tied hairstyles, three hair colors and a restrained gentle facial preset, while original action
 blinks/laughter remain intact. Freeform face editing, long-hair simulation and
 continuous skeletal animation remain future work.
 Shoulder/armhole/shorts deformation and hidden-paint shading limitations remain
