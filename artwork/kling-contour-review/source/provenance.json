@@ -1,0 +1,13 @@
+{
+  "tool": "OpenAI image_gen.imagegen",
+  "date": "2026-10-24",
+  "prompt": "Edit this exact character image as a production clothing paintover. Keep the entire character design, face, hairstyle, body proportions, pose, hands, legs, shoes, camera, framing and transparent background unchanged. Make ONE local correction only: the navy long-sleeve cuff across the front of his stomach. Currently it ends in a harsh straight vertical cut with a pale rectangular sliver beside the fist. Paint a natural rounded, slightly oblique cuff opening that wraps around the existing wrist, with a narrow curved ivory shirt cuff inside and subtle fabric folds flowing toward it. Preserve the exact existing blurred fist position and its outer silhouette; do not invent fingers or move the arm. The cuff should look like a soft cylindrical sleeve viewed in three-quarter perspective, not a rectangle or sharp polygon. Match the existing smooth navy cartoon cloth, warm lighting and restrained detail. The existing vest and trousers outside this tiny sleeve/wrist correction must not be redesigned. Full body at the same proportions and placement. True transparent RGBA background, no glow, no checkerboard, no drop shadow, no labels.",
+  "transparent_background": true,
+  "files": {
+    "male-cuff-donor.png": "f3b7f1e1c6d9d8d8ce1c4c360a3ab707a7d03d2f382a3a7051aaa1fc1e27b7eb",
+    "male-cuff-reference.png": "f2212e3ec055af45654b0784005c9eecacdb3b0434667b080d1a3e52423acccc"
+  },
+  "processing": "scripts/prepare-kling-contours.py",
+  "generatedAnatomyUsed": false,
+  "femaleNewGeneration": false
+}

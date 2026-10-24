@@ -155,6 +155,13 @@
           "slot": "top",
           "url": "/docs/kling-wardrobe/garments/male/navy-suit-jacket-v5.zip",
           "sha256": "b30f61eaec15bbd2a1c119bc78819ca7455d0d22f1cf36f474268fe1e42271fa"
+        },
+        {
+          "id": "navy-suit-jacket-v6",
+          "name": "Navy curved cuff",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/navy-suit-jacket-v6.zip",
+          "sha256": "0b698489e15f5562d78d0c6663e2eadf02d04ca47f40fce4491e866cc32dc6cc"
         }
       ],
       "presets": [
@@ -243,6 +250,16 @@
           "name": "Wedding reviewed sleeve",
           "selection": {
             "top": "navy-suit-jacket-v5",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "wedding-curved-cuff",
+          "name": "Wedding curved cuff",
+          "selection": {
+            "top": "navy-suit-jacket-v6",
             "bottom": "navy-suit-trousers-v1",
             "fullBody": null,
             "shoes": "brown-shoes"
@@ -576,6 +593,20 @@
           "slot": "fullBody",
           "url": "/docs/kling-wardrobe/garments/female/ivory-wedding-dress-v7.zip",
           "sha256": "e87468d96da96c5c2e6ddb2644377d3b0cba6706f7e9af8da434a133ca39dc22"
+        },
+        {
+          "id": "coral-daydress-v8",
+          "name": "Coral smooth waist",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/coral-daydress-v8.zip",
+          "sha256": "abad0ecea7db3607408368d48424bab843fb786e383982dd06478ca0c2673ab0"
+        },
+        {
+          "id": "ivory-wedding-dress-v8",
+          "name": "Ivory smooth waist",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/ivory-wedding-dress-v8.zip",
+          "sha256": "e788b1666ee4fee9665030aa897dbd1d3cfed93ae99f625435fa875f8826c5c3"
         }
       ],
       "presets": [
@@ -666,6 +697,26 @@
             "top": null,
             "bottom": null,
             "fullBody": "ivory-wedding-dress-v7",
+            "shoes": null
+          }
+        },
+        {
+          "id": "day-smooth-waist",
+          "name": "Everyday smooth waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v8",
+            "shoes": null
+          }
+        },
+        {
+          "id": "wedding-smooth-waist",
+          "name": "Wedding smooth waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v8",
             "shoes": null
           }
         },
