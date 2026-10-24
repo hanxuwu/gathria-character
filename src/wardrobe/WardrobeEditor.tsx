@@ -9,6 +9,8 @@ import {
   Upload,
   ChevronLeft,
   ChevronRight,
+  Undo2,
+  Redo2,
 } from "lucide-react";
 import {
   KLING_CHARACTERS,
@@ -81,6 +83,12 @@ import NamedLooks from "./NamedLooks";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
 import { readLocalMaterial } from "./local-materials";
+import {
+  emptyLookHistory,
+  recordLookChange,
+  moveLookHistory,
+  type LookHistory,
+} from "./look-history";
 
 interface CatalogItem {
   id: string;
@@ -347,6 +355,7 @@ export default function WardrobeEditor({
   const savedSessions = useRef(
     new Map<KlingCharacterId, Pick<Session, "project" | "dirty">>(),
   );
+  const histories = useRef(new Map<KlingCharacterId, LookHistory>());
   const motion = useRef<MotionState>({
     action: "idle",
     elapsedMs: 0,
@@ -417,6 +426,7 @@ export default function WardrobeEditor({
     token: number,
     signal: AbortSignal,
     preserveMotion = false,
+    history: "keep" | "edit" | "reset" | LookHistory = "keep",
   ) {
     const renderer = await createWardrobeCompositor(project, { signal });
     try {
@@ -450,6 +460,18 @@ export default function WardrobeEditor({
         return;
       }
       const previous = current.current;
+      if (history === "reset") histories.current.delete(character);
+      else if (history === "edit" && previous?.character === character)
+        histories.current.set(
+          character,
+          recordLookChange(
+            histories.current.get(character) ?? emptyLookHistory(),
+            previous.project,
+            project,
+          ),
+        );
+      else if (typeof history === "object")
+        histories.current.set(character, history);
       remember({ project, character, renderer, dirty });
       previous?.renderer.dispose();
       rendered.current = null;
@@ -524,6 +546,7 @@ export default function WardrobeEditor({
       current.current = null;
       rendered.current = null;
       savedSessions.current.clear();
+      histories.current.clear();
     },
     [],
   );
@@ -756,11 +779,50 @@ export default function WardrobeEditor({
         token,
         controller.signal,
         preserveMotion,
+        "edit",
       );
       if (token === request.current) setStatus(message);
     } catch (failure) {
       if (token === request.current)
         setError(`${failureText(failure)} Your current outfit is unchanged.`);
+    } finally {
+      if (token === request.current) setBusy(false);
+    }
+  }
+  async function travelLook(direction: "undo" | "redo") {
+    const open = current.current;
+    if (!open || busy || appearancePreview) return;
+    const move = moveLookHistory(
+      histories.current.get(open.character) ?? emptyLookHistory(),
+      open.project,
+      direction,
+    );
+    if (!move) return;
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Restoring this look’s exact artwork…");
+    try {
+      await accept(
+        move.project,
+        open.character,
+        true,
+        token,
+        controller.signal,
+        true,
+        move.history,
+      );
+      if (token === request.current)
+        setStatus(
+          direction === "undo"
+            ? "Styling change undone. Action and facing kept."
+            : "Styling change redone. Action and facing kept.",
+        );
+    } catch (failure) {
+      if (token === request.current)
+        setError(
+          `${failureText(failure)} Your outfit and history are unchanged.`,
+        );
     } finally {
       if (token === request.current) setBusy(false);
     }
@@ -1238,7 +1300,15 @@ export default function WardrobeEditor({
         throw Error(
           "This project does not belong to either supported Kling character.",
         );
-      await accept(next, target.key, false, token, controller.signal);
+      await accept(
+        next,
+        target.key,
+        false,
+        token,
+        controller.signal,
+        false,
+        "reset",
+      );
       if (token === request.current)
         setStatus("Saved outfit and action settings restored.");
     } catch (failure) {
@@ -1463,6 +1533,30 @@ export default function WardrobeEditor({
           Choose hair, expression and clothing while keeping the original
           movement.
         </p>
+        <button
+          type="button"
+          disabled={
+            busy ||
+            Boolean(appearancePreview) ||
+            !session ||
+            !histories.current.get(session.character)?.past.length
+          }
+          onClick={() => void travelLook("undo")}
+        >
+          <Undo2 size={16} aria-hidden="true" /> Undo styling
+        </button>
+        <button
+          type="button"
+          disabled={
+            busy ||
+            Boolean(appearancePreview) ||
+            !session ||
+            !histories.current.get(session.character)?.future.length
+          }
+          onClick={() => void travelLook("redo")}
+        >
+          <Redo2 size={16} aria-hidden="true" /> Redo styling
+        </button>
         <button
           type="button"
           disabled={busy || Boolean(appearancePreview)}
@@ -2220,7 +2314,9 @@ export default function WardrobeEditor({
       )}
       <p className="wardrobe-local-note">
         Your appearance, clothing and exports stay in this browser. Save your
-        wardrobe before closing or reloading the page.
+        wardrobe before closing or reloading the page. Styling history keeps up
+        to 12 recent changes per character in this session; large artwork may
+        shorten it. Opening a saved project starts a new history.
       </p>
     </div>
   );
