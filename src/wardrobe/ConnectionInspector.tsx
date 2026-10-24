@@ -4,7 +4,8 @@ import type { WardrobeCompositor } from "./compositor";
 import type { WardrobeProject } from "./contract";
 import { downloadBlob } from "../core/pack";
 
-type Region = "head" | "waist" | "feet";
+type Region = "head" | "waist" | "wrists" | "feet";
+type Backdrop = "cream" | "dark" | "checker";
 
 /** Both pictures use one registered source rectangle. No per-layer recentering. */
 function regionFor(project: WardrobeProject, frameId: number, region: Region) {
@@ -30,25 +31,27 @@ function regionFor(project: WardrobeProject, frameId: number, region: Region) {
     );
   } else {
     const points =
-      region === "waist"
-        ? [
-            p.nearShoulder,
-            p.farShoulder,
-            p.nearElbow,
-            p.farElbow,
-            p.waistLeft,
-            p.waistRight,
-          ]
-        : [
-            p.waistLeft,
-            p.waistRight,
-            p.nearKnee,
-            p.farKnee,
-            p.nearAnkle,
-            p.farAnkle,
-            p.nearToe,
-            p.farToe,
-          ];
+      region === "wrists"
+        ? [p.nearElbow, p.farElbow, p.nearWrist, p.farWrist]
+        : region === "waist"
+          ? [
+              p.nearShoulder,
+              p.farShoulder,
+              p.nearElbow,
+              p.farElbow,
+              p.waistLeft,
+              p.waistRight,
+            ]
+          : [
+              p.waistLeft,
+              p.waistRight,
+              p.nearKnee,
+              p.farKnee,
+              p.nearAnkle,
+              p.farAnkle,
+              p.nearToe,
+              p.farToe,
+            ];
     left = Math.min(...points.map((p) => p.x));
     right = Math.max(...points.map((p) => p.x));
     top = Math.min(...points.map((p) => p.y));
@@ -74,6 +77,8 @@ export default function ConnectionInspector({
   facing: Facing;
 }) {
   const [region, setRegion] = useState<Region>("head");
+  const [backdrop, setBackdrop] = useState<Backdrop>("cream"),
+    [silhouette, setSilhouette] = useState(false);
   const canvas = useRef<HTMLCanvasElement>(null);
   useLayoutEffect(() => {
     const rect = regionFor(project, frameId, region);
@@ -91,12 +96,20 @@ export default function ConnectionInspector({
     target.width = width * scale * 2 + gap;
     target.height = height * scale + label;
     const context = target.getContext("2d")!;
-    context.fillStyle = "#eeeadf";
+    context.fillStyle = backdrop === "dark" ? "#202631" : "#eeeadf";
     context.fillRect(0, 0, target.width, target.height);
-    context.fillStyle = "#344b3f";
+    if (backdrop === "checker") {
+      context.fillStyle = "#c4c6c1";
+      for (let row = 0; row < Math.ceil((target.height - label) / 16); row++)
+        for (let col = 0; col < Math.ceil(target.width / 16); col++)
+          if ((row + col) % 2 === 0)
+            context.fillRect(col * 16, label + row * 16, 16, 16);
+    }
+    context.fillStyle = backdrop === "dark" ? "#f0f0eb" : "#344b3f";
     context.font = "13px sans-serif";
-    context.fillText("Original · 2×", 5, 18);
-    context.fillText("Current look · 2×", width * scale + gap + 5, 18);
+    const detail = `${silhouette ? "silhouette · " : ""}pose ${frameId} · ${facing} · 2×`;
+    context.fillText(`Original · ${detail}`, 5, 18);
+    context.fillText(`Current look · ${detail}`, width * scale + gap + 5, 18);
     context.imageSmoothingEnabled = false;
     for (const [index, image] of [
       renderer.renderSourceFrame(frameId),
@@ -105,17 +118,21 @@ export default function ConnectionInspector({
       const source = document.createElement("canvas");
       source.width = image.width;
       source.height = image.height;
-      source
-        .getContext("2d")!
-        .putImageData(
-          new ImageData(
-            new Uint8ClampedArray(image.pixels),
-            image.width,
-            image.height,
-          ),
-          0,
-          0,
-        );
+      const sourceContext = source.getContext("2d")!;
+      sourceContext.putImageData(
+        new ImageData(
+          new Uint8ClampedArray(image.pixels),
+          image.width,
+          image.height,
+        ),
+        0,
+        0,
+      );
+      if (silhouette) {
+        sourceContext.globalCompositeOperation = "source-in";
+        sourceContext.fillStyle = backdrop === "dark" ? "#eeeadf" : "#344b3f";
+        sourceContext.fillRect(0, 0, image.width, image.height);
+      }
       context.save();
       context.translate(index * (width * scale + gap), label);
       if (facing === "left") {
@@ -137,7 +154,10 @@ export default function ConnectionInspector({
     }
     target.dataset.frameId = String(frameId);
     target.dataset.facing = facing;
-  }, [project, renderer, frameId, region, facing]);
+    target.dataset.backdrop = backdrop;
+    target.dataset.silhouette = String(silhouette);
+    target.dataset.crop = JSON.stringify({ x, y, width, height });
+  }, [project, renderer, frameId, region, facing, backdrop, silhouette]);
   return (
     <section className="wardrobe-inspector" aria-label="Connection inspector">
       <div className="wardrobe-playback-controls">
@@ -150,8 +170,29 @@ export default function ConnectionInspector({
           >
             <option value="head">Hair, ears & neck</option>
             <option value="waist">Shoulders & waist</option>
+            <option value="wrists">Elbows, cuffs & hands</option>
             <option value="feet">Hem, knees & shoes</option>
           </select>
+        </label>
+        <label>
+          Background
+          <select
+            aria-label="Inspection background"
+            value={backdrop}
+            onChange={(e) => setBackdrop(e.target.value as Backdrop)}
+          >
+            <option value="cream">Light</option>
+            <option value="dark">Dark</option>
+            <option value="checker">Checkerboard</option>
+          </select>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={silhouette}
+            onChange={(e) => setSilhouette(e.target.checked)}
+          />
+          Show silhouettes
         </label>
         <button
           type="button"
@@ -160,7 +201,7 @@ export default function ConnectionInspector({
               if (blob)
                 downloadBlob(
                   blob,
-                  `connections-${region}-${frameId}-${facing}-2x.png`,
+                  `connections-${region}-${frameId}-${facing}-${backdrop}${silhouette ? "-silhouette" : ""}-2x.png`,
                 );
             }, "image/png")
           }
