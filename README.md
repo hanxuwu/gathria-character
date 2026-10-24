@@ -102,6 +102,8 @@ first clothing selection and repeat switching.
 use `character=male` for the male. `/skin-studio.html?character=female` is the
 standalone view. Existing male links retain their default behavior. There are three primary destinations and four HTML build entries.
 
+[Eight current combinations: feature summary and actual five-action GIFs](docs/kling-combination-gallery/README.md) compare everyday, wedding and mixed looks with independently selected hair and colors.
+
 ## What is ready
 
 - Source-bound wardrobe: 17 authoring anchors per pose, registered tops, bottoms,
