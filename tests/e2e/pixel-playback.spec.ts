@@ -237,13 +237,11 @@ test("oversized native pixel frames keep export available without allocating ove
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/player.html?authoring=1");
-  await page
-    .locator("#player-zip")
-    .setInputFiles({
-      name: "wide-pixel.character.zip",
-      mimeType: "application/zip",
-      buffer: Buffer.from(await archive.arrayBuffer()),
-    });
+  await page.locator("#player-zip").setInputFiles({
+    name: "wide-pixel.character.zip",
+    mimeType: "application/zip",
+    buffer: Buffer.from(await archive.arrayBuffer()),
+  });
   await expect(page.getByTestId("pixel-preview-limit")).toContainText(
     "Pixel preview exceeds the display limit",
   );

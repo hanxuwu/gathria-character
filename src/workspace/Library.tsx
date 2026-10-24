@@ -1,4 +1,11 @@
-import { ArrowRight, Bone, Check, ShieldCheck, Shirt } from "lucide-react";
+import {
+  ArrowRight,
+  Bone,
+  Check,
+  Palette,
+  ShieldCheck,
+  Shirt,
+} from "lucide-react";
 import { KLING_CHARACTERS } from "../consumer/kling-catalog";
 import { MainNavigation } from "./MainNavigation";
 import "./workspace.css";
@@ -99,6 +106,19 @@ export function CharacterLibrary() {
                     </a>
                     <span className="library-character__capability">
                       Everyday and wedding outfits · five original actions
+                    </span>
+                  </div>
+                  <div className="library-character__skeleton">
+                    <a
+                      className="workspace-button workspace-button--secondary"
+                      href={`/workbench.html?character=${character.id}&mode=themes`}
+                    >
+                      <Palette size={18} aria-hidden="true" />
+                      <span>Explore {character.name} themes</span>
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </a>
+                    <span className="library-character__capability">
+                      Complete art themes · compare, save and export
                     </span>
                   </div>
                   <div className="library-character__skeleton">

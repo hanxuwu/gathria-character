@@ -1,0 +1,14 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Edit first reference sprite sheet to fix its inconsistent character drawing scale compared with references 2 and 3. Output transparent RGBA 1536x1024 sprite sheet, exactly 4 columns x2 rows of 384x512 cells. Preserve the EXACT male curly brown-haired wedding character identity, navy suit, ivory buttoned waistcoat, salmon tie, small chest rose attached to jacket, brown shoes, warm clean pixel art, right-facing 3/4 view and the eight poses/expressions of reference1: top row four calm standing idle poses, bottom row four happy closed-eye celebrating poses. Critical correction: reference1's idle and celebrating characters are drawn around ten percent larger than his walk and run counterparts. Redraw these eight poses at the SAME ART SCALE as the walking and running references; do not let the standing head become larger. At high-res source scale the curly hair/head silhouette should be approximately 230 pixels wide, not 260, and natural straight standing crown-to-shoe height about 430 pixels, not 475. Top row standing shoe bottoms should be at y490, crowns near y60-70. Bottom row foot bottoms at y1002, with crowns matching appropriate standing/crouched poses. Each pose center remains inside its own 384px-wide cell. Leave transparent margins on all sides and no contact between cells. Preserve compact anatomy, short neck, face and outfit exactly; body scale consistent across idle and celebration. Redraw as clean readable pixel clusters with stable outline/light/shadow and natural limb attachment. No painted background, no haze, no ground shadows, no text, no guide lines. Transparent empty pixels. Do not add laces, props, buttons or ornament variations.",
+  "referenced_image_paths": [
+    "/workspace/gathria-character/artwork/kling-themes/source/male-wedding-idle-celebrate-v1.png",
+    "/workspace/gathria-character/artwork/kling-themes/source/male-wedding-walk-v1.png",
+    "/workspace/gathria-character/artwork/kling-themes/source/male-wedding-run-v1.png"
+  ],
+  "transparent_background": true,
+  "generatedImage": "exec-c311b338-d630-4a85-a4ee-352257e0c1b1.png",
+  "outputFile": "male-wedding-idle-celebrate-v2.png",
+  "sha256": "e768a1bbd088a8f50b8d2fd7789ac48571802dc07333338f074ba880e46efadc",
+  "authoringDecision": "Selected after visual review: standing head/body scale is closer to retained wedding walk/run drawings than v1. V1 retained as the prior trial."
+}
