@@ -43,7 +43,7 @@ test("frame inspection keeps source and dressed crops aligned without changing e
   await expect(crop).toHaveAttribute("data-frame-id", fid!);
   await p.getByLabel("Wardrobe facing", { exact: true }).selectOption("left");
   await expect(crop).toHaveAttribute("data-facing", "left");
-  for (const region of ["waist", "feet", "head"]) {
+  for (const region of ["waist", "wrists", "feet", "head"]) {
     await p.getByLabel("Inspection area", { exact: true }).selectOption(region);
     expect(
       await crop.evaluate(
@@ -51,6 +51,29 @@ test("frame inspection keeps source and dressed crops aligned without changing e
       ),
     ).toBe(true);
   }
+  const nativeCrop = await crop.getAttribute("data-crop");
+  const images: string[] = [];
+  for (const backdrop of ["dark", "checker", "cream"]) {
+    await p
+      .getByLabel("Inspection background", { exact: true })
+      .selectOption(backdrop);
+    await expect(crop).toHaveAttribute("data-backdrop", backdrop);
+    expect(await crop.getAttribute("data-crop")).toBe(nativeCrop);
+    images.push(await crop.evaluate((c: HTMLCanvasElement) => c.toDataURL()));
+  }
+  expect(new Set(images).size).toBe(3);
+  await p.getByLabel("Show silhouettes", { exact: true }).check();
+  await expect(crop).toHaveAttribute("data-silhouette", "true");
+  expect(await crop.getAttribute("data-crop")).toBe(nativeCrop);
+  const comparison = page.waitForEvent("download");
+  await p
+    .getByRole("button", { name: "Save comparison PNG", exact: true })
+    .click();
+  const comparisonDownload = await comparison;
+  expect(await comparisonDownload.failure()).toBeNull();
+  expect(comparisonDownload.suggestedFilename()).toContain(
+    "-left-cream-silhouette-2x.png",
+  );
   await p
     .getByRole("button", { name: "Previous wardrobe frame", exact: true })
     .click();

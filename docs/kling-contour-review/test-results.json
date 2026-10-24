@@ -1,0 +1,30 @@
+{
+  "note": "The actual browser capture uses the production build of this working tree. commitAtCapture records the Git parent at start; source hashes below identify the built/tested implementation before its staged commit.",
+  "files": {
+    "dist/workbench.html": "262afc14c4b5344ff81f92524c75ad981c6275b00b471335e1564fabbac26da7",
+    "src/wardrobe/ConnectionInspector.tsx": "96fea49ff7aae9e1fa580af684b2da05ec0c6dd57baec52cf9caac2b14be6f20",
+    "src/wardrobe/WardrobeEditor.tsx": "40e9c798c4467a51b2e4745692b366847ea029ee8a49ca4767313ffaf29e9bb8",
+    "src/wardrobe/action-gif.ts": "dc02566d78c6c721aa442004cc292e80d2e1ed7f189bc3db1f9ddac88f7ffa9c",
+    "src/wardrobe/gif-comparison.ts": "c1d7475f9843525ef907b21cac6cee8db662479925ff27addd430eff5cd57139",
+    "src/wardrobe/action-gif.test.ts": "254c1add4e485a4b7d499d69a6881c9caa1d10b0bc23020755974f54555085dc",
+    "tests/e2e/wardrobe-gif.spec.ts": "d16bf195990300dabcb2fca1d4dc1e250065253507aeb6622dfb9476b917f560",
+    "tests/e2e/wardrobe-inspection.spec.ts": "84ecea1adc43cc611260babaa16c2f6688d79599e7e6ed730f0132045e0b9358"
+  },
+  "unitTests": {
+    "files": 24,
+    "passed": 247
+  },
+  "recipeTests": {
+    "passed": 6
+  },
+  "targetedBrowserTests": {
+    "passed": 4
+  },
+  "build": "TypeScript and production build passed",
+  "browserTests": {
+    "passed": 68,
+    "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e"
+  },
+  "implementationCommit": "ff06472",
+  "assetAudit": "101 old archive hashes, four source/registration files, all 280 poses in three additive banks; passed after removing a full-history Git dependency for shallow CI checkouts."
+}
