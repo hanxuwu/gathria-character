@@ -58,13 +58,32 @@ def main():
         audit=json.loads((OUT/f'{key}-paint-report.json').read_text());assert {p['frameId']:p['changedPixels'] for p in audit['poses'] if p['changedPixels']}==expected
         assert audit['output']['sha256']==sha((OUT/f'{key}.garment.zip').read_bytes())
         assert audit['inputSha256']==c['paintedInputSha256']
+        kit_record=next(r for r in records if r['kind']=='kit')
+        with zipfile.ZipFile(ROOT/kit_record['file']) as kit_zip,zipfile.ZipFile(OUT/f'{key}.garment.zip') as output_zip:
+            with zipfile.ZipFile(io.BytesIO(kit_zip.read('base.garment.zip'))) as base_zip:
+                old_m=json.loads(base_zip.read('manifest.json'));new_m=json.loads(output_zip.read('manifest.json'))
+                for field in ['version','slot','sourceSha256','registrationSha256','characterId','frameWidth','frameHeight','frames','pages','handProtectionReviews']:assert old_m.get(field)==new_m.get(field)
+                per_pose={}
+                for page_index,page in enumerate(old_m['pages']):
+                    assert base_zip.read(page['maskFile'])==output_zip.read(page['maskFile'])
+                    old_page=np.array(decoded(base_zip.read(page['file'])));new_page=np.array(decoded(output_zip.read(page['file'])))
+                    assert np.array_equal(old_page[...,3],new_page[...,3])
+                    for frame in [f for f in old_m['frames'] if f['page']==page_index]:
+                        r=frame['rect'];off=frame['offset'];a_slice=old_page[r['y']:r['y']+r['height'],r['x']:r['x']+r['width']];b_slice=new_page[r['y']:r['y']+r['height'],r['x']:r['x']+r['width']]
+                        count=int(np.any(a_slice!=b_slice,axis=2).sum())
+                        if count:per_pose[frame['frameId']]=count
+                        record=next((v for v in audit['poses'] if v['frameId']==frame['frameId']),None)
+                        if record:
+                            for source,field in [(a_slice,'beforeRgbaSha256'),(b_slice,'afterRgbaSha256')]:
+                                native=np.zeros((old_m['frameHeight'],old_m['frameWidth'],4),dtype=np.uint8);native[off['y']:off['y']+r['height'],off['x']:off['x']+r['width']]=source;assert sha(native.tobytes())==record[field]
+                assert per_pose==expected
         project_record=next(r for r in records if r['kind']=='project')
         with zipfile.ZipFile(ROOT/project_record['file']) as z:
             document=json.loads(z.read('document.json'));assert sha(z.read('source.character.zip'))==document['sourceSha256'];assert sha(z.read('registration.json'))==document['registrationSha256']
             selected=[i for i,x in enumerate(document['items']) if x['id']==c['newId']];assert len(selected)==1
             assert z.read(f'item-{selected[0]}.zip')==(OUT/f'{key}.garment.zip').read_bytes()
             for i,item in enumerate(document['items']):assert sha(z.read(f'item-{i}.zip'))==item['sha256']
-        result['projects'].append({'key':key,'savedMaterialExact':True,'nestedFilesDecoded':True})
+        result['projects'].append({'key':key,'savedMaterialExact':True,'nestedFilesDecoded':True,'allOwnershipAndAlphaExact':True,'perPoseRgbaReportHashesVerified':True})
         groups={}
         for r in records:
             data=(ROOT/r['file']).read_bytes()

@@ -250,7 +250,7 @@ try {
       newId = `${c.key}-browser-roundtrip-v1`;
     const replay = JSON.parse(
       execFileSync(
-        process.env.KLING_PYTHON || "/tmp/kling-polish-venv/bin/python",
+        process.env.KLING_PYTHON || "python3",
         [
           "scripts/prepare-kling-paint-replay.py",
           kit.path,
@@ -259,7 +259,7 @@ try {
           newId,
           ...(c.donor ? ["--donor", join(root, c.donor)] : []),
         ],
-        { cwd: root, encoding: "utf8" },
+        { cwd: root, encoding: "utf8", timeout: 120000 },
       ),
     );
     const beforeImport = Date.now();

@@ -1,0 +1,19 @@
+[WebServer] (node:700248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:700261) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:700307) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/paint-roundtrip.spec.ts:58:1 › painted native kit previews without changing the accepted look, downloads provenance, applies, undoes and reopens exactly (3.5s)
+  ✓  2 tests/e2e/paint-roundtrip.spec.ts:113:1 › a bad later painted pose is rejected atomically and leaves styling history intact (2.4s)
+  ✓  3 tests/e2e/paint-roundtrip.spec.ts:136:1 › motion review retains loop and one-shot boundaries, seeks exact positions and exports mirrored native evidence (2.8s)
+
+  3 passed (10.0s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

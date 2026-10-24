@@ -39,6 +39,17 @@ does not silently update any garment or preset and does not merge itself.
   build again. Existing stale-candidate and protected-head tests remain passing;
   new browser tests cover atomic late-pose failure, save/reopen and mirrored
   transition exports. No old artwork, catalog or motion files changed.
-- **64–65:** Production matrix capture and independent output decoding are the
-  final acceptance steps. Results and actual downloadable evidence are recorded
-  alongside this plan when those steps finish.
+- **64 — complete:** Four production male/female daily/wedding flows passed
+  isolated import, explicit apply, undo, save/reopen, PNG/ZIP/GIF export and mobile
+  layout checks. Male identity imports took 6.7/9.4 s; female RGB rebuilds took
+  19.3/38.3 s. Scans ranged 2.2–22.0 s. The heavy wedding case remains a performance
+  limitation; these are single-run measurements, not a claimed speed improvement.
+- **65 — complete:** After every editor closed, 40 independent action/facing
+  playbacks passed. Independent decoding checked 8 packs / 736 poses, 16 GIFs /
+  440 frames, 52 native PNG comparisons, 8 integrity-indexed motion bundles and
+  saved project materials. Of 368 pose pairs, 366 remained pixel-exact; the two
+  female pose-55 changes reproduced the existing V9 repair at 451 RGB pixels each.
+  No artwork is claimed as new. Same-pose native boards, 3x details, full run
+  keyframes, actual GIFs, logs, provenance and remaining visual/performance limits
+  are published in [README.md](README.md). This branch is delivered as a new draft
+  PR; it does not merge itself.
