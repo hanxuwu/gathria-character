@@ -273,7 +273,25 @@ def build_pixel(recipe_path: Path) -> None:
         "derivation": {"method": "AI-authored independent pixel sprite drawings; fixed-grid extraction and uniform integer sampling only. Timeline authored for these drawings. No geometric rig deformation, generated runtime frames, or claim of video-pixel extraction.", "frames": source_rows},
         "sourceMetadata": {"theme": {"id": identity, "revision": revision, "character": character, "lookId": look_id, "lookName": recipe.get("lookName", "Tank & shorts"), "referenceSourceSha256": source.sha, "rendering": "pixel", "sourceRecipeSha256": SHA(recipe_bytes), "generatedSources": generation_sources, "uniformSample": sample, "nativeFrame": [native_width, native_height], "registrationPadding": padding, "provenance": provenance}},
     }
-    character_pack = zip_bytes({"manifest.json": json.dumps(manifest, indent=2).encode(), "character.json": json.dumps(config, indent=2).encode(), "spritesheet.png": png(atlas)})
+    provenance_text = (f"Authored pixel character: {manifest['name']}\nLook: {look_id}\n\n{provenance}\n\n"
+        f"Source recipe: {recipe_path.relative_to(ROOT)}\nSHA256: {SHA(recipe_bytes)}\n"
+        f"Reference Kling archive: {source.path.relative_to(ROOT)}\nReference SHA256: {source.sha}\n\n"
+        "The generated sheets are independently authored artwork, not extracted video pixels. "
+        "character.json records every generated source hash, crop, registration translation, common sampling step and timeline. "
+        "Source PNGs, exact generation records where retained, and technical recipes are preserved in the project. "
+        "No runtime drawing API, theme filter, skeletal deformation or generated in-between frames are required.\n")
+    integration_text = ("# CharacterPack V4: authored pixel artwork\n\n"
+        "Load manifest.json, character.json and every declared atlas PNG. Page 0 is spritesheet; additionalSheets may be empty. "
+        "Each frame has an explicit page and an unscaled rectangle. Preserve the native 192 x 272 frame and the frame-relative anchor (96, 251).\n\n"
+        "Honor scale.pixelArt=true and scale.integerOnly=true: render with nearest-neighbor sampling at a positive integer zoom. "
+        "Do not smooth, normalize separate poses or resize exported artwork. V2/V3-only consumers must explicitly reject V4.\n\n"
+        "Play the listed frame IDs at each animation's declared FPS. Repeated IDs are intentional holds. "
+        "Honor loop; the one-shot jump stops on its last frame until explicitly replayed or another action is selected. "
+        "The native direction is right; mirror horizontally around the declared anchor for left. These clips animate in place, without world displacement.\n\n"
+        "This is a complete baked look for independent playback, not editable garment layers or a skeleton. "
+        "Source artwork, identity, registration and timing are described in character.json and PROVENANCE.txt. "
+        "The editor and theme catalog are not needed to play this CharacterPack.\n")
+    character_pack = zip_bytes({"manifest.json": json.dumps(manifest, indent=2).encode(), "character.json": json.dumps(config, indent=2).encode(), "spritesheet.png": png(atlas), "PROVENANCE.txt": provenance_text.encode(), "INTEGRATION.md": integration_text.encode()})
     EXPORTS.mkdir(parents=True, exist_ok=True)
     prefix = f"{character}-{identity}"
     pack_suffix = "" if look_id == "base" else "-" + look_id

@@ -72,6 +72,7 @@ const report = {
     encoding: "utf8",
   }).trim(),
   cases: [],
+  initialLoads: [],
   downloads: [],
   playback: [],
   switches: [],
@@ -160,10 +161,26 @@ function watch(context, independent = false) {
   });
 }
 async function ready(page, expected) {
-  if (expected)
-    await expect(panel(page).getByRole("status")).toContainText(expected, {
-      timeout: 180000,
-    });
+  if (expected) {
+    await expect
+      .poll(
+        async () =>
+          (await panel(page).getByRole("alert").count()) > 0 ||
+          (await panel(page).getByRole("status").innerText()).includes(
+            expected,
+          ),
+        {
+          timeout: 180000,
+          message: `Theme preparation must finish or report an explicit error: ${expected}`,
+        },
+      )
+      .toBe(true);
+    assert.deepEqual(
+      await panel(page).getByRole("alert").allTextContents(),
+      [],
+    );
+    await expect(panel(page).getByRole("status")).toContainText(expected);
+  }
   await expect(button(panel(page), "Cancel theme preparation")).toHaveCount(0, {
     timeout: 180000,
   });
@@ -210,13 +227,20 @@ try {
     const context = await browser.newContext({
       viewport: { width: 1280, height: 1000 },
     });
+    context.setDefaultTimeout(60000);
     watch(context);
     const page = await context.newPage();
     active = page;
+    const coldLoadStart = Date.now();
     await page.goto(
       `${origin}/workbench.html?character=${character}&mode=themes`,
     );
     await ready(page, "Kling original selected");
+    report.initialLoads.push({
+      character,
+      elapsedMs: Date.now() - coldLoadStart,
+      includesBothLookValidation: true,
+    });
     const originalBaseSnapshot = await snapshot(page);
     for (const lookId of ["base", "wedding"]) {
       await button(panel(page), /^Kling original/).click();
@@ -336,11 +360,19 @@ try {
         await expect(page.getByTestId("theme-reference")).toBeVisible({
           timeout: 180000,
         });
+        if (kind === "pixel-storybook")
+          await panel(page)
+            .getByLabel("Theme display scale", { exact: true })
+            .selectOption("2");
         await page.screenshot({
           path: join(out, `${key}-workspace.png`),
           fullPage: true,
         });
         await page.setViewportSize({ width: 390, height: 844 });
+        if (kind === "pixel-storybook")
+          await panel(page)
+            .getByLabel("Theme display scale", { exact: true })
+            .selectOption("1");
         assert(
           await page.evaluate(
             () => document.documentElement.scrollWidth <= innerWidth + 1,
@@ -351,6 +383,9 @@ try {
           fullPage: true,
         });
         await page.setViewportSize({ width: 1280, height: 1000 });
+        await panel(page)
+          .getByLabel("Theme display scale", { exact: true })
+          .selectOption("fit");
         await panel(page)
           .getByLabel("Compare Kling original", { exact: true })
           .uncheck();
@@ -436,6 +471,7 @@ try {
     const context = await browser.newContext({
       viewport: { width: 1100, height: 850 },
     });
+    context.setDefaultTimeout(60000);
     watch(context, true);
     const page = await context.newPage();
     active = page;
