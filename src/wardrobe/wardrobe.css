@@ -700,3 +700,45 @@
   background: #e9eddf;
   border-radius: 4px;
 }
+
+.wardrobe-review-workbench {
+  margin-block: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #c7cebf;
+  border-radius: 12px;
+  min-width: 0;
+  background: #f8f7f1;
+}
+.wardrobe-review-workbench canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-block: 1rem;
+}
+.wardrobe-review-workbench textarea {
+  display: block;
+  width: 100%;
+  min-height: 5rem;
+  box-sizing: border-box;
+}
+.wardrobe-review-workbench input[type="number"] {
+  width: 5rem;
+}
+.wardrobe-review-poses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem;
+  max-height: 22rem;
+  overflow: auto;
+  margin-block: 1rem;
+}
+.wardrobe-review-poses small {
+  display: block;
+}
+.wardrobe-review-issues {
+  padding-left: 1.25rem;
+  overflow-wrap: anywhere;
+}
+.wardrobe-review-issues li {
+  margin-block: 1rem;
+}
