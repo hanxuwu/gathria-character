@@ -3,6 +3,64 @@ import { expect, test } from "@playwright/test";
 import { parseGIF, decompressFrames } from "gifuct-js";
 import { installWardrobeFixture } from "./wardrobe-fixture";
 
+test("exports labeled original/current GIF panels at source speed and retains left/right panel order", async ({
+  page,
+}) => {
+  await installWardrobeFixture(page);
+  await page.goto("/workbench.html?character=female&mode=wardrobe");
+  const p = page.locator("#wardrobe-panel");
+  await expect(p.getByRole("status")).toContainText("Original outfit.");
+  await p.getByRole("button", { name: "Daily", exact: true }).click();
+  await expect(p.getByRole("status")).toContainText("Daily selected");
+  await p.getByLabel("Wardrobe action", { exact: true }).selectOption("run");
+  await p
+    .getByLabel("Wardrobe preview speed", { exact: true })
+    .selectOption("0.25");
+  const decoded = [];
+  for (const facing of ["right", "left"]) {
+    await p.getByLabel("Wardrobe facing", { exact: true }).selectOption(facing);
+    const before = await p
+      .getByTestId("wardrobe-preview")
+      .evaluate((c: HTMLCanvasElement) => c.toDataURL());
+    const pending = page.waitForEvent("download");
+    await p
+      .getByRole("button", { name: "Download comparison GIF", exact: true })
+      .click();
+    const download = await pending;
+    expect(download.suggestedFilename()).toContain(
+      `run-${facing}-comparison-half.gif`,
+    );
+    const parsed = parseGIF(
+      new Uint8Array(await readFile((await download.path())!)).buffer,
+    );
+    const frames = decompressFrames(parsed, true);
+    expect(parsed.lsd).toMatchObject({ width: 16, height: 20 });
+    expect(frames.map((f) => f.delay)).toEqual([80, 90]);
+    expect(frames).toHaveLength(2);
+    await expect(p.getByRole("status")).toContainText("Comparison GIF saved");
+    expect(
+      await p
+        .getByTestId("wardrobe-preview")
+        .evaluate((c: HTMLCanvasElement) => c.toDataURL()),
+    ).toBe(before);
+    decoded.push(frames);
+  }
+  for (let f = 0; f < 2; f++) {
+    expect(decoded[0][f].patch.slice(0, 16 * 16 * 4)).toEqual(
+      decoded[1][f].patch.slice(0, 16 * 16 * 4),
+    );
+    for (const offset of [0, 12])
+      for (let y = 16; y < 20; y++)
+        for (let x = 0; x < 4; x++) {
+          const a = (y * 16 + offset + x) * 4,
+            b = (y * 16 + offset + 3 - x) * 4;
+          expect(decoded[0][f].patch.slice(a, a + 4)).toEqual(
+            decoded[1][f].patch.slice(b, b + 4),
+          );
+        }
+  }
+});
+
 test("downloads actual dressed actions in both directions and a one-shot GIF without changing the outfit", async ({
   page,
 }) => {

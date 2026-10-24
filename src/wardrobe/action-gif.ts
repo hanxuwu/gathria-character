@@ -2,6 +2,11 @@ import { GIFEncoder, quantize, applyPalette } from "gifenc";
 import type { Facing, PortableAnimationName } from "../core/types";
 import type { RgbaPng } from "../core/baked-source";
 import type { WardrobeCompositor } from "./compositor";
+import {
+  joinGifComparison,
+  GIF_COMPARISON_GAP,
+  GIF_COMPARISON_LABEL,
+} from "./gif-comparison";
 
 export const GIF_MATTE = [238, 233, 223] as const;
 /** GIF cannot encode fractional alpha. Composite first, then box-average to
@@ -51,19 +56,26 @@ export function gifDelays(frameCount: number, fps: number): number[] {
 }
 const yieldTask = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 export async function exportWardrobeActionGif(
-  renderer: Pick<WardrobeCompositor, "manifest" | "renderFrame">,
+  renderer: Pick<WardrobeCompositor, "manifest" | "renderFrame"> &
+    Partial<Pick<WardrobeCompositor, "renderSourceFrame">>,
   action: PortableAnimationName,
   facing: Facing,
   options: {
     signal?: AbortSignal;
     onProgress?: (done: number, total: number) => void;
+    comparison?: boolean;
   } = {},
 ): Promise<Uint8Array> {
   const clip = renderer.manifest.animations[action];
   if (!clip) throw Error("This character has no requested action.");
   const delays = gifDelays(clip.frames.length, clip.fps);
-  const width = Math.ceil(renderer.manifest.spritesheet.frameWidth / 2),
-    height = Math.ceil(renderer.manifest.spritesheet.frameHeight / 2);
+  const comparison = options.comparison === true;
+  if (comparison && !renderer.renderSourceFrame)
+    throw Error("Original source frames are unavailable for comparison.");
+  const panelWidth = Math.ceil(renderer.manifest.spritesheet.frameWidth / 2),
+    panelHeight = Math.ceil(renderer.manifest.spritesheet.frameHeight / 2),
+    width = comparison ? panelWidth * 2 + GIF_COMPARISON_GAP : panelWidth,
+    height = comparison ? panelHeight + GIF_COMPARISON_LABEL : panelHeight;
   if (
     width * height * clip.frames.length > 32_000_000 ||
     clip.frames.length > 600
@@ -82,10 +94,16 @@ export async function exportWardrobeActionGif(
   for (let i = 0; i < clip.frames.length; i++) {
     await yieldTask();
     check();
-    const image = compactGifFrame(
+    const dressed = compactGifFrame(
       renderer.renderFrame(clip.frames[i]),
       "right",
     );
+    const image = comparison
+      ? joinGifComparison(
+          compactGifFrame(renderer.renderSourceFrame!(clip.frames[i]), "right"),
+          dressed,
+        )
+      : dressed;
     if (image.width !== width || image.height !== height)
       throw Error("GIF source dimensions changed during export.");
     frames.push(image);
@@ -117,14 +135,18 @@ export async function exportWardrobeActionGif(
     // Quantize native pixels in both directions, then mirror indices. Sampling
     // mirrored pixels could otherwise pick a different left-facing palette.
     if (facing === "left")
-      for (let y = 0; y < height; y++)
-        for (let x = 0; x < Math.floor(width / 2); x++) {
-          const a = y * width + x,
-            b = y * width + width - 1 - x,
-            value = indices[a];
-          indices[a] = indices[b];
-          indices[b] = value;
-        }
+      // Mirror each body inside its own panel. Keep labels readable and
+      // original/current order fixed, with identical palette in both directions.
+      for (let panel = 0; panel < (comparison ? 2 : 1); panel++)
+        for (let y = comparison ? GIF_COMPARISON_LABEL : 0; y < height; y++)
+          for (let x = 0; x < Math.floor(panelWidth / 2); x++) {
+            const left = panel * (panelWidth + GIF_COMPARISON_GAP),
+              a = y * width + left + x,
+              b = y * width + left + panelWidth - 1 - x,
+              value = indices[a];
+            indices[a] = indices[b];
+            indices[b] = value;
+          }
     gif.writeFrame(indices, width, height, {
       ...(i === 0 ? { palette } : {}),
       delay: delays[i],

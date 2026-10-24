@@ -1307,7 +1307,7 @@ export default function WardrobeEditor({
     }
   }
 
-  async function exportGif() {
+  async function exportGif(comparison = false) {
     const open = current.current;
     if (!open || busy || appearancePreview) return;
     const { token, controller } = beginPreparation();
@@ -1321,6 +1321,7 @@ export default function WardrobeEditor({
         shownAction,
         facing,
         {
+          comparison,
           signal: controller.signal,
           onProgress: (done, total) => {
             if (token === request.current)
@@ -1331,11 +1332,13 @@ export default function WardrobeEditor({
       if (token !== request.current || controller.signal.aborted) return;
       saveBytes(
         bytes,
-        `${safeFilename(`kling-${open.character}-wardrobe`)}-${shownAction}-${facing}-half.gif`,
+        `${safeFilename(`kling-${open.character}-wardrobe`)}-${shownAction}-${facing}${comparison ? "-comparison" : ""}-half.gif`,
         "image/gif",
       );
       setStatus(
-        "Action GIF saved at half native size, original timing and the selected direction, on a cream background.",
+        comparison
+          ? "Comparison GIF saved: original on the left, current look on the right. Matching frames, anchors and original timing."
+          : "Action GIF saved at half native size, original timing and the selected direction, on a cream background.",
       );
     } catch (failure) {
       if (token === request.current && !controller.signal.aborted)
@@ -1391,12 +1394,16 @@ export default function WardrobeEditor({
   const recommendedIds =
     session?.character === "female"
       ? [
-          entry?.presets.some((p) => p.id === "day-native-folds")
-            ? "day-native-folds"
-            : "day-soft-waist",
-          entry?.presets.some((p) => p.id === "wedding-native-folds")
-            ? "wedding-native-folds"
-            : "wedding-soft-waist",
+          entry?.presets.some((p) => p.id === "day-smooth-waist")
+            ? "day-smooth-waist"
+            : entry?.presets.some((p) => p.id === "day-native-folds")
+              ? "day-native-folds"
+              : "day-soft-waist",
+          entry?.presets.some((p) => p.id === "wedding-smooth-waist")
+            ? "wedding-smooth-waist"
+            : entry?.presets.some((p) => p.id === "wedding-native-folds")
+              ? "wedding-native-folds"
+              : "wedding-soft-waist",
           "sage-pinafore",
           "ivory-refined",
         ]
@@ -1404,11 +1411,13 @@ export default function WardrobeEditor({
           entry?.presets.some((p) => p.id === "day-soft-cuff")
             ? "day-soft-cuff"
             : "day-refined",
-          entry?.presets.some((p) => p.id === "wedding-reviewed-sleeve")
-            ? "wedding-reviewed-sleeve"
-            : entry?.presets.some((p) => p.id === "wedding-soft-cuff")
-              ? "wedding-soft-cuff"
-              : "wedding-refined",
+          entry?.presets.some((p) => p.id === "wedding-curved-cuff")
+            ? "wedding-curved-cuff"
+            : entry?.presets.some((p) => p.id === "wedding-reviewed-sleeve")
+              ? "wedding-reviewed-sleeve"
+              : entry?.presets.some((p) => p.id === "wedding-soft-cuff")
+                ? "wedding-soft-cuff"
+                : "wedding-refined",
           "oat-weekend",
           "forest-weekend",
         ];
@@ -1941,9 +1950,18 @@ export default function WardrobeEditor({
               >
                 Download action GIF
               </button>
+              <button
+                type="button"
+                disabled={busy || Boolean(appearancePreview)}
+                onClick={() => void exportGif(true)}
+              >
+                Download comparison GIF
+              </button>
               <p className="wardrobe-hint">
                 GIF: current action and direction, half native size, cream
                 background, original speed. One-shot actions play once.
+                Comparison keeps the original on the left and the current look
+                on the right.
               </p>
               <a href="/player.html" target="_blank" rel="noreferrer">
                 Open independent player ↗
