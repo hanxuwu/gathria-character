@@ -10,7 +10,7 @@ export interface PublishedThemeIdentity {
  * Local imports cannot impersonate the approved original or another catalog
  * revision. Unknown keys remain available for independent authored themes. */
 export function assertPublishedThemeIdentity(
-  theme: ThemeBundle,
+  theme: Pick<ThemeBundle, "key" | "sha256" | "manifest">,
   published: readonly PublishedThemeIdentity[],
 ): void {
   const entry = published.find((candidate) => candidate.key === theme.key);

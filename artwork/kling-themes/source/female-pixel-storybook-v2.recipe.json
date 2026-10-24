@@ -1,0 +1,1021 @@
+{
+  "character": "female",
+  "id": "pixel-storybook",
+  "revision": 2,
+  "name": "Pixel storybook",
+  "lookId": "base",
+  "lookName": "Tank & shorts",
+  "frameSize": [
+    192,
+    272
+  ],
+  "integerSample": 2,
+  "anchor": {
+    "x": 96,
+    "y": 251
+  },
+  "provenance": "OpenAI image generation created independent warm pixel character drawings from the approved Kling male/female identity references, a generated pixel style guide, and retained source pose guide sheets. Unchanged generated sheets, prompts and guide hashes are retained under artwork/kling-themes. The script only crops declared atlas cells, translates their registration, uniformly samples 2:1 and packs five authored timelines. These are newly authored key-pose animations, not exact source-video frames; no runtime image generation, style filters or skeleton deformation. Revision2 source repairs and technical registration are individually documented in registrationReview and action notes; exact generation records and all earlier sources are preserved.",
+  "actions": {
+    "idle": {
+      "file": "female-idle-celebrate-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -52
+        ],
+        [
+          12,
+          -52
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          -6,
+          -52
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink. Revision2 adds the recorded whole-pose horizontal offsets to reduce atlas drift. Vertical registration, scale and timing are retained. This does not correct within-drawing head shape or head-to-sole proportion."
+    },
+    "walk": {
+      "file": "female-walk-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          528
+        ],
+        [
+          384,
+          0,
+          384,
+          528
+        ],
+        [
+          768,
+          0,
+          384,
+          528
+        ],
+        [
+          1152,
+          0,
+          384,
+          528
+        ],
+        [
+          0,
+          528,
+          384,
+          496
+        ],
+        [
+          384,
+          528,
+          384,
+          496
+        ],
+        [
+          768,
+          528,
+          384,
+          496
+        ],
+        [
+          1152,
+          528,
+          384,
+          496
+        ]
+      ],
+      "translations": [
+        [
+          -12,
+          -40
+        ],
+        [
+          -6,
+          -42
+        ],
+        [
+          6,
+          -40
+        ],
+        [
+          8,
+          -40
+        ],
+        [
+          -10,
+          16
+        ],
+        [
+          -4,
+          16
+        ],
+        [
+          14,
+          12
+        ],
+        [
+          12,
+          12
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink. Revision2 adds the recorded whole-pose horizontal offsets to reduce atlas drift. Vertical registration, scale and timing are retained. This does not correct within-drawing head shape or head-to-sole proportion."
+    },
+    "run": {
+      "file": "stability-v2/female-run-stable-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          530
+        ],
+        [
+          384,
+          0,
+          384,
+          530
+        ],
+        [
+          768,
+          0,
+          384,
+          530
+        ],
+        [
+          1152,
+          0,
+          384,
+          530
+        ],
+        [
+          0,
+          530,
+          384,
+          494
+        ],
+        [
+          384,
+          530,
+          384,
+          494
+        ],
+        [
+          768,
+          530,
+          384,
+          494
+        ],
+        [
+          1152,
+          530,
+          384,
+          494
+        ]
+      ],
+      "translations": [
+        [
+          -2,
+          -26
+        ],
+        [
+          -4,
+          -36
+        ],
+        [
+          -4,
+          -40
+        ],
+        [
+          -4,
+          -48
+        ],
+        [
+          -2,
+          14
+        ],
+        [
+          -4,
+          8
+        ],
+        [
+          -6,
+          8
+        ],
+        [
+          -4,
+          0
+        ]
+      ],
+      "fps": 12,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Revision2 selected whole-pose image-generation continuity repair. The full unchanged generated PNG and exact prompt/reference record are retained under stability-v2. Faces, ears and necks are authored coherently with the body; no pasted head or runtime deformation. Reviewed 530px row gutter preserves complete shoes. Whole-pose integer registration targets planted or airborne soles, with common 2:1 nearest sampling and existing 32px top padding. All action frame IDs, order, FPS, loop, anchor and native dimensions are retained. Selected stable-v1 reduces head perspective changes and opposite-stride crown-height mismatch. Native crown tops remain[31,28,26,22,30,28,28,24], so the action still has an8px peak adjacent jump; this is an improvement, not a claim of perfect smoothness. Support/flight target pattern is retained.",
+      "registrationMeasurements": [
+        {
+          "sourceCell": 0,
+          "sourceCrownTopY": 57,
+          "crownCenterX": 214.0,
+          "opaqueFootY": 488,
+          "targetFootY": 462,
+          "nativeCrownTopY": 31,
+          "nativeCrownCenterX": 105.5,
+          "nativeFootY": 246
+        },
+        {
+          "sourceCell": 1,
+          "sourceCrownTopY": 61,
+          "crownCenterX": 215.0,
+          "opaqueFootY": 505,
+          "targetFootY": 470,
+          "nativeCrownTopY": 28,
+          "nativeCrownCenterX": 105.0,
+          "nativeFootY": 250
+        },
+        {
+          "sourceCell": 2,
+          "sourceCrownTopY": 60,
+          "crownCenterX": 216.0,
+          "opaqueFootY": 511,
+          "targetFootY": 470,
+          "nativeCrownTopY": 26,
+          "nativeCrownCenterX": 105.5,
+          "nativeFootY": 251
+        },
+        {
+          "sourceCell": 3,
+          "sourceCrownTopY": 60,
+          "crownCenterX": 215.0,
+          "opaqueFootY": 511,
+          "targetFootY": 464,
+          "nativeCrownTopY": 22,
+          "nativeCrownCenterX": 105.0,
+          "nativeFootY": 247
+        },
+        {
+          "sourceCell": 4,
+          "sourceCrownTopY": 14,
+          "crownCenterX": 214.0,
+          "opaqueFootY": 448,
+          "targetFootY": 462,
+          "nativeCrownTopY": 30,
+          "nativeCrownCenterX": 105.5,
+          "nativeFootY": 246
+        },
+        {
+          "sourceCell": 5,
+          "sourceCrownTopY": 16,
+          "crownCenterX": 216.5,
+          "opaqueFootY": 462,
+          "targetFootY": 470,
+          "nativeCrownTopY": 28,
+          "nativeCrownCenterX": 106.0,
+          "nativeFootY": 250
+        },
+        {
+          "sourceCell": 6,
+          "sourceCrownTopY": 16,
+          "crownCenterX": 217.5,
+          "opaqueFootY": 463,
+          "targetFootY": 470,
+          "nativeCrownTopY": 28,
+          "nativeCrownCenterX": 105.0,
+          "nativeFootY": 251
+        },
+        {
+          "sourceCell": 7,
+          "sourceCrownTopY": 17,
+          "crownCenterX": 216.0,
+          "opaqueFootY": 463,
+          "targetFootY": 464,
+          "nativeCrownTopY": 24,
+          "nativeCrownCenterX": 105.5,
+          "nativeFootY": 247
+        }
+      ]
+    },
+    "jump": {
+      "file": "female-jump-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -48
+        ],
+        [
+          0,
+          -50
+        ],
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          12
+        ]
+      ],
+      "fps": 8,
+      "loop": false,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    "celebrate": {
+      "file": "female-idle-celebrate-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    }
+  },
+  "registrationPadding": {
+    "left": 0,
+    "top": 32,
+    "right": 0,
+    "bottom": 0
+  },
+  "registrationReview": {
+    "basisRecipe": "artwork/kling-themes/source/female-pixel-storybook.recipe.json",
+    "basisRecipeSha256": "dd4cc8bbb8f8e28148a9876ea6dbb5ea17f1068e7223d09b0fbb384a8d352106",
+    "scope": "Revision2 combines explicit whole-pose integer horizontal registration for selected base idle/walk/run frames with selected image-generated complete-pose continuity repairs. Native size, sampling, anchor, frame order and timing remain unchanged; every original jump/celebration drawing and placement remains unchanged.",
+    "diagnostic": "Measured actual exported V1 CharacterPack RGBA. Crown center is the midpoint of opaque bounds in the top75 native pixels; drawn head/yaw/height variation is not corrected or hidden by this measurement.",
+    "remaining": "Female run has a calmer face perspective and more regular opposite strides but still8px largest adjacent crown-height step. Female walk X drift is corrected while its preexisting within-drawing vertical variation remains; it is not hidden by lifting feet. Jump/celebration retain earlier independent drawing changes.",
+    "actions": {
+      "idle": {
+        "action": "idle",
+        "beforeSourceTranslations": [
+          [
+            0,
+            -52
+          ],
+          [
+            0,
+            -52
+          ],
+          [
+            0,
+            -56
+          ],
+          [
+            0,
+            -52
+          ]
+        ],
+        "afterSourceTranslations": [
+          [
+            0,
+            -52
+          ],
+          [
+            12,
+            -52
+          ],
+          [
+            0,
+            -56
+          ],
+          [
+            -6,
+            -52
+          ]
+        ],
+        "deltaNativeX": [
+          0,
+          6,
+          0,
+          -3
+        ],
+        "beforeCrownX": [
+          94.5,
+          88.0,
+          93.5,
+          97.0
+        ],
+        "afterCrownX": [
+          94.5,
+          94.0,
+          93.5,
+          94.0
+        ],
+        "beforeFootY": [
+          250,
+          251,
+          250,
+          250
+        ],
+        "afterFootY": [
+          250,
+          251,
+          250,
+          250
+        ],
+        "verticalTranslationsUnchanged": true,
+        "beforeXRange": 9.0,
+        "afterXRange": 1.0
+      },
+      "walk": {
+        "action": "walk",
+        "beforeSourceTranslations": [
+          [
+            0,
+            -40
+          ],
+          [
+            0,
+            -42
+          ],
+          [
+            0,
+            -40
+          ],
+          [
+            0,
+            -40
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            12
+          ],
+          [
+            0,
+            12
+          ]
+        ],
+        "afterSourceTranslations": [
+          [
+            -12,
+            -40
+          ],
+          [
+            -6,
+            -42
+          ],
+          [
+            6,
+            -40
+          ],
+          [
+            8,
+            -40
+          ],
+          [
+            -10,
+            16
+          ],
+          [
+            -4,
+            16
+          ],
+          [
+            14,
+            12
+          ],
+          [
+            12,
+            12
+          ]
+        ],
+        "deltaNativeX": [
+          -6,
+          -3,
+          3,
+          4,
+          -5,
+          -2,
+          7,
+          6
+        ],
+        "beforeCrownX": [
+          103.0,
+          99.0,
+          94.0,
+          94.5,
+          102.0,
+          97.5,
+          90.0,
+          91.5
+        ],
+        "afterCrownX": [
+          97.0,
+          96.0,
+          97.0,
+          98.5,
+          97.0,
+          95.5,
+          97.0,
+          97.5
+        ],
+        "beforeFootY": [
+          250,
+          250,
+          251,
+          250,
+          251,
+          250,
+          250,
+          250
+        ],
+        "afterFootY": [
+          250,
+          250,
+          251,
+          250,
+          251,
+          250,
+          250,
+          250
+        ],
+        "verticalTranslationsUnchanged": true,
+        "beforeXRange": 13.0,
+        "afterXRange": 3.0
+      },
+      "run": {
+        "method": "Reviewed whole-pose source replacement plus integer registration. No runtime retargeting, interpolation, detached head or per-frame resizing.",
+        "basisSourceFile": "female-run-v1.png",
+        "sourceFile": "artwork/kling-themes/source/stability-v2/female-run-stable-v1.png",
+        "sourceSha256": "aa99859e7575ede7edaf2f388d7d80660649989852927ee5612fe321c949893c",
+        "generationRecord": "artwork/kling-themes/source/stability-v2/female-run-stable-v1.generation.json",
+        "generationRecordSha256": "59f35f964795b3a5faa32e4e0c953407b8bcfbd39e70b84aaafcba912b3d13ec",
+        "beforeCrownX": [
+          106.0,
+          106.0,
+          108.0,
+          103.0,
+          105.0,
+          107.5,
+          104.0,
+          105.5
+        ],
+        "afterCrownX": [
+          105.5,
+          105.0,
+          105.5,
+          105.0,
+          105.5,
+          106.0,
+          105.0,
+          105.5
+        ],
+        "beforeCrownTopY": [
+          31,
+          31,
+          29,
+          22,
+          32,
+          34,
+          33,
+          29
+        ],
+        "afterCrownTopY": [
+          31,
+          28,
+          26,
+          22,
+          30,
+          28,
+          28,
+          24
+        ],
+        "beforeFootY": [
+          247,
+          251,
+          250,
+          248,
+          246,
+          251,
+          251,
+          247
+        ],
+        "afterFootY": [
+          246,
+          250,
+          251,
+          247,
+          246,
+          250,
+          251,
+          247
+        ],
+        "sourceRegistration": [
+          {
+            "index": 0,
+            "crop": [
+              0,
+              0,
+              384,
+              530
+            ],
+            "translation": [
+              -2,
+              -26
+            ],
+            "sourceTop": 57,
+            "sourceFoot": 488,
+            "sourceCrownX": 214.0,
+            "targetSourceFoot": 462,
+            "nativeTop": 31,
+            "nativeFoot": 246,
+            "nativeCrownX": 105.5
+          },
+          {
+            "index": 1,
+            "crop": [
+              384,
+              0,
+              384,
+              530
+            ],
+            "translation": [
+              -4,
+              -36
+            ],
+            "sourceTop": 61,
+            "sourceFoot": 505,
+            "sourceCrownX": 215.0,
+            "targetSourceFoot": 470,
+            "nativeTop": 28,
+            "nativeFoot": 250,
+            "nativeCrownX": 105.0
+          },
+          {
+            "index": 2,
+            "crop": [
+              768,
+              0,
+              384,
+              530
+            ],
+            "translation": [
+              -4,
+              -40
+            ],
+            "sourceTop": 60,
+            "sourceFoot": 511,
+            "sourceCrownX": 216.0,
+            "targetSourceFoot": 470,
+            "nativeTop": 26,
+            "nativeFoot": 251,
+            "nativeCrownX": 105.5
+          },
+          {
+            "index": 3,
+            "crop": [
+              1152,
+              0,
+              384,
+              530
+            ],
+            "translation": [
+              -4,
+              -48
+            ],
+            "sourceTop": 60,
+            "sourceFoot": 511,
+            "sourceCrownX": 215.0,
+            "targetSourceFoot": 464,
+            "nativeTop": 22,
+            "nativeFoot": 247,
+            "nativeCrownX": 105.0
+          },
+          {
+            "index": 4,
+            "crop": [
+              0,
+              530,
+              384,
+              494
+            ],
+            "translation": [
+              -2,
+              14
+            ],
+            "sourceTop": 14,
+            "sourceFoot": 448,
+            "sourceCrownX": 214.0,
+            "targetSourceFoot": 462,
+            "nativeTop": 30,
+            "nativeFoot": 246,
+            "nativeCrownX": 105.5
+          },
+          {
+            "index": 5,
+            "crop": [
+              384,
+              530,
+              384,
+              494
+            ],
+            "translation": [
+              -4,
+              8
+            ],
+            "sourceTop": 16,
+            "sourceFoot": 462,
+            "sourceCrownX": 216.5,
+            "targetSourceFoot": 470,
+            "nativeTop": 28,
+            "nativeFoot": 250,
+            "nativeCrownX": 106.0
+          },
+          {
+            "index": 6,
+            "crop": [
+              768,
+              530,
+              384,
+              494
+            ],
+            "translation": [
+              -6,
+              8
+            ],
+            "sourceTop": 16,
+            "sourceFoot": 463,
+            "sourceCrownX": 217.5,
+            "targetSourceFoot": 470,
+            "nativeTop": 28,
+            "nativeFoot": 251,
+            "nativeCrownX": 105.0
+          },
+          {
+            "index": 7,
+            "crop": [
+              1152,
+              530,
+              384,
+              494
+            ],
+            "translation": [
+              -4,
+              0
+            ],
+            "sourceTop": 17,
+            "sourceFoot": 463,
+            "sourceCrownX": 216.0,
+            "targetSourceFoot": 464,
+            "nativeTop": 24,
+            "nativeFoot": 247,
+            "nativeCrownX": 105.5
+          }
+        ]
+      }
+    }
+  }
+}

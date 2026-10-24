@@ -8,7 +8,106 @@
     "file": "docs/kling-themes/bundles/female-original.theme.zip",
     "preview": "artwork/kling-jump/prepared/female-library-preview.png",
     "sha256": "14045433234209d5c7185dbff7690581d76257043c81dce1bef76c1a79954a3d",
-    "bytes": 72260723
+    "bytes": 72260723,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "kling-original",
+      "revision": 1,
+      "name": "Kling original",
+      "character": "female",
+      "characterId": "kling-female-motion-v1",
+      "rendering": "smooth",
+      "reference": {
+        "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "description": "Approved Kling source-video character; exact retained motion-flow archive."
+      },
+      "provenance": "The base look wraps the unchanged Kling motion & transitions CharacterPack. The wedding look wraps the unchanged prior application export docs/kling-paint-roundtrip/evidence/female-wedding-before.character.zip, including its reviewed clothing, hairstyle and facial choice. Both nested archives retain exact original bytes, native dimensions, anchors and schedules. They are complete baked looks, not interchangeable garment layers. No artwork is newly generated in this original-theme wrapper.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Original tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "1f04ed989cff59bd28d4fa938e92b29de2e161132f1d8baa51c9ce9c41e94e59"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-motion/exports/female.character.zip",
+        "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "bytes": 24565426
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-paint-roundtrip/evidence/female-wedding-before.character.zip",
+        "sha256": "1f04ed989cff59bd28d4fa938e92b29de2e161132f1d8baa51c9ce9c41e94e59",
+        "bytes": 47918272
+      }
+    ],
+    "current": true
+  },
+  {
+    "key": "female:pixel-storybook@2",
+    "name": "Pixel storybook",
+    "character": "female",
+    "description": "Independently authored pixel drawings, with their own anchors and animation timing. Full-look variant; no interchangeable garment layers.",
+    "isOriginal": false,
+    "file": "docs/kling-themes/bundles/female-pixel-storybook-v2.theme.zip",
+    "preview": "artwork/kling-themes/prepared/female/pixel-storybook-v2/preview.png",
+    "sha256": "a52d002bf6f8372d8cd003669b88faae709f242212856d63e77b982743e10022",
+    "bytes": 4888038,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "pixel-storybook",
+      "revision": 2,
+      "name": "Pixel storybook",
+      "character": "female",
+      "characterId": "kling-female-pixel-storybook-v2",
+      "rendering": "pixel",
+      "reference": {
+        "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "description": "Approved Kling character identity and pose references; independent authored pixel drawings have their own native dimensions, anchors and timing."
+      },
+      "provenance": "Each complete look is authored and registered independently. base: OpenAI image generation created independent warm pixel character drawings from the approved Kling male/female identity references, a generated pixel style guide, and retained source pose guide sheets. Unchanged generated sheets, prompts and guide hashes are retained under artwork/kling-themes. The script only crops declared atlas cells, translates their registration, uniformly samples 2:1 and packs five authored timelines. These are newly authored key-pose animations, not exact source-video frames; no runtime image generation, style filters or skeleton deformation. Revision2 source repairs and technical registration are individually documented in registrationReview and action notes; exact generation records and all earlier sources are preserved.\n\nwedding: OpenAI image generation independently authored pixel wedding drawings guided by the exact retained application-export wedding look, its source-pose guides and the generated pixel style direction. The male look keeps its dark suit, ivory waistcoat, coral tie, chest flower and curly brown hair; the female look keeps its ivory wedding dress and braided crown. Generated PNG sheets and exact generation records are retained. Explicit crop rectangles follow transparent atlas gutters; integer whole-pose translations correct atlas placement and establish a newly authored jump trajectory. Common 2:1 nearest sampling and 32-pixel transparent top padding preserve the drawn anatomy. These are complete baked wedding looks, not interchangeable garment layers or pixel-exact video frames. Revision2 female wedding run continuity repair and its exact generation source/registration are recorded in registrationReview; all earlier sources remain available.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "e029960776c4fd5d4770afb97a2087779c336b38afd2778f3f451b65dcdc4b80"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "575e0a6aa7c5bd7d42c00f18ca3293fb7be8a8a20993a751b25be8545ac21c0d"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-themes/bundles/female-pixel-storybook-v2.character.zip",
+        "sha256": "e029960776c4fd5d4770afb97a2087779c336b38afd2778f3f451b65dcdc4b80",
+        "bytes": 2317711
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-themes/bundles/female-pixel-storybook-v2-wedding.character.zip",
+        "sha256": "575e0a6aa7c5bd7d42c00f18ca3293fb7be8a8a20993a751b25be8545ac21c0d",
+        "bytes": 2567424
+      }
+    ],
+    "current": true
   },
   {
     "key": "female:pixel-storybook@1",
@@ -19,7 +118,51 @@
     "file": "docs/kling-themes/bundles/female-pixel-storybook.theme.zip",
     "preview": "artwork/kling-themes/prepared/female/pixel-storybook/preview.png",
     "sha256": "5be27e3dc377c968146eca1a78f29ffdf20bee5bbb22ec6126a80176d0c00d34",
-    "bytes": 4901315
+    "bytes": 4901315,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "pixel-storybook",
+      "revision": 1,
+      "name": "Pixel storybook",
+      "character": "female",
+      "characterId": "kling-female-pixel-storybook-v1",
+      "rendering": "pixel",
+      "reference": {
+        "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "description": "Approved Kling character identity and pose references; independent authored pixel drawings have their own native dimensions, anchors and timing."
+      },
+      "provenance": "Each complete look is authored and registered independently. base: OpenAI image generation created independent warm pixel character drawings from the approved Kling male/female identity references, a generated pixel style guide, and retained source pose guide sheets. Unchanged generated sheets, prompts and guide hashes are retained under artwork/kling-themes. The script only crops declared atlas cells, translates their registration, uniformly samples 2:1 and packs five authored timelines. These are newly authored key-pose animations, not exact source-video frames; no runtime image generation, style filters or skeleton deformation.\n\nwedding: OpenAI image generation independently authored pixel wedding drawings guided by the exact retained application-export wedding look, its source-pose guides and the generated pixel style direction. The male look keeps its dark suit, ivory waistcoat, coral tie, chest flower and curly brown hair; the female look keeps its ivory wedding dress and braided crown. Generated PNG sheets and exact generation records are retained. Explicit crop rectangles follow transparent atlas gutters; integer whole-pose translations correct atlas placement and establish a newly authored jump trajectory. Common 2:1 nearest sampling and 32-pixel transparent top padding preserve the drawn anatomy. These are complete baked wedding looks, not interchangeable garment layers or pixel-exact video frames.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "5b6f94261c0cf729777ebe2b25050f9642fa74f2991d2206224dcbb5a9739816"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "45a98fc1d57c94a9ee11782210dc479c518311665b7eba9360fb8663572ad560"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-themes/bundles/female-pixel-storybook.character.zip",
+        "sha256": "5b6f94261c0cf729777ebe2b25050f9642fa74f2991d2206224dcbb5a9739816",
+        "bytes": 2311877
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-themes/bundles/female-pixel-storybook-wedding.character.zip",
+        "sha256": "45a98fc1d57c94a9ee11782210dc479c518311665b7eba9360fb8663572ad560",
+        "bytes": 2586681
+      }
+    ],
+    "current": false
   },
   {
     "key": "male:kling-original@1",
@@ -30,7 +173,106 @@
     "file": "docs/kling-themes/bundles/male-original.theme.zip",
     "preview": "artwork/kling-jump/prepared/male-library-preview.png",
     "sha256": "6f712689a1f11f12db89a9f505a118bef09e409e23e5a5a89da2affc6a356f54",
-    "bytes": 58551656
+    "bytes": 58551656,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "kling-original",
+      "revision": 1,
+      "name": "Kling original",
+      "character": "male",
+      "characterId": "kling-male-motion-v1",
+      "rendering": "smooth",
+      "reference": {
+        "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+        "description": "Approved Kling source-video character; exact retained motion-flow archive."
+      },
+      "provenance": "The base look wraps the unchanged Kling motion & transitions CharacterPack. The wedding look wraps the unchanged prior application export docs/kling-paint-roundtrip/evidence/male-wedding-before.character.zip, including its reviewed clothing, hairstyle and facial choice. Both nested archives retain exact original bytes, native dimensions, anchors and schedules. They are complete baked looks, not interchangeable garment layers. No artwork is newly generated in this original-theme wrapper.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Original tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "45c499f05d28b44bdaf8f63f5b626bdde44214253923769dd645b8c06529acc3"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-motion/exports/male.character.zip",
+        "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+        "bytes": 22641075
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-paint-roundtrip/evidence/male-wedding-before.character.zip",
+        "sha256": "45c499f05d28b44bdaf8f63f5b626bdde44214253923769dd645b8c06529acc3",
+        "bytes": 36161590
+      }
+    ],
+    "current": true
+  },
+  {
+    "key": "male:pixel-storybook@2",
+    "name": "Pixel storybook",
+    "character": "male",
+    "description": "Independently authored pixel drawings, with their own anchors and animation timing. Full-look variant; no interchangeable garment layers.",
+    "isOriginal": false,
+    "file": "docs/kling-themes/bundles/male-pixel-storybook-v2.theme.zip",
+    "preview": "artwork/kling-themes/prepared/male/pixel-storybook-v2/preview.png",
+    "sha256": "bef6d6983b5c438a467d3282cfd71edbe7eadcd2ee4acaa2700b3fa26af6aef8",
+    "bytes": 4635488,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "pixel-storybook",
+      "revision": 2,
+      "name": "Pixel storybook",
+      "character": "male",
+      "characterId": "kling-male-pixel-storybook-v2",
+      "rendering": "pixel",
+      "reference": {
+        "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+        "description": "Approved Kling character identity and pose references; independent authored pixel drawings have their own native dimensions, anchors and timing."
+      },
+      "provenance": "Each complete look is authored and registered independently. base: OpenAI image generation created independent warm pixel character drawings from the approved Kling male/female identity references, a generated pixel style guide, and retained source pose guide sheets. Unchanged generated sheets, prompts and guide hashes are retained under artwork/kling-themes. The script only crops declared atlas cells, translates their registration, uniformly samples 2:1 and packs five authored timelines. These are newly authored key-pose animations, not exact source-video frames; no runtime image generation, style filters or skeleton deformation. Revision2 source repairs and technical registration are individually documented in registrationReview and action notes; exact generation records and all earlier sources are preserved.\n\nwedding: OpenAI image generation independently authored pixel wedding drawings guided by the exact retained application-export wedding look, its source-pose guides and the generated pixel style direction. The male look keeps its dark suit, ivory waistcoat, coral tie, chest flower and curly brown hair; the female look keeps its ivory wedding dress and braided crown. Generated PNG sheets and exact generation records are retained. Explicit crop rectangles follow transparent atlas gutters; integer whole-pose translations correct atlas placement and establish a newly authored jump trajectory. Common 2:1 nearest sampling and 32-pixel transparent top padding preserve the drawn anatomy. These are complete baked wedding looks, not interchangeable garment layers or pixel-exact video frames.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "cac962f6e1534b5c119938f4329da2b077147fe351f28302665af12c1f033f7d"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "e835c3ab486e034240e3683f9a37056d5d0e7036855e0c03f9eccf31c327c453"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-themes/bundles/male-pixel-storybook-v2.character.zip",
+        "sha256": "cac962f6e1534b5c119938f4329da2b077147fe351f28302665af12c1f033f7d",
+        "bytes": 2273551
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-themes/bundles/male-pixel-storybook-v2-wedding.character.zip",
+        "sha256": "e835c3ab486e034240e3683f9a37056d5d0e7036855e0c03f9eccf31c327c453",
+        "bytes": 2359213
+      }
+    ],
+    "current": true
   },
   {
     "key": "male:pixel-storybook@1",
@@ -41,6 +283,50 @@
     "file": "docs/kling-themes/bundles/male-pixel-storybook.theme.zip",
     "preview": "artwork/kling-themes/prepared/male/pixel-storybook/preview.png",
     "sha256": "6eb2a23e7f073ec5a489101fef31932237b384cf88836dd3e0f1656c0b16b6b7",
-    "bytes": 4631825
+    "bytes": 4631825,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "pixel-storybook",
+      "revision": 1,
+      "name": "Pixel storybook",
+      "character": "male",
+      "characterId": "kling-male-pixel-storybook-v1",
+      "rendering": "pixel",
+      "reference": {
+        "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+        "description": "Approved Kling character identity and pose references; independent authored pixel drawings have their own native dimensions, anchors and timing."
+      },
+      "provenance": "Each complete look is authored and registered independently. base: OpenAI image generation created independent warm pixel character drawings from the approved Kling male/female identity references, a generated pixel style guide, and retained source pose guide sheets. Unchanged generated sheets, prompts and guide hashes are retained under artwork/kling-themes. The script only crops declared atlas cells, translates their registration, uniformly samples 2:1 and packs five authored timelines. These are newly authored key-pose animations, not exact source-video frames; no runtime image generation, style filters or skeleton deformation.\n\nwedding: OpenAI image generation independently authored pixel wedding drawings guided by the exact retained application-export wedding look, its source-pose guides and the generated pixel style direction. The male look keeps its dark suit, ivory waistcoat, coral tie, chest flower and curly brown hair; the female look keeps its ivory wedding dress and braided crown. Generated PNG sheets and exact generation records are retained. Explicit crop rectangles follow transparent atlas gutters; integer whole-pose translations correct atlas placement and establish a newly authored jump trajectory. Common 2:1 nearest sampling and 32-pixel transparent top padding preserve the drawn anatomy. These are complete baked wedding looks, not interchangeable garment layers or pixel-exact video frames.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "efa16a11ddce31e0e36e9c20546d870085b18d6fd42c990bfdcf4bdd7f705ba8"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "bed0515b8a641cda7c677e5f55d763c99c149e2016f0d089a8285f73030fa827"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-themes/bundles/male-pixel-storybook.character.zip",
+        "sha256": "efa16a11ddce31e0e36e9c20546d870085b18d6fd42c990bfdcf4bdd7f705ba8",
+        "bytes": 2270283
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-themes/bundles/male-pixel-storybook-wedding.character.zip",
+        "sha256": "bed0515b8a641cda7c677e5f55d763c99c149e2016f0d089a8285f73030fa827",
+        "bytes": 2358869
+      }
+    ],
+    "current": false
   }
 ]

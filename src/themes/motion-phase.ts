@@ -44,3 +44,30 @@ export function transferThemeMotion(
     preserved: true,
   };
 }
+
+/** Sample the reference at the continuous phase of the selected clip. Playback
+ * must pass its fractional timeline position, not the selected drawing's integer
+ * index: an 8-frame pixel clip can then show all 16 reference drawings without
+ * altering the pixel clip's cadence. Paused/scrubbed poses retain the explicit
+ * endpoint behavior used for theme switching. No artwork is interpolated. */
+export function themeComparisonPosition(
+  current: Animation | undefined,
+  reference: Animation | undefined,
+  timelinePosition: number,
+  playing: boolean,
+): number {
+  if (!current?.frames.length || !reference?.frames.length) return 0;
+  const progress = Number.isFinite(timelinePosition)
+    ? Math.max(0, timelinePosition)
+    : 0;
+  if (!playing)
+    return transferThemeMotion(current, reference, progress, false, true)
+      .position;
+  const phase = current.loop
+    ? (progress % current.frames.length) / current.frames.length
+    : Math.min(1, progress / current.frames.length);
+  return Math.min(
+    reference.frames.length - 1,
+    Math.floor(phase * reference.frames.length),
+  );
+}

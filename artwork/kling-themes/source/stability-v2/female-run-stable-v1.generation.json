@@ -1,0 +1,11 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Repair this exact eight-frame female pixel RUN sprite sheet for much calmer consistent head motion. Preserve the approved bald female Kling identity, eyelashes, brown eyes, rounded head, natural smile, gray sleeveless tank, navy shorts and pink-white low sneakers, pixel-art shading,8 running poses in reading order,1536x1024transparent canvas4columns x2rows. FIRST frame's face/skull is the strict master for ALL8: identical head width/height, headshape, upright orientation, right-three-quarter viewing angle, eye/ear/nose/mouth relative placement, short natural neck. No head turning between frames,no head-size pulsation,no exaggerated nodding. Fix especially pose4(top-right) changing head angle and pose5(bottom-left) jumping down in headheight. Torso is compact and same length/width across all frames; symmetric proportions on opposite half-strides. Keep original clear alternating arms/legs and contact/recovery/flight silhouettes. Each384x512cell local crown center x=202; crown top use modest symmetric bob of[60,64,60,56,60,64,60,56]px. Contact soles should remain atlocaly480 on poses2,3,6,7, flight soles slightlyaboveonposes1,4,5,8. Match SAME face and neck to these poses by full anatomical drawing, never make the torso or neck unnaturally long. Need a natural run with stabilized gaze, not a static pasted head and not merely shifting a broken drawing. Preserve crisp dark contours/discrete warm pixel clusters. Keep complete body well inside cells and transparent empty gutters; no shadow, background, text, numbers, props or hair.",
+  "referenced_image_paths": [
+    "/workspace/gathria-character/artwork/kling-themes/source/female-run-v1.png"
+  ],
+  "transparent_background": true,
+  "role": "Continuity correction trial; not accepted or published without comparison.",
+  "outputFile": "artwork/kling-themes/source/stability-v2/female-run-stable-v1.png",
+  "outputSha256": "aa99859e7575ede7edaf2f388d7d80660649989852927ee5612fe321c949893c"
+}

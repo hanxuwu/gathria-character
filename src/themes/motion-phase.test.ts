@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { transferThemeMotion } from "./motion-phase";
+import { themeComparisonPosition, transferThemeMotion } from "./motion-phase";
 import type { Animation } from "../core/types";
 
 const clip = (length: number, loop = true): Animation => ({
@@ -52,5 +52,48 @@ describe("theme motion phase transfer", () => {
     expect(transferThemeMotion(clip(16), undefined, 10, true, true)).toEqual(
       reset,
     );
+  });
+});
+
+describe("continuous theme comparison sampling", () => {
+  it("retains every smooth reference drawing between pixel key poses", () => {
+    const current = { ...clip(8), fps: 12 };
+    const reference = { ...clip(16), fps: 24 };
+    const positions = Array.from({ length: 32 }, (_, index) => index / 4);
+    const shown = positions.map((position) =>
+      themeComparisonPosition(current, reference, position, true),
+    );
+    expect([...new Set(shown)]).toEqual(
+      Array.from({ length: 16 }, (_, index) => index),
+    );
+    // The selected artwork still consists of exactly eight key poses; the
+    // intermediate reference samples do not invent extra pixel drawings.
+    expect([...new Set(positions.map(Math.floor))]).toEqual(
+      Array.from({ length: 8 }, (_, index) => index),
+    );
+    expect(themeComparisonPosition(current, reference, 3.5, true)).toBe(7);
+    expect(themeComparisonPosition(current, reference, 3.5, false)).toBe(6);
+    expect(themeComparisonPosition(current, reference, 8, true)).toBe(0);
+    expect(current.frames).toHaveLength(8);
+    expect([current.fps, reference.fps]).toEqual([12, 24]);
+  });
+
+  it("lets a one-shot reference finish its last interval, then holds the end", () => {
+    const current = clip(5, false);
+    const reference = clip(16, false);
+    expect(themeComparisonPosition(current, reference, 4, true)).toBe(12);
+    expect(themeComparisonPosition(current, reference, 4.5, true)).toBe(14);
+    expect(themeComparisonPosition(current, reference, 5, true)).toBe(15);
+    expect(themeComparisonPosition(current, reference, 6, true)).toBe(15);
+    // A paused final source drawing is an endpoint, as with the existing
+    // scrubber and completed one-shot theme-switch contract.
+    expect(themeComparisonPosition(current, reference, 4, false)).toBe(15);
+  });
+
+  it("has a safe first position when either clip is unavailable", () => {
+    expect(themeComparisonPosition(undefined, clip(16), 3.5, true)).toBe(0);
+    expect(themeComparisonPosition(clip(8), undefined, 3.5, true)).toBe(0);
+    expect(themeComparisonPosition(clip(8), clip(16), -1, true)).toBe(0);
+    expect(themeComparisonPosition(clip(8), clip(16), NaN, false)).toBe(0);
   });
 });

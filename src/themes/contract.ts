@@ -189,7 +189,7 @@ export function validateThemeManifest(value: unknown): ThemeManifest {
 
 export function validateThemeSelection(
   value: unknown,
-  themes: readonly ThemeBundle[],
+  themes: readonly Pick<ThemeBundle, "key">[],
 ): ThemeSelection {
   const row = themeObject(value, "Theme selection", [
     "themeKey",

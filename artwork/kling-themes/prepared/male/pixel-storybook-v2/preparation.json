@@ -1,0 +1,442 @@
+{
+  "recipe": "artwork/kling-themes/source/male-pixel-storybook-v2.recipe.json",
+  "recipeSha256": "bc5c7d94eb6a54ae6d4fbcaa91e9df5a62c0dd811e3f0101de44bb046b53e5e5",
+  "characterPackSha256": "cac962f6e1534b5c119938f4329da2b077147fe351f28302665af12c1f033f7d",
+  "themeSha256": "bef6d6983b5c438a467d3282cfd71edbe7eadcd2ee4acaa2700b3fa26af6aef8",
+  "frameCount": 32,
+  "sourceFiles": [
+    {
+      "action": "idle",
+      "file": "artwork/kling-themes/source/male-idle-celebrate-v1.png",
+      "sha256": "7247315b8faafb895efdab100ed49a00f83ca240eb67eeb0e0a873d42d306a25",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/idle.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    {
+      "action": "walk",
+      "file": "artwork/kling-themes/source/stability-v2/male-walk-stable-v2.png",
+      "sha256": "e3b4b0e4991589e84ec56f23fad6860c6906926baaf5bb291cb2bcd61d81db47",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          530
+        ],
+        [
+          384,
+          0,
+          384,
+          530
+        ],
+        [
+          768,
+          0,
+          384,
+          530
+        ],
+        [
+          1152,
+          0,
+          384,
+          530
+        ],
+        [
+          0,
+          530,
+          384,
+          494
+        ],
+        [
+          384,
+          530,
+          384,
+          494
+        ],
+        [
+          768,
+          530,
+          384,
+          494
+        ],
+        [
+          1152,
+          530,
+          384,
+          494
+        ]
+      ],
+      "translations": [
+        [
+          2,
+          -44
+        ],
+        [
+          2,
+          -46
+        ],
+        [
+          2,
+          -46
+        ],
+        [
+          2,
+          -46
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/walk.json",
+      "notes": "Revision2 selected whole-pose image-generation continuity repair. The full unchanged generated PNG and exact prompt/reference record are retained under stability-v2. Faces, ears and necks are authored coherently with the body; no pasted head or runtime deformation. Reviewed 530px row gutter preserves complete shoes. Whole-pose integer registration targets planted or airborne soles, with common 2:1 nearest sampling and existing 32px top padding. All action frame IDs, order, FPS, loop, anchor and native dimensions are retained. Selected stable-v2 corrects the second row torso height after stable-v1. Head top range is reduced from9 to3 native pixels with every support sole at250. The new walking figure extends about3\u20136px higher than existing idle; head size and identity remain visually close, with no per-pose scaling."
+    },
+    {
+      "action": "run",
+      "file": "artwork/kling-themes/source/male-run-v1.png",
+      "sha256": "b2c3dc4efe208f23a6b5c45042c5bed54499b340e0fead830db9a433e466dcc8",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          512
+        ],
+        [
+          384,
+          0,
+          384,
+          512
+        ],
+        [
+          768,
+          0,
+          384,
+          512
+        ],
+        [
+          1152,
+          0,
+          384,
+          512
+        ],
+        [
+          0,
+          512,
+          384,
+          512
+        ],
+        [
+          384,
+          512,
+          384,
+          512
+        ],
+        [
+          768,
+          512,
+          384,
+          512
+        ],
+        [
+          1152,
+          512,
+          384,
+          512
+        ]
+      ],
+      "translations": [
+        [
+          -8,
+          -34
+        ],
+        [
+          -2,
+          -32
+        ],
+        [
+          4,
+          -36
+        ],
+        [
+          0,
+          -42
+        ],
+        [
+          0,
+          -2
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          -2
+        ],
+        [
+          4,
+          -6
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/run.json",
+      "notes": "Original V1 complete-pose artwork is retained; the independent new-art trial was rejected because it increased vertical head steps. Revision2 uses the previously recorded integer horizontal corrections and a bounded zero-mean whole-pose Y adjustment only on the airborne positions0,3,4,7. Native Y deltas are[1, 0, 0, 1, -1, 0, 0, -1]. Contact positions1,2,5,6 retain their exact earlier vertical registration. Every airborne sole remains at or above249, above the250px ground. This revises the authored flight trajectory slightly to reduce irregular crown jumps without changing head-to-body geometry, anatomy, native dimensions, anchor, frame order, FPS or loop. Exact before/after crown/sole coordinates are recorded in registrationReview.actions.run.airborneRegistration. No runtime head lock, detached head or interpolation."
+    },
+    {
+      "action": "jump",
+      "file": "artwork/kling-themes/source/male-jump-v2.png",
+      "sha256": "0a9c02b6777e90337f0a7be4ac4c4d668eba75e7248d23610707cb3533e8b40a",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/jump.json",
+      "notes": "Male jump v2 removes unintended shoe laces from v1 through a recorded image-generation edit. New key-pose drawing and trajectory; no claim of pixel-exact source motion. Declared technical translation and common sampling only."
+    },
+    {
+      "action": "celebrate",
+      "file": "artwork/kling-themes/source/male-idle-celebrate-v1.png",
+      "sha256": "7247315b8faafb895efdab100ed49a00f83ca240eb67eeb0e0a873d42d306a25",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/celebrate.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    }
+  ],
+  "method": "AI-authored independent pixel sprite drawings; fixed-grid extraction and uniform integer sampling only. Timeline authored for these drawings. No geometric rig deformation, generated runtime frames, or claim of video-pixel extraction."
+}

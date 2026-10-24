@@ -17,6 +17,7 @@ import {
   validateThemeManifest,
   type ThemeBundle,
   type ThemeLook,
+  type ThemeLookReference,
   type ThemeManifest,
 } from "./contract";
 export type { ThemeBundle, ThemeLook, ThemeManifest } from "./contract";
@@ -31,6 +32,52 @@ export function parseThemeJson(bytes: Uint8Array, label: string): unknown {
   } catch {
     throw Error(`${label} must be valid UTF-8 JSON.`);
   }
+}
+
+/** A selected published look receives the same identity, archive and complete
+ * PNG validation as an embedded imported look. No partial PNG is accepted. */
+export async function readThemeLook(
+  input: Uint8Array,
+  manifest: ThemeManifest,
+  ref: ThemeLookReference,
+  options: SourcePreparationOptions = {},
+): Promise<ThemeLook> {
+  assertSourcePreparationActive(options);
+  if (input.length > BAKED_MAX_ARCHIVE_BYTES)
+    throw Error("CharacterPack ZIP must be at most 64 MiB.");
+  const data = new Uint8Array(input);
+  if ((await sha256(data)) !== ref.sha256)
+    throw Error(`Theme look ${ref.logicalId} checksum mismatch.`);
+  const archive = await prepareSourceArchive(data, options);
+  if (archive.config.characterId !== manifest.characterId)
+    throw Error(
+      `Theme look ${ref.logicalId} belongs to a different character identity.`,
+    );
+  if (archive.manifest.scale.pixelArt !== (manifest.rendering === "pixel"))
+    throw Error(
+      `Theme look ${ref.logicalId} does not match its declared rendering mode.`,
+    );
+  const pages = [archive.png, ...(archive.additionalPngs ?? [])];
+  const sheets = [
+    archive.manifest.spritesheet,
+    ...("additionalSheets" in archive.manifest
+      ? archive.manifest.additionalSheets
+      : []),
+  ];
+  if (pages.length !== sheets.length)
+    throw Error("Theme atlas page count mismatch.");
+  for (let i = 0; i < pages.length; i++) {
+    assertSourcePreparationActive(options);
+    await prepareSourcePng(pages[i], sheets[i], options);
+  }
+  assertSourcePreparationActive(options);
+  return {
+    logicalId: ref.logicalId,
+    name: ref.name,
+    bytes: data,
+    sha256: ref.sha256,
+    archive,
+  };
 }
 
 /** Serial, fully decoded validation. No accepted session is mutated on a late failure. */
@@ -65,39 +112,8 @@ export async function readThemeBundle(
   for (const ref of manifest.looks) {
     assertSourcePreparationActive(options);
     const data = files[ref.file];
-    if (!data || (await sha256(data)) !== ref.sha256)
-      throw Error(`Theme look ${ref.logicalId} checksum mismatch.`);
-    const archive = await prepareSourceArchive(data, options);
-    if (archive.config.characterId !== manifest.characterId)
-      throw Error(
-        `Theme look ${ref.logicalId} belongs to a different character identity.`,
-      );
-    const pixelArt = archive.manifest.scale.pixelArt as boolean;
-    if (pixelArt !== (manifest.rendering === "pixel"))
-      throw Error(
-        `Theme look ${ref.logicalId} does not match its declared rendering mode.`,
-      );
-    const pages = [archive.png, ...(archive.additionalPngs ?? [])];
-    const sheets = [
-      archive.manifest.spritesheet,
-      ...("additionalSheets" in archive.manifest
-        ? archive.manifest.additionalSheets
-        : []),
-    ];
-    if (pages.length !== sheets.length)
-      throw Error("Theme atlas page count mismatch.");
-    for (let i = 0; i < pages.length; i++) {
-      assertSourcePreparationActive(options);
-      // Reject malformed IDAT/APNG data too, not merely valid PNG signatures.
-      await prepareSourcePng(pages[i], sheets[i], options);
-    }
-    looks.push({
-      logicalId: ref.logicalId,
-      name: ref.name,
-      bytes: new Uint8Array(data),
-      sha256: ref.sha256,
-      archive,
-    });
+    if (!data) throw Error(`Theme look ${ref.logicalId} checksum mismatch.`);
+    looks.push(await readThemeLook(data, manifest, ref, options));
   }
   const hash = await sha256(bytes);
   assertSourcePreparationActive(options);
