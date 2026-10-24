@@ -23,6 +23,14 @@ import {
   type ReviewIssue,
 } from "./review-document";
 
+import {
+  createReviewTransfer,
+  mergeReviewTransfer,
+  serializeReviewTransfer,
+  type ReviewTransfer,
+  type ReviewTransferLineage,
+} from "./review-transfer";
+
 type Scan = Awaited<ReturnType<typeof scanReviewAction>>;
 type Region = ReviewIssue["region"];
 const regions: Region[] = [
@@ -70,6 +78,12 @@ export default function ReviewWorkbench({
   const [note, setNote] = useState("");
   const [severity, setSeverity] = useState<ReviewIssue["severity"]>("problem");
   const [scan, setScan] = useState<Scan | null>(null);
+  const completedScan = useRef<{
+    comparison: LookComparison;
+    action: PortableAnimationName;
+    threshold: number;
+    result: Scan;
+  } | null>(null);
   const [working, setWorking] = useState(false);
   const [progress, setProgress] = useState("");
   const [sort, setSort] = useState<"sequence" | "changes">("sequence");
@@ -77,10 +91,15 @@ export default function ReviewWorkbench({
   const revision = useRef(0);
   const noteRevision = useRef(0);
   const fileInput = useRef<HTMLInputElement>(null);
+  const handoffInput = useRef<HTMLInputElement>(null);
+  const [handoff, setHandoff] = useState<ReviewTransfer | null>(null);
+  const [lineage, setLineage] = useState<ReviewTransferLineage | null>(null);
 
   useEffect(() => {
     let alive = true;
     noteRevision.current++;
+    setHandoff(null);
+    setLineage(null);
     setDocument(null);
     setNote("");
     setMessage("");
@@ -109,6 +128,7 @@ export default function ReviewWorkbench({
     setWorking(false);
     setProgress("");
     setScan(null);
+    completedScan.current = null;
     return () => {
       revision.current++;
       task.current?.abort();
@@ -231,6 +251,53 @@ export default function ReviewWorkbench({
       );
     }
   }
+  async function previewIssueHandoff(file?: File) {
+    if (!file || !document) return;
+    const token = revision.current,
+      notesToken = ++noteRevision.current;
+    setHandoff(null);
+    try {
+      if (file.size > 1024 * 1024)
+        throw Error("Review notes exceed the 1 MiB limit.");
+      const text = await file.text();
+      if (token !== revision.current || notesToken !== noteRevision.current)
+        return;
+      const raw = JSON.parse(text);
+      const previous = parseReviewDocument(
+        text,
+        raw.binding,
+        renderer.manifest,
+      );
+      const proposal = createReviewTransfer(
+        previous,
+        document.binding,
+        renderer.manifest,
+      );
+      mergeReviewTransfer(document, proposal, renderer.manifest);
+      setHandoff(proposal);
+      setMessage(
+        "Issue handoff prepared. Review the origin before copying; all copied issues will reopen.",
+      );
+    } catch (e) {
+      if (token === revision.current && notesToken === noteRevision.current)
+        setMessage(
+          `Could not prepare issue handoff: ${String(e)} Existing notes are unchanged.`,
+        );
+    }
+  }
+  function applyIssueHandoff() {
+    if (!handoff || !document) return;
+    try {
+      const next = mergeReviewTransfer(document, handoff, renderer.manifest);
+      persist(next);
+      setLineage(handoff.lineage);
+      setHandoff(null);
+    } catch (e) {
+      setMessage(
+        `Could not copy issues: ${String(e)} Existing notes are unchanged.`,
+      );
+    }
+  }
   function beginTask() {
     task.current?.abort();
     const c = new AbortController();
@@ -251,6 +318,7 @@ export default function ReviewWorkbench({
         },
       });
       if (token === revision.current && !c.signal.aborted) {
+        completedScan.current = { comparison, action, threshold, result };
         setScan(result);
         setMessage(
           "Action scanned. Differences identify changes, not visual defects.",
@@ -276,14 +344,20 @@ export default function ReviewWorkbench({
     const { c, token } = beginTask();
     try {
       planReviewContactSheets(comparison, action);
-      const result = await scanReviewAction(comparison, action, {
-        threshold,
-        signal: c.signal,
-        onProgress: (n, t) => {
-          if (token === revision.current && !c.signal.aborted)
-            setProgress(`Auditing ${n}/${t}`);
-        },
-      });
+      const cached = completedScan.current;
+      const result =
+        cached?.comparison === comparison &&
+        cached.action === action &&
+        cached.threshold === threshold
+          ? cached.result
+          : await scanReviewAction(comparison, action, {
+              threshold,
+              signal: c.signal,
+              onProgress: (n, t) => {
+                if (token === revision.current && !c.signal.aborted)
+                  setProgress(`Auditing ${n}/${t}`);
+              },
+            });
       const sheets = await buildReviewContactSheets(
         comparison,
         action,
@@ -357,6 +431,7 @@ export default function ReviewWorkbench({
         new Blob([new Uint8Array(bytes)], { type: "application/zip" }),
         `kling-${project.registration.characterId}-${action}-${facing}.review.zip`,
       );
+      completedScan.current = { comparison, action, threshold, result };
       setScan(result);
       setMessage(
         `Review bundle saved with ${sheets.length} PNG pages, notes and checksums.`,
@@ -576,6 +651,60 @@ export default function ReviewWorkbench({
             e.target.value = "";
           }}
         />
+      </div>
+      <div className="wardrobe-review-handoff">
+        <h4>Review a clothing revision</h4>
+        <p>
+          Bring notes exported from a different look on this same character.
+          Copying keeps existing notes and reopens every imported issue for a
+          fresh visual check.
+        </p>
+        <button disabled={locked} onClick={() => handoffInput.current?.click()}>
+          Preview issues from another look
+        </button>
+        <input
+          ref={handoffInput}
+          type="file"
+          accept=".json,application/json"
+          aria-label="Review issue handoff file"
+          hidden
+          onChange={(e) => {
+            void previewIssueHandoff(e.target.files?.[0]);
+            e.target.value = "";
+          }}
+        />
+        {handoff && (
+          <div aria-label="Issue handoff preview">
+            <p>
+              {handoff.document.issues.length} issues from look{" "}
+              {handoff.lineage.from.lookSha256.slice(0, 12)} →{" "}
+              {handoff.lineage.to.lookSha256.slice(0, 12)}. Previously resolved
+              issues will be open again; no visual approval is carried forward.
+            </p>
+            <button disabled={locked} onClick={applyIssueHandoff}>
+              Copy issues as open
+            </button>{" "}
+            <button disabled={locked} onClick={() => setHandoff(null)}>
+              Discard issue handoff
+            </button>
+          </div>
+        )}
+        {lineage && (
+          <button
+            disabled={locked}
+            onClick={() =>
+              downloadBlob(
+                new Blob(
+                  [serializeReviewTransfer(lineage, renderer.manifest)],
+                  { type: "application/json" },
+                ),
+                "kling-review-handoff.json",
+              )
+            }
+          >
+            Export issue handoff
+          </button>
+        )}
       </div>
       <ul className="wardrobe-review-issues">
         {document?.issues.map((issue) => (

@@ -90,6 +90,12 @@ import ConnectionInspector from "./ConnectionInspector";
 import NamedLooks from "./NamedLooks";
 import LookComparison from "./LookComparison";
 const ReviewWorkbench = lazy(() => import("./ReviewWorkbench"));
+const GarmentCandidatePreview = lazy(() => import("./GarmentCandidatePreview"));
+import {
+  prepareGarmentCandidate,
+  assertCandidateBase,
+  type GarmentCandidate,
+} from "./repair-candidate";
 import { createLookComparison } from "./look-comparison";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
@@ -141,6 +147,10 @@ interface AppearancePreview {
   action: PortableAnimationName;
   position: number;
   facing: Facing;
+}
+interface GarmentPreview extends AppearancePreview {
+  proposal: GarmentCandidate;
+  baseProject: WardrobeProject;
 }
 interface PinnedLook {
   project: WardrobeProject;
@@ -359,6 +369,14 @@ export default function WardrobeEditor({
   const pinned = useRef<PinnedLook | null>(null);
   const [appearancePreview, setAppearancePreview] =
     useState<AppearancePreview | null>(null);
+  const [garmentPreview, setGarmentPreview] = useState<GarmentPreview | null>(
+    null,
+  );
+  const candidateRenderer = useRef<WardrobeCompositor | null>(null);
+  const preparingGarmentPreview = useRef(false);
+  const modalOpen = Boolean(appearancePreview || garmentPreview);
+  const previewGarmentInput = useRef<HTMLInputElement>(null);
+  const previewGarmentButton = useRef<HTMLButtonElement>(null);
   const previewRenderer = useRef<WardrobeCompositor | null>(null);
   const preparingAppearancePreview = useRef(false);
   const resumeAfterPreview = useRef(false);
@@ -434,9 +452,10 @@ export default function WardrobeEditor({
   function cancelPreparation() {
     preparation.current?.abort();
     request.current++;
-    if (preparingAppearancePreview.current)
+    if (preparingAppearancePreview.current || preparingGarmentPreview.current)
       setPlaying(resumeAfterPreview.current && activeRef.current);
     preparingAppearancePreview.current = false;
+    preparingGarmentPreview.current = false;
     setBusy(false);
     setCancellable(false);
     setError("");
@@ -525,6 +544,8 @@ export default function WardrobeEditor({
   }
 
   useEffect(() => {
+    if (candidateRenderer.current) closeGarmentPreview();
+    preparingGarmentPreview.current = false;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -577,6 +598,8 @@ export default function WardrobeEditor({
       current.current?.renderer.dispose();
       previewRenderer.current?.dispose();
       previewRenderer.current = null;
+      candidateRenderer.current?.dispose();
+      candidateRenderer.current = null;
       current.current = null;
       rendered.current = null;
       savedSessions.current.clear();
@@ -825,7 +848,7 @@ export default function WardrobeEditor({
     preserveMotion = true,
   ) {
     const open = current.current;
-    if (!open || busy || appearancePreview) return;
+    if (!open || busy || modalOpen) return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -851,7 +874,7 @@ export default function WardrobeEditor({
   }
   async function travelLook(direction: "undo" | "redo") {
     const open = current.current;
-    if (!open || busy || appearancePreview) return;
+    if (!open || busy || modalOpen) return;
     const move = moveLookHistory(
       histories.current.get(open.character) ?? emptyLookHistory(),
       open.project,
@@ -897,6 +920,14 @@ export default function WardrobeEditor({
   }
   useEffect(() => {
     if (active) return;
+    if (candidateRenderer.current) closeGarmentPreview();
+    if (preparingGarmentPreview.current) {
+      preparingGarmentPreview.current = false;
+      preparation.current?.abort();
+      request.current++;
+      setBusy(false);
+      setStatus("Clothing preview canceled. Your open outfit is unchanged.");
+    }
     if (previewRenderer.current) closeAppearancePreview();
     if (preparingAppearancePreview.current) {
       preparingAppearancePreview.current = false;
@@ -911,7 +942,7 @@ export default function WardrobeEditor({
     const open = current.current;
     const revision = appearanceRelease?.revision;
     const url = appearanceRelease?.url;
-    if (!open || busy || appearancePreview || !revision || !url) return;
+    if (!open || busy || modalOpen || !revision || !url) return;
     const { token, controller } = beginPreparation();
     preparingAppearancePreview.current = true;
     resumeAfterPreview.current = playing;
@@ -1213,12 +1244,7 @@ export default function WardrobeEditor({
     }, `${name} selected. Clothing follows the original movement frames.`);
   }
   async function chooseCharacter(character: KlingCharacterId) {
-    if (
-      busy ||
-      appearancePreview ||
-      !catalog ||
-      character === session?.character
-    )
+    if (busy || modalOpen || !catalog || character === session?.character)
       return;
     const { token, controller } = beginPreparation();
     setBusy(true);
@@ -1367,7 +1393,7 @@ export default function WardrobeEditor({
     setPlaying(!playing);
   }
   async function importProject(file?: File) {
-    if (!file || busy || appearancePreview) return;
+    if (!file || busy || modalOpen) return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -1413,6 +1439,118 @@ export default function WardrobeEditor({
       if (token === request.current) setBusy(false);
     }
   }
+  function closeGarmentPreview(applied = false) {
+    setGarmentPreview(null);
+    candidateRenderer.current?.dispose();
+    candidateRenderer.current = null;
+    setPlaying(resumeAfterPreview.current && activeRef.current);
+    if (!applied)
+      setStatus("Clothing candidate discarded. Your open outfit is unchanged.");
+    requestAnimationFrame(() => previewGarmentButton.current?.focus());
+  }
+  async function previewImportedGarment(file?: File) {
+    const open = current.current;
+    if (!file || !open || busy || modalOpen) return;
+    const { token, controller } = beginPreparation();
+    preparingGarmentPreview.current = true;
+    resumeAfterPreview.current = playing;
+    setPlaying(false);
+    setBusy(true);
+    setError("");
+    setStatus("Checking imported clothing without changing your outfit…");
+    let renderer: WardrobeCompositor | null = null;
+    try {
+      if (file.size > WARDROBE_MAX_ITEM_BYTES)
+        throw Error("Clothing files must be at most 64 MiB.");
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      const proposal = await prepareGarmentCandidate(open.project, bytes, {
+        signal: controller.signal,
+      });
+      renderer = await createWardrobeCompositor(proposal.project, {
+        signal: controller.signal,
+      });
+      await validateWardrobeAppearance(renderer, {
+        signal: controller.signal,
+        onProgress: (n, t) => {
+          if (token === request.current && !controller.signal.aborted)
+            setStatus(`Checking clothing candidate: ${n} / ${t} poses…`);
+        },
+      });
+      if (
+        token !== request.current ||
+        controller.signal.aborted ||
+        !activeRef.current
+      ) {
+        renderer.dispose();
+        return;
+      }
+      candidateRenderer.current = renderer;
+      setGarmentPreview({
+        project: proposal.project,
+        proposal,
+        baseProject: open.project,
+        renderer,
+        original: open.renderer,
+        action: motion.current.action,
+        position: tick.current,
+        facing: open.project.document.preview.facing,
+      });
+      renderer = null;
+      setStatus(
+        "Clothing candidate ready. Compare it, then explicitly apply or discard.",
+      );
+    } catch (failure) {
+      renderer?.dispose();
+      if (token === request.current && !controller.signal.aborted) {
+        setError(
+          `${failureText(failure)} Your outfit and history are unchanged.`,
+        );
+        setPlaying(resumeAfterPreview.current && activeRef.current);
+      }
+    } finally {
+      if (token === request.current) {
+        preparingGarmentPreview.current = false;
+        setBusy(false);
+      }
+    }
+  }
+  async function applyGarmentCandidate() {
+    const preview = garmentPreview,
+      open = current.current;
+    if (!preview || !open || busy) return;
+    const { token, controller } = beginPreparation();
+    preparingGarmentPreview.current = true;
+    setBusy(true);
+    setCancellable(false);
+    setError("");
+    try {
+      await assertCandidateBase(preview.proposal, open.project, {
+        signal: controller.signal,
+      });
+      await accept(
+        preview.proposal.project,
+        open.character,
+        true,
+        token,
+        controller.signal,
+        true,
+        "edit",
+      );
+      if (token === request.current && !controller.signal.aborted) {
+        closeGarmentPreview(true);
+        setStatus(
+          "Clothing candidate applied. Undo styling restores the previous look.",
+        );
+      }
+    } catch (failure) {
+      if (token === request.current) throw failure;
+    } finally {
+      if (token === request.current) {
+        preparingGarmentPreview.current = false;
+        setBusy(false);
+      }
+    }
+  }
   async function importGarment(file?: File) {
     if (!file) return;
     void changeProject(async (base) => {
@@ -1423,7 +1561,7 @@ export default function WardrobeEditor({
   }
   async function exportFile(kind: "project" | "pack" | "png") {
     const open = current.current;
-    if (!open || busy || appearancePreview || frameId === undefined) return;
+    if (!open || busy || modalOpen || frameId === undefined) return;
     setBusy(true);
     setCancellable(false);
     setError("");
@@ -1474,7 +1612,7 @@ export default function WardrobeEditor({
 
   async function exportGif(comparison = false) {
     const open = current.current;
-    if (!open || busy || appearancePreview) return;
+    if (!open || busy || modalOpen) return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -1518,7 +1656,7 @@ export default function WardrobeEditor({
 
   async function pinLook() {
     const open = current.current;
-    if (!open || busy || appearancePreview) return;
+    if (!open || busy || modalOpen) return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -1556,7 +1694,7 @@ export default function WardrobeEditor({
 
   async function exportLookGif() {
     const open = current.current;
-    if (!open || !lookComparison || busy || appearancePreview) return;
+    if (!open || !lookComparison || busy || modalOpen) return;
     const { token, controller } = beginPreparation();
     setBusy(true);
     setError("");
@@ -1697,7 +1835,7 @@ export default function WardrobeEditor({
           <select
             aria-label="Wardrobe character"
             value={session?.character ?? initialCharacter}
-            disabled={busy || Boolean(appearancePreview) || !catalog}
+            disabled={busy || modalOpen || !catalog}
             onChange={(event) =>
               void chooseCharacter(event.target.value as KlingCharacterId)
             }
@@ -1720,7 +1858,7 @@ export default function WardrobeEditor({
           type="button"
           disabled={
             busy ||
-            Boolean(appearancePreview) ||
+            modalOpen ||
             !session ||
             !histories.current.get(session.character)?.past.length
           }
@@ -1732,7 +1870,7 @@ export default function WardrobeEditor({
           type="button"
           disabled={
             busy ||
-            Boolean(appearancePreview) ||
+            modalOpen ||
             !session ||
             !histories.current.get(session.character)?.future.length
           }
@@ -1742,14 +1880,14 @@ export default function WardrobeEditor({
         </button>
         <button
           type="button"
-          disabled={busy || Boolean(appearancePreview)}
+          disabled={busy || modalOpen}
           onClick={() => projectInput.current?.click()}
         >
           <FolderOpen size={16} aria-hidden="true" /> Reopen wardrobe
         </button>
         <button
           type="button"
-          disabled={busy || Boolean(appearancePreview) || !session}
+          disabled={busy || modalOpen || !session}
           onClick={() => void exportFile("project")}
         >
           <Download size={16} aria-hidden="true" /> Save wardrobe
@@ -1778,6 +1916,17 @@ export default function WardrobeEditor({
           }}
         />
       </div>
+      <input
+        ref={previewGarmentInput}
+        type="file"
+        accept=".zip"
+        aria-label="Preview registered clothing file"
+        hidden
+        onChange={(event) => {
+          void previewImportedGarment(event.target.files?.[0]);
+          event.target.value = "";
+        }}
+      />
       {error && (
         <div className="wardrobe-error" role="alert">
           <strong>Couldn’t complete this change</strong>
@@ -1785,7 +1934,7 @@ export default function WardrobeEditor({
           {!session && (
             <button
               type="button"
-              disabled={busy || Boolean(appearancePreview)}
+              disabled={busy || modalOpen}
               onClick={() => setRetry((value) => value + 1)}
             >
               Retry loading
@@ -1827,11 +1976,7 @@ export default function WardrobeEditor({
                       key={style.id}
                       aria-label={`Choose ${style.name}`}
                       aria-pressed={appearance.hairId === style.id}
-                      disabled={
-                        busy ||
-                        Boolean(appearancePreview) ||
-                        !appearanceAvailable
-                      }
+                      disabled={busy || modalOpen || !appearanceAvailable}
                       onClick={() => chooseAppearance({ hairId: style.id })}
                     >
                       {showLibraryThumbnails &&
@@ -1857,9 +2002,7 @@ export default function WardrobeEditor({
                 <select
                   aria-label="Hairstyle"
                   value={appearance.hairId ?? ""}
-                  disabled={
-                    busy || Boolean(appearancePreview) || !appearanceAvailable
-                  }
+                  disabled={busy || modalOpen || !appearanceAvailable}
                   onChange={(event) =>
                     chooseAppearance({ hairId: event.target.value || null })
                   }
@@ -1879,9 +2022,7 @@ export default function WardrobeEditor({
                 <select
                   aria-label="Face"
                   value={appearance.faceId ?? ""}
-                  disabled={
-                    busy || Boolean(appearancePreview) || !appearanceAvailable
-                  }
+                  disabled={busy || modalOpen || !appearanceAvailable}
                   onChange={(event) =>
                     chooseAppearance({ faceId: event.target.value || null })
                   }
@@ -1901,9 +2042,7 @@ export default function WardrobeEditor({
                 <select
                   aria-label="Hair color"
                   value={appearance.hairColor}
-                  disabled={
-                    busy || Boolean(appearancePreview) || !appearance.hairId
-                  }
+                  disabled={busy || modalOpen || !appearance.hairId}
                   onChange={(event) =>
                     chooseAppearance({
                       hairColor: event.target
@@ -1929,9 +2068,7 @@ export default function WardrobeEditor({
                     type="button"
                     aria-label={`Use ${nameFor(color)}`}
                     aria-pressed={appearance.hairColor === color}
-                    disabled={
-                      busy || Boolean(appearancePreview) || !appearance.hairId
-                    }
+                    disabled={busy || modalOpen || !appearance.hairId}
                     onClick={() => chooseAppearance({ hairColor: color })}
                   >
                     <span
@@ -1947,7 +2084,7 @@ export default function WardrobeEditor({
                 type="button"
                 disabled={
                   busy ||
-                  Boolean(appearancePreview) ||
+                  modalOpen ||
                   (!appearance.hairId && !appearance.faceId)
                 }
                 onClick={() => chooseAppearance(DEFAULT_APPEARANCE_SELECTION)}
@@ -1970,7 +2107,7 @@ export default function WardrobeEditor({
                     <button
                       ref={updateAppearanceButton}
                       type="button"
-                      disabled={busy || Boolean(appearancePreview)}
+                      disabled={busy || modalOpen}
                       onClick={() => void previewAppearanceUpdate()}
                     >
                       Preview updated appearance
@@ -2034,7 +2171,7 @@ export default function WardrobeEditor({
               <button
                 type="button"
                 aria-pressed={original}
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() => choosePreset(EMPTY_SELECTION, "Original outfit")}
               >
                 Original
@@ -2059,7 +2196,7 @@ export default function WardrobeEditor({
                     key={preset.id}
                     type="button"
                     aria-pressed={selectedPreset?.id === preset.id}
-                    disabled={busy || Boolean(appearancePreview)}
+                    disabled={busy || modalOpen}
                     onClick={() => choosePreset(preset.selection, preset.name)}
                   >
                     {picture && (
@@ -2102,7 +2239,7 @@ export default function WardrobeEditor({
                   {SLOT_NAMES[slot]}
                   <select
                     aria-label={SLOT_NAMES[slot]}
-                    disabled={busy || Boolean(appearancePreview)}
+                    disabled={busy || modalOpen}
                     value={selected[slot] ?? ""}
                     onChange={(event) => chooseItem(slot, event.target.value)}
                   >
@@ -2125,16 +2262,25 @@ export default function WardrobeEditor({
             <NamedLooks
               project={project}
               character={session.character}
-              disabled={busy || Boolean(appearancePreview)}
+              disabled={busy || modalOpen}
               onApply={applyLook}
             />
             <button
               type="button"
               className="wardrobe-secondary"
-              disabled={busy || Boolean(appearancePreview)}
+              disabled={busy || modalOpen}
               onClick={() => garmentInput.current?.click()}
             >
               <Upload size={15} aria-hidden="true" /> Add clothing file
+            </button>
+            <button
+              type="button"
+              ref={previewGarmentButton}
+              className="wardrobe-secondary"
+              disabled={busy || modalOpen}
+              onClick={() => previewGarmentInput.current?.click()}
+            >
+              Preview imported clothing
             </button>
             <p className="wardrobe-hint">
               New clothing must match this character’s registered poses.
@@ -2153,7 +2299,7 @@ export default function WardrobeEditor({
               </p>
               <button
                 type="button"
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() =>
                   saveBytes(
                     project.registrationBytes,
@@ -2204,7 +2350,7 @@ export default function WardrobeEditor({
                       <select
                         aria-label="Recipe clothing"
                         value={chosen.manifest.id}
-                        disabled={busy || Boolean(appearancePreview)}
+                        disabled={busy || modalOpen}
                         onChange={(event) =>
                           setRecipeItemId(event.target.value)
                         }
@@ -2221,7 +2367,7 @@ export default function WardrobeEditor({
                     </label>
                     <button
                       type="button"
-                      disabled={busy || Boolean(appearancePreview)}
+                      disabled={busy || modalOpen}
                       onClick={() => void exportRecipe(chosen.manifest.id)}
                     >
                       Download clothing recipe
@@ -2241,7 +2387,7 @@ export default function WardrobeEditor({
                         onExportNeighbors={() =>
                           void exportRecipe(chosen.manifest.id, frameId, true)
                         }
-                        disabled={busy || Boolean(appearancePreview)}
+                        disabled={busy || modalOpen}
                         onExport={() =>
                           void exportRecipe(chosen.manifest.id, frameId)
                         }
@@ -2256,28 +2402,28 @@ export default function WardrobeEditor({
               <button
                 type="button"
                 className="wardrobe-primary"
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() => void exportFile("pack")}
               >
                 <Download size={16} aria-hidden="true" /> Export CharacterPack
               </button>
               <button
                 type="button"
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() => void exportFile("png")}
               >
                 Save current PNG
               </button>
               <button
                 type="button"
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() => void exportGif()}
               >
                 Download action GIF
               </button>
               <button
                 type="button"
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() => void exportGif(true)}
               >
                 Download comparison GIF
@@ -2304,7 +2450,7 @@ export default function WardrobeEditor({
                 <select
                   aria-label="Wardrobe action"
                   value={requestedAction}
-                  disabled={busy || Boolean(appearancePreview)}
+                  disabled={busy || modalOpen}
                   onChange={(event) =>
                     chooseAction(event.target.value as PortableAnimationName)
                   }
@@ -2323,7 +2469,7 @@ export default function WardrobeEditor({
                 <select
                   aria-label="Wardrobe facing"
                   value={facing}
-                  disabled={busy || Boolean(appearancePreview)}
+                  disabled={busy || modalOpen}
                   onChange={(event) =>
                     chooseFacing(event.target.value as Facing)
                   }
@@ -2339,7 +2485,7 @@ export default function WardrobeEditor({
                     ? "Pause wardrobe animation"
                     : "Play wardrobe animation"
                 }
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={togglePlayback}
               >
                 {playing ? (
@@ -2352,7 +2498,7 @@ export default function WardrobeEditor({
               <button
                 type="button"
                 aria-label="Restart wardrobe action"
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() => {
                   motion.current = {
                     action: requestedAction,
@@ -2395,7 +2541,7 @@ export default function WardrobeEditor({
             <div className="wardrobe-review-options">
               <button
                 type="button"
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onClick={() => void pinLook()}
               >
                 {pinnedLook ? "Replace pinned look" : "Pin current look"}
@@ -2478,7 +2624,7 @@ export default function WardrobeEditor({
                   aria-label="Previous wardrobe frame"
                   disabled={
                     busy ||
-                    Boolean(appearancePreview) ||
+                    modalOpen ||
                     !clip ||
                     (!clip?.loop && frameIndex === 0)
                   }
@@ -2497,7 +2643,7 @@ export default function WardrobeEditor({
                   aria-label="Next wardrobe frame"
                   disabled={
                     busy ||
-                    Boolean(appearancePreview) ||
+                    modalOpen ||
                     !clip ||
                     (!clip?.loop && frameIndex === clip.frames.length - 1)
                   }
@@ -2519,7 +2665,7 @@ export default function WardrobeEditor({
                 max={(clip?.frames.length ?? 1) - 1}
                 step={1}
                 value={frameIndex}
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onChange={(event) => scrub(Number(event.target.value))}
               />
               <span>
@@ -2530,7 +2676,7 @@ export default function WardrobeEditor({
             <button
               type="button"
               aria-expanded={reviewOpen}
-              disabled={busy || Boolean(appearancePreview)}
+              disabled={busy || modalOpen}
               onClick={() => {
                 setReviewOpen(!reviewOpen);
                 setPlaying(false);
@@ -2550,7 +2696,7 @@ export default function WardrobeEditor({
                   frameId={frameId}
                   action={shownAction}
                   facing={facing}
-                  disabled={busy || Boolean(appearancePreview)}
+                  disabled={busy || modalOpen}
                   onSeek={seekReview}
                 />
               </Suspense>
@@ -2569,13 +2715,30 @@ export default function WardrobeEditor({
                 frameId={frameId}
                 facing={facing}
                 name={pinnedLook.name}
-                disabled={busy || Boolean(appearancePreview)}
+                disabled={busy || modalOpen}
                 onExportGif={() => void exportLookGif()}
                 onClear={clearPinnedLook}
               />
             )}
           </section>
         </div>
+      )}
+      {garmentPreview && (
+        <Suspense
+          fallback={<p aria-live="polite">Opening clothing preview…</p>}
+        >
+          <GarmentCandidatePreview
+            original={garmentPreview.original}
+            candidate={garmentPreview.renderer}
+            baseProject={garmentPreview.baseProject}
+            project={garmentPreview.project}
+            initialAction={garmentPreview.action}
+            initialPosition={garmentPreview.position}
+            initialFacing={garmentPreview.facing}
+            onClose={() => closeGarmentPreview()}
+            onApply={applyGarmentCandidate}
+          />
+        </Suspense>
       )}
       {appearancePreview && (
         <AppearanceUpdatePreview
