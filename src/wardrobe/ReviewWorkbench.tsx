@@ -7,6 +7,7 @@ import type { WardrobeProject, Rect } from "./contract";
 import type { WardrobeCompositor } from "./compositor";
 import type { LookComparison } from "./look-comparison";
 import ReviewCanvas from "./ReviewCanvas";
+import MotionReview from "./MotionReview";
 import { scanReviewAction } from "./review-analysis";
 import {
   buildReviewContactSheets,
@@ -590,6 +591,16 @@ export default function ReviewWorkbench({
           </div>
         </div>
       )}
+      <MotionReview
+        comparison={comparison}
+        project={project}
+        referenceProject={referenceProject}
+        action={action}
+        facing={facing}
+        threshold={threshold}
+        disabled={locked}
+        onSeek={onSeek}
+      />
       <h4>Review issues</h4>
       <p>
         Notes follow this exact outfit and appearance revision.

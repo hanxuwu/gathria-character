@@ -60,6 +60,12 @@ The [Sprints 46–55 repairs](docs/kling-repair-handoff/README.md) add optional
 clothing pieces. **Preview imported clothing** compares all actions before
 explicit apply/discard. Review notes can be explicitly carried to a compatible
 new look with every copied issue reopened; existing presets remain unchanged.
+The [Sprints 56–65 browser painting workflow](docs/kling-paint-roundtrip/README.md)
+adds **Preview painted poses** under **Fitting guides**: reimport native painting
+kits, preserve ownership/alpha, inspect a candidate, and save a reusable garment
+without running a script. **Motion continuity** inside **Open look review**
+compares consecutive drawings, holds and loop closure against the original or
+pinned look, with native PNG pairs, original-timing GIFs and hashed reports.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.

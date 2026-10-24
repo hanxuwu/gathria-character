@@ -1,0 +1,114 @@
+{
+  "baseline": "1ebf62f69ee7fb804503b90d07ea1d67feeebe71",
+  "applicationCommit": "9ce8e3b15eda69325a749b5a3ef9bcd37a45f962",
+  "executedThisBatch": [
+    {
+      "command": "npm test",
+      "result": "passed",
+      "logSha256": "0992effc0c06c6783352c0017cbe7d6a13b202343dcfa68fcfa2741d042e9f4b",
+      "logFile": "docs/kling-paint-roundtrip/logs/unit.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "tests": 333,
+      "files": 33
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "result": "passed",
+      "logSha256": "80cf2cecffcad4449745113972110a5ee9cc79aceeb6fd4c15273fd064c86aff",
+      "logFile": "docs/kling-paint-roundtrip/logs/browser.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "tests": 79
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "logSha256": "3b79e08e0d29a774e6921e85d2ee3396a0b73145d9cc694976cc0400fc89acae",
+      "logFile": "docs/kling-paint-roundtrip/logs/build.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only"
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "logSha256": "f5be95ea0f1082c83af4a11d7940940c9a627c4ee1b43c632f60e03fbe2f5c3c",
+      "logFile": "docs/kling-paint-roundtrip/logs/final-build.log",
+      "scope": "9ce8e3b application and final candidate layout"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/paint-roundtrip.spec.ts",
+      "result": "passed",
+      "logSha256": "2c8a9a1117fd8af8d8b8051c156208b22ddd85121122f416db0f65f53d10ac5c",
+      "logFile": "docs/kling-paint-roundtrip/logs/final-focused.log",
+      "scope": "9ce8e3b application and final candidate layout",
+      "tests": 3
+    },
+    {
+      "command": "python scripts/verify-kling-contour-assets.py",
+      "result": "passed",
+      "logSha256": "9a59ca4964bf6d65ed9d2a6674b49383389790eef6489fb1ab05eaffac7c4667",
+      "logFile": "docs/kling-paint-roundtrip/logs/asset-retained.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "oldArchives": 101,
+      "sourceFiles": 4
+    },
+    {
+      "command": "python scripts/verify-kling-male-repair.py",
+      "result": "passed",
+      "logSha256": "ab39ff75cb2378d6fed433fb2eb66349e8b34d2a0addc328ef8281593646d5b7",
+      "logFile": "docs/kling-paint-roundtrip/logs/asset-male.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "decodedFrames": 88
+    },
+    {
+      "command": "python scripts/verify-kling-female-repair.py",
+      "result": "passed",
+      "logSha256": "233e221aa1c477231e6d00dbd83142d39907d17e16b819f64ddb3e5146c5dc6a",
+      "logFile": "docs/kling-paint-roundtrip/logs/asset-female.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "decodedFrames": 576
+    },
+    {
+      "command": "KLING_PYTHON=/tmp/kling-polish-venv/bin/python node scripts/capture-kling-paint-roundtrip.mjs",
+      "result": "passed",
+      "logSha256": "b3be20bd640ffb9d03f79386f5594be10b84041827c1bcbb86252cba7f137d16",
+      "logFile": "docs/kling-paint-roundtrip/logs/capture.log",
+      "scope": "Final production application 9ce8e3b; capture used that revision of the script with the same Python interpreter as its then-default. Later script changes make that path configurable by default and add an offline helper timeout."
+    },
+    {
+      "command": "/tmp/kling-polish-venv/bin/python scripts/verify-kling-paint-roundtrip.py",
+      "result": "passed",
+      "logSha256": "de07d607997c23480a8605ef4218880df19392d3f1b2b0799814d1457ab6576b",
+      "logFile": "docs/kling-paint-roundtrip/logs/decode.log",
+      "scope": "Independently decoded actual downloads; no source artwork was edited."
+    }
+  ],
+  "history": "These checks ran in this batch. Earlier 309/76 results are not reused as new executions. A focused test initially edited a bottom layer hidden by the top; selecting the intended top fixed that test setup. Capture iterations corrected a face option value and compared the same action position after undo; these were evidence-script fixes, not artwork changes.",
+  "artwork": "No source artwork, registered clothing catalog, appearance bank, anchor or animation file changed from the merged baseline. New native materials in evidence are browser-produced copies/replays of retained artwork.",
+  "remoteApplicationChecks": [
+    {
+      "commit": "9ce8e3b15eda69325a749b5a3ef9bcd37a45f962",
+      "runId": 40080218906,
+      "url": "https://github.com/hanxuwu/gathria-character/actions/runs/40080218906",
+      "conclusion": "success",
+      "scope": "Exact final application code, before later evidence/documentation additions"
+    }
+  ],
+  "actualExports": {
+    "capture": {
+      "file": "docs/kling-paint-roundtrip/evidence/capture.json",
+      "sha256": "4fe3ac11998e77f184d4e2b0f96ffba3fe9c327fbb8e9d15b3331f95a8e4afbf"
+    },
+    "validation": {
+      "file": "docs/kling-paint-roundtrip/validation.json",
+      "sha256": "f5d0f69c3f9d00e52745b8d643bfd9f6166057599f35fbe2bc308c826464463f"
+    },
+    "characterPacks": 8,
+    "decodedNativePoses": 736,
+    "unchangedPosePairs": 366,
+    "changedPosePairs": 2,
+    "gifFiles": 16,
+    "gifFrames": 440,
+    "exactNativePngComparisons": 52,
+    "independentPlaybackCases": 40,
+    "visualApproval": "Not claimed. Existing hard garment folds and deformation limits remain."
+  }
+}

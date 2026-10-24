@@ -83,6 +83,7 @@ import {
 } from "../appearance/catalog";
 import "./wardrobe.css";
 import { exportClothingRecipeKit } from "./recipe-kit";
+import type { PaintedGarment } from "./paint-import";
 import ClothingPoseInspector from "./ClothingPoseInspector";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
@@ -149,6 +150,7 @@ interface AppearancePreview {
   facing: Facing;
 }
 interface GarmentPreview extends AppearancePreview {
+  painting?: PaintedGarment;
   proposal: GarmentCandidate;
   baseProject: WardrobeProject;
 }
@@ -376,6 +378,7 @@ export default function WardrobeEditor({
   const preparingGarmentPreview = useRef(false);
   const modalOpen = Boolean(appearancePreview || garmentPreview);
   const previewGarmentInput = useRef<HTMLInputElement>(null);
+  const paintedKitInput = useRef<HTMLInputElement>(null);
   const previewGarmentButton = useRef<HTMLButtonElement>(null);
   const previewRenderer = useRef<WardrobeCompositor | null>(null);
   const preparingAppearancePreview = useRef(false);
@@ -1448,7 +1451,7 @@ export default function WardrobeEditor({
       setStatus("Clothing candidate discarded. Your open outfit is unchanged.");
     requestAnimationFrame(() => previewGarmentButton.current?.focus());
   }
-  async function previewImportedGarment(file?: File) {
+  async function previewImportedGarment(file?: File, painted = false) {
     const open = current.current;
     if (!file || !open || busy || modalOpen) return;
     const { token, controller } = beginPreparation();
@@ -1462,7 +1465,20 @@ export default function WardrobeEditor({
     try {
       if (file.size > WARDROBE_MAX_ITEM_BYTES)
         throw Error("Clothing files must be at most 64 MiB.");
-      const bytes = new Uint8Array(await file.arrayBuffer());
+      let bytes = new Uint8Array(await file.arrayBuffer());
+      let painting: PaintedGarment | undefined;
+      if (painted) {
+        setStatus("Checking painted poses against their original clothing…");
+        const { importPaintedPoses } = await import("./paint-import");
+        painting = await importPaintedPoses(open.project, bytes, {
+          signal: controller.signal,
+          onProgress: (n, t) => {
+            if (token === request.current && !controller.signal.aborted)
+              setStatus(`Checking painted poses: ${n} / ${t}…`);
+          },
+        });
+        bytes = new Uint8Array(painting.bytes);
+      }
       const proposal = await prepareGarmentCandidate(open.project, bytes, {
         signal: controller.signal,
       });
@@ -1488,6 +1504,7 @@ export default function WardrobeEditor({
       setGarmentPreview({
         project: proposal.project,
         proposal,
+        painting,
         baseProject: open.project,
         renderer,
         original: open.renderer,
@@ -2377,6 +2394,31 @@ export default function WardrobeEditor({
                       or local pose corrections. Your current outfit stays
                       intact.
                     </p>
+                    <button
+                      type="button"
+                      disabled={busy || modalOpen}
+                      onClick={() => paintedKitInput.current?.click()}
+                    >
+                      Preview painted poses
+                    </button>
+                    <input
+                      ref={paintedKitInput}
+                      type="file"
+                      accept=".zip"
+                      hidden
+                      aria-label="Painted pose kit file"
+                      onChange={(event) => {
+                        const file = event.target.files?.[0];
+                        event.target.value = "";
+                        void previewImportedGarment(file, true);
+                      }}
+                    />
+                    <p className="wardrobe-hint">
+                      Reimport a pose painting kit after editing its PNGs and
+                      giving the recipe a new ID/name. Keep masks, alpha and
+                      native size unchanged. Up to 8 poses; preview first, then
+                      apply. No script is needed for local RGB corrections.
+                    </p>
                     {frameId !== undefined && (
                       <ClothingPoseInspector
                         item={chosen}
@@ -2732,6 +2774,7 @@ export default function WardrobeEditor({
             candidate={garmentPreview.renderer}
             baseProject={garmentPreview.baseProject}
             project={garmentPreview.project}
+            painting={garmentPreview.painting}
             initialAction={garmentPreview.action}
             initialPosition={garmentPreview.position}
             initialFacing={garmentPreview.facing}

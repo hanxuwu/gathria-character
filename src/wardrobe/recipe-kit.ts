@@ -163,6 +163,19 @@ export async function exportClothingRecipeKit(
 This kit contains the exact selected clothing, its source-bound anchors and a
 versioned recipe. It is not a CharacterPack or a ready-to-import garment.
 
+Browser round-trip (pose or neighboring-pose kits, at most 8 unique poses):
+- Edit the included pose-ID.png files at their native size. Keep every alpha
+  value and mask unchanged; paint RGB only inside white ownership.
+- Give output.id/name in recipe.json a new identity. Rezip the kit contents at
+  the ZIP root (no containing folder or editor sidecar files).
+- While wearing the exact original clothing, choose Preview painted poses.
+  The browser accepts either the original exported image SHA-256 or the edited
+  PNG SHA-256 in the recipe and computes all new hashes itself. Masks and base
+  files remain hash-bound. Raw RGB is used with the base PNG color metadata.
+- Review the candidate, download its material/report, then explicitly apply or
+  discard. No Python is required for these bounded RGB corrections. Palette
+  recipes, changed ownership or new silhouettes still use the full workflow.
+
 1. Extract this ZIP. Keep base.garment.zip and registration.json unchanged.
 2. Edit recipe.json: give the output a new id/name. Optional material rules use
    sourceRgb, targetRgb and tolerance (see the repository recipe guide).
