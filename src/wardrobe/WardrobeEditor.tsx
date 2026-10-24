@@ -1,4 +1,12 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Download,
   FolderOpen,
@@ -81,7 +89,7 @@ import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
 import NamedLooks from "./NamedLooks";
 import LookComparison from "./LookComparison";
-import ReviewWorkbench from "./ReviewWorkbench";
+const ReviewWorkbench = lazy(() => import("./ReviewWorkbench"));
 import { createLookComparison } from "./look-comparison";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
@@ -2531,17 +2539,21 @@ export default function WardrobeEditor({
               {reviewOpen ? "Close look review" : "Open look review"}
             </button>
             {reviewOpen && reviewComparison && frameId !== undefined && (
-              <ReviewWorkbench
-                project={project}
-                renderer={session.renderer}
-                comparison={reviewComparison}
-                referenceProject={pinnedLook?.project}
-                frameId={frameId}
-                action={shownAction}
-                facing={facing}
-                disabled={busy || Boolean(appearancePreview)}
-                onSeek={seekReview}
-              />
+              <Suspense
+                fallback={<p aria-live="polite">Opening look review…</p>}
+              >
+                <ReviewWorkbench
+                  project={project}
+                  renderer={session.renderer}
+                  comparison={reviewComparison}
+                  referenceProject={pinnedLook?.project}
+                  frameId={frameId}
+                  action={shownAction}
+                  facing={facing}
+                  disabled={busy || Boolean(appearancePreview)}
+                  onSeek={seekReview}
+                />
+              </Suspense>
             )}
             {inspect && frameId !== undefined && (
               <ConnectionInspector
