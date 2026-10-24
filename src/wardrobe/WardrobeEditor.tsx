@@ -85,6 +85,8 @@ import { createLookComparison } from "./look-comparison";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
 import { readLocalMaterial } from "./local-materials";
+import { outfitMatches } from "./outfit-search";
+import { outfitPreview } from "./outfit-previews";
 import {
   emptyLookHistory,
   recordLookChange,
@@ -342,6 +344,7 @@ export default function WardrobeEditor({
   const [retry, setRetry] = useState(0);
   const [recipeItemId, setRecipeItemId] = useState("");
   const [showAllOutfits, setShowAllOutfits] = useState(false);
+  const [outfitQuery, setOutfitQuery] = useState("");
   const [pinnedLook, setPinnedLook] = useState<PinnedLook | null>(null);
   const pinned = useRef<PinnedLook | null>(null);
   const [appearancePreview, setAppearancePreview] =
@@ -474,8 +477,13 @@ export default function WardrobeEditor({
         return;
       }
       const previous = current.current;
-      if (history === "reset" || (previous && previous.character !== character))
+      if (
+        history === "reset" ||
+        (previous && previous.character !== character)
+      ) {
         clearPinnedLook();
+        setOutfitQuery("");
+      }
       if (history === "reset") histories.current.delete(character);
       else if (history === "edit" && previous?.character === character)
         histories.current.set(
@@ -1608,6 +1616,13 @@ export default function WardrobeEditor({
   const recommended = (id: string) =>
     !hasRecommended || recommendedIds.includes(id);
   const moreOutfits = outfitPresets.some((p) => !recommended(p.id));
+  const visibleOutfits = outfitPresets.filter((preset) =>
+    outfitQuery.trim()
+      ? outfitMatches(preset.name, outfitQuery)
+      : showAllOutfits ||
+        recommended(preset.id) ||
+        selectedPreset?.id === preset.id,
+  );
   const size = outputSheet
     ? {
         width:
@@ -1926,8 +1941,36 @@ export default function WardrobeEditor({
                 original artwork.
               </p>
             )}
+            <div className="wardrobe-outfit-search">
+              <label>
+                Find an outfit
+                <input
+                  type="search"
+                  aria-label="Find an outfit"
+                  value={outfitQuery}
+                  maxLength={80}
+                  onChange={(event) => setOutfitQuery(event.target.value)}
+                  placeholder="Try wedding, linen or sage"
+                />
+              </label>
+              {outfitQuery && (
+                <button type="button" onClick={() => setOutfitQuery("")}>
+                  Clear outfit search
+                </button>
+              )}
+              <p className="wardrobe-hint">
+                Search includes earlier versions. Preview pictures use the
+                original head; choosing clothes keeps your hair and expression.
+              </p>
+              {outfitQuery.trim() && (
+                <p aria-live="polite">
+                  {visibleOutfits.length} matching{" "}
+                  {visibleOutfits.length === 1 ? "outfit" : "outfits"}
+                </p>
+              )}
+            </div>
             <div
-              className="wardrobe-presets"
+              className="wardrobe-presets wardrobe-outfit-gallery"
               role="group"
               aria-label="Complete outfits"
             >
@@ -1939,14 +1982,22 @@ export default function WardrobeEditor({
               >
                 Original
               </button>
-              {outfitPresets
-                .filter(
-                  (preset) =>
-                    showAllOutfits ||
-                    recommended(preset.id) ||
-                    selectedPreset?.id === preset.id,
-                )
-                .map((preset) => (
+              {visibleOutfits.map((preset) => {
+                const picture = outfitPreview(
+                  session.character,
+                  preset.id,
+                  preset.selection,
+                  project.document.sourceSha256,
+                  project.document.registrationSha256,
+                  [
+                    ...(entry?.items ?? []),
+                    ...project.items.map((item) => ({
+                      id: item.manifest.id,
+                      sha256: item.sha256,
+                    })),
+                  ],
+                );
+                return (
                   <button
                     key={preset.id}
                     type="button"
@@ -1954,9 +2005,21 @@ export default function WardrobeEditor({
                     disabled={busy || Boolean(appearancePreview)}
                     onClick={() => choosePreset(preset.selection, preset.name)}
                   >
-                    {preset.name}
+                    {picture && (
+                      <img
+                        src={picture}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                        width={176}
+                        height={264}
+                      />
+                    )}
+                    <span>{preset.name}</span>
                   </button>
-                ))}
+                );
+              })}
             </div>
             {moreOutfits && (
               <button

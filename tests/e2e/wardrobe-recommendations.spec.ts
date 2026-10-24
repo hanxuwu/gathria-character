@@ -45,10 +45,25 @@ test("recommended outfits keep earlier selections reachable and visible without 
     p.getByRole("button", { name: "Show recommended outfits" }),
   ).toHaveAttribute("aria-expanded", "true");
   expect(await snapshot()).toBe(original);
+  await p.getByRole("button", { name: "Show recommended outfits" }).click();
+  await p.getByLabel("Find an outfit", { exact: true }).fill("WEDDING");
+  await expect(
+    p.getByRole("button", { name: "Wedding", exact: true }),
+  ).toBeVisible();
+  await expect(
+    p.getByRole("button", { name: "Daily recommended", exact: true }),
+  ).toHaveCount(0);
+  expect(await snapshot()).toBe(original);
+  await p.getByLabel("Find an outfit", { exact: true }).fill("no such outfit");
+  await expect(
+    p.getByText("0 matching outfits", { exact: true }),
+  ).toBeVisible();
+  expect(await snapshot()).toBe(original);
+  await p.getByLabel("Find an outfit", { exact: true }).fill("wedding");
   await p.getByRole("button", { name: "Wedding", exact: true }).click();
   await expect(p.getByRole("status")).toContainText("Wedding selected");
   const old = await snapshot();
-  await p.getByRole("button", { name: "Show recommended outfits" }).click();
+  await p.getByRole("button", { name: "Clear outfit search" }).click();
   await expect(
     p.getByRole("button", { name: "Wedding", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");

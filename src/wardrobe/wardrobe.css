@@ -669,3 +669,34 @@
   height: auto;
   margin-top: 1rem;
 }
+.wardrobe-outfit-search input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 38px;
+  margin: 6px 0;
+  padding: 8px;
+  border: 1px solid #d5ddce;
+  border-radius: 6px;
+}
+.wardrobe-outfit-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+.wardrobe-outfit-gallery > button {
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 6px;
+}
+.wardrobe-outfit-gallery > button:first-child {
+  grid-column: 1 / -1;
+}
+.wardrobe-outfit-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #e9eddf;
+  border-radius: 4px;
+}
