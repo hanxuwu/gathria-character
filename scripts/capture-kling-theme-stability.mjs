@@ -381,14 +381,17 @@ try {
         fullPage: true,
       });
       const comparison = await page.evaluate(async () => {
-        const pixel = document.querySelector('[data-testid="theme-preview"]');
-        const reference = document.querySelector(
-          '[data-testid="theme-reference"]',
-        );
         const samples = [];
         let last = "";
         const start = performance.now();
         const sample = () => {
+          // React may replace a canvas during the initial playback/layout
+          // commit. Observe accepted live DOM, not a detached element handle.
+          const pixel = document.querySelector('[data-testid="theme-preview"]');
+          const reference = document.querySelector(
+            '[data-testid="theme-reference"]',
+          );
+          if (!pixel || !reference) return;
           const value = `${pixel.dataset.frameId}/${reference.dataset.frameId}`;
           if (value !== last) {
             samples.push({
@@ -400,8 +403,12 @@ try {
           }
         };
         const observer = new MutationObserver(sample);
-        observer.observe(pixel, { attributes: true });
-        observer.observe(reference, { attributes: true });
+        observer.observe(document.body, {
+          attributes: true,
+          attributeFilter: ["data-frame-id"],
+          childList: true,
+          subtree: true,
+        });
         sample();
         document.querySelector('[aria-label="Play theme"]').click();
         await new Promise((resolve) => setTimeout(resolve, 1600));
