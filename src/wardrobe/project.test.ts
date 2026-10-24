@@ -782,3 +782,130 @@ describe("wardrobe V2 independent appearance persistence", () => {
     await expect(exportWardrobeProject(project)).rejects.toThrow();
   });
 });
+
+describe("browser native painting round-trip", () => {
+  async function setup() {
+    const f = await fixture(),
+      a = garment(f.registration, f.registrationBytes);
+    const p = selectWardrobeGarment(
+      await createWardrobeProject(f.source, f.registrationBytes, [a.bytes]),
+      "top",
+      a.manifest.id,
+    );
+    const bytes = await exportClothingRecipeKit(p, a.manifest.id, 19, {
+      action: "walk",
+      position: 0,
+    });
+    return { p, a, files: unzipSync(bytes) };
+  }
+  const rewrite = (
+    files: Record<string, Uint8Array>,
+    edit: (r: any) => void,
+  ) => {
+    const recipe = JSON.parse(new TextDecoder().decode(files["recipe.json"]));
+    edit(recipe);
+    files["recipe.json"] = json(recipe);
+  };
+  it("rebuilds unchanged native kits deterministically without altering any decoded clothing", async () => {
+    const { importPaintedPoses } = await import("./paint-import");
+    const { p, a, files } = await setup();
+    const before = new Uint8Array(p.items[0].bytes),
+      input = zipSync(files);
+    const one = await importPaintedPoses(p, input),
+      two = await importPaintedPoses(p, input);
+    expect(one).toEqual(two);
+    expect(one.report.poses.map((p) => p.changedPixels)).toEqual([0, 0]);
+    const output = unzipSync(one.bytes);
+    expect(output["patches-0.png"]).toEqual(a.files["patches-0.png"]);
+    expect(output["ownership-0.png"]).toEqual(a.files["ownership-0.png"]);
+    expect(p.items[0].bytes).toEqual(before);
+  });
+  it("writes only requested native RGB pixels into their original atlas and preserves unedited poses", async () => {
+    const { importPaintedPoses } = await import("./paint-import");
+    const { decodeSourceRgbaPng } = await import("../core/baked-source");
+    const { clothingPose } = await import("./recipe-kit");
+    const { p, files } = await setup();
+    const paint = decodeSourceRgbaPng(files["pose-19.png"]);
+    paint.pixels.set([10, 160, 230], (4 * 8 + 2) * 4);
+    files["pose-19.png"] = encodeSourceRgbaPng(paint);
+    const result = await importPaintedPoses(p, zipSync(files));
+    expect(result.report.poses.map((p) => p.changedPixels)).toEqual([0, 1]);
+    const item = await readWardrobeGarment(
+      result.bytes,
+      p.registration,
+      p.document.registrationSha256,
+    );
+    expect(clothingPose(item, 19).image.pixels).toEqual(paint.pixels);
+    expect(clothingPose(item, 7)).toEqual(clothingPose(p.items[0], 7));
+    expect(item.manifest.frames).toEqual(p.items[0].manifest.frames);
+    expect(item.pages[0].ownership).toEqual(p.items[0].pages[0].ownership);
+    expect(result.report.output.sha256).toBe(sha(result.bytes));
+  });
+  it.each(["alpha", "outside", "mask"])(
+    "rejects %s edits even with recomputed input hashes",
+    async (fault) => {
+      const { importPaintedPoses } = await import("./paint-import");
+      const { decodeSourceRgbaPng } = await import("../core/baked-source");
+      const { p, files } = await setup();
+      const file = fault === "mask" ? "mask-19.png" : "pose-19.png";
+      const image = decodeSourceRgbaPng(files[file]);
+      if (fault === "alpha") image.pixels[(4 * 8 + 2) * 4 + 3] = 1;
+      else if (fault === "outside") image.pixels[0] = 255;
+      else image.pixels.fill(255, 0, 4);
+      files[file] = encodeSourceRgbaPng(image);
+      rewrite(files, (r) => {
+        r.poseOverrides.find((v: any) => v.frameId === 19)[
+          fault === "mask" ? "mask" : "image"
+        ].sha256 = sha(files[file]);
+      });
+      await expect(importPaintedPoses(p, zipSync(files))).rejects.toThrow(
+        fault === "alpha"
+          ? /alpha/
+          : fault === "outside"
+            ? /ownership/
+            : /mask/,
+      );
+    },
+  );
+  it.each([
+    "duplicate",
+    "registration",
+    "not-worn",
+    "hash",
+    "unknown-path",
+    "identity",
+    "extra-png",
+    "palette-rule",
+  ])("rejects invalid %s kits atomically", async (fault) => {
+    const { importPaintedPoses } = await import("./paint-import");
+    const { p, files } = await setup();
+    const snapshot = new Uint8Array(p.items[0].bytes);
+    if (fault === "registration") files["registration.json"] = json({});
+    if (fault === "not-worn") p.document.selection.top = null;
+    if (fault === "unknown-path") files["../escape.png"] = new Uint8Array([1]);
+    rewrite(files, (r) => {
+      if (fault === "duplicate") r.poseOverrides.push(r.poseOverrides[0]);
+      if (fault === "hash") r.poseOverrides[0].image.sha256 = "f".repeat(64);
+      if (fault === "identity") r.output.id = p.items[0].manifest.id;
+      if (fault === "extra-png") r.poseOverrides = r.poseOverrides.slice(0, 1);
+      if (fault === "palette-rule") r.materials = [];
+    });
+    await expect(importPaintedPoses(p, zipSync(files))).rejects.toThrow();
+    expect(p.items[0].bytes).toEqual(snapshot);
+  });
+  it("cancels a multi-pose build after partial validation without mutating accepted artwork", async () => {
+    const { importPaintedPoses } = await import("./paint-import");
+    const { p, files } = await setup();
+    const controller = new AbortController(),
+      snapshot = new Uint8Array(p.items[0].bytes);
+    await expect(
+      importPaintedPoses(p, zipSync(files), {
+        signal: controller.signal,
+        onProgress: (n) => {
+          if (n === 1) controller.abort();
+        },
+      }),
+    ).rejects.toMatchObject({ name: "AbortError" });
+    expect(p.items[0].bytes).toEqual(snapshot);
+  });
+});

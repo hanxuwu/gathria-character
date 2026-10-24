@@ -5,12 +5,14 @@ import type { Facing, PortableAnimationName } from "../core/types";
 import type { WardrobeProject } from "./contract";
 import type { WardrobeCompositor } from "./compositor";
 import { createLookComparison } from "./look-comparison";
+import type { PaintedGarment } from "./paint-import";
 
 interface Props {
   original: WardrobeCompositor;
   candidate: WardrobeCompositor;
   baseProject: WardrobeProject;
   project: WardrobeProject;
+  painting?: PaintedGarment;
   initialAction: PortableAnimationName;
   initialPosition: number;
   initialFacing: Facing;
@@ -34,6 +36,7 @@ export default function GarmentCandidatePreview({
   candidate,
   baseProject,
   project,
+  painting,
   initialAction,
   initialPosition,
   initialFacing,
@@ -426,6 +429,41 @@ export default function GarmentCandidatePreview({
       )}
       {notice && <p aria-live="polite">{notice}</p>}
       <div className="appearance-update-footer">
+        {painting && (
+          <div data-testid="paint-import-summary">
+            <p>
+              {painting.report.poses.length} painted poses checked ·{" "}
+              {painting.report.poses.reduce((n, p) => n + p.changedPixels, 0)}{" "}
+              changed RGB pixels. Alpha, ownership and anchors retained.
+            </p>
+            <button
+              disabled={applying}
+              onClick={() =>
+                downloadBlob(
+                  new Blob([new Uint8Array(painting.bytes)], {
+                    type: "application/zip",
+                  }),
+                  `${painting.report.output.id}.garment.zip`,
+                )
+              }
+            >
+              Save painted clothing
+            </button>
+            <button
+              disabled={applying}
+              onClick={() =>
+                downloadBlob(
+                  new Blob([JSON.stringify(painting.report, null, 2)], {
+                    type: "application/json",
+                  }),
+                  `${painting.report.output.id}.paint-report.json`,
+                )
+              }
+            >
+              Save painting report
+            </button>
+          </div>
+        )}
         <p>
           Preview action and direction are inspection controls. Applying keeps
           the accepted project's saved playback settings and can be undone
