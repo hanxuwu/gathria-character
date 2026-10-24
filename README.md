@@ -50,6 +50,11 @@ The [Sprints 31–35 workflow](docs/kling-look-workflow/README.md) adds exact
 comparisons. **Find an outfit** searches all versions; 37 outfit pictures come
 from actual application exports. History and pinned references stay in the
 current session; portable wardrobe and CharacterPack formats remain unchanged.
+The [Sprints 36–45 review workbench](docs/kling-review-workbench/README.md) adds
+**Open look review** below the character preview: anchored overlays and pixel
+differences, cancellable action scans, exact-look issue notes with local persistence,
+and portable notes/contact-sheet review bundles. Notes bind to actual material
+revisions; changed-pixel metrics help locate differences and are not art scores.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.

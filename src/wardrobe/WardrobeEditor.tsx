@@ -1,4 +1,12 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Download,
   FolderOpen,
@@ -81,6 +89,7 @@ import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
 import NamedLooks from "./NamedLooks";
 import LookComparison from "./LookComparison";
+const ReviewWorkbench = lazy(() => import("./ReviewWorkbench"));
 import { createLookComparison } from "./look-comparison";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
@@ -340,6 +349,7 @@ export default function WardrobeEditor({
   const [anchors, setAnchors] = useState(false);
   const [compare, setCompare] = useState(false);
   const [inspect, setInspect] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [retry, setRetry] = useState(0);
   const [recipeItemId, setRecipeItemId] = useState("");
@@ -654,6 +664,18 @@ export default function WardrobeEditor({
           )
         : null,
     [pinnedLook, session?.renderer],
+  );
+  const reviewComparison = useMemo(
+    () =>
+      session
+        ? (lookComparison ?? {
+            manifest: session.renderer.manifest,
+            renderFrame: (id: number) => session.renderer.renderFrame(id),
+            renderSourceFrame: (id: number) =>
+              session.renderer.renderSourceFrame(id),
+          })
+        : null,
+    [lookComparison, session?.renderer],
   );
   const appearance =
     project?.document.version === 2
@@ -1291,6 +1313,41 @@ export default function WardrobeEditor({
       project: updateWardrobePreview(open.project, {
         action: shownAction,
         facing,
+      }),
+      dirty: true,
+    });
+  }
+  function seekReview(
+    action: PortableAnimationName,
+    position: number,
+    direction: Facing,
+  ) {
+    const open = current.current;
+    const actionClip = open?.project.archive.manifest.animations[action];
+    if (
+      !open ||
+      !actionClip ||
+      busy ||
+      !Number.isSafeInteger(position) ||
+      position < 0 ||
+      position >= actionClip.frames.length
+    )
+      return;
+    setPlaying(false);
+    setPending(null);
+    setShownAction(action);
+    motion.current = {
+      action,
+      elapsedMs: (position * 1000) / actionClip.fps,
+      pending: null,
+    };
+    tick.current = position;
+    setFrameIndex(position);
+    remember({
+      ...open,
+      project: updateWardrobePreview(open.project, {
+        action,
+        facing: direction,
       }),
       dirty: true,
     });
@@ -2470,6 +2527,34 @@ export default function WardrobeEditor({
                 attachment ({outputAnchor.x}, {outputAnchor.y})
               </span>
             </div>
+            <button
+              type="button"
+              aria-expanded={reviewOpen}
+              disabled={busy || Boolean(appearancePreview)}
+              onClick={() => {
+                setReviewOpen(!reviewOpen);
+                setPlaying(false);
+              }}
+            >
+              {reviewOpen ? "Close look review" : "Open look review"}
+            </button>
+            {reviewOpen && reviewComparison && frameId !== undefined && (
+              <Suspense
+                fallback={<p aria-live="polite">Opening look review…</p>}
+              >
+                <ReviewWorkbench
+                  project={project}
+                  renderer={session.renderer}
+                  comparison={reviewComparison}
+                  referenceProject={pinnedLook?.project}
+                  frameId={frameId}
+                  action={shownAction}
+                  facing={facing}
+                  disabled={busy || Boolean(appearancePreview)}
+                  onSeek={seekReview}
+                />
+              </Suspense>
+            )}
             {inspect && frameId !== undefined && (
               <ConnectionInspector
                 project={project}
