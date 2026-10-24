@@ -46,6 +46,7 @@ import {
   imageForFrame,
   initialCharacterZoom,
   characterZoomChoices,
+  pixelCharacterStage,
 } from "./player";
 
 import {
@@ -175,39 +176,68 @@ export function PackPlayer() {
     : undefined;
   const isBaked = !!pack;
   const sourceBlocked = busy || authoringBusy || authoringDraft;
-  const zoomChoices = characterZoomChoices(pack?.manifest, zoom);
+  const zoomChoices = characterZoomChoices(
+    pack?.manifest,
+    zoom,
+    canvasWidth,
+    comparisonPack?.manifest,
+  );
+  const pixelStage = pack?.manifest.scale.pixelArt
+    ? pixelCharacterStage(
+        pack.manifest,
+        zoom,
+        canvasWidth,
+        comparisonPack?.manifest,
+      )
+    : null;
+  const pixelPreviewBlocked = pixelStage?.blocked ?? false;
   const frameHeight = Math.max(
     pack?.manifest.spritesheet.frameHeight ?? 0,
     comparisonPack?.manifest.spritesheet.frameHeight ?? 0,
   );
-  const canvasHeight = Math.max(420, frameHeight * zoom + 100);
-  const canvasRenderWidth = Math.max(
-    canvasWidth,
-    pack
-      ? 2 *
-          Math.max(
-            pack.manifest.anchor.x,
-            pack.manifest.spritesheet.frameWidth - pack.manifest.anchor.x,
-            comparisonPack?.manifest.anchor.x ?? 0,
-            comparisonPack
-              ? comparisonPack.manifest.spritesheet.frameWidth -
-                  comparisonPack.manifest.anchor.x
-              : 0,
-          ) *
-          zoom *
-          (comparisonPack ? 2 : 1) +
-          48
-      : 0,
-  );
-  const attachmentY = pack
-    ? Math.floor((canvasHeight - frameHeight * zoom) / 2) +
-      pack.manifest.anchor.y * zoom
-    : 338;
+  const canvasHeight =
+    pixelStage?.height ?? Math.max(420, frameHeight * zoom + 100);
+  const canvasRenderWidth =
+    pixelStage?.width ??
+    Math.max(
+      canvasWidth,
+      pack
+        ? 2 *
+            Math.max(
+              pack.manifest.anchor.x,
+              pack.manifest.spritesheet.frameWidth - pack.manifest.anchor.x,
+              comparisonPack?.manifest.anchor.x ?? 0,
+              comparisonPack
+                ? comparisonPack.manifest.spritesheet.frameWidth -
+                    comparisonPack.manifest.anchor.x
+                : 0,
+            ) *
+            zoom *
+            (comparisonPack ? 2 : 1) +
+            48
+        : 0,
+    );
+  const attachmentY =
+    pack && !pixelPreviewBlocked
+      ? Math.floor((canvasHeight - frameHeight * zoom) / 2) +
+        pack.manifest.anchor.y * zoom
+      : 338;
 
   const clearPendingMotion = useCallback(() => {
     motionStateRef.current = null;
     setPendingAction(null);
   }, []);
+
+  useEffect(() => {
+    if (
+      pack?.manifest.scale.integerOnly &&
+      zoomChoices.length &&
+      !zoomChoices.includes(zoom)
+    )
+      setZoom(
+        zoomChoices.filter((choice) => choice <= zoom).at(-1) ?? zoomChoices[0],
+      );
+  }, [pack, comparisonPack, canvasWidth, zoom]);
 
   useEffect(() => {
     clearPendingMotion();
@@ -257,13 +287,20 @@ export function PackPlayer() {
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-    const ratio = window.devicePixelRatio || 1;
+    const ratio = pack?.manifest.scale.pixelArt
+      ? 1
+      : window.devicePixelRatio || 1;
     // Assigning either dimension clears the bitmap, even when unchanged.
     // Playback state changes must not expose a blank frame between effects.
     const width = Math.round(canvasRenderWidth * ratio);
     const height = Math.round(canvasHeight * ratio);
     if (canvas.width !== width) canvas.width = width;
     if (canvas.height !== height) canvas.height = height;
+    if (pixelPreviewBlocked) {
+      context.setTransform(1, 0, 0, 1, 0, 0);
+      context.clearRect(0, 0, width, height);
+      return;
+    }
     let previous: number | undefined;
     let request = 0;
     function draw(now: number) {
@@ -416,6 +453,7 @@ export function PackPlayer() {
     playbackRevision,
     motionEnabled,
     motionProfile,
+    pixelPreviewBlocked,
   ]);
 
   // Edited action previews share their base pack's atlas pages. Release only
@@ -1146,6 +1184,20 @@ export function PackPlayer() {
                   }
                   role="img"
                 />
+                {pixelPreviewBlocked && (
+                  <div
+                    className="player-empty-stage"
+                    role="status"
+                    data-testid="pixel-preview-limit"
+                  >
+                    <h3>Pixel preview exceeds the display limit</h3>
+                    <p>
+                      This native frame cannot fit the 4-megapixel preview
+                      budget at whole-number zoom. Its original CharacterPack
+                      can still be exported.
+                    </p>
+                  </div>
+                )}
                 {!pack && (
                   <div className="player-empty-stage">
                     <PackageOpen size={42} strokeWidth={1} />
@@ -1243,7 +1295,7 @@ export function PackPlayer() {
                     if (completed) replayAnimation();
                     else setPlaying((value) => !value);
                   }}
-                  disabled={!pack}
+                  disabled={!pack || pixelPreviewBlocked}
                   aria-label={
                     completed
                       ? "Replay animation"
@@ -1413,9 +1465,12 @@ export function PackPlayer() {
                     id="player-zoom"
                     aria-label="Display scale"
                     value={zoom}
-                    disabled={!pack}
+                    disabled={!pack || !zoomChoices.length}
                     onChange={(event) => setZoom(Number(event.target.value))}
                   >
+                    {!zoomChoices.length && (
+                      <option value={zoom}>Preview unavailable</option>
+                    )}
                     {zoomChoices.map((value) => (
                       <option key={value} value={value}>
                         {value}×
@@ -1451,7 +1506,7 @@ export function PackPlayer() {
                 </span>
               </div>
             </div>
-            {authoring && (
+            {authoring && !pixelPreviewBlocked && (
               <Suspense
                 fallback={<p role="status">Loading sprite action tools…</p>}
               >

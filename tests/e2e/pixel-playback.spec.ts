@@ -98,6 +98,9 @@ test("V4 pixel pack uses integer nearest-neighbor playback, preserves pages and 
 }, info) => {
   const source = await fixture(),
     errors: string[] = [];
+  await context.addInitScript(() =>
+    Object.defineProperty(window, "devicePixelRatio", { value: 3 }),
+  );
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/player.html?authoring=1");
   await page.locator("#player-zip").setInputFiles({
@@ -114,6 +117,12 @@ test("V4 pixel pack uses integer nearest-neighbor playback, preserves pages and 
   const zoom = page.getByLabel("Display scale", { exact: true }),
     canvas = page.getByTestId("consumer-canvas");
   await expect(zoom).toHaveValue("2");
+  expect(
+    await canvas.evaluate((c: HTMLCanvasElement) => ({
+      backing: c.height,
+      display: c.getBoundingClientRect().height,
+    })),
+  ).toEqual({ backing: 420, display: 420 });
   expect(
     await zoom
       .locator("option")
@@ -187,5 +196,76 @@ test("V4 pixel pack uses integer nearest-neighbor playback, preserves pages and 
   await expect(
     independent.getByRole("button", { name: "Replay animation", exact: true }),
   ).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test("oversized native pixel frames keep export available without allocating oversized preview or endpoint canvases", async ({
+  page,
+}, info) => {
+  const source = await fixture(),
+    files = unzipSync(source.bytes);
+  const manifest = JSON.parse(
+    new TextDecoder().decode(files["manifest.json"]),
+  ) as CharacterPackV4Manifest;
+  const recipe = JSON.parse(
+    new TextDecoder().decode(files["character.json"]),
+  ) as BakedCharacterRecipe;
+  manifest.spritesheet = {
+    ...manifest.spritesheet,
+    width: 8192,
+    frameWidth: 8192,
+  };
+  manifest.additionalSheets = [];
+  manifest.frames = [{ ...manifest.frames[0], width: 8192 }];
+  manifest.anchor.x = 4096;
+  manifest.scale.recommended = 16;
+  for (const clip of Object.values(manifest.animations)) clip.frames = [0];
+  recipe.derivation.frames = [recipe.derivation.frames[0]];
+  const pixels = new Uint8Array(8192 * 8 * 4);
+  pixels.fill(255);
+  const png = encodeSourceRgbaPng({
+    width: 8192,
+    height: 8,
+    pixels,
+    colorChunks: [],
+  });
+  const archive = await createBakedCharacterPack(
+    recipe,
+    manifest,
+    new Blob([png]),
+  );
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("/player.html?authoring=1");
+  await page
+    .locator("#player-zip")
+    .setInputFiles({
+      name: "wide-pixel.character.zip",
+      mimeType: "application/zip",
+      buffer: Buffer.from(await archive.arrayBuffer()),
+    });
+  await expect(page.getByTestId("pixel-preview-limit")).toContainText(
+    "Pixel preview exceeds the display limit",
+  );
+  await expect(
+    page.getByLabel("Display scale", { exact: true }),
+  ).toBeDisabled();
+  await expect(
+    page.getByRole("region", { name: "Sprite action editor" }),
+  ).toHaveCount(0);
+  const dimensions = await page
+    .getByTestId("consumer-canvas")
+    .evaluate((c: HTMLCanvasElement) => ({ width: c.width, height: c.height }));
+  expect(dimensions.width).toBeLessThanOrEqual(960);
+  expect(dimensions.height).toBe(420);
+  const pending = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export original CharacterPack", exact: true })
+    .click();
+  const path = info.outputPath("wide-preserved.character.zip");
+  await (await pending).saveAs(path);
+  expect(
+    unzipSync(new Uint8Array(await readFile(path)))["spritesheet.png"],
+  ).toEqual(png);
   expect(errors).toEqual([]);
 });

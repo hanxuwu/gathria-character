@@ -7,6 +7,9 @@ import {
   imageForFrame,
   initialCharacterZoom,
   characterZoomChoices,
+  pixelCharacterStage,
+  PIXEL_STAGE_MAX_PIXELS,
+  PIXEL_STAGE_MAX_DIMENSION,
 } from "./player";
 
 const manifest: CharacterPackV2Manifest = {
@@ -206,6 +209,47 @@ describe("authored pixel playback", () => {
     expect(characterZoomChoices(manifest, 0.75)).toEqual([
       0.25, 0.5, 0.75, 1, 1.5, 2,
     ]);
+  });
+  it("bounds pixel backing dimensions and zoom even for large valid frames and very wide viewports", () => {
+    const huge = {
+      ...pixel,
+      spritesheet: {
+        ...pixel.spritesheet,
+        frameWidth: 8192,
+        frameHeight: 8192,
+      },
+      anchor: { ...pixel.anchor, x: 4096, y: 8192 },
+      scale: { ...pixel.scale, recommended: 16 },
+    };
+    const blocked = pixelCharacterStage(huge, 16, 100_000);
+    expect(blocked.blocked).toBe(true);
+    expect(blocked.width * blocked.height).toBeLessThanOrEqual(
+      PIXEL_STAGE_MAX_PIXELS,
+    );
+    expect(blocked.backingRatio).toBe(1);
+    expect(characterZoomChoices(huge, 16)).toEqual([]);
+    const medium = {
+      ...pixel,
+      spritesheet: { ...pixel.spritesheet, frameWidth: 512, frameHeight: 768 },
+      anchor: { ...pixel.anchor, x: 256, y: 740 },
+      scale: { ...pixel.scale, recommended: 16 },
+    };
+    const choices = characterZoomChoices(medium, 16, 100_000);
+    expect(choices).toEqual([1, 2]);
+    for (const zoom of choices) {
+      const stage = pixelCharacterStage(medium, zoom, 100_000);
+      expect(stage.blocked).toBe(false);
+      expect(stage.width * stage.height).toBeLessThanOrEqual(
+        PIXEL_STAGE_MAX_PIXELS,
+      );
+      expect(stage.width).toBeLessThanOrEqual(PIXEL_STAGE_MAX_DIMENSION);
+      expect(stage.height).toBeLessThanOrEqual(PIXEL_STAGE_MAX_DIMENSION);
+      expect(stage.backingRatio).toBe(1);
+    }
+    expect(initialCharacterZoom(medium, 100_000, 100_000)).toBe(2);
+    expect(pixelCharacterStage(pixel, 0.5).blocked).toBe(true);
+    expect(pixelCharacterStage(pixel, Infinity).blocked).toBe(true);
+    expect(pixelCharacterStage(pixel, 2, Number.NaN).blocked).toBe(false);
   });
   it("uses explicit V4 pages and preserves nonuniform authored frame order and one-shots", () => {
     const multi = {
