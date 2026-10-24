@@ -64,6 +64,7 @@ export async function exportWardrobeActionGif(
     signal?: AbortSignal;
     onProgress?: (done: number, total: number) => void;
     comparison?: boolean;
+    referenceLabel?: "ORIGINAL" | "PINNED";
   } = {},
 ): Promise<Uint8Array> {
   const clip = renderer.manifest.animations[action];
@@ -102,6 +103,7 @@ export async function exportWardrobeActionGif(
       ? joinGifComparison(
           compactGifFrame(renderer.renderSourceFrame!(clip.frames[i]), "right"),
           dressed,
+          options.referenceLabel,
         )
       : dressed;
     if (image.width !== width || image.height !== height)

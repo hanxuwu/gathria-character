@@ -16,12 +16,15 @@ const GLYPHS: Record<string, string[]> = {
   U: ["101", "101", "101", "101", "111"],
   E: ["111", "100", "110", "100", "111"],
   T: ["111", "010", "010", "010", "010"],
+  P: ["110", "101", "110", "100", "100"],
+  D: ["110", "101", "101", "101", "110"],
 };
 
 /** Inputs already share a padded frame and are compacted exactly once. */
 export function joinGifComparison(
   original: RgbaPng,
   current: RgbaPng,
+  referenceLabel: "ORIGINAL" | "PINNED" = "ORIGINAL",
 ): RgbaPng {
   if (original.width !== current.width || original.height !== current.height)
     throw Error(
@@ -39,7 +42,7 @@ export function joinGifComparison(
         image.pixels.subarray(y * image.width * 4, (y + 1) * image.width * 4),
         ((y + GIF_COMPARISON_LABEL) * width + left) * 4,
       );
-    const label = index === 0 ? "ORIGINAL" : "CURRENT";
+    const label = index === 0 ? referenceLabel : "CURRENT";
     for (let c = 0; c < label.length; c++)
       GLYPHS[label[c]].forEach((row, y) => {
         for (let x = 0; x < row.length; x++) {

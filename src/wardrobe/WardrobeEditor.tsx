@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Download,
   FolderOpen,
@@ -9,6 +9,8 @@ import {
   Upload,
   ChevronLeft,
   ChevronRight,
+  Undo2,
+  Redo2,
 } from "lucide-react";
 import {
   KLING_CHARACTERS,
@@ -78,9 +80,19 @@ import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
 import NamedLooks from "./NamedLooks";
+import LookComparison from "./LookComparison";
+import { createLookComparison } from "./look-comparison";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
 import { readLocalMaterial } from "./local-materials";
+import { outfitMatches } from "./outfit-search";
+import { outfitPreview } from "./outfit-previews";
+import {
+  emptyLookHistory,
+  recordLookChange,
+  moveLookHistory,
+  type LookHistory,
+} from "./look-history";
 
 interface CatalogItem {
   id: string;
@@ -120,6 +132,11 @@ interface AppearancePreview {
   action: PortableAnimationName;
   position: number;
   facing: Facing;
+}
+interface PinnedLook {
+  project: WardrobeProject;
+  renderer: WardrobeCompositor;
+  name: string;
 }
 // These are reviewed, actual application exports. Missing artwork remains a
 // named choice until its matching thumbnail is delivered, never a broken URL.
@@ -327,6 +344,9 @@ export default function WardrobeEditor({
   const [retry, setRetry] = useState(0);
   const [recipeItemId, setRecipeItemId] = useState("");
   const [showAllOutfits, setShowAllOutfits] = useState(false);
+  const [outfitQuery, setOutfitQuery] = useState("");
+  const [pinnedLook, setPinnedLook] = useState<PinnedLook | null>(null);
+  const pinned = useRef<PinnedLook | null>(null);
   const [appearancePreview, setAppearancePreview] =
     useState<AppearancePreview | null>(null);
   const previewRenderer = useRef<WardrobeCompositor | null>(null);
@@ -347,6 +367,7 @@ export default function WardrobeEditor({
   const savedSessions = useRef(
     new Map<KlingCharacterId, Pick<Session, "project" | "dirty">>(),
   );
+  const histories = useRef(new Map<KlingCharacterId, LookHistory>());
   const motion = useRef<MotionState>({
     action: "idle",
     elapsedMs: 0,
@@ -367,6 +388,11 @@ export default function WardrobeEditor({
       dirty: next.dirty,
     });
     setSession(next);
+  }
+  function clearPinnedLook() {
+    pinned.current?.renderer.dispose();
+    pinned.current = null;
+    setPinnedLook(null);
   }
   function beginPreparation() {
     preparation.current?.abort();
@@ -417,6 +443,7 @@ export default function WardrobeEditor({
     token: number,
     signal: AbortSignal,
     preserveMotion = false,
+    history: "keep" | "edit" | "reset" | LookHistory = "keep",
   ) {
     const renderer = await createWardrobeCompositor(project, { signal });
     try {
@@ -450,6 +477,25 @@ export default function WardrobeEditor({
         return;
       }
       const previous = current.current;
+      if (
+        history === "reset" ||
+        (previous && previous.character !== character)
+      ) {
+        clearPinnedLook();
+        setOutfitQuery("");
+      }
+      if (history === "reset") histories.current.delete(character);
+      else if (history === "edit" && previous?.character === character)
+        histories.current.set(
+          character,
+          recordLookChange(
+            histories.current.get(character) ?? emptyLookHistory(),
+            previous.project,
+            project,
+          ),
+        );
+      else if (typeof history === "object")
+        histories.current.set(character, history);
       remember({ project, character, renderer, dirty });
       previous?.renderer.dispose();
       rendered.current = null;
@@ -524,6 +570,9 @@ export default function WardrobeEditor({
       current.current = null;
       rendered.current = null;
       savedSessions.current.clear();
+      histories.current.clear();
+      pinned.current?.renderer.dispose();
+      pinned.current = null;
     },
     [],
   );
@@ -594,6 +643,18 @@ export default function WardrobeEditor({
   const registration = project?.registration;
   const outputSheet = session?.renderer.manifest.spritesheet;
   const outputAnchor = session?.renderer.manifest.anchor;
+  const lookComparison = useMemo(
+    () =>
+      pinnedLook && session
+        ? createLookComparison(
+            pinnedLook.renderer,
+            session.renderer,
+            pinnedLook.project,
+            session.project,
+          )
+        : null,
+    [pinnedLook, session?.renderer],
+  );
   const appearance =
     project?.document.version === 2
       ? project.document.appearance
@@ -756,11 +817,50 @@ export default function WardrobeEditor({
         token,
         controller.signal,
         preserveMotion,
+        "edit",
       );
       if (token === request.current) setStatus(message);
     } catch (failure) {
       if (token === request.current)
         setError(`${failureText(failure)} Your current outfit is unchanged.`);
+    } finally {
+      if (token === request.current) setBusy(false);
+    }
+  }
+  async function travelLook(direction: "undo" | "redo") {
+    const open = current.current;
+    if (!open || busy || appearancePreview) return;
+    const move = moveLookHistory(
+      histories.current.get(open.character) ?? emptyLookHistory(),
+      open.project,
+      direction,
+    );
+    if (!move) return;
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Restoring this look’s exact artwork…");
+    try {
+      await accept(
+        move.project,
+        open.character,
+        true,
+        token,
+        controller.signal,
+        true,
+        move.history,
+      );
+      if (token === request.current)
+        setStatus(
+          direction === "undo"
+            ? "Styling change undone. Action and facing kept."
+            : "Styling change redone. Action and facing kept.",
+        );
+    } catch (failure) {
+      if (token === request.current)
+        setError(
+          `${failureText(failure)} Your outfit and history are unchanged.`,
+        );
     } finally {
       if (token === request.current) setBusy(false);
     }
@@ -1238,7 +1338,15 @@ export default function WardrobeEditor({
         throw Error(
           "This project does not belong to either supported Kling character.",
         );
-      await accept(next, target.key, false, token, controller.signal);
+      await accept(
+        next,
+        target.key,
+        false,
+        token,
+        controller.signal,
+        false,
+        "reset",
+      );
       if (token === request.current)
         setStatus("Saved outfit and action settings restored.");
     } catch (failure) {
@@ -1351,6 +1459,87 @@ export default function WardrobeEditor({
     }
   }
 
+  async function pinLook() {
+    const open = current.current;
+    if (!open || busy || appearancePreview) return;
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Preparing this look for comparison…");
+    let renderer: WardrobeCompositor | null = null;
+    try {
+      renderer = await createWardrobeCompositor(open.project, {
+        signal: controller.signal,
+      });
+      await validateWardrobeAppearance(renderer, { signal: controller.signal });
+      if (token !== request.current || controller.signal.aborted) return;
+      clearPinnedLook();
+      const next = {
+        project: open.project,
+        renderer,
+        name: selectedPreset?.name ?? "Your combination",
+      };
+      pinned.current = next;
+      setPinnedLook(next);
+      renderer = null; // ownership moves to the one retained reference
+      setStatus(
+        "Look pinned. Try another outfit or hairstyle to compare the same poses.",
+      );
+    } catch (failure) {
+      if (token === request.current && !controller.signal.aborted)
+        setError(failureText(failure));
+    } finally {
+      renderer?.dispose();
+      if (token === request.current) {
+        setBusy(false);
+        setCancellable(false);
+      }
+    }
+  }
+
+  async function exportLookGif() {
+    const open = current.current;
+    if (!open || !lookComparison || busy || appearancePreview) return;
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Preparing look comparison GIF…");
+    try {
+      const { exportWardrobeActionGif } = await import("./action-gif");
+      const bytes = await exportWardrobeActionGif(
+        lookComparison,
+        shownAction,
+        facing,
+        {
+          comparison: true,
+          referenceLabel: "PINNED",
+          signal: controller.signal,
+          onProgress: (done, total) => {
+            if (token === request.current)
+              setStatus(`Preparing look comparison GIF: ${done} / ${total}…`);
+          },
+        },
+      );
+      if (token !== request.current || controller.signal.aborted) return;
+      saveBytes(
+        bytes,
+        `kling-${open.character}-${shownAction}-${facing}-pinned-current-half.gif`,
+        "image/gif",
+      );
+      setStatus(
+        "Look comparison GIF saved. Pinned on the left, current on the right, at matching anchors and original timing.",
+      );
+    } catch (failure) {
+      if (token === request.current && !controller.signal.aborted)
+        setError(failureText(failure));
+    } finally {
+      if (token === request.current) {
+        setBusy(false);
+        setCancellable(false);
+      }
+    }
+  }
+
   async function exportRecipe(
     itemId: string,
     poseId?: number,
@@ -1427,6 +1616,13 @@ export default function WardrobeEditor({
   const recommended = (id: string) =>
     !hasRecommended || recommendedIds.includes(id);
   const moreOutfits = outfitPresets.some((p) => !recommended(p.id));
+  const visibleOutfits = outfitPresets.filter((preset) =>
+    outfitQuery.trim()
+      ? outfitMatches(preset.name, outfitQuery)
+      : showAllOutfits ||
+        recommended(preset.id) ||
+        selectedPreset?.id === preset.id,
+  );
   const size = outputSheet
     ? {
         width:
@@ -1463,6 +1659,30 @@ export default function WardrobeEditor({
           Choose hair, expression and clothing while keeping the original
           movement.
         </p>
+        <button
+          type="button"
+          disabled={
+            busy ||
+            Boolean(appearancePreview) ||
+            !session ||
+            !histories.current.get(session.character)?.past.length
+          }
+          onClick={() => void travelLook("undo")}
+        >
+          <Undo2 size={16} aria-hidden="true" /> Undo styling
+        </button>
+        <button
+          type="button"
+          disabled={
+            busy ||
+            Boolean(appearancePreview) ||
+            !session ||
+            !histories.current.get(session.character)?.future.length
+          }
+          onClick={() => void travelLook("redo")}
+        >
+          <Redo2 size={16} aria-hidden="true" /> Redo styling
+        </button>
         <button
           type="button"
           disabled={busy || Boolean(appearancePreview)}
@@ -1721,8 +1941,36 @@ export default function WardrobeEditor({
                 original artwork.
               </p>
             )}
+            <div className="wardrobe-outfit-search">
+              <label>
+                Find an outfit
+                <input
+                  type="search"
+                  aria-label="Find an outfit"
+                  value={outfitQuery}
+                  maxLength={80}
+                  onChange={(event) => setOutfitQuery(event.target.value)}
+                  placeholder="Try wedding, linen or sage"
+                />
+              </label>
+              {outfitQuery && (
+                <button type="button" onClick={() => setOutfitQuery("")}>
+                  Clear outfit search
+                </button>
+              )}
+              <p className="wardrobe-hint">
+                Search includes earlier versions. Preview pictures use the
+                original head; choosing clothes keeps your hair and expression.
+              </p>
+              {outfitQuery.trim() && (
+                <p aria-live="polite">
+                  {visibleOutfits.length} matching{" "}
+                  {visibleOutfits.length === 1 ? "outfit" : "outfits"}
+                </p>
+              )}
+            </div>
             <div
-              className="wardrobe-presets"
+              className="wardrobe-presets wardrobe-outfit-gallery"
               role="group"
               aria-label="Complete outfits"
             >
@@ -1734,14 +1982,22 @@ export default function WardrobeEditor({
               >
                 Original
               </button>
-              {outfitPresets
-                .filter(
-                  (preset) =>
-                    showAllOutfits ||
-                    recommended(preset.id) ||
-                    selectedPreset?.id === preset.id,
-                )
-                .map((preset) => (
+              {visibleOutfits.map((preset) => {
+                const picture = outfitPreview(
+                  session.character,
+                  preset.id,
+                  preset.selection,
+                  project.document.sourceSha256,
+                  project.document.registrationSha256,
+                  [
+                    ...(entry?.items ?? []),
+                    ...project.items.map((item) => ({
+                      id: item.manifest.id,
+                      sha256: item.sha256,
+                    })),
+                  ],
+                );
+                return (
                   <button
                     key={preset.id}
                     type="button"
@@ -1749,9 +2005,21 @@ export default function WardrobeEditor({
                     disabled={busy || Boolean(appearancePreview)}
                     onClick={() => choosePreset(preset.selection, preset.name)}
                   >
-                    {preset.name}
+                    {picture && (
+                      <img
+                        src={picture}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                        width={176}
+                        height={264}
+                      />
+                    )}
+                    <span>{preset.name}</span>
                   </button>
-                ))}
+                );
+              })}
             </div>
             {moreOutfits && (
               <button
@@ -2068,6 +2336,13 @@ export default function WardrobeEditor({
               </label>
             </div>
             <div className="wardrobe-review-options">
+              <button
+                type="button"
+                disabled={busy || Boolean(appearancePreview)}
+                onClick={() => void pinLook()}
+              >
+                {pinnedLook ? "Replace pinned look" : "Pin current look"}
+              </button>
               <label>
                 <input
                   type="checkbox"
@@ -2203,6 +2478,17 @@ export default function WardrobeEditor({
                 facing={facing}
               />
             )}
+            {lookComparison && pinnedLook && frameId !== undefined && (
+              <LookComparison
+                comparison={lookComparison}
+                frameId={frameId}
+                facing={facing}
+                name={pinnedLook.name}
+                disabled={busy || Boolean(appearancePreview)}
+                onExportGif={() => void exportLookGif()}
+                onClear={clearPinnedLook}
+              />
+            )}
           </section>
         </div>
       )}
@@ -2220,7 +2506,9 @@ export default function WardrobeEditor({
       )}
       <p className="wardrobe-local-note">
         Your appearance, clothing and exports stay in this browser. Save your
-        wardrobe before closing or reloading the page.
+        wardrobe before closing or reloading the page. Styling history keeps up
+        to 12 recent changes per character in this session; large artwork may
+        shorten it. Opening a saved project starts a new history.
       </p>
     </div>
   );

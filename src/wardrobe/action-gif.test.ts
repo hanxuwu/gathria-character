@@ -8,6 +8,7 @@ import {
 } from "./action-gif";
 import type { WardrobeCompositor } from "./compositor";
 import { GIF_COMPARISON_GAP, GIF_COMPARISON_LABEL } from "./gif-comparison";
+import { joinGifComparison } from "./gif-comparison";
 const source = (loop = true) =>
   ({
     manifest: {
@@ -177,4 +178,20 @@ it("rejects missing or misregistered comparison sources and includes both panels
   await expect(
     exportWardrobeActionGif(large, "run", "right", { comparison: true }),
   ).rejects.toThrow(/too large/);
+});
+
+it("marks pinned comparisons differently from originals without changing either body panel", () => {
+  const panel = {
+    width: 40,
+    height: 4,
+    pixels: new Uint8Array(40 * 4 * 4).fill(255),
+    colorChunks: [],
+  };
+  const original = joinGifComparison(panel, panel),
+    pinned = joinGifComparison(panel, panel, "PINNED");
+  const body = original.width * GIF_COMPARISON_LABEL * 4;
+  expect(pinned.pixels.subarray(body)).toEqual(original.pixels.subarray(body));
+  expect(pinned.pixels.subarray(0, body)).not.toEqual(
+    original.pixels.subarray(0, body),
+  );
 });
