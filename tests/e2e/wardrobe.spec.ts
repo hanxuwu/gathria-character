@@ -216,6 +216,11 @@ test("corrupt saved projects retain the current outfit and the wardrobe fits a n
   const wardTab = page.getByRole("tab", { name: "Wardrobe", exact: true });
   await wardTab.focus();
   await wardTab.press("ArrowRight");
+  const themesTab = page.getByRole("tab", { name: "Character themes" });
+  await expect(themesTab).toBeFocused();
+  // Arrow navigation now includes the new themes tab before the optional rig.
+  await expect(themesTab).toHaveAttribute("aria-selected", "true");
+  await themesTab.press("ArrowRight");
   await expect(page.getByRole("tab", { name: "Male skeleton" })).toBeFocused();
 });
 

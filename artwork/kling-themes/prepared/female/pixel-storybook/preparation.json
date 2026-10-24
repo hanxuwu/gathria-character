@@ -1,0 +1,442 @@
+{
+  "recipe": "artwork/kling-themes/source/female-pixel-storybook.recipe.json",
+  "recipeSha256": "dd4cc8bbb8f8e28148a9876ea6dbb5ea17f1068e7223d09b0fbb384a8d352106",
+  "characterPackSha256": "5b6f94261c0cf729777ebe2b25050f9642fa74f2991d2206224dcbb5a9739816",
+  "themeSha256": "5be27e3dc377c968146eca1a78f29ffdf20bee5bbb22ec6126a80176d0c00d34",
+  "frameCount": 32,
+  "sourceFiles": [
+    {
+      "action": "idle",
+      "file": "artwork/kling-themes/source/female-idle-celebrate-v1.png",
+      "sha256": "efdbd1b8178b3a708e352444a127b3a2d15b45df8ce94d58ecb67c7da258ebce",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -52
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/idle.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    {
+      "action": "walk",
+      "file": "artwork/kling-themes/source/female-walk-v1.png",
+      "sha256": "b99a1266d29c6c5b6655d93908d9b06558277b38c56ed5d479ec373eddccabb7",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          528
+        ],
+        [
+          384,
+          0,
+          384,
+          528
+        ],
+        [
+          768,
+          0,
+          384,
+          528
+        ],
+        [
+          1152,
+          0,
+          384,
+          528
+        ],
+        [
+          0,
+          528,
+          384,
+          496
+        ],
+        [
+          384,
+          528,
+          384,
+          496
+        ],
+        [
+          768,
+          528,
+          384,
+          496
+        ],
+        [
+          1152,
+          528,
+          384,
+          496
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -40
+        ],
+        [
+          0,
+          -42
+        ],
+        [
+          0,
+          -40
+        ],
+        [
+          0,
+          -40
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          12
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/walk.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    {
+      "action": "run",
+      "file": "artwork/kling-themes/source/female-run-v1.png",
+      "sha256": "611b9c1382f0129dc7e11d42f1f389572a3d23f27c17c512219706a7fa4290f9",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          512
+        ],
+        [
+          384,
+          0,
+          384,
+          512
+        ],
+        [
+          768,
+          0,
+          384,
+          512
+        ],
+        [
+          1152,
+          0,
+          384,
+          512
+        ],
+        [
+          0,
+          512,
+          384,
+          512
+        ],
+        [
+          384,
+          512,
+          384,
+          512
+        ],
+        [
+          768,
+          512,
+          384,
+          512
+        ],
+        [
+          1152,
+          512,
+          384,
+          512
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -28
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -40
+        ],
+        [
+          0,
+          -44
+        ],
+        [
+          0,
+          -8
+        ],
+        [
+          0,
+          -8
+        ],
+        [
+          0,
+          -8
+        ],
+        [
+          0,
+          -16
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/run.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    {
+      "action": "jump",
+      "file": "artwork/kling-themes/source/female-jump-v1.png",
+      "sha256": "73647750f2b26e31b6aad5c424d1df8fe3e06719084395f14e9ce4350a90085e",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -48
+        ],
+        [
+          0,
+          -50
+        ],
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          12
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/jump.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    {
+      "action": "celebrate",
+      "file": "artwork/kling-themes/source/female-idle-celebrate-v1.png",
+      "sha256": "efdbd1b8178b3a708e352444a127b3a2d15b45df8ce94d58ecb67c7da258ebce",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/celebrate.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    }
+  ],
+  "method": "AI-authored independent pixel sprite drawings; fixed-grid extraction and uniform integer sampling only. Timeline authored for these drawings. No geometric rig deformation, generated runtime frames, or claim of video-pixel extraction."
+}

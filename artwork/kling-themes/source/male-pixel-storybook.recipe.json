@@ -1,0 +1,504 @@
+{
+  "character": "male",
+  "id": "pixel-storybook",
+  "revision": 1,
+  "name": "Pixel storybook",
+  "lookId": "base",
+  "lookName": "Tank & shorts",
+  "frameSize": [
+    192,
+    272
+  ],
+  "integerSample": 2,
+  "anchor": {
+    "x": 96,
+    "y": 251
+  },
+  "provenance": "OpenAI image generation created independent warm pixel character drawings from the approved Kling male/female identity references, a generated pixel style guide, and retained source pose guide sheets. Unchanged generated sheets, prompts and guide hashes are retained under artwork/kling-themes. The script only crops declared atlas cells, translates their registration, uniformly samples 2:1 and packs five authored timelines. These are newly authored key-pose animations, not exact source-video frames; no runtime image generation, style filters or skeleton deformation.",
+  "actions": {
+    "idle": {
+      "file": "male-idle-celebrate-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    "walk": {
+      "file": "male-walk-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          536
+        ],
+        [
+          384,
+          0,
+          384,
+          536
+        ],
+        [
+          768,
+          0,
+          384,
+          536
+        ],
+        [
+          1152,
+          0,
+          384,
+          536
+        ],
+        [
+          0,
+          536,
+          384,
+          488
+        ],
+        [
+          384,
+          536,
+          384,
+          488
+        ],
+        [
+          768,
+          536,
+          384,
+          488
+        ],
+        [
+          1152,
+          536,
+          384,
+          488
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -42
+        ],
+        [
+          0,
+          -42
+        ],
+        [
+          0,
+          -44
+        ],
+        [
+          0,
+          -44
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    "run": {
+      "file": "male-run-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          512
+        ],
+        [
+          384,
+          0,
+          384,
+          512
+        ],
+        [
+          768,
+          0,
+          384,
+          512
+        ],
+        [
+          1152,
+          0,
+          384,
+          512
+        ],
+        [
+          0,
+          512,
+          384,
+          512
+        ],
+        [
+          384,
+          512,
+          384,
+          512
+        ],
+        [
+          768,
+          512,
+          384,
+          512
+        ],
+        [
+          1152,
+          512,
+          384,
+          512
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -36
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -36
+        ],
+        [
+          0,
+          -44
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          -2
+        ],
+        [
+          0,
+          -4
+        ]
+      ],
+      "fps": 12,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    "jump": {
+      "file": "male-jump-v2.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "fps": 8,
+      "loop": false,
+      "timeline": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "notes": "Male jump v2 removes unintended shoe laces from v1 through a recorded image-generation edit. New key-pose drawing and trajectory; no claim of pixel-exact source motion. Declared technical translation and common sampling only."
+    },
+    "celebrate": {
+      "file": "male-idle-celebrate-v1.png",
+      "columns": 4,
+      "rows": 2,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "fps": 8,
+      "loop": true,
+      "timeline": [
+        0,
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    }
+  },
+  "registrationPadding": {
+    "left": 0,
+    "top": 32,
+    "right": 0,
+    "bottom": 0
+  }
+}

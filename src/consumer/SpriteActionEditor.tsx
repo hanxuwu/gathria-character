@@ -91,7 +91,11 @@ function Endpoint({
         ref={canvas}
         width={frame.width}
         height={frame.height}
-        style={{ width: frame.width * scale, height: frame.height * scale }}
+        style={{
+          width: frame.width * scale,
+          height: frame.height * scale,
+          imageRendering: pack.manifest.scale.pixelArt ? "pixelated" : "auto",
+        }}
         role="img"
         aria-label={`${label}, ${facing}, atlas frame ${frameId}`}
         data-testid={
@@ -566,10 +570,16 @@ export default function SpriteActionEditor({
             Endpoint scale
             <select
               aria-label="Endpoint scale"
-              value={endpointScale}
+              value={
+                previewPack.manifest.scale.integerOnly
+                  ? Math.max(1, endpointScale)
+                  : endpointScale
+              }
               onChange={(event) => setEndpointScale(Number(event.target.value))}
             >
-              <option value={0.5}>½× · fit</option>
+              {!previewPack.manifest.scale.integerOnly && (
+                <option value={0.5}>½× · fit</option>
+              )}
               <option value={1}>1× · native</option>
               <option value={2}>2× · inspect</option>
             </select>
@@ -579,14 +589,22 @@ export default function SpriteActionEditor({
               pack={previewPack}
               frameId={clip.frames[0]}
               facing={facing}
-              scale={endpointScale}
+              scale={
+                previewPack.manifest.scale.integerOnly
+                  ? Math.max(1, endpointScale)
+                  : endpointScale
+              }
               label="First frame"
             />
             <Endpoint
               pack={previewPack}
               frameId={clip.frames.at(-1)!}
               facing={facing}
-              scale={endpointScale}
+              scale={
+                previewPack.manifest.scale.integerOnly
+                  ? Math.max(1, endpointScale)
+                  : endpointScale
+              }
               label="Last frame"
             />
           </div>

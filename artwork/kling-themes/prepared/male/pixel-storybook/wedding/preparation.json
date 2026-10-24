@@ -1,0 +1,442 @@
+{
+  "recipe": "artwork/kling-themes/source/male-pixel-storybook-wedding.recipe.json",
+  "recipeSha256": "6719dab0d9c1d7af505309516bdee625bb8af784e76728466bf197330e076c72",
+  "characterPackSha256": "bed0515b8a641cda7c677e5f55d763c99c149e2016f0d089a8285f73030fa827",
+  "themeSha256": "6eb2a23e7f073ec5a489101fef31932237b384cf88836dd3e0f1656c0b16b6b7",
+  "frameCount": 32,
+  "sourceFiles": [
+    {
+      "action": "idle",
+      "file": "artwork/kling-themes/source/male-wedding-idle-celebrate-v2.png",
+      "sha256": "e768a1bbd088a8f50b8d2fd7789ac48571802dc07333338f074ba880e46efadc",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          526
+        ],
+        [
+          384,
+          0,
+          384,
+          526
+        ],
+        [
+          768,
+          0,
+          384,
+          526
+        ],
+        [
+          1152,
+          0,
+          384,
+          526
+        ]
+      ],
+      "translations": [
+        [
+          -24,
+          -32
+        ],
+        [
+          -8,
+          -32
+        ],
+        [
+          8,
+          -30
+        ],
+        [
+          12,
+          -30
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/wedding/idle-celebrate.json",
+      "notes": "Version2 is an actual image-generation correction reducing the overly large idle/celebrate anatomy to match the existing wedding locomotion artwork. Source v1 is retained for review. This is authored replacement art, not runtime scaling. Explicit technical crops, integer translations and common 2:1 sampling only."
+    },
+    {
+      "action": "walk",
+      "file": "artwork/kling-themes/source/male-wedding-walk-v1.png",
+      "sha256": "290494a4f4f7ed371837f197f990ea9c3cb041cafbe3214b661dde4e1aab650a",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          -4,
+          -36
+        ],
+        [
+          0,
+          -36
+        ],
+        [
+          -20,
+          -36
+        ],
+        [
+          -8,
+          -38
+        ],
+        [
+          0,
+          24
+        ],
+        [
+          -4,
+          26
+        ],
+        [
+          -20,
+          26
+        ],
+        [
+          -10,
+          26
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/wedding/walk.json",
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas."
+    },
+    {
+      "action": "run",
+      "file": "artwork/kling-themes/source/male-wedding-run-v1.png",
+      "sha256": "a3a4f7fb9a330dbd9278218069edff8e7f406d1916755f26b60a7640416aa277",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          6,
+          -40
+        ],
+        [
+          -4,
+          -40
+        ],
+        [
+          -10,
+          -44
+        ],
+        [
+          -8,
+          -48
+        ],
+        [
+          6,
+          20
+        ],
+        [
+          -4,
+          18
+        ],
+        [
+          -8,
+          16
+        ],
+        [
+          -8,
+          12
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/wedding/run.json",
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas."
+    },
+    {
+      "action": "jump",
+      "file": "artwork/kling-themes/source/male-wedding-jump-v1.png",
+      "sha256": "97e6e8ba9cb88dc59ee63306c7a318e0713c9da4a12ec9b09cf1a5039e94b6b8",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ],
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          -16,
+          -48
+        ],
+        [
+          -36,
+          -54
+        ],
+        [
+          -20,
+          -52
+        ],
+        [
+          0,
+          -48
+        ],
+        [
+          -18,
+          28
+        ],
+        [
+          -26,
+          32
+        ],
+        [
+          0,
+          30
+        ],
+        [
+          8,
+          28
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/wedding/jump.json",
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas."
+    },
+    {
+      "action": "celebrate",
+      "file": "artwork/kling-themes/source/male-wedding-idle-celebrate-v2.png",
+      "sha256": "e768a1bbd088a8f50b8d2fd7789ac48571802dc07333338f074ba880e46efadc",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          526,
+          384,
+          498
+        ],
+        [
+          384,
+          526,
+          384,
+          498
+        ],
+        [
+          768,
+          526,
+          384,
+          498
+        ],
+        [
+          1152,
+          526,
+          384,
+          498
+        ]
+      ],
+      "translations": [
+        [
+          -24,
+          42
+        ],
+        [
+          -12,
+          42
+        ],
+        [
+          6,
+          42
+        ],
+        [
+          8,
+          40
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/wedding/idle-celebrate.json",
+      "notes": "Version2 is an actual image-generation correction reducing the overly large idle/celebrate anatomy to match the existing wedding locomotion artwork. Source v1 is retained for review. This is authored replacement art, not runtime scaling. Explicit technical crops, integer translations and common 2:1 sampling only."
+    }
+  ],
+  "method": "AI-authored independent pixel sprite drawings; fixed-grid extraction and uniform integer sampling only. Timeline authored for these drawings. No geometric rig deformation, generated runtime frames, or claim of video-pixel extraction."
+}

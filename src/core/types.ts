@@ -6,7 +6,7 @@ export type PortableAnimationName =
   | "celebrate";
 export type Facing = "left" | "right";
 export interface SpriteFrame {
-  /** V3 atlas page; V2 frames use the primary image. */
+  /** V3/V4 atlas page; V2 frames use the primary image. */
   page?: number;
   id: number;
   x: number;
@@ -56,9 +56,17 @@ export interface CharacterPackV3Manifest
   >;
   frames: Array<SpriteFrame & { page: number }>;
 }
+/** Authored pixel artwork. Unlike V3, a single page is valid; old V2/V3
+ * manifests retain their smooth sampling contract and are never upgraded. */
+export interface CharacterPackV4Manifest
+  extends Omit<CharacterPackV3Manifest, "schemaVersion" | "scale"> {
+  schemaVersion: 4;
+  scale: { pixelArt: true; recommended: number; integerOnly: true };
+}
 export type BakedCharacterPackManifest =
   | CharacterPackV2Manifest
-  | CharacterPackV3Manifest;
+  | CharacterPackV3Manifest
+  | CharacterPackV4Manifest;
 export type PortableCharacterPackManifest = BakedCharacterPackManifest;
 export type JsonValue =
   | null

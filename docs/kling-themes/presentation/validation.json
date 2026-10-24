@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "presentationCaptureSha256": "9b196794890d044e008a7d21ff110eede01ce415817e51dbe987897fd4ff8bdb",
+  "baselineCommit": "2ed4c18855df67b70e66ebec9bec57d30ea91385",
+  "presentationCommit": "d4fb0ab57ad2eb95e40ebc1bbd8bcd2c669196f4",
+  "currentPresentationSourceMatchesCommit": true,
+  "assetHashesUnchanged": true,
+  "changedSources": [
+    {
+      "file": "src/themes/ThemeWorkspace.tsx",
+      "previousSha256": "d4b9a9f6f72ace444446add4bffb79399b8d7fe0ecb8ee3de77f2cf11abb11e1",
+      "currentSha256": "91d4ee2a4391b60a20b12e4ccccb354c9dd6f012350269ab859a7bae19b8c043"
+    },
+    {
+      "file": "src/themes/preview-budget.test.ts",
+      "previousSha256": "98853d573bd705ff088079416e0953110580da7507cd0dea88f9d8d091a16628",
+      "currentSha256": "48ee4c417428eba5b9b5469ebfc73e796b8f463ad3fad529380143221db76295"
+    },
+    {
+      "file": "src/themes/preview-budget.ts",
+      "previousSha256": "05ca89a26bcf63329ca2f0bc927c61bc99dd38dde17ab86d92214b396d7c1186",
+      "currentSha256": "360ae3d30f96bbaf595d18c4011e81b936a42f67a2c85effbe97cff59839572a"
+    },
+    {
+      "file": "tests/e2e/theme-presentation.spec.ts",
+      "previousSha256": null,
+      "currentSha256": "7e43a0de077de9203664e6fbebd401f6e42b33a0769d6c61e1ec337e16338fd5"
+    }
+  ],
+  "cases": [
+    {
+      "key": "male-pixel-storybook-base",
+      "nativePngDecodedAndByteExact": true,
+      "screenshotDecoded": true,
+      "directResolutionReferenceGeometry": true
+    },
+    {
+      "key": "male-pixel-storybook-wedding",
+      "nativePngDecodedAndByteExact": true,
+      "screenshotDecoded": true,
+      "directResolutionReferenceGeometry": true
+    },
+    {
+      "key": "female-pixel-storybook-base",
+      "nativePngDecodedAndByteExact": true,
+      "screenshotDecoded": true,
+      "directResolutionReferenceGeometry": true
+    },
+    {
+      "key": "female-pixel-storybook-wedding",
+      "nativePngDecodedAndByteExact": true,
+      "screenshotDecoded": true,
+      "directResolutionReferenceGeometry": true
+    }
+  ],
+  "note": "Only the separately captured final presentation and four native PNG exports are validated here. The earlier full matrix remains attributed to its original commit."
+}

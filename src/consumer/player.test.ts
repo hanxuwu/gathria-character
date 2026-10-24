@@ -5,6 +5,11 @@ import {
   drawCharacterFrame,
   frameAtTime,
   imageForFrame,
+  initialCharacterZoom,
+  characterZoomChoices,
+  pixelCharacterStage,
+  PIXEL_STAGE_MAX_PIXELS,
+  PIXEL_STAGE_MAX_DIMENSION,
 } from "./player";
 
 const manifest: CharacterPackV2Manifest = {
@@ -136,6 +141,139 @@ describe("independent metadata playback", () => {
       16,
     );
     expect(context.restore).toHaveBeenCalledOnce();
+  });
+});
+
+describe("authored pixel playback", () => {
+  const pixel: import("../core/types").CharacterPackV4Manifest = {
+    ...manifest,
+    schemaVersion: 4,
+    additionalSheets: [],
+    frames: manifest.frames.map((f) => ({ ...f, page: 0 })),
+    scale: { pixelArt: true, integerOnly: true, recommended: 3 },
+  };
+  it("retains crisp sampling, integer attachment placement and mirrored source rectangles", () => {
+    const ctx = {
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      scale: vi.fn(),
+      drawImage: vi.fn(),
+      imageSmoothingEnabled: true,
+    };
+    const image = {} as CanvasImageSource;
+    drawCharacterFrame(
+      ctx as unknown as CanvasRenderingContext2D,
+      image,
+      pixel,
+      pixel.frames[1],
+      "left",
+      2,
+      { x: 100.4, y: 200.5 },
+    );
+    expect(ctx.imageSmoothingEnabled).toBe(false);
+    expect(ctx.translate).toHaveBeenCalledWith(100, 201);
+    expect(ctx.scale).toHaveBeenCalledWith(-2, 2);
+    expect(ctx.drawImage).toHaveBeenCalledWith(
+      image,
+      8,
+      0,
+      8,
+      16,
+      -2,
+      -15,
+      8,
+      16,
+    );
+    expect(ctx.restore).toHaveBeenCalledOnce();
+    ctx.save.mockClear();
+    expect(() =>
+      drawCharacterFrame(
+        ctx as unknown as CanvasRenderingContext2D,
+        image,
+        pixel,
+        pixel.frames[0],
+        "right",
+        0.5,
+        { x: 0, y: 0 },
+      ),
+    ).toThrow("positive integer");
+    expect(ctx.save).not.toHaveBeenCalled();
+  });
+  it("selects native integer zoom without silently shrinking on narrow displays", () => {
+    expect(initialCharacterZoom(pixel, 100, 100)).toBe(3);
+    expect(initialCharacterZoom(pixel, 12, 100)).toBe(1);
+    expect(initialCharacterZoom(pixel, 2, 4)).toBe(1);
+    expect(characterZoomChoices(pixel, 0.5)).toEqual([1, 2, 3, 4]);
+    expect(initialCharacterZoom(manifest, 100, 100)).toBe(0.5);
+    expect(characterZoomChoices(manifest, 0.75)).toEqual([
+      0.25, 0.5, 0.75, 1, 1.5, 2,
+    ]);
+  });
+  it("bounds pixel backing dimensions and zoom even for large valid frames and very wide viewports", () => {
+    const huge = {
+      ...pixel,
+      spritesheet: {
+        ...pixel.spritesheet,
+        frameWidth: 8192,
+        frameHeight: 8192,
+      },
+      anchor: { ...pixel.anchor, x: 4096, y: 8192 },
+      scale: { ...pixel.scale, recommended: 16 },
+    };
+    const blocked = pixelCharacterStage(huge, 16, 100_000);
+    expect(blocked.blocked).toBe(true);
+    expect(blocked.width * blocked.height).toBeLessThanOrEqual(
+      PIXEL_STAGE_MAX_PIXELS,
+    );
+    expect(blocked.backingRatio).toBe(1);
+    expect(characterZoomChoices(huge, 16)).toEqual([]);
+    const medium = {
+      ...pixel,
+      spritesheet: { ...pixel.spritesheet, frameWidth: 512, frameHeight: 768 },
+      anchor: { ...pixel.anchor, x: 256, y: 740 },
+      scale: { ...pixel.scale, recommended: 16 },
+    };
+    const choices = characterZoomChoices(medium, 16, 100_000);
+    expect(choices).toEqual([1, 2]);
+    for (const zoom of choices) {
+      const stage = pixelCharacterStage(medium, zoom, 100_000);
+      expect(stage.blocked).toBe(false);
+      expect(stage.width * stage.height).toBeLessThanOrEqual(
+        PIXEL_STAGE_MAX_PIXELS,
+      );
+      expect(stage.width).toBeLessThanOrEqual(PIXEL_STAGE_MAX_DIMENSION);
+      expect(stage.height).toBeLessThanOrEqual(PIXEL_STAGE_MAX_DIMENSION);
+      expect(stage.backingRatio).toBe(1);
+    }
+    expect(initialCharacterZoom(medium, 100_000, 100_000)).toBe(2);
+    expect(pixelCharacterStage(pixel, 0.5).blocked).toBe(true);
+    expect(pixelCharacterStage(pixel, Infinity).blocked).toBe(true);
+    expect(pixelCharacterStage(pixel, 2, Number.NaN).blocked).toBe(false);
+  });
+  it("uses explicit V4 pages and preserves nonuniform authored frame order and one-shots", () => {
+    const multi = {
+      ...pixel,
+      additionalSheets: [
+        { ...pixel.spritesheet, file: "spritesheet-1.png" as const },
+      ],
+      frames: pixel.frames.map((f, i) => ({ ...f, page: i ? 1 : 0 })),
+      animations: {
+        ...pixel.animations,
+        jump: { frames: [90, 30, 30], fps: 6, loop: false },
+      },
+    };
+    const first = {} as HTMLImageElement,
+      second = {} as HTMLImageElement;
+    const pack = { manifest: multi, image: first, images: [first, second] };
+    expect(imageForFrame(pack, frameAtTime(multi, "jump", 0))).toBe(second);
+    expect(imageForFrame(pack, frameAtTime(multi, "jump", 200))).toBe(first);
+    expect(frameAtTime(multi, "jump", 50_000).id).toBe(30);
+    expect(animationHasEnded(multi, "jump", 499)).toBe(false);
+    expect(animationHasEnded(multi, "jump", 500)).toBe(true);
+    expect(() =>
+      imageForFrame({ ...pack, images: [first] }, multi.frames[1]),
+    ).toThrow("unavailable");
   });
 });
 

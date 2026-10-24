@@ -6,7 +6,7 @@ import {
   useState,
   type KeyboardEvent,
 } from "react";
-import { ArrowUpRight, Bone, Film, Info, Shirt } from "lucide-react";
+import { ArrowUpRight, Bone, Film, Info, Palette, Shirt } from "lucide-react";
 import {
   KLING_CHARACTERS,
   type KlingCharacterId,
@@ -15,7 +15,8 @@ import { MainNavigation } from "./MainNavigation";
 import "./workspace.css";
 
 const WardrobeEditor = lazy(() => import("../wardrobe/WardrobeEditor"));
-type WorkbenchTab = "original" | "wardrobe" | "rig";
+const ThemeWorkspace = lazy(() => import("../themes/ThemeWorkspace"));
+type WorkbenchTab = "original" | "wardrobe" | "themes" | "rig";
 
 export function CharacterWorkbench() {
   const query = new URLSearchParams(window.location.search);
@@ -33,12 +34,14 @@ export function CharacterWorkbench() {
     name: string;
   }>({ id: character.id, name: character.name });
   const initial: WorkbenchTab =
-    query.get("mode") === "wardrobe"
-      ? "wardrobe"
-      : query.get("mode") === "rig" ||
-          ["kling-male", "kling-female"].includes(query.get("study") ?? "")
-        ? "rig"
-        : "original";
+    query.get("mode") === "themes"
+      ? "themes"
+      : query.get("mode") === "wardrobe"
+        ? "wardrobe"
+        : query.get("mode") === "rig" ||
+            ["kling-male", "kling-female"].includes(query.get("study") ?? "")
+          ? "rig"
+          : "original";
   const [tab, setTab] = useState<WorkbenchTab>(initial);
   const [visited, setVisited] = useState<Set<WorkbenchTab>>(
     () => new Set([initial]),
@@ -47,6 +50,9 @@ export function CharacterWorkbench() {
     character.id,
   );
   const [wardrobeCharacter, setWardrobeCharacter] = useState<KlingCharacterId>(
+    character.id,
+  );
+  const [themeCharacter, setThemeCharacter] = useState<KlingCharacterId>(
     character.id,
   );
   const [visitedRigs, setVisitedRigs] = useState<Set<KlingCharacterId>>(
@@ -62,6 +68,7 @@ export function CharacterWorkbench() {
   const rigLabel = `${loadedRigCharacter === "female" ? "Female" : "Male"} skeleton`;
   const originalButton = useRef<HTMLButtonElement>(null);
   const wardrobeButton = useRef<HTMLButtonElement>(null);
+  const themesButton = useRef<HTMLButtonElement>(null);
   const rigButton = useRef<HTMLButtonElement>(null);
   const originalFrame = useRef<HTMLIFrameElement>(null);
   const rigFrames = useRef<
@@ -143,19 +150,23 @@ export function CharacterWorkbench() {
     const identity =
       tab === "rig"
         ? loadedRigCharacter
-        : tab === "wardrobe"
-          ? wardrobeCharacter
-          : selection.id;
+        : tab === "themes"
+          ? themeCharacter
+          : tab === "wardrobe"
+            ? wardrobeCharacter
+            : selection.id;
     if (identity) url.searchParams.set("character", identity);
     else url.searchParams.delete("character");
     window.history.replaceState(null, "", url);
-  }, [tab, loadedRigCharacter, wardrobeCharacter, selection]);
+  }, [tab, loadedRigCharacter, wardrobeCharacter, themeCharacter, selection]);
 
   function select(next: WorkbenchTab) {
     setVisited((previous) => new Set([...previous, next]));
     setTab(next);
     const url = new URL(window.location.href);
     if (next === "rig") url.searchParams.set("character", loadedRigCharacter);
+    else if (next === "themes")
+      url.searchParams.set("character", themeCharacter);
     else if (next === "wardrobe")
       url.searchParams.set("character", wardrobeCharacter);
     else if (selection.id) url.searchParams.set("character", selection.id);
@@ -170,12 +181,12 @@ export function CharacterWorkbench() {
   function navigateTabs(event: KeyboardEvent) {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
-    const tabs: WorkbenchTab[] = ["original", "wardrobe", "rig"];
+    const tabs: WorkbenchTab[] = ["original", "wardrobe", "themes", "rig"];
     const next =
       event.key === "Home"
         ? tabs[0]
         : event.key === "End"
-          ? tabs[2]
+          ? tabs[tabs.length - 1]
           : tabs[
               (tabs.indexOf(tab) +
                 (event.key === "ArrowRight" ? 1 : -1) +
@@ -183,9 +194,12 @@ export function CharacterWorkbench() {
                 tabs.length
             ];
     select(next);
-    ({ original: originalButton, wardrobe: wardrobeButton, rig: rigButton })[
-      next
-    ].current?.focus();
+    ({
+      original: originalButton,
+      wardrobe: wardrobeButton,
+      themes: themesButton,
+      rig: rigButton,
+    })[next].current?.focus();
   }
 
   return (
@@ -198,16 +212,20 @@ export function CharacterWorkbench() {
             <h1>
               {tab === "original"
                 ? selection.name
-                : tab === "wardrobe"
-                  ? `Kling ${wardrobeCharacter} · wardrobe`
-                  : `${rigName} · skeleton candidate`}
+                : tab === "themes"
+                  ? `Kling ${themeCharacter} · character themes`
+                  : tab === "wardrobe"
+                    ? `Kling ${wardrobeCharacter} · wardrobe`
+                    : `${rigName} · skeleton candidate`}
             </h1>
             <p>
               {tab === "original"
                 ? "Inspect the original sprite frames, arrange actions and export a reusable character pack."
-                : tab === "wardrobe"
-                  ? "Choose clothing, inspect it through every movement and save a reusable outfit."
-                  : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
+                : tab === "themes"
+                  ? "Explore complete character art themes, compare their drawings and save the exact versions you choose."
+                  : tab === "wardrobe"
+                    ? "Choose clothing, inspect it through every movement and save a reusable outfit."
+                    : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
             </p>
           </div>
           <a className="workbench-back" href="/">
@@ -244,6 +262,18 @@ export function CharacterWorkbench() {
             onClick={() => select("wardrobe")}
           >
             <Shirt size={18} aria-hidden="true" /> Wardrobe
+          </button>
+          <button
+            id="themes-tab"
+            ref={themesButton}
+            type="button"
+            role="tab"
+            aria-controls="themes-panel"
+            aria-selected={tab === "themes"}
+            tabIndex={tab === "themes" ? 0 : -1}
+            onClick={() => select("themes")}
+          >
+            <Palette size={18} aria-hidden="true" /> Character themes
           </button>
           <button
             id="rig-tab"
@@ -346,6 +376,29 @@ export function CharacterWorkbench() {
                 initialCharacter={character.id}
                 active={tab === "wardrobe"}
                 onCharacterChange={setWardrobeCharacter}
+              />
+            </Suspense>
+          )}
+        </section>
+        <section
+          role="tabpanel"
+          id="themes-panel"
+          aria-labelledby="themes-tab"
+          hidden={tab !== "themes"}
+          className="workbench-panel"
+        >
+          {visited.has("themes") && (
+            <Suspense
+              fallback={
+                <p className="workbench-panel-note" role="status">
+                  Opening character themes…
+                </p>
+              }
+            >
+              <ThemeWorkspace
+                initialCharacter={character.id}
+                active={tab === "themes"}
+                onCharacterChange={setThemeCharacter}
               />
             </Suspense>
           )}
