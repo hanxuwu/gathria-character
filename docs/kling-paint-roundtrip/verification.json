@@ -1,0 +1,72 @@
+{
+  "baseline": "1ebf62f69ee7fb804503b90d07ea1d67feeebe71",
+  "applicationCommit": "9ce8e3b15eda69325a749b5a3ef9bcd37a45f962",
+  "executedThisBatch": [
+    {
+      "command": "npm test",
+      "result": "passed",
+      "logSha256": "0992effc0c06c6783352c0017cbe7d6a13b202343dcfa68fcfa2741d042e9f4b",
+      "logFile": "/workspace/.kling-paint-logs/unit.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "tests": 333,
+      "files": 33
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "result": "passed",
+      "logSha256": "80cf2cecffcad4449745113972110a5ee9cc79aceeb6fd4c15273fd064c86aff",
+      "logFile": "/workspace/.kling-paint-logs/browser.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "tests": 79
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "logSha256": "3b79e08e0d29a774e6921e85d2ee3396a0b73145d9cc694976cc0400fc89acae",
+      "logFile": "/workspace/.kling-paint-logs/build.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only"
+    },
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "logSha256": "f5be95ea0f1082c83af4a11d7940940c9a627c4ee1b43c632f60e03fbe2f5c3c",
+      "logFile": "/workspace/.kling-paint-logs/final-build.log",
+      "scope": "9ce8e3b application and final candidate layout"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/paint-roundtrip.spec.ts",
+      "result": "passed",
+      "logSha256": "2c8a9a1117fd8af8d8b8051c156208b22ddd85121122f416db0f65f53d10ac5c",
+      "logFile": "/workspace/.kling-paint-logs/final-focused.log",
+      "scope": "9ce8e3b application and final candidate layout",
+      "tests": 3
+    },
+    {
+      "command": "python scripts/verify-kling-contour-assets.py",
+      "result": "passed",
+      "logSha256": "9a59ca4964bf6d65ed9d2a6674b49383389790eef6489fb1ab05eaffac7c4667",
+      "logFile": "/workspace/.kling-paint-logs/asset-retained.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "oldArchives": 101,
+      "sourceFiles": 4
+    },
+    {
+      "command": "python scripts/verify-kling-male-repair.py",
+      "result": "passed",
+      "logSha256": "ab39ff75cb2378d6fed433fb2eb66349e8b34d2a0addc328ef8281593646d5b7",
+      "logFile": "/workspace/.kling-paint-logs/asset-male.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "decodedFrames": 88
+    },
+    {
+      "command": "python scripts/verify-kling-female-repair.py",
+      "result": "passed",
+      "logSha256": "233e221aa1c477231e6d00dbd83142d39907d17e16b819f64ddb3e5146c5dc6a",
+      "logFile": "/workspace/.kling-paint-logs/asset-female.log",
+      "scope": "9b2706e implementation; subsequent application change is candidate footer CSS only",
+      "decodedFrames": 576
+    }
+  ],
+  "history": "These checks ran in this batch. Earlier 309/76 results are not reused as new executions. A focused test initially edited a bottom layer hidden by the top; selecting the intended top fixed that test setup. Capture iterations corrected a face option value and compared the same action position after undo; these were evidence-script fixes, not artwork changes.",
+  "artwork": "No source artwork, registered clothing catalog, appearance bank, anchor or animation file changed from the merged baseline. New native materials in evidence are browser-produced copies/replays of retained artwork."
+}

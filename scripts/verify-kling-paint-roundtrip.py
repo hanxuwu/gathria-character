@@ -97,6 +97,14 @@ def main():
                     (review/f'{key}-run-{r["facing"]}-comparison.gif').write_bytes(gif)
                     result['bundles'].append({'file':r['file'],'hashedEntriesExact':True,'nativePngPixelsExact':True,'transitionMathIndependentlyVerified':r['facing']=='right','edges':len(scan['edges'])})
         for sides in groups.values():mirror_gifs(sides['left'],sides['right'])
+        # Full run timeline at the GIF's unchanged 0.5-native size, current panel only.
+        with Image.open(io.BytesIO(groups['run']['right'])) as gif:
+            w=(gif.width-8)//2;hh=gif.height-16;columns=4;rows=math.ceil(gif.n_frames/columns)
+            sheet=Image.new('RGB',(columns*w,rows*(hh+28)),(238,233,223));draw=ImageDraw.Draw(sheet)
+            for i,fid in enumerate(b.m['animations']['run']['frames']):
+                gif.seek(i);x=(i%columns)*w;y=(i//columns)*(hh+28)
+                sheet.paste(gif.convert('RGB').crop((w+8,16,2*w+8,16+hh)),(x,y+28));draw.text((x+8,y+5),f'#{i+1} pose {fid}',font=font,fill=(42,65,58))
+            sheet.save(review/f'{key}-run-keyframes.png')
         # Native same-pose board; transparent source images composited only for presentation.
         fid=c['frameId'];left,right=a.frame(fid),b.frame(fid);w,hh=left.size
         board=Image.new('RGB',(w*2+16,hh+40),(238,234,223));d=ImageDraw.Draw(board)
