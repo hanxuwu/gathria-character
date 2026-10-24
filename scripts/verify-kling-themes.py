@@ -8,6 +8,7 @@ import math
 import os
 from pathlib import Path
 import subprocess
+import sys
 import zipfile
 
 import numpy as np
@@ -136,6 +137,53 @@ def compare_themes(reference, pixel, character, look_id, review, font):
             "phaseMapping": [{"referenceFrameId": fid, "pixelFrameId": pixel_clip["frames"][mapping[i]]} for i, fid in enumerate(original_clip["frames"])],
             "derivedFromActualExports": True, "originalNativeExportsUnchanged": True,
             "note": "Presentation comparison follows original run timing; pixel positions map by normalized phase. No new drawings or interpolated frames."}
+
+
+def verify_final_presentation():
+    directory = OUT.parent / "presentation"
+    captured_bytes = (directory / "capture.json").read_bytes()
+    captured = json.loads(captured_bytes)
+    baseline_bytes = (OUT / "capture.json").read_bytes()
+    baseline = json.loads(baseline_bytes)
+    assert captured["passed"] and len(captured["cases"]) == 4
+    assert captured["baselineCaptureSha256"] == sha(baseline_bytes)
+    assert captured["baselineCommit"] == baseline["commitAtCapture"]
+    assert captured["assetHashes"] == baseline["assetHashes"]
+    assert not captured["errors"] and not captured["failedRequests"]
+    assert {(case["character"], case["lookId"]) for case in captured["cases"]} == {
+        (character, look) for character in ["male", "female"] for look in ["base", "wedding"]}
+    for file, expected in captured["sourceHashes"].items():
+        assert sha((ROOT / file).read_bytes()) == expected
+        historical = subprocess.check_output(["git", "show", f'{captured["commitAtCapture"]}:{file}'], cwd=ROOT)
+        assert sha(historical) == expected
+    for file, expected in captured["assetHashes"].items():
+        assert sha((ROOT / file).read_bytes()) == expected
+    cases = []
+    for case in captured["cases"]:
+        original = ROOT / case["baselinePng"]
+        native = ROOT / case["png"]
+        assert native.read_bytes() == original.read_bytes()
+        assert sha(native.read_bytes()) == case["pngSha256"]
+        with Image.open(native) as a, Image.open(original) as b:
+            a.load(); b.load()
+            assert a.mode == b.mode == "RGBA" and a.size == b.size
+            assert a.tobytes() == b.tobytes()
+        screenshot = ROOT / case["screenshot"]
+        assert sha(screenshot.read_bytes()) == case["screenshotSha256"]
+        with Image.open(screenshot) as image:
+            image.load(); assert min(image.size) > 0
+        pixel, reference = case["geometry"]["theme-preview"], case["geometry"]["theme-reference"]
+        for axis, css in [("width", "cssWidth"), ("height", "cssHeight")]:
+            assert pixel[css] == pixel[axis] * 2 == reference[axis] == reference[css]
+        cases.append({"key": case["key"], "nativePngDecodedAndByteExact": True,
+                      "screenshotDecoded": True, "directResolutionReferenceGeometry": True})
+    result = {"passed": True, "presentationCaptureSha256": sha(captured_bytes),
+              "baselineCommit": baseline["commitAtCapture"], "presentationCommit": captured["commitAtCapture"],
+              "currentPresentationSourceMatchesCommit": True, "assetHashesUnchanged": True,
+              "changedSources": captured["changedSources"], "cases": cases,
+              "note": "Only the separately captured final presentation and four native PNG exports are validated here. The earlier full matrix remains attributed to its original commit."}
+    (directory / "validation.json").write_text(json.dumps(result, indent=2) + "\n")
+    print(json.dumps({"presentationCases": len(cases), "decodedPngs": len(cases) * 2, "passed": True}))
 
 
 def main():
@@ -289,4 +337,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "--presentation-only" in sys.argv:
+        verify_final_presentation()
+    else:
+        main()

@@ -15,3 +15,28 @@ Branch: `feat/kling-character-themes`. This batch does not merge prior work.
 10. Publish review animations, source provenance, executed checks, limitations and a new draft PR. Do not claim user visual approval or unlimited automatic style conversion.
 
 Implementation is parallelized across pack compatibility, theme contract, UI and asset preparation. Original wardrobe and skeleton workspaces remain separate and unchanged. New theme look variants must contain matching art for a supported outfit; unavailable variants are shown explicitly. A one-shot jump is not forced into a seamless loop.
+
+## Implemented rounds
+
+- **Contracts and original preservation:** authored-pixel CharacterPack V4,
+  immutable theme envelopes, exact original variants, explicit missing-look and
+  missing-action behavior, self-contained sessions and native media exports.
+- **Authored artwork:** two character identities, base and wedding looks, 128
+  new drawings across five actions. Integer registration and shared headroom
+  fix atlas-cell drift/clipping without changing individual body proportions.
+- **Art correction:** a second male jump sheet corrects shoe detail; a second
+  male wedding idle/celebrate sheet reduces the size mismatch with moving poses.
+  Both superseded sheets remain in the provenance directory.
+- **Switching and review:** matching-outfit comparisons, normalized motion
+  transfer, retained facing/zoom/play state, completed one-shot handling, explicit
+  restoration and bounded previews. Independent audit found and fixed an
+  oversized canvas case and mismatched final comparison frame.
+- **Real-package validation:** production capture exposed missing portable
+  provenance/integration files that fixture tests did not exercise. The builder
+  was corrected, all pixel packs rebuilt, and five real-catalog regression
+  tests added, including a deliberately incomplete actual pack.
+
+The published review records the production exports and the remaining artistic
+limits. Completion of the engineering steps is separate from user visual
+approval; [usage](README.md) and [executed review](RESULTS.md) describe the delivered
+scope rather than promising automatic conversion of arbitrary clothes or styles.

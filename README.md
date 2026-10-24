@@ -18,14 +18,24 @@ npm run dev
 Open the address Vite prints. In **Character library**, use **Open character** on
 either card to inspect and arrange its **Sprite actions**. The default action
 settings preserve the original video playback. **Dress Kling male/female** opens
-the registered wardrobe; separate **Edit Kling male/female skeleton** buttons
+the registered wardrobe. **Explore Kling male/female themes** opens the new
+authored theme workspace; separate **Edit Kling male/female skeleton** buttons
 retain the optional skeletal candidates.
 
-| Main destination                             | Available now                                                        |
-| -------------------------------------------- | -------------------------------------------------------------------- |
-| `/`                                          | Two originals, wardrobe and optional skeleton entries                |
-| `/workbench.html?character=male` or `female` | Sprite actions, wardrobe and persistent skeletal sessions            |
-| `/player.html`                               | Independent CharacterPack V2/V3 and Kling source ZIP playback/export |
+| Main destination                             | Available now                                                           |
+| -------------------------------------------- | ----------------------------------------------------------------------- |
+| `/`                                          | Two originals, wardrobe and optional skeleton entries                   |
+| `/workbench.html?character=male` or `female` | Sprite actions, wardrobe, themes and persistent skeletal sessions       |
+| `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export |
+
+`/workbench.html?character=male&mode=themes` opens **Character themes** directly;
+use `character=female` for the other character. Choose **Kling original** or
+**Pixel storybook**, then a **Theme look** (base or wedding). Both themes contain
+all five actions. Original restores the accepted source artwork; the pixel
+theme is independently authored artwork with its own native resolution and
+timing. Theme looks are complete painted variants, not automatically restyled
+wardrobe pieces. The existing wardrobe remains available for layer editing.
+[Theme usage, actual exports, compatibility and limitations](docs/kling-themes/README.md).
 
 `/workbench.html?character=female&mode=wardrobe` opens the female wardrobe;
 use `character=male` for the male. Choose a recommended everyday or wedding look, then inspect
