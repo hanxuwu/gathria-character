@@ -4,6 +4,13 @@ This directory preserves authoring references, generated source sheets and the
 technical preparation of independent visual themes. It does not replace the
 approved Kling source artwork, wardrobe catalog or original playback packs.
 
+Latest targeted work: [continuity-v3](source/continuity-v3/README.md) records a
+selected female base-walk repair and a rejected sixteen-pose male run trial.
+Female R3 changes only its base walk; male remains R2. The trial is excluded
+from the catalog. All original/R1/R2 published bytes are frozen. Build both the
+selected revision and isolated review trial with
+`python scripts/package-kling-theme-continuity.py`.
+
 ## Source pose guides
 
 `source-guides/{male,female}/` contains guides extracted from the retained

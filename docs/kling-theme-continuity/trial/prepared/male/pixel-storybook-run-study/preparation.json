@@ -1,0 +1,530 @@
+{
+  "recipe": "artwork/kling-themes/source/continuity-v3/male-run16-rejected.recipe.json",
+  "recipeSha256": "863878f8a6f8545752b2753864b53963b877bd59f4f16daa9a9b645d3a2282b7",
+  "characterPackSha256": "d9a9364bcf10c75afe0a11e2b60116ebdbb3e462b1283f66d713a230cb4f8cd2",
+  "themeSha256": "ccd2f2d11e14ea64885e54321f8db6c36b7638485954671393dcba2bb4eeff27",
+  "frameCount": 40,
+  "sourceFiles": [
+    {
+      "action": "idle",
+      "file": "artwork/kling-themes/source/male-idle-celebrate-v1.png",
+      "sha256": "7247315b8faafb895efdab100ed49a00f83ca240eb67eeb0e0a873d42d306a25",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          0,
+          -56
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/idle.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    {
+      "action": "walk",
+      "file": "artwork/kling-themes/source/stability-v2/male-walk-stable-v2.png",
+      "sha256": "e3b4b0e4991589e84ec56f23fad6860c6906926baaf5bb291cb2bcd61d81db47",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          530
+        ],
+        [
+          384,
+          0,
+          384,
+          530
+        ],
+        [
+          768,
+          0,
+          384,
+          530
+        ],
+        [
+          1152,
+          0,
+          384,
+          530
+        ],
+        [
+          0,
+          530,
+          384,
+          494
+        ],
+        [
+          384,
+          530,
+          384,
+          494
+        ],
+        [
+          768,
+          530,
+          384,
+          494
+        ],
+        [
+          1152,
+          530,
+          384,
+          494
+        ]
+      ],
+      "translations": [
+        [
+          2,
+          -44
+        ],
+        [
+          2,
+          -46
+        ],
+        [
+          2,
+          -46
+        ],
+        [
+          2,
+          -46
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/walk.json",
+      "notes": "Revision2 selected whole-pose image-generation continuity repair. The full unchanged generated PNG and exact prompt/reference record are retained under stability-v2. Faces, ears and necks are authored coherently with the body; no pasted head or runtime deformation. Reviewed 530px row gutter preserves complete shoes. Whole-pose integer registration targets planted or airborne soles, with common 2:1 nearest sampling and existing 32px top padding. All action frame IDs, order, FPS, loop, anchor and native dimensions are retained. Selected stable-v2 corrects the second row torso height after stable-v1. Head top range is reduced from9 to3 native pixels with every support sole at250. The new walking figure extends about3\u20136px higher than existing idle; head size and identity remain visually close, with no per-pose scaling."
+    },
+    {
+      "action": "run",
+      "file": "artwork/kling-themes/source/continuity-v3/male-run16-rejected-atlas.png",
+      "sha256": "339a0022a8a74faec78f93594ce2ec43981147b51884ca545c703bc1953d9ebc",
+      "columns": 4,
+      "rows": 4,
+      "count": 16,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          512
+        ],
+        [
+          384,
+          0,
+          384,
+          512
+        ],
+        [
+          768,
+          0,
+          384,
+          512
+        ],
+        [
+          1152,
+          0,
+          384,
+          512
+        ],
+        [
+          0,
+          512,
+          384,
+          512
+        ],
+        [
+          384,
+          512,
+          384,
+          512
+        ],
+        [
+          768,
+          512,
+          384,
+          512
+        ],
+        [
+          1152,
+          512,
+          384,
+          512
+        ],
+        [
+          0,
+          1024,
+          384,
+          512
+        ],
+        [
+          384,
+          1024,
+          384,
+          512
+        ],
+        [
+          768,
+          1024,
+          384,
+          512
+        ],
+        [
+          1152,
+          1024,
+          384,
+          512
+        ],
+        [
+          0,
+          1536,
+          384,
+          512
+        ],
+        [
+          384,
+          1536,
+          384,
+          512
+        ],
+        [
+          768,
+          1536,
+          384,
+          512
+        ],
+        [
+          1152,
+          1536,
+          384,
+          512
+        ]
+      ],
+      "translations": [
+        [
+          14,
+          -28
+        ],
+        [
+          8,
+          -38
+        ],
+        [
+          12,
+          -40
+        ],
+        [
+          4,
+          -36
+        ],
+        [
+          8,
+          -8
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          10,
+          -6
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          16,
+          -26
+        ],
+        [
+          12,
+          -40
+        ],
+        [
+          10,
+          -40
+        ],
+        [
+          0,
+          -40
+        ],
+        [
+          4,
+          -4
+        ],
+        [
+          -2,
+          0
+        ],
+        [
+          2,
+          -6
+        ],
+        [
+          2,
+          20
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/run.json",
+      "notes": "Rejected authoring experiment, not a published replacement. Two original image-generation banks supply sixteen distinct male running drawings, packed losslessly into one atlas and registered by whole-pose integer translations plus uniform 2:1 sampling. It retains the R2 native canvas, anchor and 2/3 second run duration (16 drawings at24FPS), but fails visual acceptance because arms acquire extra/disconnected anatomy and reverse phase abruptly. The shipping male remains exact R2. No skeleton, crossfade, duplicated pose, anatomical retouch or head lock is used. All other actions retain their R2 drawings."
+    },
+    {
+      "action": "jump",
+      "file": "artwork/kling-themes/source/male-jump-v2.png",
+      "sha256": "0a9c02b6777e90337f0a7be4ac4c4d668eba75e7248d23610707cb3533e8b40a",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          -32
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/jump.json",
+      "notes": "Male jump v2 removes unintended shoe laces from v1 through a recorded image-generation edit. New key-pose drawing and trajectory; no claim of pixel-exact source motion. Declared technical translation and common sampling only."
+    },
+    {
+      "action": "celebrate",
+      "file": "artwork/kling-themes/source/male-idle-celebrate-v1.png",
+      "sha256": "7247315b8faafb895efdab100ed49a00f83ca240eb67eeb0e0a873d42d306a25",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/male/celebrate.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    }
+  ],
+  "method": "AI-authored independent pixel sprite drawings; fixed-grid extraction and uniform integer sampling only. Timeline authored for these drawings. No geometric rig deformation, generated runtime frames, or claim of video-pixel extraction."
+}

@@ -11,11 +11,14 @@ action editor and optional skeleton tools remain available in their own tabs.
 
 ## Open it
 
-The default pixel selection now uses **revision 2**, with corrected frame
-registration and reviewed locomotion drawings. Revision 1 archives remain
-unchanged and saved sessions keep their original revision. The current motion
-and loading review is in [theme stability](../kling-theme-stability/README.md);
-the earlier [RESULTS.md](RESULTS.md) remains historical evidence for revision 1.
+The default pixel selection uses **male revision 2 / female revision 3**.
+Female R3 improves base-walk face consistency and reduces the half-stride height
+jump, retaining all other drawings and cadence. A sixteen-pose male run trial
+was rejected for arm/anatomy and height discontinuities; male R2 stays selected.
+See [motion continuity](../kling-theme-continuity/README.md). Earlier archives
+remain unchanged and saved sessions keep their original revision.
+[Theme stability](../kling-theme-stability/README.md) records the prior R2/loading
+batch; [RESULTS.md](RESULTS.md) remains historical evidence for revision 1.
 
 Run `npm ci` and `npm run dev`, then open the address Vite prints.
 

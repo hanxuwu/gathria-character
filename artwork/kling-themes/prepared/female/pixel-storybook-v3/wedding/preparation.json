@@ -1,0 +1,442 @@
+{
+  "recipe": "artwork/kling-themes/source/female-pixel-storybook-wedding-v3.recipe.json",
+  "recipeSha256": "5a8b148cc097eddf2240c38fcd053b20c3e9bf0660c31c1ed661c2c22326f086",
+  "characterPackSha256": "b0f0691cf1a5bb67fb25ca01943794a622682345940764bf1faa235039d53d79",
+  "themeSha256": "1b5bf84d44003324aef41067e0b63e1e9ac417ff26545daf046a1a17bca0e258",
+  "frameCount": 32,
+  "sourceFiles": [
+    {
+      "action": "idle",
+      "file": "artwork/kling-themes/source/female-wedding-idle-celebrate-v1.png",
+      "sha256": "8b39da5198179652ade22dab886e8d012b717b597fc90dc5b3b3ba522f03fd8e",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          536
+        ],
+        [
+          384,
+          0,
+          384,
+          536
+        ],
+        [
+          768,
+          0,
+          384,
+          536
+        ],
+        [
+          1152,
+          0,
+          384,
+          536
+        ]
+      ],
+      "translations": [
+        [
+          -6,
+          -58
+        ],
+        [
+          -4,
+          -58
+        ],
+        [
+          4,
+          -58
+        ],
+        [
+          10,
+          -58
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/wedding/idle-celebrate.json",
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas."
+    },
+    {
+      "action": "walk",
+      "file": "artwork/kling-themes/source/female-wedding-walk-v1.png",
+      "sha256": "75f67f2d5ce8c866444efb961cf6ba880979347f7ffa476ee18e6000cc88026a",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          528
+        ],
+        [
+          384,
+          0,
+          384,
+          528
+        ],
+        [
+          768,
+          0,
+          384,
+          528
+        ],
+        [
+          1152,
+          0,
+          384,
+          528
+        ],
+        [
+          0,
+          528,
+          384,
+          496
+        ],
+        [
+          384,
+          528,
+          384,
+          496
+        ],
+        [
+          768,
+          528,
+          384,
+          496
+        ],
+        [
+          1152,
+          528,
+          384,
+          496
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -44
+        ],
+        [
+          0,
+          -34
+        ],
+        [
+          0,
+          -44
+        ],
+        [
+          0,
+          -44
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          18
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/wedding/walk.json",
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas."
+    },
+    {
+      "action": "run",
+      "file": "artwork/kling-themes/source/stability-v2/female-wedding-run-stable-v1.png",
+      "sha256": "00e0f6715dfdcd4b95de7c6423e41264454f915cb6f9c9a53a2f69680fd54854",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          530
+        ],
+        [
+          384,
+          0,
+          384,
+          530
+        ],
+        [
+          768,
+          0,
+          384,
+          530
+        ],
+        [
+          1152,
+          0,
+          384,
+          530
+        ],
+        [
+          0,
+          530,
+          384,
+          494
+        ],
+        [
+          384,
+          530,
+          384,
+          494
+        ],
+        [
+          768,
+          530,
+          384,
+          494
+        ],
+        [
+          1152,
+          530,
+          384,
+          494
+        ]
+      ],
+      "translations": [
+        [
+          12,
+          -52
+        ],
+        [
+          12,
+          -44
+        ],
+        [
+          12,
+          -48
+        ],
+        [
+          10,
+          -48
+        ],
+        [
+          12,
+          4
+        ],
+        [
+          12,
+          4
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          10,
+          0
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/wedding/run.json",
+      "notes": "Revision2 uses the reviewed image-generation complete-pose continuity repair female-wedding-run-stable-v1. Braided crown, face, neck, ivory dress and pink sneakers retain the established look and eight poses. Exact prompt/reference and unchanged source PNG are retained. Reviewed 530px row gutter preserves complete shoes; whole-pose integer translations retain the declared contact/flight pattern. Native crown Y range improves from5 to4px and maximum adjacent step from5 to4px; this is a modest continuity improvement, not a perfectly smooth or user-approved animation. Common 2:1 nearest sampling, 32px top padding, anchor, frame dimensions, order, FPS and loop remain unchanged. No detached head, interpolated frame or per-pose scaling."
+    },
+    {
+      "action": "jump",
+      "file": "artwork/kling-themes/source/female-wedding-jump-v1.png",
+      "sha256": "2f3d37fb951eb8d883be06f7114af07a2ce2bb6b97f9cba033616813595b24f9",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ],
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          -2,
+          -48
+        ],
+        [
+          2,
+          -44
+        ],
+        [
+          14,
+          -56
+        ],
+        [
+          8,
+          -56
+        ],
+        [
+          -10,
+          8
+        ],
+        [
+          -8,
+          16
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          -4,
+          12
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/wedding/jump.json",
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas."
+    },
+    {
+      "action": "celebrate",
+      "file": "artwork/kling-themes/source/female-wedding-idle-celebrate-v1.png",
+      "sha256": "8b39da5198179652ade22dab886e8d012b717b597fc90dc5b3b3ba522f03fd8e",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          536,
+          384,
+          488
+        ],
+        [
+          384,
+          536,
+          384,
+          488
+        ],
+        [
+          768,
+          536,
+          384,
+          488
+        ],
+        [
+          1152,
+          536,
+          384,
+          488
+        ]
+      ],
+      "translations": [
+        [
+          -10,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/wedding/idle-celebrate.json",
+      "notes": "Newly authored wedding poses. Source guide is a pose reference, not an exact source-frame claim. Crop rectangles preserve full shoes across nominal row borders. Whole-pose translations and their measurements are explicit; newly authored flight/contact targets are relative to the common padded canvas."
+    }
+  ],
+  "method": "AI-authored independent pixel sprite drawings; fixed-grid extraction and uniform integer sampling only. Timeline authored for these drawings. No geometric rig deformation, generated runtime frames, or claim of video-pixel extraction."
+}

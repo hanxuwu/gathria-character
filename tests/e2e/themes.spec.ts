@@ -24,6 +24,7 @@ async function fixture(
   pixel: boolean,
   extras = false,
   partial = false,
+  pixelRunPositions = 8,
 ) {
   const characterId = `fixture-${character}-${pixel ? "pixel" : "smooth"}`;
   const pixels = new Uint8Array(24 * 8 * 4);
@@ -79,12 +80,18 @@ async function fixture(
                     : [7, 19, 31, 19, 7]
                   : action === "run"
                     ? Array.from(
-                        { length: pixel ? 8 : 16 },
+                        { length: pixel ? pixelRunPositions : 16 },
                         (_, index) => [7, 19, 31, 19][index % 4],
                       )
                     : [7, 19, 31, 19],
             fps:
-              action === "idle" ? 4 : action === "run" ? (pixel ? 12 : 24) : 8,
+              action === "idle"
+                ? 4
+                : action === "run"
+                  ? pixel
+                    ? pixelRunPositions * 1.5
+                    : 24
+                  : 8,
             loop: action !== "jump",
           },
         ]),
@@ -181,15 +188,28 @@ async function start(
   delayedPixel?: (route: Route, bytes: Uint8Array) => Promise<void>,
   completePixel = false,
   lazyPublished = false,
+  pixelRunPositions = 8,
 ) {
   const fixtures = {
     male: {
       original: await fixture("male", false, true),
-      pixel: await fixture("male", true, completePixel),
+      pixel: await fixture(
+        "male",
+        true,
+        completePixel,
+        false,
+        pixelRunPositions,
+      ),
     },
     female: {
       original: await fixture("female", false, true),
-      pixel: await fixture("female", true, completePixel),
+      pixel: await fixture(
+        "female",
+        true,
+        completePixel,
+        false,
+        pixelRunPositions,
+      ),
     },
   };
   const entries = Object.entries(fixtures).flatMap(([character, themes]) =>
@@ -662,56 +682,66 @@ test("theme switching preserves normalized motion phase and playing state withou
   ).toBeVisible();
 });
 
-test("comparison plays every original reference position between pixel key poses", async ({
-  page,
-}) => {
-  await page.clock.install({ time: new Date("2030-01-01T00:00:00Z") });
-  const { panel } = await start(page);
-  await panel.getByRole("button", { name: /^Pixel storybook/ }).click();
-  await expect(panel.getByRole("status")).toContainText(
-    "Pixel storybook selected",
-  );
-  await panel.getByRole("button", { name: "Run", exact: true }).click();
-  await panel.getByLabel("Compare Kling original", { exact: true }).check();
-  const reference = panel.getByTestId("theme-reference");
-  const pixel = panel.getByTestId("theme-preview");
-  await expect(reference).toBeVisible();
-  await page.clock.pauseAt(new Date("2030-01-01T00:01:00Z"));
-  await panel.getByRole("button", { name: "Play theme", exact: true }).click();
-  const referencePositions = new Set<number>([0]);
-  const pixelPositions = new Set<number>([0]);
-  let sawReferenceBetweenPixelPoses = false;
-  for (let step = 0; step < 34; step++) {
-    await page.clock.runFor(21);
-    const referencePosition = Number(
-      await reference.getAttribute("data-frame-position"),
+for (const pixelCount of [8, 16])
+  test(`comparison plays all ${pixelCount} pixel positions and every original reference position`, async ({
+    page,
+  }) => {
+    await page.clock.install({ time: new Date("2030-01-01T00:00:00Z") });
+    const { panel } = await start(page, undefined, false, false, pixelCount);
+    await panel.getByRole("button", { name: /^Pixel storybook/ }).click();
+    await expect(panel.getByRole("status")).toContainText(
+      "Pixel storybook selected",
     );
-    const pixelPosition = Number(
-      await pixel.getAttribute("data-frame-position"),
+    await panel.getByRole("button", { name: "Run", exact: true }).click();
+    await panel.getByLabel("Compare Kling original", { exact: true }).check();
+    const reference = panel.getByTestId("theme-reference");
+    const pixel = panel.getByTestId("theme-preview");
+    await expect(reference).toBeVisible();
+    await page.clock.pauseAt(new Date("2030-01-01T00:01:00Z"));
+    await panel
+      .getByRole("button", { name: "Play theme", exact: true })
+      .click();
+    const referencePositions = new Set<number>([0]);
+    const pixelPositions = new Set<number>([0]);
+    let sawReferenceBetweenPixelPoses = false;
+    for (let step = 0; step < 34; step++) {
+      await page.clock.runFor(21);
+      const referencePosition = Number(
+        await reference.getAttribute("data-frame-position"),
+      );
+      const pixelPosition = Number(
+        await pixel.getAttribute("data-frame-position"),
+      );
+      referencePositions.add(referencePosition);
+      pixelPositions.add(pixelPosition);
+      if (
+        referencePosition % 2 === 1 &&
+        pixelPosition === Math.floor(referencePosition / 2)
+      )
+        sawReferenceBetweenPixelPoses = true;
+    }
+    expect([...referencePositions].sort((a, b) => a - b)).toEqual(
+      Array.from({ length: 16 }, (_, index) => index),
     );
-    referencePositions.add(referencePosition);
-    pixelPositions.add(pixelPosition);
-    if (
-      referencePosition % 2 === 1 &&
-      pixelPosition === Math.floor(referencePosition / 2)
-    )
-      sawReferenceBetweenPixelPoses = true;
-  }
-  expect([...referencePositions].sort((a, b) => a - b)).toEqual(
-    Array.from({ length: 16 }, (_, index) => index),
-  );
-  expect([...pixelPositions].sort((a, b) => a - b)).toEqual(
-    Array.from({ length: 8 }, (_, index) => index),
-  );
-  expect(sawReferenceBetweenPixelPoses).toBe(true);
-  await panel.getByRole("button", { name: "Pause theme", exact: true }).click();
-  await panel.getByLabel("Theme frame", { exact: true }).fill("3");
-  await expect(reference).toHaveAttribute("data-frame-position", "6");
-  await expect(pixel).toHaveAttribute("data-frame-position", "3");
-  await panel.getByLabel("Theme facing", { exact: true }).selectOption("left");
-  await expect(reference).toHaveAttribute("data-facing", "left");
-  await expect(pixel).toHaveAttribute("data-facing", "left");
-});
+    expect([...pixelPositions].sort((a, b) => a - b)).toEqual(
+      Array.from({ length: pixelCount }, (_, index) => index),
+    );
+    expect(sawReferenceBetweenPixelPoses).toBe(pixelCount === 8);
+    await panel
+      .getByRole("button", { name: "Pause theme", exact: true })
+      .click();
+    await panel.getByLabel("Theme frame", { exact: true }).fill("3");
+    await expect(reference).toHaveAttribute(
+      "data-frame-position",
+      String((3 * 16) / pixelCount),
+    );
+    await expect(pixel).toHaveAttribute("data-frame-position", "3");
+    await panel
+      .getByLabel("Theme facing", { exact: true })
+      .selectOption("left");
+    await expect(reference).toHaveAttribute("data-facing", "left");
+    await expect(pixel).toHaveAttribute("data-facing", "left");
+  });
 
 test("published themes fetch only the selected look, retain accepted looks, and hydrate complete portable sessions on save", async ({
   page,

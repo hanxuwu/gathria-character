@@ -1,0 +1,442 @@
+{
+  "recipe": "artwork/kling-themes/source/female-pixel-storybook-v3.recipe.json",
+  "recipeSha256": "e4d4eda45d29a8a7b75a904d0c5bff822fff7b4f1267293aab640a836ad2622f",
+  "characterPackSha256": "f1dd214d941befdda248f6d8846ed0112ad06897a616725c18bf128a517ca891",
+  "themeSha256": "1b5bf84d44003324aef41067e0b63e1e9ac417ff26545daf046a1a17bca0e258",
+  "frameCount": 32,
+  "sourceFiles": [
+    {
+      "action": "idle",
+      "file": "artwork/kling-themes/source/female-idle-celebrate-v1.png",
+      "sha256": "efdbd1b8178b3a708e352444a127b3a2d15b45df8ce94d58ecb67c7da258ebce",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          544
+        ],
+        [
+          384,
+          0,
+          384,
+          544
+        ],
+        [
+          768,
+          0,
+          384,
+          544
+        ],
+        [
+          1152,
+          0,
+          384,
+          544
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -52
+        ],
+        [
+          12,
+          -52
+        ],
+        [
+          0,
+          -56
+        ],
+        [
+          -6,
+          -52
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/idle.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink. Revision2 adds the recorded whole-pose horizontal offsets to reduce atlas drift. Vertical registration, scale and timing are retained. This does not correct within-drawing head shape or head-to-sole proportion."
+    },
+    {
+      "action": "walk",
+      "file": "artwork/kling-themes/source/continuity-v3/female-walk-steady-v2.png",
+      "sha256": "0291b218c03af09bbc148a3711e804761829e48606fca7bd25de1260cf69be20",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          512
+        ],
+        [
+          384,
+          0,
+          384,
+          512
+        ],
+        [
+          768,
+          0,
+          384,
+          512
+        ],
+        [
+          1152,
+          0,
+          384,
+          512
+        ],
+        [
+          0,
+          512,
+          384,
+          512
+        ],
+        [
+          384,
+          512,
+          384,
+          512
+        ],
+        [
+          768,
+          512,
+          384,
+          512
+        ],
+        [
+          1152,
+          512,
+          384,
+          512
+        ]
+      ],
+      "translations": [
+        [
+          -16,
+          -18
+        ],
+        [
+          -10,
+          -16
+        ],
+        [
+          -2,
+          -18
+        ],
+        [
+          0,
+          -18
+        ],
+        [
+          -14,
+          8
+        ],
+        [
+          -8,
+          8
+        ],
+        [
+          -2,
+          8
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/walk.json",
+      "notes": "Two complete-pose image-generation repair trials corrected mismatched opposite-stride face perspective and height. Trial2 restores opposing near-arm swing and is selected after native-size inspection. Uniform2:1 nearest sampling and whole-pose even-pixel translation only; support soles all y250 at native size, unchanged anchor(96,251),8FPS and8 ordered poses. No detached head, per-pose anatomical rescaling, warping, foot lifting, crossfade or generated runtime frames. Largest adjacent crown-height jump is reduced8\u21924px; totalrange8\u21925px. Remaining opposite-stride height difference is explicitly retained rather than hidden."
+    },
+    {
+      "action": "run",
+      "file": "artwork/kling-themes/source/stability-v2/female-run-stable-v1.png",
+      "sha256": "aa99859e7575ede7edaf2f388d7d80660649989852927ee5612fe321c949893c",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          530
+        ],
+        [
+          384,
+          0,
+          384,
+          530
+        ],
+        [
+          768,
+          0,
+          384,
+          530
+        ],
+        [
+          1152,
+          0,
+          384,
+          530
+        ],
+        [
+          0,
+          530,
+          384,
+          494
+        ],
+        [
+          384,
+          530,
+          384,
+          494
+        ],
+        [
+          768,
+          530,
+          384,
+          494
+        ],
+        [
+          1152,
+          530,
+          384,
+          494
+        ]
+      ],
+      "translations": [
+        [
+          -2,
+          -26
+        ],
+        [
+          -4,
+          -36
+        ],
+        [
+          -4,
+          -40
+        ],
+        [
+          -4,
+          -48
+        ],
+        [
+          -2,
+          14
+        ],
+        [
+          -4,
+          8
+        ],
+        [
+          -6,
+          8
+        ],
+        [
+          -4,
+          0
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/run.json",
+      "notes": "Revision2 selected whole-pose image-generation continuity repair. The full unchanged generated PNG and exact prompt/reference record are retained under stability-v2. Faces, ears and necks are authored coherently with the body; no pasted head or runtime deformation. Reviewed 530px row gutter preserves complete shoes. Whole-pose integer registration targets planted or airborne soles, with common 2:1 nearest sampling and existing 32px top padding. All action frame IDs, order, FPS, loop, anchor and native dimensions are retained. Selected stable-v1 reduces head perspective changes and opposite-stride crown-height mismatch. Native crown tops remain[31,28,26,22,30,28,28,24], so the action still has an8px peak adjacent jump; this is an improvement, not a claim of perfect smoothness. Support/flight target pattern is retained."
+    },
+    {
+      "action": "jump",
+      "file": "artwork/kling-themes/source/female-jump-v1.png",
+      "sha256": "73647750f2b26e31b6aad5c424d1df8fe3e06719084395f14e9ce4350a90085e",
+      "columns": 4,
+      "rows": 2,
+      "count": 8,
+      "cellIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          0,
+          384,
+          532
+        ],
+        [
+          384,
+          0,
+          384,
+          532
+        ],
+        [
+          768,
+          0,
+          384,
+          532
+        ],
+        [
+          1152,
+          0,
+          384,
+          532
+        ],
+        [
+          0,
+          532,
+          384,
+          492
+        ],
+        [
+          384,
+          532,
+          384,
+          492
+        ],
+        [
+          768,
+          532,
+          384,
+          492
+        ],
+        [
+          1152,
+          532,
+          384,
+          492
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          -48
+        ],
+        [
+          0,
+          -50
+        ],
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          -52
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          12
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/jump.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    },
+    {
+      "action": "celebrate",
+      "file": "artwork/kling-themes/source/female-idle-celebrate-v1.png",
+      "sha256": "efdbd1b8178b3a708e352444a127b3a2d15b45df8ce94d58ecb67c7da258ebce",
+      "columns": 4,
+      "rows": 2,
+      "count": 4,
+      "cellIndices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cropRects": [
+        [
+          0,
+          544,
+          384,
+          480
+        ],
+        [
+          384,
+          544,
+          384,
+          480
+        ],
+        [
+          768,
+          544,
+          384,
+          480
+        ],
+        [
+          1152,
+          544,
+          384,
+          480
+        ]
+      ],
+      "translations": [
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          16
+        ]
+      ],
+      "sourceGuide": "artwork/kling-themes/source-guides/female/celebrate.json",
+      "notes": "Authored key poses from image generation; explicit empty-gutter row crops preserve complete shoes where the nominal 512px cell boundary crosses them. Integer translation only aligns support soles to y470 or declared airborne height. Common 2:1 nearest sampling; no per-pose fitting, retouching, interpolation or regenerated anatomy. Idle source drawings are nearly static; no invented blink."
+    }
+  ],
+  "method": "AI-authored independent pixel sprite drawings; fixed-grid extraction and uniform integer sampling only. Timeline authored for these drawings. No geometric rig deformation, generated runtime frames, or claim of video-pixel extraction."
+}

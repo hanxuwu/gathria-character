@@ -1,0 +1,649 @@
+{
+  "character": "female",
+  "look": "base",
+  "action": "walk",
+  "basisRecipe": "artwork/kling-themes/source/female-pixel-storybook-v2.recipe.json",
+  "basisRecipeSha256": "70adcca407383e3a48037a13bfe73053cf1c1655e17dbc9cf08ce62a888a5ff3",
+  "method": "Complete-pose AI art repairs, followed only by explicit whole-pose integer registration and common 2:1 nearest sampling. Every support sole targets source y470 before shared32px headroom. No foot lifting, detached head, interpolation or anatomical scale/warp.",
+  "nativeFrame": [
+    192,
+    272
+  ],
+  "anchor": {
+    "x": 96,
+    "y": 251
+  },
+  "timing": {
+    "fps": 8,
+    "loop": true,
+    "timeline": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "measurements": "Opaque alpha >128 crown and sole proxies; no claimed semantic face-landmark inference. Source clipping uses alpha >16 as existing builder.",
+  "before": {
+    "frames": [
+      {
+        "crownTopY": 28,
+        "supportSoleY": 250,
+        "upperHeadCenterX": 97.0,
+        "upperHeadWidth": 107,
+        "visibleBounds": [
+          37,
+          28,
+          158,
+          251
+        ]
+      },
+      {
+        "crownTopY": 26,
+        "supportSoleY": 250,
+        "upperHeadCenterX": 96.5,
+        "upperHeadWidth": 106,
+        "visibleBounds": [
+          27,
+          26,
+          167,
+          251
+        ]
+      },
+      {
+        "crownTopY": 26,
+        "supportSoleY": 251,
+        "upperHeadCenterX": 97.0,
+        "upperHeadWidth": 109,
+        "visibleBounds": [
+          36,
+          26,
+          160,
+          252
+        ]
+      },
+      {
+        "crownTopY": 26,
+        "supportSoleY": 250,
+        "upperHeadCenterX": 98.5,
+        "upperHeadWidth": 110,
+        "visibleBounds": [
+          44,
+          26,
+          154,
+          251
+        ]
+      },
+      {
+        "crownTopY": 34,
+        "supportSoleY": 251,
+        "upperHeadCenterX": 97.0,
+        "upperHeadWidth": 107,
+        "visibleBounds": [
+          43,
+          34,
+          157,
+          252
+        ]
+      },
+      {
+        "crownTopY": 34,
+        "supportSoleY": 250,
+        "upperHeadCenterX": 95.5,
+        "upperHeadWidth": 108,
+        "visibleBounds": [
+          29,
+          34,
+          166,
+          251
+        ]
+      },
+      {
+        "crownTopY": 31,
+        "supportSoleY": 250,
+        "upperHeadCenterX": 97.0,
+        "upperHeadWidth": 109,
+        "visibleBounds": [
+          40,
+          31,
+          152,
+          251
+        ]
+      },
+      {
+        "crownTopY": 32,
+        "supportSoleY": 250,
+        "upperHeadCenterX": 97.5,
+        "upperHeadWidth": 108,
+        "visibleBounds": [
+          44,
+          32,
+          160,
+          251
+        ]
+      }
+    ],
+    "crownVerticalRange": 8,
+    "maxAdjacentCrownStepIncludingWrap": 8,
+    "upperHeadHorizontalRange": 3.0,
+    "oppositeStrideCrownDifferences": [
+      6,
+      8,
+      5,
+      6
+    ]
+  },
+  "trials": [
+    {
+      "version": 1,
+      "sourceFile": "artwork/kling-themes/source/continuity-v3/female-walk-steady-v1.png",
+      "sourceSha256": "8e701fe010f2d6216e99a8987b48744d42eb59e770feb3fc52c511f2cba898ce",
+      "generationRecord": "artwork/kling-themes/source/continuity-v3/female-walk-steady-v1.generation.json",
+      "referenceHashes": [
+        {
+          "file": "artwork/kling-themes/source/female-walk-v1.png",
+          "sha256": "b99a1266d29c6c5b6655d93908d9b06558277b38c56ed5d479ec373eddccabb7"
+        }
+      ],
+      "registration": [
+        {
+          "index": 0,
+          "crop": [
+            0,
+            0,
+            384,
+            530
+          ],
+          "translation": [
+            -12,
+            -40
+          ],
+          "sourceCrownTop": 65,
+          "sourceSupportSole": 511,
+          "sourceUpperHeadCenterX": 207.0
+        },
+        {
+          "index": 1,
+          "crop": [
+            384,
+            0,
+            384,
+            530
+          ],
+          "translation": [
+            -6,
+            -40
+          ],
+          "sourceCrownTop": 64,
+          "sourceSupportSole": 511,
+          "sourceUpperHeadCenterX": 200.0
+        },
+        {
+          "index": 2,
+          "crop": [
+            768,
+            0,
+            384,
+            530
+          ],
+          "translation": [
+            4,
+            -40
+          ],
+          "sourceCrownTop": 63,
+          "sourceSupportSole": 511,
+          "sourceUpperHeadCenterX": 190.5
+        },
+        {
+          "index": 3,
+          "crop": [
+            1152,
+            0,
+            384,
+            530
+          ],
+          "translation": [
+            4,
+            -40
+          ],
+          "sourceCrownTop": 62,
+          "sourceSupportSole": 511,
+          "sourceUpperHeadCenterX": 190.5
+        },
+        {
+          "index": 4,
+          "crop": [
+            0,
+            530,
+            384,
+            494
+          ],
+          "translation": [
+            -12,
+            18
+          ],
+          "sourceCrownTop": 15,
+          "sourceSupportSole": 452,
+          "sourceUpperHeadCenterX": 207.0
+        },
+        {
+          "index": 5,
+          "crop": [
+            384,
+            530,
+            384,
+            494
+          ],
+          "translation": [
+            -4,
+            16
+          ],
+          "sourceCrownTop": 15,
+          "sourceSupportSole": 455,
+          "sourceUpperHeadCenterX": 199.0
+        },
+        {
+          "index": 6,
+          "crop": [
+            768,
+            530,
+            384,
+            494
+          ],
+          "translation": [
+            8,
+            14
+          ],
+          "sourceCrownTop": 15,
+          "sourceSupportSole": 456,
+          "sourceUpperHeadCenterX": 186.0
+        },
+        {
+          "index": 7,
+          "crop": [
+            1152,
+            530,
+            384,
+            494
+          ],
+          "translation": [
+            8,
+            14
+          ],
+          "sourceCrownTop": 15,
+          "sourceSupportSole": 456,
+          "sourceUpperHeadCenterX": 186.5
+        }
+      ],
+      "frames": [
+        {
+          "crownTopY": 28,
+          "supportSoleY": 251,
+          "upperHeadCenterX": 97.0,
+          "upperHeadWidth": 107,
+          "visibleBounds": [
+            38,
+            28,
+            160,
+            252
+          ]
+        },
+        {
+          "crownTopY": 28,
+          "supportSoleY": 251,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 108,
+          "visibleBounds": [
+            28,
+            28,
+            167,
+            252
+          ]
+        },
+        {
+          "crownTopY": 27,
+          "supportSoleY": 251,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 110,
+          "visibleBounds": [
+            35,
+            27,
+            161,
+            252
+          ]
+        },
+        {
+          "crownTopY": 27,
+          "supportSoleY": 251,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 110,
+          "visibleBounds": [
+            42,
+            27,
+            152,
+            252
+          ]
+        },
+        {
+          "crownTopY": 32,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 97.0,
+          "upperHeadWidth": 107,
+          "visibleBounds": [
+            37,
+            32,
+            163,
+            251
+          ]
+        },
+        {
+          "crownTopY": 31,
+          "supportSoleY": 251,
+          "upperHeadCenterX": 97.0,
+          "upperHeadWidth": 109,
+          "visibleBounds": [
+            28,
+            31,
+            166,
+            252
+          ]
+        },
+        {
+          "crownTopY": 30,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 110,
+          "visibleBounds": [
+            38,
+            30,
+            163,
+            251
+          ]
+        },
+        {
+          "crownTopY": 30,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 110,
+          "visibleBounds": [
+            40,
+            30,
+            161,
+            251
+          ]
+        }
+      ],
+      "crownVerticalRange": 5,
+      "maxAdjacentCrownStepIncludingWrap": 5,
+      "upperHeadHorizontalRange": 0.5,
+      "oppositeStrideCrownDifferences": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "visualReview": "More consistent face perspective across opposite strides, but lower-row opposing arm swing weakened; not selected."
+    },
+    {
+      "version": 2,
+      "sourceFile": "artwork/kling-themes/source/continuity-v3/female-walk-steady-v2.png",
+      "sourceSha256": "0291b218c03af09bbc148a3711e804761829e48606fca7bd25de1260cf69be20",
+      "generationRecord": "artwork/kling-themes/source/continuity-v3/female-walk-steady-v2.generation.json",
+      "referenceHashes": [
+        {
+          "file": "artwork/kling-themes/source/continuity-v3/female-walk-steady-v1.png",
+          "sha256": "8e701fe010f2d6216e99a8987b48744d42eb59e770feb3fc52c511f2cba898ce"
+        },
+        {
+          "file": "artwork/kling-themes/source/female-walk-v1.png",
+          "sha256": "b99a1266d29c6c5b6655d93908d9b06558277b38c56ed5d479ec373eddccabb7"
+        }
+      ],
+      "registration": [
+        {
+          "index": 0,
+          "crop": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "translation": [
+            -16,
+            -18
+          ],
+          "sourceCrownTop": 38,
+          "sourceSupportSole": 488,
+          "sourceUpperHeadCenterX": 210.0
+        },
+        {
+          "index": 1,
+          "crop": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "translation": [
+            -10,
+            -16
+          ],
+          "sourceCrownTop": 38,
+          "sourceSupportSole": 486,
+          "sourceUpperHeadCenterX": 204.5
+        },
+        {
+          "index": 2,
+          "crop": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "translation": [
+            -2,
+            -18
+          ],
+          "sourceCrownTop": 38,
+          "sourceSupportSole": 488,
+          "sourceUpperHeadCenterX": 195.5
+        },
+        {
+          "index": 3,
+          "crop": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "translation": [
+            0,
+            -18
+          ],
+          "sourceCrownTop": 38,
+          "sourceSupportSole": 488,
+          "sourceUpperHeadCenterX": 195.0
+        },
+        {
+          "index": 4,
+          "crop": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "translation": [
+            -14,
+            8
+          ],
+          "sourceCrownTop": 5,
+          "sourceSupportSole": 461,
+          "sourceUpperHeadCenterX": 208.5
+        },
+        {
+          "index": 5,
+          "crop": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "translation": [
+            -8,
+            8
+          ],
+          "sourceCrownTop": 5,
+          "sourceSupportSole": 461,
+          "sourceUpperHeadCenterX": 201.5
+        },
+        {
+          "index": 6,
+          "crop": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "translation": [
+            -2,
+            8
+          ],
+          "sourceCrownTop": 5,
+          "sourceSupportSole": 461,
+          "sourceUpperHeadCenterX": 196.0
+        },
+        {
+          "index": 7,
+          "crop": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "translation": [
+            0,
+            8
+          ],
+          "sourceCrownTop": 5,
+          "sourceSupportSole": 461,
+          "sourceUpperHeadCenterX": 193.0
+        }
+      ],
+      "frames": [
+        {
+          "crownTopY": 26,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 108,
+          "visibleBounds": [
+            34,
+            26,
+            159,
+            251
+          ]
+        },
+        {
+          "crownTopY": 27,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 108,
+          "visibleBounds": [
+            26,
+            27,
+            166,
+            251
+          ]
+        },
+        {
+          "crownTopY": 26,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.0,
+          "upperHeadWidth": 109,
+          "visibleBounds": [
+            33,
+            26,
+            160,
+            251
+          ]
+        },
+        {
+          "crownTopY": 26,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 97.0,
+          "upperHeadWidth": 109,
+          "visibleBounds": [
+            43,
+            26,
+            152,
+            251
+          ]
+        },
+        {
+          "crownTopY": 22,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 97.0,
+          "upperHeadWidth": 107,
+          "visibleBounds": [
+            33,
+            22,
+            164,
+            251
+          ]
+        },
+        {
+          "crownTopY": 22,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.0,
+          "upperHeadWidth": 109,
+          "visibleBounds": [
+            26,
+            22,
+            173,
+            251
+          ]
+        },
+        {
+          "crownTopY": 22,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.5,
+          "upperHeadWidth": 110,
+          "visibleBounds": [
+            34,
+            22,
+            158,
+            251
+          ]
+        },
+        {
+          "crownTopY": 22,
+          "supportSoleY": 250,
+          "upperHeadCenterX": 96.0,
+          "upperHeadWidth": 109,
+          "visibleBounds": [
+            40,
+            22,
+            157,
+            251
+          ]
+        }
+      ],
+      "crownVerticalRange": 5,
+      "maxAdjacentCrownStepIncludingWrap": 4,
+      "upperHeadHorizontalRange": 1.0,
+      "oppositeStrideCrownDifferences": [
+        4,
+        5,
+        4,
+        4
+      ],
+      "visualReview": "Opposing near/far arm swing restored while face perspective and head width remain closer across strides. Crown jump is reduced, not eliminated: lower half remains4px higher. Short neck, tank/shorts and complete shoes retained; all planted soles at250. Accepted after parent visual review for a modest improvement, with remaining height asymmetry recorded."
+    }
+  ],
+  "selectedSource": "female-walk-steady-v2.png",
+  "limitations": "Two authored rounds only. Second trial reduces largest crown step8\u21924px and range8\u21925px; it does not meet the hoped-for <=3px adjacent-step target. Some perspective and anatomy variation remains. Technical previews are not application-exported evidence. No statement of user visual approval.",
+  "selectionDecision": "Trial2 accepted for female base revision3 after root visual review of registered native-size before/after sheet. Both drawing rounds retained. This is not user visual approval."
+}

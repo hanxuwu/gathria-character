@@ -1,0 +1,498 @@
+{
+  "status": "rejected; shipping male pixel R2 unchanged",
+  "basisActualExport": "docs/kling-theme-stability/evidence/male-pixel-v2-base.character.zip",
+  "basisSha256": "cac962f6e1534b5c119938f4329da2b077147fe351f28302665af12c1f033f7d",
+  "sources": [
+    {
+      "file": "artwork/kling-themes/source/continuity-v3/male-run16-half-a-v1.png",
+      "sha256": "fdb6d0521bd727ca0ba93431a1a28efc861324573490729c49725145e118a105"
+    },
+    {
+      "file": "artwork/kling-themes/source/continuity-v3/male-run16-half-b-v1.png",
+      "sha256": "b1c592b814d812349fa21ae0cff61054383bfe237664f032adee83a0a3f2c9a4"
+    }
+  ],
+  "joinedAtlas": {
+    "file": "artwork/kling-themes/source/continuity-v3/male-run16-rejected-atlas.png",
+    "sha256": "339a0022a8a74faec78f93594ce2ec43981147b51884ca545c703bc1953d9ebc",
+    "method": "Exact RGBA paste of A at0,0 andB at0,1024; no visual edits"
+  },
+  "cadence": {
+    "before": "8 unique drawings at12FPS",
+    "trial": "16 unique drawings at24FPS",
+    "sameCycleSeconds": 0.6666666666666666
+  },
+  "before": {
+    "measurements": [
+      {
+        "crownY": 28,
+        "footY": 247,
+        "crownX": 106.5,
+        "upperWidth": 106
+      },
+      {
+        "crownY": 32,
+        "footY": 251,
+        "crownX": 106.0,
+        "upperWidth": 105
+      },
+      {
+        "crownY": 30,
+        "footY": 251,
+        "crownX": 107.5,
+        "upperWidth": 106
+      },
+      {
+        "crownY": 26,
+        "footY": 248,
+        "crownX": 108.0,
+        "upperWidth": 105
+      },
+      {
+        "crownY": 30,
+        "footY": 245,
+        "crownX": 107.0,
+        "upperWidth": 105
+      },
+      {
+        "crownY": 31,
+        "footY": 250,
+        "crownX": 106.5,
+        "upperWidth": 104
+      },
+      {
+        "crownY": 32,
+        "footY": 250,
+        "crownX": 107.0,
+        "upperWidth": 105
+      },
+      {
+        "crownY": 28,
+        "footY": 247,
+        "crownX": 108.0,
+        "upperWidth": 105
+      }
+    ],
+    "metrics": {
+      "frames": 8,
+      "fps": 12,
+      "cycleSeconds": 0.6666666666666666,
+      "crownRange": 6,
+      "largestAdjacentCrownStep": 4,
+      "largestCrownStepTimesFps": 48,
+      "meanCyclicCrownSpeedPixelsPerSecond": 30.0,
+      "upperWidthRange": 2,
+      "crownXRange": 2.0
+    }
+  },
+  "trial": {
+    "measurements": [
+      {
+        "pose": 0,
+        "sourceBank": "a",
+        "sourceCell": 0,
+        "crop": [
+          0,
+          0,
+          384,
+          512
+        ],
+        "translation": [
+          14,
+          -28
+        ],
+        "sourceTop": 56,
+        "sourceFoot": 490,
+        "targetFoot": 247,
+        "crownY": 30,
+        "footY": 246,
+        "crownX": 105.0,
+        "upperWidth": 107
+      },
+      {
+        "pose": 1,
+        "sourceBank": "a",
+        "sourceCell": 1,
+        "crop": [
+          384,
+          0,
+          384,
+          512
+        ],
+        "translation": [
+          8,
+          -38
+        ],
+        "sourceTop": 56,
+        "sourceFoot": 504,
+        "targetFoot": 249,
+        "crownY": 25,
+        "footY": 248,
+        "crownX": 104.0,
+        "upperWidth": 107
+      },
+      {
+        "pose": 2,
+        "sourceBank": "a",
+        "sourceCell": 2,
+        "crop": [
+          768,
+          0,
+          384,
+          512
+        ],
+        "translation": [
+          12,
+          -40
+        ],
+        "sourceTop": 58,
+        "sourceFoot": 507,
+        "targetFoot": 250,
+        "crownY": 25,
+        "footY": 249,
+        "crownX": 104.5,
+        "upperWidth": 108
+      },
+      {
+        "pose": 3,
+        "sourceBank": "a",
+        "sourceCell": 3,
+        "crop": [
+          1152,
+          0,
+          384,
+          512
+        ],
+        "translation": [
+          4,
+          -36
+        ],
+        "sourceTop": 55,
+        "sourceFoot": 507,
+        "targetFoot": 251,
+        "crownY": 25,
+        "footY": 251,
+        "crownX": 104.5,
+        "upperWidth": 106
+      },
+      {
+        "pose": 4,
+        "sourceBank": "a",
+        "sourceCell": 4,
+        "crop": [
+          0,
+          512,
+          384,
+          512
+        ],
+        "translation": [
+          8,
+          -8
+        ],
+        "sourceTop": 29,
+        "sourceFoot": 477,
+        "targetFoot": 251,
+        "crownY": 26,
+        "footY": 250,
+        "crownX": 104.5,
+        "upperWidth": 106
+      },
+      {
+        "pose": 5,
+        "sourceBank": "a",
+        "sourceCell": 5,
+        "crop": [
+          384,
+          512,
+          384,
+          512
+        ],
+        "translation": [
+          6,
+          0
+        ],
+        "sourceTop": 29,
+        "sourceFoot": 468,
+        "targetFoot": 250,
+        "crownY": 30,
+        "footY": 249,
+        "crownX": 105.0,
+        "upperWidth": 105
+      },
+      {
+        "pose": 6,
+        "sourceBank": "a",
+        "sourceCell": 6,
+        "crop": [
+          768,
+          512,
+          384,
+          512
+        ],
+        "translation": [
+          10,
+          -6
+        ],
+        "sourceTop": 29,
+        "sourceFoot": 468,
+        "targetFoot": 247,
+        "crownY": 27,
+        "footY": 246,
+        "crownX": 105.0,
+        "upperWidth": 107
+      },
+      {
+        "pose": 7,
+        "sourceBank": "a",
+        "sourceCell": 7,
+        "crop": [
+          1152,
+          512,
+          384,
+          512
+        ],
+        "translation": [
+          8,
+          16
+        ],
+        "sourceTop": 28,
+        "sourceFoot": 445,
+        "targetFoot": 247,
+        "crownY": 38,
+        "footY": 246,
+        "crownX": 105.0,
+        "upperWidth": 107
+      },
+      {
+        "pose": 8,
+        "sourceBank": "b",
+        "sourceCell": 0,
+        "crop": [
+          0,
+          1024,
+          384,
+          512
+        ],
+        "translation": [
+          16,
+          -26
+        ],
+        "sourceTop": 55,
+        "sourceFoot": 488,
+        "targetFoot": 247,
+        "crownY": 30,
+        "footY": 246,
+        "crownX": 104.5,
+        "upperWidth": 108
+      },
+      {
+        "pose": 9,
+        "sourceBank": "b",
+        "sourceCell": 1,
+        "crop": [
+          384,
+          1024,
+          384,
+          512
+        ],
+        "translation": [
+          12,
+          -40
+        ],
+        "sourceTop": 54,
+        "sourceFoot": 506,
+        "targetFoot": 249,
+        "crownY": 23,
+        "footY": 248,
+        "crownX": 104.5,
+        "upperWidth": 108
+      },
+      {
+        "pose": 10,
+        "sourceBank": "b",
+        "sourceCell": 2,
+        "crop": [
+          768,
+          1024,
+          384,
+          512
+        ],
+        "translation": [
+          10,
+          -40
+        ],
+        "sourceTop": 55,
+        "sourceFoot": 508,
+        "targetFoot": 250,
+        "crownY": 23,
+        "footY": 249,
+        "crownX": 105.0,
+        "upperWidth": 109
+      },
+      {
+        "pose": 11,
+        "sourceBank": "b",
+        "sourceCell": 3,
+        "crop": [
+          1152,
+          1024,
+          384,
+          512
+        ],
+        "translation": [
+          0,
+          -40
+        ],
+        "sourceTop": 53,
+        "sourceFoot": 509,
+        "targetFoot": 251,
+        "crownY": 22,
+        "footY": 250,
+        "crownX": 104.5,
+        "upperWidth": 108
+      },
+      {
+        "pose": 12,
+        "sourceBank": "b",
+        "sourceCell": 4,
+        "crop": [
+          0,
+          1536,
+          384,
+          512
+        ],
+        "translation": [
+          4,
+          -4
+        ],
+        "sourceTop": 28,
+        "sourceFoot": 474,
+        "targetFoot": 251,
+        "crownY": 28,
+        "footY": 250,
+        "crownX": 104.0,
+        "upperWidth": 107
+      },
+      {
+        "pose": 13,
+        "sourceBank": "b",
+        "sourceCell": 5,
+        "crop": [
+          384,
+          1536,
+          384,
+          512
+        ],
+        "translation": [
+          -2,
+          0
+        ],
+        "sourceTop": 27,
+        "sourceFoot": 468,
+        "targetFoot": 250,
+        "crownY": 29,
+        "footY": 249,
+        "crownX": 104.5,
+        "upperWidth": 106
+      },
+      {
+        "pose": 14,
+        "sourceBank": "b",
+        "sourceCell": 6,
+        "crop": [
+          768,
+          1536,
+          384,
+          512
+        ],
+        "translation": [
+          2,
+          -6
+        ],
+        "sourceTop": 22,
+        "sourceFoot": 468,
+        "targetFoot": 247,
+        "crownY": 24,
+        "footY": 246,
+        "crownX": 104.5,
+        "upperWidth": 110
+      },
+      {
+        "pose": 15,
+        "sourceBank": "b",
+        "sourceCell": 7,
+        "crop": [
+          1152,
+          1536,
+          384,
+          512
+        ],
+        "translation": [
+          2,
+          20
+        ],
+        "sourceTop": 25,
+        "sourceFoot": 441,
+        "targetFoot": 247,
+        "crownY": 38,
+        "footY": 246,
+        "crownX": 104.0,
+        "upperWidth": 107
+      }
+    ],
+    "metrics": {
+      "frames": 16,
+      "fps": 24,
+      "cycleSeconds": 0.6666666666666666,
+      "crownRange": 16,
+      "largestAdjacentCrownStep": 14,
+      "largestCrownStepTimesFps": 336,
+      "meanCyclicCrownSpeedPixelsPerSecond": 111.0,
+      "upperWidthRange": 5,
+      "crownXRange": 1.0
+    }
+  },
+  "visualRejectionReasons": [
+    {
+      "poses": [
+        4,
+        5
+      ],
+      "finding": "Half A near arm suddenly crosses the chest at4 then returns behind at5; the supposed inbetweens do not preserve arm progression."
+    },
+    {
+      "poses": [
+        8
+      ],
+      "finding": "Half B first pose has an apparent extra near upper arm: a backward shoulder/arm silhouette remains while another arm crosses in front from that shoulder."
+    },
+    {
+      "poses": [
+        9
+      ],
+      "finding": "Half B second pose has a disconnected-looking forearm patch across the tank; shoulder-to-forearm ownership is not plausible."
+    },
+    {
+      "poses": [
+        10
+      ],
+      "finding": "Half B reverses back to the first-half arm direction too early, so the opposite stride is not a coherent continuation."
+    }
+  ],
+  "checks": {
+    "all16RgbaDrawingsUnique": true,
+    "sameNativeCanvas": [
+      192,
+      272
+    ],
+    "sameAnchor": [
+      96,
+      251
+    ],
+    "noPerPoseScale": true,
+    "noHeadYLock": true,
+    "noAnatomyWarpOrPatch": true,
+    "technicalMetricsAreNotVisualAcceptance": true
+  },
+  "nextCondition": "Author coherent near/far limb ownership for a complete opposite stride before another16-frame rollout; a frame-count increase alone is not acceptance."
+}

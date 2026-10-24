@@ -107,6 +107,61 @@
         "bytes": 2567424
       }
     ],
+    "current": false
+  },
+  {
+    "key": "female:pixel-storybook@3",
+    "name": "Pixel storybook",
+    "character": "female",
+    "description": "Independently authored pixel drawings, with their own anchors and animation timing. Full-look variant; no interchangeable garment layers.",
+    "isOriginal": false,
+    "file": "docs/kling-themes/bundles/female-pixel-storybook-v3.theme.zip",
+    "preview": "artwork/kling-themes/prepared/female/pixel-storybook-v3/preview.png",
+    "sha256": "1b5bf84d44003324aef41067e0b63e1e9ac417ff26545daf046a1a17bca0e258",
+    "bytes": 4899644,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "pixel-storybook",
+      "revision": 3,
+      "name": "Pixel storybook",
+      "character": "female",
+      "characterId": "kling-female-pixel-storybook-v3",
+      "rendering": "pixel",
+      "reference": {
+        "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "description": "Approved Kling character identity and pose references; independent authored pixel drawings have their own native dimensions, anchors and timing."
+      },
+      "provenance": "Each complete look is authored and registered independently. base: OpenAI image generation created independent warm pixel character drawings from the approved Kling male/female identity references, a generated pixel style guide, and retained source pose guide sheets. Unchanged generated sheets, prompts and guide hashes are retained under artwork/kling-themes. The script only crops declared atlas cells, translates their registration, uniformly samples 2:1 and packs five authored timelines. These are newly authored key-pose animations, not exact source-video frames; no runtime image generation, style filters or skeleton deformation. Revision2 source repairs and technical registration are individually documented in registrationReview and action notes; exact generation records and all earlier sources are preserved. Revision3 changes only the female base walk with the selected second complete-pose drawing repair. Existing idle, run, jump and celebrate source draws/registrations/timing are retained exactly from revision2; published earlier revisions are not overwritten.\n\nwedding: OpenAI image generation independently authored pixel wedding drawings guided by the exact retained application-export wedding look, its source-pose guides and the generated pixel style direction. The male look keeps its dark suit, ivory waistcoat, coral tie, chest flower and curly brown hair; the female look keeps its ivory wedding dress and braided crown. Generated PNG sheets and exact generation records are retained. Explicit crop rectangles follow transparent atlas gutters; integer whole-pose translations correct atlas placement and establish a newly authored jump trajectory. Common 2:1 nearest sampling and 32-pixel transparent top padding preserve the drawn anatomy. These are complete baked wedding looks, not interchangeable garment layers or pixel-exact video frames. Revision2 female wedding run continuity repair and its exact generation source/registration are recorded in registrationReview; all earlier sources remain available. Revision 3 wedding look retains every revision-2 drawing, crop, registration and timeline unchanged. Only the enclosing theme revision and metadata change to accompany the revised base walk.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "f1dd214d941befdda248f6d8846ed0112ad06897a616725c18bf128a517ca891"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "b0f0691cf1a5bb67fb25ca01943794a622682345940764bf1faa235039d53d79"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-themes/bundles/female-pixel-storybook-v3.character.zip",
+        "sha256": "f1dd214d941befdda248f6d8846ed0112ad06897a616725c18bf128a517ca891",
+        "bytes": 2329031
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-themes/bundles/female-pixel-storybook-v3-wedding.character.zip",
+        "sha256": "b0f0691cf1a5bb67fb25ca01943794a622682345940764bf1faa235039d53d79",
+        "bytes": 2567566
+      }
+    ],
     "current": true
   },
   {
