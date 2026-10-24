@@ -1,0 +1,29 @@
+{
+  "codeCommit": "27c79dee6f7bca23bcd7ba36cd5132744f0ad13d",
+  "productionHtmlSha256": "18cf32e0dd894aa68f1681f84e17145c53e1cdacd295133999ddd3522f4d6da4",
+  "executedThisBatch": {
+    "unitTests": {
+      "passed": 245,
+      "files": 24,
+      "command": "npm test",
+      "note": "Full suite after primary implementation; subsequent palette-only fix reran the 2 GIF unit tests."
+    },
+    "browserTests": {
+      "passed": 67,
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e",
+      "note": "Full suite passed. Final palette-only fix additionally reran both GIF browser tests."
+    },
+    "recipePythonTests": {
+      "passed": 6,
+      "command": "/tmp/kling-polish-venv/bin/python scripts/test_kling_garment_recipe.py"
+    },
+    "build": "TypeScript and production build passed, rebuilt after final palette change.",
+    "assetAudit": "84 prior archives and four source/registration files exact; all 280 poses in the three new clothing banks checked.",
+    "finalInspectorFollowup": {
+      "browserTests": 5,
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e -- tests/e2e/wardrobe-recipes.spec.ts tests/e2e/wardrobe-gif.spec.ts",
+      "build": "TypeScript and production build passed after shared-crop dialog changes."
+    }
+  },
+  "visualAcceptance": "Pending user review. Technical success is not visual acceptance."
+}

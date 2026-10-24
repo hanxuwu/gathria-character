@@ -52,7 +52,7 @@ def load_source(character):
         frames[f['id']]=pages[f.get('page',0)][f['y']:f['y']+f['height'],f['x']:f['x']+f['width']].copy()
     return source.read_bytes(),manifest,config,frames
 
-def save_garment(character, item_id, name, slot, registration_bytes, patches, provenance, output=None):
+def save_garment(character, item_id, name, slot, registration_bytes, patches, provenance, output=None, hand_reviews=None):
     """patches = {frameId:(full_native_RGBA, full_native_binary_ownership)}."""
     registration=json.loads(registration_bytes)
     assert set(patches)=={f['frameId'] for f in registration['frames']}
@@ -90,6 +90,9 @@ def save_garment(character, item_id, name, slot, registration_bytes, patches, pr
         'sourceSha256':registration['sourceSha256'],'registrationSha256':sha(registration_bytes),
         'characterId':registration['characterId'],'frameWidth':704,'frameHeight':1056,
         'pages':pages,'frames':sorted(metadata,key=lambda f:f['frameId']),'provenance':provenance}
+    if hand_reviews:
+        manifest['version']=2
+        manifest['handProtectionReviews']=hand_reviews
     files['manifest.json']=json_bytes(manifest)
     output=Path(output) if output else ROOT/f'docs/kling-wardrobe/garments/{character}/{item_id}.zip'
     output.parent.mkdir(parents=True,exist_ok=True)

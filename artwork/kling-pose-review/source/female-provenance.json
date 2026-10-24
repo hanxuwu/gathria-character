@@ -1,0 +1,19 @@
+{
+  "tool": "OpenAI image generation/edit tool",
+  "date": "2026-10-23",
+  "reference": "Native source pose 86 cropped from prior actual application export docs/kling-fit-workflow/evidence/cuff-v4/female-female-day-after-86-right.png, crop (32,128,736,1184).",
+  "prompt": "Edit provided exact character image. Preserve pose, face, head/body positions, clothing silhouette and anatomy. Repaint only the coral dress compressed waist, native y680-805 on704x1056, using small overlapping compression folds instead of a flat dark band and broken right join. Match original soft 2D shading and fine outlines, transparent background. No new body or accessories.",
+  "files": {
+    "female-waist-86-reference.png": {
+      "bytes": 570078,
+      "sha256": "9dc961ea4678042cc36e441485ba8b54704e3272374764c612b11d6c122b815d"
+    },
+    "female-waist-86-donor.png": {
+      "bytes": 1757551,
+      "sha256": "8c7ff6351fc80b5eb6ff1d766cdb03b26374e471a6c227cf70bdbfb4b54300d6"
+    }
+  },
+  "processing": "Generated1024x1536 resized to704x1056 solely as cloth donor. Explicit inner cloth trace, native waist affine registration and continuously weighted crouch intensity. RGB-only changes inside existing clothing ownership. Generated anatomy, background and alpha discarded. Ivory midtones matched from its existing fabric. First trace admitted an outer dark contour; diagnostic check narrowed it to inner fabric.",
+  "script": "scripts/prepare-kling-native-waist.py",
+  "limitation": "No new silhouette geometry. Original sharp right waist contour and video motion blur remain."
+}

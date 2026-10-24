@@ -77,10 +77,30 @@ test("a paintable pose kit exports the native layer, binary ownership and source
   await p.getByLabel("Wardrobe facing", { exact: true }).selectOption("left");
   await p.locator("summary").filter({ hasText: "Fitting guides" }).click();
   await p.getByLabel("Inspect clothing layer", { exact: true }).check();
-  await expect(p.getByLabel("Native clothing pose")).toHaveAttribute(
-    "width",
-    "8",
-  );
+  await expect(
+    p.getByLabel("Native clothing pose", { exact: true }),
+  ).toHaveAttribute("width", "8");
+  await p
+    .getByRole("button", { name: "Open larger comparison", exact: true })
+    .click();
+  const comparison = p.getByRole("dialog", { name: "Adjacent clothing poses" });
+  await expect(comparison).toBeVisible();
+  const origins = await comparison
+    .locator("canvas")
+    .evaluateAll((nodes) =>
+      nodes.map((n) => [
+        (n as HTMLElement).dataset.cropX,
+        (n as HTMLElement).dataset.cropY,
+      ]),
+    );
+  expect(
+    origins.every((v) => JSON.stringify(v) === JSON.stringify(origins[0])),
+  ).toBe(true);
+  await page.keyboard.press("Escape");
+  await expect(comparison).toHaveCount(0);
+  await expect(
+    p.getByRole("button", { name: "Open larger comparison", exact: true }),
+  ).toBeFocused();
   await p.getByLabel("Show editable area", { exact: true }).check();
   const download = page.waitForEvent("download");
   await p
@@ -118,4 +138,54 @@ test("a paintable pose kit exports the native layer, binary ownership and source
     else expect(image.pixels[i + 3]).toBe(0);
   }
   expect(selected).toBeGreaterThan(0);
+});
+
+test("neighbor painting kits retain action positions, loop boundaries and unique native source layers", async ({
+  page,
+}) => {
+  await installWardrobeFixture(page);
+  await page.goto("/workbench.html?character=male&mode=wardrobe");
+  const p = page.locator("#wardrobe-panel");
+  await expect(p.getByRole("status")).toContainText("Original outfit.");
+  await p.getByRole("button", { name: "Daily", exact: true }).click();
+  await expect(p.getByRole("status")).toContainText("Daily selected");
+  await p.locator("summary").filter({ hasText: "Fitting guides" }).click();
+  await p.getByLabel("Inspect clothing layer", { exact: true }).check();
+  await expect(
+    p.getByLabel("Previous native clothing pose", { exact: true }),
+  ).toHaveCount(1);
+  for (const [action, roles] of [
+    ["idle", ["Previous", "Current", "Next"]],
+    ["jump", ["Current", "Next"]],
+  ] as const) {
+    await p.getByLabel("Wardrobe action", { exact: true }).selectOption(action);
+    const pending = page.waitForEvent("download");
+    await p
+      .getByRole("button", {
+        name: "Download neighboring poses for painting",
+        exact: true,
+      })
+      .click();
+    const d = await pending;
+    expect(await d.failure()).toBeNull();
+    const files = unzipSync(await readFile((await d.path())!));
+    const guide = JSON.parse(strFromU8(files["neighbors-guide.json"]));
+    const recipe = JSON.parse(strFromU8(files["recipe.json"]));
+    expect(guide.neighbors.map((n: { role: string }) => n.role)).toEqual(roles);
+    expect(guide.position).toBe(0);
+    expect(guide.nativeFacing).toBe("right");
+    expect(recipe.poseOverrides).toHaveLength(2);
+    for (const o of recipe.poseOverrides) {
+      expect(
+        createHash("sha256").update(files[o.image.file]).digest("hex"),
+      ).toBe(o.image.sha256);
+      expect(decodeSourceRgbaPng(files[o.image.file]).width).toBe(8);
+      expect(
+        JSON.parse(strFromU8(files[`pose-${o.frameId}-guide.json`])).frameId,
+      ).toBe(o.frameId);
+    }
+  }
+  await expect(
+    p.getByLabel("Previous native clothing pose", { exact: true }),
+  ).toHaveCount(0);
 });

@@ -611,3 +611,48 @@
   background: repeating-conic-gradient(#eee 0% 25%, #fafafa 0% 50%) 50% / 16px
     16px;
 }
+.clothing-pose-neighbors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.clothing-pose-neighbors figure {
+  margin: 0.7rem 0;
+  min-width: 0;
+}
+.clothing-pose-neighbors figcaption {
+  font-size: 0.7rem;
+  overflow-wrap: anywhere;
+}
+.clothing-pose-neighbors canvas {
+  margin: 0.3rem 0;
+}
+.clothing-pose-inspector button + button {
+  margin-top: 0.5rem;
+}
+.clothing-pose-dialog {
+  width: min(1100px, 92vw);
+  max-height: 90vh;
+  padding: 1.5rem;
+  border: 1px solid #bac4b5;
+  border-radius: 12px;
+  background: #faf8f2;
+  color: #304036;
+}
+.clothing-pose-dialog::backdrop {
+  background: #172a20a8;
+}
+.clothing-pose-dialog .clothing-pose-neighbors {
+  gap: 1rem;
+}
+.clothing-pose-dialog canvas {
+  max-width: none;
+}
+@media (max-width: 600px) {
+  .clothing-pose-dialog .clothing-pose-neighbors {
+    grid-template-columns: 1fr;
+  }
+  .clothing-pose-dialog canvas {
+    max-width: 360px;
+  }
+}
