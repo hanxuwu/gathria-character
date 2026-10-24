@@ -1,0 +1,44 @@
+[
+  {
+    "key": "male-day",
+    "character": "male",
+    "beforePreset": "Everyday soft cuff",
+    "candidateFile": "artwork/kling-repair-handoff/male/teal-camp-shirt-v5.zip",
+    "appearance": "airy-tousle",
+    "baselinePack": "docs/kling-look-workflow/evidence/male-day.character.zip",
+    "changedFrameIds": [59],
+    "reviewFrames": [
+      { "action": "run", "frameId": 59 },
+      { "action": "jump", "frameId": 102 }
+    ],
+    "note": "Review the sleeve/underarm notch at source pose 59 after importing the shirt revision; copied notes do not imply visual approval."
+  },
+  {
+    "key": "female-day",
+    "character": "female",
+    "beforePreset": "Everyday smooth waist",
+    "candidateFile": "artwork/kling-repair-handoff/female/coral-daydress-v9.zip",
+    "appearance": "ribbon-pony",
+    "baselinePack": "docs/kling-look-workflow/evidence/female-day.character.zip",
+    "changedFrameIds": [55, 63],
+    "reviewFrames": [
+      { "action": "run", "frameId": 55 },
+      { "action": "jump", "frameId": 102 }
+    ],
+    "note": "Recheck the flat bodice strip behind the crossing arm at source poses 55 and 63; the revised pixels need human review."
+  },
+  {
+    "key": "female-wedding",
+    "character": "female",
+    "beforePreset": "Wedding smooth waist",
+    "candidateFile": "artwork/kling-repair-handoff/female/ivory-wedding-dress-v9.zip",
+    "appearance": "ribbon-pony",
+    "baselinePack": "docs/kling-look-workflow/evidence/female-wedding.character.zip",
+    "changedFrameIds": [55, 63],
+    "reviewFrames": [
+      { "action": "run", "frameId": 55 },
+      { "action": "jump", "frameId": 102 }
+    ],
+    "note": "Review the ivory bodice/forearm transition at source poses 55 and 63 while retaining the original skin, head and silhouette."
+  }
+]
