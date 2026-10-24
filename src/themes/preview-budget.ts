@@ -17,3 +17,30 @@ export function themePreviewCanvasAvailable(
     width * height <= THEME_PREVIEW_MAX_PIXELS
   );
 }
+
+/** A normalized smooth reference is drawn straight from its source at the
+ * requested display resolution. Pixel art and native previews keep their
+ * original backing pixels; display zoom never changes exported artwork. */
+export function themePreviewBacking(
+  width: number,
+  height: number,
+  pixelArt: boolean,
+  referenceScale: number | undefined,
+  displayScale: number,
+): { width: number; height: number; scale: number; available: boolean } {
+  const scale =
+    !pixelArt &&
+    referenceScale !== undefined &&
+    referenceScale !== 1 &&
+    displayScale > 1
+      ? displayScale
+      : 1;
+  const backingWidth = width * scale,
+    backingHeight = height * scale;
+  return {
+    width: backingWidth,
+    height: backingHeight,
+    scale,
+    available: themePreviewCanvasAvailable(backingWidth, backingHeight),
+  };
+}

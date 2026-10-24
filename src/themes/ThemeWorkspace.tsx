@@ -41,7 +41,7 @@ import {
 } from "./session";
 import { themeActionGif, themeFramePng } from "./media";
 import { transferThemeMotion } from "./motion-phase";
-import { themePreviewCanvasAvailable } from "./preview-budget";
+import { themePreviewBacking } from "./preview-budget";
 import { assertPublishedThemeIdentity } from "./published";
 import {
   createThemeComparisonPlanes,
@@ -63,7 +63,8 @@ interface MotionSnapshot {
   preserve: boolean;
 }
 
-/** Preview uses native pixels; display zoom never changes exported artwork. */
+/** Pixel previews remain native. Rescaled smooth references draw directly at
+ * display resolution so comparison zoom does not add a second resampling. */
 function ThemeCanvas({
   pack,
   frameId,
@@ -89,7 +90,6 @@ function ThemeCanvas({
   const pixel = manifest.scale.pixelArt;
   const width = plane?.width ?? frame.width,
     height = plane?.height ?? frame.height;
-  const previewAvailable = themePreviewCanvasAvailable(width, height);
   const fit = Math.min(1, availableWidth / width, 590 / height);
   const scale =
     zoom === "fit"
@@ -97,6 +97,14 @@ function ThemeCanvas({
         ? Math.max(1, Math.floor(fit))
         : fit
       : zoom;
+  const backing = themePreviewBacking(
+    width,
+    height,
+    pixel,
+    plane?.sourceScale,
+    scale,
+  );
+  const previewAvailable = backing.available;
   useEffect(() => {
     const element = container.current;
     if (!element) return;
@@ -110,26 +118,38 @@ function ThemeCanvas({
   useLayoutEffect(() => {
     const target = canvas.current;
     if (!target || !frame || !previewAvailable) return;
-    target.width = width;
-    target.height = height;
+    target.width = backing.width;
+    target.height = backing.height;
     const context = target.getContext("2d")!;
     context.clearRect(0, 0, target.width, target.height);
+    const anchor = plane?.anchor ?? {
+      x:
+        facing === "left" ? frame.width - manifest.anchor.x : manifest.anchor.x,
+      y: manifest.anchor.y,
+    };
     drawCharacterFrame(
       context,
       imageForFrame(pack, frame),
       manifest,
       frame,
       facing,
-      plane?.sourceScale ?? 1,
-      plane?.anchor ?? {
-        x:
-          facing === "left"
-            ? frame.width - manifest.anchor.x
-            : manifest.anchor.x,
-        y: manifest.anchor.y,
+      (plane?.sourceScale ?? 1) * backing.scale,
+      {
+        x: anchor.x * backing.scale,
+        y: anchor.y * backing.scale,
       },
     );
-  }, [pack, frame, manifest, facing, width, height, plane, previewAvailable]);
+  }, [
+    pack,
+    frame,
+    manifest,
+    facing,
+    backing.width,
+    backing.height,
+    backing.scale,
+    plane,
+    previewAvailable,
+  ]);
   return (
     <div className="theme-canvas-wrap" ref={container}>
       {previewAvailable ? (
@@ -148,9 +168,9 @@ function ThemeCanvas({
         />
       ) : (
         <p role="note" className="theme-preview-unavailable">
-          This {width} × {height} drawing exceeds the preview canvas budget. Its
-          native PNG and CharacterPack remain available to export; the artwork
-          has not been resized.
+          This {backing.width} × {backing.height} preview exceeds the canvas
+          budget. Its native PNG and CharacterPack remain available to export;
+          the artwork has not been resized.
         </p>
       )}
     </div>

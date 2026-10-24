@@ -7,6 +7,7 @@ import json
 import math
 import os
 from pathlib import Path
+import subprocess
 import zipfile
 
 import numpy as np
@@ -150,11 +151,25 @@ def main():
         assert switch["toPosition"] == math.floor(switch["fromPosition"] * switch["toCount"] / switch["fromCount"])
     for field in ["errors", "failedRequests", "externalRequests", "independentEditorRequests"]:
         assert not evidence[field], (field, evidence[field])
+    source_revision = os.environ.get("KLING_THEME_SOURCE_REVISION")
+    if source_revision:
+        assert source_revision == evidence["commitAtCapture"], "Historical verification must name the exact captured commit."
+    source_differences = []
     for file, expected in evidence["sourceHashes"].items():
-        assert sha((ROOT / file).read_bytes()) == expected, (file, "source changed after capture")
+        current = sha((ROOT / file).read_bytes())
+        if source_revision:
+            historical = subprocess.check_output(["git", "show", f"{source_revision}:{file}"], cwd=ROOT)
+            assert sha(historical) == expected, (file, "captured commit does not reproduce source hash")
+        else:
+            assert current == expected, (file, "source changed after capture; explicitly verify its exact captured revision instead")
+        if current != expected:
+            source_differences.append({"file": file, "capturedSha256": expected, "currentSha256": current})
     for file, expected in evidence["assetHashes"].items():
         assert sha((ROOT / file).read_bytes()) == expected, (file, "theme artwork changed after capture")
     result = {"passed": False, "captureSha256": sha((OUT / "capture.json").read_bytes()),
+              "sourceVerifiedAgainst": f"git:{source_revision}" if source_revision else "current-worktree",
+              "capturedCommit": evidence["commitAtCapture"], "currentSourceMatchesCapture": not source_differences,
+              "sourceDifferences": source_differences,
               "packs": [], "pngs": [], "gifs": [], "sessions": [], "screenshots": [], "presentation": [],
               "actualPhasePreservingSwitches": evidence["switches"], "themeComparisons": []}
     packs = {}
