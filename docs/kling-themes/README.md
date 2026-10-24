@@ -11,6 +11,12 @@ action editor and optional skeleton tools remain available in their own tabs.
 
 ## Open it
 
+The default pixel selection now uses **revision 2**, with corrected frame
+registration and reviewed locomotion drawings. Revision 1 archives remain
+unchanged and saved sessions keep their original revision. The current motion
+and loading review is in [theme stability](../kling-theme-stability/README.md);
+the earlier [RESULTS.md](RESULTS.md) remains historical evidence for revision 1.
+
 Run `npm ci` and `npm run dev`, then open the address Vite prints.
 
 1. In **Character library**, choose **Explore Kling male themes** or
@@ -39,6 +45,13 @@ retains the requested look and motion phase. This makes wedding-to-wedding
 comparison possible without silently changing clothes.
 
 ## Keep and export your work
+
+Published themes prepare only the selected look on first opening. Selecting a
+different look downloads and fully validates that look; returning to an accepted
+look reuses its accepted archive. PNG, GIF and selected CharacterPack exports do
+not need other outfits. **Download theme** and **Save theme session** still obtain
+and validate complete, exact published archives so they remain self-contained.
+Imported themes and sessions continue to receive full validation on import.
 
 | Download                   | Contents and use                                                                                                                                             |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -127,10 +140,11 @@ are kept separately from application-exported review images.
 - Normalized phase preserves progress; it does not make two independently drawn
   actions anatomically identical at every switch. No claim of perfectly smooth
   motion or final user visual approval is made.
-- Theme ZIPs embed the exact original packs for portable restore. They are larger
-  than the new pixel packs; first loading the original remains download-bound.
-- Theme work is isolated from the earlier wardrobe changes in draft PR #39.
-  This batch does not merge that PR or deploy the app.
+- Theme ZIPs embed the exact original packs for portable restore. Selected-look
+  loading reduces the initial download; full theme/session saves still fetch the
+  complete archives. Measurements and remaining latency are reported separately.
+- The initial implementation and preceding wardrobe work were merged through
+  PRs #39 and #40. Current revision-2 work is a separate review batch.
 
 All generation occurs during asset authoring. Playback, switching, imports and
 exports run locally in the browser, with no runtime image-generation API.

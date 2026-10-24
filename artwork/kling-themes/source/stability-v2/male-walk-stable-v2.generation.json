@@ -1,0 +1,11 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Minimal animation continuity correction to this existing eight-frame male pixel WALK sprite sheet. Preserve ALL eight exact current faces, head contours, ear/eye/nose/mouth positions, neck, outfit design, pose order, 4x2 layout, crisp pixel clusters and original high quality. The first four upper-row drawings are the approved master height. The second four lower-row drawings are still subtly shorter between collar and hips: make their compact torso/waist connection about 8 source pixels taller so that, after the support soles of each drawing are grounded to the same line, the crown, eyes, shoulders and waist heights match the upper row's walking cycle. Do NOT enlarge heads, lengthen necks, alter the face perspective, widen the body, or change the legs into running. This is a tiny matched-proportions correction to lower-row torso length only; keep upper row and head anatomy stable. All eight WALK poses must be the same-sized character, with opposite half-strides matching. Keep all outlines continuous and natural at neckline, shoulder, underarm, waist and hips. 1536x1024 true transparent PNG, 4columns x2rows, preserve complete shoes with clear gutters. No text, effects, shadow, new accessories or background.",
+  "referenced_image_paths": [
+    "/workspace/gathria-character/artwork/kling-themes/source/stability-v2/male-walk-stable-v1.png"
+  ],
+  "transparent_background": true,
+  "role": "Continuity correction trial; not accepted or published without comparison.",
+  "outputFile": "artwork/kling-themes/source/stability-v2/male-walk-stable-v2.png",
+  "outputSha256": "e3b4b0e4991589e84ec56f23fad6860c6906926baaf5bb291cb2bcd61d81db47"
+}
