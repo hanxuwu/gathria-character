@@ -36,8 +36,11 @@ covers softer crouched waist joins, two sculpted hair shading revisions,
 downloadable paintable poses and exact custom-material look restoration.
 The [Sprints 16–20 review](docs/kling-fit-workflow/README.md) adds two male cuff
 revisions, safe cleanup of unused saved artwork and exact local-material loading.
-Female dresses retain V6 after two rejected waist trials; comparisons and known
-limits are recorded alongside the actual exports.
+In that batch, female dresses retained V6 after two rejected waist trials.
+The [Sprints 21–25 review](docs/kling-pose-review/README.md) adds an item-scoped
+male crossing-sleeve repair and native female crouch-fold revisions, with old
+looks retained. It also adds neighboring-pose painting kits and direct action
+GIF downloads; actual comparisons and remaining contour limits are recorded.
 In **Hair & face**, choose the original styles or the six fuller styles:
 **Airy tousle**, **Soft curls**, **Swept quiff**, **Romantic waves**, **Ribbon pony**,
 and **Braided crown**, then a hair color and an optional **Gentle** face.
