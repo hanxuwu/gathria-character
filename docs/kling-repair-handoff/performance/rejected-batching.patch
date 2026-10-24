@@ -10,7 +10,7 @@ index bd43e73..9d581d5 100644
 +    renderSourceFrame: vi.fn((_id: number) => baseline),
    };
  }
- 
+
 @@ -247,4 +247,67 @@ describe("sequential action diagnostics", () => {
        "dimensions changed",
      );
@@ -84,18 +84,18 @@ index 3bce2da..ba83f67 100644
 --- a/src/wardrobe/review-analysis.ts
 +++ b/src/wardrobe/review-analysis.ts
 @@ -5,6 +5,8 @@ import type { LookComparison } from "./look-comparison";
- 
+
  export const REVIEW_MAX_PIXELS = 4_194_304;
  export const REVIEW_MAX_POSITIONS = 600;
 +/** Local per-scan reference buffers, never retained between calls. */
 +export const REVIEW_SCAN_REFERENCE_BYTES = 32 * 1024 * 1024;
  export const REVIEW_DEFAULT_THRESHOLD = 8;
- 
+
  export interface ReviewFrameMetrics {
 @@ -202,10 +204,10 @@ export interface ReviewActionScan {
    heuristic: string;
  }
- 
+
 -/** A sequential diagnostic scan: at most current/previous/first RGBA frames
 - * remain live, plus scalar metrics per unique source pose. Repeated holds reuse
 - * pixels and metrics; a recurring non-adjacent pose may be rendered again for
@@ -302,7 +302,7 @@ index 66313ba..85cb3ba 100644
 @@ -201,7 +203,9 @@ function paste(target: RgbaPng, input: RgbaPng, x: number, y: number) {
      );
  }
- 
+
 -/** Scalar plan + one live page at a time; unchanged source artwork is never retained or edited. */
 +/** One output page plus at most 16 MiB of half-native reference tiles. Rendering
 + * a reference batch before its current pages avoids repeatedly evicting either
