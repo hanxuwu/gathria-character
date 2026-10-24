@@ -44,6 +44,8 @@ import {
   drawCharacterFrame,
   frameAtTime,
   imageForFrame,
+  initialCharacterZoom,
+  characterZoomChoices,
 } from "./player";
 
 import {
@@ -173,9 +175,7 @@ export function PackPlayer() {
     : undefined;
   const isBaked = !!pack;
   const sourceBlocked = busy || authoringBusy || authoringDraft;
-  const zoomChoices = [...new Set([0.25, 0.5, 0.75, 1, 1.5, 2, zoom])].sort(
-    (a, b) => a - b,
-  );
+  const zoomChoices = characterZoomChoices(pack?.manifest, zoom);
   const frameHeight = Math.max(
     pack?.manifest.spritesheet.frameHeight ?? 0,
     comparisonPack?.manifest.spritesheet.frameHeight ?? 0,
@@ -488,15 +488,10 @@ export function PackPlayer() {
         setAnimation("idle");
         setFacing(loaded.manifest.facing.native);
         setZoom(
-          [0.25, 0.5, 0.75, 1]
-            .filter(
-              (value) =>
-                value <= loaded.manifest.scale.recommended &&
-                value * loaded.manifest.spritesheet.frameHeight <= 512 &&
-                value * loaded.manifest.spritesheet.frameWidth <=
-                  (stageRef.current?.clientWidth ?? 640) - 48,
-            )
-            .at(-1) ?? 0.25,
+          initialCharacterZoom(
+            loaded.manifest,
+            (stageRef.current?.clientWidth ?? 640) - 48,
+          ),
         );
         setFramePosition(0);
         setSourceBundle(null);
@@ -988,13 +983,17 @@ export function PackPlayer() {
               <div className="player-baked-controls">
                 <p>
                   <strong>
-                    {modifiedActions
-                      ? "Original artwork · edited action settings"
-                      : motionStudy
-                        ? "Original artwork · motion & transitions study"
-                        : keyframeStudy
-                          ? "Original artwork · keyframe loop study"
-                          : "Original artwork · baked playback"}
+                    {pack?.manifest.schemaVersion === 4
+                      ? modifiedActions
+                        ? "Authored pixel artwork · edited action settings"
+                        : "Authored pixel artwork · baked playback"
+                      : modifiedActions
+                        ? "Original artwork · edited action settings"
+                        : motionStudy
+                          ? "Original artwork · motion & transitions study"
+                          : keyframeStudy
+                            ? "Original artwork · keyframe loop study"
+                            : "Original artwork · baked playback"}
                   </strong>
                   <br />
                   These frames preserve the supplied character artwork.
@@ -1114,7 +1113,10 @@ export function PackPlayer() {
                 )}
               </div>
             )}
-            <div className="player-stage player-smooth" ref={stageRef}>
+            <div
+              className={`player-stage${pack?.manifest.scale.pixelArt ? "" : " player-smooth"}`}
+              ref={stageRef}
+            >
               <div
                 className="player-stage-surface"
                 style={{ width: canvasRenderWidth }}
@@ -1532,7 +1534,7 @@ export function PackPlayer() {
           <footer className="player-footer">
             <span>Small characters. Big stories.</span>
             <p>
-              Kling CharacterPack V2 & V3 <span>·</span> Gathria runtime
+              CharacterPack V2, V3 & V4 <span>·</span> Gathria runtime
               compatibility is unverified.
             </p>
             <a href="/">

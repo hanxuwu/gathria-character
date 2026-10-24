@@ -241,7 +241,7 @@ describe("native baked CharacterPack V2", () => {
     expect(() => validatePortableManifest(unsupported)).toThrow(
       "Legacy CharacterPack V1 is not supported",
     );
-    expect(() => validatePortableManifest({ schemaVersion: 4 })).toThrow(
+    expect(() => validatePortableManifest({ schemaVersion: 5 })).toThrow(
       "schemaVersion",
     );
   });

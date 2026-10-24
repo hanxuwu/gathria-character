@@ -68,10 +68,17 @@ export function drawCharacterFrame(
   zoom: number,
   attachment: { x: number; y: number },
 ): void {
+  if (manifest.scale.integerOnly && (!Number.isSafeInteger(zoom) || zoom < 1))
+    throw new Error(
+      "Pixel CharacterPack display zoom must be a positive integer.",
+    );
   context.save();
-  context.imageSmoothingEnabled = true;
+  context.imageSmoothingEnabled = !manifest.scale.pixelArt;
   context.imageSmoothingQuality = "high";
-  context.translate(attachment.x, attachment.y);
+  context.translate(
+    manifest.scale.pixelArt ? Math.round(attachment.x) : attachment.x,
+    manifest.scale.pixelArt ? Math.round(attachment.y) : attachment.y,
+  );
   context.scale(manifest.facing[facing] === "mirror-x" ? -zoom : zoom, zoom);
   context.drawImage(
     image,
@@ -87,12 +94,50 @@ export function drawCharacterFrame(
   context.restore();
 }
 
+/** A pixel pack never falls back to sub-native smooth rendering to fit a narrow
+ * viewport. The player uses a scrollable stage for that case. */
+export function initialCharacterZoom(
+  manifest: PortableCharacterPackManifest,
+  availableWidth: number,
+  availableHeight = 512,
+): number {
+  const candidates = manifest.scale.integerOnly
+    ? Array.from({ length: 16 }, (_, i) => i + 1)
+    : [0.25, 0.5, 0.75, 1];
+  return (
+    candidates
+      .filter(
+        (value) =>
+          value <= manifest.scale.recommended &&
+          value * manifest.spritesheet.frameHeight <= availableHeight &&
+          value * manifest.spritesheet.frameWidth <= availableWidth,
+      )
+      .at(-1) ?? (manifest.scale.integerOnly ? 1 : 0.25)
+  );
+}
+
+export function characterZoomChoices(
+  manifest: PortableCharacterPackManifest | undefined,
+  zoom: number,
+): number[] {
+  const candidates = manifest?.scale.integerOnly
+    ? [1, 2, 3, 4, manifest.scale.recommended, zoom]
+    : [0.25, 0.5, 0.75, 1, 1.5, 2, zoom];
+  return [...new Set(candidates)]
+    .filter(
+      (value) =>
+        !manifest?.scale.integerOnly ||
+        (Number.isSafeInteger(value) && value >= 1 && value <= 16),
+    )
+    .sort((a, b) => a - b);
+}
+
 /** Select the declared page; a missing page must never fall back to unrelated art. */
 export function imageForFrame(
   pack: Pick<LoadedCharacterPack, "manifest" | "image" | "images">,
   frame: SpriteFrame,
 ): LoadedCharacterImage {
-  if (pack.manifest.schemaVersion !== 3) return pack.image;
+  if (pack.manifest.schemaVersion === 2) return pack.image;
   const image =
     frame.page === undefined ? undefined : pack.images?.[frame.page];
   if (!image)

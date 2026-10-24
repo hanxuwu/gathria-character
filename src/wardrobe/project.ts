@@ -222,6 +222,10 @@ async function createBase(
     registered = new Uint8Array(registrationBytes);
   const sourceSha256 = await sha256(bytes),
     archive = await sourceArchive(bytes, sourceSha256, options);
+  if (archive.manifest.schemaVersion === 4)
+    throw Error(
+      "Authored pixel theme packs belong in the theme workspace. This wardrobe accepts the original smooth source and its matched garment layers.",
+    );
   assertSourcePreparationActive(options);
   const registration = validateWardrobeRegistration(
     parse(registered, "Wardrobe registration"),
