@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Download,
   FolderOpen,
@@ -80,6 +80,8 @@ import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
 import ConnectionInspector from "./ConnectionInspector";
 import NamedLooks from "./NamedLooks";
+import LookComparison from "./LookComparison";
+import { createLookComparison } from "./look-comparison";
 import { createWardrobeDownloads } from "./download-cache";
 import { checkLookSource, exactLookAsset, type NamedLook } from "./named-looks";
 import { readLocalMaterial } from "./local-materials";
@@ -128,6 +130,11 @@ interface AppearancePreview {
   action: PortableAnimationName;
   position: number;
   facing: Facing;
+}
+interface PinnedLook {
+  project: WardrobeProject;
+  renderer: WardrobeCompositor;
+  name: string;
 }
 // These are reviewed, actual application exports. Missing artwork remains a
 // named choice until its matching thumbnail is delivered, never a broken URL.
@@ -335,6 +342,8 @@ export default function WardrobeEditor({
   const [retry, setRetry] = useState(0);
   const [recipeItemId, setRecipeItemId] = useState("");
   const [showAllOutfits, setShowAllOutfits] = useState(false);
+  const [pinnedLook, setPinnedLook] = useState<PinnedLook | null>(null);
+  const pinned = useRef<PinnedLook | null>(null);
   const [appearancePreview, setAppearancePreview] =
     useState<AppearancePreview | null>(null);
   const previewRenderer = useRef<WardrobeCompositor | null>(null);
@@ -376,6 +385,11 @@ export default function WardrobeEditor({
       dirty: next.dirty,
     });
     setSession(next);
+  }
+  function clearPinnedLook() {
+    pinned.current?.renderer.dispose();
+    pinned.current = null;
+    setPinnedLook(null);
   }
   function beginPreparation() {
     preparation.current?.abort();
@@ -460,6 +474,8 @@ export default function WardrobeEditor({
         return;
       }
       const previous = current.current;
+      if (history === "reset" || (previous && previous.character !== character))
+        clearPinnedLook();
       if (history === "reset") histories.current.delete(character);
       else if (history === "edit" && previous?.character === character)
         histories.current.set(
@@ -547,6 +563,8 @@ export default function WardrobeEditor({
       rendered.current = null;
       savedSessions.current.clear();
       histories.current.clear();
+      pinned.current?.renderer.dispose();
+      pinned.current = null;
     },
     [],
   );
@@ -617,6 +635,18 @@ export default function WardrobeEditor({
   const registration = project?.registration;
   const outputSheet = session?.renderer.manifest.spritesheet;
   const outputAnchor = session?.renderer.manifest.anchor;
+  const lookComparison = useMemo(
+    () =>
+      pinnedLook && session
+        ? createLookComparison(
+            pinnedLook.renderer,
+            session.renderer,
+            pinnedLook.project,
+            session.project,
+          )
+        : null,
+    [pinnedLook, session?.renderer],
+  );
   const appearance =
     project?.document.version === 2
       ? project.document.appearance
@@ -1421,6 +1451,87 @@ export default function WardrobeEditor({
     }
   }
 
+  async function pinLook() {
+    const open = current.current;
+    if (!open || busy || appearancePreview) return;
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Preparing this look for comparison…");
+    let renderer: WardrobeCompositor | null = null;
+    try {
+      renderer = await createWardrobeCompositor(open.project, {
+        signal: controller.signal,
+      });
+      await validateWardrobeAppearance(renderer, { signal: controller.signal });
+      if (token !== request.current || controller.signal.aborted) return;
+      clearPinnedLook();
+      const next = {
+        project: open.project,
+        renderer,
+        name: selectedPreset?.name ?? "Your combination",
+      };
+      pinned.current = next;
+      setPinnedLook(next);
+      renderer = null; // ownership moves to the one retained reference
+      setStatus(
+        "Look pinned. Try another outfit or hairstyle to compare the same poses.",
+      );
+    } catch (failure) {
+      if (token === request.current && !controller.signal.aborted)
+        setError(failureText(failure));
+    } finally {
+      renderer?.dispose();
+      if (token === request.current) {
+        setBusy(false);
+        setCancellable(false);
+      }
+    }
+  }
+
+  async function exportLookGif() {
+    const open = current.current;
+    if (!open || !lookComparison || busy || appearancePreview) return;
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Preparing look comparison GIF…");
+    try {
+      const { exportWardrobeActionGif } = await import("./action-gif");
+      const bytes = await exportWardrobeActionGif(
+        lookComparison,
+        shownAction,
+        facing,
+        {
+          comparison: true,
+          referenceLabel: "PINNED",
+          signal: controller.signal,
+          onProgress: (done, total) => {
+            if (token === request.current)
+              setStatus(`Preparing look comparison GIF: ${done} / ${total}…`);
+          },
+        },
+      );
+      if (token !== request.current || controller.signal.aborted) return;
+      saveBytes(
+        bytes,
+        `kling-${open.character}-${shownAction}-${facing}-pinned-current-half.gif`,
+        "image/gif",
+      );
+      setStatus(
+        "Look comparison GIF saved. Pinned on the left, current on the right, at matching anchors and original timing.",
+      );
+    } catch (failure) {
+      if (token === request.current && !controller.signal.aborted)
+        setError(failureText(failure));
+    } finally {
+      if (token === request.current) {
+        setBusy(false);
+        setCancellable(false);
+      }
+    }
+  }
+
   async function exportRecipe(
     itemId: string,
     poseId?: number,
@@ -2162,6 +2273,13 @@ export default function WardrobeEditor({
               </label>
             </div>
             <div className="wardrobe-review-options">
+              <button
+                type="button"
+                disabled={busy || Boolean(appearancePreview)}
+                onClick={() => void pinLook()}
+              >
+                {pinnedLook ? "Replace pinned look" : "Pin current look"}
+              </button>
               <label>
                 <input
                   type="checkbox"
@@ -2295,6 +2413,17 @@ export default function WardrobeEditor({
                 renderer={session.renderer}
                 frameId={frameId}
                 facing={facing}
+              />
+            )}
+            {lookComparison && pinnedLook && frameId !== undefined && (
+              <LookComparison
+                comparison={lookComparison}
+                frameId={frameId}
+                facing={facing}
+                name={pinnedLook.name}
+                disabled={busy || Boolean(appearancePreview)}
+                onExportGif={() => void exportLookGif()}
+                onClear={clearPinnedLook}
               />
             )}
           </section>
