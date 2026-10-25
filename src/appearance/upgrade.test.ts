@@ -466,7 +466,7 @@ describe("explicit source-bound appearance upgrade copies", () => {
         entry.appearanceRevision,
       );
       expect(revision.bankSha256).toBe(
-        sha(readFileSync(`docs/kling-appearance/banks/${entry.key}.zip`)),
+        sha(readFileSync(`.${entry.appearanceBankUrl}`)),
       );
       expect(revision.registrationSha256).toBe(
         sha(readFileSync(`.${entry.registrationUrl}`)),

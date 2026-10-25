@@ -170,6 +170,13 @@
           "url": "/docs/kling-wardrobe/garments/male/teal-camp-shirt-v5.zip",
           "sha256": "a41b45869fe0a3b63c613f8ade0b188a7e8b9040fee618fb3e9800c05543145e",
           "bytes": 4488037
+        },
+        {
+          "id": "midnight-sailor-v1",
+          "name": "Midnight sailor shirt",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/midnight-sailor-v1.zip",
+          "sha256": "6aecf0278c93d7afafc3d0c082784cb3aabf0d743670a3715a062b935a6173e9"
         }
       ],
       "presets": [
@@ -352,9 +359,19 @@
             "fullBody": null,
             "shoes": "brown-shoes"
           }
+        },
+        {
+          "id": "midnight-sailor",
+          "name": "Midnight sailor",
+          "selection": {
+            "top": "midnight-sailor-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          }
         }
       ],
-      "appearanceBankUrl": "/docs/kling-appearance/banks/male.zip",
+      "appearanceBankUrl": "/docs/kling-expression/banks/male-base.zip",
       "appearanceStyles": [
         {
           "id": "soft-crop",
@@ -375,26 +392,32 @@
           "id": "side-part",
           "name": "Side part",
           "slot": "hair"
+        },
+        {
+          "id": "joyful",
+          "name": "Joyful",
+          "slot": "face"
         }
       ],
       "appearanceRevision": {
         "characterId": "kling-male-motion-v1",
         "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
         "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
-        "bankId": "kling-male-appearance-v5",
-        "bankSha256": "8f45a4afb5900096f5fce9c0e505c1bef31398f159520889dd5c7495fb67fc67",
+        "bankId": "kling-male-appearance-v5-expressions-v1",
+        "bankSha256": "52a5cb2b485a2f99c41c3cae4296e06b07d784a78ef4bc9c6a35eac810485f8d",
         "previousBankSha256s": [
           "3dc7c537beea678be7cf5e707713b755fbb0694aa441cb0579105c962aad6bef",
           "2da8187aca98d6245cc7fad1ac0b93b3a0bad52e175a35fc22f6c7c51e72a794",
           "f79a742a88eb5001418154307025303e91899c08058263e87ad54d8995c937f9",
-          "0a443a618a9744650f3aa45168aa5469b396d5d07c9887e97428d50e77d629b3"
+          "0a443a618a9744650f3aa45168aa5469b396d5d07c9887e97428d50e77d629b3",
+          "8f45a4afb5900096f5fce9c0e505c1bef31398f159520889dd5c7495fb67fc67"
         ]
       },
       "appearanceLibraries": [
         {
-          "url": "/docs/kling-appearance/banks/volume-v5/male-airy-tousle.zip",
-          "sha256": "fb4ad55ccd50324f1302281fb7cb6b8a8714a979d9435b11db29b17288a8bc34",
-          "bankId": "kling-male-airy-tousle-v5",
+          "url": "/docs/kling-expression/banks/male-airy-tousle.zip",
+          "sha256": "c7a745cc95cf10fe75742e40f178bcf966ffec173c55b07e00a9be1183458786",
+          "bankId": "kling-male-airy-tousle-v5-expressions-v1",
           "styles": [
             {
               "id": "airy-tousle",
@@ -405,16 +428,22 @@
               "id": "gentle",
               "name": "Gentle",
               "slot": "face"
+            },
+            {
+              "id": "joyful",
+              "name": "Joyful",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
-            "69da5fe0f14f58e09dfeda8c530cd7f252e3884803765003d1327a97579dec7d"
+            "69da5fe0f14f58e09dfeda8c530cd7f252e3884803765003d1327a97579dec7d",
+            "fb4ad55ccd50324f1302281fb7cb6b8a8714a979d9435b11db29b17288a8bc34"
           ]
         },
         {
-          "url": "/docs/kling-appearance/banks/volume/male-soft-curls.zip",
-          "sha256": "e90fda90e761fd34088fa8cfd73561f2664f8d3e749d007c02668922b6d74d7e",
-          "bankId": "kling-male-soft-curls-v1",
+          "url": "/docs/kling-expression/banks/male-soft-curls.zip",
+          "sha256": "0fd4536d5a3b84619b689e1c6de2fbf9a6c533d3d77d6f440a9f87db77592087",
+          "bankId": "kling-male-soft-curls-v1-expressions-v1",
           "styles": [
             {
               "id": "soft-curls",
@@ -425,13 +454,21 @@
               "id": "gentle",
               "name": "Gentle",
               "slot": "face"
+            },
+            {
+              "id": "joyful",
+              "name": "Joyful",
+              "slot": "face"
             }
+          ],
+          "previousBankSha256s": [
+            "e90fda90e761fd34088fa8cfd73561f2664f8d3e749d007c02668922b6d74d7e"
           ]
         },
         {
-          "url": "/docs/kling-appearance/banks/volume/male-swept-quiff.zip",
-          "sha256": "1eff7dc7d4bfc48f02274a6d79af8d947715e43d919a605001d51e384144cf1d",
-          "bankId": "kling-male-swept-quiff-v1",
+          "url": "/docs/kling-expression/banks/male-swept-quiff.zip",
+          "sha256": "2fffe58a9c90d085840ea8009faaa6d8b820d17ab9136639118e2459e023e885",
+          "bankId": "kling-male-swept-quiff-v1-expressions-v1",
           "styles": [
             {
               "id": "swept-quiff",
@@ -442,7 +479,15 @@
               "id": "gentle",
               "name": "Gentle",
               "slot": "face"
+            },
+            {
+              "id": "joyful",
+              "name": "Joyful",
+              "slot": "face"
             }
+          ],
+          "previousBankSha256s": [
+            "1eff7dc7d4bfc48f02274a6d79af8d947715e43d919a605001d51e384144cf1d"
           ]
         }
       ]
@@ -845,7 +890,7 @@
           }
         }
       ],
-      "appearanceBankUrl": "/docs/kling-appearance/banks/female.zip",
+      "appearanceBankUrl": "/docs/kling-expression/banks/female-base.zip",
       "appearanceStyles": [
         {
           "id": "soft-crop",
@@ -866,25 +911,31 @@
           "id": "tucked-bun",
           "name": "Tucked bun",
           "slot": "hair"
+        },
+        {
+          "id": "joyful",
+          "name": "Joyful",
+          "slot": "face"
         }
       ],
       "appearanceRevision": {
         "characterId": "kling-female-motion-v1",
         "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
         "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
-        "bankId": "kling-female-appearance-v4",
-        "bankSha256": "c4f7cf6e8980d73c0de2a46a1bc101caa0dab8d639c587545488b4654d69a714",
+        "bankId": "kling-female-appearance-v4-expressions-v1",
+        "bankSha256": "71067396fa1d9772f01acb9ac5c023e57a79eee780ffd1077fa35b9b48e18b26",
         "previousBankSha256s": [
           "2cb788fcbe9bd623b57ccb3cb7385199a7bd04213af2c726e12c738d219e84fa",
           "257098ca3777d56fbbb1bd261eba65c0374d52b6917aaea333e808df447de3e6",
-          "bce748e1e8afea823e23e51b15491d8f02f9ba4d04e3cb53f18ca8c77e8a1ee9"
+          "bce748e1e8afea823e23e51b15491d8f02f9ba4d04e3cb53f18ca8c77e8a1ee9",
+          "c4f7cf6e8980d73c0de2a46a1bc101caa0dab8d639c587545488b4654d69a714"
         ]
       },
       "appearanceLibraries": [
         {
-          "url": "/docs/kling-appearance/banks/volume/female-romantic-waves.zip",
-          "sha256": "a53eee66109b04968a685db33e09ddeeeebcd6f0ad98c34f15e3b29cc46675fd",
-          "bankId": "kling-female-romantic-waves-v1",
+          "url": "/docs/kling-expression/banks/female-romantic-waves.zip",
+          "sha256": "cbdc1383951ec7b50b68ca5847def4ad0695f79f5afeee08ba75abbbb58261ae",
+          "bankId": "kling-female-romantic-waves-v1-expressions-v1",
           "styles": [
             {
               "id": "romantic-waves",
@@ -895,13 +946,21 @@
               "id": "gentle",
               "name": "Gentle",
               "slot": "face"
+            },
+            {
+              "id": "joyful",
+              "name": "Joyful",
+              "slot": "face"
             }
+          ],
+          "previousBankSha256s": [
+            "a53eee66109b04968a685db33e09ddeeeebcd6f0ad98c34f15e3b29cc46675fd"
           ]
         },
         {
-          "url": "/docs/kling-appearance/banks/volume-v5/female-ribbon-pony.zip",
-          "sha256": "9d2baa5937ed6b25c06c6f88b1b63abf227ee685d0613ce30822a0fccc392180",
-          "bankId": "kling-female-ribbon-pony-v5",
+          "url": "/docs/kling-expression/banks/female-ribbon-pony.zip",
+          "sha256": "910ca837c9b1edfeac671fd2259addc9140e906419245e36828cf36bceb37c26",
+          "bankId": "kling-female-ribbon-pony-v5-expressions-v1",
           "styles": [
             {
               "id": "ribbon-pony",
@@ -912,19 +971,25 @@
               "id": "gentle",
               "name": "Gentle",
               "slot": "face"
+            },
+            {
+              "id": "joyful",
+              "name": "Joyful",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
             "1d596b05f189dc5b87e75577e8320dca8cdc2a64da075868479ede224a871504",
             "706e9a5e833c573517564f9915bdab717a5742b3c19842c67078527a4da888e8",
             "d3e5e5b2d1f6b343aa6176eba83c0a10e4acf28671458c30cd7e03512fab22c7",
-            "1553568d6a804dec3b202ac7e8db90af3bbde0c8a42abe4b68367b75e6d09c85"
+            "1553568d6a804dec3b202ac7e8db90af3bbde0c8a42abe4b68367b75e6d09c85",
+            "9d2baa5937ed6b25c06c6f88b1b63abf227ee685d0613ce30822a0fccc392180"
           ]
         },
         {
-          "url": "/docs/kling-appearance/banks/volume/female-braided-crown.zip",
-          "sha256": "0ac0208180fb646fc9905398db762e88d6b008d17acf34c7b0735a1c24959f2f",
-          "bankId": "kling-female-braided-crown-v1",
+          "url": "/docs/kling-expression/banks/female-braided-crown.zip",
+          "sha256": "373a889839ce6cfa773ff0060b4ef22cbf36625d9f53599b3d7ccd395008fa4a",
+          "bankId": "kling-female-braided-crown-v1-expressions-v1",
           "styles": [
             {
               "id": "braided-crown",
@@ -935,7 +1000,15 @@
               "id": "gentle",
               "name": "Gentle",
               "slot": "face"
+            },
+            {
+              "id": "joyful",
+              "name": "Joyful",
+              "slot": "face"
             }
+          ],
+          "previousBankSha256s": [
+            "0ac0208180fb646fc9905398db762e88d6b008d17acf34c7b0735a1c24959f2f"
           ]
         }
       ]
