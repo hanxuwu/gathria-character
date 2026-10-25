@@ -37,6 +37,10 @@ function bank(path: string): Bank {
 
 it("fits each shipped outfit / separates mix with every hair and face into the bounded per-frame page cache", () => {
   let checked = 0;
+  const peak = {
+    pages: { value: 0, context: "" },
+    bytes: { value: 0, context: "" },
+  };
   for (const entry of catalog.characters) {
     const appearances = [
       entry.appearanceBankUrl,
@@ -82,10 +86,13 @@ it("fits each shipped outfit / separates mix with every hair and face into the b
               for (const fid of frameIds) {
                 const pages = new Map<string, number>();
                 const add = (key: string, b: Bank, f: Frame | undefined) => {
-                  expect(f, `${key} missing source pose ${fid}`).toBeDefined();
-                  if (f!.mode === "source") return;
-                  const p = b.pages[f!.page];
-                  pages.set(`${key}/${f!.page}`, p.width * p.height * 5);
+                  if (!f) throw Error(`${key} missing source pose ${fid}`);
+                  if (f.mode === "source") return;
+                  const p = b.pages[f.page];
+                  const bytes = p.width * p.height * 5;
+                  if (!Number.isFinite(bytes))
+                    throw Error(`${key} page ${f.page} has invalid dimensions`);
+                  pages.set(`${key}/${f.page}`, bytes);
                 };
                 for (const style of [hair, face])
                   for (const layer of style?.layers ?? [])
@@ -95,17 +102,25 @@ it("fits each shipped outfit / separates mix with every hair and face into the b
                   ...(shoe ? [shoe] : []),
                 ]))
                   add(id, garments.get(id)!, groups.get(id)!.get(fid));
-                const context = `${entry.key}/${outfit.id}/${shoe}/${hair.id}/${face?.id}/${fid}`;
-                expect(pages.size, context).toBeLessThanOrEqual(
-                  GARMENT_CACHE_MAX_PAGES,
-                );
-                expect(
-                  [...pages.values()].reduce((a, b) => a + b, 0),
-                  context,
-                ).toBeLessThanOrEqual(GARMENT_CACHE_MAX_BYTES);
+                const bytes = [...pages.values()].reduce((a, b) => a + b, 0);
+                // Still evaluate every combination; checking the maxima avoids
+                // millions of repeated assertion hooks as the catalog grows.
+                if (pages.size > peak.pages.value || bytes > peak.bytes.value) {
+                  const context = `${entry.key}/${outfit.id}/${shoe}/${hair.id}/${face?.id}/${fid}`;
+                  if (pages.size > peak.pages.value)
+                    peak.pages = { value: pages.size, context };
+                  if (bytes > peak.bytes.value)
+                    peak.bytes = { value: bytes, context };
+                }
                 checked++;
               }
     }
   }
+  expect(peak.pages.value, peak.pages.context).toBeLessThanOrEqual(
+    GARMENT_CACHE_MAX_PAGES,
+  );
+  expect(peak.bytes.value, peak.bytes.context).toBeLessThanOrEqual(
+    GARMENT_CACHE_MAX_BYTES,
+  );
   expect(checked).toBeGreaterThan(1000);
 }, 30_000);

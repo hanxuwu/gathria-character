@@ -2035,7 +2035,7 @@ export default function WardrobeEditor({
                 </select>
               </label>
               <label className="wardrobe-slot">
-                Face
+                Face expression
                 <select
                   aria-label="Face"
                   value={appearance.faceId ?? ""}
@@ -2044,12 +2044,12 @@ export default function WardrobeEditor({
                     chooseAppearance({ faceId: event.target.value || null })
                   }
                 >
-                  <option value="">Original</option>
+                  <option value="">Natural (original)</option>
                   {appearanceStyles
                     .filter((style) => style.slot === "face")
                     .map((style) => (
                       <option key={style.id} value={style.id}>
-                        {style.name}
+                        {style.id === "gentle" ? "Gentle smile" : style.name}
                       </option>
                     ))}
                 </select>
@@ -2110,7 +2110,8 @@ export default function WardrobeEditor({
               </button>
               <p className="wardrobe-hint">
                 Hair and face choices stay with this character when you change
-                outfits. Gentle keeps the original action blinks and laughter.
+                outfits. Natural keeps the original face. Gentle smile and Joyful
+                retain the original action blinks and laughter.
                 Use Compare original to inspect the source face and movement.
               </p>
               {upgradeAvailability?.status === "available" &&

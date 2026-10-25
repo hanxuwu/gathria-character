@@ -13,7 +13,11 @@ import { installWardrobeFixture } from "./wardrobe-fixture";
 // Synthetic pixels test controls and file contracts, never visual quality.
 export async function installAppearanceFixture(
   page: Page,
-  options: { expandedStyles?: boolean; libraryBank?: boolean } = {},
+  options: {
+    expandedStyles?: boolean;
+    libraryBank?: boolean;
+    joyful?: boolean;
+  } = {},
 ) {
   const fixtures = await installWardrobeFixture(page);
   let bankRequests = 0;
@@ -142,6 +146,15 @@ export async function installAppearanceFixture(
       provenance: "Synthetic browser regression fixture. Not artwork evidence.",
     };
     const legacyStyles = structuredClone(manifest.styles);
+    if (options.joyful) {
+      const joyful = structuredClone(manifest.styles[2]);
+      joyful.id = "joyful";
+      joyful.name = "Joyful";
+      for (const frame of joyful.layers[0].frames) {
+        if (frame.mode === "paint") frame.rect.x = 18;
+      }
+      manifest.styles.push(joyful);
+    }
     if (options.expandedStyles) {
       // Reuse tiny fixture pixels to exercise metadata/UI, not new artwork.
       const added = structuredClone(
@@ -173,14 +186,19 @@ export async function installAppearanceFixture(
       id: string,
       patch: Uint8Array,
       styles = manifest.styles,
-    ) =>
-      zipSync(
+    ) => {
+      const patchPixels = new Uint8Array(patch);
+      if (styles.some((style) => style.id === "joyful")) {
+        // Distinct synthetic face pixels, not an example of accepted artwork.
+        patchPixels.set([248, 208, 72, 255, 248, 208, 72, 255], 18 * 4);
+      }
+      return zipSync(
         {
           "manifest.json": strToU8(JSON.stringify({ ...manifest, id, styles })),
           "patches-0.png": encodeSourceRgbaPng({
             width: 20,
             height: 2,
-            pixels: patch,
+            pixels: patchPixels,
             colorChunks: [],
           }),
           "ownership-0.png": encodeSourceRgbaPng({
@@ -192,6 +210,7 @@ export async function installAppearanceFixture(
         },
         { mtime: new Date(2020, 0, 1) },
       );
+    };
     const previousPixels = new Uint8Array(pixels);
     for (let i = 0; i < 40; i++) {
       if (i % 20 < 16) previousPixels[i * 4] -= 30;
@@ -221,7 +240,10 @@ export async function installAppearanceFixture(
       const hair = structuredClone(manifest.styles[0]);
       hair.id = "volume-hair";
       hair.name = "Volume hair";
-      const styles = [hair, manifest.styles.find((s) => s.id === "gentle")!];
+      const styles = [
+        hair,
+        ...manifest.styles.filter((style) => style.slot === "face"),
+      ];
       const id = `${fixture.key}-volume-bank`;
       const bytes = makeBank(id, previousPixels, styles);
       const url = `/fixture-appearance/${fixture.key}-volume.zip`;
@@ -245,7 +267,7 @@ export async function installAppearanceFixture(
           appearanceBankUrl: `/fixture-appearance/${fixture.key}.zip`,
           appearanceRevision: revisions[fixture.key],
           appearanceLibraries: libraries[fixture.key],
-          ...(options.expandedStyles
+          ...(options.expandedStyles || options.joyful
             ? { appearanceStyles: catalogStyles[fixture.key] }
             : {}),
         })),

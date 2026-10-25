@@ -84,6 +84,16 @@ appearance** restores the original head; clothing and head choices are independe
 Save an editable project to continue changing clothes, or export a CharacterPack
 for the independent player. [Earlier clothing fit review](docs/kling-wardrobe/fit-polish/README.md) · [Wardrobe guide](docs/kling-wardrobe/README.md).
 
+**Face expression** now offers **Natural (original)**, **Gentle smile** and
+**Joyful** for both characters and all existing hairstyles. Joyful uses the
+character's own original celebration mouth with registered brow/cheek treatment;
+source blinks and laughter remain. Old saved projects keep their embedded
+artwork; use **Preview updated appearance**, save a separate copy, then reopen
+that copy to access the new choice. [Expression artwork and preservation checks](docs/kling-expression/README.md).
+Search **Find an outfit → Midnight sailor** to try the new male sailor shirt,
+or choose **Midnight sailor shirt** in the top slot and mix existing trousers.
+Its garment bank was saved through the browser's painting-kit workflow.
+
 The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
 and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
 refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,

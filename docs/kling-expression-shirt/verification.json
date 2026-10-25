@@ -1,0 +1,185 @@
+{
+  "format": "gathria-expression-shirt-batch-verification",
+  "version": 1,
+  "recordedAt": "2026-10-25T23:21:29.887721+00:00",
+  "baselineCommit": "ce4c38e82381a128e242e18c7296f647bad1ac54",
+  "implementationCommit": "d9c5831673bd08c25d319f95ac1ab1a07e9f3ea0",
+  "scope": "Original Kling artwork; additive Joyful treatment, existing Natural/Gentle states, one reusable Midnight sailor shirt. No runtime image service or animation retiming.",
+  "build": {
+    "passed": true,
+    "command": "npm run build",
+    "log": "logs/build.log",
+    "catalogSha256": "539d78b6735f86550dcd749aae737ede9626b873956304476dbc9279e776b5a6",
+    "deliveryBuild": {
+      "passed": true,
+      "log": "logs/build-delivery.log",
+      "includesNewOutfitThumbnail": true,
+      "thumbnailAsset": "dist/assets/male-midnight-sailor-Cyn0LttD.png",
+      "thumbnailSha256": "ffb3a99140cc7db794f8ff3e3ff4b196d451732d7c3b5d8340c08a227f41e972",
+      "note": "Final thumbnail/index and test-only changes follow the main production-art capture; character rendering and source assets are unchanged."
+    }
+  },
+  "unitTests": {
+    "uniqueRelatedCasesPassed": 82,
+    "initial": {
+      "passed": 81,
+      "failed": 1,
+      "log": "logs/unit-initial.log"
+    },
+    "correction": "Upgrade test fixture now reads the catalog bank URL and still checks exact SHA256 instead of a hardcoded predecessor path.",
+    "targetedRecheck": {
+      "passed": 12,
+      "failed": 0,
+      "log": "logs/unit-upgrade-recheck.log"
+    },
+    "finalCatalogBudgetRecheck": {
+      "passed": true,
+      "log": "logs/catalog-budget-final.log"
+    },
+    "note": "82 is the unique related-case coverage across the initial run and focused rechecks, not a separate all-green full-suite run.",
+    "finalFullSuite": {
+      "passed": 398,
+      "failed": 0,
+      "files": 40,
+      "seconds": 34.89,
+      "command": "npm test -- --maxWorkers=2",
+      "log": "logs/unit-final.log"
+    },
+    "ciCorrections": {
+      "missingThumbnail": "Added actual native UI export and catalog-bound thumbnail; existing 37 rows and 74 PNGs preserved.",
+      "cacheBudgetTimeout": "Preserved all 387360 combinations and unchanged limits; aggregate maximum checks remove repeated assertion overhead.",
+      "thumbnailRecord": "evidence/thumbnail-v1/capture-report.json",
+      "thumbnailServer": "Vite development, separate from main production capture."
+    }
+  },
+  "browserTests": {
+    "passed": 30,
+    "failed": 0,
+    "log": "logs/browser-regressions.log",
+    "note": "Fixture-backed workflow regressions; shipped-art checks are recorded separately."
+  },
+  "sourceAssets": {
+    "appearanceBanks": 8,
+    "originalPoses": 184,
+    "report": "../kling-expression/asset-validation.json",
+    "shirtSourcePoses": 88,
+    "shirtOwnership": "Prior reviewed V5 ownership and original alpha preserved."
+  },
+  "actualProductionCapture": {
+    "passed": true,
+    "record": "evidence/final-v1/evidence-index.json",
+    "expressionHairOutfitCombinations": 24,
+    "pngDownloads": 104,
+    "gifDownloads": 24,
+    "characterPacks": 5,
+    "exactProjectReopens": 5,
+    "independentPlayerCases": 50,
+    "allScheduledPositionsObserved": true,
+    "editorsClosedBeforePlayback": true,
+    "retainedCompatibilityPresets": true,
+    "scriptSnapshot": "evidence/final-v1/capture-script.mjs",
+    "scriptSha256": "ff766f6caee9f81fca0ff47be04234e8cc26b6bc7f60e28d55655f581eefea16",
+    "captureBaselineNote": "Capture began from ce4c38e with implementation worktree contents later committed as d9c5831. Captured catalog, compiled JS and input asset hashes identify the tested production build."
+  },
+  "recommendedOutfitSupplement": {
+    "passed": true,
+    "record": "evidence/recommended-v1/evidence-index.json",
+    "pngDownloads": 12,
+    "gifDownloads": 4,
+    "looks": 4,
+    "additionalPacksOrProjects": 0,
+    "outfitIds": [
+      "day-soft-cuff",
+      "wedding-curved-cuff",
+      "day-smooth-waist",
+      "wedding-smooth-waist"
+    ],
+    "scriptSha256": "dce728ba754744f1903774f7826eb52d1302e93ce16a60625bd2be14d885a9ea"
+  },
+  "independentExportAudit": {
+    "passed": true,
+    "record": "artifact-validation.json",
+    "sha256": "5f7d6c64c19c2023622672d580f6dc783d6c564c348fc3094a63dbb82aee2915",
+    "summary": {
+      "artifacts": 150,
+      "packs": 5,
+      "exactProjectFrames": 456,
+      "decodedMatrixPngs": 96,
+      "exactExpressionAlphaAndOwnershipComparisons": 64,
+      "rawPngRgbaMatchingCanvasReadback": 0,
+      "gifs": 24,
+      "exactMirroredRunPairs": 5,
+      "playbackCases": 50
+    }
+  },
+  "independentRecommendedAudit": {
+    "passed": true,
+    "record": "recommended-artifact-validation.json",
+    "sha256": "8515ea45eab64114d06b6480c5a0c27eba114f418bf148b06765feac59c931cf",
+    "summary": {
+      "looks": 4,
+      "pngDownloads": 12,
+      "gifDownloads": 4,
+      "decodedGifFrames": 64,
+      "screenshots": 6,
+      "artifacts": 22
+    }
+  },
+  "preservation": {
+    "baselineFiles": 64,
+    "byteIdenticalFiles": 63,
+    "intentionalChanges": [
+      "docs/kling-wardrobe/catalog.json"
+    ],
+    "record": "baseline-preservation.json"
+  },
+  "deliveredProjectCopies": [
+    {
+      "file": "docs/kling-expression-shirt/projects/male-midnight-sailor-joyful.wardrobe.zip",
+      "sha256": "b21265405630daf6a2672f9cdc83261edb6d6237b36fee26e4406b2cd7bcb95f",
+      "bytes": 51517797,
+      "sourceCaptureKey": "male-midnight-sailor-joyful",
+      "actualUiDownload": true,
+      "exactCopy": true,
+      "exactReopen": true
+    },
+    {
+      "file": "docs/kling-expression-shirt/projects/female-wedding-joyful.wardrobe.zip",
+      "sha256": "39ba226e2f32f0c51c5fa68689d647546636f77036952198c18e10abd1d8d858",
+      "bytes": 70580854,
+      "sourceCaptureKey": "female-wedding-joyful",
+      "actualUiDownload": true,
+      "exactCopy": true,
+      "exactReopen": true
+    }
+  ],
+  "paintingKitRoundtrip": {
+    "passed": true,
+    "record": "evidence/shirt-final-v2/evidence-index.json",
+    "pixelChanges": 0,
+    "purpose": "Validate import, neighboring-pose kit, review/apply and reusable garment save without claiming additional artwork changes.",
+    "priorAttempt": "shirt-final-v1 completed the garment workflow but failed the terminal diagnostic on a missing favicon; retained honestly."
+  },
+  "visualReview": {
+    "performed": true,
+    "gallery": "review/index.html",
+    "source": "Actual application PNG/GIF downloads; offline authoring prototypes are separately labeled.",
+    "reviewed": "Matching expression faces, representative hair/outfits, full run cycles and shirt pose contact sheets. No changes to source identity, body proportions or action schedule.",
+    "limitations": [
+      "Joyful mouth is slightly sharper than motion-blurred source features on some fast jump frames.",
+      "Sailor neckline/shoulder fit uses the existing source-bound short-sleeve cut; no freely deforming cloth.",
+      "Gentle stays subtle and original celebration laughter remains shared.",
+      "GIF review uses a matte, half-native presentation, quantized palette and centisecond durations; native transparent packs retain exact schedules.",
+      "Raw exported PNG RGBA and browser canvas readback differ at premultiplied edges; exact PNG-to-pack and independent pack reconstruction are verified instead."
+    ],
+    "userVisualAcceptance": "pending"
+  },
+  "remoteCI": {
+    "status": "Awaiting CI on final evidence/fix push. Implementation-commit failures were diagnosed and reproduced; final local full suite/build passed. PR contains current remote check status.",
+    "implementationFailedRuns": [
+      40243720520,
+      40243191580
+    ]
+  },
+  "history": "Only checks actually executed for this batch are counted; prior project validation is not repeated as new work."
+}
