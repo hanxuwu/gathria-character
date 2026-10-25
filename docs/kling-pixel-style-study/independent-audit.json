@@ -1,0 +1,387 @@
+{
+  "passed": true,
+  "reports": [
+    {
+      "character": "male",
+      "sourceCells": 88,
+      "candidateFramesChecked": 176,
+      "alphaProjectionExact": true,
+      "protectedFeatureEqualityExact": true,
+      "heuristicSkinEqualityExact": true,
+      "partialAlphaUnder240RGBExact": true,
+      "featurePixelChecksPerVariant": 357037,
+      "skinPixelChecksPerVariant": 314389,
+      "primaryGifFrames": 16,
+      "primaryGifDurationMs": 670,
+      "heldFramesExact": true,
+      "temporalReportIndependentlyRecomputed": true,
+      "eligibleNonheld": 41221,
+      "thresholdSensitivityJumps": {
+        "baseline": {
+          "12": 92,
+          "16": 26,
+          "24": 12,
+          "32": 5
+        },
+        "ramps-5": {
+          "12": 492,
+          "16": 368,
+          "24": 194,
+          "32": 186
+        },
+        "ramps-4-contour": {
+          "12": 648,
+          "16": 538,
+          "24": 324,
+          "32": 310
+        }
+      },
+      "addedJumpsAt12ByBaselineColorFamily": {
+        "ramps-5": {
+          "brown": 294,
+          "navy": 120,
+          "ivory": 7
+        },
+        "ramps-4-contour": {
+          "brown": 432,
+          "navy": 142,
+          "ivory": 7
+        }
+      },
+      "temporalSummary": {
+        "nonheldTransitions": 16,
+        "sourceStablePixels": 41221,
+        "visibleUnionPixels": 298300,
+        "stableCoverageOfVisibleUnion": 0.13818638954073081,
+        "baselineJumpsAt12": 92,
+        "candidates": {
+          "ramps-5": {
+            "jumpsAt12": 492,
+            "addedJumpsAt12": 421,
+            "removedJumpsAt12": 21
+          },
+          "ramps-4-contour": {
+            "jumpsAt12": 648,
+            "addedJumpsAt12": 581,
+            "removedJumpsAt12": 25
+          }
+        },
+        "loopSeam": {
+          "tick": 15,
+          "nextTick": 0,
+          "sourceFrameIds": [
+            66,
+            51
+          ],
+          "loopSeam": true,
+          "originalHeldFrame": false,
+          "sourceStablePixels": 5555,
+          "visibleUnionPixels": 19552,
+          "stableCoverageOfVisibleUnion": 0.2841141571194763,
+          "baselineJumpsAt12": 23,
+          "candidates": {
+            "ramps-5": {
+              "jumpsAt12": 83,
+              "addedJumpsAt12": 64,
+              "removedJumpsAt12": 4,
+              "maxChannelDeltaP95": 4.0
+            },
+            "ramps-4-contour": {
+              "jumpsAt12": 103,
+              "addedJumpsAt12": 84,
+              "removedJumpsAt12": 4,
+              "maxChannelDeltaP95": 4.0
+            }
+          }
+        },
+        "heldTransitions": []
+      }
+    },
+    {
+      "character": "female",
+      "sourceCells": 96,
+      "candidateFramesChecked": 192,
+      "alphaProjectionExact": true,
+      "protectedFeatureEqualityExact": true,
+      "heuristicSkinEqualityExact": true,
+      "partialAlphaUnder240RGBExact": true,
+      "featurePixelChecksPerVariant": 600786,
+      "skinPixelChecksPerVariant": 496071,
+      "primaryGifFrames": 27,
+      "primaryGifDurationMs": 1130,
+      "heldFramesExact": true,
+      "temporalReportIndependentlyRecomputed": true,
+      "eligibleNonheld": 157204,
+      "thresholdSensitivityJumps": {
+        "baseline": {
+          "12": 500,
+          "16": 348,
+          "24": 179,
+          "32": 44
+        },
+        "ramps-5": {
+          "12": 2832,
+          "16": 2322,
+          "24": 783,
+          "32": 569
+        },
+        "ramps-4-contour": {
+          "12": 3027,
+          "16": 2670,
+          "24": 1083,
+          "32": 856
+        }
+      },
+      "addedJumpsAt12ByBaselineColorFamily": {
+        "ramps-5": {
+          "brown": 1205,
+          "ivory": 1226
+        },
+        "ramps-4-contour": {
+          "brown": 1524,
+          "ivory": 1188
+        }
+      },
+      "temporalSummary": {
+        "nonheldTransitions": 25,
+        "sourceStablePixels": 157204,
+        "visibleUnionPixels": 519142,
+        "stableCoverageOfVisibleUnion": 0.3028150294139176,
+        "baselineJumpsAt12": 500,
+        "candidates": {
+          "ramps-5": {
+            "jumpsAt12": 2832,
+            "addedJumpsAt12": 2431,
+            "removedJumpsAt12": 99
+          },
+          "ramps-4-contour": {
+            "jumpsAt12": 3027,
+            "addedJumpsAt12": 2712,
+            "removedJumpsAt12": 185
+          }
+        },
+        "loopSeam": {
+          "tick": 26,
+          "nextTick": 0,
+          "sourceFrameIds": [
+            50,
+            24
+          ],
+          "loopSeam": true,
+          "originalHeldFrame": false,
+          "sourceStablePixels": 7178,
+          "visibleUnionPixels": 20732,
+          "stableCoverageOfVisibleUnion": 0.3462280532510129,
+          "baselineJumpsAt12": 31,
+          "candidates": {
+            "ramps-5": {
+              "jumpsAt12": 160,
+              "addedJumpsAt12": 132,
+              "removedJumpsAt12": 3,
+              "maxChannelDeltaP95": 4.0
+            },
+            "ramps-4-contour": {
+              "jumpsAt12": 155,
+              "addedJumpsAt12": 131,
+              "removedJumpsAt12": 7,
+              "maxChannelDeltaP95": 4.0
+            }
+          }
+        },
+        "heldTransitions": [
+          {
+            "tick": 4,
+            "nextTick": 5,
+            "sourceFrameIds": [
+              28,
+              28
+            ],
+            "loopSeam": false,
+            "originalHeldFrame": true,
+            "sourceStablePixels": 17985,
+            "visibleUnionPixels": 20813,
+            "stableCoverageOfVisibleUnion": 0.864123384423197,
+            "baselineJumpsAt12": 0,
+            "candidates": {
+              "ramps-5": {
+                "jumpsAt12": 0,
+                "addedJumpsAt12": 0,
+                "removedJumpsAt12": 0,
+                "maxChannelDeltaP95": 0.0
+              },
+              "ramps-4-contour": {
+                "jumpsAt12": 0,
+                "addedJumpsAt12": 0,
+                "removedJumpsAt12": 0,
+                "maxChannelDeltaP95": 0.0
+              }
+            }
+          },
+          {
+            "tick": 17,
+            "nextTick": 18,
+            "sourceFrameIds": [
+              41,
+              41
+            ],
+            "loopSeam": false,
+            "originalHeldFrame": true,
+            "sourceStablePixels": 17246,
+            "visibleUnionPixels": 19753,
+            "stableCoverageOfVisibleUnion": 0.8730825697362425,
+            "baselineJumpsAt12": 0,
+            "candidates": {
+              "ramps-5": {
+                "jumpsAt12": 0,
+                "addedJumpsAt12": 0,
+                "removedJumpsAt12": 0,
+                "maxChannelDeltaP95": 0.0
+              },
+              "ramps-4-contour": {
+                "jumpsAt12": 0,
+                "addedJumpsAt12": 0,
+                "removedJumpsAt12": 0,
+                "maxChannelDeltaP95": 0.0
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Independent technical preservation and diagnostic audit; passed does not mean visual acceptance, reduced flicker, or approval to replace the current theme.",
+  "finalLocationVerification": {
+    "passed": true,
+    "finalArtworkDirectory": "artwork/kling-pixel-style-study",
+    "finalStudyFile": "artwork/kling-pixel-style-study/study.json",
+    "finalStudySha256": "4402c6e463e2f56913f44147069949b152bb334c88bb7a3cdbff7da4f3294e47",
+    "finalProcessingScript": "scripts/prepare-kling-pixel-style-study.py",
+    "finalProcessingScriptSha256": "7ee7c3f47854762313059275edb677b86ada37720b72465459cad08de3021f32",
+    "originalAuditLocation": "/tmp/kling-pixel-style-study/v2",
+    "originalAuditedStudySha256": "fbb8ece360b2b8064945ee72a03d3ee963287c2b2471aa6b1a1b8c724b554db3",
+    "originalIndependentReportSha256": "d602082f5fd023f5c974222b3c7723feb3e6d9aba5c094a6abea600a5e10d3b7",
+    "currentPngGifFilesByteEqualAudited": 22,
+    "allMeasurementRecordsCandidatesAndPaletteEqualAudited": true,
+    "finalArtifactFilesRehashedAgainstPromotionProof": 35,
+    "note": "The source-projection, protected-feature, heuristic-skin and temporal checks were independently computed against the reviewed temporary v2 atlases and GIFs. Before promoting this report, all 22 final current PNG/GIF files were compared byte-for-byte with those audited files, and every final measurement record, candidate parameter and palette entry was compared with the audited study. The only study.json differences are corrected protection wording and the final script hash. All 35 final artifact hashes and sizes also match the promotion proof. The processing script hash matches the final study. This transfers the existing audit to byte-identical final imagery; it is not a claim that the final authoring script was independently re-executed by this reviewer.",
+    "currentImages": [
+      {
+        "file": "artwork/kling-pixel-style-study/baseline/female/atlas.png",
+        "bytes": 3228754,
+        "sha256": "4e07546a13c1394064cc16dea2c185ac3e6e2928b9aa0e5d40613c571858d5d6"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/baseline/male/atlas.png",
+        "bytes": 2550357,
+        "sha256": "c794ec7ef2b7da3eb265e1828b29f3df21949e09ae01146accb171fefa81b5f3"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/female-jump-comparison-2x.png",
+        "bytes": 335015,
+        "sha256": "ab1bfbafe3c032d138a8c6fef43a873973642f4827d6e8637f23aff2ee99efe6"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/female-walk-authoring.gif",
+        "bytes": 2342973,
+        "sha256": "b99708633e48d6449b945ef7bc40f17d9846324c492777b26232c69aee27d35e"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/female-walk-comparison-2x.png",
+        "bytes": 271870,
+        "sha256": "41dc3dc155c8afb297371d2514a44fd7d752a48ee6e3752ae51838421dfa17c2"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/female-ramps-4-contour-protected.png",
+        "bytes": 2156,
+        "sha256": "fe81e6045d0150152f096cedd6548a09cd513b842b75b40566d99857faff1914"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/female-ramps-5-protected.png",
+        "bytes": 2156,
+        "sha256": "fe81e6045d0150152f096cedd6548a09cd513b842b75b40566d99857faff1914"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/female-walk-comparison-1x.png",
+        "bytes": 53358,
+        "sha256": "a7d16c91d60e234216d739a6f0c08a03e50e2dbb2da423537eb501953020d759"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/female-walk-comparison-2x.png",
+        "bytes": 68861,
+        "sha256": "5890a282366193143207e8f080da1d87b42a6cb971f9934f9e5d0ad662032ad5"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/female-walk-comparison-4x.png",
+        "bytes": 88530,
+        "sha256": "ab15060a6c83e15f995f17bb0e5cc1f6ace80c2592a568b2c77e3bf3154e653b"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/male-ramps-4-contour-protected.png",
+        "bytes": 1589,
+        "sha256": "7ef5d95d691b2ca5d0b2e6f15494d5d7ab03d2fe6cae28663846bffc375d9db8"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/male-ramps-5-protected.png",
+        "bytes": 1589,
+        "sha256": "7ef5d95d691b2ca5d0b2e6f15494d5d7ab03d2fe6cae28663846bffc375d9db8"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/male-run-comparison-1x.png",
+        "bytes": 49499,
+        "sha256": "febfab0a3b0fe82d6793a72034d29aa69f1cf2018c28d1b0ad9d21ca68a45517"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/male-run-comparison-2x.png",
+        "bytes": 63777,
+        "sha256": "62de269a39542580e95fe1dff8021637465e7f5780437e5fe8861e2634597496"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/first-frame/male-run-comparison-4x.png",
+        "bytes": 82091,
+        "sha256": "6e99f4f67e6c25aab23dfd20c224a8b54358209e70b36404da44f99356b91df2"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/male-jump-comparison-2x.png",
+        "bytes": 302395,
+        "sha256": "a4847f736ecd63cfb67d2e22932af3a52eec4e629e181a3b354fe63a7f4c147f"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/male-run-authoring.gif",
+        "bytes": 1164634,
+        "sha256": "e500588bd0904a7586205b2eda8f3e13a635fb599e3731e67590bfe6ff24f70e"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/male-run-comparison-2x.png",
+        "bytes": 240216,
+        "sha256": "969bae3da09db667b54bf6f1685bec2659429eba94dba2ff4ad23a274d0b2c5e"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/ramps-4-contour/female/atlas.png",
+        "bytes": 2725371,
+        "sha256": "ba6a8bd2b5b4f80c3a8ea63555f943575d27eda064704247ed100d4b2e4319f3"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/ramps-4-contour/male/atlas.png",
+        "bytes": 1932545,
+        "sha256": "b20921cab14901ae6b998697b428f86bcf7af85426110059add939243514f56d"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/ramps-5/female/atlas.png",
+        "bytes": 2748109,
+        "sha256": "31c238ef6a8d359edf2301da83260f67a6f9b8e61e5d23698161829ea499ebce"
+      },
+      {
+        "file": "artwork/kling-pixel-style-study/ramps-5/male/atlas.png",
+        "bytes": 1945599,
+        "sha256": "06664a219570b2d36f63b5df830b3d598d831ee28543e32cace840d26a178b5c"
+      }
+    ]
+  },
+  "limitations": [
+    "Protected skin means the fixed RGB heuristic family, not a semantic face mask or equality of every facial pixel.",
+    "Alpha is exact everywhere. RGB is unchanged where alpha<240; near-opaque pixels with alpha 240 through 254 may change RGB.",
+    "The temporal diagnostic uses unaligned screen pixels with source RGB difference<=2, equal alpha>=250 and four near-opaque cardinal neighbors. It is not motion-compensated and is not a complete flicker or perceptual quality score.",
+    "Both candidates introduce additional RGB jumps on the evaluated source-stable pixels; threshold-sensitivity counts are retained without claiming a temporal improvement.",
+    "GIFs use fixed 256-color matte palettes and centisecond timing; RGBA atlases and source schedules are authoritative."
+  ]
+}
