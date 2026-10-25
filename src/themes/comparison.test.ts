@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
-import type { PortableCharacterPackManifest } from "../core/types";
+import type {
+  BakedCharacterRecipe,
+  PortableCharacterPackManifest,
+} from "../core/types";
 import {
   createThemeComparisonPlanes,
   THEME_COMPARISON_MAX_PIXELS,
+  sourcePixelComparisonScale,
 } from "./comparison";
 
 function geometry(
@@ -99,5 +103,263 @@ describe("bounded theme comparison geometry", () => {
       createThemeComparisonPlanes(geometry(400, 400, 200, 380), pixel, "right")
         .planes?.[1].sourceScale,
     ).toBe(2);
+  });
+});
+
+const sourceHash = "a".repeat(64);
+
+function sourcePixelFixture(wedding = false) {
+  const source = wedding
+    ? geometry(768, 1184, 384, 1126)
+    : geometry(704, 1056, 352, 998);
+  const padding = wedding
+    ? { left: 0, top: 2, right: 0, bottom: 6 }
+    : { left: 32, top: 130, right: 32, bottom: 6 };
+  const anchor = { x: 96, y: 282, units: "pixels", origin: "top-left" };
+  const metadata = {
+    version: 1,
+    method: "fixed-premultiplied-box4-shared128-v1",
+    sourceDivisor: 4,
+    sourceSha256: sourceHash,
+    sourceSize: [source.spritesheet.frameWidth, source.spritesheet.frameHeight],
+    sourceAnchor: { ...source.anchor, units: "pixels", origin: "top-left" },
+    sourcePadding: padding,
+    paddedSourceSize: [768, 1192],
+    nativeFrame: [192, 298],
+    anchor,
+    bodyTransform: {
+      scaleNumerator: 1,
+      scaleDenominator: 4,
+      translateSourcePixels: [padding.left, padding.top],
+    },
+  };
+  const current = {
+    manifest: {
+      ...geometry(192, 298, 96, 282, true),
+      schemaVersion: 4,
+      generator: "gathria-offline-source-pixel-full-v1",
+    } as PortableCharacterPackManifest,
+    config: {
+      format: "gathria-baked-character",
+      schemaVersion: 1,
+      name: "Source pixel comparison fixture",
+      characterId: "source-pixel-comparison-fixture",
+      source: {
+        kind: "unified-archive",
+        name: "original.character.zip",
+        sha256: sourceHash,
+      },
+      provenance: "Fixed quarter-scale processing of the declared source.",
+      derivation: {
+        method: "fixed-premultiplied-box4-shared128-v1",
+        frames: [{ frameId: 0, sourceFrame: 0, timeSeconds: 0 }],
+      },
+      sourceMetadata: { sourcePixelFull: metadata },
+    } as BakedCharacterRecipe,
+  };
+  const original = { manifest: source as PortableCharacterPackManifest };
+  return { current, original, metadata };
+}
+
+describe("source-derived pixel comparison geometry", () => {
+  it.each([false, true])(
+    "aligns source points exactly for wedding=%s without scaling transparent padding",
+    (wedding) => {
+      const { current, original, metadata } = sourcePixelFixture(wedding);
+      const scale = sourcePixelComparisonScale(current, original, sourceHash);
+      expect(scale).toBe(1 / 4);
+      for (const facing of ["right", "left"] as const) {
+        const planes = createThemeComparisonPlanes(
+          current.manifest,
+          original.manifest,
+          facing,
+          scale,
+        ).planes!;
+        expect(planes[0]).toMatchObject({
+          width: 192,
+          height: 298,
+          anchor: { x: 96, y: 282 },
+        });
+        expect(planes[1].sourceScale).toBe(1 / 4);
+        const sign = facing === "right" ? 1 : -1;
+        const point = { x: 300, y: 400 };
+        const mapped = {
+          x: (point.x + metadata.sourcePadding.left) / 4,
+          y: (point.y + metadata.sourcePadding.top) / 4,
+        };
+        expect(
+          planes[0].anchor.x + sign * (mapped.x - current.manifest.anchor.x),
+        ).toBe(
+          planes[1].anchor.x +
+            (sign * (point.x - original.manifest.anchor.x)) / 4,
+        );
+        expect(planes[0].anchor.y + mapped.y - current.manifest.anchor.y).toBe(
+          planes[1].anchor.y + (point.y - original.manifest.anchor.y) / 4,
+        );
+      }
+    },
+  );
+
+  it.each([
+    [
+      "unrelated archive",
+      (f) => {
+        f.current.config.source.sha256 = "b".repeat(64);
+      },
+    ],
+    [
+      "unrelated metadata",
+      (f) => {
+        f.metadata.sourceSha256 = "b".repeat(64);
+      },
+    ],
+    [
+      "unknown generator",
+      (f) => {
+        f.current.manifest.generator = "unknown-pixel-generator";
+      },
+    ],
+    [
+      "unknown metadata version",
+      (f) => {
+        f.metadata.version = 2;
+      },
+    ],
+    [
+      "wrong source divisor",
+      (f) => {
+        f.metadata.sourceDivisor = 8;
+      },
+    ],
+    [
+      "wrong source dimensions",
+      (f) => {
+        f.metadata.sourceSize[0]++;
+      },
+    ],
+    [
+      "wrong source anchor",
+      (f) => {
+        f.metadata.sourceAnchor.y++;
+      },
+    ],
+    [
+      "nonfinite padding",
+      (f) => {
+        f.metadata.sourcePadding.top = Infinity;
+      },
+    ],
+    [
+      "negative padding",
+      (f) => {
+        f.metadata.sourcePadding.left = -1;
+      },
+    ],
+    [
+      "fractional padding",
+      (f) => {
+        f.metadata.sourcePadding.bottom = 6.5;
+      },
+    ],
+    [
+      "wrong padded size",
+      (f) => {
+        f.metadata.paddedSourceSize[1]++;
+      },
+    ],
+    [
+      "wrong output size",
+      (f) => {
+        f.metadata.nativeFrame[1]++;
+      },
+    ],
+    [
+      "wrong output anchor",
+      (f) => {
+        f.metadata.anchor.y++;
+      },
+    ],
+    [
+      "wrong transform",
+      (f) => {
+        f.metadata.bodyTransform.translateSourcePixels[1]++;
+      },
+    ],
+    [
+      "missing metadata",
+      (f) => {
+        f.current.config.sourceMetadata = undefined;
+      },
+    ],
+    [
+      "pixel reference",
+      (f) => {
+        f.original.manifest.scale.pixelArt = true;
+      },
+    ],
+  ] satisfies Array<
+    [string, (fixture: ReturnType<typeof sourcePixelFixture>) => void]
+  >)("retains legacy normalization for %s", (_, change) => {
+    const fixture = sourcePixelFixture();
+    change(fixture);
+    const scale = sourcePixelComparisonScale(
+      fixture.current,
+      fixture.original,
+      sourceHash,
+    );
+    expect(scale).toBeUndefined();
+    expect(
+      createThemeComparisonPlanes(
+        fixture.current.manifest,
+        fixture.original.manifest,
+        "right",
+        scale,
+      ).planes?.[1].sourceScale,
+    ).toBe(298 / 1056);
+  });
+
+  it("leaves authored R2 comparison behavior unchanged", () => {
+    const fixture = sourcePixelFixture();
+    fixture.current.manifest = {
+      ...geometry(192, 272, 96, 251, true),
+      schemaVersion: 4,
+      generator: "gathria-authored-theme-v1",
+    } as PortableCharacterPackManifest;
+    const scale = sourcePixelComparisonScale(
+      fixture.current,
+      fixture.original,
+      sourceHash,
+    );
+    expect(scale).toBeUndefined();
+    const before = createThemeComparisonPlanes(
+      fixture.current.manifest,
+      fixture.original.manifest,
+      "right",
+    );
+    expect(
+      createThemeComparisonPlanes(
+        fixture.current.manifest,
+        fixture.original.manifest,
+        "right",
+        scale,
+      ),
+    ).toEqual(before);
+    expect(before.planes?.[1].sourceScale).toBe(272 / 1056);
+  });
+
+  it("rejects malformed reference hashes and unsafe explicit scales", () => {
+    const fixture = sourcePixelFixture();
+    expect(
+      sourcePixelComparisonScale(fixture.current, fixture.original, "unknown"),
+    ).toBeUndefined();
+    for (const scale of [0, -1, Infinity, NaN, 1_000_000])
+      expect(
+        createThemeComparisonPlanes(
+          fixture.current.manifest,
+          fixture.original.manifest,
+          "right",
+          scale,
+        ).planes,
+      ).toBeNull();
   });
 });

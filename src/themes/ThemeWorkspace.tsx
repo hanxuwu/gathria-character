@@ -47,6 +47,7 @@ import { themePreviewBacking } from "./preview-budget";
 import { assertPublishedThemeIdentity } from "./published";
 import {
   createThemeComparisonPlanes,
+  sourcePixelComparisonScale,
   type ComparisonPlane,
 } from "./comparison";
 import "./themes.css";
@@ -202,6 +203,7 @@ export default function ThemeWorkspace({
   const [reference, setReference] = useState<{
     character: KlingCharacterId;
     sourceSha256: string;
+    lookSha256: string;
     lookId: string;
     name: string;
     pack: LoadedCharacterPack;
@@ -540,6 +542,7 @@ export default function ThemeWorkspace({
         setReference({
           character,
           sourceSha256: bundle.manifest.reference.sourceSha256,
+          lookSha256: referenceLook.sha256,
           lookId: referenceLook.logicalId,
           name: referenceLook.name,
           pack: prepared,
@@ -722,12 +725,17 @@ export default function ThemeWorkspace({
     referencePlayback.referenceClip === referenceClip
       ? referencePlayback.position
       : themeComparisonPosition(clip, referenceClip, safePosition, playing);
+  const sourceReferenceScale =
+    compare && pack && referenceMatches
+      ? sourcePixelComparisonScale(pack, reference.pack, reference.lookSha256)
+      : undefined;
   const comparison =
     compare && pack && referenceMatches
       ? createThemeComparisonPlanes(
           pack.manifest,
           reference.pack.manifest,
           facing,
+          sourceReferenceScale,
         )
       : undefined;
   const planes = comparison?.planes;
@@ -1019,8 +1027,10 @@ export default function ThemeWorkspace({
           {compare && referenceMatches && !comparison?.unavailable && (
             <p className="theme-caption">
               Comparison follows each pack’s own drawings at the same action
-              phase. The original is scaled to this theme’s frame height and
-              both declared anchors are aligned; this is a presentation view.
+              phase.{" "}
+              {sourceReferenceScale === 1 / 4
+                ? "The original uses this theme’s fixed 1/4 source scale and both declared anchors are aligned."
+                : "The original is scaled to this theme’s frame height and both declared anchors are aligned; this is a presentation view."}{" "}
               Native PNGs retain each theme’s own size and anchor.
             </p>
           )}

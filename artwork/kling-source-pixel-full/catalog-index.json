@@ -1,0 +1,112 @@
+[
+  {
+    "key": "male:kling-source-pixel@1",
+    "name": "Source pixel",
+    "character": "male",
+    "description": "Original Kling anatomy and complete native motion, uniformly sampled into a shared 128-color pixel palette. Base and wedding looks.",
+    "isOriginal": false,
+    "file": "docs/kling-source-pixel-full/bundles/male-source-pixel.theme.zip",
+    "preview": "artwork/kling-source-pixel-full/prepared/male/preview.png",
+    "sha256": "1c66402b33df40d76c69ee41711a9c12810d633d8832d87bd59bac08f4e36f05",
+    "bytes": 4406695,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "kling-source-pixel",
+      "revision": 1,
+      "name": "Source pixel",
+      "character": "male",
+      "characterId": "kling-male-source-pixel-v1",
+      "rendering": "pixel",
+      "reference": {
+        "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+        "description": "Approved original Kling base and wedding looks, uniformly processed offline; complete native motion retained."
+      },
+      "provenance": "Source-derived full detail128 processing, version1: one shared fixed128-color palette, fixed aspect-preserving quarter scale, exact source schedules and transition metadata. Both original looks are baked independently; no AI redraw or runtime filter. Original/study assets remain unchanged.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Original tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "3c0af6dd16dbfc7dae63e56f52f3afcc56d3c6b453c6c051b09da5b847ff3a60"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "2d4656fe3000b36a0041254867799ab0f0c89a3ba9e7175956d81e20b0ca69d1"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-source-pixel-full/bundles/male-source-pixel-base.character.zip",
+        "sha256": "3c0af6dd16dbfc7dae63e56f52f3afcc56d3c6b453c6c051b09da5b847ff3a60",
+        "bytes": 1860412
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-source-pixel-full/bundles/male-source-pixel-wedding.character.zip",
+        "sha256": "2d4656fe3000b36a0041254867799ab0f0c89a3ba9e7175956d81e20b0ca69d1",
+        "bytes": 2544450
+      }
+    ],
+    "current": true
+  },
+  {
+    "key": "female:kling-source-pixel@1",
+    "name": "Source pixel",
+    "character": "female",
+    "description": "Original Kling anatomy and complete native motion, uniformly sampled into a shared 128-color pixel palette. Base and wedding looks.",
+    "isOriginal": false,
+    "file": "docs/kling-source-pixel-full/bundles/female-source-pixel.theme.zip",
+    "preview": "artwork/kling-source-pixel-full/prepared/female/preview.png",
+    "sha256": "3290aa3b88459e29739f44bdcf5d3f7f6157aca14a86816aa58fdfeaedee0db6",
+    "bytes": 5237039,
+    "manifest": {
+      "format": "gathria-character-theme",
+      "version": 1,
+      "id": "kling-source-pixel",
+      "revision": 1,
+      "name": "Source pixel",
+      "character": "female",
+      "characterId": "kling-female-source-pixel-v1",
+      "rendering": "pixel",
+      "reference": {
+        "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "description": "Approved original Kling base and wedding looks, uniformly processed offline; complete native motion retained."
+      },
+      "provenance": "Source-derived full detail128 processing, version1: one shared fixed128-color palette, fixed aspect-preserving quarter scale, exact source schedules and transition metadata. Both original looks are baked independently; no AI redraw or runtime filter. Original/study assets remain unchanged.",
+      "looks": [
+        {
+          "logicalId": "base",
+          "name": "Original tank & shorts",
+          "file": "look-0.character.zip",
+          "sha256": "1ef25a786fbe3cb15fbd1dd5877726aa23dcebaf696679e2518f5b83ff92af1f"
+        },
+        {
+          "logicalId": "wedding",
+          "name": "Wedding look",
+          "file": "look-1.character.zip",
+          "sha256": "ef71b8bc22ad955287823c5d50ab8fcafbdb2be0dfcf8d6ee6de07fdb42829d0"
+        }
+      ]
+    },
+    "lookAssets": [
+      {
+        "logicalId": "base",
+        "file": "docs/kling-source-pixel-full/bundles/female-source-pixel-base.character.zip",
+        "sha256": "1ef25a786fbe3cb15fbd1dd5877726aa23dcebaf696679e2518f5b83ff92af1f",
+        "bytes": 2015908
+      },
+      {
+        "logicalId": "wedding",
+        "file": "docs/kling-source-pixel-full/bundles/female-source-pixel-wedding.character.zip",
+        "sha256": "ef71b8bc22ad955287823c5d50ab8fcafbdb2be0dfcf8d6ee6de07fdb42829d0",
+        "bytes": 3219112
+      }
+    ],
+    "current": true
+  }
+]

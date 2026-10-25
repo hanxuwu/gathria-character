@@ -1,4 +1,5 @@
 import catalog from "../../artwork/kling-themes/catalog-index.json";
+import sourcePixelCatalog from "../../artwork/kling-source-pixel-full/catalog-index.json";
 import type { SourcePreparationOptions } from "../core/source-preparation";
 import { assertSourcePreparationActive } from "../core/source-preparation";
 import { BAKED_MAX_ARCHIVE_BYTES } from "../core/pack-v2";
@@ -60,9 +61,12 @@ const bundled = import.meta.glob<string>(
   [
     "../../docs/kling-themes/bundles/*.theme.zip",
     "../../docs/kling-themes/bundles/*.character.zip",
+    "../../docs/kling-source-pixel-full/bundles/*.theme.zip",
+    "../../docs/kling-source-pixel-full/bundles/*.character.zip",
     "../../docs/kling-motion/exports/*.character.zip",
     "../../docs/kling-paint-roundtrip/evidence/*-wedding-before.character.zip",
     "../../artwork/kling-themes/prepared/**/preview.png",
+    "../../artwork/kling-source-pixel-full/prepared/**/preview.png",
     "../../artwork/kling-jump/prepared/*-library-preview.png",
   ],
   { query: "?url&no-inline", import: "default", eager: true },
@@ -81,7 +85,7 @@ function asset(path: string): string {
 
 /** Catalog bytes are hash-bound; no theme silently follows a mutable latest URL. */
 export const THEME_CATALOG: ThemeCatalogEntry[] = (
-  catalog as PublishedCatalogRecord[]
+  [...catalog, ...sourcePixelCatalog] as PublishedCatalogRecord[]
 ).map((entry) => {
   const manifest = entry.manifest
     ? validateThemeManifest(entry.manifest)

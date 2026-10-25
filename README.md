@@ -29,12 +29,16 @@ retain the optional skeletal candidates.
 | `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export |
 
 `/workbench.html?character=male&mode=themes` opens **Character themes** directly;
-use `character=female` for the other character. Choose **Kling original** or
-**Pixel storybook**, then a **Theme look** (base or wedding). Both themes contain
-all five actions. Original restores the accepted source artwork; the pixel
-theme is independently authored artwork with its own native resolution and
-timing. Theme looks are complete painted variants, not automatically restyled
-wardrobe pieces. The existing wardrobe remains available for layer editing.
+use `character=female` for the other character. Choose **Kling original**,
+**Pixel storybook**, or **Source pixel**, then a **Theme look** (base or wedding).
+All three themes contain all five actions. Original restores the accepted source
+artwork. Pixel storybook is independently authored artwork with its own native
+resolution and timing. Source pixel uses a fixed grid and shared palette to
+process the retained original frames while preserving their schedules and holds;
+[the full source pixel review](docs/kling-source-pixel-full/README.md) documents
+its processing and limitations. Theme looks are complete baked variants, not
+automatically restyled wardrobe pieces. The existing wardrobe remains available
+for layer editing.
 [Theme usage, actual exports, compatibility and limitations](docs/kling-themes/README.md).
 
 `/workbench.html?character=female&mode=wardrobe` opens the female wardrobe;

@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-25",
+  "runtimeCommit": "636a7b071da5f1cf35466a3d54dc25111d90ef80",
+  "scope": "Executed for the full Source pixel continuation; historical study counts excluded.",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "passed": true
+    },
+    {
+      "command": "npx vitest run src/themes/catalog-assets.test.ts src/themes/source-pixel-study.test.ts src/consumer/player.test.ts",
+      "passed": true,
+      "tests": 35
+    },
+    {
+      "command": "npx vitest run src/themes/source-pixel-full.test.ts src/themes/comparison.test.ts",
+      "passed": true,
+      "tests": 30
+    },
+    {
+      "command": "npx vitest run src/themes/theme.test.ts src/themes/media.test.ts src/themes/motion-phase.test.ts src/consumer/motion-flow.test.ts src/core/pack-v4.test.ts",
+      "passed": true,
+      "tests": 55
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/themes.spec.ts tests/e2e/pixel-playback.spec.ts",
+      "passed": true,
+      "tests": 10
+    },
+    {
+      "command": "npm run build",
+      "passed": true
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium node scripts/capture-kling-source-pixel-full.mjs",
+      "passed": true,
+      "report": "evidence/capture.json"
+    },
+    {
+      "command": "/tmp/kling-polish-venv/bin/python scripts/verify-kling-source-pixel-full.py",
+      "passed": true,
+      "report": "validation.json"
+    }
+  ],
+  "visualAcceptance": "User review remains pending. Technical and selected visual inspections do not certify absence of every perceptual artifact."
+}
