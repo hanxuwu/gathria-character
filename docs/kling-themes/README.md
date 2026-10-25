@@ -1,5 +1,11 @@
 # Character themes
 
+**Source pixel** is now an additional opt-in theme covering both characters,
+base/wedding looks and all five original action schedules. It uses fixed offline
+sampling of the ordinary artwork. Original and Pixel storybook defaults remain
+unchanged. See the [full Source pixel review](../kling-source-pixel-full/README.md)
+for actual exports and the difference from the authored Pixel storybook theme.
+
 This batch adds a separate **Character themes** workspace for both Kling
 characters. It retains their original drawings and introduces an independently
 authored **Pixel storybook** theme. Both themes have a tank-and-shorts look and
