@@ -47,6 +47,7 @@ import {
   initialCharacterZoom,
   characterZoomChoices,
   pixelCharacterStage,
+  bakedPlaybackLabel,
 } from "./player";
 
 import {
@@ -1021,17 +1022,11 @@ export function PackPlayer() {
               <div className="player-baked-controls">
                 <p>
                   <strong>
-                    {pack?.manifest.schemaVersion === 4
-                      ? modifiedActions
-                        ? "Authored pixel artwork · edited action settings"
-                        : "Authored pixel artwork · baked playback"
-                      : modifiedActions
-                        ? "Original artwork · edited action settings"
-                        : motionStudy
-                          ? "Original artwork · motion & transitions study"
-                          : keyframeStudy
-                            ? "Original artwork · keyframe loop study"
-                            : "Original artwork · baked playback"}
+                    {bakedPlaybackLabel(pack!.manifest, {
+                      modifiedActions,
+                      motionStudy,
+                      keyframeStudy,
+                    })}
                   </strong>
                   <br />
                   These frames preserve the supplied character artwork.

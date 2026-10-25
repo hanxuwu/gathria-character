@@ -25,9 +25,12 @@ describe("isolated source pixel studies", () => {
             `docs/kling-source-pixel-study/bundles/${character}-${variant}.theme.zip`,
           ),
         );
-        const catalog = json(
-          await bytes("artwork/kling-themes/catalog-index.json"),
-        );
+        const catalog = [
+          ...json(await bytes("artwork/kling-themes/catalog-index.json")),
+          ...json(
+            await bytes("artwork/kling-source-pixel-full/catalog-index.json"),
+          ),
+        ];
         expect(
           catalog.some((entry: { key: string }) => entry.key === theme.key),
         ).toBe(false);

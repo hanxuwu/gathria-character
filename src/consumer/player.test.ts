@@ -10,6 +10,7 @@ import {
   pixelCharacterStage,
   PIXEL_STAGE_MAX_PIXELS,
   PIXEL_STAGE_MAX_DIMENSION,
+  bakedPlaybackLabel,
 } from "./player";
 
 const manifest: CharacterPackV2Manifest = {
@@ -41,6 +42,60 @@ const manifest: CharacterPackV2Manifest = {
   capabilities: { renderMode: "baked", editableAppearance: false },
   configuration: "character.json",
 };
+
+describe("baked artwork labels", () => {
+  it.each([
+    "gathria-offline-source-pixel-study-v1",
+    "gathria-offline-source-pixel-full-v1",
+  ])("identifies %s as source-derived pixel artwork", (generator) => {
+    const pixel = { schemaVersion: 4 as const, generator };
+    expect(bakedPlaybackLabel(pixel)).toBe(
+      "Source-derived pixel artwork · baked playback",
+    );
+    expect(bakedPlaybackLabel(pixel, { modifiedActions: true })).toBe(
+      "Source-derived pixel artwork · edited action settings",
+    );
+  });
+
+  it.each([
+    "gathria-authored-theme-v1",
+    "independent-pixel-author",
+    "gathria-offline-source-pixel-full-v1-unrecognized",
+  ])("retains the authored label for %s", (generator) => {
+    const pixel = { schemaVersion: 4 as const, generator };
+    expect(bakedPlaybackLabel(pixel)).toBe(
+      "Authored pixel artwork · baked playback",
+    );
+    expect(bakedPlaybackLabel(pixel, { modifiedActions: true })).toBe(
+      "Authored pixel artwork · edited action settings",
+    );
+  });
+
+  it("preserves smooth playback labels and their existing precedence", () => {
+    expect(bakedPlaybackLabel(manifest)).toBe(
+      "Original artwork · baked playback",
+    );
+    expect(bakedPlaybackLabel(manifest, { keyframeStudy: true })).toBe(
+      "Original artwork · keyframe loop study",
+    );
+    expect(
+      bakedPlaybackLabel(manifest, { motionStudy: true, keyframeStudy: true }),
+    ).toBe("Original artwork · motion & transitions study");
+    expect(
+      bakedPlaybackLabel(manifest, {
+        modifiedActions: true,
+        motionStudy: true,
+        keyframeStudy: true,
+      }),
+    ).toBe("Original artwork · edited action settings");
+    expect(
+      bakedPlaybackLabel({
+        schemaVersion: 3,
+        generator: "gathria-offline-source-pixel-full-v1",
+      }),
+    ).toBe("Original artwork · baked playback");
+  });
+});
 
 describe("independent metadata playback", () => {
   it("uses declared frame order and FPS, including IDs unrelated to array positions", () => {

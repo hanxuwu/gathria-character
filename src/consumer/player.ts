@@ -7,6 +7,39 @@ import type {
   SpriteFrame,
 } from "../core/types";
 
+/** Describe the supplied artwork without changing its portable metadata. */
+export function bakedPlaybackLabel(
+  manifest: Pick<PortableCharacterPackManifest, "schemaVersion" | "generator">,
+  {
+    modifiedActions = false,
+    motionStudy = false,
+    keyframeStudy = false,
+  }: {
+    modifiedActions?: boolean;
+    motionStudy?: boolean;
+    keyframeStudy?: boolean;
+  } = {},
+): string {
+  if (manifest.schemaVersion === 4) {
+    const sourceDerived =
+      manifest.generator === "gathria-offline-source-pixel-study-v1" ||
+      manifest.generator === "gathria-offline-source-pixel-full-v1";
+    const artwork = sourceDerived
+      ? "Source-derived pixel artwork"
+      : "Authored pixel artwork";
+    return `${artwork} · ${modifiedActions ? "edited action settings" : "baked playback"}`;
+  }
+  return `Original artwork · ${
+    modifiedActions
+      ? "edited action settings"
+      : motionStudy
+        ? "motion & transitions study"
+        : keyframeStudy
+          ? "keyframe loop study"
+          : "baked playback"
+  }`;
+}
+
 /** Only actions declared by a native source pack are available. */
 export function animationFor(
   manifest: PortableCharacterPackManifest,

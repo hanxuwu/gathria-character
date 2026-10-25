@@ -9,12 +9,16 @@ import type { ThemeManifest } from "./contract";
 const root = new URL("../../", import.meta.url);
 const sha = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
-const catalog = JSON.parse(
-  await readFile(
-    new URL("artwork/kling-themes/catalog-index.json", root),
-    "utf8",
-  ),
-) as Array<{
+const catalog = (
+  await Promise.all(
+    [
+      "artwork/kling-themes/catalog-index.json",
+      "artwork/kling-source-pixel-full/catalog-index.json",
+    ].map(async (file) =>
+      JSON.parse(await readFile(new URL(file, root), "utf8")),
+    ),
+  )
+).flat() as Array<{
   key: string;
   character: "male" | "female";
   file: string;
@@ -31,7 +35,7 @@ const catalog = JSON.parse(
   }>;
 }>;
 
-describe("published authored theme assets use the real runtime parser", () => {
+describe("published theme assets use the real runtime parser", () => {
   for (const entry of catalog) {
     it(`accepts the actual ${entry.key} theme and both complete looks`, async () => {
       const bytes = new Uint8Array(await readFile(new URL(entry.file, root)));
@@ -125,6 +129,10 @@ describe("published authored theme assets use the real runtime parser", () => {
         "6f712689a1f11f12db89a9f505a118bef09e409e23e5a5a89da2affc6a356f54",
       "female:kling-original@1":
         "14045433234209d5c7185dbff7690581d76257043c81dce1bef76c1a79954a3d",
+      "male:pixel-storybook@2":
+        "bef6d6983b5c438a467d3282cfd71edbe7eadcd2ee4acaa2700b3fa26af6aef8",
+      "female:pixel-storybook@2":
+        "a52d002bf6f8372d8cd003669b88faae709f242212856d63e77b982743e10022",
     };
     for (const [key, checksum] of Object.entries(immutable))
       expect(catalog.find((entry) => entry.key === key)?.sha256).toBe(checksum);
