@@ -1,0 +1,52 @@
+
+> gathria-character@0.1.0 test:e2e
+> playwright test tests/e2e/appearance.spec.ts tests/e2e/appearance-library.spec.ts tests/e2e/appearance-upgrade.spec.ts tests/e2e/expression-states.spec.ts tests/e2e/wardrobe-looks.spec.ts tests/e2e/wardrobe-gif.spec.ts tests/e2e/wardrobe-recipes.spec.ts tests/e2e/paint-roundtrip.spec.ts
+
+[WebServer] (node:860268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:860281) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 30 tests using 2 workers
+
+(node:860328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:860327) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/appearance-upgrade.spec.ts:65:1 › hair thumbnails and named swatches change the same persisted appearance selection (5.0s)
+  ✓   2 tests/e2e/appearance-library.spec.ts:4:1 › changing separate library banks keeps face/color and rejects a mismatched download without losing the accepted look (8.4s)
+  ✓   4 tests/e2e/appearance-library.spec.ts:58:1 › canceling a library download preserves the accepted pixels and a later retry succeeds (2.5s)
+  ✓   3 tests/e2e/appearance-upgrade.spec.ts:106:1 › older appearance previews without changing the open outfit and saves a separate usable copy (9.8s)
+  ✓   5 tests/e2e/appearance.spec.ts:8:1 › appearance loads on selection, stays independent of clothing and restores original pixels (6.0s)
+  ✓   6 tests/e2e/appearance-upgrade.spec.ts:294:3 › a current appearance is preserved without offering a catalog downgrade (2.8s)
+  ✓   8 tests/e2e/appearance-upgrade.spec.ts:294:3 › a custom appearance is preserved without offering a catalog downgrade (2.5s)
+  ✓   9 tests/e2e/appearance-upgrade.spec.ts:294:3 › a newer appearance is preserved without offering a catalog downgrade (2.0s)
+  ✓   7 tests/e2e/appearance.spec.ts:94:1 › appearance failures keep the accepted outfit, then V2 reopens offline and exports padded standalone playback (7.2s)
+  ✓  10 tests/e2e/appearance-upgrade.spec.ts:318:1 › a mismatched replacement download fails without changing the accepted project (3.0s)
+  ✓  11 tests/e2e/expression-states.spec.ts:56:3 › male: Natural, Gentle smile and Joyful have distinct fixture face pixels (2.7s)
+  ✓  12 tests/e2e/appearance-upgrade.spec.ts:364:1 › a V1 project adds head options only in an explicitly saved copy (2.4s)
+  ✓  14 tests/e2e/appearance-upgrade.spec.ts:410:1 › a catalog revision bound to another source is not offered to the saved project (2.2s)
+  ✓  13 tests/e2e/expression-states.spec.ts:56:3 › female: Natural, Gentle smile and Joyful have distinct fixture face pixels (2.9s)
+  ✓  16 tests/e2e/expression-states.spec.ts:112:1 › Joyful survives base/library hair changes, exact save/reopen and export with all actions (6.2s)
+  ✓  15 tests/e2e/appearance-upgrade.spec.ts:429:1 › leaving the wardrobe cancels a pending update and cannot open a stale modal (7.1s)
+  ✓  17 tests/e2e/expression-states.spec.ts:240:3 › an older saved natural face keeps its embedded bank when Joyful is published (5.2s)
+  ✓  18 tests/e2e/appearance-upgrade.spec.ts:488:1 › new character-specific hair is discoverable before loading while older embedded banks stay authoritative (5.6s)
+  ✓  19 tests/e2e/expression-states.spec.ts:240:3 › an older saved gentle face keeps its embedded bank when Joyful is published (4.8s)
+  ✓  20 tests/e2e/paint-roundtrip.spec.ts:58:1 › painted native kit previews without changing the accepted look, downloads provenance, applies, undoes and reopens exactly (5.2s)
+  ✓  21 tests/e2e/wardrobe-gif.spec.ts:6:1 › exports labeled original/current GIF panels at source speed and retains left/right panel order (2.9s)
+  ✓  22 tests/e2e/paint-roundtrip.spec.ts:113:1 › a bad later painted pose is rejected atomically and leaves styling history intact (3.7s)
+  ✓  23 tests/e2e/wardrobe-gif.spec.ts:64:1 › downloads actual dressed actions in both directions and a one-shot GIF without changing the outfit (3.4s)
+  ✓  25 tests/e2e/wardrobe-gif.spec.ts:126:1 › canceling GIF preparation keeps the current outfit and emits no download (2.4s)
+  ✓  24 tests/e2e/paint-roundtrip.spec.ts:136:1 › motion review retains loop and one-shot boundaries, seeks exact positions and exports mirrored native evidence (4.2s)
+  ✓  27 tests/e2e/wardrobe-recipes.spec.ts:8:1 › a larger lazy clothing catalog exports the exact selected authoring kit without loading unused items (3.4s)
+  ✓  28 tests/e2e/wardrobe-recipes.spec.ts:68:1 › a paintable pose kit exports the native layer, binary ownership and source anchors (3.2s)
+  ✓  26 tests/e2e/wardrobe-looks.spec.ts:6:1 › named clothes survive reload, restore action/facing and retain an exact local asset after catalog changes (8.2s)
+  ✓  29 tests/e2e/wardrobe-recipes.spec.ts:143:1 › neighbor painting kits retain action positions, loop boundaries and unique native source layers (2.3s)
+  ✓  30 tests/e2e/wardrobe-looks.spec.ts:82:1 › named hair and expression restore exactly, while an original look removes the appearance bank (3.7s)
+
+  30 passed (1.2m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

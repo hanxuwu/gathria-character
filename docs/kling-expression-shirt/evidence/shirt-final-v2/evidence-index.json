@@ -1,0 +1,364 @@
+{
+  "format": "gathria-expression-shirt-browser-evidence",
+  "version": 1,
+  "run": "shirt-final-v2",
+  "mode": "shirt-identity-roundtrip",
+  "production": true,
+  "startedAt": "2026-10-25T22:56:40.292Z",
+  "commitAtCapture": "ce4c38e82381a128e242e18c7296f647bad1ac54",
+  "worktreeStatusAtCapture": "M docs/kling-wardrobe/catalog.json\n M src/appearance/upgrade.test.ts\n M src/wardrobe/WardrobeEditor.tsx\n M src/wardrobe/catalog-assets.ts\n M tests/e2e/appearance-fixture.ts\n?? artwork/kling-expression-shirt/\n?? docs/kling-expression-shirt/\n?? docs/kling-expression/\n?? docs/kling-wardrobe/garments/male/midnight-sailor-v1.zip\n?? scripts/append-kling-expression-states.py\n?? scripts/capture-kling-expression-shirt.mjs\n?? scripts/kling_joyful_face.py\n?? scripts/prepare-kling-midnight-sailor.py\n?? scripts/publish-kling-expression-shirt.py\n?? scripts/verify-kling-expression-assets.py\n?? tests/e2e/expression-states.spec.ts",
+  "scriptSha256": "8661ade941f7e6280cb7b18385a8954d94e26cdaa07e2134b2483528103c0b0e",
+  "productionHtmlSha256": "e8b15c732be7ee9d22bd3f7ea2593f8f0819b15123e5de3083714ba05b7af11d",
+  "catalogSha256": "799432962db153c344b38f2dff4bdea0bae147a5b818ee220aa11f6d8e3b6936",
+  "compiledJsSha256": {
+    "dist/assets/GarmentCandidatePreview-CDusZh6q.js": "18b193928c0593140e874584a51ec846c9698413609f567c1a8268e43a5e2db9",
+    "dist/assets/MainNavigation-nywCuzk2.js": "9695fb4d811b6821a7c5086d83fdfe49d76c08ce1286111eb9617760ee7d8eb6",
+    "dist/assets/ReviewWorkbench-CbYeaoeG.js": "ef55e5013643f71005b6d566488c04bdb4759a04b8fddff3a0b9ad4a3c79530a",
+    "dist/assets/SpriteActionEditor-qf217tn3.js": "9124a65bc7953c00447a9404d6a920c8617bad33422edc6fac0540de5006aa11",
+    "dist/assets/ThemeWorkspace-DPgRs8C8.js": "5e79e50d6eff543bb131dc4ec4864d43ce91b5e567d7d4b2fb174272f04484ec",
+    "dist/assets/WardrobeEditor-L14rfDrX.js": "eb678c631e4685738889907ab39b84dcb5e4f2ddeb97b60112f7ea91ea166884",
+    "dist/assets/action-gif-Dp8d7_Ij.js": "f3ade14afc325c0d0afc95ee9f943d06f1b8f0e5173adb52971747db2cd3f476",
+    "dist/assets/baked-source-BhNIdMQM.js": "13da9942b57c243db213bc08776a990159be536bac5c9bdbe5ca0dcabd531551",
+    "dist/assets/bone-iaQDxQCv.js": "e81a683f5e779e3ea7a1099951525cd0492490d083298b10f62d1ff982281021",
+    "dist/assets/check-Zv5BcZbb.js": "f726eb18a8bfc59c0d4a3e036b20a9f2cae51bc8adee6d061f749fb9302ba40f",
+    "dist/assets/download-cache-BBmcpt03.js": "c15ecd466fc95d2df3c2d1295ba64353ae6d0968ccc709964afee033e8944496",
+    "dist/assets/kling-catalog-Ck3vONJQ.js": "2b8a0c33fb13cbf259d7ffc7d314440b47877befc6b0054ee09ec18e81f35c36",
+    "dist/assets/library-C0y-KQbQ.js": "633120c4a97d6700a639903ed3ffc7a9af48ba843796ebe161064b382039f58b",
+    "dist/assets/motion-flow-CHlvEDwU.js": "a8245db6a2e7fa5709fb9b0cad9c1690baebf60335d111ac300c9f4291809ed6",
+    "dist/assets/paint-import-CQ9IQ2Xp.js": "22ce9ae5a0944a36c9ab344722eef79efd6d5eb612a0771c67f0490d14a8ea8e",
+    "dist/assets/player-CpgRzpA5.js": "f5094bb8ea7e4f952aada85861b460df8900ae01357e25cda56f106bd273105b",
+    "dist/assets/player-D8NxTzrU.js": "68edd04211bb1839576e128bffd5d5384c2a30c4f98b69dd633ea156c1c9e85b",
+    "dist/assets/preload-helper-ckwbz45p.js": "b1cf8db666a7d7bfc05e8f8c93c4536728e9d086bf6f0270fa1fd0e607491519",
+    "dist/assets/sha2-wMxqvoJM.js": "15a75344860632f31bd4901304807973c9d43b21c5719da7ee3f8b531a240f32",
+    "dist/assets/skinStudio-CXyH33BS.js": "f48c01228ee8593b8baecdb68502c7ee88074a095c3fdf3bde774dd45224f4c0",
+    "dist/assets/source-preparation.worker-B-IXRhkx.js": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a",
+    "dist/assets/undo-2-ybmoXaiR.js": "7386769ad5634d67d8b2525afdc91889f50d4a4bdf73203c828f1d3c39f34062",
+    "dist/assets/upload-BR0sxg01.js": "26989461ff3f620310986d09866bce3d88176956f7dfce90d7dd3c27868089e4",
+    "dist/assets/workbench-tiaANe85.js": "4526e0edeb2aa5c0a152519cd86f192424caae4aba5a92ddecaf45e08601c47f",
+    "dist/assets/workspace-DVfoDZXd.js": "5ea90e1a54e0d47e83c59b1196511d8791f04e0ec95a421e2e1e088e14f6d4e7"
+  },
+  "catalogResponses": [
+    {
+      "character": "male",
+      "url": "http://127.0.0.1:5224/assets/catalog-Cp6TElwx.json",
+      "bytes": 33305,
+      "sha256": "799432962db153c344b38f2dff4bdea0bae147a5b818ee220aa11f6d8e3b6936"
+    }
+  ],
+  "scriptRequests": [
+    {
+      "url": "http://127.0.0.1:5224/assets/workbench-tiaANe85.js",
+      "independent": false,
+      "compiledSha256": "4526e0edeb2aa5c0a152519cd86f192424caae4aba5a92ddecaf45e08601c47f"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/MainNavigation-nywCuzk2.js",
+      "independent": false,
+      "compiledSha256": "9695fb4d811b6821a7c5086d83fdfe49d76c08ce1286111eb9617760ee7d8eb6"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/preload-helper-ckwbz45p.js",
+      "independent": false,
+      "compiledSha256": "b1cf8db666a7d7bfc05e8f8c93c4536728e9d086bf6f0270fa1fd0e607491519"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/kling-catalog-Ck3vONJQ.js",
+      "independent": false,
+      "compiledSha256": "2b8a0c33fb13cbf259d7ffc7d314440b47877befc6b0054ee09ec18e81f35c36"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/workspace-DVfoDZXd.js",
+      "independent": false,
+      "compiledSha256": "5ea90e1a54e0d47e83c59b1196511d8791f04e0ec95a421e2e1e088e14f6d4e7"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/bone-iaQDxQCv.js",
+      "independent": false,
+      "compiledSha256": "e81a683f5e779e3ea7a1099951525cd0492490d083298b10f62d1ff982281021"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/WardrobeEditor-L14rfDrX.js",
+      "independent": false,
+      "compiledSha256": "eb678c631e4685738889907ab39b84dcb5e4f2ddeb97b60112f7ea91ea166884"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/motion-flow-CHlvEDwU.js",
+      "independent": false,
+      "compiledSha256": "a8245db6a2e7fa5709fb9b0cad9c1690baebf60335d111ac300c9f4291809ed6"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/baked-source-BhNIdMQM.js",
+      "independent": false,
+      "compiledSha256": "13da9942b57c243db213bc08776a990159be536bac5c9bdbe5ca0dcabd531551"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/download-cache-BBmcpt03.js",
+      "independent": false,
+      "compiledSha256": "c15ecd466fc95d2df3c2d1295ba64353ae6d0968ccc709964afee033e8944496"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/upload-BR0sxg01.js",
+      "independent": false,
+      "compiledSha256": "26989461ff3f620310986d09866bce3d88176956f7dfce90d7dd3c27868089e4"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/undo-2-ybmoXaiR.js",
+      "independent": false,
+      "compiledSha256": "7386769ad5634d67d8b2525afdc91889f50d4a4bdf73203c828f1d3c39f34062"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/paint-import-CQ9IQ2Xp.js",
+      "independent": false,
+      "compiledSha256": "22ce9ae5a0944a36c9ab344722eef79efd6d5eb612a0771c67f0490d14a8ea8e"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5224/assets/GarmentCandidatePreview-CDusZh6q.js",
+      "independent": false,
+      "compiledSha256": "18b193928c0593140e874584a51ec846c9698413609f567c1a8268e43a5e2db9"
+    }
+  ],
+  "budgets": {
+    "retained": 500000000,
+    "temporary": 805306368,
+    "diskReserve": 134217728
+  },
+  "used": {
+    "retained": 6314251,
+    "temporary": 34184722
+  },
+  "scope": "Actual native PNG and action GIF UI downloads, portable project reopen, then standalone playback of actual exported ZIPs. Visual acceptance and face/ear ownership auditing are separate checks.",
+  "inputs": {
+    "docs/kling-motion/exports/male.character.zip": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+    "artwork/kling-expression-shirt/prepared/shirt/final-v1/midnight-sailor-template-v1.zip": "0ef3c824cabf957ff56faa576cc851142db7806aaf872ef69e606834ea85194f"
+  },
+  "downloads": [
+    {
+      "file": "../../tmp/kling-expression-shirt-shirt-final-v2/male-authoring-template.zip",
+      "kind": "template",
+      "bytes": 24030303,
+      "sha256": "411c636eaf487fb0ab3b4ae91938c96f9d3b87e342aa6ee73e90a3b012a1858e",
+      "temporary": true,
+      "actualUiDownload": true
+    },
+    {
+      "file": "../../tmp/kling-expression-shirt-shirt-final-v2/midnight-sailor-native-pose-kit.zip",
+      "kind": "kit",
+      "bytes": 5077218,
+      "sha256": "e46cfc7c918c9f97997b045cde287291d0992749412881fc8d1fc7d73418ad81",
+      "suggestedFilename": "midnight-sailor-template-v1-run-neighbors.clothing-recipe.zip",
+      "actualUiDownload": true,
+      "temporary": true
+    },
+    {
+      "file": "docs/kling-expression-shirt/evidence/shirt-final-v2/midnight-sailor-v1.zip",
+      "kind": "garment",
+      "bytes": 4858549,
+      "sha256": "6aecf0278c93d7afafc3d0c082784cb3aabf0d743670a3715a062b935a6173e9",
+      "suggestedFilename": "midnight-sailor-v1.garment.zip",
+      "actualUiDownload": true,
+      "temporary": false
+    },
+    {
+      "file": "docs/kling-expression-shirt/evidence/shirt-final-v2/midnight-sailor-paint-report.json",
+      "kind": "paint-report",
+      "bytes": 1785,
+      "sha256": "fd568a9e238c382f2b72599533a08842e327a0c71dce98a37003a267c7ac5073",
+      "suggestedFilename": "midnight-sailor-v1.paint-report.json",
+      "actualUiDownload": true,
+      "temporary": false
+    },
+    {
+      "file": "docs/kling-expression-shirt/evidence/shirt-final-v2/male-midnight-sailor-roundtrip-run-55-right.png",
+      "kind": "png",
+      "bytes": 277092,
+      "sha256": "ae482bb9ff978224ac01eb6f0ec249178def5008eddb70ef0de617debb669f0b",
+      "suggestedFilename": "kling-male-wardrobe-run-right-55.png",
+      "actualUiDownload": true,
+      "temporary": false,
+      "action": "run",
+      "frameId": 55,
+      "position": 4,
+      "facing": "right"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/kling-expression-shirt/evidence/shirt-final-v2/male-midnight-sailor-roundtrip.png",
+      "bytes": 620170,
+      "sha256": "60c29fe598f4426a13638e83d8db2a9652e0233909abe41779eff5ec968a6a0b",
+      "kind": "ui-screenshot",
+      "actualUiDownload": false
+    },
+    {
+      "file": "docs/kling-expression-shirt/evidence/shirt-final-v2/male-mobile.png",
+      "bytes": 556655,
+      "sha256": "edc4cdc5b5d5208801dbd64e5e7d5c8d710deebf160f77a2ebf48c2f285b52b7",
+      "kind": "ui-screenshot",
+      "actualUiDownload": false
+    }
+  ],
+  "matrix": [],
+  "gifs": [],
+  "projects": [],
+  "packs": [],
+  "playback": [],
+  "errors": [],
+  "consoleErrors": [],
+  "ignoredBrowserDiagnostics": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:5224/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "failedRequests": [],
+  "externalRequests": [],
+  "independentEditorRequests": [],
+  "passed": true,
+  "shirtRoundtrip": {
+    "input": "artwork/kling-expression-shirt/prepared/shirt/final-v1/midnight-sailor-template-v1.zip",
+    "inputSha256": "0ef3c824cabf957ff56faa576cc851142db7806aaf872ef69e606834ea85194f",
+    "catalogId": "midnight-sailor-v1",
+    "output": {
+      "file": "docs/kling-expression-shirt/evidence/shirt-final-v2/midnight-sailor-v1.zip",
+      "kind": "garment",
+      "bytes": 4858549,
+      "sha256": "6aecf0278c93d7afafc3d0c082784cb3aabf0d743670a3715a062b935a6173e9",
+      "suggestedFilename": "midnight-sailor-v1.garment.zip",
+      "actualUiDownload": true,
+      "temporary": false
+    },
+    "kit": {
+      "file": "../../tmp/kling-expression-shirt-shirt-final-v2/midnight-sailor-native-pose-kit.zip",
+      "kind": "kit",
+      "bytes": 5077218,
+      "sha256": "e46cfc7c918c9f97997b045cde287291d0992749412881fc8d1fc7d73418ad81",
+      "suggestedFilename": "midnight-sailor-template-v1-run-neighbors.clothing-recipe.zip",
+      "actualUiDownload": true,
+      "temporary": true
+    },
+    "renamedKit": "../../tmp/kling-expression-shirt-shirt-final-v2/midnight-sailor-identity-roundtrip.zip",
+    "renamedKitSha256": "be5f41d04e2eb42856cd4056dc5e08205ef01c8cbc6581654d41094706f0c94b",
+    "unchangedMembers": {
+      "base.garment.zip": "0ef3c824cabf957ff56faa576cc851142db7806aaf872ef69e606834ea85194f",
+      "registration.json": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "README.md": "49ff8ffbdb310de989730251c114a9bab3d05343190dafb5689e1487b69e6a55",
+      "pose-54.png": "41a3b8b2a21ef2c27f1797533c6ceb12929cb043b0c7b4ab860c7eb6f34ee7c4",
+      "mask-54.png": "c76fd899e91b433ce108f10f6606086cfb1d59e83e552b1bc8ff344c7829f954",
+      "pose-54-guide.json": "03890179e9854ffc010d538710dac376485c2fc6e8a37af42ded74bce831fc2b",
+      "pose-55.png": "f17b4ff794b355cc6c644d5c6fbdb346912276e8ae3299965211838a09081692",
+      "mask-55.png": "107e2c346ba2a96739262426d43b914cca0dbe0ed46fee071be29542f55b0572",
+      "pose-55-guide.json": "f0c212adb003f8fdc12443538f36adcf85609ec77c2c5e0dfe001ab5e392282f",
+      "pose-56.png": "0e2846514c8c78fe7f1579c1165c1a746fbee308d62261f6a3e476a6ee3f5599",
+      "mask-56.png": "b7088686ef99df6434be71117d81dd241bdc48a1bd1254dc3d7541278db6565f",
+      "pose-56-guide.json": "ab47117f2be77513bec6602fe8728f93ba4f384f29c541a876c69d4ce6cbb7b1",
+      "neighbors-guide.json": "269966751bd9ca99ca583db27d2636c2f482b65a61e0c411d22c5d63f7ff0f3a"
+    },
+    "recipeOnlyRename": true,
+    "changedRgbPixels": 0,
+    "noArtworkRepairClaimed": true,
+    "before": {
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "8a77e141759cd9c3aeff0d2544b2babb057ed32e8a4152f1edaaaa2f1209ee65"
+    },
+    "after": {
+      "width": 704,
+      "height": 1056,
+      "rgbaSha256": "8a77e141759cd9c3aeff0d2544b2babb057ed32e8a4152f1edaaaa2f1209ee65"
+    },
+    "paintReport": {
+      "format": "gathria-paint-import",
+      "version": 1,
+      "inputSha256": "be5f41d04e2eb42856cd4056dc5e08205ef01c8cbc6581654d41094706f0c94b",
+      "baseSha256": "0ef3c824cabf957ff56faa576cc851142db7806aaf872ef69e606834ea85194f",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "output": {
+        "id": "midnight-sailor-v1",
+        "name": "Midnight sailor shirt",
+        "sha256": "6aecf0278c93d7afafc3d0c082784cb3aabf0d743670a3715a062b935a6173e9"
+      },
+      "poses": [
+        {
+          "frameId": 54,
+          "changedPixels": 0,
+          "beforeRgbaSha256": "10e2c643f15f7df3e9944981df131ae4b1f27df4920a5d3c6b4a44bff17fab92",
+          "afterRgbaSha256": "10e2c643f15f7df3e9944981df131ae4b1f27df4920a5d3c6b4a44bff17fab92",
+          "inputPngSha256": "41a3b8b2a21ef2c27f1797533c6ceb12929cb043b0c7b4ab860c7eb6f34ee7c4"
+        },
+        {
+          "frameId": 55,
+          "changedPixels": 0,
+          "beforeRgbaSha256": "491898487c0d36f0c7b7489f4440c6a0eda210423f4fd1890fbc3fe74833f3ee",
+          "afterRgbaSha256": "491898487c0d36f0c7b7489f4440c6a0eda210423f4fd1890fbc3fe74833f3ee",
+          "inputPngSha256": "f17b4ff794b355cc6c644d5c6fbdb346912276e8ae3299965211838a09081692"
+        },
+        {
+          "frameId": 56,
+          "changedPixels": 0,
+          "beforeRgbaSha256": "3cd4152c35e934257bfbdaf6a104248b9081c9ccdddb0901800f9ea230febc2e",
+          "afterRgbaSha256": "3cd4152c35e934257bfbdaf6a104248b9081c9ccdddb0901800f9ea230febc2e",
+          "inputPngSha256": "0e2846514c8c78fe7f1579c1165c1a746fbee308d62261f6a3e476a6ee3f5599"
+        }
+      ],
+      "rules": "Raw RGB corrections within unchanged ownership. Exact alpha, native offsets and base PNG color metadata retained. No resampling, fitting or retiming. Edited PNG hashes recomputed; recipe hash must identify either the exported original or the supplied PNG."
+    }
+  },
+  "editorsClosedAt": "2026-10-25T22:57:01.036Z",
+  "finishedAt": "2026-10-25T22:57:01.085Z"
+}
