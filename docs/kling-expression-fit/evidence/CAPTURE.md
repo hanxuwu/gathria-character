@@ -66,4 +66,9 @@ The eight screenshots cover three reopens, two mobile layouts and three players.
 The helper preserves failed runs and records failures. A passing capture proves
 its recorded workflow and invariants; it does not itself establish artistic
 acceptance. The root handoff records the separate visual review and artifact
-audit. No capture has been run merely by creating this protocol.
+audit. The [final-v1 capture](final-v1/evidence-index.json) passed on 2026-10-26,
+with all 122 native PNGs, 30 GIFs, eight UI screenshots, three exact project
+reopens, three packs and 30 independent player cases. It recorded no application
+errors, failed asset requests, external requests or independent-player editor
+module requests. Retained capture bytes were 239,814,497; temporary projects
+were 186,434,425 bytes. The independent pixel audit is a separate result.

@@ -27,6 +27,8 @@ MAX_BYTES = 20 * 1024 * 1024
 FACE_IDS = (None, 'gentle', 'gentle-v2', 'joyful', 'joyful-v2')
 FACE_LABELS = ('Natural', 'Gentle v1', 'Gentle v2', 'Joyful v1', 'Joyful v2')
 FACE_CROPS = {'male': (282, 315, 582, 545), 'female': (282, 292, 582, 522)}
+JOYFUL_CROPS = {('male', 90): (340, 382, 590, 552), ('female', 90): (340, 362, 590, 532),
+               ('male', 102): (310, 365, 560, 535), ('female', 102): (310, 350, 560, 520)}
 # Source coordinates from the reviewed protected-neckline disclosure. These
 # rectangles select actual download pixels; no overlay changes the artwork.
 NECK_CROPS = {89: (275, 534, 475, 699), 90: (275, 445, 475, 610),
@@ -59,7 +61,7 @@ def opaque(image):
 
 
 class Review:
-    def __init__(self, index, output):
+    def __init__(self, index, output, refresh_links=False):
         self.index, self.output = index, output
         data = index.read_bytes()
         self.capture = json.loads(data)
@@ -67,7 +69,7 @@ class Review:
         require(self.capture.get('production') is True and self.capture['format'] == 'gathria-expression-fit-browser-evidence', 'Expected the final production expression/fit capture.')
         require(len(self.capture['matrix']) == 24 and len(self.capture['gifs']) == 30 and len(self.capture['packs']) == 3, 'Incomplete review matrix.')
         require(sum(row['kind'] == 'png' for row in self.capture['downloads']) == 122, 'Expected all 122 actual native PNGs.')
-        require(not output.exists() or not list(output.iterdir()), 'Preserve prior review; choose an empty output directory.')
+        require(refresh_links or not output.exists() or not list(output.iterdir()), 'Preserve prior review; choose an empty output directory.')
         self.downloads = {row['file']: row for row in self.capture['downloads']}
         require(len(self.downloads) == len(self.capture['downloads']), 'Duplicate actual-download paths.')
         self.sources, self.outputs = {}, []
@@ -80,6 +82,14 @@ class Review:
                          'actualUiDownload': False,
                          'scope': 'Offline arrangements of hash-checked actual production downloads; no new authoring or browser-export claims.',
                          'sources': self.sources, 'outputs': self.outputs}
+        if refresh_links:
+            previous = json.loads((output / 'index.json').read_bytes())
+            require(previous['captureIndexSha256'] == sha(data) and previous['reviewScriptSha256'] == sha(Path(__file__).read_bytes()), 'Link refresh requires the same capture and renderer.')
+            require(previous['visualCount'] == 8, 'Cannot refresh an incomplete review.')
+            for item in previous['outputs']:
+                require(sha((ROOT / item['file']).read_bytes()) == item['sha256'], 'A rendered review image changed.')
+            self.metadata = previous
+            self.sources, self.outputs = previous['sources'], previous['outputs']
         audit_path = ROOT / 'docs/kling-expression-fit/artifact-validation.json'
         if audit_path.is_file():
             audit_bytes = audit_path.read_bytes()
@@ -222,11 +232,19 @@ class Review:
         sections = []
         for character in ('male', 'female'):
             cells = []
-            for label, face in zip(FACE_LABELS, FACE_IDS):
+            for label, face in zip(FACE_LABELS[:3], FACE_IDS[:3]):
                 row = self.row(character=character, look='day', faceId=face)
                 crop, provenance = self.crop(row, 'idle', 0, FACE_CROPS[character])
                 cells.append((f'{character.title()} · {label} · frame 0', crop, provenance))
             sections.append((f'{character.title()} expressions · native PNG face details', cells))
+        for frame in (90, 102):
+            cells = []
+            for character in ('male', 'female'):
+                for version, face in [('v1', 'joyful'), ('v2', 'joyful-v2')]:
+                    row = self.row(character=character, look='day', faceId=face)
+                    crop, provenance = self.crop(row, 'jump', frame, JOYFUL_CROPS[(character, frame)])
+                    cells.append((f'{character.title()} · Joyful {version} · {frame}', crop, provenance))
+            sections.append((f'Joyful mouth softness · matching blurred native jump frame {frame}', cells))
         cells = []
         for action, frame, bounds in [('run', 59, (220, 470, 520, 680)), ('celebrate', 78, (210, 460, 510, 670))]:
             for version in ('v1', 'v2'):
@@ -269,7 +287,7 @@ class Review:
             path = self.output / f'actual-details-{scale}x.png'
             image.save(path, optimize=True)
             self.record(path, title=f'Native detail crops at {scale}×', scaleFromNativeExport=scale,
-                        resize='none' if scale == 1 else 'integer nearest-neighbor; includes labels',
+                        resize='none' if scale == 1 else 'integer nearest-neighbor artwork and section labels; scale heading rendered separately',
                         matte=list(MATTE), crops=crops,
                         note='Alpha composited on neutral matte. Gray neckline fragments are retained source/protection limits, not claimed fixed. PNG and CharacterPack crop origins are explicit.')
 
@@ -299,10 +317,11 @@ class Review:
                 figures.append(f'<section><h2>{html.escape(output["title"])}</h2><p>{html.escape(descriptions[name])}</p><a href="{name}"><img src="{name}" alt="{html.escape(output["title"], quote=True)}" loading="lazy"></a><p class="downloads">'+ ' · '.join(source_links)+'</p></section>')
         crop_inputs = next(row['crops'] for row in self.outputs if Path(row['file']).name == 'actual-details-1x.png')
         crop_links = ''.join('<li>'+link(row['file'], row['label']+' · original '+('CharacterPack' if row['kind'] == 'actual-characterpack-frame-crop' else 'PNG'))+'</li>' for row in crop_inputs)
-        details = '<section><h2>Native pixels and the remaining neckline limit</h2><p>The same actual face, shoulder and neckline crops are available at native size and integer 2×. Frame 103 is shown alongside 89, 90, 93, 101 and 102: original gray neckline fragments remain where the source protection contract blocks new cloth. Some legacy shoulder/boundary flecks also remain. These are visible limitations of the additive plum review garment.</p><p><a href="actual-details-1x.png">Open native 1× board</a> · <a href="actual-details-2x.png">Open integer 2× board</a></p><a href="actual-details-1x.png"><img src="actual-details-1x.png" alt="Actual native face, shoulder and protected neckline crops, including female frame 103" loading="lazy"></a><details><summary>Original PNG and CharacterPack crop inputs</summary><ul>'+crop_links+'</ul></details></section>'
+        details = '<section><h2>Native pixels and the remaining neckline limit</h2><p>The same actual face, shoulder and neckline crops are available at native size and integer 2×. Frame 103 is shown alongside 89, 90, 93, 101 and 102: original gray neckline fragments remain where the source protection contract blocks new cloth. The right-neck/chest wedge and its angular transition are particularly visible at frame 103. Some legacy shoulder/boundary flecks also remain. These are visible limitations of the additive plum review garment; the neckline is not claimed fixed.</p><p><a href="actual-details-1x.png">Open native 1× board</a> · <a href="actual-details-2x.png">Open integer 2× board</a></p><a href="actual-details-1x.png"><img src="actual-details-1x.png" alt="Actual native face, shoulder and protected neckline crops, including female frame 103" loading="lazy"></a><details><summary>Original PNG and CharacterPack crop inputs</summary><ul>'+crop_links+'</ul></details></section>'
         packs, delivered_links = [], []
         project_dir = ROOT / 'docs/kling-expression-fit/projects'
         for pack in self.capture['packs']:
+            self.source(pack['file'])
             project = next(row for row in self.capture['projects'] if row['key'] == pack['key'])
             delivered = [p for p in project_dir.glob('*.zip') if sha(p.read_bytes()) == project['sha256']] if project_dir.exists() else []
             project_link = link(rel(delivered[0]), 'Editable project download') if delivered else 'Saved/reopened project verified; temporary download is not published here.'
@@ -349,8 +368,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--index', type=Path, default=DEFAULT_INDEX)
     parser.add_argument('--output', type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument('--refresh-links', action='store_true', help='Refresh delivered-project/audit links for the same verified capture; leave all eight images unchanged.')
     args = parser.parse_args()
-    Review(args.index, args.output).render()
+    review = Review(args.index, args.output, args.refresh_links)
+    if args.refresh_links:
+        review.gallery()
+        (args.output / 'index.json').write_text(json.dumps(review.metadata, indent=2)+'\n')
+        print(json.dumps({'refreshedLinks': rel(args.output / 'index.html'), 'imagesUnchanged': True}))
+    else:
+        review.render()
 
 
 if __name__ == '__main__':

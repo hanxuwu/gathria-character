@@ -141,7 +141,7 @@ def selection_checks(evidence, catalog):
         require((row["appearance"]["hairId"], row["appearance"]["faceId"], row["appearance"]["hairColor"]) == (hair, face, "chestnut"), "Final saved face/hair differs")
 
 
-def pack_checks(evidence, catalog, report):
+def pack_checks(evidence, catalog, release, report):
     projects = {p["key"]: p for p in evidence["projects"]}
     for row in evidence["packs"]:
         print(f"Reconstructing every exported pack frame: {row['key']}", flush=True)
@@ -150,6 +150,9 @@ def pack_checks(evidence, catalog, report):
         pack = Archive(ROOT / row["file"])
         m, sm, doc = pack.manifest, project.source.manifest, project.doc
         entry = next(c for c in catalog["characters"] if c["key"] == row["character"])
+        bank_info = next(b["release"] for b in release["banks"] if b["character"] == row["character"] and any(s["id"] == doc["appearance"]["hairId"] for s in b["release"]["styles"]))
+        require(doc["appearance"]["bankSha256"] == bank_info["sha256"] == file_sha(ROOT / bank_info["url"].lstrip("/")), "Saved appearance bank differs from current selected release")
+        require({doc["appearance"]["hairId"], doc["appearance"]["faceId"]} <= {s["id"] for s in project.bank.manifest["styles"]}, "Saved bank omits a selected appearance style")
         saved_items = {i["id"]: i for i in doc["items"]}
         for item_id in {i for i in doc["selection"].values() if i}:
             catalog_item = next(i for i in entry["items"] if i["id"] == item_id)
@@ -172,17 +175,21 @@ def pack_checks(evidence, catalog, report):
         require(cfg["sourceMetadata"]["appearance"]["selection"] == doc["appearance"] == row["appearance"] == saved["appearance"], "Saved expression differs")
         require(doc["preview"] == saved["preview"] == {"action": "run", "facing": "left"}, "Saved preview settings differ")
         require(saved["exactReopen"] and saved["before"] == saved["after"] and row["exportedAfterReopen"] and saved["reopenedAt"] == row["reopenedAt"], "Exact reopen/export chronology missing")
-        frames = []
+        frames, matching_pngs = [], []
+        pngs = next(r["pngs"] for r in evidence["matrix"] if r["key"] == row["key"])
         for f in m["frames"]:
             actual = pack.frame(f["id"])
             expected = project.render(f["id"], doc["appearance"]["faceId"])
             require(actual.shape == expected.shape == (size[1], size[0], 4), "Pack frame geometry differs")
             require(np.array_equal(actual, expected), f"Independent reconstruction differs: {row['key']}/{f['id']}")
             require(np.any(actual[:, :, 3] == 0) and np.any(actual[:, :, 3] == 255), "Transparency lost")
+            for png in [p for p in pngs if p["frameId"] == f["id"]]:
+                require(np.array_equal(rgba((ROOT / png["file"]).read_bytes()), actual), "Same-look native PNG differs from exported pack frame")
+                matching_pngs.append(png["file"])
             frames.append({"frameId": f["id"], "rgbaSha256": sha(actual.tobytes()), "alphaSha256": sha(actual[:, :, 3].tobytes()), "exactProjectComposition": True})
         report["packs"].append({"key": row["key"], "file": row["file"], "project": saved["file"], "nativeSize": size, "padding": p,
                                 "sourceClocksAndFrameIdsExact": True, "sourceFrameTimeProvenanceExact": True, "geometryAnchorFacingExact": True,
-                                "savedSelectionAndReopenExact": True, "rgbaAndAlphaExactForEveryFrame": True, "frames": frames})
+                                "savedSelectionAndReopenExact": True, "rgbaAndAlphaExactForEveryFrame": True, "frames": frames, "nativePngsExact": matching_pngs})
         del project, pack, actual, expected
         gc.collect()
 
@@ -347,7 +354,7 @@ def main():
         for bank in character["banks"]:
             require(file_sha(ROOT / bank["file"]) == bank["sha256"] and file_sha(ROOT / bank["originalFile"]) == bank["originalSha256"], "Audited current/legacy bank changed")
     report["faceOwnershipAudit"] = {"file": str(asset_path.relative_to(ROOT)), "sha256": file_sha(asset_path), "sourcePoses": 184, "banks": 8}
-    pack_checks(evidence, catalog, report)
+    pack_checks(evidence, catalog, release, report)
     matrix_checks(evidence, catalog, release, report)
     playback_checks(evidence, report)
     report["summary"] = {"artifacts": len(report["artifacts"]), "packs": len(report["packs"]), "exactProjectFrames": sum(len(p["frames"]) for p in report["packs"]),
