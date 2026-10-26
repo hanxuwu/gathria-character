@@ -715,7 +715,7 @@ async function createVariant(page, c, baseline) {
       );
     }
     await d
-      .getByLabel("Pose review note", { exact: true })
+      .getByRole("textbox", { name: /^Pose review note/ })
       .fill(
         "Material-only workflow review: preserve source shape, ownership and alpha. This scripted acceptance is not user visual approval; review the exported motion and inherited edge softness.",
       );
@@ -981,16 +981,20 @@ async function checkCombinations(page, c) {
   await d
     .getByRole("combobox", { name: /^Review background/ })
     .selectOption("cream");
+  // Capture the actual comparison canvas, not a tall inspector element whose
+  // bounding box extends beyond the scrollable dialog and exposes the page.
+  const pairCanvas = inspector.locator(".combination-canvas");
+  await pairCanvas.scrollIntoViewIfNeeded();
   const shot = await screenshot(
     page,
     `${c.key}-combination-inspector.png`,
-    inspector,
+    pairCanvas,
   );
   const note = await visualNoteGate(c, shot, visual);
   await d
     .getByRole("combobox", { name: /^Sample review status/ })
     .selectOption(note.decision);
-  await d.getByLabel("Sample review note", { exact: true }).fill(note.note);
+  await d.getByRole("textbox", { name: /^Sample review note/ }).fill(note.note);
   const saved = await download(
     page,
     "Save combination report",
@@ -1015,9 +1019,9 @@ async function checkCombinations(page, c) {
   await expect(d.getByRole("alert")).toBeVisible({ timeout: 180000 });
   const rejection = await d.getByRole("alert").innerText();
   assert.deepEqual(await canvasHash(inspector.locator("canvas")), beforeImport);
-  await expect(d.getByLabel("Sample review note", { exact: true })).toHaveValue(
-    note.note,
-  );
+  await expect(
+    d.getByRole("textbox", { name: /^Sample review note/ }),
+  ).toHaveValue(note.note);
   await d
     .getByLabel("Combination report file", { exact: true })
     .setInputFiles(saved.path);
@@ -1029,9 +1033,9 @@ async function checkCombinations(page, c) {
   await expect(
     d.getByRole("combobox", { name: /^Sample review status/ }),
   ).toHaveValue(note.decision);
-  await expect(d.getByLabel("Sample review note", { exact: true })).toHaveValue(
-    note.note,
-  );
+  await expect(
+    d.getByRole("textbox", { name: /^Sample review note/ }),
+  ).toHaveValue(note.note);
   await d
     .getByRole("combobox", { name: /^Review region/ })
     .selectOption("full");
