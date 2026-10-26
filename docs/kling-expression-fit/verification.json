@@ -1,0 +1,140 @@
+{
+  "format": "gathria-expression-fit-verification",
+  "version": 1,
+  "baselineCommit": "2d6f147d763881f3af63be69ec6dcd86ba9914c2",
+  "recordedAt": "2026-10-26T01:24:15.719153+00:00",
+  "status": "implementation, production capture and independent artifact checks passed; visual review complete with documented limits; user acceptance pending",
+  "build": {
+    "passed": true,
+    "command": "npm run build",
+    "log": "logs/build.log",
+    "publishedAssets": "production-assets.json"
+  },
+  "unitTests": {
+    "passed": 398,
+    "failed": 0,
+    "files": 40,
+    "command": "npm test -- --maxWorkers=2",
+    "log": "logs/unit-final.log"
+  },
+  "browserTests": {
+    "passed": 22,
+    "failed": 0,
+    "newCases": 5,
+    "log": "logs/browser-regressions.log",
+    "kind": "fixture-backed controls, upgrade, save/reopen, export and library regression"
+  },
+  "sourceAssetAudits": {
+    "expressions": "../kling-expression-refined/asset-validation.json",
+    "sailor": "../../artwork/kling-sailor-refinement/final-v2/independent-validation.json",
+    "femaleTop": "../../artwork/kling-female-top/prepared/verification.json"
+  },
+  "catalogSha256": "b807e8a307cb75f3aa0fe7c5d6f62a38c572c782ca0a6afd7c77e4b744b018fb",
+  "baselinePreservation": "baseline-preservation.json",
+  "thumbnails": {
+    "passed": true,
+    "newPreviews": 3,
+    "oldRowsExact": 38,
+    "oldPngFilesExact": 76,
+    "record": "evidence/thumbnails-v3/capture-report.json",
+    "capture": "Vite development server, real UI downloads; asset requests transparently fetched and fulfilled with unchanged hash-verified server bytes.",
+    "priorFailedAttempts": [
+      "evidence/thumbnails-v1/capture-report.json",
+      "evidence/thumbnails-v2/capture-report.json"
+    ],
+    "note": "Earlier attempts failed helper provenance checks before preview publication; they are retained, not counted as successful captures."
+  },
+  "actualProductionCapture": {
+    "passed": true,
+    "record": "evidence/final-v1/evidence-index.json",
+    "sha256": "f50e0b0328fe9f16f2f405825fd874619eaa34d3eec5340f3e11206f094f9e6a",
+    "finishedAt": "2026-10-26T01:16:57.987Z",
+    "nativePngs": 122,
+    "gifs": 30,
+    "uiScreenshots": 8,
+    "exactProjectReopens": 3,
+    "characterPacks": 3,
+    "independentPlayerCases": 30,
+    "editorsClosedAt": "2026-10-26T01:15:31.967Z",
+    "applicationErrors": 0,
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "externalRequests": 0,
+    "playerEditorModuleRequests": 0,
+    "ignoredBrowserDiagnostics": [
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:5226/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ]
+  },
+  "userVisualAcceptance": "pending",
+  "knownLimits": [
+    "Female original gray neckline inside frozen head protection remains on poses89,90,93,101,102,103. New blouse is an additive review candidate.",
+    "Sailor pose104 retains a short angular collar termination from the fixed cut.",
+    "Gentle refinement is mouth-focused; source blinks/laughter and head identity remain.",
+    "New clothing uses existing sleeve-free/source-bound outlines, not arbitrary silhouette fitting."
+  ],
+  "scope": "No runtime generation, source retiming, shared validator relaxation or skeleton change.",
+  "implementationCommit": "fb428c136d42aa7db925504a720075ee72848e57",
+  "independentArtifactAudit": {
+    "passed": true,
+    "record": "artifact-validation.json",
+    "sha256": "2fff8b5e62a9703e5d8fd82904597cefc9aba3a4d28cf8c45bdf1295f5b3a121",
+    "artifacts": 166,
+    "packs": 3,
+    "exactProjectFrames": 280,
+    "exactNativePngs": 122,
+    "expressionAlphaAndOwnershipComparisons": 48,
+    "refinedVersusBaselineComparisons": 28,
+    "gifs": 30,
+    "exactMirrorPairs": 4,
+    "playbackCases": 30,
+    "method": "Independent Pillow/NumPy straight-RGBA reconstruction from recorded source, registered garments and appearance banks; no application rendering imports.",
+    "limitations": [
+      "Browser chronology is recorded by capture, not independently recreated offline.",
+      "GIF palette is lossy: per-frame grayscale nearest-pose and foreground RGB error checks use the retained verifier tolerances; tiny face correctness comes from lossless PNG and pack checks.",
+      "Canvas premultiplication may round translucent RGB; canvas digests are reported separately from exact native export comparisons.",
+      "Pixel reconstruction does not establish anatomical or artistic acceptance.",
+      "Retain all three temporary project downloads and captured production build to reproduce this audit."
+    ]
+  },
+  "review": {
+    "file": "review/index.html",
+    "index": "review/index.json",
+    "indexSha256": "71abedfea92e0488a813c7841a74d45ab3a4626006d70adc0d48afebdd3c21d1",
+    "visuals": 8,
+    "bytes": 14069934,
+    "actualExportArrangements": true,
+    "scope": "Review montages/crops of verified actual app downloads; original PNG/GIF/pack files retained. No character retouching.",
+    "observedImprovements": [
+      "Gentle v2 mouth is visibly fuller than Natural and Gentle v1.",
+      "Joyful v2 mouth follows blur in fast jump poses90/102.",
+      "Sailor v2 reduces repeated cream neckline strip and pale shoulder blending."
+    ],
+    "knownVisualLimitsShown": [
+      "Sailor fixed-cut angular termination in pose104.",
+      "Female protected original gray neckline in poses89,90,93,101,102,103."
+    ],
+    "userVisualAcceptance": "pending"
+  },
+  "deliveredProjects": {
+    "record": "projects/delivered-projects.json",
+    "sha256": "a2d6a1382b675eada0a4ade84b2067b46800569006ae458b71b9a30cf46ca3bc",
+    "retainedEditableProjects": 2,
+    "temporaryProjectsVerified": 3,
+    "characterPacksRetained": 3
+  },
+  "remoteCi": {
+    "implementationCommit": "fb428c136d42aa7db925504a720075ee72848e57",
+    "conclusion": "success",
+    "run": "https://github.com/hanxuwu/gathria-character/actions/runs/40252630209",
+    "scope": "Implementation commit only; delivery-head CI status is shown on PR45."
+  }
+}

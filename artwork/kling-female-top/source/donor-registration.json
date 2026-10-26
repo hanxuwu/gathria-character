@@ -1,0 +1,197 @@
+{
+  "donorSha256": "35fb26cca6752be936d85325d4eb2a1de4d417ab2cd4f42aa52b5ebaf6774c93",
+  "nativeFrame": [
+    704,
+    1056
+  ],
+  "donorClothPolygon": [
+    [
+      417,
+      729
+    ],
+    [
+      436,
+      718
+    ],
+    [
+      450,
+      717
+    ],
+    [
+      475,
+      733
+    ],
+    [
+      498,
+      756
+    ],
+    [
+      524,
+      776
+    ],
+    [
+      548,
+      788
+    ],
+    [
+      574,
+      794
+    ],
+    [
+      597,
+      791
+    ],
+    [
+      615,
+      780
+    ],
+    [
+      626,
+      763
+    ],
+    [
+      624,
+      747
+    ],
+    [
+      616,
+      732
+    ],
+    [
+      604,
+      721
+    ],
+    [
+      616,
+      725
+    ],
+    [
+      636,
+      741
+    ],
+    [
+      651,
+      765
+    ],
+    [
+      667,
+      790
+    ],
+    [
+      679,
+      815
+    ],
+    [
+      688,
+      840
+    ],
+    [
+      684,
+      866
+    ],
+    [
+      672,
+      884
+    ],
+    [
+      669,
+      911
+    ],
+    [
+      672,
+      941
+    ],
+    [
+      680,
+      976
+    ],
+    [
+      657,
+      984
+    ],
+    [
+      604,
+      992
+    ],
+    [
+      550,
+      993
+    ],
+    [
+      494,
+      985
+    ],
+    [
+      450,
+      974
+    ],
+    [
+      426,
+      960
+    ],
+    [
+      439,
+      936
+    ],
+    [
+      442,
+      916
+    ],
+    [
+      430,
+      892
+    ],
+    [
+      428,
+      872
+    ],
+    [
+      448,
+      862
+    ],
+    [
+      466,
+      845
+    ],
+    [
+      477,
+      824
+    ],
+    [
+      478,
+      801
+    ],
+    [
+      471,
+      778
+    ],
+    [
+      458,
+      752
+    ],
+    [
+      440,
+      737
+    ]
+  ],
+  "clothRule": "Trace, erode three donor pixels, exclude locally warm donor skin. Pad from plain plum inner cloth only. Generated donor alpha is ignored.",
+  "paintRegistration": "The existing 17 source anchors are immutable guides. The visible source cloth neckline dip calibrates a separate per-pose RGB map; source/donor top, neckline dip and sloped waist define two vertical sections. Each frame has recorded paint controls.",
+  "donorVerticalLandmarks": {
+    "top": 715,
+    "necklineDip": 794,
+    "hem": 993
+  },
+  "donorHorizontalAxis": {
+    "necklineDip": 578,
+    "waist": 565,
+    "width": 251
+  },
+  "poseSpecificPaint": "All96 native pose PNGs are explicit recipe overrides. Existing source crease shading contributes27percent of the local lighting factor. Original dark cloth boundary ink is preserved.",
+  "styleAdaptation": "Standing donor ivory binding failed to follow the moving source openings and was omitted at the first refinement. Cream buttons and pintuck art remain; final compatible blouse has plum binding. This does not hide or repaint the frozen protected gray neckline patches.",
+  "ownershipRepairs": "ownership-repairs.json; only62,102,112 get new visible original-cloth ownership. Other93 native frame/crop records remain exact.",
+  "limitations": [
+    "Fixed sleeveless source silhouette, no new body or sleeve geometry.",
+    "This is explicit per-pose RGB authoring, not an automatic fit for arbitrary standing art.",
+    "Original blurred neckline pixels inside strict head protection remain unchanged at89/90/93/101/102/103 and are a documented template constraint."
+  ]
+}

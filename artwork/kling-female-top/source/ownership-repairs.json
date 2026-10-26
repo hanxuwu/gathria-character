@@ -1,0 +1,21 @@
+{
+  "format": "gathria-pose-local-cloth-ownership-repairs",
+  "version": 1,
+  "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+  "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+  "policy": "New authoring derivative only. Original source, registration, released template and garments remain unchanged. Candidate pixels must be in the explicit native polygon, be visible neutral source cloth, outside old ownership, outside existing bottom ownership, and outside strict head/hand protection. Source alpha is copied exactly. No synthesized body or new silhouette.",
+  "sourceClothRule": {"minimumAlpha": 100, "redMinusGreenMaximum": 28, "redMinusBlueMaximum": 52, "redMinusBlueMinimum": -6, "redMinimum": 65, "redMaximum": 235},
+  "repairs": [
+    {"frameId":62,"polygon":[[294,692],[318,692],[348,699],[389,698],[425,693],[444,683],[447,718],[422,724],[380,722],[338,715],[309,709],[294,705]],"reason":"Visible original lower tank remains below the crossing forearm. The released tank/top mask includes only the upper island and omits this separate lower gray cloth island. End above the independently selected shorts."},
+    {"frameId":102,"polygon":[[280,603],[298,616],[303,643],[288,646],[282,635]],"reason":"Small visible gray cloth strip at the inner left armhole during blurred landing; restrict to source cloth outside protected skin and preserve source alpha."},
+    {"frameId":112,"polygon":[[284,649],[308,656],[307,694],[294,689]],"reason":"Visible original gray side cloth behind the lowered near hand; the old top mask leaves a disconnected cloth wedge. The local neutral-cloth rule excludes the warm hand."}
+  ],
+  "blockedSourceCloth": [
+    {"frameId":89,"probes":[[415,655],[433,644]],"reason":"Part of the blurred original neckline is inside the frozen head-protection polygon. Preserve it unchanged; the new top cannot claim these pixels."},
+    {"frameId":90,"probes":[[410,570]],"reason":"Original neutral neckline fringe is inside frozen head protection and remains unchanged."},
+    {"frameId":93,"probes":[[388,441]],"reason":"Small original neckline fringe is inside frozen head protection and remains unchanged."},
+    {"frameId":101,"probes":[[390,525],[364,516]],"reason":"Original blurred neckline cloth is inside frozen head protection and remains unchanged."},
+    {"frameId":102,"probes":[[381,600]],"reason":"Original blurred neckline cloth is inside frozen head protection and remains unchanged; the separate armhole correction does not alter it."},
+    {"frameId":103,"probes":[[437,650],[445,660]],"reason":"Part of the blurred original right neckline is inside the frozen head-protection polygon. Preserve it unchanged; the new top cannot claim these pixels."}
+  ]
+}

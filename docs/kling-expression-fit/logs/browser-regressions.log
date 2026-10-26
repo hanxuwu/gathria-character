@@ -1,0 +1,38 @@
+[WebServer] (node:878295) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:878308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 22 tests using 1 worker
+
+(node:878327) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/appearance-library.spec.ts:4:1 › changing separate library banks keeps face/color and rejects a mismatched download without losing the accepted look (5.5s)
+  ✓   2 tests/e2e/appearance-library.spec.ts:58:1 › canceling a library download preserves the accepted pixels and a later retry succeeds (2.0s)
+  ✓   3 tests/e2e/appearance-upgrade.spec.ts:65:1 › hair thumbnails and named swatches change the same persisted appearance selection (2.0s)
+  ✓   4 tests/e2e/appearance-upgrade.spec.ts:106:1 › older appearance previews without changing the open outfit and saves a separate usable copy (5.5s)
+  ✓   5 tests/e2e/appearance-upgrade.spec.ts:294:3 › a current appearance is preserved without offering a catalog downgrade (1.8s)
+  ✓   6 tests/e2e/appearance-upgrade.spec.ts:294:3 › a custom appearance is preserved without offering a catalog downgrade (2.0s)
+  ✓   7 tests/e2e/appearance-upgrade.spec.ts:294:3 › a newer appearance is preserved without offering a catalog downgrade (1.8s)
+  ✓   8 tests/e2e/appearance-upgrade.spec.ts:318:1 › a mismatched replacement download fails without changing the accepted project (2.1s)
+  ✓   9 tests/e2e/appearance-upgrade.spec.ts:364:1 › a V1 project adds head options only in an explicitly saved copy (1.9s)
+  ✓  10 tests/e2e/appearance-upgrade.spec.ts:410:1 › a catalog revision bound to another source is not offered to the saved project (1.5s)
+  ✓  11 tests/e2e/appearance-upgrade.spec.ts:429:1 › leaving the wardrobe cancels a pending update and cannot open a stale modal (5.2s)
+  ✓  12 tests/e2e/appearance-upgrade.spec.ts:488:1 › new character-specific hair is discoverable before loading while older embedded banks stay authoritative (3.1s)
+  ✓  13 tests/e2e/expression-refinement.spec.ts:67:3 › male: gentle-v2 survives hair banks, clothes, offline reopen and native pack export (4.1s)
+  ✓  14 tests/e2e/expression-refinement.spec.ts:67:3 › female: joyful-v2 survives hair banks, clothes, offline reopen and native pack export (4.1s)
+  ✓  15 tests/e2e/expression-refinement.spec.ts:182:3 › saved gentle retains its embedded legacy bank when refined expressions are published (2.9s)
+  ✓  16 tests/e2e/expression-refinement.spec.ts:182:3 › saved joyful retains its embedded legacy bank when refined expressions are published (3.0s)
+  ✓  17 tests/e2e/expression-refinement.spec.ts:224:1 › explicit appearance upgrade retains the old face until a refined style is selected (2.4s)
+  ✓  18 tests/e2e/expression-states.spec.ts:56:3 › male: Natural, Gentle smile and Joyful have distinct fixture face pixels (2.2s)
+  ✓  19 tests/e2e/expression-states.spec.ts:56:3 › female: Natural, Gentle smile and Joyful have distinct fixture face pixels (2.1s)
+  ✓  20 tests/e2e/expression-states.spec.ts:112:1 › Joyful survives base/library hair changes, exact save/reopen and export with all actions (4.2s)
+  ✓  21 tests/e2e/expression-states.spec.ts:240:3 › an older saved natural face keeps its embedded bank when Joyful is published (3.0s)
+  ✓  22 tests/e2e/expression-states.spec.ts:240:3 › an older saved gentle face keeps its embedded bank when Joyful is published (3.0s)
+
+  22 passed (1.1m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

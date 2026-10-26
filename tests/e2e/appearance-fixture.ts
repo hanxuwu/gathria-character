@@ -17,6 +17,7 @@ export async function installAppearanceFixture(
     expandedStyles?: boolean;
     libraryBank?: boolean;
     joyful?: boolean;
+    refinedExpressions?: boolean;
   } = {},
 ) {
   const fixtures = await installWardrobeFixture(page);
@@ -50,6 +51,7 @@ export async function installAppearanceFixture(
   const sha = (bytes: Uint8Array) =>
     createHash("sha256").update(bytes).digest("hex");
   for (const fixture of Object.values(fixtures)) {
+    const pageWidth = options.refinedExpressions ? 24 : 20;
     const registration: WardrobeRegistration = JSON.parse(
       new TextDecoder().decode(fixture.registrationBytes),
     );
@@ -86,7 +88,7 @@ export async function installAppearanceFixture(
         {
           file: "patches-0.png",
           maskFile: "ownership-0.png",
-          width: 20,
+          width: pageWidth,
           height: 2,
         },
       ],
@@ -145,8 +147,8 @@ export async function installAppearanceFixture(
       ],
       provenance: "Synthetic browser regression fixture. Not artwork evidence.",
     };
-    const legacyStyles = structuredClone(manifest.styles);
-    if (options.joyful) {
+    let legacyStyles = structuredClone(manifest.styles);
+    if (options.joyful || options.refinedExpressions) {
       const joyful = structuredClone(manifest.styles[2]);
       joyful.id = "joyful";
       joyful.name = "Joyful";
@@ -154,6 +156,21 @@ export async function installAppearanceFixture(
         if (frame.mode === "paint") frame.rect.x = 18;
       }
       manifest.styles.push(joyful);
+    }
+    if (options.refinedExpressions) {
+      legacyStyles = structuredClone(manifest.styles);
+      for (const [id, name, x] of [
+        ["gentle-v2", "Gentle smile · clearer", 20],
+        ["joyful-v2", "Joyful · softer", 22],
+      ] as const) {
+        const refined = structuredClone(manifest.styles[2]);
+        refined.id = id;
+        refined.name = name;
+        for (const frame of refined.layers[0].frames) {
+          if (frame.mode === "paint") frame.rect.x = x;
+        }
+        manifest.styles.push(refined);
+      }
     }
     if (options.expandedStyles) {
       // Reuse tiny fixture pixels to exercise metadata/UI, not new artwork.
@@ -169,13 +186,13 @@ export async function installAppearanceFixture(
       name,
       slot,
     }));
-    const pixels = new Uint8Array(20 * 2 * 4);
+    const pixels = new Uint8Array(pageWidth * 2 * 4);
     const ownership = new Uint8Array(pixels.length);
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < pageWidth * 2; i++) {
       pixels.set(
-        i % 20 < 8
+        i % pageWidth < 8
           ? [130, 75, 45, 255]
-          : i % 20 < 16
+          : i % pageWidth < 16
             ? [95, 55, 30, 255]
             : [225, 170, 120, 255],
         i * 4,
@@ -192,17 +209,25 @@ export async function installAppearanceFixture(
         // Distinct synthetic face pixels, not an example of accepted artwork.
         patchPixels.set([248, 208, 72, 255, 248, 208, 72, 255], 18 * 4);
       }
+      for (const [id, x, color] of [
+        ["gentle-v2", 20, [215, 158, 136, 255]],
+        ["joyful-v2", 22, [238, 178, 92, 255]],
+      ] as const) {
+        if (styles.some((style) => style.id === id)) {
+          patchPixels.set([...color, ...color], x * 4);
+        }
+      }
       return zipSync(
         {
           "manifest.json": strToU8(JSON.stringify({ ...manifest, id, styles })),
           "patches-0.png": encodeSourceRgbaPng({
-            width: 20,
+            width: pageWidth,
             height: 2,
             pixels: patchPixels,
             colorChunks: [],
           }),
           "ownership-0.png": encodeSourceRgbaPng({
-            width: 20,
+            width: pageWidth,
             height: 2,
             pixels: ownership,
             colorChunks: [],
@@ -212,8 +237,8 @@ export async function installAppearanceFixture(
       );
     };
     const previousPixels = new Uint8Array(pixels);
-    for (let i = 0; i < 40; i++) {
-      if (i % 20 < 16) previousPixels[i * 4] -= 30;
+    for (let i = 0; i < pageWidth * 2; i++) {
+      if (i % pageWidth < 16) previousPixels[i * 4] -= 30;
     }
     const current = makeBank(manifest.id, pixels);
     const previous = makeBank(
@@ -267,7 +292,9 @@ export async function installAppearanceFixture(
           appearanceBankUrl: `/fixture-appearance/${fixture.key}.zip`,
           appearanceRevision: revisions[fixture.key],
           appearanceLibraries: libraries[fixture.key],
-          ...(options.expandedStyles || options.joyful
+          ...(options.expandedStyles ||
+          options.joyful ||
+          options.refinedExpressions
             ? { appearanceStyles: catalogStyles[fixture.key] }
             : {}),
         })),

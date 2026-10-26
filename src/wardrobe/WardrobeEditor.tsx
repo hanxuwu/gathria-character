@@ -735,6 +735,16 @@ export default function WardrobeEditor({
     entry?.appearanceStyles,
     entry?.appearanceLibraries,
   );
+  const faceStyles = appearanceStyles.filter((style) => style.slot === "face");
+  const faceIds = new Set(faceStyles.map((style) => style.id));
+  const earlierFaces = faceStyles.filter(
+    (style) =>
+      (style.id === "gentle" && faceIds.has("gentle-v2")) ||
+      (style.id === "joyful" && faceIds.has("joyful-v2")),
+  );
+  const currentFaces = faceStyles.filter(
+    (style) => !earlierFaces.includes(style),
+  );
 
   useLayoutEffect(() => {
     if (!session || frameId === undefined || !canvas.current) return;
@@ -2045,13 +2055,32 @@ export default function WardrobeEditor({
                   }
                 >
                   <option value="">Natural (original)</option>
-                  {appearanceStyles
-                    .filter((style) => style.slot === "face")
-                    .map((style) => (
+                  {earlierFaces.length ? (
+                    <>
+                      <optgroup label="Current expressions">
+                        {currentFaces.map((style) => (
+                          <option key={style.id} value={style.id}>
+                            {style.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Earlier expressions">
+                        {earlierFaces.map((style) => (
+                          <option key={style.id} value={style.id}>
+                            {style.id === "gentle"
+                              ? "Gentle smile"
+                              : style.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                    </>
+                  ) : (
+                    faceStyles.map((style) => (
                       <option key={style.id} value={style.id}>
                         {style.id === "gentle" ? "Gentle smile" : style.name}
                       </option>
-                    ))}
+                    ))
+                  )}
                 </select>
               </label>
               <label className="wardrobe-slot">
@@ -2110,8 +2139,10 @@ export default function WardrobeEditor({
               </button>
               <p className="wardrobe-hint">
                 Hair and face choices stay with this character when you change
-                outfits. Natural keeps the original face. Gentle smile and Joyful
-                retain the original action blinks and laughter.
+                outfits. Natural keeps the original face. Gentle smile and
+                Joyful retain the original action blinks and laughter.
+                {earlierFaces.length > 0 &&
+                  " The refined smile is fuller; soft-motion Joyful follows the blur of fast movement. Earlier expressions remain available."}
                 Use Compare original to inspect the source face and movement.
               </p>
               {upgradeAvailability?.status === "available" &&
