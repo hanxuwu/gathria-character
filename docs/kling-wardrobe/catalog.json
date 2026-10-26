@@ -177,6 +177,13 @@
           "slot": "top",
           "url": "/docs/kling-wardrobe/garments/male/midnight-sailor-v1.zip",
           "sha256": "6aecf0278c93d7afafc3d0c082784cb3aabf0d743670a3715a062b935a6173e9"
+        },
+        {
+          "id": "midnight-sailor-v2",
+          "name": "Midnight sailor shirt \u00b7 refined collar",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/midnight-sailor-v2.zip",
+          "sha256": "1c0f7f2cb3538f87d1bf659f9dc96cae615ec64de4606e0278cc4cd2176604d3"
         }
       ],
       "presets": [
@@ -369,9 +376,19 @@
             "fullBody": null,
             "shoes": null
           }
+        },
+        {
+          "id": "midnight-sailor-refined",
+          "name": "Midnight sailor refined",
+          "selection": {
+            "top": "midnight-sailor-v2",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          }
         }
       ],
-      "appearanceBankUrl": "/docs/kling-expression/banks/male-base.zip",
+      "appearanceBankUrl": "/docs/kling-expression-refined/banks/male-base.zip",
       "appearanceStyles": [
         {
           "id": "soft-crop",
@@ -397,27 +414,38 @@
           "id": "joyful",
           "name": "Joyful",
           "slot": "face"
+        },
+        {
+          "id": "gentle-v2",
+          "name": "Gentle smile (refined)",
+          "slot": "face"
+        },
+        {
+          "id": "joyful-v2",
+          "name": "Joyful (soft motion)",
+          "slot": "face"
         }
       ],
       "appearanceRevision": {
         "characterId": "kling-male-motion-v1",
         "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
         "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
-        "bankId": "kling-male-appearance-v5-expressions-v1",
-        "bankSha256": "52a5cb2b485a2f99c41c3cae4296e06b07d784a78ef4bc9c6a35eac810485f8d",
+        "bankId": "kling-male-base-expressions-refined-v2",
+        "bankSha256": "f9cc499d7e07e545bfc20fe93e3f985c4d232281942fde6f7d210fd24f061bd7",
         "previousBankSha256s": [
           "3dc7c537beea678be7cf5e707713b755fbb0694aa441cb0579105c962aad6bef",
           "2da8187aca98d6245cc7fad1ac0b93b3a0bad52e175a35fc22f6c7c51e72a794",
           "f79a742a88eb5001418154307025303e91899c08058263e87ad54d8995c937f9",
           "0a443a618a9744650f3aa45168aa5469b396d5d07c9887e97428d50e77d629b3",
-          "8f45a4afb5900096f5fce9c0e505c1bef31398f159520889dd5c7495fb67fc67"
+          "8f45a4afb5900096f5fce9c0e505c1bef31398f159520889dd5c7495fb67fc67",
+          "52a5cb2b485a2f99c41c3cae4296e06b07d784a78ef4bc9c6a35eac810485f8d"
         ]
       },
       "appearanceLibraries": [
         {
-          "url": "/docs/kling-expression/banks/male-airy-tousle.zip",
-          "sha256": "c7a745cc95cf10fe75742e40f178bcf966ffec173c55b07e00a9be1183458786",
-          "bankId": "kling-male-airy-tousle-v5-expressions-v1",
+          "url": "/docs/kling-expression-refined/banks/male-airy-tousle.zip",
+          "sha256": "7e8d42eb1fb8cb25c3d8114b4b396af269cec990c51225b09fc40c46b5fe6d21",
+          "bankId": "kling-male-airy-tousle-expressions-refined-v2",
           "styles": [
             {
               "id": "airy-tousle",
@@ -433,17 +461,28 @@
               "id": "joyful",
               "name": "Joyful",
               "slot": "face"
+            },
+            {
+              "id": "gentle-v2",
+              "name": "Gentle smile (refined)",
+              "slot": "face"
+            },
+            {
+              "id": "joyful-v2",
+              "name": "Joyful (soft motion)",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
             "69da5fe0f14f58e09dfeda8c530cd7f252e3884803765003d1327a97579dec7d",
-            "fb4ad55ccd50324f1302281fb7cb6b8a8714a979d9435b11db29b17288a8bc34"
+            "fb4ad55ccd50324f1302281fb7cb6b8a8714a979d9435b11db29b17288a8bc34",
+            "c7a745cc95cf10fe75742e40f178bcf966ffec173c55b07e00a9be1183458786"
           ]
         },
         {
-          "url": "/docs/kling-expression/banks/male-soft-curls.zip",
-          "sha256": "0fd4536d5a3b84619b689e1c6de2fbf9a6c533d3d77d6f440a9f87db77592087",
-          "bankId": "kling-male-soft-curls-v1-expressions-v1",
+          "url": "/docs/kling-expression-refined/banks/male-soft-curls.zip",
+          "sha256": "580f8fef8fdd6f435279692c4ae7a448da7398d1c3e1587bcb68db13f6814895",
+          "bankId": "kling-male-soft-curls-expressions-refined-v2",
           "styles": [
             {
               "id": "soft-curls",
@@ -459,16 +498,27 @@
               "id": "joyful",
               "name": "Joyful",
               "slot": "face"
+            },
+            {
+              "id": "gentle-v2",
+              "name": "Gentle smile (refined)",
+              "slot": "face"
+            },
+            {
+              "id": "joyful-v2",
+              "name": "Joyful (soft motion)",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
-            "e90fda90e761fd34088fa8cfd73561f2664f8d3e749d007c02668922b6d74d7e"
+            "e90fda90e761fd34088fa8cfd73561f2664f8d3e749d007c02668922b6d74d7e",
+            "0fd4536d5a3b84619b689e1c6de2fbf9a6c533d3d77d6f440a9f87db77592087"
           ]
         },
         {
-          "url": "/docs/kling-expression/banks/male-swept-quiff.zip",
-          "sha256": "2fffe58a9c90d085840ea8009faaa6d8b820d17ab9136639118e2459e023e885",
-          "bankId": "kling-male-swept-quiff-v1-expressions-v1",
+          "url": "/docs/kling-expression-refined/banks/male-swept-quiff.zip",
+          "sha256": "8ddca3a62aad7b7d352c8d0e889aa415a1570c5091261e3e5217ff19568d213f",
+          "bankId": "kling-male-swept-quiff-expressions-refined-v2",
           "styles": [
             {
               "id": "swept-quiff",
@@ -484,10 +534,21 @@
               "id": "joyful",
               "name": "Joyful",
               "slot": "face"
+            },
+            {
+              "id": "gentle-v2",
+              "name": "Gentle smile (refined)",
+              "slot": "face"
+            },
+            {
+              "id": "joyful-v2",
+              "name": "Joyful (soft motion)",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
-            "1eff7dc7d4bfc48f02274a6d79af8d947715e43d919a605001d51e384144cf1d"
+            "1eff7dc7d4bfc48f02274a6d79af8d947715e43d919a605001d51e384144cf1d",
+            "2fffe58a9c90d085840ea8009faaa6d8b820d17ab9136639118e2459e023e885"
           ]
         }
       ]
@@ -676,6 +737,13 @@
           "url": "/docs/kling-wardrobe/garments/female/ivory-wedding-dress-v9.zip",
           "sha256": "bfd8aaa11cdcff5e314110b313f26619270b2dfc4b8c7bfebb24e79ef2b35c1f",
           "bytes": 9595802
+        },
+        {
+          "id": "plum-pintuck-top-v1",
+          "name": "Plum pintuck blouse",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/female/plum-pintuck-top-v1.zip",
+          "sha256": "547d1493690e4909b14dd84f8433dbe7ba3808caf144971a357b50612dc4455c"
         }
       ],
       "presets": [
@@ -888,9 +956,29 @@
             "fullBody": "ivory-celebration-dress-v3",
             "shoes": null
           }
+        },
+        {
+          "id": "plum-pintuck-day",
+          "name": "Plum pintuck day",
+          "selection": {
+            "top": "plum-pintuck-top-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "plum-pintuck-ochre",
+          "name": "Plum pintuck ochre",
+          "selection": {
+            "top": "plum-pintuck-top-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          }
         }
       ],
-      "appearanceBankUrl": "/docs/kling-expression/banks/female-base.zip",
+      "appearanceBankUrl": "/docs/kling-expression-refined/banks/female-base.zip",
       "appearanceStyles": [
         {
           "id": "soft-crop",
@@ -916,26 +1004,37 @@
           "id": "joyful",
           "name": "Joyful",
           "slot": "face"
+        },
+        {
+          "id": "gentle-v2",
+          "name": "Gentle smile (refined)",
+          "slot": "face"
+        },
+        {
+          "id": "joyful-v2",
+          "name": "Joyful (soft motion)",
+          "slot": "face"
         }
       ],
       "appearanceRevision": {
         "characterId": "kling-female-motion-v1",
         "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
         "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
-        "bankId": "kling-female-appearance-v4-expressions-v1",
-        "bankSha256": "71067396fa1d9772f01acb9ac5c023e57a79eee780ffd1077fa35b9b48e18b26",
+        "bankId": "kling-female-base-expressions-refined-v2",
+        "bankSha256": "d8b137b124372186ea6e1953e7c81b1c5115571bffce373e57edc71a8c3702c8",
         "previousBankSha256s": [
           "2cb788fcbe9bd623b57ccb3cb7385199a7bd04213af2c726e12c738d219e84fa",
           "257098ca3777d56fbbb1bd261eba65c0374d52b6917aaea333e808df447de3e6",
           "bce748e1e8afea823e23e51b15491d8f02f9ba4d04e3cb53f18ca8c77e8a1ee9",
-          "c4f7cf6e8980d73c0de2a46a1bc101caa0dab8d639c587545488b4654d69a714"
+          "c4f7cf6e8980d73c0de2a46a1bc101caa0dab8d639c587545488b4654d69a714",
+          "71067396fa1d9772f01acb9ac5c023e57a79eee780ffd1077fa35b9b48e18b26"
         ]
       },
       "appearanceLibraries": [
         {
-          "url": "/docs/kling-expression/banks/female-romantic-waves.zip",
-          "sha256": "cbdc1383951ec7b50b68ca5847def4ad0695f79f5afeee08ba75abbbb58261ae",
-          "bankId": "kling-female-romantic-waves-v1-expressions-v1",
+          "url": "/docs/kling-expression-refined/banks/female-romantic-waves.zip",
+          "sha256": "c6fa83491a6fc5e5a51ae22db8f5adb676a03a4a53c6b1ea40792532787e4c91",
+          "bankId": "kling-female-romantic-waves-expressions-refined-v2",
           "styles": [
             {
               "id": "romantic-waves",
@@ -951,16 +1050,27 @@
               "id": "joyful",
               "name": "Joyful",
               "slot": "face"
+            },
+            {
+              "id": "gentle-v2",
+              "name": "Gentle smile (refined)",
+              "slot": "face"
+            },
+            {
+              "id": "joyful-v2",
+              "name": "Joyful (soft motion)",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
-            "a53eee66109b04968a685db33e09ddeeeebcd6f0ad98c34f15e3b29cc46675fd"
+            "a53eee66109b04968a685db33e09ddeeeebcd6f0ad98c34f15e3b29cc46675fd",
+            "cbdc1383951ec7b50b68ca5847def4ad0695f79f5afeee08ba75abbbb58261ae"
           ]
         },
         {
-          "url": "/docs/kling-expression/banks/female-ribbon-pony.zip",
-          "sha256": "910ca837c9b1edfeac671fd2259addc9140e906419245e36828cf36bceb37c26",
-          "bankId": "kling-female-ribbon-pony-v5-expressions-v1",
+          "url": "/docs/kling-expression-refined/banks/female-ribbon-pony.zip",
+          "sha256": "917cb711fe5e41690ae842a1af99818e7c902f6d78eda1e9dc3f73931536af10",
+          "bankId": "kling-female-ribbon-pony-expressions-refined-v2",
           "styles": [
             {
               "id": "ribbon-pony",
@@ -976,6 +1086,16 @@
               "id": "joyful",
               "name": "Joyful",
               "slot": "face"
+            },
+            {
+              "id": "gentle-v2",
+              "name": "Gentle smile (refined)",
+              "slot": "face"
+            },
+            {
+              "id": "joyful-v2",
+              "name": "Joyful (soft motion)",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
@@ -983,13 +1103,14 @@
             "706e9a5e833c573517564f9915bdab717a5742b3c19842c67078527a4da888e8",
             "d3e5e5b2d1f6b343aa6176eba83c0a10e4acf28671458c30cd7e03512fab22c7",
             "1553568d6a804dec3b202ac7e8db90af3bbde0c8a42abe4b68367b75e6d09c85",
-            "9d2baa5937ed6b25c06c6f88b1b63abf227ee685d0613ce30822a0fccc392180"
+            "9d2baa5937ed6b25c06c6f88b1b63abf227ee685d0613ce30822a0fccc392180",
+            "910ca837c9b1edfeac671fd2259addc9140e906419245e36828cf36bceb37c26"
           ]
         },
         {
-          "url": "/docs/kling-expression/banks/female-braided-crown.zip",
-          "sha256": "373a889839ce6cfa773ff0060b4ef22cbf36625d9f53599b3d7ccd395008fa4a",
-          "bankId": "kling-female-braided-crown-v1-expressions-v1",
+          "url": "/docs/kling-expression-refined/banks/female-braided-crown.zip",
+          "sha256": "7e54ac18a808846c03369db0cc1a686b5391559bec7f4fcf1101949a6f2cd8bb",
+          "bankId": "kling-female-braided-crown-expressions-refined-v2",
           "styles": [
             {
               "id": "braided-crown",
@@ -1005,10 +1126,21 @@
               "id": "joyful",
               "name": "Joyful",
               "slot": "face"
+            },
+            {
+              "id": "gentle-v2",
+              "name": "Gentle smile (refined)",
+              "slot": "face"
+            },
+            {
+              "id": "joyful-v2",
+              "name": "Joyful (soft motion)",
+              "slot": "face"
             }
           ],
           "previousBankSha256s": [
-            "0ac0208180fb646fc9905398db762e88d6b008d17acf34c7b0735a1c24959f2f"
+            "0ac0208180fb646fc9905398db762e88d6b008d17acf34c7b0735a1c24959f2f",
+            "373a889839ce6cfa773ff0060b4ef22cbf36625d9f53599b3d7ccd395008fa4a"
           ]
         }
       ]

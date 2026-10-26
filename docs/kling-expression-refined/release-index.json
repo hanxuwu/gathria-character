@@ -1,0 +1,501 @@
+{
+  "format": "gathria-expression-refinement-release",
+  "version": 1,
+  "baselineIndex": "/docs/kling-expression/release-index.json",
+  "baselineIndexSha256": "5c4e727321baef9e8cdb2e28387f1e7482decc5662128cd2a69bc8e0d5bad73d",
+  "selection": {
+    "natural": null,
+    "gentle": "gentle",
+    "joyful": "joyful",
+    "gentleRefined": "gentle-v2",
+    "joyfulSoftMotion": "joyful-v2"
+  },
+  "joyfulChangedFrameIds": [
+    88,
+    89,
+    90,
+    91,
+    100,
+    101,
+    102,
+    103
+  ],
+  "banks": [
+    {
+      "character": "male",
+      "kind": "base",
+      "original": {
+        "url": "/docs/kling-expression/banks/male-base.zip",
+        "sha256": "52a5cb2b485a2f99c41c3cae4296e06b07d784a78ef4bc9c6a35eac810485f8d",
+        "bankId": "kling-male-appearance-v5-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/male-base.zip",
+        "sha256": "f9cc499d7e07e545bfc20fe93e3f985c4d232281942fde6f7d210fd24f061bd7",
+        "bankId": "kling-male-base-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "soft-crop",
+            "name": "Soft crop",
+            "slot": "hair"
+          },
+          {
+            "id": "soft-bob",
+            "name": "Soft bob",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "side-part",
+            "name": "Side part",
+            "slot": "hair"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 8,
+      "totalPixels": 65946624,
+      "addedPixelCount": 883456,
+      "bytes": 46688431,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 7,
+        "width": 1792,
+        "oldHeight": 1823,
+        "height": 2316
+      }
+    },
+    {
+      "character": "male",
+      "kind": "library",
+      "original": {
+        "url": "/docs/kling-expression/banks/male-airy-tousle.zip",
+        "sha256": "c7a745cc95cf10fe75742e40f178bcf966ffec173c55b07e00a9be1183458786",
+        "bankId": "kling-male-airy-tousle-v5-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/male-airy-tousle.zip",
+        "sha256": "7e8d42eb1fb8cb25c3d8114b4b396af269cec990c51225b09fc40c46b5fe6d21",
+        "bankId": "kling-male-airy-tousle-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "airy-tousle",
+            "name": "Airy tousle",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 2,
+      "totalPixels": 25175040,
+      "addedPixelCount": 883456,
+      "bytes": 19083969,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 1,
+        "width": 1792,
+        "oldHeight": 1823,
+        "height": 2316
+      }
+    },
+    {
+      "character": "male",
+      "kind": "library",
+      "original": {
+        "url": "/docs/kling-expression/banks/male-soft-curls.zip",
+        "sha256": "0fd4536d5a3b84619b689e1c6de2fbf9a6c533d3d77d6f440a9f87db77592087",
+        "bankId": "kling-male-soft-curls-v1-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/male-soft-curls.zip",
+        "sha256": "580f8fef8fdd6f435279692c4ae7a448da7398d1c3e1587bcb68db13f6814895",
+        "bankId": "kling-male-soft-curls-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "soft-curls",
+            "name": "Soft curls",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 2,
+      "totalPixels": 21640192,
+      "addedPixelCount": 883456,
+      "bytes": 18384858,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 1,
+        "width": 1792,
+        "oldHeight": 1823,
+        "height": 2316
+      }
+    },
+    {
+      "character": "male",
+      "kind": "library",
+      "original": {
+        "url": "/docs/kling-expression/banks/male-swept-quiff.zip",
+        "sha256": "2fffe58a9c90d085840ea8009faaa6d8b820d17ab9136639118e2459e023e885",
+        "bankId": "kling-male-swept-quiff-v1-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/male-swept-quiff.zip",
+        "sha256": "8ddca3a62aad7b7d352c8d0e889aa415a1570c5091261e3e5217ff19568d213f",
+        "bankId": "kling-male-swept-quiff-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "swept-quiff",
+            "name": "Swept quiff",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 2,
+      "totalPixels": 25863168,
+      "addedPixelCount": 883456,
+      "bytes": 18440218,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 1,
+        "width": 1792,
+        "oldHeight": 1823,
+        "height": 2316
+      }
+    },
+    {
+      "character": "female",
+      "kind": "base",
+      "original": {
+        "url": "/docs/kling-expression/banks/female-base.zip",
+        "sha256": "71067396fa1d9772f01acb9ac5c023e57a79eee780ffd1077fa35b9b48e18b26",
+        "bankId": "kling-female-appearance-v4-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/female-base.zip",
+        "sha256": "d8b137b124372186ea6e1953e7c81b1c5115571bffce373e57edc71a8c3702c8",
+        "bankId": "kling-female-base-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "soft-crop",
+            "name": "Soft crop",
+            "slot": "hair"
+          },
+          {
+            "id": "soft-bob",
+            "name": "Soft bob",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "tucked-bun",
+            "name": "Tucked bun",
+            "slot": "hair"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 7,
+      "totalPixels": 64819200,
+      "addedPixelCount": 1112064,
+      "bytes": 48620105,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 6,
+        "width": 2048,
+        "oldHeight": 1894,
+        "height": 2437
+      }
+    },
+    {
+      "character": "female",
+      "kind": "library",
+      "original": {
+        "url": "/docs/kling-expression/banks/female-romantic-waves.zip",
+        "sha256": "cbdc1383951ec7b50b68ca5847def4ad0695f79f5afeee08ba75abbbb58261ae",
+        "bankId": "kling-female-romantic-waves-v1-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/female-romantic-waves.zip",
+        "sha256": "c6fa83491a6fc5e5a51ae22db8f5adb676a03a4a53c6b1ea40792532787e4c91",
+        "bankId": "kling-female-romantic-waves-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "romantic-waves",
+            "name": "Romantic waves",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 5,
+      "totalPixels": 47590400,
+      "addedPixelCount": 1112064,
+      "bytes": 36563421,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 4,
+        "width": 2048,
+        "oldHeight": 1894,
+        "height": 2437
+      }
+    },
+    {
+      "character": "female",
+      "kind": "library",
+      "original": {
+        "url": "/docs/kling-expression/banks/female-ribbon-pony.zip",
+        "sha256": "910ca837c9b1edfeac671fd2259addc9140e906419245e36828cf36bceb37c26",
+        "bankId": "kling-female-ribbon-pony-v5-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/female-ribbon-pony.zip",
+        "sha256": "917cb711fe5e41690ae842a1af99818e7c902f6d78eda1e9dc3f73931536af10",
+        "bankId": "kling-female-ribbon-pony-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "ribbon-pony",
+            "name": "Ribbon pony",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 6,
+      "totalPixels": 57577472,
+      "addedPixelCount": 1112064,
+      "bytes": 37356947,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 5,
+        "width": 2048,
+        "oldHeight": 1894,
+        "height": 2437
+      }
+    },
+    {
+      "character": "female",
+      "kind": "library",
+      "original": {
+        "url": "/docs/kling-expression/banks/female-braided-crown.zip",
+        "sha256": "373a889839ce6cfa773ff0060b4ef22cbf36625d9f53599b3d7ccd395008fa4a",
+        "bankId": "kling-female-braided-crown-v1-expressions-v1"
+      },
+      "release": {
+        "url": "/docs/kling-expression-refined/banks/female-braided-crown.zip",
+        "sha256": "7e54ac18a808846c03369db0cc1a686b5391559bec7f4fcf1101949a6f2cd8bb",
+        "bankId": "kling-female-braided-crown-expressions-refined-v2",
+        "styles": [
+          {
+            "id": "braided-crown",
+            "name": "Braided crown",
+            "slot": "hair"
+          },
+          {
+            "id": "gentle",
+            "name": "Gentle",
+            "slot": "face"
+          },
+          {
+            "id": "joyful",
+            "name": "Joyful",
+            "slot": "face"
+          },
+          {
+            "id": "gentle-v2",
+            "name": "Gentle smile (refined)",
+            "slot": "face"
+          },
+          {
+            "id": "joyful-v2",
+            "name": "Joyful (soft motion)",
+            "slot": "face"
+          }
+        ]
+      },
+      "pageCount": 6,
+      "totalPixels": 59276288,
+      "addedPixelCount": 1112064,
+      "bytes": 39881067,
+      "appendedStyles": [
+        "gentle-v2",
+        "joyful-v2"
+      ],
+      "oldStyleMappingsExact": true,
+      "oldAtlasPixelRegionsExact": true,
+      "expandedPage": {
+        "index": 5,
+        "width": 2048,
+        "oldHeight": 1894,
+        "height": 2437
+      }
+    }
+  ]
+}

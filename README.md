@@ -94,6 +94,16 @@ Search **Find an outfit → Midnight sailor** to try the new male sailor shirt,
 or choose **Midnight sailor shirt** in the top slot and mix existing trousers.
 Its garment bank was saved through the browser's painting-kit workflow.
 
+The [expression and clothing refinement review](docs/kling-expression-fit/README.md)
+adds **Gentle smile (refined)** and **Joyful (soft motion)** under **Current
+expressions**. Previous faces remain selectable under **Earlier expressions**;
+older projects still keep their embedded artwork. Search **Midnight sailor
+refined** for the collar/sleeve correction, or **Plum pintuck day / Plum pintuck
+ochre** for the new female sleeveless blouse candidate. The blouse demonstrates
+template reuse and mixing shorts; some blurred jump poses retain small original
+gray neckline patches inside the frozen head protection. See the review before
+using those poses in a final character.
+
 The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
 and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
 refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,

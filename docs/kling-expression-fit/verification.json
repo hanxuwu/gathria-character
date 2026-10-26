@@ -1,0 +1,58 @@
+{
+  "format": "gathria-expression-fit-verification",
+  "version": 1,
+  "baselineCommit": "2d6f147d763881f3af63be69ec6dcd86ba9914c2",
+  "recordedAt": "2026-10-26T01:04:12.442688+00:00",
+  "status": "implementation checks passed; actual production capture pending",
+  "build": {
+    "passed": true,
+    "command": "npm run build",
+    "log": "logs/build.log",
+    "publishedAssets": "production-assets.json"
+  },
+  "unitTests": {
+    "passed": 398,
+    "failed": 0,
+    "files": 40,
+    "command": "npm test -- --maxWorkers=2",
+    "log": "logs/unit-final.log"
+  },
+  "browserTests": {
+    "passed": 22,
+    "failed": 0,
+    "newCases": 5,
+    "log": "logs/browser-regressions.log",
+    "kind": "fixture-backed controls, upgrade, save/reopen, export and library regression"
+  },
+  "sourceAssetAudits": {
+    "expressions": "../kling-expression-refined/asset-validation.json",
+    "sailor": "../../artwork/kling-sailor-refinement/final-v2/independent-validation.json",
+    "femaleTop": "../../artwork/kling-female-top/prepared/verification.json"
+  },
+  "catalogSha256": "b807e8a307cb75f3aa0fe7c5d6f62a38c572c782ca0a6afd7c77e4b744b018fb",
+  "baselinePreservation": "baseline-preservation.json",
+  "thumbnails": {
+    "passed": true,
+    "newPreviews": 3,
+    "oldRowsExact": 38,
+    "oldPngFilesExact": 76,
+    "record": "evidence/thumbnails-v3/capture-report.json",
+    "capture": "Vite development server, real UI downloads; asset requests transparently fetched and fulfilled with unchanged hash-verified server bytes.",
+    "priorFailedAttempts": [
+      "evidence/thumbnails-v1/capture-report.json",
+      "evidence/thumbnails-v2/capture-report.json"
+    ],
+    "note": "Earlier attempts failed helper provenance checks before preview publication; they are retained, not counted as successful captures."
+  },
+  "actualProductionCapture": {
+    "status": "pending"
+  },
+  "userVisualAcceptance": "pending",
+  "knownLimits": [
+    "Female original gray neckline inside frozen head protection remains on poses89,90,93,101,102,103. New blouse is an additive review candidate.",
+    "Sailor pose104 retains a short angular collar termination from the fixed cut.",
+    "Gentle refinement is mouth-focused; source blinks/laughter and head identity remain.",
+    "New clothing uses existing sleeve-free/source-bound outlines, not arbitrary silhouette fitting."
+  ],
+  "scope": "No runtime generation, source retiming, shared validator relaxation or skeleton change."
+}
