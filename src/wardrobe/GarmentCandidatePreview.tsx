@@ -7,6 +7,7 @@ import type { WardrobeCompositor } from "./compositor";
 import { createLookComparison } from "./look-comparison";
 import type { PaintedGarment } from "./paint-import";
 import type { MaskBuildReport } from "./mask-edit";
+import type { GarmentAuthoringReport } from "./garment-authoring";
 
 interface Props {
   original: WardrobeCompositor;
@@ -15,6 +16,7 @@ interface Props {
   project: WardrobeProject;
   painting?: PaintedGarment;
   maskCorrection?: { bytes: Uint8Array; report: MaskBuildReport };
+  authoring?: { bytes: Uint8Array; report: GarmentAuthoringReport };
   initialAction: PortableAnimationName;
   initialPosition: number;
   initialFacing: Facing;
@@ -40,6 +42,7 @@ export default function GarmentCandidatePreview({
   project,
   painting,
   maskCorrection,
+  authoring,
   initialAction,
   initialPosition,
   initialFacing,
@@ -432,6 +435,52 @@ export default function GarmentCandidatePreview({
       )}
       {notice && <p aria-live="polite">{notice}</p>}
       <div className="appearance-update-footer">
+        {authoring && (
+          <div
+            data-testid="clothing-creation-summary"
+            className="paint-import-summary"
+          >
+            <p>
+              {authoring.report.poses.length} source poses prepared ·{" "}
+              {
+                authoring.report.hardPoses.filter(
+                  (pose) => pose.decision === "accepted",
+                ).length
+              }{" "}
+              difficult poses reviewed. Existing shape, ownership and alpha
+              retained. Check the complete outfit before applying; source blur
+              and existing fit issues may remain.
+            </p>
+            <button
+              type="button"
+              disabled={applying}
+              onClick={() =>
+                downloadBlob(
+                  new Blob([new Uint8Array(authoring.bytes)], {
+                    type: "application/zip",
+                  }),
+                  `${authoring.report.output.id}.garment.zip`,
+                )
+              }
+            >
+              Save created clothing
+            </button>
+            <button
+              type="button"
+              disabled={applying}
+              onClick={() =>
+                downloadBlob(
+                  new Blob([JSON.stringify(authoring.report, null, 2)], {
+                    type: "application/json",
+                  }),
+                  `${authoring.report.output.id}.authoring-report.json`,
+                )
+              }
+            >
+              Save clothing creation report
+            </button>
+          </div>
+        )}
         {maskCorrection && (
           <div
             data-testid="mask-correction-summary"

@@ -1,0 +1,41 @@
+[WebServer] (node:912093) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:912106) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 25 tests using 1 worker
+
+(node:912124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/clothing-authoring-lab.spec.ts:423:1 › mixed clothing, hair and face checks expose coverage, preserve the accepted look, export real contact pixels and hand off only the selected case (10.0s)
+  ✓   2 tests/e2e/clothing-authoring-lab.spec.ts:644:1 › cancelling a mixed-combination scan retains an honest nonempty partial report without changing the accepted look (4.0s)
+  ✓   3 tests/e2e/garment-candidate.spec.ts:43:1 › clothing candidate preview isolates its poses, discards without history, and applies an undoable exact revision (3.6s)
+  ✓   4 tests/e2e/garment-candidate.spec.ts:146:1 › wrong-source and later protected-head candidate failures preserve the accepted look and redo (2.5s)
+  ✓   5 tests/e2e/garment-candidate.spec.ts:177:1 › issue handoff is explicit, reopens resolved issues for a new look and preserves the predecessor review (4.7s)
+  ✓   6 tests/e2e/mask-workbench.spec.ts:112:1 › brush, protected pixels and undo produce only explicitly accepted source poses; saved projects and packs retain those pixels (6.1s)
+  ✓   7 tests/e2e/mask-workbench.spec.ts:217:1 › a propagated pose stays pending until accepted and later edits revoke its acceptance (9.8s)
+  ✓   8 tests/e2e/mask-workbench.spec.ts:247:1 › discarding the built candidate leaves the current outfit and undo history untouched (3.9s)
+  ✓   9 tests/e2e/mask-workbench.spec.ts:270:1 › mask drafts restore pixels and review decisions, while foreign bindings and a malformed later pose fail atomically (4.5s)
+  ✓  10 tests/e2e/mask-workbench.spec.ts:361:1 › held drawings offer their distinct neighboring pose without wrapping a one-shot action (3.3s)
+  ✓  11 tests/e2e/mask-workbench.spec.ts:405:1 › mobile pointer sampling and a dragged brush use native coordinates and undo exactly (2.8s)
+  ✓  12 tests/e2e/paint-roundtrip.spec.ts:58:1 › painted native kit previews without changing the accepted look, downloads provenance, applies, undoes and reopens exactly (3.7s)
+  ✓  13 tests/e2e/paint-roundtrip.spec.ts:113:1 › a bad later painted pose is rejected atomically and leaves styling history intact (2.7s)
+  ✓  14 tests/e2e/paint-roundtrip.spec.ts:136:1 › motion review retains loop and one-shot boundaries, seeks exact positions and exports mirrored native evidence (2.9s)
+  ✓  15 tests/e2e/review-workbench.spec.ts:32:1 › review notes persist by exact look and reject a mismatched import without losing notes (4.7s)
+  ✓  16 tests/e2e/review-workbench.spec.ts:121:1 › review scan, diagnostic views and bundle preserve actual frames and label changes as differences (3.3s)
+  ✓  17 tests/e2e/wardrobe-history.spec.ts:4:1 › undo/redo restores exact styled pixels without changing the current pose and isolates character histories (3.0s)
+  ✓  18 tests/e2e/wardrobe-history.spec.ts:58:1 › failed imports and canceled selection do not lose the redo branch; reopening resets history (2.4s)
+  ✓  19 tests/e2e/wardrobe-look-comparison.spec.ts:7:1 › a pinned look survives styling and history, aligns unequal hair padding, and exports mirrored comparisons (3.3s)
+  ✓  20 tests/e2e/wardrobe.spec.ts:9:1 › wardrobe selects registered outfits, retains sessions, and rejects incompatible clothing atomically (6.3s)
+  ✓  21 tests/e2e/wardrobe.spec.ts:78:1 › wardrobe saves, reopens, exports every action, and restores the independent character without the workbench (4.0s)
+  ✓  22 tests/e2e/wardrobe.spec.ts:182:1 › corrupt saved projects retain the current outfit and the wardrobe fits a narrow screen (1.9s)
+  ✓  23 tests/e2e/wardrobe.spec.ts:227:1 › a clothing file that touches the head in a later pose is rejected before replacing the outfit (1.7s)
+  ✓  24 tests/e2e/wardrobe.spec.ts:264:1 › a completed direct-playback jump can be replayed without a separate restart (2.0s)
+  ✓  25 tests/e2e/wardrobe.spec.ts:300:1 › an outfit preflight keeps the queued landing, current pose and facing intact (2.6s)
+
+  25 passed (1.7m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

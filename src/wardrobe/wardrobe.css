@@ -71,6 +71,29 @@
   color: #697b5b;
   line-height: 1.6;
 }
+.wardrobe-authoring-entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  padding: 16px;
+  border: 1px solid #dce2d3;
+  border-radius: 12px;
+  background: #eef1e7;
+}
+.wardrobe-authoring-entry > div {
+  flex: 1 1 280px;
+}
+.wardrobe-authoring-entry p {
+  margin: 5px 0 0;
+  color: #65735e;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.wardrobe-authoring-entry button {
+  min-height: 42px;
+}
 .wardrobe-spinner {
   display: inline-block;
   width: 13px;

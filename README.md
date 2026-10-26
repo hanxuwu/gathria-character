@@ -113,6 +113,21 @@ neckline review permits only explicitly traced old cloth in six source poses;
 older clothing and shared source registration retain their original protection.
 Suggestions still require visual review, especially on blurred or occluded poses.
 
+**Make and review**, at the top of the wardrobe, adds **Create clothing** and
+**Check combinations**. The creation wizard derives a complete material/color
+variant from a worn top, bottom or dress, accepts a local reference PNG for color
+sampling, and requires difficult-pose review before the existing candidate
+apply/export flow. It preserves the template's cut; a reference picture does not
+automatically supply new sleeves or skirt geometry. Portable creation drafts
+retain the exact template and optional reference.
+The combination checker loads an explicitly selected clothing pool, combines
+it with the current appearance bank, and reports all requested combinations or
+a bounded representative selection. Coverage lists both tested and untested
+positions; pixel and motion differences are inspection signals, not art scores.
+Reports, manual notes and actual-render contact sheets can be saved. Inspecting
+a row leaves the current outfit unchanged until **Use this combination and review**.
+[Creation and combination workflow, actual evidence and limitations](docs/kling-authoring-lab/README.md).
+
 The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
 and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
 refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,

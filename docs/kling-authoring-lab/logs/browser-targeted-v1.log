@@ -1,0 +1,22 @@
+[WebServer] (node:911153) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:911166) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:911184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/clothing-authoring-lab.spec.ts:129:3 › male: a reviewed full-pose clothing variant saves and reopens with exact ownership, source clocks and exported pixels (4.5s)
+  ✓  2 tests/e2e/clothing-authoring-lab.spec.ts:129:3 › female: a reviewed full-pose clothing variant saves and reopens with exact ownership, source clocks and exported pixels (4.2s)
+  ✓  3 tests/e2e/clothing-authoring-lab.spec.ts:224:1 › hard-pose approval is bound to the built output, and cancellation never changes the accepted outfit (3.3s)
+  ✓  4 tests/e2e/clothing-authoring-lab.spec.ts:272:1 › a portable authoring draft restores its embedded template and reviews while a different outfit is worn, and changed references are rejected atomically (4.4s)
+  ✓  5 tests/e2e/clothing-authoring-lab.spec.ts:423:1 › mixed clothing, hair and face checks expose coverage, preserve the accepted look, export real contact pixels and hand off only the selected case (9.8s)
+  ✓  6 tests/e2e/clothing-authoring-lab.spec.ts:644:1 › cancelling a mixed-combination scan retains an honest nonempty partial report without changing the accepted look (3.8s)
+
+  6 passed (31.7s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

@@ -41,6 +41,7 @@ import {
 } from "../appearance/contract";
 import {
   WARDROBE_MAX_ITEM_BYTES,
+  WARDROBE_MAX_ITEMS,
   WARDROBE_MAX_PROJECT_BYTES,
   WARDROBE_SLOTS,
   validateWardrobeDocument,
@@ -58,6 +59,7 @@ import {
   selectWardrobeAppearance,
   selectWardrobeGarment,
   updateWardrobePreview,
+  validateWardrobeProject,
 } from "./project";
 import {
   createWardrobeCompositor,
@@ -85,6 +87,7 @@ import "./wardrobe.css";
 import { exportClothingRecipeKit } from "./recipe-kit";
 import type { PaintedGarment } from "./paint-import";
 import type { MaskBuildReport } from "./mask-edit";
+import type { GarmentAuthoringReport } from "./garment-authoring";
 import ClothingPoseInspector from "./ClothingPoseInspector";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
@@ -94,6 +97,10 @@ import LookComparison from "./LookComparison";
 const ReviewWorkbench = lazy(() => import("./ReviewWorkbench"));
 const GarmentCandidatePreview = lazy(() => import("./GarmentCandidatePreview"));
 const MaskEditWorkbench = lazy(() => import("./MaskEditWorkbench"));
+const ClothingCreationWizard = lazy(() => import("./ClothingCreationWizard"));
+const CombinationReviewWorkbench = lazy(
+  () => import("./CombinationReviewWorkbench"),
+);
 import {
   prepareGarmentCandidate,
   assertCandidateBase,
@@ -154,6 +161,7 @@ interface AppearancePreview {
 interface GarmentPreview extends AppearancePreview {
   painting?: PaintedGarment;
   maskCorrection?: { bytes: Uint8Array; report: MaskBuildReport };
+  authoring?: { bytes: Uint8Array; report: GarmentAuthoringReport };
   proposal: GarmentCandidate;
   baseProject: WardrobeProject;
 }
@@ -387,7 +395,19 @@ export default function WardrobeEditor({
   } | null>(null);
   const maskEditButton = useRef<HTMLButtonElement>(null);
   const resumeAfterMask = useRef(false);
-  const modalOpen = Boolean(appearancePreview || garmentPreview || maskEdit);
+  const [authoring, setAuthoring] = useState<WardrobeProject | null>(null);
+  const [combination, setCombination] = useState<WardrobeProject | null>(null);
+  const authoringRef = useRef(authoring);
+  const combinationRef = useRef(combination);
+  authoringRef.current = authoring;
+  combinationRef.current = combination;
+  const authoringButton = useRef<HTMLButtonElement>(null);
+  const combinationButton = useRef<HTMLButtonElement>(null);
+  const resumeAfterLab = useRef(false);
+  const candidateOrigin = useRef<"import" | "mask" | "authoring">("import");
+  const modalOpen = Boolean(
+    appearancePreview || garmentPreview || maskEdit || authoring || combination,
+  );
   const previewGarmentInput = useRef<HTMLInputElement>(null);
   const paintedKitInput = useRef<HTMLInputElement>(null);
   const previewGarmentButton = useRef<HTMLButtonElement>(null);
@@ -559,6 +579,8 @@ export default function WardrobeEditor({
 
   useEffect(() => {
     setMaskEdit(null);
+    setAuthoring(null);
+    setCombination(null);
     if (candidateRenderer.current) closeGarmentPreview();
     preparingGarmentPreview.current = false;
     const { token, controller } = beginPreparation();
@@ -684,6 +706,16 @@ export default function WardrobeEditor({
   const entry = catalog?.characters.find(
     (item) => item.key === session?.character,
   );
+  const combinationItems = useMemo(() => {
+    const choices = new Map<
+      string,
+      { id: string; name: string; slot: WardrobeSlot }
+    >();
+    for (const item of entry?.items ?? []) choices.set(item.id, item);
+    for (const item of project?.items ?? [])
+      choices.set(item.manifest.id, item.manifest);
+    return [...choices.values()];
+  }, [entry, project?.items]);
   const clip = project?.archive.manifest.animations[shownAction];
   const frameId = clip?.frames[Math.min(frameIndex, clip.frames.length - 1)];
   const facing = project?.document.preview.facing ?? "right";
@@ -946,6 +978,13 @@ export default function WardrobeEditor({
   useEffect(() => {
     if (active) return;
     setMaskEdit(null);
+    setAuthoring(null);
+    setCombination(null);
+    if (authoring || combination) {
+      preparation.current?.abort();
+      request.current++;
+      setBusy(false);
+    }
     if (candidateRenderer.current) closeGarmentPreview();
     if (preparingGarmentPreview.current) {
       preparingGarmentPreview.current = false;
@@ -1254,6 +1293,174 @@ export default function WardrobeEditor({
       "Outfit updated. Check its silhouette through each movement.",
     );
   }
+  async function loadCombinationItems(
+    ids: string[],
+    signal: AbortSignal,
+  ): Promise<WardrobeProject> {
+    const base = combination;
+    if (
+      !base ||
+      combinationRef.current !== base ||
+      current.current?.project !== base ||
+      !activeRef.current
+    )
+      throw Error("The open outfit changed. Reopen the combination checker.");
+    const requested = [...new Set(ids)];
+    const allIds = new Set([
+      ...base.items.map((item) => item.manifest.id),
+      ...requested,
+    ]);
+    if (allIds.size > WARDROBE_MAX_ITEMS)
+      throw Error(
+        `Choose a smaller clothing pool: at most ${WARDROBE_MAX_ITEMS} loaded pieces, including the open outfit.`,
+      );
+    // This is an isolated pool. Never prune an artist's custom material or
+    // change the accepted look just to make a batch fit the inventory limit.
+    let next = base;
+    for (const id of requested) {
+      if (signal.aborted) throw new DOMException("Canceled", "AbortError");
+      if (next.items.some((item) => item.manifest.id === id)) continue;
+      const item = entry?.items.find((candidate) => candidate.id === id);
+      if (!item)
+        throw Error("This clothing is not in this character's library.");
+      next = await addWardrobeGarment(
+        next,
+        await fetchBytes(
+          item.url,
+          WARDROBE_MAX_ITEM_BYTES,
+          signal,
+          item.sha256,
+        ),
+      );
+      const loaded = next.items.find(
+        (candidate) => candidate.manifest.id === id,
+      );
+      if (
+        !loaded ||
+        loaded.manifest.slot !== item.slot ||
+        (item.sha256 && loaded.sha256 !== item.sha256)
+      )
+        throw Error("The loaded clothing does not match its catalog entry.");
+    }
+    const normalized = await validateWardrobeProject(next, { signal });
+    if (
+      signal.aborted ||
+      !activeRef.current ||
+      combinationRef.current !== base ||
+      current.current?.project !== base
+    )
+      throw new DOMException("Canceled", "AbortError");
+    return normalized;
+  }
+  async function useCombination(
+    next: WardrobeProject,
+    action: PortableAnimationName,
+    position: number,
+    direction: Facing,
+    referenceProject?: WardrobeProject,
+  ) {
+    const open = current.current;
+    if (
+      !open ||
+      !combination ||
+      combinationRef.current !== combination ||
+      open.project !== combination ||
+      busy
+    )
+      throw Error("The open outfit changed. Reopen the combination checker.");
+    if (
+      !activeRef.current ||
+      next.document.sourceSha256 !== open.project.document.sourceSha256 ||
+      next.document.registrationSha256 !==
+        open.project.document.registrationSha256
+    )
+      throw Error("This combination belongs to a different source character.");
+    const { token, controller } = beginPreparation();
+    setBusy(true);
+    setError("");
+    setStatus("Checking the selected combination across all poses…");
+    let referenceRenderer: WardrobeCompositor | null = null;
+    try {
+      const normalized = await validateWardrobeProject(next, {
+        signal: controller.signal,
+      });
+      const nextClip = normalized.archive.manifest.animations[action];
+      if (
+        !nextClip ||
+        !Number.isSafeInteger(position) ||
+        position < 0 ||
+        position >= nextClip.frames.length ||
+        !["left", "right"].includes(direction)
+      )
+        throw Error("The selected inspection frame is unavailable.");
+      const reference = referenceProject
+        ? await validateWardrobeProject(referenceProject, {
+            signal: controller.signal,
+          })
+        : null;
+      if (reference) {
+        if (
+          reference.document.sourceSha256 !==
+            normalized.document.sourceSha256 ||
+          reference.document.registrationSha256 !==
+            normalized.document.registrationSha256 ||
+          JSON.stringify(reference.archive.manifest.animations) !==
+            JSON.stringify(normalized.archive.manifest.animations)
+        )
+          throw Error(
+            "The review reference does not match this source and motion.",
+          );
+        referenceRenderer = await createWardrobeCompositor(reference, {
+          signal: controller.signal,
+        });
+        await validateWardrobeAppearance(referenceRenderer, {
+          signal: controller.signal,
+        });
+      }
+      await accept(
+        updateWardrobePreview(normalized, { action, facing: direction }),
+        open.character,
+        true,
+        token,
+        controller.signal,
+        false,
+        "edit",
+      );
+      if (token !== request.current || controller.signal.aborted) return;
+      clearPinnedLook();
+      if (reference && referenceRenderer) {
+        const look = {
+          project: reference,
+          renderer: referenceRenderer,
+          name: "Combination reference · matching hair and expression",
+        };
+        pinned.current = look;
+        setPinnedLook(look);
+        referenceRenderer = null;
+      }
+      setCombination(null);
+      seekReview(action, position, direction);
+      setReviewOpen(true);
+      setStatus(
+        "Combination applied for review. Undo styling restores your previous look.",
+      );
+      requestAnimationFrame(() =>
+        document
+          .querySelector<HTMLElement>(".wardrobe-review-workbench")
+          ?.scrollIntoView({ block: "start" }),
+      );
+    } catch (failure) {
+      if (token === request.current && !controller.signal.aborted)
+        setError(`${failureText(failure)} Your open outfit is unchanged.`);
+      throw failure;
+    } finally {
+      referenceRenderer?.dispose();
+      if (token === request.current) {
+        setBusy(false);
+        setCancellable(false);
+      }
+    }
+  }
   function choosePreset(selection: WardrobeSelection, name: string) {
     void changeProject(async (base, signal) => {
       let next = base;
@@ -1472,31 +1679,51 @@ export default function WardrobeEditor({
     setPlaying(resumeAfterPreview.current && activeRef.current);
     if (!applied)
       setStatus("Clothing candidate discarded. Your open outfit is unchanged.");
-    requestAnimationFrame(() => previewGarmentButton.current?.focus());
+    requestAnimationFrame(() => {
+      const button =
+        candidateOrigin.current === "authoring"
+          ? authoringButton
+          : candidateOrigin.current === "mask"
+            ? maskEditButton
+            : previewGarmentButton;
+      button.current?.focus();
+    });
   }
   async function previewImportedGarment(
     file?: File,
     painted = false,
-    maskProject?: WardrobeProject,
-    maskReport?: MaskBuildReport,
+    handoff?:
+      | { kind: "mask"; project: WardrobeProject; report: MaskBuildReport }
+      | {
+          kind: "authoring";
+          project: WardrobeProject;
+          report: GarmentAuthoringReport;
+        },
   ) {
     const open = current.current;
-    if (!file || !open || busy || (modalOpen && !maskProject)) return;
+    if (!file || !open || busy || (modalOpen && !handoff)) return;
     // Only this mounted editor may hand off its exact, still-open base. A late
     // async completion after navigation cannot replace a different outfit.
     if (
-      maskProject &&
+      handoff &&
       (!activeRef.current ||
-        open.project !== maskProject ||
-        maskEdit?.project !== maskProject)
+        open.project !== handoff.project ||
+        (handoff.kind === "mask"
+          ? maskEdit?.project !== handoff.project
+          : authoringRef.current !== handoff.project))
     )
       return;
-    if (maskProject) setMaskEdit(null);
+    if (handoff?.kind === "mask") setMaskEdit(null);
+    if (handoff?.kind === "authoring") setAuthoring(null);
+    candidateOrigin.current = handoff?.kind ?? "import";
     const { token, controller } = beginPreparation();
     preparingGarmentPreview.current = true;
-    resumeAfterPreview.current = maskProject
-      ? resumeAfterMask.current
-      : playing;
+    resumeAfterPreview.current =
+      handoff?.kind === "mask"
+        ? resumeAfterMask.current
+        : handoff?.kind === "authoring"
+          ? resumeAfterLab.current
+          : playing;
     setPlaying(false);
     setBusy(true);
     setError("");
@@ -1522,8 +1749,10 @@ export default function WardrobeEditor({
       const proposal = await prepareGarmentCandidate(open.project, bytes, {
         signal: controller.signal,
       });
-      if (maskReport && maskReport.output.sha256 !== proposal.item.sha256)
-        throw Error("The mask report does not match the corrected clothing.");
+      if (handoff && handoff.report.output.sha256 !== proposal.item.sha256)
+        throw Error(
+          "The creation report does not match the clothing candidate.",
+        );
       renderer = await createWardrobeCompositor(proposal.project, {
         signal: controller.signal,
       });
@@ -1547,8 +1776,11 @@ export default function WardrobeEditor({
         project: proposal.project,
         proposal,
         painting,
-        ...(maskReport
-          ? { maskCorrection: { bytes, report: maskReport } }
+        ...(handoff?.kind === "mask"
+          ? { maskCorrection: { bytes, report: handoff.report } }
+          : {}),
+        ...(handoff?.kind === "authoring"
+          ? { authoring: { bytes, report: handoff.report } }
           : {}),
         baseProject: open.project,
         renderer,
@@ -1978,6 +2210,44 @@ export default function WardrobeEditor({
           }}
         />
       </div>
+      {project && (
+        <section
+          className="wardrobe-authoring-entry"
+          aria-label="Make and review clothing"
+        >
+          <div>
+            <strong>Make and review</strong>
+            <p>
+              Create a clothing variant, then inspect it with different outfits,
+              hair and expressions.
+            </p>
+          </div>
+          <button
+            type="button"
+            ref={authoringButton}
+            disabled={busy || modalOpen}
+            onClick={() => {
+              resumeAfterLab.current = playing;
+              setPlaying(false);
+              setAuthoring(project);
+            }}
+          >
+            Create clothing
+          </button>
+          <button
+            type="button"
+            ref={combinationButton}
+            disabled={busy || modalOpen}
+            onClick={() => {
+              resumeAfterLab.current = playing;
+              setPlaying(false);
+              setCombination(project);
+            }}
+          >
+            Check combinations
+          </button>
+        </section>
+      )}
       <input
         ref={previewGarmentInput}
         type="file"
@@ -2882,10 +3152,63 @@ export default function WardrobeEditor({
                   { type: "application/zip" },
                 ),
                 false,
-                maskEdit.project,
-                report,
+                { kind: "mask", project: maskEdit.project, report },
               )
             }
+          />
+        </Suspense>
+      )}
+      {authoring && active && (
+        <Suspense
+          fallback={<p aria-live="polite">Opening clothing creation…</p>}
+        >
+          <ClothingCreationWizard
+            project={authoring}
+            onClose={() => {
+              authoringRef.current = null;
+              setAuthoring(null);
+              setPlaying(resumeAfterLab.current && activeRef.current);
+              setStatus(
+                "Clothing creation closed. Your accepted outfit is unchanged.",
+              );
+              requestAnimationFrame(() => authoringButton.current?.focus());
+            }}
+            onPreview={(bytes, report) =>
+              previewImportedGarment(
+                new File(
+                  [new Uint8Array(bytes)],
+                  "created-clothing.garment.zip",
+                  { type: "application/zip" },
+                ),
+                false,
+                { kind: "authoring", project: authoring, report },
+              )
+            }
+          />
+        </Suspense>
+      )}
+      {combination && active && (
+        <Suspense
+          fallback={<p aria-live="polite">Opening combination checks…</p>}
+        >
+          <CombinationReviewWorkbench
+            project={combination}
+            availableItems={combinationItems}
+            onLoadItems={loadCombinationItems}
+            onClose={() => {
+              combinationRef.current = null;
+              setCombination(null);
+              preparation.current?.abort();
+              request.current++;
+              setBusy(false);
+              setCancellable(false);
+              setPlaying(resumeAfterLab.current && activeRef.current);
+              setStatus(
+                "Combination checks closed. Your accepted outfit is unchanged.",
+              );
+              requestAnimationFrame(() => combinationButton.current?.focus());
+            }}
+            onUseLook={useCombination}
           />
         </Suspense>
       )}
@@ -2900,6 +3223,7 @@ export default function WardrobeEditor({
             project={garmentPreview.project}
             painting={garmentPreview.painting}
             maskCorrection={garmentPreview.maskCorrection}
+            authoring={garmentPreview.authoring}
             initialAction={garmentPreview.action}
             initialPosition={garmentPreview.position}
             initialFacing={garmentPreview.facing}

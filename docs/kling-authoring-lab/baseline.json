@@ -1,0 +1,51 @@
+{
+  "baselineCommit": "5bb6966d247ece4c0d8a33f083a44208b12148ab",
+  "mergedBeforeImplementation": [
+    {
+      "pullRequest": 45,
+      "mergeCommit": "e4d3dc3f55f17d249841491fc9415a149890f70d"
+    },
+    {
+      "pullRequest": 46,
+      "mergeCommit": "5bb6966d247ece4c0d8a33f083a44208b12148ab"
+    }
+  ],
+  "unchangedInputs": [
+    {
+      "file": "docs/kling-wardrobe/catalog.json",
+      "sha256": "b807e8a307cb75f3aa0fe7c5d6f62a38c572c782ca0a6afd7c77e4b744b018fb",
+      "bytes": 38152
+    },
+    {
+      "file": "docs/kling-motion/exports/male.character.zip",
+      "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "bytes": 22641075
+    },
+    {
+      "file": "docs/kling-motion/exports/female.character.zip",
+      "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "bytes": 24565426
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/male/registration.json",
+      "sha256": "7b49caa860b56b88256ae7c9d8c299812b0974e82f54a377558522ba62ff16c1",
+      "bytes": 340639
+    },
+    {
+      "file": "artwork/kling-wardrobe/registration/female/registration.json",
+      "sha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "bytes": 465066
+    },
+    {
+      "file": "src/appearance/contract.ts",
+      "sha256": "4336ec3053a7590ba13e0ee5d9da8117101af0842c92ed504fd59f33dc47da4e",
+      "bytes": 17779
+    },
+    {
+      "file": "src/appearance/render.ts",
+      "sha256": "9aa5f5e609970400e9950e9bf4229920da123c1eb4d550e60d7ea6c0a2f625c7",
+      "bytes": 12667
+    }
+  ],
+  "scope": "Browser clothing creation from a registered template and bounded combination review. Existing source, appearance, garment banks, motion clocks and defaults retained."
+}
