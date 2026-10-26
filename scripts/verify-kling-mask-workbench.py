@@ -150,9 +150,15 @@ def frame_diff_checks(e, before, after, pack, seeds, report):
     require(config['sourceMetadata']['wardrobe']['selection']==after.doc['selection'],'Export selectedclothing mismatch')
     require(after.doc['selection']=={**before.doc['selection'],'top':'plum-pintuck-neckline-mask-v1'},'Unexpected selectedlook changes')
     require(before.doc['selection']['top']=='plum-pintuck-top-v1' and before.doc['selection']['bottom']=='navy-shorts','Wrongbaseline combination')
-    base_top=before.items['plum-pintuck-top-v1'];new_top=after.items[after.doc['selection']['top']]
+    new_top=after.items[after.doc['selection']['top']]
     require(new_top.manifest['version']==3,'Newgarment didnot optinto V3')
-    require(before.item_hashes['plum-pintuck-top-v1']==after.item_hashes['plum-pintuck-top-v1']==seeds['baseGarmentSha256'],'Original garment changed')
+    # Saved projects intentionally embed selected items only. Check the original
+    # against the actual baseline project and immutable catalog bytes, not an
+    # unselected item that correctly is absent from the final project.
+    catalog=json.loads((ROOT/'docs/kling-wardrobe/catalog.json').read_bytes())
+    female=next(c for c in catalog['characters'] if c['key']=='female')
+    base=next(i for i in female['items'] if i['id']=='plum-pintuck-top-v1')
+    require(before.item_hashes[base['id']]==base['sha256']==file_sha(ROOT/base['url'].lstrip('/'))==seeds['baseGarmentSha256'],'Original garment changed')
     require(new_top.manifest['necklinePermissionProfile']==seeds['profileId'],'Wrongneckline permission')
     seedmap={f['frameId']:f for f in seeds['frames']}
     require(set(seedmap)==TARGETS,'Unexpectedseedpose set')
@@ -257,7 +263,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--index',type=Path,default=ROOT/'docs/kling-mask-workbench/evidence/final-v1/evidence-index.json')
     parser.add_argument('--output',type=Path,default=ROOT/'docs/kling-mask-workbench/artifact-validation.json')
-    args=parser.parse_args();index=args.index.resolve();raw=index.read_bytes();e=json.loads(raw)
+    args=parser.parse_args();args.output=args.output.resolve();index=args.index.resolve();raw=index.read_bytes();e=json.loads(raw)
     require(not args.output.exists(),'Preserve earlier audits; choose fresh --output')
     profile=json.loads(PROFILE_PATH.read_bytes());seeds=json.loads(SEEDS_PATH.read_bytes())
     require(seeds['profileSha256']==file_sha(PROFILE_PATH),'Frozen authoredseed/profile mismatch')

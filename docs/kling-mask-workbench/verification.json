@@ -1,9 +1,9 @@
 {
   "format": "gathria-mask-workbench-verification",
   "version": 1,
-  "recordedAt": "2026-10-26T07:00:18.701466+00:00",
+  "recordedAt": "2026-10-26T07:12:34.415879+00:00",
   "baselineCommit": "81991d172ae7fd43e12a89b45184e804532b5a26",
-  "status": "implementation, full unit suite and targeted browser regressions passed; actual production capture pending",
+  "status": "implementation, production capture, independent artifact audit and actual-export review completed; user visual acceptance pending",
   "unitTests": {
     "passed": 413,
     "failed": 0,
@@ -167,7 +167,21 @@
   },
   "authoringAudit": "../../artwork/kling-mask-workbench/source-constraint-verification.json",
   "actualProductionCapture": {
-    "status": "pending"
+    "status": "passed",
+    "index": "evidence/final-v1/evidence-index.json",
+    "indexSha256": "92a42ec1d6b1d73e37b3b248cec7e0cfe6f0b6ad40068bcfe81937431f27aef1",
+    "log": "logs/production-capture-final-v1.log",
+    "nativePngs": 22,
+    "gifs": 8,
+    "packs": 1,
+    "screenshots": 6,
+    "savedProjects": 2,
+    "retainedFinalProject": "projects/female-plum-neckline-reviewed.wardrobe.zip",
+    "projectCopyRecord": "delivered-projects.json",
+    "editorClosedBeforeIndependentPlayback": true,
+    "independentPlayerCases": 10,
+    "consoleErrors": 0,
+    "failedRequests": 0
   },
   "userVisualAcceptance": "pending",
   "limits": [
@@ -188,5 +202,61 @@
       "logs/browser-targeted-v2.log"
     ],
     "note": "Initial helper collection/locator failures retained. Final six new cases passed after engine fixes; unique cases are counted once, not every repeated execution."
+  },
+  "implementationCommit": "c1e4fc8a37f3b5beff8e257659170fcad22886ef",
+  "independentArtifactAudit": {
+    "status": "passed",
+    "report": "artifact-validation.json",
+    "reportSha256": "8881b2e045019d5fddca064e32dd1eeaf287bd9f46008c42bbf8ed452584dabc",
+    "log": "logs/artifact-audit-final-v3.log",
+    "summary": {
+      "artifacts": 44,
+      "exactPackFrames": 96,
+      "changedSourcePoses": 6,
+      "changedPixels": 2390,
+      "exactNativePngs": 22,
+      "gifs": 8,
+      "mirrorPairs": 4,
+      "unchangedRunDirections": 2,
+      "independentPlayerCases": 10
+    },
+    "workflow": {
+      "draftReopenExact": true,
+      "actualBrushUndoExact": true,
+      "acceptedManualFrames": [
+        89,
+        90,
+        93,
+        101,
+        102,
+        103
+      ],
+      "pendingNeighbor104Excluded": true,
+      "garmentAndProjectHashesExact": true,
+      "projectReopenExact": true
+    },
+    "earlierLogs": [
+      "logs/artifact-audit-final-v1.log",
+      "logs/artifact-audit-final-v2.log"
+    ],
+    "note": "First audit assumed unselected original item would be embedded in the final project. Fixed verification to bind baseline saved item and immutable catalog bytes. Second completed data audit but failed printing a relative output path. Final normalized-path invocation exited 0; no production code or capture changes."
+  },
+  "review": {
+    "index": "review/index.json",
+    "indexSha256": "ebedf3f18b3cf192773de1611240d5aa5dead5e8e0bac270b50300432aae137d",
+    "gallery": "review/index.html",
+    "visualCount": 5,
+    "visualBytes": 4747295,
+    "actualExportsOnly": true,
+    "assessment": "Pose 103 large gray cloth wedge visibly reduced; pose 90 soft gray inner band and narrow fringes remain. Source blur is unchanged. No claim of full visual acceptance.",
+    "manualPatchesNotAutomaticPropagation": true
+  },
+  "remoteReview": {
+    "pullRequest": "https://github.com/hanxuwu/gathria-character/pull/46",
+    "draft": true,
+    "baseBranch": "feat/kling-expression-fit-refinement",
+    "dependsOnPullRequest": 45,
+    "merged": false,
+    "note": "Remote CI is separate from the actual local validations listed above."
   }
 }
