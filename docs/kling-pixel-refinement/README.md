@@ -13,6 +13,34 @@ Changing settings requires rebuilding before downloading. A canceled or failed
 rebuild retains the previous candidate. The independent player identifies the
 result as **Algorithmic pixel candidate**.
 
+## Actual exports to review
+
+Each comparison shows the **current smooth outfit / its pixel candidate** at the
+same source pose and original clock. Smooth references are scaled directly from
+the actual source pack for display; pixel references use integer enlargement.
+The downloads are complete five-action packs, not just the pictured run.
+
+| Look            | Right run                                                 | Left run                                                 | CharacterPack                                                |
+| --------------- | --------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
+| Male everyday   | [GIF](review/male-everyday-run-comparison-right-2x.gif)   | [GIF](review/male-everyday-run-comparison-left-2x.gif)   | [ZIP](evidence/final-v1/male-everyday.pixel.character.zip)   |
+| Male wedding    | [GIF](review/male-wedding-run-comparison-right-2x.gif)    | [GIF](review/male-wedding-run-comparison-left-2x.gif)    | [ZIP](evidence/final-v1/male-wedding.pixel.character.zip)    |
+| Female everyday | [GIF](review/female-everyday-run-comparison-right-2x.gif) | [GIF](review/female-everyday-run-comparison-left-2x.gif) | [ZIP](evidence/final-v1/female-everyday.pixel.character.zip) |
+| Female wedding  | [GIF](review/female-wedding-run-comparison-right-2x.gif)  | [GIF](review/female-wedding-run-comparison-left-2x.gif)  | [ZIP](evidence/final-v1/female-wedding.pixel.character.zip)  |
+
+[Full gallery](review/index.html) / [native and 2× keyframes, 4× head crops](review/)
+include separately labeled [male](review/male-wedding-three-styles-right-2x.gif)
+and [female](review/female-wedding-three-styles-right-2x.gif) comparisons against
+the earlier **authored Storybook R2**. That column uses different drawings,
+faces, clothing details and fewer unique poses; it is a style reference, not a
+same-frame wardrobe rendering or algorithmic baseline. Its cycle duration is
+the same; reviewed packs are not retimed.
+
+[Unmodified UI downloads](evidence/final-v1/) include candidate-only left/right
+run GIFs, one-shot jump GIFs, exact source/candidate PNGs and build reports.
+The actual mapping for these four looks is 768×1184, anchor (384,1126), padded
+by two transparent rows above and below, then sampled to **192×297**, anchor
+**(96,282)**. Each look shares one 128-color palette across all five actions.
+
 ## Processing and compatibility
 
 - One fixed source-space grid covers the entire frame bank. Transparent padding
@@ -70,15 +98,20 @@ both source cell mean alphas ≥240, maximum source RGB mean change ≤2, and al
 candidate pixels opaque. A jump means an output channel difference ≥12. All run
 transitions, including loop closure, are included.
 
-| Probe | Simple / 96 | Detail / 96 | Detail / 128 | Visible-union coverage |
-| --- | ---: | ---: | ---: | ---: |
-| Male wedding | 735 jumps | 201 | 149 | 11.05% |
-| Female daily | 941 jumps | 209 | 194 | 8.68% |
+| Probe        | Simple / 96 | Detail / 96 | Detail / 128 | Visible-union coverage |
+| ------------ | ----------: | ----------: | -----------: | ---------------------: |
+| Male wedding |   735 jumps |         201 |          149 |                 11.05% |
+| Female daily |   941 jumps |         209 |          194 |                  8.68% |
 
 These are diagnostic counts, not aesthetic scores or a claim that all flicker
 was removed. Detail/128 has slightly more jumps than Detail/96 at loop closure
 alone. All repeated source-ID holds remain exact. Static inspection and the
 aggregate diagnostic support 128 as the initial candidate default.
+
+[Parameter selection record](study/selection.json) retains the source hashes,
+probe timings, candidate hashes, diagnostic script/results and inspection boards.
+The six parameter-probe packs remain in `/tmp/kling-pixel-refinement/probe/`;
+these are offline studies, not mislabeled production UI downloads.
 
 ## Limits
 
@@ -89,6 +122,55 @@ on moving edges. Reduced resolution can lose thin details. This candidate cannot
 automatically design the hand-placed curls, highlights or garment folds in a
 purpose-drawn pixel illustration. User visual acceptance remains pending.
 
+The final actual native exports, all sixteen run poses per look and the exported
+head/keyframe comparisons were inspected. Head, ear and garment placement follow
+the corresponding original source poses. Hair shading is retained, but small
+highlights/skin tones become bands and some narrow curls lose detail. Existing
+shirt creases, gray neckline areas and stepped dress hems remain; the conversion
+does not repair their source artwork. A palette is fitted per complete look,
+so a different outfit can also change the available face/hair color shades.
+
+Measured end-to-end builds (including preparing the original composed pack)
+took **22.9–34.7 seconds** in this production Chromium capture. The long-task
+observer measured maximum individual main-thread tasks of **1.5–3.5 seconds**.
+Stage-boundary cancellation exists, but it is not instant during synchronous
+work. This remains a performance limitation, not a claim of fully responsive
+processing on every device.
+
+## Verification executed in this batch
+
+Captured runtime: `405886c`. The final delivery adds documentation/review artifacts;
+the raw evidence binds the actual built JS and HTML hashes.
+
+- Production build/TypeScript passed. Full unit suite: **448 tests / 46 files**.
+  After selecting the 128-color default, **18 pixel core/pack tests** passed again.
+  These are 448 unique unit cases, not 466.
+- Chromium regressions: **16 passed**, including five new pixel workflows and
+  eleven existing player, GIF and clothing-creation checks. These use small
+  synthetic fixtures and are separate from real-character visual review.
+- Production browser: four looks, **56 actual UI downloads**, eight screenshots.
+  Four source ZIPs are temporary; four pixel ZIPs, four reports, 32 native PNGs
+  and 12 GIFs are retained. Source/candidate PNGs match their actual pack pixels.
+- Independent Python audit: **368 unique native frames**, all IDs/source maps,
+  action order/FPS/holds/loop flags and exact anchor mapping. Every output alpha
+  cell was independently recomputed from the smooth source. All visible colors
+  belong to the look's shared palette; transparent RGB is zero.
+- Twelve GIFs fully decode with the expected per-position delays, frame content
+  and loop semantics. Four left/right run pairs are exact mirrors. Run is 16
+  positions / 670 ms GIF duration; jump is 39 / 1630 ms. Packs retain exact 24 FPS.
+  In these exports GIF palette projection preserves candidate colors exactly.
+- All editors closed before **40 independent player action/direction cases**.
+  Explicit scrubbing checks three positions per case; bounded real-time playback
+  checks advancement. It does not claim to observe every rendered frame. All
+  eight jump runs returned to idle. No editor dependencies or external requests
+  were needed. One optional favicon 404 is separately recorded; no application
+  failures were observed.
+
+[Capture index](evidence/final-v1/evidence-index.json) ·
+[Independent artifact audit](evidence/final-v1/artifact-validation.json) ·
+[Executed logs](logs/) · [Derived gallery hashes](review/index.json).
+Technical checks do not constitute user visual acceptance.
+
 ## Reproduce
 
 ```sh
@@ -96,9 +178,14 @@ npm test
 npm run build
 CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/pixel-refinement.spec.ts tests/e2e/pixel-playback.spec.ts tests/e2e/wardrobe-gif.spec.ts tests/e2e/clothing-authoring-lab.spec.ts
 node scripts/capture-kling-pixel-refinement.mjs --plan
+node scripts/capture-kling-pixel-refinement.mjs --run new-review --colors 128
+python scripts/verify-kling-pixel-refinement.py --help
+python scripts/render-kling-pixel-refinement-review.py --run new-review --output docs/kling-pixel-refinement/review-new
 ```
 
 Use a fresh run directory for production capture; the scripts refuse to overwrite
 earlier evidence. Full exported source packs are temporary audit inputs rather
 than duplicated large repository assets. The capture index records their hashes.
-Final evidence links and executed verification are recorded after capture.
+Pillow and NumPy are required for the independent audit; Pillow is required for
+the derived gallery. Keep the captured `dist` and temporary source packs until
+the audit and gallery finish. See each script's help for directory arguments.

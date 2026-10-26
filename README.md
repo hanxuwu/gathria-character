@@ -128,6 +128,14 @@ Reports, manual notes and actual-render contact sheets can be saved. Inspecting
 a row leaves the current outfit unchanged until **Use this combination and review**.
 [Creation and combination workflow, actual evidence and limitations](docs/kling-authoring-lab/README.md).
 
+**Make and review → Try pixel finish** converts the current complete wardrobe
+look into a separate algorithmic pixel candidate. Compare the same original poses,
+try a fixed detail size/color limit, and save native PNG, action GIF or an independent
+V4 CharacterPack. All five source actions keep their frames, holds and timing;
+the current wardrobe and existing authored themes retain their defaults. This
+local conversion does not generate new poses or turn the exported pack into
+editable clothing. [Four actual looks, comparison GIFs and limits](docs/kling-pixel-refinement/README.md).
+
 The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
 and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
 refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,
