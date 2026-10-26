@@ -42,11 +42,12 @@ import {
 import { validateWardrobeProject } from "./project";
 import {
   prepareProtection,
-  protectedAt,
+  protectedClothingAt,
   reviewedRegions,
   type ProtectionRows,
 } from "./protection";
 import { decodedGarmentPage, type DecodedGarmentPage } from "./garment-pages";
+import { FEMALE_NECKLINE_PERMISSION_SHA256 } from "./neckline-permissions";
 
 const MAX_TEXT_BYTES = 256 * 1024;
 type SelectedGarment = {
@@ -327,7 +328,13 @@ class RegisteredWardrobeCompositor {
           if (ownership[index / 4] !== 255) continue;
           const fx = crop.offset.x + x;
           if (source.pixels[sourceIndex + 3] !== 0) {
-            const label = protectedAt(fx, rowProtection);
+            const label = protectedClothingAt(
+              frame.id,
+              fx,
+              fy,
+              rowProtection,
+              selected.item.manifest,
+            );
             if (label)
               throw Error(
                 `Garment ${selected.item.manifest.id} overlaps protected ${label} pixels in frame ${frame.id} at ${fx},${fy}.`,
@@ -575,9 +582,12 @@ function exportMetadata(
   const originalNote = hasAppearance
     ? "Wardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands and the dressed body remain protected. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame IDs, action order, FPS, loop flags and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project."
     : "Wardrobe V1: registered per-frame garment RGBA patches replace only their declared ownership pixels. Body pixels outside garment ownership are retained exactly from the source CharacterPack. Garment silhouettes are authored derivatives, not clothing extracted from the Kling source video. Head/hand protection is checked in every composed frame. Original frame rectangles, action frame order, FPS, loop flags, source-frame/time mapping and anchor are unchanged. The output is baked playback; editable wardrobe data belongs in the separate self-contained wardrobe project.";
-  const note = selected.some((item) => item.manifest.version === 2)
+  const handNote = selected.some((item) => item.manifest.version === 2)
     ? `${originalNote} Selected V2 garment hand-boundary reviews explicitly reassign proximal forearm pixels to sleeves while retaining the reviewed distal hand; details are recorded per item below.`
     : originalNote;
+  const note = selected.some((item) => item.manifest.version === 3)
+    ? `${handNote} Selected V3 garments explicitly opt into a shipped source-bound neckline cloth permission profile. Only reviewed cloth pixels accidentally enclosed by the original head polygon may be replaced; all remaining head pixels and applicable hand protection stay intact. Profile IDs and any item-scoped hand reviews are recorded below. Shared source registration and appearance protection remain unchanged.`
+    : handNote;
   const wardrobeMetadata: { [key: string]: JsonValue } = {
     format: "gathria-baked-wardrobe",
     version: 1,
@@ -596,6 +606,20 @@ function exportMetadata(
             handProtectionReviews: JSON.parse(
               JSON.stringify(item.manifest.handProtectionReviews),
             ),
+          }
+        : {}),
+      ...(item.manifest.version === 3
+        ? {
+            garmentVersion: 3,
+            necklinePermissionProfile: item.manifest.necklinePermissionProfile!,
+            necklinePermissionProfileSha256: FEMALE_NECKLINE_PERMISSION_SHA256,
+            ...(item.manifest.handProtectionReviews
+              ? {
+                  handProtectionReviews: JSON.parse(
+                    JSON.stringify(item.manifest.handProtectionReviews),
+                  ),
+                }
+              : {}),
           }
         : {}),
     })),

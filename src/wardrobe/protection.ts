@@ -4,6 +4,7 @@ import type {
   RegisteredFrame,
   WardrobeGarmentManifest,
 } from "./contract";
+import { reviewedNecklineAt } from "./neckline-permissions";
 
 export type ProtectionSpan = {
   left: number;
@@ -56,6 +57,24 @@ export function protectedAt(
 ): string | undefined {
   for (const span of spans ?? [])
     if (x >= span.left && x <= span.right) return span.label;
+}
+
+/** An explicit V3 garment may replace only source-bound, pre-reviewed cloth
+ * pixels inside the original head polygon. Overlapping hands remain protected.
+ * No profile changes the shared registration or appearance-layer protection. */
+export function protectedClothingAt(
+  frameId: number,
+  x: number,
+  y: number,
+  spans: ProtectionSpan[] | undefined,
+  item: WardrobeGarmentManifest,
+): string | undefined {
+  for (const span of spans ?? []) {
+    if (x < span.left || x > span.right) continue;
+    if (span.label === "head" && reviewedNecklineAt(item, frameId, x, y))
+      continue;
+    return span.label;
+  }
 }
 
 /** Check raster coverage as well as vertices: a concave original polygon may

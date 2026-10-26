@@ -1,0 +1,33 @@
+[WebServer] (node:898831) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:898844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 17 tests using 1 worker
+
+(node:898862) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/garment-candidate.spec.ts:43:1 › clothing candidate preview isolates its poses, discards without history, and applies an undoable exact revision (3.6s)
+  ✓   2 tests/e2e/garment-candidate.spec.ts:146:1 › wrong-source and later protected-head candidate failures preserve the accepted look and redo (2.3s)
+  ✓   3 tests/e2e/garment-candidate.spec.ts:177:1 › issue handoff is explicit, reopens resolved issues for a new look and preserves the predecessor review (3.5s)
+  ✓   4 tests/e2e/paint-roundtrip.spec.ts:58:1 › painted native kit previews without changing the accepted look, downloads provenance, applies, undoes and reopens exactly (3.5s)
+  ✓   5 tests/e2e/paint-roundtrip.spec.ts:113:1 › a bad later painted pose is rejected atomically and leaves styling history intact (2.5s)
+  ✓   6 tests/e2e/paint-roundtrip.spec.ts:136:1 › motion review retains loop and one-shot boundaries, seeks exact positions and exports mirrored native evidence (2.8s)
+  ✓   7 tests/e2e/wardrobe-history.spec.ts:4:1 › undo/redo restores exact styled pixels without changing the current pose and isolates character histories (3.6s)
+  ✓   8 tests/e2e/wardrobe-history.spec.ts:58:1 › failed imports and canceled selection do not lose the redo branch; reopening resets history (2.7s)
+  ✓   9 tests/e2e/wardrobe-recipes.spec.ts:8:1 › a larger lazy clothing catalog exports the exact selected authoring kit without loading unused items (1.9s)
+  ✓  10 tests/e2e/wardrobe-recipes.spec.ts:68:1 › a paintable pose kit exports the native layer, binary ownership and source anchors (2.0s)
+  ✓  11 tests/e2e/wardrobe-recipes.spec.ts:143:1 › neighbor painting kits retain action positions, loop boundaries and unique native source layers (2.0s)
+  ✓  12 tests/e2e/wardrobe.spec.ts:9:1 › wardrobe selects registered outfits, retains sessions, and rejects incompatible clothing atomically (5.7s)
+  ✓  13 tests/e2e/wardrobe.spec.ts:78:1 › wardrobe saves, reopens, exports every action, and restores the independent character without the workbench (3.7s)
+  ✓  14 tests/e2e/wardrobe.spec.ts:182:1 › corrupt saved projects retain the current outfit and the wardrobe fits a narrow screen (1.8s)
+  ✓  15 tests/e2e/wardrobe.spec.ts:227:1 › a clothing file that touches the head in a later pose is rejected before replacing the outfit (1.6s)
+  ✓  16 tests/e2e/wardrobe.spec.ts:264:1 › a completed direct-playback jump can be replayed without a separate restart (1.9s)
+  ✓  17 tests/e2e/wardrobe.spec.ts:300:1 › an outfit preflight keeps the queued landing, current pose and facing intact (2.4s)
+
+  17 passed (49.6s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

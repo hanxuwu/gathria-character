@@ -21,7 +21,11 @@ const sha = (bytes: Uint8Array) =>
 const json = (value: unknown) => strToU8(JSON.stringify(value));
 const stamp = new Date("2020-01-01T00:00:00.000Z");
 
-async function character(key: "male" | "female", motionFlow = false) {
+async function character(
+  key: "male" | "female",
+  motionFlow = false,
+  maskEditing = false,
+) {
   const manifest: CharacterPackV2Manifest = {
     schemaVersion: 2,
     format: "gathria-character-pack",
@@ -53,6 +57,11 @@ async function character(key: "male" | "female", motionFlow = false) {
     capabilities: { renderMode: "baked", editableAppearance: false },
     configuration: "character.json",
   };
+  if (maskEditing) {
+    // A held source drawing followed by a distinct pose tests authoring
+    // adjacency without inventing a closing edge for a one-shot action.
+    manifest.animations.jump = { frames: [7, 7, 19], fps: 8, loop: false };
+  }
   const config: BakedCharacterRecipe = {
     format: "gathria-baked-character",
     schemaVersion: 1,
@@ -156,6 +165,17 @@ async function character(key: "male" | "female", motionFlow = false) {
         protected: regions,
       })),
   };
+  // Only the mask-workbench tests need a usable torso transform. Existing
+  // fixtures retain their exact legacy metadata and byte hashes by default.
+  if (maskEditing) {
+    for (const frame of registration.frames) {
+      frame.points.neck = { x: 4, y: 2, visibility: "visible" };
+      frame.points.nearShoulder = { x: 2, y: 2, visibility: "visible" };
+      frame.points.farShoulder = { x: 6, y: 2, visibility: "visible" };
+      frame.points.waistLeft = { x: 2, y: 6, visibility: "visible" };
+      frame.points.waistRight = { x: 6, y: 6, visibility: "visible" };
+    }
+  }
   const registrationBytes = json(registration);
   const items: Array<{
     id: string;
@@ -268,11 +288,11 @@ async function character(key: "male" | "female", motionFlow = false) {
 
 export async function installWardrobeFixture(
   page: Page,
-  options: { motionFlow?: boolean } = {},
+  options: { motionFlow?: boolean; maskEditing?: boolean } = {},
 ) {
   const [male, female] = await Promise.all([
-    character("male", options.motionFlow),
-    character("female", options.motionFlow),
+    character("male", options.motionFlow, options.maskEditing),
+    character("female", options.motionFlow, options.maskEditing),
   ]);
   const files = new Map<string, Uint8Array>();
   for (const fixture of [male, female]) {

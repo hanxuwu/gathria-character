@@ -1,0 +1,20 @@
+[WebServer] (node:898459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:898472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:898492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/mask-workbench.spec.ts:111:1 › brush, protected pixels and undo produce only explicitly accepted source poses; saved projects and packs retain those pixels (5.0s)
+  ✓  2 tests/e2e/mask-workbench.spec.ts:200:1 › a propagated pose stays pending until accepted and later edits revoke its acceptance (3.9s)
+  ✓  3 tests/e2e/mask-workbench.spec.ts:230:1 › discarding the built candidate leaves the current outfit and undo history untouched (3.7s)
+  ✓  4 tests/e2e/mask-workbench.spec.ts:253:1 › mask drafts restore pixels and review decisions, while foreign bindings and a malformed later pose fail atomically (3.4s)
+
+  4 passed (17.8s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

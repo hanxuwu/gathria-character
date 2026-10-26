@@ -1,0 +1,476 @@
+{
+  "format": "gathria-reviewed-neckline-authoring",
+  "version": 1,
+  "profileId": "female-neckline-cloth-v1",
+  "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+  "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+  "baseGarmentSha256": "547d1493690e4909b14dd84f8433dbe7ba3808caf144971a357b50612dc4455c",
+  "donorSha256": "35fb26cca6752be936d85325d4eb2a1de4d417ab2cd4f42aa52b5ebaf6774c93",
+  "shaderSha256": "d4a6312f6041f573051b10a563d696fdd96c0a2be9ee740411cd0fb00eba468c",
+  "method": "Hand-traced native cloth polygons intersected with opaque source and original head protection. Pose93 alone retains a local R-G <= 32 and R > 100 gate to preserve its dark inner neckline. No unrestricted head exemption or global color deletion.",
+  "limitations": [
+    "These are conservative cloth interiors, not complete neckline fixes. Ambiguous source blur and dark neckline edges remain protected.",
+    "The same existing donor shader supplies candidate cloth RGB; proposals need actual browser review before acceptance.",
+    "Anchor-guided transfer only proposes locations. Neck and shoulder guides drift during crouch; every destination must be clipped to its own fixed permission map and explicitly reviewed."
+  ],
+  "frames": [
+    {
+      "frameId": 89,
+      "tracedPolygon": [
+        [
+          431,
+          640
+        ],
+        [
+          434,
+          641
+        ],
+        [
+          435,
+          645
+        ],
+        [
+          432,
+          650
+        ],
+        [
+          427,
+          654
+        ],
+        [
+          425,
+          655
+        ],
+        [
+          423,
+          653
+        ],
+        [
+          428,
+          648
+        ]
+      ],
+      "permittedPixels": 81,
+      "bounds": [
+        423,
+        640,
+        436,
+        656
+      ],
+      "excludedLocalInkPixels": 0,
+      "mask": "permission-089.png",
+      "maskSha256": "75664616fa54a6fba75cf010d3c1e3c786775aafa2af67082e4cd68ae2cebf97",
+      "proposal": "proposal-089.png",
+      "proposalSha256": "6cc991e83de09bb095f7f2915a9387656b55950c173145b5fa933eb66564e294",
+      "sourceRgbaSha256": "255a3801a0cbe4810e3773aedb994a8911dc684852372a4382382fff3f74ea28",
+      "proposedPixels": 81,
+      "onlyNewClothInteriorsChanged": true,
+      "sourceAlphaExact": true,
+      "crop": [
+        310,
+        590,
+        470,
+        685
+      ]
+    },
+    {
+      "frameId": 90,
+      "tracedPolygon": [
+        [
+          365,
+          561
+        ],
+        [
+          372,
+          566
+        ],
+        [
+          381,
+          569
+        ],
+        [
+          393,
+          570
+        ],
+        [
+          409,
+          569
+        ],
+        [
+          420,
+          565
+        ],
+        [
+          425,
+          561
+        ],
+        [
+          429,
+          561
+        ],
+        [
+          427,
+          569
+        ],
+        [
+          421,
+          573
+        ],
+        [
+          407,
+          577
+        ],
+        [
+          385,
+          577
+        ],
+        [
+          371,
+          573
+        ],
+        [
+          363,
+          565
+        ]
+      ],
+      "permittedPixels": 188,
+      "bounds": [
+        404,
+        561,
+        430,
+        575
+      ],
+      "excludedLocalInkPixels": 0,
+      "mask": "permission-090.png",
+      "maskSha256": "5ec23a435de082cee6e281aeac1a23df9db3bcbd343293c6e52ba74e1b9c4f14",
+      "proposal": "proposal-090.png",
+      "proposalSha256": "585b3ce207efc9d575ca57d1d18c799b2fc839970ee98dea5f9db89b93fcf17a",
+      "sourceRgbaSha256": "4e0198688cb60c414c6ef20a16f1b6feecbfe2fd0ff6925f2a597b6418321263",
+      "proposedPixels": 301,
+      "onlyNewClothInteriorsChanged": true,
+      "sourceAlphaExact": true,
+      "crop": [
+        310,
+        510,
+        470,
+        605
+      ]
+    },
+    {
+      "frameId": 93,
+      "tracedPolygon": [
+        [
+          370,
+          438
+        ],
+        [
+          380,
+          441
+        ],
+        [
+          396,
+          442
+        ],
+        [
+          408,
+          441
+        ],
+        [
+          415,
+          438
+        ],
+        [
+          416,
+          441
+        ],
+        [
+          408,
+          445
+        ],
+        [
+          389,
+          446
+        ],
+        [
+          376,
+          444
+        ],
+        [
+          368,
+          441
+        ]
+      ],
+      "permittedPixels": 24,
+      "bounds": [
+        385,
+        442,
+        409,
+        443
+      ],
+      "excludedLocalInkPixels": 7,
+      "mask": "permission-093.png",
+      "maskSha256": "746d9c8b1926055ed14f9143709c5b3fb147cf2352c01b28a02861b6969c8385",
+      "proposal": "proposal-093.png",
+      "proposalSha256": "c8ed6d4179ddcb5374c829c47009b81e09fbf2d617118bec1465971ecc0a5953",
+      "sourceRgbaSha256": "74190d3948ddb84144a4d55af4bebed2c84dfb1c618d23f347a741476302cc48",
+      "proposedPixels": 24,
+      "onlyNewClothInteriorsChanged": true,
+      "sourceAlphaExact": true,
+      "crop": [
+        310,
+        385,
+        470,
+        480
+      ]
+    },
+    {
+      "frameId": 101,
+      "tracedPolygon": [
+        [
+          356,
+          513
+        ],
+        [
+          369,
+          519
+        ],
+        [
+          386,
+          523
+        ],
+        [
+          405,
+          523
+        ],
+        [
+          415,
+          520
+        ],
+        [
+          421,
+          515
+        ],
+        [
+          426,
+          514
+        ],
+        [
+          428,
+          531
+        ],
+        [
+          424,
+          537
+        ],
+        [
+          420,
+          533
+        ],
+        [
+          416,
+          529
+        ],
+        [
+          406,
+          530
+        ],
+        [
+          384,
+          532
+        ],
+        [
+          370,
+          527
+        ],
+        [
+          355,
+          519
+        ]
+      ],
+      "permittedPixels": 375,
+      "bounds": [
+        358,
+        514,
+        428,
+        537
+      ],
+      "excludedLocalInkPixels": 0,
+      "mask": "permission-101.png",
+      "maskSha256": "66575f5a15c967eaa161a7273adbed2f4f3227ac050312921f8ce5feb5771624",
+      "proposal": "proposal-101.png",
+      "proposalSha256": "83d38759eb3f0b1641311c63e5f19064809d96a2c1fd29263efbdf8cec4be4bd",
+      "sourceRgbaSha256": "a1cdd87a3bb8fae4e4b337756424e4428d7a9e5627846fa4e90ec1ca55a84443",
+      "proposedPixels": 400,
+      "onlyNewClothInteriorsChanged": true,
+      "sourceAlphaExact": true,
+      "crop": [
+        310,
+        465,
+        470,
+        560
+      ]
+    },
+    {
+      "frameId": 102,
+      "tracedPolygon": [
+        [
+          357,
+          596
+        ],
+        [
+          370,
+          600
+        ],
+        [
+          384,
+          602
+        ],
+        [
+          398,
+          601
+        ],
+        [
+          407,
+          598
+        ],
+        [
+          410,
+          600
+        ],
+        [
+          402,
+          605
+        ],
+        [
+          389,
+          610
+        ],
+        [
+          376,
+          611
+        ],
+        [
+          367,
+          606
+        ],
+        [
+          356,
+          601
+        ]
+      ],
+      "permittedPixels": 150,
+      "bounds": [
+        376,
+        598,
+        411,
+        609
+      ],
+      "excludedLocalInkPixels": 0,
+      "mask": "permission-102.png",
+      "maskSha256": "386446769d612651f900f1877092548f327b102c6acf52b1531b24cfc69046f9",
+      "proposal": "proposal-102.png",
+      "proposalSha256": "bbe3c2877deb4e734513925c7a9e0b4f74671aaf5dd7b1162c5cdee213cac1eb",
+      "sourceRgbaSha256": "a62bae821b9a21c8deec183b85b5ee86ca8320f10be2ae47a7f863a2a7225967",
+      "proposedPixels": 166,
+      "onlyNewClothInteriorsChanged": true,
+      "sourceAlphaExact": true,
+      "crop": [
+        310,
+        535,
+        470,
+        630
+      ]
+    },
+    {
+      "frameId": 103,
+      "tracedPolygon": [
+        [
+          428,
+          596
+        ],
+        [
+          435,
+          597
+        ],
+        [
+          441,
+          610
+        ],
+        [
+          446,
+          628
+        ],
+        [
+          453,
+          646
+        ],
+        [
+          458,
+          660
+        ],
+        [
+          458,
+          674
+        ],
+        [
+          449,
+          674
+        ],
+        [
+          441,
+          664
+        ],
+        [
+          435,
+          657
+        ],
+        [
+          426,
+          651
+        ],
+        [
+          421,
+          647
+        ],
+        [
+          427,
+          637
+        ],
+        [
+          429,
+          628
+        ],
+        [
+          429,
+          616
+        ]
+      ],
+      "permittedPixels": 1235,
+      "bounds": [
+        421,
+        596,
+        454,
+        665
+      ],
+      "excludedLocalInkPixels": 0,
+      "mask": "permission-103.png",
+      "maskSha256": "0d8dce7857109c905e34306962ed41ec6b606b464321ec9d5dbffb62b10b48e2",
+      "proposal": "proposal-103.png",
+      "proposalSha256": "ae2a33821f2d2e4ec4f200e146f0e90922e9f5ac133d038d7f4fb98fdee01623",
+      "sourceRgbaSha256": "a318a8dd4d72398d92d6732550effd2df7299ee83689286750c6b36c17b9209c",
+      "proposedPixels": 1418,
+      "onlyNewClothInteriorsChanged": true,
+      "sourceAlphaExact": true,
+      "crop": [
+        310,
+        590,
+        470,
+        685
+      ]
+    }
+  ],
+  "profileSha256": "9a24590ab1434480c822a577379de7d92479ee1871e44e11d688ab9ef1d5185c",
+  "seedFile": "female-plum-neckline-seeds.json",
+  "seedSha256": "a67372528597f2d927666841bad3a0a3116e2fdd62ccfe9e00c17866b2d86421",
+  "totalPermittedPixels": 2053
+}

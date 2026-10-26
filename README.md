@@ -104,6 +104,15 @@ template reuse and mixing shorts; some blurred jump poses retain small original
 gray neckline patches inside the frozen head protection. See the review before
 using those poses in a final character.
 
+The [clothing mask workbench](docs/kling-mask-workbench/README.md) adds
+**Fitting guides → Edit clothing mask**: sample existing cloth, correct pixel
+ownership, inspect anchor-guided neighboring-pose suggestions, and accept or
+reject each pose before previewing a separately named garment. Save the draft,
+corrected clothing and correction report for reuse. The optional female
+neckline review permits only explicitly traced old cloth in six source poses;
+older clothing and shared source registration retain their original protection.
+Suggestions still require visual review, especially on blurred or occluded poses.
+
 The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
 and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
 refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,

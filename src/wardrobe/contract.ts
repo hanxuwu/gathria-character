@@ -6,6 +6,7 @@ import {
 import type { PortableCharacterPackArchive } from "../core/pack";
 import type { Facing, PortableAnimationName } from "../core/types";
 import { assertHandReviewSubset } from "./protection";
+import { assertNecklinePermissionProfile } from "./neckline-permissions";
 
 /** Versioned native-frame authoring guides; these are not an inferred runtime rig. */
 export const WARDROBE_ANCHORS = [
@@ -96,7 +97,7 @@ export interface WardrobeGarmentFrame {
 }
 export interface WardrobeGarmentManifest {
   format: "gathria-sprite-garment";
-  version: 1 | 2;
+  version: 1 | 2 | 3;
   id: string;
   name: string;
   slot: WardrobeSlot;
@@ -109,6 +110,9 @@ export interface WardrobeGarmentManifest {
   frames: WardrobeGarmentFrame[];
   provenance: string;
   handProtectionReviews?: HandProtectionReview[];
+  /** V3 explicitly opts into a shipped, source-bound cloth-only review. It does
+   * not permit arbitrary editing or shrinking of the head protection polygon. */
+  necklinePermissionProfile?: string;
 }
 export interface WardrobeGarment {
   bytes: Uint8Array;
@@ -403,10 +407,11 @@ export function validateWardrobeGarmentManifest(
     "frames",
     "provenance",
     "handProtectionReviews",
+    "necklinePermissionProfile",
   ]);
   if (
     data.format !== "gathria-sprite-garment" ||
-    ![1, 2].includes(data.version as number)
+    ![1, 2, 3].includes(data.version as number)
   )
     fail("Unsupported garment format/version.");
   const itemId = id(data.id),
@@ -518,7 +523,22 @@ export function validateWardrobeGarmentManifest(
   let handProtectionReviews: HandProtectionReview[] | undefined;
   if (data.version === 1 && data.handProtectionReviews !== undefined)
     fail("Hand protection reviews require garment V2.");
-  if (data.version === 2) {
+  let necklinePermissionProfile: string | undefined;
+  if (data.version !== 3 && data.necklinePermissionProfile !== undefined)
+    fail("Neckline cloth reviews require garment V3.");
+  if (data.version === 3) {
+    if (data.slot !== "top" && data.slot !== "fullBody")
+      fail("Only tops or full-body clothing may use a neckline cloth review.");
+    necklinePermissionProfile = assertNecklinePermissionProfile(
+      data.necklinePermissionProfile,
+      registration,
+      registrationSha256,
+    );
+  }
+  if (
+    data.version === 2 ||
+    (data.version === 3 && data.handProtectionReviews !== undefined)
+  ) {
     if (data.slot !== "top" && data.slot !== "fullBody")
       fail(
         "Only sleeved tops or full-body clothing may review hand protection.",
@@ -576,7 +596,7 @@ export function validateWardrobeGarmentManifest(
   }
   return {
     format: "gathria-sprite-garment",
-    version: data.version as 1 | 2,
+    version: data.version as 1 | 2 | 3,
     id: itemId,
     name,
     slot: data.slot as WardrobeSlot,
@@ -589,6 +609,7 @@ export function validateWardrobeGarmentManifest(
     frames,
     provenance: text(data.provenance, "Garment provenance", 8192),
     ...(handProtectionReviews ? { handProtectionReviews } : {}),
+    ...(necklinePermissionProfile ? { necklinePermissionProfile } : {}),
   };
 }
 

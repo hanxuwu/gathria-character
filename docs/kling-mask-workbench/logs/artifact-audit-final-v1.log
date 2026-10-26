@@ -1,0 +1,11 @@
+Reconstructing96packframes and checking exactacceptedpatch/sourceprotection…
+Traceback (most recent call last):
+  File "/workspace/gathria-character/scripts/verify-kling-mask-workbench.py", line 289, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/gathria-character/scripts/verify-kling-mask-workbench.py", line 277, in main
+    frame_diff_checks(e,before,after,pack,seeds,report)
+  File "/workspace/gathria-character/scripts/verify-kling-mask-workbench.py", line 155, in frame_diff_checks
+    require(before.item_hashes['plum-pintuck-top-v1']==after.item_hashes['plum-pintuck-top-v1']==seeds['baseGarmentSha256'],'Original garment changed')
+                                                       ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'plum-pintuck-top-v1'
