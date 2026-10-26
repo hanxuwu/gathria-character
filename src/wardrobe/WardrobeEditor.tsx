@@ -84,6 +84,7 @@ import {
 import "./wardrobe.css";
 import { exportClothingRecipeKit } from "./recipe-kit";
 import type { PaintedGarment } from "./paint-import";
+import type { MaskBuildReport } from "./mask-edit";
 import ClothingPoseInspector from "./ClothingPoseInspector";
 import { wardrobeAssetUrl, wardrobeCatalogUrl } from "./catalog-assets";
 import { retainOutfitAndCustomItems } from "./library-inventory";
@@ -92,6 +93,7 @@ import NamedLooks from "./NamedLooks";
 import LookComparison from "./LookComparison";
 const ReviewWorkbench = lazy(() => import("./ReviewWorkbench"));
 const GarmentCandidatePreview = lazy(() => import("./GarmentCandidatePreview"));
+const MaskEditWorkbench = lazy(() => import("./MaskEditWorkbench"));
 import {
   prepareGarmentCandidate,
   assertCandidateBase,
@@ -151,6 +153,7 @@ interface AppearancePreview {
 }
 interface GarmentPreview extends AppearancePreview {
   painting?: PaintedGarment;
+  maskCorrection?: { bytes: Uint8Array; report: MaskBuildReport };
   proposal: GarmentCandidate;
   baseProject: WardrobeProject;
 }
@@ -376,7 +379,15 @@ export default function WardrobeEditor({
   );
   const candidateRenderer = useRef<WardrobeCompositor | null>(null);
   const preparingGarmentPreview = useRef(false);
-  const modalOpen = Boolean(appearancePreview || garmentPreview);
+  const [maskEdit, setMaskEdit] = useState<{
+    project: WardrobeProject;
+    itemId: string;
+    action: PortableAnimationName;
+    position: number;
+  } | null>(null);
+  const maskEditButton = useRef<HTMLButtonElement>(null);
+  const resumeAfterMask = useRef(false);
+  const modalOpen = Boolean(appearancePreview || garmentPreview || maskEdit);
   const previewGarmentInput = useRef<HTMLInputElement>(null);
   const paintedKitInput = useRef<HTMLInputElement>(null);
   const previewGarmentButton = useRef<HTMLButtonElement>(null);
@@ -547,6 +558,7 @@ export default function WardrobeEditor({
   }
 
   useEffect(() => {
+    setMaskEdit(null);
     if (candidateRenderer.current) closeGarmentPreview();
     preparingGarmentPreview.current = false;
     const { token, controller } = beginPreparation();
@@ -933,6 +945,7 @@ export default function WardrobeEditor({
   }
   useEffect(() => {
     if (active) return;
+    setMaskEdit(null);
     if (candidateRenderer.current) closeGarmentPreview();
     if (preparingGarmentPreview.current) {
       preparingGarmentPreview.current = false;
@@ -1461,12 +1474,29 @@ export default function WardrobeEditor({
       setStatus("Clothing candidate discarded. Your open outfit is unchanged.");
     requestAnimationFrame(() => previewGarmentButton.current?.focus());
   }
-  async function previewImportedGarment(file?: File, painted = false) {
+  async function previewImportedGarment(
+    file?: File,
+    painted = false,
+    maskProject?: WardrobeProject,
+    maskReport?: MaskBuildReport,
+  ) {
     const open = current.current;
-    if (!file || !open || busy || modalOpen) return;
+    if (!file || !open || busy || (modalOpen && !maskProject)) return;
+    // Only this mounted editor may hand off its exact, still-open base. A late
+    // async completion after navigation cannot replace a different outfit.
+    if (
+      maskProject &&
+      (!activeRef.current ||
+        open.project !== maskProject ||
+        maskEdit?.project !== maskProject)
+    )
+      return;
+    if (maskProject) setMaskEdit(null);
     const { token, controller } = beginPreparation();
     preparingGarmentPreview.current = true;
-    resumeAfterPreview.current = playing;
+    resumeAfterPreview.current = maskProject
+      ? resumeAfterMask.current
+      : playing;
     setPlaying(false);
     setBusy(true);
     setError("");
@@ -1492,6 +1522,8 @@ export default function WardrobeEditor({
       const proposal = await prepareGarmentCandidate(open.project, bytes, {
         signal: controller.signal,
       });
+      if (maskReport && maskReport.output.sha256 !== proposal.item.sha256)
+        throw Error("The mask report does not match the corrected clothing.");
       renderer = await createWardrobeCompositor(proposal.project, {
         signal: controller.signal,
       });
@@ -1515,6 +1547,9 @@ export default function WardrobeEditor({
         project: proposal.project,
         proposal,
         painting,
+        ...(maskReport
+          ? { maskCorrection: { bytes, report: maskReport } }
+          : {}),
         baseProject: open.project,
         renderer,
         original: open.renderer,
@@ -2451,6 +2486,31 @@ export default function WardrobeEditor({
                       native size unchanged. Up to 8 poses; preview first, then
                       apply. No script is needed for local RGB corrections.
                     </p>
+                    <button
+                      type="button"
+                      ref={maskEditButton}
+                      disabled={busy || modalOpen || frameId === undefined}
+                      onClick={() => {
+                        resumeAfterMask.current = playing;
+                        setPlaying(false);
+                        setMaskEdit({
+                          project,
+                          itemId: chosen.manifest.id,
+                          action: shownAction,
+                          position: Math.min(
+                            frameIndex,
+                            clip!.frames.length - 1,
+                          ),
+                        });
+                      }}
+                    >
+                      Edit clothing mask
+                    </button>
+                    <p className="wardrobe-hint">
+                      Correct which pixels belong to this clothing, preview
+                      nearby poses, and accept each correction before making a
+                      new clothing version.
+                    </p>
                     {frameId !== undefined && (
                       <ClothingPoseInspector
                         item={chosen}
@@ -2797,6 +2857,38 @@ export default function WardrobeEditor({
           </section>
         </div>
       )}
+      {maskEdit && active && (
+        <Suspense
+          fallback={<p aria-live="polite">Opening clothing mask editor…</p>}
+        >
+          <MaskEditWorkbench
+            project={maskEdit.project}
+            itemId={maskEdit.itemId}
+            action={maskEdit.action}
+            position={maskEdit.position}
+            onClose={() => {
+              setMaskEdit(null);
+              setPlaying(resumeAfterMask.current && activeRef.current);
+              setStatus(
+                "Mask draft closed. Your accepted outfit is unchanged.",
+              );
+              requestAnimationFrame(() => maskEditButton.current?.focus());
+            }}
+            onPreview={(bytes, report) =>
+              previewImportedGarment(
+                new File(
+                  [new Uint8Array(bytes)],
+                  "mask-candidate.garment.zip",
+                  { type: "application/zip" },
+                ),
+                false,
+                maskEdit.project,
+                report,
+              )
+            }
+          />
+        </Suspense>
+      )}
       {garmentPreview && (
         <Suspense
           fallback={<p aria-live="polite">Opening clothing preview…</p>}
@@ -2807,6 +2899,7 @@ export default function WardrobeEditor({
             baseProject={garmentPreview.baseProject}
             project={garmentPreview.project}
             painting={garmentPreview.painting}
+            maskCorrection={garmentPreview.maskCorrection}
             initialAction={garmentPreview.action}
             initialPosition={garmentPreview.position}
             initialFacing={garmentPreview.facing}

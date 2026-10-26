@@ -1,0 +1,22 @@
+[WebServer] (node:902891) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:902904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:902922) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/mask-workbench.spec.ts:112:1 › brush, protected pixels and undo produce only explicitly accepted source poses; saved projects and packs retain those pixels (5.1s)
+  ✓  2 tests/e2e/mask-workbench.spec.ts:217:1 › a propagated pose stays pending until accepted and later edits revoke its acceptance (3.8s)
+  ✓  3 tests/e2e/mask-workbench.spec.ts:247:1 › discarding the built candidate leaves the current outfit and undo history untouched (3.7s)
+  ✓  4 tests/e2e/mask-workbench.spec.ts:270:1 › mask drafts restore pixels and review decisions, while foreign bindings and a malformed later pose fail atomically (3.7s)
+  ✓  5 tests/e2e/mask-workbench.spec.ts:361:1 › held drawings offer their distinct neighboring pose without wrapping a one-shot action (3.1s)
+  ✓  6 tests/e2e/mask-workbench.spec.ts:405:1 › mobile pointer sampling and a dragged brush use native coordinates and undo exactly (2.9s)
+
+  6 passed (24.4s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

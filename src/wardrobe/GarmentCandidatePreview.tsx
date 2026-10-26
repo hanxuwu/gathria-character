@@ -6,6 +6,7 @@ import type { WardrobeProject } from "./contract";
 import type { WardrobeCompositor } from "./compositor";
 import { createLookComparison } from "./look-comparison";
 import type { PaintedGarment } from "./paint-import";
+import type { MaskBuildReport } from "./mask-edit";
 
 interface Props {
   original: WardrobeCompositor;
@@ -13,6 +14,7 @@ interface Props {
   baseProject: WardrobeProject;
   project: WardrobeProject;
   painting?: PaintedGarment;
+  maskCorrection?: { bytes: Uint8Array; report: MaskBuildReport };
   initialAction: PortableAnimationName;
   initialPosition: number;
   initialFacing: Facing;
@@ -37,6 +39,7 @@ export default function GarmentCandidatePreview({
   baseProject,
   project,
   painting,
+  maskCorrection,
   initialAction,
   initialPosition,
   initialFacing,
@@ -429,6 +432,47 @@ export default function GarmentCandidatePreview({
       )}
       {notice && <p aria-live="polite">{notice}</p>}
       <div className="appearance-update-footer">
+        {maskCorrection && (
+          <div
+            data-testid="mask-correction-summary"
+            className="paint-import-summary"
+          >
+            <p>
+              {maskCorrection.report.accepted.length} accepted poses ·{" "}
+              {maskCorrection.report.excluded.length} pending or rejected poses
+              excluded. Review the full outfit before applying. Save the draft
+              separately to keep editing.
+            </p>
+            <button
+              type="button"
+              disabled={applying}
+              onClick={() =>
+                downloadBlob(
+                  new Blob([new Uint8Array(maskCorrection.bytes)], {
+                    type: "application/zip",
+                  }),
+                  `${maskCorrection.report.output.id}.garment.zip`,
+                )
+              }
+            >
+              Save corrected clothing
+            </button>
+            <button
+              type="button"
+              disabled={applying}
+              onClick={() =>
+                downloadBlob(
+                  new Blob([JSON.stringify(maskCorrection.report, null, 2)], {
+                    type: "application/json",
+                  }),
+                  `${maskCorrection.report.output.id}.mask-report.json`,
+                )
+              }
+            >
+              Save mask report
+            </button>
+          </div>
+        )}
         {painting && (
           <div
             data-testid="paint-import-summary"

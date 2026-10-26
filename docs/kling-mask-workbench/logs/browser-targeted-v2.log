@@ -1,0 +1,92 @@
+[WebServer] (node:897579) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:897592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:897611) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/mask-workbench.spec.ts:111:1 › brush, protected pixels and undo produce only explicitly accepted source poses; saved projects and packs retain those pixels (30.2s)
+(node:897936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/mask-workbench.spec.ts:196:1 › a propagated pose stays pending until accepted and later edits revoke its acceptance (30.3s)
+(node:898139) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 tests/e2e/mask-workbench.spec.ts:224:1 › discarding the built candidate leaves the current outfit and undo history untouched (3.8s)
+  ✓  4 tests/e2e/mask-workbench.spec.ts:247:1 › mask drafts restore pixels and review decisions, while foreign bindings and a malformed later pose fail atomically (3.3s)
+
+
+  1) tests/e2e/mask-workbench.spec.ts:111:1 › brush, protected pixels and undo produce only explicitly accepted source poses; saved projects and packs retain those pixels 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: 'Clothing mask workbench', exact: true }).getByLabel('Source pose', { exact: true })
+
+
+      134 |   expect(await canvasRgba(canvas)).toEqual(painted);
+      135 |   await button(dialog, "Suggest neighboring poses").click();
+    > 136 |   await dialog.getByLabel("Source pose", { exact: true }).selectOption("19");
+          |                                                           ^
+      137 |   await expect(dialog.getByTestId("mask-pose-status")).toContainText(
+      138 |     /pending/i,
+      139 |   );
+        at /workspace/gathria-character/tests/e2e/mask-workbench.spec.ts:136:59
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/mask-workbench-brush-prote-184d5-d-packs-retain-those-pixels/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/mask-workbench-brush-prote-184d5-d-packs-retain-those-pixels/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/mask-workbench-brush-prote-184d5-d-packs-retain-those-pixels/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/mask-workbench-brush-prote-184d5-d-packs-retain-those-pixels/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/mask-workbench.spec.ts:196:1 › a propagated pose stays pending until accepted and later edits revoke its acceptance 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: 'Clothing mask workbench', exact: true }).getByLabel('Source pose', { exact: true })
+
+
+      201 |   await button(dialog, "Accept pose").click();
+      202 |   await button(dialog, "Suggest neighboring poses").click();
+    > 203 |   await dialog.getByLabel("Source pose", { exact: true }).selectOption("19");
+          |                                                           ^
+      204 |   await expect(dialog.getByTestId("mask-pose-status")).toContainText(
+      205 |     /pending/i,
+      206 |   );
+        at /workspace/gathria-character/tests/e2e/mask-workbench.spec.ts:203:59
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/mask-workbench-a-propagate-16919-edits-revoke-its-acceptance/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/mask-workbench-a-propagate-16919-edits-revoke-its-acceptance/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/mask-workbench-a-propagate-16919-edits-revoke-its-acceptance/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/mask-workbench-a-propagate-16919-edits-revoke-its-acceptance/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/mask-workbench.spec.ts:111:1 › brush, protected pixels and undo produce only explicitly accepted source poses; saved projects and packs retain those pixels 
+    tests/e2e/mask-workbench.spec.ts:196:1 › a propagated pose stays pending until accepted and later edits revoke its acceptance 
+  2 passed (1.2m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
