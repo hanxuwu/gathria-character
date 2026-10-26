@@ -887,11 +887,9 @@ async function checkCombinations(page, c) {
   });
   await expect(d).toBeVisible();
   const mixed = entry.items.find((i) => i.id === c.mixedBottom);
-  const additions = d
-    .locator("details")
-    .filter({
-      has: page.locator("summary", { hasText: "Add clothing to check" }),
-    });
+  const additions = d.locator("details").filter({
+    has: page.locator("summary", { hasText: "Add clothing to check" }),
+  });
   if ((await additions.getAttribute("open")) === null)
     await additions.locator("summary").click();
   const load = additions.getByRole("checkbox", {
@@ -981,7 +979,7 @@ async function checkCombinations(page, c) {
   const inspector = d.locator(".combination-inspector");
   await expect(inspector.locator("canvas")).toBeVisible({ timeout: 180000 });
   await d
-    .getByLabel("Review background", { exact: true })
+    .getByRole("combobox", { name: /^Review background/ })
     .selectOption("cream");
   const shot = await screenshot(
     page,
@@ -990,7 +988,7 @@ async function checkCombinations(page, c) {
   );
   const note = await visualNoteGate(c, shot, visual);
   await d
-    .getByLabel("Sample review status", { exact: true })
+    .getByRole("combobox", { name: /^Sample review status/ })
     .selectOption(note.decision);
   await d.getByLabel("Sample review note", { exact: true }).fill(note.note);
   const saved = await download(
@@ -1029,12 +1027,14 @@ async function checkCombinations(page, c) {
   assert.deepEqual(await d.getByRole("alert").allTextContents(), []);
   await button(d, `Inspect sample ${visual.index + 1}`).click();
   await expect(
-    d.getByLabel("Sample review status", { exact: true }),
+    d.getByRole("combobox", { name: /^Sample review status/ }),
   ).toHaveValue(note.decision);
   await expect(d.getByLabel("Sample review note", { exact: true })).toHaveValue(
     note.note,
   );
-  await d.getByLabel("Review region", { exact: true }).selectOption("full");
+  await d
+    .getByRole("combobox", { name: /^Review region/ })
+    .selectOption("full");
   const boxes = d.getByRole("checkbox", {
     name: /^Include sample \d+ in contact sheets$/,
   });
