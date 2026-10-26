@@ -1,0 +1,52 @@
+[WebServer] (node:917715) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:917728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:917746) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS checker rejection: source hash mismatch preserves selected rendered pixels and nonempty role-textbox note.
+  ✘  1 tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining capture report controls preserve notes and eight distinct jump contact selections (45.3s)
+
+
+  1) tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining capture report controls preserve notes and eight distinct jump contact selections 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.uncheck: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).locator('input[type="checkbox"][aria-label^="Include sample "]:checked').nth(4)
+
+
+      79 |   await expect(textbox(matrix,"Sample review note")).toHaveValue(note);
+      80 |   await combo(matrix,"Review region").selectOption("full");
+    > 81 |   for (const input of await matrix.locator('input[type="checkbox"][aria-label^="Include sample "]:checked').all()) await input.uncheck();
+         |                                                                                                                                ^
+      82 |   for (const index of chosen) await matrix.getByRole("checkbox",{name:`Include sample ${index+1} in contact sheets`,exact:true}).check();
+      83 |   const bundle = unzipSync(await download(page,matrix,"Download selected contact sheets"));
+      84 |   const manifest = JSON.parse(strFromU8(bundle["manifest.json"]));
+        at /workspace/gathria-character/tests/e2e/authoring-capture-flow.temp.spec.ts:81:128
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authoring-capture-flow.tem-cd667-nct-jump-contact-selections/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authoring-capture-flow.tem-cd667-nct-jump-contact-selections/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/authoring-capture-flow.tem-cd667-nct-jump-contact-selections/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/authoring-capture-flow.tem-cd667-nct-jump-contact-selections/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining capture report controls preserve notes and eight distinct jump contact selections 
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

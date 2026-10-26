@@ -1,0 +1,1277 @@
+{
+  "format": "gathria-authoring-lab-review",
+  "version": 1,
+  "deliveryEvidenceIndex": "docs/kling-authoring-lab/evidence/final-v3/delivery-index.json",
+  "deliveryEvidenceIndexSha256": "ed0c7d6e7772249d7b3eb7dde75c5b71e41c25486f6e5bfe74e8e28ef8ea042f",
+  "captureFinishedAt": "2026-10-26T09:02:00.487Z",
+  "captureScriptSha256": "887b9ef64cb565cfc32fd4e1f7d3a55662ffd76ce3dc9654268e0b14f3f973e8",
+  "deliveryKind": "combined-delivery-index",
+  "deliveryCombinedAt": "2026-10-26T09:14:17.471597+00:00",
+  "referencedEvidence": {
+    "captureOrigin": {
+      "file": "docs/kling-authoring-lab/evidence/final-v3/evidence-index.json",
+      "sha256": "5d622b5961a0f029e7ada526095047d06254e2a5a7310eacfc04c407e3596c4c",
+      "strictPassed": false,
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(report.playback.every((p) => p.missingPositions.length === 0))\n\n    at file:///workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:1289:3"
+    },
+    "playbackSupplement": {
+      "file": "docs/kling-authoring-lab/evidence/final-v3/player-supplement.json",
+      "sha256": "08254e6ba7a3d50821bd436edf557575a95fc65fabaf5ca3b385303227e31b96",
+      "strictPassed": false,
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)'\n+ ]\n- []\n\n    at file:///workspace/gathria-character/scripts/check-kling-authoring-player-supplement.mjs:80:64"
+    },
+    "supplementConsoleDiagnostic": {
+      "file": "docs/kling-authoring-lab/evidence/final-v3/player-console-diagnostic.json",
+      "sha256": "47c207daebc4316b9f1e5a3169b0a304fd4991d84e974e7d51d83d540754648f",
+      "disposition": "The supplemental strict error assertion caught only the missing optional favicon. Diagnostic identifies its exact URL; original three complete real-time plays and native scrub remain unchanged.",
+      "strictPassed": null,
+      "failure": null
+    }
+  },
+  "sourceFrameCounts": {
+    "male": 88,
+    "female": 96
+  },
+  "reviewScriptSha256": "b2bcc31ed0a395117119f64a109f31963941291359699cf2f46ea60a24af1a42",
+  "independentArtifactAudit": {
+    "file": "docs/kling-authoring-lab/artifact-validation.json",
+    "sha256": "f867aca6286b1e954fc5dc0f1b42340c55facb02c41dffd8f1f4011b718dfdb8"
+  },
+  "scope": "Presentation of independently verified actual UI downloads. Existing silhouettes, original head/body pixels, frame inventory and action timing remain the source of truth. These material variants do not create new clothing cuts.",
+  "sources": {
+    "docs/kling-authoring-lab/evidence/final-v3/evidence-index.json": {
+      "kind": "referenced-raw-evidence",
+      "sha256": "5d622b5961a0f029e7ada526095047d06254e2a5a7310eacfc04c407e3596c4c",
+      "bytes": 266044,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/player-supplement.json": {
+      "kind": "referenced-raw-evidence",
+      "sha256": "08254e6ba7a3d50821bd436edf557575a95fc65fabaf5ca3b385303227e31b96",
+      "bytes": 32523,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/player-console-diagnostic.json": {
+      "kind": "referenced-raw-evidence",
+      "sha256": "47c207daebc4316b9f1e5a3169b0a304fd4991d84e974e7d51d83d540754648f",
+      "bytes": 625,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-run-right.gif": {
+      "kind": "gif",
+      "bytes": 419640,
+      "sha256": "ccf98ae9cc7f1a9824d039f321da25d9698b52c28640feea3ff158cc9d4cefb9",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-jump-right.gif": {
+      "kind": "gif",
+      "bytes": 1023661,
+      "sha256": "48e0e66ccc925753be527755c5a02d0e688f725d1cedb9112e20419ace4d8e77",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-run-right.gif": {
+      "kind": "gif",
+      "bytes": 416876,
+      "sha256": "fb058e1d2ae6fba02d6b53eac7ecf28bc1e8e4cefacf1f74e2bae847fdb70119",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-jump-right.gif": {
+      "kind": "gif",
+      "bytes": 1036298,
+      "sha256": "a23deb4ba54fe7c3a0d6074ca0225f26c09a9c75a227ccf264cbe38935d92d66",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-before-jump-103-right.png": {
+      "kind": "png",
+      "bytes": 284841,
+      "sha256": "4d8514ea30a5a0bf1c8d61d8d780728de3fe97a71c5d8984e0d8a092f523907a",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-after-jump-103-right.png": {
+      "kind": "png",
+      "bytes": 289399,
+      "sha256": "7eef9d28208d42bdb566e9a581e91870d8fba8a2548767c516393342e4d2f9d0",
+      "actualUiDownload": true
+    },
+    "docs/kling-wardrobe/registration/male-full-outfits-v1.json": {
+      "kind": "captured-registration",
+      "sha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "bytes": 337561,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-before-jump-103-right.png": {
+      "kind": "png",
+      "bytes": 270285,
+      "sha256": "5c8cd8b5e59669af29c28044622f98b2ea4b563c6f15f665e80ce9225d497a6d",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-after-jump-103-right.png": {
+      "kind": "png",
+      "bytes": 273024,
+      "sha256": "17273509de60f1cbcdcf4d498103469f1d0f64be5b6dbef39edf4fa1ec78df6b",
+      "actualUiDownload": true
+    },
+    "docs/kling-wardrobe/registration/female.json": {
+      "kind": "captured-registration",
+      "sha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "bytes": 465066,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip": {
+      "kind": "contact",
+      "bytes": 967507,
+      "sha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.combination-reviewed.json": {
+      "kind": "combination-report",
+      "bytes": 365968,
+      "sha256": "fb3dd1bf1e3af4cdd948070c0fdcffc1d102ac748d9039e5595a32bc7bbb190c",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip": {
+      "kind": "contact",
+      "bytes": 972670,
+      "sha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.combination-reviewed.json": {
+      "kind": "combination-report",
+      "bytes": 370784,
+      "sha256": "f1314faf9e0e3ddb49da185a088172a11ebf4046327211a5edd08554651ec194",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.clothing-draft.zip": {
+      "kind": "authoring-draft",
+      "bytes": 4769468,
+      "sha256": "767384efdb9c59fa5b4377b18e6981fd04b62592c0b7c17b1baf9b156753ea5f",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.created.garment.zip": {
+      "kind": "garment",
+      "bytes": 4851792,
+      "sha256": "08674466e8e1d0fd56ae1741032642d581f13af8ccf7374f8743e936b3f65c6e",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.creation-report.json": {
+      "kind": "creation-report",
+      "bytes": 53882,
+      "sha256": "1ffaa7dd476d61cc82715418d5f9f7847f1fdfca426a3192ccce1c8da30c9de8",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.combination-scan.json": {
+      "kind": "combination-report",
+      "bytes": 365470,
+      "sha256": "be2d4fb710be3dbcc6a0c44514e30d5de8449e50409cd25b4cab20c2cd917c28",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-run-left.gif": {
+      "kind": "gif",
+      "bytes": 419553,
+      "sha256": "91febe23994dd40d2f92f7d051fa83c3f0e828100b52364a8177a1e699e5111d",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-jump-left.gif": {
+      "kind": "gif",
+      "bytes": 1023629,
+      "sha256": "a98c534803df5218b6aadceea80d34425fbf6b824f8dadbfe1214d7c223f65ea",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.created.character.zip": {
+      "kind": "pack",
+      "bytes": 26790550,
+      "sha256": "5070008e349091f3431ce6f7f26b490512b44d0f0b48c5c26500231624e9aa99",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-authoring-review.png": {
+      "kind": "actual-ui-screenshot",
+      "sha256": "d77da2b31a7e990340832c0701607a68eb950ce1e905813bcc418842df4024fe",
+      "bytes": 639626,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-combination-inspector.png": {
+      "kind": "actual-ui-screenshot",
+      "sha256": "4f069453150b789f1f16e7dd6d565aad3142b7378c38fac6ba74d5f06093b5b0",
+      "bytes": 309254,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male-independent-player.png": {
+      "kind": "actual-ui-screenshot",
+      "sha256": "2ce7b5ec12b1cc7c47e96dd77839ba11f5abcf0403ee3d3d102da02422a9159b",
+      "bytes": 245211,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/male.visual-note.json": {
+      "kind": "captured-human-review-note",
+      "sha256": "bb39cbc2e80ad7180b614ababcc9f6bd8b16455685e790e8944cd7b59ac07838",
+      "bytes": 732,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.clothing-draft.zip": {
+      "kind": "authoring-draft",
+      "bytes": 4244328,
+      "sha256": "f16f26bafee94c6962295bb3e90c7d2da0af955f82c9e49437a95495634a8148",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.created.garment.zip": {
+      "kind": "garment",
+      "bytes": 4158373,
+      "sha256": "bedb8781fe2dd296472f92c0d3e0b717d30b4c614cfe39a5e89de0ba4e3e9e33",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.creation-report.json": {
+      "kind": "creation-report",
+      "bytes": 61808,
+      "sha256": "8c486dfb5845650fecf63b97220877c75dd0437d79a8a359523dda6c9fb0a8ab",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.combination-scan.json": {
+      "kind": "combination-report",
+      "bytes": 370259,
+      "sha256": "04389aa8cb5517e51f76b532d7ee5b174c2e72d9fe6ba79828feac3af7a281a8",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-run-left.gif": {
+      "kind": "gif",
+      "bytes": 417009,
+      "sha256": "50f3a2a0fbff673fc9339609405256f8830e04e1696f2d1ada294513bee4a6e6",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-jump-left.gif": {
+      "kind": "gif",
+      "bytes": 1036910,
+      "sha256": "ca4c61c4bc4bf2a05145c1f29dfec183deb284eedad0ce6eccaa3affd41498bc",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.created.character.zip": {
+      "kind": "pack",
+      "bytes": 27339448,
+      "sha256": "68c9210d62855604a999269d5387e94fb6e0120edacd73475d5745b2d1d77fdf",
+      "actualUiDownload": true
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-authoring-review.png": {
+      "kind": "actual-ui-screenshot",
+      "sha256": "aed49bb9ae77750fac36c406f125e1f3fd43aa8bacf9c38a1f760aa4bb138bd9",
+      "bytes": 608637,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-combination-inspector.png": {
+      "kind": "actual-ui-screenshot",
+      "sha256": "0d11a86fab90700d5da7c069a22e103f9af25821aa22fc33248d20ecbb198703",
+      "bytes": 336185,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female-independent-player.png": {
+      "kind": "actual-ui-screenshot",
+      "sha256": "1c8931d8771a697e3dd74cc5d896a74c892ef1429ed3c7009a563169a936caed",
+      "bytes": 242902,
+      "actualUiDownload": false
+    },
+    "docs/kling-authoring-lab/evidence/final-v3/female.visual-note.json": {
+      "kind": "captured-human-review-note",
+      "sha256": "cb387b77370d038b65b6efbb250d86f85be6ebcdbbff8669839345402174bcaf",
+      "bytes": 759,
+      "actualUiDownload": false
+    }
+  },
+  "outputs": [
+    {
+      "file": "docs/kling-authoring-lab/review/male-run-right.gif",
+      "sha256": "ccf98ae9cc7f1a9824d039f321da25d9698b52c28640feea3ff158cc9d4cefb9",
+      "bytes": 419640,
+      "dimensions": [
+        352,
+        528
+      ],
+      "title": "Male \u00b7 run right",
+      "source": "docs/kling-authoring-lab/evidence/final-v3/male-run-right.gif",
+      "actualUiDownload": true,
+      "presentation": "Byte-for-byte copy of an actual UI export; no re-encoding.",
+      "frames": 16,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "sourceSchedule": {
+        "frames": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "originalLoop": true,
+      "outputLoop": true,
+      "scaleFromNativeExport": 0.5,
+      "note": "The application exported this GIF at half native size on a neutral matte. One-shot jumps stay one-shot; reopen the original file to replay."
+    },
+    {
+      "file": "docs/kling-authoring-lab/review/male-jump-right.gif",
+      "sha256": "48e0e66ccc925753be527755c5a02d0e688f725d1cedb9112e20419ace4d8e77",
+      "bytes": 1023661,
+      "dimensions": [
+        352,
+        528
+      ],
+      "title": "Male \u00b7 jump right",
+      "source": "docs/kling-authoring-lab/evidence/final-v3/male-jump-right.gif",
+      "actualUiDownload": true,
+      "presentation": "Byte-for-byte copy of an actual UI export; no re-encoding.",
+      "frames": 39,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50
+      ],
+      "sourceSchedule": {
+        "frames": [
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121
+        ],
+        "fps": 24,
+        "loop": false
+      },
+      "originalLoop": false,
+      "outputLoop": false,
+      "scaleFromNativeExport": 0.5,
+      "note": "The application exported this GIF at half native size on a neutral matte. One-shot jumps stay one-shot; reopen the original file to replay."
+    },
+    {
+      "file": "docs/kling-authoring-lab/review/female-run-right.gif",
+      "sha256": "fb058e1d2ae6fba02d6b53eac7ecf28bc1e8e4cefacf1f74e2bae847fdb70119",
+      "bytes": 416876,
+      "dimensions": [
+        352,
+        528
+      ],
+      "title": "Female \u00b7 run right",
+      "source": "docs/kling-authoring-lab/evidence/final-v3/female-run-right.gif",
+      "actualUiDownload": true,
+      "presentation": "Byte-for-byte copy of an actual UI export; no re-encoding.",
+      "frames": 16,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "sourceSchedule": {
+        "frames": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "originalLoop": true,
+      "outputLoop": true,
+      "scaleFromNativeExport": 0.5,
+      "note": "The application exported this GIF at half native size on a neutral matte. One-shot jumps stay one-shot; reopen the original file to replay."
+    },
+    {
+      "file": "docs/kling-authoring-lab/review/female-jump-right.gif",
+      "sha256": "a23deb4ba54fe7c3a0d6074ca0225f26c09a9c75a227ccf264cbe38935d92d66",
+      "bytes": 1036298,
+      "dimensions": [
+        352,
+        528
+      ],
+      "title": "Female \u00b7 jump right",
+      "source": "docs/kling-authoring-lab/evidence/final-v3/female-jump-right.gif",
+      "actualUiDownload": true,
+      "presentation": "Byte-for-byte copy of an actual UI export; no re-encoding.",
+      "frames": 39,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50
+      ],
+      "sourceSchedule": {
+        "frames": [
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121
+        ],
+        "fps": 24,
+        "loop": false
+      },
+      "originalLoop": false,
+      "outputLoop": false,
+      "scaleFromNativeExport": 0.5,
+      "note": "The application exported this GIF at half native size on a neutral matte. One-shot jumps stay one-shot; reopen the original file to replay."
+    },
+    {
+      "file": "docs/kling-authoring-lab/review/material-native-and-neckline-2x.png",
+      "sha256": "e8d0232df7afdc19a30bf926acad93167945ff6912115dabcda7b213da0b2c0a",
+      "bytes": 782722,
+      "dimensions": [
+        1148,
+        2454
+      ],
+      "title": "Material changes at native size, with 2\u00d7 neckline detail",
+      "actualUiDownload": false,
+      "presentation": "Offline arrangement of exact captured UI PNGs. Shared same-pose crops, alpha composited onto a neutral matte; no art edits.",
+      "crops": [
+        {
+          "character": "male",
+          "stage": "before",
+          "file": "docs/kling-authoring-lab/evidence/final-v3/male-before-jump-103-right.png",
+          "frameId": 103,
+          "action": "jump",
+          "facing": "right",
+          "nativeCharacterCrop": [
+            106,
+            252,
+            652,
+            998
+          ],
+          "characterScale": 1,
+          "necklineCrop": [
+            244,
+            528,
+            484,
+            688
+          ],
+          "necklineScale": 2,
+          "alphaUnchangedBetweenStages": true
+        },
+        {
+          "character": "male",
+          "stage": "after",
+          "file": "docs/kling-authoring-lab/evidence/final-v3/male-after-jump-103-right.png",
+          "frameId": 103,
+          "action": "jump",
+          "facing": "right",
+          "nativeCharacterCrop": [
+            106,
+            252,
+            652,
+            998
+          ],
+          "characterScale": 1,
+          "necklineCrop": [
+            244,
+            528,
+            484,
+            688
+          ],
+          "necklineScale": 2,
+          "alphaUnchangedBetweenStages": true
+        },
+        {
+          "character": "female",
+          "stage": "before",
+          "file": "docs/kling-authoring-lab/evidence/final-v3/female-before-jump-103-right.png",
+          "frameId": 103,
+          "action": "jump",
+          "facing": "right",
+          "nativeCharacterCrop": [
+            106,
+            236,
+            652,
+            998
+          ],
+          "characterScale": 1,
+          "necklineCrop": [
+            291,
+            524,
+            531,
+            684
+          ],
+          "necklineScale": 2,
+          "alphaUnchangedBetweenStages": true
+        },
+        {
+          "character": "female",
+          "stage": "after",
+          "file": "docs/kling-authoring-lab/evidence/final-v3/female-after-jump-103-right.png",
+          "frameId": 103,
+          "action": "jump",
+          "facing": "right",
+          "nativeCharacterCrop": [
+            106,
+            236,
+            652,
+            998
+          ],
+          "characterScale": 1,
+          "necklineCrop": [
+            291,
+            524,
+            531,
+            684
+          ],
+          "necklineScale": 2,
+          "alphaUnchangedBetweenStages": true
+        }
+      ],
+      "matte": [
+        238,
+        233,
+        223
+      ]
+    },
+    {
+      "file": "docs/kling-authoring-lab/review/actual-combination-variations.png",
+      "sha256": "2d519e6af49b688d0f7f07fee83d10c8b0066c2e245831ffd8839b7a984b2535",
+      "bytes": 312646,
+      "dimensions": [
+        928,
+        1538
+      ],
+      "title": "Sixteen actual exported combination previews",
+      "actualUiDownload": false,
+      "presentation": "Contact ZIP after-PNG members arranged at their original exported size, unchanged except neutral matte. The labelled integer reduction can vary with appearance padding, so these thumbnails are not a same-size anatomy comparison. No additional downsampling or rendering.",
+      "samples": [
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/01-after.png",
+          "memberSha256": "7ec24a8b030de70d35366420e84b9e78c8dace23586d7d1a9319f579bcd3b352",
+          "caseId": "bd8470f510484470e99842ca",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 704,
+            "height": 1056
+          },
+          "integerReduction": 4,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/02-after.png",
+          "memberSha256": "473881296084e256aae2ebda08fcb8af6cd6aa03b6d31c4f57795518179f1f57",
+          "caseId": "ec0141b640ad5d1cb158af65",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "soft-curls",
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/03-after.png",
+          "memberSha256": "3065bdfe627f4f4acdfa29dd7700dbc2c960e614ff07462d244c89fc9f208f64",
+          "caseId": "213a5c878de3f17006b2d9cb",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/04-after.png",
+          "memberSha256": "88fb0750721918a536722c6f74e7284ba6ec4630f8a8f4ab84dedb68d3dd805e",
+          "caseId": "ceb49e6e8972e60644acd560",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "soft-curls",
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/05-after.png",
+          "memberSha256": "186997c20eb872e37d473726b60e1f4c6ac9a2be3fe6f9a448dbe93ce2652c20",
+          "caseId": "5666e758d37cd3cdcc07e92d",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/06-after.png",
+          "memberSha256": "6ca3aeb0fd206d06d164b967e01eff34c75b51115c8f99ea81c80f70df029b83",
+          "caseId": "35f736eeb6f007308162bfe7",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "soft-curls",
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/07-after.png",
+          "memberSha256": "5e428d1f8cf08ca7ba2c1a38f904e7f91e008df0c6403856ecc687b3b0c807b1",
+          "caseId": "32ef50ba75f2bf140de3a9d5",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 704,
+            "height": 1056
+          },
+          "integerReduction": 4,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "male",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+          "archiveSha256": "5b864d3c25603cef133ad2c9190e19e54059959f019a7753508f77ddd6cdf2bb",
+          "member": "samples/08-after.png",
+          "memberSha256": "8f9d9befc5c24f9ff54bbfb45eda2bc18cce506bd4caa52f885539d36caadb9e",
+          "caseId": "9099dbfb45e01f00f19ee4b6",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "soft-curls",
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/01-after.png",
+          "memberSha256": "d75711d808911f790dcedc342c83cddae70f5ea1d742a6243120657f019dda1a",
+          "caseId": "bd8470f510484470e99842ca",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 704,
+            "height": 1056
+          },
+          "integerReduction": 4,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/02-after.png",
+          "memberSha256": "2dc71bccde5b4302283993f7ce2266748622f796285bd2f7af07ece613bf4195",
+          "caseId": "1dd82d952a0699f0de488638",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "romantic-waves",
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/03-after.png",
+          "memberSha256": "414dd05f97f12a8acdb57697387a4d9fc07211e1289eae21a392682c02b0dada",
+          "caseId": "213a5c878de3f17006b2d9cb",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/04-after.png",
+          "memberSha256": "69f8a4aa84a79bdd893d7f0ffa6a98f6c32a61a46b2f740f8a8fc29665ef02a0",
+          "caseId": "5733b559cb6442cd1c111e74",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "romantic-waves",
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/05-after.png",
+          "memberSha256": "6d13808b7a2cedb70cacb54cc16580fddc878ec18b560b1e7d5ac246987a9e13",
+          "caseId": "5666e758d37cd3cdcc07e92d",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/06-after.png",
+          "memberSha256": "e4092380e414b0bfac479e2b956d2bef1717da44a6f1d1f3d850d8b2b35324b6",
+          "caseId": "79db4d55915a624b2f1897b8",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "romantic-waves",
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/07-after.png",
+          "memberSha256": "b66e01f49b31622270d2084847878308f8465526334bfe44890a05815f4b795b",
+          "caseId": "32ef50ba75f2bf140de3a9d5",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": null,
+            "faceId": null,
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 704,
+            "height": 1056
+          },
+          "integerReduction": 4,
+          "displayedAtContactPixelScale": 1
+        },
+        {
+          "character": "female",
+          "archive": "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+          "archiveSha256": "cfb9b8c9f70c1b7522c9b5b0b2312106ae506641c1c102519ef9450c26126236",
+          "member": "samples/08-after.png",
+          "memberSha256": "f068e4cb19c2bcd17707ca2b709d1eb1ca3a1e1c5c19f1cbdafeee5de0971f1c",
+          "caseId": "63aff86ceee9f9f1c66b8afd",
+          "selection": {
+            "top": "sage-pintuck-authoring-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "appearance": {
+            "hairId": "romantic-waves",
+            "faceId": "gentle-v2",
+            "hairColor": "chestnut"
+          },
+          "frameId": 102,
+          "position": 19,
+          "startMs": 791.6666666666666,
+          "durationMs": 41.666666666666664,
+          "nativeCrop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 1184
+          },
+          "integerReduction": 5,
+          "displayedAtContactPixelScale": 1
+        }
+      ],
+      "matte": [
+        238,
+        233,
+        223
+      ]
+    }
+  ],
+  "links": [
+    "docs/kling-authoring-lab/evidence/final-v3/male-before-jump-103-right.png",
+    "docs/kling-authoring-lab/evidence/final-v3/male.clothing-draft.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/male.created.garment.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/male.creation-report.json",
+    "docs/kling-authoring-lab/evidence/final-v3/male-after-jump-103-right.png",
+    "docs/kling-authoring-lab/evidence/final-v3/male.combination-scan.json",
+    "docs/kling-authoring-lab/evidence/final-v3/male.combination-reviewed.json",
+    "docs/kling-authoring-lab/evidence/final-v3/male.combination-contact.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/male-run-right.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/male-run-left.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/male-jump-right.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/male-jump-left.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/male.created.character.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/male-authoring-review.png",
+    "docs/kling-authoring-lab/evidence/final-v3/male-combination-inspector.png",
+    "docs/kling-authoring-lab/evidence/final-v3/male-independent-player.png",
+    "docs/kling-authoring-lab/evidence/final-v3/male.visual-note.json",
+    "docs/kling-authoring-lab/evidence/final-v3/female-before-jump-103-right.png",
+    "docs/kling-authoring-lab/evidence/final-v3/female.clothing-draft.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/female.created.garment.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/female.creation-report.json",
+    "docs/kling-authoring-lab/evidence/final-v3/female-after-jump-103-right.png",
+    "docs/kling-authoring-lab/evidence/final-v3/female.combination-scan.json",
+    "docs/kling-authoring-lab/evidence/final-v3/female.combination-reviewed.json",
+    "docs/kling-authoring-lab/evidence/final-v3/female.combination-contact.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/female-run-right.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/female-run-left.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/female-jump-right.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/female-jump-left.gif",
+    "docs/kling-authoring-lab/evidence/final-v3/female.created.character.zip",
+    "docs/kling-authoring-lab/evidence/final-v3/female-authoring-review.png",
+    "docs/kling-authoring-lab/evidence/final-v3/female-combination-inspector.png",
+    "docs/kling-authoring-lab/evidence/final-v3/female-independent-player.png",
+    "docs/kling-authoring-lab/evidence/final-v3/female.visual-note.json",
+    "docs/kling-authoring-lab/evidence/final-v3/delivery-index.json",
+    "docs/kling-authoring-lab/artifact-validation.json",
+    "scripts/render-kling-authoring-review.py",
+    "docs/kling-authoring-lab/evidence/final-v3/evidence-index.json",
+    "docs/kling-authoring-lab/evidence/final-v3/player-supplement.json",
+    "docs/kling-authoring-lab/evidence/final-v3/player-console-diagnostic.json"
+  ],
+  "visualCount": 6,
+  "visualBytes": 3991843,
+  "galleryHtml": {
+    "file": "docs/kling-authoring-lab/review/index.html",
+    "sha256": "fb2c0630841a937b232324870be8077c2228a2bb367020848d93f52300b06c97"
+  }
+}

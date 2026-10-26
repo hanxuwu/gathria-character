@@ -1,0 +1,153 @@
+{
+  "format": "gathria-authoring-lab-verification",
+  "version": 1,
+  "recordedAt": "2026-10-26T09:23:09.692031+00:00",
+  "baselineCommit": "5bb6966d247ece4c0d8a33f083a44208b12148ab",
+  "status": "implementation, local regression, production delivery and independent audit complete; pending user visual review",
+  "sourceAtBuild": "source-at-build.json",
+  "sourceAtBuildSha256": "80b224280dbbdab5612b172ef9fbf14be2a889aaf9cae8c38545ae1e38b69290",
+  "unitTests": {
+    "fullSuite": {
+      "passed": 429,
+      "files": 44,
+      "command": "npm test -- --maxWorkers=2",
+      "log": "logs/unit-final.log"
+    },
+    "targetedAfterSelectedPoolOptimization": {
+      "passed": 11,
+      "newAdditionalCase": 1,
+      "log": "logs/combination-engine-final.log"
+    },
+    "uniqueCasesThisBatch": 430,
+    "note": "The full suite preceded the final selected-pool decoding optimization. Its eleven focused tests then passed, including one additional case; no claim of a second full local 430-test run."
+  },
+  "browserTests": {
+    "uniquePassed": 29,
+    "newCases": 6,
+    "existingRegressionCases": 23,
+    "firstNewCasesLog": "logs/browser-targeted-v1.log",
+    "finalRegressionLog": "logs/browser-final-regressions.log",
+    "strengthenedHandoffReferenceLog": "logs/browser-handoff-reference-final.log",
+    "selectionOnlyFailureLog": "logs/browser-handoff-reference-selection-v1.log",
+    "note": "The final 25-case batch includes two new matrix reruns and 23 existing cases. A one-case rerun strengthens the actual reference-pixel handoff assertion. The initial anchored grep selected no tests; corrected selection passed.",
+    "captureSelectorDiagnostic": {
+      "passed": 1,
+      "log": "logs/browser-capture-selectors.log",
+      "note": "Temporary actual-component diagnostic confirmed three combobox selectors after first production capture stopped on an exact implicit-label locator. No application code changed; not counted among the29 persistent browser cases."
+    },
+    "filledNoteSelectorDiagnostic": {
+      "passed": 1,
+      "log": "logs/browser-capture-note-selector.log",
+      "note": "Temporary diagnostic verified nonempty textbox role selector and atomic wrong-source report rejection; separate from29 persistent cases."
+    },
+    "remainingCaptureFlowDiagnostic": {
+      "passed": 1,
+      "log": "logs/browser-capture-flow-final.log",
+      "scope": "Filled review notes, rejected and restored reports,8 distinct fixture cases,18 decoded+hashed contact PNGs, unchanged accepted look. Separate from29 persistent cases.",
+      "unsuccessfulTemporaryTestAttempts": [
+        "logs/browser-capture-flow-color-selector-v1.log",
+        "logs/browser-capture-flow-scan-wait-v2.log",
+        "logs/browser-capture-flow-checkbox-selector-v3.log"
+      ]
+    }
+  },
+  "build": {
+    "passed": true,
+    "command": "npm run build",
+    "log": "logs/build-final.log"
+  },
+  "actualProductionCapture": {
+    "status": "complete with explicitly bound playback supplement",
+    "previousAttempts": [
+      {
+        "index": "evidence/final-v1/evidence-index.json",
+        "passed": false,
+        "reason": "Helper exact-label selector timed out on an implicit select after male authoring and240 successful matrix rows; no application/page errors recorded."
+      },
+      {
+        "index": "evidence/final-v2/evidence-index.json",
+        "passed": false,
+        "reason": "Helper exact-label lookup no longer matched nonempty controlled textarea; actual component diagnostic confirmed wrong-source rejection preserves note, report and canvas. No application code changed."
+      }
+    ],
+    "index": "evidence/final-v3/delivery-index.json",
+    "indexSha256": "ed0c7d6e7772249d7b3eb7dde75c5b71e41c25486f6e5bfe74e8e28ef8ea042f",
+    "commitAtCapture": "8495bf57ec3d1c50795893d1c8d6f1faf6c6f2bc",
+    "rawIndex": "evidence/final-v3/evidence-index.json",
+    "rawStrictPassed": false,
+    "supplement": "evidence/final-v3/player-supplement.json",
+    "consoleDiagnostic": "evidence/final-v3/player-console-diagnostic.json",
+    "note": "Original20 real-time cases completed;19 observed every position. Female jump/left missed observed position3 during117.7ms browser gap. Exact native scrub and three fixed1x plays then independently covered the whole schedule. Only optional favicon404 was excluded after a bound page-load diagnostic. Originals are not rewritten."
+  },
+  "visualAcceptance": "pending user review",
+  "limits": [
+    "Creates material/color variations on an existing complete registered cut; a reference PNG does not generate new clothing geometry.",
+    "Combination coverage is explicit and bounded; exhaustive selected combinations do not imply exhaustive motion frame coverage.",
+    "Pixel and motion differences are diagnostics, not automated aesthetic ratings.",
+    "Existing source blur and clothing-fit defects may persist; no new runtime drawing API."
+  ],
+  "remoteContinuousIntegration": {
+    "recordedAt": "2026-10-26T09:23:09.692031+00:00",
+    "runs": [
+      {
+        "id": 40294311140,
+        "html_url": "https://github.com/hanxuwu/gathria-character/actions/runs/40294311140",
+        "event": "push",
+        "head_sha": "8495bf57ec3d1c50795893d1c8d6f1faf6c6f2bc",
+        "status": "completed",
+        "conclusion": "success",
+        "run_started_at": "2026-10-26T08:43:59Z",
+        "updated_at": "2026-10-26T08:58:36Z"
+      },
+      {
+        "id": 40294316911,
+        "html_url": "https://github.com/hanxuwu/gathria-character/actions/runs/40294316911",
+        "event": "pull_request",
+        "head_sha": "8495bf57ec3d1c50795893d1c8d6f1faf6c6f2bc",
+        "status": "completed",
+        "conclusion": "success",
+        "run_started_at": "2026-10-26T08:44:02Z",
+        "updated_at": "2026-10-26T08:54:46Z"
+      }
+    ],
+    "note": "Both runs passed on8495bf5, the actual production capture head. Later final evidence/document/helper commits have unchanged frozen application source; their new CI status is not implied."
+  },
+  "independentArtifactAudit": {
+    "passed": true,
+    "file": "artifact-validation.json",
+    "sha256": "f867aca6286b1e954fc5dc0f1b42340c55facb02c41dffd8f1f4011b718dfdb8",
+    "summary": {
+      "artifacts": 34,
+      "exactNativePackFrames": 184,
+      "nativePngs": 4,
+      "gifs": 8,
+      "mirrorPairs": 4,
+      "checkerSamples": 480,
+      "contactPairs": 16,
+      "independentPlayerCases": 20
+    },
+    "method": "Independent Pillow/NumPy material transform, source/garment/appearance composition and archive/frame decoding; application renderer not imported."
+  },
+  "visualReview": {
+    "status": "pending user review",
+    "observedSamples": 2,
+    "observations": [
+      "Male same-pose head and body remain; cool green/teal crease strokes, stepped sleeve edges and ragged chino hems persist.",
+      "Female same-pose head/body remain; original gray armhole trim, pale shoulder/neck edge and small green source fringe persist.",
+      "Representative run GIF positions0/4/8/12 show no obvious garment hue flip or new detached part; limited-palette skin speckling remains. This is not a complete continuous-motion visual approval."
+    ]
+  },
+  "pullRequest": "https://github.com/hanxuwu/gathria-character/pull/47",
+  "reviewGallery": {
+    "status": "complete",
+    "index": "review/index.html",
+    "manifest": "review/index.json",
+    "manifestSha256": "9391e8e98f9ee60e8c329f9f44fef58c13d0d7decba4564bea0325d385c2b744",
+    "visualCount": 6,
+    "visualBytes": 3991843,
+    "sourceCount": 39,
+    "validationLog": "logs/gallery-validation-final.log",
+    "initialPresentationCheckLog": "logs/gallery-native-preview-assertion-v1.log",
+    "note": "PNG comparisons bind to independent native-export reconstruction. Browser preview readback hashes are recorded separately because partial-alpha round-trips differ. GIFs are byte-identical copies."
+  }
+}

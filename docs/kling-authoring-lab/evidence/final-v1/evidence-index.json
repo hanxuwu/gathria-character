@@ -1,0 +1,605 @@
+{
+  "format": "gathria-authoring-lab-browser-evidence",
+  "version": 1,
+  "production": true,
+  "run": "final-v1",
+  "startedAt": "2026-10-26T08:09:28.429Z",
+  "commitAtCapture": "858134c6ffc17d86f338f7d1327854ae2fdd33ca",
+  "worktreeStatusAtCapture": "?? scripts/verify-kling-authoring-lab.py",
+  "scriptSha256": "10af1bb9bd95fdc1ece759c9b06ca60f1d0dff739a1b55c7e0b474070ec477b2",
+  "productionHtmlSha256": "ae116618d9bf7824f06ca17185d8f7155606cf136274f1ca77681f5bdf7b4352",
+  "playerHtmlSha256": "ef2a3bfb715cc0fb2a77c1dee7b0e54e4c9dc2ad2282c397631d3c22dd4a0b1e",
+  "catalogSha256": "b807e8a307cb75f3aa0fe7c5d6f62a38c572c782ca0a6afd7c77e4b744b018fb",
+  "compiledJsSha256": {
+    "dist/assets/ClothingCreationWizard-DRC2N-Ub.js": "89352b1c15e18136261971b07762bbefb262b5aeca6178180fee48e5a1eaad51",
+    "dist/assets/CombinationReviewWorkbench-BWCMHcRO.js": "ad0d61a4f1945cb9e2e4652f721fc0adb261ec8baf71fc17ff93d736a07d2a78",
+    "dist/assets/GarmentCandidatePreview-D77Lq6Ni.js": "733a5987b5e9c1ca224d69d87d1918152cf305cbb1524cf7b2929574d9700e4f",
+    "dist/assets/MainNavigation-nywCuzk2.js": "9695fb4d811b6821a7c5086d83fdfe49d76c08ce1286111eb9617760ee7d8eb6",
+    "dist/assets/MaskEditWorkbench-C2Rc_fOu.js": "719051cc387e537c8ca4236a16b06f32039f08a423b4939ec400495ef28a4340",
+    "dist/assets/ReviewWorkbench-BVi2qEyL.js": "c3979e793c79548e4ae9e6182762c4afd9f8bafb1b21d681bed662eb1858ba0a",
+    "dist/assets/SpriteActionEditor-qf217tn3.js": "9124a65bc7953c00447a9404d6a920c8617bad33422edc6fac0540de5006aa11",
+    "dist/assets/ThemeWorkspace-DPgRs8C8.js": "5e79e50d6eff543bb131dc4ec4864d43ce91b5e567d7d4b2fb174272f04484ec",
+    "dist/assets/WardrobeEditor-B7crvib5.js": "90f50e8789e2be26e72a581c5a80daccdc4a3e917a5522c56529148738b0fc83",
+    "dist/assets/action-gif-Dp8d7_Ij.js": "f3ade14afc325c0d0afc95ee9f943d06f1b8f0e5173adb52971747db2cd3f476",
+    "dist/assets/baked-source-BhNIdMQM.js": "13da9942b57c243db213bc08776a990159be536bac5c9bdbe5ca0dcabd531551",
+    "dist/assets/bone-iaQDxQCv.js": "e81a683f5e779e3ea7a1099951525cd0492490d083298b10f62d1ff982281021",
+    "dist/assets/check-Zv5BcZbb.js": "f726eb18a8bfc59c0d4a3e036b20a9f2cae51bc8adee6d061f749fb9302ba40f",
+    "dist/assets/download-cache-BBmcpt03.js": "c15ecd466fc95d2df3c2d1295ba64353ae6d0968ccc709964afee033e8944496",
+    "dist/assets/kling-catalog-Ck3vONJQ.js": "2b8a0c33fb13cbf259d7ffc7d314440b47877befc6b0054ee09ec18e81f35c36",
+    "dist/assets/library-C0y-KQbQ.js": "633120c4a97d6700a639903ed3ffc7a9af48ba843796ebe161064b382039f58b",
+    "dist/assets/motion-flow-CHlvEDwU.js": "a8245db6a2e7fa5709fb9b0cad9c1690baebf60335d111ac300c9f4291809ed6",
+    "dist/assets/motion-review-Bdzm1pRn.js": "7f3eac8216ee1b3dff42fa269915d32b9c4621d3ae14386604e67d6079370e3d",
+    "dist/assets/paint-import-inIS65wt.js": "37c4ff08c4097ae41425ea4d6bb37843cedee1ed83f34832cd3410d250a247c6",
+    "dist/assets/player-CpgRzpA5.js": "f5094bb8ea7e4f952aada85861b460df8900ae01357e25cda56f106bd273105b",
+    "dist/assets/player-D8NxTzrU.js": "68edd04211bb1839576e128bffd5d5384c2a30c4f98b69dd633ea156c1c9e85b",
+    "dist/assets/preload-helper-ckwbz45p.js": "b1cf8db666a7d7bfc05e8f8c93c4536728e9d086bf6f0270fa1fd0e607491519",
+    "dist/assets/sha2-wMxqvoJM.js": "15a75344860632f31bd4901304807973c9d43b21c5719da7ee3f8b531a240f32",
+    "dist/assets/skinStudio-CXyH33BS.js": "f48c01228ee8593b8baecdb68502c7ee88074a095c3fdf3bde774dd45224f4c0",
+    "dist/assets/source-preparation.worker-B-IXRhkx.js": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a",
+    "dist/assets/undo-2-ybmoXaiR.js": "7386769ad5634d67d8b2525afdc91889f50d4a4bdf73203c828f1d3c39f34062",
+    "dist/assets/upload-BR0sxg01.js": "26989461ff3f620310986d09866bce3d88176956f7dfce90d7dd3c27868089e4",
+    "dist/assets/workbench-CctM9Kkj.js": "aee6489a8536fcafad157c029041eb05e4dc6fd27b121578d6e4c4c3a4b1d85f",
+    "dist/assets/workspace-DVfoDZXd.js": "5ea90e1a54e0d47e83c59b1196511d8791f04e0ec95a421e2e1e088e14f6d4e7"
+  },
+  "plan": {
+    "cases": [
+      {
+        "key": "male",
+        "preset": "day-refined",
+        "baseId": "teal-camp-shirt-v5",
+        "outputId": "sand-camp-shirt-authoring-v1",
+        "outputName": "Sand camp shirt · authoring study",
+        "bottom": "ochre-chinos-v1",
+        "mixedBottom": "navy-suit-trousers-v1",
+        "hairId": "soft-curls",
+        "faceId": "gentle-v2",
+        "bank": "/docs/kling-expression-refined/banks/male-soft-curls.zip",
+        "target": "#b78b50",
+        "pose": 103
+      },
+      {
+        "key": "female",
+        "preset": "plum-pintuck-day",
+        "baseId": "plum-pintuck-neckline-mask-v1",
+        "baseFile": "docs/kling-mask-workbench/evidence/final-v1/female-plum-neckline-reviewed.garment.zip",
+        "outputId": "sage-pintuck-authoring-v1",
+        "outputName": "Sage pintuck · authoring study",
+        "bottom": "navy-shorts",
+        "mixedBottom": "ochre-shorts",
+        "hairId": "romantic-waves",
+        "faceId": "gentle-v2",
+        "bank": "/docs/kling-expression-refined/banks/female-romantic-waves.zip",
+        "target": "#578479",
+        "pose": 103
+      }
+    ],
+    "budgets": {
+      "retained": 104857600,
+      "temporary": 146800640,
+      "diskReserve": 134217728,
+      "nativePngs": 4,
+      "gifs": 8,
+      "screenshots": 6,
+      "projects": 2,
+      "packs": 2,
+      "playback": 20,
+      "checkerRowsPerCharacter": 240,
+      "contactRows": 24
+    },
+    "material": "Owned-cloth RGB variants using existing authored shapes. Reference PNG is an actual baseline export used only as visual context.",
+    "checker": "8 requested outfit/hair/face combinations per character; all5 actions and2 directions at3 explicit report-selected unique pose samples,240 rows per character, not exhaustive motion-frame visual approval.",
+    "workflow": "Actual wizard cloth sample/reference upload/material build, difficult pose decisions, draft save/reopen, candidate apply; actual combination scan/manual notes/report/contact-sheet export/reopen; exact saved wardrobe reopen and two independent CharacterPacks after editor closes."
+  },
+  "budgets": {
+    "retained": 104857600,
+    "temporary": 146800640,
+    "diskReserve": 134217728,
+    "nativePngs": 4,
+    "gifs": 8,
+    "screenshots": 6,
+    "projects": 2,
+    "packs": 2,
+    "playback": 20,
+    "checkerRowsPerCharacter": 240,
+    "contactRows": 24
+  },
+  "used": {
+    "retained": 11871669,
+    "temporary": 0
+  },
+  "inputs": {
+    "docs/kling-motion/exports/male.character.zip": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+    "docs/kling-wardrobe/registration/male-full-outfits-v1.json": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+    "docs/kling-expression-refined/banks/male-soft-curls.zip": "580f8fef8fdd6f435279692c4ae7a448da7398d1c3e1587bcb68db13f6814895",
+    "docs/kling-wardrobe/garments/male/teal-camp-shirt-v5.zip": "a41b45869fe0a3b63c613f8ade0b188a7e8b9040fee618fb3e9800c05543145e"
+  },
+  "catalogResponses": [
+    {
+      "character": "male",
+      "url": "http://127.0.0.1:5241/assets/catalog-Cv6GXwU3.json",
+      "bytes": 38152,
+      "sha256": "b807e8a307cb75f3aa0fe7c5d6f62a38c572c782ca0a6afd7c77e4b744b018fb"
+    }
+  ],
+  "scriptRequests": [
+    {
+      "url": "http://127.0.0.1:5241/assets/workbench-CctM9Kkj.js",
+      "independent": false,
+      "compiledSha256": "aee6489a8536fcafad157c029041eb05e4dc6fd27b121578d6e4c4c3a4b1d85f"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/MainNavigation-nywCuzk2.js",
+      "independent": false,
+      "compiledSha256": "9695fb4d811b6821a7c5086d83fdfe49d76c08ce1286111eb9617760ee7d8eb6"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/preload-helper-ckwbz45p.js",
+      "independent": false,
+      "compiledSha256": "b1cf8db666a7d7bfc05e8f8c93c4536728e9d086bf6f0270fa1fd0e607491519"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/kling-catalog-Ck3vONJQ.js",
+      "independent": false,
+      "compiledSha256": "2b8a0c33fb13cbf259d7ffc7d314440b47877befc6b0054ee09ec18e81f35c36"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/workspace-DVfoDZXd.js",
+      "independent": false,
+      "compiledSha256": "5ea90e1a54e0d47e83c59b1196511d8791f04e0ec95a421e2e1e088e14f6d4e7"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/bone-iaQDxQCv.js",
+      "independent": false,
+      "compiledSha256": "e81a683f5e779e3ea7a1099951525cd0492490d083298b10f62d1ff982281021"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/WardrobeEditor-B7crvib5.js",
+      "independent": false,
+      "compiledSha256": "90f50e8789e2be26e72a581c5a80daccdc4a3e917a5522c56529148738b0fc83"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/motion-flow-CHlvEDwU.js",
+      "independent": false,
+      "compiledSha256": "a8245db6a2e7fa5709fb9b0cad9c1690baebf60335d111ac300c9f4291809ed6"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/baked-source-BhNIdMQM.js",
+      "independent": false,
+      "compiledSha256": "13da9942b57c243db213bc08776a990159be536bac5c9bdbe5ca0dcabd531551"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/download-cache-BBmcpt03.js",
+      "independent": false,
+      "compiledSha256": "c15ecd466fc95d2df3c2d1295ba64353ae6d0968ccc709964afee033e8944496"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/upload-BR0sxg01.js",
+      "independent": false,
+      "compiledSha256": "26989461ff3f620310986d09866bce3d88176956f7dfce90d7dd3c27868089e4"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/undo-2-ybmoXaiR.js",
+      "independent": false,
+      "compiledSha256": "7386769ad5634d67d8b2525afdc91889f50d4a4bdf73203c828f1d3c39f34062"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/ClothingCreationWizard-DRC2N-Ub.js",
+      "independent": false,
+      "compiledSha256": "89352b1c15e18136261971b07762bbefb262b5aeca6178180fee48e5a1eaad51"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/source-preparation.worker-B-IXRhkx.js",
+      "independent": false,
+      "compiledSha256": "afdc5e4a66aaca53f9f68665a867ac4907a84553042c14850db88c078d2d4c8a"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/GarmentCandidatePreview-D77Lq6Ni.js",
+      "independent": false,
+      "compiledSha256": "733a5987b5e9c1ca224d69d87d1918152cf305cbb1524cf7b2929574d9700e4f"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/CombinationReviewWorkbench-BWCMHcRO.js",
+      "independent": false,
+      "compiledSha256": "ad0d61a4f1945cb9e2e4652f721fc0adb261ec8baf71fc17ff93d736a07d2a78"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/motion-review-Bdzm1pRn.js",
+      "independent": false,
+      "compiledSha256": "7f3eac8216ee1b3dff42fa269915d32b9c4621d3ae14386604e67d6079370e3d"
+    },
+    {
+      "url": "http://127.0.0.1:5241/assets/action-gif-Dp8d7_Ij.js",
+      "independent": false,
+      "compiledSha256": "f3ade14afc325c0d0afc95ee9f943d06f1b8f0e5173adb52971747db2cd3f476"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/male-before-jump-103-right.png",
+      "kind": "png",
+      "bytes": 284841,
+      "sha256": "4d8514ea30a5a0bf1c8d61d8d780728de3fe97a71c5d8984e0d8a092f523907a",
+      "suggestedFilename": "kling-male-wardrobe-jump-right-103.png",
+      "actualUiDownload": true,
+      "temporary": false,
+      "action": "jump",
+      "frameId": 103,
+      "position": 20,
+      "facing": "right",
+      "key": "male",
+      "stage": "before",
+      "selection": {
+        "top": "teal-camp-shirt-v5",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      }
+    },
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/male.clothing-draft.zip",
+      "kind": "authoring-draft",
+      "bytes": 4769468,
+      "sha256": "767384efdb9c59fa5b4377b18e6981fd04b62592c0b7c17b1baf9b156753ea5f",
+      "suggestedFilename": "sand-camp-shirt-authoring-v1.authoring.zip",
+      "actualUiDownload": true,
+      "temporary": false,
+      "key": "male"
+    },
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/male.created.garment.zip",
+      "kind": "garment",
+      "bytes": 4851792,
+      "sha256": "08674466e8e1d0fd56ae1741032642d581f13af8ccf7374f8743e936b3f65c6e",
+      "suggestedFilename": "sand-camp-shirt-authoring-v1.garment.zip",
+      "actualUiDownload": true,
+      "temporary": false,
+      "key": "male"
+    },
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/male.creation-report.json",
+      "kind": "creation-report",
+      "bytes": 53882,
+      "sha256": "1ffaa7dd476d61cc82715418d5f9f7847f1fdfca426a3192ccce1c8da30c9de8",
+      "suggestedFilename": "sand-camp-shirt-authoring-v1.authoring-report.json",
+      "actualUiDownload": true,
+      "temporary": false,
+      "key": "male"
+    },
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/male-after-jump-103-right.png",
+      "kind": "png",
+      "bytes": 289399,
+      "sha256": "7eef9d28208d42bdb566e9a581e91870d8fba8a2548767c516393342e4d2f9d0",
+      "suggestedFilename": "kling-male-wardrobe-jump-right-103.png",
+      "actualUiDownload": true,
+      "temporary": false,
+      "action": "jump",
+      "frameId": 103,
+      "position": 20,
+      "facing": "right",
+      "key": "male",
+      "stage": "after",
+      "selection": {
+        "top": "sand-camp-shirt-authoring-v1",
+        "bottom": "ochre-chinos-v1",
+        "fullBody": null,
+        "shoes": null
+      }
+    },
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/male.combination-scan.json",
+      "kind": "combination-report",
+      "bytes": 365470,
+      "sha256": "be2d4fb710be3dbcc6a0c44514e30d5de8449e50409cd25b4cab20c2cd917c28",
+      "suggestedFilename": "combination-review.json",
+      "actualUiDownload": true,
+      "temporary": false,
+      "key": "male",
+      "stage": "actual-scan"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/male-authoring-review.png",
+      "bytes": 639626,
+      "sha256": "d77da2b31a7e990340832c0701607a68eb950ce1e905813bcc418842df4024fe",
+      "kind": "ui-screenshot",
+      "actualUiDownload": false
+    },
+    {
+      "file": "docs/kling-authoring-lab/evidence/final-v1/failure.png",
+      "bytes": 571941,
+      "sha256": "bd23871d149ff89d069f7547efc55d088945a80933438aa0d695505927f79f6f",
+      "kind": "ui-screenshot",
+      "actualUiDownload": false
+    }
+  ],
+  "matrix": [
+    {
+      "key": "male",
+      "pngs": [
+        {
+          "file": "docs/kling-authoring-lab/evidence/final-v1/male-before-jump-103-right.png",
+          "kind": "png",
+          "bytes": 284841,
+          "sha256": "4d8514ea30a5a0bf1c8d61d8d780728de3fe97a71c5d8984e0d8a092f523907a",
+          "suggestedFilename": "kling-male-wardrobe-jump-right-103.png",
+          "actualUiDownload": true,
+          "temporary": false,
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "facing": "right",
+          "key": "male",
+          "stage": "before",
+          "selection": {
+            "top": "teal-camp-shirt-v5",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "uiCanvas": {
+            "width": 704,
+            "height": 1056,
+            "rgbaSha256": "50482cf9c69b02f70cf3ab3f815a626add87f33896cf4dac35aa4af74fbf8a20"
+          }
+        },
+        {
+          "file": "docs/kling-authoring-lab/evidence/final-v1/male-after-jump-103-right.png",
+          "kind": "png",
+          "bytes": 289399,
+          "sha256": "7eef9d28208d42bdb566e9a581e91870d8fba8a2548767c516393342e4d2f9d0",
+          "suggestedFilename": "kling-male-wardrobe-jump-right-103.png",
+          "actualUiDownload": true,
+          "temporary": false,
+          "action": "jump",
+          "frameId": 103,
+          "position": 20,
+          "facing": "right",
+          "key": "male",
+          "stage": "after",
+          "selection": {
+            "top": "sand-camp-shirt-authoring-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "uiCanvas": {
+            "width": 704,
+            "height": 1056,
+            "rgbaSha256": "82eaa701119fc158b1238cb50de6879631003ad0170650f4dfc491c6b03deb10"
+          }
+        }
+      ]
+    }
+  ],
+  "gifs": [],
+  "projects": [],
+  "packs": [],
+  "playback": [],
+  "workflow": [],
+  "authoring": [
+    {
+      "key": "male",
+      "baseFile": "docs/kling-wardrobe/garments/male/teal-camp-shirt-v5.zip",
+      "baseSha256": "a41b45869fe0a3b63c613f8ade0b188a7e8b9040fee618fb3e9800c05543145e",
+      "sample": {
+        "x": 281,
+        "y": 534,
+        "rgb": [
+          73,
+          123,
+          132
+        ],
+        "frameId": 0
+      },
+      "target": "#b78b50",
+      "tolerance": 0.3,
+      "reference": {
+        "file": "docs/kling-authoring-lab/evidence/final-v1/male-before-jump-103-right.png",
+        "sha256": "4d8514ea30a5a0bf1c8d61d8d780728de3fe97a71c5d8984e0d8a092f523907a",
+        "role": "Actual baseline PNG; contextual color reference, not fitted or generated artwork"
+      },
+      "draft": {
+        "file": "docs/kling-authoring-lab/evidence/final-v1/male.clothing-draft.zip",
+        "kind": "authoring-draft",
+        "bytes": 4769468,
+        "sha256": "767384efdb9c59fa5b4377b18e6981fd04b62592c0b7c17b1baf9b156753ea5f",
+        "suggestedFilename": "sand-camp-shirt-authoring-v1.authoring.zip",
+        "actualUiDownload": true,
+        "temporary": false,
+        "key": "male"
+      },
+      "garment": {
+        "file": "docs/kling-authoring-lab/evidence/final-v1/male.created.garment.zip",
+        "kind": "garment",
+        "bytes": 4851792,
+        "sha256": "08674466e8e1d0fd56ae1741032642d581f13af8ccf7374f8743e936b3f65c6e",
+        "suggestedFilename": "sand-camp-shirt-authoring-v1.garment.zip",
+        "actualUiDownload": true,
+        "temporary": false,
+        "key": "male"
+      },
+      "report": {
+        "file": "docs/kling-authoring-lab/evidence/final-v1/male.creation-report.json",
+        "kind": "creation-report",
+        "bytes": 53882,
+        "sha256": "1ffaa7dd476d61cc82715418d5f9f7847f1fdfca426a3192ccce1c8da30c9de8",
+        "suggestedFilename": "sand-camp-shirt-authoring-v1.authoring-report.json",
+        "actualUiDownload": true,
+        "temporary": false,
+        "key": "male"
+      },
+      "reviewed": [
+        {
+          "frameId": 0,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 0,
+            "rgbaSha256": "2a7091a23c6f6172435a4fcf20c38bc0881b4c9a32b84eab0e3f1ab7ffea47b5"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 0,
+            "rgbaSha256": "762cb316c9f874b0598f4aba9d759cac65927ae434fea95420fd074c923ee45c"
+          }
+        },
+        {
+          "frameId": 24,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 24,
+            "rgbaSha256": "643c2e99bce272309f266049cef273199e9b5083b071fa3bd6387a1d97e3a36a"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 24,
+            "rgbaSha256": "2bd42d5ef807ec406fac635d06333aba3b307e309f12b17cc85a8c43cddbf30e"
+          }
+        },
+        {
+          "frameId": 51,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 51,
+            "rgbaSha256": "33f19dd275e97e006fb7ed4f3e7126137f1cf0669a3f381267e935796d48c1f4"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 51,
+            "rgbaSha256": "18c15112bf34a1b8f1115ed2e29ef508840a7365f5918db169d2bd419f35fd0e"
+          }
+        },
+        {
+          "frameId": 83,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 83,
+            "rgbaSha256": "d67b13d2ae96860f785cc40e8b2a4c25218bfc188799a9be5c229fe66d51cdee"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 83,
+            "rgbaSha256": "7f40b77139357462f4e96f8674ad9839b8eede003dd40f1deca3bfaa76780e04"
+          }
+        },
+        {
+          "frameId": 67,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 67,
+            "rgbaSha256": "3e7cbee5f786fd951020221266dea67b0d1e08749d04dd38fa1ca81e7598b5e1"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 67,
+            "rgbaSha256": "3d64c6ff7511d365faa80b8b83922c70e0e86186d127476d3bd946a80d93ad74"
+          }
+        },
+        {
+          "frameId": 75,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 75,
+            "rgbaSha256": "f37d322f0a63912031faff7df370205fabd05c8397afdbae085136e06fde508d"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 75,
+            "rgbaSha256": "9ed22a6b88c9a720b613ce9771ab721c74049a7f29f897fb201a02fd15a9392d"
+          }
+        },
+        {
+          "frameId": 56,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 56,
+            "rgbaSha256": "28e69ac8078210eb2a0f2f2a02cc648708f2af1df6f69dcbee48a20c217dce00"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 56,
+            "rgbaSha256": "3f8196b0ca89868d6a65f71685186bf99d0bdfbb6eeb006f2b6df0b026225cb7"
+          }
+        },
+        {
+          "frameId": 53,
+          "before": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 53,
+            "rgbaSha256": "fad5ab9f04845de5cf769240038c62ed0e3ad3e57601789077624ef436f41dfc"
+          },
+          "after": {
+            "width": 704,
+            "height": 1056,
+            "frameId": 53,
+            "rgbaSha256": "06a40540b0074ce6a68b2f0b6776a30426037b6be3b2840619b19ceda2e09167"
+          }
+        }
+      ],
+      "draftReopenExact": true,
+      "explicitApply": true
+    }
+  ],
+  "checks": [],
+  "errors": [],
+  "consoleErrors": [],
+  "ignoredBrowserDiagnostics": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:5241/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "failedRequests": [],
+  "externalRequests": [],
+  "independentEditorRequests": [],
+  "passed": false,
+  "failure": "locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Review background', { exact: true })\u001b[22m\n\n    at checkCombinations (/workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:985:6)\n    at async file:///workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:1241:5",
+  "finishedAt": "2026-10-26T08:12:32.039Z"
+}

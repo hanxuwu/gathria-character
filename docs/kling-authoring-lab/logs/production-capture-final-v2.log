@@ -1,0 +1,270 @@
+Downloaded male-before-jump-103-right.png: 284841 bytes
+Downloaded male.clothing-draft.zip: 4769468 bytes
+Downloaded male.created.garment.zip: 4851792 bytes
+Downloaded male.creation-report.json: 53882 bytes
+Downloaded male-after-jump-103-right.png: 289399 bytes
+Downloaded male.combination-scan.json: 365470 bytes
+VISUAL_REVIEW_REQUIRED {"key":"male","screenshot":"docs/kling-authoring-lab/evidence/final-v2/male-combination-inspector.png","screenshotSha256":"fae914943e8bc3c4aeca1a6ff2c7edcf4a365a61d76d7a9833255f4f637f86a3","caseId":"ec0141b640ad5d1cb158af65","action":"jump","position":19,"facing":"right","gate":"docs/kling-authoring-lab/evidence/final-v2/male.visual-note.json"}
+Downloaded male.combination-reviewed.json: 365892 bytes
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toHaveValue(expected) failed
+
+Locator: getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true })
+Expected: "Visible upper-body sample: the sand material retains cool teal/green crease strokes at the shoulder and left torso, and the upper sleeve edge remains stepped/striped. Hair and facial placement match the shown reference. The inspector screenshot clips the lower body, so legs and feet are not visually judged here. These are inherited fit/ink limits of the existing cut, not a claim that all animation frames have been approved."
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toHaveValue" getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true }) with timeout 5000ms
+  - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true })
+
+    at captureRawStack (/workspace/gathria-character/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/workspace/gathria-character/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toHaveValue (/workspace/gathria-character/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at checkCombinations (/workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:1018:69)
+    at async file:///workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:1241:5 {
+  matcherResult: {
+    name: 'toHaveValue',
+    expected: 'Visible upper-body sample: the sand material retains cool teal/green crease strokes at the shoulder and left torso, and the upper sleeve edge remains stepped/striped. Hair and facial placement match the shown reference. The inspector screenshot clips the lower body, so legs and feet are not visually judged here. These are inherited fit/ink limits of the existing cut, not a claim that all animation frames have been approved.',
+    message: 'expect(locator).toHaveValue(expected) failed\n' +
+      '\n' +
+      "Locator: getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true })\n" +
+      'Expected: "Visible upper-body sample: the sand material retains cool teal/green crease strokes at the shoulder and left torso, and the upper sleeve edge remains stepped/striped. Hair and facial placement match the shown reference. The inspector screenshot clips the lower body, so legs and feet are not visually judged here. These are inherited fit/ink limits of the existing cut, not a claim that all animation frames have been approved."\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toHaveValue" getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true }) with timeout 5000ms\n` +
+      "  - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true })\n",
+    pass: false,
+    actual: undefined,
+    log: [
+      `  - Expect "toHaveValue" getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true }) with timeout 5000ms`,
+      "  - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Sample review note', { exact: true })"
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- banner:\n' +
+      '  - link "Gathria character library":\n' +
+      '    - /url: /\n' +
+      '    - text: gathria characters\n' +
+      '  - navigation "Main navigation":\n' +
+      '    - link "Character library":\n' +
+      '      - /url: /\n' +
+      '    - link "Workbench":\n' +
+      '      - /url: /workbench.html\n' +
+      '    - link "Player":\n' +
+      '      - /url: /player.html\n' +
+      '- main:\n' +
+      '  - paragraph: Character workbench\n' +
+      '  - heading "Kling male · wardrobe" [level=1]\n' +
+      '  - paragraph: Choose clothing, inspect it through every movement and save a reusable outfit.\n' +
+      '  - link "Choose another character":\n' +
+      '    - /url: /\n' +
+      '  - tablist "Workbench tools":\n' +
+      '    - tab "Sprite actions"\n' +
+      '    - tab "Wardrobe" [selected]\n' +
+      '    - tab "Character themes"\n' +
+      '    - tab "Male skeleton"\n' +
+      '    - text: Tab changes keep your open sessions.\n' +
+      '  - tabpanel "Wardrobe":\n' +
+      '    - text: Character\n' +
+      '    - combobox "Wardrobe character" [disabled]:\n' +
+      '      - option "Kling male" [selected]\n' +
+      '      - option "Kling female"\n' +
+      '    - paragraph: Choose hair, expression and clothing while keeping the original movement.\n' +
+      '    - button "Undo styling" [disabled]\n' +
+      '    - button "Redo styling" [disabled]\n' +
+      '    - button "Reopen wardrobe" [disabled]\n' +
+      '    - button "Save wardrobe *" [disabled]\n' +
+      '    - region "Make and review clothing":\n' +
+      '      - strong: Make and review\n' +
+      '      - paragraph: Create a clothing variant, then inspect it with different outfits, hair and expressions.\n' +
+      '      - button "Create clothing" [disabled]\n' +
+      '      - button "Check combinations" [disabled]\n' +
+      '    - status: "Downloading artwork: 3.4 / 3.4 MB…"\n' +
+      '    - complementary "Clothing selection":\n' +
+      '      - region "Hair and face":\n' +
+      '        - heading "Hair & face" [level=2]\n' +
+      '        - group "Hairstyle previews":\n' +
+      '          - button "Choose Soft crop" [disabled]: Soft crop\n' +
+      '          - button "Choose Soft bob" [disabled]: Soft bob\n' +
+      '          - button "Choose Side part" [disabled]: Side part\n' +
+      '          - button "Choose Airy tousle" [disabled]: Airy tousle\n' +
+      '          - button "Choose Soft curls" [disabled] [pressed]: Soft curls\n' +
+      '          - button "Choose Swept quiff" [disabled]: Swept quiff\n' +
+      '        - paragraph: Style examples in Chestnut. Your chosen color and face appear in the live preview.\n' +
+      '        - text: Hairstyle\n' +
+      '        - combobox "Hairstyle" [disabled]:\n' +
+      '          - option "Original"\n' +
+      '          - option "Soft crop"\n' +
+      '          - option "Soft bob"\n' +
+      '          - option "Side part"\n' +
+      '          - option "Airy tousle"\n' +
+      '          - option "Soft curls" [selected]\n' +
+      '          - option "Swept quiff"\n' +
+      '        - text: Face expression\n' +
+      '        - combobox "Face" [disabled]:\n' +
+      '          - option "Natural (original)"\n' +
+      '        - text: Hair color\n' +
+      '        - combobox "Hair color" [disabled]:\n' +
+      '          - option "Chestnut" [selected]\n' +
+      '          - option "Espresso"\n' +
+      '          - option "Copper"\n' +
+      '        - group "Hair color swatches":\n' +
+      '          - button "Use Chestnut" [disabled] [pressed]: Chestnut\n' +
+      '          - button "Use Espresso" [disabled]: Espresso\n' +
+      '          - button "Use Copper" [disabled]: Copper\n' +
+      '        - button "Reset appearance" [disabled]\n' +
+      '        - paragraph: Hair and face choices stay with this character when you change outfits. Natural keeps the original face. Gentle smile and Joyful retain the original action blinks and laughter. The refined smile is fuller; soft-motion Joyful follows the blur of fast movement. Earlier expressions remain available.Use Compare original to inspect the source face and movement.\n' +
+      '        - paragraph: This project uses the current appearance.\n' +
+      '      - heading "Your outfit" [level=2]\n' +
+      '      - paragraph: Recommended starting looks. Your saved outfits keep their original artwork.\n' +
+      '      - text: Find an outfit\n' +
+      '      - searchbox "Find an outfit"\n' +
+      '      - paragraph: Search includes earlier versions. Preview pictures use the original head; choosing clothes keeps your hair and expression.\n' +
+      '      - group "Complete outfits":\n' +
+      '        - button "Original" [disabled]\n' +
+      '        - button "Everyday soft cuff" [disabled]\n' +
+      '        - button "Wedding curved cuff" [disabled]\n' +
+      '        - button "Forest weekend" [disabled]\n' +
+      '        - button "Oat weekend" [disabled]\n' +
+      '      - button "More outfits and earlier versions"\n' +
+      '      - text: Top\n' +
+      '      - combobox "Top" [disabled]:\n' +
+      '        - option "Original"\n' +
+      '        - option "Teal cotton top"\n' +
+      '        - option "Navy wedding waistcoat"\n' +
+      '        - option "Teal camp shirt"\n' +
+      '        - option "Navy wedding suit jacket"\n' +
+      '        - option "Cream camp shirt"\n' +
+      '        - option "Forest work shirt"\n' +
+      '        - option "Oat henley"\n' +
+      '        - option "Harbor polo"\n' +
+      '        - option "Terracotta overshirt"\n' +
+      '        - option "Moss knit vest"\n' +
+      '        - option "Teal camp shirt refined"\n' +
+      '        - option "Navy jacket refined"\n' +
+      '        - option "Ocean linen shirt"\n' +
+      '        - option "Teal soft cuff"\n' +
+      '        - option "Navy soft cuff"\n' +
+      '        - option "Navy reviewed sleeve"\n' +
+      '        - option "Navy curved cuff"\n' +
+      '        - option "Teal joined sleeve"\n' +
+      '        - option "Midnight sailor shirt"\n' +
+      '        - option "Midnight sailor shirt · refined collar"\n' +
+      '        - option "Sand camp shirt · authoring study" [selected]\n' +
+      '      - text: Bottom\n' +
+      '      - combobox "Bottom" [disabled]:\n' +
+      '        - option "Original"\n' +
+      '        - option "Ochre cotton shorts"\n' +
+      '        - option "Navy tailored shorts"\n' +
+      '        - option "Ochre full-length chinos" [selected]\n' +
+      '        - option "Navy full-length suit trousers"\n' +
+      '      - text: Dress / one-piece\n' +
+      '      - combobox "Dress / one-piece" [disabled]:\n' +
+      '        - option "Separate pieces" [selected]\n' +
+      '      - text: Shoes\n' +
+      '      - combobox "Shoes" [disabled]:\n' +
+      '        - option "Original" [selected]\n' +
+      '        - option "Brown formal shoes"\n' +
+      '      - paragraph: A dress or one-piece replaces both top and bottom. Shoes sit beneath trouser cuffs and hems.\n' +
+      '      - region "Saved looks":\n' +
+      '        - heading "Saved looks" [level=2]\n' +
+      '        - paragraph: Keep up to 12 combinations per character, including their artwork, in this browser. Browser data clearing removes them. Save wardrobe keeps a portable backup.\n' +
+      '        - text: Look name\n' +
+      '        - textbox "Look name" [disabled]\n' +
+      '        - button "Save look" [disabled]\n' +
+      '        - list\n' +
+      '        - group: Artwork stored in this browser\n' +
+      '        - paragraph\n' +
+      '      - button "Add clothing file" [disabled]\n' +
+      '      - button "Preview imported clothing" [disabled]\n' +
+      '      - paragraph: New clothing must match this character’s registered poses. Incompatible files leave your outfit unchanged.\n' +
+      '      - paragraph: Projects keep your current look and custom clothing. Other library clothes and hairstyles load when selected; the saved look remains self-contained for reopening and export.\n' +
+      '      - group: Fitting guides\n' +
+      '      - heading "Take this character with you" [level=3]\n' +
+      '      - button "Export CharacterPack" [disabled]\n' +
+      '      - button "Save current PNG" [disabled]\n' +
+      '      - button "Download action GIF" [disabled]\n' +
+      '      - button "Download comparison GIF" [disabled]\n' +
+      '      - paragraph: "GIF: current action and direction, half native size, cream background, original speed. One-shot actions play once. Comparison keeps the original on the left and the current look on the right."\n' +
+      '      - link "Open independent player ↗":\n' +
+      '        - /url: /player.html\n' +
+      '      - paragraph: The CharacterPack contains the finished animation. Save a wardrobe project as well to change hair, face or clothing later.\n' +
+      '    - region "Outfit preview":\n' +
+      '      - text: Action\n' +
+      '      - combobox "Wardrobe action" [disabled]:\n' +
+      '        - option "Idle"\n' +
+      '        - option "Walk"\n' +
+      '        - option "Run"\n' +
+      '        - option "Jump" [selected]\n' +
+      '        - option "Celebrate"\n' +
+      '      - text: Facing\n' +
+      '      - combobox "Wardrobe facing" [disabled]:\n' +
+      '        - option "Right" [selected]\n' +
+      '        - option "Left"\n' +
+      '      - button "Play wardrobe animation" [disabled]: Play\n' +
+      '      - button "Restart wardrobe action" [disabled]\n' +
+      '      - text: Preview speed\n' +
+      '      - combobox "Wardrobe preview speed":\n' +
+      '        - option "1×" [selected]\n' +
+      '        - option "0.5×"\n' +
+      '        - option "0.25×"\n' +
+      '      - text: Size\n' +
+      '      - combobox "Wardrobe preview size":\n' +
+      '        - option "Fit" [selected]\n' +
+      '        - option "1× native"\n' +
+      '        - option "2×"\n' +
+      '      - button "Pin current look" [disabled]\n' +
+      '      - checkbox "Compare original"\n' +
+      '      - text: Compare original\n' +
+      '      - checkbox "Inspect connections"\n' +
+      '      - text: Inspect connections\n' +
+      '      - checkbox "Show anchors"\n' +
+      '      - text: Show anchors Jump · one shot · in place\n' +
+      '      - figure "Your combination":\n' +
+      '        - text: Your combination\n' +
+      '        - img "Dressed male, jump, frame 103, right"\n' +
+      '      - button "Previous wardrobe frame" [disabled]:\n' +
+      '        - img\n' +
+      '        - text: Previous frame\n' +
+      '      - button "Next wardrobe frame" [disabled]:\n' +
+      '        - text: Next frame\n' +
+      '        - img\n' +
+      '      - text: Frame 21 / 39 · 24 FPS · source 103\n' +
+      '      - slider "Wardrobe frame" [disabled]: "20"\n' +
+      '      - text: Native 768 × 1184 · attachment (384, 1126)\n' +
+      '      - button "Open look review" [disabled]\n' +
+      '    - dialog "Combination review workbench":\n' +
+      '      - heading "Check clothing combinations" [level=2]\n' +
+      '      - paragraph: Plan a bounded review, inspect actual frames, and keep notes before using a look.\n' +
+      '      - button "Close combination review": Close\n' +
+      '      - complementary:\n' +
+      '        - group:\n' +
+      '          - text: Add clothing to check\n' +
+      '          - paragraph: Load a local review pool of up to 16 items. Your current look stays unchanged.\n' +
+      '          - group "Available clothing":\n' +
+      '            - text: Available clothing\n' +
+      '            - checkbox "Teal cotton top · Top"\n' +
+      '            - text: Teal cotton top · Top\n' +
+      '            - checkbox "Ochre cotton shorts · Bottom"\n' +
+      '            - text: Ochre cotton shorts · Bottom\n' +
+      '            - checkbox "Navy wedding waistcoat · Top"\n' +
+      '            - text: Navy wedding waistcoat · Top\n' +
+      '            - checkbox "Navy tailored shorts · Bottom"\n' +
+      '            - text: Navy tailored shorts · Bottom\n' +
+      '            - checkbox "Brown formal shoes · Shoes"\n' +
+      '            - text: Brown formal shoes · Shoes\n' +
+      '            - checkbox "Teal camp shirt · Top"\n' +
+      '            - text: Teal camp shirt · Top\n' +
+      '            - checkbox "Navy wedding suit jacket · Top"\n' +
+      '            - text: Navy wedding suit jacket · Top\n' +
+      '            - checkbox "Ochre full-length chinos · Bottom" [checked] [disabled]\n' +
+      '            - text: Ochre fu'... 201683 more characters
+  }
+}
+
+Node.js v24.19.0

@@ -1,0 +1,57 @@
+[WebServer] (node:917451) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:917464) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:917482) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS authoring: filled role-textbox pose notes survive portable draft reopen in both source poses.
+  ✘  1 tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining production capture controls preserve authoring notes, matrix report notes and eight jump contact selections (11.6s)
+
+
+  1) tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining production capture controls preserve authoring notes, matrix report notes and eight jump contact selections 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByText(/^Scan complete:/)
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByText(/^Scan complete:/) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByText(/^Scan complete:/)
+
+
+      74 |   await button(matrix,"Plan combinations").click();
+      75 |   await button(matrix,"Scan planned combinations").click();
+    > 76 |   await expect(matrix.getByText(/^Scan complete:/)).toBeVisible();
+         |                                                     ^
+      77 |   const report = JSON.parse(strFromU8(await download(page,matrix,"Save combination report")));
+      78 |   expect(report.completedSamples).toBe(240);
+      79 |   const chosen:number[] = [];
+        at /workspace/gathria-character/tests/e2e/authoring-capture-flow.temp.spec.ts:76:53
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining production capture controls preserve authoring notes, matrix report notes and eight jump contact selections 
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

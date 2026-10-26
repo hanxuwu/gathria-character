@@ -1,0 +1,49 @@
+{
+  "cases": [
+    {
+      "key": "male",
+      "preset": "day-refined",
+      "baseId": "teal-camp-shirt-v5",
+      "outputId": "sand-camp-shirt-authoring-v1",
+      "outputName": "Sand camp shirt · authoring study",
+      "bottom": "ochre-chinos-v1",
+      "mixedBottom": "navy-suit-trousers-v1",
+      "hairId": "soft-curls",
+      "faceId": "gentle-v2",
+      "bank": "/docs/kling-expression-refined/banks/male-soft-curls.zip",
+      "target": "#b78b50",
+      "pose": 103
+    },
+    {
+      "key": "female",
+      "preset": "plum-pintuck-day",
+      "baseId": "plum-pintuck-neckline-mask-v1",
+      "baseFile": "docs/kling-mask-workbench/evidence/final-v1/female-plum-neckline-reviewed.garment.zip",
+      "outputId": "sage-pintuck-authoring-v1",
+      "outputName": "Sage pintuck · authoring study",
+      "bottom": "navy-shorts",
+      "mixedBottom": "ochre-shorts",
+      "hairId": "romantic-waves",
+      "faceId": "gentle-v2",
+      "bank": "/docs/kling-expression-refined/banks/female-romantic-waves.zip",
+      "target": "#578479",
+      "pose": 103
+    }
+  ],
+  "budgets": {
+    "retained": 104857600,
+    "temporary": 146800640,
+    "diskReserve": 134217728,
+    "nativePngs": 4,
+    "gifs": 8,
+    "screenshots": 6,
+    "projects": 2,
+    "packs": 2,
+    "playback": 20,
+    "checkerRowsPerCharacter": 240,
+    "contactRows": 24
+  },
+  "material": "Owned-cloth RGB variants using existing authored shapes. Reference PNG is an actual baseline export used only as visual context.",
+  "checker": "8 requested outfit/hair/face combinations per character; all5 actions and2 directions at3 explicit report-selected unique pose samples,240 rows per character, not exhaustive motion-frame visual approval.",
+  "workflow": "Actual wizard cloth sample/reference upload/material build, difficult pose decisions, draft save/reopen, candidate apply; actual combination scan/manual notes/report/contact-sheet export/reopen; exact saved wardrobe reopen and two independent CharacterPacks after editor closes."
+}

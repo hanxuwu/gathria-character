@@ -1,0 +1,81 @@
+
+> gathria-character@0.1.0 test
+> vitest run --maxWorkers=2
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/skeletal/native-study.test.ts (14 tests) 11101ms
+   ✓ native source registration and deterministic composition > renders all four derived poses deterministically and mirrors complete native frames  1156ms
+   ✓ native source registration and deterministic composition > partitions the already-deformed near arm without resampling seams or double alpha  511ms
+   ✓ native study validation and editable portable project > updates a pose with registered bone lengths, saves and reopens source PNG bytes  1780ms
+   ✓ native study validation and editable portable project > exports four honest native V2 static holds with explicit derived provenance  1704ms
+   ✓ female native registration and portable output > preserves alpha and the full frame through four poses, mirrors and ankle parenting  1114ms
+   ✓ female native registration and portable output > roundtrips edited female joints and identity with unchanged source parts  1258ms
+   ✓ female native registration and portable output > exports identity-correct V2 holds whose four frames match the female renderer  1591ms
+ ✓ src/core/sprite-actions.test.ts (6 tests) 5261ms
+   ✓ sprite action project contract > edits actual Kling male V3 timing while preserving every atlas byte and source mapping  2787ms
+   ✓ sprite action project contract > edits actual Kling female V3 timing while preserving every atlas byte and source mapping  2397ms
+ ✓ src/wardrobe/catalog-budget.test.ts (1 test) 1430ms
+   ✓ fits each shipped outfit / separates mix with every hair and face into the bounded per-frame page cache  1429ms
+ ✓ src/wardrobe/neckline-permissions.test.ts (6 tests) 1467ms
+   ✓ source-bound neckline cloth permissions > round-trips an explicit V3 garment through the existing strict archive loader  1352ms
+ ✓ src/wardrobe/outfit-previews.test.ts (2 tests) 1214ms
+   ✓ every picture is decodable, bound to the current catalog, and backed by a real native export  1212ms
+ ✓ src/core/baked-source.test.ts (41 tests) 747ms
+ ✓ src/wardrobe/project.test.ts (35 tests) 693ms
+ ✓ src/wardrobe/garment-authoring.test.ts (5 tests) 532ms
+ ✓ src/core/sha256.test.ts (3 tests) 529ms
+ ✓ src/wardrobe/compositor.test.ts (15 tests) 439ms
+ ✓ src/appearance/upgrade.test.ts (12 tests) 402ms
+ ✓ src/themes/theme.test.ts (27 tests) 412ms
+ ✓ src/wardrobe/mask-edit.test.ts (10 tests) 386ms
+ ✓ src/wardrobe/combination-review.test.ts (10 tests) 377ms
+ ✓ src/themes/media.test.ts (5 tests) 108ms
+ ✓ src/appearance/bank.test.ts (15 tests) 139ms
+ ✓ src/wardrobe/action-gif.test.ts (5 tests) 86ms
+ ✓ src/wardrobe/repair-candidate.test.ts (6 tests) 110ms
+ ✓ src/core/png-export.test.ts (2 tests) 80ms
+ ✓ src/wardrobe/review-sheets.test.ts (9 tests) 68ms
+ ✓ src/core/pack-v2.test.ts (30 tests) 72ms
+ ✓ src/core/pack-v4.test.ts (6 tests) 60ms
+ ✓ src/themes/catalog-assets.test.ts (8 tests) 31181ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual female:kling-original@1 theme and both complete looks  16041ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual female:pixel-storybook@2 theme and both complete looks  505ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual female:pixel-storybook@1 theme and both complete looks  516ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual male:kling-original@1 theme and both complete looks  12811ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual male:pixel-storybook@2 theme and both complete looks  495ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual male:pixel-storybook@1 theme and both complete looks  457ms
+   ✓ published authored theme assets use the real runtime parser > rejects a real authored pack whose mandatory provenance entry was omitted  350ms
+ ✓ src/core/source-preparation.test.ts (9 tests) 67ms
+ ✓ src/core/pack-v3.test.ts (20 tests) 67ms
+ ✓ src/wardrobe/review-analysis.test.ts (10 tests) 28ms
+ ✓ src/appearance/render.test.ts (7 tests) 24ms
+ ✓ src/wardrobe/motion-review.test.ts (10 tests) 28ms
+ ✓ src/wardrobe/review-document.test.ts (22 tests) 21ms
+ ✓ src/skeletal/geometry.test.ts (3 tests) 15ms
+ ✓ src/wardrobe/download-cache.test.ts (3 tests) 17ms
+ ✓ src/consumer/player.test.ts (15 tests) 14ms
+ ✓ src/wardrobe/review-transfer.test.ts (7 tests) 9ms
+ ✓ src/consumer/kling-packs.test.ts (6 tests) 9ms
+ ✓ src/consumer/motion-flow.test.ts (11 tests) 12ms
+ ✓ src/appearance/catalog.test.ts (7 tests) 6ms
+ ✓ src/themes/motion-phase.test.ts (6 tests) 6ms
+ ✓ src/wardrobe/named-looks.test.ts (3 tests) 5ms
+ ✓ src/wardrobe/look-comparison.test.ts (2 tests) 6ms
+ ✓ src/themes/comparison.test.ts (5 tests) 4ms
+ ✓ src/wardrobe/library-inventory.test.ts (2 tests) 3ms
+ ✓ src/wardrobe/look-history.test.ts (3 tests) 5ms
+ ✓ src/wardrobe/pose-neighborhood.test.ts (1 test) 3ms
+ ✓ src/themes/preview-budget.test.ts (4 tests) 3ms
+
+ Test Files  44 passed (44)
+      Tests  429 passed (429)
+   Start at  07:56:19
+   Duration  33.87s (transform 1.10s, setup 0ms, collect 2.81s, tests 57.25s, environment 7ms, prepare 2.28s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
