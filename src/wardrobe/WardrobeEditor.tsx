@@ -101,6 +101,7 @@ const ClothingCreationWizard = lazy(() => import("./ClothingCreationWizard"));
 const CombinationReviewWorkbench = lazy(
   () => import("./CombinationReviewWorkbench"),
 );
+const PixelRefinement = lazy(() => import("../pixel/PixelRefinement"));
 import {
   prepareGarmentCandidate,
   assertCandidateBase,
@@ -397,16 +398,29 @@ export default function WardrobeEditor({
   const resumeAfterMask = useRef(false);
   const [authoring, setAuthoring] = useState<WardrobeProject | null>(null);
   const [combination, setCombination] = useState<WardrobeProject | null>(null);
+  const [pixelPreview, setPixelPreview] = useState<{
+    project: WardrobeProject;
+    renderer: WardrobeCompositor;
+    action: PortableAnimationName;
+    position: number;
+    facing: Facing;
+  } | null>(null);
   const authoringRef = useRef(authoring);
   const combinationRef = useRef(combination);
   authoringRef.current = authoring;
   combinationRef.current = combination;
   const authoringButton = useRef<HTMLButtonElement>(null);
   const combinationButton = useRef<HTMLButtonElement>(null);
+  const pixelButton = useRef<HTMLButtonElement>(null);
   const resumeAfterLab = useRef(false);
   const candidateOrigin = useRef<"import" | "mask" | "authoring">("import");
   const modalOpen = Boolean(
-    appearancePreview || garmentPreview || maskEdit || authoring || combination,
+    appearancePreview ||
+      garmentPreview ||
+      maskEdit ||
+      authoring ||
+      combination ||
+      pixelPreview,
   );
   const previewGarmentInput = useRef<HTMLInputElement>(null);
   const paintedKitInput = useRef<HTMLInputElement>(null);
@@ -581,6 +595,7 @@ export default function WardrobeEditor({
     setMaskEdit(null);
     setAuthoring(null);
     setCombination(null);
+    setPixelPreview(null);
     if (candidateRenderer.current) closeGarmentPreview();
     preparingGarmentPreview.current = false;
     const { token, controller } = beginPreparation();
@@ -980,6 +995,7 @@ export default function WardrobeEditor({
     setMaskEdit(null);
     setAuthoring(null);
     setCombination(null);
+    setPixelPreview(null);
     if (authoring || combination) {
       preparation.current?.abort();
       request.current++;
@@ -2246,6 +2262,25 @@ export default function WardrobeEditor({
           >
             Check combinations
           </button>
+          <button
+            type="button"
+            ref={pixelButton}
+            disabled={busy || modalOpen || !session}
+            onClick={() => {
+              if (!session) return;
+              resumeAfterLab.current = playing;
+              setPlaying(false);
+              setPixelPreview({
+                project,
+                renderer: session.renderer,
+                action: shownAction,
+                position: frameIndex,
+                facing,
+              });
+            }}
+          >
+            Try pixel finish
+          </button>
         </section>
       )}
       <input
@@ -3209,6 +3244,25 @@ export default function WardrobeEditor({
               requestAnimationFrame(() => combinationButton.current?.focus());
             }}
             onUseLook={useCombination}
+          />
+        </Suspense>
+      )}
+      {pixelPreview && active && (
+        <Suspense fallback={<p aria-live="polite">Opening pixel finish…</p>}>
+          <PixelRefinement
+            project={pixelPreview.project}
+            renderer={pixelPreview.renderer}
+            initialAction={pixelPreview.action}
+            initialPosition={pixelPreview.position}
+            initialFacing={pixelPreview.facing}
+            onClose={() => {
+              setPixelPreview(null);
+              setPlaying(resumeAfterLab.current && activeRef.current);
+              setStatus(
+                "Pixel preview closed. Your accepted outfit is unchanged.",
+              );
+              requestAnimationFrame(() => pixelButton.current?.focus());
+            }}
           />
         </Suspense>
       )}
