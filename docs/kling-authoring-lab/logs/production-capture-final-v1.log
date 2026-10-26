@@ -1,0 +1,23 @@
+Downloaded male-before-jump-103-right.png: 284841 bytes
+Downloaded male.clothing-draft.zip: 4769468 bytes
+Downloaded male.created.garment.zip: 4851792 bytes
+Downloaded male.creation-report.json: 53882 bytes
+Downloaded male-after-jump-103-right.png: 289399 bytes
+Downloaded male.combination-scan.json: 365470 bytes
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Review background', { exact: true })[22m
+
+    at checkCombinations (/workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:985:6)
+    at async file:///workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:1241:5 {
+  log: [
+    "  - waiting for getByRole('dialog', { name: 'Combination review workbench', exact: true }).getByLabel('Review background', { exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

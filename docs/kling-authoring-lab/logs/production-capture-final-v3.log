@@ -1,0 +1,48 @@
+Downloaded male-before-jump-103-right.png: 284841 bytes
+Downloaded male.clothing-draft.zip: 4769468 bytes
+Downloaded male.created.garment.zip: 4851792 bytes
+Downloaded male.creation-report.json: 53882 bytes
+Downloaded male-after-jump-103-right.png: 289399 bytes
+Downloaded male.combination-scan.json: 365470 bytes
+VISUAL_REVIEW_REQUIRED {"key":"male","screenshot":"docs/kling-authoring-lab/evidence/final-v3/male-combination-inspector.png","screenshotSha256":"4f069453150b789f1f16e7dd6d565aad3142b7378c38fac6ba74d5f06093b5b0","caseId":"ec0141b640ad5d1cb158af65","action":"jump","position":19,"facing":"right","gate":"docs/kling-authoring-lab/evidence/final-v3/male.visual-note.json"}
+Downloaded male.combination-reviewed.json: 365968 bytes
+Downloaded male.combination-contact.zip: 967507 bytes
+Downloaded male-run-right.gif: 419640 bytes
+Downloaded male-run-left.gif: 419553 bytes
+Downloaded male-jump-right.gif: 1023661 bytes
+Downloaded male-jump-left.gif: 1023629 bytes
+Downloaded male.wardrobe.zip: 51283056 bytes
+Downloaded male.created.character.zip: 26790550 bytes
+Downloaded female-before-jump-103-right.png: 270285 bytes
+Downloaded female.clothing-draft.zip: 4244328 bytes
+Downloaded female.created.garment.zip: 4158373 bytes
+Downloaded female.creation-report.json: 61808 bytes
+Downloaded female-after-jump-103-right.png: 273024 bytes
+Downloaded female.combination-scan.json: 370259 bytes
+VISUAL_REVIEW_REQUIRED {"key":"female","screenshot":"docs/kling-authoring-lab/evidence/final-v3/female-combination-inspector.png","screenshotSha256":"0d11a86fab90700d5da7c069a22e103f9af25821aa22fc33248d20ecbb198703","caseId":"1dd82d952a0699f0de488638","action":"jump","position":19,"facing":"right","gate":"docs/kling-authoring-lab/evidence/final-v3/female.visual-note.json"}
+Downloaded female.combination-reviewed.json: 370784 bytes
+Downloaded female.combination-contact.zip: 972670 bytes
+Downloaded female-run-right.gif: 416876 bytes
+Downloaded female-run-left.gif: 417009 bytes
+Downloaded female-jump-right.gif: 1036298 bytes
+Downloaded female-jump-left.gif: 1036910 bytes
+Downloaded female.wardrobe.zip: 70752840 bytes
+Downloaded female.created.character.zip: 27339448 bytes
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(report.playback.every((p) => p.missingPositions.length === 0))
+
+    at file:///workspace/gathria-character/scripts/capture-kling-authoring-lab.mjs:1289:3 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

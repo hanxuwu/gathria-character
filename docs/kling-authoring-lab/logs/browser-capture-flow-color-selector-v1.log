@@ -1,0 +1,52 @@
+[WebServer] (node:917077) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:917090) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:917114) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining production capture controls preserve authoring notes, matrix report notes and eight jump contact selections (2.7s)
+
+
+  1) tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining production capture controls preserve authoring notes, matrix report notes and eight jump contact selections 
+
+    Error: locator.fill: Error: strict mode violation: getByRole('dialog', { name: 'Clothing creation wizard', exact: true }).getByRole('textbox', { name: /^Original cloth color/ }) resolved to 2 elements:
+        1) <input type="text" maxlength="7" value="#128991" id="_r_0_-source"/> aka getByRole('textbox', { name: 'Original cloth color', exact: true })
+        2) <input type="color" value="#128991" aria-label="Original cloth color swatch"/> aka getByRole('textbox', { name: 'Original cloth color swatch' })
+
+    Call log:
+      - waiting for getByRole('dialog', { name: 'Clothing creation wizard', exact: true }).getByRole('textbox', { name: /^Original cloth color/ })
+
+
+      32 |   await textbox(wizard,"New clothing ID").fill("selector-flow-top");
+      33 |   await textbox(wizard,"New clothing name").fill("Selector flow top");
+    > 34 |   await textbox(wizard,"Original cloth color").fill("#128991");
+         |                                                ^
+      35 |   await textbox(wizard,"New cloth color").fill("#8866aa");
+      36 |   await button(wizard,"Build clothing variant").click();
+      37 |   await expect(wizard.getByTestId("authoring-pose-status")).toBeVisible();
+        at /workspace/gathria-character/tests/e2e/authoring-capture-flow.temp.spec.ts:34:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/authoring-capture-flow.tem-43166-ght-jump-contact-selections/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/authoring-capture-flow.temp.spec.ts:18:1 › remaining production capture controls preserve authoring notes, matrix report notes and eight jump contact selections 
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

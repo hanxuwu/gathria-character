@@ -1,0 +1,20 @@
+First gallery invocation: python scripts/render-kling-authoring-review.py
+Recorded tool result exit_code: 1. This log transcribes the actual failure output; no original capture or audit changed.
+
+Traceback (most recent call last):
+  File "/workspace/gathria-character/scripts/render-kling-authoring-review.py", line 338, in <module>
+    main()
+  File "/workspace/gathria-character/scripts/render-kling-authoring-review.py", line 333, in main
+    review.animations(); review.material_board(); review.combinations(); review.gallery()
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/gathria-character/scripts/render-kling-authoring-review.py", line 174, in material_board
+    images, rows = self.native_pair(key)
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/gathria-character/scripts/render-kling-authoring-review.py", line 150, in native_pair
+    require(sha(image.tobytes()) == row['uiCanvas']['rgbaSha256'], 'Native PNG is not the exact captured UI canvas.')
+  File "/workspace/gathria-character/scripts/render-kling-authoring-review.py", line 32, in require
+    raise AssertionError(message)
+AssertionError: Native PNG is not the exact captured UI canvas.
+
+Resolution: require the passing independent native compositor audit instead. Record native-export and preview-readback RGBA hashes separately. All four actual PNGs are independently composition-exact; preview readback is not assumed bit-identical to native export RGBA.
+Only the four byte-identical copied GIF derivatives created by this failed invocation were discarded, after each hash matched its preserved original download. The clean second invocation completed six visuals successfully.
