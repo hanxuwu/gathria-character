@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "key": "male-everyday",
+      "character": "male",
+      "preset": "day-soft-cuff",
+      "hair": "soft-curls"
+    },
+    {
+      "key": "male-wedding",
+      "character": "male",
+      "preset": "wedding-curved-cuff",
+      "hair": "soft-curls"
+    },
+    {
+      "key": "female-everyday",
+      "character": "female",
+      "preset": "day-smooth-waist",
+      "hair": "romantic-waves"
+    },
+    {
+      "key": "female-wedding",
+      "character": "female",
+      "preset": "wedding-smooth-waist",
+      "hair": "romantic-waves"
+    }
+  ],
+  "settings": {
+    "factor": 6,
+    "colors": 64,
+    "sampling": "detail",
+    "finish": "cluster"
+  },
+  "budgets": {
+    "retained": 100663296,
+    "temporary": 314572800,
+    "reserve": 134217728
+  },
+  "baseline": "Retained PR48 actual sources and detailed-pixel output. Same source RGBA, actions, anchors and derivation must be independently verified.",
+  "pngs": "idle, run contact/passing, jump apex; exact exported frame IDs recorded",
+  "gifs": "run both directions and jump right",
+  "player": "After editors close, fresh context; five actions × both facings, explicit source-mapped scrubs and bounded real-time movement. No claim to observe every frame in real time."
+}

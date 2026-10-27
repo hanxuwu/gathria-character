@@ -1,0 +1,878 @@
+{
+  "format": "gathria-pixel-density-review",
+  "version": 1,
+  "scriptSha256": "b49997c7248543db2cd14125e3c3001b9a85d5c3a2836777c36e0de1e92199c4",
+  "helperSha256": "3f1908c74d5d6b77cd59af7784f8684f5bc4fff26caf2dba8ed4e5b1d295de4b",
+  "legacyHelperSha256": "d448da5be16fdb231769f90d3775d297b94f15ff9141d324bab6cb62a7a250ff",
+  "captureIndexes": [
+    {
+      "file": "docs/kling-strong-pixels/evidence/final-v2/evidence-index.json",
+      "sha256": "364786bae4ae1bbd21bdb191c4bad4fcfc1939c7f127df80c4af6926b23e3328"
+    },
+    {
+      "file": "docs/kling-pixel-density/evidence/six-64/evidence-index.json",
+      "sha256": "ec67f6863140ec79a7e97a3290faf01a0e0340b05bce24d8b3bb87064dff7ec4"
+    },
+    {
+      "file": "docs/kling-pixel-density/evidence/eight-64/evidence-index.json",
+      "sha256": "533afe1ce1dd39196a696d5ecf1a5932adaec4a2b5e833ad35a360378f76ea62"
+    }
+  ],
+  "inputs": [
+    {
+      "case": "male-everyday",
+      "sourceSha256": "3f0e69cc16365d51ac18a2486c090d4f951b4920a3085713e9755d26b3176e62",
+      "settings": [
+        {
+          "factor": 6,
+          "colors": 96,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 6,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 8,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        }
+      ],
+      "packFiles": [
+        "docs/kling-strong-pixels/evidence/final-v2/male-everyday.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/six-64/male-everyday.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/eight-64/male-everyday.pixel.character.zip"
+      ],
+      "packSha256": [
+        "bc0139a78362663d84b3c1b516b6d7ed4ff14262f8d3b4b4b4356269dc4839cc",
+        "fb2fafce1ba084fef93ad81f0e7b5711b425bf442c3632f0945e3b57ba62ea63",
+        "1af1eb237a4639260c3c219c66bf419bf47c6a658997a6c1e68809023d7ffb51"
+      ],
+      "reportSha256": [
+        "6327aadee7c932b7a068873fde6f143bc1990519a061479b4c743e21d7673f8e",
+        "9b5c6d6512c2bb78eb5c4d5a1121aecec326c0e647a569e0b58e9ee653b7d92f",
+        "891c8acf908287e579186e3f4e05c5bc42811aa688eedc7b2875ee1b66656f8e"
+      ],
+      "integerZooms": [
+        3,
+        3,
+        4
+      ],
+      "displayCanvas": [
+        384,
+        596
+      ],
+      "displayAnchor": [
+        192,
+        564
+      ],
+      "noFrameFittingOrRetiming": true
+    },
+    {
+      "case": "male-wedding",
+      "sourceSha256": "ad89663f107dda8032dc38add971e00d83938ec3ec2dffb7b582bec07dc46428",
+      "settings": [
+        {
+          "factor": 6,
+          "colors": 96,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 6,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 8,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        }
+      ],
+      "packFiles": [
+        "docs/kling-strong-pixels/evidence/final-v2/male-wedding.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/six-64/male-wedding.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/eight-64/male-wedding.pixel.character.zip"
+      ],
+      "packSha256": [
+        "88650c5b96384fbc69b7aed3da540fc367df45dd5ff85992b3018d7b73dab2b4",
+        "46f0067b05aaf59f06d3abc6cdeab5ec4525c3bb169311136fd32b53f500ecee",
+        "0a75f15c61ae5492263e64397410162967087458d95b1e31e73b097daf9a0147"
+      ],
+      "reportSha256": [
+        "71b9ccd171512d7946602fbd2ed09193fc5bf38403779200c8c6bcc47069d40c",
+        "260a8fb3af78b91d11bc4787a7f0c9f41ee22bd2f34035a02564c4723a4fda83",
+        "b0886c7362da7f14c52501d8009a8f256b873e31bb373eee91348c92b6a06d31"
+      ],
+      "integerZooms": [
+        3,
+        3,
+        4
+      ],
+      "displayCanvas": [
+        384,
+        596
+      ],
+      "displayAnchor": [
+        192,
+        564
+      ],
+      "noFrameFittingOrRetiming": true
+    },
+    {
+      "case": "female-everyday",
+      "sourceSha256": "a1c718928b3ea3b12d7a9aa65db76995355cdadfb7815982fe7f56a60f144ad4",
+      "settings": [
+        {
+          "factor": 6,
+          "colors": 96,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 6,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 8,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        }
+      ],
+      "packFiles": [
+        "docs/kling-strong-pixels/evidence/final-v2/female-everyday.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/six-64/female-everyday.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/eight-64/female-everyday.pixel.character.zip"
+      ],
+      "packSha256": [
+        "47b5b18ce80465296fa714e7d93aa97b341528c66e0be2f32d6bec64a46828a3",
+        "57bbd12143ea42539722bc1f65ca89d69ece38423764a53e0a6ea7b1dbfe3c72",
+        "420454d5661d289f87bf67fa74a405a7382af5cebdfbb820962a69197f8921f7"
+      ],
+      "reportSha256": [
+        "e58c48ce0672057abc3d0440dcfd542ab7a17f5b606bc82b97c4480fb955d2c6",
+        "d0d7c16398747d229609df8eafdda8060b325f0a36663333b5772a9e506b8498",
+        "5160750f57072ab95f14bacc37a975074ca6eb485fe9b4d02f6d165d8a054ddd"
+      ],
+      "integerZooms": [
+        3,
+        3,
+        4
+      ],
+      "displayCanvas": [
+        384,
+        596
+      ],
+      "displayAnchor": [
+        192,
+        564
+      ],
+      "noFrameFittingOrRetiming": true
+    },
+    {
+      "case": "female-wedding",
+      "sourceSha256": "a4b80d9b2d79ee882263b87bfb3d7474cb94c4fcf0bc342d1e59601eece2062f",
+      "settings": [
+        {
+          "factor": 6,
+          "colors": 96,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 6,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        },
+        {
+          "factor": 8,
+          "colors": 64,
+          "sampling": "detail",
+          "finish": "cluster"
+        }
+      ],
+      "packFiles": [
+        "docs/kling-strong-pixels/evidence/final-v2/female-wedding.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/six-64/female-wedding.pixel.character.zip",
+        "docs/kling-pixel-density/evidence/eight-64/female-wedding.pixel.character.zip"
+      ],
+      "packSha256": [
+        "04c0200469160848c32a14a9e25f9c025c1f52f2c2f70866582074e786549c14",
+        "eb8e8588175e0729737cde8e79d06add0b59ea8a4ed5237e0e44fb7f0b063b20",
+        "97763420ddb079e0af24292bb051184c9a5d838bca35f6448e2800cd70032c72"
+      ],
+      "reportSha256": [
+        "7261c1dcca0f6b8545f512a33f1b8b9c4cdfd28454d7a7795c31f662583e403a",
+        "a9cecf02a029058f2b8cc594b3d3a9b24a60e7423169f309d9156e9df33d36c2",
+        "4cfd723819444a4092196d499880955a64c45bf603397263d2669103124bf16c"
+      ],
+      "integerZooms": [
+        3,
+        3,
+        4
+      ],
+      "displayCanvas": [
+        384,
+        596
+      ],
+      "displayAnchor": [
+        192,
+        564
+      ],
+      "noFrameFittingOrRetiming": true
+    }
+  ],
+  "files": [
+    {
+      "file": "male-everyday-run-three-settings-right.gif",
+      "bytes": 946636,
+      "sha256": "664f50df714f09e8d5f77a82ba99a99df901079f706afb531ba2afe12f6ab0db",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "male-everyday",
+      "facing": "right",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "male-everyday-run-three-settings-left.gif",
+      "bytes": 946235,
+      "sha256": "ba2b680cef5428d51c72e5828b172c06f74b208b6432ec55d26bbf6e832c2678",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "male-everyday",
+      "facing": "left",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "male-everyday-idle-three-settings.png",
+      "bytes": 52627,
+      "sha256": "78e073e79e4f43a3f8700b95041c48f33acfbb56320d001f5aade6b3d932b4ef",
+      "width": 1152,
+      "height": 684,
+      "frames": 1,
+      "case": "male-everyday",
+      "action": "idle",
+      "frameId": 0
+    },
+    {
+      "file": "male-everyday-native-three-settings.png",
+      "bytes": 33400,
+      "sha256": "a11e6ceef0e8a37e9d6bebac62c046cf59e9ae4b3de6a791b47937e1e77e71a4",
+      "width": 384,
+      "height": 286,
+      "frames": 1,
+      "case": "male-everyday",
+      "action": "idle",
+      "native": true
+    },
+    {
+      "file": "male-everyday-head-three-settings.png",
+      "bytes": 40887,
+      "sha256": "3923dffcb8adb6cf8e375efc8bc7701515d7f235237762ae5634be84a9f7426a",
+      "width": 1704,
+      "height": 540,
+      "frames": 1,
+      "case": "male-everyday",
+      "cropInSharedDisplay": [
+        53,
+        100,
+        337,
+        326
+      ],
+      "additionalZoom": 2
+    },
+    {
+      "file": "male-everyday-six-64-all-run-2x.png",
+      "bytes": 198008,
+      "sha256": "d53e0d83f7cf0073a2a9508e78695e702d33f62a015e361476b2425cc5f79745",
+      "width": 2048,
+      "height": 872,
+      "frames": 1,
+      "case": "male-everyday",
+      "variant": "six-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    },
+    {
+      "file": "male-everyday-eight-64-all-run-2x.png",
+      "bytes": 127152,
+      "sha256": "02402db0532659bc1d7391f8e9490cd00a0d8e9e8758136158a95e4abbc9a543",
+      "width": 1536,
+      "height": 676,
+      "frames": 1,
+      "case": "male-everyday",
+      "variant": "eight-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    },
+    {
+      "file": "male-wedding-run-three-settings-right.gif",
+      "bytes": 897271,
+      "sha256": "1e749af817b258c88075d71c26f994ceeab49ccf8dec0c28268273bfc7224a05",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "male-wedding",
+      "facing": "right",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "male-wedding-run-three-settings-left.gif",
+      "bytes": 897105,
+      "sha256": "9512eb4e4ceadea2fc733186683450c556783a2acc5fe5bb0e93a06123167259",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "male-wedding",
+      "facing": "left",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "male-wedding-idle-three-settings.png",
+      "bytes": 50117,
+      "sha256": "da9c8bdec843a0dd8647a6576f31640da0f22cc09403c22fad7cdf288ec068d8",
+      "width": 1152,
+      "height": 684,
+      "frames": 1,
+      "case": "male-wedding",
+      "action": "idle",
+      "frameId": 0
+    },
+    {
+      "file": "male-wedding-native-three-settings.png",
+      "bytes": 31734,
+      "sha256": "d365eafa077c462c2eb13c7a55ece5fd6467b388ccd641a5eae0c1cb95bbfdfe",
+      "width": 384,
+      "height": 286,
+      "frames": 1,
+      "case": "male-wedding",
+      "action": "idle",
+      "native": true
+    },
+    {
+      "file": "male-wedding-head-three-settings.png",
+      "bytes": 41033,
+      "sha256": "c8844757e6e40bf723f4e9e3dab8dcf2634884c1ab6d722cadb6a44c7e2d12a5",
+      "width": 1704,
+      "height": 540,
+      "frames": 1,
+      "case": "male-wedding",
+      "cropInSharedDisplay": [
+        53,
+        100,
+        337,
+        326
+      ],
+      "additionalZoom": 2
+    },
+    {
+      "file": "male-wedding-six-64-all-run-2x.png",
+      "bytes": 185540,
+      "sha256": "5e0aed9c491ee7bfabba29b19a0ab3b15b3c9efdc0a0f2f5f6314e5a919862a1",
+      "width": 2048,
+      "height": 872,
+      "frames": 1,
+      "case": "male-wedding",
+      "variant": "six-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    },
+    {
+      "file": "male-wedding-eight-64-all-run-2x.png",
+      "bytes": 120703,
+      "sha256": "c8f178106fa29a6d52af54e7426378feef7fec8e8e6a2dc494514f8d3ab69712",
+      "width": 1536,
+      "height": 676,
+      "frames": 1,
+      "case": "male-wedding",
+      "variant": "eight-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    },
+    {
+      "file": "female-everyday-run-three-settings-right.gif",
+      "bytes": 1304176,
+      "sha256": "c39a7f5ed5b760750e996196f9506eb7f81468110cd22c85e281572bbfe1dd4c",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "female-everyday",
+      "facing": "right",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "female-everyday-run-three-settings-left.gif",
+      "bytes": 1303628,
+      "sha256": "587c16c72d1136d629c3c2a5d32acbe697737287f17c2096b213571262448d8c",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "female-everyday",
+      "facing": "left",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "female-everyday-idle-three-settings.png",
+      "bytes": 63236,
+      "sha256": "1288fac2499daaeb727bc0358785bcd321f736ad4073839466d2283fe84f9363",
+      "width": 1152,
+      "height": 684,
+      "frames": 1,
+      "case": "female-everyday",
+      "action": "idle",
+      "frameId": 0
+    },
+    {
+      "file": "female-everyday-native-three-settings.png",
+      "bytes": 40405,
+      "sha256": "9b15d8e5f9ec6d8176c319e5c92f86ee46a8d412265eeae846085b69069c3ba1",
+      "width": 384,
+      "height": 286,
+      "frames": 1,
+      "case": "female-everyday",
+      "action": "idle",
+      "native": true
+    },
+    {
+      "file": "female-everyday-head-three-settings.png",
+      "bytes": 52153,
+      "sha256": "136cdec008b428852df27d5a18c6bdc714fc9819c2e735e405a6496f88755c32",
+      "width": 1866,
+      "height": 552,
+      "frames": 1,
+      "case": "female-everyday",
+      "cropInSharedDisplay": [
+        29,
+        82,
+        340,
+        314
+      ],
+      "additionalZoom": 2
+    },
+    {
+      "file": "female-everyday-six-64-all-run-2x.png",
+      "bytes": 264232,
+      "sha256": "6298274d3faae267cb243faba974cd23c3ed6b0d851d3963ae8b32dd60d30923",
+      "width": 2048,
+      "height": 872,
+      "frames": 1,
+      "case": "female-everyday",
+      "variant": "six-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    },
+    {
+      "file": "female-everyday-eight-64-all-run-2x.png",
+      "bytes": 166247,
+      "sha256": "eecd1ec19c0824228a096ad0113eb31393f71a55ad5a19144845a38e8b4fd999",
+      "width": 1536,
+      "height": 676,
+      "frames": 1,
+      "case": "female-everyday",
+      "variant": "eight-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    },
+    {
+      "file": "female-wedding-run-three-settings-right.gif",
+      "bytes": 1311461,
+      "sha256": "c314fc2507836a621eb743afbe0d5a296094f1ea6e9ec62c6817d9420b4ca599",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "female-wedding",
+      "facing": "right",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "female-wedding-run-three-settings-left.gif",
+      "bytes": 1310816,
+      "sha256": "1c2e16d3da8522d54c6190383e9b19ed599ad932532ae312664026a5b6d9598c",
+      "width": 1152,
+      "height": 684,
+      "frames": 16,
+      "case": "female-wedding",
+      "facing": "left",
+      "action": "run",
+      "durationMs": 670,
+      "delaysMs": [
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40,
+        40,
+        40,
+        40,
+        40,
+        50,
+        40
+      ],
+      "loop": true,
+      "characterPixelsExact": true
+    },
+    {
+      "file": "female-wedding-idle-three-settings.png",
+      "bytes": 64589,
+      "sha256": "411b623ffd2588a78bdfc61ffde8b19344fd09aeeeae7cfcf638bed2f6e79ce8",
+      "width": 1152,
+      "height": 684,
+      "frames": 1,
+      "case": "female-wedding",
+      "action": "idle",
+      "frameId": 0
+    },
+    {
+      "file": "female-wedding-native-three-settings.png",
+      "bytes": 41007,
+      "sha256": "2d08744f263e1e51825c0d1dabf30f5b7cf5aa958fb18db80ab0eec84a08d8e4",
+      "width": 384,
+      "height": 286,
+      "frames": 1,
+      "case": "female-wedding",
+      "action": "idle",
+      "native": true
+    },
+    {
+      "file": "female-wedding-head-three-settings.png",
+      "bytes": 52927,
+      "sha256": "b03d93eff2d1513a86348140607ac66cb996119f825cc667281e497ea321d4e2",
+      "width": 1866,
+      "height": 552,
+      "frames": 1,
+      "case": "female-wedding",
+      "cropInSharedDisplay": [
+        29,
+        82,
+        340,
+        314
+      ],
+      "additionalZoom": 2
+    },
+    {
+      "file": "female-wedding-six-64-all-run-2x.png",
+      "bytes": 258800,
+      "sha256": "b4528164bf656ddde43f09e0cb19273d7a17bd0ae033ee1dacb30679650de89c",
+      "width": 2048,
+      "height": 872,
+      "frames": 1,
+      "case": "female-wedding",
+      "variant": "six-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    },
+    {
+      "file": "female-wedding-eight-64-all-run-2x.png",
+      "bytes": 162720,
+      "sha256": "5b5806f57f5035d1f4c76631e5d1a7511046b8dd76cb260720939db7895fd87f",
+      "width": 1536,
+      "height": 676,
+      "frames": 1,
+      "case": "female-wedding",
+      "variant": "eight-64",
+      "positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": 2
+    }
+  ],
+  "provenance": "All character artwork decoded from actual application-exported packs. Columns6:1/96,6:1/64,8:1/64 at3x/3x/4x integer enlargement. One source-relative scale and declared anchor, no pose fitting or retiming. Comparison GIF character colors are exact; labels may be palette-mapped."
+}

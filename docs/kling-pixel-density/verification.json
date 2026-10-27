@@ -1,0 +1,148 @@
+{
+  "format": "gathria-pixel-density-verification",
+  "version": 1,
+  "completedAt": "2026-10-27T02:25:42.782749+00:00",
+  "runtimeBase": "b291bb7b5355984e9d8735b50d899bd2119befc4",
+  "runtimeChanges": false,
+  "defaultSettingsChanged": false,
+  "newUnitOrBuildRuns": false,
+  "productionBuildHashesCheckedBeforeCapture": true,
+  "passed": true,
+  "userVisualAcceptance": false,
+  "captures": [
+    {
+      "run": "six-64",
+      "settings": {
+        "factor": 6,
+        "colors": 64,
+        "sampling": "detail",
+        "finish": "cluster"
+      },
+      "actualLooks": 4,
+      "uiDownloads": 56,
+      "screenshots": 8,
+      "nativeFrames": 368,
+      "pngs": 32,
+      "rawGifs": 12,
+      "mirrorPairs": 4,
+      "playerCases": 40,
+      "editorsClosedBeforePlayer": true,
+      "allSourcesMatchPriorArtwork": true,
+      "gridAlphaExact": true,
+      "sourceActionsExact": true,
+      "gifPaletteProjectionExact": true,
+      "maxGifMeanPaletteError": 0.0,
+      "errors": {
+        "browserErrors": 0,
+        "consoleErrors": 0,
+        "failedRequests": 0,
+        "externalRequests": 0,
+        "independentEditorRequests": 0
+      }
+    },
+    {
+      "run": "eight-64",
+      "settings": {
+        "factor": 8,
+        "colors": 64,
+        "sampling": "detail",
+        "finish": "cluster"
+      },
+      "actualLooks": 4,
+      "uiDownloads": 56,
+      "screenshots": 8,
+      "nativeFrames": 368,
+      "pngs": 32,
+      "rawGifs": 12,
+      "mirrorPairs": 4,
+      "playerCases": 40,
+      "editorsClosedBeforePlayer": true,
+      "allSourcesMatchPriorArtwork": true,
+      "gridAlphaExact": true,
+      "sourceActionsExact": true,
+      "gifPaletteProjectionExact": true,
+      "maxGifMeanPaletteError": 0.0,
+      "errors": {
+        "browserErrors": 0,
+        "consoleErrors": 0,
+        "failedRequests": 0,
+        "externalRequests": 0,
+        "independentEditorRequests": 0
+      }
+    }
+  ],
+  "gallery": {
+    "files": 28,
+    "comparisonGifs": 8,
+    "characterRgbExact": true,
+    "sourceRelativeScale": 0.5,
+    "nativeZooms": [
+      3,
+      3,
+      4
+    ],
+    "commonCanvas": [
+      384,
+      596
+    ],
+    "commonAnchor": [
+      192,
+      564
+    ],
+    "noRetiming": true,
+    "allOriginal16RunPositionsIncluded": true
+  },
+  "visualFindings": [
+    "6:1/64 keeps the same sampling grid and silhouette as6:1/96; shading bands and available colors differ.",
+    "8:1/64 at96x149 has coarser contours and less distinct small curls, mouth, eye and ear detail.",
+    "6:1/64 is the more conservative detail-preserving choice;8:1/64 is a stronger coarse-pixel option.",
+    "These are static/contact-sheet observations, not proof of temporal stability or a hand-drawn pixel style."
+  ],
+  "coverageLimit": "Independent players scrub three positions per action/facing and check bounded playback advancement; not every animation-frame callback is observed. Existing source motion and original pose variation remain.",
+  "bindings": [
+    {
+      "file": "docs/kling-pixel-density/evidence/six-64/evidence-index.json",
+      "sha256": "ec67f6863140ec79a7e97a3290faf01a0e0340b05bce24d8b3bb87064dff7ec4"
+    },
+    {
+      "file": "docs/kling-pixel-density/evidence/six-64/artifact-validation.json",
+      "sha256": "a0004d7a2ed37e0196e4a7e3dd8b7c19677a9fdefb81ede9d3f9c96cb75a0af3"
+    },
+    {
+      "file": "docs/kling-pixel-density/evidence/eight-64/evidence-index.json",
+      "sha256": "533afe1ce1dd39196a696d5ecf1a5932adaec4a2b5e833ad35a360378f76ea62"
+    },
+    {
+      "file": "docs/kling-pixel-density/evidence/eight-64/artifact-validation.json",
+      "sha256": "e4dead96cf89571404766d48fd7b02b7d1eaccc80309d0565f8b39a98ac7c9ba"
+    },
+    {
+      "file": "docs/kling-pixel-density/review/index.json",
+      "sha256": "6b17b3ae2e632330c799d5e6250c7948f4be3bd1507a830ffdc0726781dde414"
+    },
+    {
+      "file": "docs/kling-pixel-density/logs/eight-64-audit.log",
+      "sha256": "417b1ce027d88b32f752e4ae6fe404f8c2aca358e6cf6a3ebd51f857db7a133c"
+    },
+    {
+      "file": "docs/kling-pixel-density/logs/eight-64-capture.log",
+      "sha256": "789d8ca712d6ac59dca1b3561327bef1373d71cfbbb809cc468b78154931512c"
+    },
+    {
+      "file": "docs/kling-pixel-density/logs/gallery.log",
+      "sha256": "64f1d0c0685b9327d00f9862a456b9c4a7baf905bfc9867e6d07f1eb172d8973"
+    },
+    {
+      "file": "docs/kling-pixel-density/logs/six-64-capture.log",
+      "sha256": "c1eea37b7420233339f72ede87275cf217f5bc46152043896805ff74b69e1924"
+    },
+    {
+      "file": "docs/kling-pixel-density/logs/six-64-plan.log",
+      "sha256": "c026c9012f36008ca6c0498eabe5b4ad50902aa3c52be3d2c9fdfbd4f491bd5b"
+    },
+    {
+      "file": "docs/kling-pixel-density/logs/six-64-verify.log",
+      "sha256": "a2f73370678ffcf3e3e245a0f0822d2e6d0a803a00fac408f8e3c6fc045a5358"
+    }
+  ]
+}
