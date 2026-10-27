@@ -19,7 +19,11 @@ import {
   pixelMapping,
   type PixelBuildProgress,
 } from "./pack";
-import { DEFAULT_PIXEL_SETTINGS } from "./refine";
+import {
+  CLUSTER_FINISH_VERSION,
+  DEFAULT_PIXEL_SETTINGS,
+  STRONG_PIXEL_SETTINGS,
+} from "./refine";
 
 const COLORS = [
   [224, 160, 104],
@@ -180,6 +184,177 @@ function fixture(multi = true) {
 }
 
 describe("pixel candidate archive bridge", () => {
+  it("reproduces the previously shipped 4:1 / 128-color V1 ZIP and report byte hashes", async () => {
+    const source = zipSync(fixture().files, { mtime: new Date(1980, 0, 1) });
+    const result = await buildPixelCandidate(source, {
+      factor: 4,
+      colors: 128,
+      sampling: "detail",
+    });
+    // Captured from the shipped V1 implementation before adding the optional
+    // finish, including the original recipe/report property order and ZIP date.
+    expect(await sha256(source)).toBe(
+      "4dfc232ca49a394e49e0b2030eb1c81a6b3e6f8b02aed8dd8b8bf36b19d3a122",
+    );
+    expect(result.report.outputSha256).toBe(
+      "3b2a2d06b1f20fd360959d634770cc406e28546cd0f2147269a37ed34b405d3c",
+    );
+    expect(await sha256(strToU8(JSON.stringify(result.report)))).toBe(
+      "a9c9055f462d10d234baf641ca6932f134bae1b0e7b07face040ac9ee9a06f16",
+    );
+    expect(result.report).not.toHaveProperty("cleanup");
+    expect(
+      result.archive.config.sourceMetadata?.pixelRefinement,
+    ).not.toHaveProperty("cleanup");
+  });
+
+  it("versions the opt-in 6:1 cluster finish without changing source clocks, IDs, derivation or alpha", async () => {
+    const source = fixture();
+    const strong = await buildPixelCandidate(
+      source.bytes,
+      STRONG_PIXEL_SETTINGS,
+    );
+    const uncleaned = await buildPixelCandidate(source.bytes, {
+      factor: 6,
+      colors: 96,
+      sampling: "detail",
+    });
+    const metadata = strong.archive.config.sourceMetadata
+      ?.pixelRefinement as Record<string, JsonValue>;
+    expect(strong.archive.manifest.generator).toBe(
+      "gathria-kling-pixel-refinement-v2",
+    );
+    expect(strong.report.algorithmVersion).toBe(
+      "gathria-kling-pixel-refinement-v2",
+    );
+    expect(strong.report.settings).toEqual({
+      factor: 6,
+      colors: 96,
+      sampling: "detail",
+      finish: "cluster",
+    });
+    expect(strong.report.cleanup).toEqual({
+      algorithmVersion: CLUSTER_FINISH_VERSION,
+      passes: 1,
+      changedPixels: 0,
+    });
+    expect(metadata.cleanup).toEqual(strong.report.cleanup);
+    expect(strong.report.mapping).toEqual({
+      factor: 6,
+      sourceWidth: 11,
+      sourceHeight: 13,
+      sourceAnchor: { x: 5, y: 12 },
+      width: 2,
+      height: 3,
+      padding: { left: 1, top: 0, right: 0, bottom: 5 },
+      anchor: { x: 1, y: 2 },
+    });
+    expect(strong.archive.manifest.animations).toEqual(
+      source.manifest.animations,
+    );
+    expect(strong.archive.manifest.frames.map((f) => f.id)).toEqual([
+      42, 3, 11,
+    ]);
+    expect(strong.archive.config.derivation.frames).toEqual(
+      source.config.derivation.frames,
+    );
+    expect(
+      readMotionFlow(strong.archive.manifest, strong.archive.config),
+    ).toEqual(readMotionFlow(source.manifest, source.config));
+    expect(strong.archive.png).toEqual(uncleaned.archive.png);
+    expect(strong.report.mapping).toEqual(uncleaned.report.mapping);
+    expect(strong.report.palette).toEqual(uncleaned.report.palette);
+    expect(strong.archive.config.provenance).toContain("Cluster finish");
+    expect(readPortableCharacterPackArchive(strong.bytes).manifest).toEqual(
+      strong.archive.manifest,
+    );
+    const repeated = await buildPixelCandidate(
+      source.bytes,
+      STRONG_PIXEL_SETTINGS,
+    );
+    expect(repeated.bytes).toEqual(strong.bytes);
+  });
+
+  it("records actual interior cleanup while keeping the V1 sampling alpha, palette and protected dark feature", async () => {
+    const template = fixture(false);
+    const size = 42,
+      pixels = new Uint8Array(size * size * 4);
+    const background = [86, 100, 115, 255];
+    const island = [90, 105, 120, 255];
+    const darkFeature = [20, 25, 30, 255];
+    for (let y = 0; y < size; y++)
+      for (let x = 0; x < size; x++) {
+        const color =
+          x >= 18 && x < 24 && y >= 18 && y < 24
+            ? island
+            : x >= 6 && x < 12 && y >= 6 && y < 12
+              ? darkFeature
+              : background;
+        pixels.set(color, (y * size + x) * 4);
+      }
+    const manifest: CharacterPackV2Manifest = {
+      ...(template.manifest as CharacterPackV2Manifest),
+      spritesheet: {
+        file: "spritesheet.png",
+        width: size,
+        height: size,
+        frameWidth: size,
+        frameHeight: size,
+        columns: 1,
+        rows: 1,
+      },
+      frames: [{ id: 3, x: 0, y: 0, width: size, height: size }],
+      animations: {
+        idle: { frames: [3, 3], fps: 24, loop: true },
+        walk: { frames: [3], fps: 12, loop: true },
+      },
+      anchor: { x: 18, y: 42, units: "pixels", origin: "top-left" },
+    };
+    const config = {
+      ...template.config,
+      derivation: {
+        method: "Synthetic source for conservative cluster test",
+        frames: [
+          template.config.derivation.frames.find(
+            (frame) => frame.frameId === 3,
+          )!,
+        ],
+      },
+      sourceMetadata: {},
+    };
+    const source = zipSync({
+      "manifest.json": strToU8(JSON.stringify(manifest)),
+      "character.json": strToU8(JSON.stringify(config)),
+      "PROVENANCE.txt": strToU8("Synthetic test colors"),
+      "INTEGRATION.md": strToU8("Test source"),
+      "spritesheet.png": encodeSourceRgbaPng({
+        width: size,
+        height: size,
+        pixels,
+        colorChunks: [],
+      }),
+    });
+    const legacy = await buildPixelCandidate(source, {
+      factor: 6,
+      colors: 96,
+      sampling: "detail",
+    });
+    const strong = await buildPixelCandidate(source, STRONG_PIXEL_SETTINGS);
+    const before = decodeSourceRgbaPng(legacy.archive.png),
+      after = decodeSourceRgbaPng(strong.archive.png);
+    const center = (3 * 7 + 3) * 4,
+      feature = (1 * 7 + 1) * 4;
+    expect([...before.pixels.subarray(center, center + 4)]).toEqual(island);
+    expect([...after.pixels.subarray(center, center + 4)]).toEqual(background);
+    expect([...after.pixels.subarray(feature, feature + 4)]).toEqual(
+      darkFeature,
+    );
+    expect(strong.report.cleanup?.changedPixels).toBe(1);
+    expect(strong.report.palette).toEqual(legacy.report.palette);
+    expect(strong.report.mapping).toEqual(legacy.report.mapping);
+    for (let at = 3; at < after.pixels.length; at += 4)
+      expect(after.pixels[at]).toBe(before.pixels[at]);
+  });
   it.each([false, true])(
     "preserves every source ID, hold, action clock and motion-flow while producing a loadable V4 (multi=%s)",
     async (multi) => {

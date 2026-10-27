@@ -3,8 +3,10 @@ import type { RgbaPng } from "../core/baked-source";
 import {
   applyPixelPalette,
   buildSharedPixelPalette,
+  cleanupPixelClusters,
   createPixelPaletteMapper,
   DEFAULT_PIXEL_SETTINGS,
+  STRONG_PIXEL_SETTINGS,
   downsamplePixelFrame,
   type PixelGeometry,
   type PixelRgb,
@@ -27,6 +29,146 @@ const grid = (width = 1, height = 1): PixelGeometry => ({
   height,
   padding: { left: 0, top: 0, right: 0, bottom: 0 },
   anchor: { x: 0, y: 0 },
+});
+
+describe("optional supported shade-cluster finish", () => {
+  const base: PixelRgb = [86, 100, 115];
+  const shade: PixelRgb = [90, 105, 120];
+  const dark: PixelRgb = [20, 19, 18];
+  const pale: PixelRgb = [241, 227, 209];
+  const palette = [base, shade, dark, pale];
+  const pixel = (im: RgbaPng, x: number, y: number) => [
+    ...im.pixels.slice((y * im.width + x) * 4, (y * im.width + x) * 4 + 4),
+  ];
+
+  it("preserves absent legacy settings while explicitly selecting the new finish", () => {
+    expect(JSON.stringify(validatePixelSettings(DEFAULT_PIXEL_SETTINGS))).toBe(
+      '{"factor":4,"colors":128,"sampling":"detail"}',
+    );
+    expect(
+      Object.hasOwn(validatePixelSettings(DEFAULT_PIXEL_SETTINGS), "finish"),
+    ).toBe(false);
+    expect(validatePixelSettings(STRONG_PIXEL_SETTINGS)).toEqual({
+      factor: 6,
+      colors: 96,
+      sampling: "detail",
+      finish: "cluster",
+    });
+    for (const finish of [undefined, null, "", "none", "aggressive"])
+      expect(() =>
+        validatePixelSettings({ ...DEFAULT_PIXEL_SETTINGS, finish }),
+      ).toThrow();
+  });
+
+  it("merges a single low-contrast shade into its strongly supported local color", () => {
+    const source = image(7, 7, (x, y) => [
+      ...(x === 3 && y === 3 ? shade : base),
+      255,
+    ]);
+    const before = new Uint8Array(source.pixels);
+    const result = cleanupPixelClusters(source, palette);
+    expect(pixel(result, 3, 3)).toEqual([...base, 255]);
+    expect(rgbSet(result)).toEqual(new Set([base.join(",")]));
+    expect(source.pixels).toEqual(before);
+  });
+
+  it("merges a two-pixel island but preserves longer connected and diagonal strokes", () => {
+    const pair = image(9, 9, (x, y) => [
+      ...(y === 4 && (x === 4 || x === 5) ? shade : base),
+      255,
+    ]);
+    const cleaned = cleanupPixelClusters(pair, palette);
+    expect(pixel(cleaned, 4, 4)).toEqual([...base, 255]);
+    expect(pixel(cleaned, 5, 4)).toEqual([...base, 255]);
+    for (const diagonal of [false, true]) {
+      const line = image(9, 9, (x, y) => [
+        ...((diagonal ? x === y : y === 4) && x >= 3 && x <= 5 ? shade : base),
+        255,
+      ]);
+      expect(cleanupPixelClusters(line, palette).pixels).toEqual(line.pixels);
+    }
+  });
+
+  it("protects high contrast eye/highlight pixels and both sides of an ink boundary", () => {
+    for (const feature of [dark, pale]) {
+      const source = image(7, 7, (x, y) => [
+        ...(x === 3 && y === 3 ? feature : base),
+        255,
+      ]);
+      expect(cleanupPixelClusters(source, palette).pixels).toEqual(
+        source.pixels,
+      );
+    }
+    const edged = image(7, 7, (x, y) => [
+      ...(x === 3 && y === 3 ? shade : x === 2 && y === 3 ? dark : base),
+      255,
+    ]);
+    expect(pixel(cleanupPixelClusters(edged, palette), 3, 3)).toEqual([
+      ...shade,
+      255,
+    ]);
+  });
+
+  it("preserves silhouette alpha, transparent RGB and colors next to transparency", () => {
+    const source = image(7, 7, (x, y) =>
+      x === 3 && y === 2
+        ? [123, 45, 67, 0]
+        : [...(x === 3 && y === 3 ? shade : base), 255],
+    );
+    expect(cleanupPixelClusters(source, palette).pixels).toEqual(source.pixels);
+    const border = image(7, 7, (x, y) => [
+      ...(x === 0 && y === 3 ? shade : base),
+      255,
+    ]);
+    expect(cleanupPixelClusters(border, palette).pixels).toEqual(border.pixels);
+  });
+
+  it("does not pick a color where no neighboring region has sufficient support", () => {
+    const third: PixelRgb = [82, 96, 111];
+    const source = image(7, 7, (x, y) => [
+      ...(x === 3 && y === 3 ? shade : x < 3 ? base : third),
+      255,
+    ]);
+    expect(
+      pixel(cleanupPixelClusters(source, [...palette, third]), 3, 3),
+    ).toEqual([...shade, 255]);
+  });
+
+  it("is palette-order and reflection independent, with no cascading writes", () => {
+    const source = image(11, 9, (x, y) => [
+      ...((x === 3 && y === 4) || (x === 7 && (y === 3 || y === 4))
+        ? shade
+        : base),
+      255,
+    ]);
+    const mirror = (im: RgbaPng) =>
+      image(im.width, im.height, (x, y) => pixel(im, im.width - 1 - x, y));
+    const forward = cleanupPixelClusters(source, palette);
+    expect(cleanupPixelClusters(source, [...palette].reverse()).pixels).toEqual(
+      forward.pixels,
+    );
+    expect(
+      mirror(cleanupPixelClusters(mirror(source), palette)).pixels,
+    ).toEqual(forward.pixels);
+    expect(rgbSet(forward)).toEqual(new Set([base.join(",")]));
+  });
+
+  it("rejects partial alpha and out-of-palette visible colors", () => {
+    expect(() =>
+      cleanupPixelClusters(
+        image(1, 1, () => [...base, 128]),
+        palette,
+      ),
+    ).toThrow(/binary/);
+    expect(() =>
+      cleanupPixelClusters(
+        image(1, 1, () => [1, 2, 3, 255]),
+        palette,
+      ),
+    ).toThrow(/outside/);
+    const hidden = image(1, 1, () => [1, 2, 3, 0]);
+    expect(cleanupPixelClusters(hidden, []).pixels).toEqual(hidden.pixels);
+  });
 });
 const rgbSet = (im: RgbaPng) => {
   const colors = new Set<string>();

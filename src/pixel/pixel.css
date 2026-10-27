@@ -37,6 +37,38 @@
 .pixel-body {
   padding: 20px 26px 26px;
 }
+.pixel-presets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.pixel-refinement .pixel-presets button {
+  text-align: left;
+  padding: 15px 18px;
+  border: 2px solid #cbd4c3;
+  background: #fffdf8;
+}
+.pixel-presets strong,
+.pixel-presets span {
+  display: block;
+}
+.pixel-presets strong {
+  font-size: 1rem;
+}
+.pixel-presets span {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #63715d;
+}
+.pixel-refinement .pixel-presets button[aria-pressed="true"] {
+  border-color: #3d604f;
+  background: #e8efdf;
+  box-shadow: inset 0 0 0 1px #3d604f;
+}
+.pixel-style-selection {
+  margin: 12px 0;
+  font-weight: 550;
+}
 .pixel-settings,
 .pixel-playback,
 .pixel-downloads {
@@ -186,6 +218,9 @@
     padding: 16px;
   }
   .pixel-comparison {
+    grid-template-columns: 1fr;
+  }
+  .pixel-presets {
     grid-template-columns: 1fr;
   }
   .pixel-settings label {

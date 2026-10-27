@@ -384,3 +384,254 @@ test("a rejected source-preparation rebuild retains the accepted candidate and l
     "male-top",
   );
 });
+
+for (const character of ["male", "female"] as const) {
+  test(`${character}: Strong pixels is an explicit versioned preset with immutable clocks, mirrored exports and independent playback`, async ({
+    page,
+    context,
+  }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    const panel = await open(page, character);
+    const original = await pixels(panel.getByTestId("wardrobe-preview"));
+    await button(panel, "Try pixel finish").click();
+    const dialog = modal(page);
+    await expect(button(dialog, "Detailed pixels")).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    await expect(
+      dialog.getByLabel("Pixel colors", { exact: true }),
+    ).toHaveValue("128");
+    await expect(
+      dialog.getByLabel("Pixel color cleanup", { exact: true }),
+    ).toHaveValue("none");
+    await build(dialog);
+    const detailed = await download(page, dialog, "Save pixel CharacterPack");
+    const detailedCanvas = await pixels(
+      dialog.getByTestId("pixel-candidate-canvas"),
+    );
+    expect(readPortableCharacterPackArchive(detailed).manifest.generator).toBe(
+      "gathria-kling-pixel-refinement-v1",
+    );
+
+    await button(dialog, "Strong pixels").click();
+    await expect(button(dialog, "Strong pixels")).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    await expect(button(dialog, "Detailed pixels")).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    await expect(
+      dialog.getByLabel("Pixel detail", { exact: true }),
+    ).toHaveValue("6");
+    await expect(
+      dialog.getByLabel("Pixel colors", { exact: true }),
+    ).toHaveValue("96");
+    await expect(
+      dialog.getByLabel("Pixel sampling", { exact: true }),
+    ).toHaveValue("detail");
+    await expect(
+      dialog.getByLabel("Pixel color cleanup", { exact: true }),
+    ).toHaveValue("cluster");
+    await expect(button(dialog, "Save pixel CharacterPack")).toBeDisabled();
+    await expect(button(dialog, "Save pixel build report")).toBeDisabled();
+    expect(await pixels(dialog.getByTestId("pixel-candidate-canvas"))).toEqual(
+      detailedCanvas,
+    );
+    await build(dialog);
+    const strongCanvas = await pixels(
+      dialog.getByTestId("pixel-candidate-canvas"),
+    );
+
+    // Cleanup alone is part of the candidate identity. Neither stale settings
+    // nor restoring the matching settings may silently alter displayed pixels.
+    await dialog
+      .getByLabel("Pixel color cleanup", { exact: true })
+      .selectOption("none");
+    await expect(button(dialog, "Strong pixels")).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    for (const name of [
+      "Save pixel CharacterPack",
+      "Save pixel PNG",
+      "Save pixel GIF",
+      "Save pixel build report",
+    ])
+      await expect(button(dialog, name)).toBeDisabled();
+    expect(await pixels(dialog.getByTestId("pixel-candidate-canvas"))).toEqual(
+      strongCanvas,
+    );
+    await dialog
+      .getByLabel("Pixel color cleanup", { exact: true })
+      .selectOption("cluster");
+    await expect(button(dialog, "Save pixel CharacterPack")).toBeEnabled();
+
+    const sourceBytes = await download(
+      page,
+      dialog,
+      "Save source CharacterPack",
+    );
+    const strong = await download(page, dialog, "Save pixel CharacterPack");
+    const report = JSON.parse(
+      new TextDecoder().decode(
+        await download(page, dialog, "Save pixel build report"),
+      ),
+    );
+    const source = readPortableCharacterPackArchive(sourceBytes);
+    const { archive, frames } = extractedFrames(strong);
+    expect(archive.manifest.generator).toBe(
+      "gathria-kling-pixel-refinement-v2",
+    );
+    expect(report).toMatchObject({
+      version: 1,
+      algorithmVersion: "gathria-kling-pixel-refinement-v2",
+      settings: {
+        factor: 6,
+        colors: 96,
+        sampling: "detail",
+        finish: "cluster",
+      },
+      sourceSha256: sha(sourceBytes),
+      outputSha256: sha(strong),
+      sourceFrameCount: 2,
+      mapping: {
+        factor: 6,
+        width: 2,
+        height: 3,
+        sourceWidth: 8,
+        sourceHeight: 8,
+        sourceAnchor: { x: 4, y: 7 },
+        padding: { left: 2, top: 5, right: 2, bottom: 5 },
+        anchor: { x: 1, y: 2 },
+      },
+      cleanup: { passes: 1 },
+    });
+    expect(Number.isSafeInteger(report.cleanup.changedPixels)).toBe(true);
+    expect(report.cleanup.changedPixels).toBeGreaterThanOrEqual(0);
+    expect(report.palette.length).toBeLessThanOrEqual(96);
+    expect(archive.config.sourceMetadata?.pixelRefinement).toMatchObject({
+      algorithmVersion: report.algorithmVersion,
+      settings: report.settings,
+      cleanup: report.cleanup,
+    });
+    expect(archive.config.source).toMatchObject({
+      kind: "unified-archive",
+      sha256: sha(sourceBytes),
+    });
+    expect(archive.config.derivation.frames).toEqual(
+      source.config.derivation.frames,
+    );
+    expect(archive.config.sourceMetadata?.motionFlow).toEqual(
+      source.config.sourceMetadata?.motionFlow,
+    );
+    expect(archive.manifest.animations).toEqual(source.manifest.animations);
+    expect(archive.manifest.frames.map((frame) => frame.id)).toEqual(
+      source.manifest.frames.map((frame) => frame.id),
+    );
+    for (const rgba of frames.values())
+      for (let at = 3; at < rgba.length; at += 4)
+        expect([0, 255]).toContain(rgba[at]);
+
+    await dialog
+      .getByLabel("Pixel action", { exact: true })
+      .selectOption("run");
+    await dialog.getByLabel("Pixel frame", { exact: true }).fill("1");
+    const pngs = [],
+      gifs = [];
+    for (const facing of ["right", "left"]) {
+      await dialog
+        .getByLabel("Pixel facing", { exact: true })
+        .selectOption(facing);
+      pngs.push(
+        decodeSourceRgbaPng(await download(page, dialog, "Save pixel PNG")),
+      );
+      const bytes = await download(page, dialog, "Save pixel GIF");
+      const parsed = parseGIF(bytes.buffer);
+      expect(parsed.lsd).toMatchObject({ width: 2, height: 3 });
+      const decoded = decompressFrames(parsed, true);
+      expect(decoded.map((frame) => frame.delay)).toEqual([80, 90]);
+      expect(new TextDecoder().decode(bytes)).toContain("NETSCAPE2.0");
+      gifs.push(decoded);
+    }
+    expect(pngs[0].pixels).toEqual(frames.get(19));
+    for (let y = 0; y < 3; y++)
+      for (let x = 0; x < 2; x++) {
+        const right = (y * 2 + x) * 4,
+          left = (y * 2 + 1 - x) * 4;
+        expect(pngs[0].pixels.slice(right, right + 4)).toEqual(
+          pngs[1].pixels.slice(left, left + 4),
+        );
+        for (let frame = 0; frame < 2; frame++)
+          expect(gifs[0][frame].patch.slice(right, right + 4)).toEqual(
+            gifs[1][frame].patch.slice(left, left + 4),
+          );
+      }
+    await dialog
+      .getByLabel("Pixel action", { exact: true })
+      .selectOption("jump");
+    const jump = await download(page, dialog, "Save pixel GIF");
+    const jumpFrames = decompressFrames(parseGIF(jump.buffer), true);
+    expect(jumpFrames).toHaveLength(3);
+    expect(jumpFrames.reduce((total, frame) => total + frame.delay, 0)).toBe(
+      380,
+    );
+    expect(new TextDecoder().decode(jump)).not.toContain("NETSCAPE2.0");
+
+    await button(dialog, "Detailed pixels").click();
+    await expect(button(dialog, "Save pixel CharacterPack")).toBeDisabled();
+    await build(dialog);
+    expect(sha(await download(page, dialog, "Save pixel CharacterPack"))).toBe(
+      sha(detailed),
+    );
+    await button(dialog, "Close pixel finish").click();
+    expect(await pixels(panel.getByTestId("wardrobe-preview"))).toEqual(
+      original,
+    );
+    await expect(panel.getByLabel("Top", { exact: true })).toHaveValue(
+      `${character}-top`,
+    );
+    await page.close();
+
+    const independent = await context.newPage();
+    independent.on("pageerror", (error) => errors.push(error.message));
+    await independent.goto("/player.html");
+    await independent.locator("#player-zip").setInputFiles({
+      name: `${character}.strong-pixels.character.zip`,
+      mimeType: "application/zip",
+      buffer: Buffer.from(strong),
+    });
+    await expect(independent.locator(".player-status")).toContainText(
+      "Loaded:",
+    );
+    await expect(
+      independent.getByText("Algorithmic pixel candidate · baked playback", {
+        exact: true,
+      }),
+    ).toBeVisible();
+    const player = independent.getByTestId("consumer-canvas");
+    for (const action of ["Idle", "Walk", "Run", "Jump", "Celebrate"]) {
+      await independent
+        .getByRole("button", { name: action, exact: true })
+        .click();
+      await expect(player).toHaveAttribute(
+        "aria-label",
+        new RegExp(action.toLowerCase()),
+      );
+      for (const facing of ["Left", "Right"]) {
+        await independent
+          .getByRole("button", { name: facing, exact: true })
+          .click();
+        await expect(player).toHaveAttribute(
+          "aria-label",
+          new RegExp(`facing ${facing.toLowerCase()}`),
+        );
+      }
+    }
+    await independent.close();
+    expect(errors).toEqual([]);
+  });
+}

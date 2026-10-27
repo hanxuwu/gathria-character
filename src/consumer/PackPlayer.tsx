@@ -1022,8 +1022,10 @@ export function PackPlayer() {
                 <p>
                   <strong>
                     {pack?.manifest.schemaVersion === 4
-                      ? pack.manifest.generator ===
-                        "gathria-kling-pixel-refinement-v1"
+                      ? [
+                          "gathria-kling-pixel-refinement-v1",
+                          "gathria-kling-pixel-refinement-v2",
+                        ].includes(pack.manifest.generator)
                         ? modifiedActions
                           ? "Algorithmic pixel candidate · edited action settings"
                           : "Algorithmic pixel candidate · baked playback"

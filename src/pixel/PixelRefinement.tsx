@@ -18,7 +18,11 @@ import {
 import { mirrorMotionFrame } from "../wardrobe/motion-bundle";
 import { themeActionGif, themeFramePng } from "../themes/media";
 import { buildPixelCandidate, type PixelCandidate } from "./pack";
-import { DEFAULT_PIXEL_SETTINGS, type PixelSettings } from "./refine";
+import {
+  DEFAULT_PIXEL_SETTINGS,
+  STRONG_PIXEL_SETTINGS,
+  type PixelSettings,
+} from "./refine";
 import "./pixel.css";
 
 interface Props {
@@ -54,7 +58,14 @@ const check = (signal: AbortSignal) => {
 const sameSettings = (left: PixelSettings, right: PixelSettings) =>
   left.factor === right.factor &&
   left.colors === right.colors &&
-  left.sampling === right.sampling;
+  left.sampling === right.sampling &&
+  left.finish === right.finish;
+const settingsName = (settings: PixelSettings) =>
+  sameSettings(settings, DEFAULT_PIXEL_SETTINGS)
+    ? "Detailed pixels"
+    : sameSettings(settings, STRONG_PIXEL_SETTINGS)
+      ? "Strong pixels"
+      : "Custom pixels";
 
 /** The smooth reference is drawn straight from the frozen wardrobe compositor.
  * Only its display is scaled; no second source atlas is decoded for preview. */
@@ -182,7 +193,7 @@ function PixelComparison({
         </figure>
         <figure>
           <figcaption>
-            Pixel candidate{" "}
+            Pixel candidate · {settingsName(accepted.candidate.report.settings)}
             <small>Native artwork · {zoom}× integer preview</small>
           </figcaption>
           <div className="pixel-preview-scroll">
@@ -451,6 +462,31 @@ export default function PixelRefinement({
         </button>
       </header>
       <div className="pixel-body">
+        <section className="pixel-presets" aria-label="Pixel style presets">
+          <button
+            type="button"
+            aria-label="Detailed pixels"
+            aria-pressed={sameSettings(settings, DEFAULT_PIXEL_SETTINGS)}
+            disabled={busy}
+            onClick={() => setSettings({ ...DEFAULT_PIXEL_SETTINGS })}
+          >
+            <strong>Detailed pixels</strong>
+            <span>Finer shading and small details · previous finish</span>
+          </button>
+          <button
+            type="button"
+            aria-label="Strong pixels"
+            aria-pressed={sameSettings(settings, STRONG_PIXEL_SETTINGS)}
+            disabled={busy}
+            onClick={() => setSettings({ ...STRONG_PIXEL_SETTINGS })}
+          >
+            <strong>Strong pixels</strong>
+            <span>Coarser pixels and simpler color shapes</span>
+          </button>
+        </section>
+        <p className="pixel-style-selection" aria-live="polite">
+          Selected style: {settingsName(settings)}
+        </p>
         <section className="pixel-settings" aria-label="Pixel finish settings">
           <label>
             Detail size
@@ -505,6 +541,25 @@ export default function PixelRefinement({
               <option value="nearest">Simple sampling · comparison</option>
             </select>
           </label>
+          <label>
+            Color detail
+            <select
+              aria-label="Pixel color cleanup"
+              disabled={busy}
+              value={settings.finish ?? "none"}
+              onChange={(event) => {
+                const { finish: _previousFinish, ...base } = settings;
+                setSettings(
+                  event.target.value === "cluster"
+                    ? { ...base, finish: "cluster" }
+                    : base,
+                );
+              }}
+            >
+              <option value="none">Keep fine color details</option>
+              <option value="cluster">Simplify small color patches</option>
+            </select>
+          </label>
           <button
             type="button"
             className="pixel-primary"
@@ -520,10 +575,11 @@ export default function PixelRefinement({
           )}
         </section>
         <p className="pixel-note">
-          One fixed grid and one shared color palette cover the complete look.
-          Source motion and existing clothing seams remain; conversion does not
-          redraw anatomy. Save your editable wardrobe separately to keep
-          changing clothes.
+          Strong pixels trade fine shading for clearer color shapes. Both styles
+          keep every source pose and its timing, with one fixed grid and one
+          shared palette for the complete look. Existing clothing seams remain;
+          conversion does not redraw anatomy. Save your editable wardrobe
+          separately to keep changing clothes.
         </p>
         <p className="pixel-status" role="status">
           {status}
