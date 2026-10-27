@@ -6,6 +6,8 @@ export interface PixelSettings {
   factor: 4 | 6 | 8;
   colors: 64 | 96 | 128;
   sampling: "detail" | "nearest";
+  /** Omission preserves the original v1 rendering and serialized recipe. */
+  finish?: "cluster";
 }
 
 export interface PixelGeometry {
@@ -22,7 +24,14 @@ export const DEFAULT_PIXEL_SETTINGS: Readonly<PixelSettings> = Object.freeze({
   colors: 128,
   sampling: "detail",
 });
+export const STRONG_PIXEL_SETTINGS: Readonly<PixelSettings> = Object.freeze({
+  factor: 6,
+  colors: 96,
+  sampling: "detail",
+  finish: "cluster",
+});
 export const PIXEL_ALGORITHM = "fixed-grid-detail-oklab-v1";
+export const CLUSTER_FINISH_VERSION = "supported-shade-islands-v1";
 const MAX_PIXELS = 64_000_000;
 const MAX_BANK_PIXELS = 64_000_000;
 const ALPHA_COVERAGE = 0.42;
@@ -33,19 +42,21 @@ export function validatePixelSettings(value: unknown): PixelSettings {
   const v = value as Record<string, unknown>;
   if (
     Object.keys(v).some(
-      (key) => !["factor", "colors", "sampling"].includes(key),
+      (key) => !["factor", "colors", "sampling", "finish"].includes(key),
     ) ||
     ![4, 6, 8].includes(v.factor as number) ||
     ![64, 96, 128].includes(v.colors as number) ||
-    !["detail", "nearest"].includes(v.sampling as string)
+    !["detail", "nearest"].includes(v.sampling as string) ||
+    (Object.hasOwn(v, "finish") && v.finish !== "cluster")
   )
     throw Error(
-      "Choose pixel size 4, 6 or 8, 64/96/128 colors, and detail or nearest sampling.",
+      "Choose pixel size 4, 6 or 8, 64/96/128 colors, detail or nearest sampling, and an optional cluster finish.",
     );
   return {
     factor: v.factor,
     colors: v.colors,
     sampling: v.sampling,
+    ...(Object.hasOwn(v, "finish") ? { finish: "cluster" } : {}),
   } as PixelSettings;
 }
 
@@ -257,6 +268,8 @@ const keyRgb = (key: number): PixelRgb => [
   (key >>> 8) & 255,
   key & 255,
 ];
+const maxChannelDifference = (a: PixelRgb, b: PixelRgb): number =>
+  Math.max(Math.abs(a[0] - b[0]), Math.abs(a[1] - b[1]), Math.abs(a[2] - b[2]));
 
 /** One bounded, order-independent palette for an entire composed frame bank.
  * Histogram bins and deterministic clustering are shared across all actions.
@@ -458,4 +471,151 @@ export function applyPixelPalette(
   palette: readonly PixelRgb[],
 ): RgbaPng {
   return createPixelPaletteMapper(palette)(image);
+}
+
+/** One synchronous, non-cascading pass over palette-mapped pixels. Only an
+ * isolated 8-connected component of one or two pixels may change, and only
+ * toward an existing low-contrast shade supported by at least two thirds of
+ * its unique boundary neighbors. Transparent boundaries, connected strokes,
+ * dark ink and high-contrast detail are untouched. This deliberately leaves
+ * silhouette geometry intact; it is not contour redrawing or semantic face
+ * restoration. Every decision reads the original image, never prior writes. */
+export function cleanupPixelClusters(
+  image: RgbaPng,
+  palette: readonly PixelRgb[],
+): RgbaPng {
+  validImage(image);
+  if (
+    palette.length > 128 ||
+    palette.some(
+      (rgb) =>
+        !Array.isArray(rgb) ||
+        rgb.length !== 3 ||
+        rgb.some((v) => !Number.isSafeInteger(v) || v < 0 || v > 255),
+    )
+  )
+    throw Error("Cluster finish requires at most 128 RGB palette colors.");
+  const colors = palette
+    .map((rgb) => [...rgb] as PixelRgb)
+    .sort((a, b) => rgbKey(a) - rgbKey(b));
+  const colorIds = new Map(colors.map((rgb, id) => [rgbKey(rgb), id]));
+  const labs = colors.map((rgb) => oklab(...rgb));
+  const { width, height, pixels: input } = image;
+  const ids = new Uint8Array(width * height).fill(255);
+  for (let p = 0; p < ids.length; p++) {
+    const at = p * 4;
+    if (input[at + 3] === 0) continue;
+    if (input[at + 3] !== 255)
+      throw Error("Cluster finish requires binary palette-mapped alpha.");
+    const key = (input[at] << 16) | (input[at + 1] << 8) | input[at + 2];
+    const id = colorIds.get(key);
+    if (id === undefined)
+      throw Error(
+        "Cluster finish input contains a color outside its shared palette.",
+      );
+    ids[p] = id;
+  }
+  const output = new Uint8Array(input);
+  const offsets = [
+    -width - 1,
+    -width,
+    -width + 1,
+    -1,
+    1,
+    width - 1,
+    width,
+    width + 1,
+  ];
+  const cardinal = [-width, -1, 1, width];
+  const boundary = new Int32Array(16);
+  const frequency = new Uint8Array(colors.length);
+  const interior = (p: number): boolean => {
+    const x = p % width,
+      y = Math.floor(p / width);
+    if (x < 1 || x >= width - 1 || y < 1 || y >= height - 1) return false;
+    for (const offset of offsets) if (ids[p + offset] === 255) return false;
+    return true;
+  };
+  for (let p = 0; p < ids.length; p++) {
+    const id = ids[p];
+    if (id === 255 || labs[id][0] < 0.25 || !interior(p)) continue;
+    let neighbor = -1,
+      same = 0;
+    for (const offset of offsets)
+      if (ids[p + offset] === id) {
+        same++;
+        neighbor = p + offset;
+      }
+    if (same > 1) continue;
+    if (same === 1) {
+      if (neighbor < p || !interior(neighbor)) continue;
+      let secondSame = 0;
+      for (const offset of offsets)
+        if (ids[neighbor + offset] === id) secondSame++;
+      if (secondSame !== 1) continue;
+    }
+    // Enumerate each outside neighbor once, even for two-pixel components.
+    let boundaryCount = 0;
+    for (let member = 0; member <= same; member++) {
+      const cell = member === 0 ? p : neighbor;
+      for (const offset of offsets) {
+        const point = cell + offset;
+        if (point === p || point === neighbor) continue;
+        let found = false;
+        for (let i = 0; i < boundaryCount; i++)
+          if (boundary[i] === point) {
+            found = true;
+            break;
+          }
+        if (!found) boundary[boundaryCount++] = point;
+      }
+    }
+    frequency.fill(0);
+    let protectedContrast = false;
+    for (let i = 0; i < boundaryCount; i++) {
+      const next = ids[boundary[i]];
+      frequency[next]++;
+      // Preserve either side of an eye, mouth, hair stroke or cloth border.
+      if (
+        distance(labs[id], labs[next]) > 0.075 ** 2 ||
+        maxChannelDifference(colors[id], colors[next]) > 48
+      )
+        protectedContrast = true;
+    }
+    if (protectedContrast) continue;
+    let target = -1,
+      support = 0;
+    for (let i = 0; i < colors.length; i++)
+      if (frequency[i] > support) {
+        target = i;
+        support = frequency[i];
+      }
+    if (
+      target < 0 ||
+      support < Math.ceil((boundaryCount * 2) / 3) ||
+      distance(labs[id], labs[target]) > 0.05 ** 2 ||
+      Math.abs(labs[id][0] - labs[target][0]) > 0.045 ||
+      maxChannelDifference(colors[id], colors[target]) > 28
+    )
+      continue;
+    let touching = 0;
+    for (let member = 0; member <= same; member++) {
+      const cell = member === 0 ? p : neighbor;
+      for (const offset of cardinal)
+        if (ids[cell + offset] === target) touching++;
+    }
+    if (touching < 2) continue;
+    for (let member = 0; member <= same; member++) {
+      const at = (member === 0 ? p : neighbor) * 4;
+      output[at] = colors[target][0];
+      output[at + 1] = colors[target][1];
+      output[at + 2] = colors[target][2];
+    }
+  }
+  return {
+    width,
+    height,
+    pixels: output,
+    colorChunks: image.colorChunks.map((chunk) => new Uint8Array(chunk)),
+  };
 }

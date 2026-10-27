@@ -21,6 +21,8 @@ import type {
 } from "../core/types";
 import {
   buildSharedPixelPalette,
+  cleanupPixelClusters,
+  CLUSTER_FINISH_VERSION,
   createPixelPaletteMapper,
   downsamplePixelFrame,
   validatePixelSettings,
@@ -30,6 +32,11 @@ import {
 } from "./refine";
 
 export const PIXEL_ALGORITHM_VERSION = "gathria-kling-pixel-refinement-v1";
+export const STRONG_PIXEL_ALGORITHM_VERSION =
+  "gathria-kling-pixel-refinement-v2";
+type PixelAlgorithmVersion =
+  | typeof PIXEL_ALGORITHM_VERSION
+  | typeof STRONG_PIXEL_ALGORITHM_VERSION;
 export const PIXEL_MAX_OUTPUT_PIXELS = 12 * 1024 * 1024;
 const PAGE_DIMENSION = 4096;
 const MAX_SOURCE_FRAME_PIXELS = 4 * 1024 * 1024;
@@ -57,7 +64,7 @@ export interface PixelBuildOptions {
 export interface PixelBuildReport {
   format: "gathria-pixel-refinement-report";
   version: 1;
-  algorithmVersion: typeof PIXEL_ALGORITHM_VERSION;
+  algorithmVersion: PixelAlgorithmVersion;
   settings: PixelSettings;
   sourceSha256: string;
   outputSha256: string;
@@ -66,6 +73,12 @@ export interface PixelBuildReport {
   palette: PixelRgb[];
   paletteSha256: string;
   pages: Array<{ file: string; sha256: string }>;
+  /** Present only for the opt-in V2 cluster finish. Legacy reports stay exact. */
+  cleanup?: {
+    algorithmVersion: typeof CLUSTER_FINISH_VERSION;
+    passes: 1;
+    changedPixels: number;
+  };
   preserved: {
     frameIds: true;
     sourceFrameMapping: true;
@@ -175,6 +188,7 @@ function extract(image: RgbaPng, frame: SpriteFrame): RgbaPng {
 function targetManifest(
   source: PortableCharacterPackArchive,
   mapping: PixelMapping,
+  algorithmVersion: PixelAlgorithmVersion,
 ): CharacterPackV4Manifest {
   const count = source.manifest.frames.length;
   const columns = Math.min(
@@ -212,7 +226,7 @@ function targetManifest(
     ...structuredClone(source.manifest),
     schemaVersion: 4,
     name: `${source.manifest.name.slice(0, 60)} · pixel candidate`,
-    generator: PIXEL_ALGORITHM_VERSION,
+    generator: algorithmVersion,
     spritesheet: sheets[0],
     additionalSheets: sheets.slice(1),
     frames: source.manifest.frames.map((frame, index) => {
@@ -248,6 +262,10 @@ export async function buildPixelCandidate(
 ): Promise<PixelCandidate> {
   active(options);
   const settings = validatePixelSettings(requestedSettings);
+  const algorithmVersion =
+    settings.finish === "cluster"
+      ? STRONG_PIXEL_ALGORITHM_VERSION
+      : PIXEL_ALGORITHM_VERSION;
   if (
     !(sourceBytes instanceof Uint8Array) ||
     sourceBytes.length > BAKED_MAX_ARCHIVE_BYTES
@@ -272,7 +290,7 @@ export async function buildPixelCandidate(
     PIXEL_MAX_OUTPUT_PIXELS
   )
     throw Error("Pixel candidate frames exceed the 12-Mi-pixel local budget.");
-  const manifest = targetManifest(source, mapping);
+  const manifest = targetManifest(source, mapping, algorithmVersion);
   const sourceSha256 = await sha256(snapshot);
   progress(options, "source", 1, 1);
   const images = new Map<number, RgbaPng>();
@@ -320,16 +338,36 @@ export async function buildPixelCandidate(
   const paletteSha256 = await sha256(strToU8(JSON.stringify(palette)));
   progress(options, "palette", 1, 1);
   const mapPalette = createPixelPaletteMapper(palette);
+  const cleanup: PixelBuildReport["cleanup"] =
+    settings.finish === "cluster"
+      ? {
+          algorithmVersion: CLUSTER_FINISH_VERSION,
+          passes: 1,
+          changedPixels: 0,
+        }
+      : undefined;
   progress(options, "quantizing", 0, total);
   for (const [index, frame] of source.manifest.frames.entries()) {
     await checkpoint(options);
-    images.set(frame.id, mapPalette(images.get(frame.id)!));
+    const quantized = mapPalette(images.get(frame.id)!);
+    if (cleanup) {
+      const finished = cleanupPixelClusters(quantized, palette);
+      for (let at = 0; at < quantized.pixels.length; at += 4) {
+        if (
+          quantized.pixels[at] !== finished.pixels[at] ||
+          quantized.pixels[at + 1] !== finished.pixels[at + 1] ||
+          quantized.pixels[at + 2] !== finished.pixels[at + 2]
+        )
+          cleanup.changedPixels++;
+      }
+      images.set(frame.id, finished);
+    } else images.set(frame.id, quantized);
     progress(options, "quantizing", index + 1, total);
   }
   const metadata = {
     format: "gathria-pixel-refinement",
     version: 1,
-    algorithmVersion: PIXEL_ALGORITHM_VERSION,
+    algorithmVersion,
     settings,
     sourcePackSha256: sourceSha256,
     sourceReference: structuredClone(source.config.source),
@@ -340,8 +378,9 @@ export async function buildPixelCandidate(
     actionTimingUnchanged: true,
     sourceFrameMappingUnchanged: true,
     noGeneratedPoses: true,
+    ...(cleanup ? { cleanup } : {}),
   };
-  const note = `Algorithmic pixel candidate (${PIXEL_ALGORITHM_VERSION}). The fully composed source CharacterPack ${sourceSha256} is sampled on one fixed ${settings.factor}:1 grid with explicit transparent padding and a shared ${palette.length}-color palette. No image-generation service, pose redrawing, per-frame scaling/centering or interpolation is used. The source frame IDs, derivation, action frame order, holds, FPS, loop flags and motion-flow metadata are retained. This is a lossy pixel derivative, not the untouched source video or editable wardrobe layers. Settings and exact grid mapping are in sourceMetadata.pixelRefinement.`;
+  const note = `Algorithmic pixel candidate (${algorithmVersion}). The fully composed source CharacterPack ${sourceSha256} is sampled on one fixed ${settings.factor}:1 grid with explicit transparent padding and a shared ${palette.length}-color palette. No image-generation service, pose redrawing, per-frame scaling/centering or interpolation is used. The source frame IDs, derivation, action frame order, holds, FPS, loop flags and motion-flow metadata are retained. This is a lossy pixel derivative, not the untouched source video or editable wardrobe layers. Settings and exact grid mapping are in sourceMetadata.pixelRefinement.${cleanup ? ` Cluster finish (${cleanup.algorithmVersion}) performs one simultaneous palette-constrained pass over small low-contrast interior color islands; it changes ${cleanup.changedPixels} pixels while retaining alpha and the fixed grid. It does not stabilize anatomy or blend animation frames.` : ""}`;
   const config: BakedCharacterRecipe = validateBakedCharacterRecipe(
     {
       ...structuredClone(source.config),
@@ -425,7 +464,7 @@ export async function buildPixelCandidate(
     report: {
       format: "gathria-pixel-refinement-report",
       version: 1,
-      algorithmVersion: PIXEL_ALGORITHM_VERSION,
+      algorithmVersion,
       settings,
       sourceSha256,
       outputSha256,
@@ -434,13 +473,21 @@ export async function buildPixelCandidate(
       palette: palette.map((color) => [...color] as PixelRgb),
       paletteSha256,
       pages,
+      ...(cleanup ? { cleanup } : {}),
       preserved: {
         frameIds: true,
         sourceFrameMapping: true,
         actionTiming: true,
         sourceMotionMetadata: true,
       },
-      limitations: [...LIMITATIONS],
+      limitations: [
+        ...LIMITATIONS,
+        ...(cleanup
+          ? [
+              "Cluster cleanup is spatial and conservative; it preserves alpha and existing palette colors but does not repair source anatomy or guarantee temporal stability.",
+            ]
+          : []),
+      ],
     },
   };
 }
