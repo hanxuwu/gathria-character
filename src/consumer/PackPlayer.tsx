@@ -1022,9 +1022,14 @@ export function PackPlayer() {
                 <p>
                   <strong>
                     {pack?.manifest.schemaVersion === 4
-                      ? modifiedActions
-                        ? "Authored pixel artwork · edited action settings"
-                        : "Authored pixel artwork · baked playback"
+                      ? pack.manifest.generator ===
+                        "gathria-kling-pixel-refinement-v1"
+                        ? modifiedActions
+                          ? "Algorithmic pixel candidate · edited action settings"
+                          : "Algorithmic pixel candidate · baked playback"
+                        : modifiedActions
+                          ? "Authored pixel artwork · edited action settings"
+                          : "Authored pixel artwork · baked playback"
                       : modifiedActions
                         ? "Original artwork · edited action settings"
                         : motionStudy

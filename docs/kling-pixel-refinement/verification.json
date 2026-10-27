@@ -1,0 +1,44 @@
+{
+  "format": "gathria-pixel-refinement-verification",
+  "version": 1,
+  "baseline": "143d77e57e828eeb8aec91f40181257e7dc22931",
+  "capturedRuntimeCommit": "405886c67adff9c93f849cb8c45c3a9b747bdec6",
+  "localChecks": {
+    "fullUnitTests": 448,
+    "unitFiles": 46,
+    "finalFocusedPixelTests": 18,
+    "uniqueBrowserTests": 16,
+    "productionBuild": true
+  },
+  "production": {
+    "actualUiDownloads": 56,
+    "nativeUniqueFrames": 368,
+    "nativePngDownloads": 32,
+    "gifDownloads": 12,
+    "independentPlayerActionDirectionCases": 40,
+    "independentJumpReturns": 8,
+    "artifactAuditFile": "evidence/final-v1/artifact-validation.json",
+    "artifactAuditSha256": "839828cfc8ca7aae71621e276c5beef6e5b052a7455b48f9d37daf15a59e9fbd"
+  },
+  "gallery": {
+    "fileCount": 22,
+    "sha256": "0a2eb469da4a7b8bc0edf226f3a96fa08ffe9658aea632441eecbe01eaa0600b",
+    "allFileHashesMatched": true
+  },
+  "preservation": {
+    "existingArtworkAndCatalogFilesChanged": false,
+    "oldPixelStudyMerged": false,
+    "defaultThemeChanged": false
+  },
+  "visualReview": {
+    "inspected": "Four actual UI looks, all sixteen run poses per look, native/2x keyframes and head crops. Full-clock GIFs delivered for user review.",
+    "userAccepted": false,
+    "remaining": [
+      "Original garment/neckline seams and motion blur remain.",
+      "Hard color/alpha thresholds can still change moving edges.",
+      "Reduced details and per-look palette differences remain.",
+      "First build 22.9\u201334.7s with main-thread tasks up to3.5s."
+    ]
+  },
+  "studySelectionSha256": "c1e903593b1a09e21c3cf3cb471235b25228060da177830f7f2af89c0e13c8da"
+}

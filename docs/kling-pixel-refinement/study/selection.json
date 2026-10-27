@@ -1,0 +1,88 @@
+{
+  "format": "gathria-pixel-parameter-probe",
+  "version": 1,
+  "scope": "Offline parameter selection using retained actual application exports, not new production browser capture. Final production capture is separate.",
+  "temporaryCandidates": "/tmp/kling-pixel-refinement/probe",
+  "sources": [
+    {
+      "file": "docs/kling-contour-review/evidence/male-wedding.character.zip",
+      "sha256": "0954419cdbf99aa457e43a7810427783a50726841ba1fbde3aa2987d26254374"
+    },
+    {
+      "file": "docs/kling-contour-review/evidence/female-day.character.zip",
+      "sha256": "ad4fbab1d2fdd795b776dadf0de608cfa8f83c8099530d297e53d8c6d828010c"
+    }
+  ],
+  "runs": [
+    {
+      "look": "male-wedding",
+      "sampling": "nearest",
+      "colors": 96,
+      "ms": 9410,
+      "sha256": "1d500749b168f6e80a450a3987d1cb9db1a819488696439d747ed6940b30396c"
+    },
+    {
+      "look": "male-wedding",
+      "sampling": "detail",
+      "colors": 96,
+      "ms": 8408,
+      "sha256": "b80ae903db438df2a8d8648efba4b143bbcf0b8989bd59ca57ab9ab6b63ee6d6"
+    },
+    {
+      "look": "male-wedding",
+      "sampling": "detail",
+      "colors": 128,
+      "ms": 7454,
+      "sha256": "e8c66f515248bdd8081c4f3512c0cddef713736f85c97770d8bdb0d40cf7ca40"
+    },
+    {
+      "look": "female-day",
+      "sampling": "nearest",
+      "colors": 96,
+      "ms": 6592,
+      "sha256": "9f540fafd9f929eaf8cbe81cd111260f29564a9b17000c2912f3924d9d270b71"
+    },
+    {
+      "look": "female-day",
+      "sampling": "detail",
+      "colors": 96,
+      "ms": 8294,
+      "sha256": "37b3a419186f20d46345217c48af863cea7032085b0ddf085d20af66bd1b0e38"
+    },
+    {
+      "look": "female-day",
+      "sampling": "detail",
+      "colors": 128,
+      "ms": 8172,
+      "sha256": "30634d25501be9175e74278a859ec3f7b174788a3a5db33f5b977ad7a1694579"
+    }
+  ],
+  "preservedFiles": [
+    {
+      "file": "female-day-probe.png",
+      "sha256": "8919020d7490790b93081384a8e59861c6abbf61ddb46a80e0cb11b02a43d3f4"
+    },
+    {
+      "file": "male-wedding-probe.png",
+      "sha256": "353c11e5594ff5a609740069f5cb588d1439ec14d28897b1518c2999b176f569"
+    },
+    {
+      "file": "temporal-analysis.json",
+      "sha256": "2424c3ad8186a7c0edef68c915c5178dfb95420595d65c5759a00e6431f2723b"
+    },
+    {
+      "file": "temporal-analysis.py",
+      "sha256": "85f0ff29c33b0343c6e40d872583330a19ad2fddefcb68554f8394416895eb34"
+    },
+    {
+      "file": "temporal-jump-keyframes.png",
+      "sha256": "4e13d23daa46aabf1871edf5f0fd85b99cf143a1e43911fa3238229544843a0e"
+    }
+  ],
+  "choice": {
+    "factor": 4,
+    "sampling": "detail",
+    "colors": 128,
+    "reason": "Somewhat richer hair shading and fewer aggregate jumps on the limited same-screen source-stable diagnostic; loop seam alone not uniformly better."
+  }
+}

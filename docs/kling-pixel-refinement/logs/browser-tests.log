@@ -1,0 +1,39 @@
+[WebServer] (node:951638) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:951669) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 16 tests using 2 workers
+
+(node:951753) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/16] tests/e2e/pixel-playback.spec.ts:95:1 › V4 pixel pack uses integer nearest-neighbor playback, preserves pages and exports independently
+(node:951750) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/16] tests/e2e/clothing-authoring-lab.spec.ts:129:3 › male: a reviewed full-pose clothing variant saves and reopens with exact ownership, source clocks and exported pixels
+[3/16] tests/e2e/pixel-playback.spec.ts:202:1 › oversized native pixel frames keep export available without allocating oversized preview or endpoint canvases
+[4/16] tests/e2e/pixel-refinement.spec.ts:74:3 › male: the optional pixel candidate exports original clocks, mirrored media and an independent pack without changing the wardrobe
+[5/16] tests/e2e/clothing-authoring-lab.spec.ts:129:3 › female: a reviewed full-pose clothing variant saves and reopens with exact ownership, source clocks and exported pixels
+[6/16] tests/e2e/clothing-authoring-lab.spec.ts:224:1 › hard-pose approval is bound to the built output, and cancellation never changes the accepted outfit
+[7/16] tests/e2e/pixel-refinement.spec.ts:74:3 › female: the optional pixel candidate exports original clocks, mirrored media and an independent pack without changing the wardrobe
+[8/16] tests/e2e/clothing-authoring-lab.spec.ts:272:1 › a portable authoring draft restores its embedded template and reviews while a different outfit is worn, and changed references are rejected atomically
+[9/16] tests/e2e/clothing-authoring-lab.spec.ts:423:1 › mixed clothing, hair and face checks expose coverage, preserve the accepted look, export real contact pixels and hand off only the selected case
+[10/16] tests/e2e/pixel-refinement.spec.ts:268:1 › changed pixel settings keep the last preview visibly stale until rebuilding, without mutating clothing
+[11/16] tests/e2e/pixel-refinement.spec.ts:304:1 › canceling an in-flight rebuild retains the last candidate and does not emit a late download
+[12/16] tests/e2e/pixel-refinement.spec.ts:347:1 › a rejected source-preparation rebuild retains the accepted candidate and leaves the wardrobe usable
+[13/16] tests/e2e/clothing-authoring-lab.spec.ts:665:1 › cancelling a mixed-combination scan retains an honest nonempty partial report without changing the accepted look
+[14/16] tests/e2e/wardrobe-gif.spec.ts:6:1 › exports labeled original/current GIF panels at source speed and retains left/right panel order
+[15/16] tests/e2e/wardrobe-gif.spec.ts:64:1 › downloads actual dressed actions in both directions and a one-shot GIF without changing the outfit
+[16/16] tests/e2e/wardrobe-gif.spec.ts:126:1 › canceling GIF preparation keeps the current outfit and emits no download
+  16 passed (50.5s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
