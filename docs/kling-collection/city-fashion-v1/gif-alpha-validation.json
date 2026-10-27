@@ -1,0 +1,191 @@
+{
+  "format": "gathria-city-fashion-gif-alpha-verification",
+  "passed": true,
+  "executedAt": "2026-10-27T04:43:26.435558+00:00",
+  "evidenceIndex": "docs/kling-collection/city-fashion-v1/evidence/combined-v1/evidence-index.json",
+  "evidenceIndexSha256": "03c23e0ee0e68b29a835b866e615479d73159c4ad41e5a2ca74c2744a72fc56f",
+  "method": "Independently decode every actual GIF frame with Pillow, convert to RGBA, and require alpha extrema [255,255].",
+  "scope": "Actual app GIF exports use an opaque matte; native PNG and ZIP alpha is verified separately in artifact-validation.json.",
+  "gifs": [
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-city-ivory-run-right.gif",
+      "sha256": "d621895ee69e969ccd4c9623bbcdbb830641c3a8c7b373dea4a1a72f05d15b2e",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-city-ivory-run-left.gif",
+      "sha256": "e1438634ef1e2a8f0f1e5a953ea4e7a335ed21b43ade216b6d54d01cd9289181",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-city-ivory-jump-right.gif",
+      "sha256": "4b47b57d1ba7872e1f0a41b4c29f09e8724166bc3e07bf9f9914b358f47702d1",
+      "frames": 39,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-campus-sky-run-right.gif",
+      "sha256": "70b0441aec88ea9eb8284da2b84a6a0fcd8527bb5a2e07c320e716a5a1871fb0",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-campus-sky-run-left.gif",
+      "sha256": "fa90f5426382cfccef906480c00240bc4c3b2583cf436d171e2fb72b2414d2e3",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-campus-sky-jump-right.gif",
+      "sha256": "fdaa77adb3d44a57fdfc87eebaf41dcd105c182b3b5a21e4e4535775b25b3ef3",
+      "frames": 39,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-retro-burgundy-run-right.gif",
+      "sha256": "b7a94511aa54675c394c3536092e42bb842b93b640af9a9854f1c6346a2a444c",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-retro-burgundy-run-left.gif",
+      "sha256": "ac662a00410be0fc4b4369f97c4ca27bf89301dd8c293fb51a943bd8cd9dcc2d",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-male-v1/male-retro-burgundy-jump-right.gif",
+      "sha256": "412e52a973d97791a99ab469138dcfc63ba51e04a27a262ccff7b95e65c4b316",
+      "frames": 39,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-city-ink-run-right.gif",
+      "sha256": "67185c20ce282344cc36d86223604f5744a1dffac3e51c4b0ac24216002be96e",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-city-ink-run-left.gif",
+      "sha256": "0e448ff8b00795c2b5883f10237351d9dbd4e592ca097272f693a717a69ab70f",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-city-ink-jump-right.gif",
+      "sha256": "71a821b2f4ca2647e0359aa0b88af7ad6d88545d0d4869d4ddc712f6bf8d0e60",
+      "frames": 39,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-campus-periwinkle-run-right.gif",
+      "sha256": "eb4bdec514d8bd74783b33b57e68065cd58151cabd5edaac5aede55457a30cce",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-campus-periwinkle-run-left.gif",
+      "sha256": "6a20f78f8ad86d5cead5be0ec15675addcd1bb864cfff7db8554c18e3cb68522",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-campus-periwinkle-jump-right.gif",
+      "sha256": "9bbe33e29c9095b7d0fc32400041e9438a50281cbacba169bc5655f115a88091",
+      "frames": 39,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-retro-cherry-run-right.gif",
+      "sha256": "234494dcb1a98728a69ff916dfebf401a0c7ff3305e1804a1e1a733b3a788373",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-retro-cherry-run-left.gif",
+      "sha256": "dd19b2a87e3752077fefb699310952d88a15a2f3e7134fb022318d1612d475b2",
+      "frames": 16,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    },
+    {
+      "file": "docs/kling-collection/city-fashion-v1/evidence/final-female-v1/female-retro-cherry-jump-right.gif",
+      "sha256": "e051c98a2aa1eb7ecd19ec1cb4469ad4e3d29b7150ee89fa5b749506725acb7a",
+      "frames": 39,
+      "decodedAlphaExtrema": [
+        255,
+        255
+      ],
+      "opaqueMatte": true
+    }
+  ]
+}

@@ -142,6 +142,13 @@ retains the previous 4:1/128-color result. Both preserve the original animation
 clock; the cleanup leaves the sampled transparent silhouette unchanged.
 [Stronger pixel comparisons and verification](docs/kling-strong-pixels/README.md).
 
+The [city, campus and retro collection](docs/kling-collection/city-fashion-v1/README.md)
+adds six more clothing designs: ivory and charcoal utility tops, a sky-blue
+striped polo, a periwinkle piped dress, a burgundy bowling shirt and a cherry
+gingham dress. Each style has a coordinated male/female recipe using the original
+Kling characters and existing hairstyles. Find the looks under **Recommended**
+in the wardrobe, or search **City**, **Campus** or **Retro**.
+
 The [warm daily and date collection](docs/kling-collection/warm-date-v1/README.md)
 adds six painted clothing designs and coordinated character recipes: Cocoa
 bookshop, Rose weekend, Ink café, Butter bookshop, Apricot garden and Teal evening.
