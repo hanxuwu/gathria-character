@@ -10,9 +10,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+import io
 import json
+import math
 import os
 from pathlib import Path
+import zipfile
 
 from PIL import Image, ImageDraw, ImageFont, ImageSequence
 
@@ -186,6 +189,46 @@ class Review:
                     loop=loop, sourceFrameIds=rows[0]['sourceSchedule']['frames'], characterPanel=[width, height], paletteColors=PALETTE,
                     presentation='Actual app GIF pixels arranged together with aspect-preserving resize and one shared 128-color review palette. Original frame order, delays and loop flag are exact; linked originals retain unchanged bytes.')
 
+    def run_contact(self, character):
+        packs = [pack for pack in self.packs if pack['character'] == character]
+        clip = packs[0]['manifest']['animations']['run']
+        require(all(pack['manifest']['animations']['run'] == clip for pack in packs), 'Run contact requires matching source timelines')
+        columns, width, height, label, heading = 8, 192, 296, 24, 38
+        rows_per_look = math.ceil(len(clip['frames']) / columns)
+        group_height = heading + rows_per_look*(height+label)
+        canvas = Image.new('RGB', (columns*width, len(packs)*group_height), MATTE)
+        draw = ImageDraw.Draw(canvas)
+        hashes = []
+        for group, pack in enumerate(packs):
+            origin = group*group_height
+            draw.text((10, origin+8), f'{pack["name"]} · complete run right · native pixels at 1/4 size', font=font(19), fill=INK)
+            with zipfile.ZipFile(self.source(pack)) as archive:
+                manifest = json.loads(archive.read('manifest.json'))
+                require(manifest == pack['manifest'], 'Contact source manifest differs from verified pack')
+                frame_by_id = {frame['id']: frame for frame in manifest['frames']}
+                sheets = [manifest['spritesheet']] + manifest.get('additionalSheets', [])
+                current_page, page = None, None
+                for position, fid in enumerate(clip['frames']):
+                    frame = frame_by_id[fid]
+                    page_index = frame.get('page', 0)
+                    if current_page != page_index:
+                        with Image.open(io.BytesIO(archive.read(sheets[page_index]['file']))) as image:
+                            page = image.convert('RGBA')
+                        current_page = page_index
+                    crop = page.crop((frame['x'], frame['y'], frame['x']+frame['width'], frame['y']+frame['height']))
+                    require(crop.size == (width*4, height*4), 'Run contact expects exact native 768×1184 frames')
+                    hashes.append({'look': pack['look'], 'position': position, 'frameId': fid,
+                                   'sourceRgbaSha256': hashlib.sha256(crop.tobytes()).hexdigest()})
+                    x = (position % columns)*width
+                    y = origin + heading + (position // columns)*(height+label)
+                    draw.text((x+6, y+3), f'{position+1:02d} · source {fid}', font=font(14), fill=INK)
+                    canvas.paste(opaque(crop).resize((width, height), Image.Resampling.LANCZOS), (x, y+label))
+        local = self.output / f'{character}-complete-run-frames.png'
+        canvas.save(local, optimize=True)
+        self.record(local, packs, title=f'{character.title()} · every run frame', action='run', facing='right',
+                    scale=0.25, sourceFrameIds=clip['frames'], sourceFrameHashes=hashes, characterPanel=[width, height],
+                    presentation='Every run-frame occurrence extracted from actual verified CharacterPacks, in source order, at exact quarter size. Fixed native canvas and source coordinates; no pose recentering or synthesized in-between frames.')
+
     def html(self):
         def href(file):
             return html.escape(os.path.relpath(ROOT / file, self.output), quote=True)
@@ -219,6 +262,7 @@ img{display:block;max-width:100%;height:auto;margin:auto}a{color:#6f4145}small{c
         for character in ('male', 'female'):
             for action, facing in (('run', 'right'), ('run', 'left'), ('jump', 'right')):
                 self.comparison(character, action, facing)
+            self.run_contact(character)
         self.html()
         report = {'format': 'gathria-warm-date-review', 'version': 1, 'actualUiDownload': False,
                   'captureIndex': relative(self.index_path), 'captureIndexSha256': digest(self.index_path),

@@ -23,9 +23,43 @@ The male bank retains every reviewed Teal V5 ownership/alpha pixel across 88 sou
 
 During review, the cocoa vest's flat side padding was replaced by continuation of its painted knit. A pale rose shoulder fragment was excluded from the donor trace. Female skirt folds were extended through the fixed waist overlap, belt artwork was restricted to the bodice, and the butter dress's dark trim was registered to the reviewed hem.
 
-## Review status
+## Actual exported characters
 
-Browser captures, independent pack verification and final review links are added below after execution. Authoring prototypes are not application-export evidence.
+![Six coordinated looks](review/six-looks-overview.png)
+
+The [review gallery](review/index.html) includes all source downloads and complete run-frame contact sheets. These are application exports, separate from the donor sheets and offline authoring prototypes.
+
+| Review | Male | Female |
+| --- | --- | --- |
+| Three looks, run right | [GIF](review/male-three-looks-run-right.gif) | [GIF](review/female-three-looks-run-right.gif) |
+| Three looks, run left | [GIF](review/male-three-looks-run-left.gif) | [GIF](review/female-three-looks-run-left.gif) |
+| Three looks, jump | [GIF](review/male-three-looks-jump-right.gif) | [GIF](review/female-three-looks-jump-right.gif) |
+| Every run frame | [PNG](review/male-complete-run-frames.png) | [PNG](review/female-complete-run-frames.png) |
+
+Review GIF boards arrange the actual downloaded GIFs, with a compact shared presentation palette. They preserve frame order, duration and looping; the original 384 × 592 GIF bytes remain linked in the gallery. Jump is a one-shot action. Native PNGs and CharacterPacks retain their original resolution and alpha.
+
+| Complete character | Independent CharacterPack |
+| --- | --- |
+| Cocoa bookshop | [ZIP](evidence/final-v1/male-cocoa-bookshop.character.zip) |
+| Rose weekend | [ZIP](evidence/final-v1/male-rose-weekend.character.zip) |
+| Ink café | [ZIP](evidence/final-v1/male-ink-cafe.character.zip) |
+| Butter bookshop | [ZIP](evidence/final-v1/female-butter-bookshop.character.zip) |
+| Apricot garden | [ZIP](evidence/final-v1/female-apricot-garden.character.zip) |
+| Teal evening | [ZIP](evidence/final-v1/female-teal-evening.character.zip) |
+
+Load a pack in **Player → Choose character pack**. Each contains idle, walk, run, jump and celebrate, with both facing directions. To edit the clothing, use the wardrobe recipe above and **Save wardrobe**; the baked player packs do not contain an editable outfit inventory.
+
+## This batch's verification
+
+[Implementation checks](implementation-checks.json) record the newly executed production build, 58 related unit tests and one recommendation-browser regression. The [asset audit](asset-validation.json) covers all six new garment banks and 552 clothing-pose instances. All 41 earlier preview rows, 82 preview PNGs and existing catalog entries were retained.
+
+The [production capture index](evidence/final-v1/evidence-index.json) records 42 PNG downloads (36 canonical and six mixed outfits), 18 action GIFs, six CharacterPacks, six exact save/reopen checks and six exact mix/restoration checks. Each temporarily saved editable project was independently reconstructed across every source pose and compared pixel-for-pixel to its baked pack before the redundant project download was removed.
+
+After all editor contexts were closed, all **60 independent-player cases** passed: six characters × five actions × two directions. Looping actions were observed across repeated cycles; one-shot actions reached their final frame and stopped. The capture served the production build and recorded no external network requests or editor-module requests from the independent player.
+
+Final independent artifact decoding and player checks are recorded in [artifact-validation.json](artifact-validation.json); the gallery provenance is in [review-index.json](review/review-index.json). These are this batch's runs, not historical test counts. Visual assessment and the technical audits are separate.
+
+Visual review covered the actual six-look overview, native face crops, individual native stills and every run frame for each look, supplemented by the difficult-pose authoring sheets. The six collar/pocket/knit/trim designs remain identifiable at preview size. The new donor clothing does not introduce visible skin/backdrop fragments in these reviewed poses. Waist and hem sampling are improved over the first donor fit. This is a reviewable collection, not a claim that all inherited motion, face or silhouette limitations have been solved.
 
 ## Limits
 
