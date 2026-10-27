@@ -142,6 +142,13 @@ retains the previous 4:1/128-color result. Both preserve the original animation
 clock; the cleanup leaves the sampled transparent silhouette unchanged.
 [Stronger pixel comparisons and verification](docs/kling-strong-pixels/README.md).
 
+The [warm daily and date collection](docs/kling-collection/warm-date-v1/README.md)
+adds six painted clothing designs and coordinated character recipes: Cocoa
+bookshop, Rose weekend, Ink café, Butter bookshop, Apricot garden and Teal evening.
+Find them among the recommended outfits in **Dress Kling male / female**. Outfit
+buttons preserve your current hair and face; the collection page includes the
+matching appearance settings, actual animation previews and standalone packs.
+
 The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
 and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
 refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,

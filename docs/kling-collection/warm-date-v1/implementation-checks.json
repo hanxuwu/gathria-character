@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-27",
+  "baseCommit": "b291bb7b5355984e9d8735b50d899bd2119befc4",
+  "implementationCommit": "23c3e8f",
+  "checksExecutedThisTask": [
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "includes": [
+        "TypeScript project build",
+        "Vite production build"
+      ]
+    },
+    {
+      "command": "npm test -- src/wardrobe/outfit-previews.test.ts src/wardrobe/catalog-budget.test.ts src/wardrobe/project.test.ts src/wardrobe/compositor.test.ts src/wardrobe/garment-authoring.test.ts",
+      "result": "passed",
+      "files": 5,
+      "tests": 58
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\"]' npx playwright test tests/e2e/wardrobe-recommendations.spec.ts",
+      "result": "passed",
+      "tests": 1
+    },
+    {
+      "command": "/tmp/kling-polish-venv/bin/python scripts/verify-kling-warm-date.py --assets-only",
+      "result": "passed",
+      "garments": 6,
+      "poses": 552,
+      "report": "asset-validation.json"
+    },
+    {
+      "command": "node scripts/capture-kling-warm-date-thumbnails.mjs --run thumbnails-v1",
+      "result": "passed",
+      "newPreviews": 6,
+      "retainedPreviewRows": 41,
+      "retainedPngFiles": 82,
+      "report": "evidence/thumbnails-v1/capture-report.json"
+    },
+    {
+      "command": "node scripts/capture-kling-warm-date-collection.mjs --run final-v1",
+      "result": "passed",
+      "characterPacks": 6,
+      "canonicalPngs": 36,
+      "mixedOutfitPngs": 6,
+      "actionGifs": 18,
+      "exactProjectReopens": 6,
+      "exactMixRestorations": 6,
+      "independentPlaybackCases": 60,
+      "nativeCompositionFrames": 552,
+      "report": "evidence/final-v1/evidence-index.json"
+    },
+    {
+      "command": "/tmp/kling-polish-venv/bin/python scripts/verify-kling-warm-date.py",
+      "result": "passed",
+      "compositionFrames": 552,
+      "exactNativePngComparisons": 36,
+      "gifsDecoded": 18,
+      "gifFrames": 426,
+      "gifMirrorPairs": 6,
+      "playerCases": 60,
+      "report": "artifact-validation.json"
+    },
+    {
+      "command": "/tmp/kling-polish-venv/bin/python scripts/render-kling-warm-date-review.py",
+      "result": "passed",
+      "presentationArtifacts": 10,
+      "report": "review/review-index.json"
+    }
+  ],
+  "scope": "These are new executions for this collection. Historical full-suite counts are not claimed as rerun. Production export, playback and final image verification are recorded separately in the completed evidence and validation reports."
+}

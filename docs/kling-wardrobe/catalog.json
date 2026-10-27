@@ -184,6 +184,27 @@
           "slot": "top",
           "url": "/docs/kling-wardrobe/garments/male/midnight-sailor-v2.zip",
           "sha256": "1c0f7f2cb3538f87d1bf659f9dc96cae615ec64de4606e0278cc4cd2176604d3"
+        },
+        {
+          "id": "cocoa-cardigan-v1",
+          "name": "Cocoa cable-knit vest",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/cocoa-cardigan-v1.zip",
+          "sha256": "6ee57ea1112ecb9e1d70f6f383c9d88500851a5fdd324055dd6fcf8fcd7b6b7c"
+        },
+        {
+          "id": "dusty-rose-shirt-v1",
+          "name": "Dusty rose pocket shirt",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/dusty-rose-shirt-v1.zip",
+          "sha256": "580c2931b9dc72aa1d5dedd164ebcf71d692077703e618b8c08283f6b3cb259a"
+        },
+        {
+          "id": "ink-plum-knit-polo-v1",
+          "name": "Ink plum knit polo",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male/ink-plum-knit-polo-v1.zip",
+          "sha256": "dd8cedf66f672f6771bc51d9d80395c82d2baac73474d7c99d3cce3135e77ae4"
         }
       ],
       "presets": [
@@ -385,6 +406,36 @@
             "bottom": "ochre-chinos-v1",
             "fullBody": null,
             "shoes": null
+          }
+        },
+        {
+          "id": "cocoa-bookshop",
+          "name": "Cocoa bookshop",
+          "selection": {
+            "top": "cocoa-cardigan-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "rose-weekend",
+          "name": "Rose weekend",
+          "selection": {
+            "top": "dusty-rose-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          }
+        },
+        {
+          "id": "ink-cafe",
+          "name": "Ink caf\u00e9",
+          "selection": {
+            "top": "ink-plum-knit-polo-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
           }
         }
       ],
@@ -744,6 +795,27 @@
           "slot": "top",
           "url": "/docs/kling-wardrobe/garments/female/plum-pintuck-top-v1.zip",
           "sha256": "547d1493690e4909b14dd84f8433dbe7ba3808caf144971a357b50612dc4455c"
+        },
+        {
+          "id": "butter-collar-dress-v1",
+          "name": "Butter collar dress",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/butter-collar-dress-v1.zip",
+          "sha256": "569b904e23488dec1b0b7096a3ebbd63c4f172c480c14d93bda5ebc219d0acda"
+        },
+        {
+          "id": "apricot-garden-dress-v1",
+          "name": "Apricot garden dress",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/apricot-garden-dress-v1.zip",
+          "sha256": "931e449d6400c0739b25ce8d7ad9dfe705c0bb0327db2f8f238e879faf6b2edd"
+        },
+        {
+          "id": "deep-teal-date-dress-v1",
+          "name": "Deep teal date dress",
+          "slot": "fullBody",
+          "url": "/docs/kling-wardrobe/garments/female/deep-teal-date-dress-v1.zip",
+          "sha256": "8714db2cab29c683b694c3b8137eee73a2496e6220c875ba955d08ea8c115b41"
         }
       ],
       "presets": [
@@ -975,6 +1047,36 @@
             "bottom": "ochre-shorts",
             "fullBody": null,
             "shoes": null
+          }
+        },
+        {
+          "id": "butter-bookshop",
+          "name": "Butter bookshop",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "butter-collar-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "apricot-garden",
+          "name": "Apricot garden",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "apricot-garden-dress-v1",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-evening",
+          "name": "Teal evening",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "deep-teal-date-dress-v1",
+            "shoes": "brown-shoes"
           }
         }
       ],

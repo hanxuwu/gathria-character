@@ -2100,6 +2100,9 @@ export default function WardrobeEditor({
               : "wedding-soft-waist",
           "sage-pinafore",
           "ivory-refined",
+          "butter-bookshop",
+          "apricot-garden",
+          "teal-evening",
         ]
       : [
           entry?.presets.some((p) => p.id === "day-soft-cuff")
@@ -2114,6 +2117,9 @@ export default function WardrobeEditor({
                 : "wedding-refined",
           "oat-weekend",
           "forest-weekend",
+          "cocoa-bookshop",
+          "rose-weekend",
+          "ink-cafe",
         ];
   const hasRecommended = outfitPresets.some((p) =>
     recommendedIds.includes(p.id),
