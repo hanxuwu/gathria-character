@@ -1,0 +1,51 @@
+{
+  "generator": "OpenAI image generation edit",
+  "generatedFile": "/workspace/generated_images/exec-a3fa8a5f-e773-4f56-9773-831d20a9969b.png",
+  "image": "male-design.png",
+  "imageSha256": "942ea4e8b39d19edd7849af4d9d61c0d52e8f965bb2ac163dbe5c4d86e5b4dfd",
+  "imageSize": [
+    1774,
+    887
+  ],
+  "prompt": "male-prompt.txt",
+  "promptSha256": "654c1a7b7ed2923815b9a20b118e29ca28456c8677a0211cf9e8159bcd49fb4c",
+  "baseCommit": "2f1e574c0db435352865f9c10299a6e176cf5361",
+  "reference": "artwork/kling-collection/source/warm-date-v1/male-design.png",
+  "frozenInputs": [
+    {
+      "file": "artwork/kling-collection/source/warm-date-v1/male-design.png",
+      "sha256": "7e4955950c165fa2580e125688c075657af76cc12ed827d450e4430d3148603f"
+    },
+    {
+      "file": "scripts/prepare-kling-warm-date-male.py",
+      "sha256": "2e9342fed0b7fd37167f3118099c6b4a5a192d261f4d82930d145ea586938ffc"
+    },
+    {
+      "file": "docs/kling-wardrobe/garments/male/teal-camp-shirt-v5.zip",
+      "sha256": "a41b45869fe0a3b63c613f8ade0b188a7e8b9040fee618fb3e9800c05543145e"
+    },
+    {
+      "file": "docs/kling-motion/exports/male.character.zip",
+      "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1"
+    },
+    {
+      "file": "docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+      "sha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48"
+    }
+  ],
+  "scope": "Generated clothing RGB only. Generated faces, skin, bodies, trousers, shoes and background are discarded. Original 88-pose Teal V5 ownership, alpha, source coordinates and motion timing remain authoritative.",
+  "donorDefinitions": {
+    "file": "artwork/kling-collection/source/city-fashion-v1/male-donors.json",
+    "sha256": "b3495bc3795bfece8457b5ac5acc657f1314ddb054dfc6ba1d44319362a2a673"
+  },
+  "preparer": {
+    "file": "scripts/prepare-kling-city-fashion-male.py",
+    "sha256": "dfdb25fb934af6d5124de005d0ef25908284ea02d7197afd78560c43dea0a084"
+  },
+  "reviewedPrototype": {
+    "city-ivory-zip-shirt-v1": ".review-tmp/city-fashion-authoring/male/prototype-v1",
+    "campus-sky-knit-polo-v1": ".review-tmp/city-fashion-authoring/male/prototype-v5",
+    "retro-burgundy-bowling-shirt-v1": ".review-tmp/city-fashion-authoring/male/prototype-v1"
+  },
+  "materialCompletion": "Campus stripes continue through explicitly traced safe cloth row profiles. Outside their vertical span only separately traced plain blue fabric is sampled; original alpha/ownership remain exact."
+}

@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-10-27T04:28:59.586667+00:00",
+  "scope": "Checks executed for city-fashion-v1 after publishing the six new catalog entries and thumbnails; no historical test results counted.",
+  "checks": [
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "includes": [
+        "TypeScript project build",
+        "Vite production build"
+      ],
+      "viteSeconds": 4.0
+    },
+    {
+      "command": "npm test -- src/wardrobe/outfit-previews.test.ts src/wardrobe/catalog-budget.test.ts src/wardrobe/project.test.ts src/wardrobe/compositor.test.ts src/wardrobe/garment-authoring.test.ts",
+      "result": "passed",
+      "files": 5,
+      "tests": 58,
+      "durationSeconds": 4.09
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium CHROMIUM_ARGS_JSON='[\"--no-sandbox\"]' npx playwright test tests/e2e/wardrobe-recommendations.spec.ts",
+      "result": "passed",
+      "tests": 1,
+      "durationSeconds": 5.9,
+      "scope": "Fixture-based recommendation/search/back-compat UI regression; actual six-outfit capture is separate."
+    }
+  ],
+  "assetAudit": "asset-validation.json",
+  "browserExportEvidence": "Recorded separately after the implementation commit."
+}
