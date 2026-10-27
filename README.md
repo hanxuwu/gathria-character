@@ -136,6 +136,12 @@ the current wardrobe and existing authored themes retain their defaults. This
 local conversion does not generate new poses or turn the exported pack into
 editable clothing. [Four actual looks, comparison GIFs and limits](docs/kling-pixel-refinement/README.md).
 
+In that preview, **Strong pixels** selects a coarser 6:1 grid, 96 shared colors
+and conservative cleanup of tiny interior shade patches. **Detailed pixels**
+retains the previous 4:1/128-color result. Both preserve the original animation
+clock; the cleanup leaves the sampled transparent silhouette unchanged.
+[Stronger pixel comparisons and verification](docs/kling-strong-pixels/README.md).
+
 The [nine-outfit collection](docs/kling-collection/volume-v1/README.md) adds daily
 and occasion looks. The [five-sprint review](docs/kling-sprints/README.md) adds a
 refined ponytail and **Ivory refined** outfit, exact-frame connection inspection,

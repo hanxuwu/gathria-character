@@ -1,0 +1,164 @@
+{
+  "format": "gathria-strong-pixels-verification",
+  "version": 1,
+  "completedAt": "2026-10-27T00:51:51.814037+00:00",
+  "runtimeCommit": "749b68b7fb4760a47436f1968e2b453e1b87e254",
+  "passed": true,
+  "userVisualAcceptance": false,
+  "unit": {
+    "passed": 459,
+    "files": 46,
+    "executedThisBatch": true
+  },
+  "build": {
+    "typeScript": true,
+    "productionBuild": true,
+    "executedThisBatch": true
+  },
+  "browserRegression": {
+    "passed": 18,
+    "seconds": 53.9,
+    "executedThisBatch": true,
+    "usesSyntheticSmallFixtures": true,
+    "cases": {
+      "pixelFinish": 7,
+      "existingPixelPlayer": 2,
+      "wardrobeGif": 3,
+      "clothingAuthoringLab": 6
+    }
+  },
+  "production": {
+    "actualLooks": 4,
+    "actualUiDownloads": 56,
+    "screenshots": 8,
+    "characterPacks": 4,
+    "nativePackFrames": 368,
+    "nativePngs": 32,
+    "rawGifs": 12,
+    "leftRightMirrorPairs": 4,
+    "independentPlayerActionFacingCases": 40,
+    "editorsClosedBeforePlayer": true,
+    "sourceArchiveBytesAndDecodedFramebanksEqualPriorBatch": true,
+    "alphaRecomputedIndependently": true,
+    "frameIdsSchedulesAnchorsDerivationPreserved": true,
+    "gifPaletteProjectionExact": true,
+    "runs": {
+      "positions": 16,
+      "gifDurationMs": 670,
+      "fpsInPack": 24,
+      "loop": true
+    },
+    "jumps": {
+      "positions": 39,
+      "gifDurationMs": 1630,
+      "fpsInPack": 24,
+      "loop": false
+    },
+    "coverageLimit": "Player checks explicitly scrub three positions per action/facing and observe bounded playback progression; they do not observe every animation-frame callback."
+  },
+  "gallery": {
+    "images": 24,
+    "comparisonGifs": 8,
+    "completeRunBoards": 4,
+    "characterPixelsInComparisonGifsExact": true,
+    "displayScale": "Old4:1 pixels at2x vsnew6:1 pixels at3x; both384x594 withanchor192,564. No independent pose fitting or retiming."
+  },
+  "visualInspection": {
+    "observed": [
+      "Four actual exported16-position run contact sheets",
+      "Actual male wedding and female everyday same-crop head comparisons",
+      "Actual male wardrobe and female wedding independent player screenshots",
+      "Offline same-scale run0/run8 andjump19 parameter boards"
+    ],
+    "findings": [
+      "Coarser pixel grain is clearly visible; fine curl, eyelash and clothing details occupy fewer pixels.",
+      "No new disconnected part was identified in the inspected run positions; source blur, neckline remnants and stepped hems remain.",
+      "Cleanup is visually subtle; most of the stronger look comes from the6:1 grid."
+    ],
+    "limitations": [
+      "No claim of hand-drawn pixel-art quality.",
+      "Limited same-screen temporal diagnostic mildly worsened:male112to115,female134to135; only11.60%/9.09%eligiblecoverage.",
+      "Fixed grid and shared palette do not guarantee flicker-free animation.",
+      "Palette is fitted per complete look; outfit changes may change available hair/face shades.",
+      "Visual approval is pending."
+    ]
+  },
+  "performance": [
+    {
+      "case": "male-everyday",
+      "buildMsIncludingSourcePreparation": 22273.200000047684,
+      "maxMainThreadLongTaskMs": 1519,
+      "characterPackBytes": 904337,
+      "cleanupChangedPixels": 2450
+    },
+    {
+      "case": "male-wedding",
+      "buildMsIncludingSourcePreparation": 25050,
+      "maxMainThreadLongTaskMs": 1939,
+      "characterPackBytes": 868851,
+      "cleanupChangedPixels": 2760
+    },
+    {
+      "case": "female-everyday",
+      "buildMsIncludingSourcePreparation": 32889.5,
+      "maxMainThreadLongTaskMs": 3538,
+      "characterPackBytes": 1248789,
+      "cleanupChangedPixels": 1640
+    },
+    {
+      "case": "female-wedding",
+      "buildMsIncludingSourcePreparation": 34542.200000047684,
+      "maxMainThreadLongTaskMs": 3375,
+      "characterPackBytes": 1215863,
+      "cleanupChangedPixels": 1247
+    }
+  ],
+  "errors": {
+    "application": [],
+    "console": [],
+    "requests": [],
+    "ignoredOptionalFaviconDiagnostics": 1
+  },
+  "bindings": [
+    {
+      "file": "docs/kling-strong-pixels/evidence/final-v2/evidence-index.json",
+      "sha256": "364786bae4ae1bbd21bdb191c4bad4fcfc1939c7f127df80c4af6926b23e3328"
+    },
+    {
+      "file": "docs/kling-strong-pixels/evidence/final-v2/artifact-validation.json",
+      "sha256": "10a1791d047698bd7814c1ec45b39866dff99b6d385c9aa0e6b9af17ecb1064b"
+    },
+    {
+      "file": "docs/kling-strong-pixels/review/index.json",
+      "sha256": "c5b8d860444d292ac1562573db1d346c58dc35f9a5d4df1d412cca3805ac48eb"
+    },
+    {
+      "file": "docs/kling-strong-pixels/study/selection.json",
+      "sha256": "5c2365d9fc879a7a4e9726a561e4ed61051e33ad0448f95defba78e001a9848e"
+    },
+    {
+      "file": "docs/kling-strong-pixels/logs/unit.log",
+      "sha256": "49c3317ad33c5d012fb6ee7b66394aeaf1316d89a2b35da4cc2ef2a7630b01f0"
+    },
+    {
+      "file": "docs/kling-strong-pixels/logs/build.log",
+      "sha256": "3e427d316ae6c0f2637d399b4b3991d1acceab6d70b9f14b6be668deb3dabf73"
+    },
+    {
+      "file": "docs/kling-strong-pixels/logs/browser.log",
+      "sha256": "13b5ced400d7f93a4b377a95d2e67eed2a450febf416e8dd1ceb62f715ee5041"
+    },
+    {
+      "file": "docs/kling-strong-pixels/logs/capture-final-v2.log",
+      "sha256": "308fedf07a2f428d66346b46ce8ab27798595e46e513cb3bcdfc63abaa5857a6"
+    },
+    {
+      "file": "docs/kling-strong-pixels/logs/verify-final-v2.log",
+      "sha256": "6575d8c986f0b2b244e6356f8895ef5736f0fe195436f1af143f9b1968e3264f"
+    },
+    {
+      "file": "docs/kling-strong-pixels/logs/gallery.log",
+      "sha256": "79af65bcb0d757183618847b3ecc9c7a19928d4cdb4410d0ced572fdf2583bea"
+    }
+  ]
+}

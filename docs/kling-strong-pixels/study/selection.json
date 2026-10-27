@@ -1,0 +1,292 @@
+{
+  "format": "gathria-strong-pixel-offline-selection",
+  "version": 1,
+  "decision": "Retain 4:1 existing default; expose 6:1/96-color optional cluster candidate. Stronger grain mainly comes from resolution. Cleanup is subtle and has a small regression in the limited temporal diagnostic.",
+  "source": "Actual composed CharacterPack downloads from prior batch; current candidates are offline API conversions, not new UI captures.",
+  "inputs": [
+    {
+      "look": "male-wedding",
+      "filename": "male-wedding.source.character.zip",
+      "path": "/tmp/kling-pixel-refinement/final-v1/male-wedding.source.character.zip",
+      "sha256": "ad89663f107dda8032dc38add971e00d83938ec3ec2dffb7b582bec07dc46428",
+      "bytes": 37824322,
+      "retainedInGit": false,
+      "priorBrowserEvidence": "docs/kling-pixel-refinement/evidence/final-v1/evidence-index.json"
+    },
+    {
+      "look": "female-everyday",
+      "filename": "female-everyday.source.character.zip",
+      "path": "/tmp/kling-pixel-refinement/final-v1/female-everyday.source.character.zip",
+      "sha256": "a1c718928b3ea3b12d7a9aa65db76995355cdadfb7815982fe7f56a60f144ad4",
+      "bytes": 54238732,
+      "retainedInGit": false,
+      "priorBrowserEvidence": "docs/kling-pixel-refinement/evidence/final-v1/evidence-index.json"
+    }
+  ],
+  "variants": [
+    {
+      "look": "male-wedding",
+      "label": "legacy4",
+      "settings": {
+        "factor": 4,
+        "colors": 128,
+        "sampling": "detail"
+      },
+      "candidate": {
+        "path": "/tmp/kling-strong-pixels/study/male-wedding-legacy4.character.zip",
+        "sha256": "5ae617cd9a137a9bf6d420acdac01637a466203fc259131ccc3b8dce53961221",
+        "bytes": 1850054,
+        "retainedInGit": false
+      },
+      "report": {
+        "file": "male-wedding-legacy4.report.json",
+        "path": "/workspace/gathria-character/docs/kling-strong-pixels/study/male-wedding-legacy4.report.json",
+        "sha256": "80bbdf3e1e3f4297deed00aa3c0ad00a7c7d0064efe5dbd7e2fcbd3b5f3efc29",
+        "bytes": 7044
+      },
+      "runGif": {
+        "path": "/tmp/kling-strong-pixels/study/male-wedding-legacy4-run.gif",
+        "sha256": "8a81220510b7d000d4e5b29a21d7567fdaa72d17f830b2bc8e64d44f980bf731",
+        "bytes": 169881,
+        "retainedInGit": false
+      }
+    },
+    {
+      "look": "male-wedding",
+      "label": "plain6",
+      "settings": {
+        "factor": 6,
+        "colors": 96,
+        "sampling": "detail"
+      },
+      "candidate": {
+        "path": "/tmp/kling-strong-pixels/study/male-wedding-plain6.character.zip",
+        "sha256": "587c15eaee0dcc594ab1b87ffd85344eb102940cc378b243ae6f1f54cd4f1212",
+        "bytes": 872820,
+        "retainedInGit": false
+      },
+      "report": {
+        "file": "male-wedding-plain6.report.json",
+        "path": "/workspace/gathria-character/docs/kling-strong-pixels/study/male-wedding-plain6.report.json",
+        "sha256": "f47de5fa02b49e7f41f7475ab6d81bcf7a03aaac37778f58e862dd2417d165ec",
+        "bytes": 5675
+      },
+      "runGif": {
+        "path": "/tmp/kling-strong-pixels/study/male-wedding-plain6-run.gif",
+        "sha256": "e372647fa03927062b8df07aa3b325100772989af39a9c67af7cdee9fc0e9685",
+        "bytes": 80374,
+        "retainedInGit": false
+      }
+    },
+    {
+      "look": "male-wedding",
+      "label": "cluster6",
+      "settings": {
+        "factor": 6,
+        "colors": 96,
+        "sampling": "detail",
+        "finish": "cluster"
+      },
+      "candidate": {
+        "path": "/tmp/kling-strong-pixels/study/male-wedding-cluster6.character.zip",
+        "sha256": "88650c5b96384fbc69b7aed3da540fc367df45dd5ff85992b3018d7b73dab2b4",
+        "bytes": 868851,
+        "retainedInGit": false
+      },
+      "report": {
+        "file": "male-wedding-cluster6.report.json",
+        "path": "/workspace/gathria-character/docs/kling-strong-pixels/study/male-wedding-cluster6.report.json",
+        "sha256": "71b9ccd171512d7946602fbd2ed09193fc5bf38403779200c8c6bcc47069d40c",
+        "bytes": 5984
+      },
+      "runGif": {
+        "path": "/tmp/kling-strong-pixels/study/male-wedding-cluster6-run.gif",
+        "sha256": "0cfd72ee710ab9c9fbfba0e50efe452fbcbe26705b2521ed319678212bd1b460",
+        "bytes": 80056,
+        "retainedInGit": false
+      }
+    },
+    {
+      "look": "female-everyday",
+      "label": "legacy4",
+      "settings": {
+        "factor": 4,
+        "colors": 128,
+        "sampling": "detail"
+      },
+      "candidate": {
+        "path": "/tmp/kling-strong-pixels/study/female-everyday-legacy4.character.zip",
+        "sha256": "ef59c4ad44cde63f5187f79082642839a487c67c423afa6bf9f74212f692a97f",
+        "bytes": 2601446,
+        "retainedInGit": false
+      },
+      "report": {
+        "file": "female-everyday-legacy4.report.json",
+        "path": "/workspace/gathria-character/docs/kling-strong-pixels/study/female-everyday-legacy4.report.json",
+        "sha256": "d53117ccc02e908c50494750c5dc588057d7fa80d11d271753f7eeed437ba1d7",
+        "bytes": 7082
+      },
+      "runGif": {
+        "path": "/tmp/kling-strong-pixels/study/female-everyday-legacy4-run.gif",
+        "sha256": "4397eac2ddecd97b7c71d6dc70e0de994ad31fb95b54c6c55aa6b94a6ac17b87",
+        "bytes": 237967,
+        "retainedInGit": false
+      }
+    },
+    {
+      "look": "female-everyday",
+      "label": "plain6",
+      "settings": {
+        "factor": 6,
+        "colors": 96,
+        "sampling": "detail"
+      },
+      "candidate": {
+        "path": "/tmp/kling-strong-pixels/study/female-everyday-plain6.character.zip",
+        "sha256": "29fc08aef339bab3f949f6719409b48469ecc9a51182ae1ae4b2359c903adc82",
+        "bytes": 1251306,
+        "retainedInGit": false
+      },
+      "report": {
+        "file": "female-everyday-plain6.report.json",
+        "path": "/workspace/gathria-character/docs/kling-strong-pixels/study/female-everyday-plain6.report.json",
+        "sha256": "2a7852f4446ced9977e785440b745256af9cb8492022fd2e17dd94eb8ab71dab",
+        "bytes": 5707
+      },
+      "runGif": {
+        "path": "/tmp/kling-strong-pixels/study/female-everyday-plain6-run.gif",
+        "sha256": "304bcaa3ff77878b92b8821ce0643b8b74462023961ffec9fc408af6f1095071",
+        "bytes": 109816,
+        "retainedInGit": false
+      }
+    },
+    {
+      "look": "female-everyday",
+      "label": "cluster6",
+      "settings": {
+        "factor": 6,
+        "colors": 96,
+        "sampling": "detail",
+        "finish": "cluster"
+      },
+      "candidate": {
+        "path": "/tmp/kling-strong-pixels/study/female-everyday-cluster6.character.zip",
+        "sha256": "47b5b18ce80465296fa714e7d93aa97b341528c66e0be2f32d6bec64a46828a3",
+        "bytes": 1248789,
+        "retainedInGit": false
+      },
+      "report": {
+        "file": "female-everyday-cluster6.report.json",
+        "path": "/workspace/gathria-character/docs/kling-strong-pixels/study/female-everyday-cluster6.report.json",
+        "sha256": "e58c48ce0672057abc3d0440dcfd542ab7a17f5b606bc82b97c4480fb955d2c6",
+        "bytes": 6016
+      },
+      "runGif": {
+        "path": "/tmp/kling-strong-pixels/study/female-everyday-cluster6-run.gif",
+        "sha256": "4ee057b68467d9d5886dbcecd7da489ae35be56ea4ed2c64e18df0a79dc4e1ec",
+        "bytes": 109631,
+        "retainedInGit": false
+      }
+    }
+  ],
+  "retainedFiles": {
+    "README.md": {
+      "sha256": "18a160726e933edc354b7b6799f8f375fcaac776d8d6ca18f0653701ebdbff78",
+      "bytes": 6732
+    },
+    "analysis.json": {
+      "sha256": "c9cb168a665c338e2374fcdf28070f63d85126fa9ec4dbbb979bb128a7fbcc2d",
+      "bytes": 32261
+    },
+    "analysis.py": {
+      "sha256": "588b4dfdbaacbba576729ac30e68adc2a00767d1d4d49f115d213c7b37e93b6e",
+      "bytes": 6444
+    },
+    "capture-entry-original.ts": {
+      "sha256": "5cf76833ce29d802221a951aa1a8af35de6d7788fab54cceed1d8e195fee0da3",
+      "bytes": 179
+    },
+    "capture-run-original.mjs": {
+      "sha256": "c33a49a0b348e2a12e7b501ee1134cd7c1302b4cee961e9f887ab36756ea8131",
+      "bytes": 1517
+    },
+    "female-everyday-cluster6.report.json": {
+      "sha256": "e58c48ce0672057abc3d0440dcfd542ab7a17f5b606bc82b97c4480fb955d2c6",
+      "bytes": 6016
+    },
+    "female-everyday-jump-19-same-display.png": {
+      "sha256": "50292439aa16d615ffe02b033d3c5b915c6a04bdbbb2f49fbea5b6fbe1418004",
+      "bytes": 69160
+    },
+    "female-everyday-legacy4.report.json": {
+      "sha256": "d53117ccc02e908c50494750c5dc588057d7fa80d11d271753f7eeed437ba1d7",
+      "bytes": 7082
+    },
+    "female-everyday-native.png": {
+      "sha256": "254d8a862ddc53c3e732251a59d1b83e381b1f97bdbf81c0ca7dae02c0593849",
+      "bytes": 52632
+    },
+    "female-everyday-plain6.report.json": {
+      "sha256": "2a7852f4446ced9977e785440b745256af9cb8492022fd2e17dd94eb8ab71dab",
+      "bytes": 5707
+    },
+    "female-everyday-run-0-same-display.png": {
+      "sha256": "53cf19793276a78d6be7b6a7360d7e58464703216a637a13598a69b76056f9c4",
+      "bytes": 74814
+    },
+    "male-wedding-cluster6.report.json": {
+      "sha256": "71b9ccd171512d7946602fbd2ed09193fc5bf38403779200c8c6bcc47069d40c",
+      "bytes": 5984
+    },
+    "male-wedding-legacy4.report.json": {
+      "sha256": "80bbdf3e1e3f4297deed00aa3c0ad00a7c7d0064efe5dbd7e2fcbd3b5f3efc29",
+      "bytes": 7044
+    },
+    "male-wedding-native.png": {
+      "sha256": "0bce2851dd1ca5489f015eb45ad70daea887d7b4104911936b39205b3f773bb1",
+      "bytes": 42535
+    },
+    "male-wedding-plain6.report.json": {
+      "sha256": "f47de5fa02b49e7f41f7475ab6d81bcf7a03aaac37778f58e862dd2417d165ec",
+      "bytes": 5675
+    },
+    "male-wedding-run-0-same-display.png": {
+      "sha256": "24954e3bd23083c2b8df241c39adeb9ddb8a6da3d0c487faeabf981c9f684c64",
+      "bytes": 60304
+    },
+    "run-study.mjs": {
+      "sha256": "e09fb3c25b5b451ee364bd4bce6c51e6f9b77ca87394c18074112116c0025ac0",
+      "bytes": 3212
+    },
+    "run.log": {
+      "sha256": "5f211329eee476c0ae59b73833d9c0fceb887d8e6eb4b5d39e12a6be671ac8dc",
+      "bytes": 2068
+    },
+    "summary.json": {
+      "sha256": "d916aa08502acd40a9896f70dc104372275a7d2ad1b5cf7c213607ef152bca2a",
+      "bytes": 2376
+    },
+    "reproduction.json": {
+      "sha256": "7b4aeb242186b3d1a88e45bff1bfcad4a5ae4f48c5ef150d57162da2339cfcb1",
+      "bytes": 736
+    }
+  },
+  "originalLocalBundle": {
+    "path": "/tmp/kling-strong-pixels/study/api.mjs",
+    "sha256": "2c24aa5bee5e18416129605b63e668e131c06d70ce93a09d6f675ab10631c006",
+    "bytes": 210161
+  },
+  "sourceAtPackaging": {
+    "src/pixel/refine.ts": "7327a352d12d2668b51161d43c68d54a740de1578f03126b8fe68bb3c6ab515e",
+    "src/pixel/pack.ts": "d794c357a16ae7eb6a860a84536d1550b87f5ecd54b4b1d075c81a5f5b9c0c36",
+    "src/themes/media.ts": "3527d1b0f3bc4abed1332dd3895c9b5873ef60d2ecec47573e7f80dd7385024e"
+  },
+  "limitations": [
+    "Not hand-authored pixel art; inherited source blur and garment artifacts remain.",
+    "No visual acceptance claimed; inspection covers the linked representative static poses.",
+    "Cleanup alpha and transparent RGBA exact relative to plain6; source-to-pixel sampling itself is not alpha-exact.",
+    "Temporal screen-pixel diagnostic has 11.60% male and 9.09% female visible-union coverage, not optical flow.",
+    "Cleanup run jump counts increase 112 to 115 male and 134 to 135 female; no temporal improvement claim.",
+    "Temporary large binary inputs are required for reproduction; Git metadata alone does not recover them."
+  ]
+}

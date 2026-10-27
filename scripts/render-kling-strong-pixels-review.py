@@ -11,6 +11,7 @@ import importlib.util
 import json
 from pathlib import Path
 
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageSequence
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,7 +59,20 @@ def gif(path, boards, palettes, fps, loop, body_height):
     palette = Image.new("P", (1, 1))
     flat = [v for c in colors for v in c]
     palette.putpalette(flat + [0] * (768 - len(flat)))
-    frames = [board.quantize(palette=palette, dither=Image.Dither.NONE) for board in boards]
+    # Pillow's fast nearest-color cache can map an exact palette RGB to a nearby
+    # entry. Explicitly restore exact RGB matches instead of trusting that cache.
+    palette_keys = np.array([(r << 16) | (g << 8) | b for r, g, b in colors], dtype=np.uint32)
+    frames = []
+    for board in boards:
+        mapped = np.array(board.quantize(palette=palette, dither=Image.Dither.NONE))
+        rgb = np.asarray(board, dtype=np.uint32)
+        keys = (rgb[:, :, 0] << 16) | (rgb[:, :, 1] << 8) | rgb[:, :, 2]
+        indices = np.searchsorted(palette_keys, keys)
+        exact = (indices < len(colors)) & (palette_keys[np.minimum(indices, len(colors) - 1)] == keys)
+        mapped[exact] = indices[exact]
+        frame = Image.fromarray(mapped)
+        frame.putpalette(palette.getpalette())
+        frames.append(frame)
     delays = [10 * (int((n + 1) * 100 / fps + .5) - int(n * 100 / fps + .5)) for n in range(len(frames))]
     frames[0].save(path, save_all=True, append_images=frames[1:], duration=delays,
                    disposal=1, optimize=False, **({"loop": 0} if loop else {}))
@@ -150,6 +164,22 @@ def main():
             path = out / f"{key}-run-keyframes-{zoom}x.png"
             board.save(path)
             record(path, case=key, zoom=zoom, positions=chosen, presentationOnly=True)
+
+        # Keep the complete cycle visible, including the last-to-first poses.
+        thumbs = [solid(after.frame(fid), 2) for fid in run["frames"]]
+        w, h = thumbs[0].size
+        columns = min(8, len(thumbs))
+        rows = (len(thumbs) + columns - 1) // columns
+        board = Image.new("RGB", (w * columns, (h + 24) * rows + 32), BG)
+        draw = ImageDraw.Draw(board)
+        draw.text((8, 5), f"{key} | complete run cycle | integer 2x | original frame order", font=FONT, fill=INK)
+        for n, im in enumerate(thumbs):
+            x, y = (n % columns) * w, 32 + (n // columns) * (h + 24)
+            draw.text((x + 8, y), f"Position {n:02d} / source {run['frames'][n]}", font=SMALL, fill=INK)
+            board.paste(im, (x, y + 24))
+        path = out / f"{key}-all-run-frames-2x.png"
+        board.save(path)
+        record(path, case=key, zoom=2, positions=list(range(len(thumbs))), presentationOnly=True)
 
         # Use one source-relative crop for both candidates, never align faces.
         frame_id = run["frames"][0]
