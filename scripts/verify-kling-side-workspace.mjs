@@ -340,7 +340,10 @@ sm,sr,sp=pack(archive(io.BytesIO(sourcebytes)))
 om,orr,op=pack(archive(sys.argv[2]));dm,dr,dp=pack(archive(sys.argv[3]))
 for key in ('frames','animations','anchor','facing','scale','spritesheet','additionalSheets'):
  assert sm[key]==om[key]==dm[key], key+' changed'
-assert sr['derivation']==orr['derivation']==dr['derivation']
+assert sr['derivation']['frames']==orr['derivation']['frames']==dr['derivation']['frames']
+assert dr['sourceMetadata']['wardrobe']['sourcePackSha256']==doc['sourceSha256']
+assert dr['sourceMetadata']['wardrobe']['registrationSha256']==doc['registrationSha256']
+assert dr['sourceMetadata']['wardrobe']['selection']==doc['selection']
 registered={f['frameId']:f for f in reg['frames']};assert set(registered)=={f['id'] for f in sm['frames']}
 selected=set(v for v in doc['selection'].values() if v is not None);garments=[]
 assert len(selected)==3, 'Daily outfit must select top, bottom and shoes'
