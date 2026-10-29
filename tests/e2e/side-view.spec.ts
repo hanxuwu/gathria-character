@@ -199,3 +199,62 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
     )
     .toBeLessThan(25);
 });
+
+test("side source load failure retries and character preparation disables stale exports", async ({
+  page,
+}) => {
+  test.setTimeout(240_000);
+  await page.route(
+    "**/assets/male.source.zip*",
+    (route) =>
+      route.fulfill({
+        status: 503,
+        contentType: "text/plain",
+        body: "Controlled source-load failure",
+      }),
+    { times: 1 },
+  );
+  await page.goto("/workbench.html?mode=side-view&character=male");
+  await expect(
+    page.getByTestId("side-playground").getByRole("alert"),
+  ).toContainText("503");
+  await expect(page.getByTestId("side-export-pack")).toBeDisabled();
+  await page.getByRole("button", { name: "重新载入", exact: true }).click();
+  await ready(page);
+  await expect(stage(page)).toHaveAttribute("data-character", "male");
+  let release!: () => void;
+  let requested!: () => void;
+  const gate = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const request = new Promise<void>((resolve) => {
+    requested = resolve;
+  });
+  await page.route(
+    "**/assets/female.source.zip*",
+    async (route) => {
+      requested();
+      await gate;
+      await route.continue();
+    },
+    { times: 1 },
+  );
+  await page.getByTestId("side-character").selectOption("female");
+  try {
+    await request;
+    await expect(page.getByTestId("side-playground")).toHaveAttribute(
+      "aria-busy",
+      "true",
+    );
+    await expect(page.getByTestId("side-character")).toBeDisabled();
+    await expect(page.getByTestId("side-export-pack")).toBeDisabled();
+    await expect(page.getByTestId("side-save-project")).toBeDisabled();
+    await expect(stage(page)).toHaveAttribute("data-character", "male");
+  } finally {
+    release();
+  }
+  await ready(page);
+  await expect(stage(page)).toHaveAttribute("data-character", "female");
+  await expect(page.getByTestId("side-character")).toHaveValue("female");
+  await expect(page.getByTestId("side-export-pack")).toBeEnabled();
+});
