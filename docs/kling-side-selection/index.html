@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kling 侧视动作候选 · 原速审阅</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f6f4ee;
+        color: #294338;
+        font:
+          16px/1.65 system-ui,
+          sans-serif;
+      }
+      main {
+        width: min(1120px, 94%);
+        margin: 36px auto 72px;
+      }
+      h1 {
+        margin-bottom: 8px;
+        font-size: clamp(24px, 4vw, 36px);
+      }
+      h2 {
+        margin: 36px 0 14px;
+      }
+      p {
+        max-width: 80ch;
+      }
+      a {
+        color: #315f7b;
+      }
+      .notice {
+        background: #efe7cf;
+        border-radius: 12px;
+        padding: 16px 20px;
+      }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .links a,
+      button {
+        display: inline-block;
+        border: 1px solid #aab6aa;
+        border-radius: 8px;
+        padding: 9px 14px;
+        background: #fff;
+        color: #294338;
+        font: inherit;
+        cursor: pointer;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+        gap: 20px;
+      }
+      figure {
+        margin: 0;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      figure img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: auto;
+      }
+      figcaption {
+        padding: 14px 18px;
+      }
+      figcaption p {
+        margin: 8px 0;
+        font-size: 14px;
+        color: #57675e;
+      }
+      button {
+        padding: 5px 12px;
+        font-size: 14px;
+      }
+      details {
+        margin-top: 24px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .checks img {
+        max-height: 560px;
+        object-fit: contain;
+      }
+      footer {
+        margin-top: 36px;
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Kling 侧视动作候选</h1>
+      <p>
+        从已有视频中挑选完整动作，保持原始 24
+        fps。同一画布和站姿尺度，只做去绿幕及固定等比配准。
+      </p>
+      <div class="notice">
+        先看跑步。走路仍偏快；跳跃缺少自然接回待机的片段，跨视频脸部与体积也有变化。这些是独立候选，尚未替换默认人物。GIF
+        是棋盘格预览，ZIP 与 PNG 才是透明原画素材。
+      </div>
+      <nav class="links" aria-label="下载及说明">
+        <a download href="exports/male.character.zip">下载男版 CharacterPack</a>
+        <a download href="exports/female.character.zip"
+          >下载女版 CharacterPack</a
+        >
+        <a href="../../player.html">打开独立播放器</a>
+        <a href="README.md">来源、帧区间与限制</a>
+        <a href="VALIDATION.md">本轮验证</a>
+      </nav>
+      <p>
+        播放器内点 <strong>Choose character pack</strong> 载入下载的
+        ZIP。两包均支持五动作及左右朝向；衣服已在原图中，暂不能套用旧换装遮罩。
+      </p>
+      <h2>男女动作候选</h2>
+      <div class="grid">
+        <figure>
+          <img
+            src="review/pair-run-right.gif"
+            alt="男女完整左右腿交替跑步周期"
+          />
+          <figcaption>
+            <strong>跑步 · 完整双步循环</strong>
+            <p>男女均为 18 帧 / 0.75 秒，使用较早版本中较合适的原速片段。</p>
+            <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="review/pair-walk-right.gif" alt="男女偏快的走路候选" />
+          <figcaption>
+            <strong>走路 · 仍需审阅</strong>
+            <p>步频偏快，女版部分姿势像小跑，未验收为最终普通步行。</p>
+            <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="review/pair-jump-right.gif"
+            alt="男女第一次跳跃，播放一次"
+          />
+          <figcaption>
+            <strong>跳跃 · 单次播放</strong>
+            <p>
+              完整起跳与落地，停在最后一个原始姿势。不是无缝待机 → 跳跃 → 待机。
+            </p>
+            <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+      </div>
+      <h2>原速对比</h2>
+      <div class="grid">
+        <figure>
+          <img
+            src="review/male-run-source-comparison.gif"
+            alt="男版三个视频版本跑步节奏对比"
+          />
+          <figcaption>
+            <strong>男版跑步：1885 / 2067 / 2360</strong>
+            <p>
+              均为 24
+              fps。右侧为一秒连续源片段，不强行对齐步频。播放一次，点击重播。
+            </p>
+            <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="review/female-run-source-comparison.gif"
+            alt="女版1927和2394跑步节奏对比"
+          />
+          <figcaption>
+            <strong>女版跑步：1927 / 2394</strong>
+            <p>保留真实步频与姿势，便于比较较新版本是否确实更自然。</p>
+            <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="review/male-walk-alternatives.gif"
+            alt="男版2067和1629走路候选对比"
+          />
+          <figcaption>
+            <strong>男版走路：较一致 / 较悠闲</strong>
+            <p>2067 接点较一致；1629 步频较慢，但首尾脚踝及画法变化更明显。</p>
+            <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="review/male-jump-alternatives.gif"
+            alt="男版双脚跳与跑跳对比"
+          />
+          <figcaption>
+            <strong>男版跳跃：2360 / 2067</strong>
+            <p>
+              2360 保留双脚跳但缺待机收尾；2067
+              更接近跑动中的单腿起跳，有较完整的站立恢复。
+            </p>
+            <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+      </div>
+      <h2>真实动作切换</h2>
+      <p>
+        使用直接切换，保留缺失过渡与不同来源的画法差别。审阅序列中的循环重复和末帧停留不写入原始动作帧。
+      </p>
+      <div class="grid">
+        <figure>
+          <img
+            src="review/male-action-switches.gif"
+            alt="男版待机走跑跳庆祝动作切换"
+          />
+          <figcaption>
+            <strong>男版</strong> <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="review/female-action-switches.gif"
+            alt="女版待机走跑跳庆祝动作切换"
+          />
+          <figcaption>
+            <strong>女版</strong> <button type="button">重新播放</button>
+          </figcaption>
+        </figure>
+      </div>
+      <details class="checks">
+        <summary>打开关键帧、接点与暗背景检查</summary>
+        <p>
+          原生 PNG 可点击单独打开。女版跳跃源帧 206、233
+          后颈仍有少量绿幕溢色，完整限制见说明。
+        </p>
+        <div class="grid">
+          <figure>
+            <a href="review/male-run-keyframes.png"
+              ><img
+                loading="lazy"
+                src="review/male-run-keyframes.png"
+                alt="男版跑步关键帧"
+            /></a>
+            <figcaption>男版跑步关键帧</figcaption>
+          </figure>
+          <figure>
+            <a href="review/female-run-keyframes.png"
+              ><img
+                loading="lazy"
+                src="review/female-run-keyframes.png"
+                alt="女版跑步关键帧"
+            /></a>
+            <figcaption>女版跑步关键帧</figcaption>
+          </figure>
+          <figure>
+            <a href="review/male-transition-boundaries.png"
+              ><img
+                loading="lazy"
+                src="review/male-transition-boundaries.png"
+                alt="男版动作切点"
+            /></a>
+            <figcaption>男版动作切点</figcaption>
+          </figure>
+          <figure>
+            <a href="review/female-transition-boundaries.png"
+              ><img
+                loading="lazy"
+                src="review/female-transition-boundaries.png"
+                alt="女版动作切点"
+            /></a>
+            <figcaption>女版动作切点</figcaption>
+          </figure>
+          <figure>
+            <a href="review/male-alpha-light-dark.png"
+              ><img
+                loading="lazy"
+                src="review/male-alpha-light-dark.png"
+                alt="男版浅深背景"
+            /></a>
+            <figcaption>男版透明边缘</figcaption>
+          </figure>
+          <figure>
+            <a href="review/female-alpha-light-dark.png"
+              ><img
+                loading="lazy"
+                src="review/female-alpha-light-dark.png"
+                alt="女版浅深背景"
+            /></a>
+            <figcaption>女版透明边缘</figcaption>
+          </figure>
+        </div>
+      </details>
+      <footer>
+        技术检查通过与美术验收分别记录。此批没有改造型、补画、插帧、逐帧稳头或接入骨骼。
+      </footer>
+    </main>
+    <script>
+      document.querySelectorAll("figure button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const image = button.closest("figure").querySelector("img");
+          const url = new URL(image.src);
+          url.searchParams.set("replay", String(Date.now()));
+          image.src = url.href;
+        });
+      });
+    </script>
+  </body>
+</html>
