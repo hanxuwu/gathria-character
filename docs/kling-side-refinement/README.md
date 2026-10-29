@@ -28,4 +28,27 @@ The final female contour is a focused improvement. The male repair is deliberate
 
 Background preparation and bounded source-page caching are evaluated against identical frozen assets. Original sources, canonical registrations, 512×768 geometry, 24 fps, frame IDs/order and loop flags are fixed. Existing saved projects keep embedded artwork and retain their native rendering. No garment, wardrobe project or CharacterPack schema is changed. Template JSON is an authoring reference, not a playable pack.
 
-Current measurement and final actual-export links are recorded when the frozen verification completes. Technical integrity and visual acceptance are reported separately; diagnostic scores are inspection priorities, not defect counts or an automatic art verdict.
+[Performance measurements](performance/README.md) show median longest loading tasks falling from 824 to 92.5 ms (male) and 1013.5 to 97 ms (female) across two local rounds with identical frozen assets. First-ready improved 6.7% / 4.3%. The first worker-only trial was rejected; the retained version also moves bounded ZIP parsing and keeps all three source pages warm within the existing memory ceiling. This is not a claim of instant loading or lower memory.
+
+[Current technical checks and visual verdict](QA.md) are separate. Diagnostic scores are inspection priorities, not defect counts or an automatic art verdict.
+
+## Actual application exports
+
+The comparisons below use PR #54 and this iteration's actual browser-exported CharacterPacks, with identical selections, frames, dimensions and timing. GIFs add only labels, layout and palette encoding. Native PNGs and packs remain the lossless reference.
+
+| Review | Male | Female |
+| --- | --- | --- |
+| Run before / after | [Right](review/male-run-right.gif) · [Left](review/male-run-left.gif) | [Right](review/female-run-right.gif) · [Left](review/female-run-left.gif) |
+| Walk before / after | [Right](review/male-walk-right.gif) · [Left](review/male-walk-left.gif) | [Right](review/female-walk-right.gif) · [Left](review/female-walk-left.gif) |
+| Jump before / after | [Right](review/male-jump-right.gif) · [Left](review/male-jump-left.gif) | [Right](review/female-jump-right.gif) · [Left](review/female-jump-left.gif) |
+| Idle before / after | [Right](review/male-idle-right.gif) · [Left](review/male-idle-left.gif) | [Right](review/female-idle-right.gif) · [Left](review/female-idle-left.gif) |
+| Native key poses | [PNG](review/male-keyposes-native.png) | [PNG](review/female-keyposes-native.png) |
+| Integer 2× details | [PNG](review/male-details-2x.png) | [PNG](review/female-details-2x.png) |
+| Independent CharacterPack | [ZIP](review/male.character.zip) | [ZIP](review/female.character.zip) |
+| Editable wardrobe project | [ZIP](review/male.wardrobe.zip) | [ZIP](review/female.wardrobe.zip) |
+
+[Pair: walk → run → original two jumps](review/pair-walk-run-two-jumps.gif). This is a presentation sequence of actual exported frames; it does not invent new transition drawings. Interactive action switching is checked separately.
+
+Closed-editor independent-player screenshots: [male](review/male-hair-independent.png) · [female](review/female-hair-independent.png). [Complete independent checks](qa/README.md).
+
+Reproduce the comparisons with `python scripts/review-kling-side-refinement.py docs/kling-side-fitting/review docs/kling-side-refinement/review docs/kling-side-refinement/review`, and verify delivery with `python scripts/check-kling-side-refinement-delivery.py` (Pillow and NumPy are required for presentation).

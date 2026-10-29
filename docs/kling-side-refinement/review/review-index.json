@@ -1,0 +1,1275 @@
+{
+  "source": "Before/after actual UI exported packs; presentation only",
+  "inputs": [
+    {
+      "character": "male",
+      "version": "Before",
+      "file": "docs/kling-side-fitting/review/male.character.zip",
+      "sha256": "d4ad1d534e521e08c65d5d3fdfac0d69644893e6ce1e926ecbc6ef1e816c30fe"
+    },
+    {
+      "character": "male",
+      "version": "After",
+      "file": "docs/kling-side-refinement/review/male.character.zip",
+      "sha256": "7ddd97c3fbd42b4ff6996ea2ed63b0fe9db1de456cf1b78543b42cf2a3e6ba57"
+    },
+    {
+      "character": "female",
+      "version": "Before",
+      "file": "docs/kling-side-fitting/review/female.character.zip",
+      "sha256": "e6f71d960cdacb11f68b9ea68ebafcb58bbfbfafd69131e144e6343e83a267a8"
+    },
+    {
+      "character": "female",
+      "version": "After",
+      "file": "docs/kling-side-refinement/review/female.character.zip",
+      "sha256": "9d1935c887e07db98a05516928fe2b9abf002ea1ae7d625a8dc7cf808881e56f"
+    }
+  ],
+  "gifs": [
+    {
+      "file": "male-idle-right.gif",
+      "decodedFrames": 21,
+      "sourceFrames": 21,
+      "durationMs": 880,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "male-idle-left.gif",
+      "decodedFrames": 21,
+      "sourceFrames": 21,
+      "durationMs": 880,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "male-walk-right.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "male-walk-left.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "male-run-right.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "male-run-left.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "male-jump-right.gif",
+      "decodedFrames": 50,
+      "sourceFrames": 50,
+      "durationMs": 2080,
+      "loop": false,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "male-jump-left.gif",
+      "decodedFrames": 50,
+      "sourceFrames": 50,
+      "durationMs": 2080,
+      "loop": false,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-idle-right.gif",
+      "decodedFrames": 16,
+      "sourceFrames": 16,
+      "durationMs": 670,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-idle-left.gif",
+      "decodedFrames": 16,
+      "sourceFrames": 16,
+      "durationMs": 670,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-walk-right.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-walk-left.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-run-right.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-run-left.gif",
+      "decodedFrames": 18,
+      "sourceFrames": 18,
+      "durationMs": 750,
+      "loop": true,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-jump-right.gif",
+      "decodedFrames": 50,
+      "sourceFrames": 50,
+      "durationMs": 2080,
+      "loop": false,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "female-jump-left.gif",
+      "decodedFrames": 50,
+      "sourceFrames": 50,
+      "durationMs": 2080,
+      "loop": false,
+      "size": [
+        512,
+        428
+      ]
+    },
+    {
+      "file": "pair-walk-run-two-jumps.gif",
+      "decodedFrames": 122,
+      "sourceFrames": 122,
+      "durationMs": 5080,
+      "loop": false,
+      "size": [
+        512,
+        428
+      ]
+    }
+  ],
+  "frames": {
+    "male": [
+      {
+        "frameId": 0,
+        "changedPixels": 68,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 1,
+        "changedPixels": 78,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 2,
+        "changedPixels": 78,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 3,
+        "changedPixels": 73,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 4,
+        "changedPixels": 81,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 5,
+        "changedPixels": 67,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 6,
+        "changedPixels": 82,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 7,
+        "changedPixels": 82,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 8,
+        "changedPixels": 66,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 9,
+        "changedPixels": 66,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 10,
+        "changedPixels": 70,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 11,
+        "changedPixels": 70,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 12,
+        "changedPixels": 71,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 13,
+        "changedPixels": 82,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 14,
+        "changedPixels": 70,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 15,
+        "changedPixels": 82,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 16,
+        "changedPixels": 83,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 17,
+        "changedPixels": 83,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 18,
+        "changedPixels": 82,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 19,
+        "changedPixels": 82,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 20,
+        "changedPixels": 89,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 21,
+        "changedPixels": 40,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 22,
+        "changedPixels": 36,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 23,
+        "changedPixels": 77,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 24,
+        "changedPixels": 68,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 25,
+        "changedPixels": 78,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 26,
+        "changedPixels": 46,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 27,
+        "changedPixels": 39,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 28,
+        "changedPixels": 84,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 29,
+        "changedPixels": 81,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 30,
+        "changedPixels": 117,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 31,
+        "changedPixels": 58,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 32,
+        "changedPixels": 93,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 33,
+        "changedPixels": 86,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 34,
+        "changedPixels": 56,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 35,
+        "changedPixels": 64,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 36,
+        "changedPixels": 80,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 37,
+        "changedPixels": 56,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 38,
+        "changedPixels": 46,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 39,
+        "changedPixels": 118,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 40,
+        "changedPixels": 112,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 41,
+        "changedPixels": 97,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 42,
+        "changedPixels": 93,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 43,
+        "changedPixels": 73,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 44,
+        "changedPixels": 81,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 45,
+        "changedPixels": 63,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 46,
+        "changedPixels": 109,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 47,
+        "changedPixels": 97,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 48,
+        "changedPixels": 133,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 49,
+        "changedPixels": 108,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 50,
+        "changedPixels": 100,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 51,
+        "changedPixels": 96,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 52,
+        "changedPixels": 119,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 53,
+        "changedPixels": 120,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 54,
+        "changedPixels": 155,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 55,
+        "changedPixels": 114,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 56,
+        "changedPixels": 88,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 57,
+        "changedPixels": 101,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 58,
+        "changedPixels": 15,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 59,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 60,
+        "changedPixels": 43,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 61,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 62,
+        "changedPixels": 62,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 63,
+        "changedPixels": 106,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 64,
+        "changedPixels": 59,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 65,
+        "changedPixels": 108,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 66,
+        "changedPixels": 93,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 67,
+        "changedPixels": 66,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 68,
+        "changedPixels": 88,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 69,
+        "changedPixels": 56,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 70,
+        "changedPixels": 59,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 71,
+        "changedPixels": 16,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 72,
+        "changedPixels": 154,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 73,
+        "changedPixels": 145,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 74,
+        "changedPixels": 122,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 75,
+        "changedPixels": 15,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 76,
+        "changedPixels": 162,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 77,
+        "changedPixels": 72,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 78,
+        "changedPixels": 142,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 79,
+        "changedPixels": 14,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 80,
+        "changedPixels": 44,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 81,
+        "changedPixels": 108,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 82,
+        "changedPixels": 75,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 83,
+        "changedPixels": 120,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 84,
+        "changedPixels": 134,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 85,
+        "changedPixels": 112,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 86,
+        "changedPixels": 165,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 87,
+        "changedPixels": 187,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 88,
+        "changedPixels": 106,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 89,
+        "changedPixels": 122,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 90,
+        "changedPixels": 83,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 91,
+        "changedPixels": 112,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 92,
+        "changedPixels": 134,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 93,
+        "changedPixels": 167,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 94,
+        "changedPixels": 145,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 95,
+        "changedPixels": 146,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 96,
+        "changedPixels": 61,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 97,
+        "changedPixels": 88,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 98,
+        "changedPixels": 18,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 99,
+        "changedPixels": 52,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 100,
+        "changedPixels": 109,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 101,
+        "changedPixels": 90,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 102,
+        "changedPixels": 30,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 103,
+        "changedPixels": 143,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 104,
+        "changedPixels": 124,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 105,
+        "changedPixels": 134,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 106,
+        "changedPixels": 179,
+        "alphaChangedPixels": 0
+      }
+    ],
+    "female": [
+      {
+        "frameId": 0,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 1,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 2,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 3,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 4,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 5,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 6,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 7,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 8,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 9,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 10,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 11,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 12,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 13,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 14,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 15,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 16,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 17,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 18,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 19,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 20,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 21,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 22,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 23,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 24,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 25,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 26,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 27,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 28,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 29,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 30,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 31,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 32,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 33,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 34,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 35,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 36,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 37,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 38,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 39,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 40,
+        "changedPixels": 158,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 41,
+        "changedPixels": 126,
+        "alphaChangedPixels": 5
+      },
+      {
+        "frameId": 42,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 43,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 44,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 45,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 46,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 47,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 48,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 49,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 50,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 51,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 52,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 53,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 54,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 55,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 56,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 57,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 58,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 59,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 60,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 61,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 62,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 63,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 64,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 65,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 66,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 67,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 68,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 69,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 70,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 71,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 72,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 73,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 74,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 75,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 76,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 77,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 78,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 79,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 80,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 81,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 82,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 83,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 84,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 85,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 86,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 87,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 88,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 89,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 90,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 91,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 92,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 93,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 94,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 95,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 96,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 97,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 98,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 99,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 100,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      },
+      {
+        "frameId": 101,
+        "changedPixels": 0,
+        "alphaChangedPixels": 0
+      }
+    ]
+  },
+  "limitations": [
+    "Comparison GIFs use a shared indexed palette and half-size display.",
+    "Native PNGs are lossless; 2x detail uses nearest-neighbor scaling.",
+    "Jump retains the source two-jump one-shot, including its crouched ending.",
+    "Changed-pixel counts locate changes; they do not certify artistic quality."
+  ]
+}

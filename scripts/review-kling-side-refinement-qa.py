@@ -74,7 +74,7 @@ def main():
         'changedFrames': [row['frameId'] for row in rows if row['changedPixels']],
         'frames': rows,
     }
-    (DOC / f'{gender}-actual-baseline-delta.json').write_text(json.dumps(report, indent=2) + '\n')
+    (DOC / f'{gender}-actual-comparison.json').write_text(json.dumps(report, indent=2) + '\n')
     registration = json.loads((ROOT / f'artwork/kling-side-expansion/templates/{gender}.registration.json').read_text())
     joints = {r['frameId']: r['points'] for r in registration['frames']}
     ids = [0, 26, 40, 67, 89, 91] if gender == 'male' else [39, 40, 41, 42]
