@@ -226,7 +226,12 @@ async function setFrame(page, action, position, facing = "right") {
   }
   await pauseSide(page);
   const scrub = page.getByTestId("side-frame");
-  await scrub.fill(position === 0 ? "1" : "0");
+  const intermediate = position === 0 ? "1" : "0";
+  await scrub.fill(intermediate);
+  await expect(canvas(page)).toHaveAttribute(
+    "data-frame-position",
+    intermediate,
+  );
   await scrub.fill(String(position));
   await expect(canvas(page)).toHaveAttribute(
     "data-frame-position",
@@ -444,6 +449,7 @@ async function verifyIndependent(character, outfit, path, manifest) {
         await button(page, "Pause animation").click();
       await button(page, title(facing)).click();
       await page.locator("#player-frame").fill("1");
+      await expect(playerCanvas).toHaveAttribute("data-frame-position", "1");
       await page.locator("#player-frame").fill("0");
       await expect(playerCanvas).toHaveAttribute("data-frame-position", "0");
       const clip = manifest.animations[action];

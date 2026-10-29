@@ -23,7 +23,12 @@ async function pause(page: Page) {
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
 }
 async function frame(page: Page, value: number) {
-  await page.getByTestId("side-frame").fill(value === 0 ? "1" : "0");
+  const intermediate = value === 0 ? "1" : "0";
+  await page.getByTestId("side-frame").fill(intermediate);
+  await expect(stage(page)).toHaveAttribute(
+    "data-frame-position",
+    intermediate,
+  );
   await page.getByTestId("side-frame").fill(String(value));
   await expect(stage(page)).toHaveAttribute(
     "data-frame-position",
