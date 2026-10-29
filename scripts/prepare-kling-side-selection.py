@@ -40,7 +40,7 @@ def put(z, name, data):
     z.writestr(info, data)
 
 
-def matte(source, profile):
+def matte(source, profile, *, retained_regions=()):
     """Adapted from prepare-kling-playback.py; opaque source RGB is immutable."""
     rgb = source.astype(np.float32)
     r, g, b = [rgb[:, :, i] for i in range(3)]
@@ -56,6 +56,11 @@ def matte(source, profile):
     sizes[0] = 0
     main = components == sizes.argmax()
     keep = binary_dilation(main, iterations=3)
+    # Optional, explicitly reviewed source-pixel regions retain disconnected
+    # real outlines. They do not create pixels or bypass the removal safeguard.
+    for x0, y0, x1, y1 in retained_regions:
+        assert 0 <= x0 < x1 <= source.shape[1] and 0 <= y0 < y1 <= source.shape[0]
+        keep[y0:y1, x0:x1] = True
     # Thin outline islands within the overlap margin are retained, not discarded.
     # Audit only opaque pixels actually outside that retained margin.
     removed = np.bincount(components[~keep], minlength=len(sizes))
@@ -80,6 +85,7 @@ def matte(source, profile):
         "discardedSmallComponents": discarded,
         "opaqueRgbPreservedBeforeRegistration": True,
         "backgroundRgb": background.tolist(),
+        "retainedSourceRegions": list(retained_regions),
     }
 
 

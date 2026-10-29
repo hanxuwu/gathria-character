@@ -4,6 +4,7 @@
 
 ## 先看这些
 
+- **新增：[走路 → 跑步 → 原片连续两跳 GIF](continuous/pair-walk-run-double-jump-right.gif)** · [可拖进度的 MP4](continuous/pair-walk-run-double-jump-right.mp4) · [男版](continuous/male-walk-run-double-jump-right.gif) · [女版](continuous/female-walk-run-double-jump-right.gif)。两跳采用最新源视频连续片段，不是重复单跳；仅扩展审阅，原 CharacterPack 保持不变。[时序与来源](continuous/README.md)。
 - [可重播的完整审阅页](index.html)（在本地开发服务中打开 `/docs/kling-side-selection/`）。
 - [男女跑步 GIF](review/pair-run-right.gif) · [男女走路候选 GIF](review/pair-walk-right.gif) · [男女跳跃 GIF](review/pair-jump-right.gif)
 - [男版跑步：1885 / 2067 / 2360 原速对比](review/male-run-source-comparison.gif)
