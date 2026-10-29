@@ -506,6 +506,7 @@ async function verifyIndependent(character, outfit, path, manifest) {
 async function verifyStageControls(page, character, manifest) {
   await setFrame(page, "walk", 0);
   await page.getByTestId("side-mode-travel").click();
+  await expect(canvas(page)).toHaveAttribute("data-camera", "follow");
   await page.getByTestId("side-walk-speed").fill("120");
   await page.getByTestId("side-run-speed").fill("240");
   await page.getByTestId("side-center").click();
@@ -529,7 +530,24 @@ async function verifyStageControls(page, character, manifest) {
     paused,
     "Pause must hold both source pixels and stage position.",
   );
+  assert(
+    Math.abs(
+      Number(await canvas(page).getAttribute("data-ground-offset")) +
+        Number(await canvas(page).getAttribute("data-position")),
+    ) < 0.002,
+  );
+  await setFrame(page, "run", 0);
+  await playSide(page);
+  await expect
+    .poll(
+      async () => Number(await canvas(page).getAttribute("data-position")),
+      { timeout: 7000 },
+    )
+    .toBeGreaterThan(400);
+  await pauseSide(page);
+  await capture(page, `${character}-daily-camera-follow`, canvas(page));
   await page.getByTestId("side-mode-in-place").click();
+  await expect(canvas(page)).toHaveAttribute("data-camera", "fixed");
   await playSide(page);
   const inPlaceX = await canvas(page).getAttribute("data-position");
   await page.waitForTimeout(160);
@@ -567,6 +585,7 @@ async function verifyStageControls(page, character, manifest) {
       pausedPositionAndBitmapHeld: true,
       inPlacePositionHeld: true,
       travelMoved: true,
+      cameraFollowBeyondPreviousStageEdge: true,
       keyboardWalkRunJumpIdle: true,
       frameSteps: true,
       sourceFps: 24,

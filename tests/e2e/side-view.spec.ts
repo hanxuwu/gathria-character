@@ -159,6 +159,7 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
   await page.goto("/workbench.html?mode=side-view&character=male");
   await ready(page);
   await page.getByTestId("side-mode-travel").click();
+  await expect(stage(page)).toHaveAttribute("data-camera", "follow");
   await page.getByTestId("side-walk-speed").fill("120");
   await stage(page).focus();
   await page.keyboard.down("ArrowRight");
@@ -176,6 +177,9 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
   await expect(stage(page)).toHaveAttribute("data-action", "run", {
     timeout: 6000,
   });
+  expect(
+    Number(await stage(page).getAttribute("data-position")),
+  ).toBeGreaterThan(330);
   await page.keyboard.up("Shift");
   await page.keyboard.up("ArrowRight");
   await expect(stage(page)).toHaveAttribute("data-action", "idle");
