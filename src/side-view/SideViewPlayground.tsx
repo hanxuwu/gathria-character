@@ -78,8 +78,8 @@ type Preferences = {
 };
 const DEFAULT_PREFS: Preferences = {
   mode: "in-place",
-  walkSpeed: 90,
-  runSpeed: 180,
+  walkSpeed: 530,
+  runSpeed: 700,
   ground: true,
   anchors: false,
   comparison: false,
@@ -121,11 +121,11 @@ function readPreferences(): Preferences {
     return {
       mode: value.mode === "travel" ? "travel" : "in-place",
       walkSpeed: Number.isFinite(value.walkSpeed)
-        ? Math.max(0, Math.min(240, value.walkSpeed))
-        : 90,
+        ? Math.max(0, Math.min(1000, value.walkSpeed))
+        : DEFAULT_PREFS.walkSpeed,
       runSpeed: Number.isFinite(value.runSpeed)
-        ? Math.max(0, Math.min(400, value.runSpeed))
-        : 180,
+        ? Math.max(0, Math.min(1400, value.runSpeed))
+        : DEFAULT_PREFS.runSpeed,
       ground: typeof value.ground === "boolean" ? value.ground : true,
       anchors: value.anchors === true,
       comparison: value.comparison === true,
@@ -228,6 +228,7 @@ export default function SideViewPlayground({
   const [status, setStatus] = useState("正在准备角色…");
   const [error, setError] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const travelReadoutRef = useRef<HTMLOutputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const sessionRef = useRef<Session | null>(null);
   const motionRef = useRef<SideMotionState>(createSideMotionState());
@@ -705,9 +706,9 @@ export default function SideViewPlayground({
       lastTimeRef.current = now;
       try {
         const manifest = open.renderer.manifest;
-        const bounds = prefs.comparison
-          ? { min: -40, max: 40 }
-          : { min: -330, max: 330 };
+        // Travel uses a following camera. These finite bounds protect numeric
+        // precision without stopping ordinary playback at the screen edges.
+        const bounds = { min: -10_000_000, max: 10_000_000 };
         if (!busyRef.current)
           motionRef.current = advanceSideMotion(
             motionRef.current,
@@ -762,6 +763,12 @@ export default function SideViewPlayground({
         canvas.dataset.facing = motion.facing;
         canvas.dataset.mode = prefs.mode;
         canvas.dataset.position = motion.worldX.toFixed(3);
+        canvas.dataset.camera = prefs.mode === "travel" ? "follow" : "fixed";
+        canvas.dataset.groundOffset = (
+          prefs.mode === "travel" ? -motion.worldX : 0
+        ).toFixed(3);
+        if (travelReadoutRef.current)
+          travelReadoutRef.current.textContent = `${motion.worldX >= 0 ? "+" : ""}${Math.round(motion.worldX).toLocaleString()} px`;
         canvas.dataset.elapsedMs = motion.elapsedMs.toFixed(3);
         canvas.dataset.fps = String(clip.fps);
         canvas.dataset.timing = "native-1x";
@@ -805,17 +812,27 @@ export default function SideViewPlayground({
         if (!context) throw Error("当前浏览器无法创建预览画布。");
         context.clearRect(0, 0, WIDTH, HEIGHT);
         if (prefs.ground) {
+          const offset =
+            prefs.mode === "travel" ? ((motion.worldX % 80) + 80) % 80 : 0;
+          const panels = prefs.comparison
+            ? [
+                [40, 560],
+                [640, 1160],
+              ]
+            : [[40, 1160]];
           context.strokeStyle = "#c7cebe";
           context.lineWidth = 1;
-          context.beginPath();
-          context.moveTo(40, GROUND + 0.5);
-          context.lineTo(WIDTH - 40, GROUND + 0.5);
-          context.stroke();
-          for (let x = 80; x < WIDTH; x += 80) {
+          for (const [left, right] of panels) {
             context.beginPath();
-            context.moveTo(x + 0.5, GROUND);
-            context.lineTo(x + 0.5, GROUND + 9);
+            context.moveTo(left, GROUND + 0.5);
+            context.lineTo(right, GROUND + 0.5);
             context.stroke();
+            for (let x = left + 80 - offset; x < right; x += 80) {
+              context.beginPath();
+              context.moveTo(x + 0.5, GROUND);
+              context.lineTo(x + 0.5, GROUND + 9);
+              context.stroke();
+            }
           }
           context.fillStyle = "#8d9988";
           context.font = "14px system-ui";
@@ -823,9 +840,8 @@ export default function SideViewPlayground({
         }
         const drawCharacter = (center: number, source: boolean) => {
           const frameCanvas = cachedFrame(open, frame, source);
-          const x = center + (prefs.mode === "travel" ? motion.worldX : 0);
           context.save();
-          context.translate(x, GROUND);
+          context.translate(center, GROUND);
           if (motion.facing === "left") context.scale(-1, 1);
           context.imageSmoothingEnabled = true;
           context.imageSmoothingQuality = "high";
@@ -898,11 +914,6 @@ export default function SideViewPlayground({
     key: K,
     value: Preferences[K],
   ) {
-    if (key === "comparison" && value === true)
-      motionRef.current = {
-        ...motionRef.current,
-        worldX: Math.max(-40, Math.min(40, motionRef.current.worldX)),
-      };
     setPreferences((previous) => ({ ...previous, [key]: value }));
   }
 
@@ -981,6 +992,16 @@ export default function SideViewPlayground({
               tabIndex={0}
               aria-label="侧视角色舞台。方向键或 A、D 移动，Shift 跑步，空格连续跳跃。"
             />
+            {preferences.mode === "travel" && (
+              <div
+                className="side-camera-readout"
+                data-testid="side-travel-status"
+              >
+                <span>镜头跟随</span>
+                <output ref={travelReadoutRef}>0 px</output>
+                <small>原始像素位移</small>
+              </div>
+            )}
             {!session && (
               <div className="side-loading" role="status">
                 <span className="side-spinner" />
@@ -1139,7 +1160,7 @@ export default function SideViewPlayground({
           <details className="side-source-note">
             <summary>关于这组侧视动作</summary>
             <p>
-              男女角色来自各自的侧视原片，与角色库默认动作的取帧不同。行走、跑步按完整片段循环；跳跃保留原片的连续两次跳起，结束停在浅蹲末帧。舞台只平移完整角色，跳跃高度来自原片。
+              男女角色来自各自的侧视原片，与角色库默认动作的取帧不同。行走、跑步按完整片段循环；跳跃保留原片的连续两次跳起，结束停在浅蹲末帧。横向移动采用镜头跟随与滚动地面，跳跃高度来自原片。
             </p>
             <p>
               17
@@ -1267,7 +1288,7 @@ export default function SideViewPlayground({
                   <input
                     type="range"
                     min={0}
-                    max={240}
+                    max={1000}
                     step={5}
                     value={preferences.walkSpeed}
                     data-testid="side-walk-speed"
@@ -1284,7 +1305,7 @@ export default function SideViewPlayground({
                   <input
                     type="range"
                     min={0}
-                    max={400}
+                    max={1400}
                     step={5}
                     value={preferences.runSpeed}
                     data-testid="side-run-speed"
@@ -1306,8 +1327,11 @@ export default function SideViewPlayground({
                   }}
                 >
                   <RotateCcw size={13} />
-                  回到中央
+                  重置位移
                 </button>
+                <p className="side-small-note">
+                  速度按原片支撑脚位移估算，可调整；动作仍以原生节奏播放。
+                </p>
               </div>
             )}
             <label className="side-toggle">

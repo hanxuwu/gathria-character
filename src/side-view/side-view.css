@@ -148,6 +148,29 @@
   object-fit: contain;
   outline-offset: -4px !important;
 }
+.side-camera-readout {
+  position: absolute;
+  bottom: 65px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 9px;
+  border: 1px solid #dfe5d6;
+  border-radius: 5px;
+  background: #fafbf6db;
+  color: #7d8c70;
+  font-size: 10px;
+  pointer-events: none;
+}
+.side-camera-readout output {
+  color: #526b44;
+  font-variant-numeric: tabular-nums;
+}
+.side-camera-readout small {
+  font-size: 9px;
+  color: #96a18a;
+}
 .side-keyboard-hint {
   min-height: 49px;
   display: flex;
