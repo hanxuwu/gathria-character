@@ -4,26 +4,28 @@ import { expect, test, type Page } from "@playwright/test";
 import { unzipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 
-const stage = (page: Page) => page.getByTestId("side-stage");
+const side = (page: Page) =>
+  page.locator('[data-testid="side-session"][data-active="true"]');
+const stage = (page: Page) => side(page).getByTestId("side-stage");
 const sha = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
 const parse = (bytes: Uint8Array) =>
   JSON.parse(Buffer.from(bytes).toString("utf8"));
 
 async function ready(page: Page) {
-  await expect(page.getByTestId("side-playground")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
     "aria-busy",
     "false",
     { timeout: 180_000 },
   );
   await expect(
-    page.getByTestId("side-playground").getByRole("alert"),
+    side(page).getByTestId("side-playground").getByRole("alert"),
   ).toHaveCount(0);
 }
 
 async function download(page: Page, id: string) {
   const waiting = page.waitForEvent("download", { timeout: 180_000 });
-  await page.getByTestId(id).click();
+  await side(page).getByTestId(id).click();
   const result = await waiting;
   expect(await result.failure()).toBeNull();
   const bytes = await readFile((await result.path())!);
@@ -68,22 +70,28 @@ for (const character of ["male", "female"] as const) {
     page.on("pageerror", (error) => pageErrors.push(error.message));
     await page.goto(`/workbench.html?mode=side-view&character=${character}`);
     await ready(page);
-    await expect(page.getByTestId("side-collection")).toHaveValue("material");
-    await page.getByTestId("side-project-input").setInputFiles({
-      name: `${character}-previous.wardrobe.zip`,
-      mimeType: "application/zip",
-      buffer: projectBytes,
-    });
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "material",
+    );
+    await side(page)
+      .getByTestId("side-project-input")
+      .setInputFiles({
+        name: `${character}-previous.wardrobe.zip`,
+        mimeType: "application/zip",
+        buffer: projectBytes,
+      });
     await ready(page);
-    await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
-    await expect(page.getByTestId("side-hair")).toHaveValue(
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "tailored",
+    );
+    await expect(side(page).getByTestId("side-hair")).toHaveValue(
       oldDocument.appearance.hairId,
     );
-    await expect(page.getByTestId("side-hair-color")).toHaveValue(
+    await expect(side(page).getByTestId("side-hair-color")).toHaveValue(
       oldDocument.appearance.hairColor,
     );
     if ((await stage(page).getAttribute("data-paused")) !== "true")
-      await page.getByTestId("side-play-pause").click();
+      await side(page).getByTestId("side-play-pause").click();
 
     // Actual previously baked artwork supplies the oracle, not the current renderer.
     const poses =
@@ -111,20 +119,20 @@ for (const character of ["male", "female"] as const) {
           y * rect.width * 4,
         );
       }
-      await page.getByTestId(`side-action-${pose.action}`).click();
+      await side(page).getByTestId(`side-action-${pose.action}`).click();
       await expect(stage(page)).toHaveAttribute("data-action", pose.action);
-      await expect(page.getByTestId("side-frame")).toHaveAttribute(
+      await expect(side(page).getByTestId("side-frame")).toHaveAttribute(
         "max",
         String(manifest.animations[pose.action].frames.length - 1),
       );
       const index = manifest.animations[pose.action].frames.indexOf(pose.frame);
-      await page.getByTestId("side-frame").fill(String(index));
+      await side(page).getByTestId("side-frame").fill(String(index));
       await expect(stage(page)).toHaveAttribute(
         "data-frame-id",
         String(pose.frame),
       );
       for (const facing of ["right", "left"] as const) {
-        await page.getByTestId(`side-facing-${facing}`).click();
+        await side(page).getByTestId(`side-facing-${facing}`).click();
         const png = decodeSourceRgbaPng(
           await download(page, "side-export-png"),
         );

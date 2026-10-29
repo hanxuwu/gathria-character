@@ -58,8 +58,11 @@ const sourceSha = {
   male: "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
   female: "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
 };
-const stage = (page) => page.getByTestId("side-stage");
-const side = (page) => page.getByTestId("side-playground");
+// The unified workbench retains inactive source-bound sessions. Select the
+// visible editor, never the first matching canvas or a hidden saved session.
+// Visibility also supports pre-unification TARGET_REPO baselines.
+const side = (page) => page.locator('[data-testid="side-playground"]:visible');
+const stage = (page) => side(page).getByTestId("side-stage");
 const report = {
   format: "gathria-kling-side-expansion-qa",
   version: 1,
@@ -97,6 +100,7 @@ const report = {
 };
 let browser, server, origin, activePage, failure;
 async function ready(page) {
+  await expect(side(page)).toHaveCount(1, { timeout: 180000 });
   await expect(side(page)).toHaveAttribute("aria-busy", "false", {
     timeout: 180000,
   });
@@ -105,7 +109,7 @@ async function ready(page) {
 }
 async function pause(page) {
   if ((await stage(page).getAttribute("data-paused")) === "false")
-    await page.getByTestId("side-play-pause").click();
+    await side(page).getByTestId("side-play-pause").click();
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
 }
 async function pose(page, action, position, facing = "right") {
@@ -116,7 +120,7 @@ async function pose(page, action, position, facing = "right") {
       (await stage(page).getAttribute("data-facing")) !== facing)
   ) {
     if ((await stage(page).getAttribute("data-paused")) === "true")
-      await page.getByTestId("side-play-pause").click();
+      await side(page).getByTestId("side-play-pause").click();
     await expect(stage(page)).toHaveAttribute("data-ended", "true", {
       timeout: 10000,
     });
@@ -126,18 +130,18 @@ async function pose(page, action, position, facing = "right") {
     (await stage(page).getAttribute("data-action")) !== action ||
     (await stage(page).getAttribute("data-facing")) !== facing
   ) {
-    await page.getByTestId("side-action-idle").click();
-    await page.getByTestId(`side-facing-${facing}`).click();
-    await page.getByTestId(`side-action-${action}`).click();
+    await side(page).getByTestId("side-action-idle").click();
+    await side(page).getByTestId(`side-facing-${facing}`).click();
+    await side(page).getByTestId(`side-action-${action}`).click();
   }
   for (const p of [position === 0 ? 1 : 0, position]) {
-    await page.getByTestId("side-frame").fill(String(p));
+    await side(page).getByTestId("side-frame").fill(String(p));
     await expect(stage(page)).toHaveAttribute("data-frame-position", String(p));
   }
 }
 async function download(page, id, name) {
   const pending = page.waitForEvent("download", { timeout: 180000 });
-  await page.getByTestId(id).click();
+  await side(page).getByTestId(id).click();
   const d = await pending;
   assert.equal(await d.failure(), null);
   const path = join(output, name);
@@ -791,12 +795,14 @@ try {
     );
     await ready(page);
     await expect(stage(page)).toHaveAttribute("data-collection", "tailored");
-    await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
-    await expect(page.getByTestId("side-hair")).toHaveValue("");
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "tailored",
+    );
+    await expect(side(page).getByTestId("side-hair")).toHaveValue("");
     const exports = {},
       pngs = {};
     for (const outfit of ["original", "daily"]) {
-      await page.getByTestId(`side-look-${outfit}`).click();
+      await side(page).getByTestId(`side-look-${outfit}`).click();
       await ready(page);
       await pose(page, "run", 4);
       const frameId = Number(await stage(page).getAttribute("data-frame-id"));
@@ -806,9 +812,9 @@ try {
         `${character}-${outfit}.png`,
       );
       (pngs[frameId] ??= {})[outfit] = png.path;
-      await page.getByTestId("side-ground").check();
-      await page.getByTestId("side-anchors").check();
-      await page.getByTestId("side-comparison").check();
+      await side(page).getByTestId("side-ground").check();
+      await side(page).getByTestId("side-anchors").check();
+      await side(page).getByTestId("side-comparison").check();
       const guides = await download(
         page,
         "side-export-png",
@@ -819,8 +825,8 @@ try {
         sha(guides.bytes),
         "Guides must not enter native PNG export.",
       );
-      await page.getByTestId("side-anchors").uncheck();
-      await page.getByTestId("side-comparison").uncheck();
+      await side(page).getByTestId("side-anchors").uncheck();
+      await side(page).getByTestId("side-comparison").uncheck();
       await pose(page, "run", 4, "left");
       const left = await download(
         page,
@@ -859,7 +865,7 @@ try {
         "data-frame-id",
         String(repair.frameId),
       );
-      await expect(page.getByTestId("side-hair")).toHaveValue("");
+      await expect(side(page).getByTestId("side-hair")).toHaveValue("");
       const name = `${character}-daily-${repair.action}-frame-${repair.frameId}.png`;
       const exported = await download(page, "side-export-png", name);
       report.repairedPoseExports.push({
@@ -893,7 +899,7 @@ try {
         page,
         stage(page),
         source.manifest.animations[action],
-        () => page.getByTestId("side-play-pause").click(),
+        () => side(page).getByTestId("side-play-pause").click(),
       );
       await pause(page);
       report.playback.push({
@@ -909,14 +915,16 @@ try {
       await capture(page, `${character}-jump-${200 + p}`);
     }
     // The full styled outfit is a separate actual export for visual acceptance.
-    const styledHairOptions = await page
+    const styledHairOptions = await side(page)
       .getByTestId("side-hair")
       .locator("option")
       .evaluateAll((options) => options.map((o) => o.value).filter(Boolean));
     assert(styledHairOptions.length >= 1);
-    await page.getByTestId("side-hair").selectOption(styledHairOptions[0]);
+    await side(page)
+      .getByTestId("side-hair")
+      .selectOption(styledHairOptions[0]);
     await ready(page);
-    await page.getByTestId("side-hair-color").selectOption("chestnut");
+    await side(page).getByTestId("side-hair-color").selectOption("chestnut");
     await ready(page);
     await pose(page, "run", 4);
     await download(page, "side-export-png", `${character}-styled.png`);
@@ -948,14 +956,14 @@ try {
       styledPack.path,
     );
     await capture(page, `${character}-styled-workspace`);
-    await page.getByTestId("side-hair").selectOption("");
+    await side(page).getByTestId("side-hair").selectOption("");
     await ready(page);
     // Mix a new bottom with original top, preserve hair selection on save/reopen.
     await pose(page, "run", 4, "left");
     const dailySelection = parse(
       await stage(page).getAttribute("data-selection"),
     );
-    await page.getByTestId("side-top").selectOption("");
+    await side(page).getByTestId("side-top").selectOption("");
     await ready(page);
     const mixed = parse(await stage(page).getAttribute("data-selection"));
     assert.equal(mixed.top, null);
@@ -966,7 +974,7 @@ try {
       "side-export-pack",
       `${character}-mixed-clothes.character.zip`,
     );
-    const hairOptions = await page
+    const hairOptions = await side(page)
       .getByTestId("side-hair")
       .locator("option")
       .evaluateAll((options) => options.map((o) => o.value).filter(Boolean));
@@ -974,9 +982,9 @@ try {
       hairOptions.length >= 1,
       "Expansion hair bank must expose an authored hairstyle.",
     );
-    await page.getByTestId("side-hair").selectOption(hairOptions[0]);
+    await side(page).getByTestId("side-hair").selectOption(hairOptions[0]);
     await ready(page);
-    await page.getByTestId("side-hair-color").selectOption("espresso");
+    await side(page).getByTestId("side-hair-color").selectOption("espresso");
     await ready(page);
     await pose(page, "run", 4, "left");
     const mixedPng = await download(
@@ -1010,13 +1018,19 @@ try {
     assert.deepEqual(document.preview, { action: "run", facing: "left" });
     await page.reload();
     await ready(page);
-    await page
+    await side(page)
       .getByTestId("side-project-input")
       .setInputFiles(mixedProject.path);
     await ready(page);
-    await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
-    await expect(page.getByTestId("side-hair")).toHaveValue(hairOptions[0]);
-    await expect(page.getByTestId("side-hair-color")).toHaveValue("espresso");
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "tailored",
+    );
+    await expect(side(page).getByTestId("side-hair")).toHaveValue(
+      hairOptions[0],
+    );
+    await expect(side(page).getByTestId("side-hair-color")).toHaveValue(
+      "espresso",
+    );
     await pose(page, "run", 4, "left");
     const reopened = await download(
       page,
@@ -1043,7 +1057,7 @@ try {
         "side-save-project",
       ];
       for (const id of controls) {
-        const control = page.getByTestId(id);
+        const control = side(page).getByTestId(id);
         await control.scrollIntoViewIfNeeded();
         await expect(control).toBeVisible();
         const bounds = await control.boundingBox();
@@ -1052,7 +1066,7 @@ try {
           `Mobile control overflows viewport: ${id}`,
         );
       }
-      await page.getByTestId("side-collection").scrollIntoViewIfNeeded();
+      await side(page).getByTestId("side-collection").scrollIntoViewIfNeeded();
       await page.screenshot({
         path: join(output, "male-mobile-390.png"),
         fullPage: true,
@@ -1066,10 +1080,10 @@ try {
       await page.setViewportSize({ width: 1440, height: 1100 });
     }
     // Legacy defaults and the old embedded registration still open independently.
-    await page.getByTestId("side-collection").selectOption("material");
+    await side(page).getByTestId("side-collection").selectOption("material");
     await ready(page);
     await expect(stage(page)).toHaveAttribute("data-collection", "material");
-    await page.getByTestId("side-look-daily").click();
+    await side(page).getByTestId("side-look-daily").click();
     await ready(page);
     await pose(page, "run", 4);
     const legacyPng = await download(
@@ -1096,11 +1110,13 @@ try {
     );
     await page.reload();
     await ready(page);
-    await page
+    await side(page)
       .getByTestId("side-project-input")
       .setInputFiles(legacyProject.path);
     await ready(page);
-    await expect(page.getByTestId("side-collection")).toHaveValue("material");
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "material",
+    );
     await pose(page, "run", 4);
     const legacyReopened = await download(
       page,

@@ -1,5 +1,7 @@
 // Isolate the side-view loader change with the same immutable asset snapshot.
 // No source/garment/image edits and no reduced import validation in either build.
+// Both sides use the current UI. Restoring a retained UI context is reported
+// separately from loading one, and is not evidence of a faster catalog import.
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -29,6 +31,7 @@ try {
 }
 await mkdir(dirname(output), { recursive: true });
 const sha = (data) => createHash("sha256").update(data).digest("hex");
+const side = (page) => page.locator('[data-testid="side-playground"]:visible');
 const baseline = execFileSync(
   "git",
   ["show", `${args["baseline-ref"]}:src/side-view/catalog.ts`],
@@ -88,7 +91,7 @@ const report = {
   startedAt: new Date().toISOString(),
   passed: false,
   scope:
-    "Real Chromium, Vite development modules, HTTP cache disabled. Same frozen asset bytes and validation code; only catalog loader is replaced by git baseline. Catalog load excludes compositor/preflight/UI. Heap is a noisy browser observation, not total process/GPU memory.",
+    "Real Chromium, Vite development modules, HTTP cache disabled. Same frozen asset bytes and validation code; only catalog loader is replaced by git baseline. Both UI runs use the current workbench. Catalog load excludes compositor/preflight/UI. UI context restoration is recorded separately and is not a loader speedup. Heap is a noisy browser observation, not total process/GPU memory.",
   latencyMsPerAsset: latency,
   baselineRef: args["baseline-ref"],
   assetRef: args["asset-ref"] || args["baseline-ref"],
@@ -107,6 +110,24 @@ const report = {
   ),
   runs: [],
   uiRuns: [],
+  uiTimingSemantics: {
+    "fresh-document-load":
+      "Initial page navigation through ready UI; includes document/module loading.",
+    "new-context-load":
+      "First opening of this source-bound context in an existing workbench.",
+    "context-reload":
+      "Switch requiring a load because no ready retained context was present.",
+    "retained-context-restore":
+      "A ready matching context existed before the action; visibility restoration, not catalog loading.",
+    comparisonRule:
+      "Compare only equal operation labels. Never pool retained restorations with fresh loads or infer catalog speedup from them.",
+  },
+  uiTimingGroups: {
+    "fresh-document-load": [],
+    "new-context-load": [],
+    "context-reload": [],
+    "retained-context-restore": [],
+  },
   errors: [],
 };
 const servers = [];
@@ -271,51 +292,78 @@ try {
           ];
           for (let i = 0; i < sequence.length; i++) {
             const [id, collection] = sequence[i];
+            // Inspect before starting the existing measured interval: a fast
+            // return to a retained editor must not be labelled a fresh import.
+            const beforeAction = await page.evaluate(
+              ({ id, collection }) => {
+                const slots = [
+                  ...document.querySelectorAll('[data-testid="side-session"]'),
+                ];
+                const target = slots.find(
+                  (slot) =>
+                    slot.getAttribute("data-character") === id &&
+                    slot.getAttribute("data-collection") === collection,
+                );
+                return {
+                  retainedWorkspace: slots.length > 0,
+                  targetSessionKey:
+                    target?.getAttribute("data-session-key") ?? null,
+                  ready: !!target?.querySelector(
+                    '[data-testid="side-playground"][aria-busy="false"] [data-testid="side-stage"][data-frame-id]',
+                  ),
+                };
+              },
+              { id, collection },
+            );
+            const operation =
+              i === 0
+                ? "fresh-document-load"
+                : beforeAction.ready
+                  ? "retained-context-restore"
+                  : beforeAction.retainedWorkspace &&
+                      !beforeAction.targetSessionKey
+                    ? "new-context-load"
+                    : "context-reload";
             const start = performance.now();
             if (i === 0) {
               await page.goto(
                 `http://127.0.0.1:${kind === "before" ? 5192 : 5193}/workbench.html?character=male&mode=side-view&collection=tailored`,
               );
             } else if (sequence[i - 1][0] !== id) {
-              await page.getByTestId("side-character").selectOption(id);
+              await side(page).getByTestId("side-character").selectOption(id);
             } else {
-              await page
+              await side(page)
                 .getByTestId("side-collection")
                 .selectOption(collection);
             }
-            await expect(page.getByTestId("side-playground")).toHaveAttribute(
-              "aria-busy",
-              "false",
-              { timeout: 180000 },
-            );
-            await expect(page.getByTestId("side-stage")).toHaveAttribute(
+            await expect(side(page)).toHaveAttribute("aria-busy", "false", {
+              timeout: 180000,
+            });
+            await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
               "data-character",
               id,
             );
-            await expect(page.getByTestId("side-stage")).toHaveAttribute(
+            await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
               "data-collection",
               collection,
             );
             const elapsedMs = performance.now() - start;
             assert.deepEqual(
-              await page
-                .getByTestId("side-playground")
-                .getByRole("alert")
-                .allTextContents(),
+              await side(page).getByRole("alert").allTextContents(),
               [],
             );
             if (
-              (await page
+              (await side(page)
                 .getByTestId("side-stage")
                 .getAttribute("data-paused")) === "false"
             )
-              await page.getByTestId("side-play-pause").click();
-            await page.getByTestId("side-frame").fill("0");
-            await expect(page.getByTestId("side-stage")).toHaveAttribute(
+              await side(page).getByTestId("side-play-pause").click();
+            await side(page).getByTestId("side-frame").fill("0");
+            await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
               "data-frame-position",
               "0",
             );
-            const pixels = await page
+            const pixels = await side(page)
               .getByTestId("side-stage")
               .evaluate(async (canvas) => {
                 const rgba = canvas
@@ -332,9 +380,23 @@ try {
                   heapBytes: performance.memory?.usedJSHeapSize ?? null,
                 };
               });
-            ui.samples.push({ id, collection, elapsedMs, pixels });
+            ui.samples.push({
+              id,
+              collection,
+              operation,
+              beforeAction,
+              elapsedMs,
+              pixels,
+            });
+            report.uiTimingGroups[operation].push({
+              round,
+              kind,
+              id,
+              collection,
+              elapsedMs,
+            });
             console.log(
-              `${round} ${kind} UI ${id}/${collection}=${Math.round(elapsedMs)}ms`,
+              `${round} ${kind} UI ${id}/${collection} [${operation}]=${Math.round(elapsedMs)}ms`,
             );
           }
           report.uiRuns.push(ui);

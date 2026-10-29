@@ -6,11 +6,15 @@ contains their original playback, portable export and the separate male and fema
 skeletal candidates; unrelated classic characters and experiments have been
 removed from the working tree.
 
-Current side-view candidate: **clothing continuity and reusable fitting review**.
-Open **侧视新款试装与发型**, then **服装校正 · 锚点与遮挡** for adjacent native
+Current workspace candidate: **one character entry, retained source-specific editing**.
+From the library choose **编辑人物**, then **人物素材 → 侧视 · 横版动作**.
+Choose **服装组 → 新款试装 · 上衣与下装**, then **服装校正 · 锚点与遮挡** for adjacent native
 poses, local ownership repairs and source-bound review templates. Male neckline
 and female forearm corrections preserve the original body and action timing.
-[Current review, actual exports and limits](docs/kling-side-refinement/README.md).
+Original actions, wardrobe, themes and the optional skeleton tools remain in the
+same workbench. Source/tool changes retain open sessions; save projects before
+reloading. [Unified workspace guide and verification](docs/unified-workbench/README.md) ·
+[Clothing review, actual exports and limits](docs/kling-side-refinement/README.md).
 
 ## Open the app
 
@@ -51,8 +55,8 @@ export timing remain unchanged.
 
 | Main destination                             | Available now                                                           |
 | -------------------------------------------- | ----------------------------------------------------------------------- |
-| `/`                                          | Two originals, wardrobe and optional skeleton entries                   |
-| `/workbench.html?character=male` or `female` | Sprite actions, wardrobe, themes and persistent skeletal sessions       |
+| `/`                                          | Two originals, one **编辑人物** entry per character                   |
+| `/workbench.html?character=male` or `female` | Original/side-view tools, wardrobe, themes and retained skeletal sessions       |
 | `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export |
 
 `/workbench.html?character=male&mode=themes` opens **Character themes** directly;

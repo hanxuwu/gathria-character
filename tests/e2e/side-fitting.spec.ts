@@ -3,9 +3,13 @@ import { expect, test, type Page } from "@playwright/test";
 import { unzipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 
+// Retained sessions keep their state; interactions target the active source only.
+const side = (page: Page) =>
+  page.locator('[data-testid="side-session"][data-active="true"]');
+
 const evidence = "/tmp/side-fitting/workbench/browser";
 async function ready(page: Page) {
-  await expect(page.getByTestId("side-playground")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
     "aria-busy",
     "false",
     { timeout: 180_000 },
@@ -23,24 +27,24 @@ async function open(page: Page, character: "male" | "female") {
     `/workbench.html?mode=side-view&collection=tailored&character=${character}`,
   );
   await ready(page);
-  await page.getByTestId("side-play-pause").click();
-  await page.getByTestId("side-action-run").click();
-  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+  await side(page).getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-action-run").click();
+  await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
     "data-action",
     "run",
   );
-  await page.getByTestId("side-frame").fill("4");
-  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+  await side(page).getByTestId("side-frame").fill("4");
+  await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
     "data-frame-position",
     "4",
   );
-  await page.getByTestId("side-fitting-toggle").click();
-  await expect(page.getByTestId("side-fitting")).toBeVisible();
-  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+  await side(page).getByTestId("side-fitting-toggle").click();
+  await expect(side(page).getByTestId("side-fitting")).toBeVisible();
+  await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
     "data-paused",
     "true",
   );
-  await page.getByTestId("fitting-guides").uncheck();
+  await side(page).getByTestId("fitting-guides").uncheck();
 }
 
 test("side fitting keeps source guides exact, audits every action, and round-trips a corrected garment", async ({
@@ -52,28 +56,30 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   page.on("pageerror", (cause) => errors.push(cause.message));
   await open(page, "male");
   const pngBefore = await download(page, () =>
-    page.getByTestId("side-export-png").click(),
+    side(page).getByTestId("side-export-png").click(),
   );
   await ready(page);
   await page.keyboard.press("ArrowRight");
   await page.keyboard.press("Space");
-  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
     "data-paused",
     "true",
   );
-  await page.getByTestId("fitting-guides").check();
+  await side(page).getByTestId("fitting-guides").check();
   expect(
-    await download(page, () => page.getByTestId("side-export-png").click()),
+    await download(page, () =>
+      side(page).getByTestId("side-export-png").click(),
+    ),
   ).toEqual(pngBefore);
   await ready(page);
-  await page.getByTestId("fitting-audit").click();
-  await expect(page.getByTestId("fitting-audit-results")).toBeVisible({
+  await side(page).getByTestId("fitting-audit").click();
+  await expect(side(page).getByTestId("fitting-audit-results")).toBeVisible({
     timeout: 120_000,
   });
   const audit = JSON.parse(
     (
       await download(page, () =>
-        page.getByTestId("fitting-audit-export").click(),
+        side(page).getByTestId("fitting-audit-export").click(),
       )
     ).toString(),
   );
@@ -92,7 +98,7 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   expect(jump.at(-1).nextFrameId).toBeNull();
   const guides = unzipSync(
     await download(page, () =>
-      page.getByTestId("fitting-guides-export").click(),
+      side(page).getByTestId("fitting-guides-export").click(),
     ),
   );
   expect(guides["registration.json"]).toEqual(
@@ -107,8 +113,8 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
       await readFile("docs/kling-side-expansion/assets/male-shirt.garment.zip"),
     ),
   );
-  await page.getByTestId("fitting-guides").uncheck();
-  const coordinate = await page
+  await side(page).getByTestId("fitting-guides").uncheck();
+  const coordinate = await side(page)
     .getByTestId("fitting-cloth")
     .evaluate((element) => {
       const canvas = element as HTMLCanvasElement;
@@ -134,11 +140,11 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
         }
       throw Error("No solid clothing sample in torso");
     });
-  await page.getByTestId("fitting-guides").check();
-  await page
+  await side(page).getByTestId("fitting-guides").check();
+  await side(page)
     .getByTestId("side-fitting")
     .screenshot({ path: `${evidence}/male-fitting-desktop.png` });
-  await page.getByTestId("fitting-repair").click();
+  await side(page).getByTestId("fitting-repair").click();
   const dialog = page.getByRole("dialog", { name: "Clothing mask workbench" });
   await expect(
     dialog.getByRole("button", { name: "Restore source", exact: true }),
@@ -181,10 +187,12 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   );
   await dialog.getByRole("button", { name: "Close mask workbench" }).click();
   expect(
-    await download(page, () => page.getByTestId("side-export-png").click()),
+    await download(page, () =>
+      side(page).getByTestId("side-export-png").click(),
+    ),
   ).toEqual(pngBefore);
   await ready(page);
-  await page.getByTestId("fitting-repair").click();
+  await side(page).getByTestId("fitting-repair").click();
   await expect(
     dialog.getByRole("button", { name: "Open mask draft" }),
   ).toBeEnabled({ timeout: 180_000 });
@@ -236,15 +244,15 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
     .click();
   await expect(candidate).toHaveCount(0, { timeout: 180_000 });
   await ready(page);
-  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
     "data-selection",
     /side-fitting-browser-proof/,
   );
-  await expect(page.getByTestId("fitting-workflow-status")).toContainText(
+  await expect(side(page).getByTestId("fitting-workflow-status")).toContainText(
     "修正已应用",
   );
   const corrected = await download(page, () =>
-    page.getByTestId("side-export-png").click(),
+    side(page).getByTestId("side-export-png").click(),
   );
   await ready(page);
   const before = decodeSourceRgbaPng(pngBefore),
@@ -256,10 +264,10 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
       changed++;
   expect(changed).toBe(5);
   const saved = await download(page, () =>
-    page.getByTestId("side-save-project").click(),
+    side(page).getByTestId("side-save-project").click(),
   );
   await ready(page);
-  await expect(page.getByTestId("fitting-workflow-status")).toContainText(
+  await expect(side(page).getByTestId("fitting-workflow-status")).toContainText(
     "项目下载已发起",
   );
   const savedFiles = unzipSync(saved);
@@ -271,7 +279,7 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   expect(savedFiles["registration.json"]).toEqual(guides["registration.json"]);
   await page.reload();
   await ready(page);
-  await page.getByTestId("side-project-input").setInputFiles({
+  await side(page).getByTestId("side-project-input").setInputFiles({
     name: "corrected.wardrobe.zip",
     mimeType: "application/zip",
     buffer: saved,
@@ -281,27 +289,29 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   // Stop playback before selecting the exact oracle frame; a range fill equal
   // to the live value may emit no change event and must not leave it playing.
   if (
-    (await page.getByTestId("side-stage").getAttribute("data-paused")) !==
+    (await side(page).getByTestId("side-stage").getAttribute("data-paused")) !==
     "true"
   )
-    await page.getByTestId("side-play-pause").click();
-  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+    await side(page).getByTestId("side-play-pause").click();
+  await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
     "data-paused",
     "true",
   );
-  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
     "data-action",
     "run",
   );
   for (const position of [0, 4]) {
-    await page.getByTestId("side-frame").fill(String(position));
-    await expect(page.getByTestId("side-stage")).toHaveAttribute(
+    await side(page).getByTestId("side-frame").fill(String(position));
+    await expect(side(page).getByTestId("side-stage")).toHaveAttribute(
       "data-frame-position",
       String(position),
     );
   }
   expect(
-    await download(page, () => page.getByTestId("side-export-png").click()),
+    await download(page, () =>
+      side(page).getByTestId("side-export-png").click(),
+    ),
   ).toEqual(corrected);
   expect(errors).toEqual([]);
 });
@@ -312,42 +322,48 @@ test("female fitting shows original anchors, cancels draft safely and fits a nar
   test.setTimeout(240_000);
   await mkdir(evidence, { recursive: true });
   await open(page, "female");
-  await page
+  await side(page)
     .getByTestId("fitting-item")
     .selectOption("side-female-rose-skirt-v1");
-  await page.getByTestId("fitting-action").selectOption("jump");
-  await page.getByTestId("fitting-position").fill("49");
-  await expect(page.getByTestId("fitting-frame")).toContainText("视频帧 249");
-  await page.getByTestId("fitting-guides").check();
-  await page.getByTestId("fitting-audit").click();
-  await expect(page.getByTestId("fitting-audit-results")).toBeVisible({
+  await side(page).getByTestId("fitting-action").selectOption("jump");
+  await side(page).getByTestId("fitting-position").fill("49");
+  await expect(side(page).getByTestId("fitting-frame")).toContainText(
+    "视频帧 249",
+  );
+  await side(page).getByTestId("fitting-guides").check();
+  await side(page).getByTestId("fitting-audit").click();
+  await expect(side(page).getByTestId("fitting-audit-results")).toBeVisible({
     timeout: 120_000,
   });
   const before = await download(page, () =>
-    page.getByTestId("side-export-png").click(),
+    side(page).getByTestId("side-export-png").click(),
   );
   await ready(page);
-  await page.getByTestId("fitting-repair").click();
+  await side(page).getByTestId("fitting-repair").click();
   const dialog = page.getByRole("dialog", { name: "Clothing mask workbench" });
   await expect(
     dialog.getByRole("button", { name: "Restore source", exact: true }),
   ).toBeEnabled({ timeout: 180_000 });
   await dialog.getByRole("button", { name: "Close mask workbench" }).click();
   expect(
-    await download(page, () => page.getByTestId("side-export-png").click()),
+    await download(page, () =>
+      side(page).getByTestId("side-export-png").click(),
+    ),
   ).toEqual(before);
   await ready(page);
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByTestId("fitting-zoom").selectOption("2");
-  const widths = await page.getByTestId("side-fitting").evaluate((element) => ({
-    body: document.documentElement.scrollWidth,
-    viewport: window.innerWidth,
-    panel: element.getBoundingClientRect().width,
-  }));
+  await side(page).getByTestId("fitting-zoom").selectOption("2");
+  const widths = await side(page)
+    .getByTestId("side-fitting")
+    .evaluate((element) => ({
+      body: document.documentElement.scrollWidth,
+      viewport: window.innerWidth,
+      panel: element.getBoundingClientRect().width,
+    }));
   expect(widths.body).toBeLessThanOrEqual(widths.viewport + 1);
   expect(widths.panel).toBeLessThanOrEqual(widths.viewport);
-  await page.getByTestId("fitting-zoom").selectOption("fit");
-  await page
+  await side(page).getByTestId("fitting-zoom").selectOption("fit");
+  await side(page)
     .getByTestId("side-fitting")
     .screenshot({ path: `${evidence}/female-fitting-mobile.png` });
 });

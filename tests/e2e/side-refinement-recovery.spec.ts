@@ -4,8 +4,10 @@ import { expect, test, type Page } from "@playwright/test";
 import { strToU8, unzipSync, zipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 
-const stage = (page: Page) => page.getByTestId("side-stage");
-const panel = (page: Page) => page.getByTestId("side-playground");
+const side = (page: Page) =>
+  page.locator('[data-testid="side-session"][data-active="true"]');
+const stage = (page: Page) => side(page).getByTestId("side-stage");
+const panel = (page: Page) => side(page).getByTestId("side-playground");
 const sha = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
 const parse = (bytes: Uint8Array) =>
@@ -18,7 +20,7 @@ async function ready(page: Page) {
 }
 async function download(page: Page, id: string) {
   const waiting = page.waitForEvent("download", { timeout: 180_000 });
-  await page.getByTestId(id).click();
+  await side(page).getByTestId(id).click();
   const result = await waiting;
   expect(await result.failure()).toBeNull();
   const bytes = await readFile((await result.path())!);
@@ -72,15 +74,19 @@ for (const character of ["male", "female"] as const) {
       });
     await page.goto(`/workbench.html?mode=side-view&character=${character}`);
     await ready(page);
-    await page.getByTestId("side-project-input").setInputFiles({
-      name: `${character}-pr54.wardrobe.zip`,
-      mimeType: "application/zip",
-      buffer: projectBytes,
-    });
+    await side(page)
+      .getByTestId("side-project-input")
+      .setInputFiles({
+        name: `${character}-pr54.wardrobe.zip`,
+        mimeType: "application/zip",
+        buffer: projectBytes,
+      });
     await ready(page);
-    await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "tailored",
+    );
     if ((await stage(page).getAttribute("data-paused")) !== "true")
-      await page.getByTestId("side-play-pause").click();
+      await side(page).getByTestId("side-play-pause").click();
     await expect(stage(page)).toHaveAttribute("data-paused", "true");
     const poses =
       character === "male"
@@ -108,22 +114,22 @@ for (const character of ["male", "female"] as const) {
           y * rect.width * 4,
         );
       }
-      await page.getByTestId(`side-action-${pose.action}`).click();
+      await side(page).getByTestId(`side-action-${pose.action}`).click();
       await expect(stage(page)).toHaveAttribute("data-action", pose.action);
-      await expect(page.getByTestId("side-frame")).toHaveAttribute(
+      await expect(side(page).getByTestId("side-frame")).toHaveAttribute(
         "max",
         String(manifest.animations[pose.action].frames.length - 1),
       );
       const index = manifest.animations[pose.action].frames.indexOf(pose.frame);
       for (const position of [index === 0 ? 1 : 0, index]) {
-        await page.getByTestId("side-frame").fill(String(position));
+        await side(page).getByTestId("side-frame").fill(String(position));
         await expect(stage(page)).toHaveAttribute(
           "data-frame-position",
           String(position),
         );
       }
       for (const facing of ["right", "left"] as const) {
-        await page.getByTestId(`side-facing-${facing}`).click();
+        await side(page).getByTestId(`side-facing-${facing}`).click();
         await expect(stage(page)).toHaveAttribute("data-facing", facing);
         lastPng = await download(page, "side-export-png");
         const png = decodeSourceRgbaPng(lastPng),
@@ -177,11 +183,13 @@ for (const character of ["male", "female"] as const) {
       const badDocument = structuredClone(document);
       badDocument.items[0].sha256 = sha(corrupt["item-0.zip"]);
       corrupt["document.json"] = strToU8(JSON.stringify(badDocument));
-      await page.getByTestId("side-project-input").setInputFiles({
-        name: "invalid-inner-garment.wardrobe.zip",
-        mimeType: "application/zip",
-        buffer: Buffer.from(zipSync(corrupt)),
-      });
+      await side(page)
+        .getByTestId("side-project-input")
+        .setInputFiles({
+          name: "invalid-inner-garment.wardrobe.zip",
+          mimeType: "application/zip",
+          buffer: Buffer.from(zipSync(corrupt)),
+        });
       await expect(panel(page)).toHaveAttribute("aria-busy", "false", {
         timeout: 180_000,
       });

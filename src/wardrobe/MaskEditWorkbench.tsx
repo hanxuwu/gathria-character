@@ -17,9 +17,11 @@ import {
   type MaskBuildReport,
   type MaskEditSession,
 } from "./mask-edit";
+import { useRetainedDialog } from "./retained-dialog";
 import "./mask-edit.css";
 
 interface Props {
+  active?: boolean;
   project: WardrobeProject;
   itemId: string;
   action: PortableAnimationName;
@@ -65,6 +67,7 @@ function imageCanvas(image: RgbaPng): HTMLCanvasElement {
  * included in the newly named garment; the parent still validates and previews
  * that garment before it can replace the selected look. */
 export default function MaskEditWorkbench({
+  active = true,
   project,
   itemId,
   action,
@@ -79,6 +82,8 @@ export default function MaskEditWorkbench({
   const draftInput = useRef<HTMLInputElement>(null);
   const sessionRef = useRef<MaskEditSession | null>(null);
   const alive = useRef(true);
+  const activeRef = useRef(active);
+  activeRef.current = active;
   const controller = useRef<AbortController | null>(null);
   const request = useRef(0);
   const drawing = useRef<{ pointerId: number; points: Point[] } | null>(null);
@@ -139,11 +144,19 @@ export default function MaskEditWorkbench({
           )
       : [];
 
+  useRetainedDialog(dialog, active);
+
+  useLayoutEffect(() => {
+    if (active) return;
+    const stroke = drawing.current;
+    drawing.current = null;
+    if (stroke && editCanvas.current?.hasPointerCapture(stroke.pointerId))
+      editCanvas.current.releasePointerCapture(stroke.pointerId);
+    paintPreview.current = () => undefined;
+  }, [active]);
+
   useEffect(() => {
     alive.current = true;
-    const target = dialog.current;
-    const returnFocus = document.activeElement;
-    target?.showModal();
     return () => {
       alive.current = false;
       request.current++;
@@ -151,9 +164,6 @@ export default function MaskEditWorkbench({
       drawing.current = null;
       sessionRef.current?.dispose();
       sessionRef.current = null;
-      target?.close();
-      if (returnFocus instanceof HTMLElement && returnFocus.isConnected)
-        returnFocus.focus();
     };
   }, []);
 
@@ -239,6 +249,7 @@ export default function MaskEditWorkbench({
   }, [session, project, item, frameId, area]);
 
   useLayoutEffect(() => {
+    if (!active) return;
     const canvases = [
       sourceCanvas.current,
       beforeCanvas.current,
@@ -345,7 +356,7 @@ export default function MaskEditWorkbench({
       }
       setError(describe(cause));
     }
-  }, [view, frameId, crop, overlay, sample, tool, radius, revision]);
+  }, [active, view, frameId, crop, overlay, sample, tool, radius, revision]);
 
   function update(next: PoseView, message?: string) {
     setView(next);
@@ -441,7 +452,7 @@ export default function MaskEditWorkbench({
   }
 
   function pointerDown(event: ReactPointerEvent<HTMLCanvasElement>) {
-    if (busy || !view || event.button !== 0) return;
+    if (!activeRef.current || busy || !view || event.button !== 0) return;
     event.preventDefault();
     const point = nativePoint(event);
     setX(point.x);
@@ -460,6 +471,7 @@ export default function MaskEditWorkbench({
   }
 
   function pointerMove(event: ReactPointerEvent<HTMLCanvasElement>) {
+    if (!activeRef.current) return;
     const active = drawing.current;
     if (!active || active.pointerId !== event.pointerId) return;
     const point = nativePoint(event);
@@ -480,7 +492,7 @@ export default function MaskEditWorkbench({
     drawing.current = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId))
       event.currentTarget.releasePointerCapture(event.pointerId);
-    if (!cancel) applyStroke(active.points);
+    if (!cancel && activeRef.current) applyStroke(active.points);
     paintPreview.current();
   }
 
@@ -633,7 +645,7 @@ export default function MaskEditWorkbench({
       aria-label="Clothing mask workbench"
       onCancel={(event) => {
         event.preventDefault();
-        onClose();
+        if (activeRef.current) onClose();
       }}
     >
       <header className="mask-edit-header">

@@ -55,6 +55,11 @@ export interface FittingWorkbenchProps {
   action: SideAction;
   frameId: number;
   disabled?: boolean;
+  active?: boolean;
+  /** Deliberate inspection changes also position the shared stage and exports. */
+  onPose?: (action: SideAction, frameId: number) => void;
+  /** Keep parent pose/material controls fixed while a correction is in progress. */
+  onEditingChange?: (locked: boolean) => void;
   /** Identity whose project ZIP download was successfully initiated by the parent. */
   savedProject?: WardrobeProject | null;
   onApply: (project: WardrobeProject) => Promise<void>;
@@ -68,6 +73,9 @@ export default function FittingWorkbench({
   action: initialAction,
   frameId: initialFrame,
   disabled = false,
+  active = true,
+  onPose,
+  onEditingChange,
   savedProject = null,
   onApply,
 }: FittingWorkbenchProps) {
@@ -113,6 +121,8 @@ export default function FittingWorkbench({
   const alive = useRef(true);
   const currentProject = useRef(project);
   currentProject.current = project;
+  const callbacks = useRef({ onPose, onEditingChange });
+  callbacks.current = { onPose, onEditingChange };
   const candidateRef = useRef<Candidate | null>(null);
   candidateRef.current = candidate;
   const item = worn.find((entry) => entry.manifest.id === itemId) ?? worn[0];
@@ -125,7 +135,8 @@ export default function FittingWorkbench({
   const registered = project.registration.frames.find(
     (frame) => frame.frameId === frameId,
   );
-  const locked = disabled || busy || editing || candidate !== null;
+  const editingLocked = busy || editing || candidate !== null;
+  const locked = disabled || !active || editingLocked;
   const neighborPositions = clip
     ? [
         safePosition > 0
@@ -157,20 +168,54 @@ export default function FittingWorkbench({
           ? "修正已应用到当前项目，请保存项目下载副本"
           : "当前搭配：检查与预览不会自动保存项目";
 
+  function selectPosition(nextAction: SideAction, nextPosition: number) {
+    if (locked) return;
+    const nextClip = project.archive.manifest.animations[nextAction];
+    if (!nextClip || !Number.isSafeInteger(nextPosition)) return;
+    const index = Math.max(
+      0,
+      Math.min(nextPosition, nextClip.frames.length - 1),
+    );
+    const nextFrame = nextClip.frames[index];
+    if (nextFrame === undefined) return;
+    setAction(nextAction);
+    setPosition(index);
+    callbacks.current.onPose?.(nextAction, nextFrame);
+  }
+
   function inspectPosition(
     nextAction: SideAction,
     nextPosition: number,
     repair = false,
   ) {
-    setAction(nextAction);
-    setPosition(nextPosition);
+    if (locked) return;
+    selectPosition(nextAction, nextPosition);
     setShowNeighbors(true);
     if (repair) setEditing(true);
     else
-      requestAnimationFrame(() =>
-        neighborSection.current?.scrollIntoView({ block: "nearest" }),
-      );
+      requestAnimationFrame(() => {
+        if (neighborSection.current?.checkVisibility())
+          neighborSection.current.scrollIntoView({ block: "nearest" });
+      });
   }
+
+  // The stage owns playback. Follow its pose when no correction is locked;
+  // deliberate inspector changes call onPose above, never from this effect.
+  // This keeps PNG/GIF exports on the inspected action without feedback loops.
+  useEffect(() => {
+    if (!active || locked) return;
+    const index =
+      project.archive.manifest.animations[initialAction]?.frames.indexOf(
+        initialFrame,
+      );
+    if (index === undefined || index < 0) return;
+    setAction(initialAction);
+    setPosition(index);
+  }, [active, locked, initialAction, initialFrame, project]);
+
+  useEffect(() => {
+    callbacks.current.onEditingChange?.(editingLocked);
+  }, [editingLocked]);
 
   useEffect(() => {
     alive.current = true;
@@ -179,6 +224,7 @@ export default function FittingWorkbench({
       request.current++;
       abort.current?.abort();
       candidateRef.current?.renderer.dispose();
+      callbacks.current.onEditingChange?.(false);
     };
   }, []);
   useEffect(() => {
@@ -201,7 +247,7 @@ export default function FittingWorkbench({
   }, [item?.sha256, project]);
 
   useEffect(() => {
-    if (!item || frameId === undefined || !registered) return;
+    if (!active || !item || frameId === undefined || !registered) return;
     try {
       const cloth = clothingPose(item, frameId);
       const views: Record<string, RgbaPng> = {
@@ -258,10 +304,10 @@ export default function FittingWorkbench({
     } catch (cause) {
       setError(message(cause));
     }
-  }, [item, frameId, registered, renderer, guides, project]);
+  }, [active, item, frameId, registered, renderer, guides, project]);
 
   useEffect(() => {
-    if (!showNeighbors || !item) return;
+    if (!active || !showNeighbors || !item) return;
     try {
       for (let index = 0; index < neighborIds.length; index++) {
         const id = neighborIds[index];
@@ -288,12 +334,21 @@ export default function FittingWorkbench({
     } catch (cause) {
       setError(message(cause));
     }
-  }, [showNeighbors, neighborView, item, renderer, action, safePosition, clip]);
+  }, [
+    active,
+    showNeighbors,
+    neighborView,
+    item,
+    renderer,
+    action,
+    safePosition,
+    clip,
+  ]);
 
   // Native zoom should initially show the character rather than the empty
   // canvas corner. Do not recenter on scrubbing: manual panning remains stable.
   useEffect(() => {
-    if (zoom === "fit" || !registered) return;
+    if (!active || zoom === "fit" || !registered) return;
     const scale = Number(zoom);
     const points = registered.points;
     const x = (points.waistLeft.x + points.waistRight.x) / 2;
@@ -311,7 +366,7 @@ export default function FittingWorkbench({
       }
     });
     return () => cancelAnimationFrame(raf);
-  }, [zoom, showNeighbors, project.document.sourceSha256]);
+  }, [active, zoom, showNeighbors, project.document.sourceSha256]);
 
   async function runAudit() {
     if (!item || locked) return;
@@ -543,10 +598,9 @@ export default function FittingWorkbench({
                 data-testid="fitting-action"
                 value={action}
                 disabled={locked}
-                onChange={(e) => {
-                  setAction(e.target.value as SideAction);
-                  setPosition(0);
-                }}
+                onChange={(e) =>
+                  selectPosition(e.target.value as SideAction, 0)
+                }
               >
                 {FITTING_ACTIONS.filter(
                   (key) => project.archive.manifest.animations[key],
@@ -568,10 +622,7 @@ export default function FittingWorkbench({
                 disabled={locked}
                 onChange={(e) => {
                   const n = Number(e.target.value);
-                  if (Number.isSafeInteger(n))
-                    setPosition(
-                      Math.max(0, Math.min(n, (clip?.frames.length ?? 1) - 1)),
-                    );
+                  if (Number.isSafeInteger(n)) selectPosition(action, n);
                 }}
               />
             </label>
@@ -647,7 +698,7 @@ export default function FittingWorkbench({
               type="button"
               data-testid="fitting-previous"
               disabled={locked || neighborPositions[0] === null}
-              onClick={() => setPosition(neighborPositions[0]!)}
+              onClick={() => selectPosition(action, neighborPositions[0]!)}
             >
               前一帧
             </button>
@@ -655,7 +706,7 @@ export default function FittingWorkbench({
               type="button"
               data-testid="fitting-next"
               disabled={locked || neighborPositions[2] === null}
-              onClick={() => setPosition(neighborPositions[2]!)}
+              onClick={() => selectPosition(action, neighborPositions[2]!)}
             >
               后一帧
             </button>
@@ -732,7 +783,7 @@ export default function FittingWorkbench({
                             type="button"
                             disabled={locked}
                             onClick={() =>
-                              setPosition(neighborPositions[index]!)
+                              selectPosition(action, neighborPositions[index]!)
                             }
                           >
                             检查此帧
@@ -1025,6 +1076,7 @@ export default function FittingWorkbench({
       <Suspense fallback={<p role="status">正在打开校正工具…</p>}>
         {editing && item && (
           <MaskEditWorkbench
+            active={active}
             project={project}
             itemId={item.manifest.id}
             action={action}
@@ -1039,6 +1091,7 @@ export default function FittingWorkbench({
         )}
         {candidate && (
           <GarmentCandidatePreview
+            active={active}
             original={renderer}
             candidate={candidate.renderer}
             baseProject={project}

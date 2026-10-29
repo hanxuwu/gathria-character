@@ -1,20 +1,14 @@
-import {
-  ArrowRight,
-  Bone,
-  Check,
-  Palette,
-  ShieldCheck,
-  Shirt,
-} from "lucide-react";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { KLING_CHARACTERS } from "../consumer/kling-catalog";
 import { MainNavigation } from "./MainNavigation";
 import "./workspace.css";
+import "./library-unified.css";
 
 export function CharacterLibrary() {
   return (
     <div className="workspace-app">
       <MainNavigation active="library" />
-      <main className="library-main">
+      <main className="library-main library-unified">
         <section className="library-intro" aria-labelledby="library-heading">
           <div>
             <p className="workspace-eyebrow">Your character library</p>
@@ -24,9 +18,8 @@ export function CharacterLibrary() {
               <em>A story of your own.</em>
             </h1>
             <p className="library-intro__copy">
-              Start with an original Kling character, choose an outfit,
-              <br className="desktop-break" /> and arrange the actions for your
-              story.
+              选一个人物，在同一个工作台里试穿、查看动作与修正细节。
+              <br className="desktop-break" /> 原版与侧视素材都从这里打开。
             </p>
           </div>
           <div className="library-local-note">
@@ -78,7 +71,7 @@ export function CharacterLibrary() {
                   </p>
                   <ul
                     className="library-action-list"
-                    aria-label={`${character.name} available actions`}
+                    aria-label={`${character.name} original sprite actions`}
                   >
                     <li>Idle</li>
                     <li>Walk</li>
@@ -90,79 +83,42 @@ export function CharacterLibrary() {
                     className="workspace-button workspace-button--primary"
                     href={`/workbench.html?character=${character.id}`}
                   >
-                    Open character <ArrowRight size={16} aria-hidden="true" />
+                    编辑人物 <ArrowRight size={16} aria-hidden="true" />
                   </a>
                   <span className="library-character__capability">
-                    Five sprite actions · inspect, arrange and export
+                    原版与侧视 · 服装与发型 · 动作与检查
                   </span>
-                  <div className="library-character__skeleton">
-                    <a
-                      className="workspace-button workspace-button--secondary"
-                      href={`/workbench.html?character=${character.id}&mode=side-view`}
-                    >
-                      <ArrowRight size={18} aria-hidden="true" />
-                      <span>侧视动作与换装</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </a>
-                    <span className="library-character__capability">
-                      行走、跑步与连续两跳 · 独立日常搭配试样
-                    </span>
-                    <a
-                      className="workspace-button workspace-button--secondary"
-                      href={`/workbench.html?character=${character.id}&mode=side-view&collection=tailored`}
-                    >
-                      <Shirt size={18} aria-hidden="true" />
-                      <span>侧视新款试装与发型</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </a>
-                  </div>
-                  <div className="library-character__skeleton">
-                    <a
-                      className="workspace-button workspace-button--secondary"
-                      href={`/workbench.html?character=${character.id}&mode=wardrobe`}
-                    >
-                      <Shirt size={18} aria-hidden="true" />
-                      <span>Dress {character.name}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </a>
-                    <span className="library-character__capability">
-                      Everyday and wedding outfits · five original actions
-                    </span>
-                  </div>
-                  <div className="library-character__skeleton">
-                    <a
-                      className="workspace-button workspace-button--secondary"
-                      href={`/workbench.html?character=${character.id}&mode=themes`}
-                    >
-                      <Palette size={18} aria-hidden="true" />
-                      <span>Explore {character.name} themes</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </a>
-                    <span className="library-character__capability">
-                      Complete art themes · compare, save and export
-                    </span>
-                  </div>
-                  <div className="library-character__skeleton">
-                    <a
-                      className="workspace-button workspace-button--secondary"
-                      href={`/workbench.html?character=${character.id}&mode=rig`}
-                    >
-                      <Bone size={18} aria-hidden="true" />
-                      <span>Edit {character.name} skeleton</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </a>
-                    <span className="library-character__capability">
-                      Four static poses · adjustable joints · save and export
-                    </span>
-                  </div>
                 </div>
               </article>
             ))}
           </div>
           <p className="library-originals-note">
-            Your original sprite frames stay intact while you arrange actions.
-            The separate skeleton candidates remain available as optional tools
-            with four editable static poses.
+            上方展示原版人物与五种原片动作。进入工作台后，可选择侧视素材，
+            查看它支持的动作与搭配。
+          </p>
+        </section>
+        <section
+          className="library-workflow"
+          aria-labelledby="library-workflow-heading"
+        >
+          <p className="workspace-eyebrow">One character workspace</p>
+          <h2 id="library-workflow-heading">从搭配到导出，在同一处完成。</h2>
+          <ol className="library-workflow__steps">
+            <li>
+              <strong>选择素材与搭配</strong>
+              <p>打开原版或侧视素材，挑选适用的服装、发型与表情。</p>
+            </li>
+            <li>
+              <strong>播放与检查细节</strong>
+              <p>查看左右动作、逐帧对照原图，进入局部修正。</p>
+            </li>
+            <li>
+              <strong>保存与独立播放</strong>
+              <p>保存项目继续编辑，或导出 CharacterPack 到播放器。</p>
+            </li>
+          </ol>
+          <p className="library-workflow__advanced">
+            主题与骨骼仍可在工作台的高级工具中打开；骨骼保留四个可编辑的静态姿势。
           </p>
         </section>
       </main>

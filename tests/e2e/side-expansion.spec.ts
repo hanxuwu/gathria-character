@@ -3,26 +3,28 @@ import { expect, test, type Page } from "@playwright/test";
 import { unzipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 
-const stage = (page: Page) => page.getByTestId("side-stage");
+const side = (page: Page) =>
+  page.locator('[data-testid="side-session"][data-active="true"]');
+const stage = (page: Page) => side(page).getByTestId("side-stage");
 async function ready(page: Page) {
-  await expect(page.getByTestId("side-playground")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
     "aria-busy",
     "false",
     { timeout: 180_000 },
   );
   await expect(
-    page.getByTestId("side-playground").getByRole("alert"),
+    side(page).getByTestId("side-playground").getByRole("alert"),
   ).toHaveCount(0);
   await expect(stage(page)).toBeVisible();
 }
 async function pose(page: Page, action = "run", frame = 4, facing = "right") {
   if ((await stage(page).getAttribute("data-paused")) === "false")
-    await page.getByTestId("side-play-pause").click();
-  await page.getByTestId("side-action-idle").click();
-  await page.getByTestId(`side-facing-${facing}`).click();
-  await page.getByTestId(`side-action-${action}`).click();
+    await side(page).getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-action-idle").click();
+  await side(page).getByTestId(`side-facing-${facing}`).click();
+  await side(page).getByTestId(`side-action-${action}`).click();
   for (const position of [frame === 0 ? 1 : 0, frame]) {
-    await page.getByTestId("side-frame").fill(String(position));
+    await side(page).getByTestId("side-frame").fill(String(position));
     await expect(stage(page)).toHaveAttribute(
       "data-frame-position",
       String(position),
@@ -31,7 +33,7 @@ async function pose(page: Page, action = "run", frame = 4, facing = "right") {
 }
 async function download(page: Page, id: string, path?: string) {
   const waiting = page.waitForEvent("download", { timeout: 180_000 });
-  await page.getByTestId(id).click();
+  await side(page).getByTestId(id).click();
   const result = await waiting;
   expect(await result.failure()).toBeNull();
   if (path) await result.saveAs(path);
@@ -54,8 +56,10 @@ for (const character of ["male", "female"] as const) {
         `/workbench.html?mode=side-view&collection=tailored&character=${character}`,
       );
       await ready(page);
-      await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
-      await expect(page.getByTestId("side-hair")).toHaveValue("");
+      await expect(side(page).getByTestId("side-collection")).toHaveValue(
+        "tailored",
+      );
+      await expect(side(page).getByTestId("side-hair")).toHaveValue("");
       const outfit = JSON.parse(
         (await stage(page).getAttribute("data-selection"))!,
       );
@@ -65,15 +69,15 @@ for (const character of ["male", "female"] as const) {
       const right = decodeSourceRgbaPng(
         await download(page, "side-export-png"),
       );
-      await page.getByTestId("side-ground").check();
-      await page.getByTestId("side-anchors").check();
-      await page.getByTestId("side-comparison").check();
+      await side(page).getByTestId("side-ground").check();
+      await side(page).getByTestId("side-anchors").check();
+      await side(page).getByTestId("side-comparison").check();
       const guides = decodeSourceRgbaPng(
         await download(page, "side-export-png"),
       );
       expect(guides.pixels).toEqual(right.pixels);
-      await page.getByTestId("side-anchors").uncheck();
-      await page.getByTestId("side-comparison").uncheck();
+      await side(page).getByTestId("side-anchors").uncheck();
+      await side(page).getByTestId("side-comparison").uncheck();
       await pose(page, "run", 4, "left");
       const left = decodeSourceRgbaPng(await download(page, "side-export-png"));
       expect([left.width, left.height]).toEqual([right.width, right.height]);
@@ -85,19 +89,21 @@ for (const character of ["male", "female"] as const) {
           reflected.set(right.pixels.subarray(from, from + 4), to);
         }
       expect(left.pixels).toEqual(reflected);
-      await page.getByTestId("side-top").selectOption("");
+      await side(page).getByTestId("side-top").selectOption("");
       await ready(page);
-      await expect(page.getByTestId("side-bottom")).toHaveValue(outfit.bottom);
-      const hairIds = await page
+      await expect(side(page).getByTestId("side-bottom")).toHaveValue(
+        outfit.bottom,
+      );
+      const hairIds = await side(page)
         .getByTestId("side-hair")
         .locator("option")
         .evaluateAll((items) =>
           items.map((i) => (i as HTMLOptionElement).value).filter(Boolean),
         );
       expect(hairIds.length).toBeGreaterThan(0);
-      await page.getByTestId("side-hair").selectOption(hairIds[0]);
+      await side(page).getByTestId("side-hair").selectOption(hairIds[0]);
       await ready(page);
-      await page.getByTestId("side-hair-color").selectOption("espresso");
+      await side(page).getByTestId("side-hair-color").selectOption("espresso");
       await ready(page);
       await pose(page, "run", 4, "left");
       const mixed = await download(page, "side-export-png");
@@ -119,28 +125,36 @@ for (const character of ["male", "female"] as const) {
       );
       await page.reload();
       await ready(page);
-      await page.getByTestId("side-project-input").setInputFiles(path);
+      await side(page).getByTestId("side-project-input").setInputFiles(path);
       await ready(page);
-      await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
-      await expect(page.getByTestId("side-hair")).toHaveValue(hairIds[0]);
-      await expect(page.getByTestId("side-hair-color")).toHaveValue("espresso");
+      await expect(side(page).getByTestId("side-collection")).toHaveValue(
+        "tailored",
+      );
+      await expect(side(page).getByTestId("side-hair")).toHaveValue(hairIds[0]);
+      await expect(side(page).getByTestId("side-hair-color")).toHaveValue(
+        "espresso",
+      );
       await pose(page, "run", 4, "left");
       expect(await download(page, "side-export-png")).toEqual(mixed);
-      await page.getByTestId("side-project-input").setInputFiles({
-        name: "bad.wardrobe.zip",
-        mimeType: "application/zip",
-        buffer: Buffer.from("broken project"),
-      });
+      await side(page)
+        .getByTestId("side-project-input")
+        .setInputFiles({
+          name: "bad.wardrobe.zip",
+          mimeType: "application/zip",
+          buffer: Buffer.from("broken project"),
+        });
       await expect(
-        page.getByTestId("side-playground").getByRole("alert"),
+        side(page).getByTestId("side-playground").getByRole("alert"),
       ).toBeVisible();
-      await expect(page.getByTestId("side-playground")).toHaveAttribute(
+      await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
         "aria-busy",
         "false",
       );
-      await expect(page.getByTestId("side-retry-load")).toHaveCount(0);
-      await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
-      await expect(page.getByTestId("side-hair")).toHaveValue(hairIds[0]);
+      await expect(side(page).getByTestId("side-retry-load")).toHaveCount(0);
+      await expect(side(page).getByTestId("side-collection")).toHaveValue(
+        "tailored",
+      );
+      await expect(side(page).getByTestId("side-hair")).toHaveValue(hairIds[0]);
       expect(await download(page, "side-export-png")).toEqual(mixed);
       expect(errors).toEqual([]);
     } finally {
@@ -158,8 +172,10 @@ test("legacy material stays the default and its project switches back from the n
   try {
     await page.goto("/workbench.html?mode=side-view&character=male");
     await ready(page);
-    await expect(page.getByTestId("side-collection")).toHaveValue("material");
-    await page.getByTestId("side-look-daily").click();
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "material",
+    );
+    await side(page).getByTestId("side-look-daily").click();
     await ready(page);
     await pose(page);
     const png = await download(page, "side-export-png");
@@ -173,12 +189,14 @@ test("legacy material stays the default and its project switches back from the n
         ),
       ),
     );
-    await page.getByTestId("side-collection").selectOption("tailored");
+    await side(page).getByTestId("side-collection").selectOption("tailored");
     await ready(page);
     await expect(stage(page)).toHaveAttribute("data-collection", "tailored");
-    await page.getByTestId("side-project-input").setInputFiles(path);
+    await side(page).getByTestId("side-project-input").setInputFiles(path);
     await ready(page);
-    await expect(page.getByTestId("side-collection")).toHaveValue("material");
+    await expect(side(page).getByTestId("side-collection")).toHaveValue(
+      "material",
+    );
     await pose(page);
     expect(await download(page, "side-export-png")).toEqual(png);
   } finally {
@@ -195,18 +213,18 @@ test("paused explicit facing clears a left turn queued during the full jump", as
   );
   await ready(page);
   await pose(page, "jump", 0, "right");
-  await page.getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-play-pause").click();
   await stage(page).focus();
   await page.keyboard.press("ArrowLeft");
   await expect(stage(page)).toHaveAttribute("data-action", "jump");
   await expect(stage(page)).toHaveAttribute("data-facing", "right");
-  await page.getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-play-pause").click();
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
-  await page.getByTestId("side-facing-right").click();
-  await page.getByTestId("side-action-idle").click();
+  await side(page).getByTestId("side-facing-right").click();
+  await side(page).getByTestId("side-action-idle").click();
   await expect(stage(page)).toHaveAttribute("data-action", "idle");
   await expect(stage(page)).toHaveAttribute("data-facing", "right");
-  await page.getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-play-pause").click();
   await expect(stage(page)).toHaveAttribute("data-paused", "false");
   await expect
     .poll(async () =>
@@ -216,7 +234,7 @@ test("paused explicit facing clears a left turn queued during the full jump", as
   await expect(stage(page)).toHaveAttribute("data-facing", "right");
 });
 
-test("failed new collection load retains material session and retries the requested collection", async ({
+test("failed new collection load preserves the retained material session and retries its own collection", async ({
   page,
 }) => {
   test.setTimeout(240_000);
@@ -224,6 +242,10 @@ test("failed new collection load retains material session and retries the reques
   await ready(page);
   await pose(page);
   const previousSelection = await stage(page).getAttribute("data-selection");
+  const previousPng = await download(page, "side-export-png");
+  const retained = page.locator(
+    '[data-testid="side-session"][data-session-key="male:material"]',
+  );
   const route =
     "**/artwork/kling-side-expansion/templates/male.registration.json*";
   await page.route(route, (r) =>
@@ -233,24 +255,37 @@ test("failed new collection load retains material session and retries the reques
       body: "Controlled new-edition failure",
     }),
   );
-  await page.getByTestId("side-collection").selectOption("tailored");
+  await side(page).getByTestId("side-collection").selectOption("tailored");
   await expect(
-    page.getByTestId("side-playground").getByRole("alert"),
+    side(page).getByTestId("side-playground").getByRole("alert"),
   ).toContainText("503");
-  await expect(page.getByTestId("side-playground")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
     "aria-busy",
     "false",
   );
-  await expect(stage(page)).toHaveAttribute("data-collection", "material");
-  await expect(stage(page)).toHaveAttribute(
+  await expect(side(page)).toHaveAttribute("data-collection", "tailored");
+  await expect(retained).toBeHidden();
+  await expect(retained.getByTestId("side-stage")).toHaveAttribute(
     "data-selection",
     previousSelection!,
   );
-  await expect(page.getByTestId("side-retry-load")).toBeVisible();
+  await side(page).getByTestId("side-collection").selectOption("material");
+  await ready(page);
+  await expect(stage(page)).toHaveAttribute("data-collection", "material");
+  await expect(stage(page)).toHaveAttribute("data-frame-position", "4");
+  expect(await download(page, "side-export-png")).toEqual(previousPng);
+  await side(page).getByTestId("side-collection").selectOption("tailored");
+  await expect(
+    side(page).getByRole("button", { name: "重新载入", exact: true }),
+  ).toBeVisible();
   await page.unroute(route);
-  await page.getByTestId("side-retry-load").click();
+  await side(page)
+    .getByRole("button", { name: "重新载入", exact: true })
+    .click();
   await ready(page);
   await expect(stage(page)).toHaveAttribute("data-collection", "tailored");
-  await expect(page.getByTestId("side-collection")).toHaveValue("tailored");
-  await expect(page.getByTestId("side-retry-load")).toHaveCount(0);
+  await expect(side(page).getByTestId("side-collection")).toHaveValue(
+    "tailored",
+  );
+  await expect(side(page).getByTestId("side-retry-load")).toHaveCount(0);
 });

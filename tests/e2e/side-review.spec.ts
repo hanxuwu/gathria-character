@@ -1,20 +1,22 @@
 import { readFile } from "node:fs/promises";
 import { expect, test, type Page } from "@playwright/test";
 
-const stage = (page: Page) => page.getByTestId("side-stage");
+const side = (page: Page) =>
+  page.locator('[data-testid="side-session"][data-active="true"]');
+const stage = (page: Page) => side(page).getByTestId("side-stage");
 async function ready(page: Page) {
-  await expect(page.getByTestId("side-playground")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
     "aria-busy",
     "false",
     { timeout: 180_000 },
   );
   await expect(
-    page.getByTestId("side-playground").getByRole("alert"),
+    side(page).getByTestId("side-playground").getByRole("alert"),
   ).toHaveCount(0);
 }
 async function download(page: Page, id: string) {
   const waiting = page.waitForEvent("download", { timeout: 180_000 });
-  await page.getByTestId(id).click();
+  await side(page).getByTestId(id).click();
   const result = await waiting;
   expect(await result.failure()).toBeNull();
   const bytes = await readFile((await result.path())!);
@@ -30,29 +32,29 @@ test("review slow playback preserves exported pixels and native GIF timing; deta
     "/workbench.html?mode=side-view&collection=tailored&character=male",
   );
   await ready(page);
-  await page.getByTestId("side-play-pause").click();
-  await page.getByTestId("side-action-run").click();
-  await page.getByTestId("side-frame").fill("4");
+  await side(page).getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-action-run").click();
+  await side(page).getByTestId("side-frame").fill("4");
   await expect(stage(page)).toHaveAttribute("data-frame-position", "4");
   const png = await download(page, "side-export-png");
   const gif = await download(page, "side-export-gif");
-  await page.getByTestId("side-review-toggle").click();
+  await side(page).getByTestId("side-review-toggle").click();
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
   await expect(stage(page)).toHaveAttribute("data-mode", "in-place");
-  await expect(page.getByTestId("side-comparison")).toBeChecked();
-  await expect(page.getByTestId("side-mode-travel")).toBeDisabled();
-  await page.getByTestId("side-review-rate").selectOption("0.25");
+  await expect(side(page).getByTestId("side-comparison")).toBeChecked();
+  await expect(side(page).getByTestId("side-mode-travel")).toBeDisabled();
+  await side(page).getByTestId("side-review-rate").selectOption("0.25");
   await expect(stage(page)).toHaveAttribute("data-preview-rate", "0.25");
   expect(await download(page, "side-export-png")).toEqual(png);
   expect(await download(page, "side-export-gif")).toEqual(gif);
 
   for (const testId of ["side-review-source", "side-review-dressed"]) {
-    await expect(page.getByTestId(testId)).toHaveAttribute(
+    await expect(side(page).getByTestId(testId)).toHaveAttribute(
       "data-facing",
       "right",
     );
   }
-  const expectedLeft = await page
+  const expectedLeft = await side(page)
     .getByTestId("side-review-dressed")
     .evaluate((element) => {
       const right = element as HTMLCanvasElement;
@@ -65,19 +67,19 @@ test("review slow playback preserves exported pixels and native GIF timing; deta
       context.drawImage(right, 0, 0);
       return left.toDataURL();
     });
-  await page.getByTestId("side-facing-left").click();
-  await expect(page.getByTestId("side-review-dressed")).toHaveAttribute(
+  await side(page).getByTestId("side-facing-left").click();
+  await expect(side(page).getByTestId("side-review-dressed")).toHaveAttribute(
     "data-facing",
     "left",
   );
   expect(
-    await page
+    await side(page)
       .getByTestId("side-review-dressed")
       .evaluate((canvas) => (canvas as HTMLCanvasElement).toDataURL()),
   ).toBe(expectedLeft);
 
-  await page.getByTestId("side-action-jump").click();
-  await page.getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-action-jump").click();
+  await side(page).getByTestId("side-play-pause").click();
   await expect(stage(page)).toHaveAttribute("data-paused", "false");
   const timing = await stage(page).evaluate(async (canvas) => {
     const before = Number(canvas.getAttribute("data-elapsed-ms")),
@@ -91,9 +93,9 @@ test("review slow playback preserves exported pixels and native GIF timing; deta
   expect(timing.source / timing.wall).toBeGreaterThan(0.12);
   expect(timing.source / timing.wall).toBeLessThan(0.4);
   await expect(stage(page)).toHaveAttribute("data-fps", "24");
-  await page.getByTestId("side-review-toggle").click();
+  await side(page).getByTestId("side-review-toggle").click();
   await expect(stage(page)).toHaveAttribute("data-timing", "native-1x");
-  await expect(page.getByTestId("side-mode-travel")).toBeEnabled();
+  await expect(side(page).getByTestId("side-mode-travel")).toBeEnabled();
 });
 
 test("review bookmarks persist per source with look context, restore a paused pose, and fit mobile", async ({
@@ -104,16 +106,16 @@ test("review bookmarks persist per source with look context, restore a paused po
     "/workbench.html?mode=side-view&collection=tailored&character=male",
   );
   await ready(page);
-  await page.getByTestId("side-review-toggle").click();
-  await page.getByTestId("side-action-walk").click();
-  await page.getByTestId("side-frame").fill("5");
-  await page.getByTestId("side-facing-left").click();
+  await side(page).getByTestId("side-review-toggle").click();
+  await side(page).getByTestId("side-action-walk").click();
+  await side(page).getByTestId("side-frame").fill("5");
+  await side(page).getByTestId("side-facing-left").click();
   await expect(stage(page)).toHaveAttribute("data-frame-id", "26");
-  await page.getByTestId("side-review-note").fill("检查手腕与旧短裤残片");
-  await page.getByTestId("side-review-bookmark").click();
-  await expect(page.getByTestId("side-review-notes").locator("li")).toHaveCount(
-    1,
-  );
+  await side(page).getByTestId("side-review-note").fill("检查手腕与旧短裤残片");
+  await side(page).getByTestId("side-review-bookmark").click();
+  await expect(
+    side(page).getByTestId("side-review-notes").locator("li"),
+  ).toHaveCount(1);
   const report = JSON.parse(
     (await download(page, "side-review-export")).toString(),
   );
@@ -131,24 +133,24 @@ test("review bookmarks persist per source with look context, restore a paused po
   expect(look.items).toHaveLength(2);
   await page.reload();
   await ready(page);
-  await page.getByTestId("side-review-toggle").click();
-  await expect(page.getByTestId("side-review-notes").locator("li")).toHaveCount(
-    1,
-  );
-  await page.getByTestId("side-bottom").selectOption("");
+  await side(page).getByTestId("side-review-toggle").click();
+  await expect(
+    side(page).getByTestId("side-review-notes").locator("li"),
+  ).toHaveCount(1);
+  await side(page).getByTestId("side-bottom").selectOption("");
   await ready(page);
-  await expect(page.getByTestId("side-review-notes")).toContainText(
+  await expect(side(page).getByTestId("side-review-notes")).toContainText(
     "搭配或素材版本不同",
   );
-  await page.getByRole("button", { name: "定位此帧" }).click();
+  await side(page).getByRole("button", { name: "定位此帧" }).click();
   await expect(stage(page)).toHaveAttribute("data-action", "walk");
   await expect(stage(page)).toHaveAttribute("data-frame-id", "26");
   await expect(stage(page)).toHaveAttribute("data-facing", "left");
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
-  await expect(page.getByTestId("side-bottom")).toHaveValue("");
+  await expect(side(page).getByTestId("side-bottom")).toHaveValue("");
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByTestId("side-review-scale").selectOption("3");
-  const size = await page
+  await side(page).getByTestId("side-review-scale").selectOption("3");
+  const size = await side(page)
     .getByTestId("side-review-dressed")
     .evaluate((canvas) => ({
       nativeWidth: (canvas as HTMLCanvasElement).width,
@@ -158,10 +160,29 @@ test("review bookmarks persist per source with look context, restore a paused po
     }));
   expect(size.displayWidth).toBe(size.nativeWidth);
   expect(size.documentWidth).toBeLessThanOrEqual(size.viewportWidth);
-  await page.getByTestId("side-character").selectOption("female");
+  await side(page).getByTestId("side-character").selectOption("female");
   await ready(page);
-  await expect(page.getByTestId("side-review-notes").locator("li")).toHaveCount(
-    0,
+  await expect(side(page).getByTestId("side-review-toggle")).toHaveAttribute(
+    "aria-expanded",
+    "false",
   );
+  await side(page).getByTestId("side-review-toggle").click();
+  await expect(
+    side(page).getByTestId("side-review-notes").locator("li"),
+  ).toHaveCount(0);
+  await expect(stage(page)).toHaveAttribute("data-paused", "true");
+  await side(page).getByTestId("side-character").selectOption("male");
+  await ready(page);
+  await expect(side(page).getByTestId("side-review-toggle")).toHaveAttribute(
+    "aria-expanded",
+    "true",
+  );
+  await expect(
+    side(page).getByTestId("side-review-notes").locator("li"),
+  ).toHaveCount(1);
+  await expect(side(page).getByTestId("side-review-scale")).toHaveValue("3");
+  await expect(stage(page)).toHaveAttribute("data-action", "walk");
+  await expect(stage(page)).toHaveAttribute("data-frame-id", "26");
+  await expect(stage(page)).toHaveAttribute("data-facing", "left");
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
 });

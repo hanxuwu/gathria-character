@@ -3,33 +3,37 @@ import { expect, test, type Page } from "@playwright/test";
 import { unzipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 
+// Retained sessions keep their state; interactions target the active source only.
+const side = (page: Page) =>
+  page.locator('[data-testid="side-session"][data-active="true"]');
+
 // These cases intentionally use the shipped side assets. Small existing wardrobe
 // fixtures have different source identities and cannot validate side registration.
-const stage = (page: Page) => page.getByTestId("side-stage");
+const stage = (page: Page) => side(page).getByTestId("side-stage");
 async function ready(page: Page) {
-  await expect(page.getByTestId("side-playground")).toHaveAttribute(
+  await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
     "aria-busy",
     "false",
     { timeout: 180_000 },
   );
   await expect(
-    page.getByTestId("side-playground").getByRole("alert"),
+    side(page).getByTestId("side-playground").getByRole("alert"),
   ).toHaveCount(0);
   await expect(stage(page)).toBeVisible();
 }
 async function pause(page: Page) {
   if ((await stage(page).getAttribute("data-paused")) === "false")
-    await page.getByTestId("side-play-pause").click();
+    await side(page).getByTestId("side-play-pause").click();
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
 }
 async function frame(page: Page, value: number) {
   const intermediate = value === 0 ? "1" : "0";
-  await page.getByTestId("side-frame").fill(intermediate);
+  await side(page).getByTestId("side-frame").fill(intermediate);
   await expect(stage(page)).toHaveAttribute(
     "data-frame-position",
     intermediate,
   );
-  await page.getByTestId("side-frame").fill(String(value));
+  await side(page).getByTestId("side-frame").fill(String(value));
   await expect(stage(page)).toHaveAttribute(
     "data-frame-position",
     String(value),
@@ -37,7 +41,7 @@ async function frame(page: Page, value: number) {
 }
 async function download(page: Page, id: string) {
   const pending = page.waitForEvent("download", { timeout: 180_000 });
-  await page.getByTestId(id).click();
+  await side(page).getByTestId(id).click();
   const result = await pending;
   expect(await result.failure()).toBeNull();
   const path = (await result.path())!;
@@ -59,22 +63,22 @@ for (const character of ["male", "female"] as const) {
     await expect(stage(page)).toHaveAttribute("data-fps", "24");
     await expect(stage(page)).toHaveAttribute("data-timing", "native-1x");
     await pause(page);
-    await page.getByTestId("side-action-run").click();
+    await side(page).getByTestId("side-action-run").click();
     await expect(stage(page)).toHaveAttribute("data-action", "run");
     await frame(page, 4);
     const original = await download(page, "side-export-png");
     const originalRgba = decodeSourceRgbaPng(original.bytes);
     expect([originalRgba.width, originalRgba.height]).toEqual([512, 768]);
-    await page.getByTestId("side-anchors").check();
-    await page.getByTestId("side-ground").check();
-    await page.getByTestId("side-comparison").check();
+    await side(page).getByTestId("side-anchors").check();
+    await side(page).getByTestId("side-ground").check();
+    await side(page).getByTestId("side-comparison").check();
     const withGuides = await download(page, "side-export-png");
     expect(withGuides.bytes).toEqual(original.bytes);
-    await page.getByTestId("side-anchors").uncheck();
-    await page.getByTestId("side-comparison").uncheck();
-    await page.getByTestId("side-look-daily").click();
+    await side(page).getByTestId("side-anchors").uncheck();
+    await side(page).getByTestId("side-comparison").uncheck();
+    await side(page).getByTestId("side-look-daily").click();
     await ready(page);
-    await expect(page.getByTestId("side-look-daily")).toHaveAttribute(
+    await expect(side(page).getByTestId("side-look-daily")).toHaveAttribute(
       "aria-pressed",
       "true",
     );
@@ -100,12 +104,16 @@ for (const character of ["male", "female"] as const) {
     }
     expect(alphaChanges).toBe(0);
     expect(changed).toBeGreaterThan(0);
-    await page.getByTestId("side-top").selectOption("");
+    await side(page).getByTestId("side-top").selectOption("");
     await ready(page);
-    await expect(page.getByTestId("side-top")).toHaveValue("");
-    await expect(page.getByTestId("side-bottom")).toHaveValue(selection.bottom);
-    await expect(page.getByTestId("side-shoes")).toHaveValue(selection.shoes);
-    await page.getByTestId("side-facing-left").click();
+    await expect(side(page).getByTestId("side-top")).toHaveValue("");
+    await expect(side(page).getByTestId("side-bottom")).toHaveValue(
+      selection.bottom,
+    );
+    await expect(side(page).getByTestId("side-shoes")).toHaveValue(
+      selection.shoes,
+    );
+    await side(page).getByTestId("side-facing-left").click();
     await expect(stage(page)).toHaveAttribute("data-facing", "left");
     const mixedPose = await download(page, "side-export-png");
     const saved = await download(page, "side-save-project");
@@ -124,7 +132,9 @@ for (const character of ["male", "female"] as const) {
     expect(registration.frames).toHaveLength(character === "male" ? 107 : 102);
     await page.reload();
     await ready(page);
-    await page.getByTestId("side-project-input").setInputFiles(saved.path);
+    await side(page)
+      .getByTestId("side-project-input")
+      .setInputFiles(saved.path);
     await ready(page);
     await expect(stage(page)).toHaveAttribute("data-action", "run");
     await expect(stage(page)).toHaveAttribute("data-facing", "left");
@@ -135,15 +145,17 @@ for (const character of ["male", "female"] as const) {
     await frame(page, 4);
     const savedPose = await download(page, "side-export-png");
     expect(savedPose.bytes).toEqual(mixedPose.bytes);
-    await page.getByTestId("side-project-input").setInputFiles({
-      name: "broken.wardrobe.zip",
-      mimeType: "application/zip",
-      buffer: Buffer.from("not a project"),
-    });
+    await side(page)
+      .getByTestId("side-project-input")
+      .setInputFiles({
+        name: "broken.wardrobe.zip",
+        mimeType: "application/zip",
+        buffer: Buffer.from("not a project"),
+      });
     await expect(
-      page.getByTestId("side-playground").getByRole("alert"),
+      side(page).getByTestId("side-playground").getByRole("alert"),
     ).toBeVisible();
-    await expect(page.getByTestId("side-playground")).toHaveAttribute(
+    await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
       "aria-busy",
       "false",
     );
@@ -163,9 +175,9 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
   test.setTimeout(120_000);
   await page.goto("/workbench.html?mode=side-view&character=male");
   await ready(page);
-  await page.getByTestId("side-mode-travel").click();
+  await side(page).getByTestId("side-mode-travel").click();
   await expect(stage(page)).toHaveAttribute("data-camera", "follow");
-  await page.getByTestId("side-walk-speed").fill("120");
+  await side(page).getByTestId("side-walk-speed").fill("120");
   await stage(page).focus();
   await page.keyboard.down("ArrowRight");
   await expect(stage(page)).toHaveAttribute("data-action", "walk");
@@ -178,7 +190,7 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
   await page.keyboard.press("Space");
   await expect(stage(page)).toHaveAttribute("data-action", "jump");
   // Held run intent resumes only after the complete two-jump source clip.
-  await expect(page.getByTestId("side-facing-left")).toBeDisabled();
+  await expect(side(page).getByTestId("side-facing-left")).toBeDisabled();
   await expect(stage(page)).toHaveAttribute("data-action", "run", {
     timeout: 6000,
   });
@@ -189,10 +201,13 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
   await page.keyboard.up("ArrowRight");
   await expect(stage(page)).toHaveAttribute("data-action", "idle");
   await pause(page);
-  await page.getByTestId("side-action-jump").click();
-  await expect(page.getByTestId("side-frame")).toHaveAttribute("max", "49");
+  await side(page).getByTestId("side-action-jump").click();
+  await expect(side(page).getByTestId("side-frame")).toHaveAttribute(
+    "max",
+    "49",
+  );
   await frame(page, 48);
-  await page.getByTestId("side-play-pause").click();
+  await side(page).getByTestId("side-play-pause").click();
   await expect(stage(page)).toHaveAttribute("data-ended", "true");
   await expect(stage(page)).toHaveAttribute("data-frame-position", "49");
   const held = await stage(page).evaluate((c: HTMLCanvasElement) =>
@@ -202,7 +217,7 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
   expect(
     await stage(page).evaluate((c: HTMLCanvasElement) => c.toDataURL()),
   ).toBe(held);
-  await page.getByTestId("side-action-jump").click();
+  await side(page).getByTestId("side-action-jump").click();
   await expect(stage(page)).toHaveAttribute("data-ended", "false");
   await expect
     .poll(async () =>
@@ -224,9 +239,9 @@ test("side source load failure retries and character preparation disables stale 
   );
   await page.goto("/workbench.html?mode=side-view&character=male");
   await expect(
-    page.getByTestId("side-playground").getByRole("alert"),
+    side(page).getByTestId("side-playground").getByRole("alert"),
   ).toContainText("503");
-  await expect(page.getByTestId("side-export-pack")).toBeDisabled();
+  await expect(side(page).getByTestId("side-export-pack")).toBeDisabled();
   // StrictMode may abort its first mount: keep the fault until a live load reports it.
   await page.unroute("**/assets/male.source.zip*");
   await page.getByRole("button", { name: "重新载入", exact: true }).click();
@@ -249,22 +264,30 @@ test("side source load failure retries and character preparation disables stale 
     },
     { times: 1 },
   );
-  await page.getByTestId("side-character").selectOption("female");
+  await side(page).getByTestId("side-character").selectOption("female");
   try {
     await request;
-    await expect(page.getByTestId("side-playground")).toHaveAttribute(
+    await expect(side(page).getByTestId("side-playground")).toHaveAttribute(
       "aria-busy",
       "true",
     );
-    await expect(page.getByTestId("side-character")).toBeDisabled();
-    await expect(page.getByTestId("side-export-pack")).toBeDisabled();
-    await expect(page.getByTestId("side-save-project")).toBeDisabled();
-    await expect(stage(page)).toHaveAttribute("data-character", "male");
+    await expect(side(page).getByTestId("side-character")).toBeDisabled();
+    await expect(side(page).getByTestId("side-export-pack")).toBeDisabled();
+    await expect(side(page).getByTestId("side-save-project")).toBeDisabled();
+    const retainedMale = page.locator(
+      '[data-testid="side-session"][data-session-key="male:material"]',
+    );
+    await expect(retainedMale).toBeHidden();
+    await expect(retainedMale.getByTestId("side-stage")).toHaveAttribute(
+      "data-character",
+      "male",
+    );
+    await expect(stage(page)).not.toHaveAttribute("data-character", "male");
   } finally {
     release();
   }
   await ready(page);
   await expect(stage(page)).toHaveAttribute("data-character", "female");
-  await expect(page.getByTestId("side-character")).toHaveValue("female");
-  await expect(page.getByTestId("side-export-pack")).toBeEnabled();
+  await expect(side(page).getByTestId("side-character")).toHaveValue("female");
+  await expect(side(page).getByTestId("side-export-pack")).toBeEnabled();
 });
