@@ -45,8 +45,10 @@ const report = {
   browserObservationScope:
     "Canvas metadata is observed together with its drawing. Missed display ticks are reported, not treated as missing source frames. ZIP and GIF decoding checks every encoded frame independently.",
   sourceInputs: [],
+  libraryRoutes: [],
   downloads: [],
   screenshots: [],
+  recordings: [],
   playback: [],
   projectReopen: [],
   pixelAudits: [],
@@ -400,8 +402,11 @@ for f in sm['frames']:
  rgb=before[:,:,:3].astype(np.int16)
  independently_marked=(before[:,:,3]>16)&(rgb[:,:,0]-rgb[:,:,1]>34)&(rgb[:,:,0]-rgb[:,:,2]>52)&(rgb[:,:,0]>105)
  raw_skin=independently_marked.copy();reviewed_exclusions=np.zeros((h,w),bool)
+ declared_overrides=review_document.get('materialOverrides',{}).get(f"{skin_row['source']}/{registered_frame['sourceFrame']}",[])
+ assert len(declared_overrides)==len(skin_row.get('reviewedMaterialOverrides',[]))
  for override in skin_row.get('reviewedMaterialOverrides',[]):
-  assert override['slot'] in ('top','bottom') and override['rasterization']=='pillow-integer-polygon'
+  assert any(all(override.get(k)==v for k,v in entry.items()) for entry in declared_overrides)
+  assert override['slot'] in ('top','bottom','shoes') and override['rasterization']=='pillow-integer-polygon'
   assert override['sourceSha256']==doc['sourceSha256'] and override['sourceRgbaSha256']==sha(before.tobytes())
   assert override['sourceFrame']==registered_frame['sourceFrame'] and override['reason'] and override['reference']
   raster=Image.new('L',(w,h),0);ImageDraw.Draw(raster).polygon([(p['x'],p['y']) for p in override['polygon']],fill=255)
@@ -664,10 +669,25 @@ try {
     monitor(context);
     const page = await context.newPage();
     activePage = page;
-    await page.goto(
-      `${origin}/workbench.html?mode=side-view&character=${character}`,
-      { waitUntil: "networkidle" },
+    await page.goto(`${origin}/`, { waitUntil: "networkidle" });
+    const sideLinks = page.getByRole("link", {
+      name: "侧视动作与换装",
+      exact: true,
+    });
+    await expect(sideLinks).toHaveCount(2);
+    if (character === "male") await capture(page, "library-side-links");
+    const route = page.locator(
+      `a[href*="mode=side-view"][href*="character=${character}"]`,
     );
+    await expect(route).toHaveCount(1);
+    const href = await route.getAttribute("href");
+    await route.click();
+    await page.waitForURL(/workbench\.html\?/);
+    report.libraryRoutes.push({
+      character,
+      href,
+      source: "Clicked visible library side-view link",
+    });
     await ready(page);
     await expect(canvas(page)).toHaveAttribute("data-character", character);
     await page.getByTestId("side-ground").uncheck();
@@ -731,7 +751,7 @@ try {
         }
       }
       // Explicit source positions span both jumps, their inter-jump crouch, and final recovery.
-      for (const position of [0, 8, 14, 24, 31, 38, 49]) {
+      for (const position of [0, 8, 14, 24, 31, 38, 42, 49]) {
         await setFrame(page, "jump", position);
         await capture(
           page,
@@ -840,7 +860,18 @@ try {
       selection: mixedSelection,
       preview: mixedDocument.preview,
     });
+    const video = page.video();
     await context.close();
+    if (video) {
+      const path = await video.path();
+      report.recordings.push({
+        character,
+        file: path.slice(output.length + 1),
+        sha256: sha(await readFile(path)),
+        source:
+          "Untrimmed actual workbench browser session; encoded video cadence is not proof of every source tick.",
+      });
+    }
     report.pixelAudits.push({
       character,
       ...auditPixels(
