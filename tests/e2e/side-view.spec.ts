@@ -215,21 +215,20 @@ test("side source load failure retries and character preparation disables stale 
   page,
 }) => {
   test.setTimeout(240_000);
-  await page.route(
-    "**/assets/male.source.zip*",
-    (route) =>
-      route.fulfill({
-        status: 503,
-        contentType: "text/plain",
-        body: "Controlled source-load failure",
-      }),
-    { times: 1 },
+  await page.route("**/assets/male.source.zip*", (route) =>
+    route.fulfill({
+      status: 503,
+      contentType: "text/plain",
+      body: "Controlled source-load failure",
+    }),
   );
   await page.goto("/workbench.html?mode=side-view&character=male");
   await expect(
     page.getByTestId("side-playground").getByRole("alert"),
   ).toContainText("503");
   await expect(page.getByTestId("side-export-pack")).toBeDisabled();
+  // StrictMode may abort its first mount: keep the fault until a live load reports it.
+  await page.unroute("**/assets/male.source.zip*");
   await page.getByRole("button", { name: "重新载入", exact: true }).click();
   await ready(page);
   await expect(stage(page)).toHaveAttribute("data-character", "male");
