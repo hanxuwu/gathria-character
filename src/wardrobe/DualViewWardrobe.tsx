@@ -23,8 +23,10 @@ import {
 import {
   DUAL_OUTFIT,
   DUAL_PALETTES,
+  availableDualViewOutfits,
+  dualViewOutfit,
   loadDualViewWardrobe,
-  selectDualViewLook,
+  prepareDualViewLook,
   validateDualViewLook,
 } from "./dual-view-catalog";
 import "./dual-view-wardrobe.css";
@@ -222,6 +224,10 @@ export default function DualViewWardrobe({
     Object.assign(target.dataset, {
       view: source,
       character: open.pair.character,
+      outfit: open.pair.selection.outfitId,
+      palette: open.pair.selection.paletteId,
+      top: open.pair.selection.topId ?? "original",
+      bottom: open.pair.selection.bottomId ?? "original",
       action: preview.action,
       framePosition: String(preview.position),
       frameId: String(id),
@@ -315,10 +321,11 @@ export default function DualViewWardrobe({
     if (!open || busyRef.current) return;
     const request = begin("正在验证两个视角的同款搭配…");
     try {
-      const pair = selectDualViewLook(open.pair, {
-        ...open.pair.selection,
-        ...change,
-      });
+      const pair = await prepareDualViewLook(
+        open.pair,
+        { ...open.pair.selection, ...change },
+        { signal: request.controller.signal },
+      );
       await prepare(pair, request);
     } catch (failure) {
       failed(request, failure);
@@ -399,7 +406,7 @@ export default function DualViewWardrobe({
         name = `${prefix}.wardrobe.zip`;
       } else if (kind === "pack") {
         bytes = await exportWardrobeCharacterPack(project, {
-          name: `Kling ${pair.character} · ${viewName(source)} · ${DUAL_OUTFIT.name}`,
+          name: `Kling ${pair.character} · ${viewName(source)} · ${dualViewOutfit(pair.character, pair.selection.outfitId).name}`,
           onProgress: ({ completedPages, totalPages }) => {
             if (live(request))
               setStatus(`正在导出角色包 · ${completedPages} / ${totalPages}`);
@@ -524,6 +531,12 @@ export default function DualViewWardrobe({
   const renderer = session?.renderers[view];
   const clip = preview && renderer?.manifest.animations[preview.action];
   const locked = busy || !session;
+  const character = session?.pair.character ?? initialCharacter;
+  const outfit = dualViewOutfit(
+    character,
+    session?.pair.selection.outfitId ?? DUAL_OUTFIT.id,
+  );
+  const outfits = availableDualViewOutfits(character);
   return (
     <section
       className="dual-wardrobe"
@@ -536,7 +549,7 @@ export default function DualViewWardrobe({
           <p className="dual-eyebrow">ONE LOOK · TWO VIEWS</p>
           <h2>同一套搭配，两个视角</h2>
           <p>
-            先从棉质背心与短裤开始。款式和配色一起切换，动作使用各自的原片。
+            选择套装或分别搭配上下装。款式和配色一起切换，动作使用各自的原片。
           </p>
         </div>
         <div className="dual-project-tools">
@@ -697,7 +710,31 @@ export default function DualViewWardrobe({
               <option value="female">Kling 女版</option>
             </select>
           </label>
-          <p className="dual-outfit-name">{DUAL_OUTFIT.name}</p>
+          <label>
+            服装组
+            <select
+              data-testid="dual-outfit"
+              disabled={locked}
+              value={outfit.id}
+              onChange={(event) => {
+                const selected = dualViewOutfit(character, event.target.value);
+                void chooseLook({
+                  outfitId: selected.id,
+                  topId: selected.topId,
+                  bottomId: selected.bottomId,
+                });
+              }}
+            >
+              {outfits.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <p className="dual-note">
+            更换服装组会选择该套装的上装与下装，配色保持不变。
+          </p>
           <label>
             配色
             <select
@@ -726,7 +763,11 @@ export default function DualViewWardrobe({
               }
             >
               <option value="">原片上装</option>
-              <option value={DUAL_OUTFIT.topId}>棉质背心</option>
+              {outfit.tops.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </label>
           <label>
@@ -740,11 +781,18 @@ export default function DualViewWardrobe({
               }
             >
               <option value="">原片短裤</option>
-              <option value={DUAL_OUTFIT.bottomId}>棉质短裤</option>
+              {outfit.bottoms.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </label>
           <p className="dual-note">
-            上装、下装可单独保留原片。此处只展示已经制作双视角版本的款式；原有完整衣橱仍可使用。
+            {outfit.id === "tailored-day"
+              ? "可与原片上装、短裤混搭；彩色棉质款使用独立服装组。"
+              : "上装、下装可分别保留原片。"}
+            此处只展示已经制作双视角版本的款式；原有完整衣橱仍可使用。
           </p>
           <div className="dual-exports">
             <h3>导出当前视角</h3>

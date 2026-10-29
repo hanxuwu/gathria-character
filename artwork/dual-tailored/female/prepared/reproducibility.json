@@ -1,0 +1,34 @@
+{
+  "method": "Fresh complete 96-frame donor fitting from recorded source art, source frames and accepted source-hand masks; compared with published deterministic repair seeds. No runtime assets rewritten by this check.",
+  "command": "python scripts/build-dual-tailored-female.py --output artwork/dual-tailored/female/repro-stage",
+  "handForegroundReviewSha256": "3833214ede48d3510939e65c566776a4810ea8b441b4de64f756fdc51ee6864d",
+  "files": {
+    "original-top.garment.zip": {
+      "sha256": "63b9dd262f2d96d9351651f46708d24879f61a5d1a949914b9a82336adf5089d",
+      "bytes": 5221049,
+      "byteIdentical": true,
+      "archiveMembersChecked": [
+        "manifest.json",
+        "ownership-0.png",
+        "patches-0.png"
+      ]
+    },
+    "original-bottom.garment.zip": {
+      "sha256": "60d9b80fb2fc273e8d3f822b2ae85737daedd9bd6849f3f8d3713196c4891168",
+      "bytes": 3779950,
+      "byteIdentical": true,
+      "archiveMembersChecked": [
+        "manifest.json",
+        "ownership-0.png",
+        "patches-0.png"
+      ]
+    },
+    "original-tailored-v1.registration.json": {
+      "sha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "bytes": 464004,
+      "byteIdentical": true,
+      "archiveMembersChecked": []
+    }
+  },
+  "passed": true
+}

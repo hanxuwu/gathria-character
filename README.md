@@ -24,6 +24,13 @@ intact. Save both editable views together or export a standard CharacterPack for
 the current view. Existing wardrobe styles remain in their original tools.
 [Paired wardrobe usage, exports and limitations](docs/dual-view-wardrobe/README.md).
 
+In **双视角衣橱 → 服装组**, the new daily collection pairs a male collared
+short-sleeve shirt/trousers and a female puff-sleeve blouse/skirt across both
+views, each in two palettes. Tops and bottoms can independently restore the
+original source clothing. The previous colored cotton collection keeps its
+own registration and defaults; cross-collection cotton mixing is not offered.
+[New artwork, fitting references, actual exports and limits](docs/dual-tailored/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):
