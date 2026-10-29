@@ -299,7 +299,7 @@ function verifyObservation(observation, action, clip, minimumUnique) {
   };
 }
 
-function auditPixels(projectPath, originalPath, dailyPath, pngs) {
+function auditPixels(character, projectPath, originalPath, dailyPath, pngs) {
   return JSON.parse(
     execFileSync(
       "python",
@@ -309,6 +309,7 @@ function auditPixels(projectPath, originalPath, dailyPath, pngs) {
 import hashlib,io,json,sys,zipfile
 import numpy as np
 from PIL import Image
+from pathlib import Path
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def archive(path):
  z=zipfile.ZipFile(path);assert z.testzip() is None
@@ -345,6 +346,8 @@ assert dr['sourceMetadata']['wardrobe']['sourcePackSha256']==doc['sourceSha256']
 assert dr['sourceMetadata']['wardrobe']['registrationSha256']==doc['registrationSha256']
 assert dr['sourceMetadata']['wardrobe']['selection']==doc['selection']
 registered={f['frameId']:f for f in reg['frames']};assert set(registered)=={f['id'] for f in sm['frames']}
+skin_root=Path(sys.argv[5]);skin_audit=json.loads((skin_root/'audit.json').read_text());skin_rows={f['frameId']:f for f in skin_audit['frames']}
+assert skin_audit['sourceSha256']==doc['sourceSha256'] and skin_audit['registrationSha256']==doc['registrationSha256']
 selected=set(v for v in doc['selection'].values() if v is not None);garments=[]
 assert len(selected)==3, 'Daily outfit must select top, bottom and shoes'
 for i,item in enumerate(doc['items']):
@@ -369,7 +372,19 @@ for f in sm['frames']:
  bounds=[int(xs.min()),int(ys.min()),int(xs.max()+1),int(ys.max()+1)]
  assert bounds[0]>0 and bounds[1]>0 and bounds[2]<w and bounds[3]<h, f'Frame edge clipping at {fid}'
  registered_frame=registered[fid];assert len(registered_frame['points'])==17
- assert set(r['label'] for r in registered_frame['protected'])=={'head','nearHand','farHand'}
+ labels=[r['label'] for r in registered_frame['protected']]
+ assert 1<=len(labels)<=3 and len(labels)==len(set(labels))
+ assert 'head' in labels and set(labels)<={'head','nearHand','farHand'}
+ skin_bytes=(skin_root/'masks'/f'{fid:04}-skin.png').read_bytes();skin_row=skin_rows[fid]
+ assert sha(skin_bytes)==skin_row['maskSha256']['skin'] and sha(before.tobytes())==skin_row['sourceRgbaSha256']
+ skin_values=np.array(Image.open(io.BytesIO(skin_bytes)).convert('L'))
+ assert skin_values.shape==(h,w) and np.isin(skin_values,[0,255]).all()
+ skin=skin_values==255
+ rgb=before[:,:,:3].astype(np.int16)
+ independently_marked=(before[:,:,3]>16)&(rgb[:,:,0]-rgb[:,:,1]>34)&(rgb[:,:,0]-rgb[:,:,2]>52)&(rgb[:,:,0]>105)
+ assert np.array_equal(skin,independently_marked), f'Skin mask differs from declared independent source rule at {fid}'
+ assert int(skin.sum())==skin_row['skinSeedPixels']
+ assert not np.any(changed&skin), f'High-confidence source skin seed changed at {fid}'
  protected_counts={}
  for region in registered_frame['protected']:
   mask=polygon_mask(region['polygon'],w,h)&opaque
@@ -386,14 +401,15 @@ for f in sm['frames']:
   for kind,path in pngmap[fid].items():
    exported=np.array(Image.open(path).convert('RGBA'))
    assert np.array_equal(exported,after if kind=='daily' else before), f'Native PNG differs at {fid}/{kind}'
- result.append({'frameId':fid,'sourceFrame':registered_frame['sourceFrame'],'changedPixels':int(changed.sum()),'protectedSourcePixels':protected_counts,'alphaBounds':bounds,'sourceRgbaSha256':sha(before.tobytes()),'dailyRgbaSha256':sha(after.tobytes())})
+ result.append({'frameId':fid,'sourceFrame':registered_frame['sourceFrame'],'changedPixels':int(changed.sum()),'protectedSourcePixels':protected_counts,'skinSeedPixels':int(skin.sum()),'skinProofCoverage':skin_row['skinProofCoverage'],'handProtection':skin_row['handProtection'],'alphaBounds':bounds,'sourceRgbaSha256':sha(before.tobytes()),'dailyRgbaSha256':sha(after.tobytes())})
 assert sum(f['changedPixels'] for f in result)>0, 'Daily outfit did not change the source'
-print(json.dumps({'framesChecked':len(result),'exactSourceOriginalRgba':True,'exactAlpha':True,'exactRegisteredHeadAndHands':True,'noChangesOutsideOwnership':True,'pngFrameParity':True,'sourceSha256':doc['sourceSha256'],'registrationSha256':doc['registrationSha256'],'selection':doc['selection'],'frames':result}))
+print(json.dumps({'framesChecked':len(result),'exactSourceOriginalRgba':True,'exactAlpha':True,'exactRegisteredHeadAndHands':True,'exactMarkedSkinSeeds':True,'skinCoverage':'Partial high-confidence warm RGB/alpha seeds; pale highlights, ink and ambiguous boundaries are not universally covered.','noChangesOutsideOwnership':True,'pngFrameParity':True,'sourceSha256':doc['sourceSha256'],'registrationSha256':doc['registrationSha256'],'selection':doc['selection'],'frames':result}))
 `,
         projectPath,
         originalPath,
         dailyPath,
         JSON.stringify(pngs),
+        join(root, `artwork/kling-side-workspace/registration/${character}`),
       ],
       { encoding: "utf8", timeout: 180000, maxBuffer: 10 * 1024 * 1024 },
     ),
@@ -725,6 +741,11 @@ try {
     assert.equal(mixedSelection.top, null);
     assert.equal(mixedSelection.bottom, dailySelection.bottom);
     assert.equal(mixedSelection.shoes, dailySelection.shoes);
+    const mixedPng = await download(
+      page,
+      "side-export-png",
+      `${character}-mixed.png`,
+    );
     const mixedProject = await download(
       page,
       "side-save-project",
@@ -747,11 +768,23 @@ try {
       mixedSelection,
     );
     await pauseSide(page);
-    await capture(page, `${character}-mixed-reopened`);
+    await setFrame(page, "run", 4, "left");
+    const reopenedPng = await download(
+      page,
+      "side-export-png",
+      `${character}-mixed-reopened.png`,
+    );
+    assert.equal(
+      sha(reopenedPng.bytes),
+      sha(mixedPng.bytes),
+      "Saved mixed project must recreate the same native pixels after reload.",
+    );
+    await capture(page, `${character}-mixed-reopened-workspace`);
     report.projectReopen.push({
       character,
       file: `${character}-mixed.wardrobe.zip`,
       reloadedBeforeImport: true,
+      byteExactNativePngAtSavedPose: true,
       selection: mixedSelection,
       preview: mixedDocument.preview,
     });
@@ -759,6 +792,7 @@ try {
     report.pixelAudits.push({
       character,
       ...auditPixels(
+        character,
         exports.daily.project.path,
         exports.original.path,
         exports.daily.path,

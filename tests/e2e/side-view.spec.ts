@@ -102,6 +102,7 @@ for (const character of ["male", "female"] as const) {
     await expect(page.getByTestId("side-shoes")).toHaveValue(selection.shoes);
     await page.getByTestId("side-facing-left").click();
     await expect(stage(page)).toHaveAttribute("data-facing", "left");
+    const mixedPose = await download(page, "side-export-png");
     const saved = await download(page, "side-save-project");
     const entries = unzipSync(saved.bytes);
     const document = JSON.parse(
@@ -128,6 +129,7 @@ for (const character of ["male", "female"] as const) {
     await pause(page);
     await frame(page, 4);
     const savedPose = await download(page, "side-export-png");
+    expect(savedPose.bytes).toEqual(mixedPose.bytes);
     await page.getByTestId("side-project-input").setInputFiles({
       name: "broken.wardrobe.zip",
       mimeType: "application/zip",
