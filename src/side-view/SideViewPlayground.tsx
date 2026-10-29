@@ -243,6 +243,8 @@ export default function SideViewPlayground({
   const keysRef = useRef(new Set<string>());
   const lastDirectionRef = useRef<Facing>("right");
   const pendingFacingRef = useRef<Facing | null>(null);
+  const keyboardJumpRef = useRef(false);
+  const keyboardResumeRef = useRef<SideAction | null>(null);
   preferencesRef.current = preferences;
   activeRef.current = active;
 
@@ -312,6 +314,8 @@ export default function SideViewPlayground({
         };
         keysRef.current.clear();
         pendingFacingRef.current = null;
+        keyboardJumpRef.current = false;
+        keyboardResumeRef.current = null;
       }
       setSession(next);
       release(previous);
@@ -397,6 +401,10 @@ export default function SideViewPlayground({
     const open = sessionRef.current;
     if (!open || busyRef.current) return;
     const current = motionRef.current;
+    if (inspect) {
+      keyboardJumpRef.current = false;
+      keyboardResumeRef.current = null;
+    }
     if (inspect && current.paused && current.action !== "jump") {
       motionRef.current = {
         ...current,
@@ -424,6 +432,7 @@ export default function SideViewPlayground({
     const motion = motionRef.current;
     if (
       motion.action === "jump" &&
+      !motion.paused &&
       !sideActionEnded(motion, open.renderer.manifest)
     )
       pendingFacingRef.current = facing;
@@ -435,14 +444,26 @@ export default function SideViewPlayground({
     const keys = keysRef.current;
     const left = keys.has("ArrowLeft") || keys.has("KeyA");
     const right = keys.has("ArrowRight") || keys.has("KeyD");
+    const requested: SideAction =
+      left || right
+        ? keys.has("ShiftLeft") || keys.has("ShiftRight")
+          ? "run"
+          : "walk"
+        : "idle";
     if (left || right) {
       changeFacing(
         left && right ? lastDirectionRef.current : left ? "left" : "right",
       );
-      requestAction(
-        keys.has("ShiftLeft") || keys.has("ShiftRight") ? "run" : "walk",
-      );
-    } else requestAction("idle");
+    }
+    // A locomotion seam may still be waiting to start the requested jump.
+    // Preserve that request while remembering the latest held-key intent.
+    if (keyboardJumpRef.current && motionRef.current.pending === "jump") {
+      keyboardResumeRef.current = requested;
+      return;
+    }
+    if (keyboardJumpRef.current && motionRef.current.action === "jump")
+      keyboardResumeRef.current = null;
+    requestAction(requested);
   }
 
   function step(direction: number) {
@@ -580,7 +601,11 @@ export default function SideViewPlayground({
   useEffect(() => {
     lastTimeRef.current = null;
     if (!active) {
+      const hadMovement = ["ArrowLeft", "ArrowRight", "KeyA", "KeyD"].some(
+        (key) => keysRef.current.has(key),
+      );
       keysRef.current.clear();
+      if (hadMovement && !busyRef.current) synchronizeKeys();
       pendingFacingRef.current = null;
     }
     dirtyRef.current = true;
@@ -592,7 +617,7 @@ export default function SideViewPlayground({
         ["ArrowLeft", "ArrowRight", "KeyA", "KeyD"].includes(key),
       );
       keysRef.current.clear();
-      if (hadMovement && !busyRef.current) requestAction("idle");
+      if (hadMovement && !busyRef.current) synchronizeKeys();
       lastTimeRef.current = null;
     }
     function visibility() {
@@ -621,6 +646,16 @@ export default function SideViewPlayground({
       if (event.repeat || keysRef.current.has(event.code)) return;
       keysRef.current.add(event.code);
       if (event.code === "Space") {
+        keyboardJumpRef.current = true;
+        const keys = keysRef.current;
+        const moving = ["ArrowLeft", "ArrowRight", "KeyA", "KeyD"].some((key) =>
+          keys.has(key),
+        );
+        keyboardResumeRef.current = moving
+          ? keys.has("ShiftLeft") || keys.has("ShiftRight")
+            ? "run"
+            : "walk"
+          : null;
         requestAction("jump");
         return;
       }
@@ -686,6 +721,27 @@ export default function SideViewPlayground({
             },
           );
         let motion = motionRef.current;
+        if (
+          keyboardJumpRef.current &&
+          motion.action === "jump" &&
+          keyboardResumeRef.current !== null
+        ) {
+          motion = requestSideAction(
+            motion,
+            keyboardResumeRef.current,
+            manifest,
+          );
+          keyboardResumeRef.current = null;
+          motionRef.current = motion;
+        }
+        if (
+          keyboardJumpRef.current &&
+          motion.action !== "jump" &&
+          motion.pending !== "jump"
+        ) {
+          keyboardJumpRef.current = false;
+          keyboardResumeRef.current = null;
+        }
         if (
           pendingFacingRef.current &&
           (motion.action !== "jump" || sideActionEnded(motion, manifest))
@@ -836,11 +892,17 @@ export default function SideViewPlayground({
     (["top", "bottom", "shoes", "fullBody"] as WardrobeSlot[]).every(
       (slot) => selection[slot] === sideLookSelection(session.character)[slot],
     );
-  const jumpLocked = readout.action === "jump" && !readout.ended;
+  const jumpLocked =
+    readout.action === "jump" && !readout.ended && !readout.paused;
   function setPreference<K extends keyof Preferences>(
     key: K,
     value: Preferences[K],
   ) {
+    if (key === "comparison" && value === true)
+      motionRef.current = {
+        ...motionRef.current,
+        worldX: Math.max(-40, Math.min(40, motionRef.current.worldX)),
+      };
     setPreferences((previous) => ({ ...previous, [key]: value }));
   }
 
