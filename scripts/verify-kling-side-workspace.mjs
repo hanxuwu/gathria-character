@@ -33,6 +33,7 @@ const report = {
   version: 1,
   passed: false,
   startedAt: new Date().toISOString(),
+  verifierSha256: sha(await readFile(fileURLToPath(import.meta.url))),
   root,
   output,
   commitAtCapture: execFileSync("git", ["rev-parse", "HEAD"], {
@@ -390,6 +391,7 @@ for f in sm['frames']:
   mask=polygon_mask(region['polygon'],w,h)&opaque
   assert not np.any(changed&mask), f"Protected {region['label']} changed at {fid}"
   protected_counts[region['label']]=int(mask.sum())
+ assert protected_counts['head']>0, f'Head protection covers no source pixels at {fid}'
  owned=np.zeros((h,w),bool)
  for m,frames,pages in garments:
   g=frames[fid];r,o=g['rect'],g['offset']
@@ -545,7 +547,9 @@ async function verifyStageControls(page, character, manifest) {
     )
     .toBeGreaterThan(400);
   await pauseSide(page);
-  await capture(page, `${character}-daily-camera-follow`, canvas(page));
+  await page.getByTestId("side-ground").check();
+  await capture(page, `${character}-daily-camera-follow`, side(page));
+  await page.getByTestId("side-ground").uncheck();
   await page.getByTestId("side-mode-in-place").click();
   await expect(canvas(page)).toHaveAttribute("data-camera", "fixed");
   await playSide(page);
