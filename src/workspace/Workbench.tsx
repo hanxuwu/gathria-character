@@ -16,9 +16,31 @@ import "./workspace.css";
 
 const WardrobeEditor = lazy(() => import("../wardrobe/WardrobeEditor"));
 const ThemeWorkspace = lazy(() => import("../themes/ThemeWorkspace"));
+const SideViewPlayground = lazy(
+  () => import("../side-view/SideViewPlayground"),
+);
 type WorkbenchTab = "original" | "wardrobe" | "themes" | "rig";
 
 export function CharacterWorkbench() {
+  const query = new URLSearchParams(window.location.search);
+  if (query.get("mode") === "side-view") {
+    return (
+      <div className="workspace-app">
+        <MainNavigation active="workbench" />
+        <Suspense fallback={<p role="status">正在载入侧视动作与换装…</p>}>
+          <SideViewPlayground
+            initialCharacter={
+              query.get("character") === "female" ? "female" : "male"
+            }
+          />
+        </Suspense>
+      </div>
+    );
+  }
+  return <OriginalCharacterWorkbench />;
+}
+
+function OriginalCharacterWorkbench() {
   const query = new URLSearchParams(window.location.search);
   const [character] = useState(
     () =>

@@ -154,12 +154,12 @@ def register(image, reg):
     return result
 
 
-def compile_pack(identity, character, images, profile, out):
+def compile_pack(identity, character, images, profile, out, *, actions=ACTIONS):
     definitions = []
     animations = {}
     records = []
     ordered = []
-    for action in ACTIONS:
+    for action in actions:
         clip = character["actions"][action]
         ids = []
         for source_frame in range(clip["start"], clip["endExclusive"]):
