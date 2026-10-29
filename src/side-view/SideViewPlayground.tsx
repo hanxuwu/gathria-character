@@ -1276,7 +1276,13 @@ export default function SideViewPlayground({
                 type="button"
                 data-testid="side-mode-travel"
                 aria-pressed={preferences.mode === "travel"}
-                onClick={() => setPreference("mode", "travel")}
+                onClick={() =>
+                  setPreferences((previous) => ({
+                    ...previous,
+                    mode: "travel",
+                    ground: true,
+                  }))
+                }
               >
                 横向移动
               </button>
