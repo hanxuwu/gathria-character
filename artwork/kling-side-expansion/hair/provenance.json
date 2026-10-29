@@ -1,0 +1,356 @@
+{
+  "generator": "OpenAI image generation",
+  "generatedAt": "2026-10-29",
+  "generatedDonor": "/workspace/generated_images/exec-22cb65f4-2d26-438b-93a5-4349e815ccf7.png",
+  "referenceFrames": [
+    {
+      "character": "male",
+      "frameId": 0,
+      "sourceFile": "docs/kling-side-workspace/assets/male.source.zip"
+    },
+    {
+      "character": "female",
+      "frameId": 0,
+      "sourceFile": "docs/kling-side-workspace/assets/female.source.zip"
+    }
+  ],
+  "sourceAndPrompt": "artwork/kling-side-expansion/hair/source",
+  "donorPolicy": "Only explicit binary-mask hair cutouts enter banks. Generated face, skin, ears, clothes and transparent background are discarded.",
+  "sourceMutation": false,
+  "preparationScript": "scripts/prepare-kling-side-hair.py",
+  "preparationScriptSha256": "73cb11bb98c5635fd21d0c994576221bbbd15ae923ace20e9e82d8596ab955ee",
+  "dependencies": {
+    "numpy": "2.3.5",
+    "Pillow": "12.3.0",
+    "OpenCV": "4.13.0",
+    "SciPy": "1.17.0"
+  },
+  "files": [
+    {
+      "file": "artwork/kling-side-expansion/hair/source/design.png",
+      "sha256": "ab7fa1fd445e4cf8c06beb3c7042e81c6c5ac7447abe99e66b4ee042227bf2a8",
+      "bytes": 1514389
+    },
+    {
+      "file": "artwork/kling-side-expansion/hair/source/donor-masks.json",
+      "sha256": "c0833f2eb1308af0712deefb7ff185996da0a43233d6b64395836059077eb986",
+      "bytes": 5027
+    },
+    {
+      "file": "artwork/kling-side-expansion/hair/source/female-hair-back-mask.png",
+      "sha256": "7e92040c7a287b63db8e7a79f8f6b3fd200ef0f6e9fa3a702a2f5005828901aa",
+      "bytes": 4312
+    },
+    {
+      "file": "artwork/kling-side-expansion/hair/source/female-hair-front-mask.png",
+      "sha256": "78a481fabf5dc5610a9ded83762ad422e31827acc7eeba2d55eb59f834337427",
+      "bytes": 7152
+    },
+    {
+      "file": "artwork/kling-side-expansion/hair/source/male-hair-back-mask.png",
+      "sha256": "f78fc25a911adc13c9e30817433c6f01da75d0f6773bbfaca2b019e4ceb754a8",
+      "bytes": 2510
+    },
+    {
+      "file": "artwork/kling-side-expansion/hair/source/male-hair-front-mask.png",
+      "sha256": "1cc96dbec6b609d342bd0bac1ba241580b3dd2f6d0578fc91a7a0dceca5770a8",
+      "bytes": 8223
+    },
+    {
+      "file": "artwork/kling-side-expansion/hair/source/prompt.txt",
+      "sha256": "69f7acca566a2942fbe743caaaab932b484bebc5ddd2e734258623171fd7332b",
+      "bytes": 1761
+    },
+    {
+      "file": "docs/kling-side-expansion/assets/female.appearance.zip",
+      "sha256": "a7331769ab2091893cb423c21ac678bf9f92c96173d0f4b6e75d83c91e6a3eb4",
+      "bytes": 8620325
+    },
+    {
+      "file": "docs/kling-side-expansion/assets/male.appearance.zip",
+      "sha256": "9537c8605a198f95816f4551eafa444e0282552df35f3197de74ca8668e60b2f",
+      "bytes": 5867636
+    }
+  ],
+  "finalMaleRegistrationRebind": {
+    "registrationSha256": "ca155cd5fc2711705588f44dbf5e4447792dc5cbcce67d4cb783901660ad87a9",
+    "method": "Compared all frames and registration metadata; only near/far wrist point values changed. Rebound bank manifest and proof metadata; every atlas PNG byte unchanged.",
+    "pngSha256": {
+      "ownership-0.png": "7e4d1ef55d438a7fdd101468b8b3a7e4d1ce50aa9ff92d14ec5edd0c4bf7bbe2",
+      "patches-0.png": "b6c066b990089310b7f3e667aac5c3bdf831edc28b27fd670881cabd4f92f610"
+    }
+  },
+  "finalFemaleHandCoverageRebind": {
+    "registrationSha256": "e3d5a53a0dd652f9c5ca6661ee25817f78d9c122f67816e755beee5f54098c57",
+    "bankSha256": "a7331769ab2091893cb423c21ac678bf9f92c96173d0f4b6e75d83c91e6a3eb4",
+    "method": "Revalidated all102 original opaque face/foreground pixels and all original RGBA outside hair. Compared hand coverage additions against exact final atlas ownership. Every atlas PNG and every hair-only rendered frame remains byte identical; registration metadata rebound.",
+    "pngSha256": {
+      "ownership-0.png": "336e3ede64d7b934a792db782869e8f207263269f2b7a94e207a0603fc0435b2",
+      "ownership-1.png": "bcc042e49e07910250b0c5bfce9144b8f4b61af81fd3bf73e44e423ee71093f7",
+      "patches-0.png": "47a2708dc9d242130eec45997fa4af9f8a0925cc4cbee37ca64ddda107666f4c",
+      "patches-1.png": "3e4fe3273e54b6878c8655a97f58b53d98633197b4bdfde33473cada3c156fcf"
+    },
+    "changedHandFrames": [
+      {
+        "frameId": 31,
+        "addedSourceHandPixels": 865,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 39,
+        "addedSourceHandPixels": 193,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 40,
+        "addedSourceHandPixels": 586,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 41,
+        "addedSourceHandPixels": 994,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 46,
+        "addedSourceHandPixels": 1033,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 47,
+        "addedSourceHandPixels": 607,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 63,
+        "addedSourceHandPixels": 948,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 64,
+        "addedSourceHandPixels": 970,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 65,
+        "addedSourceHandPixels": 904,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 66,
+        "addedSourceHandPixels": 888,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 67,
+        "addedSourceHandPixels": 1017,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 68,
+        "addedSourceHandPixels": 1045,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 69,
+        "addedSourceHandPixels": 1009,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 75,
+        "addedSourceHandPixels": 729,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 76,
+        "addedSourceHandPixels": 607,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 77,
+        "addedSourceHandPixels": 804,
+        "addedHandPixelsWithAuthoredHair": 2,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 78,
+        "addedSourceHandPixels": 772,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 79,
+        "addedSourceHandPixels": 957,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 80,
+        "addedSourceHandPixels": 973,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 81,
+        "addedSourceHandPixels": 937,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 82,
+        "addedSourceHandPixels": 829,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 83,
+        "addedSourceHandPixels": 803,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 84,
+        "addedSourceHandPixels": 917,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 85,
+        "addedSourceHandPixels": 877,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 86,
+        "addedSourceHandPixels": 912,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 87,
+        "addedSourceHandPixels": 967,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 88,
+        "addedSourceHandPixels": 963,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 89,
+        "addedSourceHandPixels": 1006,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 90,
+        "addedSourceHandPixels": 507,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 91,
+        "addedSourceHandPixels": 736,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 92,
+        "addedSourceHandPixels": 998,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 93,
+        "addedSourceHandPixels": 1028,
+        "addedHandPixelsWithAuthoredHair": 33,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 97,
+        "addedSourceHandPixels": 724,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 98,
+        "addedSourceHandPixels": 798,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 99,
+        "addedSourceHandPixels": 861,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 100,
+        "addedSourceHandPixels": 941,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      },
+      {
+        "frameId": 101,
+        "addedSourceHandPixels": 906,
+        "addedHandPixelsWithAuthoredHair": 0,
+        "renderRgbaPixelsChangedByNewProtection": 0,
+        "originalOpaqueAddedHandPixelsChangedAfterHair": 0
+      }
+    ],
+    "scope": "Exact RGBA proof covers opaque original face/foreground pixels. Original antialias boundary appearance is evaluated by the unchanged rendered-frame hashes; the new registration does not change any hair-only rendered frame."
+  }
+}
