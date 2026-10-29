@@ -83,7 +83,7 @@ async function runtimeHashes() {
   );
 }
 report.runtimeInputHashes = await runtimeHashes();
-let browser, server, origin, failure;
+let browser, server, origin, failure, activePage;
 const button = (page, name) => page.getByRole("button", { name, exact: true });
 const side = (page) => page.getByTestId("side-playground");
 const canvas = (page) => page.getByTestId("side-stage");
@@ -91,7 +91,8 @@ async function ready(page) {
   await expect(side(page)).toHaveAttribute("aria-busy", "false", {
     timeout: 180000,
   });
-  await expect(side(page).getByRole("alert")).toHaveCount(0);
+  const alerts = await side(page).getByRole("alert").allTextContents();
+  assert.equal(alerts.length, 0, alerts.join("\n"));
   await expect(canvas(page)).toBeVisible();
 }
 function monitor(context, independent = false) {
@@ -312,9 +313,9 @@ function auditPixels(character, projectPath, originalPath, dailyPath, pngs) {
       [
         "-c",
         String.raw`
-import hashlib,io,json,sys,zipfile
+import hashlib,io,json,math,sys,zipfile
 import numpy as np
-from PIL import Image
+from PIL import Image,ImageDraw
 from pathlib import Path
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def archive(path):
@@ -331,14 +332,22 @@ def pack(z):
 def crop(p,f):
  return np.array(p[f.get('page',0)].crop((f['x'],f['y'],f['x']+f['width'],f['y']+f['height'])))
 def polygon_mask(points,width,height):
- yy,xx=np.mgrid[:height,:width];x,y=xx+.5,yy+.5
- inside=np.zeros((height,width),bool);boundary=inside.copy()
- for a,b in zip(points,points[1:]+points[:1]):
-  ax,ay,bx,by=a['x'],a['y'],b['x'],b['y']
-  if ay!=by:inside^=((ay>y)!=(by>y))&(x<ax+(y-ay)*(bx-ax)/(by-ay))
-  cross=(x-ax)*(by-ay)-(y-ay)*(bx-ax)
-  boundary|=(np.abs(cross)<1e-9)&(x>=min(ax,bx))&(x<=max(ax,bx))&(y>=min(ay,by))&(y<=max(ay,by))
- return inside|boundary
+ # Independent rasterization of the declared runtime pixel-center scanline contract.
+ mask=np.zeros((height,width),bool)
+ top=max(0,math.ceil(min(p['y'] for p in points)-.5));bottom=min(height-1,math.floor(max(p['y'] for p in points)-.5))
+ for y in range(top,bottom+1):
+  cy=y+.5;crossings=[];spans=[]
+  def add(a,b):
+   left=max(0,math.ceil(min(a,b)-.5-1e-9));right=min(width-1,math.floor(max(a,b)-.5+1e-9))
+   if left<=right:spans.append((left,right))
+  for a,b in zip(points[-1:]+points[:-1],points):
+   if (a['y']>cy)!=(b['y']>cy):crossings.append(a['x']+(cy-a['y'])*(b['x']-a['x'])/(b['y']-a['y']))
+   if abs(a['y']-cy)<1e-9 and abs(b['y']-cy)<1e-9:add(a['x'],b['x'])
+   elif abs(a['y']-cy)<1e-9:add(a['x'],a['x'])
+  crossings.sort()
+  for i in range(0,len(crossings)-1,2):add(crossings[i],crossings[i+1])
+  for left,right in spans:mask[y,left:right+1]=True
+ return mask
 project=archive(sys.argv[1]);doc=json.loads(project.read('document.json'));regbytes=project.read('registration.json');reg=json.loads(regbytes)
 sourcebytes=project.read('source.character.zip')
 assert sha(sourcebytes)==doc['sourceSha256']==reg['sourceSha256']
@@ -354,6 +363,8 @@ assert dr['sourceMetadata']['wardrobe']['selection']==doc['selection']
 registered={f['frameId']:f for f in reg['frames']};assert set(registered)=={f['id'] for f in sm['frames']}
 skin_root=Path(sys.argv[5]);skin_audit=json.loads((skin_root/'audit.json').read_text());skin_rows={f['frameId']:f for f in skin_audit['frames']}
 assert skin_audit['sourceSha256']==doc['sourceSha256'] and skin_audit['registrationSha256']==doc['registrationSha256']
+review_bytes=(skin_root/'reviewed-keyposes.json').read_bytes();assert sha(review_bytes)==skin_audit['reviewedKeyposesSha256']
+review_document=json.loads(review_bytes)
 selected=set(v for v in doc['selection'].values() if v is not None);garments=[]
 assert len(selected)==3, 'Daily outfit must select top, bottom and shoes'
 for i,item in enumerate(doc['items']):
@@ -388,7 +399,17 @@ for f in sm['frames']:
  skin=skin_values==255
  rgb=before[:,:,:3].astype(np.int16)
  independently_marked=(before[:,:,3]>16)&(rgb[:,:,0]-rgb[:,:,1]>34)&(rgb[:,:,0]-rgb[:,:,2]>52)&(rgb[:,:,0]>105)
- assert np.array_equal(skin,independently_marked), f'Skin mask differs from declared independent source rule at {fid}'
+ raw_skin=independently_marked.copy();reviewed_exclusions=np.zeros((h,w),bool)
+ for override in skin_row.get('reviewedMaterialOverrides',[]):
+  assert override['slot'] in ('top','bottom') and override['rasterization']=='pillow-integer-polygon'
+  assert override['sourceSha256']==doc['sourceSha256'] and override['sourceRgbaSha256']==sha(before.tobytes())
+  assert override['sourceFrame']==registered_frame['sourceFrame'] and override['reason'] and override['reference']
+  raster=Image.new('L',(w,h),0);ImageDraw.Draw(raster).polygon([(p['x'],p['y']) for p in override['polygon']],fill=255)
+  excluded=(np.array(raster)>0)&(before[:,:,3]>16)
+  assert int(np.count_nonzero(raw_skin&excluded))==override['rawSkinSeedPixelsExcluded']
+  reviewed_exclusions|=excluded
+ independently_marked&=~reviewed_exclusions
+ assert np.array_equal(skin,independently_marked), f'Skin mask differs from declared source rule and explicit reviewed cloth exclusions at {fid}'
  assert int(skin.sum())==skin_row['skinSeedPixels']
  assert not np.any(changed&skin), f'High-confidence source skin seed changed at {fid}'
  protected_counts={}
@@ -408,9 +429,9 @@ for f in sm['frames']:
   for kind,path in pngmap[fid].items():
    exported=np.array(Image.open(path).convert('RGBA'))
    assert np.array_equal(exported,after if kind=='daily' else before), f'Native PNG differs at {fid}/{kind}'
- result.append({'frameId':fid,'sourceFrame':registered_frame['sourceFrame'],'changedPixels':int(changed.sum()),'protectedSourcePixels':protected_counts,'skinSeedPixels':int(skin.sum()),'skinProofCoverage':skin_row['skinProofCoverage'],'handProtection':skin_row['handProtection'],'alphaBounds':bounds,'sourceRgbaSha256':sha(before.tobytes()),'dailyRgbaSha256':sha(after.tobytes())})
+ result.append({'frameId':fid,'sourceFrame':registered_frame['sourceFrame'],'changedPixels':int(changed.sum()),'protectedSourcePixels':protected_counts,'skinSeedPixels':int(skin.sum()),'rawSkinSeedPixels':int(raw_skin.sum()),'reviewedClothSeedExclusions':int(np.count_nonzero(raw_skin&reviewed_exclusions)),'reviewedMaterialOverrides':skin_row.get('reviewedMaterialOverrides',[]),'skinProofCoverage':skin_row['skinProofCoverage'],'handProtection':skin_row['handProtection'],'alphaBounds':bounds,'sourceRgbaSha256':sha(before.tobytes()),'dailyRgbaSha256':sha(after.tobytes())})
 assert sum(f['changedPixels'] for f in result)>0, 'Daily outfit did not change the source'
-print(json.dumps({'framesChecked':len(result),'exactSourceOriginalRgba':True,'exactAlpha':True,'exactRegisteredHeadAndHands':True,'exactMarkedSkinSeeds':True,'skinCoverage':'Partial high-confidence warm RGB/alpha seeds; pale highlights, ink and ambiguous boundaries are not universally covered.','noChangesOutsideOwnership':True,'pngFrameParity':True,'sourceSha256':doc['sourceSha256'],'registrationSha256':doc['registrationSha256'],'selection':doc['selection'],'frames':result}))
+print(json.dumps({'framesChecked':len(result),'exactSourceOriginalRgba':True,'exactAlpha':True,'exactRegisteredHeadAndHands':True,'exactMarkedSkinSeeds':True,'skinCoverage':'Partial high-confidence warm RGB/alpha seeds with explicit source-bound reviewed cloth exclusions; pale highlights, ink and ambiguous boundaries are not universally covered.','noChangesOutsideOwnership':True,'pngFrameParity':True,'sourceSha256':doc['sourceSha256'],'registrationSha256':doc['registrationSha256'],'skinAuditSha256':sha((skin_root/'audit.json').read_bytes()),'reviewedKeyposesSha256':sha(review_bytes),'selection':doc['selection'],'frames':result}))
 `,
         projectPath,
         originalPath,
@@ -431,6 +452,7 @@ async function verifyIndependent(character, outfit, path, manifest) {
   });
   monitor(context, true);
   const page = await context.newPage();
+  activePage = page;
   await page.goto(`${origin}/player.html`, { waitUntil: "networkidle" });
   await page.locator("#player-zip").setInputFiles(path);
   await expect(page.locator(".player-status")).toHaveText(
@@ -641,6 +663,7 @@ try {
     });
     monitor(context);
     const page = await context.newPage();
+    activePage = page;
     await page.goto(
       `${origin}/workbench.html?mode=side-view&character=${character}`,
       { waitUntil: "networkidle" },
@@ -852,6 +875,20 @@ try {
 } catch (error) {
   failure = error;
   report.failure = { message: error.message, stack: error.stack };
+  if (activePage && !activePage.isClosed()) {
+    try {
+      report.failure.visibleAlerts = await activePage
+        .getByRole("alert")
+        .allTextContents();
+      report.failure.stage = await activePage
+        .getByTestId("side-stage")
+        .evaluate((c) => ({ ...c.dataset }))
+        .catch(() => null);
+      await capture(activePage, "failure-workspace");
+    } catch (captureError) {
+      report.failure.captureError = captureError.message;
+    }
+  }
   console.error(error);
 } finally {
   await browser?.close();
