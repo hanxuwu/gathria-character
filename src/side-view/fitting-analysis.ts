@@ -15,6 +15,12 @@ import {
   reviewedRegions,
 } from "../wardrobe/protection";
 import type { SideAction } from "./motion";
+import {
+  compareFittingTemporal,
+  fittingTemporalProfile,
+  type FittingTemporalChange,
+  type FittingTemporalProfile,
+} from "./fitting-temporal";
 
 export interface FittingMetrics {
   frameId: number;
@@ -31,6 +37,8 @@ export interface FittingAuditRow extends FittingMetrics {
   position: number;
   nextFrameId: number | null;
   nextAreaChange: number | null;
+  isLoopSeam: boolean;
+  temporalChanges: FittingTemporalChange[];
   prompts: string[];
 }
 export interface FittingAudit {
@@ -148,6 +156,7 @@ export function fittingMetrics(
 export function fittingRows(
   project: WardrobeProject,
   metrics: Map<number, FittingMetrics>,
+  temporal: Map<number, FittingTemporalProfile> = new Map(),
 ): FittingAuditRow[] {
   return FITTING_ACTIONS.flatMap((action) => {
     const clip = project.archive.manifest.animations[action];
@@ -168,18 +177,34 @@ export function fittingRows(
         ? Math.abs(next.paintedPixels - current.paintedPixels) /
           Math.max(1, next.paintedPixels, current.paintedPixels)
         : null;
+      const temporalChanges =
+        nextFrameId !== null
+          ? compareFittingTemporal(
+              temporal.get(frameId) ?? [],
+              temporal.get(nextFrameId) ?? [],
+            )
+          : [];
       const prompts: string[] = [];
       if (current.protectedOwnedPixels) prompts.push("覆盖受保护原图区域");
       if (current.unownedPaintPixels) prompts.push("有未归属的绘制像素");
       if (current.smallIslands) prompts.push("检查独立小片段");
       if (nextAreaChange !== null && nextAreaChange >= 0.25)
         prompts.push("检查相邻帧衣料面积变化");
+      for (const change of temporalChanges)
+        if (change.status === "review")
+          prompts.push(`${change.label}邻帧轮廓变化，请复核`);
       return {
         ...current,
         action,
         position,
         nextFrameId,
         nextAreaChange,
+        isLoopSeam: Boolean(
+          clip.loop &&
+            position === clip.frames.length - 1 &&
+            clip.frames.length > 1,
+        ),
+        temporalChanges,
         prompts,
       };
     });
@@ -205,6 +230,7 @@ export async function auditFitting(
     ),
   ];
   const metrics = new Map<number, FittingMetrics>();
+  const temporal = new Map<number, FittingTemporalProfile>();
   for (let index = 0; index < ids.length; index++) {
     assertSourcePreparationActive(options);
     const frameId = ids[index],
@@ -212,15 +238,20 @@ export async function auditFitting(
         (row) => row.frameId === frameId,
       );
     if (!registered) throw Error(`缺少姿势 ${frameId} 的锚点。`);
-    const cloth = clothingPose(item, frameId);
+    const cloth = clothingPose(item, frameId),
+      source = sourceFrame(frameId);
     metrics.set(
       frameId,
-      fittingMetrics(
-        item,
+      fittingMetrics(item, registered, cloth.image, cloth.mask, source),
+    );
+    temporal.set(
+      frameId,
+      fittingTemporalProfile(
         registered,
+        item.manifest.slot,
         cloth.image,
         cloth.mask,
-        sourceFrame(frameId),
+        source,
       ),
     );
     options.onProgress?.(index + 1, ids.length);
@@ -233,7 +264,7 @@ export async function auditFitting(
     sourceSha256: project.document.sourceSha256,
     registrationSha256: project.document.registrationSha256,
     garment: { id: itemId, sha256: item.sha256 },
-    rows: fittingRows(project, metrics),
-    note: "几何与像素检查提示，不是美术验收。小片段可能是正常遮挡；面积变化可能来自姿势。循环动作包含末帧到首帧，跳跃只检查原片顺序，不把结尾连接到开头。源素材、锚点及时间信息未改变。",
+    rows: fittingRows(project, metrics, temporal),
+    note: "几何与像素检查提示，不是美术验收。局部窗口随原锚点对齐，并保留衣料变化与原人物变化的分数；原图也明显变化时降低提示优先级，不代表没有穿帮。小片段和面积变化可能来自正常遮挡。隐藏锚点、微小裂缝、褶皱颜色及窗口外的轮廓仍需目视检查。循环动作包含末帧到首帧，跳跃不连接结尾与开头。源素材、锚点及时间信息未改变。",
   };
 }

@@ -1,0 +1,24 @@
+
+> gathria-character@0.1.0 test
+> vitest run src/core/source-preparation.test.ts src/wardrobe/garment-page-preparation.test.ts src/wardrobe/source-page-cache.test.ts src/wardrobe/project.test.ts src/appearance/bank.test.ts src/wardrobe/compositor.test.ts
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/appearance/bank.test.ts (15 tests) 272ms
+ ✓ src/wardrobe/compositor.test.ts (15 tests) 802ms
+ ✓ src/core/source-preparation.test.ts (11 tests) 106ms
+ ✓ src/wardrobe/source-page-cache.test.ts (3 tests) 5ms
+ ✓ src/wardrobe/garment-page-preparation.test.ts (10 tests) 138ms
+ ✓ src/wardrobe/project.test.ts (35 tests) 1475ms
+
+ Test Files  6 passed (6)
+      Tests  89 passed (89)
+   Start at  18:08:15
+   Duration  2.26s (transform 680ms, setup 0ms, collect 1.62s, tests 2.80s, environment 2ms, prepare 634ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

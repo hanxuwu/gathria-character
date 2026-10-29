@@ -247,6 +247,12 @@ export default function SideViewPlayground({
   active?: boolean;
 }) {
   const [session, setSession] = useState<Session | null>(null);
+  const [savedProject, setSavedProject] = useState<WardrobeProject | null>(
+    null,
+  );
+  useEffect(() => {
+    setSavedProject((saved) => (saved === session?.project ? saved : null));
+  }, [session?.project]);
   const [preferences, setPreferences] = useState<Preferences>(readPreferences);
   const [readout, setReadout] = useState(INITIAL_READOUT);
   const [busy, setBusy] = useState(true);
@@ -716,6 +722,7 @@ export default function SideViewPlayground({
       }
       if (!live(token, controller)) return;
       download(bytes, filename, mime);
+      if (kind === "project") setSavedProject(open.project);
       setStatus(
         kind === "project"
           ? "项目已保存，包含原片、服装、当前搭配及动作朝向；可在此重新打开。"
@@ -1407,6 +1414,7 @@ export default function SideViewPlayground({
               <FittingWorkbench
                 key={`${session.character}:${session.project.document.sourceSha256}`}
                 project={session.project}
+                savedProject={savedProject}
                 renderer={session.renderer}
                 action={readout.action}
                 frameId={readout.frame}

@@ -49,6 +49,7 @@ import {
 } from "./protection";
 import { decodedGarmentPage, type DecodedGarmentPage } from "./garment-pages";
 import { FEMALE_NECKLINE_PERMISSION_SHA256 } from "./neckline-permissions";
+import { SourcePageCache } from "./source-page-cache";
 
 const MAX_TEXT_BYTES = 256 * 1024;
 type SelectedGarment = {
@@ -57,24 +58,13 @@ type SelectedGarment = {
   frames: Map<number, WardrobeGarmentFrame>;
 };
 
-// Both Kling pages stay warm across loops and clothing selections. These
+// All pages of one Kling source stay warm across loops and clothing selections. These
 // buffers are never exposed to a caller; all rendered results are fresh copies.
 // A bounded shared cache avoids keeping old and new full source atlases during
 // atomic selection replacement. Very large third-party packs still stay bounded.
-const sourcePages = new Map<string, RgbaPng>();
-const SOURCE_CACHE_PIXELS = 96 * 1024 * 1024;
+const sourcePages = new SourcePageCache();
 function cacheSourcePage(key: string, image: RgbaPng): void {
   sourcePages.set(key, image);
-  let pixels = [...sourcePages.values()].reduce(
-    (sum, page) => sum + page.width * page.height,
-    0,
-  );
-  while (sourcePages.size > 2 || pixels > SOURCE_CACHE_PIXELS) {
-    const oldest = sourcePages.keys().next().value!;
-    const old = sourcePages.get(oldest)!;
-    sourcePages.delete(oldest);
-    pixels -= old.width * old.height;
-  }
 }
 const validAppearances = new Set<string>();
 
@@ -212,8 +202,6 @@ class RegisteredWardrobeCompositor {
     const key = `${this.project.document.sourceSha256}:${page}`;
     const cached = sourcePages.get(key);
     if (cached) {
-      sourcePages.delete(key);
-      sourcePages.set(key, cached);
       return cached;
     }
     const archive = this.project.archive;

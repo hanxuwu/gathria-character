@@ -25,7 +25,15 @@ async function open(page: Page, character: "male" | "female") {
   await ready(page);
   await page.getByTestId("side-play-pause").click();
   await page.getByTestId("side-action-run").click();
+  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+    "data-action",
+    "run",
+  );
   await page.getByTestId("side-frame").fill("4");
+  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+    "data-frame-position",
+    "4",
+  );
   await page.getByTestId("side-fitting-toggle").click();
   await expect(page.getByTestId("side-fitting")).toBeVisible();
   await expect(page.getByTestId("side-stage")).toHaveAttribute(
@@ -232,6 +240,9 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
     "data-selection",
     /side-fitting-browser-proof/,
   );
+  await expect(page.getByTestId("fitting-workflow-status")).toContainText(
+    "修正已应用",
+  );
   const corrected = await download(page, () =>
     page.getByTestId("side-export-png").click(),
   );
@@ -248,6 +259,9 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
     page.getByTestId("side-save-project").click(),
   );
   await ready(page);
+  await expect(page.getByTestId("fitting-workflow-status")).toContainText(
+    "项目下载已发起",
+  );
   const savedFiles = unzipSync(saved);
   expect(savedFiles["source.character.zip"]).toEqual(
     new Uint8Array(
@@ -263,7 +277,29 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
     buffer: saved,
   });
   await ready(page);
-  await page.getByTestId("side-frame").fill("4");
+  // A reopened project restores action/facing, not a saved scrub position.
+  // Stop playback before selecting the exact oracle frame; a range fill equal
+  // to the live value may emit no change event and must not leave it playing.
+  if (
+    (await page.getByTestId("side-stage").getAttribute("data-paused")) !==
+    "true"
+  )
+    await page.getByTestId("side-play-pause").click();
+  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+    "data-paused",
+    "true",
+  );
+  await expect(page.getByTestId("side-stage")).toHaveAttribute(
+    "data-action",
+    "run",
+  );
+  for (const position of [0, 4]) {
+    await page.getByTestId("side-frame").fill(String(position));
+    await expect(page.getByTestId("side-stage")).toHaveAttribute(
+      "data-frame-position",
+      String(position),
+    );
+  }
   expect(
     await download(page, () => page.getByTestId("side-export-png").click()),
   ).toEqual(corrected);

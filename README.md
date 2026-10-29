@@ -6,10 +6,11 @@ contains their original playback, portable export and the separate male and fema
 skeletal candidates; unrelated classic characters and experiments have been
 removed from the working tree.
 
-Current side-view candidate: **garment fitting and contact refinement**. Open
-**侧视新款试装与发型**, then **服装校正 · 锚点与遮挡** to inspect source-bound
-anchors, diagnose all poses, repair local cloth and save a reviewed garment.
-[Current review, actual exports and limits](docs/kling-side-fitting/README.md).
+Current side-view candidate: **clothing continuity and reusable fitting review**.
+Open **侧视新款试装与发型**, then **服装校正 · 锚点与遮挡** for adjacent native
+poses, local ownership repairs and source-bound review templates. Male neckline
+and female forearm corrections preserve the original body and action timing.
+[Current review, actual exports and limits](docs/kling-side-refinement/README.md).
 
 ## Open the app
 

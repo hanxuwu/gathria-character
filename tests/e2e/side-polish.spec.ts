@@ -112,6 +112,11 @@ for (const character of ["male", "female"] as const) {
         );
       }
       await page.getByTestId(`side-action-${pose.action}`).click();
+      await expect(stage(page)).toHaveAttribute("data-action", pose.action);
+      await expect(page.getByTestId("side-frame")).toHaveAttribute(
+        "max",
+        String(manifest.animations[pose.action].frames.length - 1),
+      );
       const index = manifest.animations[pose.action].frames.indexOf(pose.frame);
       await page.getByTestId("side-frame").fill(String(index));
       await expect(stage(page)).toHaveAttribute(

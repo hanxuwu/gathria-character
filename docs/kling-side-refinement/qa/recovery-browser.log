@@ -1,0 +1,19 @@
+[WebServer] (node:187409) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:187422) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:187440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/side-loading-workers.spec.ts:5:1 › real preparation workers cancel independently and preserve strict fallback parity (640ms)
+  ✓  2 tests/e2e/side-refinement-recovery.spec.ts:30:3 › male: PR54 native artwork survives refinement, worker fallback and malformed garment recovery (39.2s)
+  ✓  3 tests/e2e/side-refinement-recovery.spec.ts:30:3 › female: PR54 native artwork survives refinement and project roundtrip (23.5s)
+
+  3 passed (1.1m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

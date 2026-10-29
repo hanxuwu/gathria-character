@@ -1,6 +1,14 @@
 # Implementation status
 
-Latest side-view candidate: **visual garment fitting, contact refinements and
+Latest side-view candidate: **clothing continuity and reusable fitting review**,
+based on draft PR #54 (`16fb140`). Conservative original-cloth ownership repairs
+improve male neckline and female run40–41 forearm contacts without changing
+source bodies or canonical protection. Adjacent native poses, anatomy-aligned
+diagnostic hints and source-bound review templates extend the existing fitting
+panel. Loading changes retain the strict local validation and legacy formats.
+[Current evidence and explicit remaining limits](kling-side-refinement/README.md).
+
+Previous side-view candidate: **visual garment fitting, contact refinements and
 measured cold-load scheduling** on `feat/kling-side-fitting-workbench`, based on
 unmerged PR #53 (`220ea2f`). The new panel reuses native mask editing, bound drafts
 and reviewed candidate import. Cloth-only sleeve/hem fits and a local nape repair

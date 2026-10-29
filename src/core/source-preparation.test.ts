@@ -1,11 +1,16 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { strToU8, zipSync } from "fflate";
 import { decodeSourceRgbaPng, encodeSourceRgbaPng } from "./baked-source";
-import { crc32 } from "./bounded-archive";
+import {
+  crc32,
+  readBoundedArchive,
+  type ArchivePolicy,
+} from "./bounded-archive";
 import { readPortableCharacterPackArchive } from "./pack";
 import {
   prepareSourceArchive,
   prepareSourcePng,
+  prepareBoundedArchive,
   type SourcePreparationRequest,
   type SourcePreparationResponse,
 } from "./source-preparation";
@@ -126,6 +131,16 @@ class StubWorker {
           ok: true,
           value: decodeSourceRgbaPng(this.posted!.bytes, this.posted!.expected),
         };
+      } else if (this.posted!.kind === "bounded-archive") {
+        const input = this.posted as Extract<
+          SourcePreparationRequest,
+          { kind: "bounded-archive" }
+        >;
+        response = {
+          kind: "bounded-archive",
+          ok: true,
+          value: readBoundedArchive(input.bytes, input.policy),
+        };
       } else {
         response = {
           kind: "archive",
@@ -147,6 +162,56 @@ function workers(behavior: typeof StubWorker.behavior = "success") {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("background source preparation", () => {
+  it("parses bounded garment archives in the worker with exact file bytes and an immutable policy", async () => {
+    workers();
+    const files = {
+      "manifest.json": strToU8('{"version":1}'),
+      "patches-0.png": fixturePng(),
+    };
+    const zip = zipSync(files),
+      saved = zip.slice();
+    const policy: ArchivePolicy = {
+      label: "fixture",
+      maxArchiveBytes: 4096,
+      maxExpandedBytes: 4096,
+      minFiles: 2,
+      maxFiles: 2,
+      files: { "manifest.json": 64, "patches-0.png": 1024 },
+      required: ["manifest.json", "patches-0.png"],
+    };
+    const pending = prepareBoundedArchive(zip, policy);
+    zip.fill(0);
+    policy.files = {};
+    policy.required = [];
+    expect(await pending).toEqual(files);
+    expect(saved.length).toBeGreaterThan(0);
+    expect(StubWorker.instances[0].terminate).toHaveBeenCalledOnce();
+  });
+
+  it("preserves bounded archive limits and CRC rejection in the no-worker fallback", async () => {
+    vi.stubGlobal("Worker", undefined);
+    const files = { "a.bin": new Uint8Array([1, 2, 3]) };
+    const zip = zipSync(files, { level: 0 });
+    const policy: ArchivePolicy = {
+      label: "fixture",
+      maxArchiveBytes: 1024,
+      maxExpandedBytes: 3,
+      minFiles: 1,
+      maxFiles: 1,
+      files: { "a.bin": 3 },
+      required: ["a.bin"],
+    };
+    expect(await prepareBoundedArchive(zip, policy)).toEqual(files);
+    await expect(
+      prepareBoundedArchive(zip, { ...policy, maxExpandedBytes: 2 }),
+    ).rejects.toThrow();
+    await expect(
+      prepareBoundedArchive(zip, { ...policy, files: { "b.bin": 3 } }),
+    ).rejects.toThrow();
+    const broken = zip.slice();
+    broken[35] ^= 1;
+    await expect(prepareBoundedArchive(broken, policy)).rejects.toThrow();
+  });
   it("transfers a copy and preserves hidden RGB, partial alpha and profile bytes", async () => {
     workers();
     const png = fixturePng(),

@@ -1,0 +1,100 @@
+{
+  "format": "gathria-side-preparation-summary",
+  "version": 1,
+  "passed": true,
+  "startedAt": "2026-10-29T18:12:46.151Z",
+  "finishedAt": "2026-10-29T18:14:51.414Z",
+  "rawReportSha256": "fc8fecfaf8ca99bfe59367be54d610d00472fa74a92c0edb7c7d5a289c9420e8",
+  "baselineRef": "16fb1405239188a453d66cda94927106028eefbf",
+  "assetRef": "16fb1405239188a453d66cda94927106028eefbf",
+  "rounds": 2,
+  "uiContexts": 8,
+  "pipelineContexts": 8,
+  "characters": {
+    "male": {
+      "before": {
+        "medianReadyMs": 7454.749999996275,
+        "longestTaskMsEach": [
+          771,
+          877
+        ],
+        "medianLongestTaskMs": 824.0,
+        "worstTaskMs": 877,
+        "maxHeartbeatGapMs": 911.6000000014901,
+        "medianHeapBytes": 501514521.0,
+        "medianStagesMs": {
+          "load": 3337.7000000029802,
+          "compositor": 689.4500000029802,
+          "allPoseValidation": 1745.699999999255
+        }
+      },
+      "after": {
+        "medianReadyMs": 6957.400000002235,
+        "longestTaskMsEach": [
+          84,
+          101
+        ],
+        "medianLongestTaskMs": 92.5,
+        "worstTaskMs": 101,
+        "maxHeartbeatGapMs": 114.69999999552965,
+        "medianHeapBytes": 413196482.5,
+        "medianStagesMs": {
+          "load": 3547.949999999255,
+          "compositor": 766.8000000007451,
+          "allPoseValidation": 1781.449999999255
+        }
+      },
+      "readyReductionPercent": 6.671585230816435,
+      "medianLongestTaskReductionPercent": 88.77427184466019
+    },
+    "female": {
+      "before": {
+        "medianReadyMs": 8061.54999999702,
+        "longestTaskMsEach": [
+          1088,
+          939
+        ],
+        "medianLongestTaskMs": 1013.5,
+        "worstTaskMs": 1088,
+        "maxHeartbeatGapMs": 1112.5,
+        "medianHeapBytes": 424593180.5,
+        "medianStagesMs": {
+          "load": 3654.35000000149,
+          "compositor": 761.3000000007451,
+          "allPoseValidation": 1584.300000000745
+        }
+      },
+      "after": {
+        "medianReadyMs": 7716.25,
+        "longestTaskMsEach": [
+          98,
+          96
+        ],
+        "medianLongestTaskMs": 97.0,
+        "worstTaskMs": 98,
+        "maxHeartbeatGapMs": 133.40000000596046,
+        "medianHeapBytes": 421829038.5,
+        "medianStagesMs": {
+          "load": 4283.35000000149,
+          "compositor": 972.9499999992549,
+          "allPoseValidation": 1684.699999999255
+        }
+      },
+      "readyReductionPercent": 4.283295396011278,
+      "medianLongestTaskReductionPercent": 90.42920572274296
+    }
+  },
+  "sourceFilesUnchangedAfterMeasurements": {
+    "src/core/source-preparation.ts": "da592a51a1e34e3d1ed20fb3336c1a4df977e40d752b415ab09ad8150d1af531",
+    "src/core/source-preparation.worker.ts": "1dcebb122841aa3421e2d9978099579de9004e59f206bf68d5a764f6e67812bc",
+    "src/wardrobe/project.ts": "c190a6026201442324b25d0b7a553ce9d5d31f4a21969db194a61fb13a01f01b",
+    "src/appearance/bank.ts": "88c9035dc68f6e9e07665aa508d8d173023285734b63ac7eafd1e5dc9df465ee",
+    "src/wardrobe/compositor.ts": "94ba4a45891ec4bec19f50f2f730d5ef5f0b4457965d15702964b50030b44091",
+    "src/wardrobe/garment-pages.ts": "5602f367db90b9fa49a16e0fc9690ab9b36df7892bd66775df4d47abe4253640",
+    "src/wardrobe/garment-page-codec.ts": "23793b2fc021bd146deb98f0a77cde8ccef8c1f5eff066a4a08ff88f32f18311",
+    "src/wardrobe/garment-page-preparation.ts": "5efdfbb7467d3cf4dd3e8fa1f90ff143526367fc21f7ee59ec56a597ea805c0a",
+    "src/wardrobe/garment-page-preparation.worker.ts": "5e329d1a2e838b439616e1696c7effe0ed7359488c2807a948ebc05a52932ccf",
+    "src/wardrobe/source-page-cache.ts": "61431fb757c9c184a1ec7820d909ebe53197966e7505d7cfce475f87d4be25e0"
+  },
+  "checks": "Every native RGBA frame, actual UI canvas, imported asset identity, per-frame validation progress and actual garment worker presence matched requirements."
+}

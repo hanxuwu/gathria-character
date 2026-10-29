@@ -1,8 +1,8 @@
-import { readBoundedArchive } from "../core/bounded-archive";
 import { sha256 } from "../core/sha256";
 import { createCooperativeYield } from "../core/cooperative-yield";
 import {
   assertSourcePreparationActive,
+  prepareBoundedArchive,
   type SourcePreparationOptions,
 } from "../core/source-preparation";
 import type { Point, Rect, WardrobeRegistration } from "../wardrobe/contract";
@@ -85,16 +85,20 @@ export async function readAppearanceBank(
     allowed[`ownership-${i}.png`] = APPEARANCE_MAX_BYTES;
     paired.push([`patches-${i}.png`, `ownership-${i}.png`]);
   }
-  const files = readBoundedArchive(copied, {
-    label: "Appearance bank",
-    maxArchiveBytes: APPEARANCE_MAX_BYTES,
-    maxExpandedBytes: APPEARANCE_MAX_BYTES,
-    minFiles: 3,
-    maxFiles: 1 + 2 * APPEARANCE_MAX_PAGES,
-    files: allowed,
-    required: ["manifest.json", "patches-0.png", "ownership-0.png"],
-    paired,
-  });
+  const files = await prepareBoundedArchive(
+    copied,
+    {
+      label: "Appearance bank",
+      maxArchiveBytes: APPEARANCE_MAX_BYTES,
+      maxExpandedBytes: APPEARANCE_MAX_BYTES,
+      minFiles: 3,
+      maxFiles: 1 + 2 * APPEARANCE_MAX_PAGES,
+      files: allowed,
+      required: ["manifest.json", "patches-0.png", "ownership-0.png"],
+      paired,
+    },
+    options,
+  );
   let raw: unknown;
   try {
     raw = JSON.parse(decoder.decode(files["manifest.json"]));
@@ -126,6 +130,7 @@ export async function readAppearanceBank(
         ownership,
         declared,
         `appearance:${hash}:${i}`,
+        options,
       );
     pages.push({
       patch: new Uint8Array(patch),

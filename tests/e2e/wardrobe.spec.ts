@@ -348,9 +348,9 @@ test("an outfit preflight keeps the queued landing, current pose and facing inta
     original,
   );
   finishFetch();
-  // Validation yields between poses using a timer, independent of animation.
-  await expect(wardrobe.getByRole("status")).toContainText("1 / 2");
-  await page.clock.runFor(1);
+  // The tiny fixture can validate within one cooperative work budget. Do not
+  // require an intermediate progress label or advance the animation clock to
+  // manufacture a scheduler yield; assert the completed preflight's behavior.
   await expect(wardrobe.getByRole("status")).toContainText("Wedding selected");
   await expect(canvas).toHaveAttribute("data-frame-position", "1");
   await expect(canvas).toHaveAttribute("data-action", "jump");
