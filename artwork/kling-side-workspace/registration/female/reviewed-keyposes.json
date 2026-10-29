@@ -1,0 +1,3065 @@
+{
+  "coordinateSpace": {
+    "width": 512,
+    "height": 768,
+    "anchor": [
+      256,
+      710
+    ]
+  },
+  "status": "manual visual estimates from native source PNGs, not recovered bone centers",
+  "limitations": [
+    "Hidden far shoulders and both hips are deliberately low-confidence inferred attachment locations.",
+    "Far limb associations during crossings are source-specific visual estimates.",
+    "Face/hand deformation and blur present in generated source are retained.",
+    "waistLeft and waistRight must be derived from each actual garment contour."
+  ],
+  "sources": {
+    "female-1927": {
+      "243": {
+        "neck": {
+          "x": 265,
+          "y": 452,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 228,
+          "y": 480,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 299,
+          "y": 478,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 247,
+          "y": 574,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 284,
+          "y": 575,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 203,
+          "y": 527,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 318,
+          "y": 540,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 197,
+          "y": 570,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 323,
+          "y": 572,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 223,
+          "y": 628,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 281,
+          "y": 626,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 210,
+          "y": 681,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 284,
+          "y": 673,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 249,
+          "y": 707,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 324,
+          "y": 693,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "135": {
+        "neck": {
+          "x": 269,
+          "y": 429,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 238,
+          "y": 448,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 205,
+          "y": 451,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 232,
+          "y": 548,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 272,
+          "y": 553,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 247,
+          "y": 494,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 202,
+          "y": 492,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 305,
+          "y": 477,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 194,
+          "y": 509,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 308,
+          "y": 578,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 184,
+          "y": 606,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 306,
+          "y": 640,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 138,
+          "y": 648,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 358,
+          "y": 650,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 150,
+          "y": 695,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "139": {
+        "neck": {
+          "x": 268,
+          "y": 449,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 234,
+          "y": 473,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 291,
+          "y": 479,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 236,
+          "y": 566,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 277,
+          "y": 567,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 235,
+          "y": 515,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 307,
+          "y": 532,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearWrist": {
+          "x": 282,
+          "y": 531,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 305,
+          "y": 547,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearKnee": {
+          "x": 237,
+          "y": 623,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 284,
+          "y": 617,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 173,
+          "y": 607,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 266,
+          "y": 675,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 143,
+          "y": 652,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 309,
+          "y": 696,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "143": {
+        "neck": {
+          "x": 267,
+          "y": 431,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 208,
+          "y": 449,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 300,
+          "y": 453,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 231,
+          "y": 551,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 274,
+          "y": 552,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 167,
+          "y": 482,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 316,
+          "y": 493,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 171,
+          "y": 516,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 349,
+          "y": 468,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 273,
+          "y": 580,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 194,
+          "y": 612,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 260,
+          "y": 638,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 168,
+          "y": 663,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 303,
+          "y": 666,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 193,
+          "y": 695,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "147": {
+        "neck": {
+          "x": 268,
+          "y": 446,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 211,
+          "y": 462,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 301,
+          "y": 466,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 237,
+          "y": 567,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 276,
+          "y": 570,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 164,
+          "y": 496,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 320,
+          "y": 506,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 172,
+          "y": 532,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 349,
+          "y": 501,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 262,
+          "y": 608,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 221,
+          "y": 618,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 277,
+          "y": 674,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 156,
+          "y": 600,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 326,
+          "y": 693,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 133,
+          "y": 647,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "152": {
+        "neck": {
+          "x": 267,
+          "y": 430,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 235,
+          "y": 451,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 208,
+          "y": 460,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 233,
+          "y": 550,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 272,
+          "y": 555,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 239,
+          "y": 500,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 210,
+          "y": 496,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearWrist": {
+          "x": 300,
+          "y": 492,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 208,
+          "y": 512,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearKnee": {
+          "x": 309,
+          "y": 582,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 184,
+          "y": 614,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 283,
+          "y": 636,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 158,
+          "y": 667,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 322,
+          "y": 660,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 179,
+          "y": 697,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "140": {
+        "neck": {
+          "x": 268,
+          "y": 449,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 229,
+          "y": 470,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 294,
+          "y": 475,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 234,
+          "y": 568,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 269,
+          "y": 570,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 205,
+          "y": 514,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 301,
+          "y": 540,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 263,
+          "y": 540,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 314,
+          "y": 542,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 251,
+          "y": 617,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 264,
+          "y": 626,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 181,
+          "y": 611,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 232,
+          "y": 670,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 177,
+          "y": 666,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 283,
+          "y": 692,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "141": {
+        "neck": {
+          "x": 268,
+          "y": 446,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 222,
+          "y": 465,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 302,
+          "y": 477,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 234,
+          "y": 561,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 273,
+          "y": 564,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 190,
+          "y": 499,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 317,
+          "y": 518,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 232,
+          "y": 535,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 342,
+          "y": 517,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 266,
+          "y": 588,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 246,
+          "y": 644,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearAnkle": {
+          "x": 217,
+          "y": 622,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 222,
+          "y": 676,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 223,
+          "y": 674,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 253,
+          "y": 698,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "150": {
+        "neck": {
+          "x": 269,
+          "y": 447,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 231,
+          "y": 469,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 301,
+          "y": 477,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 236,
+          "y": 565,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 275,
+          "y": 565,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 211,
+          "y": 510,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 309,
+          "y": 536,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearWrist": {
+          "x": 269,
+          "y": 534,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 307,
+          "y": 545,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearKnee": {
+          "x": 236,
+          "y": 622,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 291,
+          "y": 610,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 218,
+          "y": 677,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 242,
+          "y": 649,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearToe": {
+          "x": 251,
+          "y": 697,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 241,
+          "y": 677,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        }
+      }
+    },
+    "female-1721": {
+      "42": {
+        "neck": {
+          "x": 272,
+          "y": 437,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 231,
+          "y": 463,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 303,
+          "y": 462,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 241,
+          "y": 556,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 279,
+          "y": 557,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 213,
+          "y": 514,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 313,
+          "y": 522,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 213,
+          "y": 553,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 322,
+          "y": 545,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 228,
+          "y": 611,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 301,
+          "y": 597,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 218,
+          "y": 666,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 252,
+          "y": 638,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 253,
+          "y": 692,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 266,
+          "y": 675,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "46": {
+        "neck": {
+          "x": 267,
+          "y": 441,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 240,
+          "y": 471,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 286,
+          "y": 474,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 246,
+          "y": 555,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 284,
+          "y": 557,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 242,
+          "y": 511,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 210,
+          "y": 515,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearWrist": {
+          "x": 299,
+          "y": 537,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 202,
+          "y": 539,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearKnee": {
+          "x": 302,
+          "y": 603,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 201,
+          "y": 611,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 322,
+          "y": 661,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 162,
+          "y": 646,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 370,
+          "y": 664,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 176,
+          "y": 691,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "50": {
+        "neck": {
+          "x": 272,
+          "y": 442,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 232,
+          "y": 469,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 303,
+          "y": 474,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 241,
+          "y": 563,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 280,
+          "y": 564,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 221,
+          "y": 522,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 307,
+          "y": 543,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 237,
+          "y": 561,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 310,
+          "y": 565,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 252,
+          "y": 613,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 280,
+          "y": 625,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 198,
+          "y": 622,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 266,
+          "y": 669,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 197,
+          "y": 672,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 298,
+          "y": 695,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "54": {
+        "neck": {
+          "x": 267,
+          "y": 436,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 229,
+          "y": 455,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 307,
+          "y": 464,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 248,
+          "y": 558,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 279,
+          "y": 558,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 183,
+          "y": 503,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 324,
+          "y": 500,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 167,
+          "y": 537,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 358,
+          "y": 503,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 278,
+          "y": 603,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 211,
+          "y": 613,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 290,
+          "y": 664,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 199,
+          "y": 650,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 340,
+          "y": 686,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 220,
+          "y": 695,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "59": {
+        "neck": {
+          "x": 270,
+          "y": 442,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 229,
+          "y": 468,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 303,
+          "y": 469,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 239,
+          "y": 565,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 280,
+          "y": 564,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 202,
+          "y": 518,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 315,
+          "y": 522,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 197,
+          "y": 554,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 330,
+          "y": 545,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 243,
+          "y": 618,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 290,
+          "y": 613,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 237,
+          "y": 674,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 215,
+          "y": 633,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearToe": {
+          "x": 280,
+          "y": 697,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 220,
+          "y": 675,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        }
+      }
+    },
+    "female-2394": {
+      "200": {
+        "neck": {
+          "x": 272,
+          "y": 448,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 240,
+          "y": 467,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 295,
+          "y": 483,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 226,
+          "y": 591,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 278,
+          "y": 592,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 252,
+          "y": 526,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 207,
+          "y": 508,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearWrist": {
+          "x": 326,
+          "y": 522,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 207,
+          "y": 525,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearKnee": {
+          "x": 231,
+          "y": 623,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 278,
+          "y": 629,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 176,
+          "y": 598,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 254,
+          "y": 670,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 145,
+          "y": 627,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 307,
+          "y": 695,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "205": {
+        "neck": {
+          "x": 285,
+          "y": 447,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 225,
+          "y": 455,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 324,
+          "y": 461,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 238,
+          "y": 576,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 295,
+          "y": 572,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 157,
+          "y": 437,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 337,
+          "y": 482,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 131,
+          "y": 467,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 390,
+          "y": 445,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 220,
+          "y": 609,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 336,
+          "y": 607,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 151,
+          "y": 589,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 350,
+          "y": 667,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 113,
+          "y": 622,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 397,
+          "y": 667,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "210": {
+        "neck": {
+          "x": 279,
+          "y": 450,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 218,
+          "y": 455,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 310,
+          "y": 477,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 215,
+          "y": 584,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 275,
+          "y": 588,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 166,
+          "y": 450,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 339,
+          "y": 510,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 133,
+          "y": 481,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 388,
+          "y": 477,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 224,
+          "y": 617,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 295,
+          "y": 611,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 184,
+          "y": 665,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 243,
+          "y": 655,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 229,
+          "y": 690,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 284,
+          "y": 677,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "215": {
+        "neck": {
+          "x": 259,
+          "y": 269,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 205,
+          "y": 298,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 286,
+          "y": 301,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 229,
+          "y": 404,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 281,
+          "y": 414,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 149,
+          "y": 331,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 298,
+          "y": 358,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 153,
+          "y": 372,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 339,
+          "y": 339,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 252,
+          "y": 433,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 328,
+          "y": 423,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 188,
+          "y": 456,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 272,
+          "y": 466,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 198,
+          "y": 514,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 287,
+          "y": 506,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "220": {
+        "neck": {
+          "x": 266,
+          "y": 341,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 210,
+          "y": 361,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 301,
+          "y": 365,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 231,
+          "y": 490,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 293,
+          "y": 492,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 143,
+          "y": 320,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 335,
+          "y": 353,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 115,
+          "y": 329,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 375,
+          "y": 310,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 236,
+          "y": 548,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 312,
+          "y": 534,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 219,
+          "y": 586,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 291,
+          "y": 590,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 257,
+          "y": 612,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 335,
+          "y": 613,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "225": {
+        "neck": {
+          "x": 294,
+          "y": 494,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 233,
+          "y": 502,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 325,
+          "y": 531,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 240,
+          "y": 610,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 298,
+          "y": 609,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 182,
+          "y": 530,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 337,
+          "y": 565,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 185,
+          "y": 572,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 381,
+          "y": 564,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 253,
+          "y": 641,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 325,
+          "y": 633,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 202,
+          "y": 679,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 275,
+          "y": 659,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 239,
+          "y": 699,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 323,
+          "y": 689,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "230": {
+        "neck": {
+          "x": 280,
+          "y": 449,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 222,
+          "y": 470,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 312,
+          "y": 487,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 222,
+          "y": 585,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 280,
+          "y": 583,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 175,
+          "y": 490,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 316,
+          "y": 526,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 222,
+          "y": 518,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 351,
+          "y": 526,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 224,
+          "y": 620,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 301,
+          "y": 615,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 199,
+          "y": 670,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 279,
+          "y": 657,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 230,
+          "y": 694,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 317,
+          "y": 680,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "235": {
+        "neck": {
+          "x": 269,
+          "y": 325,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 213,
+          "y": 347,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 303,
+          "y": 360,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 221,
+          "y": 461,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 279,
+          "y": 466,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 168,
+          "y": 382,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 315,
+          "y": 399,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 185,
+          "y": 424,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 347,
+          "y": 403,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 208,
+          "y": 521,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 274,
+          "y": 523,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 203,
+          "y": 585,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 271,
+          "y": 578,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 226,
+          "y": 629,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 287,
+          "y": 621,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "240": {
+        "neck": {
+          "x": 265,
+          "y": 280,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 205,
+          "y": 299,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 303,
+          "y": 325,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 217,
+          "y": 400,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 284,
+          "y": 400,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 143,
+          "y": 300,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 324,
+          "y": 350,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 140,
+          "y": 337,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 371,
+          "y": 328,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 250,
+          "y": 426,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 318,
+          "y": 416,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 209,
+          "y": 465,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 281,
+          "y": 461,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 237,
+          "y": 507,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 321,
+          "y": 500,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "245": {
+        "neck": {
+          "x": 277,
+          "y": 456,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 213,
+          "y": 472,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 319,
+          "y": 497,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 223,
+          "y": 588,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 282,
+          "y": 588,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 156,
+          "y": 492,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 334,
+          "y": 522,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 169,
+          "y": 536,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 389,
+          "y": 510,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 238,
+          "y": 625,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 311,
+          "y": 616,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 207,
+          "y": 673,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 279,
+          "y": 662,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 239,
+          "y": 695,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 324,
+          "y": 682,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "249": {
+        "neck": {
+          "x": 280,
+          "y": 460,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 221,
+          "y": 479,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 314,
+          "y": 495,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 224,
+          "y": 588,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 281,
+          "y": 589,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 186,
+          "y": 519,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 319,
+          "y": 531,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 254,
+          "y": 530,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 367,
+          "y": 533,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 235,
+          "y": 626,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 309,
+          "y": 617,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 207,
+          "y": 675,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 280,
+          "y": 661,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 240,
+          "y": 696,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 323,
+          "y": 682,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "243": {
+        "neck": {
+          "x": 270,
+          "y": 386,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 218,
+          "y": 410,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 306,
+          "y": 409,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 225,
+          "y": 527,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 279,
+          "y": 526,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 157,
+          "y": 377,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 350,
+          "y": 395,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 147,
+          "y": 351,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 383,
+          "y": 352,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 220,
+          "y": 577,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 292,
+          "y": 578,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 212,
+          "y": 628,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 288,
+          "y": 621,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 247,
+          "y": 656,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 334,
+          "y": 645,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "244": {
+        "neck": {
+          "x": 279,
+          "y": 438,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 222,
+          "y": 471,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 314,
+          "y": 470,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearHip": {
+          "x": 234,
+          "y": 576,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 286,
+          "y": 579,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 157,
+          "y": 444,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 343,
+          "y": 462,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 148,
+          "y": 427,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 385,
+          "y": 420,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearKnee": {
+          "x": 225,
+          "y": 622,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 295,
+          "y": 621,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 210,
+          "y": 674,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 282,
+          "y": 662,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 244,
+          "y": 697,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 325,
+          "y": 681,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      }
+    }
+  },
+  "overrides": {
+    "female-1927/140": {
+      "nearKnee": {
+        "x": 251,
+        "y": 617,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "nearAnkle": {
+        "x": 181,
+        "y": 611,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "nearToe": {
+        "x": 177,
+        "y": 666,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farKnee": {
+        "x": 264,
+        "y": 626,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farAnkle": {
+        "x": 232,
+        "y": 670,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farToe": {
+        "x": 283,
+        "y": 692,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      }
+    },
+    "female-1927/141": {
+      "nearKnee": {
+        "x": 266,
+        "y": 588,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "nearAnkle": {
+        "x": 217,
+        "y": 622,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "nearToe": {
+        "x": 223,
+        "y": 674,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farKnee": {
+        "x": 246,
+        "y": 644,
+        "visibility": "visible",
+        "confidence": 0.35,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farAnkle": {
+        "x": 222,
+        "y": 676,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farToe": {
+        "x": 253,
+        "y": 698,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      }
+    },
+    "female-1927/150": {
+      "nearKnee": {
+        "x": 236,
+        "y": 622,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "nearAnkle": {
+        "x": 218,
+        "y": 677,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "nearToe": {
+        "x": 251,
+        "y": 697,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farKnee": {
+        "x": 291,
+        "y": 610,
+        "visibility": "visible",
+        "confidence": 0.76,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farAnkle": {
+        "x": 242,
+        "y": 649,
+        "visibility": "occluded",
+        "confidence": 0.35,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      },
+      "farToe": {
+        "x": 241,
+        "y": 677,
+        "visibility": "occluded",
+        "confidence": 0.35,
+        "method": "additional native run-crossing visual review; contour-guided estimate"
+      }
+    },
+    "female-2394/201": {
+      "nearElbow": {
+        "x": 241,
+        "y": 532,
+        "visibility": "visible",
+        "confidence": 0.74,
+        "method": "additional native source201 motion-blurred hand visual review; region-center estimate"
+      },
+      "nearWrist": {
+        "x": 279,
+        "y": 551,
+        "visibility": "visible",
+        "confidence": 0.74,
+        "method": "additional native source201 motion-blurred hand visual review; region-center estimate"
+      }
+    }
+  },
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d"
+}
