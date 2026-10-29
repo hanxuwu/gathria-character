@@ -15,7 +15,7 @@ for identity in ('male', 'female'):
     ctx = load_context(identity)
     if identity == 'male':
         changes = json.loads((BASE / 'source-review/male-hands/proposals.json').read_bytes())['changes']
-        for packet in ('male-hands/concave-refinements.json', 'qa-male-hand-refinement.json', 'qa-male-run-boundary-refinement.json'):
+        for packet in ('male-hands/concave-refinements.json', 'qa-male-hand-refinement.json', 'qa-male-run-boundary-refinement.json', 'qa-male-walk-boundary-refinement.json'):
             for refinement in json.loads((BASE / 'source-review' / packet).read_bytes()):
                 item = next(c for c in changes if (c['frameId'], c['label']) == (refinement['frameId'], refinement['label']))
                 item['polygon'] = refinement['polygon']

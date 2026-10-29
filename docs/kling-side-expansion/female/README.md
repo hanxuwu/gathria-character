@@ -16,16 +16,21 @@ original design sheet. Generated skin, heads, hands, shoes, and background are
 discarded. Exact prompts, source artwork, isolated cloth masks, and file hashes
 are in `artwork/kling-side-expansion/female/source/`.
 
-`scripts/prepare-kling-side-female-clothing.py` selects the closest authored
-cloth pose and fits it offline using bounded garment transforms. The source
+`scripts/prepare-kling-side-female-clothing.py` fits authored cloth offline using
+bounded garment transforms. The skirt retains a coherent donor throughout each
+action (standing/walk/run 0, jump 79), so passing poses cannot switch the
+whole fold pattern or hem design. Blouse frames 40 and 47 use the same reviewed
+backwards-arm donor as their neighbors. The source
 body is never transformed. This is a finite painted donor workflow, not 102
 independently painted clothing drawings. The runtime receives only sparse
 prepared pixels and binary ownership masks.
 
 The skirt hem depth and width use smooth source-pose curves across each action
-and around looping boundaries. The painted fold pattern still changes when
-the selected donor changes; this is an authored approximation, not cloth
-simulation. Forward-arm blouse regions hidden in the design reference are
+and around looping boundaries. The skirt fold pattern remains stable inside each clip; its shape still responds
+to the original smoothed pose curves. Switching between actions can still change
+the skirt shape, and blouse pose donors still change. This is an authored
+approximation, not cloth simulation. The current bounded continuity pass and
+its same-frame evidence are documented in [female polish](../../kling-side-polish/female/README.md). Forward-arm blouse regions hidden in the design reference are
 completed from the standing donor's painted bodice before fitting.
 
 `hardposes.jpg` covers idle, forward-arm walk/run, crossed legs, raised arms,

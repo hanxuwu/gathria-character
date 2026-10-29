@@ -40,6 +40,16 @@ UPPER_ARM_SUPPORT = {92: [(194,358),(208,358),(208,375),(194,375)]}
 # every owned pixel. The corresponding source anchors are unchanged.
 LEG_WIDTH_HINTS = {47: {'near': 24.733198165893555},
                    56: {'near': 27.461021423339844}}
+# Native PR53 walk measurements: releasing false hand protection must not
+# change a distant trouser's sampling width by a fractional source pixel.
+# These retain accepted texture scale; no limb anchor or silhouette changes.
+WALK_LEG_WIDTH_HINTS = {24: {'far': 33.413818359375},
+                        25: {'far': 23.38365364074707},
+                        28: {'near': 22.57378387451172},
+                        29: {'near': 27.177284240722656},
+                        36: {'far': 28.33966064453125},
+                        37: {'near': 28.599916458129883},
+                        38: {'far': 27.62910270690918}}
 TRACE = {
  'torso': [(422,775),(437,778),(529,812),(536,798),(547,796),(558,808),(576,835),(589,851),(605,883),(610,925),(608,969),(608,997),(592,1005),(532,1009),(469,1006),(431,998),(435,965),(451,944),(462,913),(463,876),(452,848),(424,832),(402,835),(391,842),(410,810),(416,793)],
  'near': [(399,833),(424,833),(445,847),(458,872),(462,899),(454,931),(448,947),(432,936),(408,926),(382,919),(358,918),(347,913),(355,894),(360,874),(372,854),(389,839)],
@@ -338,6 +348,9 @@ def trousers(ctx,fid,masks,limb):
         measured=np.abs(cross[limb[side+'Leg']]);width=float(np.percentile(measured,92)) if len(measured)>40 else 24.
         width=np.clip(width,19,36)
         width=LEG_WIDTH_HINTS.get(fid,{}).get(side,width)
+        if side in WALK_LEG_WIDTH_HINTS.get(fid,{}):
+            # Keep the original np.clip scalar precision as well as its value.
+            width=np.float64(WALK_LEG_WIDTH_HINTS[fid][side])
         dw=np.where(first,45*(1-local)+41*local,41*(1-local)+45*local)
         coords=center+normal*(np.clip(cross/width,-.88,.88)*dw)[:,:,None]
         color=sample('trousers',coords[:,:,0],coords[:,:,1])
@@ -370,6 +383,8 @@ def donor_provenance():
         'reviewedSourcePinkLegSupportFrames':sorted(PINK_LEG_FRAMES),
         'reviewedNativeUpperArmSkinSupport':UPPER_ARM_SUPPORT,
         'stableSourceLegWidthHints':LEG_WIDTH_HINTS,
+        'stableWalkLegWidthHints':WALK_LEG_WIDTH_HINTS,
+        'stableWalkLegWidthMeasurementRegistrationSha256':'7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e',
         'stableSourceLegWidthMeasurementRegistrationSha256':'c41aa37b45e314d48740d7b5148bde4bc71d54282c9f21e13d7376802464c366',
         'retainedOuterClothPixels':{'file':'stable-outer-cloth-pixels.json','sha256':sha((ART/'stable-outer-cloth-pixels.json').read_bytes()),'frameId':56,'shirtPixels':27,'trousersPixels':2},
         'palette':'Fresh painted terracotta cotton / warm stone twill donor. Collar, cuff, placket, pocket and fold artwork retained.',

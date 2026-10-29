@@ -3,16 +3,16 @@
   "version": 1,
   "id": "side-female-cream-blouse-v1",
   "file": "female-blouse.garment.zip",
-  "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
-  "bytes": 2393402,
-  "decodedPixelsPerAtlasKind": 2609160,
+  "sha256": "c704a50b87e581c8b29fd24daee8b0d6d53f00667a94f71ea418e80decccc01d",
+  "bytes": 2390959,
+  "decodedPixelsPerAtlasKind": 2601486,
   "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
   "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
   "pages": [
     {
       "file": "patches-0.png",
       "maskFile": "ownership-0.png",
-      "width": 2040,
+      "width": 2034,
       "height": 1279
     }
   ],
@@ -581,13 +581,13 @@
       "frameId": 40,
       "sourceFrame": 141,
       "sourceRgbaSha256": "f71c16f1e736678b364082d7467bc4a6c4f825b4c28a88ed1df3086c678a6278",
-      "paintedRgbaSha256": "d2a00ea6654fcacb4353422ae9dc3a1f095e5fd5b0580393aef462ffd9d0c015",
-      "ownershipSha256": "6337884521b60d4e185528977c5013c90df801d4a30007d8a1cb79b8c95d341b",
-      "ownedPixels": 12480,
-      "changedPixels": 12480,
-      "extensionPixels": 2538,
+      "paintedRgbaSha256": "b37f54c36e3fc75e1d077e9980b369ffe4feb424038aff5ac74cd17966aef7ad",
+      "ownershipSha256": "e82ea1a42a934e183532b33046be5bc71d4ad90c8cc1fb17eb00c52c24478b15",
+      "ownedPixels": 11827,
+      "changedPixels": 11827,
+      "extensionPixels": 1649,
       "erasedSourcePixels": 0,
-      "coveredPartialSkinProofPixels": 4309,
+      "coveredPartialSkinProofPixels": 4646,
       "protectedPixelsExact": true,
       "outsideOwnershipExact": true
     },
@@ -679,13 +679,13 @@
       "frameId": 47,
       "sourceFrame": 148,
       "sourceRgbaSha256": "4149bf08d59d852990cc3389b19871738e9f8a47f23f9c1dd5e7ecc6ff8b7926",
-      "paintedRgbaSha256": "b6d335123dd8d63711a2ec814139ad47edb892f2c2e7ba83b3b299be6d7f6deb",
-      "ownershipSha256": "fd66dc72160147c008ac40a5417a6d4531a5d6617eaa4d6adaeba2d038d95cfa",
-      "ownedPixels": 9129,
-      "changedPixels": 9129,
-      "extensionPixels": 724,
+      "paintedRgbaSha256": "7611e384b9d73696d5320f041113f4035af15bb11f609f78cbaf984514e3c682",
+      "ownershipSha256": "c3fe82e4c7922cb41122d6e55b9641e5fcff51a4c4a913997a5086c9a585dfee",
+      "ownedPixels": 9670,
+      "changedPixels": 9670,
+      "extensionPixels": 699,
       "erasedSourcePixels": 0,
-      "coveredPartialSkinProofPixels": 2189,
+      "coveredPartialSkinProofPixels": 2632,
       "protectedPixelsExact": true,
       "outsideOwnershipExact": true
     },
@@ -1446,6 +1446,6 @@
       "outsideOwnershipExact": true
     }
   ],
-  "provenance": "Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. Painted hem shape is carried continuously with pose-specific donor selection; no runtime body deformation or AI.",
+  "provenance": "Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. A coherent painted skirt donor is retained for each full action (idle/walk/run 0, jump 79), with continuous source-guided cloth scale/shear. Blouse frames40 and47 use adjacent backward-arm cloth to remove isolated sleeve/collar jumps. No runtime body deformation, frame interpolation or AI.",
   "limitations": "Partial skin-proof overlap counts are descriptive, not exhaustive anatomy evidence. Original head/hands and outside-ownership bytes remain exact; source shape may be covered or extended only by explicit owned cloth."
 }

@@ -74,7 +74,7 @@ for fid,pair in boxes.items():
   proposals.append(item)
 # Source-reviewed concave contact boundaries supersede convex bridge regions.
 # Keep the reviewed wrist metadata: these refinements change only protection.
-for refinement_path in [out/'concave-refinements.json',out.parent/'qa-male-hand-refinement.json',out.parent/'qa-male-run-boundary-refinement.json']:
+for refinement_path in [out/'concave-refinements.json',out.parent/'qa-male-hand-refinement.json',out.parent/'qa-male-run-boundary-refinement.json',out.parent/'qa-male-walk-boundary-refinement.json']:
  if refinement_path.exists():
   for refinement in json.loads(refinement_path.read_bytes()):
    item=next(p for p in proposals if (p['frameId'],p['label'])==(refinement['frameId'],refinement['label']))

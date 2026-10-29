@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -59,6 +59,8 @@ import {
   type SideStageMode,
 } from "./motion";
 import { sideKeyboardIntent } from "./input";
+import SideReviewPanel from "./SideReviewPanel";
+import { type ReviewNote, type ReviewRate } from "./review";
 import "./side-view.css";
 
 const WIDTH = 1200;
@@ -242,6 +244,9 @@ export default function SideViewPlayground({
   const [status, setStatus] = useState("正在准备角色…");
   const [error, setError] = useState("");
   const [catalogLoadFailed, setCatalogLoadFailed] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [reviewRate, setReviewRate] = useState<ReviewRate>(1);
+  const reviewRef = useRef({ open: false, rate: 1 as ReviewRate });
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const travelReadoutRef = useRef<HTMLOutputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -266,6 +271,7 @@ export default function SideViewPlayground({
   const keyboardResumeRef = useRef<SideAction | null>(null);
   preferencesRef.current = preferences;
   activeRef.current = active;
+  reviewRef.current = { open: reviewOpen, rate: reviewRate };
 
   function markBusy(value: boolean) {
     busyRef.current = value;
@@ -331,6 +337,7 @@ export default function SideViewPlayground({
           ...createSideMotionState(),
           action,
           facing: saved.facing,
+          paused: reviewRef.current.open,
         };
         keysRef.current.clear();
         pendingFacingRef.current = null;
@@ -545,6 +552,57 @@ export default function SideViewPlayground({
     dirtyRef.current = true;
   }
 
+  function toggleReview() {
+    const next = !reviewOpen;
+    setReviewOpen(next);
+    setReviewRate(1);
+    if (next) {
+      keysRef.current.clear();
+      pendingFacingRef.current = null;
+      keyboardJumpRef.current = false;
+      keyboardResumeRef.current = null;
+      motionRef.current = { ...motionRef.current, paused: true, pending: null };
+      setPreferences((previous) => ({
+        ...previous,
+        mode: "in-place",
+        comparison: true,
+      }));
+    }
+    lastTimeRef.current = null;
+    dirtyRef.current = true;
+  }
+
+  function locateReviewNote(note: ReviewNote) {
+    const open = sessionRef.current;
+    if (!open || busyRef.current) return;
+    const clip = open.renderer.manifest.animations[note.action];
+    const index = clip?.frames.indexOf(note.frame) ?? -1;
+    if (!clip || index < 0) return;
+    keysRef.current.clear();
+    pendingFacingRef.current = null;
+    keyboardJumpRef.current = false;
+    keyboardResumeRef.current = null;
+    motionRef.current = {
+      ...motionRef.current,
+      action: note.action,
+      facing: note.facing,
+      paused: true,
+      pending: null,
+      jumpFrom: null,
+      elapsedMs: (index * 1000) / clip.fps + 0.000001,
+    };
+    lastTimeRef.current = null;
+    dirtyRef.current = true;
+  }
+
+  const reviewFrame = useCallback(
+    (frame: number, source: boolean) => {
+      if (!session) throw Error("请先打开角色。");
+      return cachedFrame(session, frame, source);
+    },
+    [session],
+  );
+
   async function save(kind: "project" | "png" | "gif" | "pack") {
     const open = sessionRef.current;
     if (!open || busyRef.current) return;
@@ -751,6 +809,7 @@ export default function SideViewPlayground({
       const prefs = preferencesRef.current;
       const delta =
         lastTimeRef.current === null ? 0 : now - lastTimeRef.current;
+      const rate = reviewRef.current.open ? reviewRef.current.rate : 1;
       lastTimeRef.current = now;
       try {
         const manifest = open.renderer.manifest;
@@ -760,7 +819,7 @@ export default function SideViewPlayground({
         if (!busyRef.current)
           motionRef.current = advanceSideMotion(
             motionRef.current,
-            delta,
+            delta * rate,
             manifest,
             {
               mode: prefs.mode,
@@ -820,7 +879,8 @@ export default function SideViewPlayground({
           travelReadoutRef.current.textContent = `${motion.worldX >= 0 ? "+" : ""}${Math.round(motion.worldX).toLocaleString()} px`;
         canvas.dataset.elapsedMs = motion.elapsedMs.toFixed(3);
         canvas.dataset.fps = String(clip.fps);
-        canvas.dataset.timing = "native-1x";
+        canvas.dataset.timing = rate === 1 ? "native-1x" : `review-${rate}x`;
+        canvas.dataset.previewRate = String(rate);
         canvas.dataset.paused = String(motion.paused);
         canvas.dataset.pending = motion.pending ?? "";
         canvas.dataset.ended = String(ended);
@@ -1058,7 +1118,10 @@ export default function SideViewPlayground({
                   : "侧视预览"}
               </span>
               <span>
-                原生节奏 · 1× <b>{readout.fps} fps</b>
+                {reviewOpen && reviewRate !== 1
+                  ? `审阅慢放 · ${reviewRate}×`
+                  : "原生节奏 · 1×"}
+                <b>原片 {readout.fps} fps</b>
               </span>
             </div>
             <canvas
@@ -1230,7 +1293,7 @@ export default function SideViewPlayground({
                   : "本轮动作结束后"}
                 切换为{ACTION_LABELS[readout.pending]}
                 {readout.transitionMs !== null &&
-                  `（剩余约 ${(Math.ceil(readout.transitionMs / 100) / 10).toFixed(1)} 秒${readout.paused ? "，已暂停" : ""}）`}
+                  `（剩余约 ${(Math.ceil(readout.transitionMs / (reviewOpen ? reviewRate : 1) / 100) / 10).toFixed(1)} 秒${readout.paused ? "，已暂停" : ""}）`}
                 。
               </p>
             )}
@@ -1240,6 +1303,42 @@ export default function SideViewPlayground({
               </p>
             )}
           </div>
+
+          <div className="side-review-toggle">
+            <button
+              type="button"
+              data-testid="side-review-toggle"
+              disabled={!session || busy}
+              aria-expanded={reviewOpen}
+              onClick={toggleReview}
+            >
+              {reviewOpen ? "关闭逐帧审阅" : "检查穿帮 · 逐帧审阅"}
+            </button>
+            <span>
+              {reviewOpen
+                ? "关闭后恢复 1× 预览，可点击继续播放。"
+                : "暂停到当前帧，并排对比、放大局部、记录问题。"}
+            </span>
+          </div>
+          {reviewOpen && session && (
+            <SideReviewPanel
+              key={`${session.character}:${session.project.document.sourceSha256}`}
+              project={session.project}
+              character={session.character}
+              action={readout.action}
+              frame={readout.frame}
+              facing={readout.facing}
+              busy={busy}
+              rate={reviewRate}
+              onRate={(rate) => {
+                setReviewRate(rate);
+                lastTimeRef.current = null;
+                dirtyRef.current = true;
+              }}
+              onPose={locateReviewNote}
+              getFrame={reviewFrame}
+            />
+          )}
 
           <div className="side-feedback">
             <p role="status" aria-live="polite" data-testid="side-status">
@@ -1453,6 +1552,7 @@ export default function SideViewPlayground({
               <button
                 type="button"
                 data-testid="side-mode-travel"
+                disabled={reviewOpen}
                 aria-pressed={preferences.mode === "travel"}
                 onClick={() =>
                   setPreferences((previous) => ({
@@ -1465,6 +1565,11 @@ export default function SideViewPlayground({
                 横向移动
               </button>
             </div>
+            {reviewOpen && (
+              <p className="side-small-note">
+                逐帧审阅使用原地预览。关闭审阅后可切换横向移动。
+              </p>
+            )}
             {preferences.mode === "travel" && (
               <div className="side-speeds">
                 <label>

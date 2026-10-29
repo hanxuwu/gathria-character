@@ -844,10 +844,11 @@ try {
         exports[outfit].path,
       );
     }
-    // Exact native poses captured by the root before the protection/waist fix.
+    // Native contact poses retained for same-frame before/after review.
     const repairedPoses =
       character === "male"
         ? [
+            { action: "walk", position: 5, frameId: 26 },
             { action: "walk", position: 14, frameId: 35 },
             { action: "run", position: 1, frameId: 40 },
           ]

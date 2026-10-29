@@ -29,5 +29,12 @@
     "loopHemDepthSeamPixels": null,
     "loopWidthSeamPixels": null
   },
-  "limitation": "Bounds are stabilized; painted fold patterns and local hem curvature may visibly change at donor transitions. These measurements do not establish fluid cloth motion."
+  "limitation": "Source-guided hem depth/width curves remain unchanged. The current skirt uses one coherent donor per action, removing intra-action whole-pattern switches. Blouse donors and inter-action cloth changes remain; these measurements do not establish physical cloth motion.",
+  "skirtActionDonors": {
+    "idle": 0,
+    "walk": 0,
+    "run": 0,
+    "jump": 79
+  },
+  "continuityReview": "docs/kling-side-polish/female/continuity-audit.json"
 }

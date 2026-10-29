@@ -19,3 +19,13 @@ Each character directory contains all-action contact sheets, selected native hea
 `face-preservation.json` records a per-pose facial-core polygon and original/render RGBA hashes. All original opaque core pixels and original opaque registered foreground pixels must remain byte exact. Original antialias silhouette pixels are excluded from this core proof because rear hair naturally changes their transparent background. `boundary-preservation.json` compares every original RGBA pixel outside the authored hair, including invisible RGB, and records each hair bound and native canvas edge clearance. These are numerical ownership checks, not a claim of perfect visual quality.
 
 The styles follow the native head with a fitted illustrated donor; the bob has no independently simulated secondary motion. The most compressed, blurred jump drawings can make new hair look slightly crisper than the original face. Small nape tips and a narrow rear scalp transition in the deepest male blink pose remain visible at close inspection. The original arm and shoulder edges can make the bob's lower overlap look abrupt during raised-arm poses; those original anatomy pixels are retained. No additional hairstyle or face synthesis is included.
+
+## Subsequent local polish
+
+The current candidate includes the source-frame210 male rear-hair fit and final
+walk-hand registration binding documented in
+[the local polish review](../../kling-side-polish/hair/README.md). Its native
+comparison, 106-unchanged-pose proof and all-three-color runtime audit are the
+current evidence for that correction. The contact sheets above record the
+original hairstyle authoring review and therefore still show its earlier
+frame67 rear-scalp gap. The female appearance bank remains unchanged.

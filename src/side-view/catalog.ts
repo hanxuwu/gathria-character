@@ -4,7 +4,7 @@ import {
   addWardrobeAppearanceBank,
   createWardrobeProject,
 } from "../wardrobe/project";
-import { sha256 } from "../core/sha256";
+import { fetchSideAsset, SideSourceCache } from "./source-cache";
 
 export type SideCharacterId = "male" | "female";
 export type SideCollection = "material" | "tailored";
@@ -112,18 +112,9 @@ const tailored = {
   },
 } as const;
 
-async function bytes(url: string, signal?: AbortSignal): Promise<Uint8Array> {
-  const response = await fetch(url, { signal });
-  if (!response.ok)
-    throw Error(`侧视素材加载失败（${response.status}），请重试。`);
-  const size = Number(response.headers.get("content-length"));
-  if (size > 64 * 1024 * 1024) throw Error("侧视素材超出可加载大小。");
-  const data = new Uint8Array(await response.arrayBuffer());
-  if (!data.length || data.length > 64 * 1024 * 1024)
-    throw Error("侧视素材为空或超出可加载大小。");
-  signal?.throwIfAborted();
-  return data;
-}
+// The two source packs are immutable and hash-bound. Garments and registration
+// stay outside this cache so a newly published fitting edition is revalidated.
+const sourceBytes = new SideSourceCache();
 
 /** Every new material is bound to the exact side-view pack and registration. */
 export async function loadSideProject(
@@ -134,24 +125,43 @@ export async function loadSideProject(
   if (id !== "male" && id !== "female") throw Error("无法识别这个侧视人物。");
   if (collection !== "material" && collection !== "tailored")
     throw Error("无法识别这组服装。");
-  const asset = collection === "tailored" ? tailored[id] : files[id];
-  const source = await bytes(files[id].source, signal);
-  if ((await sha256(source)) !== bindings[id].sha256)
-    throw Error("侧视人物来源校验失败，请重新加载完整素材。");
   signal?.throwIfAborted();
-  const registration = await bytes(asset.registration, signal);
-  const garments: Uint8Array[] = [];
-  for (const url of asset.garments) garments.push(await bytes(url, signal));
-  const project = await createWardrobeProject(source, registration, garments, {
-    signal,
-  });
-  return collection === "tailored"
-    ? addWardrobeAppearanceBank(
-        project,
-        await bytes(tailored[id].appearance, signal),
-        { signal },
-      )
-    : project;
+  const asset = collection === "tailored" ? tailored[id] : files[id];
+  const controller = new AbortController();
+  const cancel = () => controller.abort(signal?.reason);
+  signal?.addEventListener("abort", cancel, { once: true });
+  try {
+    // Fetch independent compressed assets together. Strict source, garment and
+    // appearance validation below remains serial to bound decoded memory.
+    const [source, registration, garments, appearance] = await Promise.all([
+      sourceBytes.get(files[id].source, bindings[id].sha256, controller.signal),
+      fetchSideAsset(asset.registration, controller.signal),
+      Promise.all(
+        asset.garments.map((url) => fetchSideAsset(url, controller.signal)),
+      ),
+      collection === "tailored"
+        ? fetchSideAsset(tailored[id].appearance, controller.signal)
+        : undefined,
+    ]);
+    const project = await createWardrobeProject(
+      source,
+      registration,
+      garments,
+      {
+        signal: controller.signal,
+      },
+    );
+    return appearance
+      ? await addWardrobeAppearanceBank(project, appearance, {
+          signal: controller.signal,
+        })
+      : project;
+  } finally {
+    signal?.removeEventListener("abort", cancel);
+    // Failed imports abort sibling requests too. Shared source readers belonging
+    // to a different call continue through their own independent signal.
+    controller.abort();
+  }
 }
 
 export function sideLookSelection(

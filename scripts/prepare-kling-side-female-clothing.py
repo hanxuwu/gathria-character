@@ -21,6 +21,14 @@ _SEG_FRAME=None
 _SEG_DATA=None
 IDS=[0,42,72,79,89,95]
 TOP_IDS=IDS+[20,34]
+# Keep one painted fold layout through each complete action. Nearest-pose
+# selection changed entire hem/fold designs at passing poses, even though
+# source motion was continuous. Existing smooth source-guided scale/shear
+# still responds to each pose; neither the source nor its timing is altered.
+# The lifted run donor's front flap was isolated by a foreground fist in
+# passing poses. Use the complete pleated cloth through walk AND run, rather
+# than weakening source-hand protection or retaining a floating cloth island.
+SKIRT_ACTION_DONORS={'idle':0,'walk':0,'run':0,'jump':79}
 TOP_WAIST={0:504,42:490,72:416,79:537,89:347,95:448,20:461,34:475}
 # Explicit generated-skin/background rejection at open neck and sleeve edges.
 # These masks are donor isolation, not source ownership permissions.
@@ -137,6 +145,13 @@ def segments(ctx,fid):
     return _SEG_DATA
 
 def select(ctx,fid,slot):
+    if slot=='bottom':
+        action=next(action for action,clip in ctx.animations.items() if fid in clip['frames'])
+        return SKIRT_ACTION_DONORS[action]
+    # Two isolated donor choices in this continuous backward-arm passage
+    # introduced a broad sleeve at f40 and a one-frame collar change at f47.
+    # Retain the same reviewed backwards-arm cloth used by the adjacent poses.
+    if slot=='top' and 40<=fid<=47:return 42
     # Visually reviewed near-arm depth order overrides ambiguous hidden-arm
     # anchor distances during the forward half of the native run cycle.
     if slot=='top' and fid in [34,35,36,37,51,55]:return 34
@@ -311,7 +326,7 @@ def main():
         for action,clip in ctx.animations.items():
             board(combined,clip['frames'],REVIEW/f'{action}-frames.jpg',action)
             review_gif(combined,clip,REVIEW/f'{action}-motion.gif')
-        provenance='Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. Painted hem shape is carried continuously with pose-specific donor selection; no runtime body deformation or AI.'
+        provenance='Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. A coherent painted skirt donor is retained for each full action (idle/walk/run 0, jump 79), with continuous source-guided cloth scale/shear. Blouse frames40 and47 use adjacent backward-arm cloth to remove isolated sleeve/collar jumps. No runtime body deformation, frame interpolation or AI.'
         for slot,item,name in [('top','side-female-cream-blouse-v1','Cream puff-sleeve blouse'),('bottom','side-female-rose-skirt-v1','Rose gathered skirt')]:
             filename='female-blouse.garment.zip' if slot=='top' else 'female-skirt.garment.zip'
             report=pack_garment(ctx,item,name,slot,paintings[slot],ROOT/'docs/kling-side-expansion/assets'/filename,provenance)
