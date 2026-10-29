@@ -16,6 +16,14 @@ same workbench. Source/tool changes retain open sessions; save projects before
 reloading. [Unified workspace guide and verification](docs/unified-workbench/README.md) ·
 [Clothing review, actual exports and limits](docs/kling-side-refinement/README.md).
 
+**双视角衣橱** adds one shared daily look for both source views. Open
+`/workbench.html?character=male&mode=paired` (or `female`), choose a palette, then
+switch **人物素材** between original and side-view. The selected tank/shorts use
+separate source-bound artwork in each view; body pixels and source timing stay
+intact. Save both editable views together or export a standard CharacterPack for
+the current view. Existing wardrobe styles remain in their original tools.
+[Paired wardrobe usage, exports and limitations](docs/dual-view-wardrobe/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):
@@ -25,12 +33,10 @@ npm ci
 npm run dev
 ```
 
-Open the address Vite prints. In **Character library**, use **Open character** on
-either card to inspect and arrange its **Sprite actions**. The default action
-settings preserve the original video playback. **Dress Kling male/female** opens
-the registered wardrobe. **Explore Kling male/female themes** opens the new
-authored theme workspace; separate **Edit Kling male/female skeleton** buttons
-retain the optional skeletal candidates.
+Open the address Vite prints. In **Character library**, use **编辑人物** on either
+card. The workbench keeps original actions, wardrobe, paired wardrobe, themes
+and optional skeletal tools together. The default action settings preserve the
+original video playback; direct links below still open the corresponding tools.
 
 **侧视动作与换装** on either character card opens the independent side-view
 candidate: `/workbench.html?character=male&mode=side-view` (or `female`).

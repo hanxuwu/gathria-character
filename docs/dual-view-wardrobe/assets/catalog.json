@@ -1,0 +1,256 @@
+{
+  "format": "gathria-dual-view-clothing-catalog",
+  "version": 1,
+  "palettes": [
+    {
+      "id": "sea",
+      "name": "海盐日常",
+      "top": [
+        80,
+        139,
+        158
+      ],
+      "bottom": [
+        139,
+        117,
+        88
+      ]
+    },
+    {
+      "id": "apricot",
+      "name": "杏桃日常",
+      "top": [
+        204,
+        135,
+        120
+      ],
+      "bottom": [
+        75,
+        104,
+        128
+      ]
+    }
+  ],
+  "defaults": {
+    "male": "sea",
+    "female": "apricot"
+  },
+  "representations": [
+    {
+      "character": "male",
+      "view": "original",
+      "sourceUrl": "/docs/kling-motion/exports/male.character.zip",
+      "registrationUrl": "/docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "characterId": "kling-male-motion-v1",
+      "frameWidth": 704,
+      "frameHeight": 1056,
+      "frameCount": 88,
+      "items": [
+        {
+          "id": "dual-male-original-sea-top-v1",
+          "slot": "top",
+          "palette": "sea",
+          "name": "海盐日常 · 棉背心 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-original-sea-top-v1.garment.zip",
+          "sha256": "37f5bceb4964ce33b569ce447f932e2c4b7d08885894cdba9a6c3ab57220baf9",
+          "bytes": 2196175,
+          "baseSha256": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc"
+        },
+        {
+          "id": "dual-male-original-sea-bottom-v1",
+          "slot": "bottom",
+          "palette": "sea",
+          "name": "海盐日常 · 棉短裤 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-original-sea-bottom-v1.garment.zip",
+          "sha256": "469112e652a7ad6ace98d2d58e074950664b8e822549b2ab324a36b0f229adb2",
+          "bytes": 1796721,
+          "baseSha256": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a"
+        },
+        {
+          "id": "dual-male-original-apricot-top-v1",
+          "slot": "top",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉背心 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-original-apricot-top-v1.garment.zip",
+          "sha256": "89414f293b31d13834657b0b55fb1c4cf5c4331fcbabcf3ff45f216b8fdcb009",
+          "bytes": 2248699,
+          "baseSha256": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc"
+        },
+        {
+          "id": "dual-male-original-apricot-bottom-v1",
+          "slot": "bottom",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉短裤 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-original-apricot-bottom-v1.garment.zip",
+          "sha256": "6e5873424017bce37e48110169f6a102e716562b66eb9e0d69d646970434350b",
+          "bytes": 1726152,
+          "baseSha256": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a"
+        }
+      ]
+    },
+    {
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "/docs/kling-side-workspace/assets/male.source.zip",
+      "registrationUrl": "/docs/kling-side-workspace/assets/male.registration.json",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+      "characterId": "kling-male-side-workspace-v1",
+      "frameWidth": 512,
+      "frameHeight": 768,
+      "frameCount": 107,
+      "items": [
+        {
+          "id": "dual-male-side-sea-top-v1",
+          "slot": "top",
+          "palette": "sea",
+          "name": "海盐日常 · 棉背心 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-side-sea-top-v1.garment.zip",
+          "sha256": "80ed63b65aff2f08c2cbfe37c0240730a32aff645582597d3f88924b6ef28e98",
+          "bytes": 982997,
+          "baseSha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+        },
+        {
+          "id": "dual-male-side-sea-bottom-v1",
+          "slot": "bottom",
+          "palette": "sea",
+          "name": "海盐日常 · 棉短裤 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-side-sea-bottom-v1.garment.zip",
+          "sha256": "77cd09c988be867ced6a9750b32740733e8935638768caa4eb9232ee641d53a1",
+          "bytes": 910327,
+          "baseSha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5"
+        },
+        {
+          "id": "dual-male-side-apricot-top-v1",
+          "slot": "top",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉背心 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-side-apricot-top-v1.garment.zip",
+          "sha256": "edfe4ee0e3a8effb33d6dd3f0596eaebe5a834584741a4ef3d17fce931e294ef",
+          "bytes": 1036540,
+          "baseSha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+        },
+        {
+          "id": "dual-male-side-apricot-bottom-v1",
+          "slot": "bottom",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉短裤 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-male-side-apricot-bottom-v1.garment.zip",
+          "sha256": "3c6f14ea349a200b30244b22098abe3d741fa02ae8f1898d30f45db4b9486ddf",
+          "bytes": 939809,
+          "baseSha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5"
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "view": "original",
+      "sourceUrl": "/docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "/docs/kling-wardrobe/registration/female.json",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "characterId": "kling-female-motion-v1",
+      "frameWidth": 704,
+      "frameHeight": 1056,
+      "frameCount": 96,
+      "items": [
+        {
+          "id": "dual-female-original-sea-top-v1",
+          "slot": "top",
+          "palette": "sea",
+          "name": "海盐日常 · 棉背心 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-original-sea-top-v1.garment.zip",
+          "sha256": "6ce3ed381e5a58988c48f6dd8b284ed9a41836ba184ae8a09533ff8d8dc9af0b",
+          "bytes": 2367991,
+          "baseSha256": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7"
+        },
+        {
+          "id": "dual-female-original-sea-bottom-v1",
+          "slot": "bottom",
+          "palette": "sea",
+          "name": "海盐日常 · 棉短裤 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-original-sea-bottom-v1.garment.zip",
+          "sha256": "6bf04d8e2474842b988a5116a0fd3ed88f02031d0ec78619c73c60f0bc3a9d72",
+          "bytes": 1823505,
+          "baseSha256": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e"
+        },
+        {
+          "id": "dual-female-original-apricot-top-v1",
+          "slot": "top",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉背心 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-original-apricot-top-v1.garment.zip",
+          "sha256": "0a2aba3e75dd85d8cc6edde548405bb277a359f7c60e534be7e24a7bffcf4149",
+          "bytes": 2445045,
+          "baseSha256": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7"
+        },
+        {
+          "id": "dual-female-original-apricot-bottom-v1",
+          "slot": "bottom",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉短裤 · 原版",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-original-apricot-bottom-v1.garment.zip",
+          "sha256": "cb5306d0a6abebddf120f16577646fe2d15792e332c8ba3715d88d9290582796",
+          "bytes": 1772168,
+          "baseSha256": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e"
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "/docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "/docs/kling-side-workspace/assets/female.registration.json",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e",
+      "characterId": "kling-female-side-workspace-v1",
+      "frameWidth": 512,
+      "frameHeight": 768,
+      "frameCount": 102,
+      "items": [
+        {
+          "id": "dual-female-side-sea-top-v1",
+          "slot": "top",
+          "palette": "sea",
+          "name": "海盐日常 · 棉背心 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-side-sea-top-v1.garment.zip",
+          "sha256": "e39d83cbb703be925acdce2f7a6df4be9a55c4454a66026dba15446f6ddd1b52",
+          "bytes": 985948,
+          "baseSha256": "d669f0b70ee762278071948a09b51d7e24ce9fac8018c563b1ab5a1b506660c4"
+        },
+        {
+          "id": "dual-female-side-sea-bottom-v1",
+          "slot": "bottom",
+          "palette": "sea",
+          "name": "海盐日常 · 棉短裤 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-side-sea-bottom-v1.garment.zip",
+          "sha256": "cef6995c43a69aef71fdfc43e5ee9b32deac935794f25f7245ae63f635ea5923",
+          "bytes": 882404,
+          "baseSha256": "772646577b898296cb652827e04663bc6b7c70c80a2433e5013864e2639d0853"
+        },
+        {
+          "id": "dual-female-side-apricot-top-v1",
+          "slot": "top",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉背心 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-side-apricot-top-v1.garment.zip",
+          "sha256": "d4432eb429a1d3105b0d9babb5483ced13b8e9f2b41d013000d18c2438eba5fa",
+          "bytes": 975859,
+          "baseSha256": "d669f0b70ee762278071948a09b51d7e24ce9fac8018c563b1ab5a1b506660c4"
+        },
+        {
+          "id": "dual-female-side-apricot-bottom-v1",
+          "slot": "bottom",
+          "palette": "apricot",
+          "name": "杏桃日常 · 棉短裤 · 侧视",
+          "url": "/docs/dual-view-wardrobe/assets/dual-female-side-apricot-bottom-v1.garment.zip",
+          "sha256": "cb1b0eb1383917d84f2c27e079042f0702e7df8925c2ee87f69c712878ff067e",
+          "bytes": 821071,
+          "baseSha256": "772646577b898296cb652827e04663bc6b7c70c80a2433e5013864e2639d0853"
+        }
+      ]
+    }
+  ]
+}
