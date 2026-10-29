@@ -1,0 +1,192 @@
+.side-fitting {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid #d8ded2;
+  border-radius: 1rem;
+  background: #fafbf7;
+  min-width: 0;
+}
+.side-fitting h3 {
+  margin: 0 0 0.65rem;
+}
+.side-fitting p {
+  line-height: 1.6;
+}
+.side-fitting-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.side-fitting-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.side-fitting select,
+.side-fitting input[type="number"] {
+  max-width: 100%;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid #bdc8b6;
+  background: white;
+}
+.side-fitting input[type="number"] {
+  width: 6rem;
+}
+.side-fitting button {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid #a9b6a0;
+  border-radius: 0.4rem;
+  background: white;
+  color: #284e3e;
+  cursor: pointer;
+}
+.side-fitting button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.side-fitting-views {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+.side-fitting-views figure {
+  margin: 0;
+  min-width: 0;
+}
+.side-fitting-views figcaption {
+  margin: 0.4rem 0;
+}
+.side-fitting-scroll {
+  overflow: auto;
+  max-height: 640px;
+  border: 1px solid #d7ddd0;
+  background-color: #f2f2ed;
+  background-image:
+    linear-gradient(45deg, #e0e4dc 25%, transparent 25%),
+    linear-gradient(-45deg, #e0e4dc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e0e4dc 75%),
+    linear-gradient(-45deg, transparent 75%, #e0e4dc 75%);
+  background-size: 24px 24px;
+  background-position:
+    0 0,
+    0 12px,
+    12px -12px,
+    -12px 0;
+}
+.side-fitting canvas {
+  display: block;
+  height: auto;
+}
+.side-fitting-table {
+  max-height: 24rem;
+  overflow: auto;
+  margin-top: 0.6rem;
+}
+.side-fitting table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.side-fitting th,
+.side-fitting td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #dce1d7;
+}
+.side-fitting th {
+  background: #edf1e8;
+  position: sticky;
+  top: 0;
+}
+.side-fitting [role="alert"] {
+  color: #9b3a2b;
+}
+.side-fitting .appearance-update-dialog {
+  width: min(1120px, calc(100vw - 30px));
+  max-width: calc(100vw - 30px);
+  max-height: calc(100dvh - 30px);
+  overflow: auto;
+  border: 1px solid #c7d0bd;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fffefa;
+  color: #344b3f;
+}
+.side-fitting .appearance-update-dialog::backdrop {
+  background: #1c2e25a6;
+}
+.side-fitting .appearance-update-heading,
+.side-fitting .appearance-update-footer,
+.side-fitting .wardrobe-playback-controls,
+.side-fitting .paint-import-summary {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.side-fitting .appearance-update-heading {
+  justify-content: space-between;
+}
+.side-fitting .appearance-update-heading h2 {
+  margin: 0;
+}
+.side-fitting .appearance-update-footer {
+  margin-top: 1rem;
+}
+.side-fitting .paint-import-summary {
+  flex-basis: 100%;
+}
+.side-fitting .appearance-update-dialog .wardrobe-stage {
+  display: flex;
+  gap: 0.75rem;
+  overflow: auto;
+  max-height: 60vh;
+  margin-top: 1rem;
+  background: #e9eee4;
+}
+.side-fitting .appearance-update-dialog .wardrobe-stage figure {
+  margin: 0.5rem;
+  flex-shrink: 0;
+}
+.side-fitting .appearance-update-dialog .wardrobe-stage--fit figure {
+  flex: 1;
+  min-width: 0;
+}
+.side-fitting .appearance-update-dialog .wardrobe-stage--fit canvas {
+  width: 100%;
+  height: auto;
+  max-height: calc(60vh - 70px);
+  object-fit: contain;
+}
+.side-fitting .wardrobe-timeline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+.side-fitting .wardrobe-timeline input {
+  flex: 1;
+}
+.side-fitting .appearance-update-footer .wardrobe-primary {
+  background: #3f6150;
+  color: white;
+}
+@media (max-width: 700px) {
+  .side-fitting {
+    padding: 0.75rem;
+  }
+  .side-fitting-views {
+    grid-template-columns: 1fr;
+  }
+  .side-fitting-scroll {
+    max-height: 440px;
+  }
+  .side-fitting-controls label {
+    max-width: 100%;
+  }
+}

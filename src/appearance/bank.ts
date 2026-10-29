@@ -1,5 +1,6 @@
 import { readBoundedArchive } from "../core/bounded-archive";
 import { sha256 } from "../core/sha256";
+import { createCooperativeYield } from "../core/cooperative-yield";
 import {
   assertSourcePreparationActive,
   type SourcePreparationOptions,
@@ -132,6 +133,9 @@ export async function readAppearanceBank(
     });
   }
   if (!checked) {
+    const yieldValidation = createCooperativeYield(() =>
+      assertSourcePreparationActive(options),
+    );
     const poses = new Map<number, AppearancePose>(
       manifest.poses.map((pose) => [pose.frameId, pose]),
     );
@@ -165,8 +169,9 @@ export async function readAppearanceBank(
                   `Appearance ${style.id} ${layer.role} ownership exceeds its registered region in frame ${frame.frameId}.`,
                 );
             }
-          // Keep a progress/cancellation opportunity between source poses.
-          await new Promise<void>((resolve) => setTimeout(resolve, 0));
+          // Keep the full pose checks; yield by elapsed work rather than
+          // imposing a clamped browser timer on every small layer/pose.
+          await yieldValidation();
         }
   }
   assertSourcePreparationActive(options);

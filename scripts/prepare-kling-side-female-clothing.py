@@ -9,7 +9,7 @@ import argparse, json, math
 import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage as ndi
-from kling_side_authoring import load_context, pack_garment, sha
+from kling_side_authoring import load_context, pack_garment, sha, runtime_polygon_mask
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'artwork/kling-side-expansion/female'
@@ -25,10 +25,10 @@ TOP_IDS=IDS+[20,34]
 # selection changed entire hem/fold designs at passing poses, even though
 # source motion was continuous. Existing smooth source-guided scale/shear
 # still responds to each pose; neither the source nor its timing is altered.
-# The lifted run donor's front flap was isolated by a foreground fist in
-# passing poses. Use the complete pleated cloth through walk AND run, rather
-# than weakening source-hand protection or retaining a floating cloth island.
-SKIRT_ACTION_DONORS={'idle':0,'walk':0,'run':0,'jump':79}
+# Use the same complete painted fold layout across every action, including
+# jump. A continuous source-knee-guided hem fit below supplies compression
+# without an abrupt substitution of unrelated standing/lifted fold drawings.
+SKIRT_ACTION_DONORS={'idle':0,'walk':0,'run':0,'jump':0}
 TOP_WAIST={0:504,42:490,72:416,79:537,89:347,95:448,20:461,34:475}
 # Explicit generated-skin/background rejection at open neck and sleeve edges.
 # These masks are donor isolation, not source ownership permissions.
@@ -224,7 +224,7 @@ def fit_bottom(ctx,fid,did,template):
             for ff in clip['frames']:
                 rp=ctx.registered[ff];ww=cloth_waist(ctx,ff)
                 knees=(point(rp,'nearKnee')+point(rp,'farKnee'))*.5
-                lengths.append(np.clip(80+(knees[1]-ww[1])*.3,85,110))
+                lengths.append(np.clip(50+(knees[1]-ww[1])*.55,72,110) if action=='jump' else np.clip(80+(knees[1]-ww[1])*.3,85,110))
                 widths.append(np.clip(185+abs(point(rp,'nearKnee')[0]-point(rp,'farKnee')[0])*.25,188,220))
             mode='wrap' if clip['loop'] else 'nearest'
             ll=ndi.gaussian_filter1d(np.array(lengths),1.1,mode=mode);ww=ndi.gaussian_filter1d(np.array(widths),1.1,mode=mode)
@@ -236,10 +236,62 @@ def fit_bottom(ctx,fid,did,template):
     target_top=waist[1]-4
     source_top=old[1]-3
     lean=np.clip((waist[0]-point(rec,'neck')[0])-(old[0]-point(rr,'neck')[0]),-24,24)
-    source_y=(YY-target_top)/scale_y+source_top
     frac=np.clip((YY-target_top)/130,0,1)
+    lift=0
+    if fid in ctx.animations['jump']['frames']:
+        # Keep the waistband attached. Source knee compression lifts the
+        # front hem gradually; the original pleat texture is sampled once.
+        # This is an authored cloth fit, not a body warp or cloth simulation.
+        compression=np.clip((102.25-length)/.55*.5,0,19)
+        front=np.clip((XX-waist[0]+width*.1)/(width*.55),0,1)
+        lift=compression*front*front*frac*frac
+    source_y=(YY-target_top+lift)/scale_y+source_top
     source_x=(XX-waist[0]-lean*frac*.3)/scale_x+old[0]
-    return sample(template,source_x,source_y)
+    jumping=fid in ctx.animations['jump']['frames']
+    if jumping:
+        if not hasattr(ctx,'_skirt_front_geometry'):
+            values=[];jump_ids=ctx.animations['jump']['frames']
+            for ff in jump_ids:
+                ww=cloth_waist(ctx,ff);mm=ctx.masks(ff)['bottom']
+                yy,xx=np.where(mm&(XX>ww[0])&(YY<ww[1]+25))
+                values.append((float(np.clip(xx.max()-(ww[0]+35),0,40)),float(np.clip(ww[1]-4-yy.min(),0,28))) if len(xx) else (0.,0.))
+            values=ndi.gaussian_filter1d(np.array(values),1.0,axis=0,mode='nearest')
+            ctx._skirt_front_geometry=dict(zip(jump_ids,values))
+        extension,rise=ctx._skirt_front_geometry[fid]
+        rx=np.clip((XX-waist[0]+45)/100,0,1);rx=rx*rx*(3-2*rx)
+        ry=1-np.clip((YY-target_top)/length,0,1)
+        # Broad, capped inverse mapping keeps the existing pleats continuous.
+        # Fit the source's upper hip instead of nearest-edge filling a flat
+        # rose strip where the original shorts exceed a narrow waistband.
+        source_x-=min(extension,32)*1.6*rx*ry/scale_x
+        source_y+=(rise+6)*rx*ry/scale_y
+        dx_dy,dx_dx=np.gradient(source_x);dy_dy,dy_dx=np.gradient(source_y)
+        jacobian=float(np.min(dx_dx*dy_dy-dx_dy*dy_dx))
+        if jacobian<=0:raise ValueError(f'Skirt map folds over at frame {fid}')
+        if not hasattr(ctx,'_skirt_map_jacobians'):ctx._skirt_map_jacobians={}
+        ctx._skirt_map_jacobians[fid]=jacobian
+    patch=sample(template,source_x,source_y)
+    if jumping:
+        # Raised cloth must not poke above the true front waist beside a hand.
+        # This clips only the upper front margin to the original shorts edge;
+        # the lower hem and all source pixels remain independent.
+        cols=np.where(m['bottom'].any(axis=0))[0]
+        tops=np.array([np.where(m['bottom'][:,cc])[0].min() for cc in cols])
+        limit=np.interp(np.arange(W),cols,tops)
+        patch[(XX>waist[0])&(YY<limit[None,:])&(YY<waist[1]+24)]=0
+    return patch
+
+def skirt_foreground_review(ctx,fid):
+    """Reviewed source forearms override the old horizontal wrist cutoff."""
+    if fid not in (39,49):return np.zeros((H,W),bool)
+    if not hasattr(ctx,'_skirt_foreground_review'):
+        recipe=json.loads((ROOT/'artwork/kling-side-fitting/skirt/foreground-contours.json').read_text())
+        if recipe['sourceSha256']!=ctx.source_sha256 or recipe['registrationSha256']!=ctx.registration_sha256:
+            raise ValueError('Skirt foreground review belongs to a different source/registration')
+        ctx._skirt_foreground_review=recipe
+    points=ctx._skirt_foreground_review['frames'][str(fid)]
+    return runtime_polygon_mask([{'x':x,'y':y} for x,y in points])&(ctx.frames[fid][:,:,3]>0)
+
 
 def composite(ctx,fid,patch,slot):
     original=ctx.frames[fid];m=ctx.masks(fid);protected=ctx.protected_mask(fid)
@@ -270,10 +322,14 @@ def composite(ctx,fid,patch,slot):
     if fid==31 and slot=='top':
         far=polygon([(310,498),(340,501),(385,507),(390,550),(350,553),(303,530),(301,512)])>0
         foreground |= far&(original[:,:,3]>0)&~original_cloth
+    if slot=='bottom':
+        # Exact source-edge review covers lower forearm ink/AA, which warm-skin
+        # hints omit. Release skirt ownership here; do not repaint anatomy.
+        foreground |= skirt_foreground_review(ctx,fid)
     patch[foreground]=0
     # Fill any original garment sliver using adjacent painted fabric, always
     # excluding protected source pixels and preserving continuous cloth edges.
-    need=original_cloth&(patch[:,:,3]<230)&~protected
+    need=original_cloth&(patch[:,:,3]<230)&~protected&~(skirt_foreground_review(ctx,fid) if slot=='bottom' else False)
     valid=ndi.binary_erosion(patch[:,:,3]>240,iterations=3)
     if not valid.any():raise ValueError(f'No opaque painted {slot} material in frame {fid}')
     if need.any():
@@ -306,33 +362,47 @@ def review_gif(frames,clip,path):
     pictures[0].save(path,save_all=True,append_images=pictures[1:],duration=durations,disposal=2,optimize=True,**opts)
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--prototype',action='store_true');ap.add_argument('--registration',type=Path);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--prototype',action='store_true');ap.add_argument('--registration',type=Path);ap.add_argument('--slot',choices=['all','bottom'],default='all');ap.add_argument('--output-directory',type=Path);args=ap.parse_args()
     OUT.mkdir(parents=True,exist_ok=True);REVIEW.mkdir(parents=True,exist_ok=True);TMP.mkdir(parents=True,exist_ok=True)
     candidate=ROOT/'artwork/kling-side-expansion/templates/female.registration.json'
     registration=args.registration or (candidate if candidate.exists() else None)
-    ctx=load_context('female',registration_path=registration);ref=donors();ids=[0,20,31,34,42,49,50,55,67,72,79,89,95,101] if args.prototype else list(ctx.frames)
-    paintings={'top':{},'bottom':{}};combined={};audit=[]
+    ctx=load_context('female',registration_path=registration)
+    # Bottom-only reviews reuse immutable prepared cloth and cannot overwrite
+    # blouse donors, top packages or their audit/provenance records.
+    ref=({did:{'bottom':np.array(Image.open(OUT/f'source/{did:03d}-bottom-cloth.png').convert('RGBA'))} for did in IDS} if args.slot=='bottom' else donors())
+    review=args.output_directory or REVIEW
+    audit_root=args.output_directory or OUT
+    work=args.output_directory or TMP
+    review.mkdir(parents=True,exist_ok=True)
+    ids=[0,20,31,34,42,49,50,55,67,72,79,89,95,101] if args.prototype else list(ctx.frames)
+    paintings=({'bottom':{}} if args.slot=='bottom' else {'top':{},'bottom':{}});combined={};audit=[]
     for fid in ids:
         choices={slot:select(ctx,fid,slot) for slot in paintings}
         for slot in paintings:
             did=choices[slot];patch=fit_top(ctx,fid,did,ref[did][slot]) if slot=='top' else fit_bottom(ctx,fid,did,ref[did][slot])
             paintings[slot][fid]=composite(ctx,fid,patch,slot)
-        combo=paintings['bottom'][fid].copy();changed=np.any(paintings['top'][fid]!=ctx.frames[fid],axis=2);combo[changed]=paintings['top'][fid][changed]
-        combined[fid]=combo;Image.fromarray(combo).save(TMP/f'combined-{fid:03d}.png')
+        combo=paintings['bottom'][fid].copy()
+        if 'top' in paintings:
+            changed=np.any(paintings['top'][fid]!=ctx.frames[fid],axis=2);combo[changed]=paintings['top'][fid][changed]
+        combined[fid]=combo;Image.fromarray(combo).save(work/f'combined-{fid:03d}.png')
         audit.append({'frameId':fid,'donors':choices,'protectedChanged':int(np.any(combo!=ctx.frames[fid],axis=2)[ctx.protected_mask(fid)].sum())})
-    board(combined,ids if args.prototype else [0,20,31,34,42,49,50,55,67,72,79,85,89,95,101],REVIEW/'hardposes.jpg','Cream blouse / rose skirt')
-    (OUT/'fit-audit.json').write_text(json.dumps({'sourceSha256':ctx.source_sha256,'registrationSha256':ctx.registration_sha256,'poses':audit},indent=2)+'\n')
+    board(combined,ids if args.prototype else [0,20,31,34,42,49,50,55,67,72,79,85,89,95,101],review/'hardposes.jpg','Cream blouse / rose skirt')
+    (audit_root/('bottom-fit-audit.json' if args.slot=='bottom' else 'fit-audit.json')).write_text(json.dumps({'sourceSha256':ctx.source_sha256,'registrationSha256':ctx.registration_sha256,'poses':audit},indent=2)+'\n')
     if not args.prototype:
         for action,clip in ctx.animations.items():
-            board(combined,clip['frames'],REVIEW/f'{action}-frames.jpg',action)
-            review_gif(combined,clip,REVIEW/f'{action}-motion.gif')
-        provenance='Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. A coherent painted skirt donor is retained for each full action (idle/walk/run 0, jump 79), with continuous source-guided cloth scale/shear. Blouse frames40 and47 use adjacent backward-arm cloth to remove isolated sleeve/collar jumps. No runtime body deformation, frame interpolation or AI.'
+            board(combined,clip['frames'],review/f'{action}-frames.jpg',action)
+            review_gif(combined,clip,review/f'{action}-motion.gif')
+        provenance='Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. One complete pleated skirt donor 0 is retained across all actions, with source-knee-guided jump hem compression/front lift and source-guided scale/shear. Blouse frames40 and47 use adjacent backward-arm cloth to remove isolated sleeve/collar jumps. No runtime body deformation, frame interpolation or AI.'
         for slot,item,name in [('top','side-female-cream-blouse-v1','Cream puff-sleeve blouse'),('bottom','side-female-rose-skirt-v1','Rose gathered skirt')]:
+            if slot not in paintings:continue
             filename='female-blouse.garment.zip' if slot=='top' else 'female-skirt.garment.zip'
-            report=pack_garment(ctx,item,name,slot,paintings[slot],ROOT/'docs/kling-side-expansion/assets'/filename,provenance)
-            (OUT/f'{slot}-pack-audit.json').write_text(json.dumps(report,indent=2)+'\n')
+            report=pack_garment(ctx,item,name,slot,paintings[slot],(args.output_directory or ROOT/'docs/kling-side-expansion/assets')/filename,provenance)
+            (audit_root/f'{slot}-pack-audit.json').write_text(json.dumps(report,indent=2)+'\n')
+        if args.slot=='bottom':
+            print(json.dumps({'frames':len(ids),'protectedChanged':sum(a['protectedChanged'] for a in audit),'preview':str(review/'hardposes.jpg')}))
+            return
         files={p.name:sha(p.read_bytes()) for p in (OUT/'source').iterdir() if p.is_file() and p.name!='provenance.json'}
         (OUT/'source/provenance.json').write_text(json.dumps({'method':'OpenAI image generation; cloth-only extraction; source-registered offline painted donor fitting','sourceSha256':ctx.source_sha256,'registrationSha256':ctx.registration_sha256,'frames':len(ids),'files':files},indent=2)+'\n')
-    print(json.dumps({'frames':len(ids),'protectedChanged':sum(a['protectedChanged'] for a in audit),'preview':str(REVIEW/'hardposes.jpg')}))
+    print(json.dumps({'frames':len(ids),'protectedChanged':sum(a['protectedChanged'] for a in audit),'preview':str(review/'hardposes.jpg')}))
 
 if __name__=='__main__':main()

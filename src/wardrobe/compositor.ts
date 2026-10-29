@@ -1,4 +1,5 @@
 import { strToU8, zipSync } from "fflate";
+import { createCooperativeYield } from "../core/cooperative-yield";
 import {
   decodeSourceRgbaPng,
   encodeSourceRgbaPng,
@@ -444,6 +445,7 @@ class RegisteredWardrobeCompositor {
       this.assertOpen();
     };
     abort();
+    const yieldValidation = createCooperativeYield(abort);
     const sourcePageCount = new Set(frames.map((frame) => frame.page ?? 0))
       .size;
     const preparedPages = new Set<number>();
@@ -464,7 +466,7 @@ class RegisteredWardrobeCompositor {
       for (const page of new Set(frames.map((frame) => frame.page ?? 0))) {
         abort();
         await preparePage(page);
-        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        await yieldValidation();
       }
       for (const selected of this.selected)
         for (const page of new Set(
@@ -472,7 +474,7 @@ class RegisteredWardrobeCompositor {
         )) {
           abort();
           this.garmentPage(selected, page);
-          await new Promise<void>((resolve) => setTimeout(resolve, 0));
+          await yieldValidation();
         }
       this.headAppearance?.warmPages();
       abort();
@@ -488,7 +490,7 @@ class RegisteredWardrobeCompositor {
       this.renderFrame(frames[i].id);
       options.onProgress?.(i + 1, frames.length);
       // Give progress, cancellation and the current preview a chance to paint.
-      await new Promise<void>((resolve) => setTimeout(resolve, 0));
+      await yieldValidation();
     }
     abort();
     validAppearances.add(this.appearanceKey);

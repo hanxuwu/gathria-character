@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -62,6 +69,8 @@ import { sideKeyboardIntent } from "./input";
 import SideReviewPanel from "./SideReviewPanel";
 import { type ReviewNote, type ReviewRate } from "./review";
 import "./side-view.css";
+
+const FittingWorkbench = lazy(() => import("./fitting-workbench"));
 
 const WIDTH = 1200;
 const HEIGHT = 820;
@@ -245,6 +254,8 @@ export default function SideViewPlayground({
   const [error, setError] = useState("");
   const [catalogLoadFailed, setCatalogLoadFailed] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
+  const [fittingOpen, setFittingOpen] = useState(false);
+  const fittingRef = useRef(false);
   const [reviewRate, setReviewRate] = useState<ReviewRate>(1);
   const reviewRef = useRef({ open: false, rate: 1 as ReviewRate });
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -272,6 +283,7 @@ export default function SideViewPlayground({
   preferencesRef.current = preferences;
   activeRef.current = active;
   reviewRef.current = { open: reviewOpen, rate: reviewRate };
+  fittingRef.current = fittingOpen;
 
   function markBusy(value: boolean) {
     busyRef.current = value;
@@ -459,6 +471,44 @@ export default function SideViewPlayground({
     } finally {
       if (live(token, controller)) markBusy(false);
     }
+  }
+
+  async function applyFittedProject(candidate: WardrobeProject) {
+    const open = sessionRef.current;
+    if (!open || busyRef.current) throw Error("请等待当前操作完成。");
+    if (
+      candidate.document.sourceSha256 !== open.project.document.sourceSha256 ||
+      candidate.document.registrationSha256 !==
+        open.project.document.registrationSha256
+    )
+      throw Error("服装校正必须属于当前角色与定位版本。");
+    const { controller, token } = beginPreparation();
+    setStatus("正在验证校正后的服装…");
+    try {
+      await prepare(candidate, controller, token, false);
+    } catch (failure) {
+      if (live(token, controller))
+        setError(failure instanceof Error ? failure.message : String(failure));
+      throw failure;
+    } finally {
+      if (live(token, controller)) markBusy(false);
+    }
+  }
+
+  function toggleFitting() {
+    const next = !fittingOpen;
+    fittingRef.current = next;
+    setFittingOpen(next);
+    if (next) {
+      keysRef.current.clear();
+      pendingFacingRef.current = null;
+      keyboardJumpRef.current = false;
+      keyboardResumeRef.current = null;
+      motionRef.current = { ...motionRef.current, paused: true, pending: null };
+      setPreferences((previous) => ({ ...previous, mode: "in-place" }));
+    }
+    lastTimeRef.current = null;
+    dirtyRef.current = true;
   }
 
   function requestAction(action: SideAction, inspect = false) {
@@ -738,6 +788,7 @@ export default function SideViewPlayground({
         !activeRef.current ||
         !visibleRef.current ||
         busyRef.current ||
+        fittingRef.current ||
         isEditing(event.target)
       )
         return;
@@ -1338,6 +1389,31 @@ export default function SideViewPlayground({
               onPose={locateReviewNote}
               getFrame={reviewFrame}
             />
+          )}
+          <div className="side-review-toggle">
+            <button
+              type="button"
+              data-testid="side-fitting-toggle"
+              disabled={!session || busy}
+              aria-expanded={fittingOpen}
+              onClick={toggleFitting}
+            >
+              {fittingOpen ? "关闭服装校正" : "服装校正 · 锚点与遮挡"}
+            </button>
+            <span>检查定位与遮挡，局部修正服装并保存为独立版本。</span>
+          </div>
+          {fittingOpen && session && (
+            <Suspense fallback={<p role="status">正在打开服装校正工具…</p>}>
+              <FittingWorkbench
+                key={`${session.character}:${session.project.document.sourceSha256}`}
+                project={session.project}
+                renderer={session.renderer}
+                action={readout.action}
+                frameId={readout.frame}
+                disabled={busy}
+                onApply={applyFittedProject}
+              />
+            </Suspense>
           )}
 
           <div className="side-feedback">

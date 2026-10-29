@@ -20,6 +20,8 @@ interface Props {
   initialAction: PortableAnimationName;
   initialPosition: number;
   initialFacing: Facing;
+  /** The side-view workspace saves separate projects rather than styling history. */
+  historyAvailable?: boolean;
   onClose: () => void;
   onApply: (project: WardrobeProject) => Promise<void>;
 }
@@ -46,6 +48,7 @@ export default function GarmentCandidatePreview({
   initialAction,
   initialPosition,
   initialFacing,
+  historyAvailable = true,
   onClose,
   onApply,
 }: Props) {
@@ -562,8 +565,10 @@ export default function GarmentCandidatePreview({
         )}
         <p>
           Preview action and direction are inspection controls. Applying keeps
-          the accepted project's saved playback settings and can be undone
-          through styling history.
+          the accepted project's saved playback settings.{" "}
+          {historyAvailable
+            ? "Changes can be undone through styling history."
+            : "Save the original project before applying; save the revised project separately to keep both versions."}
         </p>
         <button
           type="button"

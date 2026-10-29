@@ -272,7 +272,13 @@ def preserve_outer_cloth(ctx,fid,slot,result):
         patch[y,x]=[r,g,b,a];owned[y,x]=owns
     return patch,owned
 
-def shirt(ctx,fid,masks,limb):
+def shirt(ctx,fid,masks,limb,shoulder_guides=None):
+    """Fit the existing painted shirt, optionally using cloth-only cap guides.
+
+    A guide affects sleeve sampling and its cuff, never the source registration
+    or forearm depth. See refine-kling-side-male-sleeves.py for the bounded,
+    source-pinned compressed-jump repair and its exact baseline preservation.
+    """
     original=ctx.frames[fid];p=ctx.registered[fid]['points'];neck=point(p,'neck')
     wl,wr=point(p,'waistLeft'),point(p,'waistRight');waist=(wl+wr)/2
     mask=masks['top'].copy();wy=wl[1]+(XX-wl[0])*(wr[1]-wl[1])/max(1,wr[0]-wl[0])
@@ -288,6 +294,9 @@ def shirt(ctx,fid,masks,limb):
     top_mask=mask.copy()
     for side in ('far','near'):
         shoulder,elbow,wrist=[point(p,side+n) for n in ('Shoulder','Elbow','Wrist')]
+        canonical_shoulder=shoulder.copy()
+        if shoulder_guides and side in shoulder_guides:
+            shoulder=np.array(shoulder_guides[side],np.float32)
         # Candidate wrist anchors describe the newly traced palm attachment.
         # The source's original forearm axis remains the better cloth-occlusion
         # guide on compressed limbs; neither the source nor protection moves.
@@ -299,7 +308,7 @@ def shirt(ctx,fid,masks,limb):
         sleeve=limb[side+'Arm']&(phase<=sleeve_length)
         # A folded returning forearm stays bare in front of its sleeve.
         fore,forephase,_=segment(elbow,wrist)
-        v0=elbow-shoulder;v1=wrist-elbow
+        v0=elbow-canonical_shoulder;v1=wrist-elbow
         folded=float(v0@v1)/(max(1,np.linalg.norm(v0))*max(1,np.linalg.norm(v1)))<.15
         if folded:
             sleeve &= (fore> (17 if side=='near' else 13)) | (forephase<.05)
