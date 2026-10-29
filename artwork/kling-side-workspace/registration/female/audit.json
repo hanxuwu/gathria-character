@@ -1,0 +1,6104 @@
+{
+  "format": "gathria-side-registration-audit",
+  "version": 1,
+  "status": "offline authoring candidate; visually reviewed keyposes with tracked proposals",
+  "sourcePack": "docs/kling-side-workspace/assets/female.source.zip",
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+  "registrationSha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e",
+  "reviewedKeyposesSha256": "c1fdd43dc2d00cf889290810a383fbcbde65f711d8eafaa7e6bb094d9c43ba2c",
+  "frameCount": 102,
+  "anchorCountPerFrame": 17,
+  "method": "Native keypose estimates and short-range optical flow; per-frame material seeds and bounded nearest-material outline ownership.",
+  "limitations": [
+    "No recovered skeleton or hidden anatomy; hips and hidden far attachments remain low-confidence estimates.",
+    "Source blur and source identity changes are preserved.",
+    "Mask ownership retains original garment silhouettes; it does not create sleeves or replace exposed skin.",
+    "Ambiguous warm boundaries and pixels farther than the local material radius remain source pixels.",
+    "Occluded hands have no fabricated protection polygon; all visible warm skin is excluded from clothing masks."
+  ],
+  "checks": {
+    "everySourceFrameExactlyOnce": true,
+    "all17AnchorsFiniteInCanvas": true,
+    "binaryNativeMasks": true,
+    "pairwiseDisjointMasks": true,
+    "sourceAlphaContained": true,
+    "skinSeedAndProtectionOverlap": 0
+  },
+  "frames": [
+    {
+      "frameId": 0,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 243,
+      "sourceRgbaSha256": "b7d539a58c926bc3b69c8fe7af140ab83cc6f84bd23e0fa85b4607334530499c",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "06c25de139aae5eb2f0794345f7df433a7bfdf9897ceeffaba7a5266dece9c92",
+        "bottom": "9675fcb3b6d6b63ccb1484283a6871578d7375f28dd8543d435a382197c21ea8",
+        "shoes": "1aabe9afa35768b9f486d10a6300cd7fce414e2889c5a43f6008d55dc3ac7ddf",
+        "skin": "807f08abd8e820dd20702ceceba89963ad1df1231a623f26b73d4779971af83e"
+      },
+      "maskPixels": {
+        "top": 5726,
+        "bottom": 4239,
+        "shoes": 4928
+      },
+      "maskBounds": {
+        "top": [
+          221,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          217,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47656,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52600,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 1,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 244,
+      "sourceRgbaSha256": "a555a4b54d9a40f69e1fc610cb925939e0154f666d72ffffe24bdb36d0932265",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "786015178b2f33202a01521bb56556862c365fe6b781fb01c993989656f49e9c",
+        "bottom": "62d979f8d616beabfbc9010f8293e56de14643d174e6560f4dbaf28686698fdd",
+        "shoes": "d71fc4f82d96510936bdfe72ff0948789f508ebdbe8cc4c30f2d10501f821905",
+        "skin": "5d4312b4d8a438cc0f0079d66729113c4607b3f1f64900e8460bd45f2a0bcfce"
+      },
+      "maskPixels": {
+        "top": 5716,
+        "bottom": 4228,
+        "shoes": 4928
+      },
+      "maskBounds": {
+        "top": [
+          221,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47659,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52625,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 2,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 245,
+      "sourceRgbaSha256": "2bc20abde65546eea43a7c530a6baea18ca7432797add3cbd0a17c4f4250365f",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "ec7493535e133dd9c15b54c377d966ef69e42cfb2c88e7fecb6ff44dccbdd231",
+        "bottom": "cac1221d6cb5c6155fbee1096e05009666fc8980510ab413633838995b8a504d",
+        "shoes": "86ae5ad0e774c2a4a9923b40258606ae1172738a1c520503f1deb5ba7a805517",
+        "skin": "0e20c3c734a4cf39be359cc48554c8793ea850841dbcf97331823f2b997e53a7"
+      },
+      "maskPixels": {
+        "top": 5715,
+        "bottom": 4229,
+        "shoes": 4930
+      },
+      "maskBounds": {
+        "top": [
+          221,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47643,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52598,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 3,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 246,
+      "sourceRgbaSha256": "9d0051e3a74787dc242a1ca4153c9d62e2901a081b8cd74a03e02bb816f1b5e5",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 3,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "31c3fd9db514af86c40eb9f743f1a5c3038f9108fa3a941ea6e69908b0d46397",
+        "bottom": "c1de19739e16676731f7d5c3207f78b9769c599b0714b56492ea5b7f286e7c39",
+        "shoes": "44c8bcdc3a9ff3f5994052e8e215b9b81ccd20230abdf49f1442d7008169fabe",
+        "skin": "5c0d821cbc395b903079393a8efe615d2191b3bf6716dfd24723b7540202e9c4"
+      },
+      "maskPixels": {
+        "top": 5714,
+        "bottom": 4227,
+        "shoes": 4926
+      },
+      "maskBounds": {
+        "top": [
+          221,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47667,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52586,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 4,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 247,
+      "sourceRgbaSha256": "9e1ac68e6f2c1339c511d00d2f313e815bb5115f80e5b0d01ea8f561fa426283",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 4,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "1124b78ef9b43d9e169e63ec866e47b0657fb6026c47e21ce991601ade41fca8",
+        "bottom": "43c8201bbbbc40638bd38dc50b98082b88604d418322a2a0cd8ac38e9f66756c",
+        "shoes": "dd9a729ccce14bab4e85a97fbaaa207acdfd730611ce7973fb2489dfdc406a2d",
+        "skin": "b84c0fcf3532f8815edcb9df636884a39acb8c67334903d22c21ddc79783b14a"
+      },
+      "maskPixels": {
+        "top": 5740,
+        "bottom": 4218,
+        "shoes": 4930
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47676,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52583,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 5,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 248,
+      "sourceRgbaSha256": "adf737cec4e6b9de59d1ee32a90c8821af7af9f8de500a770919ef116fd02724",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 5,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "59fed1c093a4693633e7869fa408656523f260898678e1a1c7ee3c2556a2a55b",
+        "bottom": "3ee877c822a0ed3732440ade15dc62ec7f4116817aa6c7da35ed4fbaf8e077e9",
+        "shoes": "83cb54c205f60505a75d327df7872bf0f507784d6b850b8c868ce8dcec470989",
+        "skin": "64c4704bbc74d64d8bbee94792118d81ea7bd4aead1fd2a93c83f5f4a8db3c5f"
+      },
+      "maskPixels": {
+        "top": 5719,
+        "bottom": 4226,
+        "shoes": 4928
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47674,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52600,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 6,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 249,
+      "sourceRgbaSha256": "213ac960e381f2af080bffffbc0476d38868328f5e51f41e89c9fb4518ceca79",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 6,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "621fc9f3ec4a46d03b0a2dd0f270169b66b3811f0539160b0b367730b58cb125",
+        "bottom": "3a709586b2a84191d73c88ea66e438011f688ada94e502ce75f0f8cad2e6f0a9",
+        "shoes": "46b1596c540e455505e32ffbc7e74eba3598a1792f6d58da754477e6d22aba84",
+        "skin": "7f7ec2df798ffd1126eb20c3ab0d9c002107514be188eabd15c75fdece061f67"
+      },
+      "maskPixels": {
+        "top": 5736,
+        "bottom": 4225,
+        "shoes": 4930
+      },
+      "maskBounds": {
+        "top": [
+          221,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47623,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52579,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 7,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 250,
+      "sourceRgbaSha256": "c4ce596330b9ce36e96b4599bcad74436becfe98edf61e9fab49e1f047e5cc03",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 7,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "c6e4312050bdb5182ff866247f275f025a4826ebe6cc998e4219ba38fd954233",
+        "bottom": "a589052590898447bd94adf4809726870c608c8d5d38f0c3e3efc899d76b2911",
+        "shoes": "4dc80ad59f16eee8a0b11ceaddccaf13c584ee78f6dde967730f967722ab147f",
+        "skin": "17ddb636a4cb2c381717ec714b19f391ae2de16ed3baa2eec0dff49a23ea9547"
+      },
+      "maskPixels": {
+        "top": 5741,
+        "bottom": 4227,
+        "shoes": 4926
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47641,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52588,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 8,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 251,
+      "sourceRgbaSha256": "5975a525c1b4a5403830e6731e6b4206a78e25ac2c517b242ca3f6236cfd1155",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 8,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "9a525c7c1e659405b7e79ca6c67cc720627bc22d1f4ad4768b1fb29ff5013863",
+        "bottom": "0711667cf814d953a327ab917ae3418de4f5c29bbfa44427eca6348c9d4efea1",
+        "shoes": "5d3d181d331dfdf366e0ce9138319e3ea65e46d840e67216cb4d868d435699f4",
+        "skin": "7a56a8a124285bd86d26214bdd8e1fa4cb083b86520dcdcdc0550c727625c898"
+      },
+      "maskPixels": {
+        "top": 5751,
+        "bottom": 4226,
+        "shoes": 4926
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47631,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52564,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 9,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 252,
+      "sourceRgbaSha256": "f321303677140b2dee536ef8c4368eb37f309527be1a0163ce71883974345cec",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 9,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "80de1bc0b20d0dc3f57b46f7a11d01f968e9c72f17b25867d8fa59aab2c9ce95",
+        "bottom": "2680ab3524b6b5782efb09c7a7cb3dc42417e449ab078aff24096a487cf92220",
+        "shoes": "7526f44b7b32073fd7ffd70a5c92506d5014bd03b7165a9be513d2c38c390fb7",
+        "skin": "45a680c441657a5f7922d33c75fcce8d2928d47676fcb02df778d93294af36ba"
+      },
+      "maskPixels": {
+        "top": 5751,
+        "bottom": 4226,
+        "shoes": 4925
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47635,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52576,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 10,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 253,
+      "sourceRgbaSha256": "49a27379c7b20e3a4aae5aa67e08169726465c7068175dc204935fcbd540d4f9",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 10,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "d14b543e0e3080e1c26a46d215906ff6e19c1907c774303e5119451bc7ebe364",
+        "bottom": "76aa09d81ff0d4c9db765efb5f8d661ab1da92441802dae546ad68438ea63bd4",
+        "shoes": "996a466014dc33956ac6647715c7600378a6f704db57c6430b61167dff75ee90",
+        "skin": "1ab037121e0713f1149d0b0add8f93a0091c355dfe6ede4efe5182025f66d9e6"
+      },
+      "maskPixels": {
+        "top": 5750,
+        "bottom": 4227,
+        "shoes": 4925
+      },
+      "maskBounds": {
+        "top": [
+          221,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47615,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52562,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 11,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 254,
+      "sourceRgbaSha256": "048d6abf6c27454b092f52c00b572e18fdb448a3982eefe138a8b6db70419d8f",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 11,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "4fece47da86c6c5a243b4bfaebac85e8c71778cf3479c6e94a8f04c88d5c7de8",
+        "bottom": "c023c77b7057d0a6c2f5f1b4df9618a8f8f9e3b48c4a17fb1f09ff207df6c9f7",
+        "shoes": "552b02550fc6b669fc6a146fc684341b283bfac88858a2a520cbb965f122e048",
+        "skin": "80c30fd8799fda27b65d02f3cdecf97202bb223546004ee6b3abdd110abbfa90"
+      },
+      "maskPixels": {
+        "top": 5751,
+        "bottom": 4227,
+        "shoes": 4923
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47628,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52569,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 12,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 255,
+      "sourceRgbaSha256": "7cda3db9f1c793f76726c11ee498f859ac758545c245823f2e995e7a591e7ccc",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 12,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "c37752bb42d3a1f48ff87613a15366e744c5aaf67e1fde92200916e56b03bcf7",
+        "bottom": "1729ca8ddb35e20d5a419574de23c9bc165808e1307df8db3c3f667f3953ac02",
+        "shoes": "09722f735a8bfefa95f9b92bb538225fdbba558d7a0d136847a3aab23ba0ed6c",
+        "skin": "b9f1da33e3721fe659578a2fffd75780eb0bc56baccd0a4321cee2f68c9c5282"
+      },
+      "maskPixels": {
+        "top": 5746,
+        "bottom": 4227,
+        "shoes": 4918
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47624,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52573,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 13,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 256,
+      "sourceRgbaSha256": "f1361804feefdf8e792c07d75c8c9da8cd87c5540085415cde528389e4cc5dfb",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 13,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "d782fb253c36f8052f28a38dc3fe3fab7ef5338362991373ce1904adb3dfccea",
+        "bottom": "9e564546d7607e843b3ff39820291ea4292606b7ab103b6fe226a15d9b0b157c",
+        "shoes": "3f96e278f406f9e1e3b4a0b81044c225568a03074f22f24bf9ccb33da996ee8a",
+        "skin": "9a7b536c44ff42e79b4bca9726a109302b2926205eba34a6c5750ab81703323e"
+      },
+      "maskPixels": {
+        "top": 5746,
+        "bottom": 4227,
+        "shoes": 4921
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47643,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52577,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 14,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 257,
+      "sourceRgbaSha256": "7a80ba9e24b9343237e283648176d6ed95b0cddc80322611014a50e1e1cdabb0",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 14,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "a2ccb808b95a6f9b15428766d9d115a71645072c0fd13ed4c3324ffe4b02cb07",
+        "bottom": "9e0d90a0065d1d6b37d9e32fc50df4d531237d80f15a664a270639d1b1908f24",
+        "shoes": "d9b291e870512ca032969404a30e69772e053eac299fb553bcf744383046b575",
+        "skin": "2a2ce1cb4214191076329d2ffdfd45582e89af069e1a8f769a7278b9a51ec48d"
+      },
+      "maskPixels": {
+        "top": 5748,
+        "bottom": 4230,
+        "shoes": 4923
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          315,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47629,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52571,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 15,
+      "action": "idle",
+      "source": "female-1927",
+      "sourceFrame": 258,
+      "sourceRgbaSha256": "ee27d7ab7e53b6cfb28b5f16bc5622d49455600e2dad1118d34225130590900f",
+      "reviewedSeed": "female-1927/243",
+      "trackedSteps": 15,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "f6f439cf0d727fbef66dbc04c47e7b6db87219d2bb1328f1abe5d4c5ab20d77e",
+        "bottom": "9e0d90a0065d1d6b37d9e32fc50df4d531237d80f15a664a270639d1b1908f24",
+        "shoes": "42a0c6f6286ff44a8b8bf200992994834b26dfc9cd2226551b10ba2da13e2926",
+        "skin": "c9593659e1dcb6c3c72b0a074de854afd868d2b297eb790fa3d9d47ce6fd96b4"
+      },
+      "maskPixels": {
+        "top": 5745,
+        "bottom": 4230,
+        "shoes": 4924
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          436,
+          316,
+          537
+        ],
+        "bottom": [
+          218,
+          525,
+          313,
+          588
+        ],
+        "shoes": [
+          184,
+          663,
+          340,
+          716
+        ]
+      },
+      "skinSeedPixels": 47647,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52581,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 16,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 42,
+      "sourceRgbaSha256": "561edd2dee9936864a92f00715a98c6b131ff58191d542142e4e7acaef303f48",
+      "reviewedSeed": "female-1721/42",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "32e7918217e2f7094374fc06fef3bb327c2cdbb32008c8f46a5f36b5a4c7e25e",
+        "bottom": "100acaddf6e80fe958172d06148fac3c1290ed75aa0ce42c7d498f62c8e67fa4",
+        "shoes": "bbc46987a3b719d449e151ee7adbd1da216e9e07a7e33208cc85bb2baca1e03f",
+        "skin": "08fe72b09e7d236690fda80a718ec9f3e43d7e5a62dff95296ddee492056d181"
+      },
+      "maskPixels": {
+        "top": 5390,
+        "bottom": 2376,
+        "shoes": 3762
+      },
+      "maskBounds": {
+        "top": [
+          193,
+          426,
+          318,
+          530
+        ],
+        "bottom": [
+          229,
+          523,
+          305,
+          573
+        ],
+        "shoes": [
+          189,
+          635,
+          274,
+          709
+        ]
+      },
+      "skinSeedPixels": 45842,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52645,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 17,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 43,
+      "sourceRgbaSha256": "e4b7c2b72e9c6b92d3652935a375758638e01e6ada3a3625ce939c46629779a8",
+      "reviewedSeed": "female-1721/42",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            247.2,
+            672.2
+          ],
+          "to": [
+            241,
+            678
+          ],
+          "distance": 8.49
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "47cb01007533ad043e50785bcf84c73a4b2badc210096ac9c40fa0cc20ec2db3",
+        "bottom": "b32314de70e2b85445741d9db1a0826ebfbda4bfaf6b162a8b2a4b18add20500",
+        "shoes": "8d3c9612be4a7df55babed377c90bca3329e52a488cdd9542422b7b9da9d6755",
+        "skin": "08edc7a0692fce71dded1eaa2ad737af263c990438b9646777c6c0b7024c1604"
+      },
+      "maskPixels": {
+        "top": 4792,
+        "bottom": 2179,
+        "shoes": 5224
+      },
+      "maskBounds": {
+        "top": [
+          236,
+          423,
+          319,
+          527
+        ],
+        "bottom": [
+          198,
+          499,
+          315,
+          594
+        ],
+        "shoes": [
+          171,
+          616,
+          308,
+          708
+        ]
+      },
+      "skinSeedPixels": 45374,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52294,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 18,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 44,
+      "sourceRgbaSha256": "7a247d07decf671b02e3635d4d76dcc1da76810c545fec42fd6666575179e253",
+      "reviewedSeed": "female-1721/42",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "farAnkle": {
+          "from": [
+            236.9,
+            627.8
+          ],
+          "to": [
+            266,
+            647
+          ],
+          "distance": 34.86
+        },
+        "farToe": {
+          "from": [
+            231.5,
+            669.3
+          ],
+          "to": [
+            223,
+            680
+          ],
+          "distance": 13.67
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "6b066b6f98b3f0cf4ea1708f6963a8e2e490f73791bead75b76f86c95fff9c77",
+        "bottom": "729be8d3c14b39a2b319bcaf06db9d8c8ce62d810548b853b07077d97473bb1c",
+        "shoes": "1e72b1fa2ca12b214c5e37e745dfb752f6719602c49e0a622b9d63729d1ac97c",
+        "skin": "a8673291f95797e2faf0c5c9b3231d2599fda9b6cde7edb8c3ed068ddd2caacf"
+      },
+      "maskPixels": {
+        "top": 4018,
+        "bottom": 2283,
+        "shoes": 4784
+      },
+      "maskBounds": {
+        "top": [
+          244,
+          427,
+          319,
+          526
+        ],
+        "bottom": [
+          195,
+          494,
+          312,
+          579
+        ],
+        "shoes": [
+          150,
+          632,
+          330,
+          706
+        ]
+      },
+      "skinSeedPixels": 45421,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53006,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 19,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 45,
+      "sourceRgbaSha256": "2ffe7a41f2343fdea7b63affca81b923128057b75f5186980dda98138b9ee179",
+      "reviewedSeed": "female-1721/46",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            357.4,
+            668.2
+          ],
+          "to": [
+            358,
+            669
+          ],
+          "distance": 1.0
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "608ed2260410f7baddd6c9074093807315c2ddd2027346409207a4b385244690",
+        "bottom": "1b107c1113b344328d1c88eb3fe8bf51b74f87c93906482d28079cb5c880f926",
+        "shoes": "8ee747366e759d387324e5f9f508eb8bb743a8d866fdfefc9eb3ad5ada50531f",
+        "skin": "f4c73561283e55b2a34d1f456666ed5048926267bc83bf0b70ef0b0efa122987"
+      },
+      "maskPixels": {
+        "top": 3448,
+        "bottom": 3161,
+        "shoes": 5218
+      },
+      "maskBounds": {
+        "top": [
+          217,
+          427,
+          319,
+          521
+        ],
+        "bottom": [
+          194,
+          511,
+          273,
+          582
+        ],
+        "shoes": [
+          133,
+          637,
+          374,
+          704
+        ]
+      },
+      "skinSeedPixels": 45434,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52148,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 20,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 46,
+      "sourceRgbaSha256": "6301ba82f9f34e73f3110e6dabb0b2197c2335305fdfc3827b56cb49a0615d18",
+      "reviewedSeed": "female-1721/46",
+      "trackedSteps": 0,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            370.0,
+            664.0
+          ],
+          "to": [
+            368,
+            663
+          ],
+          "distance": 2.24
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "a2e231c769ad2c7e869ddcd4094a1d7842e1d0613f436d25e69d91557b778416",
+        "bottom": "f1c934152712822f75f6590a2b7402b8a4c53dc33b00ee534eafc965f04d7f46",
+        "shoes": "024d7ab9054bcbd443b347c19d19dd69936e0fda87b2efd3fb22401802b079ba",
+        "skin": "7039915ac0e50a15ff1822e17238522ba6eb83564b4f8001d381acc8b36c2640"
+      },
+      "maskPixels": {
+        "top": 2868,
+        "bottom": 3890,
+        "shoes": 5350
+      },
+      "maskBounds": {
+        "top": [
+          223,
+          432,
+          319,
+          528
+        ],
+        "bottom": [
+          192,
+          518,
+          293,
+          587
+        ],
+        "shoes": [
+          119,
+          623,
+          387,
+          702
+        ]
+      },
+      "skinSeedPixels": 46037,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53178,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 21,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 47,
+      "sourceRgbaSha256": "917b40a0c5df636e5b315023f5c80c9ecca19f30d8bd86c9dac5ceb531235e06",
+      "reviewedSeed": "female-1721/46",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            365.4,
+            676.6
+          ],
+          "to": [
+            364,
+            676
+          ],
+          "distance": 1.52
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "5077ae547156d75f20b95c9ef75775df9cd27ca895975859ac38a814d7e9b500",
+        "bottom": "ccd785ec85776ec61fb54231187c867161ac7b19bd38c660435dfe8603f92914",
+        "shoes": "e6ce0bfd3f28bb66c05096ad3e9898ba1862ea0da107325cf7cfa7f071eabf6d",
+        "skin": "e29434c6c72d053fa4d23eed877b1deec9c6306c13449e1ca6682cc24470eb6e"
+      },
+      "maskPixels": {
+        "top": 2641,
+        "bottom": 3979,
+        "shoes": 5601
+      },
+      "maskBounds": {
+        "top": [
+          234,
+          436,
+          317,
+          518
+        ],
+        "bottom": [
+          195,
+          483,
+          318,
+          597
+        ],
+        "shoes": [
+          114,
+          609,
+          383,
+          705
+        ]
+      },
+      "skinSeedPixels": 46201,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53444,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 22,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 48,
+      "sourceRgbaSha256": "c15002d9ed2481cef6f5da1e53637044f740b2db5ad04631b0fd94c043eaac63",
+      "reviewedSeed": "female-1721/46",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "56f5a658d1ad8744a4f5aa0ebc80d1f5135e34e1b890815ec21230e96d3a39bf",
+        "bottom": "b0669e3574f041372efc833b9d529a76c0e87a8eb90331672acd306b0ee4706b",
+        "shoes": "d331623173bcc734cee6a92e14b406c0851f8b3fb4fba7bd46ca31a59fab0eac",
+        "skin": "254940f4dbb7337645f8c1c721d57665b518fb9ee9407b00327fb76af2406236"
+      },
+      "maskPixels": {
+        "top": 3291,
+        "bottom": 3145,
+        "shoes": 5749
+      },
+      "maskBounds": {
+        "top": [
+          229,
+          439,
+          318,
+          529
+        ],
+        "bottom": [
+          197,
+          527,
+          316,
+          595
+        ],
+        "shoes": [
+          119,
+          594,
+          365,
+          703
+        ]
+      },
+      "skinSeedPixels": 45178,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52049,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 23,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 49,
+      "sourceRgbaSha256": "815e32172fa92068b69e24c87f3801b0408891ae98f1fbcff44445c0bc0e7244",
+      "reviewedSeed": "female-1721/50",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "7a325e6ec29caf8408cd6e653c3d0df75e7930295a5d21d1305e7e34c733abac",
+        "bottom": "447c0defbf35199e0e1c3da02fcbb327f23ef3456e8a8a0ba856c226a42b65b3",
+        "shoes": "80ff5e4a4f5bf417dcc02586b07044c5af3ad477d42d065e8ce520f4ac8e9427",
+        "skin": "74236e4a05955b1748be7e7650b1817d0c218c5e384b431d6bf8832a221382b1"
+      },
+      "maskPixels": {
+        "top": 4348,
+        "bottom": 2210,
+        "shoes": 5518
+      },
+      "maskBounds": {
+        "top": [
+          206,
+          437,
+          318,
+          539
+        ],
+        "bottom": [
+          202,
+          521,
+          314,
+          580
+        ],
+        "shoes": [
+          138,
+          594,
+          342,
+          704
+        ]
+      },
+      "skinSeedPixels": 45055,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51907,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 24,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 50,
+      "sourceRgbaSha256": "b27af20e326fb56ab530cb1a4c7c95c8113624702e483c126fb27648e442ba47",
+      "reviewedSeed": "female-1721/50",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "74657c21a13f25f2b0ac60f8d7829a41a78e83e0ea158a405af3fec28b6d5974",
+        "bottom": "64e7b310287669476cb3eadfcb8728a9a69618abb5ee24334992e84dda581345",
+        "shoes": "f73836d3868474b466c1105febbc739a27bf7524b8588a45c2c57fba103ee256",
+        "skin": "e1c51cea747953834a5d2fd0901d220094fb15248a026e522050ded38e637140"
+      },
+      "maskPixels": {
+        "top": 5245,
+        "bottom": 2199,
+        "shoes": 5227
+      },
+      "maskBounds": {
+        "top": [
+          199,
+          431,
+          318,
+          535
+        ],
+        "bottom": [
+          203,
+          529,
+          306,
+          585
+        ],
+        "shoes": [
+          163,
+          605,
+          316,
+          703
+        ]
+      },
+      "skinSeedPixels": 44141,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 50838,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 25,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 51,
+      "sourceRgbaSha256": "2b7a5b7fe3f4e51056c8e29fd4f301985da9c5f82fd1293c026f617bedf2a6d1",
+      "reviewedSeed": "female-1721/50",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            190.5,
+            665.5
+          ],
+          "to": [
+            195,
+            662
+          ],
+          "distance": 5.7
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "3482d07162786000544c063adf0368b69c689e9284318a652e1f3068946b80bc",
+        "bottom": "7fabafb22cd00306d83445fa20ad10801020ef68fe3382376844dbffd75ef35d",
+        "shoes": "c8c2c8e5d79ab011c033d228791eee1e4c1b9137aa8c7b8b7b624e7b8ef090a4",
+        "skin": "6a90ddb1883a675d00acfdb4b7525946fcbe02faefa85fd646dee7ec2b1b6067"
+      },
+      "maskPixels": {
+        "top": 5471,
+        "bottom": 2551,
+        "shoes": 4443
+      },
+      "maskBounds": {
+        "top": [
+          226,
+          425,
+          319,
+          530
+        ],
+        "bottom": [
+          225,
+          497,
+          304,
+          573
+        ],
+        "shoes": [
+          186,
+          613,
+          295,
+          702
+        ]
+      },
+      "skinSeedPixels": 44163,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51262,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 26,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 52,
+      "sourceRgbaSha256": "b8f958d4ba0a304bd78e085631749de55df898ccb425f40c924828e27831a4dd",
+      "reviewedSeed": "female-1721/50",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            190.5,
+            676.5
+          ],
+          "to": [
+            197,
+            677
+          ],
+          "distance": 6.52
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "0010c87ba52ba119026e147acb90da226634258923aeeae04fddd4faaa73d7fe",
+        "bottom": "4d01b3791d64e346276e80b19a84ca87271b320a94d963b04517e1b7bfac8510",
+        "shoes": "930c569c397aa5e0c40c1691d7e9f3f021ff7510dacf82aeaa6aff95125d89bc",
+        "skin": "e09937fd93585c05e2f8cadbea362213936d91ab2789109226d618af9972abf0"
+      },
+      "maskPixels": {
+        "top": 5936,
+        "bottom": 3134,
+        "shoes": 4394
+      },
+      "maskBounds": {
+        "top": [
+          177,
+          422,
+          320,
+          526
+        ],
+        "bottom": [
+          208,
+          506,
+          303,
+          575
+        ],
+        "shoes": [
+          197,
+          630,
+          289,
+          701
+        ]
+      },
+      "skinSeedPixels": 45027,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51950,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 27,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 53,
+      "sourceRgbaSha256": "708dd8e774e5bc4816cbd21f00feac36e620dae1dd50cd14f6239e5e5ed8c00e",
+      "reviewedSeed": "female-1721/54",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            321.4,
+            693.3
+          ],
+          "to": [
+            318,
+            683
+          ],
+          "distance": 10.85
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "9d4fa33d64e7268e36be9eef37df913b2be105f40a0e728df748cce9d1497ac1",
+        "bottom": "3465955bbd4e1bd7cb089db07d4e05d1106b7f43965e790f676c267fef1c2f64",
+        "shoes": "1a4d38cdd8d74c32cce196ec90992e4e7b7dda5392c03b2892b2de73fd876458",
+        "skin": "e803e205963aad725d994023fea71dde41b4aa8894328d24f14065d862fc7651"
+      },
+      "maskPixels": {
+        "top": 5808,
+        "bottom": 3176,
+        "shoes": 5068
+      },
+      "maskBounds": {
+        "top": [
+          159,
+          422,
+          316,
+          527
+        ],
+        "bottom": [
+          204,
+          507,
+          303,
+          577
+        ],
+        "shoes": [
+          176,
+          642,
+          333,
+          701
+        ]
+      },
+      "skinSeedPixels": 47842,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55403,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 28,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 54,
+      "sourceRgbaSha256": "19e61c6ffea0b8a4510ee7d851a53f0932344549b26a358a1952bbc9374607a9",
+      "reviewedSeed": "female-1721/54",
+      "trackedSteps": 0,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            340.0,
+            686.0
+          ],
+          "to": [
+            335,
+            674
+          ],
+          "distance": 13.0
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "9378aa4671683b5837a35a4a51e77ba82f014e3073548636cbcfb0709cffe1e8",
+        "bottom": "244d169666815f34252070678602d9a583b111a6fc2ad63cfaa76b0da96a6da3",
+        "shoes": "b83591e828e668ab508480c8cd0ebbd322ec54af58ef73f31406278a490dd1f4",
+        "skin": "6abf77133a5d3e8c1afc2c5d1869595e7e014d9cc66cc8d78c32b6d04d19a2d8"
+      },
+      "maskPixels": {
+        "top": 5890,
+        "bottom": 3428,
+        "shoes": 4963
+      },
+      "maskBounds": {
+        "top": [
+          219,
+          424,
+          328,
+          530
+        ],
+        "bottom": [
+          163,
+          499,
+          306,
+          639
+        ],
+        "shoes": [
+          160,
+          633,
+          354,
+          698
+        ]
+      },
+      "skinSeedPixels": 47836,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55827,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 29,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 55,
+      "sourceRgbaSha256": "335d9cbbe6d27230aa8bc4553a908b4da290b21656d8c93d7170e8ec1a24421d",
+      "reviewedSeed": "female-1721/54",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            343.4,
+            689.5
+          ],
+          "to": [
+            333,
+            680
+          ],
+          "distance": 14.09
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "a120d0ebfdacf19db1fd19654f94cccec08ad77bce4b420b5be5a1aba3fcd660",
+        "bottom": "03746bd0cea3bff186caea151e7b34a9732f4779800a8aeae99195b3b2b49f55",
+        "shoes": "a40f2cf346726f30b57a8159efef74049c31ba0410f17ced7ed7fd4124d818a7",
+        "skin": "66e36421391b41e588728d3d10821af1240d4eb2ddfeef418db92b272b76e7e6"
+      },
+      "maskPixels": {
+        "top": 5916,
+        "bottom": 3626,
+        "shoes": 5442
+      },
+      "maskBounds": {
+        "top": [
+          218,
+          430,
+          315,
+          536
+        ],
+        "bottom": [
+          204,
+          518,
+          360,
+          644
+        ],
+        "shoes": [
+          145,
+          613,
+          363,
+          704
+        ]
+      },
+      "skinSeedPixels": 47406,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55096,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 30,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 56,
+      "sourceRgbaSha256": "7cc7caf9f9a35a428d8ada879efc861922beb05d47878040f093e3fc3654a905",
+      "reviewedSeed": "female-1721/54",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            344.9,
+            693.6
+          ],
+          "to": [
+            336,
+            685
+          ],
+          "distance": 12.38
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "314b4821649312d9bc3fd92533de20ff5ba9f6de74666cf5cdda18a701b851cb",
+        "bottom": "5679c186fc5d5ccbfe323d1dae650f614f35dc464080e3e9922c3fe184d77c0a",
+        "shoes": "4975ff116418960a302fe5c5b8e06f9dcd81ff605257517536e743cdcc274e7f",
+        "skin": "6c6921e327c1b79e01cd4eeebeac3d1c1d6420e07914a988208c9e17186f81e2"
+      },
+      "maskPixels": {
+        "top": 6020,
+        "bottom": 3746,
+        "shoes": 5612
+      },
+      "maskBounds": {
+        "top": [
+          163,
+          435,
+          315,
+          542
+        ],
+        "bottom": [
+          203,
+          516,
+          305,
+          595
+        ],
+        "shoes": [
+          144,
+          597,
+          356,
+          707
+        ]
+      },
+      "skinSeedPixels": 47029,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54685,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 31,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 57,
+      "sourceRgbaSha256": "163c88e3374bed08b17fbe47b17c980336941668f3e9cd9e5323ba8748478cc1",
+      "reviewedSeed": "female-1721/59",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "eeef02f05cadd97ff7a59ea5b0666f19d793265760ec303dba0531a86f0dc5ea",
+        "bottom": "8cae99303f6361ea97befa83a3908c0d656d30d30a40c21e1ae79c54bb34848d",
+        "shoes": "d069cdec6a11ebb1d9114d61e8f9dce9516f52cadc956b10ce8f6e6de93d7772",
+        "skin": "de21eb12356e873650a2853ccf05376a181545151d9c5bf0deeee050d542ee17"
+      },
+      "maskPixels": {
+        "top": 5894,
+        "bottom": 4096,
+        "shoes": 5224
+      },
+      "maskBounds": {
+        "top": [
+          210,
+          435,
+          350,
+          544
+        ],
+        "bottom": [
+          192,
+          515,
+          304,
+          640
+        ],
+        "shoes": [
+          151,
+          585,
+          340,
+          709
+        ]
+      },
+      "skinSeedPixels": 46436,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53719,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 32,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 58,
+      "sourceRgbaSha256": "75d5baaf5080f4870ff1fd83198dcfbd4749aad7cac17c516361b74e34b59740",
+      "reviewedSeed": "female-1721/59",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "980897366d019acc40b073fec72ee573cd8ed95f9af8f07024c4557cb3d22f02",
+        "bottom": "01f80a647d83d05f1f2e3f3f43fabb418bc7e93b037289e91a24ecf26a990476",
+        "shoes": "d6196d4ef9494f8c07d11f1878117931ceb82a9e355a319f9ecf83d4e354148d",
+        "skin": "8b67362c8c40640020fcfdefdf06ba1d461710e7ef25cf7466847ba9a11d1225"
+      },
+      "maskPixels": {
+        "top": 5999,
+        "bottom": 4291,
+        "shoes": 4957
+      },
+      "maskBounds": {
+        "top": [
+          196,
+          435,
+          318,
+          549
+        ],
+        "bottom": [
+          178,
+          525,
+          302,
+          660
+        ],
+        "shoes": [
+          174,
+          590,
+          317,
+          709
+        ]
+      },
+      "skinSeedPixels": 45356,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52450,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 33,
+      "action": "walk",
+      "source": "female-1721",
+      "sourceFrame": 59,
+      "sourceRgbaSha256": "930998b7b88f01aee0aef190b8b4170e0eba55c2b005bbd82404c90a6ee247ac",
+      "reviewedSeed": "female-1721/59",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "afe2a6e503cf238009671420ad2eaabb27532f3489b92b02e98881956dcf23da",
+        "bottom": "e543974de5eb76f40e59a912fc8b9fa5e9452bf87910700f3ec77e905faa4cfd",
+        "shoes": "3cf6cdd38a10197983819b2f3cabf3a0bfbad14f37225ed13d935a035af57649",
+        "skin": "ea31d7ab3977353cd2cc6037e96cc4387ec5f71145132371a13cbb79e741af9f"
+      },
+      "maskPixels": {
+        "top": 5677,
+        "bottom": 3636,
+        "shoes": 3369
+      },
+      "maskBounds": {
+        "top": [
+          221,
+          430,
+          317,
+          558
+        ],
+        "bottom": [
+          198,
+          523,
+          310,
+          659
+        ],
+        "shoes": [
+          204,
+          610,
+          295,
+          710
+        ]
+      },
+      "skinSeedPixels": 45741,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52623,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 34,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 135,
+      "sourceRgbaSha256": "755bd4d45cb3796b04b89868e7f5b194231e2425e5c0644f1316f67b0435b455",
+      "reviewedSeed": "female-1927/135",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "401f8d868a4c46600123d80f145e81a6f4fc1bffa8725afe96b4b6eb3031777e",
+        "bottom": "69998da4069b779ba1d4910b3e08469c55bcaabbd8768c13fcec5cb127c2fa4f",
+        "shoes": "28e3fe3b55b4e876c4719271ceb94da4b83c72b9547d678f5f82279aff211fc0",
+        "skin": "98165a0ebeb99621ccb5e985b33589b4257cc29cf7395b93ec0cb70c0f35e4ee"
+      },
+      "maskPixels": {
+        "top": 2256,
+        "bottom": 4640,
+        "shoes": 5331
+      },
+      "maskBounds": {
+        "top": [
+          213,
+          418,
+          300,
+          530
+        ],
+        "bottom": [
+          182,
+          509,
+          305,
+          584
+        ],
+        "shoes": [
+          103,
+          625,
+          371,
+          707
+        ]
+      },
+      "skinSeedPixels": 51100,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 56933,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 35,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 136,
+      "sourceRgbaSha256": "51f2e730734577c92757ef255dcc901ab0b898408f42b737e3d7aa6aa6e192a3",
+      "reviewedSeed": "female-1927/135",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            375.5,
+            642.5
+          ],
+          "to": [
+            376,
+            642
+          ],
+          "distance": 0.71
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "fe251e5c076e74c037890ad8db14080c725acab175ab4796e139fe0b6e09ff85",
+        "bottom": "0e56407af33db45db5d30da3447c0c5ec28d2c8f1389ac589673e5989dbc4508",
+        "shoes": "fc0146111847d81f123497289caebaa520cfe138f32c8e52e103e1a7c6f8a8a8",
+        "skin": "dec811b5f6fe51ba5eb8e3c9048cac16d3d5f7bc8aee2de4bbaae5f325182dec"
+      },
+      "maskPixels": {
+        "top": 2388,
+        "bottom": 4650,
+        "shoes": 5627
+      },
+      "maskBounds": {
+        "top": [
+          213,
+          420,
+          299,
+          532
+        ],
+        "bottom": [
+          182,
+          510,
+          304,
+          585
+        ],
+        "shoes": [
+          94,
+          600,
+          391,
+          691
+        ]
+      },
+      "skinSeedPixels": 51539,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 57102,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 36,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 137,
+      "sourceRgbaSha256": "fa49897e6898938a4c0c58422b5739db2def0fd2493e2c8ce6774aa225e6b9d6",
+      "reviewedSeed": "female-1927/135",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "0256af769d263a7a2829412bc199967dbffdae2eed3fffae4c417eb421f28311",
+        "bottom": "1d59bfd98a1530b1315e9243ff5e9ff3d71f1d2201b1e1268bf4e4fb9c3b157e",
+        "shoes": "cf79d969bf77b0c2089b3389e66ca5a3f17ff023202605e051aabc70a4d79a53",
+        "skin": "db90d46b83e77cd850b538827a9ca7f11ed4e7cbfdab4dd23992453297b724d4"
+      },
+      "maskPixels": {
+        "top": 2118,
+        "bottom": 4696,
+        "shoes": 5258
+      },
+      "maskBounds": {
+        "top": [
+          215,
+          427,
+          299,
+          538
+        ],
+        "bottom": [
+          183,
+          516,
+          303,
+          590
+        ],
+        "shoes": [
+          90,
+          582,
+          386,
+          691
+        ]
+      },
+      "skinSeedPixels": 50944,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 56376,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 37,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 138,
+      "sourceRgbaSha256": "80f6ef10723092fcdc919df6050170ec813da5e9a6e03530a0695804b80887df",
+      "reviewedSeed": "female-1927/139",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            342.2,
+            683.1
+          ],
+          "to": [
+            342,
+            682
+          ],
+          "distance": 1.12
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "6065c182a80f4ac48e4624bdce4b02b95e1eb2f1ef35110eadf4c2acec608c1c",
+        "bottom": "3c9ac2102c92a64f3aa99a65aecb1cba9cd6edcc9aea39aa643fcba8e8ee841a",
+        "shoes": "6fec8d6e4a75d9af7ab6172bf50838f250222739f5983a28607c7d47dcbb6b50",
+        "skin": "a54e5b31025f2611f52e80cc9c28dee326ad0066f631b22e308b9e923693c162"
+      },
+      "maskPixels": {
+        "top": 1628,
+        "bottom": 4806,
+        "shoes": 5058
+      },
+      "maskBounds": {
+        "top": [
+          215,
+          434,
+          302,
+          544
+        ],
+        "bottom": [
+          182,
+          518,
+          304,
+          594
+        ],
+        "shoes": [
+          104,
+          568,
+          356,
+          703
+        ]
+      },
+      "skinSeedPixels": 49117,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54632,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 38,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 139,
+      "sourceRgbaSha256": "8be64fae094d57361fd0e36b128a5d3c3497c9a1f4e0e72b53daf89a2b65eea7",
+      "reviewedSeed": "female-1927/139",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "86141de6249171f99797d0717eabf4dfc20efdd22000bb59b3020c574922e222",
+        "bottom": "d08aa54418e023cba321a0ba64ec690155b65654a41e30ac7a49cf2c2341d47b",
+        "shoes": "87279c8c68aec5520e20f8450c9a9c1de240b97f529b7b9394fc6c9482d7af5e",
+        "skin": "e0c2e50fcab948b4e5ecf8656b6de9f0e80946eca0765669ccf42c6a0cfecd74"
+      },
+      "maskPixels": {
+        "top": 1981,
+        "bottom": 4384,
+        "shoes": 5475
+      },
+      "maskBounds": {
+        "top": [
+          222,
+          437,
+          307,
+          507
+        ],
+        "bottom": [
+          186,
+          524,
+          297,
+          590
+        ],
+        "shoes": [
+          122,
+          575,
+          325,
+          704
+        ]
+      },
+      "skinSeedPixels": 47577,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52703,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 39,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 140,
+      "sourceRgbaSha256": "3338dbd26b77b3a2416dd2c555b9789df5043620ef1ce175a03041e2dbc38da4",
+      "reviewedSeed": "female-1927/140",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "f687a00a0960f47c1bda0419ca9af9f3e08fdbe8bb18614215f7f3cdefa32584",
+        "bottom": "13c510c60b7701657e2729f8f3bd3d084efe8b371bb2881c0ebb6fbfffe5369d",
+        "shoes": "8b302c97393efcad83d684cd121ed16e06d9c67d3735f2eaa9d5ae8c498695cc",
+        "skin": "ddd3eef74bf3843073daa5234e7c0dd3eb0f7bc372a21522289c64333f1b9717"
+      },
+      "maskPixels": {
+        "top": 3050,
+        "bottom": 2814,
+        "shoes": 5405
+      },
+      "maskBounds": {
+        "top": [
+          222,
+          436,
+          306,
+          519
+        ],
+        "bottom": [
+          186,
+          531,
+          290,
+          592
+        ],
+        "shoes": [
+          151,
+          592,
+          295,
+          705
+        ]
+      },
+      "skinSeedPixels": 48003,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53099,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 40,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 141,
+      "sourceRgbaSha256": "f71c16f1e736678b364082d7467bc4a6c4f825b4c28a88ed1df3086c678a6278",
+      "reviewedSeed": "female-1927/141",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "e471dc592ca128c995593e78618dbe7f1575608460c69ef376352b5f94725844",
+        "bottom": "860d6f9edce2e54e7d00ce3f83889f57600d9c7fd9e867f4f6faa9d12156b7a7",
+        "shoes": "2337960dac6d280a092e3bbbe9d20bb924dae8e88d56b82e2b6b597161906c88",
+        "skin": "9c0c8a3df2db81e6b308a9d193287805926dc5e9842fcc6cb8c4ed1d9c3b323d"
+      },
+      "maskPixels": {
+        "top": 4872,
+        "bottom": 1774,
+        "shoes": 4855
+      },
+      "maskBounds": {
+        "top": [
+          218,
+          431,
+          308,
+          543
+        ],
+        "bottom": [
+          186,
+          535,
+          286,
+          597
+        ],
+        "shoes": [
+          172,
+          604,
+          265,
+          705
+        ]
+      },
+      "skinSeedPixels": 47035,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52318,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 41,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 142,
+      "sourceRgbaSha256": "95ac016ad8beb913d19b21a70d7061177f11849c93b3d4cf13575a30e6bda0e9",
+      "reviewedSeed": "female-1927/141",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "3dee741388f9baff12aec9541ff9f6e4a3c07e142a23520ad0b2afce0e4be520",
+        "bottom": "ce17e49fdf4f1176b62a87a28cb469739c05c35efcc8d2ebeab268c026a7349f",
+        "shoes": "d5be1147a8f3eea04472a2332a336fe7db932470c1a0496f05383b5b3972c583",
+        "skin": "33ba3ddaee583fc1940f05ffccad64f417a0ac31f8d0ca71392882b3bf4cde5d"
+      },
+      "maskPixels": {
+        "top": 5848,
+        "bottom": 1705,
+        "shoes": 4665
+      },
+      "maskBounds": {
+        "top": [
+          209,
+          422,
+          305,
+          536
+        ],
+        "bottom": [
+          189,
+          527,
+          286,
+          586
+        ],
+        "shoes": [
+          148,
+          625,
+          274,
+          705
+        ]
+      },
+      "skinSeedPixels": 51673,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 57574,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 42,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 143,
+      "sourceRgbaSha256": "d14b499145012ec620337df68c8f49491003cfcfb8942e507aee9be77c4bbf82",
+      "reviewedSeed": "female-1927/143",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "fa38ffe887cd1d1d63e47fdb6ff13e5a37fa5050ef3c80eb62ff55983c1ddcec",
+        "bottom": "a64b01517273510c4a2eb29f7be7d546cab88b80358c15022a4b063f2cbe6f1a",
+        "shoes": "5adc86d10f07d73f045fa0e52070be2730000eba140987d402f0144789b22cf9",
+        "skin": "0e1963ac1fe3c97dab69492cc9eefcdcfadb154a135e6e2e008c140e8d5652c7"
+      },
+      "maskPixels": {
+        "top": 6280,
+        "bottom": 2638,
+        "shoes": 5191
+      },
+      "maskBounds": {
+        "top": [
+          207,
+          417,
+          305,
+          531
+        ],
+        "bottom": [
+          186,
+          500,
+          285,
+          583
+        ],
+        "shoes": [
+          129,
+          633,
+          316,
+          705
+        ]
+      },
+      "skinSeedPixels": 53627,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 59587,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 43,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 144,
+      "sourceRgbaSha256": "9c164154bf9144bbe399fe9d8e72442c0c6b0487866c08de6397a0e1121757f7",
+      "reviewedSeed": "female-1927/143",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "cac83b1b297a61a7b51588d18a9a71844629a4fb92d1f280234a69e63044ce60",
+        "bottom": "f8308f50bf093beabb4f0e7d86dc79530c7097c1462ba9f76cb26129e9b33478",
+        "shoes": "dee22a10937f5617a56433382bf1f967582d9073fe9b7ea660a72a92d7537666",
+        "skin": "c60abfdaa2c6a455720e493eabcc5853d849c7bfefe0c99c8333953f9581aec3"
+      },
+      "maskPixels": {
+        "top": 6397,
+        "bottom": 3095,
+        "shoes": 4929
+      },
+      "maskBounds": {
+        "top": [
+          206,
+          416,
+          305,
+          530
+        ],
+        "bottom": [
+          185,
+          498,
+          284,
+          583
+        ],
+        "shoes": [
+          116,
+          629,
+          348,
+          703
+        ]
+      },
+      "skinSeedPixels": 53896,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60183,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 44,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 145,
+      "sourceRgbaSha256": "978ae015765de2191e4146a15874264a473dd8802f8019d7c3407d496d19a880",
+      "reviewedSeed": "female-1927/143",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            140.4,
+            677.5
+          ],
+          "to": [
+            140,
+            678
+          ],
+          "distance": 0.64
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "c4395dbc99ab7a91f8a5c93cc4dabddd16ba641e147cac055426a7807f8bce67",
+        "bottom": "0ea7a5a4181983a639c914fe85b2d6ad96ca6218ef1db5ae9016792776f61d07",
+        "shoes": "7579451aaf4e611a235c160ae3c7cc25e50251f2c02c951681303aed3c83294c",
+        "skin": "81c06a6d1121a25a61d363c6c523c78c788c0c9a67241a138c2433612eb2da8e"
+      },
+      "maskPixels": {
+        "top": 6431,
+        "bottom": 3389,
+        "shoes": 4817
+      },
+      "maskBounds": {
+        "top": [
+          205,
+          418,
+          304,
+          533
+        ],
+        "bottom": [
+          185,
+          508,
+          283,
+          586
+        ],
+        "shoes": [
+          108,
+          607,
+          366,
+          691
+        ]
+      },
+      "skinSeedPixels": 53954,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 59680,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 45,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 146,
+      "sourceRgbaSha256": "3f2d8da9e1bb382177fd7f224d3792b848ff1ec7cd388582ee0b97cce6f137f7",
+      "reviewedSeed": "female-1927/147",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            342.0,
+            670.7
+          ],
+          "to": [
+            341,
+            671
+          ],
+          "distance": 1.04
+        },
+        "farToe": {
+          "from": [
+            124.5,
+            657.1
+          ],
+          "to": [
+            124,
+            657
+          ],
+          "distance": 0.51
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "5756cf0e5e0965cf810ce71cbb78ff18d3f206d12959f532acbeb0feb3edbc9f",
+        "bottom": "34c95446b765bed31e24fabe6b9eee1601f3918bd3bc834b307098526e31c705",
+        "shoes": "e460fd2912ce02921a191759b295978cbb88c51db029e8dcc2f2a235a3a0d853",
+        "skin": "1eb75fb72f759c4795a2981259b0f5f8990bc5a20cf4b399d2fd62c751469c13"
+      },
+      "maskPixels": {
+        "top": 6429,
+        "bottom": 3706,
+        "shoes": 5355
+      },
+      "maskBounds": {
+        "top": [
+          206,
+          425,
+          304,
+          539
+        ],
+        "bottom": [
+          186,
+          511,
+          285,
+          593
+        ],
+        "shoes": [
+          103,
+          583,
+          363,
+          696
+        ]
+      },
+      "skinSeedPixels": 52542,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 58156,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 46,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 147,
+      "sourceRgbaSha256": "8f3e667cd13685b17fdcc729edd16ecf554d4c8aa16f4b8481f1861418196b19",
+      "reviewedSeed": "female-1927/147",
+      "trackedSteps": 0,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            326.0,
+            693.0
+          ],
+          "to": [
+            326,
+            692
+          ],
+          "distance": 1.0
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "0d1d60f720364511694398ff993fddc453effbf9bb075c123821097a94b5ce6f",
+        "bottom": "8c99ae2cd41243d2d179993896839422f10c8ef8a05b03ef554dcf18f6c3180c",
+        "shoes": "0b82efb1808a78bcd6fbebbebf733fd78d97341e0252e4f9585153afda95bf49",
+        "skin": "24ddf15b985f509f9b1a8b7a17eea5a5ddef9f985c675a0b71734aa1b717f0fe"
+      },
+      "maskPixels": {
+        "top": 6290,
+        "bottom": 3378,
+        "shoes": 5379
+      },
+      "maskBounds": {
+        "top": [
+          205,
+          431,
+          305,
+          544
+        ],
+        "bottom": [
+          186,
+          519,
+          285,
+          596
+        ],
+        "shoes": [
+          113,
+          576,
+          343,
+          708
+        ]
+      },
+      "skinSeedPixels": 51362,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 56981,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 47,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 148,
+      "sourceRgbaSha256": "4149bf08d59d852990cc3389b19871738e9f8a47f23f9c1dd5e7ecc6ff8b7926",
+      "reviewedSeed": "female-1927/147",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            298.1,
+            706.9
+          ],
+          "to": [
+            297,
+            706
+          ],
+          "distance": 1.42
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "048acc0a821ac180e2f3f895b5b1a501507cb760fb52c953d2986b4f3820c15a",
+        "bottom": "6b102fa144ff049519cad751efd3b5e571596930f06d7c49a061d126c51280e7",
+        "shoes": "343cd6c39fa2d40fbc51575938a84592d05b26b5e8931e3b7fa1dc33ca4e97d6",
+        "skin": "58b8aa8e61401535d682e3486b4999d02096e3a6bf29e0a0391a153859dddb03"
+      },
+      "maskPixels": {
+        "top": 5821,
+        "bottom": 2453,
+        "shoes": 5281
+      },
+      "maskBounds": {
+        "top": [
+          209,
+          436,
+          308,
+          547
+        ],
+        "bottom": [
+          186,
+          540,
+          285,
+          598
+        ],
+        "shoes": [
+          136,
+          572,
+          316,
+          709
+        ]
+      },
+      "skinSeedPixels": 49224,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54545,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 48,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 149,
+      "sourceRgbaSha256": "0588566b82d9eed8a7b3078357e666de8b8f098fde4424c7eda4ac70baec7d2a",
+      "reviewedSeed": "female-1927/150",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            279.7,
+            695.5
+          ],
+          "to": [
+            280,
+            696
+          ],
+          "distance": 0.58
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "18715e89134442bc9ba790ec935fa463a2c72fc3f3e8e505c1e149f617f32845",
+        "bottom": "b8f7a5566e555f34d1d3683d90ab2f594a02dce3dfdcde43b3397e4bf7d1f91f",
+        "shoes": "90d41f39dd9ab448d6b77481c40e720409f5e78c9ba03aba1ef98f25a1288270",
+        "skin": "c90b61c8cf6b34ecbe9d4df2247dd436bff8646815548dbc689295784af99cc8"
+      },
+      "maskPixels": {
+        "top": 4684,
+        "bottom": 2733,
+        "shoes": 4307
+      },
+      "maskBounds": {
+        "top": [
+          216,
+          436,
+          307,
+          546
+        ],
+        "bottom": [
+          186,
+          539,
+          290,
+          596
+        ],
+        "shoes": [
+          164,
+          599,
+          287,
+          710
+        ]
+      },
+      "skinSeedPixels": 48451,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54200,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 49,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 150,
+      "sourceRgbaSha256": "b7fad3019e1f40481acabfc87ded7af7bf38d3331865510c92a60d40be1f5519",
+      "reviewedSeed": "female-1927/150",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "de251e02907db226a5e23099e23ad977b0040f295f5a7c258eb999af756fbdca",
+        "bottom": "38cb9b297ab9e17b606e348a185ecdd09373b3d8fbd960f574d76fd40595f12a",
+        "shoes": "5fe4b5661bf7e78a60b813252eff0fed9584504d2ff823ed097ec5652951bfa8",
+        "skin": "1d8d486dccef188e5dbbcd49e9813f6e07f59383cecbf5fca48ad9ac931c5a8f"
+      },
+      "maskPixels": {
+        "top": 2991,
+        "bottom": 3305,
+        "shoes": 2860
+      },
+      "maskBounds": {
+        "top": [
+          223,
+          432,
+          307,
+          514
+        ],
+        "bottom": [
+          185,
+          527,
+          295,
+          596
+        ],
+        "shoes": [
+          166,
+          645,
+          258,
+          711
+        ]
+      },
+      "skinSeedPixels": 48517,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53609,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 50,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 151,
+      "sourceRgbaSha256": "a8cb379da06921b99f91c82f05e1fdac1675b07d121238018139fac57a4d7357",
+      "reviewedSeed": "female-1927/150",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "836e2f71fb0e72d280ce1bb6c264d6c877adf789e8acad17b145aebdae5b0b46",
+        "bottom": "95e804c068b7b0d59d7e07112d8a4d53d0c9d6562c89b93cba41eb74aa9dfc13",
+        "shoes": "a91a507417860c33c89abb44e9a6afe9e298f4dce9d8492ecc1476b3fb063f08",
+        "skin": "cd4907a824a5a1b8d830b5edf91cb17dfcb10054db04d7997057a1f13bc9ce45"
+      },
+      "maskPixels": {
+        "top": 1905,
+        "bottom": 4586,
+        "shoes": 4986
+      },
+      "maskBounds": {
+        "top": [
+          222,
+          427,
+          308,
+          536
+        ],
+        "bottom": [
+          183,
+          513,
+          306,
+          586
+        ],
+        "shoes": [
+          141,
+          615,
+          294,
+          710
+        ]
+      },
+      "skinSeedPixels": 48615,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53852,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 51,
+      "action": "run",
+      "source": "female-1927",
+      "sourceFrame": 152,
+      "sourceRgbaSha256": "27bfb04241401e062d01613c81253d1dbddebe30226f414bcb904399d0b94b73",
+      "reviewedSeed": "female-1927/152",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "64bc04ef15ab0f5d338c698b5384e1cea326841e7d1aedff7d73440cdb2438b4",
+        "bottom": "fe6c9b14f6e5131579feafff766d1d5262b2ceec397952ca51721b896d2e42e8",
+        "shoes": "5225870e0a80d5e00553a6afc87a6f6bacbb3b0cc9d1cd4694e48764093ea34e",
+        "skin": "d8806e3f5b6b61bb1a7f53caba0b3808d4f68bb17a1bd339ccc80b14537b65d5"
+      },
+      "maskPixels": {
+        "top": 1849,
+        "bottom": 4830,
+        "shoes": 5118
+      },
+      "maskBounds": {
+        "top": [
+          211,
+          421,
+          305,
+          531
+        ],
+        "bottom": [
+          180,
+          509,
+          309,
+          583
+        ],
+        "shoes": [
+          121,
+          628,
+          340,
+          710
+        ]
+      },
+      "skinSeedPixels": 49924,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55690,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 52,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 200,
+      "sourceRgbaSha256": "862e85beb77a41abf748665b235bc84b38851431d0871595f193e14b7d6e3e61",
+      "reviewedSeed": "female-2394/200",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "5cb32c0adde178c77b9134344e47a0ae45546135f3a305a26065b7bc12b9f2ad",
+        "bottom": "e2d48d8b3f718714641551c37e68f64e91ad5d390543588bf7d46ed3e24bb704",
+        "shoes": "bfaa7ea4704805401f2e6469ba05777b5427a9365324f086a081bd0958fa0c23",
+        "skin": "9acbab7f40d7fdcb99cdfb3e5ecca6565bb475265728c4352899f919bc70117d"
+      },
+      "maskPixels": {
+        "top": 4245,
+        "bottom": 5514,
+        "shoes": 5189
+      },
+      "maskBounds": {
+        "top": [
+          196,
+          423,
+          314,
+          548
+        ],
+        "bottom": [
+          185,
+          515,
+          305,
+          594
+        ],
+        "shoes": [
+          129,
+          555,
+          324,
+          702
+        ]
+      },
+      "skinSeedPixels": 49529,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55962,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 53,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 201,
+      "sourceRgbaSha256": "20a8bc477aef87ced730a9ab8dd35e33994f35fe4d3b3a33eed67ca4ecf484b6",
+      "reviewedSeed": "female-2394/200",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearAnkle": {
+          "from": [
+            141.1,
+            601.0
+          ],
+          "to": [
+            172,
+            609
+          ],
+          "distance": 31.92
+        },
+        "nearToe": {
+          "from": [
+            119.8,
+            613.9
+          ],
+          "to": [
+            164,
+            624
+          ],
+          "distance": 45.34
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "d639d779192a6c870ae10eaff3bcc9277b03d196c31613ea8e4c1dc7c52f9db6",
+        "bottom": "ac73f8857771d6ba86d74098f60925a7ee9531fc71a90e8a18a5896aa9330433",
+        "shoes": "13837aabff644e25818e2ab3097f0d5de11bcb0b3f30c8d9259b0c2808c24354",
+        "skin": "3eaf2ba734ed1b019af93c426c03fc37ea641ae2bc1c28701aaf3c38b7830e10"
+      },
+      "maskPixels": {
+        "top": 3676,
+        "bottom": 3079,
+        "shoes": 4205
+      },
+      "maskBounds": {
+        "top": [
+          210,
+          428,
+          314,
+          528
+        ],
+        "bottom": [
+          188,
+          529,
+          298,
+          598
+        ],
+        "shoes": [
+          164,
+          590,
+          276,
+          704
+        ]
+      },
+      "skinSeedPixels": 48118,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54663,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 54,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 202,
+      "sourceRgbaSha256": "cab77a390718c2b3a0f6e44cbb84cf818dcdb05cdac90528b9cbb957ded1fa59",
+      "reviewedSeed": "female-2394/200",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "nearAnkle": {
+          "from": [
+            138.7,
+            607.5
+          ],
+          "to": [
+            145,
+            657
+          ],
+          "distance": 49.9
+        },
+        "nearToe": {
+          "from": [
+            119.8,
+            613.9
+          ],
+          "to": [
+            143,
+            658
+          ],
+          "distance": 49.83
+        },
+        "farToe": {
+          "from": [
+            239.8,
+            696.2
+          ],
+          "to": [
+            225,
+            692
+          ],
+          "distance": 15.38
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "b420efecca416035a7bdaf316ee04656b1944714185d5c5d9c1aa7462ae87b48",
+        "bottom": "66b33605a885478af63c3f6de579497ec43ba34b6252d2343cc9cfbb9594ac64",
+        "shoes": "ef039d816f07ac87bb52842dbbabe4db3452db071690d74cc8976911adcb297e",
+        "skin": "35aedd35724c71264ee84dbe9f99e1c6d0610fbd9c0971fb445e59319485932d"
+      },
+      "maskPixels": {
+        "top": 3069,
+        "bottom": 5670,
+        "shoes": 2784
+      },
+      "maskBounds": {
+        "top": [
+          192,
+          450,
+          313,
+          544
+        ],
+        "bottom": [
+          177,
+          517,
+          324,
+          593
+        ],
+        "shoes": [
+          130,
+          636,
+          235,
+          701
+        ]
+      },
+      "skinSeedPixels": 51638,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 58149,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "occluded; no invented protection polygon"
+      }
+    },
+    {
+      "frameId": 55,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 203,
+      "sourceRgbaSha256": "587716deb67227b0fa30ddab9b49bffc7f753ce0daba8174170dc5e0bf8de461",
+      "reviewedSeed": "female-2394/205",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            350.3,
+            657.7
+          ],
+          "to": [
+            326,
+            658
+          ],
+          "distance": 24.3
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "736f8461095e09c158546f626858ae26df7de3673196f9dbf6e4e0d9fd1497b6",
+        "bottom": "c025af200cbbe7a6d61351db6ceaaec729169f76f0f63f78ec67731e8e854590",
+        "shoes": "eb720893594aae609ce2de6f421eb804cf3118813d4804a38b09f20e50cd827e",
+        "skin": "d923bdcbfde494f7d27f2b94d26fdb005f348bd74217e6827aff816707b2e2a1"
+      },
+      "maskPixels": {
+        "top": 4384,
+        "bottom": 6203,
+        "shoes": 4915
+      },
+      "maskBounds": {
+        "top": [
+          195,
+          415,
+          298,
+          535
+        ],
+        "bottom": [
+          167,
+          510,
+          327,
+          589
+        ],
+        "shoes": [
+          93,
+          603,
+          326,
+          700
+        ]
+      },
+      "skinSeedPixels": 53867,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61583,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 56,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 204,
+      "sourceRgbaSha256": "b3176b0fb0f4f0113611ccd869abd8d587933597078f57ce4be99edc8ba3d2a4",
+      "reviewedSeed": "female-2394/205",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            113.4,
+            648.6
+          ],
+          "to": [
+            113,
+            649
+          ],
+          "distance": 0.57
+        },
+        "farToe": {
+          "from": [
+            395.7,
+            651.8
+          ],
+          "to": [
+            394,
+            644
+          ],
+          "distance": 7.98
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "3a62ed0c9011c2914b6354f9b3d2cdd682e74bef61d88574926d7943063cc60c",
+        "bottom": "44273370014aee25c0e70caea8841966443258fd8805ed52aa5ec5207fe58610",
+        "shoes": "4c14c21ea4792bd13037f5489211fa86e461a92992621ef6063c0443f076d802",
+        "skin": "06cc5a8c0d4db74c772e891b6f81d28342ebd0280731a290a1c2f8a32fb9061b"
+      },
+      "maskPixels": {
+        "top": 5223,
+        "bottom": 6264,
+        "shoes": 4514
+      },
+      "maskBounds": {
+        "top": [
+          196,
+          424,
+          306,
+          533
+        ],
+        "bottom": [
+          165,
+          503,
+          321,
+          589
+        ],
+        "shoes": [
+          82,
+          588,
+          399,
+          675
+        ]
+      },
+      "skinSeedPixels": 62048,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 69396,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 57,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 205,
+      "sourceRgbaSha256": "3c523cdca235b3c96b81719ba387942185542309f191c17faa353ca7b622e9a6",
+      "reviewedSeed": "female-2394/205",
+      "trackedSteps": 0,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            397.0,
+            667.0
+          ],
+          "to": [
+            395,
+            666
+          ],
+          "distance": 2.24
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "6dac1f381c62d38b2c91ae260301c820bf3555c32b28796db82b94ada2519880",
+        "bottom": "8eeb3bfd8e2160506d722c54c3af1a0e5f28d86e2faafaa16de2fa73cef7ca8b",
+        "shoes": "f8712dfa013598a1c8e64fde9d8de0f83dae21a07346fe382ba3d0b8d8b783f8",
+        "skin": "8a971fc6005481395eedbeeead550e98c1e4787d106eb38ee17dbae1216e2a1d"
+      },
+      "maskPixels": {
+        "top": 8229,
+        "bottom": 6282,
+        "shoes": 4998
+      },
+      "maskBounds": {
+        "top": [
+          193,
+          424,
+          322,
+          542
+        ],
+        "bottom": [
+          174,
+          512,
+          319,
+          602
+        ],
+        "shoes": [
+          84,
+          555,
+          410,
+          691
+        ]
+      },
+      "skinSeedPixels": 60563,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 68268,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 58,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 206,
+      "sourceRgbaSha256": "c18b22112c398d247dd30dcb75da606d178cfb876cc325c240c3ecf470f04001",
+      "reviewedSeed": "female-2394/205",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            365.3,
+            694.1
+          ],
+          "to": [
+            361,
+            687
+          ],
+          "distance": 8.3
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "3a09569107a937275dfeb0e188bb5d1878dcd21c9bb9f95dc93ada036dd0eab7",
+        "bottom": "da12856cd6a3ae2d27074d843397c6e3f6cd9bc549ad9ddb5dc5fb0904090e3d",
+        "shoes": "0fc054af3602d15950810a7dc684ed1111880314b37bc4e8263598f622e74c34",
+        "skin": "fc4a7c242fb45f639281ec2075abcdf51f917c51c2067ef27574e8ba64779966"
+      },
+      "maskPixels": {
+        "top": 8225,
+        "bottom": 4617,
+        "shoes": 5391
+      },
+      "maskBounds": {
+        "top": [
+          192,
+          439,
+          323,
+          554
+        ],
+        "bottom": [
+          182,
+          526,
+          308,
+          610
+        ],
+        "shoes": [
+          95,
+          544,
+          378,
+          703
+        ]
+      },
+      "skinSeedPixels": 60673,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67864,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 59,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 207,
+      "sourceRgbaSha256": "6881b9d370178d9a71cc869c05d6343115adda19f8c2f0b83b5192d0d5a8edd4",
+      "reviewedSeed": "female-2394/205",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            150.8,
+            613.9
+          ],
+          "to": [
+            150,
+            613
+          ],
+          "distance": 1.2
+        },
+        "farToe": {
+          "from": [
+            337.2,
+            697.9
+          ],
+          "to": [
+            322,
+            692
+          ],
+          "distance": 16.3
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "0c480116e837783fc46b9b62e020eb3cafe3884564d107d127051d9288d9d227",
+        "bottom": "abd95ea9c12bbccc0b875b229ae50e1b7daf0e1fb1e96d67e0b79d41738eefa1",
+        "shoes": "a756df5759998ec1d24eeff8512c2204c58042847f05ee9a4ad82679d4191ce7",
+        "skin": "46bc9e4d797de47e22d3648688ca68f905c381e4c321568887f9e9c0a503362a"
+      },
+      "maskPixels": {
+        "top": 8012,
+        "bottom": 4420,
+        "shoes": 4456
+      },
+      "maskBounds": {
+        "top": [
+          186,
+          448,
+          322,
+          564
+        ],
+        "bottom": [
+          173,
+          531,
+          309,
+          617
+        ],
+        "shoes": [
+          116,
+          565,
+          322,
+          705
+        ]
+      },
+      "skinSeedPixels": 59183,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66857,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "no separate visible skin component; omitted, not fabricated"
+      }
+    },
+    {
+      "frameId": 60,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 208,
+      "sourceRgbaSha256": "9f073aaf4b5f08b54b92c0402e7070ef78575ec784e4ffa4ef75c80c934533e7",
+      "reviewedSeed": "female-2394/210",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "cc5a8c4d4cb749d3262896c789ef3cc00640c5d351787c1876ab822ab4fc7b90",
+        "bottom": "4b37fed0efa40a1f226b6746334cbad6ebbeadd3975c9bff56f916e3bc5fc000",
+        "shoes": "3932fd4afb4c6dea645e0d9f31d43ac4b3b2e66291901fb25efb50a89e7134ef",
+        "skin": "b31b17d0dccadaa770b141ea468e1b2b83cd8151dc4202b90ce083b66bc69571"
+      },
+      "maskPixels": {
+        "top": 8068,
+        "bottom": 4179,
+        "shoes": 3809
+      },
+      "maskBounds": {
+        "top": [
+          181,
+          449,
+          320,
+          572
+        ],
+        "bottom": [
+          171,
+          540,
+          307,
+          621
+        ],
+        "shoes": [
+          201,
+          660,
+          328,
+          705
+        ]
+      },
+      "skinSeedPixels": 58600,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65054,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 61,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 209,
+      "sourceRgbaSha256": "cfe611640448a7508b4989e01a8bafd1a6a0db48a9e011825808cdb9125c8882",
+      "reviewedSeed": "female-2394/210",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            300.4,
+            676.5
+          ],
+          "to": [
+            300,
+            676
+          ],
+          "distance": 0.64
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "df3818f8c09e41780918a1ebca9c0bf7a35f4f4241b3f498b056f891a5211ff9",
+        "bottom": "7dc4aeaaa7c6561d28b987ddeeae3c6681d588a889579e1c48a6c46f19fd4c9e",
+        "shoes": "8198d465801aed2ed808b66631723a15366cb01e727ae2902bc022d6caaf0171",
+        "skin": "e069a1444425151949b6a03f1f511151e9a6d7b9509afa95457217bae18ac407"
+      },
+      "maskPixels": {
+        "top": 7976,
+        "bottom": 4109,
+        "shoes": 3695
+      },
+      "maskBounds": {
+        "top": [
+          174,
+          449,
+          314,
+          573
+        ],
+        "bottom": [
+          167,
+          548,
+          309,
+          622
+        ],
+        "shoes": [
+          178,
+          661,
+          309,
+          705
+        ]
+      },
+      "skinSeedPixels": 58779,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64116,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 62,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 210,
+      "sourceRgbaSha256": "23bf39f5ac18cb8c04fc31937564154cda1d4011772f938b9b1ded6ed5bd6157",
+      "reviewedSeed": "female-2394/210",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "dbc334d921f8c466273b2346a6dbfa26c9af439b6befc352ecd2358a5e0b8ca6",
+        "bottom": "40f0b3322f7fc8a40e3ba5f5eee2435038bfc337073fc30fa9a2f9fdcea8e610",
+        "shoes": "014a3a8ea41b7e414e0630d6f25f62d7da60fd550f5fe130837fc2d6753297e7",
+        "skin": "06bab7b5d913af74905b52d03aee65bf78ed4cff864227ca647626b364c07ec9"
+      },
+      "maskPixels": {
+        "top": 7196,
+        "bottom": 5039,
+        "shoes": 3747
+      },
+      "maskBounds": {
+        "top": [
+          174,
+          445,
+          298,
+          556
+        ],
+        "bottom": [
+          167,
+          533,
+          308,
+          612
+        ],
+        "shoes": [
+          158,
+          661,
+          294,
+          704
+        ]
+      },
+      "skinSeedPixels": 62267,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 68516,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 63,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 211,
+      "sourceRgbaSha256": "0c0425a6c08f6d31188aa4c0b0d28dd286ad430cb308296768571dd072a91f02",
+      "reviewedSeed": "female-2394/210",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "9dc91e84b784a7a7573ceb2dec3f4870578414b71a09692edde1fda70852ebe2",
+        "bottom": "6b77e75dd1b51c43e1508e3c9c01affb5eb4da7edfc5754b2934e60d3a252dbc",
+        "shoes": "a9c1467aab595586f5bcd8490d0a31fc7bba5d180fa1c812ea612c0eb36fe598",
+        "skin": "4ac032fd4e169837357bd632c2d7cd8c96c4b244d1c92831d4215370826523c3"
+      },
+      "maskPixels": {
+        "top": 8379,
+        "bottom": 6058,
+        "shoes": 4805
+      },
+      "maskBounds": {
+        "top": [
+          192,
+          380,
+          309,
+          511
+        ],
+        "bottom": [
+          172,
+          496,
+          296,
+          563
+        ],
+        "shoes": [
+          149,
+          638,
+          279,
+          703
+        ]
+      },
+      "skinSeedPixels": 59074,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65833,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 64,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 212,
+      "sourceRgbaSha256": "eb4d345d58edefd0bdb1199a3db67f01099d5a9176f527ba5dfd01bafd016225",
+      "reviewedSeed": "female-2394/210",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "d0a507218f9067cb5cbb638c5ddc308c5510e714f199587caf148449276c383e",
+        "bottom": "485413090c9af80189505242b5930970be9f6c9cbf281f6214f338da69b2cf31",
+        "shoes": "366d253906c3cb636257a1d77060311f9c363d282f59e5b66760201f16df44ad",
+        "skin": "f2da885821cf6f4a594581dded1b3dd2123de1db76ad6b5a12ef9264bc4fdeea"
+      },
+      "maskPixels": {
+        "top": 8545,
+        "bottom": 5929,
+        "shoes": 5183
+      },
+      "maskBounds": {
+        "top": [
+          195,
+          335,
+          314,
+          463
+        ],
+        "bottom": [
+          173,
+          454,
+          296,
+          518
+        ],
+        "shoes": [
+          151,
+          587,
+          273,
+          680
+        ]
+      },
+      "skinSeedPixels": 59200,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66395,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 65,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 213,
+      "sourceRgbaSha256": "99a8ab08876842bcd445b9c445582a8cd4a6abd1e657abd79c67af695cc30351",
+      "reviewedSeed": "female-2394/215",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            265.4,
+            589.5
+          ],
+          "to": [
+            265,
+            590
+          ],
+          "distance": 0.64
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "5b942441b38f80c6353fb519e4abdb0f8184f5afc5d1e3256fc1be2e7edeae66",
+        "bottom": "741ce704a34e3810efc7edba483ec95c6ffbd78631b6a3ef9395c0c6c9918a74",
+        "shoes": "9781bb6226ed471993932004509b8544fce10e68fedefde084ba4c5ca79d6c5c",
+        "skin": "597aed50463962f02806a67b5b1bf002e5393fe30e26133752e9619cdab68c70"
+      },
+      "maskPixels": {
+        "top": 8312,
+        "bottom": 6063,
+        "shoes": 4290
+      },
+      "maskBounds": {
+        "top": [
+          189,
+          293,
+          308,
+          419
+        ],
+        "bottom": [
+          178,
+          414,
+          313,
+          478
+        ],
+        "shoes": [
+          149,
+          536,
+          276,
+          623
+        ]
+      },
+      "skinSeedPixels": 58779,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66544,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 66,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 214,
+      "sourceRgbaSha256": "923e9cd874d81812e086bf6e8216e4b98a63e759753769614d72bf80152cac29",
+      "reviewedSeed": "female-2394/215",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "95bdc77cea4ef80c61c79e26a5d5e5f5877f4777f67ad80e24fabab94d51e5c9",
+        "bottom": "87eb7056eb6215fbfb33a17aa0fa3d99cb9b8c740472519aba45bf0f475d93d7",
+        "shoes": "a7dac296142827d35788a694de18c3475bcef11ddfe11570d7880abf15da11b8",
+        "skin": "a51e49b28975bd5ce9b71a320f127b981125a3bda2909ea199688cc30c647dd0"
+      },
+      "maskPixels": {
+        "top": 8354,
+        "bottom": 4806,
+        "shoes": 4358
+      },
+      "maskBounds": {
+        "top": [
+          185,
+          271,
+          302,
+          392
+        ],
+        "bottom": [
+          174,
+          389,
+          318,
+          458
+        ],
+        "shoes": [
+          153,
+          471,
+          287,
+          569
+        ]
+      },
+      "skinSeedPixels": 59677,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66575,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 67,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 215,
+      "sourceRgbaSha256": "b2fc72de6a98792f0b6e07edab3c660490a4c6ca741251af5e414eb055baeecb",
+      "reviewedSeed": "female-2394/215",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "0467f7189946e423980cddc7e7e77e35eaf558a856b9b897b6616cf3990763e9",
+        "bottom": "27ddcdbfefb93e03f0fe86f6d4f8c9086110afff278e8c06dab989d75ca3d5c7",
+        "shoes": "531f05e06b00a6ab8e4e4fec4357dd1c96d58a9e18a88bd9eaec5b6533b467e9",
+        "skin": "2597b7c934cfe08ce1798e43998336c043a374ce9c4c3718e767895c7a0f1360"
+      },
+      "maskPixels": {
+        "top": 8723,
+        "bottom": 3768,
+        "shoes": 4523
+      },
+      "maskBounds": {
+        "top": [
+          183,
+          254,
+          302,
+          377
+        ],
+        "bottom": [
+          172,
+          369,
+          321,
+          432
+        ],
+        "shoes": [
+          162,
+          431,
+          298,
+          530
+        ]
+      },
+      "skinSeedPixels": 58469,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65801,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 68,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 216,
+      "sourceRgbaSha256": "f255fc34d32172f37572f1852d45daf46214f46ecbfdd475643cb5a7d9107d2e",
+      "reviewedSeed": "female-2394/215",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "72f8015828730c95e46c3fdabb9212c44f59bae998ccb9ec15800e5310a16722",
+        "bottom": "91208137de620bad15460128154ac7a195958a3a1c51fc0b86d2441aa3154c2b",
+        "shoes": "dce1f54c1dcf37b8e4b7ea42c998bc05bb80de017168a6592f1a70641c776b8b",
+        "skin": "441e74521f32751a8893b11a341111e622602366a6b0a757e45c9b367e5f00a4"
+      },
+      "maskPixels": {
+        "top": 8725,
+        "bottom": 2487,
+        "shoes": 4556
+      },
+      "maskBounds": {
+        "top": [
+          179,
+          248,
+          299,
+          372
+        ],
+        "bottom": [
+          174,
+          357,
+          311,
+          420
+        ],
+        "shoes": [
+          168,
+          419,
+          312,
+          509
+        ]
+      },
+      "skinSeedPixels": 59237,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66500,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 69,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 217,
+      "sourceRgbaSha256": "80ed61ba89b1e275c9c6aea3a16f2c688824c14e75e8e2834144d992be4f2e64",
+      "reviewedSeed": "female-2394/215",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "7f48e938a99324687418fd7d3aa9d23287189677e0bc5d882d7d12d6cb64de9c",
+        "bottom": "55d355f549c4a2ce19ec2e546ba5154e3d7c4e2a2297dda4aa66f097ea4d2a5d",
+        "shoes": "0433a4d294669c2f534fbf8e64eb1e2edab5736254e4321e2894f6528614f14b",
+        "skin": "11575b775e3b19a6c8416b4c173b24fd4855a4089ca6cc5e256ad1ff336c556b"
+      },
+      "maskPixels": {
+        "top": 8395,
+        "bottom": 2231,
+        "shoes": 4917
+      },
+      "maskBounds": {
+        "top": [
+          178,
+          252,
+          298,
+          374
+        ],
+        "bottom": [
+          172,
+          354,
+          310,
+          425
+        ],
+        "shoes": [
+          172,
+          423,
+          323,
+          507
+        ]
+      },
+      "skinSeedPixels": 59834,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67020,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 70,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 218,
+      "sourceRgbaSha256": "5a5814c209bce9a0fb1eff694c35f5f2ad28702e5857b9ca1b5cbc386b04cc3f",
+      "reviewedSeed": "female-2394/220",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            239.8,
+            518.4
+          ],
+          "to": [
+            239,
+            517
+          ],
+          "distance": 1.61
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "09812ee0fb9516b0b91a1d131669a2693497f2d2a962750f9ef1a7438c320cdc",
+        "bottom": "98e0be62711f7fa91892705bb7c82366e9d2afdcefafff7eb28517d06d89d191",
+        "shoes": "0e651a3f6c8c795801c2a3b95d1c7082f8e961060f7087e67f50f7f22dd64797",
+        "skin": "66d5f59bd68b898458f25837c360dda312fb035c439ee88e0320b403da6fecd2"
+      },
+      "maskPixels": {
+        "top": 8532,
+        "bottom": 2488,
+        "shoes": 4563
+      },
+      "maskBounds": {
+        "top": [
+          180,
+          270,
+          301,
+          396
+        ],
+        "bottom": [
+          172,
+          374,
+          299,
+          467
+        ],
+        "shoes": [
+          172,
+          457,
+          335,
+          523
+        ]
+      },
+      "skinSeedPixels": 61193,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 68739,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 71,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 219,
+      "sourceRgbaSha256": "838be099856629b7d011601143731d6c2a96657fbfe30f34965e3e4a4a9d364d",
+      "reviewedSeed": "female-2394/220",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            248.7,
+            562.5
+          ],
+          "to": [
+            249,
+            561
+          ],
+          "distance": 1.53
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "978d5a475f977cabf2efa44c67f486af0ede58445f4cccf0f78f4aa0b1df4940",
+        "bottom": "a75b93a27c2bb55f2532fded36993002ca5fdc2811ea46d684ddf75f1e20f036",
+        "shoes": "c66b2b6b2f744b9517c85a14d4baca34fcb4aa44ba0f91dc13b0da95d03a6ce9",
+        "skin": "029dbbf1606fe04bd4e2f0b090a2a2da5fdcaf76c6ef271b52b316cbf65b4f1d"
+      },
+      "maskPixels": {
+        "top": 9283,
+        "bottom": 3240,
+        "shoes": 5245
+      },
+      "maskBounds": {
+        "top": [
+          178,
+          294,
+          306,
+          418
+        ],
+        "bottom": [
+          174,
+          395,
+          312,
+          484
+        ],
+        "shoes": [
+          180,
+          503,
+          348,
+          563
+        ]
+      },
+      "skinSeedPixels": 60134,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67511,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 72,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 220,
+      "sourceRgbaSha256": "cf1e1ac82fc055c18da11a2c6fe21cc935f5c75c29a3e7bbfcbdd41e3fc93f29",
+      "reviewedSeed": "female-2394/220",
+      "trackedSteps": 0,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            257.0,
+            612.0
+          ],
+          "to": [
+            257,
+            608
+          ],
+          "distance": 4.0
+        },
+        "farToe": {
+          "from": [
+            335.0,
+            613.0
+          ],
+          "to": [
+            334,
+            613
+          ],
+          "distance": 1.0
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "da8e45872727e516d46020265f44df70901428a0ae70dc46eb0dc0261b93cc31",
+        "bottom": "9b2c75d3820022521b1d117592c6bac97acad8d26bbba1052bca0c47f88eccc6",
+        "shoes": "810026a0ac388496c69729dfdf3cfc57b5d936ceb95a27ed95053eca1b0c3b32",
+        "skin": "62e659adeb6a5eb73fd5095ae3732fef03d31315ddfa220caef383874058e269"
+      },
+      "maskPixels": {
+        "top": 9083,
+        "bottom": 4619,
+        "shoes": 4706
+      },
+      "maskBounds": {
+        "top": [
+          188,
+          329,
+          312,
+          455
+        ],
+        "bottom": [
+          177,
+          433,
+          316,
+          519
+        ],
+        "shoes": [
+          186,
+          573,
+          354,
+          615
+        ]
+      },
+      "skinSeedPixels": 59747,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66754,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 73,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 221,
+      "sourceRgbaSha256": "aa7ea2cbba5c9f4b3a1f2da5ab2fd9fc48fd1174434abafefdd69f32e028cbe8",
+      "reviewedSeed": "female-2394/220",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            256.3,
+            669.5
+          ],
+          "to": [
+            263,
+            665
+          ],
+          "distance": 8.07
+        },
+        "farToe": {
+          "from": [
+            341.5,
+            668.1
+          ],
+          "to": [
+            339,
+            662
+          ],
+          "distance": 6.59
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "24bf87f81d397ba3beb29f22de66af073693b5e08154636a03ce1665ec178fb2",
+        "bottom": "5587bd5b436a48e05fedc6e37bb69abcb7c377afa87b2c94888b9d4580664a29",
+        "shoes": "3b238bbce299fbfe7daa0dfb46739904d38356d058112dbd83b682841d1c0f7f",
+        "skin": "ab3b7573dd270489018567ec818722cae6b3fd464c719ad66a21ceced74e6706"
+      },
+      "maskPixels": {
+        "top": 8807,
+        "bottom": 4810,
+        "shoes": 3286
+      },
+      "maskBounds": {
+        "top": [
+          191,
+          387,
+          318,
+          513
+        ],
+        "bottom": [
+          182,
+          486,
+          317,
+          570
+        ],
+        "shoes": [
+          190,
+          635,
+          362,
+          671
+        ]
+      },
+      "skinSeedPixels": 60037,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67456,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 74,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 222,
+      "sourceRgbaSha256": "b07778b139f8667d680230866fadff335d9a8b959bbe923e6b79e12ad0e1658b",
+      "reviewedSeed": "female-2394/220",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            331.7,
+            690.5
+          ],
+          "to": [
+            332,
+            690
+          ],
+          "distance": 0.58
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "4cb8a54a3cf70166f0f4eb1abae5dbea1cde5965fc8402ccaa0e9d85deb54a8b",
+        "bottom": "3565cb2bda08b961fbb3d93eed640de4f7b770e34d0ba59c0909b941175362a1",
+        "shoes": "baba7279fc24f5f85977a7ada03330411c259d9b6dbdba6ccfdd7c5da16f369d",
+        "skin": "f325c940840d542f63cd290abecd4c58d452dfd9c0b31447d650a0dcb8e6df90"
+      },
+      "maskPixels": {
+        "top": 7700,
+        "bottom": 4344,
+        "shoes": 4655
+      },
+      "maskBounds": {
+        "top": [
+          195,
+          453,
+          328,
+          565
+        ],
+        "bottom": [
+          183,
+          535,
+          322,
+          612
+        ],
+        "shoes": [
+          180,
+          657,
+          351,
+          706
+        ]
+      },
+      "skinSeedPixels": 62437,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 69477,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 75,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 223,
+      "sourceRgbaSha256": "06c6289fcec7d168831dea58583ceae909151b8c3d26219c342b4fae017e115a",
+      "reviewedSeed": "female-2394/225",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "f305c9e725352ba1630ab2bb56b80897dcbef64907ea83fae4c4a9f3fd944477",
+        "bottom": "7e01e2d3076621a3c2596052533b1f049ab3bc200afbf3475b11cce69f3d5076",
+        "shoes": "28ee4a5947cb7218578b2540f9ecd2863ace29a79508fc096813ef48c1eec398",
+        "skin": "8b96526b90a7d00fb0260cab1fc062ad264ba525b3cd068be724d53087b2ca5d"
+      },
+      "maskPixels": {
+        "top": 7718,
+        "bottom": 3540,
+        "shoes": 4578
+      },
+      "maskBounds": {
+        "top": [
+          192,
+          468,
+          331,
+          585
+        ],
+        "bottom": [
+          180,
+          550,
+          322,
+          631
+        ],
+        "shoes": [
+          174,
+          658,
+          346,
+          706
+        ]
+      },
+      "skinSeedPixels": 60558,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67748,
+      "handProtection": {
+        "nearHand": "no separate visible skin component; omitted, not fabricated",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 76,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 224,
+      "sourceRgbaSha256": "02032512cbf65b1f71b4324e61e9183dafacd502947804bbcae5804a69fb9080",
+      "reviewedSeed": "female-2394/225",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "034d839ff722fe42eaf9f090c68ca970560c2e7be465277f4fd121ec827cc9f3",
+        "bottom": "b8c104fb27cc8eacfbaba2807f4c699df73d921c35377629dd09cb2dd0fecf81",
+        "shoes": "50374ff6ffa24f8a3b424853d345ea7e0d1c8f47be2685ac1624df25f2d606f8",
+        "skin": "a7b3207f1cc2cc43a9f0f1b64da98fca2d81a122e33f17a1a9fa23e39cd81be6"
+      },
+      "maskPixels": {
+        "top": 7318,
+        "bottom": 3387,
+        "shoes": 4484
+      },
+      "maskBounds": {
+        "top": [
+          195,
+          474,
+          330,
+          588
+        ],
+        "bottom": [
+          177,
+          568,
+          318,
+          634
+        ],
+        "shoes": [
+          172,
+          658,
+          342,
+          706
+        ]
+      },
+      "skinSeedPixels": 59067,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66271,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 77,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 225,
+      "sourceRgbaSha256": "ca068463c943fd5d9877d62b7334b223c6ac4d306757b48a030d4f3d092d2967",
+      "reviewedSeed": "female-2394/225",
+      "trackedSteps": 0,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            239.0,
+            699.0
+          ],
+          "to": [
+            239,
+            698
+          ],
+          "distance": 1.0
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "f5b5564221ccef2857ff68e85eb2d4d91d8adf164537a9b99bd0c88c3baaddb9",
+        "bottom": "4f1cb92d2c46355a0ef3e3f3c2e73493e2aa9f6051e2c3f716b6ddb6e9949d00",
+        "shoes": "f0d741052fdf9d74ecc06527e7b678bcdc2486fc7201bc7b93a81e7c358e4bde",
+        "skin": "97846f5d83990a7eae778fd8e6b291713c006e0163c59e2a43b0b5856248a7a9"
+      },
+      "maskPixels": {
+        "top": 6571,
+        "bottom": 2885,
+        "shoes": 4557
+      },
+      "maskBounds": {
+        "top": [
+          206,
+          468,
+          325,
+          583
+        ],
+        "bottom": [
+          175,
+          568,
+          315,
+          631
+        ],
+        "shoes": [
+          169,
+          658,
+          339,
+          706
+        ]
+      },
+      "skinSeedPixels": 58790,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65906,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 78,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 226,
+      "sourceRgbaSha256": "793d7c7e436ff43bbfb7a1bcfd1961d0da4707259df7a5f7e9f3d384c03e2978",
+      "reviewedSeed": "female-2394/225",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            236.8,
+            699.2
+          ],
+          "to": [
+            236,
+            699
+          ],
+          "distance": 0.82
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "b32c4643abfa52376045107422130d9a74befbafb9556a56c7cd7f37c68e838e",
+        "bottom": "9f9ddd8585bfe78e6cbe70805707de7020d628d4acec015fef029b0613996b1f",
+        "shoes": "4766e3f8e545a9374d3a94c97db4bd6319f4139e2b19e1f163401c45ce73d40d",
+        "skin": "2eedaf0cc9eebdbd7b489635904a00fc655c2e7329ff68528d138f58cd5d6e11"
+      },
+      "maskPixels": {
+        "top": 6111,
+        "bottom": 3318,
+        "shoes": 4562
+      },
+      "maskBounds": {
+        "top": [
+          211,
+          453,
+          324,
+          575
+        ],
+        "bottom": [
+          174,
+          564,
+          312,
+          626
+        ],
+        "shoes": [
+          167,
+          658,
+          336,
+          706
+        ]
+      },
+      "skinSeedPixels": 58067,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65567,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 79,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 227,
+      "sourceRgbaSha256": "a35da3845ab1017ea0391cf6e521d3d754dd95267696e2846f2abf932cf7bcad",
+      "reviewedSeed": "female-2394/225",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "25c82a575c5b064a00b09fad105cd97112797c5cdddd868878a11e8aff251507",
+        "bottom": "1e1ed6ea01b97f1e5470f0378e602f125736b1523599254cac2897602f695d4f",
+        "shoes": "4f3498ed8190024629b94531f6b15c1429b46b0c340f0c6f4c832d48490b22fa",
+        "skin": "32e89d17f685752c9191224e3be8e9a3e4e2691fcd7ff93b7dbd45e9ba55c65f"
+      },
+      "maskPixels": {
+        "top": 5779,
+        "bottom": 3903,
+        "shoes": 4678
+      },
+      "maskBounds": {
+        "top": [
+          211,
+          446,
+          320,
+          568
+        ],
+        "bottom": [
+          173,
+          547,
+          314,
+          618
+        ],
+        "shoes": [
+          165,
+          658,
+          335,
+          706
+        ]
+      },
+      "skinSeedPixels": 57315,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64909,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 80,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 228,
+      "sourceRgbaSha256": "3ca9cff5b123123c77ec2906cf2dacd1d1497c19af3083cb29ff82efb4ea2528",
+      "reviewedSeed": "female-2394/230",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "c7789448ece62c7e61a944d5bc466487f3c5329ae10f89bdfee32b99617b85e1",
+        "bottom": "57d69af191364a87c45c13a9c219b7b0a2c292acf51652212f377b08e6be2584",
+        "shoes": "6d1bd7ccb031dea7dfa39162ffc7befb162eac2151d4630acf36cccec0532be2",
+        "skin": "a7e301f1d328fc0ea6c97f9a06e5eb17162680c85be8e91b12f40e7500f13755"
+      },
+      "maskPixels": {
+        "top": 5533,
+        "bottom": 4491,
+        "shoes": 4752
+      },
+      "maskBounds": {
+        "top": [
+          224,
+          435,
+          316,
+          562
+        ],
+        "bottom": [
+          172,
+          530,
+          311,
+          613
+        ],
+        "shoes": [
+          164,
+          657,
+          333,
+          706
+        ]
+      },
+      "skinSeedPixels": 56771,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64388,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 81,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 229,
+      "sourceRgbaSha256": "767aeaf292b16ee867e4fa0a3ad6fbb699143e4a8eac8b75d230964f83fc3e35",
+      "reviewedSeed": "female-2394/230",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "bbeb3187cdaf4a9a824304092a414ef1ce21bc9c897b86ba2e29a8fb9f7ac551",
+        "bottom": "36ef534928c456a5053d6343d73f0655340ba02035dbcd5936040b642cdcc77a",
+        "shoes": "06fa80d5b2fb3835510906fa4bd301130e5f526b2a0fcd98bd6a383aa930c2b4",
+        "skin": "7caf240faaf4fd0efd615486fd12cd9a197796ddf53f485428ee46faed655cdf"
+      },
+      "maskPixels": {
+        "top": 5506,
+        "bottom": 4785,
+        "shoes": 4764
+      },
+      "maskBounds": {
+        "top": [
+          181,
+          432,
+          314,
+          559
+        ],
+        "bottom": [
+          172,
+          533,
+          311,
+          610
+        ],
+        "shoes": [
+          164,
+          657,
+          333,
+          706
+        ]
+      },
+      "skinSeedPixels": 56514,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64005,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 82,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 230,
+      "sourceRgbaSha256": "d1ee6cd56d34037881cecd06a3daefb9b0cff6ae626d55986adca16dca6bcba3",
+      "reviewedSeed": "female-2394/230",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "a617442896b0d39f092647ae451c6e6cbba60d9a92c385912ab35cbd992a12bb",
+        "bottom": "a1d1f2bd043f23e57973c7c844570a05c3ba9d2dc49067ccdf351ef226364ce5",
+        "shoes": "9371391efa216e7530cdf4dd9cddc16b0a0eef1bb869310ffa2d90fc83b0e7fc",
+        "skin": "969c218d85078ea4ca934c6a3e3a5b1c165543ab36308c34dc1b8bc3d6802a86"
+      },
+      "maskPixels": {
+        "top": 5630,
+        "bottom": 4780,
+        "shoes": 4720
+      },
+      "maskBounds": {
+        "top": [
+          182,
+          430,
+          313,
+          558
+        ],
+        "bottom": [
+          172,
+          527,
+          311,
+          610
+        ],
+        "shoes": [
+          164,
+          657,
+          333,
+          706
+        ]
+      },
+      "skinSeedPixels": 56089,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63586,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 83,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 231,
+      "sourceRgbaSha256": "fd1f7c55a7e607d1ab16fe77d6f8d4ce8285eb39e4afe801a1a30a7e0f295c81",
+      "reviewedSeed": "female-2394/230",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "961b0ca63ec9a570b76b7b94686505e5b68470740d91e80706d27e014085b8b5",
+        "bottom": "0b233892858c6ccb14b44301155d24bf631b550986c8c2c6e7fc58b0ca236767",
+        "shoes": "2ca701ab4dfe50c101191235836f2ce17e88485536c0fa5c1454535f5087e635",
+        "skin": "4bfb2a23ffdfa1df3ec564189c90d0595ce59da23af0ae6c7bf111ac06794307"
+      },
+      "maskPixels": {
+        "top": 5708,
+        "bottom": 4803,
+        "shoes": 4691
+      },
+      "maskBounds": {
+        "top": [
+          182,
+          430,
+          312,
+          558
+        ],
+        "bottom": [
+          171,
+          527,
+          311,
+          611
+        ],
+        "shoes": [
+          162,
+          657,
+          333,
+          706
+        ]
+      },
+      "skinSeedPixels": 56147,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63669,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 84,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 232,
+      "sourceRgbaSha256": "f3eeb28229576e24440df1e2738d02f116bf1d743715b5be4af5aaa20afd26c7",
+      "reviewedSeed": "female-2394/230",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "ef9a101b40e147e1b0bb1f23e42b17eb1d197142561d38c7fc19ce012941011f",
+        "bottom": "2b3043bb990d9dde44c5d3bff999d9f0fe12bef496098d022caf4381576c9114",
+        "shoes": "82184aab100fae1e425371f3da3eabc500068691ed26a04d3bfb7eb07a1aa306",
+        "skin": "a21f081025ff5e4584832c042a23677c38b9ae1adb6d39e76a8b4e3986e2f2ff"
+      },
+      "maskPixels": {
+        "top": 6059,
+        "bottom": 5345,
+        "shoes": 4702
+      },
+      "maskBounds": {
+        "top": [
+          185,
+          421,
+          312,
+          549
+        ],
+        "bottom": [
+          174,
+          516,
+          311,
+          603
+        ],
+        "shoes": [
+          162,
+          657,
+          332,
+          706
+        ]
+      },
+      "skinSeedPixels": 56797,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64250,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 85,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 233,
+      "sourceRgbaSha256": "d61623d693a85605e48fc236a41ad6daedffef5d98bc5f03c4f21acc9bf6bb87",
+      "reviewedSeed": "female-2394/235",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "85490d869e4636a4db6a082be86ea9d9303321382dc621c71fab60efa5d955c6",
+        "bottom": "c65f4bfe03c2f859ee62a04dff03b044bf5fd57b4df1b87365afb93af44b0582",
+        "shoes": "c5065bcf05f4ca4b9846e8a4023347844b78d89fad5994800d082d3a93239d7c",
+        "skin": "7017ace9607e3bdc6fff27554361da87edc8ce806a08f1fd203900129970a10e"
+      },
+      "maskPixels": {
+        "top": 6398,
+        "bottom": 5977,
+        "shoes": 4879
+      },
+      "maskBounds": {
+        "top": [
+          217,
+          411,
+          310,
+          525
+        ],
+        "bottom": [
+          179,
+          500,
+          307,
+          578
+        ],
+        "shoes": [
+          162,
+          654,
+          332,
+          706
+        ]
+      },
+      "skinSeedPixels": 57786,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65968,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 86,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 234,
+      "sourceRgbaSha256": "ada845010a7d172f9066c41ab46efa26a8bda7846d9f7fd86ae99c6c0232262d",
+      "reviewedSeed": "female-2394/235",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            230.4,
+            671.4
+          ],
+          "to": [
+            230,
+            671
+          ],
+          "distance": 0.57
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "9dfb9af08663c8acc309412aa87b287a4ede8911e20461a7189f613118612579",
+        "bottom": "46685d148904045d2c8d85ffc5afea4e225b9a33e356f7ead5b92db931a7ceee",
+        "shoes": "dce1d7da264bbf4f59c7f7c2558d5e319242f20c722fb22d39878a1dadccd871",
+        "skin": "5575e821da83dadad948a6add787458098203a868ccbb58abe21a9cbeccb963c"
+      },
+      "maskPixels": {
+        "top": 6477,
+        "bottom": 6193,
+        "shoes": 4357
+      },
+      "maskBounds": {
+        "top": [
+          223,
+          367,
+          305,
+          480
+        ],
+        "bottom": [
+          176,
+          474,
+          300,
+          539
+        ],
+        "shoes": [
+          167,
+          611,
+          314,
+          685
+        ]
+      },
+      "skinSeedPixels": 60951,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 69112,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 87,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 235,
+      "sourceRgbaSha256": "b9b6d7ce308bf7f184aec207682de85ddd1fd2b8c0386833f2b00d042cffb229",
+      "reviewedSeed": "female-2394/235",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "c19acbf1113e0df7cb837ad5311a930eefdad42a2aba09c8cd63d178ba28b133",
+        "bottom": "ec630e8aae7e0545927f74b6cbc49c4573c2d7891ecb1887313717752ec6c591",
+        "shoes": "be46972b794320af40091f5929bf4b31e68431d43a5e600f59c01593772cb19c",
+        "skin": "9571f8d211f006330f96976eccabaae5569a4b9eaea8b371ff434a199c2ecacb"
+      },
+      "maskPixels": {
+        "top": 7984,
+        "bottom": 5701,
+        "shoes": 4681
+      },
+      "maskBounds": {
+        "top": [
+          196,
+          308,
+          306,
+          435
+        ],
+        "bottom": [
+          176,
+          406,
+          304,
+          491
+        ],
+        "shoes": [
+          165,
+          559,
+          302,
+          647
+        ]
+      },
+      "skinSeedPixels": 59015,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66825,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 88,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 236,
+      "sourceRgbaSha256": "34668670554503da83d75adb0c122a3f49e439c391397a012958f099ee50f1f7",
+      "reviewedSeed": "female-2394/235",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            217.6,
+            582.4
+          ],
+          "to": [
+            218,
+            582
+          ],
+          "distance": 0.57
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "bb93db8f8adb9cb4a5c2d0eaf37643ac2d3b69d42ee0b8474bf0fd608bd45cb4",
+        "bottom": "8d3ba5e394a76bf689800eaeba55c417b4fa25932da9411127a9d2492149d126",
+        "shoes": "66abb4a6dc3edc0699fd5402d3dc4e7ea25e01decb6fab39891c576389c3edcb",
+        "skin": "1d299eb8185f56e5e131f38d5a0c222f3bbc25869ee0fc14860c07fb7fe5e376"
+      },
+      "maskPixels": {
+        "top": 8365,
+        "bottom": 4998,
+        "shoes": 4629
+      },
+      "maskBounds": {
+        "top": [
+          190,
+          276,
+          303,
+          404
+        ],
+        "bottom": [
+          175,
+          396,
+          309,
+          459
+        ],
+        "shoes": [
+          161,
+          510,
+          297,
+          603
+        ]
+      },
+      "skinSeedPixels": 59480,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67163,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 89,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 237,
+      "sourceRgbaSha256": "d97c823151e3ef40b9bbab3f6b05981ef3793f87a3113e7e279d22c44f1501f1",
+      "reviewedSeed": "female-2394/235",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "f58a85a0fd93a182845e3fbd8766efc92b0a147e0db08805bc4bf0161f4a225a",
+        "bottom": "c4e869167741de3ccaa5d45132f8f187352047962af51a9aef2d91300196f3af",
+        "shoes": "872a8b022435fe2c37c1347365024b7a84de249e8046274f3c04cc5ed4e30e5d",
+        "skin": "d45c06a801ea1d9b6cf55e398160342422bb176904f43ccc77d28513433d4aac"
+      },
+      "maskPixels": {
+        "top": 8454,
+        "bottom": 4410,
+        "shoes": 4489
+      },
+      "maskBounds": {
+        "top": [
+          188,
+          261,
+          303,
+          383
+        ],
+        "bottom": [
+          175,
+          378,
+          312,
+          449
+        ],
+        "shoes": [
+          162,
+          472,
+          300,
+          560
+        ]
+      },
+      "skinSeedPixels": 59343,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67132,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 90,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 238,
+      "sourceRgbaSha256": "6878960bf11063ac915fdcbaac8b8af7bbff004b4b74fe8eee205459a51a3dc8",
+      "reviewedSeed": "female-2394/240",
+      "trackedSteps": 2,
+      "footContourCorrections": {
+        "farToe": {
+          "from": [
+            291.3,
+            502.5
+          ],
+          "to": [
+            291,
+            502
+          ],
+          "distance": 0.58
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "b7160dd0b79669611b475f242abdc8447de99413a2e632ffbd6a65f9b675b38c",
+        "bottom": "3830f9bdb2d8dc4ab91f4f85cc1d8e01009b024fdf6419eaf07f992c82fecac8",
+        "shoes": "98d58ac67dc5aac8353e1e202a0686ee8798bae6bdf52120fb2bf71fc63de39f",
+        "skin": "faf1e10ff2133529383dea5405c16beb075cb9bc5ceb94070da313231a8068f4"
+      },
+      "maskPixels": {
+        "top": 8483,
+        "bottom": 2750,
+        "shoes": 4191
+      },
+      "maskBounds": {
+        "top": [
+          184,
+          257,
+          303,
+          376
+        ],
+        "bottom": [
+          172,
+          365,
+          304,
+          429
+        ],
+        "shoes": [
+          167,
+          441,
+          308,
+          523
+        ]
+      },
+      "skinSeedPixels": 60211,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67563,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 91,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 239,
+      "sourceRgbaSha256": "c21320285c3bc5630772d5ebc50f5e5da0ab968a582c26129b5b0a6a971a35cf",
+      "reviewedSeed": "female-2394/240",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            221.1,
+            494.5
+          ],
+          "to": [
+            221,
+            494
+          ],
+          "distance": 0.51
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "89b4839f9911123aa991bd9166242cdd7ec88db7e20caa46f9e07b75f10bf60c",
+        "bottom": "a095bdf5dee09a89812fba928ef86634fed00bc9efcc454490d39f4866763ecd",
+        "shoes": "82371d17e5bdfb30264f2654126f34ba03664872ab9ec47b5fdf90d2f3b196b2",
+        "skin": "9bd08ee56687614604fc40bd971295cf4d5e961c57c7c421f0ec1d54cba81531"
+      },
+      "maskPixels": {
+        "top": 8174,
+        "bottom": 2065,
+        "shoes": 4603
+      },
+      "maskBounds": {
+        "top": [
+          179,
+          252,
+          304,
+          374
+        ],
+        "bottom": [
+          172,
+          357,
+          310,
+          428
+        ],
+        "shoes": [
+          170,
+          427,
+          322,
+          507
+        ]
+      },
+      "skinSeedPixels": 59457,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67086,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 92,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 240,
+      "sourceRgbaSha256": "c1153096136d6874537915924564fd585e5df9619a290bb0aa6f886ab5ddaa14",
+      "reviewedSeed": "female-2394/240",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "60416092ff50313fc865bfac83e8ce7a9fafea5a4818eeba97b5789ada7f516f",
+        "bottom": "77d9854a104ed52717ffd12a139411368599eda2a2e74b55f13229b63c3e25fa",
+        "shoes": "09ebce483985cc5a1af749670697304c1d3eb6c58c66b0323b0074d37731ec98",
+        "skin": "56809f99a38e0f33bb439c57c8d83857f24bdb1f2edefc053032c2bd07831c75"
+      },
+      "maskPixels": {
+        "top": 8203,
+        "bottom": 2341,
+        "shoes": 4904
+      },
+      "maskBounds": {
+        "top": [
+          180,
+          266,
+          307,
+          387
+        ],
+        "bottom": [
+          174,
+          369,
+          309,
+          454
+        ],
+        "shoes": [
+          172,
+          449,
+          340,
+          516
+        ]
+      },
+      "skinSeedPixels": 59645,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 66963,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 93,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 241,
+      "sourceRgbaSha256": "b946b4ab77bf94982575e738d731208ccd11b6343816c0e6df86647c28704a15",
+      "reviewedSeed": "female-2394/240",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "5a950ee684999ca06ed103711f8a513ccc219be53dd4842e8f98382ad15efba8",
+        "bottom": "3dcf37f0cff5777704226a7088986ab97c6c2621a7fad8331555c4beda944628",
+        "shoes": "33cf01641804e978435d6f4f20e41fbd8d9942569dd2e4ec5cbca67e91d9f1ae",
+        "skin": "021e676b1a5c9054a574c0b54054c366f69bf9edef63aac6b90a8f1ba1f6a820"
+      },
+      "maskPixels": {
+        "top": 8488,
+        "bottom": 2877,
+        "shoes": 4516
+      },
+      "maskBounds": {
+        "top": [
+          185,
+          295,
+          309,
+          414
+        ],
+        "bottom": [
+          175,
+          380,
+          315,
+          488
+        ],
+        "shoes": [
+          181,
+          493,
+          349,
+          552
+        ]
+      },
+      "skinSeedPixels": 60244,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67745,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 94,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 242,
+      "sourceRgbaSha256": "3c6f3059cb2f2775ab65c4008e862ab598d0260d872e3801fda290632c1adfd7",
+      "reviewedSeed": "female-2394/243",
+      "trackedSteps": 1,
+      "footContourCorrections": {
+        "nearToe": {
+          "from": [
+            248.8,
+            594.5
+          ],
+          "to": [
+            249,
+            594
+          ],
+          "distance": 0.54
+        }
+      },
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "881d5da96a540e0294c4b37a5a21d47aae046e08b4734ef72b00ffc64919a1bd",
+        "bottom": "1e4afc881c1ddba7587537d8d600689a6a18d873f3b9c37ac80b319cc21cb3aa",
+        "shoes": "d318d04dcecddb30eb07d46aad98e2bff37b06925c4196780215dfca96daeae7",
+        "skin": "89988a84dff111f916bd9b24e442b056ebea4211566d95f84003bdf0b47524f6"
+      },
+      "maskPixels": {
+        "top": 8749,
+        "bottom": 4680,
+        "shoes": 3963
+      },
+      "maskBounds": {
+        "top": [
+          188,
+          325,
+          312,
+          448
+        ],
+        "bottom": [
+          178,
+          433,
+          319,
+          499
+        ],
+        "shoes": [
+          178,
+          555,
+          349,
+          598
+        ]
+      },
+      "skinSeedPixels": 59650,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 67481,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 95,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 243,
+      "sourceRgbaSha256": "f723f81327b8cf232b477c0669f2e0f39a8454632be4b461435c0f3883feb2da",
+      "reviewedSeed": "female-2394/243",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "fb296064a69c7b7a84831fe1d7aca3ea6824fe56c2868fed7e7ecf511aee2b70",
+        "bottom": "9e05eee84d55ff448026805069fdcc5337d719dfe734008aa7c322c15512c504",
+        "shoes": "78c5a63a1055513105cd9265e99dc7a636e58ff7df2842e000bed2d8d7e94dfb",
+        "skin": "0e7ca2f1b3316f1cd12c4f1e211dbe01fb17f385e5f6f3eaeb9eebc3d31ef11d"
+      },
+      "maskPixels": {
+        "top": 9365,
+        "bottom": 5648,
+        "shoes": 4820
+      },
+      "maskBounds": {
+        "top": [
+          193,
+          363,
+          316,
+          496
+        ],
+        "bottom": [
+          181,
+          464,
+          316,
+          546
+        ],
+        "shoes": [
+          178,
+          616,
+          347,
+          664
+        ]
+      },
+      "skinSeedPixels": 56954,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64200,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 96,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 244,
+      "sourceRgbaSha256": "379f7d687e1719e4838e620e3ecfb401b1ed942c9e91aeaa2fafeaac93d5302d",
+      "reviewedSeed": "female-2394/244",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "d8330423ccfc4cf0941d383ae6994f3da58ee8a613fd96f4618d6fd900855fbb",
+        "bottom": "4cd6a5a76ff785864f7ad3516189ac6d9342cc86663aec70e2cf6f2fcd1eb9a2",
+        "shoes": "dbd5d4831c0d6d20d1e408d2267fb0befa365296be5600f6ab9742a6a9b36248",
+        "skin": "ea337caefc846a1368e438c71b24f0b8e6e62c8e94150e24615c3470922240de"
+      },
+      "maskPixels": {
+        "top": 9176,
+        "bottom": 4356,
+        "shoes": 4721
+      },
+      "maskBounds": {
+        "top": [
+          191,
+          417,
+          315,
+          548
+        ],
+        "bottom": [
+          182,
+          515,
+          312,
+          593
+        ],
+        "shoes": [
+          170,
+          656,
+          336,
+          706
+        ]
+      },
+      "skinSeedPixels": 58190,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65206,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 97,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 245,
+      "sourceRgbaSha256": "f56eb4da3c7cbdcf19d03d688a6b6bb8938b0bc97c6cbfad9f10b6372f34c8e8",
+      "reviewedSeed": "female-2394/245",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "8cffdcfac9bf121d5de9858bd6c7b2dcb702db6838a5b5e54038348003412744",
+        "bottom": "6d418f4869b97e76417efc51eab7126b8d2833bcb65ffc040ed516234117a841",
+        "shoes": "402ab473b30b8b42423eee984995c954c073fc5549c925cbd9d3b4db61d643a1",
+        "skin": "835414e85cf8fce8252af7a5df791751d9414b48e23c397d9ccbba2cdd0f0e26"
+      },
+      "maskPixels": {
+        "top": 8268,
+        "bottom": 3705,
+        "shoes": 4587
+      },
+      "maskBounds": {
+        "top": [
+          193,
+          444,
+          313,
+          571
+        ],
+        "bottom": [
+          176,
+          550,
+          311,
+          615
+        ],
+        "shoes": [
+          169,
+          656,
+          335,
+          706
+        ]
+      },
+      "skinSeedPixels": 56885,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65346,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 98,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 246,
+      "sourceRgbaSha256": "35a6dab178e5e28c85da3d1c67a93b11d8d9e247317b49b3833b0e78cd463665",
+      "reviewedSeed": "female-2394/245",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "35bd1dc228636794bac76baf70055c4c7f65c4962799b7a051dcd35644b80c77",
+        "bottom": "101acc9d917c62146c3e1ad2cbaadcb3e500e8a541463e77f7338283719666fc",
+        "shoes": "3134736d6d0eebb45c096f856752974d6720a1e3fb2c52a25352d2cafe6325b9",
+        "skin": "e0f199dc1262706eb12b057cfa8df032f7541bd6563dc294a0c691bf45f7b8c2"
+      },
+      "maskPixels": {
+        "top": 6198,
+        "bottom": 2975,
+        "shoes": 4603
+      },
+      "maskBounds": {
+        "top": [
+          220,
+          449,
+          313,
+          574
+        ],
+        "bottom": [
+          174,
+          554,
+          313,
+          623
+        ],
+        "shoes": [
+          167,
+          657,
+          335,
+          706
+        ]
+      },
+      "skinSeedPixels": 58318,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65622,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 99,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 247,
+      "sourceRgbaSha256": "c87816ad6dcfa50e5a19ac93e424b55274d9bb9ed5f38e54e7609934587a1160",
+      "reviewedSeed": "female-2394/245",
+      "trackedSteps": 2,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "5f37510414e7ab310e993a1be3b170e14402a863d7db0019107f17ded585797e",
+        "bottom": "4356ddbc2278585a2ddf1dc9dd2684d26c59d653ee042eebffd7153862a79317",
+        "shoes": "ecf92bb7c068639ec080b366b636222e05e03b56c30606597f8b4887c8d720a5",
+        "skin": "ab0c00ff6464869f1518844de1beba9e2c174dce8c1c58872a9b43c517972a93"
+      },
+      "maskPixels": {
+        "top": 5340,
+        "bottom": 3326,
+        "shoes": 4616
+      },
+      "maskBounds": {
+        "top": [
+          216,
+          448,
+          313,
+          573
+        ],
+        "bottom": [
+          172,
+          554,
+          313,
+          621
+        ],
+        "shoes": [
+          168,
+          656,
+          335,
+          706
+        ]
+      },
+      "skinSeedPixels": 57139,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64491,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 100,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 248,
+      "sourceRgbaSha256": "69127e999953a9f9aa5a6edfdaecbcf87e9a7262d010fbfc5e3301594bd3ff4e",
+      "reviewedSeed": "female-2394/249",
+      "trackedSteps": 1,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "3e94c5251c3ad0feab6604af2c995b5c7a62942a9a64d3fb8b5dcac103b0ab1f",
+        "bottom": "5d12b65485158f4810d133006806ef8953ea6a1576b98976cceb5febc2d33943",
+        "shoes": "bdb180af2fc9f687d378bae626201069262622618a8e97103b229882d4d4c790",
+        "skin": "87140ccb09dfaca2849ffc258f4bd75fe56ccf104fd73250f2e8fccc177b9caf"
+      },
+      "maskPixels": {
+        "top": 4403,
+        "bottom": 4024,
+        "shoes": 4713
+      },
+      "maskBounds": {
+        "top": [
+          222,
+          444,
+          313,
+          568
+        ],
+        "bottom": [
+          173,
+          545,
+          311,
+          619
+        ],
+        "shoes": [
+          168,
+          656,
+          335,
+          706
+        ]
+      },
+      "skinSeedPixels": 56955,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64303,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    },
+    {
+      "frameId": 101,
+      "action": "jump",
+      "source": "female-2394",
+      "sourceFrame": 249,
+      "sourceRgbaSha256": "7fc9bed33e561d1974fddb1ee733eadedbd634b194f90d456e831088c4370639",
+      "reviewedSeed": "female-2394/249",
+      "trackedSteps": 0,
+      "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
+      "maskSha256": {
+        "top": "4e2096e4ae58c56c41cbb7976d2720d647398871b5076c693ffa23db786a5a5f",
+        "bottom": "098a0c03e7420c0acb0d56d52c509f86d5951733a4d94ba0c6bf79ba13c145df",
+        "shoes": "b25f8cfc8326e41cbc260ed29812764765e7156e6c01064b93c2a04744875fc6",
+        "skin": "4c8ff8b686fd4c3e8b88daf07fe8a58caa8f181a4d5b833a2fcd3e41aaeaff56"
+      },
+      "maskPixels": {
+        "top": 4169,
+        "bottom": 4353,
+        "shoes": 4653
+      },
+      "maskBounds": {
+        "top": [
+          193,
+          439,
+          312,
+          564
+        ],
+        "bottom": [
+          174,
+          541,
+          311,
+          613
+        ],
+        "shoes": [
+          167,
+          656,
+          335,
+          706
+        ]
+      },
+      "skinSeedPixels": 56821,
+      "skinSeedOverlap": 0,
+      "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
+      "protectedOverlap": 0,
+      "outsideSourceAlphaPixels": 0,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64096,
+      "handProtection": {
+        "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
+        "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
+      }
+    }
+  ]
+}

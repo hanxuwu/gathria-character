@@ -22,6 +22,13 @@ the registered wardrobe. **Explore Kling male/female themes** opens the new
 authored theme workspace; separate **Edit Kling male/female skeleton** buttons
 retain the optional skeletal candidates.
 
+**侧视动作与换装** on either character card opens the independent side-view
+candidate: `/workbench.html?character=male&mode=side-view` (or `female`).
+It includes source-timed idle/walk/run, the original two-jump clip, keyboard
+controls, camera-follow travel, per-frame fitting guides and two same-cut daily
+material studies. Existing characters and wardrobe defaults remain unchanged.
+[Side-view usage, actual exports and limitations](docs/kling-side-workspace/README.md).
+
 | Main destination                             | Available now                                                           |
 | -------------------------------------------- | ----------------------------------------------------------------------- |
 | `/`                                          | Two originals, wardrobe and optional skeleton entries                   |

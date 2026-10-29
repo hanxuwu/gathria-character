@@ -1,0 +1,5677 @@
+{
+  "passed": true,
+  "scope": "Preview only; existing CharacterPacks and runtime unchanged.",
+  "fps": 24,
+  "sources": {
+    "male": {
+      "packSha256": "5a0708dad180f0aca637862a870f98e3bacaecccf98f0360b751172649253b4f",
+      "selection": {
+        "idle": {
+          "source": "male-1885",
+          "start": 240,
+          "endExclusive": 261,
+          "loop": true,
+          "reason": "Stable naturally standing recovery, same source identity as the selected run. Excludes the blink that turns directly into celebration.",
+          "limitations": [
+            "Nearly static idle; no complete natural blink in this interval. Endpoint continuity still requires final matte/render review."
+          ]
+        },
+        "walk": {
+          "source": "male-2067",
+          "start": 47,
+          "endExclusive": 65,
+          "loop": true,
+          "reason": "Complete right-and-left step cycle with relaxed arms, a low ranked boundary mismatch, and no omitted/interpolated source frames.",
+          "limitations": [
+            "Brisk walk: full cycle is 0.75s. User previously found this source somewhat stiff; retain as candidate rather than claim visual acceptance. Source head/body shape differs slightly from 1885 after constant scaling."
+          ]
+        },
+        "run": {
+          "source": "male-1885",
+          "start": 132,
+          "endExclusive": 150,
+          "loop": true,
+          "reason": "Complete two-step gait: passes support/recovery for both legs and both opposite arm swings; 18 consecutive original frames at24fps. f150 matches f132 phase well.",
+          "limitations": [
+            "Original video shading and small hand/foot shape changes remain. No promise of physically correct world-displacement speed."
+          ]
+        },
+        "jump": {
+          "source": "male-2360",
+          "start": 208,
+          "endExclusive": 234,
+          "loop": false,
+          "reason": "First complete takeoff-flight-landing passage only. Starts during visible anticipatory crouch, lands and recovers to brief near-upright f233 before the next jump begins at f234.",
+          "limitations": [
+            "The source enters crouch from running, not from neutral idle. End f233 has arms bent, not relaxed neutral idle. No missing neutral transition frames have been invented. Must be labelled one-shot crouch-jump candidate; idle-to-jump and jump-to-idle can still pop. Facial view/volume shift during the jump is retained."
+          ]
+        },
+        "celebrate": {
+          "source": "male-1885",
+          "start": 260,
+          "endExclusive": 351,
+          "loop": false,
+          "reason": "Full original celebration onset and return to relaxed standing, preserving its real number of gestures and timing.",
+          "limitations": [
+            "More than two fist raises and hands reach the ears. One-shot, not a seamless cycle. This is optional for this review batch."
+          ]
+        }
+      },
+      "jump": {
+        "source": {
+          "video": "artwork/kling-side-selection/source/male-2360.mp4",
+          "originalFilename": "kling_20261029_VIDEO_以上传图片中的人物为_2360_0.mp4",
+          "sha256": "85b55d8fc757052d3d1cb09d7b397d1b8eb2981f2bacef0ea6f2288fe2a44cf7",
+          "fps": 24,
+          "matte": {
+            "greenStart": 0.035,
+            "greenEnd": 0.48
+          },
+          "sourceKind": "user-uploaded-kling-video"
+        },
+        "registration": {
+          "referenceFrame": 0,
+          "sourceHeadTop": 326,
+          "sourceGroundY": 1032,
+          "sourceFootCenterX": 950.0,
+          "scale": 0.6798866855524079,
+          "targetStandingHeight": 480,
+          "targetAnchor": [
+            256,
+            710
+          ],
+          "method": "one_uniform_affine_per_source_from_opening_stance; no per-frame recentering",
+          "inverseAffine": [
+            1.4708333333333332,
+            0,
+            573.4666666666667,
+            0,
+            1.4708333333333332,
+            -12.291666666666742
+          ]
+        },
+        "frames": [
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 200,
+            "sourceTimeSeconds": 8.333333333333334,
+            "rgbaSha256": "88253707ce1f049b409b48ab9be2d070002eca2867b3a39a62ccab3c5ce03230",
+            "bounds": [
+              126,
+              238,
+              373,
+              702
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              7.0,
+              234.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 201,
+            "sourceTimeSeconds": 8.375,
+            "rgbaSha256": "31536d6f87ca58d12dd1680ad089a7cd70f9458617a966e5f9ca349b3836cb73",
+            "bounds": [
+              152,
+              242,
+              373,
+              705
+            ],
+            "discardedSmallComponents": [
+              1
+            ],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 202,
+            "sourceTimeSeconds": 8.416666666666666,
+            "rgbaSha256": "9bd6af31ff5834388616e1a03e1ac753afac8c7cac4bfb8e3c5beaeeebcd9c6e",
+            "bounds": [
+              132,
+              235,
+              376,
+              705
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 203,
+            "sourceTimeSeconds": 8.458333333333334,
+            "rgbaSha256": "720bc268d7ea8ea4707f8d67f31dd336f8308a0fdafde4e44e811257e80b4589",
+            "bounds": [
+              92,
+              227,
+              379,
+              704
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 204,
+            "sourceTimeSeconds": 8.5,
+            "rgbaSha256": "ca7fe2af36647ef6a08f4486103ea48eed68cc57c88ebfee7752ffd16455e490",
+            "bounds": [
+              82,
+              226,
+              400,
+              682
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 205,
+            "sourceTimeSeconds": 8.541666666666666,
+            "rgbaSha256": "6a8865c7581bfc5ff588f25cd306d99ea7b65a8b757610df3cf841f7d8de9cdc",
+            "bounds": [
+              84,
+              236,
+              417,
+              698
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              6.0,
+              234.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 206,
+            "sourceTimeSeconds": 8.583333333333334,
+            "rgbaSha256": "9f57b3e9761b98881b347fea217122ae6be729a3815f9b332c5edb0c279de7a8",
+            "bounds": [
+              97,
+              254,
+              428,
+              707
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 207,
+            "sourceTimeSeconds": 8.625,
+            "rgbaSha256": "b187e8ec6e743a91bc90a87458fb9db11003623135b2a4f94ccb3043cd0b7e3e",
+            "bounds": [
+              106,
+              273,
+              432,
+              708
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              6.0,
+              234.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 208,
+            "sourceTimeSeconds": 8.666666666666666,
+            "rgbaSha256": "cbe8d50d6c4566aaec20d8033a12d6f464f8f035d2118ff99da445a5d3aa2ae7",
+            "bounds": [
+              107,
+              287,
+              437,
+              708
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              7.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 209,
+            "sourceTimeSeconds": 8.708333333333334,
+            "rgbaSha256": "c323f7e82a4d0a51985373d37b93980b7c832ba307b5a1fcfa58acf4d143168a",
+            "bounds": [
+              106,
+              288,
+              433,
+              708
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 210,
+            "sourceTimeSeconds": 8.75,
+            "rgbaSha256": "bdebc161137f774408d351706cc25fc7c36c3cdbba50b75a90ea75640c8b25e0",
+            "bounds": [
+              109,
+              254,
+              420,
+              708
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 211,
+            "sourceTimeSeconds": 8.791666666666666,
+            "rgbaSha256": "14371a9f531bf0aedd4dc088634a27af2b1665365df45782f12126b13a68b327",
+            "bounds": [
+              137,
+              203,
+              396,
+              708
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 212,
+            "sourceTimeSeconds": 8.833333333333334,
+            "rgbaSha256": "60dccba52621a2f3ac9acc24c88669ca94fbafbfb96bfb606f7806062446c2ba",
+            "bounds": [
+              139,
+              151,
+              379,
+              679
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 213,
+            "sourceTimeSeconds": 8.875,
+            "rgbaSha256": "622680276deeb2cf008d8326b500c068d6fd9f293f7cb383f6a43e63796063e6",
+            "bounds": [
+              128,
+              107,
+              366,
+              625
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 214,
+            "sourceTimeSeconds": 8.916666666666666,
+            "rgbaSha256": "36eec423ef1c48fd3dc1df210b621b1912c08989e0db64ce0d7eac66a0a77e29",
+            "bounds": [
+              121,
+              83,
+              362,
+              573
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              7.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 215,
+            "sourceTimeSeconds": 8.958333333333334,
+            "rgbaSha256": "d0ab0dd487215ec3d2f87be58b96c2586221c2bae00ed2ac6f5f6a7059e1ddf6",
+            "bounds": [
+              118,
+              69,
+              368,
+              535
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 216,
+            "sourceTimeSeconds": 9.0,
+            "rgbaSha256": "ccb4c827a21e4415f27d92ce85879ec176ed87502f36f0098eace7ce1d3c416f",
+            "bounds": [
+              117,
+              65,
+              377,
+              515
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 217,
+            "sourceTimeSeconds": 9.041666666666666,
+            "rgbaSha256": "f16784bcf358776103ac2d9cef00b12dc2879c706fb77bb78593d6a9bce916d2",
+            "bounds": [
+              101,
+              69,
+              389,
+              513
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 218,
+            "sourceTimeSeconds": 9.083333333333334,
+            "rgbaSha256": "fb764aeeed0e00a02d68901ec0d796dc3969bbc3737aacb168b9756e71a9b261",
+            "bounds": [
+              83,
+              87,
+              394,
+              529
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 219,
+            "sourceTimeSeconds": 9.125,
+            "rgbaSha256": "db8d024482cc3bd1a4c6ca72097033aa60edd7cb0e30877f7b179e9649f25816",
+            "bounds": [
+              78,
+              114,
+              404,
+              571
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 220,
+            "sourceTimeSeconds": 9.166666666666666,
+            "rgbaSha256": "e7cccb4ba6d1fbed9cc2d3be7bbc657ece718f89ec366a96b41d244e0525896d",
+            "bounds": [
+              84,
+              151,
+              416,
+              621
+            ],
+            "discardedSmallComponents": [
+              9,
+              1
+            ],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 221,
+            "sourceTimeSeconds": 9.208333333333334,
+            "rgbaSha256": "ec0b69ded066280cca2e618bd22f22cb97e933b22f83e504626aae6e54cc6cd1",
+            "bounds": [
+              93,
+              208,
+              430,
+              675
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 222,
+            "sourceTimeSeconds": 9.25,
+            "rgbaSha256": "10b3be3cb2a43affba1742cdf286a11413fd81ac403a2250f63a84c0ef3220fe",
+            "bounds": [
+              99,
+              264,
+              452,
+              708
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              7.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 223,
+            "sourceTimeSeconds": 9.291666666666666,
+            "rgbaSha256": "c9a739e2d1eff6e3b9d24b39131994d0e68691b0d535937b4b5fc8414737c34d",
+            "bounds": [
+              109,
+              296,
+              455,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 224,
+            "sourceTimeSeconds": 9.333333333333334,
+            "rgbaSha256": "cf4be35f8d8f373bcdf59f9e840780c9ea26ed7fa49460b7db51b2d0b408ea1a",
+            "bounds": [
+              135,
+              306,
+              444,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              7.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 225,
+            "sourceTimeSeconds": 9.375,
+            "rgbaSha256": "0f6e7942230549d9916d5646d9453c1bc0dfd4eb3e0b98ff30524e01264d1a1c",
+            "bounds": [
+              156,
+              299,
+              439,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 226,
+            "sourceTimeSeconds": 9.416666666666666,
+            "rgbaSha256": "d4a800e2cc169d41cfac14cccfb6c40312355c9c7b433aa17c4a4b20cf51e0ae",
+            "bounds": [
+              156,
+              287,
+              432,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              7.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 227,
+            "sourceTimeSeconds": 9.458333333333334,
+            "rgbaSha256": "ea9f4f33713d343953533a0d0aa75b41df7f15543ddd9a6fad3e68738a483f57",
+            "bounds": [
+              154,
+              276,
+              425,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 228,
+            "sourceTimeSeconds": 9.5,
+            "rgbaSha256": "242952f302062d30780287487affa04fd377d781e7f1ca3f1f88b83748280a4f",
+            "bounds": [
+              151,
+              269,
+              418,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 229,
+            "sourceTimeSeconds": 9.541666666666666,
+            "rgbaSha256": "0759a580fd77d31f7ab88f215bc9a37ffc31e43691d299ca2c53114cda2b64e6",
+            "bounds": [
+              150,
+              264,
+              413,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 230,
+            "sourceTimeSeconds": 9.583333333333334,
+            "rgbaSha256": "9f2df4ee86c34353a21763cb89197507a6b40fefaf32a80f2a3712d9587d1581",
+            "bounds": [
+              150,
+              261,
+              407,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 231,
+            "sourceTimeSeconds": 9.625,
+            "rgbaSha256": "8fd8b600aa99a58389ded6c21cc07b2f5b63747b88107a289046d098a157a5f7",
+            "bounds": [
+              148,
+              258,
+              402,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 232,
+            "sourceTimeSeconds": 9.666666666666666,
+            "rgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+            "bounds": [
+              144,
+              245,
+              394,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 233,
+            "sourceTimeSeconds": 9.708333333333334,
+            "rgbaSha256": "eb967495150e60e8f6256b1b03de4d7278580dcb5ac010bf2f3eb1da4786cef1",
+            "bounds": [
+              137,
+              217,
+              380,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 234,
+            "sourceTimeSeconds": 9.75,
+            "rgbaSha256": "65313bb6b0720015fb062b683b0e9c886cd07bee8e6ea5cc5024a89709e82e9a",
+            "bounds": [
+              141,
+              166,
+              380,
+              692
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              6.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 235,
+            "sourceTimeSeconds": 9.791666666666666,
+            "rgbaSha256": "91fcfd7ab361301989147a050b2af1afc53ce305eedefaf164518f0b778919a3",
+            "bounds": [
+              140,
+              124,
+              372,
+              649
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 236,
+            "sourceTimeSeconds": 9.833333333333334,
+            "rgbaSha256": "5a0685e7c1b455eac6fb9e7e97a2badb8e38589aec64e8bd5e4d44db4d29665a",
+            "bounds": [
+              137,
+              96,
+              364,
+              608
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 237,
+            "sourceTimeSeconds": 9.875,
+            "rgbaSha256": "4cf9af5a4401af6bc9046d7d5afe705c68cee9157ada4008a97e035326986672",
+            "bounds": [
+              132,
+              79,
+              366,
+              566
+            ],
+            "discardedSmallComponents": [
+              1
+            ],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 238,
+            "sourceTimeSeconds": 9.916666666666666,
+            "rgbaSha256": "cbf2ae851f59ed7ff4299961f8224bebdabc10c13699fa4b26729b738505f4a1",
+            "bounds": [
+              128,
+              73,
+              371,
+              529
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 239,
+            "sourceTimeSeconds": 9.958333333333334,
+            "rgbaSha256": "b861982b468851ee0a8be907a2c904fb051af886015a44f6dc14a26e3675b644",
+            "bounds": [
+              120,
+              75,
+              388,
+              513
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 240,
+            "sourceTimeSeconds": 10.0,
+            "rgbaSha256": "4acecdff6fad334d44f53eb311e5c97ae339b9cac75b5c649576eab545b8fe2b",
+            "bounds": [
+              114,
+              88,
+              405,
+              524
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 241,
+            "sourceTimeSeconds": 10.041666666666666,
+            "rgbaSha256": "5e1e891d27326d152c317ad66a8bf735583aa2bd86fb9043ae04a0572af52f60",
+            "bounds": [
+              110,
+              110,
+              413,
+              556
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 242,
+            "sourceTimeSeconds": 10.083333333333334,
+            "rgbaSha256": "0e4ee290dfa262631b1957c1bad069b0da6ac1d72fc298d481a480fd5f598979",
+            "bounds": [
+              112,
+              140,
+              413,
+              614
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": [
+              [
+                846,
+                640,
+                858,
+                649
+              ]
+            ]
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 243,
+            "sourceTimeSeconds": 10.125,
+            "rgbaSha256": "debea92da56303911c9a0d97b1ad060d84a45d7b3d0a14b73b9b8f8b3ee05db0",
+            "bounds": [
+              122,
+              183,
+              410,
+              668
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 244,
+            "sourceTimeSeconds": 10.166666666666666,
+            "rgbaSha256": "542f50e4e9463ba3274d26edd1491bd03cdbadadd9042f2f3ca8f1df6d030585",
+            "bounds": [
+              122,
+              236,
+              418,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              234.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 245,
+            "sourceTimeSeconds": 10.208333333333334,
+            "rgbaSha256": "b4b24dc69b61c3019fe6c939f4384a13a0227d8c059d2bab7d8f94cf71d92b8e",
+            "bounds": [
+              136,
+              268,
+              420,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 246,
+            "sourceTimeSeconds": 10.25,
+            "rgbaSha256": "bc92836b8aa8981ee007c8d58b5cf42ef5be37ea31aca30673e6906d5b6fbd5f",
+            "bounds": [
+              146,
+              277,
+              407,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 247,
+            "sourceTimeSeconds": 10.291666666666666,
+            "rgbaSha256": "4c975e0ecee83a6f886181f600a10141c5be033150a775789f773f00b15491ff",
+            "bounds": [
+              153,
+              277,
+              410,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              234.0,
+              6.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 248,
+            "sourceTimeSeconds": 10.333333333333334,
+            "rgbaSha256": "afd4cef456f1d05ddafc0b5f2975d08353bea71bb030ebe37b3f3ee7add05759",
+            "bounds": [
+              158,
+              272,
+              410,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              234.0,
+              6.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "male-2360",
+            "sourceFrame": 249,
+            "sourceTimeSeconds": 10.375,
+            "rgbaSha256": "a295c99b0ce1911c4a03c0ae489c85fa752b42647ac9aa7f63337d3a64c35f26",
+            "bounds": [
+              160,
+              265,
+              407,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              233.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "action": "walk",
+          "packFrameId": 21
+        },
+        {
+          "action": "walk",
+          "packFrameId": 22
+        },
+        {
+          "action": "walk",
+          "packFrameId": 23
+        },
+        {
+          "action": "walk",
+          "packFrameId": 24
+        },
+        {
+          "action": "walk",
+          "packFrameId": 25
+        },
+        {
+          "action": "walk",
+          "packFrameId": 26
+        },
+        {
+          "action": "walk",
+          "packFrameId": 27
+        },
+        {
+          "action": "walk",
+          "packFrameId": 28
+        },
+        {
+          "action": "walk",
+          "packFrameId": 29
+        },
+        {
+          "action": "walk",
+          "packFrameId": 30
+        },
+        {
+          "action": "walk",
+          "packFrameId": 31
+        },
+        {
+          "action": "walk",
+          "packFrameId": 32
+        },
+        {
+          "action": "walk",
+          "packFrameId": 33
+        },
+        {
+          "action": "walk",
+          "packFrameId": 34
+        },
+        {
+          "action": "walk",
+          "packFrameId": 35
+        },
+        {
+          "action": "walk",
+          "packFrameId": 36
+        },
+        {
+          "action": "walk",
+          "packFrameId": 37
+        },
+        {
+          "action": "walk",
+          "packFrameId": 38
+        },
+        {
+          "action": "walk",
+          "packFrameId": 21
+        },
+        {
+          "action": "walk",
+          "packFrameId": 22
+        },
+        {
+          "action": "walk",
+          "packFrameId": 23
+        },
+        {
+          "action": "walk",
+          "packFrameId": 24
+        },
+        {
+          "action": "walk",
+          "packFrameId": 25
+        },
+        {
+          "action": "walk",
+          "packFrameId": 26
+        },
+        {
+          "action": "walk",
+          "packFrameId": 27
+        },
+        {
+          "action": "walk",
+          "packFrameId": 28
+        },
+        {
+          "action": "walk",
+          "packFrameId": 29
+        },
+        {
+          "action": "walk",
+          "packFrameId": 30
+        },
+        {
+          "action": "walk",
+          "packFrameId": 31
+        },
+        {
+          "action": "walk",
+          "packFrameId": 32
+        },
+        {
+          "action": "walk",
+          "packFrameId": 33
+        },
+        {
+          "action": "walk",
+          "packFrameId": 34
+        },
+        {
+          "action": "walk",
+          "packFrameId": 35
+        },
+        {
+          "action": "walk",
+          "packFrameId": 36
+        },
+        {
+          "action": "walk",
+          "packFrameId": 37
+        },
+        {
+          "action": "walk",
+          "packFrameId": 38
+        },
+        {
+          "action": "walk",
+          "packFrameId": 21
+        },
+        {
+          "action": "walk",
+          "packFrameId": 22
+        },
+        {
+          "action": "walk",
+          "packFrameId": 23
+        },
+        {
+          "action": "walk",
+          "packFrameId": 24
+        },
+        {
+          "action": "walk",
+          "packFrameId": 25
+        },
+        {
+          "action": "walk",
+          "packFrameId": 26
+        },
+        {
+          "action": "walk",
+          "packFrameId": 27
+        },
+        {
+          "action": "walk",
+          "packFrameId": 28
+        },
+        {
+          "action": "walk",
+          "packFrameId": 29
+        },
+        {
+          "action": "walk",
+          "packFrameId": 30
+        },
+        {
+          "action": "walk",
+          "packFrameId": 31
+        },
+        {
+          "action": "walk",
+          "packFrameId": 32
+        },
+        {
+          "action": "walk",
+          "packFrameId": 33
+        },
+        {
+          "action": "walk",
+          "packFrameId": 34
+        },
+        {
+          "action": "walk",
+          "packFrameId": 35
+        },
+        {
+          "action": "walk",
+          "packFrameId": 36
+        },
+        {
+          "action": "walk",
+          "packFrameId": 37
+        },
+        {
+          "action": "walk",
+          "packFrameId": 38
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "run",
+          "packFrameId": 52
+        },
+        {
+          "action": "run",
+          "packFrameId": 53
+        },
+        {
+          "action": "run",
+          "packFrameId": 54
+        },
+        {
+          "action": "run",
+          "packFrameId": 55
+        },
+        {
+          "action": "run",
+          "packFrameId": 56
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "run",
+          "packFrameId": 52
+        },
+        {
+          "action": "run",
+          "packFrameId": 53
+        },
+        {
+          "action": "run",
+          "packFrameId": 54
+        },
+        {
+          "action": "run",
+          "packFrameId": 55
+        },
+        {
+          "action": "run",
+          "packFrameId": 56
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "run",
+          "packFrameId": 52
+        },
+        {
+          "action": "run",
+          "packFrameId": 53
+        },
+        {
+          "action": "run",
+          "packFrameId": 54
+        },
+        {
+          "action": "run",
+          "packFrameId": 55
+        },
+        {
+          "action": "run",
+          "packFrameId": 56
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "run",
+          "packFrameId": 52
+        },
+        {
+          "action": "run",
+          "packFrameId": 53
+        },
+        {
+          "action": "run",
+          "packFrameId": 54
+        },
+        {
+          "action": "run",
+          "packFrameId": 55
+        },
+        {
+          "action": "run",
+          "packFrameId": 56
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 200,
+          "sourceTimeSeconds": 8.333333333333334,
+          "rgbaSha256": "88253707ce1f049b409b48ab9be2d070002eca2867b3a39a62ccab3c5ce03230",
+          "bounds": [
+            126,
+            238,
+            373,
+            702
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            7.0,
+            234.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 201,
+          "sourceTimeSeconds": 8.375,
+          "rgbaSha256": "31536d6f87ca58d12dd1680ad089a7cd70f9458617a966e5f9ca349b3836cb73",
+          "bounds": [
+            152,
+            242,
+            373,
+            705
+          ],
+          "discardedSmallComponents": [
+            1
+          ],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 202,
+          "sourceTimeSeconds": 8.416666666666666,
+          "rgbaSha256": "9bd6af31ff5834388616e1a03e1ac753afac8c7cac4bfb8e3c5beaeeebcd9c6e",
+          "bounds": [
+            132,
+            235,
+            376,
+            705
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 203,
+          "sourceTimeSeconds": 8.458333333333334,
+          "rgbaSha256": "720bc268d7ea8ea4707f8d67f31dd336f8308a0fdafde4e44e811257e80b4589",
+          "bounds": [
+            92,
+            227,
+            379,
+            704
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 204,
+          "sourceTimeSeconds": 8.5,
+          "rgbaSha256": "ca7fe2af36647ef6a08f4486103ea48eed68cc57c88ebfee7752ffd16455e490",
+          "bounds": [
+            82,
+            226,
+            400,
+            682
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 205,
+          "sourceTimeSeconds": 8.541666666666666,
+          "rgbaSha256": "6a8865c7581bfc5ff588f25cd306d99ea7b65a8b757610df3cf841f7d8de9cdc",
+          "bounds": [
+            84,
+            236,
+            417,
+            698
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            6.0,
+            234.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 206,
+          "sourceTimeSeconds": 8.583333333333334,
+          "rgbaSha256": "9f57b3e9761b98881b347fea217122ae6be729a3815f9b332c5edb0c279de7a8",
+          "bounds": [
+            97,
+            254,
+            428,
+            707
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 207,
+          "sourceTimeSeconds": 8.625,
+          "rgbaSha256": "b187e8ec6e743a91bc90a87458fb9db11003623135b2a4f94ccb3043cd0b7e3e",
+          "bounds": [
+            106,
+            273,
+            432,
+            708
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            6.0,
+            234.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 208,
+          "sourceTimeSeconds": 8.666666666666666,
+          "rgbaSha256": "cbe8d50d6c4566aaec20d8033a12d6f464f8f035d2118ff99da445a5d3aa2ae7",
+          "bounds": [
+            107,
+            287,
+            437,
+            708
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            7.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 209,
+          "sourceTimeSeconds": 8.708333333333334,
+          "rgbaSha256": "c323f7e82a4d0a51985373d37b93980b7c832ba307b5a1fcfa58acf4d143168a",
+          "bounds": [
+            106,
+            288,
+            433,
+            708
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 210,
+          "sourceTimeSeconds": 8.75,
+          "rgbaSha256": "bdebc161137f774408d351706cc25fc7c36c3cdbba50b75a90ea75640c8b25e0",
+          "bounds": [
+            109,
+            254,
+            420,
+            708
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 211,
+          "sourceTimeSeconds": 8.791666666666666,
+          "rgbaSha256": "14371a9f531bf0aedd4dc088634a27af2b1665365df45782f12126b13a68b327",
+          "bounds": [
+            137,
+            203,
+            396,
+            708
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 212,
+          "sourceTimeSeconds": 8.833333333333334,
+          "rgbaSha256": "60dccba52621a2f3ac9acc24c88669ca94fbafbfb96bfb606f7806062446c2ba",
+          "bounds": [
+            139,
+            151,
+            379,
+            679
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 213,
+          "sourceTimeSeconds": 8.875,
+          "rgbaSha256": "622680276deeb2cf008d8326b500c068d6fd9f293f7cb383f6a43e63796063e6",
+          "bounds": [
+            128,
+            107,
+            366,
+            625
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 214,
+          "sourceTimeSeconds": 8.916666666666666,
+          "rgbaSha256": "36eec423ef1c48fd3dc1df210b621b1912c08989e0db64ce0d7eac66a0a77e29",
+          "bounds": [
+            121,
+            83,
+            362,
+            573
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            7.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 215,
+          "sourceTimeSeconds": 8.958333333333334,
+          "rgbaSha256": "d0ab0dd487215ec3d2f87be58b96c2586221c2bae00ed2ac6f5f6a7059e1ddf6",
+          "bounds": [
+            118,
+            69,
+            368,
+            535
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 216,
+          "sourceTimeSeconds": 9.0,
+          "rgbaSha256": "ccb4c827a21e4415f27d92ce85879ec176ed87502f36f0098eace7ce1d3c416f",
+          "bounds": [
+            117,
+            65,
+            377,
+            515
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 217,
+          "sourceTimeSeconds": 9.041666666666666,
+          "rgbaSha256": "f16784bcf358776103ac2d9cef00b12dc2879c706fb77bb78593d6a9bce916d2",
+          "bounds": [
+            101,
+            69,
+            389,
+            513
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 218,
+          "sourceTimeSeconds": 9.083333333333334,
+          "rgbaSha256": "fb764aeeed0e00a02d68901ec0d796dc3969bbc3737aacb168b9756e71a9b261",
+          "bounds": [
+            83,
+            87,
+            394,
+            529
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 219,
+          "sourceTimeSeconds": 9.125,
+          "rgbaSha256": "db8d024482cc3bd1a4c6ca72097033aa60edd7cb0e30877f7b179e9649f25816",
+          "bounds": [
+            78,
+            114,
+            404,
+            571
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 220,
+          "sourceTimeSeconds": 9.166666666666666,
+          "rgbaSha256": "e7cccb4ba6d1fbed9cc2d3be7bbc657ece718f89ec366a96b41d244e0525896d",
+          "bounds": [
+            84,
+            151,
+            416,
+            621
+          ],
+          "discardedSmallComponents": [
+            9,
+            1
+          ],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 221,
+          "sourceTimeSeconds": 9.208333333333334,
+          "rgbaSha256": "ec0b69ded066280cca2e618bd22f22cb97e933b22f83e504626aae6e54cc6cd1",
+          "bounds": [
+            93,
+            208,
+            430,
+            675
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 222,
+          "sourceTimeSeconds": 9.25,
+          "rgbaSha256": "10b3be3cb2a43affba1742cdf286a11413fd81ac403a2250f63a84c0ef3220fe",
+          "bounds": [
+            99,
+            264,
+            452,
+            708
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            7.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 223,
+          "sourceTimeSeconds": 9.291666666666666,
+          "rgbaSha256": "c9a739e2d1eff6e3b9d24b39131994d0e68691b0d535937b4b5fc8414737c34d",
+          "bounds": [
+            109,
+            296,
+            455,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 224,
+          "sourceTimeSeconds": 9.333333333333334,
+          "rgbaSha256": "cf4be35f8d8f373bcdf59f9e840780c9ea26ed7fa49460b7db51b2d0b408ea1a",
+          "bounds": [
+            135,
+            306,
+            444,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            7.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 225,
+          "sourceTimeSeconds": 9.375,
+          "rgbaSha256": "0f6e7942230549d9916d5646d9453c1bc0dfd4eb3e0b98ff30524e01264d1a1c",
+          "bounds": [
+            156,
+            299,
+            439,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 226,
+          "sourceTimeSeconds": 9.416666666666666,
+          "rgbaSha256": "d4a800e2cc169d41cfac14cccfb6c40312355c9c7b433aa17c4a4b20cf51e0ae",
+          "bounds": [
+            156,
+            287,
+            432,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            7.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 227,
+          "sourceTimeSeconds": 9.458333333333334,
+          "rgbaSha256": "ea9f4f33713d343953533a0d0aa75b41df7f15543ddd9a6fad3e68738a483f57",
+          "bounds": [
+            154,
+            276,
+            425,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 228,
+          "sourceTimeSeconds": 9.5,
+          "rgbaSha256": "242952f302062d30780287487affa04fd377d781e7f1ca3f1f88b83748280a4f",
+          "bounds": [
+            151,
+            269,
+            418,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 229,
+          "sourceTimeSeconds": 9.541666666666666,
+          "rgbaSha256": "0759a580fd77d31f7ab88f215bc9a37ffc31e43691d299ca2c53114cda2b64e6",
+          "bounds": [
+            150,
+            264,
+            413,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 230,
+          "sourceTimeSeconds": 9.583333333333334,
+          "rgbaSha256": "9f2df4ee86c34353a21763cb89197507a6b40fefaf32a80f2a3712d9587d1581",
+          "bounds": [
+            150,
+            261,
+            407,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 231,
+          "sourceTimeSeconds": 9.625,
+          "rgbaSha256": "8fd8b600aa99a58389ded6c21cc07b2f5b63747b88107a289046d098a157a5f7",
+          "bounds": [
+            148,
+            258,
+            402,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 232,
+          "sourceTimeSeconds": 9.666666666666666,
+          "rgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+          "bounds": [
+            144,
+            245,
+            394,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 233,
+          "sourceTimeSeconds": 9.708333333333334,
+          "rgbaSha256": "eb967495150e60e8f6256b1b03de4d7278580dcb5ac010bf2f3eb1da4786cef1",
+          "bounds": [
+            137,
+            217,
+            380,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 234,
+          "sourceTimeSeconds": 9.75,
+          "rgbaSha256": "65313bb6b0720015fb062b683b0e9c886cd07bee8e6ea5cc5024a89709e82e9a",
+          "bounds": [
+            141,
+            166,
+            380,
+            692
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            6.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 235,
+          "sourceTimeSeconds": 9.791666666666666,
+          "rgbaSha256": "91fcfd7ab361301989147a050b2af1afc53ce305eedefaf164518f0b778919a3",
+          "bounds": [
+            140,
+            124,
+            372,
+            649
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 236,
+          "sourceTimeSeconds": 9.833333333333334,
+          "rgbaSha256": "5a0685e7c1b455eac6fb9e7e97a2badb8e38589aec64e8bd5e4d44db4d29665a",
+          "bounds": [
+            137,
+            96,
+            364,
+            608
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 237,
+          "sourceTimeSeconds": 9.875,
+          "rgbaSha256": "4cf9af5a4401af6bc9046d7d5afe705c68cee9157ada4008a97e035326986672",
+          "bounds": [
+            132,
+            79,
+            366,
+            566
+          ],
+          "discardedSmallComponents": [
+            1
+          ],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 238,
+          "sourceTimeSeconds": 9.916666666666666,
+          "rgbaSha256": "cbf2ae851f59ed7ff4299961f8224bebdabc10c13699fa4b26729b738505f4a1",
+          "bounds": [
+            128,
+            73,
+            371,
+            529
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 239,
+          "sourceTimeSeconds": 9.958333333333334,
+          "rgbaSha256": "b861982b468851ee0a8be907a2c904fb051af886015a44f6dc14a26e3675b644",
+          "bounds": [
+            120,
+            75,
+            388,
+            513
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 240,
+          "sourceTimeSeconds": 10.0,
+          "rgbaSha256": "4acecdff6fad334d44f53eb311e5c97ae339b9cac75b5c649576eab545b8fe2b",
+          "bounds": [
+            114,
+            88,
+            405,
+            524
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 241,
+          "sourceTimeSeconds": 10.041666666666666,
+          "rgbaSha256": "5e1e891d27326d152c317ad66a8bf735583aa2bd86fb9043ae04a0572af52f60",
+          "bounds": [
+            110,
+            110,
+            413,
+            556
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 242,
+          "sourceTimeSeconds": 10.083333333333334,
+          "rgbaSha256": "0e4ee290dfa262631b1957c1bad069b0da6ac1d72fc298d481a480fd5f598979",
+          "bounds": [
+            112,
+            140,
+            413,
+            614
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": [
+            [
+              846,
+              640,
+              858,
+              649
+            ]
+          ]
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 243,
+          "sourceTimeSeconds": 10.125,
+          "rgbaSha256": "debea92da56303911c9a0d97b1ad060d84a45d7b3d0a14b73b9b8f8b3ee05db0",
+          "bounds": [
+            122,
+            183,
+            410,
+            668
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 244,
+          "sourceTimeSeconds": 10.166666666666666,
+          "rgbaSha256": "542f50e4e9463ba3274d26edd1491bd03cdbadadd9042f2f3ca8f1df6d030585",
+          "bounds": [
+            122,
+            236,
+            418,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            234.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 245,
+          "sourceTimeSeconds": 10.208333333333334,
+          "rgbaSha256": "b4b24dc69b61c3019fe6c939f4384a13a0227d8c059d2bab7d8f94cf71d92b8e",
+          "bounds": [
+            136,
+            268,
+            420,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 246,
+          "sourceTimeSeconds": 10.25,
+          "rgbaSha256": "bc92836b8aa8981ee007c8d58b5cf42ef5be37ea31aca30673e6906d5b6fbd5f",
+          "bounds": [
+            146,
+            277,
+            407,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 247,
+          "sourceTimeSeconds": 10.291666666666666,
+          "rgbaSha256": "4c975e0ecee83a6f886181f600a10141c5be033150a775789f773f00b15491ff",
+          "bounds": [
+            153,
+            277,
+            410,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            234.0,
+            6.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 248,
+          "sourceTimeSeconds": 10.333333333333334,
+          "rgbaSha256": "afd4cef456f1d05ddafc0b5f2975d08353bea71bb030ebe37b3f3ee7add05759",
+          "bounds": [
+            158,
+            272,
+            410,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            234.0,
+            6.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "male-2360",
+          "sourceFrame": 249,
+          "sourceTimeSeconds": 10.375,
+          "rgbaSha256": "a295c99b0ce1911c4a03c0ae489c85fa752b42647ac9aa7f63337d3a64c35f26",
+          "bounds": [
+            160,
+            265,
+            407,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            233.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        }
+      ]
+    },
+    "female": {
+      "packSha256": "e1cf2714590b2d0bff96feeaca9abc949b6a3248934569bb1c4e44439583caed",
+      "selection": {
+        "idle": {
+          "source": "female-1927",
+          "start": 243,
+          "endExclusive": 259,
+          "loop": true,
+          "reason": "Quiet standing interval before the blink/celebration transition. Almost static breathing; no artificial ping-pong or repeated frames.",
+          "limitations": [
+            "No complete blink in this selected loop.",
+            "Tiny source-pixel fluctuations remain."
+          ]
+        },
+        "walk": {
+          "source": "female-1721",
+          "start": 42,
+          "endExclusive": 60,
+          "loop": true,
+          "reason": "Best existing female early-gait candidate with comparatively relaxed arms, both alternating support/pass phases, and matching start/end phase. This is a fast-walk candidate, not a fully accepted ordinary walk.",
+          "limitations": [
+            "Some extended-foot poses appear briefly light or airborne; cannot certify continuous single-foot ground contact.",
+            "Face/torso viewpoint differs slightly from 1927 and 2394; uniform anchor/scale normalization cannot remove it.",
+            "Do not claim a complete production-quality ordinary walk from these sources."
+          ]
+        },
+        "run": {
+          "source": "female-1927",
+          "start": 135,
+          "endExclusive": 153,
+          "loop": true,
+          "reason": "One full left/right gait cycle, with near and far arm/leg alternation and the same phase returning after 18 frames. Preserves original 0.75-second cadence.",
+          "limitations": [
+            "Generated shape/hand/foot fluctuations persist.",
+            "Loop selection does not prove in-game foot-speed/world-speed alignment."
+          ]
+        },
+        "jump": {
+          "source": "female-2394",
+          "start": 206,
+          "endExclusive": 234,
+          "loop": false,
+          "reason": "First uncropped jump only, including deceleration/crouch, takeoff, flight, landing and partial recovery up to last grounded frame before second takeoff.",
+          "limitations": [
+            "Starts in braking/running-to-crouch transition, not relaxed idle.",
+            "Frame233 is a grounded near-straight-knee rebound preparation with bent arms and visible motion blur, not a neutral settled standing pose.",
+            "No continuous first-jump-to-relaxed-idle recovery exists before the source immediately begins a second jump.",
+            "Do not synthesize a tail, auto-loop or crossfade into idle and call it seamless."
+          ]
+        },
+        "celebrate": {
+          "source": "female-1927",
+          "start": 260,
+          "endExclusive": 351,
+          "loop": false,
+          "reason": "Full source celebration from standing to relaxed standing, original timing.",
+          "limitations": [
+            "Original repeated ear-height gestures and slight shape changes remain."
+          ]
+        }
+      },
+      "jump": {
+        "source": {
+          "video": "artwork/kling-side-selection/source/female-2394.mp4",
+          "originalFilename": "kling_20261029_VIDEO_请帮我生成一个女生版_2394_0.mp4",
+          "sha256": "9d4dfa8803023cdb3bc0a14f2380095f9c34ceeaa0000964e4ba3ece5ef0aa9d",
+          "fps": 24,
+          "matte": {
+            "greenStart": 0.035,
+            "greenEnd": 0.48
+          },
+          "sourceKind": "user-uploaded-kling-video"
+        },
+        "registration": {
+          "referenceFrame": 0,
+          "sourceHeadTop": 346,
+          "sourceGroundY": 1030,
+          "sourceFootCenterX": 947.0,
+          "scale": 0.7017543859649122,
+          "targetStandingHeight": 480,
+          "targetAnchor": [
+            256,
+            710
+          ],
+          "method": "one_uniform_affine_per_source_from_opening_stance; no per-frame recentering",
+          "inverseAffine": [
+            1.425,
+            0,
+            582.2,
+            0,
+            1.425,
+            18.25
+          ]
+        },
+        "frames": [
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 200,
+            "sourceTimeSeconds": 8.333333333333334,
+            "rgbaSha256": "862e85beb77a41abf748665b235bc84b38851431d0871595f193e14b7d6e3e61",
+            "bounds": [
+              124,
+              225,
+              379,
+              703
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 201,
+            "sourceTimeSeconds": 8.375,
+            "rgbaSha256": "20a8bc477aef87ced730a9ab8dd35e33994f35fe4d3b3a33eed67ca4ecf484b6",
+            "bounds": [
+              155,
+              230,
+              379,
+              706
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              9.0,
+              227.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 202,
+            "sourceTimeSeconds": 8.416666666666666,
+            "rgbaSha256": "cab77a390718c2b3a0f6e44cbb84cf818dcdb05cdac90528b9cbb957ded1fa59",
+            "bounds": [
+              129,
+              223,
+              382,
+              705
+            ],
+            "discardedSmallComponents": [
+              2
+            ],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 203,
+            "sourceTimeSeconds": 8.458333333333334,
+            "rgbaSha256": "587716deb67227b0fa30ddab9b49bffc7f753ce0daba8174170dc5e0bf8de461",
+            "bounds": [
+              88,
+              213,
+              385,
+              706
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              9.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 204,
+            "sourceTimeSeconds": 8.5,
+            "rgbaSha256": "b3176b0fb0f4f0113611ccd869abd8d587933597078f57ce4be99edc8ba3d2a4",
+            "bounds": [
+              77,
+              211,
+              406,
+              682
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              9.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 205,
+            "sourceTimeSeconds": 8.541666666666666,
+            "rgbaSha256": "3c523cdca235b3c96b81719ba387942185542309f191c17faa353ca7b622e9a6",
+            "bounds": [
+              81,
+              224,
+              427,
+              698
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 206,
+            "sourceTimeSeconds": 8.583333333333334,
+            "rgbaSha256": "c18b22112c398d247dd30dcb75da606d178cfb876cc325c240c3ecf470f04001",
+            "bounds": [
+              94,
+              242,
+              435,
+              708
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 207,
+            "sourceTimeSeconds": 8.625,
+            "rgbaSha256": "6881b9d370178d9a71cc869c05d6343115adda19f8c2f0b83b5192d0d5a8edd4",
+            "bounds": [
+              103,
+              261,
+              440,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 208,
+            "sourceTimeSeconds": 8.666666666666666,
+            "rgbaSha256": "9f073aaf4b5f08b54b92c0402e7070ef78575ec784e4ffa4ef75c80c934533e7",
+            "bounds": [
+              105,
+              275,
+              444,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 209,
+            "sourceTimeSeconds": 8.708333333333334,
+            "rgbaSha256": "cfe611640448a7508b4989e01a8bafd1a6a0db48a9e011825808cdb9125c8882",
+            "bounds": [
+              103,
+              277,
+              441,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 210,
+            "sourceTimeSeconds": 8.75,
+            "rgbaSha256": "23bf39f5ac18cb8c04fc31937564154cda1d4011772f938b9b1ded6ed5bd6157",
+            "bounds": [
+              107,
+              242,
+              427,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 211,
+            "sourceTimeSeconds": 8.791666666666666,
+            "rgbaSha256": "0c0425a6c08f6d31188aa4c0b0d28dd286ad430cb308296768571dd072a91f02",
+            "bounds": [
+              137,
+              188,
+              403,
+              709
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 212,
+            "sourceTimeSeconds": 8.833333333333334,
+            "rgbaSha256": "eb4d345d58edefd0bdb1199a3db67f01099d5a9176f527ba5dfd01bafd016225",
+            "bounds": [
+              137,
+              133,
+              383,
+              681
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 213,
+            "sourceTimeSeconds": 8.875,
+            "rgbaSha256": "99a8ab08876842bcd445b9c445582a8cd4a6abd1e657abd79c67af695cc30351",
+            "bounds": [
+              126,
+              91,
+              373,
+              626
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 214,
+            "sourceTimeSeconds": 8.916666666666666,
+            "rgbaSha256": "923e9cd874d81812e086bf6e8216e4b98a63e759753769614d72bf80152cac29",
+            "bounds": [
+              119,
+              64,
+              367,
+              571
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 215,
+            "sourceTimeSeconds": 8.958333333333334,
+            "rgbaSha256": "b2fc72de6a98792f0b6e07edab3c660490a4c6ca741251af5e414eb055baeecb",
+            "bounds": [
+              116,
+              51,
+              374,
+              532
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 216,
+            "sourceTimeSeconds": 9.0,
+            "rgbaSha256": "f255fc34d32172f37572f1852d45daf46214f46ecbfdd475643cb5a7d9107d2e",
+            "bounds": [
+              113,
+              46,
+              382,
+              510
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 217,
+            "sourceTimeSeconds": 9.041666666666666,
+            "rgbaSha256": "80ed61ba89b1e275c9c6aea3a16f2c688824c14e75e8e2834144d992be4f2e64",
+            "bounds": [
+              97,
+              51,
+              396,
+              508
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 218,
+            "sourceTimeSeconds": 9.083333333333334,
+            "rgbaSha256": "5a5814c209bce9a0fb1eff694c35f5f2ad28702e5857b9ca1b5cbc386b04cc3f",
+            "bounds": [
+              80,
+              68,
+              400,
+              524
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 219,
+            "sourceTimeSeconds": 9.125,
+            "rgbaSha256": "838be099856629b7d011601143731d6c2a96657fbfe30f34965e3e4a4a9d364d",
+            "bounds": [
+              74,
+              96,
+              411,
+              569
+            ],
+            "discardedSmallComponents": [
+              1
+            ],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 220,
+            "sourceTimeSeconds": 9.166666666666666,
+            "rgbaSha256": "cf1e1ac82fc055c18da11a2c6fe21cc935f5c75c29a3e7bbfcbdd41e3fc93f29",
+            "bounds": [
+              82,
+              134,
+              423,
+              620
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 221,
+            "sourceTimeSeconds": 9.208333333333334,
+            "rgbaSha256": "aa7ea2cbba5c9f4b3a1f2da5ab2fd9fc48fd1174434abafefdd69f32e028cbe8",
+            "bounds": [
+              91,
+              193,
+              437,
+              677
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 222,
+            "sourceTimeSeconds": 9.25,
+            "rgbaSha256": "b07778b139f8667d680230866fadff335d9a8b959bbe923e6b79e12ad0e1658b",
+            "bounds": [
+              96,
+              251,
+              461,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 223,
+            "sourceTimeSeconds": 9.291666666666666,
+            "rgbaSha256": "06c6289fcec7d168831dea58583ceae909151b8c3d26219c342b4fae017e115a",
+            "bounds": [
+              106,
+              284,
+              463,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 224,
+            "sourceTimeSeconds": 9.333333333333334,
+            "rgbaSha256": "02032512cbf65b1f71b4324e61e9183dafacd502947804bbcae5804a69fb9080",
+            "bounds": [
+              133,
+              294,
+              452,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              8.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 225,
+            "sourceTimeSeconds": 9.375,
+            "rgbaSha256": "ca068463c943fd5d9877d62b7334b223c6ac4d306757b48a030d4f3d092d2967",
+            "bounds": [
+              154,
+              287,
+              448,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 226,
+            "sourceTimeSeconds": 9.416666666666666,
+            "rgbaSha256": "793d7c7e436ff43bbfb7a1bcfd1961d0da4707259df7a5f7e9f3d384c03e2978",
+            "bounds": [
+              154,
+              276,
+              440,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 227,
+            "sourceTimeSeconds": 9.458333333333334,
+            "rgbaSha256": "a35da3845ab1017ea0391cf6e521d3d754dd95267696e2846f2abf932cf7bcad",
+            "bounds": [
+              152,
+              265,
+              432,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 228,
+            "sourceTimeSeconds": 9.5,
+            "rgbaSha256": "3ca9cff5b123123c77ec2906cf2dacd1d1497c19af3083cb29ff82efb4ea2528",
+            "bounds": [
+              149,
+              255,
+              425,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              5.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 229,
+            "sourceTimeSeconds": 9.541666666666666,
+            "rgbaSha256": "767aeaf292b16ee867e4fa0a3ad6fbb699143e4a8eac8b75d230964f83fc3e35",
+            "bounds": [
+              148,
+              251,
+              418,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 230,
+            "sourceTimeSeconds": 9.583333333333334,
+            "rgbaSha256": "d1ee6cd56d34037881cecd06a3daefb9b0cff6ae626d55986adca16dca6bcba3",
+            "bounds": [
+              148,
+              248,
+              414,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              9.0,
+              227.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 231,
+            "sourceTimeSeconds": 9.625,
+            "rgbaSha256": "fd1f7c55a7e607d1ab16fe77d6f8d4ce8285eb39e4afe801a1a30a7e0f295c81",
+            "bounds": [
+              147,
+              246,
+              409,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              9.0,
+              228.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 232,
+            "sourceTimeSeconds": 9.666666666666666,
+            "rgbaSha256": "f3eeb28229576e24440df1e2738d02f116bf1d743715b5be4af5aaa20afd26c7",
+            "bounds": [
+              144,
+              231,
+              400,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              9.0,
+              227.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 233,
+            "sourceTimeSeconds": 9.708333333333334,
+            "rgbaSha256": "d61623d693a85605e48fc236a41ad6daedffef5d98bc5f03c4f21acc9bf6bb87",
+            "bounds": [
+              137,
+              202,
+              388,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 234,
+            "sourceTimeSeconds": 9.75,
+            "rgbaSha256": "ada845010a7d172f9066c41ab46efa26a8bda7846d9f7fd86ae99c6c0232262d",
+            "bounds": [
+              140,
+              150,
+              387,
+              692
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 235,
+            "sourceTimeSeconds": 9.791666666666666,
+            "rgbaSha256": "b9b6d7ce308bf7f184aec207682de85ddd1fd2b8c0386833f2b00d042cffb229",
+            "bounds": [
+              138,
+              106,
+              378,
+              651
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 236,
+            "sourceTimeSeconds": 9.833333333333334,
+            "rgbaSha256": "34668670554503da83d75adb0c122a3f49e439c391397a012958f099ee50f1f7",
+            "bounds": [
+              135,
+              78,
+              369,
+              606
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 237,
+            "sourceTimeSeconds": 9.875,
+            "rgbaSha256": "d97c823151e3ef40b9bbab3f6b05981ef3793f87a3113e7e279d22c44f1501f1",
+            "bounds": [
+              129,
+              60,
+              372,
+              563
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              2.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 238,
+            "sourceTimeSeconds": 9.916666666666666,
+            "rgbaSha256": "6878960bf11063ac915fdcbaac8b8af7bbff004b4b74fe8eee205459a51a3dc8",
+            "bounds": [
+              124,
+              54,
+              378,
+              526
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              2.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 239,
+            "sourceTimeSeconds": 9.958333333333334,
+            "rgbaSha256": "c21320285c3bc5630772d5ebc50f5e5da0ab968a582c26129b5b0a6a971a35cf",
+            "bounds": [
+              117,
+              56,
+              395,
+              508
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              2.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 240,
+            "sourceTimeSeconds": 10.0,
+            "rgbaSha256": "c1153096136d6874537915924564fd585e5df9619a290bb0aa6f886ab5ddaa14",
+            "bounds": [
+              110,
+              70,
+              411,
+              519
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              226.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 241,
+            "sourceTimeSeconds": 10.041666666666666,
+            "rgbaSha256": "b946b4ab77bf94982575e738d731208ccd11b6343816c0e6df86647c28704a15",
+            "bounds": [
+              108,
+              91,
+              422,
+              553
+            ],
+            "discardedSmallComponents": [
+              1
+            ],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 242,
+            "sourceTimeSeconds": 10.083333333333334,
+            "rgbaSha256": "3c6f3059cb2f2775ab65c4008e862ab598d0260d872e3801fda290632c1adfd7",
+            "bounds": [
+              109,
+              123,
+              420,
+              612
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 243,
+            "sourceTimeSeconds": 10.125,
+            "rgbaSha256": "f723f81327b8cf232b477c0669f2e0f39a8454632be4b461435c0f3883feb2da",
+            "bounds": [
+              119,
+              168,
+              416,
+              670
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              228.0,
+              3.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 244,
+            "sourceTimeSeconds": 10.166666666666666,
+            "rgbaSha256": "379f7d687e1719e4838e620e3ecfb401b1ed942c9e91aeaa2fafeaac93d5302d",
+            "bounds": [
+              119,
+              223,
+              425,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              2.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 245,
+            "sourceTimeSeconds": 10.208333333333334,
+            "rgbaSha256": "f56eb4da3c7cbdcf19d03d688a6b6bb8938b0bc97c6cbfad9f10b6372f34c8e8",
+            "bounds": [
+              134,
+              255,
+              427,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              2.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 246,
+            "sourceTimeSeconds": 10.25,
+            "rgbaSha256": "35a6dab178e5e28c85da3d1c67a93b11d8d9e247317b49b3833b0e78cd463665",
+            "bounds": [
+              144,
+              263,
+              413,
+              710
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              226.0,
+              2.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 247,
+            "sourceTimeSeconds": 10.291666666666666,
+            "rgbaSha256": "c87816ad6dcfa50e5a19ac93e424b55274d9bb9ed5f38e54e7609934587a1160",
+            "bounds": [
+              151,
+              265,
+              417,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              227.0,
+              2.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 248,
+            "sourceTimeSeconds": 10.333333333333334,
+            "rgbaSha256": "69127e999953a9f9aa5a6edfdaecbcf87e9a7262d010fbfc5e3301594bd3ff4e",
+            "bounds": [
+              156,
+              259,
+              417,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              226.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          },
+          {
+            "action": "double-jump",
+            "sourceId": "female-2394",
+            "sourceFrame": 249,
+            "sourceTimeSeconds": 10.375,
+            "rgbaSha256": "7fc9bed33e561d1974fddb1ee733eadedbd634b194f90d456e831088c4370639",
+            "bounds": [
+              160,
+              252,
+              414,
+              711
+            ],
+            "discardedSmallComponents": [],
+            "opaqueRgbPreservedBeforeRegistration": true,
+            "backgroundRgb": [
+              10.0,
+              226.0,
+              4.0
+            ],
+            "retainedSourceRegions": []
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "action": "walk",
+          "packFrameId": 16
+        },
+        {
+          "action": "walk",
+          "packFrameId": 17
+        },
+        {
+          "action": "walk",
+          "packFrameId": 18
+        },
+        {
+          "action": "walk",
+          "packFrameId": 19
+        },
+        {
+          "action": "walk",
+          "packFrameId": 20
+        },
+        {
+          "action": "walk",
+          "packFrameId": 21
+        },
+        {
+          "action": "walk",
+          "packFrameId": 22
+        },
+        {
+          "action": "walk",
+          "packFrameId": 23
+        },
+        {
+          "action": "walk",
+          "packFrameId": 24
+        },
+        {
+          "action": "walk",
+          "packFrameId": 25
+        },
+        {
+          "action": "walk",
+          "packFrameId": 26
+        },
+        {
+          "action": "walk",
+          "packFrameId": 27
+        },
+        {
+          "action": "walk",
+          "packFrameId": 28
+        },
+        {
+          "action": "walk",
+          "packFrameId": 29
+        },
+        {
+          "action": "walk",
+          "packFrameId": 30
+        },
+        {
+          "action": "walk",
+          "packFrameId": 31
+        },
+        {
+          "action": "walk",
+          "packFrameId": 32
+        },
+        {
+          "action": "walk",
+          "packFrameId": 33
+        },
+        {
+          "action": "walk",
+          "packFrameId": 16
+        },
+        {
+          "action": "walk",
+          "packFrameId": 17
+        },
+        {
+          "action": "walk",
+          "packFrameId": 18
+        },
+        {
+          "action": "walk",
+          "packFrameId": 19
+        },
+        {
+          "action": "walk",
+          "packFrameId": 20
+        },
+        {
+          "action": "walk",
+          "packFrameId": 21
+        },
+        {
+          "action": "walk",
+          "packFrameId": 22
+        },
+        {
+          "action": "walk",
+          "packFrameId": 23
+        },
+        {
+          "action": "walk",
+          "packFrameId": 24
+        },
+        {
+          "action": "walk",
+          "packFrameId": 25
+        },
+        {
+          "action": "walk",
+          "packFrameId": 26
+        },
+        {
+          "action": "walk",
+          "packFrameId": 27
+        },
+        {
+          "action": "walk",
+          "packFrameId": 28
+        },
+        {
+          "action": "walk",
+          "packFrameId": 29
+        },
+        {
+          "action": "walk",
+          "packFrameId": 30
+        },
+        {
+          "action": "walk",
+          "packFrameId": 31
+        },
+        {
+          "action": "walk",
+          "packFrameId": 32
+        },
+        {
+          "action": "walk",
+          "packFrameId": 33
+        },
+        {
+          "action": "walk",
+          "packFrameId": 16
+        },
+        {
+          "action": "walk",
+          "packFrameId": 17
+        },
+        {
+          "action": "walk",
+          "packFrameId": 18
+        },
+        {
+          "action": "walk",
+          "packFrameId": 19
+        },
+        {
+          "action": "walk",
+          "packFrameId": 20
+        },
+        {
+          "action": "walk",
+          "packFrameId": 21
+        },
+        {
+          "action": "walk",
+          "packFrameId": 22
+        },
+        {
+          "action": "walk",
+          "packFrameId": 23
+        },
+        {
+          "action": "walk",
+          "packFrameId": 24
+        },
+        {
+          "action": "walk",
+          "packFrameId": 25
+        },
+        {
+          "action": "walk",
+          "packFrameId": 26
+        },
+        {
+          "action": "walk",
+          "packFrameId": 27
+        },
+        {
+          "action": "walk",
+          "packFrameId": 28
+        },
+        {
+          "action": "walk",
+          "packFrameId": 29
+        },
+        {
+          "action": "walk",
+          "packFrameId": 30
+        },
+        {
+          "action": "walk",
+          "packFrameId": 31
+        },
+        {
+          "action": "walk",
+          "packFrameId": 32
+        },
+        {
+          "action": "walk",
+          "packFrameId": 33
+        },
+        {
+          "action": "run",
+          "packFrameId": 34
+        },
+        {
+          "action": "run",
+          "packFrameId": 35
+        },
+        {
+          "action": "run",
+          "packFrameId": 36
+        },
+        {
+          "action": "run",
+          "packFrameId": 37
+        },
+        {
+          "action": "run",
+          "packFrameId": 38
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "run",
+          "packFrameId": 34
+        },
+        {
+          "action": "run",
+          "packFrameId": 35
+        },
+        {
+          "action": "run",
+          "packFrameId": 36
+        },
+        {
+          "action": "run",
+          "packFrameId": 37
+        },
+        {
+          "action": "run",
+          "packFrameId": 38
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "run",
+          "packFrameId": 34
+        },
+        {
+          "action": "run",
+          "packFrameId": 35
+        },
+        {
+          "action": "run",
+          "packFrameId": 36
+        },
+        {
+          "action": "run",
+          "packFrameId": 37
+        },
+        {
+          "action": "run",
+          "packFrameId": 38
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "run",
+          "packFrameId": 34
+        },
+        {
+          "action": "run",
+          "packFrameId": 35
+        },
+        {
+          "action": "run",
+          "packFrameId": 36
+        },
+        {
+          "action": "run",
+          "packFrameId": 37
+        },
+        {
+          "action": "run",
+          "packFrameId": 38
+        },
+        {
+          "action": "run",
+          "packFrameId": 39
+        },
+        {
+          "action": "run",
+          "packFrameId": 40
+        },
+        {
+          "action": "run",
+          "packFrameId": 41
+        },
+        {
+          "action": "run",
+          "packFrameId": 42
+        },
+        {
+          "action": "run",
+          "packFrameId": 43
+        },
+        {
+          "action": "run",
+          "packFrameId": 44
+        },
+        {
+          "action": "run",
+          "packFrameId": 45
+        },
+        {
+          "action": "run",
+          "packFrameId": 46
+        },
+        {
+          "action": "run",
+          "packFrameId": 47
+        },
+        {
+          "action": "run",
+          "packFrameId": 48
+        },
+        {
+          "action": "run",
+          "packFrameId": 49
+        },
+        {
+          "action": "run",
+          "packFrameId": 50
+        },
+        {
+          "action": "run",
+          "packFrameId": 51
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 200,
+          "sourceTimeSeconds": 8.333333333333334,
+          "rgbaSha256": "862e85beb77a41abf748665b235bc84b38851431d0871595f193e14b7d6e3e61",
+          "bounds": [
+            124,
+            225,
+            379,
+            703
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 201,
+          "sourceTimeSeconds": 8.375,
+          "rgbaSha256": "20a8bc477aef87ced730a9ab8dd35e33994f35fe4d3b3a33eed67ca4ecf484b6",
+          "bounds": [
+            155,
+            230,
+            379,
+            706
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            9.0,
+            227.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 202,
+          "sourceTimeSeconds": 8.416666666666666,
+          "rgbaSha256": "cab77a390718c2b3a0f6e44cbb84cf818dcdb05cdac90528b9cbb957ded1fa59",
+          "bounds": [
+            129,
+            223,
+            382,
+            705
+          ],
+          "discardedSmallComponents": [
+            2
+          ],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 203,
+          "sourceTimeSeconds": 8.458333333333334,
+          "rgbaSha256": "587716deb67227b0fa30ddab9b49bffc7f753ce0daba8174170dc5e0bf8de461",
+          "bounds": [
+            88,
+            213,
+            385,
+            706
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            9.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 204,
+          "sourceTimeSeconds": 8.5,
+          "rgbaSha256": "b3176b0fb0f4f0113611ccd869abd8d587933597078f57ce4be99edc8ba3d2a4",
+          "bounds": [
+            77,
+            211,
+            406,
+            682
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            9.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 205,
+          "sourceTimeSeconds": 8.541666666666666,
+          "rgbaSha256": "3c523cdca235b3c96b81719ba387942185542309f191c17faa353ca7b622e9a6",
+          "bounds": [
+            81,
+            224,
+            427,
+            698
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 206,
+          "sourceTimeSeconds": 8.583333333333334,
+          "rgbaSha256": "c18b22112c398d247dd30dcb75da606d178cfb876cc325c240c3ecf470f04001",
+          "bounds": [
+            94,
+            242,
+            435,
+            708
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 207,
+          "sourceTimeSeconds": 8.625,
+          "rgbaSha256": "6881b9d370178d9a71cc869c05d6343115adda19f8c2f0b83b5192d0d5a8edd4",
+          "bounds": [
+            103,
+            261,
+            440,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 208,
+          "sourceTimeSeconds": 8.666666666666666,
+          "rgbaSha256": "9f073aaf4b5f08b54b92c0402e7070ef78575ec784e4ffa4ef75c80c934533e7",
+          "bounds": [
+            105,
+            275,
+            444,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 209,
+          "sourceTimeSeconds": 8.708333333333334,
+          "rgbaSha256": "cfe611640448a7508b4989e01a8bafd1a6a0db48a9e011825808cdb9125c8882",
+          "bounds": [
+            103,
+            277,
+            441,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 210,
+          "sourceTimeSeconds": 8.75,
+          "rgbaSha256": "23bf39f5ac18cb8c04fc31937564154cda1d4011772f938b9b1ded6ed5bd6157",
+          "bounds": [
+            107,
+            242,
+            427,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 211,
+          "sourceTimeSeconds": 8.791666666666666,
+          "rgbaSha256": "0c0425a6c08f6d31188aa4c0b0d28dd286ad430cb308296768571dd072a91f02",
+          "bounds": [
+            137,
+            188,
+            403,
+            709
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 212,
+          "sourceTimeSeconds": 8.833333333333334,
+          "rgbaSha256": "eb4d345d58edefd0bdb1199a3db67f01099d5a9176f527ba5dfd01bafd016225",
+          "bounds": [
+            137,
+            133,
+            383,
+            681
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 213,
+          "sourceTimeSeconds": 8.875,
+          "rgbaSha256": "99a8ab08876842bcd445b9c445582a8cd4a6abd1e657abd79c67af695cc30351",
+          "bounds": [
+            126,
+            91,
+            373,
+            626
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 214,
+          "sourceTimeSeconds": 8.916666666666666,
+          "rgbaSha256": "923e9cd874d81812e086bf6e8216e4b98a63e759753769614d72bf80152cac29",
+          "bounds": [
+            119,
+            64,
+            367,
+            571
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 215,
+          "sourceTimeSeconds": 8.958333333333334,
+          "rgbaSha256": "b2fc72de6a98792f0b6e07edab3c660490a4c6ca741251af5e414eb055baeecb",
+          "bounds": [
+            116,
+            51,
+            374,
+            532
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 216,
+          "sourceTimeSeconds": 9.0,
+          "rgbaSha256": "f255fc34d32172f37572f1852d45daf46214f46ecbfdd475643cb5a7d9107d2e",
+          "bounds": [
+            113,
+            46,
+            382,
+            510
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 217,
+          "sourceTimeSeconds": 9.041666666666666,
+          "rgbaSha256": "80ed61ba89b1e275c9c6aea3a16f2c688824c14e75e8e2834144d992be4f2e64",
+          "bounds": [
+            97,
+            51,
+            396,
+            508
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 218,
+          "sourceTimeSeconds": 9.083333333333334,
+          "rgbaSha256": "5a5814c209bce9a0fb1eff694c35f5f2ad28702e5857b9ca1b5cbc386b04cc3f",
+          "bounds": [
+            80,
+            68,
+            400,
+            524
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 219,
+          "sourceTimeSeconds": 9.125,
+          "rgbaSha256": "838be099856629b7d011601143731d6c2a96657fbfe30f34965e3e4a4a9d364d",
+          "bounds": [
+            74,
+            96,
+            411,
+            569
+          ],
+          "discardedSmallComponents": [
+            1
+          ],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 220,
+          "sourceTimeSeconds": 9.166666666666666,
+          "rgbaSha256": "cf1e1ac82fc055c18da11a2c6fe21cc935f5c75c29a3e7bbfcbdd41e3fc93f29",
+          "bounds": [
+            82,
+            134,
+            423,
+            620
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 221,
+          "sourceTimeSeconds": 9.208333333333334,
+          "rgbaSha256": "aa7ea2cbba5c9f4b3a1f2da5ab2fd9fc48fd1174434abafefdd69f32e028cbe8",
+          "bounds": [
+            91,
+            193,
+            437,
+            677
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 222,
+          "sourceTimeSeconds": 9.25,
+          "rgbaSha256": "b07778b139f8667d680230866fadff335d9a8b959bbe923e6b79e12ad0e1658b",
+          "bounds": [
+            96,
+            251,
+            461,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 223,
+          "sourceTimeSeconds": 9.291666666666666,
+          "rgbaSha256": "06c6289fcec7d168831dea58583ceae909151b8c3d26219c342b4fae017e115a",
+          "bounds": [
+            106,
+            284,
+            463,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 224,
+          "sourceTimeSeconds": 9.333333333333334,
+          "rgbaSha256": "02032512cbf65b1f71b4324e61e9183dafacd502947804bbcae5804a69fb9080",
+          "bounds": [
+            133,
+            294,
+            452,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            8.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 225,
+          "sourceTimeSeconds": 9.375,
+          "rgbaSha256": "ca068463c943fd5d9877d62b7334b223c6ac4d306757b48a030d4f3d092d2967",
+          "bounds": [
+            154,
+            287,
+            448,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 226,
+          "sourceTimeSeconds": 9.416666666666666,
+          "rgbaSha256": "793d7c7e436ff43bbfb7a1bcfd1961d0da4707259df7a5f7e9f3d384c03e2978",
+          "bounds": [
+            154,
+            276,
+            440,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 227,
+          "sourceTimeSeconds": 9.458333333333334,
+          "rgbaSha256": "a35da3845ab1017ea0391cf6e521d3d754dd95267696e2846f2abf932cf7bcad",
+          "bounds": [
+            152,
+            265,
+            432,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 228,
+          "sourceTimeSeconds": 9.5,
+          "rgbaSha256": "3ca9cff5b123123c77ec2906cf2dacd1d1497c19af3083cb29ff82efb4ea2528",
+          "bounds": [
+            149,
+            255,
+            425,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            5.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 229,
+          "sourceTimeSeconds": 9.541666666666666,
+          "rgbaSha256": "767aeaf292b16ee867e4fa0a3ad6fbb699143e4a8eac8b75d230964f83fc3e35",
+          "bounds": [
+            148,
+            251,
+            418,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 230,
+          "sourceTimeSeconds": 9.583333333333334,
+          "rgbaSha256": "d1ee6cd56d34037881cecd06a3daefb9b0cff6ae626d55986adca16dca6bcba3",
+          "bounds": [
+            148,
+            248,
+            414,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            9.0,
+            227.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 231,
+          "sourceTimeSeconds": 9.625,
+          "rgbaSha256": "fd1f7c55a7e607d1ab16fe77d6f8d4ce8285eb39e4afe801a1a30a7e0f295c81",
+          "bounds": [
+            147,
+            246,
+            409,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            9.0,
+            228.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 232,
+          "sourceTimeSeconds": 9.666666666666666,
+          "rgbaSha256": "f3eeb28229576e24440df1e2738d02f116bf1d743715b5be4af5aaa20afd26c7",
+          "bounds": [
+            144,
+            231,
+            400,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            9.0,
+            227.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 233,
+          "sourceTimeSeconds": 9.708333333333334,
+          "rgbaSha256": "d61623d693a85605e48fc236a41ad6daedffef5d98bc5f03c4f21acc9bf6bb87",
+          "bounds": [
+            137,
+            202,
+            388,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 234,
+          "sourceTimeSeconds": 9.75,
+          "rgbaSha256": "ada845010a7d172f9066c41ab46efa26a8bda7846d9f7fd86ae99c6c0232262d",
+          "bounds": [
+            140,
+            150,
+            387,
+            692
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 235,
+          "sourceTimeSeconds": 9.791666666666666,
+          "rgbaSha256": "b9b6d7ce308bf7f184aec207682de85ddd1fd2b8c0386833f2b00d042cffb229",
+          "bounds": [
+            138,
+            106,
+            378,
+            651
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 236,
+          "sourceTimeSeconds": 9.833333333333334,
+          "rgbaSha256": "34668670554503da83d75adb0c122a3f49e439c391397a012958f099ee50f1f7",
+          "bounds": [
+            135,
+            78,
+            369,
+            606
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 237,
+          "sourceTimeSeconds": 9.875,
+          "rgbaSha256": "d97c823151e3ef40b9bbab3f6b05981ef3793f87a3113e7e279d22c44f1501f1",
+          "bounds": [
+            129,
+            60,
+            372,
+            563
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            2.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 238,
+          "sourceTimeSeconds": 9.916666666666666,
+          "rgbaSha256": "6878960bf11063ac915fdcbaac8b8af7bbff004b4b74fe8eee205459a51a3dc8",
+          "bounds": [
+            124,
+            54,
+            378,
+            526
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            2.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 239,
+          "sourceTimeSeconds": 9.958333333333334,
+          "rgbaSha256": "c21320285c3bc5630772d5ebc50f5e5da0ab968a582c26129b5b0a6a971a35cf",
+          "bounds": [
+            117,
+            56,
+            395,
+            508
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            2.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 240,
+          "sourceTimeSeconds": 10.0,
+          "rgbaSha256": "c1153096136d6874537915924564fd585e5df9619a290bb0aa6f886ab5ddaa14",
+          "bounds": [
+            110,
+            70,
+            411,
+            519
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            226.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 241,
+          "sourceTimeSeconds": 10.041666666666666,
+          "rgbaSha256": "b946b4ab77bf94982575e738d731208ccd11b6343816c0e6df86647c28704a15",
+          "bounds": [
+            108,
+            91,
+            422,
+            553
+          ],
+          "discardedSmallComponents": [
+            1
+          ],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 242,
+          "sourceTimeSeconds": 10.083333333333334,
+          "rgbaSha256": "3c6f3059cb2f2775ab65c4008e862ab598d0260d872e3801fda290632c1adfd7",
+          "bounds": [
+            109,
+            123,
+            420,
+            612
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 243,
+          "sourceTimeSeconds": 10.125,
+          "rgbaSha256": "f723f81327b8cf232b477c0669f2e0f39a8454632be4b461435c0f3883feb2da",
+          "bounds": [
+            119,
+            168,
+            416,
+            670
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            228.0,
+            3.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 244,
+          "sourceTimeSeconds": 10.166666666666666,
+          "rgbaSha256": "379f7d687e1719e4838e620e3ecfb401b1ed942c9e91aeaa2fafeaac93d5302d",
+          "bounds": [
+            119,
+            223,
+            425,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            2.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 245,
+          "sourceTimeSeconds": 10.208333333333334,
+          "rgbaSha256": "f56eb4da3c7cbdcf19d03d688a6b6bb8938b0bc97c6cbfad9f10b6372f34c8e8",
+          "bounds": [
+            134,
+            255,
+            427,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            2.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 246,
+          "sourceTimeSeconds": 10.25,
+          "rgbaSha256": "35a6dab178e5e28c85da3d1c67a93b11d8d9e247317b49b3833b0e78cd463665",
+          "bounds": [
+            144,
+            263,
+            413,
+            710
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            226.0,
+            2.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 247,
+          "sourceTimeSeconds": 10.291666666666666,
+          "rgbaSha256": "c87816ad6dcfa50e5a19ac93e424b55274d9bb9ed5f38e54e7609934587a1160",
+          "bounds": [
+            151,
+            265,
+            417,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            227.0,
+            2.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 248,
+          "sourceTimeSeconds": 10.333333333333334,
+          "rgbaSha256": "69127e999953a9f9aa5a6edfdaecbcf87e9a7262d010fbfc5e3301594bd3ff4e",
+          "bounds": [
+            156,
+            259,
+            417,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            226.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "double-jump",
+          "sourceId": "female-2394",
+          "sourceFrame": 249,
+          "sourceTimeSeconds": 10.375,
+          "rgbaSha256": "7fc9bed33e561d1974fddb1ee733eadedbd634b194f90d456e831088c4370639",
+          "bounds": [
+            160,
+            252,
+            414,
+            711
+          ],
+          "discardedSmallComponents": [],
+          "opaqueRgbPreservedBeforeRegistration": true,
+          "backgroundRgb": [
+            10.0,
+            226.0,
+            4.0
+          ],
+          "retainedSourceRegions": []
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "hold"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        },
+        {
+          "action": "restart"
+        }
+      ]
+    }
+  },
+  "media": [
+    {
+      "file": "male-walk-run-double-jump-right.gif",
+      "sha256": "8d18a84dd21b2224c26ea35f4afb57e02d9e914478ffe061d4f4391944f29f66",
+      "sourceTicks": 206,
+      "encodedFrames": 178,
+      "durationMs": 8580,
+      "decoded": true,
+      "loop": true,
+      "presentationHoldTicks": 18,
+      "restartCardTicks": 12
+    },
+    {
+      "file": "female-walk-run-double-jump-right.gif",
+      "sha256": "032078677dfc7e9bf725239e7a76c613d4174dc1cb625a638b11c4c66ab8ce03",
+      "sourceTicks": 206,
+      "encodedFrames": 178,
+      "durationMs": 8580,
+      "decoded": true,
+      "loop": true,
+      "presentationHoldTicks": 18,
+      "restartCardTicks": 12
+    },
+    {
+      "file": "pair-walk-run-double-jump-right.gif",
+      "sha256": "c0c9dd2e2b748abb958c42642287ca7d63cdd20fd52688035e46334b039c1a86",
+      "sourceTicks": 206,
+      "encodedFrames": 178,
+      "durationMs": 8580,
+      "decoded": true,
+      "loop": true,
+      "presentationHoldTicks": 18,
+      "restartCardTicks": 12
+    },
+    {
+      "file": "pair-walk-run-double-jump-right.mp4",
+      "sha256": "c12b702e4d1d01e0f48484da72243b3df89a28375071c072f38112e536f216f4",
+      "fps": 24,
+      "frames": 206,
+      "durationSeconds": 8.583333,
+      "decoded": true
+    }
+  ],
+  "limitations": [
+    "Hard cuts between different sources remain visible.",
+    "Double jumps end in shallow crouch, not neutral standing.",
+    "Source blur/green spill remains. No wardrobe compatibility implied.",
+    "18-tick hold and 12-tick restart card are presentation, not source animation."
+  ]
+}

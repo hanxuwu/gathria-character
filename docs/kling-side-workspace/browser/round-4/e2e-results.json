@@ -1,0 +1,296 @@
+{
+  "config": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/gathria-character/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/side-view.spec.ts",
+      "--workers=1",
+      "--reporter=list,json",
+      "--output=/tmp/side-workspace-e2e-results"
+    ],
+    "configFile": "/workspace/gathria-character/playwright.config.ts",
+    "rootDir": "/workspace/gathria-character/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/side-workspace-e2e-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/workspace/gathria-character/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/tmp/side-workspace-e2e-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/workspace/gathria-character/tests/e2e",
+        "snapshotDir": "/workspace/gathria-character/tests/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5175",
+          "headless": true,
+          "launchOptions": {
+            "executablePath": "/usr/bin/chromium",
+            "args": []
+          },
+          "screenshot": "only-on-failure",
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 5175 --strictPort",
+      "url": "http://127.0.0.1:5175",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "side-view.spec.ts",
+      "file": "side-view.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "male: native side frames, guide-free exports, mixed outfit and project reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 22448,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T04:04:25.785Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e918c8ff38cf46c6ceaf-7c61c04204b6a88baf7b",
+          "file": "side-view.spec.ts",
+          "line": 50,
+          "column": 3
+        },
+        {
+          "title": "female: native side frames, guide-free exports, mixed outfit and project reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21912,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T04:04:48.529Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e918c8ff38cf46c6ceaf-e040a34c52995f00265d",
+          "file": "side-view.spec.ts",
+          "line": 50,
+          "column": 3
+        },
+        {
+          "title": "side keyboard travel retains source timing and the full two-jump one-shot",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T04:05:10.459Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e918c8ff38cf46c6ceaf-9faf1bf779dece012f51",
+          "file": "side-view.spec.ts",
+          "line": 160,
+          "column": 1
+        },
+        {
+          "title": "side source load failure retries and character preparation disables stale exports",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6408,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('side-playground').getByRole('alert')\nExpected substring: \u001b[32m\"503\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByTestId('side-playground').getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('side-playground').getByRole('alert')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('side-playground').getByRole('alert')\nExpected substring: \u001b[32m\"503\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByTestId('side-playground').getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('side-playground').getByRole('alert')\u001b[22m\n\n    at /workspace/gathria-character/tests/e2e/side-view.spec.ts:231:5",
+                    "location": {
+                      "file": "/workspace/gathria-character/tests/e2e/side-view.spec.ts",
+                      "column": 5,
+                      "line": 231
+                    },
+                    "snippet": "  229 |   await expect(\n  230 |     page.getByTestId(\"side-playground\").getByRole(\"alert\"),\n> 231 |   ).toContainText(\"503\");\n      |     ^\n  232 |   await expect(page.getByTestId(\"side-export-pack\")).toBeDisabled();\n  233 |   await page.getByRole(\"button\", { name: \"重新载入\", exact: true }).click();\n  234 |   await ready(page);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/workspace/gathria-character/tests/e2e/side-view.spec.ts",
+                        "column": 5,
+                        "line": 231
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('side-playground').getByRole('alert')\nExpected substring: \u001b[32m\"503\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByTestId('side-playground').getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('side-playground').getByRole('alert')\u001b[22m\n\n\n  229 |   await expect(\n  230 |     page.getByTestId(\"side-playground\").getByRole(\"alert\"),\n> 231 |   ).toContainText(\"503\");\n      |     ^\n  232 |   await expect(page.getByTestId(\"side-export-pack\")).toBeDisabled();\n  233 |   await page.getByRole(\"button\", { name: \"重新载入\", exact: true }).click();\n  234 |   await ready(page);\n    at /workspace/gathria-character/tests/e2e/side-view.spec.ts:231:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T04:05:22.751Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/side-workspace-e2e-results/side-view-side-source-load-e7a54-tion-disables-stale-exports/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/side-workspace-e2e-results/side-view-side-source-load-e7a54-tion-disables-stale-exports/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/tmp/side-workspace-e2e-results/side-view-side-source-load-e7a54-tion-disables-stale-exports/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/workspace/gathria-character/tests/e2e/side-view.spec.ts",
+                    "column": 5,
+                    "line": 231
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e918c8ff38cf46c6ceaf-38ce58bb4fe37bdcea4d",
+          "file": "side-view.spec.ts",
+          "line": 214,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-29T04:04:24.513Z",
+    "duration": 65556.266,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

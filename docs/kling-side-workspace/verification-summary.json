@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-29",
+  "scope": "Current side-view work only; historical counts excluded",
+  "unitTests": {
+    "command": "npm run test -- src/side-view/motion.test.ts src/core/pack-v3.test.ts src/core/baked-source.test.ts src/wardrobe/project.test.ts src/wardrobe/compositor.test.ts src/wardrobe/action-gif.test.ts src/consumer/player.test.ts",
+    "passed": 150,
+    "files": 7,
+    "failed": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "includesTypecheck": true
+  },
+  "browserEvidence": "browser/round-4/evidence-index.json",
+  "browserPassed": true,
+  "e2eEvidence": "browser/round-4/e2e-summary.json",
+  "distinctE2ePassed": 4,
+  "e2eNote": "Three initial cases passed; the StrictMode fault-injection harness was corrected and only the fourth case reran and passed. Original failed invocation preserved.",
+  "reviewGifs": {
+    "count": 17,
+    "allDecode": true,
+    "frameCountsExact": true,
+    "durationsExact": true,
+    "index": "review/review-index.json"
+  },
+  "visualReview": "visual-review.md",
+  "visualResult": "Reviewable candidate with documented source and conservative boundary limitations; no claim of flawless artwork."
+}

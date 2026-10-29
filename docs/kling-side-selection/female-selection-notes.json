@@ -1,0 +1,177 @@
+{
+  "character": "female",
+  "status": "review-candidate-not-default",
+  "frameIndexConvention": "zero-based inclusive start, exclusive end; all original consecutive source frames at 24fps",
+  "sources": {
+    "1721": {
+      "path": "artwork/kling-side-selection/source/female-1721.mp4",
+      "sha256": "b36a6f3219bf3da56ebd4d365052b5cf9b053efc795dae9c2669437713a98276",
+      "fps": 24,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    "1927": {
+      "path": "artwork/kling-side-selection/source/female-1927.mp4",
+      "sha256": "0ca58779c306b82ca5406af8dcfba7fcd9e940c76bdd159ed3bf5192144bdd66",
+      "fps": 24,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    "2394": {
+      "path": "artwork/kling-side-selection/source/female-2394.mp4",
+      "sha256": "9d4dfa8803023cdb3bc0a14f2380095f9c34ceeaa0000964e4ba3ece5ef0aa9d",
+      "fps": 24,
+      "size": [
+        1920,
+        1080
+      ]
+    }
+  },
+  "actions": {
+    "idle": {
+      "source": "1927",
+      "start": 243,
+      "endExclusive": 259,
+      "frames": 16,
+      "fps": 24,
+      "loop": true,
+      "selection": "Quiet standing interval before the blink/celebration transition. Almost static breathing; no artificial ping-pong or repeated frames.",
+      "limits": [
+        "No complete blink in this selected loop.",
+        "Tiny source-pixel fluctuations remain."
+      ],
+      "diagnostic": {
+        "region": "body below head",
+        "wrapDifference": 0.0024,
+        "meanAdjacentDifference": 0.0007,
+        "note": "Ratio high only because both absolute differences are tiny; no visible pose discontinuity."
+      }
+    },
+    "walk": {
+      "source": "1721",
+      "start": 42,
+      "endExclusive": 60,
+      "frames": 18,
+      "fps": 24,
+      "loop": true,
+      "reviewOnly": true,
+      "ordinaryWalkApproved": false,
+      "selection": "Best existing female early-gait candidate with comparatively relaxed arms, both alternating support/pass phases, and matching start/end phase. This is a fast-walk candidate, not a fully accepted ordinary walk.",
+      "limits": [
+        "Some extended-foot poses appear briefly light or airborne; cannot certify continuous single-foot ground contact.",
+        "Face/torso viewpoint differs slightly from 1927 and 2394; uniform anchor/scale normalization cannot remove it.",
+        "Do not claim a complete production-quality ordinary walk from these sources."
+      ],
+      "diagnostic": {
+        "region": "lower body silhouette/RGB",
+        "phaseMatch": 0.0793,
+        "wrapDifference": 0.1675,
+        "meanAdjacentDifference": 0.2325,
+        "wrapRatio": 0.72
+      },
+      "alternative": {
+        "source": "1721",
+        "start": 55,
+        "endExclusive": 73,
+        "frames": 18,
+        "wrapRatio": 0.593,
+        "reason": "Another full two-step cycle, slightly worse multi-frame phase match."
+      }
+    },
+    "run": {
+      "source": "1927",
+      "start": 135,
+      "endExclusive": 153,
+      "frames": 18,
+      "fps": 24,
+      "loop": true,
+      "selection": "One full left/right gait cycle, with near and far arm/leg alternation and the same phase returning after 18 frames. Preserves original 0.75-second cadence.",
+      "limits": [
+        "Generated shape/hand/foot fluctuations persist.",
+        "Loop selection does not prove in-game foot-speed/world-speed alignment."
+      ],
+      "diagnostic": {
+        "region": "lower body silhouette/RGB",
+        "phaseMatch": 0.0328,
+        "wrapDifference": 0.2419,
+        "meanAdjacentDifference": 0.2484,
+        "wrapRatio": 0.974
+      },
+      "alternative": {
+        "source": "1927",
+        "start": 56,
+        "endExclusive": 74,
+        "frames": 18,
+        "wrapRatio": 0.933,
+        "reason": "Earlier full gait cycle with slightly less consistent phase match."
+      }
+    },
+    "jump": {
+      "source": "2394",
+      "start": 206,
+      "endExclusive": 234,
+      "frames": 28,
+      "fps": 24,
+      "loop": false,
+      "autoReturnIdle": false,
+      "selection": "First uncropped jump only, including deceleration/crouch, takeoff, flight, landing and partial recovery up to last grounded frame before second takeoff.",
+      "limits": [
+        "Starts in braking/running-to-crouch transition, not relaxed idle.",
+        "Frame233 is a grounded near-straight-knee rebound preparation with bent arms and visible motion blur, not a neutral settled standing pose.",
+        "No continuous first-jump-to-relaxed-idle recovery exists before the source immediately begins a second jump.",
+        "Do not synthesize a tail, auto-loop or crossfade into idle and call it seamless."
+      ],
+      "alternative": {
+        "source": "2394",
+        "start": 206,
+        "endExclusive": 233,
+        "frames": 27,
+        "reason": "Avoids blurred final straightening frame but leaves a more crouched landing pose."
+      }
+    },
+    "celebrate": {
+      "source": "1927",
+      "start": 260,
+      "endExclusive": 351,
+      "frames": 91,
+      "fps": 24,
+      "loop": false,
+      "selection": "Full source onset and return to relaxed standing. Replaces initial 15-frame celebration-loop candidate after verifying f344-350 recovery.",
+      "limits": [
+        "Several fist raises, hands beside ears.",
+        "One-shot; does not promise a seamless transition to another source."
+      ]
+    }
+  },
+  "notes": [
+    "No new drawing, interpolation, time remapping, per-frame warping or per-frame scale normalization was performed.",
+    "Numerical boundary metrics are diagnostics, not art acceptance.",
+    "All source footage remains unchanged. Native f233 was checked at full1920x1080."
+  ],
+  "noteScope": "Selection analysis; temporary source-comparison paths omitted. Final export contract is artwork/kling-side-selection/selection.json.",
+  "celebrationLoopAlternative": {
+    "source": "1927",
+    "start": 296,
+    "endExclusive": 311,
+    "frames": 15,
+    "fps": 24,
+    "loop": true,
+    "selection": "One complete raised-fists to chest and raised-fists cycle, feet grounded. Uses native 0.625-second timing.",
+    "limits": [
+      "Starts and ends with fists raised rather than idle.",
+      "Hands rise beside ears, not merely to shoulder height.",
+      "Standalone loop does not include idle-entry or exit transition."
+    ],
+    "diagnostic": {
+      "region": "upper/lower body silhouette/RGB",
+      "phaseMatch": 0.0136,
+      "wrapDifference": 0.0078,
+      "meanAdjacentDifference": 0.0718,
+      "wrapRatio": 0.108
+    }
+  }
+}

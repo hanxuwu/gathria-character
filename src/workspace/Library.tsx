@@ -98,6 +98,19 @@ export function CharacterLibrary() {
                   <div className="library-character__skeleton">
                     <a
                       className="workspace-button workspace-button--secondary"
+                      href={`/workbench.html?character=${character.id}&mode=side-view`}
+                    >
+                      <ArrowRight size={18} aria-hidden="true" />
+                      <span>侧视动作与换装</span>
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </a>
+                    <span className="library-character__capability">
+                      行走、跑步与连续两跳 · 独立日常搭配试样
+                    </span>
+                  </div>
+                  <div className="library-character__skeleton">
+                    <a
+                      className="workspace-button workspace-button--secondary"
                       href={`/workbench.html?character=${character.id}&mode=wardrobe`}
                     >
                       <Shirt size={18} aria-hidden="true" />
