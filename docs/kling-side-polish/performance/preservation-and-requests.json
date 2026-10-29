@@ -1,0 +1,1952 @@
+{
+  "format": "gathria-side-loading-preservation-and-requests",
+  "version": 1,
+  "passed": true,
+  "scope": "Completed browser A/B proof with coherent PR53 baseline artwork. Timing/heap values omitted: development UI copy HMR occurred during this trial. Source-cache/catalog code hashes and all encoded inputs/canvas outputs were equal where expected; this is a transfer/preservation result, not a timing claim.",
+  "baselineRef": "4fd27f9",
+  "assetRef": "4fd27f9",
+  "code": {
+    "baselineCatalog": "0555a03a89c2db1037c209546e03f75dd8f9cccb333fbd5a2fa8727f7ec1aa78",
+    "candidateCatalog": "737f491c40849d125f64d061821ab5426860113a558b90d0076fced7eef7eeb1",
+    "sourceCache": "a8a5a6b4e405480840aedf244c1a973673952ffbc3d4e81f0020db3e4aae78bf"
+  },
+  "assets": {
+    "/docs/kling-side-workspace/assets/male.source.zip": {
+      "bytes": 12927575,
+      "sha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42"
+    },
+    "/docs/kling-side-workspace/assets/male.registration.json": {
+      "bytes": 480211,
+      "sha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5"
+    },
+    "/docs/kling-side-workspace/assets/male-top.garment.zip": {
+      "bytes": 985635,
+      "sha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+    },
+    "/docs/kling-side-workspace/assets/male-bottom.garment.zip": {
+      "bytes": 911622,
+      "sha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5"
+    },
+    "/docs/kling-side-workspace/assets/male-shoes.garment.zip": {
+      "bytes": 956855,
+      "sha256": "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8"
+    },
+    "/artwork/kling-side-expansion/templates/male.registration.json": {
+      "bytes": 475551,
+      "sha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e"
+    },
+    "/docs/kling-side-expansion/assets/male-shirt.garment.zip": {
+      "bytes": 1578885,
+      "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+    },
+    "/docs/kling-side-expansion/assets/male-trousers.garment.zip": {
+      "bytes": 1993597,
+      "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+    },
+    "/docs/kling-side-expansion/assets/male.appearance.zip": {
+      "bytes": 5867640,
+      "sha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+    },
+    "/docs/kling-side-workspace/assets/female.source.zip": {
+      "bytes": 12659941,
+      "sha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d"
+    },
+    "/docs/kling-side-workspace/assets/female.registration.json": {
+      "bytes": 467766,
+      "sha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e"
+    },
+    "/docs/kling-side-workspace/assets/female-top.garment.zip": {
+      "bytes": 978152,
+      "sha256": "d669f0b70ee762278071948a09b51d7e24ce9fac8018c563b1ab5a1b506660c4"
+    },
+    "/docs/kling-side-workspace/assets/female-bottom.garment.zip": {
+      "bytes": 821599,
+      "sha256": "772646577b898296cb652827e04663bc6b7c70c80a2433e5013864e2639d0853"
+    },
+    "/docs/kling-side-workspace/assets/female-shoes.garment.zip": {
+      "bytes": 942647,
+      "sha256": "c9c3ed3b85ecf5b05ca9c3c70a48d515769a1169ceb2832ffada56cd74d380a8"
+    },
+    "/artwork/kling-side-expansion/templates/female.registration.json": {
+      "bytes": 442187,
+      "sha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef"
+    },
+    "/docs/kling-side-expansion/assets/female-blouse.garment.zip": {
+      "bytes": 2393402,
+      "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+    },
+    "/docs/kling-side-expansion/assets/female-skirt.garment.zip": {
+      "bytes": 2850122,
+      "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+    },
+    "/docs/kling-side-expansion/assets/female.appearance.zip": {
+      "bytes": 8620325,
+      "sha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+    }
+  },
+  "rawReportSha256": "99385dd9242e37b3e4ccf24f2dc5a58f04e070c3fb08277780bef18ad267166b",
+  "runs": [
+    {
+      "round": 0,
+      "kind": "before",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/female.source.zip",
+              "transferBytes": 12660241,
+              "encodedBytes": 12659941
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5",
+            "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8",
+            "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 1,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "items": [
+              {
+                "id": "side-male-seabreeze-bottom-v1",
+                "sha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5"
+              },
+              {
+                "id": "side-male-seabreeze-shoes-v1",
+                "sha256": "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8"
+              },
+              {
+                "id": "side-male-seabreeze-top-v1",
+                "sha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male.registration.json",
+              "transferBytes": 480511,
+              "encodedBytes": 480211
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-top.garment.zip",
+              "transferBytes": 985935,
+              "encodedBytes": 985635
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-bottom.garment.zip",
+              "transferBytes": 911922,
+              "encodedBytes": 911622
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-shoes.garment.zip",
+              "transferBytes": 957155,
+              "encodedBytes": 956855
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/female.source.zip",
+              "transferBytes": 12660241,
+              "encodedBytes": 12659941
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "round": 0,
+      "kind": "after",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/female.source.zip",
+              "transferBytes": 12660241,
+              "encodedBytes": 12659941
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5",
+            "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8",
+            "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 1,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "items": [
+              {
+                "id": "side-male-seabreeze-bottom-v1",
+                "sha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5"
+              },
+              {
+                "id": "side-male-seabreeze-shoes-v1",
+                "sha256": "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8"
+              },
+              {
+                "id": "side-male-seabreeze-top-v1",
+                "sha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.registration.json",
+              "transferBytes": 480511,
+              "encodedBytes": 480211
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-top.garment.zip",
+              "transferBytes": 985935,
+              "encodedBytes": 985635
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-bottom.garment.zip",
+              "transferBytes": 911922,
+              "encodedBytes": 911622
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-shoes.garment.zip",
+              "transferBytes": 957155,
+              "encodedBytes": 956855
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "kind": "after",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/female.source.zip",
+              "transferBytes": 12660241,
+              "encodedBytes": 12659941
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5",
+            "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8",
+            "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 1,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "items": [
+              {
+                "id": "side-male-seabreeze-bottom-v1",
+                "sha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5"
+              },
+              {
+                "id": "side-male-seabreeze-shoes-v1",
+                "sha256": "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8"
+              },
+              {
+                "id": "side-male-seabreeze-top-v1",
+                "sha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.registration.json",
+              "transferBytes": 480511,
+              "encodedBytes": 480211
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-top.garment.zip",
+              "transferBytes": 985935,
+              "encodedBytes": 985635
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-bottom.garment.zip",
+              "transferBytes": 911922,
+              "encodedBytes": 911622
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-shoes.garment.zip",
+              "transferBytes": 957155,
+              "encodedBytes": 956855
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "kind": "before",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/female.source.zip",
+              "transferBytes": 12660241,
+              "encodedBytes": 12659941
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5",
+            "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8",
+            "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 1,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+            "items": [
+              {
+                "id": "side-male-seabreeze-bottom-v1",
+                "sha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5"
+              },
+              {
+                "id": "side-male-seabreeze-shoes-v1",
+                "sha256": "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8"
+              },
+              {
+                "id": "side-male-seabreeze-top-v1",
+                "sha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male.registration.json",
+              "transferBytes": 480511,
+              "encodedBytes": 480211
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-top.garment.zip",
+              "transferBytes": 985935,
+              "encodedBytes": 985635
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-bottom.garment.zip",
+              "transferBytes": 911922,
+              "encodedBytes": 911622
+            },
+            {
+              "path": "/docs/kling-side-workspace/assets/male-shoes.garment.zip",
+              "transferBytes": 957155,
+              "encodedBytes": 956855
+            }
+          ]
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "archiveHashes": [
+            "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de",
+            "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692",
+            "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+            "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+            "items": [
+              {
+                "id": "side-male-oxford-shirt-v1",
+                "sha256": "a60facb398868da3bdbe9bac6e45cdc36a29b755f76129633a4a5ec0cded25de"
+              },
+              {
+                "id": "side-male-stone-trousers-v1",
+                "sha256": "08e70577b1875cd55ca85c4da1218d448a63d19877c5ac41eae0efc4b30df692"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "04c71d69f598930482f856f0b4171e1d9e4e619516e3c0a43d1f13566e3156ef",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/male.source.zip",
+              "transferBytes": 12927875,
+              "encodedBytes": 12927575
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/male.registration.json",
+              "transferBytes": 475851,
+              "encodedBytes": 475551
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-shirt.garment.zip",
+              "transferBytes": 1579185,
+              "encodedBytes": 1578885
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male-trousers.garment.zip",
+              "transferBytes": 1993897,
+              "encodedBytes": 1993597
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/male.appearance.zip",
+              "transferBytes": 5867940,
+              "encodedBytes": 5867640
+            }
+          ]
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "archiveHashes": [
+            "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677",
+            "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca",
+            "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+          ],
+          "document": {
+            "format": "gathria-wardrobe-project",
+            "version": 2,
+            "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+            "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+            "items": [
+              {
+                "id": "side-female-cream-blouse-v1",
+                "sha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+              },
+              {
+                "id": "side-female-rose-skirt-v1",
+                "sha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+              }
+            ],
+            "selection": {
+              "top": null,
+              "bottom": null,
+              "fullBody": null,
+              "shoes": null
+            },
+            "preview": {
+              "action": "idle",
+              "facing": "right"
+            },
+            "appearance": {
+              "bankSha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af",
+              "hairId": null,
+              "faceId": null,
+              "hairColor": "chestnut"
+            }
+          },
+          "resources": [
+            {
+              "path": "/docs/kling-side-workspace/assets/female.source.zip",
+              "transferBytes": 12660241,
+              "encodedBytes": 12659941
+            },
+            {
+              "path": "/artwork/kling-side-expansion/templates/female.registration.json",
+              "transferBytes": 442487,
+              "encodedBytes": 442187
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+              "transferBytes": 2393702,
+              "encodedBytes": 2393402
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+              "transferBytes": 2850422,
+              "encodedBytes": 2850122
+            },
+            {
+              "path": "/docs/kling-side-expansion/assets/female.appearance.zip",
+              "transferBytes": 8620625,
+              "encodedBytes": 8620325
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "uiRuns": [
+    {
+      "round": 0,
+      "kind": "before",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "3073cbdfcc8731143a52eb50fd78fa4a896928eb5859c96eda746925301fd65d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "c25e003737523dc25492a688e83ce4e12674e27f4582709bd504b10bac6967cb"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        }
+      ]
+    },
+    {
+      "round": 0,
+      "kind": "after",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "3073cbdfcc8731143a52eb50fd78fa4a896928eb5859c96eda746925301fd65d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "c25e003737523dc25492a688e83ce4e12674e27f4582709bd504b10bac6967cb"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "kind": "after",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "3073cbdfcc8731143a52eb50fd78fa4a896928eb5859c96eda746925301fd65d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "c25e003737523dc25492a688e83ce4e12674e27f4582709bd504b10bac6967cb"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "kind": "before",
+      "samples": [
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "female",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "3073cbdfcc8731143a52eb50fd78fa4a896928eb5859c96eda746925301fd65d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "material",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "c25e003737523dc25492a688e83ce4e12674e27f4582709bd504b10bac6967cb"
+          }
+        },
+        {
+          "id": "male",
+          "collection": "tailored",
+          "pixels": {
+            "width": 1200,
+            "height": 820,
+            "sha256": "8ea66fbd8a90544e033324c812a484eb9dec049f131fbf3e72a7c8cfb1680f2d"
+          }
+        }
+      ]
+    }
+  ]
+}

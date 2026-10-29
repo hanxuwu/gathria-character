@@ -1,6 +1,16 @@
 # Implementation status
 
-Latest side-view candidate: **tailored clothes and hair**, separate from the
+Latest side-view follow-up: **clothing polish and practical review tools**.
+Reviewed male walk hand boundaries release old shorts, female action-consistent
+skirt artwork reduces fold jumps, and a bounded male rear-hair correction covers
+an exposed scalp strip. Slow preview, integer detail and source/look-bound issue
+notes are available inside the existing side-view workspace. Offline painting
+guides and garment preflight reuse current contracts. The loader parallelizes
+downloads and retains only bounded verified source ZIP bytes; mutable outfits
+and old saved projects remain independently validated.
+[Current evidence, checks and visual limits](kling-side-polish/README.md).
+
+Previous side-view candidate: **tailored clothes and hair**, separate from the
 original material collection. Male shirt/trousers and female blouse/skirt use
 new painted silhouettes; each character has one side-view hairstyle and three
 hair colors. A separately source-reviewed registration corrects hand/thigh and

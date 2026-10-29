@@ -1,5 +1,11 @@
 # Side-view tailored clothing and hair
 
+**Follow-up:** current candidate assets include the
+[side-view polish iteration](../kling-side-polish/README.md). The review packs,
+QA reports and known-limitation evidence on this page describe the prior
+`4fd27f9` checkpoint and are retained for comparison. Use the follow-up page
+for current exports and acceptance results.
+
 This is a separate fitting edition for the approved Kling side-view sources:
 male terracotta Oxford shirt / stone trousers, female cream blouse / rose skirt,
 and one painted side-view hairstyle per character. Clothing, hair and three hair
@@ -82,16 +88,16 @@ are authored additions, not claims of original video-layer extraction.
 Current-run evidence and commands are recorded in [QA.md](QA.md). Historical test
 counts elsewhere in the repository do not certify this edition.
 
-| Review | Male | Female |
-| --- | --- | --- |
-| Run, source / clothing / clothing + hair | [Right](review/male-run-right.gif) · [Left](review/male-run-left.gif) | [Right](review/female-run-right.gif) · [Left](review/female-run-left.gif) |
-| Walk | [Right](review/male-walk-right.gif) · [Left](review/male-walk-left.gif) | [Right](review/female-walk-right.gif) · [Left](review/female-walk-left.gif) |
-| Original two-jump one-shot | [Right](review/male-jump-right.gif) · [Left](review/male-jump-left.gif) | [Right](review/female-jump-right.gif) · [Left](review/female-jump-left.gif) |
-| Native key poses | [PNG](review/male-keyposes-native.png) | [PNG](review/female-keyposes-native.png) |
-| Integer 2× detail | [PNG](review/male-details-2x.png) | [PNG](review/female-details-2x.png) |
-| Standalone CharacterPack | [ZIP](review/male.character.zip) | [ZIP](review/female.character.zip) |
-| Editable styled project | [ZIP](review/male.wardrobe.zip) | [ZIP](review/female.wardrobe.zip) |
-| Independent player after workbench close | [Screenshot](review/male-independent-player.png) | [Screenshot](review/female-independent-player.png) |
+| Review                                   | Male                                                                    | Female                                                                      |
+| ---------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Run, source / clothing / clothing + hair | [Right](review/male-run-right.gif) · [Left](review/male-run-left.gif)   | [Right](review/female-run-right.gif) · [Left](review/female-run-left.gif)   |
+| Walk                                     | [Right](review/male-walk-right.gif) · [Left](review/male-walk-left.gif) | [Right](review/female-walk-right.gif) · [Left](review/female-walk-left.gif) |
+| Original two-jump one-shot               | [Right](review/male-jump-right.gif) · [Left](review/male-jump-left.gif) | [Right](review/female-jump-right.gif) · [Left](review/female-jump-left.gif) |
+| Native key poses                         | [PNG](review/male-keyposes-native.png)                                  | [PNG](review/female-keyposes-native.png)                                    |
+| Integer 2× detail                        | [PNG](review/male-details-2x.png)                                       | [PNG](review/female-details-2x.png)                                         |
+| Standalone CharacterPack                 | [ZIP](review/male.character.zip)                                        | [ZIP](review/female.character.zip)                                          |
+| Editable styled project                  | [ZIP](review/male.wardrobe.zip)                                         | [ZIP](review/female.wardrobe.zip)                                           |
+| Independent player after workbench close | [Screenshot](review/male-independent-player.png)                        | [Screenshot](review/female-independent-player.png)                          |
 
 [Pair: walk → run → two jumps](review/pair-walk-run-two-jumps.gif) is a labeled
 presentation timeline assembled from the actual exported packs. It is separate

@@ -36,6 +36,13 @@ and uses separately reviewed head/hand ownership. The original material edition
 and old projects keep their exact assets.
 [Tailored edition, actual exports and limits](docs/kling-side-expansion/README.md).
 
+The [side-view polish follow-up](docs/kling-side-polish/README.md) fixes reviewed
+hand/cloth ownership and skirt continuity, adds **检查穿帮 · 逐帧审阅** with slow
+preview, integer detail and source-bound issue notes, and provides reusable
+painting-guide/preflight commands. The loader reuses verified compressed source
+bytes while revalidating current clothing and hair. Original source frames and
+export timing remain unchanged.
+
 | Main destination                             | Available now                                                           |
 | -------------------------------------------- | ----------------------------------------------------------------------- |
 | `/`                                          | Two originals, wardrobe and optional skeleton entries                   |

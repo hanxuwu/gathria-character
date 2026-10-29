@@ -1,5 +1,13 @@
 # Native side-view painting templates
 
+The current male registration includes the subsequent
+[walk-contact polish](../../kling-side-polish/male/README.md). Retained template
+PNGs, mask indexes and verification reports below are the historical `4fd27f9`
+checkpoint bound to `7fa05a…`; do not pair those old masks with a new garment.
+Use the [current source-bound guide CLI](../../kling-side-polish/authoring/README.md)
+to generate masks from the actual current registration. Historical files remain
+available for reproducibility and before/after review.
+
 The offline helper [kling_side_authoring.py](../../../scripts/kling_side_authoring.py)
 extracts the exact frozen male107/female102 source frames, exposes all 17 fitting
 anchors, exports partial source-visible limb hints, and packs new-cut clothing
@@ -12,10 +20,10 @@ Inspection found original hand polygons on thighs/knees and head polygons
 crossing shoulders in moving poses. These are corrected from native source
 evidence in the new edition, rather than weakening compositor protection.
 
-| Character | Source SHA-256 | Tailored registration SHA-256 |
-| --- | --- | --- |
-| Male | `7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42` | `7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e` |
-| Female | `ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d` | `7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef` |
+| Character | Source SHA-256                                                     | Tailored registration SHA-256                                      |
+| --------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| Male      | `7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42` | `e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31` |
+| Female    | `ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d` | `7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef` |
 
 ## Files and evidence
 

@@ -1,15 +1,19 @@
 # Side expansion QA
 
+Historical checkpoint at `4fd27f9`. Current candidate assets and runtime have
+subsequent changes; these counts and hashes do not certify those changes.
+See the [current polish QA](../kling-side-polish/QA.md) for its own verification.
+
 Status: final technical checks passed for all 209 source frames, using female `final-a` and corrected male `final-b`. Actual run-frame-40 export confirms the broad gray tank wedge is removed. A remaining visual limitation is explicitly recorded below: original dark shorts remain behind the male near hand in walk frame 26.
 
-| Actual UI verification | Male | Female |
-| --- | --- | --- |
-| Source/clothing frames | 107 | 102 |
-| Hair compositions | 2 × 107 frames | 2 × 102 frames |
-| Action GIFs, both directions | 24 | 24 |
-| Mixed project and legacy project reopen | Passed | Passed |
-| Fresh independent players | 2 passed | 2 passed |
-| Report | [final male](review/male-qa.json) | [final female](review/female-qa.json) |
+| Actual UI verification                  | Male                              | Female                                |
+| --------------------------------------- | --------------------------------- | ------------------------------------- |
+| Source/clothing frames                  | 107                               | 102                                   |
+| Hair compositions                       | 2 × 107 frames                    | 2 × 102 frames                        |
+| Action GIFs, both directions            | 24                                | 24                                    |
+| Mixed project and legacy project reopen | Passed                            | Passed                                |
+| Fresh independent players               | 2 passed                          | 2 passed                              |
+| Report                                  | [final male](review/male-qa.json) | [final female](review/female-qa.json) |
 
 Final male registration is `7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e`; female is `7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef`. Both runs used unchanged verifier SHA `7a9104de3733b2522c896b672a619517e219dd2a18e36886a7fa78329cd1c0f0`; all 230 shared runtime paths and legacy hashes match. Final validation confirmed that every current selected asset, registration, audit, runtime and legacy input still matches its recorded hash. Neither run had a page or network error. The final 390 × 844 viewport check found the collection, outfit, hair, PNG export and project controls visible and reachable.
 

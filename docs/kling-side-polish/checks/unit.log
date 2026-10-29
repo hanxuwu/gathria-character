@@ -1,0 +1,29 @@
+
+> gathria-character@0.1.0 test
+> vitest run src/side-view/motion.test.ts src/side-view/input.test.ts src/side-view/review.test.ts src/side-view/source-cache.test.ts src/wardrobe/project.test.ts src/wardrobe/compositor.test.ts src/wardrobe/action-gif.test.ts src/appearance/bank.test.ts src/appearance/render.test.ts src/core/pack-v3.test.ts src/consumer/player.test.ts
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/appearance/bank.test.ts (15 tests) 314ms
+ ✓ src/wardrobe/compositor.test.ts (15 tests) 1017ms
+ ✓ src/wardrobe/action-gif.test.ts (5 tests) 173ms
+ ✓ src/core/pack-v3.test.ts (20 tests) 172ms
+ ✓ src/side-view/review.test.ts (7 tests) 73ms
+ ✓ src/wardrobe/project.test.ts (35 tests) 1804ms
+ ✓ src/side-view/motion.test.ts (27 tests) 51ms
+ ✓ src/side-view/source-cache.test.ts (10 tests) 26ms
+ ✓ src/appearance/render.test.ts (7 tests) 54ms
+ ✓ src/consumer/player.test.ts (15 tests) 35ms
+ ✓ src/side-view/input.test.ts (4 tests) 5ms
+
+ Test Files  11 passed (11)
+      Tests  160 passed (160)
+   Start at  11:30:22
+   Duration  3.70s (transform 1.15s, setup 0ms, collect 2.53s, tests 3.72s, environment 2ms, prepare 1.30s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
