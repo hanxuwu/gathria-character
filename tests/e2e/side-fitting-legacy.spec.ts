@@ -112,6 +112,14 @@ for (const character of ["male", "female"] as const) {
         );
       }
       await page.getByTestId(`side-action-${pose.action}`).click();
+      // The stage publishes its action/readout on the next animation tick.
+      // Wait for the slider's new range before filling a jump position that
+      // exceeds the previous walk range; do not race the browser's range check.
+      await expect(stage(page)).toHaveAttribute("data-action", pose.action);
+      await expect(page.getByTestId("side-frame")).toHaveAttribute(
+        "max",
+        String(manifest.animations[pose.action].frames.length - 1),
+      );
       const index = manifest.animations[pose.action].frames.indexOf(pose.frame);
       await page.getByTestId("side-frame").fill(String(index));
       await expect(stage(page)).toHaveAttribute(

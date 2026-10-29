@@ -1,0 +1,28 @@
+{
+  "format": "gathria-side-fitting-independent-qa",
+  "version": 1,
+  "passed": true,
+  "baselineCommit": "220ea2fd7588c1fe784c8454d66469d60fba096a",
+  "runtimeAndSharedInputsExact": true,
+  "sharedInputs": 241,
+  "framesChecked": 209,
+  "hairCompositions": 418,
+  "actualGifs": 48,
+  "freshPlayers": 4,
+  "runs": {
+    "male": {
+      "report": "male-final-report.json",
+      "startedAt": "2026-10-29T12:55:27.890Z",
+      "finishedAt": "2026-10-29T13:00:35.395Z",
+      "inputs": 246
+    },
+    "female": {
+      "report": "female-final-report.json",
+      "startedAt": "2026-10-29T13:05:23.886Z",
+      "finishedAt": "2026-10-29T13:10:50.100Z",
+      "inputs": 246
+    }
+  },
+  "legacyBrowserCases": 2,
+  "visual": "Actual exports confirm bounded male sleeve/nape and female sleeve/wrist/skirt improvements. Pre-existing female run40 forearm wedge, remaining male neckline/cuff fringes and source blur remain; not blanket visual approval."
+}

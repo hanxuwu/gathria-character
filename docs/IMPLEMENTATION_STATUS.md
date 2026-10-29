@@ -1,5 +1,12 @@
 # Implementation status
 
+Latest side-view candidate: **visual garment fitting, contact refinements and
+measured cold-load scheduling** on `feat/kling-side-fitting-workbench`, based on
+unmerged PR #53 (`220ea2f`). The new panel reuses native mask editing, bound drafts
+and reviewed candidate import. Cloth-only sleeve/hem fits and a local nape repair
+preserve original source frames and timing. [Current implementation and evidence](kling-side-fitting/README.md).
+
+
 Latest side-view follow-up: **clothing polish and practical review tools**.
 Reviewed male walk hand boundaries release old shorts, female action-consistent
 skirt artwork reduces fold jumps, and a bounded male rear-hair correction covers

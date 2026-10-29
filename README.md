@@ -6,6 +6,11 @@ contains their original playback, portable export and the separate male and fema
 skeletal candidates; unrelated classic characters and experiments have been
 removed from the working tree.
 
+Current side-view candidate: **garment fitting and contact refinement**. Open
+**侧视新款试装与发型**, then **服装校正 · 锚点与遮挡** to inspect source-bound
+anchors, diagnose all poses, repair local cloth and save a reviewed garment.
+[Current review, actual exports and limits](docs/kling-side-fitting/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):
