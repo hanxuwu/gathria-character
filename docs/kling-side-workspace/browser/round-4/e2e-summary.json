@@ -1,0 +1,60 @@
+{
+  "format": "gathria-side-view-e2e-evidence-summary",
+  "passed": true,
+  "distinctCases": 4,
+  "scope": "Three unchanged cases passed in the initial four-case invocation. The initial load-retry fault was consumed by a canceled React StrictMode request; its harness injection was fixed, and only that failed case was rerun and passed. This is not a claim that the initial invocation passed all four.",
+  "reports": [
+    {
+      "file": "e2e-results.json",
+      "sha256": "676d65a8e57a47db0f56ef9cd4cdd0db3b0f291e4afc490d6919e04c155c718e",
+      "stats": {
+        "startTime": "2026-10-29T04:04:24.513Z",
+        "duration": 65556.266,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "file": "e2e-retry-results.json",
+      "sha256": "e08dfd95c066395db5e23578ef6d08ff5c37f2fc047fb2783f852a4e3f7dbc2a",
+      "stats": {
+        "startTime": "2026-10-29T04:07:40.838Z",
+        "duration": 12774.325,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "cases": [
+    {
+      "title": "male: native side frames, guide-free exports, mixed outfit and project reopen",
+      "result": "passed",
+      "durationMs": 22448,
+      "report": "e2e-results.json"
+    },
+    {
+      "title": "female: native side frames, guide-free exports, mixed outfit and project reopen",
+      "result": "passed",
+      "durationMs": 21912,
+      "report": "e2e-results.json"
+    },
+    {
+      "title": "side keyboard travel retains source timing and the full two-jump one-shot",
+      "result": "passed",
+      "durationMs": 12279,
+      "report": "e2e-results.json"
+    },
+    {
+      "title": "side source load failure retries and character preparation disables stale exports",
+      "result": "passed",
+      "durationMs": 10908,
+      "report": "e2e-retry-results.json"
+    }
+  ],
+  "preservedInitialFailure": "e2e-initial-failure/",
+  "harnessCorrectionCommit": "b4c098fcb29fe1ffeedab111a08f944db685f4f1"
+}
