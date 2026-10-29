@@ -17,6 +17,7 @@ from copy import deepcopy
 import hashlib
 from io import BytesIO
 import json
+import math
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -81,6 +82,33 @@ def raster(poly):
     return np.asarray(im, dtype=bool)
 
 
+def runtime_raster(poly):
+    """Exact native pixel-center scanlines from wardrobe/protection.ts."""
+    mask = np.zeros((H, W), bool)
+    top = max(0, math.ceil(min(p['y'] for p in poly)-.5))
+    bottom = min(H-1, math.floor(max(p['y'] for p in poly)-.5))
+    for y in range(top, bottom+1):
+        cy = y+.5
+        crossings = []
+        def add(a, b):
+            left = max(0, math.ceil(min(a, b)-.5-1e-9))
+            right = min(W-1, math.floor(max(a, b)-.5+1e-9))
+            if left <= right:
+                mask[y, left:right+1] = True
+        for i, b in enumerate(poly):
+            a = poly[i-1]
+            if (a['y'] > cy) != (b['y'] > cy):
+                crossings.append(a['x']+(cy-a['y'])*(b['x']-a['x'])/(b['y']-a['y']))
+            if abs(a['y']-cy) < 1e-9 and abs(b['y']-cy) < 1e-9:
+                add(a['x'], b['x'])
+            elif abs(a['y']-cy) < 1e-9:
+                add(a['x'], a['x'])
+        crossings.sort()
+        for i in range(0, len(crossings)-1, 2):
+            add(crossings[i], crossings[i+1])
+    return mask
+
+
 def load_pack(path):
     with ZipFile(path) as z:
         manifest = json.loads(z.read('manifest.json'))
@@ -115,7 +143,7 @@ def manual_points(path):
     return output
 
 
-def materials(a, points):
+def materials(a, points, reviewed_overrides):
     """Local seeded ownership with skin competing for every outline pixel.
 
     There is no global color deletion: seed colors identify material interiors,
@@ -126,6 +154,14 @@ def materials(a, points):
     fg = alpha > 0
     solid = alpha > 16
     skin_seed = solid & (r-g > 34) & (r-b > 52) & (r > 105)
+    raw_skin_seed = skin_seed.copy()
+    override_audit = []
+    for override in reviewed_overrides:
+        region = raster(override['polygon']) & solid
+        skin_seed[region] = False
+        override_audit.append({**override, 'rasterization': 'pillow-integer-polygon',
+                               'sourceRgbaSha256': sha(a.tobytes()),
+                               'rawSkinSeedPixelsExcluded': int((raw_skin_seed & region).sum())})
     neck_y = points['neck']['y']
     # Isolate the head from arms raised alongside it. The upper skin component
     # supplies its observed horizontal extent; a conservative neck margin
@@ -206,6 +242,11 @@ def materials(a, points):
         local = ndi.distance_transform_edt(~c) <= 7
         sole = local & (YY >= (box[1]+box[3])/2) & (YY <= box[3]+7)
         labels[fg & sole & ~robust_skin & ~top_seed & ~bottom_seed] = 4
+    # These source-bound polygons are individually reviewed material interiors,
+    # never a relaxed color threshold or an inverse-garment skin definition.
+    for override in reviewed_overrides:
+        region = raster(override['polygon']) & fg
+        labels[region] = {'top': 2, 'bottom': 3, 'shoes': 4}[override['slot']]
     # Shape the lower head/neck boundary around observed cloth. Upper facial
     # ink and eye pixels were excluded before material seeding.
     head_poly = polygon(ndi.binary_fill_holes(largest(head_candidate & (labels == 0))))
@@ -213,7 +254,7 @@ def materials(a, points):
     # Garment and all exposed skin/head are mutually exclusive.
     labels[head | skin_seed] = 0
     masks = {slot: labels == i for slot, i in zip(SLOTS, [2, 3, 4])}
-    return masks, skin_seed, head_poly, distance
+    return masks, skin_seed, head_poly, distance, override_audit
 
 
 def protections(a, points, masks, skin, head_poly):
@@ -242,7 +283,11 @@ def protections(a, points, masks, skin, head_poly):
         else:
             hand_audit[side+'Hand'] = 'no separate visible skin component; omitted, not fabricated'
     for region in protected:
-        exclusion = raster(region['polygon'])
+        # PIL integer rasterization alone misses pixels the runtime includes
+        # at x+.5/y+.5. Keep the existing polygons, enforce exact runtime
+        # scanlines, and add a two-native-pixel guard around both rasters.
+        exclusion = raster(region['polygon']) | runtime_raster(region['polygon'])
+        exclusion = ndi.binary_dilation(exclusion, structure=np.ones((3, 3), bool), iterations=2)
         for mask in masks.values():
             mask[exclusion] = False
     return protected, hand_audit
@@ -322,6 +367,7 @@ def run(repo_root, output_root, character):
         manual_file = Path(__file__).resolve().parents[1]/'artwork/kling-side-workspace/registration'/character/'reviewed-keyposes.json'
     manual = manual_points(manual_file)
     manual_overrides = json.loads(manual_file.read_text()).get('overrides', {})
+    material_overrides = json.loads(manual_file.read_text()).get('materialOverrides', {})
     assert json.loads(manual_file.read_text())['sourceSha256'] == sha(pack.read_bytes()), 'Reviewed keyposes are bound to another source pack'
     manifest, config, images = load_pack(pack)
     source_frames = {f['frameId']: f['sourceFrame'] for f in config['derivation']['frames']}
@@ -361,7 +407,7 @@ def run(repo_root, output_root, character):
                     p['method'] = 'local optical-flow proposal from inspected source keypose; ' + ('occluded attachment estimate' if p['visibility'] == 'occluded' else 'visible-region estimate')
             for name, correction in manual_overrides.get(keys[fid], {}).items():
                 points[name].update(correction)
-            masks, skin, head, distances = materials(images[fid], points)
+            masks, skin, head, distances, reviewed_materials = materials(images[fid], points, material_overrides.get(keys[fid], []))
             foot_corrections = constrain_visible_feet(points, masks['shoes'], images[fid])
             add_waist(points, masks['top'])
             protected, hand_audit = protections(images[fid], points, masks, skin, head)
@@ -385,17 +431,20 @@ def run(repo_root, output_root, character):
             for region in protected:
                 assert 3 <= len(region['polygon']) <= 64
                 assert not np.any(raster(region['polygon']) & np.logical_or.reduce(list(masks.values())))
+                assert not np.any(runtime_raster(region['polygon']) & np.logical_or.reduce(list(masks.values())))
             overlay = draw_overlay(images[fid], masks, points, protected)
             overlay.save(review/'native'/f'{fid:04}.png')
             audit.append({'frameId': fid, 'action': action, 'source': sources[str(fid)],
                           'sourceFrame': source_frames[fid], 'sourceRgbaSha256': sha(images[fid].tobytes()),
                           'reviewedSeed': keys[seed], 'trackedSteps': abs(end-start),
                           'footContourCorrections': foot_corrections,
+                          'reviewedMaterialOverrides': reviewed_materials,
                           'maskSha256': checksums, 'maskPixels': {s: int(m.sum()) for s, m in masks.items()},
                           'maskBounds': {s: bbox(m) for s, m in masks.items()},
                           'skinSeedPixels': int(skin.sum()), 'skinSeedOverlap': 0,
                           'skinProofCoverage': 'partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries',
                           'protectedOverlap': 0, 'outsideSourceAlphaPixels': 0,
+                          'runtimeProtectedOverlap': 0, 'protectionGuardPixels': 2,
                           'unownedVisiblePixels': int(((images[fid][:, :, 3] > 0) & ~np.logical_or.reduce(list(masks.values()))).sum()),
                           'handProtection': hand_audit})
         # Every action/frame is inspectable, plus native-resolution pages below.

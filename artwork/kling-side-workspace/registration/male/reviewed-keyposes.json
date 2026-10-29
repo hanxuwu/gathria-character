@@ -1545,5 +1545,138 @@
         "method": "additional native source201 motion-blurred hand visual review; region-center estimate"
       }
     }
+  },
+  "materialOverrides": {
+    "male-2360/242": [
+      {
+        "slot": "top",
+        "polygon": [
+          {
+            "x": 200,
+            "y": 402
+          },
+          {
+            "x": 215,
+            "y": 405
+          },
+          {
+            "x": 231,
+            "y": 402
+          },
+          {
+            "x": 247,
+            "y": 412
+          },
+          {
+            "x": 251,
+            "y": 430
+          },
+          {
+            "x": 252,
+            "y": 449
+          },
+          {
+            "x": 237,
+            "y": 450
+          },
+          {
+            "x": 218,
+            "y": 446
+          },
+          {
+            "x": 196,
+            "y": 442
+          },
+          {
+            "x": 196,
+            "y": 419
+          }
+        ],
+        "sourceFrame": 242,
+        "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+        "reason": "Native source review identifies warm pink shading inside the original gray tank below the armhole; no exposed skin is inside this traced cloth-interior region.",
+        "reference": "docs/kling-side-selection/continuous/frames/male-2360/0242.png"
+      },
+      {
+        "slot": "bottom",
+        "polygon": [
+          {
+            "x": 186,
+            "y": 449
+          },
+          {
+            "x": 202,
+            "y": 451
+          },
+          {
+            "x": 208,
+            "y": 458
+          },
+          {
+            "x": 207,
+            "y": 477
+          },
+          {
+            "x": 201,
+            "y": 485
+          },
+          {
+            "x": 186,
+            "y": 483
+          },
+          {
+            "x": 182,
+            "y": 470
+          },
+          {
+            "x": 182,
+            "y": 459
+          }
+        ],
+        "sourceFrame": 242,
+        "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+        "reason": "Native source review identifies the purple retained pixels at the left shorts seam as shorts/outline material; assignment remains clipped to source alpha.",
+        "reference": "docs/kling-side-selection/continuous/frames/male-2360/0242.png"
+      }
+    ],
+    "male-2360/200": [
+      {
+        "slot": "shoes",
+        "polygon": [
+          {
+            "x": 142,
+            "y": 568
+          },
+          {
+            "x": 155,
+            "y": 557
+          },
+          {
+            "x": 165,
+            "y": 558
+          },
+          {
+            "x": 182,
+            "y": 575
+          },
+          {
+            "x": 177,
+            "y": 579
+          },
+          {
+            "x": 154,
+            "y": 582
+          },
+          {
+            "x": 142,
+            "y": 578
+          }
+        ],
+        "sourceFrame": 200,
+        "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+        "reason": "Native source review identifies this raised white shoe heel; correct a neutral heel island previously assigned to top. This region is below the tank and above the exposed ankle boundary.",
+        "reference": "docs/kling-side-selection/continuous/frames/male-2360/0200.png"
+      }
+    ]
   }
 }

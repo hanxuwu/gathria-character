@@ -20,11 +20,21 @@ wardrobe or change source RGB, alpha, timing, canvas, or animation poses.
   with skin for a small local outline neighborhood. Warm cloth is recovered
   only while connected to an observed neutral tank region. Masks are disjoint,
   remain inside source alpha and exclude head/hand protection and skin seeds.
+- Final ownership excludes the exact `protection.ts` pixel-center scanlines,
+  plus a two-native-pixel outward guard. Registration protection polygons stay
+  unchanged; no runtime protection threshold is relaxed.
 - `masks/NNNN-skin.png` is an **independent, partial skin proof mask** from source
   warm-color/alpha seeds, not the inverse of garment ownership. It does not
   prove all skin is covered: pale highlights, facial ink/eyes, blur and ambiguous
   boundaries can fall outside it. Head/hand polygons supply additional
   protection; occluded hands have no fabricated polygon.
+- `reviewedMaterialOverrides` in each frame audit records narrow, source-bound
+  material polygons, including their exact raster rule and number of raw warm
+  skin-seed pixels excluded. Male source242 contains a reviewed warm tank
+  interior and purple shorts-seam correction. Male source200 corrects a white
+  raised heel island previously assigned to the tank; its two waist guides now
+  follow the true tank hem. These independently inspected cloth/shoe regions
+  are disclosed exclusions from the partial skin proof, not hidden skin edits.
 - All masks preserve existing clothing silhouettes. They authorize material
   replacement of existing cloth, not new sleeves, hidden limbs, or new body
   shapes. Uncertain boundary pixels can retain their original material.

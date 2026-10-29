@@ -4,8 +4,8 @@
   "status": "offline authoring candidate; visually reviewed keyposes with tracked proposals",
   "sourcePack": "docs/kling-side-workspace/assets/male.source.zip",
   "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
-  "registrationSha256": "6061cb38d1809c75e56e6c0d6b519a373d90fd501ee02b41814ed86c158477c8",
-  "reviewedKeyposesSha256": "e5181269ecc09ce4cffa0995ed9458962a6559ce70c64f88f30d510fa256edfb",
+  "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+  "reviewedKeyposesSha256": "7d1ef23e9676fcca0c642e430b7a8224acb8404d7d75fd488fb1c81b77ae6919",
   "frameCount": 107,
   "anchorCountPerFrame": 17,
   "method": "Native keypose estimates and short-range optical flow; per-frame material seeds and bounded nearest-material outline ownership.",
@@ -34,15 +34,16 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "2fb1c7ad15f3b4bb2acf8a72282e6d28babfe1b75cae165170da0991ef0bd5a7",
-        "bottom": "1d45be257f4d648753500863f073c8ccf4b06b37006a7049cbd809dc76d2fd0b",
+        "top": "a39c57c21eb0ac060005fd4afa051ceacbb2058126ea5464c6ac8ef858a45351",
+        "bottom": "e732c1c0f5c6e8914b1f0b2ffdd269bb732aedad8a24971756ffc2999b35aed9",
         "shoes": "24979043cadf325b65fcbec6d5dc6e8670442c131270adcc2bde50320d083a04",
         "skin": "633838ea1f57cab00014df2f1adf1a09494a6a1d4c5398a6830370fd8eb2a724"
       },
       "maskPixels": {
-        "top": 6679,
-        "bottom": 4455,
+        "top": 6548,
+        "bottom": 4280,
         "shoes": 4894
       },
       "maskBounds": {
@@ -55,7 +56,7 @@
         "bottom": [
           194,
           506,
-          306,
+          304,
           614
         ],
         "shoes": [
@@ -70,7 +71,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52304,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52610,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -85,28 +88,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "46d2ab74b9c1a47c1b969ea7adec25e0328d70957957e3ecb83790b96e746d28",
-        "bottom": "0b1707f67ff2653f89d0f91bbd95fa36142fbe72a8521b8e869e6d841adf45eb",
+        "top": "2b6f2820d430d30fdac2d084b0b2e4d5f27321aaf243a551d6d750b7866d10c3",
+        "bottom": "e8620b11458c26e2f9bf22370c5a36d16d50de55be539ab4978792f02e032d1e",
         "shoes": "e424ee977e65ef5021ebe18687155aa5c311f6377c92a2b0b52b5fa3ab1f873e",
         "skin": "5f0da44bc5e95e7e8c4cbb36c8341e55359623b1ecf6a2977a8684a49bb9fb82"
       },
       "maskPixels": {
-        "top": 6680,
-        "bottom": 4445,
+        "top": 6550,
+        "bottom": 4271,
         "shoes": 4889
       },
       "maskBounds": {
         "top": [
           199,
-          425,
+          426,
           304,
           538
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -121,7 +125,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52229,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52533,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -136,28 +142,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 2,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "fe5d04b34413662960dca48c65bb8a2c820fca5024a4a17100801d82fde56441",
-        "bottom": "6a14366ac0d1cc181722b9e173bdd210763e15247cda0566bb75d98eb926f7e4",
+        "top": "99806dc1d36c91d608a5484988d5caafbec82054993b35632dc50bfdee1764bf",
+        "bottom": "22998a8a86a35140f90db9fd4528d5fc0f3cbbd779c2f19eebd0ce9d58907f13",
         "shoes": "c9c2bc7266029869b0e28f456fc753766dd91c74ab8ecf78ece39b7b3d2a66ff",
         "skin": "8136986215040aba8b91e87d6319011d58458ef6d10b438d3d8bb8f9a490dbe7"
       },
       "maskPixels": {
-        "top": 6682,
-        "bottom": 4414,
+        "top": 6552,
+        "bottom": 4243,
         "shoes": 4892
       },
       "maskBounds": {
         "top": [
           199,
-          425,
+          426,
           304,
           538
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -172,7 +179,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52241,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52542,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -187,28 +196,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 3,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "fa3462c4ee2a364f69a8ffc28d7db281612abfcea06db3a33b018a7648b85a3f",
-        "bottom": "d89542c8d9fcc75a354280d737ebf127611d2ee1b5b8f3a386ba490b2f2663e2",
+        "top": "c0e133348a55e113ca1ab97f7a43966bcc731177c3e0500742bf1a0485f0c83e",
+        "bottom": "847f0e6fb40cbe9788393ef7114558aac9287cbb0ed39f89cba1b23d9d1eca30",
         "shoes": "81d8ab3c988b9b0956c53e4d019cbeca0d2e818732e54e3d187985a963882afa",
         "skin": "a402c1ce761601ea3b82c89d5e8882d5f07000113e5e2b545ba23a3698bae45e"
       },
       "maskPixels": {
-        "top": 6694,
-        "bottom": 4409,
+        "top": 6564,
+        "bottom": 4236,
         "shoes": 4897
       },
       "maskBounds": {
         "top": [
           199,
-          425,
+          426,
           304,
           538
         ],
         "bottom": [
-          191,
+          195,
           504,
-          306,
+          304,
           613
         ],
         "shoes": [
@@ -223,7 +233,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52198,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52501,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -238,28 +250,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 4,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "65435b25e9639b7a49bd57062dad9d73691f2a37c22010e2706440f52af4ef71",
-        "bottom": "e6200cec95417115068120295cc413dd9278f7ded1a3a3644b7764c8fe315c37",
+        "top": "31a005c5ad9b1c2986b8a99497817b0f843ef4cede9127a34c2c75aa1fd74ea7",
+        "bottom": "fb1e0e266c03be19d5be083f41ed5f9d3e23dc10df9d9300173e3b94afb9bd7d",
         "shoes": "5ae7c39a9d0f5d7b61b53566a9c4fdeda018f057389c02e16bee500449bdb47d",
         "skin": "a51e579dea67cb5cafee38c6ba9a79b1699c866d860e06ca0ead8e95896625b8"
       },
       "maskPixels": {
-        "top": 6676,
-        "bottom": 4504,
+        "top": 6542,
+        "bottom": 4312,
         "shoes": 4892
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           538
         ],
         "bottom": [
           173,
           504,
-          306,
+          304,
           614
         ],
         "shoes": [
@@ -274,7 +287,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52120,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52446,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -289,28 +304,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 5,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "c5a2eeb5233d99233dd690dbbfe424256d3fa7efc1f0b06fdaf41449651f7c43",
-        "bottom": "a8612b142c7d0e4004ae026be93746f0b72d9e476885636af7096cec9b50e197",
+        "top": "6c6de043ae9c1114fc89788ede015a82d4d5fcd925dbb14c72a0d2cdbc9fc4ed",
+        "bottom": "6a049231b62eaf16b6a3710d0c25e2d4f2b19ebe52f72857deb6bec377b6bf06",
         "shoes": "21551fcab3a597a3ffd03921cc22918876edae3707e6186e05e76d4b888ca078",
         "skin": "9213e816657c3be2d91a4101efeb2e6cb605e4884c1c03f4e5b607c5258ab0bb"
       },
       "maskPixels": {
-        "top": 6680,
-        "bottom": 4444,
+        "top": 6554,
+        "bottom": 4248,
         "shoes": 4892
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           538
         ],
         "bottom": [
-          171,
+          173,
           504,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -325,7 +341,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52144,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52466,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -340,28 +358,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 6,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "3a30074a6b5795fa712df0cde8ef1cf145c6d30486e86a389540612f3adae75b",
-        "bottom": "5fa3e6c5d6e4a816cb11268eb48e2d90177d28c555258a36ad4e78bc9fb0a7ba",
+        "top": "931aedb18bf4a5205bbeb137967b4b69aaf62c6c20875790cd22f5598677dceb",
+        "bottom": "39c4e56b702e71de94da6383d3dee66e143cebcfac854d0c389bc332b4c12b07",
         "shoes": "08d47b670d6bbfc3ffa32f41986c47d4aa5ce0d215020bd6281181bae14f91fb",
         "skin": "1471439d10dd107200e2bdf9f142c323e268c466622fef19b6312139d6e82f69"
       },
       "maskPixels": {
-        "top": 6705,
-        "bottom": 4336,
+        "top": 6571,
+        "bottom": 4158,
         "shoes": 4897
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           538
         ],
         "bottom": [
-          191,
+          197,
           532,
-          306,
+          304,
           611
         ],
         "shoes": [
@@ -376,7 +395,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52237,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52549,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -391,28 +412,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 7,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "606c466a0b1158ce60ddfd9c6fa35a9e32c4c5cabbee145edd85ce0504187064",
-        "bottom": "faec005ca7fce3c6c26c964a6aba414b96851131e6d0d93458eab6cea6c89247",
+        "top": "37c392420baee6804d937eaa5cf225dab1602f04e5c8a27a1aa4a1623e33bcb0",
+        "bottom": "837eb480138339555b352371d7006d96b088173e5a4712c809aeeeeb3a49d9d3",
         "shoes": "02f2067f645f7b62daa6627ce9e78fb7d2afb406686d40adbf1a0370fa606d44",
         "skin": "361734fb15de9c61632b334833c6a28273013ff0b6b94ebd42cd8b68d0200c4d"
       },
       "maskPixels": {
-        "top": 6673,
-        "bottom": 4323,
+        "top": 6539,
+        "bottom": 4158,
         "shoes": 4894
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           214,
           504,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -427,7 +449,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52276,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52575,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -442,28 +466,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 8,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "9c89b96f0f424ac5009670a8e7bb675d7cdfd49efa56e19b6cef6dbccf2a1a65",
-        "bottom": "854164045d79ce7d320796b291f4cba5a246676da65ce240c7014079edc0d809",
+        "top": "3a588812960374ef189c3ca4aef75acf33becc052d0d11485efe070c2daf6538",
+        "bottom": "09aeb04a35b3d03691119802405436f9e97e909391937ec3c9091af715bf12ad",
         "shoes": "d83cc5c73630a3e0d313616766bf6dec6ae5d53244cc0a39076369ca5848b9d9",
         "skin": "78c8ccf39142b195f6ab9c50963a2db0d9d4f31795f8501a7feb066b4412285d"
       },
       "maskPixels": {
-        "top": 6674,
-        "bottom": 4497,
+        "top": 6542,
+        "bottom": 4297,
         "shoes": 4888
       },
       "maskBounds": {
         "top": [
           199,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
-          171,
+          173,
           504,
-          306,
+          304,
           614
         ],
         "shoes": [
@@ -478,7 +503,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52131,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52463,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -493,28 +520,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 9,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "377868fbfc9e3717d6e03951fa3c0d9626f34a9187e3dce0d70daa4ed43565ad",
-        "bottom": "a9f09f650dd3c949a5c0913fd2bd1055af81990259c4e5cdf67589a6f799426f",
+        "top": "7f0263982f1d2ca4b6a0eb081e3911880a394813752028f0421a7629edc36e2b",
+        "bottom": "2b3acd3109ca77932e103c80421bbf0b58e197a346c6678e7680cbd4b742ee8e",
         "shoes": "3fc541c8c756b77a0322e2e926893a694e20a23f3da54c1d9da0859aeb05b425",
         "skin": "1412b5a7bf40b8f322bacc7d72b4ec25b5c54292c9772a452cd5c5c03f0d8030"
       },
       "maskPixels": {
-        "top": 6676,
-        "bottom": 4431,
+        "top": 6544,
+        "bottom": 4233,
         "shoes": 4898
       },
       "maskBounds": {
         "top": [
           199,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
-          170,
+          173,
           504,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -529,7 +557,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52162,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52492,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -544,28 +574,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 10,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "a3c4775a022d10a4b06a03ff35bd0c3335f2dc4d2776bc9d06470a1088844943",
-        "bottom": "a14e26f8f2541e71f1267fb6aa522d926dc23639ef1c38b68df65e35978ebcce",
+        "top": "1553e555e3ea188eb573812c5b8b3512c794f318597ce52d1712d4e551845f38",
+        "bottom": "e9d517b57995bbf9c2c6e5634930afceddddda0101ddff328f54076285bebc28",
         "shoes": "844ae81747954db040d4cbf0a55e05f012e277a9f1e399a698c04a96032e9eb9",
         "skin": "ea412307f3f953979c3e416ff82294931bd87cb7476f3149d1f2c7080058c29b"
       },
       "maskPixels": {
-        "top": 6674,
-        "bottom": 4329,
+        "top": 6542,
+        "bottom": 4164,
         "shoes": 4897
       },
       "maskBounds": {
         "top": [
           199,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           214,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -580,7 +611,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52279,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52576,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -595,28 +628,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 11,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "c92760a555f0ce1fa56ccbdfe2b6cfd5cf2f11ed6e0b607f4b3fc602b7e7ddc8",
-        "bottom": "2afee79dabfdd78b178021cdab13ace6cf2da0ed6b8525a4fca3f77c9e1b574d",
+        "top": "f49db6a202bc222889172508b3dea40fe06076b604ff387bdcc6b71d6b977ba8",
+        "bottom": "b5ed98434ea6544cfb7e08c62904ace16cef17b98a0e59a52f811ce4545fb9f6",
         "shoes": "e2aabbe607c258bb10b86b146c51a64bf7c0401f6a82a5bc33936ca097296fe1",
         "skin": "6a802d7333fc83428e68385c0ac33fd5c205b464fd02d061d68787ba0ee458af"
       },
       "maskPixels": {
-        "top": 6674,
-        "bottom": 4484,
+        "top": 6542,
+        "bottom": 4297,
         "shoes": 4886
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           615
         ],
         "shoes": [
@@ -631,7 +665,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52105,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52424,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -646,28 +682,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 12,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "91939e1db64877dd927249eeb5c86824d5b18002d823407b8951606301e2cf1d",
-        "bottom": "e8d77a500961e70d508d33e5936c3a77d5e111adde6e4d31aab0e67a6117c4b7",
+        "top": "8b0c29166f740521b20ecb1c7bac0e6504d0fe852d84d54bde779ca1cc5cdd6d",
+        "bottom": "f15832db16bd979f466660364ec68d5bca35d86b124a093fc7b69f4a0db56650",
         "shoes": "84e55e53ac8057d905ea92736f7c32b20e2bda7915d5506fb5537e21f85c6e4c",
         "skin": "e8b11864d479f00d7ca5a66f587827eaf18e9dd1113a2dac945f8f45546aa012"
       },
       "maskPixels": {
-        "top": 6672,
-        "bottom": 4414,
+        "top": 6540,
+        "bottom": 4235,
         "shoes": 4892
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -682,7 +719,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52176,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52487,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -697,28 +736,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 13,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "790f85d772b95582b4811aaa0b87be77935fb7274dfc7ecfcb634fbab7da142b",
-        "bottom": "41045840a57a69c6f0dbaab837385ae1fbd8d29fc4bbf5c49069de588481f7a6",
+        "top": "12d5f652918237caf1cf481471fdb8fecf94ba0b7b4c02ce5a497f2fba85d861",
+        "bottom": "33f806c922485441b79c9ae4b7f06956b6895e0c9c5f23e61bf3bc7c9704404f",
         "shoes": "d4e848c6fa63df4b706cfe3ae21fd4bc0734d1d8c5277a005527013706f68222",
         "skin": "53e68b9d5250feabac958aff49261eaca1730030d1bedf5baa2a547ccb7e4dc3"
       },
       "maskPixels": {
-        "top": 6670,
-        "bottom": 4410,
+        "top": 6536,
+        "bottom": 4231,
         "shoes": 4884
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -733,7 +773,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52174,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52487,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -748,15 +790,16 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 14,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "d35a9fa3a7ace8157b474efa588d27ee1801df981dffec9eacda8643ad343279",
-        "bottom": "20340762f7a3524d691b4910430f8621c925913564ff674d0622291b3133f5b3",
+        "top": "1ea36ca5597ed88aebd9869f417cd26759a0fbfdd646f53b8bc32038dd1ed60e",
+        "bottom": "18c94435c08b8211f9fc43ab8aac6e6efd7e7c26af9d01ba3a682706bc4ad219",
         "shoes": "f0a8fa71185668a753f09b27192d212ce705f04a19a96a7c6487249ffe9bb41b",
         "skin": "2f5b62e97dac454249a749c6305432d1fe7e5f69bffde3c74eecb9c5355cf805"
       },
       "maskPixels": {
-        "top": 6670,
-        "bottom": 4409,
+        "top": 6539,
+        "bottom": 4230,
         "shoes": 4882
       },
       "maskBounds": {
@@ -769,7 +812,7 @@
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -784,7 +827,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52175,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52485,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -799,28 +844,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 15,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "0ab826766db0e337d5e1c945eb90e014a1536c3636878913990e2347b15f4cd8",
-        "bottom": "3699456f7319855e9b862c958992149a4cbb89bfa52fa7e234c7e86828efd48f",
+        "top": "cb669f2a9e13f77ba6a0535605f36cfb9ccd36ce43755f5b8fb265cd15b7daae",
+        "bottom": "b9740b957d64842ba07a9ac1be33526eb30144d46f7bdcf0e97b6acbf245e154",
         "shoes": "c7d86e0005dd28e07c094736c5b2d91c89fcaef7ecb3242e38fcdc192934ad01",
         "skin": "2034f2356c4fd1a401bca4ae99f63bd18f4e420f7d0cc7ab8c2aac145d19fc1b"
       },
       "maskPixels": {
-        "top": 6666,
-        "bottom": 4412,
+        "top": 6532,
+        "bottom": 4232,
         "shoes": 4885
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -835,7 +881,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52173,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52487,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -850,28 +898,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 16,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "973d4f38c5e0cff4299c72867666c9139eb104f6c09c2ab97203ed9fb15120f0",
-        "bottom": "b532cefd770aa5a580a1583dfbe43080c07d777dbc7c8309eb62710b0b1782aa",
+        "top": "f1a0c8bf8ea7f4f6a0656f3fdeb78483de224b642b5b46d3b3d0da38f8aabf4a",
+        "bottom": "8029c41dfb800bba0ba151c7ce729c263b20c230102fda77d9d75d9cdd6a4cca",
         "shoes": "c28102747548a6d4d2b539c8c009de7cf96b69816feffbff5119fa2f831dabca",
         "skin": "c0e776da25b45fdfa7498687608b252ea2cd77d154fbcf810cce4c65db91b9c2"
       },
       "maskPixels": {
-        "top": 6665,
-        "bottom": 4412,
+        "top": 6531,
+        "bottom": 4232,
         "shoes": 4885
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -886,7 +935,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52186,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52500,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -901,28 +952,29 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 17,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "e48814d9977646c0f9c3cbe92477df856f789ddb3aa6ac6ae9d341fd4e3beff8",
-        "bottom": "e20d40b94331d15a9bea9ef1205c2dd4ea667d695472d0644ca9d917b06083f0",
+        "top": "1d1e88b8cc95f149a6dfc57ab368c5c72950c938c1b54b86644fb56eface6e3d",
+        "bottom": "a1654a96736217e8d5c80d7427e254e6a6c1673529efbbdb73b3148100b81fbe",
         "shoes": "27eaa0d157c7801bbdedfe16fb4299e4740d5c55664c1560a28703226d1ff90e",
         "skin": "63a1aab9ad46203c0605677919c8f1217db6f31886d65e4101352823222563cf"
       },
       "maskPixels": {
-        "top": 6661,
-        "bottom": 4414,
+        "top": 6527,
+        "bottom": 4234,
         "shoes": 4885
       },
       "maskBounds": {
         "top": [
           200,
-          425,
+          426,
           304,
           537
         ],
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -937,7 +989,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52168,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52482,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -952,15 +1006,16 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 18,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "aa259907a685ee3dfdd5ae205975a15269314fff8de5fd34108377ff729d6639",
-        "bottom": "f9b7e336ae7fca91c4c604930d24c4cccc4751e5a0d70b25db0be0aab99ecdcb",
+        "top": "b8e1df37a806a182085c1f16e74cdb50afbc7c757b50c9bf1ab22bd3322949ff",
+        "bottom": "df3b5e86a8b390a8341dd07cb5d5712031c6a70272d4e3746496c720b4e7d60c",
         "shoes": "856ced13cc5d7421c7a40bafe304931c18875c1923eaf241625c83b52876408f",
         "skin": "aa32e0933f80638a8c623a518b76e743a29af62582f3a82db79b49e8a95f5be1"
       },
       "maskPixels": {
-        "top": 6660,
-        "bottom": 4410,
+        "top": 6527,
+        "bottom": 4229,
         "shoes": 4886
       },
       "maskBounds": {
@@ -973,7 +1028,7 @@
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -988,7 +1043,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52181,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52495,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1003,15 +1060,16 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 19,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "e08ac3b31027e37951a5c66c28d24409a563a85a56441b907874d3100f8ce2b5",
-        "bottom": "0543df3cd5dae4847cb7d8fa3d1c303970e417d3d831ed9bf84bab6af03f3501",
+        "top": "5b8dc33842d10058646f29b56977bbcc5038976c72e8f83d2c4dfd5d6cee836e",
+        "bottom": "3a72061caba117c102b1a4bc5df1a9517ec734068948994458baeabf01ffce0e",
         "shoes": "b1037ce6eb9bbcf4ada249814bb159baa69eb57c1ccde5711d5538ce9e712586",
         "skin": "1558e829b4206bfdc3deafbed864106e73deeaad701200f0abc502f73bf59cf0"
       },
       "maskPixels": {
-        "top": 6655,
-        "bottom": 4486,
+        "top": 6523,
+        "bottom": 4305,
         "shoes": 4886
       },
       "maskBounds": {
@@ -1024,7 +1082,7 @@
         "bottom": [
           173,
           505,
-          306,
+          304,
           640
         ],
         "shoes": [
@@ -1039,7 +1097,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52110,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52423,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1054,15 +1114,16 @@
       "reviewedSeed": "male-1885/240",
       "trackedSteps": 20,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "de0cbac1cdae4e6cb8224fbbc6a62ca2ab326668e1ad8ba6a30b68810448abbd",
-        "bottom": "5e4884f9d90a15cd51cae568c3b6483c382a71f92bdc1606fb19520004dc48f7",
+        "top": "642cabab2de223c21198d6890630e29a91850a30c7b63042dbc24170209d35a3",
+        "bottom": "a5b16c2f4529b3595268c3e375f5e535c2c199b4cc594d872cfa267d609354d0",
         "shoes": "82427a9da167c199cf99bf666ef3f7a17c12de43d722db5e9eda053b69bcf730",
         "skin": "66f93c17e0f9d8a88eab70639cd10241d74ac946c0eb24b6f0a99c6bfd5ce7d1"
       },
       "maskPixels": {
-        "top": 6655,
-        "bottom": 4416,
+        "top": 6513,
+        "bottom": 4232,
         "shoes": 4888
       },
       "maskBounds": {
@@ -1075,7 +1136,7 @@
         "bottom": [
           173,
           505,
-          306,
+          304,
           589
         ],
         "shoes": [
@@ -1090,7 +1151,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52179,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52505,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1117,15 +1180,16 @@
           "distance": 5.66
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "670f564937bf433e6391fd47e1340068549d90ba71177adbef658fb1c51b876f",
-        "bottom": "094a04e320df3e19ea9a1d638b060d55c4a29794dbc5302c63e8aed3bdc13be0",
+        "top": "4b3ff8d170d94d9b8cb6023d46d89af0b7824f9912c4ab064fc849122f3625cf",
+        "bottom": "ddb1c9e4d2b6e9ef5cd79d84b98c8a966b57fdf54b61793e87729990f6e3ddfe",
         "shoes": "67bfb5216b6e16295063d6cc51a5ccacbe1def1333603229eeecb834b767860e",
         "skin": "04f1947c3098fce6f2498d705d5f0f3b9d9e98240b7f9b28e59b2fb1e01ad7f4"
       },
       "maskPixels": {
-        "top": 4206,
-        "bottom": 4908,
+        "top": 4043,
+        "bottom": 4662,
         "shoes": 4103
       },
       "maskBounds": {
@@ -1136,7 +1200,7 @@
           535
         ],
         "bottom": [
-          175,
+          176,
           520,
           354,
           637
@@ -1153,7 +1217,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 57534,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 57943,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1180,21 +1246,22 @@
           "distance": 5.33
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "031ca725da87173536841834a4881155e29597aebc41613df5a5dd3f2a792be6",
-        "bottom": "8e91187d4bad1904157b02c29de5cd2065cb981302286fd774352ed8bd29e00d",
+        "top": "f2256c72380fffd69e3b138b68735ab1dcc3fe1a657f3842860e86293cbf2208",
+        "bottom": "fe81d31efbd0fe668ff2e748deb0cb54e30c356f2d7fcb60bbf74ea3ed562aef",
         "shoes": "5507b9004d35db77af8e2de32168337dc7eabfc126e1efb28899668ab203f2db",
         "skin": "d1b138e2f4b8db65f9fb5b55178af62377ae4a204a2c034068ba147cc572ed12"
       },
       "maskPixels": {
-        "top": 4143,
-        "bottom": 5311,
+        "top": 3975,
+        "bottom": 5062,
         "shoes": 4352
       },
       "maskBounds": {
         "top": [
           197,
-          429,
+          430,
           308,
           540
         ],
@@ -1216,7 +1283,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 57741,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 58158,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1243,28 +1312,29 @@
           "distance": 5.73
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "b9f64f1d660ecba9b3b846831a59e220208833f59855c39037243ef066107764",
-        "bottom": "a74448bdc69dc5647eb25400e042e18349529e8c657bacbd211c4417040a78a0",
+        "top": "589a18bc9e8d307f247ffe0aa09ddcbbf74b8e1672ea4cafc301fe124dd641a1",
+        "bottom": "a34c76193d1e80af180291e20864da8f9ed3fa2522bd41841e5a69930a9c1e4f",
         "shoes": "96699b51c89b4072cf71d36cf43dd04c0cf0953fe863b234f814a785168486ed",
         "skin": "4d1365c2b84e563e7990971c85449ccfd3060b00cd66b816feeb8949f4b662b2"
       },
       "maskPixels": {
-        "top": 4199,
-        "bottom": 4974,
+        "top": 4011,
+        "bottom": 4725,
         "shoes": 5004
       },
       "maskBounds": {
         "top": [
           197,
-          429,
+          431,
           308,
           540
         ],
         "bottom": [
           180,
           525,
-          293,
+          288,
           609
         ],
         "shoes": [
@@ -1279,7 +1349,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 55960,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 56397,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1294,28 +1366,29 @@
       "reviewedSeed": "male-2067/51",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "67facaf3830101f6687d958db1bd0eb24d3e82c00b9ac6620459276a49b642ac",
-        "bottom": "15002b7c6a812955b2af046ad3702ca22935acd1c4e89b59709fc33bee542874",
+        "top": "0585ac03eb4099c6a525e9beb87170e4b30c69fc391dbac945f314a6c4e5308c",
+        "bottom": "3dc37fbb10cacdaf02150786bfcf9cf7efec482cd13a332ec39e6645b50c759f",
         "shoes": "1d49632ac51277fe10b64097b6dbc58e35c02fb642e103ddffc9eaf19bb55a2e",
         "skin": "a47fe51085f8fcff4800609ccf65d0aeaf594530f25cd38139b0181ef90a52bf"
       },
       "maskPixels": {
-        "top": 4365,
-        "bottom": 4175,
+        "top": 4158,
+        "bottom": 4074,
         "shoes": 5000
       },
       "maskBounds": {
         "top": [
           194,
-          426,
+          427,
           308,
           535
         ],
         "bottom": [
           184,
           526,
-          280,
+          278,
           594
         ],
         "shoes": [
@@ -1330,7 +1403,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 53912,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54220,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -1357,21 +1432,22 @@
           "distance": 1.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "2e9b9c3f9f056cfc18c1a59e7b1e3683b75e800b29136c33c1138d3f6008ea97",
-        "bottom": "d839b47d19622d1653bb7a41bec91a1f7826e5917f358de097b0ed4380be2f93",
+        "top": "02ec092e2e8b38a0e6d8dd5b42c806c283c51caca5ef5c656dad48df80e08245",
+        "bottom": "03f4cd65fcd7c03a6063b6fe7a280c4184039e6f535464089b8c45453ed53150",
         "shoes": "89213773e6a28abacd46802a91d848e7b4c9dee0e45cfd870cff50464fdd808e",
         "skin": "7af8e92020fd139a8394b4d6fb46f4b22338b4b08b67e0962540fadc051ef656"
       },
       "maskPixels": {
-        "top": 4906,
-        "bottom": 3263,
+        "top": 4712,
+        "bottom": 3063,
         "shoes": 4832
       },
       "maskBounds": {
         "top": [
           196,
-          423,
+          424,
           308,
           538
         ],
@@ -1393,7 +1469,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51778,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52172,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -1420,23 +1498,24 @@
           "distance": 0.64
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "832abda49e509973dbfa4345f739d1c1f9ad04ddec4ad5e19db178c52c3311c8",
-        "bottom": "9d340e0bd6cf5ff01b77d2a01940e547faad474a95b7b7e9c0531ea821470f5b",
+        "top": "c1da11216503991969d8c37fbe34d2063d30512367c56593883fd6cba503ab86",
+        "bottom": "d3227a64f8bac85833d7921bd31b058c7b25041400ece0a456892aa9e5a0648d",
         "shoes": "048b101b73b00e1a4b40b3c6451d22d0784a11fa119d7750d79b6a4f679a8fce",
         "skin": "fc425c18939bd2671c08ce60eac480ea440e2c1e9f10d57299923addaee931a2"
       },
       "maskPixels": {
-        "top": 5632,
-        "bottom": 2644,
+        "top": 5463,
+        "bottom": 2395,
         "shoes": 4060
       },
       "maskBounds": {
         "top": [
           200,
-          419,
+          421,
           308,
-          537
+          536
         ],
         "bottom": [
           186,
@@ -1456,7 +1535,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 50275,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 50693,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -1483,15 +1564,16 @@
           "distance": 2.4
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "1021ab0209ae75240b8aa86228e6ecc17829a656038d8c603b9e8e0a3e161e9c",
-        "bottom": "6475fdc1b89653f4459501a1990c8ec6e6d025b49828fee38b67b24eb7ac4b90",
+        "top": "8f5827ea2aaeb0ba91a7634ad24de59426d5ae90d76c1898aece1a351a0c4d70",
+        "bottom": "38d22e12b0da6b9a4566e9c4f9fab1a339d7d3ba478de6f429eba66c375b0e10",
         "shoes": "9c067f2d04be4cff27bfa6e871e7219c4f203f9bba11d84df569f1970c715c97",
         "skin": "acbca82da55ff42b4947ec999f06b32321b7236a59c18faaa690380990d1c304"
       },
       "maskPixels": {
-        "top": 6277,
-        "bottom": 2152,
+        "top": 6117,
+        "bottom": 1969,
         "shoes": 3341
       },
       "maskBounds": {
@@ -1519,7 +1601,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51377,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51720,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -1546,15 +1630,16 @@
           "distance": 0.73
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "62d0978441a62aebc12e9da026201d4601483b949210166ae546e7ac34393fa6",
-        "bottom": "f4250e8768fc266a6f86c320997d1dbff25d5d483e6ca9a65b084349a9e4d4d0",
+        "top": "e2b99afcc00ae11c0bc40963cbc358353967e7144a88d96ce36a0d0393e18842",
+        "bottom": "7931cd7a6e6cea8d62541b7a9b249d3e6d94c0081bd10b1b959e6f165240c589",
         "shoes": "d10cc1892036f3bd2a7291212161b202227ec0054dd0c9afb6206a63114fcaa4",
         "skin": "ecb6675af34d5274b3ba41fbb20fac3dba2649951e65e71bb0ff8af7a4344b76"
       },
       "maskPixels": {
-        "top": 6866,
-        "bottom": 3201,
+        "top": 6711,
+        "bottom": 3071,
         "shoes": 3945
       },
       "maskBounds": {
@@ -1582,7 +1667,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 57567,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 57852,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1609,15 +1696,16 @@
           "distance": 5.39
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "24d0968f6e99e384429eea9890a7735a388a6cb1bb3cbf4e367b7e9dfc475a71",
-        "bottom": "6e02345188276c97f89c512820ab20e44d3569298f201e12c67abf74fab2ed2d",
+        "top": "c7157e9c1b84e0fd8965148fb3d52e5aa7258362af699da90555e3386809e847",
+        "bottom": "3deaf15df7fbd7aeb4239b6cba33674d68e871108d626f194de395f4ce5c28b7",
         "shoes": "3f65a4cc0cc6989381bca0b468f4634dfd75fb3cb7d372b3333c1ce7b45c108a",
         "skin": "e77dc5403bef5349e7efeaa3aac7762a2a0a09a23ccb5c7c1d488f71855a3606"
       },
       "maskPixels": {
-        "top": 7277,
-        "bottom": 4284,
+        "top": 7118,
+        "bottom": 4204,
         "shoes": 4192
       },
       "maskBounds": {
@@ -1628,7 +1716,7 @@
           533
         ],
         "bottom": [
-          193,
+          195,
           519,
           300,
           593
@@ -1645,7 +1733,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59140,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 59379,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1672,15 +1762,16 @@
           "distance": 10.02
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "fe36ef1139b2b2f6dec07beb46c74b369bd9ef7f1fddd92adb71e8d48c88f23c",
-        "bottom": "b72d55d852fd16cc1e96f0595874244986c32b593820224658bb72c768627618",
+        "top": "369f1801f6c74df181d1bcfb45a009c29840ab53d9cf646f161b64120af13581",
+        "bottom": "9eee7c756f9af66f6992efbf0b71068122f4fcde072bde6e3898abb2f364e93e",
         "shoes": "5454ba13b94e8d2267cf05dafcbec0563bf9d6eeb0a17f2e27b314c02e21fe96",
         "skin": "03d18837b5265702f4173b9ce33f78dd5d009fdc234c238e609e8f48c64b827f"
       },
       "maskPixels": {
-        "top": 7625,
-        "bottom": 5066,
+        "top": 7471,
+        "bottom": 4998,
         "shoes": 4311
       },
       "maskBounds": {
@@ -1691,7 +1782,7 @@
           539
         ],
         "bottom": [
-          181,
+          184,
           504,
           299,
           597
@@ -1708,7 +1799,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59638,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 59860,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1735,26 +1828,27 @@
           "distance": 12.94
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "b9d72997964be8704878e371814bdc1d7a51c8bd2ec119ee43c7b4fa3248b521",
-        "bottom": "00bd773fdac5806ba98de1d398ea454589b74ed8e361cc4f1d96d0d6acc3f262",
+        "top": "09349329adbde767da27f9ded137145c87b28d04b237facf8df7d3b54a466415",
+        "bottom": "f388b2ff092a88a7329f9813459f330231e5c1501b89a02449ffaee077510d2d",
         "shoes": "31a39bb4d680e599c37931a61e6713d1655e0f2c925cb4d4a80040130770531b",
         "skin": "c7c50bcb713422d465ec65052b2261176ee8278f0f1d75e802531f7e034a930f"
       },
       "maskPixels": {
-        "top": 7912,
-        "bottom": 5157,
+        "top": 7769,
+        "bottom": 5111,
         "shoes": 4336
       },
       "maskBounds": {
         "top": [
           181,
-          424,
+          426,
           305,
           551
         ],
         "bottom": [
-          183,
+          185,
           525,
           297,
           602
@@ -1771,7 +1865,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59649,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 59838,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1798,15 +1894,16 @@
           "distance": 2.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "81a37901ad891b40ce4e386e0b3c71df058a5cfde8d8cbdd56aafc6659a53e9b",
-        "bottom": "72860241f42b334eb783367f92100a561ad2b2cada6418fe1ba338d0a9331679",
+        "top": "bf8815cb07fa427108efa7157ab4d665ecb6774090a0ba7c62c16854d1f88fdc",
+        "bottom": "e6a5d90a2cf17ce86193e678f4cb12ffc3983e7f1cb1eb8b46e97c3762d4f773",
         "shoes": "71b40c280b989ea9c99d8671a436e6e052aa873cc3b04e3774a69d84ec788e9f",
         "skin": "46672ee01472bcb79150a795f9e950937563609db945ffe3a5717fbbf84a9d8d"
       },
       "maskPixels": {
-        "top": 7533,
-        "bottom": 4920,
+        "top": 7366,
+        "bottom": 4880,
         "shoes": 4765
       },
       "maskBounds": {
@@ -1834,7 +1931,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 58852,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 59059,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1861,15 +1960,16 @@
           "distance": 2.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "24abe70ad76c2d600075dd150521838fdc850b2c4d499fec0d5f878d54b04f4b",
-        "bottom": "b487a7dd76b6b88f27e61af0f94fb9a3d0765fddd527fbb40da896dfa2703245",
+        "top": "509057d362ae7f57b7192140bdec0df2f78086cf746ebb219aa7df4fe28ef0dc",
+        "bottom": "784099e29d7c950ef726790cc36ccc89901b999b3928cc4a5b32334b7d357060",
         "shoes": "95619e852a8b2c10acd2dfa492e6a99f1401e73fa048b638ae10adb47ddf17f0",
         "skin": "755ff4f79344bd39fd7f89dcf5491305c42f65752e8f6b79a1f7c239eb41c51a"
       },
       "maskPixels": {
-        "top": 7266,
-        "bottom": 4467,
+        "top": 7104,
+        "bottom": 4422,
         "shoes": 4194
       },
       "maskBounds": {
@@ -1897,7 +1997,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 56662,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 56869,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1924,21 +2026,22 @@
           "distance": 1.35
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "2ea93137ac5fc43f66d8b7adab07217cd09aba30b33d02da4877ce63c1bcb9bf",
-        "bottom": "9f50f8f64877d15eaeb877eeb3a06d37f0ec6a71787b13f05faa5c532cd83d21",
-        "shoes": "ac90df364b65db3dbe8793b82cb273f19e98085f89240158445fe872dab03fd5",
+        "top": "eb4c7111768ad2fc9bb141377d0f3aa9c164c53c8b3a5c91a4d4047d88cfd060",
+        "bottom": "abe88ccd6fb88614a2dd30f6a5cb9f79a7c48fed764df22f94974d96df742fff",
+        "shoes": "90bb14273c367752961cacbd86722d806baf2f1de68ca99ac3abceec1cbdbc7f",
         "skin": "89e1d515c56c52b5d2b126296a510e80ca06bf8ad3f6c741a8f7c627c18fe611"
       },
       "maskPixels": {
-        "top": 6808,
-        "bottom": 3904,
-        "shoes": 3897
+        "top": 6647,
+        "bottom": 3790,
+        "shoes": 3890
       },
       "maskBounds": {
         "top": [
           203,
-          423,
+          424,
           308,
           539
         ],
@@ -1960,7 +2063,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 54408,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54690,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -1987,15 +2092,16 @@
           "distance": 1.53
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "8cedb78d9f945b9a163a1e20305d3335d36bd5b16de765284087ff109abc4e5b",
-        "bottom": "69bb56c99addba52985f0333cdc7f6824a03cf7adbf565e68fb4d5cff934d52d",
+        "top": "0e3680cc2c0f5256efc1e36099f57c35e727b5414e0261679ce991a6bb9b41bb",
+        "bottom": "3d6efd13948b6c56d5def53dae665a9915ededa033cb7b12f5a594b9bffb9c95",
         "shoes": "524f210ae50bd8561a98cc40ae8ca5108967bb4c4f3fffdf3ba4b4e8a0bc2e4b",
         "skin": "6d2d10f30f3c2f266a1de611375095b2cc6c0ea376a92eaa160680294544ff56"
       },
       "maskPixels": {
-        "top": 6268,
-        "bottom": 3158,
+        "top": 6105,
+        "bottom": 2995,
         "shoes": 2284
       },
       "maskBounds": {
@@ -2009,7 +2115,7 @@
           184,
           529,
           314,
-          585
+          581
         ],
         "shoes": [
           200,
@@ -2023,7 +2129,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51789,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52115,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2050,15 +2158,16 @@
           "distance": 2.65
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "bc44ca4471704475cb7efaa58ef9506a12210ea5d9076d7fe72ffe4af1c557ad",
-        "bottom": "2b84205a9f5cc6a93a390cfdcf8d151ce656beda6ae46e3b7307b8353e06acbf",
+        "top": "4582ec077bef37b3687cd34257518b3ac78cce23546e82a925bfd7ba3b9b07d8",
+        "bottom": "381d89bcc694431fd704cd058c46d8dea220b8b6a86a1e074bac9db818236fcc",
         "shoes": "1f85a732a7dcceb8ab4f5cb8cfe8585ee9f96e30e209b31b914e5f8115f5f2cd",
         "skin": "f2e3bdc5af8ba02807403fb9f61b378bfb47e0b633a025226471fad8a39eb84c"
       },
       "maskPixels": {
-        "top": 5505,
-        "bottom": 3064,
+        "top": 5334,
+        "bottom": 2965,
         "shoes": 4339
       },
       "maskBounds": {
@@ -2086,7 +2195,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 53361,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53631,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -2124,21 +2235,22 @@
           "distance": 5.1
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "8c442e4c2e5da33dcf93680536b7c5b4089fe24536958a808b5fe684d67822bc",
-        "bottom": "f638fa2791418bd4d448249a21c5a9f143aa8bd0046e795775c40c6c9a7e0826",
+        "top": "80574d9cce0fad23f4bf4368764a9685c5925f6fc5795e7945f84104aa3a774f",
+        "bottom": "6c443739cc3e3d13f359236eca3303d7c89438a856366bf594e6de4304616b9b",
         "shoes": "2a70994151ea208d3173e0b1513d71fdfbce4b752b8400f850a8126b68992614",
         "skin": "1edb29d84f64f00635b517d53f2690ca4d723f1ce7782e9aa7c01675055ed617"
       },
       "maskPixels": {
-        "top": 4860,
-        "bottom": 3558,
+        "top": 4701,
+        "bottom": 3325,
         "shoes": 4205
       },
       "maskBounds": {
         "top": [
           197,
-          416,
+          418,
           308,
           532
         ],
@@ -2160,7 +2272,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 54932,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55324,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -2209,15 +2323,16 @@
           "distance": 9.23
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "80433acdc564cd0ae12252ba2661d3fb31c61390a2c0669a950fa38d8a3d9c8c",
-        "bottom": "a62371952b2c0d8e13aece3e0282e45c60ed23c1f7ee3b4502fb2210c9445268",
+        "top": "d1979d2596a6575362adf4f71e9c283b88984a6ff1d312cb5eb9b63156f2e5e8",
+        "bottom": "7095a8f4569d8e66e3cb2cfe7f3b6fd36cc068e62037c30c474579ccac119856",
         "shoes": "904382c719988649e1f91a935009da0a7780b43808595ba178afe44bd5237eaf",
         "skin": "f1d9b949337d9ca4950b16c8e4806fa94e2ae83ba244f050b1276b40525dbfd4"
       },
       "maskPixels": {
-        "top": 4405,
-        "bottom": 4376,
+        "top": 4241,
+        "bottom": 4198,
         "shoes": 4090
       },
       "maskBounds": {
@@ -2245,7 +2360,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 56587,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 56929,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -2260,21 +2377,22 @@
       "reviewedSeed": "male-1885/132",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "74b9b04a3cea149c3257d54007f5533ea994fcd1dd9dc4181d6eb6c1a2a88c2c",
-        "bottom": "0cba146e9782098b2216217f210dd8dc7850a56d8a30d69c16d38f6dd6ad6817",
+        "top": "d233b18f355b4f01be2a872d6e7cd18b68f035dbcb4f866e95c5d425d0441566",
+        "bottom": "e32118afa3820426b4a0da8dad13fe5c3334ec79a66d1bdda7bf251d718aaea4",
         "shoes": "520264b56150dee36a042165e3845d885621f0da6eec30774dc029493a83e70c",
         "skin": "7d09e0bc4d9a251267f22336dfd95b6c418c8ecaf96edb3a178d1a02375feeed"
       },
       "maskPixels": {
-        "top": 3515,
-        "bottom": 5080,
+        "top": 3326,
+        "bottom": 4852,
         "shoes": 3160
       },
       "maskBounds": {
         "top": [
           200,
-          423,
+          424,
           295,
           513
         ],
@@ -2296,7 +2414,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51520,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51937,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2311,15 +2431,16 @@
       "reviewedSeed": "male-1885/132",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "602ee8fbccd597eca486b979691c7a059d69d27979b6e5b9ce964bcdf07a978c",
-        "bottom": "27b9d746affc1ad5a6352d8b4c2d5b47b4827b1272307d5cea1716d13ca27e2f",
+        "top": "781775635bab39239c7d358e00fb431ab424e10eeef22bf556e58e74a31efa38",
+        "bottom": "d7934c0f03ee5142a2b847eb90ac3fa3afabed9d4b54b2ba9ebd5adf1d47c1f7",
         "shoes": "9a3093bf317a8474faa366035b628d2f7521f14635e84d0b609fc354d674da80",
         "skin": "3e1ce6c6553b97119deaad8b2bd8981eccce8f2a23e93c126c3009aa2b943406"
       },
       "maskPixels": {
-        "top": 3316,
-        "bottom": 5591,
+        "top": 3062,
+        "bottom": 5421,
         "shoes": 4934
       },
       "maskBounds": {
@@ -2332,7 +2453,7 @@
         "bottom": [
           169,
           515,
-          304,
+          302,
           592
         ],
         "shoes": [
@@ -2347,7 +2468,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52342,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52766,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2374,15 +2497,16 @@
           "distance": 0.57
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "2844405fa12afbafab18aa2987d42129219c6d4fb9d6f04d13f5329d3c1f3598",
-        "bottom": "18621295a07ab252f1bc0d1a891c4b95e8d1443b38e0313ad8a12f99d66d5909",
+        "top": "8c3a5bbf55e3cf3f5d5225c44e10aa487337add244dec3fa77ba4b6af8faeba0",
+        "bottom": "dd28ce07b27a535cf1355c171a4b9742b67fd3e1db56664dfe546805446fe797",
         "shoes": "c7be740c555ae9fc220c905c9fd05dce0ea57a621c2cd3a9ac68830ee8d139cb",
         "skin": "0d2a24b5d085d1fcf18dfa28139a9d007a606688ff3124433a8122bcfb78de14"
       },
       "maskPixels": {
-        "top": 3877,
-        "bottom": 5726,
+        "top": 3621,
+        "bottom": 5605,
         "shoes": 3558
       },
       "maskBounds": {
@@ -2395,7 +2519,7 @@
         "bottom": [
           165,
           498,
-          304,
+          302,
           590
         ],
         "shoes": [
@@ -2410,7 +2534,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 54804,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55181,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2448,15 +2574,16 @@
           "distance": 12.62
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "c4e259ae50b5a509b83f258fe2366d8ab131dc999d4a2699371d0383ff680989",
-        "bottom": "a110bad5918cd9c27446394ec46e7e919a79260897ee4d6a3dfd7872b181126f",
+        "top": "efd7c6e898fcb9dec992acefbfe9998fc2de53396297e05ed5bf40631a26dcac",
+        "bottom": "1ea0291d0c4ce7c9f6ea160e858fe25ad5faf9c13998ad8056704eb4cd342a96",
         "shoes": "ec04c4e99cdad1448561c3934560413caa881ec38dba4ce382c3f177cf3fa2ba",
         "skin": "cfcaf8b7fa13400a680712b240a0e13c830c654f5b90c3f8614096f144b6938b"
       },
       "maskPixels": {
-        "top": 4144,
-        "bottom": 5687,
+        "top": 3936,
+        "bottom": 5584,
         "shoes": 5703
       },
       "maskBounds": {
@@ -2484,7 +2611,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 53783,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54094,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2511,26 +2640,27 @@
           "distance": 14.76
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "779138465a2a9e71de6f563e69a0f27da0d9827250bd79645c3ae7dc2d85d475",
-        "bottom": "fcb0cb0993407aec342b1a38098e4d4497f634983e1f1f9a029bc533c396a5d7",
+        "top": "95fed425d97610fc9c7148f8546d16998f02d6dc1d0b1ec2fb7969f0712fe39e",
+        "bottom": "734a03e64e157f3801ee6158ac5ada6138f9b55c674626eadbd3986171cce85c",
         "shoes": "2eb98a978459ee89507e81a2ca7e16394e2b6610626b63990fc1fc3e0ddadbf7",
         "skin": "9a38494f4c0a0abe4c8a7c95123f1364320d7c0adb9a4838d35dc2debdb602dd"
       },
       "maskPixels": {
-        "top": 4219,
-        "bottom": 5730,
+        "top": 4022,
+        "bottom": 5626,
         "shoes": 5651
       },
       "maskBounds": {
         "top": [
           190,
           414,
-          294,
+          293,
           533
         ],
         "bottom": [
-          164,
+          165,
           500,
           301,
           589
@@ -2547,7 +2677,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 54162,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 54463,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2585,26 +2717,27 @@
           "distance": 15.92
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "33438fac795b95e5b249b3c86016c564605bc97a942931dd8369362a53e41bbb",
-        "bottom": "0230cc8878380b5aec7384c9f2af7aa9ca6714ca14eab4bcd6848c51ef1e92ec",
+        "top": "dd9e57993a0c326f765974a3e6af477b2a6f2e2f3a1185c1882432023b08358b",
+        "bottom": "7d34972f599c03929cc6412bb6e50d091f23fd262804edfada8fb2aaa11306d2",
         "shoes": "6b51b2611d408aa034bcef7c2f2086ae8675ae95b4553a4464b365c55734e281",
         "skin": "00bef88105c8c79bf513272ab91d7fb7143541b1c146a10a3d61ff795f5702df"
       },
       "maskPixels": {
-        "top": 4134,
-        "bottom": 5770,
+        "top": 3937,
+        "bottom": 5655,
         "shoes": 5619
       },
       "maskBounds": {
         "top": [
           189,
-          419,
-          294,
+          420,
+          293,
           538
         ],
         "bottom": [
-          165,
+          166,
           511,
           305,
           595
@@ -2621,7 +2754,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 53336,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53648,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2648,15 +2783,16 @@
           "distance": 12.82
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "46ad070753cf8c9217379d4b999f2f5309d49ceb8934209578487118241ee7ac",
-        "bottom": "f90db86b8b387f3a8b318b9e2be1b865f044cba91f0e323553cee53b2a76508a",
+        "top": "5d89d9214739b33b8951b721d2a1f0d099699a029112d3db69855d848d8b4eab",
+        "bottom": "d1d1800710141b1c444e2d5c5f483b9a05250e03cdcc6b1f1533eab8ef22a3d2",
         "shoes": "d2fa0e69baf161bd1d12ece4bd093290bc65c3b56a0ced405fdb0973aa552d4c",
         "skin": "4aa08e295b54f73d80301a0ad4531618593b008904f503bf5b65280a7d76d546"
       },
       "maskPixels": {
-        "top": 3965,
-        "bottom": 5662,
+        "top": 3741,
+        "bottom": 5532,
         "shoes": 5766
       },
       "maskBounds": {
@@ -2684,7 +2820,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51583,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51937,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2711,29 +2849,30 @@
           "distance": 30.08
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "47e06a63e272b467fa18291d7f5dc9738e46e25c7c4a15abd965931888832bf4",
-        "bottom": "ce3c180532c26a023d42dd0aa7289a055f2589f3c6c5aa79a0232000fb156eef",
+        "top": "e798608a2c9c85b8dfc7907ccc75ce8e2aa38a3290d3a6ea6c413ebf289e2e00",
+        "bottom": "c322beb2e58433ff5de028c452eb7b36b7a786c47d808ae18853455396bbb605",
         "shoes": "54269cc4f6341dd8f02d138b2a3a8a824f44c3264550e8e8bd675b28fed526f1",
         "skin": "7be3af46e2a8ef50ee9802a9d5301deae31f4338a50cefac4c9449bb0b16b549"
       },
       "maskPixels": {
-        "top": 3492,
-        "bottom": 5166,
+        "top": 3296,
+        "bottom": 5023,
         "shoes": 5728
       },
       "maskBounds": {
         "top": [
           187,
-          428,
+          429,
           296,
           547
         ],
         "bottom": [
           167,
           513,
-          294,
-          592
+          293,
+          591
         ],
         "shoes": [
           119,
@@ -2747,7 +2886,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 50949,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51288,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "no separate visible skin component; omitted, not fabricated"
@@ -2762,21 +2903,22 @@
       "reviewedSeed": "male-1885/140",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "c041016dba9db91f495fe8aa49894d1dde3f8dbc575d17abf0b46f8b1a1b899e",
-        "bottom": "83b047dc49c89e9a676722e10b125768af5cdd49095e18138e5c709916c92c13",
+        "top": "9f5f6bda490ab69cf9942e2c25779a836009c0b42e5262b6a5eb8ef534eef709",
+        "bottom": "8028e29404b802f1fe02b22045261dde68536cd5b6134b8acc47ce07352b3d3d",
         "shoes": "4b33bb312152122ccb98f9de3b6c78cad9136ed89a0c9c33eb832f52b6e9c22c",
         "skin": "26f6f6113a9431e54b0497e315ccbdb15903bc1fc18d861920f739192f752e50"
       },
       "maskPixels": {
-        "top": 3549,
-        "bottom": 4255,
+        "top": 3362,
+        "bottom": 4128,
         "shoes": 5305
       },
       "maskBounds": {
         "top": [
           203,
-          427,
+          428,
           295,
           519
         ],
@@ -2798,7 +2940,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51657,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51971,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2836,15 +2980,16 @@
           "distance": 30.27
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "09077b42095ede0f2daae4cae82080b595162bb2bcd4058ea67620508fb7942c",
-        "bottom": "26cb3494566750b06d127f41a7ee473f370bfafd85615c2900c5409c78954a21",
+        "top": "e573b81e09f0bcbd14084564f90e44201a41ff506f887973187a2cd7dbe4f7b5",
+        "bottom": "223e8a376439d666762aa1a2a283f17b07a2a3bd3c387572c2bf4f709dd35001",
         "shoes": "c0e0fb2e1bb33a67114822de0bfeae6f6ed3f1f6b98c59a92c039fbc4efceec6",
         "skin": "58011aac71ae0aa66d783050b61f5d3dbc04cecb433fcdb2cfb2a6b3b6e56294"
       },
       "maskPixels": {
-        "top": 5285,
-        "bottom": 2940,
+        "top": 5092,
+        "bottom": 2814,
         "shoes": 4549
       },
       "maskBounds": {
@@ -2872,7 +3017,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51260,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 51579,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2910,15 +3057,16 @@
           "distance": 5.2
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "5426ab0fd7c6609b14da37ca89e7d7ff40d8309d8c63647c85107bb4875ea54c",
-        "bottom": "f4e5c68e6dda9795551fb27654ad3568b6df895fc164e1fd73ea1bb01dedac23",
+        "top": "b9a5d7558594a80284018e21f5c5a7c0f6105e348793c570296cfcf25a518b66",
+        "bottom": "d0a056b4b0d992831e6d7117effad74597b0922716f1f810b1705039bb7ba6d6",
         "shoes": "8e391eb0ab77be6d62ea8e933d0c8696c498778ef3285fc0b5084eb2b4bedc14",
         "skin": "50dd79febea4815fccdd73faadee45a3de4d6a0a77d5cea0357671fba0199d47"
       },
       "maskPixels": {
-        "top": 6542,
-        "bottom": 2450,
+        "top": 6356,
+        "bottom": 2349,
         "shoes": 5117
       },
       "maskBounds": {
@@ -2931,7 +3079,7 @@
         "bottom": [
           175,
           529,
-          279,
+          277,
           588
         ],
         "shoes": [
@@ -2946,7 +3094,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 55368,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55655,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -2973,15 +3123,16 @@
           "distance": 20.75
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "6463181d65e2042c4294fa57dbaace89ecfa53c740571f6142b4ef66cc7d4ee3",
-        "bottom": "94ea98ee37b332cbb6ecd7b27d08e5324254a79b6ae12e2c4b7c574a3df25b2f",
+        "top": "3db35a23af8b261e91b485b46552156466230af8aaa7f6b5e347d99fe352b7e6",
+        "bottom": "6162b3176b7df06b81dca6974579e79ce409951d5a5fa7cfe7814bd5bee493f7",
         "shoes": "eeb9f32e81d3e5327c0924cf885abd4fe6ef452aa44fb1562ac28a58facd2e17",
         "skin": "b1594c2b8378cdd12ccd133956d8489ee13f299f0d2663303af180305a591cbb"
       },
       "maskPixels": {
-        "top": 7450,
-        "bottom": 3041,
+        "top": 7261,
+        "bottom": 2951,
         "shoes": 5223
       },
       "maskBounds": {
@@ -2992,8 +3143,8 @@
           530
         ],
         "bottom": [
-          171,
-          518,
+          175,
+          520,
           277,
           584
         ],
@@ -3009,7 +3160,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 58065,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 58344,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3036,15 +3189,16 @@
           "distance": 18.38
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "281483e62f2f496bfd8546c4693caed869211a0f2b407ecb9a60a319ab3a0289",
-        "bottom": "f021f930bd053546a7f4d1e6e00dfafabdc377e4b6397750ae582be8472be8b6",
+        "top": "0b3ec4ee9e49148e5edef11366f0fec2ea57a7f1b5be6a269de1ae296350caad",
+        "bottom": "4dbaa93c0a508b4032d173d130e01d21f6fdf284a00339b7aa026ed3a3cc3b8e",
         "shoes": "5880998b81254d0e2f710cbf70b8ca2e03be58535d206ceb84d2f8b4a4bff6a8",
         "skin": "6d845b3b41879f551ef376c0f2d41461491699ef7ef4c7442304750dc049158e"
       },
       "maskPixels": {
-        "top": 7772,
-        "bottom": 3574,
+        "top": 7611,
+        "bottom": 3512,
         "shoes": 5574
       },
       "maskBounds": {
@@ -3072,7 +3226,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 58130,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 58353,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3110,20 +3266,21 @@
           "distance": 20.54
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "8b66d6970147e6ec071afc31eff790fdcb502764e587db5a646547b48850fdc3",
-        "bottom": "447ef0acb0de5c4692ae7e4c1bf63bbd86a331050c13d98c942555d7b1656922",
+        "top": "1ab04e9a6e0aa1e948bf6a8f7da711315ffcce54d855d6bf73730904ff87da34",
+        "bottom": "b29cbc5eaa55fc12f351c10b326de3efe58a4ed3a76b8beb3405108987b672b7",
         "shoes": "2864970a2dadc3eab3d7769d8f86101ea1423fd40c4b8d0d22fa2b42982fddb4",
         "skin": "bb151dcaf5a7d801b824b6f7094a425e578d5ec51c878d74dc00bef2fc627130"
       },
       "maskPixels": {
-        "top": 7983,
-        "bottom": 3847,
+        "top": 7770,
+        "bottom": 3838,
         "shoes": 5322
       },
       "maskBounds": {
         "top": [
-          173,
+          175,
           410,
           294,
           534
@@ -3146,7 +3303,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 57835,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 58057,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3173,15 +3332,16 @@
           "distance": 21.19
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "d63a64994b9385274f74da3f3f27b0003eea35c6cb8fa59b654bbb4fec10a53b",
-        "bottom": "fc03f1e0c80872d45d75b7d3fcb8570a5788bfbe425e40c51d68d4f56067373c",
+        "top": "17a513f094c53faf495743841263c1305d1c7c901b1b8ed5b2bce3eabb6d274d",
+        "bottom": "e244a6a580cb85e8b797adcf1a07a4a60b18ef5e71a369698751309be42361b9",
         "shoes": "53316038d1792e64cbe80ad0e1ad8b49442d81021e1d4b49f0cd9a80779e90f5",
         "skin": "88c9687adada095a6125f6cfcd0d0a391a5770909592c61976075e7e939cdefd"
       },
       "maskPixels": {
-        "top": 7748,
-        "bottom": 4165,
+        "top": 7572,
+        "bottom": 4101,
         "shoes": 5297
       },
       "maskBounds": {
@@ -3209,7 +3369,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 57146,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 57386,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3236,15 +3398,16 @@
           "distance": 0.58
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "576267c1f70e3817ca1e65b7ee2caf26b8e2d6dfa180cbc054bb368429d1d1b8",
-        "bottom": "87bfad4c0f667266de870809478cbf9b2b6751ede84c5cf6a50c72c71e6922bb",
+        "top": "be5ab29b817c83824f65fe66b5e9e290ea926089ed1e71696a38be3b0342d7a4",
+        "bottom": "862d95a5ef47601c79b92e7b7b0343f286de03f3869de81aab03c7f442819e8d",
         "shoes": "12109f02ba7ee379308bce920f78745c62261c250e2aba109cbe0f28a87fdf2e",
         "skin": "ef52a2fcb2595683d1cdad56734237315347e5b353218bf1aea33c88983ad686"
       },
       "maskPixels": {
-        "top": 7378,
-        "bottom": 3840,
+        "top": 7157,
+        "bottom": 3745,
         "shoes": 5761
       },
       "maskBounds": {
@@ -3272,7 +3435,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 55368,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55684,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3287,26 +3452,27 @@
       "reviewedSeed": "male-1885/148",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "eba2aa6d1b0b118e7d726ad65cffa371961d704ec8d4db5e94a16fa8f990ff88",
-        "bottom": "9ee85e869400dce0253672fb0ea1c290f1ff534c28b8ae36511f4f67cc787181",
+        "top": "4e20840fe3f3e792e274500e892c52d456260bb781d989c53f8a96b53c103830",
+        "bottom": "a9616e61787af17646351395377bc04b233662e80bfccfe9c5c105bff27d88f1",
         "shoes": "da19e630ec7e1978d0e8a63b8719961655a1bd1270433201748aa6603e8d8587",
         "skin": "b59720048d3ae1d7b1c1444e8c8b69641bf5b0a261b97668d135fe39dc1772fa"
       },
       "maskPixels": {
-        "top": 6540,
-        "bottom": 3150,
+        "top": 6314,
+        "bottom": 2984,
         "shoes": 5473
       },
       "maskBounds": {
         "top": [
           199,
-          426,
+          427,
           293,
           546
         ],
         "bottom": [
-          172,
+          174,
           542,
           278,
           602
@@ -3323,7 +3489,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 53276,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53668,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3350,21 +3518,22 @@
           "distance": 0.58
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "7f8137e479aff91a539a722c453c9da3fdb00d8b4c99df3c22fba3952175e399",
-        "bottom": "0e94042468e0ac39ee184408120b28f2f13e994f569c693ae3366b27c1cfe37e",
+        "top": "7cc6bdd8e9aa9899c4d4d4eb4d03f08ed419a0de90e21f9a1c12cd0b75a00368",
+        "bottom": "af2b2ed9fbd29a383b5335d03eca2515dc33be01f4e57e3a96249e6b6536fb20",
         "shoes": "ea6499a68d1e0f96dde3e43cd91bd7a6cf20d22d8b2b93d5056d6e541932f61f",
         "skin": "2529826d541d35041be0a5a438f294b2a02501a368cb484eee30220d40e54f38"
       },
       "maskPixels": {
-        "top": 5246,
-        "bottom": 3981,
+        "top": 4972,
+        "bottom": 3815,
         "shoes": 4430
       },
       "maskBounds": {
         "top": [
           203,
-          427,
+          428,
           295,
           546
         ],
@@ -3386,7 +3555,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52399,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52839,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3413,23 +3584,65 @@
           "distance": 1.0
         }
       },
+      "reviewedMaterialOverrides": [
+        {
+          "slot": "shoes",
+          "polygon": [
+            {
+              "x": 142,
+              "y": 568
+            },
+            {
+              "x": 155,
+              "y": 557
+            },
+            {
+              "x": 165,
+              "y": 558
+            },
+            {
+              "x": 182,
+              "y": 575
+            },
+            {
+              "x": 177,
+              "y": 579
+            },
+            {
+              "x": 154,
+              "y": 582
+            },
+            {
+              "x": 142,
+              "y": 578
+            }
+          ],
+          "sourceFrame": 200,
+          "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+          "reason": "Native source review identifies this raised white shoe heel; correct a neutral heel island previously assigned to top. This region is below the tank and above the exposed ankle boundary.",
+          "reference": "docs/kling-side-selection/continuous/frames/male-2360/0200.png",
+          "rasterization": "pillow-integer-polygon",
+          "sourceRgbaSha256": "88253707ce1f049b409b48ab9be2d070002eca2867b3a39a62ccab3c5ce03230",
+          "rawSkinSeedPixelsExcluded": 7
+        }
+      ],
       "maskSha256": {
-        "top": "32fb622db11e24e591c09449d8736ddeb22645479c5d54639d4f8e99b1da1c3d",
+        "top": "aa2cb91909ebf0721170a1544e52c48fb865aad8327ff408caf44af7aee2a083",
         "bottom": "9f503238c90153c784dd2f658d100140367fa554c2ab4896a368d5340ced567c",
-        "shoes": "f02423dbe0010f6932d4f5c1088d66ed1ceef2f586adad4fd30507ada8b35126",
-        "skin": "796d102a34e0af5487b20d6183031e8bd381f319739f3c97191057ff3d8fbe2c"
+        "shoes": "f3cbac45fbe5cb57b97f07fbc818289dff76688a049a88ce9fc890c3cfe3ca3c",
+        "skin": "08006225c522fcdd7486ae856d324d907bc1e2340f44cbbae5c3fe23fab1c77a"
       },
       "maskPixels": {
-        "top": 4457,
+        "top": 4071,
         "bottom": 5116,
-        "shoes": 4710
+        "shoes": 4932
       },
       "maskBounds": {
         "top": [
-          147,
+          191,
           430,
           308,
-          575
+          551
         ],
         "bottom": [
           185,
@@ -3439,17 +3652,19 @@
         ],
         "shoes": [
           128,
-          566,
+          559,
           319,
           701
         ]
       },
-      "skinSeedPixels": 47392,
+      "skinSeedPixels": 47385,
       "skinSeedOverlap": 0,
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 52883,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 53047,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -3498,23 +3713,24 @@
           "distance": 0.98
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "90247cdd22b378d819d8d68bedb72a36deaa65dfd9b119cab4959f4e61583bd4",
-        "bottom": "80b4577a7cff5624549da53e6f00b811bd1ef60bbd5fbe19b580c282cd0d725b",
+        "top": "685549293a73fa7c4e716210d1a233d43d921c6f76f052abfde41fd96f73d45f",
+        "bottom": "afb99c1d8deedba1f11cc142288f2ab89f228ea26b936eac05f0f26af4dc8436",
         "shoes": "510745978a87e00303bd3806f04d57fcc1132d0bdf37059325b4dbd45d1ad429",
         "skin": "aab89ead09c8e7a83b2a80419c8f92d7076f4db692815d0004b12d66f3b58d54"
       },
       "maskPixels": {
-        "top": 3569,
-        "bottom": 2922,
+        "top": 3391,
+        "bottom": 2842,
         "shoes": 4115
       },
       "maskBounds": {
         "top": [
           214,
-          432,
+          434,
           308,
-          532
+          530
         ],
         "bottom": [
           187,
@@ -3534,7 +3750,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 51923,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 52181,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -3594,21 +3812,22 @@
           "distance": 20.01
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "99bef8f6a53149ca0e54a13bf9a1672a281de80d32752eb42ba21bc820bf93f1",
+        "top": "f6d2692c75cff4e06f2ce09ae69d601322e5905b89a876bc2e98f7f9cc5eeb66",
         "bottom": "746222cc389d088da05a49c017022bb58d81f1d6e44566ccd75ba3250e3f5ab9",
         "shoes": "c9eaab4a43f77f91e6a58729449274381b6f034884922251ff82981fc8e7f8b5",
         "skin": "9ff8178c2db7f8d39a1021d37ede91a0f5e400cb2ec50b4a627be8e3b34fe93d"
       },
       "maskPixels": {
-        "top": 3404,
+        "top": 3354,
         "bottom": 5329,
         "shoes": 2311
       },
       "maskBounds": {
         "top": [
           190,
-          451,
+          454,
           310,
           547
         ],
@@ -3630,7 +3849,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 55213,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 55263,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "occluded; no invented protection polygon"
@@ -3657,21 +3878,22 @@
           "distance": 10.6
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "bb88360cd6e25c0f98376c93a9098f4dc980c36d1b061768b2e175d051832733",
-        "bottom": "7431455417903b3ead2357e230575b8dbac56881b806e2c3b3f3304f2bc971fb",
+        "top": "841e581a054fcd9897485c101e787d40a973e5afede4d760f8f8b65aee8f2a08",
+        "bottom": "e41de44006a871a496aa9251f5a9c8b90976dc01ca56b039db22892cc61e1786",
         "shoes": "8a33212897c2504c544f14bd438f9315703619abc24ac4f177f227941e6e883f",
         "skin": "53239514332a576454833c9e847e0d11e7bd950470df71758694a4abd96385a5"
       },
       "maskPixels": {
-        "top": 4863,
-        "bottom": 5730,
+        "top": 4706,
+        "bottom": 5671,
         "shoes": 4972
       },
       "maskBounds": {
         "top": [
           193,
-          417,
+          419,
           305,
           539
         ],
@@ -3693,7 +3915,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 57125,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 57341,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3720,21 +3944,22 @@
           "distance": 1.41
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "a86cea137188651349a06259d55ebeb6b4d7a69dbe4aca95b94f6e44f012edec",
-        "bottom": "1107dc8147d7dc0e97ebac84d807e4a541cc2616416890a27da9bcd1aa74b19a",
+        "top": "94a53f764819d804b8de95b657306e8bd9ca5df13c7511df3f8da1878bb7667e",
+        "bottom": "a70b4fd9bc8c543f268dc3e675bf4c89b4c9e7c958ea698daf562e9fb0d3c2b9",
         "shoes": "31e981e8da3503b8aab9b3190156ed88e1790076b2e889142ce039485de8bee5",
         "skin": "e8e94bb00bddc9b662f56e14ac536e1015f559fb620a9bb921045db5a84f1add"
       },
       "maskPixels": {
-        "top": 4822,
-        "bottom": 5690,
+        "top": 4807,
+        "bottom": 5646,
         "shoes": 4419
       },
       "maskBounds": {
         "top": [
           193,
-          439,
+          444,
           298,
           537
         ],
@@ -3756,7 +3981,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 65612,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65671,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3783,21 +4010,22 @@
           "distance": 15.11
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "92b6e8a0d535a52819df6f3f6470b4ae7eee5c6437d5ab578a4ad9c2846402d8",
+        "top": "9269d34bfb1699fb7613d5b4a579b466a7e5f2d66c4cdfec9060afadc93a776f",
         "bottom": "cd3651872e270de56ef560c0ef34fa3585a696064ebc2e2f57973dc34f061e7a",
         "shoes": "57e7cefa34151f1d024d77f675e637e8761dd7e7c118c797e490ffbc10c74c0a",
         "skin": "5c89692aba410a521c7b13e482a6da7f585f2de59c8da61194aa4b6a04dc2e9c"
       },
       "maskPixels": {
-        "top": 7915,
+        "top": 7721,
         "bottom": 5723,
         "shoes": 3833
       },
       "maskBounds": {
         "top": [
           193,
-          430,
+          436,
           318,
           545
         ],
@@ -3819,7 +4047,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 65132,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65326,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3857,21 +4087,22 @@
           "distance": 3.32
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "4fc17266790c3c83e7c502cabb09eb1d1b4e3546e9dbcad74b0bede0b3a24e25",
+        "top": "15df8e5e34907c616f71dedd5c21cacaa0c60861c5d3eb17a91769e3a9cb20cb",
         "bottom": "810c70066563263d86cbfb09c99772095fe4259b84e6409f9292e547530b9b49",
         "shoes": "a5c930d0d30e7ad61532d358c500b62660b7ca5f7396c96f12ba5a454eb0d46a",
         "skin": "4fb3964a4d459877209ae5d1c6671e057dfd1569cbc2249cc2b5e0f17d723f89"
       },
       "maskPixels": {
-        "top": 8057,
+        "top": 7756,
         "bottom": 4315,
         "shoes": 4836
       },
       "maskBounds": {
         "top": [
           190,
-          430,
+          433,
           319,
           557
         ],
@@ -3893,7 +4124,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 63270,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63571,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3920,21 +4153,22 @@
           "distance": 10.92
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "75309e4b9276d0e915275239f3ea76250bad64711ee9355815fde4daaf1c2c69",
+        "top": "392f779e8ae656f5c131f7773f14b1e018484e9f401cb9d3b8085f4913350111",
         "bottom": "31d688e1bcaf3460e25371d1333e831caf6dc6454f24d57a9fc45889db2c6998",
         "shoes": "3509167bbf2099d0c0d0431818359699abb1f1b0bf843757e3a97c5374793495",
         "skin": "570760aef2923fa06b7733f1072910f47acb55ed374140f7f24cef8acc252a09"
       },
       "maskPixels": {
-        "top": 7911,
+        "top": 7559,
         "bottom": 4156,
         "shoes": 3442
       },
       "maskBounds": {
         "top": [
           184,
-          443,
+          446,
           318,
           567
         ],
@@ -3956,7 +4190,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62900,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63252,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -3983,21 +4219,22 @@
           "distance": 10.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "da13df71bd2eb38cc0ba4ad067b68a8316d621f265acc8856a880e0d568b67ac",
+        "top": "de79b2792ce18e4dbf27ccf76e68cccc32a96e21c79f97dc8b7bf23e451586b1",
         "bottom": "05031dc5697f8e092c8c25120570578b36c02d0a7b6d3de8866377780a758e7d",
         "shoes": "efad0de9febb178b7adff013958332b31986edc3a4ce09cb3abc14e97528ac07",
         "skin": "80263d6b4da7e265ed26feefc63593c9eb94e1b6194e5e5b25cd07fd7b4b8dc4"
       },
       "maskPixels": {
-        "top": 7681,
+        "top": 7302,
         "bottom": 3953,
         "shoes": 3698
       },
       "maskBounds": {
         "top": [
           180,
-          454,
+          459,
           316,
           574
         ],
@@ -4019,7 +4256,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 60932,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61311,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4046,22 +4285,23 @@
           "distance": 11.13
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "2ad7a1758373b3e7e86b204b48ca4d54fdd888b7c69525425a4f8d9ce5c553f5",
+        "top": "75082a5c12ac443b756f9a3cb61805733d404c48fa475b485499c19ee82c3cc4",
         "bottom": "ca876b8d2e076abd77db1af41bc583bc3b3026847d6cf02fb5a606d6eb6fbdad",
         "shoes": "af3d802f2cd5eed4b6a97c033e4e336feb8c9fa2ffcc1bce7a6d746a8a813750",
         "skin": "002fc95a083ee58da285b5a01faed9dd7f6591a8a57fe2f58c656573fbf82b21"
       },
       "maskPixels": {
-        "top": 7631,
+        "top": 7290,
         "bottom": 3962,
         "shoes": 3552
       },
       "maskBounds": {
         "top": [
           174,
-          458,
-          310,
+          465,
+          309,
           576
         ],
         "bottom": [
@@ -4082,7 +4322,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 60207,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60548,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4109,21 +4351,22 @@
           "distance": 9.42
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "60231e98fce4656a730bc741172122f6ce155dbcb422a26cd52ade3ace7b2068",
+        "top": "6ac6864ce5390b70cb9d021a1772792585766bfaa95657a2ef76dc980d2fb53d",
         "bottom": "66ff571e939038fd00cb33c5083a376f2c353179bf92abdfac0fc24f32a96a58",
         "shoes": "d8a31626eefb0ab63650ae8e6fcfd1dc5d01dbe584382beed9d9aedac78b30f3",
         "skin": "c1bab515c3c66529fd7bf0e8802196998b37fbfea457c2f1dd692c0bd215b7cb"
       },
       "maskPixels": {
-        "top": 7608,
+        "top": 7432,
         "bottom": 4607,
         "shoes": 3602
       },
       "maskBounds": {
         "top": [
           173,
-          449,
+          453,
           303,
           559
         ],
@@ -4145,7 +4388,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 63967,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64143,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4172,21 +4417,22 @@
           "distance": 0.54
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "8341e0923498ec731777b08fd3fa8f8d016af1ef46e795d84f52404c869046bc",
-        "bottom": "e96653170746a79a3bc812ee3ad7cacd1ee02b690f08d249b895e893ea121fc4",
+        "top": "49c3f18b34edf5767625fba99fddddffccb445d09d6a37060d8d9d0a5f4a59fa",
+        "bottom": "f78bacb22859d17df91a44f44f3588c02283f8962e70a310c2db5027e219e728",
         "shoes": "e6aea7c78f440a4ebd709c5eb53ec0ab66451963dd5a330489d445d11542aed3",
         "skin": "da5911d8652654e9d0a0e42ba57d67ba21160fc7553facd0b314255a8d3ff4dc"
       },
       "maskPixels": {
-        "top": 7843,
-        "bottom": 5633,
+        "top": 7611,
+        "bottom": 5551,
         "shoes": 4457
       },
       "maskBounds": {
         "top": [
           193,
-          387,
+          389,
           305,
           516
         ],
@@ -4208,7 +4454,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61631,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61945,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4223,15 +4471,16 @@
       "reviewedSeed": "male-2360/212",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "448fb8989a3b1435a0750f0c8f38779f8f35fca1c69b7ad5b92fd9eb43160b45",
-        "bottom": "880c1aec7d491a94663126e6b00586ac1ccf0e0f55ec7ec6ba13a1e294edb882",
+        "top": "23c09824650f94cfe0c5eabbf3d845a4b2862d9c2d62c054e986eb7c25917ad5",
+        "bottom": "f9c177cc5a4d0645094e8ea0b123f91502f82d7d8720a8cbad16c1ce8e221fea",
         "shoes": "96b66e14088a59b8c4dd2b6a32fbac632dc9f99014e7b4cc6cd39a281c54e830",
         "skin": "ce740624783ed470b77cd42a7b716e55d59b32d6c1d9b1bf4faba06f1c18a500"
       },
       "maskPixels": {
-        "top": 8010,
-        "bottom": 5470,
+        "top": 7812,
+        "bottom": 5377,
         "shoes": 4923
       },
       "maskBounds": {
@@ -4243,7 +4492,7 @@
         ],
         "bottom": [
           174,
-          462,
+          463,
           292,
           523
         ],
@@ -4259,7 +4508,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61848,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62139,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4274,15 +4525,16 @@
       "reviewedSeed": "male-2360/212",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "08df0dfc839797f7ebd9456af1d2e7746c191f2241c45e403654e31a336ba5a9",
-        "bottom": "9554226393e1a632b8f17bfdb88422ec0d86c3df755cecbaec4e3871c9757885",
+        "top": "a08a3b3bcc182d53d873e3862b04b43ac7b762fa1ac1e9775213090a4618495a",
+        "bottom": "3c60340ec4c26d9b925f943dd85f379ec031d6bf29da57ea3227f38882c2499c",
         "shoes": "b77d06cea4bbf1410207189982bb28550592e3f30bd40f30827cee9a0c52f546",
         "skin": "1964697898c74e2268b15d469adcc4669cdb929888b25b5e88409a208a98345d"
       },
       "maskPixels": {
-        "top": 7727,
-        "bottom": 5697,
+        "top": 7553,
+        "bottom": 5597,
         "shoes": 4015
       },
       "maskBounds": {
@@ -4293,7 +4545,7 @@
           427
         ],
         "bottom": [
-          175,
+          176,
           422,
           308,
           484
@@ -4310,7 +4562,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61947,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62221,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4337,21 +4591,22 @@
           "distance": 0.64
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "b4675407cfd964fc5956d17850c2593cb4a4584f3519d03e7ea442c71649d18a",
-        "bottom": "cd7bfd9b3da6d2af345214ddd1af09955a480d16deb0475d9810f382a5eabcc7",
+        "top": "5a8bce190faa1336f3014abfe4550c541fc33022eb151115d2b95ef01afe082f",
+        "bottom": "5e65a787dfaabe67d27cda9a5599282e379daa1272b127cdc3069298d8372f64",
         "shoes": "403f70fbef76bbc6cfb774a104830268b9d3d6ea6fdefd37f06dd0261d50d4f9",
         "skin": "5ebc085d8521d13f54e182892d1613bd439a541b691bbcfcb1e7ed091672a6cc"
       },
       "maskPixels": {
-        "top": 8111,
-        "bottom": 4406,
+        "top": 7845,
+        "bottom": 4328,
         "shoes": 3992
       },
       "maskBounds": {
         "top": [
           188,
-          280,
+          283,
           297,
           401
         ],
@@ -4373,7 +4628,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62083,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62427,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4400,26 +4657,27 @@
           "distance": 1.51
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "7d284f504a3e696697d826029e2096181052d9b6dc5b292cf118057ec0030b44",
-        "bottom": "d06e9b9ea822c1eeb5b4e14f3fdcaf61e5f54a14ade0d37d4f9a66d9932b589b",
+        "top": "85c09e81be5064cd5cfe7db521c1a2ffce0e4766a61d9bd0db41e82ad3a0791d",
+        "bottom": "24167dab919e8dd2aa2b8bde9356c4d7fbd2e245ee2150d3d9f57222db13ab44",
         "shoes": "b68c7077e298e0edb99993d534baec76d1cad9d97d42afe910c9e760944e4fc3",
         "skin": "a893a1b3090212add74018eb2f2ba349f68a22095580cdbb94915c679934a400"
       },
       "maskPixels": {
-        "top": 8070,
-        "bottom": 3476,
+        "top": 7753,
+        "bottom": 3473,
         "shoes": 4255
       },
       "maskBounds": {
         "top": [
           184,
-          279,
+          282,
           296,
           386
         ],
         "bottom": [
-          172,
+          174,
           378,
           316,
           439
@@ -4436,7 +4694,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61779,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62099,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4474,21 +4734,22 @@
           "distance": 2.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "dc6f03b88944bd7b52f4904927611c43b33d5f439f033eba7ccfdd8881f6eec1",
+        "top": "aee008421b63284a3c53afa35affdd1ff292e32b541248521a6ca2bfd765951d",
         "bottom": "d23eb0a7ee9c49c4f6c59dd0bd1a87e105ee24fe9a5d8e0101d7734e933d7ea6",
         "shoes": "706d9d7a4f30c16aeb1d3090937f13ab11bf78144a473d4f5b7589d1c168c436",
         "skin": "65a99d9b896e6db6a9c2a303928e2167b37ffed3d1166a79167c1c9818fe6514"
       },
       "maskPixels": {
-        "top": 8053,
+        "top": 7707,
         "bottom": 2297,
         "shoes": 4879
       },
       "maskBounds": {
         "top": [
           180,
-          275,
+          278,
           294,
           380
         ],
@@ -4510,7 +4771,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61632,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61978,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4548,21 +4811,22 @@
           "distance": 2.9
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "adb95643569ca35df52e80155b7c4ee3eddb5d31004fc0b2415a032a3e9a5656",
+        "top": "2b785d3a67e9eb88e0126652b85882b98f6d8c9a58203f0f4641e6fa110b0765",
         "bottom": "e4df26cbcc7d16d9b05593583d5de33628807f877604125886bcf8aad795e2af",
         "shoes": "c2e6c8199d87375ee41df02c435f911c12a895d8af63318cb39f077b448d004a",
         "skin": "71d5c72e9da8043adc0e99537262dfac539570a3b1268a49edac9d343ec71d8a"
       },
       "maskPixels": {
-        "top": 7815,
+        "top": 7455,
         "bottom": 2006,
         "shoes": 5291
       },
       "maskBounds": {
         "top": [
           180,
-          278,
+          281,
           294,
           383
         ],
@@ -4584,7 +4848,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61898,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62258,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4611,21 +4877,22 @@
           "distance": 3.22
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "4bb2dd686951ba8e2cff71fb7de5e8a45a073af9bf0e8dbf24c97bfef1a252fa",
+        "top": "552d57b3fc91949e781ec75052e0ed94ba9b9e3ebb5b79ad35be7a440545419a",
         "bottom": "18c26e6cd6442c9661f5624880334ea6fe23e6f574f65ac4b8732fd65fb62a29",
         "shoes": "08657c4eaa0b88450b9dcbf85bb24ff692cc4b7d787bfe3ace22e2a277355298",
         "skin": "1126f6b4f6b8d75ee8e801b7571a1192f5382d542bc67c3cee2a485c9554f89b"
       },
       "maskPixels": {
-        "top": 7727,
+        "top": 7412,
         "bottom": 2262,
         "shoes": 4243
       },
       "maskBounds": {
         "top": [
           181,
-          298,
+          300,
           297,
           398
         ],
@@ -4647,7 +4914,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 64657,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64972,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4674,21 +4943,22 @@
           "distance": 2.52
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "d45dfd466beb7c38c7a54fa6756f5f0e2e4b1ec48e9b1c9d33271020c7ff72d3",
+        "top": "6dd344cce5c764e3581ef72f24b1896c09054976be1907d3ebb7f54e718a3637",
         "bottom": "dc6c2a046be23714712ed6c3897b523b0570030c01cfcaaf61f04efda4d32aa1",
         "shoes": "74e1f0d8638a97e88adf8b1eef2594df3ccd21f3613670593c3f0df05d78d993",
         "skin": "f986fb35f9235dfbc25e552a484be53f90c04aeaa9a14bdf78ba6a44803af498"
       },
       "maskPixels": {
-        "top": 8604,
+        "top": 8204,
         "bottom": 3040,
         "shoes": 5256
       },
       "maskBounds": {
         "top": [
           182,
-          312,
+          315,
           302,
           425
         ],
@@ -4710,7 +4980,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62968,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63368,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4748,21 +5020,22 @@
           "distance": 2.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "61246990937ed32daf78ecfa3480ccb5dc773948fb2d79596f0f2de155ac369c",
+        "top": "1afdfbc2a1fca5dbe4ca8bd442dcb634646dd0760db939c4f695f0416f588c34",
         "bottom": "ecc8c250baa8c21327eb0ddc8d1c751fbe31374717ed446025bc81b8f0039998",
         "shoes": "5881325751a181283c0d533b08881a99146098c4b1e2b786583e97fcbdc941cb",
         "skin": "7c337b60339ae8ffb7300bd6298412209eb98482bba7769b65ead298bcd9ee33"
       },
       "maskPixels": {
-        "top": 8576,
+        "top": 8177,
         "bottom": 4224,
         "shoes": 4421
       },
       "maskBounds": {
         "top": [
           187,
-          349,
+          352,
           307,
           461
         ],
@@ -4784,7 +5057,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62676,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63075,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "no separate visible skin component; omitted, not fabricated"
@@ -4822,21 +5097,22 @@
           "distance": 10.59
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "8c95ac3aa6693b2bf170ea957259f424139b2e5c2c82341c566d292003ee2c3d",
+        "top": "095fde2ce9beeeaa67d85d6285fec739e839554afb4bf70669c935024338bef7",
         "bottom": "32461f5720eaeb77590018c6407f0a0a4fb9e96d6dc50ff0a355e74aa67de07d",
         "shoes": "bb40e181e5d822da3d535f94d20166ef5f36273b6bf74e3869c292cb81a41217",
         "skin": "9b1646bf7b13bf2156e30fcc6b2efe2452c1038a28ae3bcf4da85b79d31c920e"
       },
       "maskPixels": {
-        "top": 8449,
+        "top": 8068,
         "bottom": 4547,
         "shoes": 3459
       },
       "maskBounds": {
         "top": [
           189,
-          405,
+          408,
           314,
           518
         ],
@@ -4858,7 +5134,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62840,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63221,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "no separate visible skin component; omitted, not fabricated"
@@ -4896,21 +5174,22 @@
           "distance": 3.2
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "a440bebb3d243d37b6fb9917d144efd660e90603c3fa2f21bbb5611ce119dafd",
+        "top": "d1bfc3cf7958f984c1000b3bbf01c3096f52d4a03fdaed75767d813d693daaca",
         "bottom": "9fda44a8f15f4a3113b2f495255121472e1f86f7a7ed0979e5e007d4d8c8b8f7",
         "shoes": "c03c6c50d6cfef45af4c26e670ae4e8383634bb065043162937630ad49b46a36",
         "skin": "1401170f95fba79780bb9ab040bad12e5426c81cb0a2a5010be478d7e934a076"
       },
       "maskPixels": {
-        "top": 7382,
+        "top": 7051,
         "bottom": 4066,
         "shoes": 4265
       },
       "maskBounds": {
         "top": [
           194,
-          456,
+          460,
           319,
           568
         ],
@@ -4932,7 +5211,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 65123,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 65454,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -4970,22 +5251,23 @@
           "distance": 0.85
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "2d3c48d6930afb2343e3e33f92096695d4d44267b2d65cf791b8c2dbbfdf9cb3",
+        "top": "876d59c37c1a8d76814aa5227bba444398b466a502c5f038bbee7b9a3f5295ac",
         "bottom": "0000f501a6023db0d80cf5f4dc2201a65c4e409ff32b78e6c68ab9f02dc0b8fd",
         "shoes": "3fe6d14d3185ec59bd10b19b64fdae0b0eaf64765c3eb4b7129fc565a184d965",
         "skin": "22b7354fdfbff93478019feddf446e7b748954a72f9081455243354293bedba9"
       },
       "maskPixels": {
-        "top": 7014,
+        "top": 6612,
         "bottom": 3367,
         "shoes": 4168
       },
       "maskBounds": {
         "top": [
           190,
-          492,
-          327,
+          495,
+          324,
           587
         ],
         "bottom": [
@@ -5006,7 +5288,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 63995,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64397,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5033,26 +5317,27 @@
           "distance": 8.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "3477d67bd8f8dcc236b8d2948d1be1822cbda0f5222ba4cae2ae000e447543bb",
-        "bottom": "842c478f5201f8d8bbbedc355c6144e80e4de4103c656aba8caa55095312695c",
+        "top": "5dd3a2001f4d5fd274b63c3afe07a38cb08d97ae8b04d75d56f2fb418712c9b9",
+        "bottom": "f1dc301854a5a4faa43400660c13ef26335332d284d6fd9c7fa2fe78ec2918f1",
         "shoes": "5e71c99a1cd20bde39447b97816abe89034ed570ce26b7317d8c00d3a4b957a1",
         "skin": "733483bd85c970598103a9137112a4893bc82cf3036f10aa7fb30df3ae592e89"
       },
       "maskPixels": {
-        "top": 6790,
-        "bottom": 3209,
+        "top": 6388,
+        "bottom": 3143,
         "shoes": 4203
       },
       "maskBounds": {
         "top": [
           194,
-          501,
-          324,
+          504,
+          322,
           590
         ],
         "bottom": [
-          177,
+          178,
           566,
           315,
           632
@@ -5069,7 +5354,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62528,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62996,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5096,22 +5383,23 @@
           "distance": 6.9
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "1b4ce9d9e515d1a6fedabba3dd81b7f18d26eb8b27fa9763d5950de708a8dc63",
-        "bottom": "8f13bc6ca540e48d86d86a111ba150f57ddf15638a1cb420332aafeb001ab2fc",
+        "top": "42c45d0b6d7774d1c8ca335cea2b6c48fe5ed0827835c440a0b580c33606cfba",
+        "bottom": "d7498798b14bbaf81c1a68fc8f5e32bd1d96ed06966008bccd0a13f939fd96c5",
         "shoes": "0cef249f1fab58792979d1551dbc72b2782889e874ee80b7aead2cd08b074e86",
         "skin": "cd17a038fbcfb5627cc06175e799a1e6b51650cde2eb325279c39beeae418098"
       },
       "maskPixels": {
-        "top": 6179,
-        "bottom": 2792,
+        "top": 5755,
+        "bottom": 2684,
         "shoes": 4284
       },
       "maskBounds": {
         "top": [
           206,
-          495,
-          321,
+          498,
+          319,
           585
         ],
         "bottom": [
@@ -5132,7 +5420,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61965,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62497,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5159,27 +5449,28 @@
           "distance": 6.3
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "058e0615c8dbe43ab3b49c630472f562a1f33cfc310fafa7689436a7db47514c",
-        "bottom": "65a820f7080badca350a2e21f882e52ac1ce2a67fa7f8261e0e2f71240658c77",
+        "top": "50affb36ca3acc1c01797ce6a6ad4939d0f887ed9dbaaf29cc7ab20ead19f433",
+        "bottom": "85600a43c855ad4fb694cbed23846d3945d32466de32b121314060e9d3af646f",
         "shoes": "e720697b1a3635121a24a4941156e0ca4ab22e63861bdc10400b7aa25b9ad53b",
         "skin": "b792fa48635bccf300382b429e9ecbf5f65eef9e15a41ff2dcd59c72459eecbe"
       },
       "maskPixels": {
-        "top": 5670,
-        "bottom": 3267,
+        "top": 5185,
+        "bottom": 3111,
         "shoes": 4304
       },
       "maskBounds": {
         "top": [
           211,
-          485,
-          320,
+          488,
+          317,
           578
         ],
         "bottom": [
           174,
-          565,
+          566,
           308,
           627
         ],
@@ -5195,7 +5486,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61653,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62294,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5222,22 +5515,23 @@
           "distance": 8.51
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "974370aabfb0b635122d4013b3e510d8568d44ed5f79ec241bb87dc2e73909e0",
-        "bottom": "fdc135cb4fb4aac2bdb1988839fee11ed28b56520448cde62369aa8ed16c0393",
+        "top": "5d97a612fb277b864f05cac64d52673225e906b81b7281c97fccfbac8a18f5e3",
+        "bottom": "0a070dace0dae4c7444b636a68c6202274a8235b445bd3db886b0dd195255e02",
         "shoes": "b78c8a502ad034f9e4b334b4c4e7757f85b13ef0ae4b1e5e837f0260c52b30f5",
         "skin": "cd6cf3fd557001cbbbdb3f41e7e4e62fa98407845fffd98823c671d98763488f"
       },
       "maskPixels": {
-        "top": 5572,
-        "bottom": 3813,
+        "top": 5072,
+        "bottom": 3688,
         "shoes": 4369
       },
       "maskBounds": {
         "top": [
           211,
-          471,
-          316,
+          474,
+          314,
           571
         ],
         "bottom": [
@@ -5258,7 +5552,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 60748,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61373,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5285,22 +5581,23 @@
           "distance": 8.0
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "bc2eb176c439b5dc7bdcac829bff3bc3f04dfb78e7748b050796caa3de333363",
-        "bottom": "97dfe84cda833d7776fb63069484ce48c3f8e303d8ff5b2ae61e2373978c210e",
+        "top": "0de0ffa57bcdf824456cb1e7cfcb5a2ed6fa22cc5a1e23d33a2ed5191276caf7",
+        "bottom": "eb353746414bd50cb8f9e8b04ec76679cd76dc2699d4de4632901e47f0a910ec",
         "shoes": "63ce09ebdf5796e5dd0b81b0b867884c7a590fbd38ee6a1256027566087df2d0",
         "skin": "ea95f0b981cf5a94611f1cb0b9df85eb3a90a398bcccc483621340038f80d1b4"
       },
       "maskPixels": {
-        "top": 5259,
-        "bottom": 4284,
+        "top": 4759,
+        "bottom": 4203,
         "shoes": 4474
       },
       "maskBounds": {
         "top": [
-          221,
-          463,
-          312,
+          224,
+          466,
+          311,
           565
         ],
         "bottom": [
@@ -5321,7 +5618,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 60357,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60938,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5348,21 +5647,22 @@
           "distance": 7.58
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "663050ae216e2c54875b0fac718c02e440cc0416674a42311bc9c346f8477242",
+        "top": "b8a67af813515745c59024f9eb4ef18df2e4798d11f4491a652935bc6ae5732d",
         "bottom": "2b48ed431d511459c2bc4760a8117471f7e18685b0edf899a1b1775e467585a2",
         "shoes": "6530705a2f6729aa2ca2883d2eb779bf031eb45d728115cf9a689fd3b216da92",
         "skin": "0ab91ddd64896c0ebf87b7f5478f5c2e2082258c535c93fc73d4a4d516a8e0b8"
       },
       "maskPixels": {
-        "top": 5343,
+        "top": 4753,
         "bottom": 4437,
         "shoes": 4470
       },
       "maskBounds": {
         "top": [
           182,
-          458,
+          461,
           309,
           562
         ],
@@ -5384,7 +5684,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59920,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60510,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5411,21 +5713,22 @@
           "distance": 7.56
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "656d73eda11e36f429f4f0cd7b9b356803fdf2b4577f499de63fa2bde7f55966",
+        "top": "2c36723b5346143fcdbe642449ad7f423c12bafde0643ae050806e2b4b86f9b2",
         "bottom": "840d4e5eaa1ef96a9911a1d53820ac48d171ca7ee59deefd01fe5a3e92db5fd3",
         "shoes": "90bc05586ebeb9bed5111ca15e95095105b0313532f783f44e597140049beeac",
         "skin": "102005f3e16ec45f918a18f480bd04598575719c67912ac1e5d4c00e4c78057d"
       },
       "maskPixels": {
-        "top": 5392,
+        "top": 4774,
         "bottom": 4456,
         "shoes": 4504
       },
       "maskBounds": {
         "top": [
           183,
-          456,
+          459,
           308,
           562
         ],
@@ -5447,7 +5750,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59572,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60190,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5462,21 +5767,22 @@
       "reviewedSeed": "male-2360/232",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "3deb99db0b1585ad6327d3784be8d40c067d53b333540b853f38fd3f58eab00e",
+        "top": "c695b7530216f9b62efd336b897d4deb1f59e693a81b8c9b0f35b43feba1494f",
         "bottom": "8509b9a9b5f9f9c7dd5e1633d6ef8a89374a8cf880528c3b1a12da9666f28d19",
         "shoes": "19fb855b311da662b38b9203d604fdf2c91f681d42932c4fa9f22b2bddc8c2ab",
         "skin": "3c7169e993346052881e40a6f2afe02e4967211ad02c493c9007ddfb4db90b23"
       },
       "maskPixels": {
-        "top": 5314,
+        "top": 4784,
         "bottom": 4454,
         "shoes": 4486
       },
       "maskBounds": {
         "top": [
           181,
-          463,
+          466,
           308,
           561
         ],
@@ -5498,7 +5804,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59703,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60233,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5513,21 +5821,22 @@
       "reviewedSeed": "male-2360/232",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "13d10f0743790876464fccaede13e06561f80bcbfe275d4938c1da5b20b8b8ff",
-        "bottom": "a65a45dc3324e35ff83eb5f9f1bcf5d7aaf0e9a16594674ad3af150ba805115f",
+        "top": "1183aef9ece4a8fcb39d127bc389f62fb7bb69cc1ea4021850b348c923a4a4be",
+        "bottom": "c606b98b69977e50573a034ca9a9fce1ed834fde419d46d81a8ba13bce0eed09",
         "shoes": "f1dd9c1e14c76c4b10f8ec07dd2ab18a7802b6d19998017f1f3603aafed940c6",
         "skin": "82071a281765da5c91b6756f28f20b87224326345dcfbf70b79ef8d1283c68a7"
       },
       "maskPixels": {
-        "top": 5652,
-        "bottom": 4869,
+        "top": 5098,
+        "bottom": 4856,
         "shoes": 4442
       },
       "maskBounds": {
         "top": [
-          195,
-          451,
+          204,
+          454,
           308,
           553
         ],
@@ -5549,7 +5858,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 60287,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60854,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5564,21 +5875,22 @@
       "reviewedSeed": "male-2360/232",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "e38dfb1e9ed7ea42f9c1736746615221850f1627f88554a6fca9a2bbe6193e8e",
-        "bottom": "909e44f3d1746ecf3dfd991f9c38c34a857672c26cffe17645eb0a7a23adbfde",
+        "top": "13c9dd02a85392f8722f4b5e43b432dcfeab8d955d2fa18002b77a509eca3a87",
+        "bottom": "f1dd8d7e623e8d701ef959da6593c48d7f626425abdbcbf81fc96141d5695b0c",
         "shoes": "9b43beb82060666178a65435f86a1fbe7dbad5649a0112d59359e304f4acad39",
         "skin": "e84f53aa040dfa8c5438ac63fe22d923a86934a7e6dffa321abb89acf7493297"
       },
       "maskPixels": {
-        "top": 6238,
-        "bottom": 5691,
+        "top": 5760,
+        "bottom": 5620,
         "shoes": 4523
       },
       "maskBounds": {
         "top": [
-          214,
-          426,
+          217,
+          428,
           307,
           530
         ],
@@ -5600,7 +5912,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61706,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62255,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5638,27 +5952,28 @@
           "distance": 0.57
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "d6ef4d0fdafb824efcf6ab4b79bd28aa2f708761d5863e29376fd40387b6e15c",
-        "bottom": "56c44e54b8606263b59106e76c106d1e5f71777c02a4f730a34e8ac769ff7b3b",
+        "top": "75be77ebaa83b2f5ddbbcb529a29c83938f92dcbb280ce2360fad7305230a0e9",
+        "bottom": "63ce785977ce46217c2b954c98ae7e033cf2deff5e9d7f1ce76af8f98962152f",
         "shoes": "fb3c3ab14466054c3c4fea0467cd0df4c32740d724391885e7c799260d82c307",
         "skin": "49b4857abb19362fde7c2d794c738698b1efc41a8293c86da327159996c29d41"
       },
       "maskPixels": {
-        "top": 6387,
-        "bottom": 5833,
+        "top": 5943,
+        "bottom": 5731,
         "shoes": 4397
       },
       "maskBounds": {
         "top": [
-          216,
-          377,
+          220,
+          380,
           303,
           486
         ],
         "bottom": [
           175,
-          477,
+          479,
           296,
           539
         ],
@@ -5674,7 +5989,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 64346,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64892,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5701,21 +6018,22 @@
           "distance": 0.51
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "a5eab46c8b4621bb40cc07c93e5f579575d2ecfbe1cd3098f81a0797bb464679",
-        "bottom": "49598eaaff2096890dd5294818e85b6669c362271c449ce1ad0436d796b38ca5",
+        "top": "434ce656d8cfbfb76e36da069521a1edfc7b2ba2260c60e914f5361f34496860",
+        "bottom": "e608026b5c2f86ee5a66c829558422029e48a409346c6575fa0cdab5a942eaac",
         "shoes": "92718bef9d00e023166bc1c04a4250461a9b7dffdf45cbb5825d43ad06cc1163",
         "skin": "ee76ecf14a097fc52dfbf6425b86eba73988f1787e9e74ecc0192d1daba8dfc8"
       },
       "maskPixels": {
-        "top": 7498,
-        "bottom": 5565,
+        "top": 7185,
+        "bottom": 5450,
         "shoes": 4930
       },
       "maskBounds": {
         "top": [
           196,
-          332,
+          334,
           302,
           442
         ],
@@ -5737,7 +6055,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61643,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62071,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5752,21 +6072,22 @@
       "reviewedSeed": "male-2360/236",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "f82ae3b33b0a1ccf06e12627755e1588e5f0d0a0e934c89f92c329c6a49ec634",
-        "bottom": "6b2925a986319bc4c95f638ecc71886c15aab0aee8194004ec509675311f4d52",
+        "top": "3749407dbd2f934a72cfd3ab275428d3e3207297651b7c41ec9cd753ac2d5d92",
+        "bottom": "c4f9fa60945581d7a0a6bcdb813a09bf61f55ff1c1fd239c64ee3548c3f444c5",
         "shoes": "cc9de392ef50c3acb8daad3db267161f0dd8b51d0c285fb747227928fe321f77",
         "skin": "39a4b2f26b2c775c4452ad52c366785a64bc000c0013b5a5d7d03635d1654333"
       },
       "maskPixels": {
-        "top": 7805,
-        "bottom": 4678,
+        "top": 7404,
+        "bottom": 4573,
         "shoes": 4407
       },
       "maskBounds": {
         "top": [
           192,
-          304,
+          307,
           300,
           412
         ],
@@ -5788,7 +6109,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62744,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63250,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5826,26 +6149,27 @@
           "distance": 0.51
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "96833411c0ed9176dd685b672942af7fa32c1753dc20f92cef2d884a5358479c",
-        "bottom": "ceb5f0a58010907a17abc5107ab96d80b8a40f05bc1dcb46509a13461b259e2d",
+        "top": "01c4268ff1091825c9e9186a11d0a399b45d5b44d471436997a4fbf274eead1c",
+        "bottom": "2070b101ebd57d4e5408e82e23ea5c126e0bdb60b85f28c639b1d1bf60ae5952",
         "shoes": "c97277ecac9d762b3f56be590bc41ce812ad11d4d4e5e883891a15f67573ec60",
         "skin": "f0611fd6bdabd98c8ac346d5f5d9460e4867ba2f176c3cd41eb9c928079e9de6"
       },
       "maskPixels": {
-        "top": 7931,
-        "bottom": 4005,
+        "top": 7579,
+        "bottom": 3921,
         "shoes": 4069
       },
       "maskBounds": {
         "top": [
           187,
-          287,
+          290,
           300,
           392
         ],
         "bottom": [
-          174,
+          175,
           387,
           304,
           446
@@ -5862,7 +6186,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62877,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63313,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5877,26 +6203,27 @@
       "reviewedSeed": "male-2360/236",
       "trackedSteps": 2,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "224abb4392d0d606da28c788ac536546b1355f5a2f2f0fd59d7dc804372837e5",
-        "bottom": "c5ec3b8477e05dab542e731bda989abad51f4e03b4bf8f11304a1dbbd4429d28",
+        "top": "54cb916341dea57be3fa103d01a160b88e96f0ad00a2a49ff267a1bd82d875c5",
+        "bottom": "275de2acb6fda36c5271af0c8b3e1113603e5a1cd94ae9f4b016c2965471868a",
         "shoes": "9fd75921e34103a98fd5656cc68f73f7c04723fe174080550fdb19f217fea525",
         "skin": "fe1c31728a1f65851f057074090248d97ead5af651aaae3f6c0d0aba8b23dc1c"
       },
       "maskPixels": {
-        "top": 7915,
-        "bottom": 2525,
+        "top": 7531,
+        "bottom": 2470,
         "shoes": 3783
       },
       "maskBounds": {
         "top": [
           185,
-          280,
+          283,
           300,
           384
         ],
         "bottom": [
-          172,
+          174,
           375,
           301,
           432
@@ -5913,7 +6240,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 63258,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63697,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5928,21 +6257,22 @@
       "reviewedSeed": "male-2360/240",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "333951bc588de72ed45bf98bcbec35794e9c81afac473bba421c2fa7bb0e8ab1",
+        "top": "a00696ca1c95bae9f2adf02eb389644ef7889db6dce5d7afe4843701d322189b",
         "bottom": "4bc6a9256ee24790dcc7615bfb4f1e8c9cdb6281d7aa3fe9a4a06f0a1ddd5d62",
         "shoes": "a5475f784935da26658565a14b1d027c73f69b749623e9b712cb2c9b527a7963",
         "skin": "a9b76beca8afd9f9c17c5f35b34e8a65d7a2385ca5b2b85d15ca09e8ce291cea"
       },
       "maskPixels": {
-        "top": 7701,
+        "top": 7421,
         "bottom": 1847,
         "shoes": 4861
       },
       "maskBounds": {
         "top": [
           179,
-          273,
+          276,
           301,
           383
         ],
@@ -5964,7 +6294,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62249,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62529,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -5979,21 +6311,22 @@
       "reviewedSeed": "male-2360/240",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "f3cb7d4d9d93597374cb06957eeea442bf74e5261572ae83d64d4c5bf7565d8f",
+        "top": "4cbc77e83fc474dcdc5b28b8cd13c82b48e7fa7eb3b3ce8a6cdf19d0a1861d8f",
         "bottom": "4baa8c94b25a1b4b511b783c5ed7b2060c0e176b02e47eaa6d84ffbe91918c1f",
         "shoes": "b609a49f1f8f210b01f83f002a87f7b956289858a109bbceec38451110f74511",
         "skin": "8d31aff2dceff0904f232a19e8fa13809bfa41e987efa913a8c52928c49a417c"
       },
       "maskPixels": {
-        "top": 7738,
+        "top": 7452,
         "bottom": 1944,
         "shoes": 4808
       },
       "maskBounds": {
         "top": [
           178,
-          286,
+          290,
           304,
           398
         ],
@@ -6015,7 +6348,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 62599,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 62885,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6030,21 +6365,22 @@
       "reviewedSeed": "male-2360/240",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "c0896164cb2c3fa2f4ed70fa50a4e6a6085622bbbab4c3bf291efa9c4793d333",
+        "top": "a62a4e4c2c68a1a8919ec5b908a9b18015cc98225533089a1fd6b283f8d0893b",
         "bottom": "18d37947abd52aa570452ac75376daed2bb95f1c90c913970c2f40982dcedd54",
         "shoes": "e541b2fb390e0e7a2522b28e36d936291aa1df23d8ff543c2b117346fd2735de",
         "skin": "d9fe5e2fd4dd0a38406870f9366162273fcd1118a8d9d1a1a03077fd79824818"
       },
       "maskPixels": {
-        "top": 8067,
+        "top": 7749,
         "bottom": 2490,
         "shoes": 4605
       },
       "maskBounds": {
         "top": [
           185,
-          309,
+          315,
           305,
           421
         ],
@@ -6066,7 +6402,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 63077,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 63395,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6104,21 +6442,119 @@
           "distance": 0.51
         }
       },
+      "reviewedMaterialOverrides": [
+        {
+          "slot": "top",
+          "polygon": [
+            {
+              "x": 200,
+              "y": 402
+            },
+            {
+              "x": 215,
+              "y": 405
+            },
+            {
+              "x": 231,
+              "y": 402
+            },
+            {
+              "x": 247,
+              "y": 412
+            },
+            {
+              "x": 251,
+              "y": 430
+            },
+            {
+              "x": 252,
+              "y": 449
+            },
+            {
+              "x": 237,
+              "y": 450
+            },
+            {
+              "x": 218,
+              "y": 446
+            },
+            {
+              "x": 196,
+              "y": 442
+            },
+            {
+              "x": 196,
+              "y": 419
+            }
+          ],
+          "sourceFrame": 242,
+          "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+          "reason": "Native source review identifies warm pink shading inside the original gray tank below the armhole; no exposed skin is inside this traced cloth-interior region.",
+          "reference": "docs/kling-side-selection/continuous/frames/male-2360/0242.png",
+          "rasterization": "pillow-integer-polygon",
+          "sourceRgbaSha256": "0e4ee290dfa262631b1957c1bad069b0da6ac1d72fc298d481a480fd5f598979",
+          "rawSkinSeedPixelsExcluded": 1148
+        },
+        {
+          "slot": "bottom",
+          "polygon": [
+            {
+              "x": 186,
+              "y": 449
+            },
+            {
+              "x": 202,
+              "y": 451
+            },
+            {
+              "x": 208,
+              "y": 458
+            },
+            {
+              "x": 207,
+              "y": 477
+            },
+            {
+              "x": 201,
+              "y": 485
+            },
+            {
+              "x": 186,
+              "y": 483
+            },
+            {
+              "x": 182,
+              "y": 470
+            },
+            {
+              "x": 182,
+              "y": 459
+            }
+          ],
+          "sourceFrame": 242,
+          "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+          "reason": "Native source review identifies the purple retained pixels at the left shorts seam as shorts/outline material; assignment remains clipped to source alpha.",
+          "reference": "docs/kling-side-selection/continuous/frames/male-2360/0242.png",
+          "rasterization": "pillow-integer-polygon",
+          "sourceRgbaSha256": "0e4ee290dfa262631b1957c1bad069b0da6ac1d72fc298d481a480fd5f598979",
+          "rawSkinSeedPixelsExcluded": 0
+        }
+      ],
       "maskSha256": {
-        "top": "d82fbfb91e66cda1c6ac7f398321a68dea72fd9033e6e5f0e315a122d5f7fb3c",
-        "bottom": "0c965db9372d1db7c723f2e0f99d982ee857c8d9b8187a61998f6a38c73e5c12",
+        "top": "bc52a7ad2c093aa49ed0650ead9cf6787a0fd65c073dada8f8336dd136efd7d4",
+        "bottom": "643313869e96d3fd81bf60b9bd1f05cb9e3faaac3362c319860566c841c52ca7",
         "shoes": "066d9f8aea43013fe8d4e30c35abe9e53abf72829f01137a0cdbd1461c69e8ce",
-        "skin": "761ac6aa00d516256da81253e1ff3d168677ed413951f28fc505f8fe72e650a3"
+        "skin": "ba437a54d742288ba2815546446ddd603016adea6abf55991c8c7aa80190dcdc"
       },
       "maskPixels": {
-        "top": 7115,
-        "bottom": 3878,
+        "top": 7927,
+        "bottom": 4007,
         "shoes": 3595
       },
       "maskBounds": {
         "top": [
           189,
-          336,
+          339,
           308,
           456
         ],
@@ -6135,12 +6571,14 @@
           600
         ]
       },
-      "skinSeedPixels": 57847,
+      "skinSeedPixels": 56699,
       "skinSeedOverlap": 0,
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 65143,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 64202,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6167,14 +6605,15 @@
           "distance": 0.58
         }
       },
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "9b421ae7be2ea3326fa82f418a06ad07db7e32cf76c1b308e364daaf0ed65fef",
+        "top": "68381a27d86d2f5afab2861495af1ef41af3261f1d7c6bfb03204a1f51cd196c",
         "bottom": "f975b934a4602ad9cfbf1a2dec6d1ceb72481fcdc63c0c79bdcce19a317a9f06",
         "shoes": "77a8631b0270cea88c64bbe4a1bc85dedfdf832222f260c50e1d3b3a171a40e5",
         "skin": "64ba9da36150d3dfeb444df182ac014473515a1fc63bfa0213989212dc646e1b"
       },
       "maskPixels": {
-        "top": 8902,
+        "top": 8584,
         "bottom": 5217,
         "shoes": 4569
       },
@@ -6203,7 +6642,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59753,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60071,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "no separate visible skin component; omitted, not fabricated"
@@ -6218,21 +6659,22 @@
       "reviewedSeed": "male-2360/244",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "a09d8383216738479c26cbb2104363cb3edfd819b55ffc6a0771a49d1d462205",
+        "top": "665f95a8b49ebed9f4332b17570eb30eef5b67dac2fa078ae9a974cd0535048e",
         "bottom": "05a1c2af1cb1f01ae4bce32e05c94f524b706765bc955b4331a21557eb685f6f",
         "shoes": "bf5455f6448b0726a2f861d5f5d66891aa1a8f728dfa38bd5525fc74479f482e",
         "skin": "bc282dd7cf49e5c7458222d34e6644a2cdcd55c800fbc6f47d24094c7624d481"
       },
       "maskPixels": {
-        "top": 8885,
+        "top": 8459,
         "bottom": 4057,
         "shoes": 4205
       },
       "maskBounds": {
         "top": [
           192,
-          423,
+          426,
           311,
           552
         ],
@@ -6254,7 +6696,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 60876,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61302,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6269,21 +6713,22 @@
       "reviewedSeed": "male-2360/244",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "01e0c1bee413fe1649a1d575a27104f1722271167678e9c6d509c2bb1ce0522f",
+        "top": "ae6d42a455ada2691d24d0f118416fbfb7bcee0d47cd5f6206ef8c90b3ded72a",
         "bottom": "6c8eb202cd65f7c5c34dd2da7d074f1c6cc6169c4e9010484111ef33749a8e49",
         "shoes": "e872273502c7ca77ce58fca1d494f1521cc047566f8fb0963901b59c3cbf92ab",
         "skin": "b78393f867b4b82999e4f9939e676b445916dc8c00c242f0e3c7e01d499a9ae2"
       },
       "maskPixels": {
-        "top": 7911,
+        "top": 7543,
         "bottom": 3565,
         "shoes": 4211
       },
       "maskBounds": {
         "top": [
           190,
-          454,
+          457,
           309,
           574
         ],
@@ -6305,7 +6750,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61396,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61764,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6320,21 +6767,22 @@
       "reviewedSeed": "male-2360/244",
       "trackedSteps": 2,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "daff4a783820c27e5358c9c41d7d748aa7db4b024fb58496b3bf0bd557c7119f",
+        "top": "7601a0bb346f89c61df4281d45e72d5924d84771a9fca8ab20ac2de5e3d47b96",
         "bottom": "1e9c0723dc79aab410830d0b3c1a29cc6328b3fc251d235cebf7bb1d6ab2bd71",
         "shoes": "3b0d8d34d82e0114511b757ac556c534d955dfd06928dfc1d67a9066af155b46",
         "skin": "462582fb51715721a25b3b33c2ef053fe554901d9590a3810d035ca554577fbd"
       },
       "maskPixels": {
-        "top": 5751,
+        "top": 5371,
         "bottom": 3090,
         "shoes": 4325
       },
       "maskBounds": {
         "top": [
           214,
-          460,
+          463,
           309,
           576
         ],
@@ -6356,7 +6804,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 61195,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61575,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6371,21 +6821,22 @@
       "reviewedSeed": "male-2360/249",
       "trackedSteps": 2,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "035f5431b5e905b56736aec45067c3c37c7eecc33f36aecc019a3bba70a3d98c",
-        "bottom": "57d7fa0344c684be96fd65b1e208281275cf29c8eb767ad76bc80d331241c896",
+        "top": "91371a67c30a0f204a82aa897a9196b9604fad9270f0ea45e684a9566a3ca4dd",
+        "bottom": "8ab0d6109e34c63eb6b019e93c0697f03e33e3c3215e8b85cf998ec95a66b65e",
         "shoes": "0aad0204843999fa0e1af2db7fa371ab07174bc36eb8a94c1316edf565e38d4b",
         "skin": "fb9cc1cce28d2e326d07b0afa3419d2ce92a680c2b22df2a117f95e118036aab"
       },
       "maskPixels": {
-        "top": 4934,
-        "bottom": 3291,
+        "top": 4354,
+        "bottom": 3181,
         "shoes": 4326
       },
       "maskBounds": {
         "top": [
           217,
-          460,
+          463,
           309,
           575
         ],
@@ -6407,7 +6858,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 60324,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 61014,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6422,21 +6875,22 @@
       "reviewedSeed": "male-2360/249",
       "trackedSteps": 1,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "6ce46a33eb5884ccc5ac77774fbc2cb13b050164c2d7a8d685331f0ba2557004",
-        "bottom": "8cba22194d0f3fb207b579e95e1688950aceba5057816be8b7f35aed917d7452",
+        "top": "b214b8b5bec49a05f55df750de85eea4e2b85d2d7def803d5ed986ee74d012cc",
+        "bottom": "4961f4298cd12c9c8164765542d20a3bf48d5ca6f6ebd46c7e456131bdcc931e",
         "shoes": "084979bea62eaa6e9c4eeb20639290b71013af2814bd3f67cd23ed9a0e5361ca",
         "skin": "d532e25cfe789a25a2ce172e000fbcb89550fbcfcefb4d5f0f3b2b05c5fd9c2e"
       },
       "maskPixels": {
-        "top": 4320,
-        "bottom": 3823,
+        "top": 3693,
+        "bottom": 3752,
         "shoes": 4458
       },
       "maskBounds": {
         "top": [
           234,
-          455,
+          458,
           310,
           571
         ],
@@ -6458,7 +6912,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59970,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60668,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
@@ -6473,21 +6929,22 @@
       "reviewedSeed": "male-2360/249",
       "trackedSteps": 0,
       "footContourCorrections": {},
+      "reviewedMaterialOverrides": [],
       "maskSha256": {
-        "top": "b37848a29ef1736bd5c8315f65f58bd699ec750bd09f99e02f12c1d4ec3d8651",
-        "bottom": "83aa1a185f4a18740beaa1003bcba403190332009d689dfb4a5f1dd2ab0ddece",
+        "top": "9ddf98a980143a2bb5d5dd326f61f7b449cfd89cf850851994ae656368e3fddd",
+        "bottom": "cec577b26879d8f7e263fa575049478f4c69893d8ca4cc76a5f7205ee4757874",
         "shoes": "6f0ddfbfc30e5ef1671ccc209989347e940902734a99663d87156c63c0b4dfd6",
         "skin": "555719a337ab3f0c5f7b0b9c5823f3b5d8e99ebd60213048e56d3913253f177b"
       },
       "maskPixels": {
-        "top": 4215,
-        "bottom": 4145,
+        "top": 3632,
+        "bottom": 4083,
         "shoes": 4422
       },
       "maskBounds": {
         "top": [
           192,
-          450,
+          453,
           309,
           566
         ],
@@ -6509,7 +6966,9 @@
       "skinProofCoverage": "partial high-confidence warm skin seeds from source RGB/alpha, independent of garment inverse; excludes facial ink/eyes and ambiguous boundaries",
       "protectedOverlap": 0,
       "outsideSourceAlphaPixels": 0,
-      "unownedVisiblePixels": 59826,
+      "runtimeProtectedOverlap": 0,
+      "protectionGuardPixels": 2,
+      "unownedVisiblePixels": 60471,
       "handProtection": {
         "nearHand": "visible skin contour near tracked wrist; conservative forearm margin",
         "farHand": "visible skin contour near tracked wrist; conservative forearm margin"
