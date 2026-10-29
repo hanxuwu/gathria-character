@@ -180,13 +180,11 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   await expect(
     dialog.getByRole("button", { name: "Open mask draft" }),
   ).toBeEnabled({ timeout: 180_000 });
-  await dialog
-    .getByLabel("Mask draft file", { exact: true })
-    .setInputFiles({
-      name: "saved.json",
-      mimeType: "application/json",
-      buffer: draft,
-    });
+  await dialog.getByLabel("Mask draft file", { exact: true }).setInputFiles({
+    name: "saved.json",
+    mimeType: "application/json",
+    buffer: draft,
+  });
   await expect(dialog.getByTestId("mask-pose-status")).toContainText(
     "accepted",
   );
@@ -195,13 +193,11 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   );
   const invalid = JSON.parse(draft.toString());
   invalid.binding.itemSha256 = "f".repeat(64);
-  await dialog
-    .getByLabel("Mask draft file", { exact: true })
-    .setInputFiles({
-      name: "wrong.json",
-      mimeType: "application/json",
-      buffer: Buffer.from(JSON.stringify(invalid)),
-    });
+  await dialog.getByLabel("Mask draft file", { exact: true }).setInputFiles({
+    name: "wrong.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(invalid)),
+  });
   await expect(dialog.getByRole("alert")).toContainText("different source");
   await expect(dialog.getByTestId("mask-pose-status")).toContainText(
     "5 changed pixels",
@@ -261,13 +257,11 @@ test("side fitting keeps source guides exact, audits every action, and round-tri
   expect(savedFiles["registration.json"]).toEqual(guides["registration.json"]);
   await page.reload();
   await ready(page);
-  await page
-    .getByTestId("side-project-input")
-    .setInputFiles({
-      name: "corrected.wardrobe.zip",
-      mimeType: "application/zip",
-      buffer: saved,
-    });
+  await page.getByTestId("side-project-input").setInputFiles({
+    name: "corrected.wardrobe.zip",
+    mimeType: "application/zip",
+    buffer: saved,
+  });
   await ready(page);
   await page.getByTestId("side-frame").fill("4");
   expect(
@@ -309,13 +303,11 @@ test("female fitting shows original anchors, cancels draft safely and fits a nar
   await ready(page);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByTestId("fitting-zoom").selectOption("2");
-  const widths = await page
-    .getByTestId("side-fitting")
-    .evaluate((element) => ({
-      body: document.documentElement.scrollWidth,
-      viewport: window.innerWidth,
-      panel: element.getBoundingClientRect().width,
-    }));
+  const widths = await page.getByTestId("side-fitting").evaluate((element) => ({
+    body: document.documentElement.scrollWidth,
+    viewport: window.innerWidth,
+    panel: element.getBoundingClientRect().width,
+  }));
   expect(widths.body).toBeLessThanOrEqual(widths.viewport + 1);
   expect(widths.panel).toBeLessThanOrEqual(widths.viewport);
   await page.getByTestId("fitting-zoom").selectOption("fit");
