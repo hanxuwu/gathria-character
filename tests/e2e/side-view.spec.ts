@@ -169,14 +169,14 @@ test("side keyboard travel retains source timing and the full two-jump one-shot"
   await expect(stage(page)).toHaveAttribute("data-fps", "24");
   await page.keyboard.press("Space");
   await expect(stage(page)).toHaveAttribute("data-action", "jump");
-  // Release movement while jumping: the request must wait until both source jumps finish.
-  await page.keyboard.up("Shift");
-  await page.keyboard.up("ArrowRight");
-  await expect(stage(page)).toHaveAttribute("data-pending", "idle");
+  // Held run intent resumes only after the complete two-jump source clip.
   await expect(page.getByTestId("side-facing-left")).toBeDisabled();
-  await expect(stage(page)).toHaveAttribute("data-action", "idle", {
+  await expect(stage(page)).toHaveAttribute("data-action", "run", {
     timeout: 6000,
   });
+  await page.keyboard.up("Shift");
+  await page.keyboard.up("ArrowRight");
+  await expect(stage(page)).toHaveAttribute("data-action", "idle");
   await pause(page);
   await page.getByTestId("side-action-jump").click();
   await expect(page.getByTestId("side-frame")).toHaveAttribute("max", "49");

@@ -55,6 +55,33 @@ const report = {
   externalRequests: [],
   forbiddenIndependentRequests: [],
 };
+const runtimePaths = execFileSync(
+  "git",
+  [
+    "ls-files",
+    "--cached",
+    "--others",
+    "--exclude-standard",
+    "--",
+    "src",
+    "*.html",
+    "vite.config.ts",
+  ],
+  { cwd: root, encoding: "utf8" },
+)
+  .trim()
+  .split("\n")
+  .filter(Boolean);
+async function runtimeHashes() {
+  return Object.fromEntries(
+    await Promise.all(
+      [...new Set(runtimePaths)]
+        .sort()
+        .map(async (path) => [path, sha(await readFile(join(root, path)))]),
+    ),
+  );
+}
+report.runtimeInputHashes = await runtimeHashes();
 let browser, server, origin, failure;
 const button = (page, name) => page.getByRole("button", { name, exact: true });
 const side = (page) => page.getByTestId("side-playground");
@@ -243,7 +270,21 @@ async function observe(page, target, start, durationMs) {
 function verifyObservation(observation, action, clip, minimumUnique) {
   const entries = observation.entries.filter((e) => e.action === action);
   assert(entries.length > 1, `${action} canvas did not animate.`);
-  for (const e of entries) assert.equal(e.frameId, clip.frames[e.position]);
+  for (const e of entries) {
+    assert.equal(e.frameId, clip.frames[e.position]);
+    const positions = [-0.002, 0.002].map((rounding) => {
+      const tick = Math.floor(
+        (Math.max(0, e.elapsedMs + rounding) * clip.fps) / 1000,
+      );
+      return clip.loop
+        ? tick % clip.frames.length
+        : Math.min(tick, clip.frames.length - 1);
+    });
+    assert(
+      positions.includes(e.position),
+      `${action} source clock and displayed position disagree.`,
+    );
+  }
   const unique = [...new Set(entries.map((e) => e.position))];
   assert(
     unique.length >= minimumUnique,
@@ -492,6 +533,7 @@ async function verifyStageControls(page, character, manifest) {
     timeout: 7000,
   });
   await pauseSide(page);
+  await setFrame(page, "idle", 0);
   await page.getByTestId("side-step-forward").click();
   await expect(canvas(page)).toHaveAttribute("data-frame-position", "1");
   await page.getByTestId("side-step-back").click();
@@ -735,6 +777,11 @@ try {
   assert.deepEqual(report.httpFailures, []);
   assert.deepEqual(report.externalRequests, []);
   assert.deepEqual(report.forbiddenIndependentRequests, []);
+  assert.deepEqual(
+    await runtimeHashes(),
+    report.runtimeInputHashes,
+    "Runtime inputs changed during evidence capture.",
+  );
   report.passed = true;
 } catch (error) {
   failure = error;
