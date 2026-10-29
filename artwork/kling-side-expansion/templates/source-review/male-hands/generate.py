@@ -72,6 +72,13 @@ for fid,pair in boxes.items():
     q=min(candidates,key=lambda q:float(np.sum((q-e)**2)))
     item['pointUpdates']={side+'Wrist':{'x':round(float(q[0]),1),'y':round(float(q[1]),1),'visibility':'visible','confidence':0.55,'method':'native hand window reviewed; proximal contour attachment proposal for displaced original guide, not an anatomical joint center'}}
   proposals.append(item)
-data={'format':'gathria-side-source-protection-review','version':1,'identity':'male','sourceSha256':c.source_sha256,'originalRegistrationSha256':c.registration_sha256,'status':'reviewed native source and after overlays; conservative wrist margins','method':'Native-source visual windows per moving frame; convex outer contour of reviewed warm-source hand component, five-pixel source-alpha-bounded ink/blur guard. Existing idle polygons remain unchanged. Hand/forearm junctions have conservative margins and are not anatomical joint measurements.','reviewedFrameIds':list(range(107)),'changes':proposals}
+# Source-reviewed concave contact boundaries supersede convex bridge regions.
+# Keep the reviewed wrist metadata: these refinements change only protection.
+for refinement_path in [out/'concave-refinements.json',out.parent/'qa-male-hand-refinement.json',out.parent/'qa-male-run-boundary-refinement.json']:
+ if refinement_path.exists():
+  for refinement in json.loads(refinement_path.read_bytes()):
+   item=next(p for p in proposals if (p['frameId'],p['label'])==(refinement['frameId'],refinement['label']))
+   item['polygon']=refinement['polygon'];item['reason']=refinement['reason'];item['contactBoundaryRefinement']=refinement
+data={'format':'gathria-side-source-protection-review','version':1,'identity':'male','sourceSha256':c.source_sha256,'originalRegistrationSha256':c.registration_sha256,'status':'reviewed native source and after overlays; conservative wrist margins','method':'Native-source visual windows per moving frame with conservative source ink guards; explicit reviewed concave contact contours override36 convex bridges through tank, elbow or thigh. Existing idle polygons and reviewed wrist guides remain unchanged. Hand/forearm junctions are not anatomical joint measurements.','reviewedFrameIds':list(range(107)),'changes':proposals}
 (out/'proposals.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 print(len(proposals),'proposals')

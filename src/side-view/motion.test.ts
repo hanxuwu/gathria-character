@@ -6,6 +6,7 @@ import {
   requestSideAction,
   sideActionEnded,
   sideFrameId,
+  sideMotionFeedback,
   type SideAction,
   type SideMotionOptions,
   type SideMotionState,
@@ -181,6 +182,166 @@ describe("side-view source timing and requests", () => {
       paused: true,
     };
     expect(advanceSideMotion(paused, 5000, manifest, options)).toEqual(paused);
+  });
+});
+
+describe("side-view transition feedback", () => {
+  it("reports the queued cycle boundary and consumes exactly that wait", () => {
+    const manifest = fixture();
+    const queued = requestSideAction(state("walk", 700), "run", manifest);
+    const feedback = sideMotionFeedback(queued, manifest);
+    expect(feedback).toEqual({
+      phase: "cycle",
+      frameIndex: 16,
+      frameCount: 18,
+      durationMs: 750,
+      remainingMs: 50,
+      paused: false,
+      transition: { action: "run", boundary: "cycle-end", remainingMs: 50 },
+    });
+    const before = advanceSideMotion(queued, 49.99, manifest, options);
+    expect(
+      sideMotionFeedback(before, manifest).transition?.remainingMs,
+    ).toBeCloseTo(0.01);
+    const entered = advanceSideMotion(
+      queued,
+      feedback.transition!.remainingMs,
+      manifest,
+      options,
+    );
+    expect(entered.action).toBe("run");
+    expect(sideMotionFeedback(entered, manifest).frameIndex).toBe(0);
+    expect(sideMotionFeedback(entered, manifest).transition).toBeNull();
+  });
+
+  it("distinguishes displaying the last jump frame from completing its full hold", () => {
+    const manifest = fixture();
+    const lastFrame = state("jump", 49 * FRAME_MS);
+    const feedback = sideMotionFeedback(lastFrame, manifest);
+    expect(feedback.phase).toBe("one-shot");
+    expect(feedback.frameIndex).toBe(49);
+    expect(feedback.remainingMs).toBeCloseTo(FRAME_MS);
+    expect(feedback.transition).toBeNull();
+    const ended = advanceSideMotion(lastFrame, FRAME_MS, manifest, options);
+    expect(sideMotionFeedback(ended, manifest)).toMatchObject({
+      phase: "endpoint-hold",
+      frameIndex: 49,
+      remainingMs: 0,
+      transition: null,
+    });
+    expect(sideFrameId(lastFrame, manifest)).toBe(sideFrameId(ended, manifest));
+    expect(
+      sideMotionFeedback(
+        advanceSideMotion(ended, 60000, manifest, options),
+        manifest,
+      ),
+    ).toEqual(sideMotionFeedback(ended, manifest));
+  });
+
+  it.each(["idle", "walk", "run"] as const)(
+    "keeps the complete final jump frame before a queued %s exit",
+    (action) => {
+      const manifest = fixture();
+      const queued = requestSideAction(
+        state("jump", 49 * FRAME_MS),
+        action,
+        manifest,
+      );
+      const feedback = sideMotionFeedback(queued, manifest);
+      expect(feedback.transition?.action).toBe(action);
+      expect(feedback.transition?.boundary).toBe("clip-end");
+      expect(feedback.transition?.remainingMs).toBeCloseTo(FRAME_MS);
+      expect(
+        advanceSideMotion(queued, FRAME_MS - 0.001, manifest, options).action,
+      ).toBe("jump");
+      const entered = advanceSideMotion(
+        queued,
+        FRAME_MS + 7,
+        manifest,
+        options,
+      );
+      expect(entered.action).toBe(action);
+      expect(entered.elapsedMs).toBeCloseTo(7);
+      expect(sideMotionFeedback(entered, manifest).phase).toBe("cycle");
+    },
+  );
+
+  it("reflects replacement, cancellation and pause without consuming a request", () => {
+    const manifest = fixture();
+    const original = { ...state("walk", 200), paused: true };
+    const run = requestSideAction(original, "run", manifest);
+    const jump = requestSideAction(run, "jump", manifest);
+    const feedback = sideMotionFeedback(jump, manifest);
+    expect(feedback.transition).toEqual({
+      action: "jump",
+      boundary: "cycle-end",
+      remainingMs: 550,
+    });
+    expect(feedback.paused).toBe(true);
+    expect(
+      sideMotionFeedback(
+        advanceSideMotion(jump, 5000, manifest, options),
+        manifest,
+      ),
+    ).toEqual(feedback);
+    const canceled = requestSideAction(jump, "walk", manifest);
+    expect(canceled).toEqual(original);
+    expect(sideMotionFeedback(canceled, manifest).transition).toBeNull();
+    expect(run.pending).toBe("run");
+    expect(jump.pending).toBe("jump");
+  });
+
+  it("describes immediate caller-supplied boundaries and suppresses same-action replays", () => {
+    const manifest = fixture();
+    for (const supplied of [
+      { ...state("idle", 200), pending: "walk" as const },
+      { ...state("walk", 200), pending: "idle" as const },
+      { ...state("run"), pending: "jump" as const },
+      { ...state("jump", JUMP_MS), pending: "walk" as const },
+    ]) {
+      expect(sideMotionFeedback(supplied, manifest).transition).toEqual({
+        action: supplied.pending,
+        boundary: "immediate",
+        remainingMs: 0,
+      });
+      expect(advanceSideMotion(supplied, 0, manifest, options).action).toBe(
+        supplied.pending,
+      );
+    }
+    const replay = { ...state("jump", JUMP_MS), pending: "jump" as const };
+    expect(sideMotionFeedback(replay, manifest).transition).toBeNull();
+    expect(
+      sideMotionFeedback(
+        advanceSideMotion(replay, 10, manifest, options),
+        manifest,
+      ).phase,
+    ).toBe("endpoint-hold");
+  });
+
+  it("derives feedback from manifest timing and keeps sparse frame IDs separate from positions", () => {
+    const manifest = fixture();
+    manifest.animations.jump!.frames = manifest.animations.jump!.frames.slice(
+      0,
+      31,
+    );
+    manifest.animations.jump!.fps = 12;
+    const playing = state("jump", 2500);
+    expect(sideMotionFeedback(playing, manifest)).toMatchObject({
+      phase: "one-shot",
+      frameIndex: 30,
+      frameCount: 31,
+      durationMs: 31000 / 12,
+    });
+    expect(sideMotionFeedback(playing, manifest).remainingMs).toBeCloseTo(
+      1000 / 12,
+    );
+    expect(sideFrameId(playing, manifest)).toBe(
+      manifest.animations.jump!.frames[30],
+    );
+    const before = structuredClone(manifest);
+    sideMotionFeedback(playing, manifest);
+    expect(manifest).toEqual(before);
+    expect(playing).toEqual(state("jump", 2500));
   });
 });
 

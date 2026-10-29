@@ -32,6 +32,9 @@ export function CharacterWorkbench() {
             initialCharacter={
               query.get("character") === "female" ? "female" : "male"
             }
+            initialCollection={
+              query.get("collection") === "tailored" ? "tailored" : "material"
+            }
           />
         </Suspense>
       </div>

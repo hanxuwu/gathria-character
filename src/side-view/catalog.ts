@@ -1,9 +1,13 @@
 import bindings from "../../docs/kling-side-workspace/assets/source-bindings.json";
 import type { WardrobeProject, WardrobeSelection } from "../wardrobe/contract";
-import { createWardrobeProject } from "../wardrobe/project";
+import {
+  addWardrobeAppearanceBank,
+  createWardrobeProject,
+} from "../wardrobe/project";
 import { sha256 } from "../core/sha256";
 
 export type SideCharacterId = "male" | "female";
+export type SideCollection = "material" | "tailored";
 export const SIDE_CHARACTERS: ReadonlyArray<{
   id: SideCharacterId;
   name: string;
@@ -63,6 +67,51 @@ const files = {
   },
 } as const;
 
+// The reviewed registration belongs to the new collection only. Existing
+// material banks and saved projects keep their original registration bytes.
+const tailored = {
+  male: {
+    registration: new URL(
+      "../../artwork/kling-side-expansion/templates/male.registration.json",
+      import.meta.url,
+    ).href,
+    garments: [
+      new URL(
+        "../../docs/kling-side-expansion/assets/male-shirt.garment.zip",
+        import.meta.url,
+      ).href,
+      new URL(
+        "../../docs/kling-side-expansion/assets/male-trousers.garment.zip",
+        import.meta.url,
+      ).href,
+    ],
+    appearance: new URL(
+      "../../docs/kling-side-expansion/assets/male.appearance.zip",
+      import.meta.url,
+    ).href,
+  },
+  female: {
+    registration: new URL(
+      "../../artwork/kling-side-expansion/templates/female.registration.json",
+      import.meta.url,
+    ).href,
+    garments: [
+      new URL(
+        "../../docs/kling-side-expansion/assets/female-blouse.garment.zip",
+        import.meta.url,
+      ).href,
+      new URL(
+        "../../docs/kling-side-expansion/assets/female-skirt.garment.zip",
+        import.meta.url,
+      ).href,
+    ],
+    appearance: new URL(
+      "../../docs/kling-side-expansion/assets/female.appearance.zip",
+      import.meta.url,
+    ).href,
+  },
+} as const;
+
 async function bytes(url: string, signal?: AbortSignal): Promise<Uint8Array> {
   const response = await fetch(url, { signal });
   if (!response.ok)
@@ -80,21 +129,49 @@ async function bytes(url: string, signal?: AbortSignal): Promise<Uint8Array> {
 export async function loadSideProject(
   id: SideCharacterId,
   signal?: AbortSignal,
+  collection: SideCollection = "material",
 ): Promise<WardrobeProject> {
   if (id !== "male" && id !== "female") throw Error("无法识别这个侧视人物。");
-  const asset = files[id];
-  const source = await bytes(asset.source, signal);
+  if (collection !== "material" && collection !== "tailored")
+    throw Error("无法识别这组服装。");
+  const asset = collection === "tailored" ? tailored[id] : files[id];
+  const source = await bytes(files[id].source, signal);
   if ((await sha256(source)) !== bindings[id].sha256)
     throw Error("侧视人物来源校验失败，请重新加载完整素材。");
   signal?.throwIfAborted();
   const registration = await bytes(asset.registration, signal);
   const garments: Uint8Array[] = [];
   for (const url of asset.garments) garments.push(await bytes(url, signal));
-  return createWardrobeProject(source, registration, garments, { signal });
+  const project = await createWardrobeProject(source, registration, garments, {
+    signal,
+  });
+  return collection === "tailored"
+    ? addWardrobeAppearanceBank(
+        project,
+        await bytes(tailored[id].appearance, signal),
+        { signal },
+      )
+    : project;
 }
 
-export function sideLookSelection(id: SideCharacterId): WardrobeSelection {
+export function sideLookSelection(
+  id: SideCharacterId,
+  collection: SideCollection = "material",
+): WardrobeSelection {
   if (id !== "male" && id !== "female") throw Error("无法识别这个侧视人物。");
+  if (collection === "tailored")
+    return {
+      top:
+        id === "male"
+          ? "side-male-oxford-shirt-v1"
+          : "side-female-cream-blouse-v1",
+      bottom:
+        id === "male"
+          ? "side-male-stone-trousers-v1"
+          : "side-female-rose-skirt-v1",
+      shoes: null,
+      fullBody: null,
+    };
   const style = id === "male" ? "seabreeze" : "apricot";
   return {
     top: `side-${id}-${style}-top-v1`,
@@ -102,6 +179,22 @@ export function sideLookSelection(id: SideCharacterId): WardrobeSelection {
     shoes: `side-${id}-${style}-shoes-v1`,
     fullBody: null,
   };
+}
+
+/** Display classification only; imports are validated by the project parser. */
+export function sideProjectCollection(
+  project: WardrobeProject,
+): SideCollection {
+  return project.items.some((item) =>
+    [
+      "side-male-oxford-shirt-v1",
+      "side-male-stone-trousers-v1",
+      "side-female-cream-blouse-v1",
+      "side-female-rose-skirt-v1",
+    ].includes(item.manifest.id),
+  )
+    ? "tailored"
+    : "material";
 }
 
 /** Call after the existing project importer has verified embedded bytes. */

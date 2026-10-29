@@ -14,8 +14,8 @@ evidence in the new edition, rather than weakening compositor protection.
 
 | Character | Source SHA-256 | Tailored registration SHA-256 |
 | --- | --- | --- |
-| Male | `7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42` | `ca155cd5fc2711705588f44dbf5e4447792dc5cbcce67d4cb783901660ad87a9` |
-| Female | `ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d` | `e3d5a53a0dd652f9c5ca6661ee25817f78d9c122f67816e755beee5f54098c57` |
+| Male | `7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42` | `7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e` |
+| Female | `ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d` | `7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef` |
 
 ## Files and evidence
 
@@ -118,6 +118,15 @@ geometry to a separate file, verifies source/frame hashes, records before/after
 coverage and refuses to overwrite either frozen registration. It does not
 automatically discover or approve anatomy corrections. The male hand review
 reproducer additionally uses SciPy; its manual source windows are persisted.
+[Concave source contact refinements](source-review/male-concave-hands/README.md)
+remove reviewed tank/thigh bridges while retaining observed hand ink.
+The [final run contact review](source-review/male-run-contact/README.md) supersedes
+the earlier color-assisted run-edge witness with native observed contours; narrow
+blended source ink/AA margins are deliberately retained. Female
+frame31 also corrects the visible waistRight attachment from the far forearm to
+the actual tank contour; no female head/hand protection changes in that update.
+Run `python artwork/kling-side-expansion/templates/source-review/consolidate.py`
+to reproduce both separate registrations from the persisted source reviews.
 
 ```sh
 python scripts/kling_side_authoring.py check

@@ -29,6 +29,13 @@ controls, camera-follow travel, per-frame fitting guides and two same-cut daily
 material studies. Existing characters and wardrobe defaults remain unchanged.
 [Side-view usage, actual exports and limitations](docs/kling-side-workspace/README.md).
 
+**侧视新款试装与发型** opens the separate tailored edition at the same route with
+`&collection=tailored`: a male shirt/trouser outfit, a female blouse/skirt outfit,
+two side-view hairstyles and three hair colors. It retains original source timing
+and uses separately reviewed head/hand ownership. The original material edition
+and old projects keep their exact assets.
+[Tailored edition, actual exports and limits](docs/kling-side-expansion/README.md).
+
 | Main destination                             | Available now                                                           |
 | -------------------------------------------- | ----------------------------------------------------------------------- |
 | `/`                                          | Two originals, wardrobe and optional skeleton entries                   |

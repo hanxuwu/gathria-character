@@ -1,0 +1,51 @@
+{
+  "format": "gathria-frozen-protection-review",
+  "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+  "registrationSha256": "7fa05a051d6dc1aa7184aaf484f82bb512042d276189606eee9da366d65cb43e",
+  "registrationFile": "artwork/kling-side-expansion/templates/male.registration.json",
+  "policy": "Frozen source and original registration are immutable. A separately reviewed clothing registration may correct false-positive shoulder/knee regions. Strict protected-pixel checks use the exact selected registration without bypass.",
+  "examples": [
+    {
+      "frameId": 42,
+      "protectedLabel": "farHand",
+      "reason": "Frozen far-hand polygon overlaps rear thigh skin.",
+      "reviewBounds": [
+        160,
+        555,
+        194,
+        575
+      ],
+      "frozenProtectedSourcePixelsInBounds": 292,
+      "candidateProtectedSourcePixelsInBounds": 0,
+      "status": "See separate reviewed registration; original registration is immutable."
+    },
+    {
+      "frameId": 48,
+      "protectedLabel": "nearHand",
+      "reason": "Frozen near-hand polygon overlaps bent knee skin.",
+      "reviewBounds": [
+        236,
+        558,
+        280,
+        590
+      ],
+      "frozenProtectedSourcePixelsInBounds": 1043,
+      "candidateProtectedSourcePixelsInBounds": 0,
+      "status": "See separate reviewed registration; original registration is immutable."
+    },
+    {
+      "frameId": 97,
+      "protectedLabel": "head",
+      "reason": "Frozen head polygon extends into near shoulder skin.",
+      "reviewBounds": [
+        151,
+        279,
+        233,
+        323
+      ],
+      "frozenProtectedSourcePixelsInBounds": 3460,
+      "candidateProtectedSourcePixelsInBounds": 74,
+      "status": "See separate reviewed registration; original registration is immutable."
+    }
+  ]
+}

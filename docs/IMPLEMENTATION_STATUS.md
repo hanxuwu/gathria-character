@@ -1,5 +1,14 @@
 # Implementation status
 
+Latest side-view candidate: **tailored clothes and hair**, separate from the
+original material collection. Male shirt/trousers and female blouse/skirt use
+new painted silhouettes; each character has one side-view hairstyle and three
+hair colors. A separately source-reviewed registration corrects hand/thigh and
+head/shoulder ownership errors without mutating old packs or disabling validation.
+Action queuing/endpoint feedback and directional-key handling are also refined.
+[Current scope, actual exports, checks and limitations](kling-side-expansion/README.md).
+The chronological notes below include earlier batches and their original counts.
+
 Current expansion: **male Side part and female Tucked bun**. Each character
 has one additional source-bound hairstyle, with separate front/back hair and
 the existing three colors, face choices, clothes and motion. Released atlas
