@@ -66,6 +66,12 @@ enters a better matched running pose. Stationary jumps still complete their
 recovery, and previously exported motion profiles retain their original timing.
 [Landing-to-run comparisons and validation](docs/kling-landing-run/README.md).
 
+Side-view running now has a second reviewed takeoff window. Its maximum native
+input wait drops from almost 750ms to 458ms while preserving the complete jump,
+the previous landing return and all artwork. Original-view routes and historical
+exported profiles retain their existing behavior.
+[Side takeoff review and actual before/after GIFs](docs/kling-takeoff-refine/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

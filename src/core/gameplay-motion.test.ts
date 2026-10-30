@@ -402,7 +402,7 @@ describe("target-specific grounded landing exits", () => {
         (row) =>
           row.profile.characterId === character && row.profile.view === view,
       )!.profile as GameplayMotion;
-      expect(profile.id).toMatch(/-v2$/);
+      expect(profile.id).toMatch(view === "side" ? /-v3$/ : /-v2$/);
       const archived = readGameplayMotion(gameplayManifest(manifest, old), {
         sourceMetadata: { gameplayMotion: gameplayMotionMetadata(old) },
       });

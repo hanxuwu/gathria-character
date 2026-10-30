@@ -7,7 +7,8 @@ import { unzipSync, zipSync } from "fflate";
 // The PNGs are actual application downloads. Keep them separate from the
 // previous single-jump review and keep memory-heavy exports serial.
 test.describe.configure({ mode: "default" });
-const root = "/tmp/landing-run/exports";
+const root =
+  process.env.GATHRIA_LANDING_RUN_EXPORT_ROOT ?? "/tmp/landing-run/exports";
 const sha = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
 const json = (bytes: Uint8Array) => JSON.parse(Buffer.from(bytes).toString());
@@ -156,7 +157,36 @@ for (const character of ["male", "female"] as const) {
         manifest = json(files["manifest.json"]);
       const profile = json(files["character.json"]).sourceMetadata
         .gameplayMotion;
-      expect(profile.id).toContain("v2");
+      expect(profile.id).toBe(
+        `kling-${character}-${view}-single-jump-${view === "side" ? "v3" : "v2"}`,
+      );
+      expect(
+        profile.routes
+          .filter(
+            (route: { from: string; to: string }) =>
+              route.from === "run" && route.to === "jump",
+          )
+          .map((route: { exit: number; entry: number }) => [
+            route.exit,
+            route.entry,
+          ])
+          .sort((a: number[], b: number[]) => a[0] - b[0]),
+      ).toEqual(
+        view === "original"
+          ? [
+              [5, 0],
+              [13, 0],
+            ]
+          : character === "male"
+            ? [
+                [9, 0],
+                [16, 0],
+              ]
+            : [
+                [6, 0],
+                [13, 0],
+              ],
+      );
       const landing = profile.routes.find(
         (r: { from: string; to: string }) =>
           r.from === "jump" && r.to === "run",
@@ -353,19 +383,31 @@ for (const character of ["male", "female"] as const) {
       });
       try {
         await player.goto("/player.html");
-        for (const variant of ["current", "historical-v1"] as const) {
+        const variants =
+          row.view === "side"
+            ? ["current", "historical-v1", "historical-v2"]
+            : ["current", "historical-v1"];
+        for (const variant of variants) {
           let file = String(row.pack);
-          if (variant === "historical-v1") {
+          if (variant !== "current") {
             // Reconstruct the old review package from its committed actual JSON
             // and the byte-identical published atlas; no previous /tmp is needed.
             const files = unzipSync(await readFile(String(row.baseline)));
+            const historicalRoot =
+              variant === "historical-v2"
+                ? `docs/kling-landing-run/review/${character}/${row.view}`
+                : null;
             files["manifest.json"] = await readFile(
-              String(row.previousManifest),
+              historicalRoot
+                ? `${historicalRoot}.manifest.json`
+                : String(row.previousManifest),
             );
             files["character.json"] = await readFile(
-              String(row.previousMetadata),
+              historicalRoot
+                ? `${historicalRoot}.character.json`
+                : String(row.previousMetadata),
             );
-            file = `${directory}/${row.view}-historical-v1.character.zip`;
+            file = `${directory}/${row.view}-${variant}.character.zip`;
             await writeFile(
               file,
               zipSync(files, { level: 0, mtime: new Date(2020, 0, 1) }),
@@ -417,7 +459,7 @@ for (const character of ["male", "female"] as const) {
                 profileId: profile.id,
                 exit,
                 records,
-                legacyProfileRetained: variant === "historical-v1",
+                legacyProfileRetained: variant !== "current",
               },
               null,
               2,

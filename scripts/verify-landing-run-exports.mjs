@@ -27,9 +27,58 @@ const sources = {
 };
 
 // Independently reconstruct the documented review sequence from declarations:
-// full run cycle, next reviewed takeoff boundary, jump through reviewed landing
-// compression, one full run cycle starting at the matching grounded run phase. Native 24 FPS never changes.
+// full run cycle, next reviewed takeoff boundary, reviewed jump prefix, one
+// full run cycle at the landing exit. V1 retains its complete jump; V2 resumes
+// running after contact/rebound, before the standing recovery. Side V3 adds a
+// second reviewed takeoff boundary. Every revision keeps native 24 FPS.
+function assertKnownRoutes(profile) {
+  const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
+  const original = profile.view === "original";
+  const revision = Number(profile.id.slice(prefix.length).replace(/^v/, ""));
+  assert(
+    profile.id === `${prefix}v${revision}` &&
+      (original ? [1, 2] : [1, 2, 3]).includes(revision),
+    `Unknown reviewed motion profile: ${profile.id}`,
+  );
+  const male = profile.characterId === "male";
+  const takeoffs = original
+    ? [5, 13]
+    : revision === 3
+      ? male
+        ? [9, 16]
+        : [6, 13]
+      : [male ? 16 : 13];
+  const complete = {
+    from: "jump",
+    to: "run",
+    exit: original ? 39 : 28,
+    entry: original ? 4 : male ? 11 : 8,
+  };
+  const early = {
+    from: "jump",
+    to: "run",
+    exit: original ? 30 : 27,
+    entry: original ? 4 : male ? 16 : 13,
+  };
+  const routes = (from, to) =>
+    profile.routes
+      .filter((route) => route.from === from && route.to === to)
+      .sort((a, b) => a.exit - b.exit);
+  assert.deepEqual(
+    routes("run", "jump"),
+    takeoffs.map((exit) => ({ from: "run", to: "jump", exit, entry: 0 })),
+    "Run takeoff routes differ from the reviewed native frames",
+  );
+  assert.deepEqual(
+    routes("jump", "run"),
+    revision >= 2 ? [early, complete] : [complete],
+    "Landing routes differ from the reviewed revision boundaries",
+  );
+  return revision;
+}
+
 function expectedFlow(profile) {
+  assertKnownRoutes(profile);
   const run = profile.actions.run,
     jump = profile.actions.jump;
   assert.equal(run.fps, jump.fps);
@@ -41,31 +90,29 @@ function expectedFlow(profile) {
   const landing = profile.routes.filter(
     (r) => r.from === "jump" && r.to === "run",
   );
-  assert.equal(landing.length, 2);
-  assert(landing[0].exit < jump.frames.length);
-  assert.equal(landing[1].exit, jump.frames.length);
+  const firstLanding = landing.reduce((a, b) => (a.exit < b.exit ? a : b));
   assert.equal(takeoff.entry, 0);
-
   assert(takeoff.exit >= 0 && takeoff.exit <= run.frames.length);
+  assert(firstLanding.exit > 0 && firstLanding.exit <= jump.frames.length);
   const recovery = Array.from(
     { length: run.frames.length },
-    (_, i) => run.frames[(landing[0].entry + i) % run.frames.length],
+    (_, i) => run.frames[(firstLanding.entry + i) % run.frames.length],
   );
   return {
     fps: run.fps,
     frames: [
       ...run.frames,
       ...run.frames.slice(0, takeoff.exit),
-      ...jump.frames.slice(0, landing[0].exit),
+      ...jump.frames.slice(0, firstLanding.exit),
       ...recovery,
     ],
     phases: {
       runBefore: run.frames.length + takeoff.exit,
-      jump: landing[0].exit,
+      jump: firstLanding.exit,
       runAfter: recovery.length,
     },
     takeoff,
-    landing: landing[0],
+    landing: firstLanding,
   };
 }
 
@@ -132,10 +179,14 @@ for (const row of rows) {
   );
   const previousProfile = previousConfig.sourceMetadata.gameplayMotion;
   const profile = config.sourceMetadata.gameplayMotion;
-  assert.equal(profile.id, `kling-${row.character}-${row.view}-single-jump-v2`);
-  assert.equal(
-    previousProfile.id,
-    `kling-${row.character}-${row.view}-single-jump-v1`,
+  const revision = assertKnownRoutes(profile);
+  const previousRevision = assertKnownRoutes(previousProfile);
+  assert.equal(previousProfile.characterId, row.character);
+  assert.equal(previousProfile.view, row.view);
+  assert.equal(previousProfile.sourceSha256, sources[row.character][row.view]);
+  assert(
+    previousRevision <= revision,
+    "Previous review is newer than this export",
   );
   assert.deepEqual(
     manifest.animations,
@@ -147,10 +198,30 @@ for (const row of rows) {
     previousProfile.actions,
     "Source animation selection changed",
   );
-  const unchangedRoutes = (value) =>
-    value.routes.filter((r) => r.from !== "jump" || r.to !== "run");
+  const addedTakeoff =
+    revision === 3 && previousRevision < 3
+      ? {
+          from: "run",
+          to: "jump",
+          exit: row.character === "male" ? 9 : 6,
+          entry: 0,
+        }
+      : null;
+  const unchangedRoutes = (value, omitAddedTakeoff = false) =>
+    value.routes.filter(
+      (r) =>
+        (r.from !== "jump" || r.to !== "run") &&
+        !(
+          omitAddedTakeoff &&
+          addedTakeoff &&
+          r.from === addedTakeoff.from &&
+          r.to === addedTakeoff.to &&
+          r.exit === addedTakeoff.exit &&
+          r.entry === addedTakeoff.entry
+        ),
+    );
   assert.deepEqual(
-    unchangedRoutes(profile),
+    unchangedRoutes(profile, true),
     unchangedRoutes(previousProfile),
     "An unrelated transition changed",
   );
@@ -182,7 +253,16 @@ for (const row of rows) {
     (r) => r.from === "jump" && r.to === "run",
   );
   assert.deepEqual(runLandings, [
-    { from: "jump", to: "run", exit: reviewed.exit, entry: reviewed.entry },
+    ...(revision >= 2
+      ? [
+          {
+            from: "jump",
+            to: "run",
+            exit: reviewed.exit,
+            entry: reviewed.entry,
+          },
+        ]
+      : []),
     {
       from: "jump",
       to: "run",
@@ -194,10 +274,7 @@ for (const row of rows) {
     profile.actions.jump.frames[reviewed.exit - 1] > reviewed.compressionEnd,
     "Moving exit skipped reviewed landing compression",
   );
-  const oldLanding = previousProfile.routes.find(
-    (r) => r.from === "jump" && r.to === "run",
-  );
-  assert.equal(oldLanding.exit, previousProfile.actions.jump.frames.length);
+  const previousExpectedFlow = expectedFlow(previousProfile);
   assert.equal(
     sha(await readFile(row.gifs.jump.right)),
     sha(await readFile(row.previousBasic)),
@@ -327,8 +404,17 @@ for (const row of rows) {
     true,
   );
   assert.equal(
+    priorFlow.length,
+    previousExpectedFlow.frames.length,
+    "Previous GIF length differs from its historical profile",
+  );
+  const recoveryFramesRemoved =
+    previousExpectedFlow.phases.jump - flow.phases.jump;
+  const takeoffWaitFramesRemoved =
+    previousExpectedFlow.phases.runBefore - flow.phases.runBefore;
+  assert.equal(
     priorFlow.length - flow.frames.length,
-    reviewed.fallback - reviewed.exit,
+    recoveryFramesRemoved + takeoffWaitFramesRemoved,
   );
   const pixels = JSON.parse(
     execFileSync(
@@ -350,8 +436,11 @@ for (const row of rows) {
     previousProfileId: previousProfile.id,
     standaloneJumpGifByteIdentical: true,
     unchangedUnrelatedRoutes: true,
+    reviewedAddedTakeoffRoute: addedTakeoff,
     reviewedLandingCompressionComplete: true,
-    flowRecoveryFramesRemoved: priorFlow.length - flow.frames.length,
+    flowRecoveryFramesRemoved: recoveryFramesRemoved,
+    flowTakeoffWaitFramesRemoved: takeoffWaitFramesRemoved,
+    flowFramesRemoved: priorFlow.length - flow.frames.length,
     priorFlowDurationMs: priorFlow.reduce(
       (total, frame) => total + frame.delay,
       0,

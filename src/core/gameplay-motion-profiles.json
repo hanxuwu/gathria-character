@@ -718,7 +718,7 @@
     "profile": {
       "format": "gathria-gameplay-motion",
       "version": 1,
-      "id": "kling-male-side-single-jump-v2",
+      "id": "kling-male-side-single-jump-v3",
       "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
       "characterId": "male",
       "view": "side",
@@ -808,6 +808,12 @@
         {
           "from": "run",
           "to": "jump",
+          "exit": 9,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
           "exit": 16,
           "entry": 0
         },
@@ -873,7 +879,7 @@
     "profile": {
       "format": "gathria-gameplay-motion",
       "version": 1,
-      "id": "kling-female-side-single-jump-v2",
+      "id": "kling-female-side-single-jump-v3",
       "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
       "characterId": "female",
       "view": "side",
@@ -955,6 +961,12 @@
           "from": "run",
           "to": "walk",
           "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 6,
           "entry": 0
         },
         {

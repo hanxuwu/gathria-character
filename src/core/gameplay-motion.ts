@@ -50,8 +50,8 @@ interface Specification {
   sourceActions: GameplayMotion["actions"];
   profile: GameplayMotion;
 }
-// New sessions use the current routes. Already exported V1 motion profiles
-// remain playable with their original full-recovery timing.
+// New sessions use the current routes. Previously exported reviewed profiles
+// retain their original takeoff and landing timing.
 const reviewed = [
   ...specifications,
   ...legacySpecifications,

@@ -1,0 +1,2560 @@
+{
+  "format": "gathria-takeoff-presentation-review",
+  "version": 1,
+  "provenance": "Only actual application GIF downloads; source one-shots unchanged.",
+  "presentationOnly": true,
+  "timing": "Both request Jump at 750ms. Input GIF durations are preserved on a common clock. Ended panels hold; a labelled replay pause is added.",
+  "rendering": "One fixed shared crop and scale; one shared 256-color presentation palette. No per-frame alignment or pose retouching.",
+  "comparisons": [
+    {
+      "character": "male",
+      "view": "side",
+      "requestMs": 750,
+      "before": {
+        "file": "/workspace/gathria-character/docs/kling-landing-run/review/male/side-run-jump-run-right.gif",
+        "sha256": "82c9e013fcfae4a6d8c330879038e94b43c700081c827a3a412d062f245d38dd",
+        "profileId": "kling-male-side-single-jump-v2",
+        "frameDurationsMs": [
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40
+        ],
+        "nativeFrames": [
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          55,
+          56,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54
+        ],
+        "firstJumpTick": 34,
+        "firstReturnTick": 61,
+        "firstJumpMs": 1420
+      },
+      "after": {
+        "file": "/tmp/motion-refine/exports/male/side-run-jump-run-right.gif",
+        "sha256": "0bf9a952e743928062c744660c47eba7463e3d969af1b3fc660edd2cf7900e85",
+        "profileId": "kling-male-side-single-jump-v3",
+        "frameDurationsMs": [
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40
+        ],
+        "nativeFrames": [
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          55,
+          56,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54
+        ],
+        "firstJumpTick": 27,
+        "firstReturnTick": 54,
+        "firstJumpMs": 1130
+      },
+      "presentation": {
+        "file": "male-side-takeoff-before-after.gif",
+        "bytes": 1404305,
+        "sha256": "a2aa12189f231547aa0b32d3914fbc7d6f8d86a24cb8cae4823d0f7c4104b5e4",
+        "fixedCrop": [
+          29,
+          1,
+          256,
+          365
+        ],
+        "scale": 0.5769230769230769,
+        "panelSize": [
+          131,
+          210
+        ],
+        "loop": true,
+        "reviewPauseMs": 900,
+        "events": [
+          {
+            "startMs": 0,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              0,
+              0
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 40,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              1,
+              1
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 80,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              2,
+              2
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              3,
+              3
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 170,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              4,
+              4
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 210,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              5,
+              5
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 250,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              6,
+              6
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 290,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              7,
+              7
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 330,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              8,
+              8
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 380,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              9,
+              9
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 420,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              10,
+              10
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 460,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              11,
+              11
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 500,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              12,
+              12
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 540,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              13,
+              13
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 580,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              14,
+              14
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 630,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              15,
+              15
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 670,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              16,
+              16
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 710,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              17,
+              17
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 750,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              18,
+              18
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 790,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              19,
+              19
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 830,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              20,
+              20
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 880,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              21,
+              21
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 920,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              22,
+              22
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 960,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              23,
+              23
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 1000,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              24,
+              24
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 1040,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              25,
+              25
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 1080,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              26,
+              26
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 1130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              27,
+              27
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1170,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              28,
+              28
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1210,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              29,
+              29
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1250,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              30,
+              30
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1290,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              31,
+              31
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1330,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              32,
+              32
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1380,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              33,
+              33
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1420,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              34,
+              34
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1460,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              35,
+              35
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1500,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              36,
+              36
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1540,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              37,
+              37
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1580,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              38,
+              38
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1630,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              39,
+              39
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1670,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              40,
+              40
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1710,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              41,
+              41
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1750,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              42,
+              42
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1790,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              43,
+              43
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1830,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              44,
+              44
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1880,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              45,
+              45
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1920,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              46,
+              46
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1960,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              47,
+              47
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2000,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              48,
+              48
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2040,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              49,
+              49
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2080,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              50,
+              50
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              51,
+              51
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2170,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              52,
+              52
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2210,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              53,
+              53
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2250,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              54,
+              54
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2290,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              55,
+              55
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2330,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              56,
+              56
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2380,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              57,
+              57
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2420,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              58,
+              58
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2460,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              59,
+              59
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2500,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              60,
+              60
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2540,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              61,
+              61
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2580,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              62,
+              62
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2630,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              63,
+              63
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2670,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              64,
+              64
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2710,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              65,
+              65
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2750,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              66,
+              66
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2790,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              67,
+              67
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2830,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              68,
+              68
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2880,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              69,
+              69
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2920,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              70,
+              70
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2960,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              71,
+              71
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 3000,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              72,
+              71
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3040,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              73,
+              71
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3080,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              74,
+              71
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              75,
+              71
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3170,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              76,
+              71
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3210,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              77,
+              71
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3250,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              78,
+              71
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "requestMs": 750,
+      "before": {
+        "file": "/workspace/gathria-character/docs/kling-landing-run/review/female/side-run-jump-run-right.gif",
+        "sha256": "7d35abdbfff67ca71b905713b255aa4cd4272d51e9feca6dbdac7f0952b73a42",
+        "profileId": "kling-female-side-single-jump-v2",
+        "frameDurationsMs": [
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40
+        ],
+        "nativeFrames": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          47,
+          48,
+          49,
+          50,
+          51,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "firstJumpTick": 31,
+        "firstReturnTick": 58,
+        "firstJumpMs": 1290
+      },
+      "after": {
+        "file": "/tmp/motion-refine/exports/female/side-run-jump-run-right.gif",
+        "sha256": "965cc2a29ed1ede1339fe12556c4873aba91eba84c2cc3ee673d06576de720bb",
+        "profileId": "kling-female-side-single-jump-v3",
+        "frameDurationsMs": [
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50,
+          40,
+          40,
+          40,
+          40,
+          40,
+          50
+        ],
+        "nativeFrames": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          47,
+          48,
+          49,
+          50,
+          51,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "firstJumpTick": 24,
+        "firstReturnTick": 51,
+        "firstJumpMs": 1000
+      },
+      "presentation": {
+        "file": "female-side-takeoff-before-after.gif",
+        "bytes": 1463011,
+        "sha256": "0efe72607fb9ee9cee732fc182f8574db3a634cc53659106907404ef61480ad9",
+        "fixedCrop": [
+          24,
+          4,
+          246,
+          366
+        ],
+        "scale": 0.580110497237569,
+        "panelSize": [
+          129,
+          210
+        ],
+        "loop": true,
+        "reviewPauseMs": 900,
+        "events": [
+          {
+            "startMs": 0,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              0,
+              0
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 40,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              1,
+              1
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 80,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              2,
+              2
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              3,
+              3
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 170,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              4,
+              4
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 210,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              5,
+              5
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 250,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              6,
+              6
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 290,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              7,
+              7
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 330,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              8,
+              8
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 380,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              9,
+              9
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 420,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              10,
+              10
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 460,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              11,
+              11
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 500,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              12,
+              12
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 540,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              13,
+              13
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 580,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              14,
+              14
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 630,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              15,
+              15
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 670,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              16,
+              16
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 710,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              17,
+              17
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 750,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              18,
+              18
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 790,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              19,
+              19
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 830,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              20,
+              20
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 880,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              21,
+              21
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 920,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              22,
+              22
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 960,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              23,
+              23
+            ],
+            "states": [
+              "waiting",
+              "waiting"
+            ]
+          },
+          {
+            "startMs": 1000,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              24,
+              24
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1040,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              25,
+              25
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1080,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              26,
+              26
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              27,
+              27
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1170,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              28,
+              28
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1210,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              29,
+              29
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1250,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              30,
+              30
+            ],
+            "states": [
+              "waiting",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1290,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              31,
+              31
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1330,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              32,
+              32
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1380,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              33,
+              33
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1420,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              34,
+              34
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1460,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              35,
+              35
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1500,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              36,
+              36
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1540,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              37,
+              37
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1580,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              38,
+              38
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1630,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              39,
+              39
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1670,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              40,
+              40
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1710,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              41,
+              41
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1750,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              42,
+              42
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1790,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              43,
+              43
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1830,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              44,
+              44
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1880,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              45,
+              45
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1920,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              46,
+              46
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 1960,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              47,
+              47
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2000,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              48,
+              48
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2040,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              49,
+              49
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2080,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              50,
+              50
+            ],
+            "states": [
+              "jump",
+              "jump"
+            ]
+          },
+          {
+            "startMs": 2130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              51,
+              51
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2170,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              52,
+              52
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2210,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              53,
+              53
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2250,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              54,
+              54
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2290,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              55,
+              55
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2330,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              56,
+              56
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2380,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              57,
+              57
+            ],
+            "states": [
+              "jump",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2420,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              58,
+              58
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2460,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              59,
+              59
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2500,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              60,
+              60
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2540,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              61,
+              61
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2580,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              62,
+              62
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2630,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              63,
+              63
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2670,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              64,
+              64
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2710,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              65,
+              65
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2750,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              66,
+              66
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2790,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              67,
+              67
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2830,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              68,
+              68
+            ],
+            "states": [
+              "run",
+              "run"
+            ]
+          },
+          {
+            "startMs": 2880,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              69,
+              68
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 2920,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              70,
+              68
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 2960,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              71,
+              68
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3000,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              72,
+              68
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3040,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              73,
+              68
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3080,
+            "durationMs": 50,
+            "exportFrameIndices": [
+              74,
+              68
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          },
+          {
+            "startMs": 3130,
+            "durationMs": 40,
+            "exportFrameIndices": [
+              75,
+              68
+            ],
+            "states": [
+              "run",
+              "ended (held)"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

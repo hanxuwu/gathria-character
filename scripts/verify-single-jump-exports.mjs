@@ -29,17 +29,25 @@ const sources = {
 // Independently reconstruct the documented review sequence from declarations:
 // full run cycle, next reviewed takeoff boundary, reviewed jump prefix, one
 // full run cycle at the landing exit. V1 retains its complete jump; V2 resumes
-// running after contact/rebound, before the standing recovery. Both keep 24 FPS.
+// running after contact/rebound, before the standing recovery. Side V3 adds a
+// second reviewed takeoff boundary. Every revision keeps native 24 FPS.
 function assertKnownRoutes(profile) {
   const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
+  const original = profile.view === "original";
+  const revision = Number(profile.id.slice(prefix.length).replace(/^v/, ""));
   assert(
-    profile.id === `${prefix}v1` || profile.id === `${prefix}v2`,
+    profile.id === `${prefix}v${revision}` &&
+      (original ? [1, 2] : [1, 2, 3]).includes(revision),
     `Unknown reviewed motion profile: ${profile.id}`,
   );
-  const isV2 = profile.id === `${prefix}v2`;
-  const original = profile.view === "original";
   const male = profile.characterId === "male";
-  const takeoffs = original ? [5, 13] : [male ? 16 : 13];
+  const takeoffs = original
+    ? [5, 13]
+    : revision === 3
+      ? male
+        ? [9, 16]
+        : [6, 13]
+      : [male ? 16 : 13];
   const complete = {
     from: "jump",
     to: "run",
@@ -63,9 +71,10 @@ function assertKnownRoutes(profile) {
   );
   assert.deepEqual(
     routes("jump", "run"),
-    isV2 ? [early, complete] : [complete],
-    "Landing routes differ from the reviewed V1/V2 boundaries",
+    revision >= 2 ? [early, complete] : [complete],
+    "Landing routes differ from the reviewed revision boundaries",
   );
+  return revision;
 }
 
 function expectedFlow(profile) {

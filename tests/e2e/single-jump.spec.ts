@@ -279,7 +279,34 @@ for (const character of ["male", "female"] as const) {
         "previous-locomotion",
       );
       expect(config.sourceMetadata.gameplayMotion.id).toBe(
-        `kling-${character}-${source}-single-jump-v2`,
+        `kling-${character}-${source}-single-jump-${source === "side" ? "v3" : "v2"}`,
+      );
+      expect(
+        config.sourceMetadata.gameplayMotion.routes
+          .filter(
+            (route: { from: string; to: string }) =>
+              route.from === "run" && route.to === "jump",
+          )
+          .map((route: { exit: number; entry: number }) => [
+            route.exit,
+            route.entry,
+          ])
+          .sort((a: number[], b: number[]) => a[0] - b[0]),
+      ).toEqual(
+        source === "original"
+          ? [
+              [5, 0],
+              [13, 0],
+            ]
+          : character === "male"
+            ? [
+                [9, 0],
+                [16, 0],
+              ]
+            : [
+                [6, 0],
+                [13, 0],
+              ],
       );
       expect(
         config.sourceMetadata.gameplayMotion.routes
