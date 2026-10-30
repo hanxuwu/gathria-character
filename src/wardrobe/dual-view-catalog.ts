@@ -1,5 +1,6 @@
 import catalog from "../../docs/dual-view-wardrobe/assets/catalog.json";
 import tailoredCatalog from "../../docs/dual-tailored/assets/catalog.json";
+import completeCatalog from "../../docs/dual-looks-cloth/assets/catalog.json";
 import { sha256 } from "../core/sha256";
 import {
   assertSourcePreparationActive,
@@ -47,7 +48,7 @@ interface Representation {
   items: RepresentationItem[];
 }
 export interface DualOutfit {
-  id: "cotton-day" | "tailored-day";
+  id: "cotton-day" | "tailored-day" | "complete-day";
   name: string;
   topId: string;
   bottomId: string;
@@ -72,6 +73,7 @@ const bundled = import.meta.glob<string>(
     "../../docs/dual-view-wardrobe/assets/*.zip",
     "../../docs/dual-tailored/assets/**/*.zip",
     "../../docs/dual-tailored/assets/**/*.registration.json",
+    "../../docs/dual-looks-cloth/assets/**/*.zip",
     "../../docs/kling-side-workspace/assets/*.source.zip",
     "../../docs/kling-side-workspace/assets/*.registration.json",
     "../../artwork/kling-side-expansion/templates/*.registration.json",
@@ -98,7 +100,7 @@ export function dualViewOutfit(
   const cottonBottoms = [{ id: DUAL_OUTFIT.bottomId, name: "棉质短裤" }];
   if (id === DUAL_OUTFIT.id)
     return { ...DUAL_OUTFIT, tops: cottonTops, bottoms: cottonBottoms };
-  if (id !== "tailored-day")
+  if (id !== "tailored-day" && id !== "complete-day")
     throw Error("这套服装尚未提供经过检查的双视角版本。");
   const male = character === "male";
   const top = {
@@ -110,20 +112,25 @@ export function dualViewOutfit(
     name: male ? "休闲长裤" : "短裙",
   };
   return {
-    id: "tailored-day",
-    name: male ? "休闲衬衫与长裤" : "短袖上衣与短裙",
+    id,
+    name:
+      id === "complete-day"
+        ? "短袖上衣与短裙 · 裙摆修订"
+        : male
+          ? "休闲衬衫与长裤"
+          : "短袖上衣与短裙",
     topId: top.id,
     bottomId: bottom.id,
     tops: [
       top,
       ...cottonTops.filter((item) =>
-        completeLogicalPart(character, "tailored-day", "top", item.id),
+        completeLogicalPart(character, id, "top", item.id),
       ),
     ],
     bottoms: [
       bottom,
       ...cottonBottoms.filter((item) =>
-        completeLogicalPart(character, "tailored-day", "bottom", item.id),
+        completeLogicalPart(character, id, "bottom", item.id),
       ),
     ],
   };
@@ -148,7 +155,9 @@ export function dualViewRepresentation(
         }))
       : outfitId === "tailored-day"
         ? tailoredCatalog.representations
-        : [];
+        : outfitId === "complete-day"
+          ? completeCatalog.representations
+          : [];
   const matches = (rows as Representation[]).filter(
     (row) => row.character === character && row.view === view,
   );
@@ -227,7 +236,7 @@ function completeLogicalPart(
 export function availableDualViewOutfits(
   character: DualViewCharacter,
 ): DualOutfit[] {
-  return [DUAL_OUTFIT.id, "tailored-day"].flatMap((id) => {
+  return [DUAL_OUTFIT.id, "tailored-day", "complete-day"].flatMap((id) => {
     const outfit = dualViewOutfit(character, id);
     try {
       for (const view of DUAL_VIEWS) {

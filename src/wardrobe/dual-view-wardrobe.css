@@ -120,6 +120,34 @@
   font-weight: 600;
   margin: 0;
 }
+.dual-wardrobe .dual-complete-look {
+  background: #3d604e;
+  color: #fffefa;
+  border-color: #3d604e;
+}
+.dual-wardrobe .dual-complete-look:hover:not(:disabled) {
+  background: #304e3e;
+}
+.dual-appearance {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  padding: 14px 0 18px;
+  border: 0;
+  border-bottom: 1px solid #e3e7dc;
+}
+.dual-appearance legend {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0;
+}
+@media (min-width: 641px) {
+  .dual-preview {
+    position: sticky;
+    top: 18px;
+  }
+}
 .dual-controls label,
 .dual-transport label {
   display: grid;

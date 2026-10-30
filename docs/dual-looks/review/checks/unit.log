@@ -1,0 +1,109 @@
+
+> gathria-character@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/core/sprite-actions.test.ts (6 tests) 14693ms
+   ✓ sprite action project contract > edits actual Kling male V3 timing while preserving every atlas byte and source mapping  6712ms
+   ✓ sprite action project contract > edits actual Kling female V3 timing while preserving every atlas byte and source mapping  7795ms
+ ✓ src/wardrobe/catalog-budget.test.ts (1 test) 4146ms
+   ✓ fits each shipped outfit / separates mix with every hair and face into the bounded per-frame page cache  4140ms
+ ✓ src/wardrobe/neckline-permissions.test.ts (6 tests) 2649ms
+   ✓ source-bound neckline cloth permissions > round-trips an explicit V3 garment through the existing strict archive loader  2429ms
+ ✓ src/skeletal/native-study.test.ts (14 tests) 24493ms
+   ✓ native source registration and deterministic composition > renders all four derived poses deterministically and mirrors complete native frames  2277ms
+   ✓ native source registration and deterministic composition > partitions the already-deformed near arm without resampling seams or double alpha  1045ms
+   ✓ native source registration and deterministic composition > holds proximal shoulder vertices on the body and tapers to the unchanged limb  439ms
+   ✓ native study validation and editable portable project > updates a pose with registered bone lengths, saves and reopens source PNG bytes  4034ms
+   ✓ native study validation and editable portable project > rejects unknown ZIP paths, corrupted checksums and changed reference identity  511ms
+   ✓ native study validation and editable portable project > exports four honest native V2 static holds with explicit derived provenance  3857ms
+   ✓ female native registration and portable output > preserves alpha and the full frame through four poses, mirrors and ankle parenting  2436ms
+   ✓ female native registration and portable output > roundtrips edited female joints and identity with unchanged source parts  2448ms
+   ✓ female native registration and portable output > exports identity-correct V2 holds whose four frames match the female renderer  3954ms
+ ✓ src/core/baked-source.test.ts (41 tests) 1988ms
+   ✓ Unified source archive adapter > preserves source hashes, atlas pixels and export metadata without Web Crypto  489ms
+ ✓ src/wardrobe/outfit-previews.test.ts (2 tests) 3345ms
+   ✓ every picture is decodable, bound to the current catalog, and backed by a real native export  3316ms
+ ✓ src/wardrobe/project.test.ts (35 tests) 1236ms
+ ✓ src/themes/theme.test.ts (27 tests) 1131ms
+ ✓ src/wardrobe/dual-view-catalog.test.ts (12 tests) 2899ms
+   ✓ paired collection source and inventory transitions > keeps the previous tailored project byte-exact when a reviewed collection changes garment revisions  633ms
+   ✓ paired collection source and inventory transitions > keeps legacy cotton defaults and portable bytes through an unchanged selection  324ms
+   ✓ paired collection source and inventory transitions > loads each new native registration and preserves exact source clocks and preview positions  401ms
+ ✓ src/wardrobe/combination-review.test.ts (11 tests) 906ms
+   ✓ bounded combination review > exhaustively covers valid combinations and deduplicates bald colors without changing source or preview  399ms
+ ✓ src/wardrobe/compositor.test.ts (15 tests) 627ms
+ ✓ src/wardrobe/dual-view-appearance.test.ts (16 tests) 1652ms
+   ✓ reviewed dual-view appearance choices > explicitly clears both embedded head banks to the exact original V1 pair without altering the accepted look  353ms
+   ✓ reviewed dual-view appearance choices > maps one shared look to distinct native styles and round-trips all colors offline without changing clothes or source clocks  364ms
+ ✓ src/core/sha256.test.ts (3 tests) 640ms
+ ✓ src/wardrobe/mask-edit.test.ts (10 tests) 508ms
+ ✓ src/wardrobe/garment-authoring.test.ts (5 tests) 735ms
+ ✓ src/appearance/upgrade.test.ts (12 tests) 659ms
+ ✓ src/pixel/pack.test.ts (10 tests) 709ms
+ ✓ src/side-view/fitting-template.test.ts (6 tests) 322ms
+ ✓ src/wardrobe/dual-view.test.ts (8 tests) 805ms
+   ✓ source-bound dual-view wardrobe persistence > round-trips both complete native projects, mixed clothing and independent action capabilities exactly  377ms
+ ✓ src/appearance/bank.test.ts (15 tests) 187ms
+ ✓ src/pixel/refine.test.ts (19 tests) 665ms
+   ✓ shared perceptual pixel palette > fits the same bounded source-color palette regardless of frame order  321ms
+ ✓ src/side-view/fitting-temporal.test.ts (11 tests) 493ms
+   ✓ anatomy-aligned temporal clothing diagnostics > reports unchanged art as stable and does not mutate pixels or anchors  399ms
+ ✓ src/wardrobe/garment-page-preparation.test.ts (10 tests) 158ms
+ ✓ src/themes/media.test.ts (5 tests) 191ms
+ ✓ src/wardrobe/repair-candidate.test.ts (6 tests) 149ms
+ ✓ src/core/png-export.test.ts (2 tests) 142ms
+ ✓ src/core/pack-v2.test.ts (30 tests) 121ms
+ ✓ src/core/pack-v3.test.ts (20 tests) 135ms
+ ✓ src/wardrobe/review-sheets.test.ts (9 tests) 94ms
+ ✓ src/core/source-preparation.test.ts (11 tests) 206ms
+ ✓ src/wardrobe/action-gif.test.ts (5 tests) 129ms
+ ✓ src/core/pack-v4.test.ts (6 tests) 173ms
+ ✓ src/side-view/motion.test.ts (27 tests) 74ms
+ ✓ src/wardrobe/download-cache.test.ts (3 tests) 38ms
+ ✓ src/appearance/render.test.ts (7 tests) 63ms
+ ✓ src/side-view/review.test.ts (7 tests) 114ms
+ ✓ src/skeletal/geometry.test.ts (3 tests) 65ms
+ ✓ src/side-view/fitting-analysis.test.ts (6 tests) 73ms
+ ✓ src/wardrobe/review-document.test.ts (22 tests) 59ms
+ ✓ src/wardrobe/review-analysis.test.ts (10 tests) 52ms
+ ✓ src/wardrobe/review-transfer.test.ts (7 tests) 26ms
+ ✓ src/consumer/player.test.ts (15 tests) 32ms
+ ✓ src/wardrobe/motion-review.test.ts (10 tests) 63ms
+ ✓ src/core/cooperative-yield.test.ts (4 tests) 10ms
+ ✓ src/consumer/kling-packs.test.ts (6 tests) 14ms
+ ✓ src/wardrobe/library-inventory.test.ts (2 tests) 8ms
+ ✓ src/wardrobe/dual-view-appearance-catalog.test.ts (5 tests) 20ms
+ ✓ src/wardrobe/look-history.test.ts (3 tests) 13ms
+ ✓ src/side-view/source-cache.test.ts (10 tests) 45ms
+ ✓ src/consumer/motion-flow.test.ts (11 tests) 14ms
+ ✓ src/wardrobe/look-comparison.test.ts (2 tests) 7ms
+ ✓ src/side-view/input.test.ts (4 tests) 6ms
+ ✓ src/appearance/catalog.test.ts (7 tests) 9ms
+ ✓ src/themes/motion-phase.test.ts (6 tests) 29ms
+ ✓ src/themes/comparison.test.ts (5 tests) 6ms
+ ✓ src/wardrobe/named-looks.test.ts (3 tests) 19ms
+ ✓ src/wardrobe/source-page-cache.test.ts (3 tests) 3ms
+ ✓ src/wardrobe/pose-neighborhood.test.ts (1 test) 11ms
+ ✓ src/themes/preview-budget.test.ts (4 tests) 3ms
+ ✓ src/themes/catalog-assets.test.ts (8 tests) 60632ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual female:kling-original@1 theme and both complete looks  39699ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual female:pixel-storybook@2 theme and both complete looks  906ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual female:pixel-storybook@1 theme and both complete looks  783ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual male:kling-original@1 theme and both complete looks  17794ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual male:pixel-storybook@2 theme and both complete looks  543ms
+   ✓ published authored theme assets use the real runtime parser > accepts the actual male:pixel-storybook@1 theme and both complete looks  480ms
+   ✓ published authored theme assets use the real runtime parser > rejects a real authored pack whose mandatory provenance entry was omitted  420ms
+
+ Test Files  60 passed (60)
+      Tests  590 passed (590)
+   Start at  00:36:44
+   Duration  61.74s (transform 3.34s, setup 0ms, collect 9.20s, tests 128.50s, environment 27ms, prepare 6.72s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

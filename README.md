@@ -31,6 +31,14 @@ original source clothing. The previous colored cotton collection keeps its
 own registration and defaults; cross-collection cotton mixing is not offered.
 [New artwork, fitting references, actual exports and limits](docs/dual-tailored/README.md).
 
+**应用完整日常造型** in the paired wardrobe adds source-specific hair and a
+gentle expression to both daily looks. Hair, three hair colors, expression and
+clothing remain separately selectable; saved projects keep their embedded
+artwork. A separate female skirt revision repairs two reviewed side-view holes
+without replacing older clothing. The original character pixels and native
+action clocks remain the reference.
+[Complete looks, actual GIFs, portable packs and limitations](docs/dual-looks/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

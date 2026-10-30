@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Download, FolderOpen, Pause, Play, Save } from "lucide-react";
+import { APPEARANCE_HAIR_COLORS } from "../appearance/contract";
 import type { Facing, PortableAnimationName } from "../core/types";
 import { encodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
 import {
@@ -9,7 +10,23 @@ import {
   type WardrobeCompositor,
 } from "./compositor";
 import { exportWardrobeActionGif } from "./action-gif";
-import { exportWardrobeProject, updateWardrobePreview } from "./project";
+import {
+  exportWardrobeProject,
+  getWardrobeAppearanceSelection,
+  updateWardrobePreview,
+} from "./project";
+import {
+  clearDualViewAppearance,
+  DEFAULT_DUAL_VIEW_APPEARANCE,
+  describeDualViewAppearance,
+  prepareDualViewAppearance,
+  type DualViewAppearanceSelection,
+} from "./dual-view-appearance";
+import {
+  compatiblePairedAppearance,
+  loadPairedAppearanceBank,
+  pairedAppearanceCatalog,
+} from "./dual-view-appearance-catalog";
 import {
   createDualViewWardrobe,
   exportDualViewWardrobe,
@@ -221,6 +238,13 @@ export default function DualViewWardrobe({
     }
     context.drawImage(sourceTarget, 0, 0);
     context.restore();
+    const headCatalog = pairedAppearanceCatalog(open.pair.character);
+    const head = headCatalog
+      ? describeDualViewAppearance(open.pair, headCatalog)
+      : null;
+    const nativeHead = getWardrobeAppearanceSelection(
+      open.pair.projects[source],
+    );
     Object.assign(target.dataset, {
       view: source,
       character: open.pair.character,
@@ -228,6 +252,18 @@ export default function DualViewWardrobe({
       palette: open.pair.selection.paletteId,
       top: open.pair.selection.topId ?? "original",
       bottom: open.pair.selection.bottomId ?? "original",
+      hair:
+        head?.status === "custom"
+          ? "custom"
+          : (head?.selection?.hairId ?? "original"),
+      face:
+        head?.status === "custom"
+          ? "custom"
+          : (head?.selection?.faceId ?? "original"),
+      hairColor: nativeHead.hairColor,
+      nativeHair: nativeHead.hairId ?? "original",
+      nativeFace: nativeHead.faceId ?? "original",
+      appearanceSha: open.pair.projects[source].appearanceBank?.sha256 ?? "",
       action: preview.action,
       framePosition: String(preview.position),
       frameId: String(id),
@@ -290,7 +326,9 @@ export default function DualViewWardrobe({
       playingRef.current = { original: false, side: false };
       committed = true;
       dispose(replaced);
-      setStatus("两个视角已就绪。切换人物素材时，会保持同款服装与配色。");
+      setStatus(
+        "两个视角已就绪。切换人物素材时，会保留各自的服装、发型与表情。",
+      );
     } finally {
       if (!committed)
         for (const renderer of Object.values(renderers)) renderer.dispose();
@@ -327,6 +365,91 @@ export default function DualViewWardrobe({
         { signal: request.controller.signal },
       );
       await prepare(pair, request);
+    } catch (failure) {
+      failed(request, failure);
+    } finally {
+      finish(request);
+    }
+  }
+  async function chooseAppearance(
+    change: Partial<DualViewAppearanceSelection>,
+  ) {
+    const open = current.current;
+    if (!open || busyRef.current) return;
+    const request = begin("正在检查两个视角的发型与表情…");
+    try {
+      const entries = compatiblePairedAppearance(open.pair);
+      if (!entries) throw Error("请先选择新款日常服装组，或使用完整日常造型。");
+      const description = describeDualViewAppearance(open.pair, entries);
+      const selection = {
+        ...(description.selection ?? DEFAULT_DUAL_VIEW_APPEARANCE),
+        ...change,
+      };
+      const pair = await prepareDualViewAppearance(
+        open.pair,
+        selection,
+        entries,
+        loadPairedAppearanceBank,
+        { signal: request.controller.signal },
+      );
+      await prepare(pair, request);
+    } catch (failure) {
+      failed(request, failure);
+    } finally {
+      finish(request);
+    }
+  }
+  async function resetAppearance() {
+    const open = current.current;
+    if (!open || busyRef.current) return;
+    const request = begin("正在恢复两个视角的原片头部…");
+    try {
+      await prepare(clearDualViewAppearance(open.pair), request);
+    } catch (failure) {
+      failed(request, failure);
+    } finally {
+      finish(request);
+    }
+  }
+  async function applyCompleteLook() {
+    const open = current.current;
+    if (!open || busyRef.current) return;
+    const request = begin("正在准备完整日常造型，两个视角都通过后一起应用…");
+    try {
+      const preferred = availableDualViewOutfits(open.pair.character).some(
+        (item) => item.id === "complete-day",
+      )
+        ? "complete-day"
+        : "tailored-day";
+      const look = dualViewOutfit(open.pair.character, preferred);
+      // The explicit complete-look action replaces clothing and appearance in
+      // a temporary pair. A failure leaves every accepted embedded bank intact.
+      let pair = await prepareDualViewLook(
+        clearDualViewAppearance(open.pair),
+        {
+          outfitId: look.id,
+          paletteId: open.pair.selection.paletteId,
+          topId: look.topId,
+          bottomId: look.bottomId,
+        },
+        { signal: request.controller.signal },
+      );
+      const entries = compatiblePairedAppearance(pair);
+      if (!entries) throw Error("完整造型尚缺对应视角的外观素材。");
+      pair = await prepareDualViewAppearance(
+        pair,
+        {
+          hairId: "daily-hair",
+          faceId: "gentle",
+          hairColor: "chestnut",
+        },
+        entries,
+        loadPairedAppearanceBank,
+        { signal: request.controller.signal },
+      );
+      await prepare(pair, request);
+      if (live(request))
+        setStatus("已应用完整日常造型。发型、表情和服装可以分别调整。");
     } catch (failure) {
       failed(request, failure);
     } finally {
@@ -537,6 +660,17 @@ export default function DualViewWardrobe({
     session?.pair.selection.outfitId ?? DUAL_OUTFIT.id,
   );
   const outfits = availableDualViewOutfits(character);
+  const headCatalog = pairedAppearanceCatalog(character);
+  const headEntries = session ? compatiblePairedAppearance(session.pair) : null;
+  const head =
+    session && headCatalog
+      ? describeDualViewAppearance(session.pair, headCatalog)
+      : null;
+  const headChoice = head?.selection ?? DEFAULT_DUAL_VIEW_APPEARANCE;
+  const hasHeadBank =
+    !!session &&
+    VIEWS.some((source) => !!session.pair.projects[source].appearanceBank);
+  const headLocked = locked || !headEntries;
   return (
     <section
       className="dual-wardrobe"
@@ -548,9 +682,7 @@ export default function DualViewWardrobe({
         <div>
           <p className="dual-eyebrow">ONE LOOK · TWO VIEWS</p>
           <h2>同一套搭配，两个视角</h2>
-          <p>
-            选择套装或分别搭配上下装。款式和配色一起切换，动作使用各自的原片。
-          </p>
+          <p>搭配服装、发型与表情。两个视角使用各自绘制的素材和原片动作。</p>
         </div>
         <div className="dual-project-tools">
           <button
@@ -694,8 +826,8 @@ export default function DualViewWardrobe({
               : "原版保留待机、走路、跑步、跳跃和庆祝。"}
           </p>
         </div>
-        <aside className="dual-controls" aria-label="共用服装选择">
-          <h3>同款衣橱</h3>
+        <aside className="dual-controls" aria-label="共用人物造型选择">
+          <h3>完整人物造型</h3>
           <label>
             人物
             <select
@@ -710,6 +842,146 @@ export default function DualViewWardrobe({
               <option value="female">Kling 女版</option>
             </select>
           </label>
+          <button
+            className="dual-complete-look"
+            data-testid="dual-complete-look"
+            disabled={
+              locked ||
+              !headCatalog?.original.faceId ||
+              !headCatalog?.side.faceId
+            }
+            onClick={() => void applyCompleteLook()}
+          >
+            应用完整日常造型
+          </button>
+          <p className="dual-note">
+            一起换上新款服装、栗棕发型和柔和微笑，保留当前服装配色。
+          </p>
+          <fieldset className="dual-appearance">
+            <legend>头发与表情</legend>
+            <label>
+              发型
+              <select
+                data-testid="dual-hair"
+                disabled={headLocked || head?.status === "custom"}
+                value={
+                  head?.status === "custom"
+                    ? "custom"
+                    : (headChoice.hairId ?? "")
+                }
+                onChange={(event) =>
+                  void chooseAppearance({
+                    hairId: event.target.value ? "daily-hair" : null,
+                  })
+                }
+              >
+                {head?.status === "custom" && (
+                  <option value="custom" disabled>
+                    工程中保存的发型
+                  </option>
+                )}
+                <option value="">原片发型</option>
+                <option value="daily-hair">
+                  {character === "male" ? "柔软侧分短发" : "轻盈短波波"}
+                </option>
+              </select>
+            </label>
+            <label>
+              发色
+              <select
+                data-testid="dual-hair-color"
+                disabled={
+                  headLocked || !headChoice.hairId || head?.status === "custom"
+                }
+                value={
+                  head?.status === "custom" ? "custom" : headChoice.hairColor
+                }
+                onChange={(event) =>
+                  void chooseAppearance({
+                    hairColor: event.target
+                      .value as DualViewAppearanceSelection["hairColor"],
+                  })
+                }
+              >
+                {head?.status === "custom" && (
+                  <option value="custom" disabled>
+                    工程中保存的发色
+                  </option>
+                )}
+                {APPEARANCE_HAIR_COLORS.map((color) => (
+                  <option key={color} value={color}>
+                    {
+                      { chestnut: "栗棕", espresso: "深棕", copper: "铜棕" }[
+                        color
+                      ]
+                    }
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              表情
+              <select
+                data-testid="dual-face"
+                disabled={headLocked || head?.status === "custom"}
+                value={
+                  head?.status === "custom"
+                    ? "custom"
+                    : (headChoice.faceId ?? "")
+                }
+                onChange={(event) =>
+                  void chooseAppearance({
+                    faceId: event.target.value ? "gentle" : null,
+                  })
+                }
+              >
+                {head?.status === "custom" && (
+                  <option value="custom" disabled>
+                    工程中保存的表情
+                  </option>
+                )}
+                <option value="">自然 · 保留原片</option>
+                <option
+                  value="gentle"
+                  disabled={
+                    !headEntries?.original.faceId || !headEntries?.side.faceId
+                  }
+                >
+                  柔和微笑
+                </option>
+              </select>
+            </label>
+            {head?.status === "custom" && headEntries && (
+              <button
+                data-testid="dual-use-paired-appearance"
+                disabled={locked}
+                onClick={() =>
+                  void chooseAppearance({
+                    hairId: "daily-hair",
+                    faceId: "gentle",
+                    hairColor: "chestnut",
+                  })
+                }
+              >
+                替换为配对发型与表情
+              </button>
+            )}
+            <button
+              data-testid="dual-reset-appearance"
+              disabled={locked || !hasHeadBank}
+              onClick={() => void resetAppearance()}
+            >
+              恢复原片头部
+            </button>
+            <p className="dual-note" data-testid="dual-appearance-note">
+              {head?.status === "custom"
+                ? `${head.message} ${headEntries ? "选择“替换为配对发型与表情”后，才会替换两边保存的外观。" : "可使用完整日常造型一起更换服装与外观，或恢复原片头部。"}`
+                : !headEntries
+                  ? "这组旧服装保留原来的外观。使用完整日常造型可一起切换到新款服装与发型。"
+                  : "两种视角使用各自的发型和表情素材。原片眨眼、笑容变化和动作节奏仍保留。"}
+            </p>
+          </fieldset>
+          <h3>服装搭配</h3>
           <label>
             服装组
             <select
@@ -789,7 +1061,7 @@ export default function DualViewWardrobe({
             </select>
           </label>
           <p className="dual-note">
-            {outfit.id === "tailored-day"
+            {outfit.id !== "cotton-day"
               ? "可与原片上装、短裤混搭；彩色棉质款使用独立服装组。"
               : "上装、下装可分别保留原片。"}
             此处只展示已经制作双视角版本的款式；原有完整衣橱仍可使用。

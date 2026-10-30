@@ -31,13 +31,21 @@ export async function buildDualTailored({
   includeCotton = false,
   newDrawing = false,
   paintedCutOrigins,
+  outputRoot = "docs/dual-tailored/assets",
+  artRoot = "artwork/dual-tailored",
+  collectionId = "tailored-day",
+  idPrefix,
 }) {
   assert(
     !includeCotton,
     "Cross-registration cotton mixing is not supported; see rejected-binding audit. Keep each native registration intact.",
   );
-  const output = resolve(root, `docs/dual-tailored/assets/${character}`);
-  const art = resolve(root, `artwork/dual-tailored/${character}`);
+  const output = resolve(root, outputRoot, character);
+  const art = resolve(root, artRoot, character);
+  assert(
+    output.startsWith(root + "/") && art.startsWith(root + "/"),
+    "Build outputs must stay inside the repository.",
+  );
   for (const directory of [
     output,
     art,
@@ -56,6 +64,7 @@ export async function buildDualTailored({
   }
   for (const spec of specifications) {
     spec.character = character;
+    if (idPrefix) spec.idPrefix = idPrefix;
     spec.sourceSha256 = sha(
       await readFile(resolve(root, spec.sourceUrl.slice(1))),
     );
@@ -115,7 +124,7 @@ export async function buildDualTailored({
     format: "gathria-dual-tailored-character-assets",
     version: 1,
     character,
-    collectionId: "tailored-day",
+    collectionId,
     palettes,
     representations: [],
   };
@@ -203,7 +212,7 @@ export async function buildDualTailored({
                 (item) => item.manifest.id === seed.id,
               );
               fail(original.sha256 === seed.sha256, "Painted seed changed");
-              const id = `dual-tailored-${spec.character}-${spec.view}-${palette.id}-${seed.slot}-v1`;
+              const id = `${spec.idPrefix ?? "dual-tailored"}-${spec.character}-${spec.view}-${palette.id}-${seed.slot}-v1`;
               const name = `${palette.name} · ${seed.label ?? (seed.slot === "top" ? "短袖休闲衬衫" : "休闲长裤")} · ${spec.view === "original" ? "原版" : "侧视"}`;
               const configuration = {
                 id,
@@ -411,7 +420,7 @@ export async function buildDualTailored({
       const representation = {
         character,
         view: spec.view,
-        collectionId: "tailored-day",
+        collectionId,
         sourceUrl: spec.sourceUrl,
         registrationUrl: spec.registrationUrl,
         sourceSha256: spec.sourceSha256,
@@ -435,7 +444,7 @@ export async function buildDualTailored({
         representation.items.push({
           ...item,
           bytes: bytes.length,
-          url: `/docs/dual-tailored/assets/${character}/${filename}`,
+          url: `/${outputRoot}/${character}/${filename}`,
         });
       }
       for (const preview of result.previews)

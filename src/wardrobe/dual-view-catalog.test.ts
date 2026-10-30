@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
-import { strToU8, zipSync } from "fflate";
+import { strToU8, unzipSync, zipSync } from "fflate";
 import { appearanceFixture } from "../appearance/fixture.test-support";
 import { encodeSourceRgbaPng } from "../core/baked-source";
 import { createBakedCharacterPack } from "../core/pack";
@@ -55,12 +55,16 @@ type Representation = {
 const data = vi.hoisted(() => ({
   cotton: { representations: [] as Representation[] },
   tailored: { representations: [] as Representation[] },
+  complete: { representations: [] as Representation[] },
 }));
 vi.mock("../../docs/dual-view-wardrobe/assets/catalog.json", () => ({
   default: data.cotton,
 }));
 vi.mock("../../docs/dual-tailored/assets/catalog.json", () => ({
   default: data.tailored,
+}));
+vi.mock("../../docs/dual-looks-cloth/assets/catalog.json", () => ({
+  default: data.complete,
 }));
 
 const sha = (bytes: Uint8Array) =>
@@ -269,6 +273,7 @@ async function fixture(view: DualView, optionalCotton = false) {
 beforeEach(async () => {
   data.cotton.representations.length = 0;
   data.tailored.representations.length = 0;
+  data.complete.representations.length = 0;
   files.clear();
   requests.length = 0;
   await fixture("original");
@@ -287,6 +292,45 @@ beforeEach(async () => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("paired collection source and inventory transitions", () => {
+  it("keeps the previous tailored project byte-exact when a reviewed collection changes garment revisions", async () => {
+    const before = await loadDualViewWardrobe("male", {}, tailored);
+    const saved = await exportDualViewWardrobe(before);
+    data.complete.representations.push(
+      ...structuredClone(data.tailored.representations),
+    );
+    for (const row of data.complete.representations) {
+      for (const item of row.items.filter((item) => item.slot === "bottom")) {
+        const entries = unzipSync(files.get(item.url)!);
+        const manifest = JSON.parse(
+          new TextDecoder().decode(entries["manifest.json"]),
+        );
+        manifest.provenance += " Reviewed revision fixture.";
+        entries["manifest.json"] = json(manifest);
+        const bytes = zipSync(entries);
+        item.url = item.url.replace("/test/", "/test/reviewed-");
+        item.sha256 = sha(bytes);
+        item.bytes = bytes.length;
+        files.set(item.url, bytes);
+      }
+    }
+    const complete = await prepareDualViewLook(before, {
+      ...tailored,
+      outfitId: "complete-day",
+    });
+    validateDualViewLook(complete);
+    expect(complete.projects.side.items.map((item) => item.sha256)).not.toEqual(
+      before.projects.side.items.map((item) => item.sha256),
+    );
+    expect(complete.projects.side.source).toEqual(before.projects.side.source);
+    expect(() =>
+      validateDualViewLook({ ...complete, selection: tailored }),
+    ).toThrow();
+    const reopened = await importDualViewWardrobe(saved);
+    validateDualViewLook(reopened);
+    expect(await exportDualViewWardrobe(before)).toEqual(saved);
+    const returned = await prepareDualViewLook(complete, tailored);
+    expect(await exportDualViewWardrobe(returned)).toEqual(saved);
+  });
   it("keeps legacy cotton defaults and portable bytes through an unchanged selection", async () => {
     const old = await loadDualViewWardrobe("male");
     expect(old.selection).toEqual({
