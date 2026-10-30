@@ -45,6 +45,13 @@ explicitly applying the complete look selects the revision. Review comparisons
 use one fixed body-height scale per source, without changing native exports.
 [Matched hair, before/after GIFs and validation](docs/matched-hair/README.md).
 
+The explicit complete-look action now selects **日常造型 · 接缝修订**.
+It corrects the reviewed side-view shoulder/forearm cuts and one mistaken
+hand/scalp overlap while preserving previously saved looks. **并排比较** shows
+both views at a fixed equal standing height, with independent native playback,
+frame stepping and export selection. Display alignment does not resize exports.
+[Polished seams, same-frame evidence and comparison guide](docs/paired-polish/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

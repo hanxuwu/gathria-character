@@ -73,6 +73,66 @@
 .dual-preview {
   min-width: 0;
 }
+.dual-preview-mode {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.dual-preview-mode button[aria-pressed="true"] {
+  background: #e1e9d9;
+  border-color: #819875;
+}
+.dual-comparison-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 9px;
+  background: #f2f3eb;
+}
+.dual-comparison-toolbar label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: #65785e;
+}
+.dual-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.dual-comparison-panel {
+  min-width: 0;
+}
+.dual-comparison-panel .dual-stage-card canvas {
+  width: 100%;
+}
+.dual-comparison-panel .dual-transport {
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.dual-comparison-panel .dual-transport label {
+  min-width: 68px;
+}
+.dual-comparison-panel .dual-stage-label {
+  padding: 12px 10px;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+.dual-frame-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+.dual-layout-comparing .dual-preview {
+  position: static;
+}
 .dual-stage-card {
   position: relative;
   display: flex;
@@ -216,6 +276,9 @@
   background: #fbf0eb;
 }
 @media (max-width: 900px) {
+  .dual-layout.dual-layout-comparing {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .dual-heading {
     align-items: start;
     flex-direction: column;
@@ -232,6 +295,13 @@
   }
 }
 @media (max-width: 640px) {
+  .dual-comparison-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .dual-comparison-panel .dual-stage-card canvas {
+    width: min(100%, 400px);
+  }
   .dual-wardrobe {
     padding: 15px 12px;
   }

@@ -28,6 +28,7 @@ jobs:
       - run: python scripts/verify-kling-male-repair.py
       - run: python scripts/verify-kling-female-repair.py
       - run: npm ci
+      - run: node scripts/assemble-paired-polish-catalog.mjs --check
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
