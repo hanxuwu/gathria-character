@@ -3,7 +3,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { expect, test, type Page } from "@playwright/test";
 
 test.describe.configure({ mode: "parallel" });
-const output = "/tmp/paired-polish/exports";
+const output =
+  process.env.GATHRIA_REVIEW_EXPORT_ROOT ?? "/tmp/paired-polish/exports";
 const views = ["original", "side"] as const;
 const sha = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
@@ -43,6 +44,9 @@ for (const character of ["male", "female"] as const) {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(`/workbench.html?mode=paired&character=${character}`);
     await ready(page);
+    // This regression retains the published source clocks and byte-exact exports.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     await page.getByTestId("dual-complete-look").click();
     await ready(page);
     await expect(page.getByTestId("dual-outfit")).toHaveValue("polished-day");

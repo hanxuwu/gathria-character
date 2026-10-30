@@ -32,6 +32,9 @@ try {
     );
     const apply = page.getByTestId("dual-complete-look");
     await expect(apply).toBeEnabled({ timeout: 120000 });
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue(
+      "single-jump",
+    );
     await expect(page.getByTestId("dual-outfit")).toHaveValue("cotton-day");
     await apply.click();
     await expect(apply).toBeEnabled({ timeout: 240000 });
@@ -57,6 +60,17 @@ try {
       );
       await page.getByTestId("dual-action").selectOption("run");
       await expect(stage).toHaveAttribute("data-action", "run");
+      await page.getByTestId("dual-run").click();
+      await page.getByTestId("dual-jump-once").click();
+      await expect(stage).toHaveAttribute("data-action", "jump", {
+        timeout: 5000,
+      });
+      await expect(stage).toHaveAttribute("data-motion-mode", "single-jump");
+      await expect(stage).toHaveAttribute("data-return-action", "run");
+      await expect(stage).toHaveAttribute("data-action", "run", {
+        timeout: 5000,
+      });
+      await page.getByTestId("dual-play-pause").click();
       await page.screenshot({
         path: `${directory}/${character}-${view}.png`,
         fullPage: true,
@@ -67,6 +81,7 @@ try {
         outfit: await stage.getAttribute("data-outfit"),
         appearanceSha256: await stage.getAttribute("data-appearance-sha"),
         activeCatalogBankExact: true,
+        singleJumpReturnsToRun: true,
         errors: [...errors],
       });
     }
@@ -105,7 +120,7 @@ try {
     ) + "\n",
   );
   console.log(
-    "Complete-look production smoke passed: both characters/views, native appearance URLs, preserved cotton defaults, mobile layout; no HTTP/page errors.",
+    "Complete-look production smoke passed: both characters/views, single jump returns to run, native appearance URLs, preserved cotton defaults, mobile layout; no HTTP/page errors.",
   );
 } finally {
   await browser.close();

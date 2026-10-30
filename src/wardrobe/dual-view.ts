@@ -1,6 +1,11 @@
 import { strToU8, zipSync } from "fflate";
 import { sha256 } from "../core/sha256";
 import {
+  gameplayManifest,
+  resolveGameplayMotion,
+  type GameplayMode,
+} from "../core/gameplay-motion";
+import {
   assertSourcePreparationActive,
   prepareBoundedArchive,
   type SourcePreparationOptions,
@@ -44,13 +49,21 @@ export interface DualViewPreview {
 
 export interface DualViewWardrobe {
   character: DualViewCharacter;
+  motionMode: GameplayMode;
   selection: DualViewSelection;
   activeView: DualView;
   previews: Record<DualView, DualViewPreview>;
   projects: Record<DualView, WardrobeProject>;
 }
 
-export type DualViewSettings = Omit<DualViewWardrobe, "projects">;
+export type DualViewSettings = Omit<
+  DualViewWardrobe,
+  "projects" | "motionMode"
+> & {
+  /** Omitted legacy settings retain the complete source action clips. */
+  motionMode?: GameplayMode;
+};
+type NormalizedDualViewSettings = Omit<DualViewWardrobe, "projects">;
 
 interface ProjectReference {
   file: "original.wardrobe.zip" | "side.wardrobe.zip";
@@ -62,11 +75,10 @@ interface ProjectReference {
   frameHeight: number;
 }
 
-interface DualViewManifest extends DualViewSettings {
+type DualViewManifest = Omit<DualViewSettings, "motionMode"> & {
   format: "gathria-dual-view-wardrobe";
-  version: 1;
   views: Record<DualView, ProjectReference>;
-}
+} & ({ version: 1 } | { version: 2; motionMode: GameplayMode });
 
 const ACTIONS: readonly PortableAnimationName[] = [
   "idle",
@@ -107,13 +119,22 @@ function id(value: unknown, label: string): string {
   return value;
 }
 
-function readSettings(value: unknown): DualViewSettings {
+function readSettings(value: unknown): NormalizedDualViewSettings {
+  const hasMode =
+    !!value && typeof value === "object" && Object.hasOwn(value, "motionMode");
   const data = object(value, "Dual-view settings", [
     "character",
     "selection",
     "activeView",
     "previews",
+    ...(hasMode ? ["motionMode"] : []),
   ]);
+  if (
+    hasMode &&
+    data.motionMode !== "source" &&
+    data.motionMode !== "single-jump"
+  )
+    throw Error("Unsupported dual-view motion mode.");
   if (data.character !== "male" && data.character !== "female")
     throw Error("Dual-view character must be male or female.");
   if (data.activeView !== "original" && data.activeView !== "side")
@@ -155,6 +176,7 @@ function readSettings(value: unknown): DualViewSettings {
   }
   return {
     character: data.character,
+    motionMode: hasMode ? (data.motionMode as GameplayMode) : "source",
     selection,
     activeView: data.activeView,
     previews,
@@ -207,7 +229,19 @@ function assertProject(
       );
   }
   const preview = settings.previews[view];
-  const clip = project.archive.manifest.animations[preview.action];
+  const profile =
+    settings.motionMode === "single-jump"
+      ? resolveGameplayMotion(
+          project.archive.manifest,
+          project.document.sourceSha256,
+        )
+      : null;
+  if (settings.motionMode === "single-jump" && !profile)
+    throw Error(`${view} source has no reviewed single-jump profile.`);
+  const manifest = profile
+    ? gameplayManifest(project.archive.manifest, profile)
+    : project.archive.manifest;
+  const clip = manifest.animations[preview.action];
   if (!clip || preview.position >= clip.frames.length)
     throw Error(`${view} does not support the requested action or position.`);
 }
@@ -262,7 +296,7 @@ export async function exportDualViewWardrobe(
   options: SourcePreparationOptions = {},
 ): Promise<Uint8Array> {
   const verified = await validateDualViewWardrobe(wardrobe, options);
-  const { projects, ...settings } = verified;
+  const { projects, motionMode, ...settings } = verified;
   const views = {} as Record<DualView, ProjectReference>;
   const files: Parameters<typeof zipSync>[0] = {};
   let total = DUAL_VIEW_METADATA_MAX_BYTES;
@@ -293,7 +327,9 @@ export async function exportDualViewWardrobe(
   assertSourcePreparationActive(options);
   const manifest: DualViewManifest = {
     format: "gathria-dual-view-wardrobe",
-    version: 1,
+    ...(motionMode === "single-jump"
+      ? { version: 2 as const, motionMode }
+      : { version: 1 as const }),
     ...settings,
     views,
   };
@@ -339,6 +375,10 @@ export async function importDualViewWardrobe(
   } catch {
     throw Error("Dual-view wardrobe manifest must be valid UTF-8 JSON.");
   }
+  const version =
+    raw && typeof raw === "object" && !Array.isArray(raw)
+      ? (raw as { version?: unknown }).version
+      : undefined;
   const data = object(raw, "Dual-view manifest", [
     "format",
     "version",
@@ -347,8 +387,12 @@ export async function importDualViewWardrobe(
     "activeView",
     "previews",
     "views",
+    ...(version === 2 ? ["motionMode"] : []),
   ]);
-  if (data.format !== "gathria-dual-view-wardrobe" || data.version !== 1)
+  if (
+    data.format !== "gathria-dual-view-wardrobe" ||
+    (data.version !== 1 && data.version !== 2)
+  )
     throw Error("Unsupported dual-view wardrobe format/version.");
   const { format: _format, version: _version, views: rawViews, ...rest } = data;
   const settings = readSettings(rest);

@@ -52,6 +52,14 @@ both views at a fixed equal standing height, with independent native playback,
 frame stepping and export selection. Display alignment does not resize exports.
 [Polished seams, same-frame evidence and comparison guide](docs/paired-polish/README.md).
 
+**单次跳跃** is the default for new paired and side-view sessions. It selects
+one complete side-view takeoff and landing from the existing source frames;
+the original-view jump stays intact. Running or walking resumes after landing,
+and repeated jump requests cannot interrupt or restart an airborne character.
+**原片对照** retains the uncut source clip. Exported gameplay CharacterPacks
+carry the selected clip and reviewed transition routes for the independent player.
+[Single-jump controls, actual exports and transition limits](docs/kling-single-jump/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):
@@ -63,12 +71,13 @@ npm run dev
 
 Open the address Vite prints. In **Character library**, use **编辑人物** on either
 card. The workbench keeps original actions, wardrobe, paired wardrobe, themes
-and optional skeletal tools together. The default action settings preserve the
-original video playback; direct links below still open the corresponding tools.
+and optional skeletal tools together. Original playback remains available;
+paired and side-view tools also offer single-jump controls. Direct links below
+still open the corresponding tools.
 
 **侧视动作与换装** on either character card opens the independent side-view
 candidate: `/workbench.html?character=male&mode=side-view` (or `female`).
-It includes source-timed idle/walk/run, the original two-jump clip, keyboard
+It includes source-timed idle/walk/run, single-jump and original-clip modes, keyboard
 controls, camera-follow travel, per-frame fitting guides and two same-cut daily
 material studies. Existing characters and wardrobe defaults remain unchanged.
 [Side-view usage, actual exports and limitations](docs/kling-side-workspace/README.md).
@@ -87,11 +96,11 @@ painting-guide/preflight commands. The loader reuses verified compressed source
 bytes while revalidating current clothing and hair. Original source frames and
 export timing remain unchanged.
 
-| Main destination                             | Available now                                                           |
-| -------------------------------------------- | ----------------------------------------------------------------------- |
-| `/`                                          | Two originals, one **编辑人物** entry per character                   |
-| `/workbench.html?character=male` or `female` | Original/side-view tools, wardrobe, themes and retained skeletal sessions       |
-| `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export |
+| Main destination                             | Available now                                                             |
+| -------------------------------------------- | ------------------------------------------------------------------------- |
+| `/`                                          | Two originals, one **编辑人物** entry per character                       |
+| `/workbench.html?character=male` or `female` | Original/side-view tools, wardrobe, themes and retained skeletal sessions |
+| `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export   |
 
 `/workbench.html?character=male&mode=themes` opens **Character themes** directly;
 use `character=female` for the other character. Choose **Kling original** or

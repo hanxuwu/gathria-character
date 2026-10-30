@@ -4,12 +4,24 @@ import { APPEARANCE_HAIR_COLORS } from "../appearance/contract";
 import type { Facing, PortableAnimationName } from "../core/types";
 import { encodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
 import {
+  advanceGameplayMotion,
+  createGameplayState,
+  gameplayFramePosition,
+  gameplayManifest,
+  requestGameplayAction,
+  resolveGameplayMotion,
+  type GameplayMode,
+  type GameplayMotion,
+  type GameplayState,
+} from "../core/gameplay-motion";
+import {
   createWardrobeCompositor,
   exportWardrobeCharacterPack,
   validateWardrobeAppearance,
   type WardrobeCompositor,
 } from "./compositor";
 import { exportWardrobeActionGif } from "./action-gif";
+import { exportWardrobeRunJumpGif } from "./action-flow-gif";
 import {
   exportWardrobeProject,
   getWardrobeAppearanceSelection,
@@ -67,10 +79,46 @@ const viewName = (view: DualView) =>
 type Session = {
   pair: PairedProject;
   renderers: Record<DualView, WardrobeCompositor>;
+  manifests: Record<DualView, WardrobeCompositor["manifest"]>;
+  profiles: Record<DualView, GameplayMotion | null>;
   comparison: ReturnType<typeof comparisonLayout>;
 };
 type Operation = { token: number; controller: AbortController };
-type ExportKind = "project" | "native-project" | "png" | "gif" | "pack";
+type ExportKind =
+  | "project"
+  | "native-project"
+  | "png"
+  | "gif"
+  | "flow-gif"
+  | "pack";
+
+function motionSources(
+  pair: PairedProject,
+  renderers: Session["renderers"],
+): Pick<Session, "profiles" | "manifests"> {
+  const profiles = {} as Session["profiles"];
+  const manifests = {} as Session["manifests"];
+  for (const source of VIEWS) {
+    const profile =
+      pair.motionMode === "single-jump"
+        ? resolveGameplayMotion(
+            pair.projects[source].archive.manifest,
+            pair.projects[source].document.sourceSha256,
+          )
+        : null;
+    if (pair.motionMode === "single-jump" && !profile)
+      throw Error(`${viewName(source)}缺少经过检查的单次跳跃动作。`);
+    profiles[source] = profile;
+    manifests[source] = profile
+      ? gameplayManifest(renderers[source].manifest, profile)
+      : renderers[source].manifest;
+  }
+  return { profiles, manifests };
+}
+
+function motionPosition(state: GameplayState, profile: GameplayMotion): number {
+  return gameplayFramePosition(profile, state);
+}
 
 function dispose(session: Session | undefined) {
   if (session)
@@ -143,6 +191,10 @@ export default function DualViewWardrobe({
   const viewRef = useRef(view);
   const playingRef = useRef(playing);
   const elapsed = useRef<Record<DualView, number>>({ original: 0, side: 0 });
+  const motion = useRef<Record<DualView, GameplayState>>({
+    original: createGameplayState(),
+    side: createGameplayState(),
+  });
   const previousTime = useRef<number | null>(null);
   const callbacks = useRef({ onViewChange, onCharacterChange });
   compareRef.current = comparing;
@@ -206,12 +258,18 @@ export default function DualViewWardrobe({
     cached.current.set(next.pair.character, next.pair);
     setSession(next);
   }
-  function synchronizeClocks(pair: PairedProject) {
+  function synchronizeClocks(
+    pair: PairedProject,
+    manifests: Session["manifests"],
+  ) {
     for (const source of VIEWS) {
       const preview = pair.previews[source];
-      const clip =
-        pair.projects[source].archive.manifest.animations[preview.action]!;
+      const clip = manifests[source].animations[preview.action]!;
       elapsed.current[source] = (preview.position * 1000) / clip.fps;
+      motion.current[source] = {
+        ...createGameplayState(preview.action),
+        elapsedMs: elapsed.current[source],
+      };
     }
     previousTime.current = null;
   }
@@ -223,7 +281,7 @@ export default function DualViewWardrobe({
     if (!target || !activeRef.current) return;
     const preview = open.pair.previews[source];
     const renderer = open.renderers[source];
-    const clip = renderer.manifest.animations[preview.action];
+    const clip = open.manifests[source].animations[preview.action];
     const id = clip?.frames[preview.position];
     if (id === undefined) throw Error("当前动作没有可显示的原始帧。");
     const image = renderer.renderFrame(id);
@@ -304,6 +362,16 @@ export default function DualViewWardrobe({
       nativeFace: nativeHead.faceId ?? "original",
       appearanceSha: open.pair.projects[source].appearanceBank?.sha256 ?? "",
       action: preview.action,
+      motionMode: open.pair.motionMode,
+      profileId: open.profiles[source]?.id ?? "",
+      pendingAction: motion.current[source].pending ?? "",
+      returnAction: motion.current[source].returnAction,
+      jumpFrom: motion.current[source].jumpFrom ?? "",
+      elapsedMs: String(
+        open.profiles[source]
+          ? motion.current[source].elapsedMs
+          : elapsed.current[source],
+      ),
       framePosition: String(preview.position),
       frameId: String(id),
       facing: preview.facing,
@@ -340,12 +408,6 @@ export default function DualViewWardrobe({
               setStatus(`检查${viewName(source)} · ${done} / ${total}`);
           },
         });
-        const preview = pair.previews[source];
-        renderer.renderFrame(
-          renderer.manifest.animations[preview.action]!.frames[
-            preview.position
-          ],
-        );
       }
       if (!live(request)) return;
       const nextPair = {
@@ -374,11 +436,20 @@ export default function DualViewWardrobe({
       const next = {
         pair: nextPair,
         renderers: renderers as Session["renderers"],
+        ...motionSources(nextPair, renderers as Session["renderers"]),
         comparison: comparisonLayout(comparisonSources),
       };
+      for (const source of VIEWS) {
+        const preview = nextPair.previews[source];
+        next.renderers[source].renderFrame(
+          next.manifests[source].animations[preview.action]!.frames[
+            preview.position
+          ],
+        );
+      }
       const replaced = current.current ?? undefined;
       remember(next);
-      synchronizeClocks(nextPair);
+      synchronizeClocks(nextPair, next.manifests);
       if (restoreView) callbacks.current.onViewChange(pair.activeView);
       callbacks.current.onCharacterChange(pair.character);
       setPlaying({ original: false, side: false });
@@ -405,7 +476,7 @@ export default function DualViewWardrobe({
         const pair = await loadDualViewWardrobe(character, {
           signal: request.controller.signal,
         });
-        await prepare(pair, request);
+        await prepare({ ...pair, motionMode: "single-jump" }, request);
       }
     } catch (failure) {
       failed(request, failure);
@@ -517,8 +588,12 @@ export default function DualViewWardrobe({
   ) {
     const open = current.current;
     if (!open || busyRef.current) return;
+    if (change.action && playingRef.current[source] && open.profiles[source]) {
+      requestActions(change.action, [source]);
+      return;
+    }
     const preview = { ...open.pair.previews[source], ...change };
-    const clip = open.renderers[source].manifest.animations[preview.action];
+    const clip = open.manifests[source].animations[preview.action];
     if (!clip || !Number.isSafeInteger(preview.position)) return;
     preview.position = Math.max(
       0,
@@ -530,9 +605,90 @@ export default function DualViewWardrobe({
     };
     remember({ ...open, pair });
     elapsed.current[source] = (preview.position * 1000) / clip.fps;
+    motion.current[source] = {
+      ...createGameplayState(preview.action),
+      elapsedMs: elapsed.current[source],
+    };
     previousTime.current = null;
     setPlaying((previous) => ({ ...previous, [source]: false }));
     playingRef.current = { ...playingRef.current, [source]: false };
+  }
+  function requestActions(
+    action: PortableAnimationName,
+    sources = compareRef.current ? VIEWS : [viewRef.current],
+    start = false,
+  ) {
+    if (!current.current || busyRef.current) return;
+    const wasPlaying = sources.some((source) => playingRef.current[source]);
+    for (const source of sources) {
+      const open = current.current!;
+      const profile = open.profiles[source];
+      if (!open.manifests[source].animations[action]) continue;
+      if (profile && (playingRef.current[source] || start)) {
+        const previous = motion.current[source];
+        const state = requestGameplayAction(previous, action, profile);
+        if (
+          state.action === previous.action &&
+          state.elapsedMs === previous.elapsedMs &&
+          state.pending === previous.pending &&
+          state.returnAction === previous.returnAction &&
+          state.jumpFrom === previous.jumpFrom
+        )
+          continue;
+        motion.current[source] = state;
+        elapsed.current[source] = state.elapsedMs;
+        const previews = {
+          ...open.pair.previews,
+          [source]: {
+            ...open.pair.previews[source],
+            action: state.action,
+            position: motionPosition(state, profile),
+          },
+        };
+        remember({ ...open, pair: { ...open.pair, previews } });
+      } else changePreview({ action, position: 0 }, source);
+    }
+    if (start && sources.some((source) => !playingRef.current[source])) {
+      const next = { ...playingRef.current };
+      for (const source of sources) next[source] = true;
+      playingRef.current = next;
+      setPlaying(next);
+    }
+    if (!wasPlaying) previousTime.current = null;
+  }
+  function changeMotionMode(mode: GameplayMode) {
+    const open = current.current;
+    if (!open || busyRef.current || mode === open.pair.motionMode) return;
+    try {
+      const pair = { ...open.pair, motionMode: mode };
+      const nextMotion = motionSources(pair, open.renderers);
+      const previews = { ...pair.previews };
+      for (const source of VIEWS) {
+        const preview = previews[source];
+        const frameId =
+          open.manifests[source].animations[preview.action]!.frames[
+            preview.position
+          ];
+        const nextClip =
+          nextMotion.manifests[source].animations[preview.action]!;
+        previews[source] = {
+          ...preview,
+          position: Math.max(0, nextClip.frames.indexOf(frameId)),
+        };
+      }
+      pair.previews = previews;
+      synchronizeClocks(pair, nextMotion.manifests);
+      playingRef.current = { original: false, side: false };
+      setPlaying(playingRef.current);
+      remember({ ...open, ...nextMotion, pair });
+      setStatus(
+        mode === "single-jump"
+          ? "已切换为单次跳跃。播放中可直接切动作，落地后接回走路或跑步。"
+          : "已切换为原片对照，侧视包含原视频的连续两跳。",
+      );
+    } catch (failure) {
+      setError(failure instanceof Error ? failure.message : String(failure));
+    }
   }
   function playSources(sources: DualView[], play?: boolean) {
     const open = current.current;
@@ -541,11 +697,17 @@ export default function DualViewWardrobe({
       play ?? !sources.some((source) => playingRef.current[source]);
     for (const source of sources) {
       const preview = current.current!.pair.previews[source];
-      const clip = open.renderers[source].manifest.animations[preview.action]!;
+      const clip = open.manifests[source].animations[preview.action]!;
       if (
         shouldPlay &&
         !clip.loop &&
-        preview.position === clip.frames.length - 1
+        preview.position === clip.frames.length - 1 &&
+        // The final jump pose still has one authored tick to play. Resuming it
+        // must complete landing and return, never invent a second takeoff.
+        (!open.profiles[source] ||
+          (preview.action !== "jump" &&
+            motion.current[source].elapsedMs >=
+              (clip.frames.length * 1000) / clip.fps))
       )
         changePreview({ position: 0 }, source);
     }
@@ -593,6 +755,7 @@ export default function DualViewWardrobe({
         facing: preview.facing,
       });
       const renderer = open.renderers[source];
+      const profile = open.profiles[source];
       const prefix = `kling-${pair.character}-${source}`;
       let bytes: Uint8Array;
       let name: string;
@@ -607,6 +770,7 @@ export default function DualViewWardrobe({
         name = `${prefix}.wardrobe.zip`;
       } else if (kind === "pack") {
         bytes = await exportWardrobeCharacterPack(project, {
+          gameplayMotion: profile ?? undefined,
           // The polish revises side assets only. Keep the unchanged original
           // pack's collection name (and bytes) stable across this explicit upgrade.
           name: `Kling ${pair.character} · ${viewName(source)} · ${
@@ -631,13 +795,26 @@ export default function DualViewWardrobe({
           renderer,
           preview.action,
           preview.facing,
-          { signal: request.controller.signal },
+          {
+            signal: request.controller.signal,
+            gameplayMotion: profile ?? undefined,
+          },
         );
         name = `${prefix}-${preview.action}-${preview.facing}.gif`;
         mime = "image/gif";
+      } else if (kind === "flow-gif") {
+        if (!profile) throw Error("请先选择单次跳跃，再导出跑跳衔接。");
+        bytes = await exportWardrobeRunJumpGif(
+          renderer,
+          profile,
+          preview.facing,
+          { signal: request.controller.signal },
+        );
+        name = `${prefix}-run-jump-run-${preview.facing}.gif`;
+        mime = "image/gif";
       } else {
         const id =
-          renderer.manifest.animations[preview.action]!.frames[
+          open.manifests[source].animations[preview.action]!.frames[
             preview.position
           ];
         const image = renderer.renderFrame(id);
@@ -652,7 +829,11 @@ export default function DualViewWardrobe({
       setStatus(
         kind === "project"
           ? "已发起双视角项目下载，重新打开可继续换装。"
-          : "已发起当前视角下载，原始帧与动作时长保持不变。",
+          : kind === "native-project"
+            ? "已下载当前视角换装素材。单次跳跃设置保存在双视角项目中。"
+            : profile
+              ? "已发起当前视角下载，保留原始画面，使用单次跳跃与原帧播放节奏。"
+              : "已发起当前视角下载，原始帧与动作时长保持不变。",
       );
     } catch (failure) {
       failed(request, failure);
@@ -692,6 +873,27 @@ export default function DualViewWardrobe({
 
   useEffect(() => {
     if (!active) return;
+    function keydown(event: KeyboardEvent) {
+      if (
+        event.code !== "Space" ||
+        !activeRef.current ||
+        busyRef.current ||
+        current.current?.pair.motionMode !== "single-jump" ||
+        (event.target instanceof HTMLElement &&
+          event.target.closest(
+            "input, select, textarea, button, [contenteditable=true]",
+          ))
+      )
+        return;
+      event.preventDefault();
+      if (!event.repeat) requestActions("jump", undefined, true);
+    }
+    window.addEventListener("keydown", keydown);
+    return () => window.removeEventListener("keydown", keydown);
+  }, [active]);
+
+  useEffect(() => {
+    if (!active) return;
     let raf = 0;
     previousTime.current = null;
     function tick(now: number) {
@@ -710,8 +912,32 @@ export default function DualViewWardrobe({
       for (const source of compareRef.current ? VIEWS : [viewRef.current]) {
         if (!playingRef.current[source]) continue;
         const preview = previews[source];
-        const clip =
-          open.renderers[source].manifest.animations[preview.action]!;
+        const profile = open.profiles[source];
+        if (profile) {
+          const state = advanceGameplayMotion(
+            profile,
+            motion.current[source],
+            delta,
+          );
+          motion.current[source] = state;
+          elapsed.current[source] = state.elapsedMs;
+          const position = motionPosition(state, profile);
+          const actionClip = profile.actions[state.action]!;
+          if (
+            !actionClip.loop &&
+            state.action !== "jump" &&
+            state.elapsedMs >=
+              (actionClip.frames.length * 1000) / actionClip.fps
+          )
+            nextPlaying = { ...nextPlaying, [source]: false };
+          if (state.action !== preview.action || position !== preview.position)
+            previews = {
+              ...previews,
+              [source]: { ...preview, action: state.action, position },
+            };
+          continue;
+        }
+        const clip = open.manifests[source].animations[preview.action]!;
         const next = advanceNativeClock(elapsed.current[source], delta, clip);
         elapsed.current[source] = next.elapsed;
         if (next.finished) nextPlaying = { ...nextPlaying, [source]: false };
@@ -737,7 +963,7 @@ export default function DualViewWardrobe({
 
   const preview = session?.pair.previews[view];
   const renderer = session?.renderers[view];
-  const clip = preview && renderer?.manifest.animations[preview.action];
+  const clip = preview && session?.manifests[view].animations[preview.action];
   const locked = busy || !session;
   const character = session?.pair.character ?? initialCharacter;
   const outfit = dualViewOutfit(
@@ -831,6 +1057,72 @@ export default function DualViewWardrobe({
                 : "打开并排比较，检查同款搭配。"}
             </span>
           </div>
+          <div className="dual-motion-tools" aria-label="跳跃与动作衔接">
+            <label>
+              动作模式
+              <select
+                data-testid="dual-motion-mode"
+                disabled={locked}
+                value={session?.pair.motionMode ?? "single-jump"}
+                onChange={(event) =>
+                  changeMotionMode(event.target.value as GameplayMode)
+                }
+              >
+                <option value="single-jump">单次跳跃 · 落地接回动作</option>
+                <option value="source">原片对照 · 保留完整动作</option>
+              </select>
+            </label>
+            {session?.pair.motionMode === "single-jump" && (
+              <>
+                <div className="dual-motion-buttons">
+                  <button
+                    data-testid="dual-idle"
+                    disabled={locked}
+                    onClick={() => requestActions("idle", undefined, true)}
+                  >
+                    站稳
+                  </button>
+                  <button
+                    data-testid="dual-walk"
+                    disabled={locked}
+                    onClick={() => requestActions("walk", undefined, true)}
+                  >
+                    走路
+                  </button>
+                  <button
+                    data-testid="dual-run"
+                    disabled={locked}
+                    onClick={() => requestActions("run", undefined, true)}
+                  >
+                    跑步
+                  </button>
+                  <button
+                    data-testid="dual-jump-once"
+                    disabled={locked}
+                    onClick={() => requestActions("jump", undefined, true)}
+                  >
+                    跳一次
+                  </button>
+                </div>
+                <p className="dual-note" data-testid="dual-motion-help">
+                  跑步中点“跳一次”，落地后继续跑步。跳跃过程中可选择落地后的动作；重复点击不会重新起跳。聚焦预览后也可按空格跳跃。
+                </p>
+                <p
+                  className="dual-motion-status"
+                  data-testid="dual-motion-status"
+                >
+                  {(comparing ? VIEWS : [view])
+                    .map((source) => {
+                      const state = motion.current[source];
+                      const label = (action: PortableAnimationName) =>
+                        ACTIONS.find(([id]) => id === action)?.[1] ?? action;
+                      return `${comparing ? `${source === "original" ? "原版" : "侧视"}：` : ""}${label(state.action)}${state.pending ? ` → ${label(state.pending)}${state.action === "jump" ? "（落地后）" : ""}` : state.action === "jump" ? ` → ${label(state.returnAction)}（落地后）` : ""}`;
+                    })
+                    .join(" · ")}
+                </p>
+              </>
+            )}
+          </div>
           {comparing ? (
             <>
               <div
@@ -858,9 +1150,12 @@ export default function DualViewWardrobe({
                     disabled={locked}
                     value={
                       session &&
-                      session.pair.previews.original.action ===
-                        session.pair.previews.side.action
-                        ? session.pair.previews.original.action
+                      (motion.current.original.pending ??
+                        session.pair.previews.original.action) ===
+                        (motion.current.side.pending ??
+                          session.pair.previews.side.action)
+                        ? (motion.current.original.pending ??
+                          session.pair.previews.original.action)
                         : ""
                     }
                     onChange={(event) => {
@@ -879,8 +1174,7 @@ export default function DualViewWardrobe({
                     </option>
                     {ACTIONS.filter(([id]) =>
                       VIEWS.every(
-                        (source) =>
-                          session?.renderers[source].manifest.animations[id],
+                        (source) => session?.manifests[source].animations[id],
                       ),
                     ).map(([id, name]) => (
                       <option key={id} value={id}>
@@ -920,10 +1214,9 @@ export default function DualViewWardrobe({
               <div className="dual-comparison-grid">
                 {VIEWS.map((source) => {
                   const nativePreview = session?.pair.previews[source];
-                  const nativeRenderer = session?.renderers[source];
                   const nativeClip =
                     nativePreview &&
-                    nativeRenderer?.manifest.animations[nativePreview.action];
+                    session?.manifests[source].animations[nativePreview.action];
                   return (
                     <section
                       key={source}
@@ -943,6 +1236,7 @@ export default function DualViewWardrobe({
                           height={session?.comparison.height ?? 768}
                           data-testid={`dual-compare-stage-${source}`}
                           aria-label={`${viewName(source)}人物预览`}
+                          tabIndex={0}
                         />
                       </div>
                       <div className="dual-transport">
@@ -964,7 +1258,11 @@ export default function DualViewWardrobe({
                           <select
                             data-testid={`dual-compare-action-${source}`}
                             disabled={locked}
-                            value={nativePreview?.action ?? "idle"}
+                            value={
+                              motion.current[source].pending ??
+                              nativePreview?.action ??
+                              "idle"
+                            }
                             onChange={(event) =>
                               changePreview(
                                 {
@@ -981,7 +1279,7 @@ export default function DualViewWardrobe({
                                 key={id}
                                 value={id}
                                 disabled={
-                                  !nativeRenderer?.manifest.animations[id]
+                                  !session?.manifests[source].animations[id]
                                 }
                               >
                                 {name}
@@ -1063,7 +1361,12 @@ export default function DualViewWardrobe({
                         </button>
                         <span className="dual-note">
                           {nativeClip?.fps ?? "—"} 帧 / 秒 ·{" "}
-                          {nativeClip?.loop ? "循环" : "播完停止"}
+                          {nativeClip?.loop
+                            ? "循环"
+                            : session?.profiles[source] &&
+                                nativePreview?.action === "jump"
+                              ? "单次 · 落地接回动作"
+                              : "播完停止"}
                         </span>
                       </div>
                     </section>
@@ -1071,7 +1374,11 @@ export default function DualViewWardrobe({
                 })}
               </div>
               <p className="dual-note">
-                两边按各自原片播放，步伐相位可能不同。侧视跳跃保留连续两跳，播完停止；庆祝仅原版有素材。
+                两边按各自原片的节奏播放，步伐相位可能不同。
+                {session?.pair.motionMode === "single-jump"
+                  ? "每次跳跃都完成一次起跳和落地，再接回选择的动作。"
+                  : "原片对照保留侧视连续两跳，播完停止。"}
+                庆祝仅原版有素材。
               </p>
             </>
           ) : (
@@ -1091,6 +1398,7 @@ export default function DualViewWardrobe({
                   height={1056}
                   data-testid="dual-stage"
                   aria-label="双视角人物预览"
+                  tabIndex={0}
                 />
                 {!session && (
                   <p className="dual-empty">
@@ -1105,23 +1413,7 @@ export default function DualViewWardrobe({
                   disabled={locked}
                   data-testid="dual-play-pause"
                   aria-label={playing[view] ? "暂停播放" : "播放动作"}
-                  onClick={() => {
-                    if (!clip || !preview) return;
-                    if (
-                      !clip.loop &&
-                      preview.position === clip.frames.length - 1
-                    ) {
-                      changePreview({ position: 0 });
-                      elapsed.current[view] = 0;
-                    }
-                    const next = {
-                      ...playingRef.current,
-                      [view]: !playingRef.current[view],
-                    };
-                    playingRef.current = next;
-                    setPlaying(next);
-                    previousTime.current = null;
-                  }}
+                  onClick={() => playSources([view])}
                 >
                   {playing[view] ? <Pause size={16} /> : <Play size={16} />}
                   {playing[view] ? "暂停" : "播放"}
@@ -1130,7 +1422,9 @@ export default function DualViewWardrobe({
                   动作
                   <select
                     data-testid="dual-action"
-                    value={preview?.action ?? "idle"}
+                    value={
+                      motion.current[view].pending ?? preview?.action ?? "idle"
+                    }
                     disabled={locked}
                     onChange={(event) =>
                       changePreview({
@@ -1143,7 +1437,7 @@ export default function DualViewWardrobe({
                       <option
                         key={id}
                         value={id}
-                        disabled={!renderer?.manifest.animations[id]}
+                        disabled={!session?.manifests[view].animations[id]}
                       >
                         {name}
                         {view === "side" && id === "celebrate"
@@ -1185,9 +1479,11 @@ export default function DualViewWardrobe({
               </label>
               <p className="dual-note">
                 每个视角分别保留动作与帧位。
-                {view === "side"
-                  ? "侧视跳跃保留原片连续两跳，播完停止；没有庆祝素材。"
-                  : "原版保留待机、走路、跑步、跳跃和庆祝。"}
+                {session?.pair.motionMode === "single-jump"
+                  ? "单次跳跃保留完整起跳、腾空与落地，播放中切换动作会完成衔接。"
+                  : view === "side"
+                    ? "侧视原片保留连续两跳，播完停止；没有庆祝素材。"
+                    : "原版保留待机、走路、跑步、跳跃和庆祝。"}
               </p>
             </>
           )}
@@ -1479,6 +1775,14 @@ export default function DualViewWardrobe({
               当前动作 GIF
             </button>
             <button
+              disabled={locked || !session?.profiles[view]}
+              data-testid="dual-export-run-jump-gif"
+              onClick={() => void save("flow-gif")}
+            >
+              <Download size={15} />
+              跑步 → 单次跳跃 → 跑步 GIF
+            </button>
+            <button
               disabled={locked}
               data-testid="dual-export-pack"
               onClick={() => void save("pack")}
@@ -1496,7 +1800,7 @@ export default function DualViewWardrobe({
             </button>
             <p className="dual-note">
               CharacterPack
-              可在独立播放器中打开。继续编辑两边搭配，请保存双视角项目。
+              可在独立播放器中打开，并保留所选动作模式。继续编辑两边搭配及单次跳跃设置，请保存双视角项目。
             </p>
           </div>
         </aside>

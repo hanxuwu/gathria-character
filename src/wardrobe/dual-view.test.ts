@@ -234,6 +234,9 @@ describe("source-bound dual-view wardrobe persistence", () => {
     const manifest = parse(files["manifest.json"]);
     const restored = await importDualViewWardrobe(bytes);
     expect(restored.activeView).toBe("side");
+    expect(restored.motionMode).toBe("source");
+    expect(manifest.version).toBe(1);
+    expect(manifest).not.toHaveProperty("motionMode");
     expect(restored.selection).toEqual(settings().selection);
     expect(restored.previews).toEqual(settings().previews);
     for (const view of ["original", "side"] as const) {
@@ -263,6 +266,46 @@ describe("source-bound dual-view wardrobe persistence", () => {
     ).toBeUndefined();
     expect(await exportDualViewWardrobe(restored)).toEqual(bytes);
     expect(initial.projects.original.document.preview).toBe(before);
+  });
+
+  it("reads an explicit source-mode V2 without reinterpreting legacy frame positions", async () => {
+    const initial = await pair();
+    const legacy = await exportDualViewWardrobe(initial);
+    const files = unzipSync(legacy);
+    const manifest = parse(files["manifest.json"]);
+    manifest.version = 2;
+    manifest.motionMode = "source";
+    const reopened = await importDualViewWardrobe(
+      zipSync({ ...files, "manifest.json": json(manifest) }),
+    );
+    expect(reopened.motionMode).toBe("source");
+    expect(reopened.previews).toEqual(initial.previews);
+    expect(await exportDualViewWardrobe(reopened)).toEqual(legacy);
+    for (const mode of ["auto", null, false, "single-jump"]) {
+      manifest.motionMode = mode;
+      await expect(
+        importDualViewWardrobe(
+          zipSync({ ...files, "manifest.json": json(manifest) }),
+        ),
+      ).rejects.toThrow();
+    }
+  });
+
+  it("requires reviewed source bindings for single-jump mode and rejects unspecified mode values", async () => {
+    const initial = await pair();
+    expect(() =>
+      createDualViewWardrobe(initial.projects, {
+        ...settings(),
+        motionMode: "single-jump",
+      }),
+    ).toThrow(/no reviewed single-jump profile/);
+    expect(() =>
+      createDualViewWardrobe(initial.projects, {
+        ...settings(),
+        motionMode: "unknown",
+      } as unknown as DualViewSettings),
+    ).toThrow(/motion mode/);
+    expect(initial.motionMode).toBe("source");
   });
 
   it("rejects swapped sources, a different character and missing view variants instead of using a fallback", async () => {

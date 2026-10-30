@@ -7,7 +7,11 @@ import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 import { readPortableCharacterPackArchive } from "../../src/core/pack";
 
 test.describe.configure({ mode: "parallel" });
-const evidence = "/tmp/paired-polish/exports";
+const evidence =
+  process.env.GATHRIA_REVIEW_EXPORT_ROOT ?? "/tmp/paired-polish/exports";
+const baselineDirectory = process.env.GATHRIA_REVIEW_EXPORT_ROOT
+  ? `${evidence}/baseline`
+  : "/tmp/paired-polish/baseline";
 type View = "original" | "side";
 const views: View[] = ["original", "side"];
 const stage = (page: Page) => page.getByTestId("dual-stage");
@@ -148,7 +152,7 @@ async function previousAppearanceProject(
   _bytes: Uint8Array,
   character: string,
 ) {
-  const path = `/tmp/paired-polish/baseline/${character}.zip`;
+  const path = `${baselineDirectory}/${character}.zip`;
   execFileSync("node", [
     "scripts/build-paired-polish-baseline.mjs",
     character,
@@ -170,6 +174,9 @@ for (const character of ["male", "female"] as const) {
     const catalog = await appearanceCatalog();
     await page.goto(`/workbench.html?mode=paired&character=${character}`);
     await ready(page);
+    // This regression retains the published source clocks and byte-exact exports.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     await expect(page.getByTestId("dual-hair")).toHaveValue("");
     await expect(page.getByTestId("dual-face")).toHaveValue("");
     await page.getByTestId("dual-complete-look").click();
@@ -304,7 +311,7 @@ for (const character of ["male", "female"] as const) {
         pack: pack.path,
         baseline: baselines[v],
         previousPack: `docs/dual-tailored/review/${character}/${v}.character.zip`,
-        referencePair: `/tmp/paired-polish/baseline/${character}.zip`,
+        referencePair: `${baselineDirectory}/${character}.zip`,
         referenceCompletePack: `docs/matched-hair/review/${character}/${v}.character.zip`,
         referenceAppearanceBank: (await appearanceCatalog(true)).representations
           .find(
@@ -467,6 +474,9 @@ for (const character of ["male", "female"] as const) {
     const catalog = await appearanceCatalog();
     await page.goto(`/workbench.html?mode=paired&character=${character}`);
     await ready(page);
+    // This regression retains the published source clocks and byte-exact exports.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     await choose(page, "dual-outfit", "tailored-day");
     const baseline = {} as Record<View, Buffer>;
     for (const v of views) {
