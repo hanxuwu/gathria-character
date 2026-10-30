@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-30T11:50:08.595225+11:00",
+  "baseCommit": "b2feaea13d1894113c14bcf7778c4bb84c73713b",
+  "unit": {
+    "files": 60,
+    "tests": 590,
+    "passed": true,
+    "log": "unit.log"
+  },
+  "productionBuild": {
+    "passed": true,
+    "log": "build.log"
+  },
+  "productionSmoke": {
+    "characterViewCases": 4,
+    "mobileOverflowChecked": true,
+    "passed": true,
+    "log": "production-smoke.log",
+    "report": "../production/verification.json"
+  },
+  "note": "Current implementation checks; browser download/roundtrip cases and visual review are recorded separately.",
+  "browserRegressions": {
+    "passed": true,
+    "tests": 20,
+    "groups": [
+      {
+        "tests": 7,
+        "log": "workspace-shell.log",
+        "port": 5196
+      },
+      {
+        "tests": 5,
+        "log": "unified-navigation.log",
+        "port": 5196
+      },
+      {
+        "tests": 8,
+        "log": "legacy-regression.log",
+        "port": 5175
+      }
+    ],
+    "note": "The two navigation-only batches used an equivalent temporary config overriding the server port; assertions and repository tests were unchanged."
+  }
+}

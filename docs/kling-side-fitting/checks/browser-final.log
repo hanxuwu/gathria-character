@@ -1,0 +1,74 @@
+[WebServer] (node:132918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:132936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 19 tests using 1 worker
+
+(node:133029) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/side-expansion.spec.ts:44:3 › male: separate real-cut edition, exact mirror, hair mix and self-contained reopen (41.2s)
+  ✓   2 tests/e2e/side-expansion.spec.ts:44:3 › female: separate real-cut edition, exact mirror, hair mix and self-contained reopen (42.3s)
+  ✓   3 tests/e2e/side-expansion.spec.ts:152:1 › legacy material stays the default and its project switches back from the new edition (18.4s)
+  ✓   4 tests/e2e/side-expansion.spec.ts:189:1 › paused explicit facing clears a left turn queued during the full jump (10.2s)
+  ✓   5 tests/e2e/side-expansion.spec.ts:219:1 › failed new collection load retains material session and retries the requested collection (12.6s)
+  ✘   6 tests/e2e/side-fitting-legacy.spec.ts:35:3 › male: PR53 polished project preserves its embedded art and bindings across fitting (19.2s)
+(node:133873) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 tests/e2e/side-fitting-legacy.spec.ts:35:3 › female: PR53 polished project preserves its embedded art and bindings across fitting (21.2s)
+  ✓   8 tests/e2e/side-fitting.spec.ts:38:1 › side fitting keeps source guides exact, audits every action, and round-trips a corrected garment (55.8s)
+  ✓   9 tests/e2e/side-fitting.spec.ts:273:1 › female fitting shows original anchors, cancels draft safely and fits a narrow screen (17.5s)
+  ✓  10 tests/e2e/side-motion-interaction.spec.ts:4:3 › male: airborne reversal, released keys and repeated jump input retain source sequencing (16.4s)
+  ✓  11 tests/e2e/side-motion-interaction.spec.ts:4:3 › female: airborne reversal, released keys and repeated jump input retain source sequencing (17.9s)
+  ✓  12 tests/e2e/side-polish.spec.ts:35:3 › male: previous tailored project preserves embedded art and bindings across polish (22.4s)
+  ✓  13 tests/e2e/side-polish.spec.ts:35:3 › female: previous tailored project preserves embedded art and bindings across polish (22.5s)
+  ✓  14 tests/e2e/side-review.spec.ts:25:1 › review slow playback preserves exported pixels and native GIF timing; detail crops mirror exactly (12.4s)
+  ✓  15 tests/e2e/side-review.spec.ts:99:1 › review bookmarks persist per source with look context, restore a paused pose, and fit mobile (27.8s)
+  ✓  16 tests/e2e/side-view.spec.ts:50:3 › male: native side frames, guide-free exports, mixed outfit and project reopen (21.2s)
+  ✓  17 tests/e2e/side-view.spec.ts:50:3 › female: native side frames, guide-free exports, mixed outfit and project reopen (20.7s)
+  ✓  18 tests/e2e/side-view.spec.ts:160:1 › side keyboard travel retains source timing and the full two-jump one-shot (12.1s)
+  ✓  19 tests/e2e/side-view.spec.ts:214:1 › side source load failure retries and character preparation disables stale exports (10.8s)
+
+
+  1) tests/e2e/side-fitting-legacy.spec.ts:35:3 › male: PR53 polished project preserves its embedded art and bindings across fitting 
+
+    Error: locator.fill: Error: Malformed value
+    Call log:
+      - waiting for getByTestId('side-frame')
+        - locator resolved to <input min="0" max="17" value="5" type="range" aria-label="动作帧" class="side-frame-range" data-testid="side-frame"/>
+        - fill("32")
+      - attempting fill action
+        - waiting for element to be visible, enabled and editable
+
+
+      114 |       await page.getByTestId(`side-action-${pose.action}`).click();
+      115 |       const index = manifest.animations[pose.action].frames.indexOf(pose.frame);
+    > 116 |       await page.getByTestId("side-frame").fill(String(index));
+          |                                            ^
+      117 |       await expect(stage(page)).toHaveAttribute(
+      118 |         "data-frame-id",
+      119 |         String(pose.frame),
+        at /workspace/gathria-character/tests/e2e/side-fitting-legacy.spec.ts:116:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../tmp/side-fitting/final-browser/side-fitting-legacy-male-P-dd8f0-and-bindings-across-fitting/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../tmp/side-fitting/final-browser/side-fitting-legacy-male-P-dd8f0-and-bindings-across-fitting/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../tmp/side-fitting/final-browser/side-fitting-legacy-male-P-dd8f0-and-bindings-across-fitting/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../tmp/side-fitting/final-browser/side-fitting-legacy-male-P-dd8f0-and-bindings-across-fitting/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/side-fitting-legacy.spec.ts:35:3 › male: PR53 polished project preserves its embedded art and bindings across fitting 
+  18 passed (7.1m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

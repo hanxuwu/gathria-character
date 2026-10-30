@@ -16,32 +16,20 @@ import "./workspace.css";
 
 const WardrobeEditor = lazy(() => import("../wardrobe/WardrobeEditor"));
 const ThemeWorkspace = lazy(() => import("../themes/ThemeWorkspace"));
-const SideViewPlayground = lazy(
-  () => import("../side-view/SideViewPlayground"),
-);
-type WorkbenchTab = "original" | "wardrobe" | "themes" | "rig";
+const SideWorkspace = lazy(() => import("./SideWorkspace"));
+const DualViewWardrobe = lazy(() => import("../wardrobe/DualViewWardrobe"));
+type WorkbenchTab =
+  | "original"
+  | "wardrobe"
+  | "side-view"
+  | "paired"
+  | "themes"
+  | "rig";
 
 export function CharacterWorkbench() {
-  const query = new URLSearchParams(window.location.search);
-  if (query.get("mode") === "side-view") {
-    return (
-      <div className="workspace-app">
-        <MainNavigation active="workbench" />
-        <Suspense fallback={<p role="status">正在载入侧视动作与换装…</p>}>
-          <SideViewPlayground
-            initialCharacter={
-              query.get("character") === "female" ? "female" : "male"
-            }
-          />
-        </Suspense>
-      </div>
-    );
-  }
-  return <OriginalCharacterWorkbench />;
-}
-
-function OriginalCharacterWorkbench() {
-  const query = new URLSearchParams(window.location.search);
+  // Read the entry once. URL updates describe the active document; they must
+  // never remount another tool or replace an unsaved session.
+  const [query] = useState(() => new URLSearchParams(window.location.search));
   const [character] = useState(
     () =>
       KLING_CHARACTERS.find(
@@ -55,16 +43,32 @@ function OriginalCharacterWorkbench() {
     id: "male" | "female" | null;
     name: string;
   }>({ id: character.id, name: character.name });
+  const [originalEntry, setOriginalEntry] = useState(character.id);
+  const [wardrobeEntry, setWardrobeEntry] = useState(character.id);
+  const [themeEntry, setThemeEntry] = useState(character.id);
+  const [pairedEntry, setPairedEntry] = useState(character.id);
+  const [pairedCharacter, setPairedCharacter] = useState(character.id);
+  const [pairedView, setPairedView] = useState<"original" | "side">(
+    query.get("view") === "side" ? "side" : "original",
+  );
   const initial: WorkbenchTab =
-    query.get("mode") === "themes"
-      ? "themes"
-      : query.get("mode") === "wardrobe"
-        ? "wardrobe"
-        : query.get("mode") === "rig" ||
-            ["kling-male", "kling-female"].includes(query.get("study") ?? "")
-          ? "rig"
-          : "original";
+    query.get("mode") === "paired"
+      ? "paired"
+      : query.get("mode") === "side-view"
+        ? "side-view"
+        : query.get("mode") === "themes"
+          ? "themes"
+          : query.get("mode") === "wardrobe"
+            ? "wardrobe"
+            : query.get("mode") === "rig" ||
+                ["kling-male", "kling-female"].includes(
+                  query.get("study") ?? "",
+                )
+              ? "rig"
+              : "original";
   const [tab, setTab] = useState<WorkbenchTab>(initial);
+  const activeTab = useRef(tab);
+  activeTab.current = tab;
   const [visited, setVisited] = useState<Set<WorkbenchTab>>(
     () => new Set([initial]),
   );
@@ -76,6 +80,17 @@ function OriginalCharacterWorkbench() {
   );
   const [themeCharacter, setThemeCharacter] = useState<KlingCharacterId>(
     character.id,
+  );
+  const [sideEntry, setSideEntry] = useState({
+    character: character.id,
+    collection:
+      query.get("collection") === "tailored"
+        ? ("tailored" as const)
+        : ("material" as const),
+  });
+  const [sideIdentity, setSideIdentity] = useState(sideEntry);
+  const lastOriginalTool = useRef<"original" | "wardrobe">(
+    initial === "wardrobe" ? "wardrobe" : "original",
   );
   const [visitedRigs, setVisitedRigs] = useState<Set<KlingCharacterId>>(
     () => new Set(initial === "rig" ? [character.id] : []),
@@ -90,6 +105,8 @@ function OriginalCharacterWorkbench() {
   const rigLabel = `${loadedRigCharacter === "female" ? "Female" : "Male"} skeleton`;
   const originalButton = useRef<HTMLButtonElement>(null);
   const wardrobeButton = useRef<HTMLButtonElement>(null);
+  const sideButton = useRef<HTMLButtonElement>(null);
+  const pairedButton = useRef<HTMLButtonElement>(null);
   const themesButton = useRef<HTMLButtonElement>(null);
   const rigButton = useRef<HTMLButtonElement>(null);
   const originalFrame = useRef<HTMLIFrameElement>(null);
@@ -137,7 +154,10 @@ function OriginalCharacterWorkbench() {
       )
         return;
       setSelection({ id: data.characterId, name: data.name });
-      if (data.characterId) setRigCharacter(data.characterId);
+      // A retained player's late load may update its own identity, but must
+      // not redirect the skeleton document currently being edited elsewhere.
+      if (data.characterId && activeTab.current === "original")
+        setRigCharacter(data.characterId);
     }
     window.addEventListener("message", receiveSelection);
     return () => window.removeEventListener("message", receiveSelection);
@@ -170,40 +190,97 @@ function OriginalCharacterWorkbench() {
   useEffect(() => {
     const url = new URL(window.location.href);
     const identity =
-      tab === "rig"
-        ? loadedRigCharacter
-        : tab === "themes"
-          ? themeCharacter
-          : tab === "wardrobe"
-            ? wardrobeCharacter
-            : selection.id;
+      tab === "paired"
+        ? pairedCharacter
+        : tab === "side-view"
+          ? sideIdentity.character
+          : tab === "rig"
+            ? loadedRigCharacter
+            : tab === "themes"
+              ? themeCharacter
+              : tab === "wardrobe"
+                ? wardrobeCharacter
+                : selection.id;
     if (identity) url.searchParams.set("character", identity);
     else url.searchParams.delete("character");
-    window.history.replaceState(null, "", url);
-  }, [tab, loadedRigCharacter, wardrobeCharacter, themeCharacter, selection]);
+    if (tab === "original") url.searchParams.delete("mode");
+    else url.searchParams.set("mode", tab);
+    if (tab === "side-view")
+      url.searchParams.set("collection", sideIdentity.collection);
+    else url.searchParams.delete("collection");
+    if (tab === "paired") url.searchParams.set("view", pairedView);
+    else url.searchParams.delete("view");
+    url.searchParams.delete("study");
+    window.history.replaceState(window.history.state, "", url);
+  }, [
+    tab,
+    loadedRigCharacter,
+    wardrobeCharacter,
+    themeCharacter,
+    selection,
+    sideIdentity,
+    pairedCharacter,
+    pairedView,
+  ]);
 
   function select(next: WorkbenchTab) {
+    const currentCharacter =
+      tab === "paired"
+        ? pairedCharacter
+        : tab === "side-view"
+          ? sideIdentity.character
+          : tab === "wardrobe"
+            ? wardrobeCharacter
+            : tab === "themes"
+              ? themeCharacter
+              : tab === "rig"
+                ? loadedRigCharacter
+                : (selection.id ?? character.id);
+    if (next === "original" || next === "wardrobe")
+      lastOriginalTool.current = next;
+    // Initialize a newly opened tool from the visible character. A visited tool
+    // keeps its document and imported identity instead of silently replacing it.
+    if (!visited.has(next)) {
+      if (next === "original") {
+        setOriginalEntry(currentCharacter);
+        setSelection({
+          id: currentCharacter,
+          name: `Kling ${currentCharacter}`,
+        });
+      } else if (next === "wardrobe") {
+        setWardrobeEntry(currentCharacter);
+        setWardrobeCharacter(currentCharacter);
+      } else if (next === "themes") {
+        setThemeEntry(currentCharacter);
+        setThemeCharacter(currentCharacter);
+      } else if (next === "rig") {
+        setRigCharacter(currentCharacter);
+      } else if (next === "paired") {
+        setPairedEntry(currentCharacter);
+        setPairedCharacter(currentCharacter);
+        setPairedView(tab === "side-view" ? "side" : "original");
+      }
+    }
+    if (next === "rig" && (tab === "side-view" || tab === "paired"))
+      setRigCharacter(currentCharacter);
+    if (next === "side-view" && !visited.has("side-view")) {
+      const entry = { ...sideEntry, character: currentCharacter };
+      setSideEntry(entry);
+      setSideIdentity(entry);
+    }
     setVisited((previous) => new Set([...previous, next]));
     setTab(next);
-    const url = new URL(window.location.href);
-    if (next === "rig") url.searchParams.set("character", loadedRigCharacter);
-    else if (next === "themes")
-      url.searchParams.set("character", themeCharacter);
-    else if (next === "wardrobe")
-      url.searchParams.set("character", wardrobeCharacter);
-    else if (selection.id) url.searchParams.set("character", selection.id);
-    else url.searchParams.delete("character");
-    if (next !== "original") url.searchParams.set("mode", next);
-    else url.searchParams.delete("mode");
-    // Older direct study links still open here; a tab change owns the mode.
-    url.searchParams.delete("study");
-    window.history.replaceState(null, "", url);
   }
+
+  const sideTools =
+    tab === "side-view" || (tab === "paired" && pairedView === "side");
 
   function navigateTabs(event: KeyboardEvent) {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
-    const tabs: WorkbenchTab[] = ["original", "wardrobe", "themes", "rig"];
+    const tabs: WorkbenchTab[] = sideTools
+      ? ["side-view", "paired", "themes", "rig"]
+      : ["original", "wardrobe", "paired", "themes", "rig"];
     const next =
       event.key === "Home"
         ? tabs[0]
@@ -219,6 +296,8 @@ function OriginalCharacterWorkbench() {
     ({
       original: originalButton,
       wardrobe: wardrobeButton,
+      "side-view": sideButton,
+      paired: pairedButton,
       themes: themesButton,
       rig: rigButton,
     })[next].current?.focus();
@@ -232,22 +311,30 @@ function OriginalCharacterWorkbench() {
           <div>
             <p className="workspace-eyebrow">Character workbench</p>
             <h1>
-              {tab === "original"
-                ? selection.name
-                : tab === "themes"
-                  ? `Kling ${themeCharacter} · character themes`
-                  : tab === "wardrobe"
-                    ? `Kling ${wardrobeCharacter} · wardrobe`
-                    : `${rigName} · skeleton candidate`}
+              {tab === "paired"
+                ? `Kling ${pairedCharacter} · 双视角衣橱`
+                : tab === "side-view"
+                  ? `Kling ${sideIdentity.character} · 侧视工作台`
+                  : tab === "original"
+                    ? selection.name
+                    : tab === "themes"
+                      ? `Kling ${themeCharacter} · character themes`
+                      : tab === "wardrobe"
+                        ? `Kling ${wardrobeCharacter} · wardrobe`
+                        : `${rigName} · skeleton candidate`}
             </h1>
             <p>
-              {tab === "original"
-                ? "Inspect the original sprite frames, arrange actions and export a reusable character pack."
-                : tab === "themes"
-                  ? "Explore complete character art themes, compare their drawings and save the exact versions you choose."
-                  : tab === "wardrobe"
-                    ? "Choose clothing, inspect it through every movement and save a reusable outfit."
-                    : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
+              {tab === "paired"
+                ? "同一套搭配，分别使用原版与侧视素材。切换视角，保留款式与配色。"
+                : tab === "side-view"
+                  ? "在同一个人物项目中试穿、检查动作、修正局部并导出。"
+                  : tab === "original"
+                    ? "Inspect the original sprite frames, arrange actions and export a reusable character pack."
+                    : tab === "themes"
+                      ? "Explore complete character art themes, compare their drawings and save the exact versions you choose."
+                      : tab === "wardrobe"
+                        ? "Choose clothing, inspect it through every movement and save a reusable outfit."
+                        : "Compare four editable poses with the original standing artwork. Save your joint changes and export the result."}
             </p>
           </div>
           <a className="workbench-back" href="/">
@@ -255,36 +342,95 @@ function OriginalCharacterWorkbench() {
             <ArrowUpRight size={15} aria-hidden="true" />
           </a>
         </div>
+        <div className="workbench-context">
+          <label className="workbench-source">
+            人物素材
+            <select
+              data-testid="workbench-source"
+              value={sideTools ? "side-view" : "original"}
+              onChange={(event) => {
+                const side = event.currentTarget.value === "side-view";
+                if (tab === "paired") setPairedView(side ? "side" : "original");
+                else select(side ? "side-view" : lastOriginalTool.current);
+              }}
+            >
+              <option value="original">原版 · 三分之四视角</option>
+              <option value="side-view">侧视 · 横版动作</option>
+            </select>
+          </label>
+          <p data-testid="workbench-context-note">
+            {tab === "paired"
+              ? "双视角衣橱只列出两种视角都已制作的款式；帧位和动作分别保存。更多单视角款式仍在原有换装工具中。"
+              : tab === "side-view"
+                ? "待机、走路、跑步、原片连续两跳。服装与发型按当前素材匹配。"
+                : tab === "themes"
+                  ? "主题是完整成品造型，拥有自己的画面与节奏。拆件换装请返回 Wardrobe。"
+                  : tab === "rig"
+                    ? "骨骼是独立候选：四个静态姿势，可调整关节、保存与导出。"
+                    : "保留原片五种动作。原版和侧视分别保留项目，服装不会跨视角自动套用。"}
+          </p>
+        </div>
         <div
           role="tablist"
           aria-label="Workbench tools"
           className="workbench-tabs"
           onKeyDown={navigateTabs}
         >
+          {!sideTools && (
+            <>
+              <button
+                id="original-tab"
+                ref={originalButton}
+                type="button"
+                role="tab"
+                aria-controls="original-panel"
+                aria-selected={tab === "original"}
+                tabIndex={tab === "original" ? 0 : -1}
+                onClick={() => select("original")}
+              >
+                <Film size={18} aria-hidden="true" /> Sprite actions
+              </button>
+              <button
+                id="wardrobe-tab"
+                ref={wardrobeButton}
+                type="button"
+                role="tab"
+                aria-controls="wardrobe-panel"
+                aria-selected={tab === "wardrobe"}
+                tabIndex={tab === "wardrobe" ? 0 : -1}
+                onClick={() => select("wardrobe")}
+              >
+                <Shirt size={18} aria-hidden="true" /> Wardrobe
+              </button>
+            </>
+          )}
+          {sideTools && (
+            <button
+              id="side-tab"
+              ref={sideButton}
+              type="button"
+              role="tab"
+              aria-controls="side-panel"
+              aria-selected={tab === "side-view"}
+              tabIndex={tab === "side-view" ? 0 : -1}
+              onClick={() => select("side-view")}
+            >
+              <Shirt size={18} aria-hidden="true" /> 侧视动作与换装
+            </button>
+          )}
           <button
-            id="original-tab"
-            ref={originalButton}
+            id="paired-tab"
+            ref={pairedButton}
             type="button"
             role="tab"
-            aria-controls="original-panel"
-            aria-selected={tab === "original"}
-            tabIndex={tab === "original" ? 0 : -1}
-            onClick={() => select("original")}
+            aria-controls="paired-panel"
+            aria-selected={tab === "paired"}
+            tabIndex={tab === "paired" ? 0 : -1}
+            onClick={() => select("paired")}
           >
-            <Film size={18} aria-hidden="true" /> Sprite actions
+            <Shirt size={18} aria-hidden="true" /> 双视角衣橱
           </button>
-          <button
-            id="wardrobe-tab"
-            ref={wardrobeButton}
-            type="button"
-            role="tab"
-            aria-controls="wardrobe-panel"
-            aria-selected={tab === "wardrobe"}
-            tabIndex={tab === "wardrobe" ? 0 : -1}
-            onClick={() => select("wardrobe")}
-          >
-            <Shirt size={18} aria-hidden="true" /> Wardrobe
-          </button>
+          <span className="workbench-advanced-label">高级工具</span>
           <button
             id="themes-tab"
             ref={themesButton}
@@ -309,8 +455,56 @@ function OriginalCharacterWorkbench() {
           >
             <Bone size={18} aria-hidden="true" /> {rigLabel}
           </button>
-          <span>Tab changes keep your open sessions.</span>
         </div>
+        <section
+          role="tabpanel"
+          id="paired-panel"
+          aria-labelledby="paired-tab"
+          hidden={tab !== "paired"}
+          className="workbench-panel"
+        >
+          {visited.has("paired") && (
+            <Suspense
+              fallback={
+                <p role="status" className="workbench-panel-note">
+                  正在打开双视角衣橱…
+                </p>
+              }
+            >
+              <DualViewWardrobe
+                initialCharacter={pairedEntry}
+                view={pairedView}
+                active={tab === "paired"}
+                onViewChange={setPairedView}
+                onCharacterChange={setPairedCharacter}
+              />
+            </Suspense>
+          )}
+        </section>
+        <section
+          role="tabpanel"
+          id="side-panel"
+          aria-labelledby="side-tab"
+          hidden={tab !== "side-view"}
+          className="workbench-panel workbench-panel--side"
+        >
+          {visited.has("side-view") && (
+            <Suspense
+              fallback={
+                <p className="workbench-panel-note" role="status">
+                  正在载入侧视动作与换装…
+                </p>
+              }
+            >
+              <SideWorkspace
+                initialCharacter={sideEntry.character}
+                initialCollection={sideEntry.collection}
+                active={tab === "side-view"}
+                onIdentityChange={setSideIdentity}
+              />
+            </Suspense>
+          )}
+        </section>
         <section
           role="tabpanel"
           id="original-panel"
@@ -372,7 +566,7 @@ function OriginalCharacterWorkbench() {
               className="workbench-frame"
               ref={originalFrame}
               title="Sprite action workspace"
-              src={`/player.html?kling=${character.id}&embedded=1&authoring=1`}
+              src={`/player.html?kling=${originalEntry}&embedded=1&authoring=1`}
               onLoad={() =>
                 notifyVisibility(originalFrame.current, tab === "original")
               }
@@ -395,7 +589,7 @@ function OriginalCharacterWorkbench() {
               }
             >
               <WardrobeEditor
-                initialCharacter={character.id}
+                initialCharacter={wardrobeEntry}
                 active={tab === "wardrobe"}
                 onCharacterChange={setWardrobeCharacter}
               />
@@ -418,7 +612,7 @@ function OriginalCharacterWorkbench() {
               }
             >
               <ThemeWorkspace
-                initialCharacter={character.id}
+                initialCharacter={themeEntry}
                 active={tab === "themes"}
                 onCharacterChange={setThemeCharacter}
               />
@@ -479,9 +673,8 @@ function OriginalCharacterWorkbench() {
           )}
         </section>
         <p className="workbench-save-note">
-          Use the workspace’s save or export controls before leaving this page.
-          Switching tabs preserves your session; reloading the page does not
-          save it.
+          切换素材或工具会保留已打开的会话。离开或刷新前，请在当前工具中保存项目；
+          GIF 和 CharacterPack 用于播放，不能替代可继续编辑的项目文件。
         </p>
       </main>
     </div>

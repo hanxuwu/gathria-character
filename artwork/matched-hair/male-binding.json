@@ -1,0 +1,8655 @@
+{
+  "character": "male",
+  "view": "side",
+  "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+  "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+  "oldBankSha256": "a6f4ff93cf3803bb7a9eeaa5d29fc5f6e051432ac8c5368e3900ce85928e129a",
+  "bankSha256": "43b8bcb61be0fb6185bc12581a0d011cc299b730646f368422188c2e78aadb79",
+  "bankId": "matched-hair-male-side-v1",
+  "hairId": "side-part-matched-v1",
+  "faceId": "gentle-side-v1",
+  "bytes": 8486216,
+  "frameCount": 107,
+  "atlasPixels": 12036096,
+  "extraction": {
+    "source": "artwork/matched-hair/source/male-side-design-v2.png",
+    "sha256": "cc2e5fdb9f3c9fac440c17fb11eced8d8b6ad930749f889ce035c61240744d4f",
+    "innerBoundary": [
+      [
+        550,
+        910
+      ],
+      [
+        551,
+        880
+      ],
+      [
+        546,
+        855
+      ],
+      [
+        528,
+        834
+      ],
+      [
+        563,
+        814
+      ],
+      [
+        534,
+        823
+      ],
+      [
+        500,
+        826
+      ],
+      [
+        467,
+        822
+      ],
+      [
+        438,
+        810
+      ],
+      [
+        419,
+        794
+      ],
+      [
+        405,
+        770
+      ],
+      [
+        398,
+        743
+      ],
+      [
+        397,
+        714
+      ],
+      [
+        404,
+        688
+      ],
+      [
+        417,
+        668
+      ],
+      [
+        438,
+        654
+      ],
+      [
+        463,
+        648
+      ],
+      [
+        492,
+        652
+      ],
+      [
+        519,
+        661
+      ],
+      [
+        533,
+        662
+      ],
+      [
+        552,
+        680
+      ],
+      [
+        565,
+        702
+      ],
+      [
+        580,
+        712
+      ],
+      [
+        607,
+        720
+      ],
+      [
+        635,
+        718
+      ],
+      [
+        622,
+        706
+      ],
+      [
+        617,
+        686
+      ],
+      [
+        611,
+        661
+      ],
+      [
+        613,
+        632
+      ],
+      [
+        620,
+        649
+      ],
+      [
+        616,
+        622
+      ],
+      [
+        623,
+        599
+      ],
+      [
+        642,
+        569
+      ],
+      [
+        664,
+        546
+      ],
+      [
+        690,
+        526
+      ],
+      [
+        720,
+        502
+      ],
+      [
+        711,
+        504
+      ],
+      [
+        731,
+        469
+      ],
+      [
+        750,
+        432
+      ],
+      [
+        764,
+        414
+      ],
+      [
+        786,
+        400
+      ],
+      [
+        810,
+        397
+      ],
+      [
+        825,
+        393
+      ],
+      [
+        837,
+        397
+      ],
+      [
+        850,
+        391
+      ],
+      [
+        862,
+        397
+      ],
+      [
+        878,
+        398
+      ],
+      [
+        899,
+        405
+      ],
+      [
+        920,
+        422
+      ],
+      [
+        936,
+        449
+      ],
+      [
+        947,
+        482
+      ],
+      [
+        954,
+        519
+      ],
+      [
+        956,
+        559
+      ],
+      [
+        950,
+        590
+      ],
+      [
+        980,
+        581
+      ],
+      [
+        1254,
+        605
+      ]
+    ],
+    "semanticBackRegions": [
+      [
+        [
+          0,
+          870
+        ],
+        [
+          575,
+          870
+        ],
+        [
+          575,
+          940
+        ],
+        [
+          0,
+          940
+        ]
+      ],
+      [
+        [
+          954,
+          519
+        ],
+        [
+          1254,
+          519
+        ],
+        [
+          1254,
+          700
+        ],
+        [
+          950,
+          700
+        ],
+        [
+          950,
+          590
+        ]
+      ]
+    ],
+    "cutFringeRejectedPixels": 1369,
+    "donorToReference": [
+      [
+        0.301207936,
+        0.0095032444,
+        46.662342
+      ],
+      [
+        -0.0095032444,
+        0.301207936,
+        157.066304
+      ]
+    ],
+    "reviewedLandmarks": [
+      {
+        "name": "near-ear centre",
+        "donor": [
+          490,
+          740
+        ],
+        "source": [
+          201,
+          374
+        ]
+      },
+      {
+        "name": "near-eye centre",
+        "donor": [
+          802,
+          665
+        ],
+        "source": [
+          293,
+          351
+        ]
+      },
+      {
+        "name": "chin",
+        "donor": [
+          800,
+          898
+        ],
+        "source": [
+          298,
+          420
+        ]
+      }
+    ],
+    "fittingRule": "A single similarity transforms only donor hair into native pose 0. Other poses use persisted source-bound headTransform; female near-ear aperture continuously blends toward featureTransform inside reference ellipse center(201,379), radii(72,66), cubic smoothstep full weight within normalized radius .55 and zero at radius 1, eight inverse iterations, shared by both semantic layers. Protected partial-alpha samples receive hair-back backing only at clipped source 0<alpha<255 pixels. Source anatomy/pixels never receive these transforms or repaint. Male rear-cap correction is a further shared continuous native sampling field, reference center(162,390), radii(40,38), delta(-7,3), weights native66/67/68=.5/1/.5 and78/79/80=.275/.55/.275, zero at source-ear/neck and outside the local ellipse; other101 poses remain exact."
+  },
+  "localEarFit": null,
+  "rearCapFit": {
+    "center": [
+      162,
+      390
+    ],
+    "radii": [
+      40,
+      38
+    ],
+    "referenceDisplacement": [
+      -7,
+      3
+    ],
+    "frameWeights": {
+      "66": 0.5,
+      "67": 1.0,
+      "68": 0.5,
+      "78": 0.275,
+      "79": 0.55,
+      "80": 0.275
+    },
+    "unchangedNativeFrames": 101,
+    "earReference": [
+      [
+        184,
+        350
+      ],
+      [
+        200,
+        343
+      ],
+      [
+        220,
+        350
+      ],
+      [
+        231,
+        367
+      ],
+      [
+        230,
+        385
+      ],
+      [
+        222,
+        395
+      ],
+      [
+        205,
+        400
+      ],
+      [
+        189,
+        393
+      ],
+      [
+        179,
+        378
+      ],
+      [
+        179,
+        363
+      ]
+    ],
+    "zeroDisplacementRegions": [
+      "feature-mapped original ear",
+      "feature-mapped original neck",
+      "outside reference rear-cap ellipse"
+    ],
+    "protectionFalloffPx": 10,
+    "transition": "cubic smoothstep",
+    "rolesShareField": true
+  },
+  "protectedPartialAlphaRule": "Only blocked authored hair-front samples at source 0<alpha<255 are moved to hair-back for destination-over; opaque source/protection and outer hair alpha are unchanged.",
+  "legacyOpaqueOverlapNote": "Rear-scalp review candidates are opaque source pixels in both existing head and hand protection, within reference x130..218/y320..414, with authored hair-front alpha>128. They remain unchanged and require human anatomical review; counts are diagnostics, not permission to erase source protection.",
+  "existingFaceRgbaOwnershipOffsetsSourceModesExact": true,
+  "sourcePoseMetadataExceptHairBoundsAndForegroundExact": true,
+  "frameProof": [
+    {
+      "frameId": 0,
+      "sourceFrame": 240,
+      "neckForeground": [
+        {
+          "x": 222.0,
+          "y": 410.0
+        },
+        {
+          "x": 235.0,
+          "y": 414.0
+        },
+        {
+          "x": 261.0,
+          "y": 419.0
+        },
+        {
+          "x": 282.0,
+          "y": 422.0
+        },
+        {
+          "x": 290.0,
+          "y": 436.0
+        },
+        {
+          "x": 298.0,
+          "y": 465.0
+        },
+        {
+          "x": 211.0,
+          "y": 467.0
+        },
+        {
+          "x": 209.0,
+          "y": 428.0
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "15127c2dfe1d8a761372c7f204fd05236df15e9fca08e6bc271309a0201a3f8e",
+      "renderRgbaSha256": "25945976dda98072f2a70e0a206d341986c3d747c4da80a793a5fd18bc964639",
+      "headTransform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "hairBounds": {
+        "x": 102,
+        "y": 188,
+        "width": 296,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 1,
+      "sourceFrame": 241,
+      "neckForeground": [
+        {
+          "x": 221.855,
+          "y": 409.983
+        },
+        {
+          "x": 234.86,
+          "y": 413.974
+        },
+        {
+          "x": 260.868,
+          "y": 418.956
+        },
+        {
+          "x": 281.874,
+          "y": 421.941
+        },
+        {
+          "x": 289.885,
+          "y": 435.938
+        },
+        {
+          "x": 297.908,
+          "y": 464.937
+        },
+        {
+          "x": 210.895,
+          "y": 467.0
+        },
+        {
+          "x": 208.866,
+          "y": 427.996
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "64962045bb7e3954f47c791f78f5e5954b8d0af238bb00de01ff2c7368d731d3",
+      "renderRgbaSha256": "5fa8d42121b78d488423bc893b2dde5bd4b45af43de09bf808094e209e12550e",
+      "headTransform": [
+        [
+          0.998957,
+          0.000728,
+          -0.103716
+        ],
+        [
+          -0.000728,
+          0.998957,
+          0.381228
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.00016,
+          0.000729,
+          -0.478967
+        ],
+        [
+          -0.000729,
+          1.00016,
+          0.079519
+        ]
+      ],
+      "hairBounds": {
+        "x": 102,
+        "y": 155,
+        "width": 307,
+        "height": 272
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 2,
+      "sourceFrame": 242,
+      "neckForeground": [
+        {
+          "x": 221.759,
+          "y": 409.973
+        },
+        {
+          "x": 234.78,
+          "y": 413.954
+        },
+        {
+          "x": 260.817,
+          "y": 418.913
+        },
+        {
+          "x": 281.845,
+          "y": 421.879
+        },
+        {
+          "x": 289.878,
+          "y": 435.879
+        },
+        {
+          "x": 297.938,
+          "y": 464.896
+        },
+        {
+          "x": 210.849,
+          "y": 467.053
+        },
+        {
+          "x": 208.777,
+          "y": 428.015
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "e8596b6a727ee41da52b74b9037955e1f2cf6a54a67ffc9ad67bb63e8a0bfbd3",
+      "renderRgbaSha256": "b343ef8362520a52ef0b1cd68b7ad8dd11bc88128a3a4051155426726bcd7988",
+      "headTransform": [
+        [
+          0.998764,
+          0.001779,
+          -0.802945
+        ],
+        [
+          -0.001779,
+          0.998764,
+          0.670012
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.001068,
+          0.001783,
+          -1.209025
+        ],
+        [
+          -0.001783,
+          1.001068,
+          -0.069297
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 320,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 3,
+      "sourceFrame": 243,
+      "neckForeground": [
+        {
+          "x": 221.755,
+          "y": 410.004
+        },
+        {
+          "x": 234.771,
+          "y": 413.971
+        },
+        {
+          "x": 260.794,
+          "y": 418.905
+        },
+        {
+          "x": 281.81,
+          "y": 421.85
+        },
+        {
+          "x": 289.85,
+          "y": 435.835
+        },
+        {
+          "x": 297.929,
+          "y": 464.825
+        },
+        {
+          "x": 210.901,
+          "y": 467.055
+        },
+        {
+          "x": 208.798,
+          "y": 428.045
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "341bca33145c90ec9337f679e492f5046465928f46df1918d69047d9a2de3a77",
+      "renderRgbaSha256": "b685275af1895e849a16b4e6dc262ed3a651425b79d7b6b3230ef2927e1fddaa",
+      "headTransform": [
+        [
+          0.997279,
+          0.00262,
+          -0.889989
+        ],
+        [
+          -0.00262,
+          0.997279,
+          1.146681
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000388,
+          0.002628,
+          -1.408188
+        ],
+        [
+          -0.002628,
+          1.000388,
+          0.427851
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 163,
+        "width": 341,
+        "height": 264
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 4,
+      "sourceFrame": 244,
+      "neckForeground": [
+        {
+          "x": 221.717,
+          "y": 410.027
+        },
+        {
+          "x": 234.728,
+          "y": 413.989
+        },
+        {
+          "x": 260.742,
+          "y": 418.915
+        },
+        {
+          "x": 281.75,
+          "y": 421.854
+        },
+        {
+          "x": 289.79,
+          "y": 435.831
+        },
+        {
+          "x": 297.873,
+          "y": 464.807
+        },
+        {
+          "x": 210.881,
+          "y": 467.057
+        },
+        {
+          "x": 208.769,
+          "y": 428.063
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "a5bc847974d1e78d56a7c19ca8a95049b11448bec80f4eaa3bba95088211db2b",
+      "renderRgbaSha256": "551819571dd52caa959cce28c58590e1451f684df19dedd9af87277df3fec2cf",
+      "headTransform": [
+        [
+          0.997495,
+          0.002861,
+          -1.034398
+        ],
+        [
+          -0.002861,
+          0.997495,
+          1.154767
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.999974,
+          0.002868,
+          -1.453111
+        ],
+        [
+          -0.002868,
+          0.999974,
+          0.673982
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 341,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 5,
+      "sourceFrame": 245,
+      "neckForeground": [
+        {
+          "x": 221.708,
+          "y": 410.04
+        },
+        {
+          "x": 234.728,
+          "y": 413.995
+        },
+        {
+          "x": 260.757,
+          "y": 418.903
+        },
+        {
+          "x": 281.777,
+          "y": 421.828
+        },
+        {
+          "x": 289.831,
+          "y": 435.805
+        },
+        {
+          "x": 297.94,
+          "y": 464.789
+        },
+        {
+          "x": 210.91,
+          "y": 467.105
+        },
+        {
+          "x": 208.767,
+          "y": 428.095
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "85cb6684073744f5841fa5c3621509cdda1d1f58d90219124235cc7099079124",
+      "renderRgbaSha256": "d5703bc85634f59880fc380ddbfd2323d717401a7d0de2eb641351a038bd46e9",
+      "headTransform": [
+        [
+          0.999048,
+          0.00362,
+          -1.753011
+        ],
+        [
+          -0.00362,
+          0.999048,
+          1.100567
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000434,
+          0.003625,
+          -1.874936
+        ],
+        [
+          -0.003625,
+          1.000434,
+          0.667212
+        ]
+      ],
+      "hairBounds": {
+        "x": 65,
+        "y": 156,
+        "width": 354,
+        "height": 271
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 6,
+      "sourceFrame": 246,
+      "neckForeground": [
+        {
+          "x": 221.716,
+          "y": 410.015
+        },
+        {
+          "x": 234.736,
+          "y": 413.97
+        },
+        {
+          "x": 260.766,
+          "y": 418.878
+        },
+        {
+          "x": 281.786,
+          "y": 421.804
+        },
+        {
+          "x": 289.841,
+          "y": 435.781
+        },
+        {
+          "x": 297.949,
+          "y": 464.765
+        },
+        {
+          "x": 210.917,
+          "y": 467.081
+        },
+        {
+          "x": 208.775,
+          "y": 428.071
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "6546cd2dba9dc7059d335e0be6ec48a502a1dc73f4a870dd84120467e0f0c494",
+      "renderRgbaSha256": "e55e6b721f7aa9b7685a916578c18bda6db733c51e164a609952a2dda6dbf863",
+      "headTransform": [
+        [
+          0.997634,
+          0.00361,
+          -1.22604
+        ],
+        [
+          -0.00361,
+          0.997634,
+          1.288482
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000449,
+          0.00362,
+          -1.867899
+        ],
+        [
+          -0.00362,
+          1.000449,
+          0.634917
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 319,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 7,
+      "sourceFrame": 247,
+      "neckForeground": [
+        {
+          "x": 221.756,
+          "y": 410.012
+        },
+        {
+          "x": 234.77,
+          "y": 413.963
+        },
+        {
+          "x": 260.788,
+          "y": 418.866
+        },
+        {
+          "x": 281.799,
+          "y": 421.787
+        },
+        {
+          "x": 289.851,
+          "y": 435.757
+        },
+        {
+          "x": 297.959,
+          "y": 464.726
+        },
+        {
+          "x": 210.969,
+          "y": 467.051
+        },
+        {
+          "x": 208.823,
+          "y": 428.06
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "33885ce5fb063267abadac9da8e4ea483358dc379e10f517cb14cb90b97a41ac",
+      "renderRgbaSha256": "4a6480ff1305c884103f6c1fac4145f36b55d9cbd5230dceea91b0e1234586ac",
+      "headTransform": [
+        [
+          0.999679,
+          0.003736,
+          -1.875169
+        ],
+        [
+          -0.003736,
+          0.999679,
+          0.887703
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.999975,
+          0.003737,
+          -1.771069
+        ],
+        [
+          -0.003737,
+          0.999975,
+          0.851454
+        ]
+      ],
+      "hairBounds": {
+        "x": 65,
+        "y": 188,
+        "width": 356,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 8,
+      "sourceFrame": 248,
+      "neckForeground": [
+        {
+          "x": 221.743,
+          "y": 410.011
+        },
+        {
+          "x": 234.769,
+          "y": 413.964
+        },
+        {
+          "x": 260.811,
+          "y": 418.867
+        },
+        {
+          "x": 281.841,
+          "y": 421.788
+        },
+        {
+          "x": 289.903,
+          "y": 435.769
+        },
+        {
+          "x": 298.023,
+          "y": 464.763
+        },
+        {
+          "x": 210.955,
+          "y": 467.104
+        },
+        {
+          "x": 208.801,
+          "y": 428.077
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "bb4033c0e3652d25344521f9b4b1617d047839989aa32243b601a9eda5d8d708",
+      "renderRgbaSha256": "227a584393afce988e43d74b167d1a1971e006141bf7e5a17ead0822cc76bbff",
+      "headTransform": [
+        [
+          0.996929,
+          0.003878,
+          -1.125083
+        ],
+        [
+          -0.003878,
+          0.996929,
+          1.518468
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000869,
+          0.003893,
+          -2.04649
+        ],
+        [
+          -0.003893,
+          1.000869,
+          0.519124
+        ]
+      ],
+      "hairBounds": {
+        "x": 102,
+        "y": 188,
+        "width": 295,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 9,
+      "sourceFrame": 249,
+      "neckForeground": [
+        {
+          "x": 221.771,
+          "y": 410.039
+        },
+        {
+          "x": 234.792,
+          "y": 414.0
+        },
+        {
+          "x": 260.826,
+          "y": 418.921
+        },
+        {
+          "x": 281.849,
+          "y": 421.855
+        },
+        {
+          "x": 289.899,
+          "y": 435.839
+        },
+        {
+          "x": 297.998,
+          "y": 464.833
+        },
+        {
+          "x": 210.946,
+          "y": 467.113
+        },
+        {
+          "x": 208.82,
+          "y": 428.093
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "c8ad102d3115dbf76a69cf70c512a0c83e63a7b68accec2faceb4584ba2ce5e0",
+      "renderRgbaSha256": "de11bb4d00d842a110fbb064a308ae57b4f048f6bdb1917890a79647a404a15d",
+      "headTransform": [
+        [
+          0.996988,
+          0.003189,
+          -0.93685
+        ],
+        [
+          -0.003189,
+          0.996988,
+          1.361395
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000666,
+          0.003201,
+          -1.689319
+        ],
+        [
+          -0.003201,
+          1.000666,
+          0.476954
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 320,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 10,
+      "sourceFrame": 250,
+      "neckForeground": [
+        {
+          "x": 221.772,
+          "y": 410.04
+        },
+        {
+          "x": 234.79,
+          "y": 414.001
+        },
+        {
+          "x": 260.817,
+          "y": 418.92
+        },
+        {
+          "x": 281.836,
+          "y": 421.855
+        },
+        {
+          "x": 289.884,
+          "y": 435.836
+        },
+        {
+          "x": 297.98,
+          "y": 464.823
+        },
+        {
+          "x": 210.948,
+          "y": 467.1
+        },
+        {
+          "x": 208.824,
+          "y": 428.089
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "5e658176cff0023f440aa4f2e2f5b2690ada6a5ec6596c43f4e3c3a4acfe11f3",
+      "renderRgbaSha256": "a95d78f2bd309f98166b31a03a486567cce073d633dfc6e1a087877fe42b437c",
+      "headTransform": [
+        [
+          0.99733,
+          0.003166,
+          -0.976367
+        ],
+        [
+          -0.003166,
+          0.99733,
+          1.21403
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000431,
+          0.003176,
+          -1.625764
+        ],
+        [
+          -0.003176,
+          1.000431,
+          0.568794
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 320,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 11,
+      "sourceFrame": 251,
+      "neckForeground": [
+        {
+          "x": 221.784,
+          "y": 410.029
+        },
+        {
+          "x": 234.798,
+          "y": 413.985
+        },
+        {
+          "x": 260.815,
+          "y": 418.897
+        },
+        {
+          "x": 281.826,
+          "y": 421.826
+        },
+        {
+          "x": 289.873,
+          "y": 435.799
+        },
+        {
+          "x": 297.971,
+          "y": 464.773
+        },
+        {
+          "x": 210.977,
+          "y": 467.067
+        },
+        {
+          "x": 208.845,
+          "y": 428.073
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "26e46db4c8e817c203d24136ecac08e52dab061034aeb1e93b77f5c3c36df4ae",
+      "renderRgbaSha256": "dbbebf4c5ab1b4fd3e39084381cb5741fe7de74951aefe28ae80ee88e385567a",
+      "headTransform": [
+        [
+          0.996569,
+          0.003368,
+          -0.900504
+        ],
+        [
+          -0.003368,
+          0.996569,
+          1.483219
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000016,
+          0.00338,
+          -1.604997
+        ],
+        [
+          -0.00338,
+          1.000016,
+          0.772495
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 319,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 12,
+      "sourceFrame": 252,
+      "neckForeground": [
+        {
+          "x": 221.792,
+          "y": 410.055
+        },
+        {
+          "x": 234.807,
+          "y": 414.012
+        },
+        {
+          "x": 260.826,
+          "y": 418.926
+        },
+        {
+          "x": 281.839,
+          "y": 421.856
+        },
+        {
+          "x": 289.886,
+          "y": 435.831
+        },
+        {
+          "x": 297.984,
+          "y": 464.807
+        },
+        {
+          "x": 210.982,
+          "y": 467.098
+        },
+        {
+          "x": 208.851,
+          "y": 428.101
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "219d3f70c4ba8022624e6eeae69ee9e53619fa597ac3792f596e88220a8e1d01",
+      "renderRgbaSha256": "f14907f8676a8de8664b1dacfd31f16783704538a623d8b042b80e1a43ed8a7a",
+      "headTransform": [
+        [
+          0.996814,
+          0.003331,
+          -0.939408
+        ],
+        [
+          -0.003331,
+          0.996814,
+          1.467048
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000101,
+          0.003342,
+          -1.600203
+        ],
+        [
+          -0.003342,
+          1.000101,
+          0.755814
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 320,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 13,
+      "sourceFrame": 253,
+      "neckForeground": [
+        {
+          "x": 221.734,
+          "y": 410.073
+        },
+        {
+          "x": 234.748,
+          "y": 414.029
+        },
+        {
+          "x": 260.768,
+          "y": 418.94
+        },
+        {
+          "x": 281.779,
+          "y": 421.869
+        },
+        {
+          "x": 289.828,
+          "y": 435.843
+        },
+        {
+          "x": 297.928,
+          "y": 464.817
+        },
+        {
+          "x": 210.928,
+          "y": 467.115
+        },
+        {
+          "x": 208.794,
+          "y": 428.119
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "e0ed3d5c2ff6f7b58d3f045f8995f0042d8b65a1fc70a3880aa67959c98e073f",
+      "renderRgbaSha256": "d9a0f0e477f80ad47d199b1863def8e5b5a42753b5b0702919fe39e6ecc39672",
+      "headTransform": [
+        [
+          0.997057,
+          0.003407,
+          -1.013968
+        ],
+        [
+          -0.003407,
+          0.997057,
+          1.427408
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000077,
+          0.003417,
+          -1.684252
+        ],
+        [
+          -0.003417,
+          1.000077,
+          0.799906
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 320,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 14,
+      "sourceFrame": 254,
+      "neckForeground": [
+        {
+          "x": 221.696,
+          "y": 410.108
+        },
+        {
+          "x": 234.719,
+          "y": 414.063
+        },
+        {
+          "x": 260.753,
+          "y": 418.973
+        },
+        {
+          "x": 281.778,
+          "y": 421.899
+        },
+        {
+          "x": 289.833,
+          "y": 435.88
+        },
+        {
+          "x": 297.943,
+          "y": 464.869
+        },
+        {
+          "x": 210.894,
+          "y": 467.184
+        },
+        {
+          "x": 208.752,
+          "y": 428.166
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "74f589d9403ee64a5f35181374b8ae54b7453bebe9a6a1647287d247695b6f91",
+      "renderRgbaSha256": "1e2b7144e60a203ac4b1b29b5d2cf493286d209a2ce1d514ec8e51614adafc80",
+      "headTransform": [
+        [
+          0.996544,
+          0.003586,
+          -0.926875
+        ],
+        [
+          -0.003586,
+          0.996544,
+          1.610278
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000646,
+          0.003601,
+          -1.924116
+        ],
+        [
+          -0.003601,
+          1.000646,
+          0.642202
+        ]
+      ],
+      "hairBounds": {
+        "x": 103,
+        "y": 188,
+        "width": 295,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 15,
+      "sourceFrame": 255,
+      "neckForeground": [
+        {
+          "x": 221.713,
+          "y": 410.094
+        },
+        {
+          "x": 234.741,
+          "y": 414.046
+        },
+        {
+          "x": 260.786,
+          "y": 418.948
+        },
+        {
+          "x": 281.818,
+          "y": 421.868
+        },
+        {
+          "x": 289.881,
+          "y": 435.85
+        },
+        {
+          "x": 298.004,
+          "y": 464.847
+        },
+        {
+          "x": 210.927,
+          "y": 467.192
+        },
+        {
+          "x": 208.771,
+          "y": 428.162
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "f595061f8f52e23fbcf0bc33b75f1c61b3b7d83ce4f5e4bffa1d9da89b5b7253",
+      "renderRgbaSha256": "426760849274b6c5f229058d5bd3611d1fb967596161416d2286f8b03cde1f9c",
+      "headTransform": [
+        [
+          0.99723,
+          0.003931,
+          -1.25497
+        ],
+        [
+          -0.003931,
+          0.99723,
+          1.538113
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000969,
+          0.003946,
+          -2.119995
+        ],
+        [
+          -0.003946,
+          1.000969,
+          0.57235
+        ]
+      ],
+      "hairBounds": {
+        "x": 102,
+        "y": 157,
+        "width": 296,
+        "height": 270
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 16,
+      "sourceFrame": 256,
+      "neckForeground": [
+        {
+          "x": 221.713,
+          "y": 410.052
+        },
+        {
+          "x": 234.735,
+          "y": 414.005
+        },
+        {
+          "x": 260.769,
+          "y": 418.91
+        },
+        {
+          "x": 281.791,
+          "y": 421.832
+        },
+        {
+          "x": 289.849,
+          "y": 435.81
+        },
+        {
+          "x": 297.963,
+          "y": 464.795
+        },
+        {
+          "x": 210.922,
+          "y": 467.125
+        },
+        {
+          "x": 208.774,
+          "y": 428.111
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "5e37797373baa1aefa443c3bad4eb0c8afae955ea4f07ad8a8a838c56dd735bd",
+      "renderRgbaSha256": "51cec6feb5b36508a607a3fd5d4452149ffb281721ae0398f3b7163a963f0cee",
+      "headTransform": [
+        [
+          0.997172,
+          0.003765,
+          -1.190022
+        ],
+        [
+          -0.003765,
+          0.997172,
+          1.50282
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.00055,
+          0.003778,
+          -1.958031
+        ],
+        [
+          -0.003778,
+          1.00055,
+          0.665403
+        ]
+      ],
+      "hairBounds": {
+        "x": 102,
+        "y": 157,
+        "width": 296,
+        "height": 270
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 17,
+      "sourceFrame": 257,
+      "neckForeground": [
+        {
+          "x": 221.723,
+          "y": 410.082
+        },
+        {
+          "x": 234.75,
+          "y": 414.03
+        },
+        {
+          "x": 260.793,
+          "y": 418.923
+        },
+        {
+          "x": 281.823,
+          "y": 421.836
+        },
+        {
+          "x": 289.89,
+          "y": 435.814
+        },
+        {
+          "x": 298.02,
+          "y": 464.804
+        },
+        {
+          "x": 210.956,
+          "y": 467.176
+        },
+        {
+          "x": 208.789,
+          "y": 428.152
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "d6993daa58d40f35a7be41da5f1239b96abcdf5a0b2eabcdb590f252fba273d4",
+      "renderRgbaSha256": "10d01d96ae1ad8fa68ba2f6c974c98d2054869648731d6738801f7bd03afa03b",
+      "headTransform": [
+        [
+          0.996408,
+          0.004241,
+          -1.11007
+        ],
+        [
+          -0.004241,
+          0.996408,
+          1.771174
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000827,
+          0.00426,
+          -2.207572
+        ],
+        [
+          -0.00426,
+          1.000827,
+          0.688597
+        ]
+      ],
+      "hairBounds": {
+        "x": 103,
+        "y": 188,
+        "width": 294,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 18,
+      "sourceFrame": 258,
+      "neckForeground": [
+        {
+          "x": 221.758,
+          "y": 410.096
+        },
+        {
+          "x": 234.779,
+          "y": 414.044
+        },
+        {
+          "x": 260.808,
+          "y": 418.938
+        },
+        {
+          "x": 281.827,
+          "y": 421.852
+        },
+        {
+          "x": 289.888,
+          "y": 435.824
+        },
+        {
+          "x": 298.01,
+          "y": 464.8
+        },
+        {
+          "x": 210.99,
+          "y": 467.16
+        },
+        {
+          "x": 208.828,
+          "y": 428.156
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "47de37f7789fab1f6d26edf8bb978564b4a262258ce5544e4e1a1ed86cd9a62f",
+      "renderRgbaSha256": "bae6909573091b97a08565faa060456f66c3a66517fa9f2c591f27791cf1dfbc",
+      "headTransform": [
+        [
+          0.996658,
+          0.004119,
+          -1.15006
+        ],
+        [
+          -0.004119,
+          0.996658,
+          1.685802
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000328,
+          0.004134,
+          -2.009984
+        ],
+        [
+          -0.004134,
+          1.000328,
+          0.879501
+        ]
+      ],
+      "hairBounds": {
+        "x": 102,
+        "y": 188,
+        "width": 295,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 19,
+      "sourceFrame": 259,
+      "neckForeground": [
+        {
+          "x": 221.734,
+          "y": 410.075
+        },
+        {
+          "x": 234.756,
+          "y": 414.026
+        },
+        {
+          "x": 260.788,
+          "y": 418.927
+        },
+        {
+          "x": 281.81,
+          "y": 421.847
+        },
+        {
+          "x": 289.869,
+          "y": 435.822
+        },
+        {
+          "x": 297.986,
+          "y": 464.805
+        },
+        {
+          "x": 210.951,
+          "y": 467.145
+        },
+        {
+          "x": 208.798,
+          "y": 428.134
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "180004e7739fa8626f7964e01de1cca30d74e2fa7a86596ed8804fb03792aedf",
+      "renderRgbaSha256": "b782c199b9bd74326ffaa91fd71920d3b26fbe8759ab20533dc3ae7de0bc04e4",
+      "headTransform": [
+        [
+          0.996671,
+          0.003885,
+          -1.063377
+        ],
+        [
+          -0.003885,
+          0.996671,
+          1.571317
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000487,
+          0.0039,
+          -1.973058
+        ],
+        [
+          -0.0039,
+          1.000487,
+          0.740819
+        ]
+      ],
+      "hairBounds": {
+        "x": 78,
+        "y": 188,
+        "width": 319,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 20,
+      "sourceFrame": 260,
+      "neckForeground": [
+        {
+          "x": 221.707,
+          "y": 410.067
+        },
+        {
+          "x": 234.733,
+          "y": 414.023
+        },
+        {
+          "x": 260.774,
+          "y": 418.932
+        },
+        {
+          "x": 281.802,
+          "y": 421.858
+        },
+        {
+          "x": 289.86,
+          "y": 435.841
+        },
+        {
+          "x": 297.973,
+          "y": 464.837
+        },
+        {
+          "x": 210.906,
+          "y": 467.156
+        },
+        {
+          "x": 208.762,
+          "y": 428.13
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "943b05fd4c4edfb6c4a63a4ba1a7c374f66724a3ea07d3910957564c7fd96bfb",
+      "renderRgbaSha256": "303a105df23dc8cd095f69410b730d51ed9233049f1b1676bb4092947983f70d",
+      "headTransform": [
+        [
+          0.996923,
+          0.003634,
+          -1.096481
+        ],
+        [
+          -0.003634,
+          0.996923,
+          1.563975
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000856,
+          0.003648,
+          -1.978402
+        ],
+        [
+          -0.003648,
+          1.000856,
+          0.525608
+        ]
+      ],
+      "hairBounds": {
+        "x": 102,
+        "y": 188,
+        "width": 321,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 21,
+      "sourceFrame": 47,
+      "neckForeground": [
+        {
+          "x": 227.512,
+          "y": 411.051
+        },
+        {
+          "x": 240.447,
+          "y": 415.556
+        },
+        {
+          "x": 266.426,
+          "y": 421.547
+        },
+        {
+          "x": 287.448,
+          "y": 425.34
+        },
+        {
+          "x": 294.982,
+          "y": 439.724
+        },
+        {
+          "x": 301.963,
+          "y": 469.202
+        },
+        {
+          "x": 214.34,
+          "y": 468.005
+        },
+        {
+          "x": 213.766,
+          "y": 428.685
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "d0742470fb7deed10fef317ca34503051505a39c9166ab54946b8a7049744592",
+      "renderRgbaSha256": "1d4f1bf0498e9c4c9aba741898036a0c080b157eecf53c73e62ef619d9a02273",
+      "headTransform": [
+        [
+          1.013326,
+          -0.03715,
+          15.616989
+        ],
+        [
+          0.03715,
+          1.013326,
+          -10.038314
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.006313,
+          -0.036893,
+          19.236692
+        ],
+        [
+          0.036893,
+          1.006313,
+          -9.727433
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 154,
+        "width": 300,
+        "height": 277
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 22,
+      "sourceFrame": 48,
+      "neckForeground": [
+        {
+          "x": 228.486,
+          "y": 414.848
+        },
+        {
+          "x": 241.362,
+          "y": 419.288
+        },
+        {
+          "x": 267.215,
+          "y": 425.166
+        },
+        {
+          "x": 288.131,
+          "y": 428.874
+        },
+        {
+          "x": 295.667,
+          "y": 443.154
+        },
+        {
+          "x": 302.699,
+          "y": 472.446
+        },
+        {
+          "x": 215.561,
+          "y": 471.524
+        },
+        {
+          "x": 214.87,
+          "y": 432.425
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "1520a54853934b4e6df83e8400607e6bdbdba4c93de89f0fdd03c2204a2112d8",
+      "renderRgbaSha256": "d33598650ae0a286746bd20a13df6937414f61e423b7d004ee88c9093aeefddd",
+      "headTransform": [
+        [
+          1.010035,
+          -0.033914,
+          15.278108
+        ],
+        [
+          0.033914,
+          1.010035,
+          -4.695179
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000809,
+          -0.033604,
+          20.083835
+        ],
+        [
+          0.033604,
+          1.000809,
+          -2.944004
+        ]
+      ],
+      "hairBounds": {
+        "x": 74,
+        "y": 158,
+        "width": 346,
+        "height": 276
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 23,
+      "sourceFrame": 49,
+      "neckForeground": [
+        {
+          "x": 229.123,
+          "y": 416.023
+        },
+        {
+          "x": 242.02,
+          "y": 420.464
+        },
+        {
+          "x": 267.915,
+          "y": 426.338
+        },
+        {
+          "x": 288.865,
+          "y": 430.042
+        },
+        {
+          "x": 296.419,
+          "y": 444.341
+        },
+        {
+          "x": 303.475,
+          "y": 473.674
+        },
+        {
+          "x": 216.205,
+          "y": 472.791
+        },
+        {
+          "x": 215.495,
+          "y": 433.633
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "b52a41e7ef0e416e9efc343a44653fd8c7ff79724faf1ade76747fca263291c4",
+      "renderRgbaSha256": "e7b3c013e1a933983a76b6df87a4d47ba49ad74892651f22afe67920a59d96d9",
+      "headTransform": [
+        [
+          1.011215,
+          -0.033485,
+          15.3068
+        ],
+        [
+          0.033485,
+          1.011215,
+          -3.889072
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.002337,
+          -0.033191,
+          20.212184
+        ],
+        [
+          0.033191,
+          1.002337,
+          -2.30378
+        ]
+      ],
+      "hairBounds": {
+        "x": 72,
+        "y": 160,
+        "width": 359,
+        "height": 275
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 24,
+      "sourceFrame": 50,
+      "neckForeground": [
+        {
+          "x": 229.494,
+          "y": 413.341
+        },
+        {
+          "x": 242.408,
+          "y": 417.763
+        },
+        {
+          "x": 268.33,
+          "y": 423.598
+        },
+        {
+          "x": 289.3,
+          "y": 427.269
+        },
+        {
+          "x": 296.884,
+          "y": 441.564
+        },
+        {
+          "x": 303.995,
+          "y": 470.905
+        },
+        {
+          "x": 216.664,
+          "y": 470.17
+        },
+        {
+          "x": 215.886,
+          "y": 430.987
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "fd802e481ab165933027c39d859ceed13045b3e66aa81f7fc5cdea3103dbfa85",
+      "renderRgbaSha256": "410e87934d960e4b15967034630c1fcce01eb5036e3adf26959543d8de828477",
+      "headTransform": [
+        [
+          1.009974,
+          -0.031724,
+          15.638647
+        ],
+        [
+          0.031724,
+          1.009974,
+          -5.907564
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.003083,
+          -0.031508,
+          19.727427
+        ],
+        [
+          0.031508,
+          1.003083,
+          -4.917763
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 157,
+        "width": 301,
+        "height": 275
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 25,
+      "sourceFrame": 51,
+      "neckForeground": [
+        {
+          "x": 228.934,
+          "y": 409.373
+        },
+        {
+          "x": 241.81,
+          "y": 413.879
+        },
+        {
+          "x": 267.676,
+          "y": 419.884
+        },
+        {
+          "x": 288.608,
+          "y": 423.693
+        },
+        {
+          "x": 296.09,
+          "y": 438.03
+        },
+        {
+          "x": 303.0,
+          "y": 467.4
+        },
+        {
+          "x": 215.731,
+          "y": 466.079
+        },
+        {
+          "x": 215.217,
+          "y": 426.916
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "48c3f0870e2a6082ac246443b41f797481c399774e93ec8abf9a9c7957664c5c",
+      "renderRgbaSha256": "593954deb9515e5596b6098bb443f26171573c5726015e5141d8b7c39500dbc2",
+      "headTransform": [
+        [
+          1.013137,
+          -0.038637,
+          17.377305
+        ],
+        [
+          0.038637,
+          1.013137,
+          -11.549461
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.002211,
+          -0.03822,
+          22.113214
+        ],
+        [
+          0.03822,
+          1.002211,
+          -10.018121
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 153,
+        "width": 302,
+        "height": 277
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 26,
+      "sourceFrame": 52,
+      "neckForeground": [
+        {
+          "x": 229.239,
+          "y": 406.064
+        },
+        {
+          "x": 242.101,
+          "y": 410.545
+        },
+        {
+          "x": 267.936,
+          "y": 416.505
+        },
+        {
+          "x": 288.841,
+          "y": 420.279
+        },
+        {
+          "x": 296.332,
+          "y": 434.583
+        },
+        {
+          "x": 303.272,
+          "y": 463.898
+        },
+        {
+          "x": 216.136,
+          "y": 462.701
+        },
+        {
+          "x": 215.568,
+          "y": 423.599
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "e82721c8ed7edcbcff289713a8b9dfbf59bdbfd507910f0cb20fdf05181f788b",
+      "renderRgbaSha256": "bc3cbe675cbb5ebf6b7b7718c7179c7599e9fc72f55bc1013fe811c36477428d",
+      "headTransform": [
+        [
+          1.011676,
+          -0.037163,
+          16.692258
+        ],
+        [
+          0.037163,
+          1.011676,
+          -14.446805
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000719,
+          -0.036761,
+          22.151375
+        ],
+        [
+          0.036761,
+          1.000719,
+          -12.391323
+        ]
+      ],
+      "hairBounds": {
+        "x": 89,
+        "y": 180,
+        "width": 328,
+        "height": 246
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 27,
+      "sourceFrame": 53,
+      "neckForeground": [
+        {
+          "x": 228.86,
+          "y": 403.65
+        },
+        {
+          "x": 241.711,
+          "y": 408.143
+        },
+        {
+          "x": 267.527,
+          "y": 414.13
+        },
+        {
+          "x": 288.417,
+          "y": 417.926
+        },
+        {
+          "x": 295.888,
+          "y": 432.232
+        },
+        {
+          "x": 302.79,
+          "y": 461.541
+        },
+        {
+          "x": 215.698,
+          "y": 460.244
+        },
+        {
+          "x": 215.176,
+          "y": 421.161
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "474b83b01ed80a3c39c93a6a8655c15b978e37b5ba74b1b77125d14f6ef68f39",
+      "renderRgbaSha256": "0be231e9c619a137bb8037eaffcf770bd739b9f9f5d336412cea0879098cfc52",
+      "headTransform": [
+        [
+          1.010392,
+          -0.038284,
+          17.337757
+        ],
+        [
+          0.038284,
+          1.010392,
+          -16.643244
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000188,
+          -0.037897,
+          22.356381
+        ],
+        [
+          0.037897,
+          1.000188,
+          -14.840203
+        ]
+      ],
+      "hairBounds": {
+        "x": 75,
+        "y": 148,
+        "width": 335,
+        "height": 275
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 28,
+      "sourceFrame": 54,
+      "neckForeground": [
+        {
+          "x": 227.925,
+          "y": 402.857
+        },
+        {
+          "x": 240.861,
+          "y": 407.405
+        },
+        {
+          "x": 266.852,
+          "y": 413.478
+        },
+        {
+          "x": 287.886,
+          "y": 417.337
+        },
+        {
+          "x": 295.387,
+          "y": 431.758
+        },
+        {
+          "x": 302.289,
+          "y": 461.289
+        },
+        {
+          "x": 214.572,
+          "y": 459.836
+        },
+        {
+          "x": 214.112,
+          "y": 420.471
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "180703c4adbe1e2444f40abf89f899a86a0eef770ca0b68b16cd037a302fc38b",
+      "renderRgbaSha256": "d52b438b48597ce1a4197480c47fa6c9e9b1c30ab2a8b9ded8cfde1a6390aa39",
+      "headTransform": [
+        [
+          1.011809,
+          -0.04004,
+          17.146613
+        ],
+        [
+          0.04004,
+          1.011809,
+          -18.305467
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.007322,
+          -0.039862,
+          20.643041
+        ],
+        [
+          0.039862,
+          1.007322,
+          -18.994188
+        ]
+      ],
+      "hairBounds": {
+        "x": 108,
+        "y": 146,
+        "width": 301,
+        "height": 277
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 29,
+      "sourceFrame": 55,
+      "neckForeground": [
+        {
+          "x": 227.694,
+          "y": 404.146
+        },
+        {
+          "x": 240.622,
+          "y": 408.676
+        },
+        {
+          "x": 266.595,
+          "y": 414.717
+        },
+        {
+          "x": 287.613,
+          "y": 418.55
+        },
+        {
+          "x": 295.122,
+          "y": 432.95
+        },
+        {
+          "x": 302.048,
+          "y": 462.447
+        },
+        {
+          "x": 214.413,
+          "y": 461.085
+        },
+        {
+          "x": 213.913,
+          "y": 421.757
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "c6c59c632f4348ef7ff270682744458f0a50e4649b4785d58bd8b385f885228c",
+      "renderRgbaSha256": "c1e3cf403e8726a0820b086abfa9fd9210dd5c31a2b0bea0c588d31911ff36f3",
+      "headTransform": [
+        [
+          1.008481,
+          -0.038867,
+          17.021803
+        ],
+        [
+          0.038867,
+          1.008481,
+          -16.003861
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.00641,
+          -0.038787,
+          20.173936
+        ],
+        [
+          0.038787,
+          1.00641,
+          -17.092645
+        ]
+      ],
+      "hairBounds": {
+        "x": 89,
+        "y": 148,
+        "width": 319,
+        "height": 275
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 30,
+      "sourceFrame": 56,
+      "neckForeground": [
+        {
+          "x": 228.216,
+          "y": 408.035
+        },
+        {
+          "x": 241.152,
+          "y": 412.554
+        },
+        {
+          "x": 267.138,
+          "y": 418.572
+        },
+        {
+          "x": 288.166,
+          "y": 422.387
+        },
+        {
+          "x": 295.69,
+          "y": 436.784
+        },
+        {
+          "x": 302.646,
+          "y": 466.282
+        },
+        {
+          "x": 214.985,
+          "y": 465.002
+        },
+        {
+          "x": 214.448,
+          "y": 425.664
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "8662c271fb93d4693d7ca7591a4420d0376b26ac30b3f1f01171ecc1fdbc6ebf",
+      "renderRgbaSha256": "9c76936094a952e3ab7f977cc4fda7241a022993673da6da12eb9e7bb74155f6",
+      "headTransform": [
+        [
+          1.012895,
+          -0.038082,
+          16.395265
+        ],
+        [
+          0.038082,
+          1.012895,
+          -12.957936
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.006725,
+          -0.03785,
+          20.242002
+        ],
+        [
+          0.03785,
+          1.006725,
+          -13.124527
+        ]
+      ],
+      "hairBounds": {
+        "x": 89,
+        "y": 151,
+        "width": 320,
+        "height": 277
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 31,
+      "sourceFrame": 57,
+      "neckForeground": [
+        {
+          "x": 228.494,
+          "y": 413.185
+        },
+        {
+          "x": 241.435,
+          "y": 417.626
+        },
+        {
+          "x": 267.415,
+          "y": 423.494
+        },
+        {
+          "x": 288.432,
+          "y": 427.188
+        },
+        {
+          "x": 296.023,
+          "y": 441.523
+        },
+        {
+          "x": 303.129,
+          "y": 470.939
+        },
+        {
+          "x": 215.593,
+          "y": 470.138
+        },
+        {
+          "x": 214.842,
+          "y": 430.862
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "5a35d1da004fe831f056d1f8b446bcf17f5af75df6d2d6e22980d330994193b3",
+      "renderRgbaSha256": "039e445e7e580a0fb51887916b67814ac7c39ce9fd4b83fd0800ae36d00be3d6",
+      "headTransform": [
+        [
+          1.011717,
+          -0.032514,
+          14.527521
+        ],
+        [
+          0.032514,
+          1.011717,
+          -6.825859
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.005424,
+          -0.032312,
+          18.537773
+        ],
+        [
+          0.032312,
+          1.005424,
+          -6.212478
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 192,
+        "width": 326,
+        "height": 240
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 32,
+      "sourceFrame": 58,
+      "neckForeground": [
+        {
+          "x": 228.77,
+          "y": 416.313
+        },
+        {
+          "x": 241.716,
+          "y": 420.73
+        },
+        {
+          "x": 267.7,
+          "y": 426.549
+        },
+        {
+          "x": 288.719,
+          "y": 430.204
+        },
+        {
+          "x": 296.335,
+          "y": 444.522
+        },
+        {
+          "x": 303.493,
+          "y": 473.918
+        },
+        {
+          "x": 215.975,
+          "y": 473.278
+        },
+        {
+          "x": 215.153,
+          "y": 434.012
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "0976c96809c6213665ab0155c4586d2b0e57716d4c18761525adf7bd03b4f27a",
+      "renderRgbaSha256": "da10966a38a2ede861a598fce79682dad05b94590c0024bd775f864fc98db6d8",
+      "headTransform": [
+        [
+          1.013427,
+          -0.030712,
+          14.056335
+        ],
+        [
+          0.030712,
+          1.013427,
+          -3.412601
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.005254,
+          -0.030464,
+          18.093567
+        ],
+        [
+          0.030464,
+          1.005254,
+          -2.603702
+        ]
+      ],
+      "hairBounds": {
+        "x": 88,
+        "y": 161,
+        "width": 322,
+        "height": 275
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 33,
+      "sourceFrame": 59,
+      "neckForeground": [
+        {
+          "x": 228.424,
+          "y": 414.372
+        },
+        {
+          "x": 241.391,
+          "y": 418.811
+        },
+        {
+          "x": 267.421,
+          "y": 424.668
+        },
+        {
+          "x": 288.478,
+          "y": 428.353
+        },
+        {
+          "x": 296.093,
+          "y": 442.706
+        },
+        {
+          "x": 303.236,
+          "y": 472.168
+        },
+        {
+          "x": 215.545,
+          "y": 471.436
+        },
+        {
+          "x": 214.762,
+          "y": 432.092
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "be356eb53b83e477a26567fb96c9ceb1b31b07fd849ff3df869416bdd014a909",
+      "renderRgbaSha256": "8e4e439f1c0bbf37d76a214c2805710550c7fe1b395254d30fef6557d36caec8",
+      "headTransform": [
+        [
+          1.013202,
+          -0.031756,
+          13.981961
+        ],
+        [
+          0.031756,
+          1.013202,
+          -5.311283
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.007208,
+          -0.031568,
+          17.766708
+        ],
+        [
+          0.031568,
+          1.007208,
+          -5.591121
+        ]
+      ],
+      "hairBounds": {
+        "x": 86,
+        "y": 158,
+        "width": 323,
+        "height": 276
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 34,
+      "sourceFrame": 60,
+      "neckForeground": [
+        {
+          "x": 227.979,
+          "y": 410.327
+        },
+        {
+          "x": 240.92,
+          "y": 414.895
+        },
+        {
+          "x": 266.924,
+          "y": 421.006
+        },
+        {
+          "x": 287.971,
+          "y": 424.895
+        },
+        {
+          "x": 295.459,
+          "y": 439.338
+        },
+        {
+          "x": 302.33,
+          "y": 468.903
+        },
+        {
+          "x": 214.542,
+          "y": 467.336
+        },
+        {
+          "x": 214.132,
+          "y": 427.938
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "3f766946caf6b31cd10753df6c29fd87030dd451b1027dbff381c85079bd1905",
+      "renderRgbaSha256": "a10d39762a13524fca1a266569f72f5c9fdaee7b9165c7f73190452a98366975",
+      "headTransform": [
+        [
+          1.012813,
+          -0.041373,
+          17.499707
+        ],
+        [
+          0.041373,
+          1.012813,
+          -11.49459
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.008105,
+          -0.041181,
+          21.063859
+        ],
+        [
+          0.041181,
+          1.008105,
+          -12.138022
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 154,
+        "width": 301,
+        "height": 276
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 35,
+      "sourceFrame": 61,
+      "neckForeground": [
+        {
+          "x": 228.449,
+          "y": 406.873
+        },
+        {
+          "x": 241.359,
+          "y": 411.343
+        },
+        {
+          "x": 267.283,
+          "y": 417.272
+        },
+        {
+          "x": 288.258,
+          "y": 421.018
+        },
+        {
+          "x": 295.799,
+          "y": 435.351
+        },
+        {
+          "x": 302.815,
+          "y": 464.742
+        },
+        {
+          "x": 215.413,
+          "y": 463.705
+        },
+        {
+          "x": 214.77,
+          "y": 424.487
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "bfe6156f83bb6246d984a6fe10b31324cf446c3105bb0253f260e39486d17844",
+      "renderRgbaSha256": "39e71803c6a6ae1902433eb60a9865700ee1be3e3ea8de08abfa7fd1c2da7eee",
+      "headTransform": [
+        [
+          1.013905,
+          -0.035341,
+          15.34329
+        ],
+        [
+          0.035341,
+          1.013905,
+          -13.322751
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.003811,
+          -0.034989,
+          19.948914
+        ],
+        [
+          0.034989,
+          1.003811,
+          -12.457092
+        ]
+      ],
+      "hairBounds": {
+        "x": 74,
+        "y": 151,
+        "width": 343,
+        "height": 276
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 36,
+      "sourceFrame": 62,
+      "neckForeground": [
+        {
+          "x": 227.972,
+          "y": 404.154
+        },
+        {
+          "x": 240.9,
+          "y": 408.688
+        },
+        {
+          "x": 266.874,
+          "y": 414.736
+        },
+        {
+          "x": 287.893,
+          "y": 418.576
+        },
+        {
+          "x": 295.398,
+          "y": 432.979
+        },
+        {
+          "x": 302.317,
+          "y": 462.48
+        },
+        {
+          "x": 214.674,
+          "y": 461.094
+        },
+        {
+          "x": 214.185,
+          "y": 421.763
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "0ee47e9354535005fe9c592ce2fbb75ada49c6dcd41b700bfebfa7758cd62eb3",
+      "renderRgbaSha256": "941881451ca33e7fcf9e3fb0b4b60020e4d27e1d0eb94de8d3e3347225e87995",
+      "headTransform": [
+        [
+          1.011298,
+          -0.039253,
+          16.799195
+        ],
+        [
+          0.039253,
+          1.011298,
+          -16.920342
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.006492,
+          -0.039066,
+          20.548153
+        ],
+        [
+          0.039066,
+          1.006492,
+          -17.180544
+        ]
+      ],
+      "hairBounds": {
+        "x": 108,
+        "y": 147,
+        "width": 301,
+        "height": 277
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 37,
+      "sourceFrame": 63,
+      "neckForeground": [
+        {
+          "x": 227.69,
+          "y": 403.173
+        },
+        {
+          "x": 240.609,
+          "y": 407.7
+        },
+        {
+          "x": 266.563,
+          "y": 413.735
+        },
+        {
+          "x": 287.566,
+          "y": 417.566
+        },
+        {
+          "x": 295.069,
+          "y": 431.956
+        },
+        {
+          "x": 301.991,
+          "y": 461.43
+        },
+        {
+          "x": 214.419,
+          "y": 460.07
+        },
+        {
+          "x": 213.919,
+          "y": 420.772
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "1e30bc39b70d8deea461ebca48832b6ee2886552646861190ec60090ddd07440",
+      "renderRgbaSha256": "d9a4014a7b02faa8d3341d0fdceb75e3953b2e50d4ec3f3c33d695aaae35d3cb",
+      "headTransform": [
+        [
+          1.011921,
+          -0.038989,
+          16.538138
+        ],
+        [
+          0.038989,
+          1.011921,
+          -17.755529
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.005676,
+          -0.038748,
+          20.317079
+        ],
+        [
+          0.038748,
+          1.005676,
+          -17.756096
+        ]
+      ],
+      "hairBounds": {
+        "x": 72,
+        "y": 147,
+        "width": 337,
+        "height": 276
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 38,
+      "sourceFrame": 64,
+      "neckForeground": [
+        {
+          "x": 228.084,
+          "y": 404.147
+        },
+        {
+          "x": 240.981,
+          "y": 408.639
+        },
+        {
+          "x": 266.884,
+          "y": 414.612
+        },
+        {
+          "x": 287.844,
+          "y": 418.394
+        },
+        {
+          "x": 295.356,
+          "y": 432.735
+        },
+        {
+          "x": 302.317,
+          "y": 462.127
+        },
+        {
+          "x": 214.951,
+          "y": 460.934
+        },
+        {
+          "x": 214.379,
+          "y": 421.729
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "645df9b77c55e8b806451e9545f14cd243b4f6102b584f292674ccd4ba204876",
+      "renderRgbaSha256": "88ca92a7a38aaa533e4f937c77a40fd64e40557063aad5edc7ea48c42b6a57d6",
+      "headTransform": [
+        [
+          1.010808,
+          -0.037052,
+          16.225612
+        ],
+        [
+          0.037052,
+          1.010808,
+          -16.30387
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.003356,
+          -0.036779,
+          20.418828
+        ],
+        [
+          0.036779,
+          1.003356,
+          -15.393935
+        ]
+      ],
+      "hairBounds": {
+        "x": 89,
+        "y": 148,
+        "width": 320,
+        "height": 276
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 39,
+      "sourceFrame": 132,
+      "neckForeground": [
+        {
+          "x": 226.784,
+          "y": 411.173
+        },
+        {
+          "x": 239.732,
+          "y": 415.401
+        },
+        {
+          "x": 265.677,
+          "y": 420.853
+        },
+        {
+          "x": 286.652,
+          "y": 424.216
+        },
+        {
+          "x": 294.421,
+          "y": 438.37
+        },
+        {
+          "x": 301.934,
+          "y": 467.542
+        },
+        {
+          "x": 214.794,
+          "y": 468.054
+        },
+        {
+          "x": 213.46,
+          "y": 428.972
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "c84ffa486467b94237cf6e80ed7378ec7fd75603b54b925f2e69fa519f77b251",
+      "renderRgbaSha256": "34182b889af5fab67c5fd39f6fc70dd496a1d756dc16d38b3826c573d1429d54",
+      "headTransform": [
+        [
+          1.001697,
+          -0.017147,
+          11.503439
+        ],
+        [
+          0.017147,
+          1.001697,
+          -3.591541
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.001213,
+          -0.017139,
+          11.54211
+        ],
+        [
+          0.017139,
+          1.001213,
+          -3.128987
+        ]
+      ],
+      "hairBounds": {
+        "x": 88,
+        "y": 155,
+        "width": 329,
+        "height": 273
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 40,
+      "sourceFrame": 133,
+      "neckForeground": [
+        {
+          "x": 227.33,
+          "y": 404.734
+        },
+        {
+          "x": 240.196,
+          "y": 409.16
+        },
+        {
+          "x": 266.027,
+          "y": 415.01
+        },
+        {
+          "x": 286.925,
+          "y": 418.698
+        },
+        {
+          "x": 294.465,
+          "y": 432.957
+        },
+        {
+          "x": 301.513,
+          "y": 462.214
+        },
+        {
+          "x": 214.465,
+          "y": 461.363
+        },
+        {
+          "x": 213.743,
+          "y": 422.305
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 4,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "a23a0964f3cf4ea1bbc8e6dd1bfd78c62787e7026477ed76f16781b28dc81bbf",
+      "renderRgbaSha256": "b9fc0a30becc25cb2218ef7511cba054bdb83976df15786e0ef3065912329b4b",
+      "headTransform": [
+        [
+          1.002766,
+          -0.032857,
+          17.779209
+        ],
+        [
+          0.032857,
+          1.002766,
+          -13.083514
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.999808,
+          -0.03276,
+          18.804038
+        ],
+        [
+          0.03276,
+          0.999808,
+          -12.459512
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 163,
+        "width": 321,
+        "height": 259
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 41,
+      "sourceFrame": 134,
+      "neckForeground": [
+        {
+          "x": 228.264,
+          "y": 400.217
+        },
+        {
+          "x": 241.117,
+          "y": 404.648
+        },
+        {
+          "x": 266.925,
+          "y": 410.513
+        },
+        {
+          "x": 287.805,
+          "y": 414.213
+        },
+        {
+          "x": 295.329,
+          "y": 428.467
+        },
+        {
+          "x": 302.351,
+          "y": 457.708
+        },
+        {
+          "x": 215.367,
+          "y": 456.794
+        },
+        {
+          "x": 214.674,
+          "y": 417.765
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "5497c818f8b79e4f5f77e68a6d9a9720f03c46f63530f1e58e0cc84358ad9f69",
+      "renderRgbaSha256": "a7c6d9c9130f90d364fcbf74c4f70097608ce429fbc6c94b00c5beab77c61b6f",
+      "headTransform": [
+        [
+          1.001138,
+          -0.033533,
+          19.346697
+        ],
+        [
+          0.033533,
+          1.001138,
+          -17.602353
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.999046,
+          -0.033463,
+          20.195134
+        ],
+        [
+          0.033463,
+          0.999046,
+          -16.820831
+        ]
+      ],
+      "hairBounds": {
+        "x": 90,
+        "y": 144,
+        "width": 319,
+        "height": 273
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 42,
+      "sourceFrame": 135,
+      "neckForeground": [
+        {
+          "x": 229.225,
+          "y": 399.649
+        },
+        {
+          "x": 242.127,
+          "y": 404.012
+        },
+        {
+          "x": 268.014,
+          "y": 409.733
+        },
+        {
+          "x": 288.952,
+          "y": 413.314
+        },
+        {
+          "x": 296.574,
+          "y": 427.548
+        },
+        {
+          "x": 303.782,
+          "y": 456.796
+        },
+        {
+          "x": 216.644,
+          "y": 456.401
+        },
+        {
+          "x": 215.717,
+          "y": 417.309
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "baf988cf217c59ece703aebda8a3603d8c5e6416514e1fe1f0dda1b4bbe158fd",
+      "renderRgbaSha256": "e2f3c715108811dac043bbbd859bc18c639ab0d110a74c3b89607b0fc8e790dc",
+      "headTransform": [
+        [
+          1.002385,
+          -0.027591,
+          17.606016
+        ],
+        [
+          0.027591,
+          1.002385,
+          -17.65861
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000958,
+          -0.027552,
+          18.308642
+        ],
+        [
+          0.027552,
+          1.000958,
+          -16.859829
+        ]
+      ],
+      "hairBounds": {
+        "x": 112,
+        "y": 143,
+        "width": 297,
+        "height": 274
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 43,
+      "sourceFrame": 136,
+      "neckForeground": [
+        {
+          "x": 229.634,
+          "y": 401.429
+        },
+        {
+          "x": 242.503,
+          "y": 405.78
+        },
+        {
+          "x": 268.326,
+          "y": 411.488
+        },
+        {
+          "x": 289.21,
+          "y": 415.062
+        },
+        {
+          "x": 296.813,
+          "y": 429.261
+        },
+        {
+          "x": 304.002,
+          "y": 458.436
+        },
+        {
+          "x": 217.081,
+          "y": 458.038
+        },
+        {
+          "x": 216.158,
+          "y": 419.043
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "2da26f7242991af4c4f0949ab7bcc650a02ee669cb0991f18dbdc2cbb166dec2",
+      "renderRgbaSha256": "7810df1e71266be54f343324a5735e024354c9a138acd5fe8cc60075f1e75658",
+      "headTransform": [
+        [
+          1.001654,
+          -0.02762,
+          17.945966
+        ],
+        [
+          0.02762,
+          1.001654,
+          -15.435291
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.998452,
+          -0.027532,
+          19.265464
+        ],
+        [
+          0.027532,
+          0.998452,
+          -14.048756
+        ]
+      ],
+      "hairBounds": {
+        "x": 92,
+        "y": 145,
+        "width": 317,
+        "height": 273
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 44,
+      "sourceFrame": 137,
+      "neckForeground": [
+        {
+          "x": 228.955,
+          "y": 406.273
+        },
+        {
+          "x": 241.812,
+          "y": 410.641
+        },
+        {
+          "x": 267.614,
+          "y": 416.383
+        },
+        {
+          "x": 288.483,
+          "y": 419.985
+        },
+        {
+          "x": 296.061,
+          "y": 434.188
+        },
+        {
+          "x": 303.205,
+          "y": 463.359
+        },
+        {
+          "x": 216.328,
+          "y": 462.836
+        },
+        {
+          "x": 215.461,
+          "y": 423.859
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "481ca8bfe97174e3d12aec8f664171287b87e5aff6d0b37f694d01e7b52629cb",
+      "renderRgbaSha256": "6ec1c122e474ad7ecc4bf08108827268b3ef71191755c7addbcf7d7ce0a4f79f",
+      "headTransform": [
+        [
+          1.004624,
+          -0.029149,
+          17.154116
+        ],
+        [
+          0.029149,
+          1.004624,
+          -11.384057
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.997926,
+          -0.028955,
+          19.287143
+        ],
+        [
+          0.028955,
+          0.997926,
+          -9.30506
+        ]
+      ],
+      "hairBounds": {
+        "x": 112,
+        "y": 185,
+        "width": 298,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 45,
+      "sourceFrame": 138,
+      "neckForeground": [
+        {
+          "x": 227.489,
+          "y": 412.068
+        },
+        {
+          "x": 240.369,
+          "y": 416.5
+        },
+        {
+          "x": 266.226,
+          "y": 422.359
+        },
+        {
+          "x": 287.145,
+          "y": 426.053
+        },
+        {
+          "x": 294.691,
+          "y": 440.328
+        },
+        {
+          "x": 301.743,
+          "y": 469.616
+        },
+        {
+          "x": 214.604,
+          "y": 468.754
+        },
+        {
+          "x": 213.886,
+          "y": 429.656
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "879be60bff158433a645e54254059a2f503f053853428fb8e948be195d522810",
+      "renderRgbaSha256": "a1da04742f2375b2b7ebad832532c8a2d12f461594cd6c4315d6226ff843d96e",
+      "headTransform": [
+        [
+          1.002847,
+          -0.032976,
+          17.891851
+        ],
+        [
+          0.032976,
+          1.002847,
+          -6.319436
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000839,
+          -0.03291,
+          18.79629
+        ],
+        [
+          0.03291,
+          1.000839,
+          -5.581596
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 186,
+        "width": 300,
+        "height": 243
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 46,
+      "sourceFrame": 139,
+      "neckForeground": [
+        {
+          "x": 227.178,
+          "y": 416.045
+        },
+        {
+          "x": 240.049,
+          "y": 420.433
+        },
+        {
+          "x": 265.881,
+          "y": 426.211
+        },
+        {
+          "x": 286.776,
+          "y": 429.84
+        },
+        {
+          "x": 294.35,
+          "y": 444.071
+        },
+        {
+          "x": 301.473,
+          "y": 473.292
+        },
+        {
+          "x": 214.472,
+          "y": 472.675
+        },
+        {
+          "x": 213.645,
+          "y": 433.642
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "aaa9701e28dac6511433722613b3d2ee689604732d702d0ed9f97227dffd2b25",
+      "renderRgbaSha256": "6ca36a76b4127cd3ef2b2884b50badd29b9f89675079ef956516d47a5a88e225",
+      "headTransform": [
+        [
+          1.002755,
+          -0.030158,
+          16.362635
+        ],
+        [
+          0.030158,
+          1.002755,
+          -2.028824
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.99932,
+          -0.030055,
+          17.651092
+        ],
+        [
+          0.030055,
+          0.99932,
+          -0.348662
+        ]
+      ],
+      "hairBounds": {
+        "x": 108,
+        "y": 159,
+        "width": 300,
+        "height": 274
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 47,
+      "sourceFrame": 140,
+      "neckForeground": [
+        {
+          "x": 226.919,
+          "y": 414.787
+        },
+        {
+          "x": 239.814,
+          "y": 419.167
+        },
+        {
+          "x": 265.69,
+          "y": 424.925
+        },
+        {
+          "x": 286.619,
+          "y": 428.537
+        },
+        {
+          "x": 294.22,
+          "y": 442.78
+        },
+        {
+          "x": 301.385,
+          "y": 472.035
+        },
+        {
+          "x": 214.257,
+          "y": 471.513
+        },
+        {
+          "x": 213.387,
+          "y": 432.424
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "1aa990f9a1801de3474807275fcd7a3269551ebad2d3364c5bb743bd1154ac7a",
+      "renderRgbaSha256": "833411cf48fb47243c4dfc69f45b000dad9df461b0808df732272c35427a9b8e",
+      "headTransform": [
+        [
+          1.003638,
+          -0.02909,
+          15.629123
+        ],
+        [
+          0.02909,
+          1.003638,
+          -2.791313
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.0008,
+          -0.029008,
+          16.635063
+        ],
+        [
+          0.029008,
+          1.0008,
+          -1.980964
+        ]
+      ],
+      "hairBounds": {
+        "x": 73,
+        "y": 158,
+        "width": 334,
+        "height": 274
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 48,
+      "sourceFrame": 141,
+      "neckForeground": [
+        {
+          "x": 226.861,
+          "y": 410.358
+        },
+        {
+          "x": 239.735,
+          "y": 414.753
+        },
+        {
+          "x": 265.574,
+          "y": 420.545
+        },
+        {
+          "x": 286.476,
+          "y": 424.185
+        },
+        {
+          "x": 294.047,
+          "y": 438.424
+        },
+        {
+          "x": 301.159,
+          "y": 467.659
+        },
+        {
+          "x": 214.126,
+          "y": 467.004
+        },
+        {
+          "x": 213.316,
+          "y": 427.956
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "4a7bf714896e22494510ac91425185bb450c50aef1fe60dedd22b2eb956a7c83",
+      "renderRgbaSha256": "44221e44e72b94a68e66592a1ffa4acc0c77f959451bc4b0110c4e1d781cfbf6",
+      "headTransform": [
+        [
+          1.004732,
+          -0.030661,
+          15.857592
+        ],
+        [
+          0.030661,
+          1.004732,
+          -7.870284
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.999683,
+          -0.030507,
+          17.439664
+        ],
+        [
+          0.030507,
+          0.999683,
+          -6.284581
+        ]
+      ],
+      "hairBounds": {
+        "x": 75,
+        "y": 154,
+        "width": 333,
+        "height": 274
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 49,
+      "sourceFrame": 142,
+      "neckForeground": [
+        {
+          "x": 226.705,
+          "y": 404.288
+        },
+        {
+          "x": 239.606,
+          "y": 408.695
+        },
+        {
+          "x": 265.5,
+          "y": 414.505
+        },
+        {
+          "x": 286.446,
+          "y": 418.156
+        },
+        {
+          "x": 294.031,
+          "y": 432.428
+        },
+        {
+          "x": 301.153,
+          "y": 461.728
+        },
+        {
+          "x": 213.931,
+          "y": 461.055
+        },
+        {
+          "x": 213.127,
+          "y": 421.922
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "57f6c31c1d216ba9328f3e0292b0b7c02815d43e927c719dcc535b5501b6ec17",
+      "renderRgbaSha256": "9eb85971ed375184247ec77504a241e5d99baa2ae73a556d0703b2a70fdef18b",
+      "headTransform": [
+        [
+          1.003931,
+          -0.030828,
+          15.937453
+        ],
+        [
+          0.030828,
+          1.003931,
+          -13.401042
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.001851,
+          -0.030764,
+          16.906893
+        ],
+        [
+          0.030764,
+          1.001851,
+          -13.300365
+        ]
+      ],
+      "hairBounds": {
+        "x": 75,
+        "y": 148,
+        "width": 332,
+        "height": 274
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 50,
+      "sourceFrame": 143,
+      "neckForeground": [
+        {
+          "x": 226.342,
+          "y": 399.939
+        },
+        {
+          "x": 239.267,
+          "y": 404.364
+        },
+        {
+          "x": 265.211,
+          "y": 410.203
+        },
+        {
+          "x": 286.199,
+          "y": 413.877
+        },
+        {
+          "x": 293.789,
+          "y": 428.184
+        },
+        {
+          "x": 300.907,
+          "y": 457.551
+        },
+        {
+          "x": 213.502,
+          "y": 456.816
+        },
+        {
+          "x": 212.723,
+          "y": 417.6
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "39b767cdd2052ccc96a8e6da11a967cac1cb99caa491a7cd4a411b06d9a92872",
+      "renderRgbaSha256": "c6af64e558c89002cac46b11bab3163d9527b7f3e559e640ecfe6460d8cf37fe",
+      "headTransform": [
+        [
+          1.002757,
+          -0.031487,
+          16.550112
+        ],
+        [
+          0.031487,
+          1.002757,
+          -17.807601
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.003928,
+          -0.031524,
+          16.394806
+        ],
+        [
+          0.031524,
+          1.003928,
+          -18.670116
+        ]
+      ],
+      "hairBounds": {
+        "x": 88,
+        "y": 174,
+        "width": 331,
+        "height": 243
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 51,
+      "sourceFrame": 144,
+      "neckForeground": [
+        {
+          "x": 226.148,
+          "y": 399.126
+        },
+        {
+          "x": 239.043,
+          "y": 403.553
+        },
+        {
+          "x": 264.93,
+          "y": 409.401
+        },
+        {
+          "x": 285.873,
+          "y": 413.085
+        },
+        {
+          "x": 293.436,
+          "y": 427.369
+        },
+        {
+          "x": 300.514,
+          "y": 456.681
+        },
+        {
+          "x": 213.288,
+          "y": 455.877
+        },
+        {
+          "x": 212.543,
+          "y": 416.74
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "88d1c7fc937129306bac60704927a00b16ddd4a23e8581105ba09c1b555a2703",
+      "renderRgbaSha256": "d7d85bc8ac1158453c46b2587035cb26d1b8e1562b48858153f2f925afeeb8bd",
+      "headTransform": [
+        [
+          1.003746,
+          -0.032337,
+          16.311574
+        ],
+        [
+          0.032337,
+          1.003746,
+          -19.348013
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.001859,
+          -0.032276,
+          16.968848
+        ],
+        [
+          0.032276,
+          1.001859,
+          -18.801692
+        ]
+      ],
+      "hairBounds": {
+        "x": 75,
+        "y": 178,
+        "width": 333,
+        "height": 238
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 52,
+      "sourceFrame": 145,
+      "neckForeground": [
+        {
+          "x": 225.955,
+          "y": 401.755
+        },
+        {
+          "x": 238.822,
+          "y": 406.14
+        },
+        {
+          "x": 264.647,
+          "y": 411.912
+        },
+        {
+          "x": 285.536,
+          "y": 415.537
+        },
+        {
+          "x": 293.109,
+          "y": 429.761
+        },
+        {
+          "x": 300.235,
+          "y": 458.971
+        },
+        {
+          "x": 213.263,
+          "y": 458.369
+        },
+        {
+          "x": 212.43,
+          "y": 419.349
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "ced7d231b129329ed64c297b3ec80c949ba28da30bff3636e59caf5383f0bd87",
+      "renderRgbaSha256": "052176aaf564c0771c544c351c3352cf790069030e7c1e25de0e76ea49879b91",
+      "headTransform": [
+        [
+          1.002168,
+          -0.029982,
+          15.257057
+        ],
+        [
+          0.029982,
+          1.002168,
+          -15.576231
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.998992,
+          -0.029887,
+          16.432451
+        ],
+        [
+          0.029887,
+          0.998992,
+          -14.466244
+        ]
+      ],
+      "hairBounds": {
+        "x": 87,
+        "y": 176,
+        "width": 319,
+        "height": 243
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 53,
+      "sourceFrame": 146,
+      "neckForeground": [
+        {
+          "x": 225.559,
+          "y": 407.017
+        },
+        {
+          "x": 238.446,
+          "y": 411.36
+        },
+        {
+          "x": 264.3,
+          "y": 417.047
+        },
+        {
+          "x": 285.21,
+          "y": 420.603
+        },
+        {
+          "x": 292.835,
+          "y": 434.808
+        },
+        {
+          "x": 300.061,
+          "y": 464.006
+        },
+        {
+          "x": 213.052,
+          "y": 463.697
+        },
+        {
+          "x": 212.088,
+          "y": 424.663
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "352a2723be5f9013f512e80cceca9ab64a9ca74b93d2aecdad831d516af6cf0a",
+      "renderRgbaSha256": "1549e6620fb1c15dfe62646d5367a12f14e18f09159d69fcb44e9523f7d17f5b",
+      "headTransform": [
+        [
+          1.002205,
+          -0.026603,
+          13.671934
+        ],
+        [
+          0.026603,
+          1.002205,
+          -9.410502
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.999497,
+          -0.026531,
+          14.548269
+        ],
+        [
+          0.026531,
+          0.999497,
+          -8.666348
+        ]
+      ],
+      "hairBounds": {
+        "x": 86,
+        "y": 151,
+        "width": 320,
+        "height": 273
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 54,
+      "sourceFrame": 147,
+      "neckForeground": [
+        {
+          "x": 225.107,
+          "y": 412.645
+        },
+        {
+          "x": 238.032,
+          "y": 416.962
+        },
+        {
+          "x": 263.953,
+          "y": 422.59
+        },
+        {
+          "x": 284.914,
+          "y": 426.096
+        },
+        {
+          "x": 292.592,
+          "y": 440.309
+        },
+        {
+          "x": 299.912,
+          "y": 469.545
+        },
+        {
+          "x": 212.729,
+          "y": 469.471
+        },
+        {
+          "x": 211.657,
+          "y": 430.363
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "75ff1e416118774d65b5e531d708af48124a4dee1f263eb0bafdb02af25c7f40",
+      "renderRgbaSha256": "e2626e4d0334564d687c1aa5a352130caa31ecfa849b5626fd880e5136936421",
+      "headTransform": [
+        [
+          1.001208,
+          -0.023866,
+          12.276565
+        ],
+        [
+          0.023866,
+          1.001208,
+          -3.355376
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.001551,
+          -0.023874,
+          12.551295
+        ],
+        [
+          0.023874,
+          1.001551,
+          -3.290907
+        ]
+      ],
+      "hairBounds": {
+        "x": 107,
+        "y": 156,
+        "width": 309,
+        "height": 274
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 55,
+      "sourceFrame": 148,
+      "neckForeground": [
+        {
+          "x": 225.371,
+          "y": 416.227
+        },
+        {
+          "x": 238.31,
+          "y": 420.48
+        },
+        {
+          "x": 264.246,
+          "y": 425.983
+        },
+        {
+          "x": 285.214,
+          "y": 429.388
+        },
+        {
+          "x": 292.956,
+          "y": 443.558
+        },
+        {
+          "x": 300.412,
+          "y": 472.746
+        },
+        {
+          "x": 213.268,
+          "y": 473.086
+        },
+        {
+          "x": 212.011,
+          "y": 434.001
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "6a241c2840671b576b292ab0b1103509b3b2013baa62496462c8e480275de301",
+      "renderRgbaSha256": "ef1e618cff0b63fd7ecfc51e73c242a05ca246afe0ff8dc4d5ceb0b83cba480a",
+      "headTransform": [
+        [
+          1.001038,
+          -0.019107,
+          10.25495
+        ],
+        [
+          0.019107,
+          1.001038,
+          1.28807
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.001212,
+          -0.01911,
+          10.936693
+        ],
+        [
+          0.01911,
+          1.001212,
+          1.48785
+        ]
+      ],
+      "hairBounds": {
+        "x": 86,
+        "y": 194,
+        "width": 318,
+        "height": 239
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 56,
+      "sourceFrame": 149,
+      "neckForeground": [
+        {
+          "x": 225.514,
+          "y": 415.777
+        },
+        {
+          "x": 238.452,
+          "y": 420.065
+        },
+        {
+          "x": 264.393,
+          "y": 425.636
+        },
+        {
+          "x": 285.368,
+          "y": 429.096
+        },
+        {
+          "x": 293.081,
+          "y": 443.295
+        },
+        {
+          "x": 300.469,
+          "y": 472.523
+        },
+        {
+          "x": 213.262,
+          "y": 472.647
+        },
+        {
+          "x": 212.1,
+          "y": 433.53
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "b675d9bb3d52b54bc26f9040b0351249a33a42be5fe6d25c8d214b041db46a02",
+      "renderRgbaSha256": "9b355cea19d3b9fdad1f0f132faa550613cf7406b99207deda36b1bf4e490d21",
+      "headTransform": [
+        [
+          1.003515,
+          -0.021642,
+          11.204521
+        ],
+        [
+          0.021642,
+          1.003515,
+          -0.231431
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.001893,
+          -0.021607,
+          11.95263
+        ],
+        [
+          0.021607,
+          1.001893,
+          0.203725
+        ]
+      ],
+      "hairBounds": {
+        "x": 85,
+        "y": 160,
+        "width": 320,
+        "height": 273
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 57,
+      "sourceFrame": 200,
+      "neckForeground": [
+        {
+          "x": 241.458,
+          "y": 418.666
+        },
+        {
+          "x": 254.548,
+          "y": 423.681
+        },
+        {
+          "x": 280.937,
+          "y": 430.627
+        },
+        {
+          "x": 302.323,
+          "y": 435.17
+        },
+        {
+          "x": 309.578,
+          "y": 450.121
+        },
+        {
+          "x": 315.791,
+          "y": 480.497
+        },
+        {
+          "x": 226.191,
+          "y": 476.515
+        },
+        {
+          "x": 226.841,
+          "y": 436.273
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 9,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "88253707ce1f049b409b48ab9be2d070002eca2867b3a39a62ccab3c5ce03230",
+      "renderRgbaSha256": "e8e5c7b837ccee733fe85c43181aea4d777cec60ad8460fa3aaae8a7fc5105ee",
+      "headTransform": [
+        [
+          1.020074,
+          -0.068847,
+          42.751101
+        ],
+        [
+          0.068847,
+          1.020074,
+          -13.975416
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.028295,
+          -0.069402,
+          41.631355
+        ],
+        [
+          0.069402,
+          1.028295,
+          -18.342149
+        ]
+      ],
+      "hairBounds": {
+        "x": 94,
+        "y": 157,
+        "width": 336,
+        "height": 280
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 58,
+      "sourceFrame": 201,
+      "neckForeground": [
+        {
+          "x": 242.176,
+          "y": 423.202
+        },
+        {
+          "x": 255.261,
+          "y": 428.161
+        },
+        {
+          "x": 281.628,
+          "y": 434.997
+        },
+        {
+          "x": 302.992,
+          "y": 439.452
+        },
+        {
+          "x": 310.289,
+          "y": 454.35
+        },
+        {
+          "x": 316.603,
+          "y": 484.648
+        },
+        {
+          "x": 227.149,
+          "y": 481.004
+        },
+        {
+          "x": 227.65,
+          "y": 440.831
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 4,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "31536d6f87ca58d12dd1680ad089a7cd70f9458617a966e5f9ca349b3836cb73",
+      "renderRgbaSha256": "c8c6e0101775127fc5a834b994b26389c701927078859bf464f3688a391bfe29",
+      "headTransform": [
+        [
+          1.022988,
+          -0.065257,
+          41.076489
+        ],
+        [
+          0.065257,
+          1.022988,
+          -9.464675
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.0267,
+          -0.065494,
+          41.100992
+        ],
+        [
+          0.065494,
+          1.0267,
+          -12.284371
+        ]
+      ],
+      "hairBounds": {
+        "x": 108,
+        "y": 200,
+        "width": 322,
+        "height": 242
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 59,
+      "sourceFrame": 202,
+      "neckForeground": [
+        {
+          "x": 242.837,
+          "y": 415.934
+        },
+        {
+          "x": 255.828,
+          "y": 421.048
+        },
+        {
+          "x": 282.044,
+          "y": 428.206
+        },
+        {
+          "x": 303.3,
+          "y": 432.924
+        },
+        {
+          "x": 310.389,
+          "y": 447.88
+        },
+        {
+          "x": 316.3,
+          "y": 478.187
+        },
+        {
+          "x": 227.106,
+          "y": 473.405
+        },
+        {
+          "x": 228.12,
+          "y": 433.335
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "9bd6af31ff5834388616e1a03e1ac753afac8c7cac4bfb8e3c5beaeeebcd9c6e",
+      "renderRgbaSha256": "db52cf65523d491f4fbd1fb46675cfd5b8359520477a2ec09bf44959a81bc3cd",
+      "headTransform": [
+        [
+          1.024296,
+          -0.078559,
+          46.652684
+        ],
+        [
+          0.078559,
+          1.024296,
+          -19.838183
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.023417,
+          -0.078492,
+          47.82036
+        ],
+        [
+          0.078492,
+          1.023417,
+          -21.092562
+        ]
+      ],
+      "hairBounds": {
+        "x": 121,
+        "y": 154,
+        "width": 332,
+        "height": 281
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 60,
+      "sourceFrame": 203,
+      "neckForeground": [
+        {
+          "x": 245.074,
+          "y": 407.745
+        },
+        {
+          "x": 258.042,
+          "y": 412.889
+        },
+        {
+          "x": 284.221,
+          "y": 420.111
+        },
+        {
+          "x": 305.449,
+          "y": 424.881
+        },
+        {
+          "x": 312.494,
+          "y": 439.845
+        },
+        {
+          "x": 318.321,
+          "y": 470.146
+        },
+        {
+          "x": 229.204,
+          "y": 465.134
+        },
+        {
+          "x": 230.322,
+          "y": 425.095
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "720bc268d7ea8ea4707f8d67f31dd336f8308a0fdafde4e44e811257e80b4589",
+      "renderRgbaSha256": "6bcb1cd80eb29b101503002fec0cb701e51ba2a8ed4b21d46da630f95d57755b",
+      "headTransform": [
+        [
+          1.022324,
+          -0.081097,
+          50.817243
+        ],
+        [
+          0.081097,
+          1.022324,
+          -28.700531
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.022476,
+          -0.081109,
+          51.339202
+        ],
+        [
+          0.081109,
+          1.022476,
+          -29.476198
+        ]
+      ],
+      "hairBounds": {
+        "x": 97,
+        "y": 145,
+        "width": 338,
+        "height": 280
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 61,
+      "sourceFrame": 204,
+      "neckForeground": [
+        {
+          "x": 251.384,
+          "y": 405.946
+        },
+        {
+          "x": 263.808,
+          "y": 411.726
+        },
+        {
+          "x": 289.067,
+          "y": 420.292
+        },
+        {
+          "x": 309.612,
+          "y": 426.175
+        },
+        {
+          "x": 315.669,
+          "y": 441.247
+        },
+        {
+          "x": 319.664,
+          "y": 471.289
+        },
+        {
+          "x": 232.566,
+          "y": 461.317
+        },
+        {
+          "x": 235.935,
+          "y": 422.121
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "ca7fe2af36647ef6a08f4486103ea48eed68cc57c88ebfee7752ffd16455e490",
+      "renderRgbaSha256": "3aa8cfafed42303b54cae35ae1ad6f5c6a2aab61d56ea5906182910905236551",
+      "headTransform": [
+        [
+          1.02764,
+          -0.141649,
+          78.415208
+        ],
+        [
+          0.141649,
+          1.02764,
+          -45.160033
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.997965,
+          -0.137559,
+          86.235349
+        ],
+        [
+          0.137559,
+          0.997965,
+          -33.757737
+        ]
+      ],
+      "hairBounds": {
+        "x": 113,
+        "y": 141,
+        "width": 335,
+        "height": 283
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 62,
+      "sourceFrame": 205,
+      "neckForeground": [
+        {
+          "x": 259.517,
+          "y": 416.137
+        },
+        {
+          "x": 271.365,
+          "y": 422.734
+        },
+        {
+          "x": 295.683,
+          "y": 433.002
+        },
+        {
+          "x": 315.54,
+          "y": 440.282
+        },
+        {
+          "x": 320.438,
+          "y": 455.594
+        },
+        {
+          "x": 322.225,
+          "y": 485.534
+        },
+        {
+          "x": 236.968,
+          "y": 469.442
+        },
+        {
+          "x": 243.106,
+          "y": 430.994
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 4,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "6a8865c7581bfc5ff588f25cd306d99ea7b65a8b757610df3cf841f7d8de9cdc",
+      "renderRgbaSha256": "f95e197ead19c274d1b34c00f25f243f24b439adf1521038ce3805cdd2399f96",
+      "headTransform": [
+        [
+          1.016092,
+          -0.216085,
+          119.031211
+        ],
+        [
+          0.216085,
+          1.016092,
+          -48.629691
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.975195,
+          -0.207388,
+          128.05251
+        ],
+        [
+          0.207388,
+          0.975195,
+          -29.73332
+        ]
+      ],
+      "hairBounds": {
+        "x": 133,
+        "y": 164,
+        "width": 353,
+        "height": 268
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 63,
+      "sourceFrame": 206,
+      "neckForeground": [
+        {
+          "x": 265.514,
+          "y": 432.385
+        },
+        {
+          "x": 277.079,
+          "y": 440.267
+        },
+        {
+          "x": 301.12,
+          "y": 453.081
+        },
+        {
+          "x": 320.853,
+          "y": 462.409
+        },
+        {
+          "x": 324.464,
+          "y": 478.603
+        },
+        {
+          "x": 323.519,
+          "y": 509.542
+        },
+        {
+          "x": 237.384,
+          "y": 485.078
+        },
+        {
+          "x": 247.266,
+          "y": 446.131
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 24,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "9f57b3e9761b98881b347fea217122ae6be729a3815f9b332c5edb0c279de7a8",
+      "renderRgbaSha256": "3d7546d0afc654e8659e8ef05200101b674211a3384e6006582d060f2a13da09",
+      "headTransform": [
+        [
+          1.010172,
+          -0.312165,
+          166.553283
+        ],
+        [
+          0.312165,
+          1.010172,
+          -49.570039
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.983068,
+          -0.303789,
+          171.826426
+        ],
+        [
+          0.303789,
+          0.983068,
+          -38.113755
+        ]
+      ],
+      "hairBounds": {
+        "x": 171,
+        "y": 192,
+        "width": 310,
+        "height": 258
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 64,
+      "sourceFrame": 207,
+      "neckForeground": [
+        {
+          "x": 267.907,
+          "y": 446.597
+        },
+        {
+          "x": 278.717,
+          "y": 455.413
+        },
+        {
+          "x": 301.492,
+          "y": 470.194
+        },
+        {
+          "x": 320.289,
+          "y": 481.146
+        },
+        {
+          "x": 322.489,
+          "y": 497.535
+        },
+        {
+          "x": 318.903,
+          "y": 528.176
+        },
+        {
+          "x": 235.466,
+          "y": 496.514
+        },
+        {
+          "x": 248.611,
+          "y": 458.685
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 19,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "b187e8ec6e743a91bc90a87458fb9db11003623135b2a4f94ccb3043cd0b7e3e",
+      "renderRgbaSha256": "6f6fb63497be218e52e67a636d9d522b6cebd6ca102fa8043a747d57d2848831",
+      "headTransform": [
+        [
+          0.979326,
+          -0.397612,
+          211.479426
+        ],
+        [
+          0.397612,
+          0.979326,
+          -41.273236
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.950179,
+          -0.385778,
+          215.136702
+        ],
+        [
+          0.385778,
+          0.950179,
+          -28.619076
+        ]
+      ],
+      "hairBounds": {
+        "x": 184,
+        "y": 205,
+        "width": 326,
+        "height": 259
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 65,
+      "sourceFrame": 208,
+      "neckForeground": [
+        {
+          "x": 266.346,
+          "y": 457.801
+        },
+        {
+          "x": 276.58,
+          "y": 467.267
+        },
+        {
+          "x": 298.38,
+          "y": 483.429
+        },
+        {
+          "x": 316.449,
+          "y": 495.523
+        },
+        {
+          "x": 317.624,
+          "y": 512.008
+        },
+        {
+          "x": 312.141,
+          "y": 542.35
+        },
+        {
+          "x": 230.88,
+          "y": 505.577
+        },
+        {
+          "x": 246.345,
+          "y": 468.659
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 37,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "cbe8d50d6c4566aaec20d8033a12d6f464f8f035d2118ff99da445a5d3aa2ae7",
+      "renderRgbaSha256": "853e8e26ce92903208930fbdc2fef344626f67b4b7c95b8739d443aec0ab9624",
+      "headTransform": [
+        [
+          0.979926,
+          -0.470878,
+          240.304716
+        ],
+        [
+          0.470878,
+          0.979926,
+          -41.075641
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.923836,
+          -0.443925,
+          243.2632
+        ],
+        [
+          0.443925,
+          0.923836,
+          -19.523033
+        ]
+      ],
+      "hairBounds": {
+        "x": 188,
+        "y": 197,
+        "width": 309,
+        "height": 284
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 66,
+      "sourceFrame": 209,
+      "neckForeground": [
+        {
+          "x": 262.358,
+          "y": 460.487
+        },
+        {
+          "x": 272.541,
+          "y": 469.996
+        },
+        {
+          "x": 294.252,
+          "y": 486.249
+        },
+        {
+          "x": 312.253,
+          "y": 498.421
+        },
+        {
+          "x": 313.35,
+          "y": 514.901
+        },
+        {
+          "x": 307.728,
+          "y": 545.199
+        },
+        {
+          "x": 226.69,
+          "y": 508.067
+        },
+        {
+          "x": 242.319,
+          "y": 471.245
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 34,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "c323f7e82a4d0a51985373d37b93980b7c832ba307b5a1fcfa58acf4d143168a",
+      "renderRgbaSha256": "42c609544c57fbc821eb2f9cb2227e6aefdcf842351b454e89f78d2cb82dec29",
+      "headTransform": [
+        [
+          0.973795,
+          -0.473577,
+          239.692233
+        ],
+        [
+          0.473577,
+          0.973795,
+          -38.398809
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.921179,
+          -0.447989,
+          241.531649
+        ],
+        [
+          0.447989,
+          0.921179,
+          -16.649692
+        ]
+      ],
+      "hairBounds": {
+        "x": 186,
+        "y": 191,
+        "width": 307,
+        "height": 290
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0.5
+    },
+    {
+      "frameId": 67,
+      "sourceFrame": 210,
+      "neckForeground": [
+        {
+          "x": 252.479,
+          "y": 420.775
+        },
+        {
+          "x": 262.359,
+          "y": 429.785
+        },
+        {
+          "x": 283.378,
+          "y": 445.139
+        },
+        {
+          "x": 300.791,
+          "y": 456.617
+        },
+        {
+          "x": 302.03,
+          "y": 472.421
+        },
+        {
+          "x": 296.976,
+          "y": 501.562
+        },
+        {
+          "x": 218.784,
+          "y": 466.839
+        },
+        {
+          "x": 233.368,
+          "y": 431.325
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "bdebc161137f774408d351706cc25fc7c36c3cdbba50b75a90ea75640c8b25e0",
+      "renderRgbaSha256": "35b6d3bcd877799114dcd7c97bdbc050a1e6aea1b74d37021ae7e6eadbd50ecf",
+      "headTransform": [
+        [
+          0.96107,
+          -0.453511,
+          217.523328
+        ],
+        [
+          0.453511,
+          0.96107,
+          -65.776732
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.889112,
+          -0.419555,
+          227.11335
+        ],
+        [
+          0.419555,
+          0.889112,
+          -36.902333
+        ]
+      ],
+      "hairBounds": {
+        "x": 169,
+        "y": 183,
+        "width": 303,
+        "height": 261
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 1.0
+    },
+    {
+      "frameId": 68,
+      "sourceFrame": 211,
+      "neckForeground": [
+        {
+          "x": 242.029,
+          "y": 384.432
+        },
+        {
+          "x": 255.094,
+          "y": 390.155
+        },
+        {
+          "x": 281.583,
+          "y": 398.475
+        },
+        {
+          "x": 303.102,
+          "y": 404.114
+        },
+        {
+          "x": 309.761,
+          "y": 419.656
+        },
+        {
+          "x": 314.625,
+          "y": 450.826
+        },
+        {
+          "x": 223.748,
+          "y": 442.498
+        },
+        {
+          "x": 226.331,
+          "y": 401.629
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 7,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "14371a9f531bf0aedd4dc088634a27af2b1665365df45782f12126b13a68b327",
+      "renderRgbaSha256": "610d39d7693c9a07d2169ec4009c802d6901598fd6c544b00c17bd92682e740b",
+      "headTransform": [
+        [
+          1.035448,
+          -0.118938,
+          61.273599
+        ],
+        [
+          0.118938,
+          1.035448,
+          -63.955656
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.041809,
+          -0.119669,
+          59.811723
+        ],
+        [
+          0.119669,
+          1.041809,
+          -69.276506
+        ]
+      ],
+      "hairBounds": {
+        "x": 131,
+        "y": 119,
+        "width": 310,
+        "height": 285
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0.5
+    },
+    {
+      "frameId": 69,
+      "sourceFrame": 212,
+      "neckForeground": [
+        {
+          "x": 232.736,
+          "y": 336.917
+        },
+        {
+          "x": 246.215,
+          "y": 341.383
+        },
+        {
+          "x": 273.241,
+          "y": 347.185
+        },
+        {
+          "x": 295.092,
+          "y": 350.787
+        },
+        {
+          "x": 303.128,
+          "y": 365.58
+        },
+        {
+          "x": 310.828,
+          "y": 396.028
+        },
+        {
+          "x": 219.976,
+          "y": 396.165
+        },
+        {
+          "x": 218.763,
+          "y": 355.413
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 4,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "60dccba52621a2f3ac9acc24c88669ca94fbafbfb96bfb606f7806062446c2ba",
+      "renderRgbaSha256": "fe5743077ba227384ca27d818f9f0a7c7ac89e1ed9a13d13a2dc178e3ea862ad",
+      "headTransform": [
+        [
+          1.050331,
+          -0.022566,
+          9.092329
+        ],
+        [
+          0.022566,
+          1.050331,
+          -96.795088
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.043764,
+          -0.022425,
+          10.214221
+        ],
+        [
+          0.022425,
+          1.043764,
+          -96.004798
+        ]
+      ],
+      "hairBounds": {
+        "x": 71,
+        "y": 70,
+        "width": 351,
+        "height": 287
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 70,
+      "sourceFrame": 213,
+      "neckForeground": [
+        {
+          "x": 223.574,
+          "y": 296.951
+        },
+        {
+          "x": 237.224,
+          "y": 300.959
+        },
+        {
+          "x": 264.483,
+          "y": 305.839
+        },
+        {
+          "x": 286.487,
+          "y": 308.694
+        },
+        {
+          "x": 295.042,
+          "y": 323.228
+        },
+        {
+          "x": 303.799,
+          "y": 353.45
+        },
+        {
+          "x": 212.836,
+          "y": 356.712
+        },
+        {
+          "x": 210.22,
+          "y": 315.951
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "622680276deeb2cf008d8326b500c068d6fd9f293f7cb383f6a43e63796063e6",
+      "renderRgbaSha256": "49612599988d9fb2f619d7a083403bb22fdb52ac4cf2cb281e4b493c923fa797",
+      "headTransform": [
+        [
+          1.04579,
+          0.01345,
+          -13.961997
+        ],
+        [
+          -0.01345,
+          1.04579,
+          -128.55895
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.045855,
+          0.013451,
+          -14.120669
+        ],
+        [
+          -0.013451,
+          1.045855,
+          -128.863817
+        ]
+      ],
+      "hairBounds": {
+        "x": 56,
+        "y": 32,
+        "width": 351,
+        "height": 283
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 71,
+      "sourceFrame": 214,
+      "neckForeground": [
+        {
+          "x": 219.875,
+          "y": 271.056
+        },
+        {
+          "x": 233.487,
+          "y": 274.8
+        },
+        {
+          "x": 260.618,
+          "y": 279.175
+        },
+        {
+          "x": 282.499,
+          "y": 281.631
+        },
+        {
+          "x": 291.237,
+          "y": 295.906
+        },
+        {
+          "x": 300.443,
+          "y": 325.744
+        },
+        {
+          "x": 210.243,
+          "y": 330.537
+        },
+        {
+          "x": 206.949,
+          "y": 290.137
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "36eec423ef1c48fd3dc1df210b621b1912c08989e0db64ce0d7eac66a0a77e29",
+      "renderRgbaSha256": "af4df830a695e1e1e61971edc9366db008c9a487e90e646e9b0a7d2cbcb2253f",
+      "headTransform": [
+        [
+          1.046878,
+          0.031522,
+          -26.110437
+        ],
+        [
+          -0.031522,
+          1.046878,
+          -149.234614
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.037498,
+          0.03124,
+          -23.258332
+        ],
+        [
+          -0.03124,
+          1.037498,
+          -147.383039
+        ]
+      ],
+      "hairBounds": {
+        "x": 90,
+        "y": 8,
+        "width": 311,
+        "height": 283
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 72,
+      "sourceFrame": 215,
+      "neckForeground": [
+        {
+          "x": 217.633,
+          "y": 259.347
+        },
+        {
+          "x": 231.467,
+          "y": 262.81
+        },
+        {
+          "x": 258.967,
+          "y": 266.596
+        },
+        {
+          "x": 281.12,
+          "y": 268.566
+        },
+        {
+          "x": 290.277,
+          "y": 282.778
+        },
+        {
+          "x": 300.269,
+          "y": 312.694
+        },
+        {
+          "x": 209.293,
+          "y": 319.638
+        },
+        {
+          "x": 205.026,
+          "y": 278.917
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 4,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "d0ab0dd487215ec3d2f87be58b96c2586221c2bae00ed2ac6f5f6a7059e1ddf6",
+      "renderRgbaSha256": "1260d83259c81e39bd25cd72d7e7658c9a86f3c8547e0d0e711b563c4316bfdc",
+      "headTransform": [
+        [
+          1.047795,
+          0.055784,
+          -37.297685
+        ],
+        [
+          -0.055784,
+          1.047795,
+          -156.332888
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.046976,
+          0.05574,
+          -37.649069
+        ],
+        [
+          -0.05574,
+          1.046976,
+          -157.539139
+        ]
+      ],
+      "hairBounds": {
+        "x": 45,
+        "y": 26,
+        "width": 378,
+        "height": 253
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 73,
+      "sourceFrame": 216,
+      "neckForeground": [
+        {
+          "x": 217.306,
+          "y": 255.509
+        },
+        {
+          "x": 231.12,
+          "y": 258.931
+        },
+        {
+          "x": 258.574,
+          "y": 262.639
+        },
+        {
+          "x": 280.687,
+          "y": 264.55
+        },
+        {
+          "x": 289.861,
+          "y": 278.71
+        },
+        {
+          "x": 299.908,
+          "y": 308.54
+        },
+        {
+          "x": 209.135,
+          "y": 315.699
+        },
+        {
+          "x": 204.773,
+          "y": 275.071
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 4,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "ccb4c827a21e4415f27d92ce85879ec176ed87502f36f0098eace7ce1d3c416f",
+      "renderRgbaSha256": "1957f4adbd113d46b7767e623f38b657fd52b9db71f3fc81061926ab6847d825",
+      "headTransform": [
+        [
+          1.042439,
+          0.058134,
+          -37.43041
+        ],
+        [
+          -0.058134,
+          1.042439,
+          -159.337297
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.044708,
+          0.058261,
+          -38.506364
+        ],
+        [
+          -0.058261,
+          1.044708,
+          -159.887035
+        ]
+      ],
+      "hairBounds": {
+        "x": 43,
+        "y": 21,
+        "width": 352,
+        "height": 253
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 74,
+      "sourceFrame": 217,
+      "neckForeground": [
+        {
+          "x": 218.08,
+          "y": 258.534
+        },
+        {
+          "x": 231.862,
+          "y": 262.31
+        },
+        {
+          "x": 259.329,
+          "y": 266.713
+        },
+        {
+          "x": 281.48,
+          "y": 269.179
+        },
+        {
+          "x": 290.338,
+          "y": 283.62
+        },
+        {
+          "x": 299.685,
+          "y": 313.813
+        },
+        {
+          "x": 208.387,
+          "y": 318.751
+        },
+        {
+          "x": 205.015,
+          "y": 277.86
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "f16784bcf358776103ac2d9cef00b12dc2879c706fb77bb78593d6a9bce916d2",
+      "renderRgbaSha256": "7eff9abf8dd67ae9cafe2cfd7a19feaad446701996c579d90240da6865aab0a7",
+      "headTransform": [
+        [
+          1.046011,
+          0.032483,
+          -27.10082
+        ],
+        [
+          -0.032483,
+          1.046011,
+          -161.718656
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.050147,
+          0.032611,
+          -28.42317
+        ],
+        [
+          -0.032611,
+          1.050147,
+          -164.787016
+        ]
+      ],
+      "hairBounds": {
+        "x": 90,
+        "y": 26,
+        "width": 309,
+        "height": 252
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 75,
+      "sourceFrame": 218,
+      "neckForeground": [
+        {
+          "x": 221.822,
+          "y": 274.441
+        },
+        {
+          "x": 235.354,
+          "y": 278.544
+        },
+        {
+          "x": 262.404,
+          "y": 283.632
+        },
+        {
+          "x": 284.247,
+          "y": 286.663
+        },
+        {
+          "x": 292.623,
+          "y": 301.183
+        },
+        {
+          "x": 301.062,
+          "y": 331.297
+        },
+        {
+          "x": 210.627,
+          "y": 333.743
+        },
+        {
+          "x": 208.384,
+          "y": 293.208
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "fb764aeeed0e00a02d68901ec0d796dc3969bbc3737aacb168b9756e71a9b261",
+      "renderRgbaSha256": "752931b0d7a618791354bafb4d83c4e70e1f7d1944e05090afeb7c8a4d309b44",
+      "headTransform": [
+        [
+          1.046984,
+          0.004249,
+          -11.611173
+        ],
+        [
+          -0.004249,
+          1.046984,
+          -153.097132
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.039571,
+          0.004219,
+          -10.692275
+        ],
+        [
+          -0.004219,
+          1.039571,
+          -150.846652
+        ]
+      ],
+      "hairBounds": {
+        "x": 91,
+        "y": 9,
+        "width": 343,
+        "height": 284
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 76,
+      "sourceFrame": 219,
+      "neckForeground": [
+        {
+          "x": 228.191,
+          "y": 300.459
+        },
+        {
+          "x": 241.412,
+          "y": 305.166
+        },
+        {
+          "x": 267.989,
+          "y": 311.487
+        },
+        {
+          "x": 289.502,
+          "y": 315.521
+        },
+        {
+          "x": 297.12,
+          "y": 330.312
+        },
+        {
+          "x": 304.065,
+          "y": 360.564
+        },
+        {
+          "x": 214.295,
+          "y": 358.722
+        },
+        {
+          "x": 213.983,
+          "y": 318.43
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 20,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "db8d024482cc3bd1a4c6ca72097033aa60edd7cb0e30877f7b179e9649f25816",
+      "renderRgbaSha256": "27551d576333f045c51dbc017efd702d129d90c917e34571fcd5f9a5c8cd41b3",
+      "headTransform": [
+        [
+          1.049266,
+          -0.045679,
+          13.759029
+        ],
+        [
+          0.045679,
+          1.049266,
+          -138.570565
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.030811,
+          -0.044876,
+          17.750495
+        ],
+        [
+          0.044876,
+          1.030811,
+          -132.135821
+        ]
+      ],
+      "hairBounds": {
+        "x": 70,
+        "y": 33,
+        "width": 372,
+        "height": 287
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 77,
+      "sourceFrame": 220,
+      "neckForeground": [
+        {
+          "x": 238.113,
+          "y": 334.807
+        },
+        {
+          "x": 250.895,
+          "y": 339.981
+        },
+        {
+          "x": 276.721,
+          "y": 347.3
+        },
+        {
+          "x": 297.671,
+          "y": 352.162
+        },
+        {
+          "x": 304.531,
+          "y": 367.002
+        },
+        {
+          "x": 310.081,
+          "y": 396.992
+        },
+        {
+          "x": 222.029,
+          "y": 391.422
+        },
+        {
+          "x": 223.411,
+          "y": 351.854
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 18,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "e7cccb4ba6d1fbed9cc2d3be7bbc657ece718f89ec366a96b41d244e0525896d",
+      "renderRgbaSha256": "4a335d44bae00ec4c333c1d3a05d95d7a1efff60a9f4a6804f3df67b5798277d",
+      "headTransform": [
+        [
+          1.040596,
+          -0.089881,
+          43.201071
+        ],
+        [
+          0.089881,
+          1.040596,
+          -110.560656
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.010088,
+          -0.087246,
+          49.644301
+        ],
+        [
+          0.087246,
+          1.010088,
+          -98.698025
+        ]
+      ],
+      "hairBounds": {
+        "x": 106,
+        "y": 67,
+        "width": 327,
+        "height": 286
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 78,
+      "sourceFrame": 221,
+      "neckForeground": [
+        {
+          "x": 249.424,
+          "y": 387.853
+        },
+        {
+          "x": 261.955,
+          "y": 393.738
+        },
+        {
+          "x": 287.446,
+          "y": 402.484
+        },
+        {
+          "x": 308.184,
+          "y": 408.502
+        },
+        {
+          "x": 314.25,
+          "y": 423.753
+        },
+        {
+          "x": 318.178,
+          "y": 454.121
+        },
+        {
+          "x": 230.209,
+          "y": 443.732
+        },
+        {
+          "x": 233.755,
+          "y": 404.14
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "ec0b69ded066280cca2e618bd22f22cb97e933b22f83e504626aae6e54cc6cd1",
+      "renderRgbaSha256": "4dcee14dc142415f4804914f7f8e71bf5d8ebaf1ec2df78efb18d0215e451b11",
+      "headTransform": [
+        [
+          1.036688,
+          -0.146671,
+          79.199696
+        ],
+        [
+          0.146671,
+          1.036688,
+          -66.727495
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.007852,
+          -0.142591,
+          84.14269
+        ],
+        [
+          0.142591,
+          1.007852,
+          -57.021925
+        ]
+      ],
+      "hairBounds": {
+        "x": 113,
+        "y": 121,
+        "width": 338,
+        "height": 287
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0.275
+    },
+    {
+      "frameId": 79,
+      "sourceFrame": 222,
+      "neckForeground": [
+        {
+          "x": 262.82,
+          "y": 446.43
+        },
+        {
+          "x": 274.921,
+          "y": 453.366
+        },
+        {
+          "x": 299.801,
+          "y": 464.238
+        },
+        {
+          "x": 320.13,
+          "y": 471.98
+        },
+        {
+          "x": 324.972,
+          "y": 487.79
+        },
+        {
+          "x": 326.428,
+          "y": 518.606
+        },
+        {
+          "x": 238.948,
+          "y": 500.965
+        },
+        {
+          "x": 245.752,
+          "y": 461.501
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 17,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "10b3be3cb2a43affba1742cdf286a11413fd81ac403a2250f63a84c0ef3220fe",
+      "renderRgbaSha256": "1bce624a86ecf38ddf22070cf4cdaa76536dc10146cbc223d985f5630e606c29",
+      "headTransform": [
+        [
+          1.025996,
+          -0.231555,
+          130.994504
+        ],
+        [
+          0.231555,
+          1.025996,
+          -26.96625
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.000328,
+          -0.225762,
+          133.309256
+        ],
+        [
+          0.225762,
+          1.000328,
+          -13.823501
+        ]
+      ],
+      "hairBounds": {
+        "x": 142,
+        "y": 175,
+        "width": 360,
+        "height": 287
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0.55
+    },
+    {
+      "frameId": 80,
+      "sourceFrame": 223,
+      "neckForeground": [
+        {
+          "x": 277.161,
+          "y": 475.42
+        },
+        {
+          "x": 288.352,
+          "y": 483.625
+        },
+        {
+          "x": 311.739,
+          "y": 497.145
+        },
+        {
+          "x": 330.975,
+          "y": 507.064
+        },
+        {
+          "x": 334.0,
+          "y": 523.234
+        },
+        {
+          "x": 332.007,
+          "y": 553.862
+        },
+        {
+          "x": 247.485,
+          "y": 526.676
+        },
+        {
+          "x": 258.608,
+          "y": 488.418
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "c9a739e2d1eff6e3b9d24b39131994d0e68691b0d535937b4b5fc8414737c34d",
+      "renderRgbaSha256": "5672eb9c4974a317e478b4ba8d590aae0887a70225a01cea41cba514526fae0c",
+      "headTransform": [
+        [
+          0.997669,
+          -0.34639,
+          195.969811
+        ],
+        [
+          0.34639,
+          0.997669,
+          -10.987264
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.96382,
+          -0.334637,
+          200.394421
+        ],
+        [
+          0.334637,
+          0.96382,
+          5.96393
+        ]
+      ],
+      "hairBounds": {
+        "x": 187,
+        "y": 207,
+        "width": 308,
+        "height": 284
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0.275
+    },
+    {
+      "frameId": 81,
+      "sourceFrame": 224,
+      "neckForeground": [
+        {
+          "x": 277.424,
+          "y": 481.016
+        },
+        {
+          "x": 287.925,
+          "y": 489.821
+        },
+        {
+          "x": 310.1,
+          "y": 504.646
+        },
+        {
+          "x": 328.418,
+          "y": 515.657
+        },
+        {
+          "x": 330.36,
+          "y": 531.785
+        },
+        {
+          "x": 326.426,
+          "y": 561.837
+        },
+        {
+          "x": 244.887,
+          "y": 529.617
+        },
+        {
+          "x": 258.307,
+          "y": 492.632
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 8,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "cf4be35f8d8f373bcdf59f9e840780c9ea26ed7fa49460b7db51b2d0b408ea1a",
+      "renderRgbaSha256": "44374be963d85da05122fb7cedec232f08592e185739e8b18199cb264f30944d",
+      "headTransform": [
+        [
+          0.966765,
+          -0.407957,
+          228.58755
+        ],
+        [
+          0.407957,
+          0.966765,
+          -7.163157
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.928226,
+          -0.391694,
+          231.952779
+        ],
+        [
+          0.391694,
+          0.928226,
+          13.487567
+        ]
+      ],
+      "hairBounds": {
+        "x": 196,
+        "y": 218,
+        "width": 302,
+        "height": 277
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 82,
+      "sourceFrame": 225,
+      "neckForeground": [
+        {
+          "x": 274.168,
+          "y": 474.714
+        },
+        {
+          "x": 284.7,
+          "y": 483.413
+        },
+        {
+          "x": 306.914,
+          "y": 498.027
+        },
+        {
+          "x": 325.254,
+          "y": 508.867
+        },
+        {
+          "x": 327.309,
+          "y": 524.929
+        },
+        {
+          "x": 323.611,
+          "y": 554.915
+        },
+        {
+          "x": 242.094,
+          "y": 523.399
+        },
+        {
+          "x": 255.198,
+          "y": 486.434
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "0f6e7942230549d9916d5646d9453c1bc0dfd4eb3e0b98ff30524e01264d1a1c",
+      "renderRgbaSha256": "24dc74abf9801c8b63209d7947fcb5f19302646bb7e93b026b4f623fc9a739da",
+      "headTransform": [
+        [
+          0.967601,
+          -0.399886,
+          221.952568
+        ],
+        [
+          0.399886,
+          0.967601,
+          -12.701905
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.928155,
+          -0.383584,
+          225.387152
+        ],
+        [
+          0.383584,
+          0.928155,
+          9.014476
+        ]
+      ],
+      "hairBounds": {
+        "x": 192,
+        "y": 211,
+        "width": 302,
+        "height": 277
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 83,
+      "sourceFrame": 226,
+      "neckForeground": [
+        {
+          "x": 269.516,
+          "y": 464.518
+        },
+        {
+          "x": 280.664,
+          "y": 472.841
+        },
+        {
+          "x": 303.991,
+          "y": 486.599
+        },
+        {
+          "x": 323.19,
+          "y": 496.71
+        },
+        {
+          "x": 326.082,
+          "y": 512.948
+        },
+        {
+          "x": 323.816,
+          "y": 543.635
+        },
+        {
+          "x": 239.319,
+          "y": 515.645
+        },
+        {
+          "x": 250.803,
+          "y": 477.387
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 7,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "d4a800e2cc169d41cfac14cccfb6c40312355c9c7b433aa17c4a4b20cf51e0ae",
+      "renderRgbaSha256": "66bfc829c0ad482a92709f72416ae83cd7767a633700936bb3763debf73ca0ca",
+      "headTransform": [
+        [
+          0.983979,
+          -0.351245,
+          195.09723
+        ],
+        [
+          0.351245,
+          0.983979,
+          -18.259165
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.963328,
+          -0.343873,
+          196.645469
+        ],
+        [
+          0.343873,
+          0.963328,
+          -6.786554
+        ]
+      ],
+      "hairBounds": {
+        "x": 183,
+        "y": 222,
+        "width": 304,
+        "height": 257
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 84,
+      "sourceFrame": 227,
+      "neckForeground": [
+        {
+          "x": 266.091,
+          "y": 454.462
+        },
+        {
+          "x": 277.471,
+          "y": 462.412
+        },
+        {
+          "x": 301.167,
+          "y": 475.396
+        },
+        {
+          "x": 320.631,
+          "y": 484.875
+        },
+        {
+          "x": 324.028,
+          "y": 500.977
+        },
+        {
+          "x": 322.735,
+          "y": 531.651
+        },
+        {
+          "x": 237.588,
+          "y": 506.401
+        },
+        {
+          "x": 247.835,
+          "y": 467.886
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 5,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "ea9f4f33713d343953533a0d0aa75b41df7f15543ddd9a6fad3e68738a483f57",
+      "renderRgbaSha256": "90630249bf3500097d46267c0ae382c1d4d22a3981f0d27e7abad012de338cc6",
+      "headTransform": [
+        [
+          0.987158,
+          -0.317603,
+          177.569064
+        ],
+        [
+          0.317603,
+          0.987158,
+          -22.937919
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.971519,
+          -0.312571,
+          178.568098
+        ],
+        [
+          0.312571,
+          0.971519,
+          -13.251173
+        ]
+      ],
+      "hairBounds": {
+        "x": 177,
+        "y": 214,
+        "width": 304,
+        "height": 254
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 85,
+      "sourceFrame": 228,
+      "neckForeground": [
+        {
+          "x": 262.105,
+          "y": 446.621
+        },
+        {
+          "x": 273.804,
+          "y": 454.227
+        },
+        {
+          "x": 298.045,
+          "y": 466.481
+        },
+        {
+          "x": 317.917,
+          "y": 475.354
+        },
+        {
+          "x": 321.866,
+          "y": 491.417
+        },
+        {
+          "x": 321.593,
+          "y": 522.278
+        },
+        {
+          "x": 235.204,
+          "y": 499.754
+        },
+        {
+          "x": 244.212,
+          "y": 460.717
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 7,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "242952f302062d30780287487affa04fd377d781e7f1ca3f1f88b83748280a4f",
+      "renderRgbaSha256": "beb477f0cc64cd99f66488d0c0f8dd1b89c22ad4a81da984caf80562708ba7d2",
+      "headTransform": [
+        [
+          0.994477,
+          -0.283857,
+          158.226171
+        ],
+        [
+          0.283857,
+          0.994477,
+          -26.091243
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.986502,
+          -0.281581,
+          158.550215
+        ],
+        [
+          0.281581,
+          0.986502,
+          -20.356161
+        ]
+      ],
+      "hairBounds": {
+        "x": 157,
+        "y": 181,
+        "width": 317,
+        "height": 280
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 86,
+      "sourceFrame": 229,
+      "neckForeground": [
+        {
+          "x": 259.434,
+          "y": 442.593
+        },
+        {
+          "x": 271.447,
+          "y": 449.73
+        },
+        {
+          "x": 296.2,
+          "y": 461.009
+        },
+        {
+          "x": 316.443,
+          "y": 469.081
+        },
+        {
+          "x": 321.047,
+          "y": 484.995
+        },
+        {
+          "x": 322.023,
+          "y": 515.886
+        },
+        {
+          "x": 234.669,
+          "y": 496.849
+        },
+        {
+          "x": 242.101,
+          "y": 457.423
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 14,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "0759a580fd77d31f7ab88f215bc9a37ffc31e43691d299ca2c53114cda2b64e6",
+      "renderRgbaSha256": "5e10deb50397cd4ca2ebe368fce25a48091662562034c73ab2d2543886a05745",
+      "headTransform": [
+        [
+          1.006766,
+          -0.243773,
+          135.923092
+        ],
+        [
+          0.243773,
+          1.006766,
+          -25.484652
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.998518,
+          -0.241776,
+          136.890715
+        ],
+        [
+          0.241776,
+          0.998518,
+          -20.473941
+        ]
+      ],
+      "hairBounds": {
+        "x": 145,
+        "y": 206,
+        "width": 323,
+        "height": 252
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 87,
+      "sourceFrame": 230,
+      "neckForeground": [
+        {
+          "x": 256.201,
+          "y": 439.332
+        },
+        {
+          "x": 268.143,
+          "y": 446.387
+        },
+        {
+          "x": 292.739,
+          "y": 457.521
+        },
+        {
+          "x": 312.853,
+          "y": 465.484
+        },
+        {
+          "x": 317.461,
+          "y": 481.268
+        },
+        {
+          "x": 318.507,
+          "y": 511.927
+        },
+        {
+          "x": 231.753,
+          "y": 493.247
+        },
+        {
+          "x": 239.033,
+          "y": 454.095
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 16,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "9f2df4ee86c34353a21763cb89197507a6b40fefaf32a80f2a3712d9587d1581",
+      "renderRgbaSha256": "c4be263a3bcdaf42ff6ce2cb036b0d3c7ec3353af34c4430ef84702c23d04893",
+      "headTransform": [
+        [
+          1.009782,
+          -0.241849,
+          130.300784
+        ],
+        [
+          0.241849,
+          1.009782,
+          -28.075911
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.991704,
+          -0.237519,
+          133.425189
+        ],
+        [
+          0.237519,
+          0.991704,
+          -19.995675
+        ]
+      ],
+      "hairBounds": {
+        "x": 140,
+        "y": 173,
+        "width": 324,
+        "height": 283
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 88,
+      "sourceFrame": 231,
+      "neckForeground": [
+        {
+          "x": 253.868,
+          "y": 438.14
+        },
+        {
+          "x": 266.103,
+          "y": 444.821
+        },
+        {
+          "x": 291.187,
+          "y": 455.171
+        },
+        {
+          "x": 311.66,
+          "y": 462.488
+        },
+        {
+          "x": 316.824,
+          "y": 478.186
+        },
+        {
+          "x": 318.913,
+          "y": 508.947
+        },
+        {
+          "x": 231.139,
+          "y": 493.123
+        },
+        {
+          "x": 237.125,
+          "y": 453.55
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 13,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "8fd8b600aa99a58389ded6c21cc07b2f5b63747b88107a289046d098a157a5f7",
+      "renderRgbaSha256": "d0fbffeb88ed840af547451943bffa8ccc5faa2c25418ea35c00b34aa6caab74",
+      "headTransform": [
+        [
+          1.02296,
+          -0.208798,
+          112.225732
+        ],
+        [
+          0.208798,
+          1.02296,
+          -26.05495
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.004183,
+          -0.204965,
+          114.975289
+        ],
+        [
+          0.204965,
+          1.004183,
+          -19.077706
+        ]
+      ],
+      "hairBounds": {
+        "x": 142,
+        "y": 205,
+        "width": 319,
+        "height": 251
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 89,
+      "sourceFrame": 232,
+      "neckForeground": [
+        {
+          "x": 250.248,
+          "y": 427.052
+        },
+        {
+          "x": 263.148,
+          "y": 433.017
+        },
+        {
+          "x": 289.369,
+          "y": 441.841
+        },
+        {
+          "x": 310.694,
+          "y": 447.892
+        },
+        {
+          "x": 317.014,
+          "y": 463.511
+        },
+        {
+          "x": 321.231,
+          "y": 494.662
+        },
+        {
+          "x": 230.864,
+          "y": 484.531
+        },
+        {
+          "x": 234.262,
+          "y": 443.867
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 10,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+      "renderRgbaSha256": "cb7a9c67275230fd43a5dd3cfa632130256bc4e8563abe75b450d635881e85f7",
+      "headTransform": [
+        [
+          1.030579,
+          -0.139587,
+          78.570521
+        ],
+        [
+          0.139587,
+          1.030579,
+          -26.188294
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.035476,
+          -0.14025,
+          77.874909
+        ],
+        [
+          0.14025,
+          1.035476,
+          -28.629001
+        ]
+      ],
+      "hairBounds": {
+        "x": 141,
+        "y": 160,
+        "width": 308,
+        "height": 284
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 90,
+      "sourceFrame": 233,
+      "neckForeground": [
+        {
+          "x": 241.553,
+          "y": 400.341
+        },
+        {
+          "x": 254.567,
+          "y": 405.943
+        },
+        {
+          "x": 280.932,
+          "y": 414.04
+        },
+        {
+          "x": 302.343,
+          "y": 419.504
+        },
+        {
+          "x": 309.057,
+          "y": 434.901
+        },
+        {
+          "x": 314.086,
+          "y": 465.832
+        },
+        {
+          "x": 223.763,
+          "y": 458.137
+        },
+        {
+          "x": 226.069,
+          "y": 417.523
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "eb967495150e60e8f6256b1b03de4d7278580dcb5ac010bf2f3eb1da4786cef1",
+      "renderRgbaSha256": "892eabb4174fe59eeff3a0479120120d1c9315026d206ccda9e7960d658cb1a0",
+      "headTransform": [
+        [
+          1.033684,
+          -0.112041,
+          57.867279
+        ],
+        [
+          0.112041,
+          1.033684,
+          -48.026065
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.035622,
+          -0.112251,
+          57.667628
+        ],
+        [
+          0.112251,
+          1.035622,
+          -49.18335
+        ]
+      ],
+      "hairBounds": {
+        "x": 122,
+        "y": 175,
+        "width": 339,
+        "height": 243
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 91,
+      "sourceFrame": 234,
+      "neckForeground": [
+        {
+          "x": 238.5,
+          "y": 354.14
+        },
+        {
+          "x": 251.846,
+          "y": 358.535
+        },
+        {
+          "x": 278.599,
+          "y": 364.225
+        },
+        {
+          "x": 300.228,
+          "y": 367.749
+        },
+        {
+          "x": 308.207,
+          "y": 382.37
+        },
+        {
+          "x": 315.883,
+          "y": 412.485
+        },
+        {
+          "x": 225.985,
+          "y": 412.789
+        },
+        {
+          "x": 224.709,
+          "y": 372.468
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "65313bb6b0720015fb062b683b0e9c886cd07bee8e6ea5cc5024a89709e82e9a",
+      "renderRgbaSha256": "ac7c2bcb2ea9bc4355a0f6d2535b18ae7c83e381f0f7dfc1c300063a1519a0bc",
+      "headTransform": [
+        [
+          1.048883,
+          -0.020556,
+          12.220325
+        ],
+        [
+          0.020556,
+          1.048883,
+          -81.617854
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.032843,
+          -0.020242,
+          17.50816
+        ],
+        [
+          0.020242,
+          1.032843,
+          -73.819285
+        ]
+      ],
+      "hairBounds": {
+        "x": 109,
+        "y": 121,
+        "width": 316,
+        "height": 250
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 92,
+      "sourceFrame": 235,
+      "neckForeground": [
+        {
+          "x": 230.504,
+          "y": 309.684
+        },
+        {
+          "x": 243.603,
+          "y": 314.531
+        },
+        {
+          "x": 269.973,
+          "y": 321.149
+        },
+        {
+          "x": 291.332,
+          "y": 325.43
+        },
+        {
+          "x": 298.731,
+          "y": 340.243
+        },
+        {
+          "x": 305.27,
+          "y": 370.435
+        },
+        {
+          "x": 215.956,
+          "y": 367.494
+        },
+        {
+          "x": 216.143,
+          "y": 327.393
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 5,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "91fcfd7ab361301989147a050b2af1afc53ce305eedefaf164518f0b778919a3",
+      "renderRgbaSha256": "256624878a29d053218a82f98eb2b2272d3088d08353748c5d83a9353ca76f63",
+      "headTransform": [
+        [
+          1.045803,
+          -0.05852,
+          22.008151
+        ],
+        [
+          0.05852,
+          1.045803,
+          -131.280734
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.025279,
+          -0.057372,
+          26.414406
+        ],
+        [
+          0.057372,
+          1.025279,
+          -123.416921
+        ]
+      ],
+      "hairBounds": {
+        "x": 111,
+        "y": 42,
+        "width": 333,
+        "height": 286
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 93,
+      "sourceFrame": 236,
+      "neckForeground": [
+        {
+          "x": 227.351,
+          "y": 280.139
+        },
+        {
+          "x": 240.461,
+          "y": 285.345
+        },
+        {
+          "x": 266.928,
+          "y": 292.655
+        },
+        {
+          "x": 288.39,
+          "y": 297.486
+        },
+        {
+          "x": 295.508,
+          "y": 312.618
+        },
+        {
+          "x": 301.39,
+          "y": 343.257
+        },
+        {
+          "x": 211.285,
+          "y": 338.159
+        },
+        {
+          "x": 212.43,
+          "y": 297.676
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "5a0685e7c1b455eac6fb9e7e97a2badb8e38589aec64e8bd5e4d44db4d29665a",
+      "renderRgbaSha256": "b67cbf3c4252f47c193f28b383aef024393a03aff832e15bca344bdc2551bb0e",
+      "headTransform": [
+        [
+          1.03932,
+          -0.082802,
+          30.516385
+        ],
+        [
+          0.082802,
+          1.03932,
+          -163.869841
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.033789,
+          -0.082361,
+          31.618335
+        ],
+        [
+          0.082361,
+          1.033789,
+          -161.998755
+        ]
+      ],
+      "hairBounds": {
+        "x": 112,
+        "y": 13,
+        "width": 310,
+        "height": 285
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 94,
+      "sourceFrame": 237,
+      "neckForeground": [
+        {
+          "x": 229.078,
+          "y": 264.354
+        },
+        {
+          "x": 242.031,
+          "y": 269.747
+        },
+        {
+          "x": 268.235,
+          "y": 277.453
+        },
+        {
+          "x": 289.503,
+          "y": 282.611
+        },
+        {
+          "x": 296.333,
+          "y": 297.778
+        },
+        {
+          "x": 301.68,
+          "y": 328.348
+        },
+        {
+          "x": 212.144,
+          "y": 321.797
+        },
+        {
+          "x": 213.948,
+          "y": 281.551
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "4cf9af5a4401af6bc9046d7d5afe705c68cee9157ada4008a97e035326986672",
+      "renderRgbaSha256": "68dcbf1e9d7a3e6e3087d3e72199bd716f21bb12fb94399dce6e31e3de8f2782",
+      "headTransform": [
+        [
+          1.034831,
+          -0.099676,
+          39.572513
+        ],
+        [
+          0.099676,
+          1.034831,
+          -183.171895
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.02687,
+          -0.098909,
+          41.665209
+        ],
+        [
+          0.098909,
+          1.02687,
+          -178.620965
+        ]
+      ],
+      "hairBounds": {
+        "x": 108,
+        "y": 37,
+        "width": 316,
+        "height": 243
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 95,
+      "sourceFrame": 238,
+      "neckForeground": [
+        {
+          "x": 231.743,
+          "y": 255.776
+        },
+        {
+          "x": 244.666,
+          "y": 261.403
+        },
+        {
+          "x": 270.859,
+          "y": 269.569
+        },
+        {
+          "x": 292.136,
+          "y": 275.094
+        },
+        {
+          "x": 298.749,
+          "y": 290.439
+        },
+        {
+          "x": 303.622,
+          "y": 321.23
+        },
+        {
+          "x": 213.802,
+          "y": 313.195
+        },
+        {
+          "x": 216.268,
+          "y": 272.803
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "cbf2ae851f59ed7ff4299961f8224bebdabc10c13699fa4b26729b738505f4a1",
+      "renderRgbaSha256": "aa940cbf4b15cdf079802df0fdbc536fcbbf46b9f560ee3a09c40c53596fa27f",
+      "headTransform": [
+        [
+          1.038134,
+          -0.116975,
+          48.677629
+        ],
+        [
+          0.116975,
+          1.038134,
+          -194.610781
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.029753,
+          -0.116031,
+          50.710502
+        ],
+        [
+          0.116031,
+          1.029753,
+          -192.182054
+        ]
+      ],
+      "hairBounds": {
+        "x": 119,
+        "y": 27,
+        "width": 310,
+        "height": 247
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 96,
+      "sourceFrame": 239,
+      "neckForeground": [
+        {
+          "x": 233.597,
+          "y": 259.972
+        },
+        {
+          "x": 246.472,
+          "y": 265.741
+        },
+        {
+          "x": 272.603,
+          "y": 274.191
+        },
+        {
+          "x": 293.84,
+          "y": 279.947
+        },
+        {
+          "x": 300.298,
+          "y": 295.376
+        },
+        {
+          "x": 304.85,
+          "y": 326.246
+        },
+        {
+          "x": 215.032,
+          "y": 317.254
+        },
+        {
+          "x": 217.927,
+          "y": 276.851
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 1,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "b861982b468851ee0a8be907a2c904fb051af886015a44f6dc14a26e3675b644",
+      "renderRgbaSha256": "aa07bc4557610df271163c17004a7da02eb7fd4585d9d79ad3c61cdc8b2bb1ba",
+      "headTransform": [
+        [
+          1.037494,
+          -0.128015,
+          56.184776
+        ],
+        [
+          0.128015,
+          1.037494,
+          -195.050231
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.029469,
+          -0.127025,
+          57.134744
+        ],
+        [
+          0.127025,
+          1.029469,
+          -190.310036
+        ]
+      ],
+      "hairBounds": {
+        "x": 115,
+        "y": 28,
+        "width": 319,
+        "height": 248
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 97,
+      "sourceFrame": 240,
+      "neckForeground": [
+        {
+          "x": 234.883,
+          "y": 272.499
+        },
+        {
+          "x": 247.632,
+          "y": 278.479
+        },
+        {
+          "x": 273.564,
+          "y": 287.363
+        },
+        {
+          "x": 294.659,
+          "y": 293.474
+        },
+        {
+          "x": 300.837,
+          "y": 308.983
+        },
+        {
+          "x": 304.847,
+          "y": 339.869
+        },
+        {
+          "x": 215.367,
+          "y": 329.344
+        },
+        {
+          "x": 218.954,
+          "y": 289.073
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "4acecdff6fad334d44f53eb311e5c97ae339b9cac75b5c649576eab545b8fe2b",
+      "renderRgbaSha256": "a01f8b8533209db90f6c82e053b9126451fff412e86aa3245e5377c25ceec88b",
+      "headTransform": [
+        [
+          1.039337,
+          -0.146543,
+          64.240585
+        ],
+        [
+          0.146543,
+          1.039337,
+          -185.821108
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.025183,
+          -0.144547,
+          66.55671
+        ],
+        [
+          0.144547,
+          1.025183,
+          -179.915628
+        ]
+      ],
+      "hairBounds": {
+        "x": 96,
+        "y": 2,
+        "width": 341,
+        "height": 288
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 98,
+      "sourceFrame": 241,
+      "neckForeground": [
+        {
+          "x": 237.513,
+          "y": 293.776
+        },
+        {
+          "x": 250.287,
+          "y": 299.488
+        },
+        {
+          "x": 276.211,
+          "y": 307.848
+        },
+        {
+          "x": 297.279,
+          "y": 313.54
+        },
+        {
+          "x": 303.696,
+          "y": 328.838
+        },
+        {
+          "x": 308.235,
+          "y": 359.452
+        },
+        {
+          "x": 219.146,
+          "y": 350.604
+        },
+        {
+          "x": 221.985,
+          "y": 310.53
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "5e1e891d27326d152c317ad66a8bf735583aa2bd86fb9043ae04a0572af52f60",
+      "renderRgbaSha256": "19bef18cb1dffe230ac4ba28c5f97810c02e881860d0c8fbcc16752c5612e7d5",
+      "headTransform": [
+        [
+          1.037201,
+          -0.127139,
+          59.051085
+        ],
+        [
+          0.127139,
+          1.037201,
+          -159.664315
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.021138,
+          -0.12517,
+          62.140077
+        ],
+        [
+          0.12517,
+          1.021138,
+          -152.677916
+        ]
+      ],
+      "hairBounds": {
+        "x": 127,
+        "y": 25,
+        "width": 310,
+        "height": 286
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 99,
+      "sourceFrame": 242,
+      "neckForeground": [
+        {
+          "x": 236.771,
+          "y": 324.812
+        },
+        {
+          "x": 249.828,
+          "y": 330.518
+        },
+        {
+          "x": 276.299,
+          "y": 338.809
+        },
+        {
+          "x": 297.802,
+          "y": 344.425
+        },
+        {
+          "x": 304.467,
+          "y": 359.947
+        },
+        {
+          "x": 309.352,
+          "y": 391.083
+        },
+        {
+          "x": 218.555,
+          "y": 382.838
+        },
+        {
+          "x": 221.103,
+          "y": 342.005
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "0e4ee290dfa262631b1957c1bad069b0da6ac1d72fc298d481a480fd5f598979",
+      "renderRgbaSha256": "23c7d1f9c0dd9679dc0063c41826bcf2331d90e25384bdee00040594be1cd04e",
+      "headTransform": [
+        [
+          1.038029,
+          -0.118375,
+          56.111387
+        ],
+        [
+          0.118375,
+          1.038029,
+          -128.183655
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.04091,
+          -0.118704,
+          54.358041
+        ],
+        [
+          0.118704,
+          1.04091,
+          -128.313751
+        ]
+      ],
+      "hairBounds": {
+        "x": 112,
+        "y": 55,
+        "width": 324,
+        "height": 286
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 100,
+      "sourceFrame": 243,
+      "neckForeground": [
+        {
+          "x": 238.721,
+          "y": 368.221
+        },
+        {
+          "x": 251.736,
+          "y": 373.632
+        },
+        {
+          "x": 278.063,
+          "y": 381.358
+        },
+        {
+          "x": 299.429,
+          "y": 386.528
+        },
+        {
+          "x": 306.299,
+          "y": 401.76
+        },
+        {
+          "x": 311.686,
+          "y": 432.466
+        },
+        {
+          "x": 221.743,
+          "y": 425.934
+        },
+        {
+          "x": 223.533,
+          "y": 385.505
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 22,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "debea92da56303911c9a0d97b1ad060d84a45d7b3d0a14b73b9b8f8b3ee05db0",
+      "renderRgbaSha256": "571ba1c85549ddc8be028d613863ab928f23e66791ab9d7334acf020589339c5",
+      "headTransform": [
+        [
+          1.041473,
+          -0.099741,
+          48.34574
+        ],
+        [
+          0.099741,
+          1.041473,
+          -79.974837
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.031562,
+          -0.098792,
+          50.219187
+        ],
+        [
+          0.098792,
+          1.031562,
+          -76.650757
+        ]
+      ],
+      "hairBounds": {
+        "x": 125,
+        "y": 142,
+        "width": 310,
+        "height": 244
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 101,
+      "sourceFrame": 244,
+      "neckForeground": [
+        {
+          "x": 241.719,
+          "y": 420.032
+        },
+        {
+          "x": 254.652,
+          "y": 425.281
+        },
+        {
+          "x": 280.786,
+          "y": 432.711
+        },
+        {
+          "x": 301.988,
+          "y": 437.65
+        },
+        {
+          "x": 308.918,
+          "y": 452.676
+        },
+        {
+          "x": 314.51,
+          "y": 483.036
+        },
+        {
+          "x": 225.391,
+          "y": 477.323
+        },
+        {
+          "x": 226.824,
+          "y": 437.275
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 2,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "542f50e4e9463ba3274d26edd1491bd03cdbadadd9042f2f3ca8f1df6d030585",
+      "renderRgbaSha256": "4061959e3adb62afba4e3281823229e0125c34829d0f7c8f97945a68a6e494f1",
+      "headTransform": [
+        [
+          1.033951,
+          -0.090183,
+          48.273881
+        ],
+        [
+          0.090183,
+          1.033951,
+          -22.94378
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.022315,
+          -0.089168,
+          51.323633
+        ],
+        [
+          0.089168,
+          1.022315,
+          -18.912245
+        ]
+      ],
+      "hairBounds": {
+        "x": 93,
+        "y": 180,
+        "width": 342,
+        "height": 258
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 102,
+      "sourceFrame": 245,
+      "neckForeground": [
+        {
+          "x": 248.411,
+          "y": 449.195
+        },
+        {
+          "x": 260.907,
+          "y": 455.336
+        },
+        {
+          "x": 286.383,
+          "y": 464.586
+        },
+        {
+          "x": 307.127,
+          "y": 471.007
+        },
+        {
+          "x": 312.955,
+          "y": 486.45
+        },
+        {
+          "x": 316.362,
+          "y": 517.056
+        },
+        {
+          "x": 228.094,
+          "y": 505.039
+        },
+        {
+          "x": 232.365,
+          "y": 465.293
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 3,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "b4b24dc69b61c3019fe6c939f4384a13a0227d8c059d2bab7d8f94cf71d92b8e",
+      "renderRgbaSha256": "20c89125d50c478f65c6c0467844cf6023e3650dfbad2802df311ab49604d01e",
+      "headTransform": [
+        [
+          1.034539,
+          -0.165144,
+          85.112261
+        ],
+        [
+          0.165144,
+          1.034539,
+          -10.217362
+        ]
+      ],
+      "featureTransform": [
+        [
+          1.010868,
+          -0.161365,
+          90.158022
+        ],
+        [
+          0.161365,
+          1.010868,
+          -1.08412
+        ]
+      ],
+      "hairBounds": {
+        "x": 140,
+        "y": 181,
+        "width": 311,
+        "height": 287
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 103,
+      "sourceFrame": 246,
+      "neckForeground": [
+        {
+          "x": 251.762,
+          "y": 455.275
+        },
+        {
+          "x": 263.74,
+          "y": 462.498
+        },
+        {
+          "x": 288.441,
+          "y": 473.95
+        },
+        {
+          "x": 308.65,
+          "y": 482.164
+        },
+        {
+          "x": 313.153,
+          "y": 498.122
+        },
+        {
+          "x": 313.927,
+          "y": 529.049
+        },
+        {
+          "x": 226.617,
+          "y": 509.417
+        },
+        {
+          "x": 234.316,
+          "y": 470.004
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "bc92836b8aa8981ee007c8d58b5cf42ef5be37ea31aca30673e6906d5b6fbd5f",
+      "renderRgbaSha256": "821bb52659e63c8ed601d1a2814601e7c0ca30c5af0b5bd51814a63bcc4920ac",
+      "headTransform": [
+        [
+          1.017611,
+          -0.253508,
+          128.751887
+        ],
+        [
+          0.253508,
+          1.017611,
+          -16.987488
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.997845,
+          -0.248584,
+          132.160343
+        ],
+        [
+          0.248584,
+          0.997845,
+          -9.027408
+        ]
+      ],
+      "hairBounds": {
+        "x": 153,
+        "y": 187,
+        "width": 337,
+        "height": 286
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 104,
+      "sourceFrame": 247,
+      "neckForeground": [
+        {
+          "x": 252.954,
+          "y": 454.57
+        },
+        {
+          "x": 264.555,
+          "y": 462.319
+        },
+        {
+          "x": 288.639,
+          "y": 474.867
+        },
+        {
+          "x": 308.396,
+          "y": 483.982
+        },
+        {
+          "x": 312.147,
+          "y": 500.09
+        },
+        {
+          "x": 311.494,
+          "y": 530.939
+        },
+        {
+          "x": 225.406,
+          "y": 507.358
+        },
+        {
+          "x": 234.892,
+          "y": 468.443
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 12,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "4c975e0ecee83a6f886181f600a10141c5be033150a775789f773f00b15491ff",
+      "renderRgbaSha256": "6161be905940713b4db3d9225cc860358b56db17d3d496b201277c06f402160d",
+      "headTransform": [
+        [
+          0.993978,
+          -0.296992,
+          154.453439
+        ],
+        [
+          0.296992,
+          0.993978,
+          -20.258533
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.982768,
+          -0.293642,
+          155.17266
+        ],
+        [
+          0.293642,
+          0.982768,
+          -13.553172
+        ]
+      ],
+      "hairBounds": {
+        "x": 162,
+        "y": 190,
+        "width": 304,
+        "height": 279
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 105,
+      "sourceFrame": 248,
+      "neckForeground": [
+        {
+          "x": 253.366,
+          "y": 448.316
+        },
+        {
+          "x": 265.012,
+          "y": 456.041
+        },
+        {
+          "x": 289.176,
+          "y": 468.533
+        },
+        {
+          "x": 308.996,
+          "y": 477.599
+        },
+        {
+          "x": 312.805,
+          "y": 493.722
+        },
+        {
+          "x": 312.25,
+          "y": 524.625
+        },
+        {
+          "x": 225.942,
+          "y": 501.281
+        },
+        {
+          "x": 235.319,
+          "y": 462.27
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 9,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "afd4cef456f1d05ddafc0b5f2975d08353bea71bb030ebe37b3f3ee7add05759",
+      "renderRgbaSha256": "f5aaf64db3fb7adac3322eaf6538c376a039cf9c3838731e20afa76994d5ba5f",
+      "headTransform": [
+        [
+          0.990214,
+          -0.292409,
+          153.953716
+        ],
+        [
+          0.292409,
+          0.990214,
+          -24.208579
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.985361,
+          -0.290976,
+          153.916175
+        ],
+        [
+          0.290976,
+          0.985361,
+          -20.278237
+        ]
+      ],
+      "hairBounds": {
+        "x": 152,
+        "y": 183,
+        "width": 332,
+        "height": 279
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    },
+    {
+      "frameId": 106,
+      "sourceFrame": 249,
+      "neckForeground": [
+        {
+          "x": 251.856,
+          "y": 442.911
+        },
+        {
+          "x": 263.695,
+          "y": 450.508
+        },
+        {
+          "x": 288.206,
+          "y": 462.714
+        },
+        {
+          "x": 308.293,
+          "y": 471.538
+        },
+        {
+          "x": 312.372,
+          "y": 487.708
+        },
+        {
+          "x": 312.283,
+          "y": 518.821
+        },
+        {
+          "x": 225.059,
+          "y": 496.637
+        },
+        {
+          "x": 233.904,
+          "y": 457.23
+        }
+      ],
+      "partialAlphaForegroundBackingPixels": 0,
+      "faceChangedPixels": 0,
+      "neckChangedPixels": 0,
+      "outsideHairChangedPixels": 0,
+      "sourceRgbaSha256": "a295c99b0ce1911c4a03c0ae489c85fa752b42647ac9aa7f63337d3a64c35f26",
+      "renderRgbaSha256": "b618f66c533ca01908ee85eb9fab929996712714c245984682e3e3c481d69cff",
+      "headTransform": [
+        [
+          1.00241,
+          -0.279618,
+          143.719529
+        ],
+        [
+          0.279618,
+          1.00241,
+          -30.102862
+        ]
+      ],
+      "featureTransform": [
+        [
+          0.996189,
+          -0.277883,
+          144.634144
+        ],
+        [
+          0.277883,
+          0.996189,
+          -27.216352
+        ]
+      ],
+      "hairBounds": {
+        "x": 158,
+        "y": 177,
+        "width": 320,
+        "height": 282
+      },
+      "protectedOpaqueRearScalpReviewPixels": 0,
+      "protectedOpaqueRearScalpReviewCoordinates": [],
+      "rearCapFitWeight": 0
+    }
+  ],
+  "rearCapPixelProof": "artwork/matched-hair/male-rear-cap-proof.json"
+}

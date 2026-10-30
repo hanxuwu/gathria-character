@@ -12,6 +12,7 @@ import { sha256 } from "../core/sha256";
 import {
   assertSourcePreparationActive,
   prepareSourceArchive,
+  prepareBoundedArchive,
   type SourcePreparationOptions,
 } from "../core/source-preparation";
 import { checkPageHeader, validateGarmentPage } from "./garment-pages";
@@ -80,14 +81,17 @@ const garmentArchives = new Map<
   string,
   { files: Record<string, Uint8Array>; bytes: number }
 >();
-function garmentFiles(hash: string, load: () => Record<string, Uint8Array>) {
+async function garmentFiles(
+  hash: string,
+  load: () => Promise<Record<string, Uint8Array>>,
+) {
   const cached =
     garmentArchives.get(hash) ??
-    (() => {
+    (await (async () => {
       // Stored ZIP entries can be subarrays of the caller-visible archive.
       // Own the buffers on insertion as well as on return.
       const files = Object.fromEntries(
-        Object.entries(load()).map(([name, bytes]) => [
+        Object.entries(await load()).map(([name, bytes]) => [
           name,
           new Uint8Array(bytes),
         ]),
@@ -96,7 +100,7 @@ function garmentFiles(hash: string, load: () => Record<string, Uint8Array>) {
         files,
         bytes: Object.values(files).reduce((n, bytes) => n + bytes.length, 0),
       };
-    })();
+    })());
   garmentArchives.delete(hash);
   garmentArchives.set(hash, cached);
   let bytes = [...garmentArchives.values()].reduce(
@@ -167,17 +171,21 @@ export async function readWardrobeGarment(
   const copied = new Uint8Array(bytes);
   const hash = await sha256(copied);
   assertSourcePreparationActive(options);
-  const files = garmentFiles(hash, () =>
-    readBoundedArchive(copied, {
-      label: "Garment archive",
-      maxArchiveBytes: WARDROBE_MAX_ITEM_BYTES,
-      maxExpandedBytes: WARDROBE_MAX_ITEM_BYTES,
-      minFiles: 3,
-      maxFiles: 1 + WARDROBE_MAX_PAGES * 2,
-      files: allowed,
-      required: ["manifest.json", "patches-0.png", "ownership-0.png"],
-      paired,
-    }),
+  const files = await garmentFiles(hash, () =>
+    prepareBoundedArchive(
+      copied,
+      {
+        label: "Garment archive",
+        maxArchiveBytes: WARDROBE_MAX_ITEM_BYTES,
+        maxExpandedBytes: WARDROBE_MAX_ITEM_BYTES,
+        minFiles: 3,
+        maxFiles: 1 + WARDROBE_MAX_PAGES * 2,
+        files: allowed,
+        required: ["manifest.json", "patches-0.png", "ownership-0.png"],
+        paired,
+      },
+      options,
+    ),
   );
   const manifest = validateWardrobeGarmentManifest(
     parse(files["manifest.json"], "Garment manifest"),
@@ -201,6 +209,7 @@ export async function readWardrobeGarment(
         ownership,
         page,
         `${hash}:${pages.length}`,
+        options,
       );
     pages.push({ patch, ownership });
   }

@@ -1,0 +1,30 @@
+[WebServer] (node:189819) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:189832) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 14 tests using 1 worker
+
+(node:189912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/side-fitting-refinement.spec.ts:36:1 › fitting neighbor review preserves native pixels and distinguishes loops from jump boundaries (15.4s)
+  ✓   2 tests/e2e/side-fitting-refinement.spec.ts:157:1 › fitting template reopens exact target guides and rejects a different source without changing the look (23.5s)
+  ✓   3 tests/e2e/side-fitting.spec.ts:46:1 › side fitting keeps source guides exact, audits every action, and round-trips a corrected garment (54.2s)
+  ✓   4 tests/e2e/side-fitting.spec.ts:305:1 › female fitting shows original anchors, cancels draft safely and fits a narrow screen (15.3s)
+  ✓   5 tests/e2e/side-motion-interaction.spec.ts:4:3 › male: airborne reversal, released keys and repeated jump input retain source sequencing (16.4s)
+  ✓   6 tests/e2e/side-motion-interaction.spec.ts:4:3 › female: airborne reversal, released keys and repeated jump input retain source sequencing (17.5s)
+  ✓   7 tests/e2e/side-polish.spec.ts:35:3 › male: previous tailored project preserves embedded art and bindings across polish (19.1s)
+  ✓   8 tests/e2e/side-polish.spec.ts:35:3 › female: previous tailored project preserves embedded art and bindings across polish (22.0s)
+  ✓   9 tests/e2e/wardrobe.spec.ts:9:1 › wardrobe selects registered outfits, retains sessions, and rejects incompatible clothing atomically (6.2s)
+  ✓  10 tests/e2e/wardrobe.spec.ts:78:1 › wardrobe saves, reopens, exports every action, and restores the independent character without the workbench (5.3s)
+  ✓  11 tests/e2e/wardrobe.spec.ts:182:1 › corrupt saved projects retain the current outfit and the wardrobe fits a narrow screen (2.2s)
+  ✓  12 tests/e2e/wardrobe.spec.ts:227:1 › a clothing file that touches the head in a later pose is rejected before replacing the outfit (1.9s)
+  ✓  13 tests/e2e/wardrobe.spec.ts:264:1 › a completed direct-playback jump can be replayed without a separate restart (2.1s)
+  ✓  14 tests/e2e/wardrobe.spec.ts:300:1 › an outfit preflight keeps the queued landing, current pose and facing intact (2.8s)
+
+  14 passed (3.5m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

@@ -1,0 +1,26 @@
+{
+  "frameId": 31,
+  "sourceFrame": 57,
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+  "anchor": "waistRight",
+  "before": {
+    "x": 349.6,
+    "y": 543.5
+  },
+  "after": {
+    "x": 299,
+    "y": 541,
+    "visibility": "visible",
+    "confidence": 0.85
+  },
+  "method": "visually-inspected-native-source; visible tank lower-right contour attachment; far forearm excluded",
+  "reason": "The old anchor lies on the far forearm. The source pixel grid shows the actual gray tank ending near x299,y541. The original top guide also includes far-forearm pixels, so the garment fit excludes those pixels and uses the inspected torso envelope.",
+  "evidence": [
+    "waist31-source.png",
+    "waist31-source-grid.png",
+    "waist31-fit-corrected.png"
+  ],
+  "originalSourceAndRegistrationUnchanged": true,
+  "sourceRgbaSha256": "163c88e3374bed08b17fbe47b17c980336941668f3e9cd9e5323ba8748478cc1",
+  "reviewedRegistrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef"
+}

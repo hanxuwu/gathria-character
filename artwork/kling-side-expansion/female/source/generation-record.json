@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-29",
+  "tool": "OpenAI image_gen.imagegen",
+  "generations": [
+    {
+      "input": "design-input.png",
+      "frameIds": [0, 42, 72, 79, 89, 95],
+      "layout": "3 columns by 2 rows, each panel native 512x768",
+      "prompt": "imagegen-prompt.txt",
+      "output": "cream-rose-donors.png",
+      "generationArtifact": "exec-9a65c193-5d4b-417b-ad6a-96e23b01b249.png",
+      "usage": "Only isolated blouse cloth; generated anatomy and background discarded. Original skirt art was later repainted as complete isolated cloth."
+    },
+    {
+      "input": "forward-input.png",
+      "styleReference": "cream-rose-donors.png",
+      "frameIds": [20, 34],
+      "layout": "2 columns, each panel native 512x768",
+      "prompt": "imagegen-forward-prompt.txt",
+      "output": "cream-rose-forward-donors.png",
+      "generationArtifact": "exec-402f6dcf-4e31-45f4-ba47-b315da9a81d0.png",
+      "usage": "Only isolated blouse cloth; generated anatomy and background discarded."
+    },
+    {
+      "input": "skirt-repair-input.png",
+      "frameIds": [0, 42, 72, 79, 89, 95],
+      "layout": "3 columns by 2 rows of isolated skirt cloth",
+      "prompt": "imagegen-skirt-clean-prompt.txt",
+      "output": "rose-skirt-clean-donors.png",
+      "generationArtifact": "exec-22505df1-5452-4e99-8246-67051f2cbb8f.png",
+      "transparentBackground": true,
+      "usage": "Complete isolated skirt cloth with continuous painted folds and hem."
+    }
+  ]
+}

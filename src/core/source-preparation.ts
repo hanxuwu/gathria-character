@@ -1,4 +1,5 @@
 import { decodeSourceRgbaPngAsync, type RgbaPng } from "./baked-source";
+import { readBoundedArchive, type ArchivePolicy } from "./bounded-archive";
 import {
   readPortableCharacterPackArchive,
   type PortableCharacterPackArchive,
@@ -10,6 +11,7 @@ export interface SourcePreparationOptions {
 
 export type SourcePreparationRequest =
   | { kind: "archive"; bytes: Uint8Array }
+  | { kind: "bounded-archive"; bytes: Uint8Array; policy: ArchivePolicy }
   | {
       kind: "png";
       bytes: Uint8Array;
@@ -22,6 +24,7 @@ export type SourcePreparationResponse =
       value: PortableCharacterPackArchive;
     }
   | { kind: "png"; ok: true; value: RgbaPng }
+  | { kind: "bounded-archive"; ok: true; value: Record<string, Uint8Array> }
   | { kind: SourcePreparationRequest["kind"]; ok: false; message: string };
 
 export function assertSourcePreparationActive(
@@ -34,11 +37,15 @@ export function assertSourcePreparationActive(
 // Only transport failures permit a same-validator fallback. A worker reporting
 // invalid source bytes must reject the load rather than retry a different path.
 class WorkerTransportError extends Error {}
+type PreparedValue =
+  | PortableCharacterPackArchive
+  | RgbaPng
+  | Record<string, Uint8Array>;
 
 function prepareInWorker(
   request: SourcePreparationRequest,
   options: SourcePreparationOptions,
-): Promise<PortableCharacterPackArchive | RgbaPng> {
+): Promise<PreparedValue> {
   assertSourcePreparationActive(options);
   return new Promise((resolve, reject) => {
     let worker: Worker;
@@ -54,10 +61,7 @@ function prepareInWorker(
       return;
     }
     let settled = false;
-    const finish = (
-      error?: Error,
-      value?: PortableCharacterPackArchive | RgbaPng,
-    ) => {
+    const finish = (error?: Error, value?: PreparedValue) => {
       if (settled) return;
       settled = true;
       options.signal?.removeEventListener("abort", abort);
@@ -154,5 +158,48 @@ export async function prepareSourcePng(
     if (!(error instanceof WorkerTransportError)) throw error;
     assertSourcePreparationActive(options);
     return decodeSourceRgbaPngAsync(snapshot, dimensions, options);
+  }
+}
+
+/** Strict bounded ZIP parsing for clothing/appearance archives. The exact same
+ * allowlist, limits, directory, stream and CRC checks run in the worker/fallback.
+ * Archive contents are opaque bytes here; their existing manifests and all PNGs
+ * still pass the original callers' complete validation before use. */
+export async function prepareBoundedArchive(
+  bytes: Uint8Array,
+  policy: ArchivePolicy,
+  options: SourcePreparationOptions = {},
+): Promise<Record<string, Uint8Array>> {
+  assertSourcePreparationActive(options);
+  // Enforce input budget before allocating a private copy or starting a worker.
+  if (bytes.length < 22 || bytes.length > policy.maxArchiveBytes)
+    throw Error(
+      `${policy.label} must be intact and at most ${policy.maxArchiveBytes} bytes.`,
+    );
+  const snapshot = new Uint8Array(bytes),
+    frozenPolicy = structuredClone(policy);
+  try {
+    const value = await prepareInWorker(
+      { kind: "bounded-archive", bytes: snapshot, policy: frozenPolicy },
+      options,
+    );
+    assertSourcePreparationActive(options);
+    // A protocol failure cannot create a trusted archive/cache entry.
+    if (
+      !value ||
+      typeof value !== "object" ||
+      Array.isArray(value) ||
+      !Object.values(value).every((entry) => entry instanceof Uint8Array)
+    )
+      throw new WorkerTransportError("Invalid archive worker result.");
+    return value as Record<string, Uint8Array>;
+  } catch (error) {
+    if (!(error instanceof WorkerTransportError)) throw error;
+    assertSourcePreparationActive(options);
+    const files = readBoundedArchive(snapshot, frozenPolicy);
+    assertSourcePreparationActive(options);
+    return Object.fromEntries(
+      Object.entries(files).map(([name, file]) => [name, new Uint8Array(file)]),
+    );
   }
 }

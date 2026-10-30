@@ -1,0 +1,55 @@
+# Actual application export visual review
+
+Reviewed 2026-10-30. This is a visual review of the four complete looks exported from the actual application into `/tmp/dual-looks/{male,female}/`, not of the offline asset-preparation render samples. Assets and runtime stayed frozen during this review.
+
+## Evidence and scope
+
+For each character/view, decoded the actual `original.character.zip` or `side.character.zip`, the matching `*-clothing-only.character.zip`, and the matching saved `*.wardrobe.zip`. The latter embeds both the exact original `source.character.zip` and the actual appearance bank/poses. Full-canvas ordered sheets and source-position-aligned head/ear/neck comparison crops cover **all 68 run frames and all 178 jump frames** across the four packs. The last three and first three run frames were also reviewed in sequence. Every head comparison frame in these eight actions was inspected; no native frame was substituted with a convenient nearby pose.
+
+Actual right and left run/jump GIFs were decoded, with visual samples at the beginning, midpoint and end. GIF frame counts and timing were inspected separately. These samples confirm the appearance and facing in the encoded files, but they are not a claim that every left-facing GIF frame received a second independent full-size visual inspection.
+
+**This review used complete ordered static sequences, detailed frame comparisons and loop-boundary comparisons. It did not watch real-time continuous playback.** Browser loading/playback tests and independent pixel reconstruction are separate functional checks; neither establishes that all temporal artifacts are invisible to a person watching the GIFs.
+
+The limitation comparisons are also reproduced by the final review builder at native crop scale and archived in `docs/dual-looks/review/`; its provenance records the actual source crop and scale. Temporary inspection evidence is in `/tmp/dual-looks/read-only-review/`: `*-full-sequence.png`, `*-heads-*.png`, `*-run-loop-boundary.png`, `*-actual-gif-left-right-samples.png`, `*-source-clothes-look.png` and `review-inputs.json`. The three-column limitation pictures are derived from actual saved projects and exports: raw source → clothing only → complete look. Black strips at a few crop boundaries are out-of-canvas crop padding in the temporary review sheet, not black rectangles in the actual exports.
+
+## Native IDs and appearance choices
+
+| Character / view | Hair / expression | Complete run reviewed | Run boundary reviewed | Complete jump reviewed |
+| --- | --- | --- | --- | --- |
+| Male / original | `side-part` / `gentle-v2` | 51–66 | 64,65,66 → 51,52,53 | 83–121 |
+| Male / side | `side-swept-crop` / `gentle-side-v1` | 39–56 | 54,55,56 → 39,40,41 | 57–106 |
+| Female / original | `soft-bob` / `gentle-v2` | 51–66 | 64,65,66 → 51,52,53 | 83–121 |
+| Female / side | `side-tucked-bob` / `gentle-side-v1` | 34–51 | 49,50,51 → 34,35,36 | 52–101 |
+
+Run loops are enabled. Original run GIFs contain 16 frames / 670 ms; side run GIFs contain 18 frames / 750 ms. Both use 40/50 ms GIF delays to represent the 24 fps clock. Original jump GIFs contain 39 frames / 1630 ms, side jump GIFs contain 50 frames / 2080 ms; **jump remains non-looping** in the pack and encoded GIF. Side jump contains the existing consecutive-two-jumps source clip. Its final crouch must not be treated as an invisible loop back to the approach at its first frame.
+
+## Visual findings
+
+- **Male original run 51–66:** the swept hair covers the top of the near ear consistently; the visible ear rim, sideburn and neck remain attached through arm exchanges. At 66→51 the hair silhouette and ear overlap remain compatible with the neighboring poses, with no isolated scalp hole or sudden visibility switch found in the ordered comparison. The broader swept volume belongs to the reused original `side-part` design.
+- **Male side run 39–56:** hair volume, near-ear rim and nape remain continuous in the inspected poses and 56→39 boundary. The visible head bob tracks the underlying source pose; this comparison did not show a new detached head or additional discrete hairstyle jump. This is a fitted existing short crop, without newly simulated secondary hair movement.
+- **Male original jump 83–121:** the reused hair follows the crouch, launch, landing and recovery. Source softness and facial squash are particularly clear around 89–91 and 100–102; the comparison shows the same underlying facial softness before appearance. Ear coverage remains joined while the source blink closes and reopens. `gentle-v2` retains source eyelids, but can still change the closed-mouth smile during blinking; this is not an assertion that the entire blinking face stays byte-identical.
+- **Male side jump 57–106:** no new ear hole or exposed disconnected scalp patch was found in the ordered head comparisons, including 62–68 and 81–86. The new gentle-mouth selection falls back to source at the difficult blink/soft-mouth frames, rather than painting a rigid mouth through them. Native 67 and 91 still expose the existing source blur/edge-color limitation. The front shoulder defect at native 82 is described below and prevents any blanket “no clipping” claim for the full look.
+- **Female original run 51–66 and jump 83–121:** the short bob keeps the near ear readable and its far-side lock does not suddenly change ownership in the inspected run boundary or blink/landing sequence. Source blur remains visible around 89–90 and 100–102. The apparent axilla hole at 90 is **already the natural arm-to-torso gap in the raw source**, as confirmed by the saved source pack; it is not a garment or appearance-created hole.
+- **Female side run 34–51 and jump 52–101:** the longer bob stays behind the foreground arms, including the raised-arm phases around 58–61 and 71–74. Its lower edge consequently has a more abrupt arm-shaped occlusion in these poses; it was not repainted over the arm. The lower hair is visible beneath/behind the chin at 34–39 and 49–55. A subsequent layered inspection of native 77 exposed a genuine isolated **front-hair** fragment at the collar; it must not be dismissed as merely a longer far-side lock (see limitation 1). No additional ear pop or detached scalp patch was found at the 51→34 run boundary. The source-blink fallback around 57–62 does not introduce a visible alternate mouth outline in the reviewed neighboring frames.
+
+## Remaining limitations, with attribution
+
+1. **Female side, jump native 77 — unresolved front-hair/collar ownership defect.** The small brown lock beneath the chin lies over the front collar and reads as an isolated hair fragment. Layer inspection proves that it comes from `hair-front`, not `hair-back`. In native ROI `[295,497,330,527)` there are 321 changed pixels, bounded by x=299–319 and y=500–521. At (304,505), for example, source/clothing RGBA `[244,144,110,255]` is covered by front-hair RGBA `[48,12,2,253]`; the back-hair layer is transparent there. The existing rectangular `headBounds={x:211,y:287,width:237,height:237}` includes part of the neck/neckline, and the existing foreground mask does not exclude this fragment, so the renderer permits the front hair to cover those pixels. Native 77 pose, front/back RGBA, ownership masks and offsets are byte-identical to the older `docs/kling-side-expansion/assets/female.appearance.zip`, so repacking did not invent the fragment. **The existing hair/head-neck partition is nonetheless visually wrong in this complete look and remains unfixed.** This is a specific visible overlap limitation, not simply a difference in bob length. Evidence: [female-side-native77-source-clothes-look.png](../../../docs/dual-looks/review/female-side-native77-source-clothes-look.png) and [female-side-native77-layer-ownership.png](../../../docs/dual-looks/review/female-side-native77-layer-ownership.png).
+2. **Male side, jump native 82 — existing clothing contour defect.** The shirt front/shoulder immediately below the chin has a conspicuous angular notch and pointed edge. It is absent from the raw vest source and present in both the actual clothing-only and complete-look exports. It is not a head/hair connection failure, and this appearance integration does not fix it. Evidence: [male-side-native82-source-clothes-look.png](../../../docs/dual-looks/review/male-side-native82-source-clothes-look.png).
+3. **Female side, jump native 97 — existing clothing ownership fragment.** A small dark fabric-colored patch appears on the forearm. The raw source arm is clear; the actual clothing-only and complete-look versions both contain the spot. This needs a later clothing-mask fix rather than removing source skin or changing hair ownership. Evidence: [female-side-native97-source-clothes-look.png](../../../docs/dual-looks/review/female-side-native97-source-clothes-look.png).
+4. **Female original, jump native 90 — source geometry and softness, not a new hole.** The background opening between arm and torso is present in the raw source. Source softness and some edge discoloration are visible in all three columns. Do not report the natural opening as an introduced garment defect. Evidence: [female-original-native90-source-clothes-look.png](../../../docs/dual-looks/review/female-original-native90-source-clothes-look.png).
+5. **The two views are coordinated existing hairstyles, not a newly authored exact turnaround.** Male original has broader swept hair than the side crop. Female original bob is shorter at the jaw, while the side bob reaches farther toward the shoulder and shows the far-side lower lock. These view-specific design differences remain visible and were not concealed by distorting the approved face or body.
+6. Existing garment folds, collar compression and puff-sleeve edges can still look stiff at difficult poses. Source blur and chroma-key fringes also remain, especially during jump transitions. Adding hair and a small expression adjustment does not make these full-body artifacts disappear.
+
+The visible ear/scalp transitions remained coherent in the reviewed sequences, but female side native 77 has the confirmed front-hair/collar overlap described above. Reusing byte-identical native hair does not certify correct ownership against the new collar. This complete-frame static review therefore does **not** certify an artifact-free head/neck or outfit, a perfectly identical hairstyle across views, or fully invisible temporal transitions at real-time playback speed. The three specific unresolved visual defects (female side 77, male side 82, female side 97) must remain visible in the review record.
+
+## Reviewed pack snapshot
+
+These SHA-256 values identify the actual exports reviewed, independently of the offline bank audit:
+
+| Pack | SHA-256 |
+| --- | --- |
+| male / original | `2eff7798c83d62327e4f34018fdf3d69d77868982acaf6950596cb7982beefd4` |
+| male / side | `50b9cf48e3150ee8a86355a3a141d2fba2b67ec37e8f2945bd52f3f19c8d8a0f` |
+| female / original | `37385feb47dd3840939d6993072cb1d3fbc34085ff850d6e986979983040c4de` |
+| female / side | `b60b0fd58121a70e17ec275a78eadd6aab4bd7522a5b1796aa49a515dc0a5889` |

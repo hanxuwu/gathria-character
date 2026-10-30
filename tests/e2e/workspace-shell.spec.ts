@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { installWardrobeFixture } from "./wardrobe-fixture";
 
 test("library has three primary destinations, original previews and lazy character loading", async ({
   page,
@@ -32,21 +33,16 @@ test("library has three primary destinations, original previews and lazy charact
       .toBe(true);
   }
   await expect(
-    page.getByRole("link", { name: "Open character" }).nth(0),
+    page.getByRole("link", { name: "编辑人物", exact: true }).nth(0),
   ).toHaveAttribute("href", "/workbench.html?character=male");
   await expect(
-    page.getByRole("link", { name: "Open character" }).nth(1),
+    page.getByRole("link", { name: "编辑人物", exact: true }).nth(1),
   ).toHaveAttribute("href", "/workbench.html?character=female");
   expect(archiveRequests).toEqual([]);
-  const male = page.locator(".library-character--male");
-  await expect(
-    male.getByRole("link", { name: "Edit Kling male skeleton", exact: true }),
-  ).toHaveAttribute("href", "/workbench.html?character=male&mode=rig");
-  await expect(
-    page
-      .locator(".library-character--female")
-      .getByRole("link", { name: "Edit Kling female skeleton", exact: true }),
-  ).toHaveAttribute("href", "/workbench.html?character=female&mode=rig");
+  for (const character of ["male", "female"])
+    await expect(
+      page.locator(`.library-character--${character}`).getByRole("link"),
+    ).toHaveCount(1);
   await expect(
     page.locator(
       'a[href="/editor.html"], a[href="/rig-lab.html"], a[href="/mother-study.html"]',
@@ -219,18 +215,24 @@ test("mobile library and workbench navigation stay within the viewport and suppo
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(
-    page.getByRole("link", { name: "Edit Kling male skeleton" }),
+    page
+      .locator(".library-character--male")
+      .getByRole("link", { name: "编辑人物", exact: true }),
   ).toBeVisible();
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);
-  await page.getByRole("link", { name: "Edit Kling male skeleton" }).click();
-  await expect(page).toHaveURL(/workbench\.html\?character=male&mode=rig/);
-  const rigTab = page.getByRole("tab", { name: "Male skeleton" });
-  await rigTab.focus();
   await page.route(/\/(male|female)\.character\.zip(?:\?.*)?$/, (route) =>
     route.fulfill({ status: 503, body: "Unavailable for keyboard test" }),
   );
+  await page
+    .locator(".library-character--male")
+    .getByRole("link", { name: "编辑人物", exact: true })
+    .click();
+  await page.getByRole("tab", { name: "Male skeleton" }).click();
+  await expect(page).toHaveURL(/workbench\.html\?character=male&mode=rig/);
+  const rigTab = page.getByRole("tab", { name: "Male skeleton" });
+  await rigTab.focus();
   await rigTab.press("Home");
   await expect(page.getByRole("tab", { name: "Sprite actions" })).toBeFocused();
   await expect(
@@ -256,8 +258,10 @@ test("female library entry and character changes retain separate male and female
   );
   await page.goto("/");
   await page
-    .getByRole("link", { name: "Edit Kling female skeleton", exact: true })
+    .locator(".library-character--female")
+    .getByRole("link", { name: "编辑人物", exact: true })
     .click();
+  await page.getByRole("tab", { name: "Female skeleton" }).click();
   await expect(page).toHaveURL(/character=female&mode=rig/);
   await expect(
     page.getByRole("tab", { name: "Female skeleton" }),
@@ -492,4 +496,48 @@ test("an embedded cross-import updates the outer identity without replacing eith
       exact: true,
     }),
   ).toBeVisible();
+  // A legitimate late load from a hidden player may update that player's
+  // retained identity, but cannot switch the currently edited rig session.
+  await player.evaluate(() =>
+    window.parent.postMessage(
+      {
+        type: "gathria:prepared-character",
+        characterId: "female",
+        name: "Kling female",
+      },
+      window.location.origin,
+    ),
+  );
+  // Observe after the queued cross-frame message reaches the host.
+  await page.waitForTimeout(100);
+  await expect(page.locator('iframe[data-character="male"]')).toBeVisible();
+  await expect(page.locator('iframe[data-character="female"]')).toBeHidden();
+  await expect(
+    maleSession.getByLabel("Review pose", { exact: true }),
+  ).toHaveValue("run-flight");
+});
+
+test("first opening the skeleton follows the visible wardrobe character", async ({
+  page,
+}) => {
+  await installWardrobeFixture(page);
+  await page.goto("/workbench.html?character=male&mode=wardrobe");
+  const wardrobe = page.locator("#wardrobe-panel");
+  await expect(wardrobe.getByRole("status")).toContainText("Original outfit.");
+  await wardrobe
+    .getByLabel("Wardrobe character", { exact: true })
+    .selectOption("female");
+  await expect(wardrobe.getByRole("status")).toContainText("Original outfit.");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("female");
+  await page.getByRole("tab", { name: /skeleton$/, exact: false }).click();
+  const female = page.frameLocator('iframe[data-character="female"]');
+  await expect(female.getByRole("status")).toContainText(
+    "Loaded: Kling female",
+  );
+  await expect(page.locator('iframe[data-character="male"]')).toHaveCount(0);
+  await expect(page).toHaveURL(/character=female/);
+  await page.getByRole("tab", { name: "Wardrobe", exact: true }).click();
+  await expect(
+    wardrobe.getByLabel("Wardrobe character", { exact: true }),
+  ).toHaveValue("female");
 });

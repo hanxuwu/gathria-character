@@ -1,12 +1,15 @@
-import { decodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
-import { validateRgbaPngScanlines } from "../core/pack";
+import {
+  checkPageHeader,
+  decodeGarmentPage,
+  type DecodedGarmentPage,
+} from "./garment-page-codec";
+import { prepareGarmentPage } from "./garment-page-preparation";
+import {
+  assertSourcePreparationActive,
+  type SourcePreparationOptions,
+} from "../core/source-preparation";
+export { checkPageHeader, type DecodedGarmentPage } from "./garment-page-codec";
 
-const signature = [137, 80, 78, 71, 13, 10, 26, 10];
-export type DecodedGarmentPage = {
-  patch: RgbaPng;
-  /** Alpha only: RGB channels have no ownership semantics. */
-  ownership: Uint8Array;
-};
 type CachedPage = { image: DecodedGarmentPage; strict: boolean };
 const pages = new Map<string, CachedPage>();
 // The current largest shipped frame (tucked bun + Gentle + dress + shoes)
@@ -45,64 +48,6 @@ function remember(key: string, entry: CachedPage): void {
   }
 }
 
-export function checkPageHeader(
-  bytes: Uint8Array,
-  width: number,
-  height: number,
-) {
-  if (bytes.length < 45 || !signature.every((n, i) => bytes[i] === n))
-    throw Error("Garment page must be an intact RGBA PNG.");
-  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
-  if (
-    view.getUint32(8) !== 13 ||
-    view.getUint32(12) !== 0x49484452 ||
-    view.getUint32(16) !== width ||
-    view.getUint32(20) !== height
-  )
-    throw Error("Garment PNG dimensions do not match the declared atlas.");
-  if (bytes[24] !== 8 || bytes[25] !== 6 || bytes[26] || bytes[27] || bytes[28])
-    throw Error("Garment PNG must be non-interlaced 8-bit RGBA.");
-}
-async function strictPngCompression(
-  bytes: Uint8Array,
-  width: number,
-  height: number,
-) {
-  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength),
-    chunks: Uint8Array[] = [];
-  for (let offset = 8; offset < bytes.length; ) {
-    if (offset + 12 > bytes.length) throw Error("Truncated garment PNG chunk.");
-    const size = view.getUint32(offset),
-      end = offset + size + 12;
-    if (end > bytes.length) throw Error("Invalid garment PNG chunk bounds.");
-    const type = view.getUint32(offset + 4);
-    if ([0x6163544c, 0x6663544c, 0x66644154].includes(type))
-      throw Error("Garment PNG must be static, not APNG.");
-    if (type === 0x49444154 && size)
-      chunks.push(bytes.subarray(offset + 8, end - 4));
-    offset = end;
-  }
-  await validateRgbaPngScanlines(chunks, width, height, false);
-}
-
-function decodePage(
-  patch: Uint8Array,
-  ownership: Uint8Array,
-  dimensions: { width: number; height: number },
-): DecodedGarmentPage {
-  const p = decodeSourceRgbaPng(patch, dimensions),
-    mask = decodeSourceRgbaPng(ownership, dimensions);
-  const alpha = new Uint8Array(dimensions.width * dimensions.height);
-  for (let i = 3; i < mask.pixels.length; i += 4) {
-    if (mask.pixels[i] !== 0 && mask.pixels[i] !== 255)
-      throw Error("Garment ownership alpha must be binary 0 or 255.");
-    if (!mask.pixels[i] && p.pixels[i])
-      throw Error("Garment artwork extends outside its declared ownership.");
-    alpha[(i - 3) / 4] = mask.pixels[i];
-  }
-  return { patch: p, ownership: alpha };
-}
-
 /** Internal synchronous preview accessor. A preview decode is NOT a strict
  * import validation; that distinction remains attached to the cached entry. */
 export function decodedGarmentPage(
@@ -112,7 +57,7 @@ export function decodedGarmentPage(
   dimensions: { width: number; height: number },
 ): DecodedGarmentPage {
   const entry = pages.get(key) ?? {
-    image: decodePage(patch, ownership, dimensions),
+    image: decodeGarmentPage(patch, ownership, dimensions),
     strict: false,
   };
   remember(key, entry);
@@ -127,7 +72,9 @@ export async function validateGarmentPage(
   ownership: Uint8Array,
   dimensions: { width: number; height: number },
   verifiedKey?: string,
+  options: SourcePreparationOptions = {},
 ): Promise<void> {
+  assertSourcePreparationActive(options);
   checkPageHeader(patch, dimensions.width, dimensions.height);
   checkPageHeader(ownership, dimensions.width, dimensions.height);
   const cached = verifiedKey ? pages.get(verifiedKey) : undefined;
@@ -137,8 +84,7 @@ export async function validateGarmentPage(
   }
   // Never promote a shallow preview to an import/persistence success without
   // static-PNG and complete compression-stream validation.
-  await strictPngCompression(patch, dimensions.width, dimensions.height);
-  await strictPngCompression(ownership, dimensions.width, dimensions.height);
-  const image = cached?.image ?? decodePage(patch, ownership, dimensions);
+  const image = await prepareGarmentPage(patch, ownership, dimensions, options);
+  assertSourcePreparationActive(options);
   if (verifiedKey) remember(verifiedKey, { image, strict: true });
 }

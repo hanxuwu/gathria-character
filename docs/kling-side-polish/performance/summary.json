@@ -1,0 +1,149 @@
+{
+  "format": "gathria-side-loading-summary",
+  "version": 1,
+  "passed": true,
+  "baselineRef": "4fd27f9",
+  "assetRef": "4fd27f9",
+  "startedAt": "2026-10-29T11:37:11.697Z",
+  "finishedAt": "2026-10-29T11:39:59.050Z",
+  "rounds": 2,
+  "rawReportSha256": "f4190f7378bef8e74304cbab5b1082d856c1efd38850a291f26e0913ce1e5a67",
+  "benchmarkScriptSha256": "fd1ca672ff78568423d3d17c100cfad2b3cf00ee1d5e546d87ba6288f8d1f160",
+  "runtimeFilesUnchanged": 110,
+  "catalog": [
+    {
+      "stage": "Male first tailored",
+      "beforeMs": [4146.199999999255, 3852.5],
+      "afterMs": [4219.099999997765, 3867.10000000149],
+      "beforeMedianMs": 3999.3499999996275,
+      "afterMedianMs": 4043.0999999996275,
+      "changePercent": 1.0939277632616262
+    },
+    {
+      "stage": "Female first tailored after male",
+      "beforeMs": [4703.300000000745, 4121.20000000298],
+      "afterMs": [4417, 4092.39999999851],
+      "beforeMedianMs": 4412.250000001863,
+      "afterMedianMs": 4254.699999999255,
+      "changePercent": -3.570740551930218
+    },
+    {
+      "stage": "Return to male tailored",
+      "beforeMs": [730.6000000014901, 682.6000000014901],
+      "afterMs": [579, 615.6999999992549],
+      "beforeMedianMs": 706.6000000014901,
+      "afterMedianMs": 597.3499999996275,
+      "changePercent": -15.46136427988003
+    },
+    {
+      "stage": "Male material collection",
+      "beforeMs": [1208.699999999255, 977.7000000029802],
+      "afterMs": [924, 983.4000000022352],
+      "beforeMedianMs": 1093.2000000011176,
+      "afterMedianMs": 953.7000000011176,
+      "changePercent": -12.760702524685087
+    },
+    {
+      "stage": "Return to male tailored after material",
+      "beforeMs": [811.2999999970198, 636.6999999992549],
+      "afterMs": [573.1999999992549, 629.2999999970198],
+      "beforeMedianMs": 723.9999999981374,
+      "afterMedianMs": 601.2499999981374,
+      "changePercent": -16.95441988954638
+    },
+    {
+      "stage": "Return to female tailored",
+      "beforeMs": [1693.1000000014901, 1410.5],
+      "afterMs": [1411.699999999255, 1422.4000000022352],
+      "beforeMedianMs": 1551.800000000745,
+      "afterMedianMs": 1417.050000000745,
+      "changePercent": -8.683464363960258
+    }
+  ],
+  "ui": [
+    {
+      "stage": "Male first tailored",
+      "beforeMs": [8820.450740000002, 9533.306913000008],
+      "afterMs": [8820.606806999996, 8626.582481999998],
+      "beforeMedianMs": 9176.878826500004,
+      "afterMedianMs": 8723.594644499997,
+      "changePercent": -4.939415574400541
+    },
+    {
+      "stage": "Female first tailored after male",
+      "beforeMs": [8798.523299999997, 8446.71718800001],
+      "afterMs": [8753.302669000012, 8480.603287000005],
+      "beforeMedianMs": 8622.620244000003,
+      "afterMedianMs": 8616.952978000008,
+      "changePercent": -0.06572556647079786
+    },
+    {
+      "stage": "Return to male tailored",
+      "beforeMs": [3646.753973000006, 3776.1828819999937],
+      "afterMs": [3998.2004390000075, 3540.879422999991],
+      "beforeMedianMs": 3711.4684275,
+      "afterMedianMs": 3769.5399309999993,
+      "changePercent": 1.564650343506102
+    },
+    {
+      "stage": "Male material collection",
+      "beforeMs": [3821.764593, 3752.441566000023],
+      "afterMs": [4109.452534999989, 3612.947020000007],
+      "beforeMedianMs": 3787.1030795000115,
+      "afterMedianMs": 3861.199777499998,
+      "changePercent": 1.956553503945524
+    },
+    {
+      "stage": "Return to male tailored after material",
+      "beforeMs": [3138.4254450000008, 3010.0872110000055],
+      "afterMs": [2887.8616970000003, 2845.8733740000025],
+      "beforeMedianMs": 3074.256328000003,
+      "afterMedianMs": 2866.8675355000014,
+      "changePercent": -6.7459824547200675
+    }
+  ],
+  "heapObservations": {
+    "catalog-before": {
+      "minBytes": 204592636,
+      "maxBytes": 451674501,
+      "medianBytes": 359829032.5
+    },
+    "catalog-after": {
+      "minBytes": 216386180,
+      "maxBytes": 449800972,
+      "medianBytes": 392692341.5
+    },
+    "ui-before": {
+      "minBytes": 294473336,
+      "maxBytes": 580898101,
+      "medianBytes": 399034834.5
+    },
+    "ui-after": {
+      "minBytes": 352503730,
+      "maxBytes": 709524644,
+      "medianBytes": 516352143.5
+    }
+  },
+  "limitations": [
+    "Two local Chromium development-server samples per stage are observations, not a device-wide guarantee.",
+    "Cold catalog import and most complete UI transitions do not show a consistent improvement; source/garment/appearance validation and full-frame preflight remain dominant.",
+    "HTTP cache disabled for both implementations; avoided requests and transferred source bytes are deterministic in this experiment.",
+    "Assets come from coherent PR53 commit4fd27f9 for both versions, isolating loader changes. Current-art acceptance is a separate full export QA.",
+    "Browser heap sampling is affected by garbage collection and excludes complete native/GPU/process memory. Cache adds up to32MiB retained compressed source data."
+  ],
+  "preservation": {
+    "catalogLoads": 24,
+    "uiCanvasChecks": 20,
+    "archiveAndDocumentHashesMatch": true,
+    "sameFrameCanvasRgbaMatch": true,
+    "mutatedPublicBytesAndSettingsDoNotLeak": true,
+    "warmSourceRequestsAvoided": 8
+  },
+  "sourceCache": {
+    "maxBytes": 33554432,
+    "maxEntries": 2,
+    "actualFrozenPairBytes": 25587516,
+    "savedMaleBytesPerRevisit": 12927575,
+    "savedFemaleBytesPerRevisit": 12659941
+  }
+}

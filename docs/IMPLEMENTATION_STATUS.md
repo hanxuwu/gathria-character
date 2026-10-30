@@ -1,5 +1,39 @@
 # Implementation status
 
+Latest side-view candidate: **clothing continuity and reusable fitting review**,
+based on draft PR #54 (`16fb140`). Conservative original-cloth ownership repairs
+improve male neckline and female run40–41 forearm contacts without changing
+source bodies or canonical protection. Adjacent native poses, anatomy-aligned
+diagnostic hints and source-bound review templates extend the existing fitting
+panel. Loading changes retain the strict local validation and legacy formats.
+[Current evidence and explicit remaining limits](kling-side-refinement/README.md).
+
+Previous side-view candidate: **visual garment fitting, contact refinements and
+measured cold-load scheduling** on `feat/kling-side-fitting-workbench`, based on
+unmerged PR #53 (`220ea2f`). The new panel reuses native mask editing, bound drafts
+and reviewed candidate import. Cloth-only sleeve/hem fits and a local nape repair
+preserve original source frames and timing. [Current implementation and evidence](kling-side-fitting/README.md).
+
+
+Latest side-view follow-up: **clothing polish and practical review tools**.
+Reviewed male walk hand boundaries release old shorts, female action-consistent
+skirt artwork reduces fold jumps, and a bounded male rear-hair correction covers
+an exposed scalp strip. Slow preview, integer detail and source/look-bound issue
+notes are available inside the existing side-view workspace. Offline painting
+guides and garment preflight reuse current contracts. The loader parallelizes
+downloads and retains only bounded verified source ZIP bytes; mutable outfits
+and old saved projects remain independently validated.
+[Current evidence, checks and visual limits](kling-side-polish/README.md).
+
+Previous side-view candidate: **tailored clothes and hair**, separate from the
+original material collection. Male shirt/trousers and female blouse/skirt use
+new painted silhouettes; each character has one side-view hairstyle and three
+hair colors. A separately source-reviewed registration corrects hand/thigh and
+head/shoulder ownership errors without mutating old packs or disabling validation.
+Action queuing/endpoint feedback and directional-key handling are also refined.
+[Current scope, actual exports, checks and limitations](kling-side-expansion/README.md).
+The chronological notes below include earlier batches and their original counts.
+
 Current expansion: **male Side part and female Tucked bun**. Each character
 has one additional source-bound hairstyle, with separate front/back hair and
 the existing three colors, face choices, clothes and motion. Released atlas

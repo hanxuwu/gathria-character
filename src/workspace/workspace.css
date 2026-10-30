@@ -313,6 +313,7 @@ body {
   align-items: center;
   gap: 8px;
   border-bottom: 1px solid #d9dfd1;
+  flex-wrap: wrap;
 }
 .workbench-tabs button {
   display: inline-flex;
@@ -337,6 +338,71 @@ body {
   margin-left: auto;
   font-size: 10px;
   color: #909785;
+}
+.workbench-tabs > .workbench-advanced-label {
+  margin-left: auto;
+  padding-left: 12px;
+  border-left: 1px solid #d9dfd1;
+  letter-spacing: 0.06em;
+}
+.workbench-context {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  background: #eeefe7;
+  border: 1px solid #dce2d4;
+  border-radius: 12px;
+}
+.workbench-source {
+  display: grid;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #61715e;
+  flex-shrink: 0;
+}
+.workbench-source select {
+  max-width: 100%;
+  padding: 10px 32px 10px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: #2d483a;
+  border: 1px solid #c6cfbd;
+  border-radius: 7px;
+  background: #fffefa;
+}
+.workbench-source select:focus-visible {
+  outline: 3px solid #b48358;
+  outline-offset: 3px;
+}
+.workbench-context p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #6d7967;
+}
+.workbench-panel--side {
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .workbench-context {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+  }
+  .workbench-source select {
+    width: 100%;
+  }
+  .workbench-tabs > .workbench-advanced-label {
+    display: inline;
+    border: 0;
+    margin-left: 0;
+    padding-left: 5px;
+    font-size: 10px;
+  }
 }
 .workbench-panel {
   background: #fbfaf7;

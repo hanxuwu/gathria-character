@@ -1,0 +1,628 @@
+{
+  "format": "gathria-dual-view-material-audit",
+  "version": 1,
+  "algorithm": "owned-chromatic-ratio-v1",
+  "sourceInputs": [
+    {
+      "character": "male",
+      "view": "original",
+      "sourceUrl": "/docs/kling-motion/exports/male.character.zip",
+      "registrationUrl": "/docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+      "seeds": [
+        {
+          "id": "teal-top",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/male-full-outfits-v1/teal-top.zip",
+          "sha256": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc",
+          "sourceRgb": [
+            84,
+            130,
+            135
+          ]
+        },
+        {
+          "id": "ochre-shorts",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/male-full-outfits-v1/ochre-shorts.zip",
+          "sha256": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a",
+          "sourceRgb": [
+            197,
+            137,
+            61
+          ]
+        }
+      ],
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48"
+    },
+    {
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "/docs/kling-side-workspace/assets/male.source.zip",
+      "registrationUrl": "/docs/kling-side-workspace/assets/male.registration.json",
+      "seeds": [
+        {
+          "slot": "top",
+          "url": "/docs/kling-side-workspace/assets/male-top.garment.zip",
+          "sourceRgb": [
+            80,
+            139,
+            158
+          ],
+          "sha256": "d13ef11fead36308546e02ef15fbb2ab8f9332dc34dfc70876164dbf3fb4e180",
+          "id": "side-male-seabreeze-top-v1"
+        },
+        {
+          "slot": "bottom",
+          "url": "/docs/kling-side-workspace/assets/male-bottom.garment.zip",
+          "sourceRgb": [
+            139,
+            117,
+            88
+          ],
+          "sha256": "d2461ed2f3b5265d511b626e12887b121f3bd792d34461ac956bcc59d7d8e6c5",
+          "id": "side-male-seabreeze-bottom-v1"
+        }
+      ],
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5"
+    },
+    {
+      "character": "female",
+      "view": "original",
+      "sourceUrl": "/docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "/docs/kling-wardrobe/registration/female.json",
+      "seeds": [
+        {
+          "id": "teal-top",
+          "slot": "top",
+          "url": "/docs/kling-wardrobe/garments/female/teal-top.zip",
+          "sha256": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7",
+          "sourceRgb": [
+            84,
+            130,
+            135
+          ]
+        },
+        {
+          "id": "ochre-shorts",
+          "slot": "bottom",
+          "url": "/docs/kling-wardrobe/garments/female/ochre-shorts.zip",
+          "sha256": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e",
+          "sourceRgb": [
+            197,
+            137,
+            61
+          ]
+        }
+      ],
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953"
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "/docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "/docs/kling-side-workspace/assets/female.registration.json",
+      "seeds": [
+        {
+          "slot": "top",
+          "url": "/docs/kling-side-workspace/assets/female-top.garment.zip",
+          "sourceRgb": [
+            204,
+            135,
+            120
+          ],
+          "sha256": "d669f0b70ee762278071948a09b51d7e24ce9fac8018c563b1ab5a1b506660c4",
+          "id": "side-female-apricot-top-v1"
+        },
+        {
+          "slot": "bottom",
+          "url": "/docs/kling-side-workspace/assets/female-bottom.garment.zip",
+          "sourceRgb": [
+            75,
+            104,
+            128
+          ],
+          "sha256": "772646577b898296cb652827e04663bc6b7c70c80a2433e5013864e2639d0853",
+          "id": "side-female-apricot-bottom-v1"
+        }
+      ],
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e"
+    }
+  ],
+  "garments": [
+    {
+      "id": "dual-male-original-sea-top-v1",
+      "sha256": "37f5bceb4964ce33b569ce447f932e2c4b7d08885894cdba9a6c3ab57220baf9",
+      "bytes": 2196175,
+      "identityAlias": false,
+      "changedPixels": 2142845,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-male-original-sea-bottom-v1",
+      "sha256": "469112e652a7ad6ace98d2d58e074950664b8e822549b2ab324a36b0f229adb2",
+      "bytes": 1796721,
+      "identityAlias": false,
+      "changedPixels": 1129225,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-male-original-apricot-top-v1",
+      "sha256": "89414f293b31d13834657b0b55fb1c4cf5c4331fcbabcf3ff45f216b8fdcb009",
+      "bytes": 2248699,
+      "identityAlias": false,
+      "changedPixels": 2146041,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-male-original-apricot-bottom-v1",
+      "sha256": "6e5873424017bce37e48110169f6a102e716562b66eb9e0d69d646970434350b",
+      "bytes": 1726152,
+      "identityAlias": false,
+      "changedPixels": 1130024,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-male-side-sea-top-v1",
+      "sha256": "80ed63b65aff2f08c2cbfe37c0240730a32aff645582597d3f88924b6ef28e98",
+      "bytes": 982997,
+      "identityAlias": true,
+      "changedPixels": 0,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-male-side-sea-bottom-v1",
+      "sha256": "77cd09c988be867ced6a9750b32740733e8935638768caa4eb9232ee641d53a1",
+      "bytes": 910327,
+      "identityAlias": true,
+      "changedPixels": 0,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-male-side-apricot-top-v1",
+      "sha256": "edfe4ee0e3a8effb33d6dd3f0596eaebe5a834584741a4ef3d17fce931e294ef",
+      "bytes": 1036540,
+      "identityAlias": false,
+      "changedPixels": 635733,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-male-side-apricot-bottom-v1",
+      "sha256": "3c6f14ea349a200b30244b22098abe3d741fa02ae8f1898d30f45db4b9486ddf",
+      "bytes": 939809,
+      "identityAlias": false,
+      "changedPixels": 387326,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-original-sea-top-v1",
+      "sha256": "6ce3ed381e5a58988c48f6dd8b284ed9a41836ba184ae8a09533ff8d8dc9af0b",
+      "bytes": 2367991,
+      "identityAlias": false,
+      "changedPixels": 1873555,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-original-sea-bottom-v1",
+      "sha256": "6bf04d8e2474842b988a5116a0fd3ed88f02031d0ec78619c73c60f0bc3a9d72",
+      "bytes": 1823505,
+      "identityAlias": false,
+      "changedPixels": 1054705,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-original-apricot-top-v1",
+      "sha256": "0a2aba3e75dd85d8cc6edde548405bb277a359f7c60e534be7e24a7bffcf4149",
+      "bytes": 2445045,
+      "identityAlias": false,
+      "changedPixels": 1878364,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-original-apricot-bottom-v1",
+      "sha256": "cb5306d0a6abebddf120f16577646fe2d15792e332c8ba3715d88d9290582796",
+      "bytes": 1772168,
+      "identityAlias": false,
+      "changedPixels": 1056425,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-side-sea-top-v1",
+      "sha256": "e39d83cbb703be925acdce2f7a6df4be9a55c4454a66026dba15446f6ddd1b52",
+      "bytes": 985948,
+      "identityAlias": false,
+      "changedPixels": 599482,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-side-sea-bottom-v1",
+      "sha256": "cef6995c43a69aef71fdfc43e5ee9b32deac935794f25f7245ae63f635ea5923",
+      "bytes": 882404,
+      "identityAlias": false,
+      "changedPixels": 336390,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-side-apricot-top-v1",
+      "sha256": "d4432eb429a1d3105b0d9babb5483ced13b8e9f2b41d013000d18c2438eba5fa",
+      "bytes": 975859,
+      "identityAlias": true,
+      "changedPixels": 0,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "id": "dual-female-side-apricot-bottom-v1",
+      "sha256": "cb1b0eb1383917d84f2c27e079042f0702e7df8925c2ee87f69c712878ff067e",
+      "bytes": 821071,
+      "identityAlias": true,
+      "changedPixels": 0,
+      "frameGeometryExact": true,
+      "alphaExact": true,
+      "ownershipBytesExact": true,
+      "outsideOwnershipExact": true
+    }
+  ],
+  "looks": [
+    {
+      "character": "male",
+      "view": "original",
+      "palette": "sea",
+      "framesChecked": 88,
+      "outsideProtectedPixelChecks": 61992063,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "male-original-sea-idle-0.png",
+          "sha256": "16ca1032b7d3c1f00627e98659eacfe178d2981e4953c4f517023254edb5acba"
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "file": "male-original-sea-walk-24.png",
+          "sha256": "e28a65b8c514ccd1dfe9a69ab35981dbd261dd7d7cd0f8711faef1b274eac973"
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "file": "male-original-sea-run-55.png",
+          "sha256": "33b1dc996ab2c3ccb1ee9990051ca2344c0cf89a980b5ed741111399b945e34c"
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "file": "male-original-sea-jump-102.png",
+          "sha256": "533a4032d9fab0ed834566c2b4e5e70e27d90b401d0b29a3c4066f1a07efb813"
+        },
+        {
+          "action": "celebrate",
+          "frameId": 67,
+          "file": "male-original-sea-celebrate-67.png",
+          "sha256": "e0419d1c1137a400642d7ca329df590ef7663b2e68fd9ba5cff552aae811c45c"
+        }
+      ]
+    },
+    {
+      "character": "male",
+      "view": "original",
+      "palette": "apricot",
+      "framesChecked": 88,
+      "outsideProtectedPixelChecks": 61992063,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "male-original-apricot-idle-0.png",
+          "sha256": "8982e7184ebe47d16624288ff803fab12b7aa408218e58832ad528f3994b0475"
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "file": "male-original-apricot-walk-24.png",
+          "sha256": "6fa5fc0fbd407ecba185550e6dc900f585559f6d0d82af00b2e5291eb266788e"
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "file": "male-original-apricot-run-55.png",
+          "sha256": "c01eaaa647c2e4361ab972b59521afe9027b687cf94579891e1caaf1459add77"
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "file": "male-original-apricot-jump-102.png",
+          "sha256": "36ce6ce5f9372b730c7cbb5c25fbc6dae307724f8fecb4f129f032c301bf8d4e"
+        },
+        {
+          "action": "celebrate",
+          "frameId": 67,
+          "file": "male-original-apricot-celebrate-67.png",
+          "sha256": "47288ee86aa03efa19fd60c9a25381bb36cdeab81b7d8a35450fafcd701763fd"
+        }
+      ]
+    },
+    {
+      "character": "male",
+      "view": "side",
+      "palette": "sea",
+      "framesChecked": 107,
+      "outsideProtectedPixelChecks": 40978510,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "male-side-sea-idle-0.png",
+          "sha256": "55ad231b3a5a169f18017f42b6ea13c67b9c74b362d944172618414b6fe523ea"
+        },
+        {
+          "action": "walk",
+          "frameId": 21,
+          "file": "male-side-sea-walk-21.png",
+          "sha256": "eb230a76d01e9e9bfb9898830473496e4cf2aaef1298a9e175e2506ef8e72081"
+        },
+        {
+          "action": "run",
+          "frameId": 43,
+          "file": "male-side-sea-run-43.png",
+          "sha256": "80504f94cfc05eb81fddee54fd126c5c37e2e2582b82863a60457b2500663c84"
+        },
+        {
+          "action": "jump",
+          "frameId": 82,
+          "file": "male-side-sea-jump-82.png",
+          "sha256": "9e144d14e213ced8f85e97df8c6960fbfe02d1f994707c38239a1148c823043b"
+        }
+      ]
+    },
+    {
+      "character": "male",
+      "view": "side",
+      "palette": "apricot",
+      "framesChecked": 107,
+      "outsideProtectedPixelChecks": 40978510,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "male-side-apricot-idle-0.png",
+          "sha256": "e1d5ac12a29ee907f62cbdd9033341e4c88872ee8663d25a241c8c40aeaeda83"
+        },
+        {
+          "action": "walk",
+          "frameId": 21,
+          "file": "male-side-apricot-walk-21.png",
+          "sha256": "67134546c9fb784e09cd348ba1108fe1026e0a4c8bb693797b1df0434009c041"
+        },
+        {
+          "action": "run",
+          "frameId": 43,
+          "file": "male-side-apricot-run-43.png",
+          "sha256": "1bd98eadbdd60b42c2451e582f96437aa6f55cc57de82153c60b8d55ae3af08c"
+        },
+        {
+          "action": "jump",
+          "frameId": 82,
+          "file": "male-side-apricot-jump-82.png",
+          "sha256": "ab75dccc0ca6a76616fb15aa64b0463a0ec2ded7805d6620ec2572032acd49bb"
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "view": "original",
+      "palette": "sea",
+      "framesChecked": 96,
+      "outsideProtectedPixelChecks": 68263236,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "female-original-sea-idle-0.png",
+          "sha256": "c7a95d217f51cae8c0494c9909cdf63fea6b5a10db61d2073b57cd03a317ec3a"
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "file": "female-original-sea-walk-24.png",
+          "sha256": "92d220903774d6e8911ae77706e2479aed3196a6720840fe01546605e40dc6ac"
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "file": "female-original-sea-run-55.png",
+          "sha256": "9abf30e8817d8b28c051ed890e1237d2036e3a0e153c8f0c5a79b472a9255041"
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "file": "female-original-sea-jump-102.png",
+          "sha256": "d1cf98c3e708340787cf6e952a783f974238ce1eab126b65ed2be1c247e98e9a"
+        },
+        {
+          "action": "celebrate",
+          "frameId": 67,
+          "file": "female-original-sea-celebrate-67.png",
+          "sha256": "a4d667d5ae2f56089e2f73b003be06c3faf7e1ae23fb2f00e25c5a94c957fe62"
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "view": "original",
+      "palette": "apricot",
+      "framesChecked": 96,
+      "outsideProtectedPixelChecks": 68263236,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "female-original-apricot-idle-0.png",
+          "sha256": "cfee0e3c80e3dd7a5f7c1122e70b5e617323a0d883dc62ad8db6d3f2d46cd76c"
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "file": "female-original-apricot-walk-24.png",
+          "sha256": "6d9996ed2f89642a1b04f9443b193fab279bf8882f1a2244f2da487dd836fa2e"
+        },
+        {
+          "action": "run",
+          "frameId": 55,
+          "file": "female-original-apricot-run-55.png",
+          "sha256": "11c8204b955fcb3e70811a2330bf39be69b556d0021f599b6c2dfafc5cb0c994"
+        },
+        {
+          "action": "jump",
+          "frameId": 102,
+          "file": "female-original-apricot-jump-102.png",
+          "sha256": "e466cd8023ec35ad6a4f198d53852cc2436969cbc2d968c9172c1c49dd9d22cb"
+        },
+        {
+          "action": "celebrate",
+          "frameId": 67,
+          "file": "female-original-apricot-celebrate-67.png",
+          "sha256": "e509bb56997390376a74b817645b249c678874057db79262c62aa1614290d2aa"
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "palette": "sea",
+      "framesChecked": 102,
+      "outsideProtectedPixelChecks": 39088437,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "female-side-sea-idle-0.png",
+          "sha256": "34a349df1c7cd25494bc4a3db0fa0707ce9765c8bf40831d942c28781a882416"
+        },
+        {
+          "action": "walk",
+          "frameId": 16,
+          "file": "female-side-sea-walk-16.png",
+          "sha256": "c78e2a686ceb32efd46fbe681d9a4c978fdd770cebb1333ab5854a3165f65340"
+        },
+        {
+          "action": "run",
+          "frameId": 38,
+          "file": "female-side-sea-run-38.png",
+          "sha256": "1cc008e8da0466ff8613eee414808ac0dbbc2f70fb838d71f643763d3a343eba"
+        },
+        {
+          "action": "jump",
+          "frameId": 77,
+          "file": "female-side-sea-jump-77.png",
+          "sha256": "6f7161cc1ee4524b176af047a663d15cdef02036191c6bf53b73dd1ec3c63af0"
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "palette": "apricot",
+      "framesChecked": 102,
+      "outsideProtectedPixelChecks": 39088437,
+      "sourceBodyOutsideOwnershipExact": true,
+      "alphaExact": true,
+      "protectedRegionsAcceptedByRuntime": true,
+      "shots": [
+        {
+          "action": "idle",
+          "frameId": 0,
+          "file": "female-side-apricot-idle-0.png",
+          "sha256": "07a6466629e1b548e3587c93bfde0cd10cfb7b241911594fa1068fe3e8ae91bc"
+        },
+        {
+          "action": "walk",
+          "frameId": 16,
+          "file": "female-side-apricot-walk-16.png",
+          "sha256": "2c0938f74860d6c091d265e6550661764ad0a667863d41ba622e496269ff7e12"
+        },
+        {
+          "action": "run",
+          "frameId": 38,
+          "file": "female-side-apricot-run-38.png",
+          "sha256": "bf182db003405c82a237541a6091e7f9608762b645bb51209810296d2030c16b"
+        },
+        {
+          "action": "jump",
+          "frameId": 77,
+          "file": "female-side-apricot-jump-77.png",
+          "sha256": "a3010e1e1d76cfcd14ff60dd170226c4ff8f2ab0622e422bfc67c4acd44acbd3"
+        }
+      ]
+    }
+  ],
+  "generatedArtwork": false
+}

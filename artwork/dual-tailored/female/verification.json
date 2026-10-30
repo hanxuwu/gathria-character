@@ -1,0 +1,265 @@
+{
+  "format": "gathria-dual-tailored-female-art-audit",
+  "version": 1,
+  "newDrawing": true,
+  "reusedPaintedCuts": true,
+  "paintedCutOrigins": {
+    "original": "New recorded eight-pose blouse/skirt cloth artwork, fitted offline to unchanged source poses",
+    "side": "Existing independently painted and reviewed side-view blouse/skirt"
+  },
+  "algorithm": "owned-chromatic-ratio-v1",
+  "inputs": [
+    {
+      "view": "original",
+      "sourceUrl": "/docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "/docs/dual-tailored/assets/female/original-tailored-v1.registration.json",
+      "seeds": [
+        {
+          "slot": "top",
+          "logicalId": "daily-blouse",
+          "label": "圆领短袖上衣",
+          "url": "/docs/dual-tailored/assets/female/original-top.garment.zip",
+          "sourceRgb": [
+            241,
+            225,
+            202
+          ],
+          "id": "dual-female-original-top-seed-v1",
+          "sha256": "63b9dd262f2d96d9351651f46708d24879f61a5d1a949914b9a82336adf5089d"
+        },
+        {
+          "slot": "bottom",
+          "logicalId": "daily-skirt",
+          "label": "褶裥短裙",
+          "url": "/docs/dual-tailored/assets/female/original-bottom.garment.zip",
+          "sourceRgb": [
+            201,
+            130,
+            137
+          ],
+          "id": "dual-female-original-bottom-seed-v1",
+          "sha256": "60d9b80fb2fc273e8d3f822b2ae85737daedd9bd6849f3f8d3713196c4891168"
+        }
+      ],
+      "character": "female",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "cotton": []
+    },
+    {
+      "view": "side",
+      "sourceUrl": "/docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "/artwork/kling-side-expansion/templates/female.registration.json",
+      "seeds": [
+        {
+          "slot": "top",
+          "logicalId": "daily-blouse",
+          "label": "圆领短袖上衣",
+          "url": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+          "sourceRgb": [
+            241,
+            225,
+            202
+          ],
+          "id": "side-female-cream-blouse-v1",
+          "sha256": "71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201"
+        },
+        {
+          "slot": "bottom",
+          "logicalId": "daily-skirt",
+          "label": "褶裥短裙",
+          "url": "/docs/kling-side-expansion/assets/female-skirt.garment.zip",
+          "sourceRgb": [
+            201,
+            130,
+            137
+          ],
+          "id": "side-female-rose-skirt-v1",
+          "sha256": "8a16669c49822e4c442560db6948278e8dd7b4b5c708146fbb87ee9be1c60e7b"
+        }
+      ],
+      "character": "female",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "cotton": []
+    }
+  ],
+  "results": [
+    {
+      "view": "original",
+      "palette": "sea",
+      "top": "daily-blouse",
+      "bottom": "daily-skirt",
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 66077175,
+      "alphaChangedInsideGarment": 364830,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "original",
+      "palette": "sea",
+      "top": "daily-blouse",
+      "bottom": null,
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 68522434,
+      "alphaChangedInsideGarment": 130573,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "original",
+      "palette": "sea",
+      "top": null,
+      "bottom": "daily-skirt",
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 68896418,
+      "alphaChangedInsideGarment": 234312,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "original",
+      "palette": "sea",
+      "top": null,
+      "bottom": null,
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 71368704,
+      "alphaChangedInsideGarment": 0,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "original",
+      "palette": "apricot",
+      "top": "daily-blouse",
+      "bottom": "daily-skirt",
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 66077175,
+      "alphaChangedInsideGarment": 364830,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "original",
+      "palette": "apricot",
+      "top": "daily-blouse",
+      "bottom": null,
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 68522434,
+      "alphaChangedInsideGarment": 130573,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "original",
+      "palette": "apricot",
+      "top": null,
+      "bottom": "daily-skirt",
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 68896418,
+      "alphaChangedInsideGarment": 234312,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "original",
+      "palette": "apricot",
+      "top": null,
+      "bottom": null,
+      "framesChecked": 96,
+      "outsideOwnershipPixelsChecked": 71368704,
+      "alphaChangedInsideGarment": 0,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": "daily-blouse",
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 37469864,
+      "alphaChangedInsideGarment": 575749,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": "daily-blouse",
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38820150,
+      "alphaChangedInsideGarment": 205099,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": null,
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38695552,
+      "alphaChangedInsideGarment": 374923,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": null,
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 40108032,
+      "alphaChangedInsideGarment": 0,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": "daily-blouse",
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 37469864,
+      "alphaChangedInsideGarment": 575749,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": "daily-blouse",
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38820150,
+      "alphaChangedInsideGarment": 205099,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": null,
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38695552,
+      "alphaChangedInsideGarment": 374923,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": null,
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 40108032,
+      "alphaChangedInsideGarment": 0,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    }
+  ]
+}

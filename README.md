@@ -6,6 +6,45 @@ contains their original playback, portable export and the separate male and fema
 skeletal candidates; unrelated classic characters and experiments have been
 removed from the working tree.
 
+Current workspace candidate: **one character entry, retained source-specific editing**.
+From the library choose **编辑人物**, then **人物素材 → 侧视 · 横版动作**.
+Choose **服装组 → 新款试装 · 上衣与下装**, then **服装校正 · 锚点与遮挡** for adjacent native
+poses, local ownership repairs and source-bound review templates. Male neckline
+and female forearm corrections preserve the original body and action timing.
+Original actions, wardrobe, themes and the optional skeleton tools remain in the
+same workbench. Source/tool changes retain open sessions; save projects before
+reloading. [Unified workspace guide and verification](docs/unified-workbench/README.md) ·
+[Clothing review, actual exports and limits](docs/kling-side-refinement/README.md).
+
+**双视角衣橱** adds one shared daily look for both source views. Open
+`/workbench.html?character=male&mode=paired` (or `female`), choose a palette, then
+switch **人物素材** between original and side-view. The selected tank/shorts use
+separate source-bound artwork in each view; body pixels and source timing stay
+intact. Save both editable views together or export a standard CharacterPack for
+the current view. Existing wardrobe styles remain in their original tools.
+[Paired wardrobe usage, exports and limitations](docs/dual-view-wardrobe/README.md).
+
+In **双视角衣橱 → 服装组**, the new daily collection pairs a male collared
+short-sleeve shirt/trousers and a female puff-sleeve blouse/skirt across both
+views, each in two palettes. Tops and bottoms can independently restore the
+original source clothing. The previous colored cotton collection keeps its
+own registration and defaults; cross-collection cotton mixing is not offered.
+[New artwork, fitting references, actual exports and limits](docs/dual-tailored/README.md).
+
+**应用完整日常造型** in the paired wardrobe adds source-specific hair and a
+gentle expression to both daily looks. Hair, three hair colors, expression and
+clothing remain separately selectable; saved projects keep their embedded
+artwork. A separate female skirt revision repairs two reviewed side-view holes
+without replacing older clothing. The original character pixels and native
+action clocks remain the reference.
+[Complete looks, actual GIFs, portable packs and limitations](docs/dual-looks/README.md).
+
+The paired daily look now uses side-view hair drawn to match the original
+male side part and female short bob. Older projects keep their embedded styles;
+explicitly applying the complete look selects the revision. Review comparisons
+use one fixed body-height scale per source, without changing native exports.
+[Matched hair, before/after GIFs and validation](docs/matched-hair/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):
@@ -15,12 +54,10 @@ npm ci
 npm run dev
 ```
 
-Open the address Vite prints. In **Character library**, use **Open character** on
-either card to inspect and arrange its **Sprite actions**. The default action
-settings preserve the original video playback. **Dress Kling male/female** opens
-the registered wardrobe. **Explore Kling male/female themes** opens the new
-authored theme workspace; separate **Edit Kling male/female skeleton** buttons
-retain the optional skeletal candidates.
+Open the address Vite prints. In **Character library**, use **编辑人物** on either
+card. The workbench keeps original actions, wardrobe, paired wardrobe, themes
+and optional skeletal tools together. The default action settings preserve the
+original video playback; direct links below still open the corresponding tools.
 
 **侧视动作与换装** on either character card opens the independent side-view
 candidate: `/workbench.html?character=male&mode=side-view` (or `female`).
@@ -29,10 +66,24 @@ controls, camera-follow travel, per-frame fitting guides and two same-cut daily
 material studies. Existing characters and wardrobe defaults remain unchanged.
 [Side-view usage, actual exports and limitations](docs/kling-side-workspace/README.md).
 
+**侧视新款试装与发型** opens the separate tailored edition at the same route with
+`&collection=tailored`: a male shirt/trouser outfit, a female blouse/skirt outfit,
+two side-view hairstyles and three hair colors. It retains original source timing
+and uses separately reviewed head/hand ownership. The original material edition
+and old projects keep their exact assets.
+[Tailored edition, actual exports and limits](docs/kling-side-expansion/README.md).
+
+The [side-view polish follow-up](docs/kling-side-polish/README.md) fixes reviewed
+hand/cloth ownership and skirt continuity, adds **检查穿帮 · 逐帧审阅** with slow
+preview, integer detail and source-bound issue notes, and provides reusable
+painting-guide/preflight commands. The loader reuses verified compressed source
+bytes while revalidating current clothing and hair. Original source frames and
+export timing remain unchanged.
+
 | Main destination                             | Available now                                                           |
 | -------------------------------------------- | ----------------------------------------------------------------------- |
-| `/`                                          | Two originals, wardrobe and optional skeleton entries                   |
-| `/workbench.html?character=male` or `female` | Sprite actions, wardrobe, themes and persistent skeletal sessions       |
+| `/`                                          | Two originals, one **编辑人物** entry per character                   |
+| `/workbench.html?character=male` or `female` | Original/side-view tools, wardrobe, themes and retained skeletal sessions       |
 | `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export |
 
 `/workbench.html?character=male&mode=themes` opens **Character themes** directly;

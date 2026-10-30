@@ -1,0 +1,188 @@
+{
+  "format": "gathria-side-cleanup-audit",
+  "version": 1,
+  "status": "bounded-audit-complete-optional-cloth-matte-candidate",
+  "sourcePackSha256": {
+    "male": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+    "female": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d"
+  },
+  "acceptedPatches": [],
+  "reviewedJumpContacts": {
+    "male": [
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249
+    ],
+    "female": [
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249
+    ]
+  },
+  "nativeDetailReview": {
+    "male": [
+      240,
+      241,
+      242,
+      243,
+      244
+    ],
+    "female": [
+      242,
+      243
+    ]
+  },
+  "sourceEvidence": {
+    "videoPath": "artwork/kling-side-selection/source/male-2360.mp4",
+    "videoSha256": "85b55d8fc757052d3d1cb09d7b397d1b8eb2981f2bacef0ea6f2288fe2a44cf7",
+    "decodedSourceFrame": 242,
+    "decodedRgbSha256": "ecfdaa67630b0b2b80ed2ac9a1c3f0484e9b023e7a54360b8c5db825d97c377e",
+    "registrationSha256": "a2c835cb743a531077b3f6ad3daddf30192112cada4c6ebcaf49fb8280b7b5cd",
+    "inverseAffine": [
+      1.4708333333333332,
+      0,
+      573.4666666666667,
+      0,
+      1.4708333333333332,
+      -12.291666666666742
+    ]
+  },
+  "rejectedExperiments": [
+    {
+      "file": "artwork/kling-side-expansion/cleanup/male-source242-rejected-rgb-restoration.json",
+      "sha256": "d0146a3c3ab96ed11fdb74305121e3bcd699aafd563f187f574f8af675982dcc",
+      "reason": "Original-video RGB restoration removes purple but preserved damaged alpha leaves visible checkerboard holes/gray-green blocks. Not suitable for activation."
+    }
+  ],
+  "reviewCandidates": [
+    {
+      "file": "artwork/kling-side-expansion/cleanup/male-source242-cloth-matte-candidate.json",
+      "sha256": "70c6174259fd1b566567d8b003e38caaf8b3c8571510d85035ee66ba790dd609",
+      "status": "optional-review-candidate-not-enabled",
+      "defaultEnabled": false,
+      "finding": "502 source242 shorts-interior RGBA replacements remove the blocky purple/alpha defect by restoring original video RGB and opaque cloth alpha within a guarded reviewed region. Source boundary and all other pixels remain exact. Native crop and full-frame visual review show clear local improvement."
+    }
+  ],
+  "deferred": [
+    {
+      "region": "male source242 outer shorts",
+      "finding": "Purple contamination is absent in original video RGB. Existing keyed alpha is also damaged; RGB-only restoration is insufficient."
+    },
+    {
+      "region": "male/female neck and raised-arm gaps, especially source241/242",
+      "finding": "Green includes original-video shaded background wedges and retained opaque pixels in negative space. RGB-only neutralization would leave false shapes; no edit issued."
+    }
+  ],
+  "checks": {
+    "candidatePixelCount": 470,
+    "changedAlphaPixels": 0,
+    "outsideSparseCoordinatesExact": true,
+    "inverseRestoresSourceExactly": true,
+    "sourcePackHashesRecheckedAfterRun": true,
+    "partialAlphaPixelsInReviewedRoi": 529,
+    "candidateIsAccepted": false,
+    "clothMatteCandidate": {
+      "changedRgbPixels": 498,
+      "changedAlphaPixels": 502,
+      "outsideSparseCoordinatesExact": true,
+      "outsideDeclaredRegionExact": true,
+      "inverseRestoresSourceExactly": true,
+      "nonzeroAlphaFootprintExact": true,
+      "defaultEnabled": false
+    }
+  }
+}

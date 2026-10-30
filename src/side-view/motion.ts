@@ -23,6 +23,23 @@ export interface SideMotionOptions {
   bounds: { min: number; max: number };
 }
 
+export interface SideMotionFeedback {
+  /** Playback phase only; this does not infer foot support or recovery poses. */
+  phase: "cycle" | "one-shot" | "endpoint-hold";
+  frameIndex: number;
+  frameCount: number;
+  durationMs: number;
+  /** Source playback time to the cycle boundary or one-shot completion. */
+  remainingMs: number;
+  paused: boolean;
+  transition: {
+    action: SideAction;
+    boundary: "cycle-end" | "clip-end" | "immediate";
+    /** Source playback time; a paused clip does not consume this wait. */
+    remainingMs: number;
+  } | null;
+}
+
 // Only absorbs floating-point error from repeated 1000 / 24 frame steps.
 const TIME_EPSILON = 1e-7;
 const FRAME_EPSILON = 1e-9;
@@ -95,6 +112,24 @@ function elapsedInClip(state: SideMotionState, clip: Animation): number {
   return clip.loop
     ? state.elapsedMs % duration
     : Math.min(state.elapsedMs, duration);
+}
+
+function sourceFrameIndex(state: SideMotionState, clip: Animation): number {
+  const tick = Math.floor(
+    (elapsedInClip(state, clip) * clip.fps) / 1000 + FRAME_EPSILON,
+  );
+  return clip.loop
+    ? tick % clip.frames.length
+    : Math.min(tick, clip.frames.length - 1);
+}
+
+function transitionWaitMs(state: SideMotionState, clip: Animation): number {
+  const elapsed = elapsedInClip(state, clip);
+  return state.action === "idle" ||
+    (state.pending === "idle" && state.action !== "jump") ||
+    (clip.loop && elapsed < TIME_EPSILON)
+    ? 0
+    : Math.max(0, durationMs(clip) - elapsed);
 }
 
 function enterAction(
@@ -217,13 +252,7 @@ export function advanceSideMotion(
   const current = { ...state, pending };
   if (pending === null) return advanceSegment(current, deltaMs, clip, options);
 
-  const elapsed = elapsedInClip(current, clip);
-  const wait =
-    current.action === "idle" ||
-    (pending === "idle" && current.action !== "jump") ||
-    (clip.loop && elapsed < TIME_EPSILON)
-      ? 0
-      : Math.max(0, durationMs(clip) - elapsed);
+  const wait = transitionWaitMs(current, clip);
   if (deltaMs + TIME_EPSILON < wait) {
     return advanceSegment(current, deltaMs, clip, options);
   }
@@ -248,13 +277,42 @@ export function sideFrameId(
 ): number {
   assertState(state);
   const clip = clipFor(manifest, state.action);
-  const tick = Math.floor(
-    (elapsedInClip(state, clip) * clip.fps) / 1000 + FRAME_EPSILON,
-  );
-  const index = clip.loop
-    ? tick % clip.frames.length
-    : Math.min(tick, clip.frames.length - 1);
-  return clip.frames[index];
+  return clip.frames[sourceFrameIndex(state, clip)];
+}
+
+/** Describe existing source timing without changing the motion or its queue. */
+export function sideMotionFeedback(
+  state: SideMotionState,
+  manifest: BakedCharacterPackManifest,
+): SideMotionFeedback {
+  assertState(state);
+  const clip = clipFor(manifest, state.action);
+  if (state.pending !== null) clipFor(manifest, state.pending);
+  const duration = durationMs(clip);
+  const ended = !clip.loop && state.elapsedMs + TIME_EPSILON >= duration;
+  const pending = state.pending === state.action ? null : state.pending;
+  const wait = pending === null ? 0 : transitionWaitMs(state, clip);
+  return {
+    phase: clip.loop ? "cycle" : ended ? "endpoint-hold" : "one-shot",
+    frameIndex: sourceFrameIndex(state, clip),
+    frameCount: clip.frames.length,
+    durationMs: duration,
+    remainingMs: ended ? 0 : Math.max(0, duration - elapsedInClip(state, clip)),
+    paused: state.paused,
+    transition:
+      pending === null
+        ? null
+        : {
+            action: pending,
+            boundary:
+              wait < TIME_EPSILON
+                ? "immediate"
+                : clip.loop
+                  ? "cycle-end"
+                  : "clip-end",
+            remainingMs: wait < TIME_EPSILON ? 0 : wait,
+          },
+  };
 }
 
 export function sideActionEnded(

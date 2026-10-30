@@ -137,8 +137,10 @@ test("the visible male skeleton entry retains poses and old study URLs still ope
   );
   await page.goto("/");
   await page
-    .getByRole("link", { name: "Edit Kling male skeleton", exact: true })
+    .locator(".library-character--male")
+    .getByRole("link", { name: "编辑人物", exact: true })
     .click();
+  await page.getByRole("tab", { name: "Male skeleton", exact: true }).click();
   const frame = page.frameLocator('iframe[title="Skeleton and motion editor"]');
   await expect(frame.getByRole("status")).toContainText("Loaded:");
   await frame

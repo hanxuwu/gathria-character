@@ -1,0 +1,37 @@
+{
+  "command": "python scripts/prepare-dual-looks-appearance.py --check",
+  "passed": true,
+  "files": [
+    {
+      "file": "docs/dual-looks/assets/catalog.json",
+      "bytes": 3302,
+      "sha256": "f9df5d91d6d989c4b3f4dc7e55737966be6a2c34f7c41c5b25f7a8793bfd0c33",
+      "byteIdentical": true
+    },
+    {
+      "file": "docs/dual-looks/assets/female-original.appearance.zip",
+      "bytes": 15661152,
+      "sha256": "419c9f5827e33045071fd6416fd3d9a3cadbbf0d45b13baea8c395517e42edd8",
+      "byteIdentical": true
+    },
+    {
+      "file": "docs/dual-looks/assets/female-side.appearance.zip",
+      "bytes": 8647944,
+      "sha256": "a35fb16d5069ae4f094a03266f4885312ced315eae6c967f4ef2f266d523d993",
+      "byteIdentical": true
+    },
+    {
+      "file": "docs/dual-looks/assets/male-original.appearance.zip",
+      "bytes": 15119814,
+      "sha256": "d0d1bf7efdebcb6b8ec1777b56375c22c571a8e2cb2c157dcc34547b4ef32b6b",
+      "byteIdentical": true
+    },
+    {
+      "file": "docs/dual-looks/assets/male-side.appearance.zip",
+      "bytes": 5948712,
+      "sha256": "a6f4ff93cf3803bb7a9eeaa5d29fc5f6e051432ac8c5368e3900ce85928e129a",
+      "byteIdentical": true
+    }
+  ],
+  "method": "Rebuild selected existing native appearance patches and published native side face patches, repack deterministic PNG/ZIP bytes, compare all four banks and catalog."
+}

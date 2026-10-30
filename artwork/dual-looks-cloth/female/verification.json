@@ -1,0 +1,137 @@
+{
+  "format": "gathria-dual-tailored-female-art-audit",
+  "version": 1,
+  "newDrawing": false,
+  "reusedPaintedCuts": true,
+  "algorithm": "owned-chromatic-ratio-v1",
+  "inputs": [
+    {
+      "view": "side",
+      "sourceUrl": "/docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "/artwork/kling-side-expansion/templates/female.registration.json",
+      "seeds": [
+        {
+          "slot": "top",
+          "logicalId": "daily-blouse",
+          "label": "圆领短袖上衣",
+          "url": "/docs/kling-side-expansion/assets/female-blouse.garment.zip",
+          "sourceRgb": [
+            241,
+            225,
+            202
+          ],
+          "id": "side-female-cream-blouse-v1",
+          "sha256": "71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201"
+        },
+        {
+          "slot": "bottom",
+          "logicalId": "daily-skirt",
+          "label": "褶裥短裙 · 局部修订",
+          "url": "/docs/dual-looks-cloth/assets/female-side-skirt-reviewed.garment.zip",
+          "sourceRgb": [
+            201,
+            130,
+            137
+          ],
+          "id": "side-female-reviewed-skirt-v2",
+          "sha256": "9419e1c88c1a6a178d0d1ea88ce6751c428bef09c36a468d46a81cd32d5842bf"
+        }
+      ],
+      "character": "female",
+      "idPrefix": "dual-complete",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "cotton": []
+    }
+  ],
+  "results": [
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": "daily-blouse",
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 37469516,
+      "alphaChangedInsideGarment": 575752,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": "daily-blouse",
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38820150,
+      "alphaChangedInsideGarment": 205099,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": null,
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38695204,
+      "alphaChangedInsideGarment": 374926,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "sea",
+      "top": null,
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 40108032,
+      "alphaChangedInsideGarment": 0,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": "daily-blouse",
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 37469516,
+      "alphaChangedInsideGarment": 575752,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": "daily-blouse",
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38820150,
+      "alphaChangedInsideGarment": 205099,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": null,
+      "bottom": "daily-skirt",
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 38695204,
+      "alphaChangedInsideGarment": 374926,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    },
+    {
+      "view": "side",
+      "palette": "apricot",
+      "top": null,
+      "bottom": null,
+      "framesChecked": 102,
+      "outsideOwnershipPixelsChecked": 40108032,
+      "alphaChangedInsideGarment": 0,
+      "protectedHeadHandsAcceptedByRuntime": true,
+      "outsideOwnershipExact": true
+    }
+  ]
+}

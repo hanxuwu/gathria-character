@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,6 +21,10 @@ import {
 import { encodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
 import type { Facing } from "../core/types";
 import {
+  APPEARANCE_HAIR_COLORS,
+  type AppearanceSelection,
+} from "../appearance/contract";
+import {
   WARDROBE_ANCHORS,
   WARDROBE_MAX_PROJECT_BYTES,
   type WardrobeProject,
@@ -28,7 +39,9 @@ import {
 } from "../wardrobe/compositor";
 import {
   exportWardrobeProject,
+  getWardrobeAppearanceSelection,
   importWardrobeProject,
+  selectWardrobeAppearance,
   selectWardrobeGarment,
   updateWardrobePreview,
 } from "../wardrobe/project";
@@ -37,7 +50,9 @@ import {
   loadSideProject,
   sideIdentityOf,
   sideLookSelection,
+  sideProjectCollection,
   type SideCharacterId,
+  type SideCollection,
 } from "./catalog";
 import {
   advanceSideMotion,
@@ -45,11 +60,17 @@ import {
   requestSideAction,
   sideActionEnded,
   sideFrameId,
+  sideMotionFeedback,
   type SideAction,
   type SideMotionState,
   type SideStageMode,
 } from "./motion";
+import { sideKeyboardIntent } from "./input";
+import SideReviewPanel from "./SideReviewPanel";
+import { type ReviewNote, type ReviewRate } from "./review";
 import "./side-view.css";
+
+const FittingWorkbench = lazy(() => import("./fitting-workbench"));
 
 const WIDTH = 1200;
 const HEIGHT = 820;
@@ -101,6 +122,7 @@ type Readout = {
   paused: boolean;
   pending: SideAction | null;
   ended: boolean;
+  transitionMs: number | null;
 };
 const INITIAL_READOUT: Readout = {
   action: "idle",
@@ -112,6 +134,7 @@ const INITIAL_READOUT: Readout = {
   paused: false,
   pending: null,
   ended: false,
+  transitionMs: null,
 };
 
 function readPreferences(): Preferences {
@@ -216,17 +239,40 @@ function isEditing(target: EventTarget | null) {
 
 export default function SideViewPlayground({
   initialCharacter = "male",
+  initialCollection = "material",
   active = true,
+  onNavigate,
+  onIdentityChange,
 }: {
   initialCharacter?: SideCharacterId;
+  initialCollection?: SideCollection;
   active?: boolean;
+  onNavigate?: (character: SideCharacterId, collection: SideCollection) => void;
+  onIdentityChange?: (identity: {
+    character: SideCharacterId;
+    collection: SideCollection;
+  }) => void;
 }) {
   const [session, setSession] = useState<Session | null>(null);
+  const [savedProject, setSavedProject] = useState<WardrobeProject | null>(
+    null,
+  );
+  useEffect(() => {
+    setSavedProject((saved) => (saved === session?.project ? saved : null));
+  }, [session?.project]);
   const [preferences, setPreferences] = useState<Preferences>(readPreferences);
   const [readout, setReadout] = useState(INITIAL_READOUT);
   const [busy, setBusy] = useState(true);
   const [status, setStatus] = useState("正在准备角色…");
   const [error, setError] = useState("");
+  const [catalogLoadFailed, setCatalogLoadFailed] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [fittingOpen, setFittingOpen] = useState(false);
+  const [editingLocked, setEditingLocked] = useState(false);
+  const editingLockedRef = useRef(false);
+  const fittingRef = useRef(false);
+  const [reviewRate, setReviewRate] = useState<ReviewRate>(1);
+  const reviewRef = useRef({ open: false, rate: 1 as ReviewRate });
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const travelReadoutRef = useRef<HTMLOutputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -242,12 +288,49 @@ export default function SideViewPlayground({
   const dirtyRef = useRef(true);
   const mountedRef = useRef(true);
   const keysRef = useRef(new Set<string>());
-  const lastDirectionRef = useRef<Facing>("right");
+  const loadTargetRef = useRef({
+    character: initialCharacter,
+    collection: initialCollection,
+  });
   const pendingFacingRef = useRef<Facing | null>(null);
   const keyboardJumpRef = useRef(false);
   const keyboardResumeRef = useRef<SideAction | null>(null);
+  const callbacksRef = useRef({ onNavigate, onIdentityChange });
+  callbacksRef.current = { onNavigate, onIdentityChange };
   preferencesRef.current = preferences;
   activeRef.current = active;
+  reviewRef.current = { open: reviewOpen, rate: reviewRate };
+  fittingRef.current = fittingOpen;
+
+  const fittingEditingChanged = useCallback((locked: boolean) => {
+    editingLockedRef.current = locked;
+    setEditingLocked(locked);
+  }, []);
+
+  const locateFittingPose = useCallback(
+    (action: SideAction, frameId: number) => {
+      const open = sessionRef.current;
+      if (!open || !activeRef.current || busyRef.current) return;
+      const clip = open.renderer.manifest.animations[action];
+      const index = clip?.frames.indexOf(frameId) ?? -1;
+      if (!clip || index < 0) return;
+      keysRef.current.clear();
+      pendingFacingRef.current = null;
+      keyboardJumpRef.current = false;
+      keyboardResumeRef.current = null;
+      motionRef.current = {
+        ...motionRef.current,
+        action,
+        paused: true,
+        pending: null,
+        jumpFrom: null,
+        elapsedMs: (index * 1000) / clip.fps + 0.000001,
+      };
+      lastTimeRef.current = null;
+      dirtyRef.current = true;
+    },
+    [],
+  );
 
   function markBusy(value: boolean) {
     busyRef.current = value;
@@ -261,6 +344,7 @@ export default function SideViewPlayground({
     const token = ++requestRef.current;
     markBusy(true);
     setError("");
+    setCatalogLoadFailed(false);
     return { controller, token };
   }
   function live(token: number, controller: AbortController) {
@@ -312,6 +396,7 @@ export default function SideViewPlayground({
           ...createSideMotionState(),
           action,
           facing: saved.facing,
+          paused: reviewRef.current.open,
         };
         keysRef.current.clear();
         pendingFacingRef.current = null;
@@ -320,6 +405,10 @@ export default function SideViewPlayground({
       }
       setSession(next);
       release(previous);
+      callbacksRef.current.onIdentityChange?.({
+        character,
+        collection: sideProjectCollection(candidate),
+      });
       dirtyRef.current = true;
       setStatus(
         resetMotion
@@ -332,23 +421,48 @@ export default function SideViewPlayground({
     }
   }
 
-  async function openCharacter(character: SideCharacterId) {
+  async function openCharacter(
+    character: SideCharacterId,
+    collection: SideCollection = sessionRef.current
+      ? sideProjectCollection(sessionRef.current.project)
+      : initialCollection,
+  ) {
+    loadTargetRef.current = { character, collection };
     const { controller, token } = beginPreparation();
     setStatus("正在载入侧视角色…");
     try {
-      const candidate = await loadSideProject(character, controller.signal);
+      let candidate = await loadSideProject(
+        character,
+        controller.signal,
+        collection,
+      );
+      if (collection === "tailored") {
+        const look = sideLookSelection(character, collection);
+        for (const slot of ["top", "bottom", "shoes"] as const)
+          if (look[slot])
+            candidate = selectWardrobeGarment(candidate, slot, look[slot]);
+      }
       await prepare(candidate, controller, token, true);
     } catch (failure) {
-      if (live(token, controller))
+      if (live(token, controller)) {
+        setCatalogLoadFailed(true);
         setError(failure instanceof Error ? failure.message : String(failure));
+      }
     } finally {
       if (live(token, controller)) markBusy(false);
     }
   }
 
+  function navigate(character: SideCharacterId, collection: SideCollection) {
+    if (busyRef.current || editingLockedRef.current) return;
+    if (callbacksRef.current.onNavigate)
+      callbacksRef.current.onNavigate(character, collection);
+    else void openCharacter(character, collection);
+  }
+
   async function changeSelection(selection: WardrobeSelection) {
     const open = sessionRef.current;
-    if (!open || busyRef.current) return;
+    if (!open || busyRef.current || editingLockedRef.current) return;
     const { controller, token } = beginPreparation();
     try {
       let candidate = open.project;
@@ -376,8 +490,32 @@ export default function SideViewPlayground({
     }
   }
 
+  async function changeAppearance(selection: Partial<AppearanceSelection>) {
+    const open = sessionRef.current;
+    if (
+      !open?.project.appearanceBank ||
+      busyRef.current ||
+      editingLockedRef.current
+    )
+      return;
+    const { controller, token } = beginPreparation();
+    try {
+      await prepare(
+        selectWardrobeAppearance(open.project, selection),
+        controller,
+        token,
+        false,
+      );
+    } catch (failure) {
+      if (live(token, controller))
+        setError(failure instanceof Error ? failure.message : String(failure));
+    } finally {
+      if (live(token, controller)) markBusy(false);
+    }
+  }
+
   async function reopen(file: File) {
-    if (busyRef.current) return;
+    if (busyRef.current || editingLockedRef.current) return;
     const { controller, token } = beginPreparation();
     setStatus("正在打开保存的项目…");
     try {
@@ -398,15 +536,56 @@ export default function SideViewPlayground({
     }
   }
 
+  async function applyFittedProject(candidate: WardrobeProject) {
+    const open = sessionRef.current;
+    if (!open || busyRef.current) throw Error("请等待当前操作完成。");
+    if (
+      candidate.document.sourceSha256 !== open.project.document.sourceSha256 ||
+      candidate.document.registrationSha256 !==
+        open.project.document.registrationSha256
+    )
+      throw Error("服装校正必须属于当前角色与定位版本。");
+    const { controller, token } = beginPreparation();
+    setStatus("正在验证校正后的服装…");
+    try {
+      await prepare(candidate, controller, token, false);
+    } catch (failure) {
+      if (live(token, controller))
+        setError(failure instanceof Error ? failure.message : String(failure));
+      throw failure;
+    } finally {
+      if (live(token, controller)) markBusy(false);
+    }
+  }
+
+  function toggleFitting() {
+    if (editingLockedRef.current) return;
+    const next = !fittingOpen;
+    fittingRef.current = next;
+    setFittingOpen(next);
+    if (next) {
+      keysRef.current.clear();
+      pendingFacingRef.current = null;
+      keyboardJumpRef.current = false;
+      keyboardResumeRef.current = null;
+      motionRef.current = { ...motionRef.current, paused: true, pending: null };
+      setPreferences((previous) => ({ ...previous, mode: "in-place" }));
+    }
+    lastTimeRef.current = null;
+    dirtyRef.current = true;
+  }
+
   function requestAction(action: SideAction, inspect = false) {
     const open = sessionRef.current;
-    if (!open || busyRef.current) return;
+    if (!open || busyRef.current || editingLockedRef.current) return;
     const current = motionRef.current;
     if (inspect) {
       keyboardJumpRef.current = false;
       keyboardResumeRef.current = null;
     }
-    if (inspect && current.paused && current.action !== "jump") {
+    // A paused action button selects a review pose immediately. Playing jumps
+    // still complete the original two-jump clip before consuming an exit.
+    if (inspect && current.paused) {
       motionRef.current = {
         ...current,
         action,
@@ -429,7 +608,7 @@ export default function SideViewPlayground({
 
   function changeFacing(facing: Facing) {
     const open = sessionRef.current;
-    if (!open || busyRef.current) return;
+    if (!open || busyRef.current || editingLockedRef.current) return;
     const motion = motionRef.current;
     if (
       motion.action === "jump" &&
@@ -437,25 +616,17 @@ export default function SideViewPlayground({
       !sideActionEnded(motion, open.renderer.manifest)
     )
       pendingFacingRef.current = facing;
-    else motionRef.current = { ...motion, facing };
+    else {
+      pendingFacingRef.current = null;
+      motionRef.current = { ...motion, facing };
+    }
     dirtyRef.current = true;
   }
 
   function synchronizeKeys() {
-    const keys = keysRef.current;
-    const left = keys.has("ArrowLeft") || keys.has("KeyA");
-    const right = keys.has("ArrowRight") || keys.has("KeyD");
-    const requested: SideAction =
-      left || right
-        ? keys.has("ShiftLeft") || keys.has("ShiftRight")
-          ? "run"
-          : "walk"
-        : "idle";
-    if (left || right) {
-      changeFacing(
-        left && right ? lastDirectionRef.current : left ? "left" : "right",
-      );
-    }
+    const intent = sideKeyboardIntent(keysRef.current);
+    const requested = intent.action;
+    if (intent.facing) changeFacing(intent.facing);
     // A locomotion seam may still be waiting to start the requested jump.
     // Preserve that request while remembering the latest held-key intent.
     if (keyboardJumpRef.current && motionRef.current.pending === "jump") {
@@ -482,7 +653,7 @@ export default function SideViewPlayground({
 
   function seekFrame(index: number) {
     const open = sessionRef.current;
-    if (!open || busyRef.current) return;
+    if (!open || busyRef.current || editingLockedRef.current) return;
     const current = motionRef.current;
     const clip = open.renderer.manifest.animations[current.action]!;
     const next = Math.max(0, Math.min(clip.frames.length - 1, index));
@@ -495,9 +666,61 @@ export default function SideViewPlayground({
     dirtyRef.current = true;
   }
 
+  function toggleReview() {
+    if (editingLockedRef.current) return;
+    const next = !reviewOpen;
+    setReviewOpen(next);
+    setReviewRate(1);
+    if (next) {
+      keysRef.current.clear();
+      pendingFacingRef.current = null;
+      keyboardJumpRef.current = false;
+      keyboardResumeRef.current = null;
+      motionRef.current = { ...motionRef.current, paused: true, pending: null };
+      setPreferences((previous) => ({
+        ...previous,
+        mode: "in-place",
+        comparison: true,
+      }));
+    }
+    lastTimeRef.current = null;
+    dirtyRef.current = true;
+  }
+
+  function locateReviewNote(note: ReviewNote) {
+    const open = sessionRef.current;
+    if (!open || busyRef.current || editingLockedRef.current) return;
+    const clip = open.renderer.manifest.animations[note.action];
+    const index = clip?.frames.indexOf(note.frame) ?? -1;
+    if (!clip || index < 0) return;
+    keysRef.current.clear();
+    pendingFacingRef.current = null;
+    keyboardJumpRef.current = false;
+    keyboardResumeRef.current = null;
+    motionRef.current = {
+      ...motionRef.current,
+      action: note.action,
+      facing: note.facing,
+      paused: true,
+      pending: null,
+      jumpFrom: null,
+      elapsedMs: (index * 1000) / clip.fps + 0.000001,
+    };
+    lastTimeRef.current = null;
+    dirtyRef.current = true;
+  }
+
+  const reviewFrame = useCallback(
+    (frame: number, source: boolean) => {
+      if (!session) throw Error("请先打开角色。");
+      return cachedFrame(session, frame, source);
+    },
+    [session],
+  );
+
   async function save(kind: "project" | "png" | "gif" | "pack") {
     const open = sessionRef.current;
-    if (!open || busyRef.current) return;
+    if (!open || busyRef.current || editingLockedRef.current) return;
     const { controller, token } = beginPreparation();
     const motion = { ...motionRef.current };
     const project = updateWardrobePreview(open.project, {
@@ -558,6 +781,7 @@ export default function SideViewPlayground({
       }
       if (!live(token, controller)) return;
       download(bytes, filename, mime);
+      if (kind === "project") setSavedProject(open.project);
       setStatus(
         kind === "project"
           ? "项目已保存，包含原片、服装、当前搭配及动作朝向；可在此重新打开。"
@@ -577,7 +801,7 @@ export default function SideViewPlayground({
 
   useEffect(() => {
     mountedRef.current = true;
-    void openCharacter(initialCharacter);
+    void openCharacter(initialCharacter, initialCollection);
     return () => {
       mountedRef.current = false;
       requestRef.current++;
@@ -630,6 +854,7 @@ export default function SideViewPlayground({
         !activeRef.current ||
         !visibleRef.current ||
         busyRef.current ||
+        fittingRef.current ||
         isEditing(event.target)
       )
         return;
@@ -647,23 +872,21 @@ export default function SideViewPlayground({
       if (event.repeat || keysRef.current.has(event.code)) return;
       keysRef.current.add(event.code);
       if (event.code === "Space") {
+        if (
+          motionRef.current.action === "jump" &&
+          !sideActionEnded(
+            motionRef.current,
+            sessionRef.current.renderer.manifest,
+          )
+        )
+          return;
         keyboardJumpRef.current = true;
-        const keys = keysRef.current;
-        const moving = ["ArrowLeft", "ArrowRight", "KeyA", "KeyD"].some((key) =>
-          keys.has(key),
-        );
-        keyboardResumeRef.current = moving
-          ? keys.has("ShiftLeft") || keys.has("ShiftRight")
-            ? "run"
-            : "walk"
-          : null;
+        const intent = sideKeyboardIntent(keysRef.current);
+        keyboardResumeRef.current =
+          intent.action === "idle" ? null : intent.action;
         requestAction("jump");
         return;
       }
-      if (["ArrowLeft", "KeyA"].includes(event.code))
-        lastDirectionRef.current = "left";
-      if (["ArrowRight", "KeyD"].includes(event.code))
-        lastDirectionRef.current = "right";
       synchronizeKeys();
     }
     function keyup(event: KeyboardEvent) {
@@ -685,6 +908,7 @@ export default function SideViewPlayground({
   }, []);
 
   useEffect(() => {
+    if (!active) return;
     let request = 0;
     let lastDrawn = "";
     let lastReadout = "";
@@ -703,6 +927,7 @@ export default function SideViewPlayground({
       const prefs = preferencesRef.current;
       const delta =
         lastTimeRef.current === null ? 0 : now - lastTimeRef.current;
+      const rate = reviewRef.current.open ? reviewRef.current.rate : 1;
       lastTimeRef.current = now;
       try {
         const manifest = open.renderer.manifest;
@@ -712,7 +937,7 @@ export default function SideViewPlayground({
         if (!busyRef.current)
           motionRef.current = advanceSideMotion(
             motionRef.current,
-            delta,
+            delta * rate,
             manifest,
             {
               mode: prefs.mode,
@@ -755,6 +980,7 @@ export default function SideViewPlayground({
         const clip = manifest.animations[motion.action]!;
         const index = Math.max(0, clip.frames.indexOf(frame));
         const ended = sideActionEnded(motion, manifest);
+        const feedback = sideMotionFeedback(motion, manifest);
         canvas.dataset.action = motion.action;
         canvas.dataset.frame = String(frame);
         canvas.dataset.frameIndex = String(index);
@@ -771,11 +997,17 @@ export default function SideViewPlayground({
           travelReadoutRef.current.textContent = `${motion.worldX >= 0 ? "+" : ""}${Math.round(motion.worldX).toLocaleString()} px`;
         canvas.dataset.elapsedMs = motion.elapsedMs.toFixed(3);
         canvas.dataset.fps = String(clip.fps);
-        canvas.dataset.timing = "native-1x";
+        canvas.dataset.timing = rate === 1 ? "native-1x" : `review-${rate}x`;
+        canvas.dataset.previewRate = String(rate);
         canvas.dataset.paused = String(motion.paused);
         canvas.dataset.pending = motion.pending ?? "";
         canvas.dataset.ended = String(ended);
         canvas.dataset.character = open.character;
+        canvas.dataset.collection = sideProjectCollection(open.project);
+        canvas.dataset.phase = feedback.phase;
+        canvas.dataset.appearance = JSON.stringify(
+          getWardrobeAppearanceSelection(open.project),
+        );
         canvas.dataset.selection = JSON.stringify(
           open.project.document.selection,
         );
@@ -789,6 +1021,9 @@ export default function SideViewPlayground({
           motion.paused,
           motion.pending,
           ended,
+          feedback.transition
+            ? Math.ceil(feedback.transition.remainingMs / 100)
+            : null,
         ].join(":");
         if (readoutKey !== lastReadout) {
           lastReadout = readoutKey;
@@ -802,6 +1037,7 @@ export default function SideViewPlayground({
             paused: motion.paused,
             pending: motion.pending,
             ended,
+            transitionMs: feedback.transition?.remainingMs ?? null,
           });
         }
         const drawKey = `${readoutKey}:${prefs.mode === "travel" ? motion.worldX : 0}`;
@@ -866,7 +1102,10 @@ export default function SideViewPlayground({
                   Math.PI * 2,
                 );
                 context.fillStyle =
-                  point.visibility === "occluded" ? "#f4bb72" : "#36796b";
+                  point.visibility === "occluded" ||
+                  (point.confidence ?? 1) < 0.7
+                    ? "#f4bb72"
+                    : "#36796b";
                 context.fill();
                 context.strokeStyle = "#fff";
                 context.lineWidth = 1.5;
@@ -899,14 +1138,32 @@ export default function SideViewPlayground({
     }
     request = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(request);
-  }, []);
+  }, [active]);
 
   const selection = session?.project.document.selection ?? ORIGINAL;
+  const controlsLocked = busy || editingLocked;
+  const collection = session
+    ? sideProjectCollection(session.project)
+    : initialCollection;
+  const appearance = session
+    ? getWardrobeAppearanceSelection(session.project)
+    : null;
+  const preset = sideLookSelection(
+    session?.character ?? initialCharacter,
+    collection,
+  );
+  const presetAvailable =
+    !!session &&
+    Object.values(preset).every(
+      (id) =>
+        id === null ||
+        session.project.items.some((item) => item.manifest.id === id),
+    );
   const originalSelected = Object.values(selection).every((id) => id === null);
   const dailySelected =
     !!session &&
     (["top", "bottom", "shoes", "fullBody"] as WardrobeSlot[]).every(
-      (slot) => selection[slot] === sideLookSelection(session.character)[slot],
+      (slot) => selection[slot] === preset[slot],
     );
   const jumpLocked =
     readout.action === "jump" && !readout.ended && !readout.paused;
@@ -935,7 +1192,7 @@ export default function SideViewPlayground({
         <div className="side-project-tools">
           <button
             type="button"
-            disabled={busy}
+            disabled={controlsLocked}
             data-testid="side-open-project"
             onClick={() => fileRef.current?.click()}
           >
@@ -945,7 +1202,7 @@ export default function SideViewPlayground({
           <button
             type="button"
             className="side-primary"
-            disabled={!session || busy}
+            disabled={!session || controlsLocked}
             data-testid="side-save-project"
             onClick={() => void save("project")}
           >
@@ -980,7 +1237,10 @@ export default function SideViewPlayground({
                   : "侧视预览"}
               </span>
               <span>
-                原生节奏 · 1× <b>{readout.fps} fps</b>
+                {reviewOpen && reviewRate !== 1
+                  ? `审阅慢放 · ${reviewRate}×`
+                  : "原生节奏 · 1×"}
+                <b>原片 {readout.fps} fps</b>
               </span>
             </div>
             <canvas
@@ -1009,7 +1269,12 @@ export default function SideViewPlayground({
                 {error && (
                   <button
                     type="button"
-                    onClick={() => void openCharacter(initialCharacter)}
+                    onClick={() =>
+                      void openCharacter(
+                        loadTargetRef.current.character,
+                        loadTargetRef.current.collection,
+                      )
+                    }
                   >
                     重新载入
                   </button>
@@ -1045,7 +1310,7 @@ export default function SideViewPlayground({
                   key={action}
                   type="button"
                   data-testid={`side-action-${action}`}
-                  disabled={!session || busy}
+                  disabled={!session || controlsLocked}
                   aria-pressed={readout.action === action}
                   onClick={() => requestAction(action, true)}
                 >
@@ -1059,7 +1324,7 @@ export default function SideViewPlayground({
               min={0}
               max={Math.max(0, readout.count - 1)}
               value={readout.index}
-              disabled={!session || busy}
+              disabled={!session || controlsLocked}
               aria-label="动作帧"
               data-testid="side-frame"
               onChange={(event) => seekFrame(Number(event.currentTarget.value))}
@@ -1068,7 +1333,7 @@ export default function SideViewPlayground({
               <div className="side-transport">
                 <button
                   type="button"
-                  disabled={!session || busy}
+                  disabled={!session || controlsLocked}
                   aria-label="上一帧"
                   data-testid="side-step-back"
                   onClick={() => step(-1)}
@@ -1077,7 +1342,7 @@ export default function SideViewPlayground({
                 </button>
                 <button
                   type="button"
-                  disabled={!session || busy}
+                  disabled={!session || controlsLocked}
                   aria-label={readout.paused ? "继续播放" : "暂停播放"}
                   data-testid="side-play-pause"
                   onClick={() => {
@@ -1093,7 +1358,7 @@ export default function SideViewPlayground({
                 </button>
                 <button
                   type="button"
-                  disabled={!session || busy}
+                  disabled={!session || controlsLocked}
                   aria-label="下一帧"
                   data-testid="side-step-forward"
                   onClick={() => step(1)}
@@ -1120,7 +1385,7 @@ export default function SideViewPlayground({
               <div className="side-facing" aria-label="朝向">
                 <button
                   type="button"
-                  disabled={!session || busy || jumpLocked}
+                  disabled={!session || controlsLocked || jumpLocked}
                   aria-label="朝左"
                   aria-pressed={readout.facing === "left"}
                   data-testid="side-facing-left"
@@ -1130,7 +1395,7 @@ export default function SideViewPlayground({
                 </button>
                 <button
                   type="button"
-                  disabled={!session || busy || jumpLocked}
+                  disabled={!session || controlsLocked || jumpLocked}
                   aria-label="朝右"
                   aria-pressed={readout.facing === "right"}
                   data-testid="side-facing-right"
@@ -1142,19 +1407,110 @@ export default function SideViewPlayground({
             </div>
             {readout.pending && (
               <p className="side-pending" data-testid="side-pending">
-                当前片段结束后切换为{ACTION_LABELS[readout.pending]}。
+                {readout.action === "jump"
+                  ? "两次跳跃完整播放后"
+                  : "本轮动作结束后"}
+                切换为{ACTION_LABELS[readout.pending]}
+                {readout.transitionMs !== null &&
+                  `（剩余约 ${(Math.ceil(readout.transitionMs / (reviewOpen ? reviewRate : 1) / 100) / 10).toFixed(1)} 秒${readout.paused ? "，已暂停" : ""}）`}
+                。
+              </p>
+            )}
+            {readout.ended && (
+              <p className="side-pending" data-testid="side-endpoint-note">
+                原片停在浅蹲末帧，尚未回到自然站立。可选择待机或再次播放跳跃。
               </p>
             )}
           </div>
+
+          <div className="side-review-toggle">
+            <button
+              type="button"
+              data-testid="side-review-toggle"
+              disabled={!session || controlsLocked}
+              aria-expanded={reviewOpen}
+              onClick={toggleReview}
+            >
+              {reviewOpen ? "关闭逐帧审阅" : "检查穿帮 · 逐帧审阅"}
+            </button>
+            <span>
+              {reviewOpen
+                ? "关闭后恢复 1× 预览，可点击继续播放。"
+                : "暂停到当前帧，并排对比、放大局部、记录问题。"}
+            </span>
+          </div>
+          {reviewOpen && session && (
+            <SideReviewPanel
+              key={`${session.character}:${session.project.document.sourceSha256}`}
+              project={session.project}
+              character={session.character}
+              action={readout.action}
+              frame={readout.frame}
+              facing={readout.facing}
+              busy={busy}
+              rate={reviewRate}
+              onRate={(rate) => {
+                setReviewRate(rate);
+                lastTimeRef.current = null;
+                dirtyRef.current = true;
+              }}
+              onPose={locateReviewNote}
+              getFrame={reviewFrame}
+            />
+          )}
+          <div className="side-review-toggle">
+            <button
+              type="button"
+              data-testid="side-fitting-toggle"
+              disabled={!session || controlsLocked}
+              aria-expanded={fittingOpen}
+              onClick={toggleFitting}
+            >
+              {fittingOpen ? "关闭服装校正" : "服装校正 · 锚点与遮挡"}
+            </button>
+            <span>检查定位与遮挡，局部修正服装并保存为独立版本。</span>
+          </div>
+          {fittingOpen && session && (
+            <Suspense fallback={<p role="status">正在打开服装校正工具…</p>}>
+              <FittingWorkbench
+                key={`${session.character}:${session.project.document.sourceSha256}`}
+                project={session.project}
+                savedProject={savedProject}
+                renderer={session.renderer}
+                action={readout.action}
+                frameId={readout.frame}
+                disabled={busy}
+                active={active}
+                onPose={locateFittingPose}
+                onEditingChange={fittingEditingChanged}
+                onApply={applyFittedProject}
+              />
+            </Suspense>
+          )}
 
           <div className="side-feedback">
             <p role="status" aria-live="polite" data-testid="side-status">
               {status}
             </p>
             {error && (
-              <p className="side-error" role="alert">
-                {error}
-              </p>
+              <div className="side-error" role="alert">
+                <p>{error}</p>
+                {session && catalogLoadFailed && (
+                  <button
+                    type="button"
+                    disabled={controlsLocked}
+                    data-testid="side-retry-load"
+                    onClick={() =>
+                      void openCharacter(
+                        loadTargetRef.current.character,
+                        loadTargetRef.current.collection,
+                      )
+                    }
+                  >
+                    重新载入所选角色与服装组
+                  </button>
+                )}
+              </div>
             )}
           </div>
           <details className="side-source-note">
@@ -1179,11 +1535,12 @@ export default function SideViewPlayground({
               角色
               <select
                 value={session?.character ?? initialCharacter}
-                disabled={busy}
+                disabled={controlsLocked}
                 data-testid="side-character"
                 onChange={(event) =>
-                  void openCharacter(
+                  navigate(
                     event.currentTarget.value as SideCharacterId,
+                    collection,
                   )
                 }
               >
@@ -1194,31 +1551,50 @@ export default function SideViewPlayground({
                 ))}
               </select>
             </label>
+            <label className="side-field">
+              服装组
+              <select
+                data-testid="side-collection"
+                value={collection}
+                disabled={controlsLocked}
+                onChange={(event) =>
+                  navigate(
+                    session?.character ?? initialCharacter,
+                    event.currentTarget.value as SideCollection,
+                  )
+                }
+              >
+                <option value="material">原版型配色</option>
+                <option value="tailored">新款试装 · 上衣与下装</option>
+              </select>
+            </label>
+            <p className="side-small-note">
+              {onNavigate
+                ? "切换角色或服装组会保留各自搭配与修正草稿；刷新前请保存项目。"
+                : "切换服装组会打开对应项目；当前搭配可先保存。"}
+            </p>
             <div className="side-look-presets">
               <button
                 type="button"
-                disabled={!session || busy}
+                disabled={!session || controlsLocked}
                 aria-pressed={originalSelected}
                 data-testid="side-look-original"
                 onClick={() => void changeSelection(ORIGINAL)}
               >
                 <span className="side-swatch side-swatch-original" />
-                原片造型
+                {collection === "tailored" ? "原片服装" : "原片造型"}
               </button>
               <button
                 type="button"
-                disabled={!session || busy}
+                disabled={!presetAvailable || controlsLocked}
                 aria-pressed={dailySelected}
                 data-testid="side-look-daily"
-                onClick={() =>
-                  session &&
-                  void changeSelection(sideLookSelection(session.character))
-                }
+                onClick={() => session && void changeSelection(preset)}
               >
                 <span
                   className={`side-swatch side-swatch-${session?.character ?? initialCharacter}`}
                 />
-                日常搭配
+                {collection === "tailored" ? "新款搭配" : "日常搭配"}
               </button>
             </div>
             {(
@@ -1232,7 +1608,7 @@ export default function SideViewPlayground({
                 {label}
                 <select
                   data-testid={`side-${slot}`}
-                  disabled={!session || busy}
+                  disabled={!session || controlsLocked}
                   value={selection[slot] ?? ""}
                   onChange={(event) =>
                     void changeSelection({
@@ -1256,6 +1632,58 @@ export default function SideViewPlayground({
             <p className="side-small-note">
               每件服装跟随原片逐帧对齐，试试混搭后再跑几步。
             </p>
+            {session?.project.appearanceBank && appearance && (
+              <>
+                <label className="side-field">
+                  发型
+                  <select
+                    data-testid="side-hair"
+                    disabled={controlsLocked}
+                    value={appearance.hairId ?? ""}
+                    onChange={(event) =>
+                      void changeAppearance({
+                        hairId: event.currentTarget.value || null,
+                      })
+                    }
+                  >
+                    <option value="">原片发型</option>
+                    {session.project.appearanceBank.manifest.styles
+                      .filter((style) => style.slot === "hair")
+                      .map((style) => (
+                        <option key={style.id} value={style.id}>
+                          {style.name}
+                        </option>
+                      ))}
+                  </select>
+                </label>
+                <label className="side-field">
+                  发色
+                  <select
+                    data-testid="side-hair-color"
+                    disabled={controlsLocked || !appearance.hairId}
+                    value={appearance.hairColor}
+                    onChange={(event) =>
+                      void changeAppearance({
+                        hairColor: event.currentTarget
+                          .value as AppearanceSelection["hairColor"],
+                      })
+                    }
+                  >
+                    {APPEARANCE_HAIR_COLORS.map((color) => (
+                      <option key={color} value={color}>
+                        {
+                          {
+                            chestnut: "栗棕",
+                            espresso: "深棕",
+                            copper: "铜棕",
+                          }[color]
+                        }
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </>
+            )}
           </section>
 
           <section className="side-control-section">
@@ -1275,6 +1703,7 @@ export default function SideViewPlayground({
               <button
                 type="button"
                 data-testid="side-mode-travel"
+                disabled={reviewOpen}
                 aria-pressed={preferences.mode === "travel"}
                 onClick={() =>
                   setPreferences((previous) => ({
@@ -1287,6 +1716,11 @@ export default function SideViewPlayground({
                 横向移动
               </button>
             </div>
+            {reviewOpen && (
+              <p className="side-small-note">
+                逐帧审阅使用原地预览。关闭审阅后可切换横向移动。
+              </p>
+            )}
             {preferences.mode === "travel" && (
               <div className="side-speeds">
                 <label>
@@ -1373,6 +1807,11 @@ export default function SideViewPlayground({
               />
               <span>显示 17 个服装定位点</span>
             </label>
+            {preferences.anchors && (
+              <p className="side-small-note">
+                橙色点表示被遮挡或把握较低的位置，仅作试装参考，需结合原片检查。
+              </p>
+            )}
           </section>
 
           <section className="side-control-section side-export-section">
@@ -1382,7 +1821,7 @@ export default function SideViewPlayground({
             </div>
             <button
               type="button"
-              disabled={!session || busy}
+              disabled={!session || controlsLocked}
               data-testid="side-export-png"
               onClick={() => void save("png")}
             >
@@ -1393,7 +1832,7 @@ export default function SideViewPlayground({
             </button>
             <button
               type="button"
-              disabled={!session || busy}
+              disabled={!session || controlsLocked}
               data-testid="side-export-gif"
               onClick={() => void save("gif")}
             >
@@ -1404,7 +1843,7 @@ export default function SideViewPlayground({
             </button>
             <button
               type="button"
-              disabled={!session || busy}
+              disabled={!session || controlsLocked}
               data-testid="side-export-pack"
               onClick={() => void save("pack")}
             >

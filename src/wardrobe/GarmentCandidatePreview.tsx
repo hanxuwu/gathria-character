@@ -1,4 +1,11 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Download, Pause, Play, X } from "lucide-react";
 import { downloadBlob } from "../core/pack";
 import type { Facing, PortableAnimationName } from "../core/types";
@@ -8,8 +15,10 @@ import { createLookComparison } from "./look-comparison";
 import type { PaintedGarment } from "./paint-import";
 import type { MaskBuildReport } from "./mask-edit";
 import type { GarmentAuthoringReport } from "./garment-authoring";
+import { useRetainedDialog } from "./retained-dialog";
 
 interface Props {
+  active?: boolean;
   original: WardrobeCompositor;
   candidate: WardrobeCompositor;
   baseProject: WardrobeProject;
@@ -20,6 +29,8 @@ interface Props {
   initialAction: PortableAnimationName;
   initialPosition: number;
   initialFacing: Facing;
+  /** The side-view workspace saves separate projects rather than styling history. */
+  historyAvailable?: boolean;
   onClose: () => void;
   onApply: (project: WardrobeProject) => Promise<void>;
 }
@@ -36,6 +47,7 @@ const describe = (cause: unknown) =>
 /** Owns only inspection state. The parent validates and commits a candidate
  * atomically; neither playback nor PNG export changes the accepted project. */
 export default function GarmentCandidatePreview({
+  active = true,
   original,
   candidate,
   baseProject,
@@ -46,13 +58,18 @@ export default function GarmentCandidatePreview({
   initialAction,
   initialPosition,
   initialFacing,
+  historyAvailable = true,
   onClose,
   onApply,
 }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
+  const frameInputId = useId();
   const beforeCanvas = useRef<HTMLCanvasElement>(null);
   const afterCanvas = useRef<HTMLCanvasElement>(null);
   const alive = useRef(true);
+  const activeRef = useRef(active);
+  activeRef.current = active;
   const applyingNow = useRef(false);
   const elapsed = useRef(0);
   const available = ACTIONS.filter(
@@ -97,30 +114,33 @@ export default function GarmentCandidatePreview({
     renderError ||
     (!clip ? "This candidate has no available action." : "");
 
+  useRetainedDialog(dialog, active);
+
   useEffect(() => {
     alive.current = true;
-    const restoreFocus = document.activeElement;
-    const target = dialog.current;
-    target?.showModal();
+    return () => {
+      alive.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!active) return;
     const pauseWhenHidden = () => {
       if (document.hidden) setPlaying(false);
     };
     document.addEventListener("visibilitychange", pauseWhenHidden);
     return () => {
-      alive.current = false;
       document.removeEventListener("visibilitychange", pauseWhenHidden);
-      target?.close();
-      if (restoreFocus instanceof HTMLElement && restoreFocus.isConnected)
-        restoreFocus.focus();
     };
-  }, []);
+  }, [active]);
 
   useEffect(() => {
-    if (!playing || applying || invalid || !clip) return;
+    if (!active || !playing || applying || invalid || !clip) return;
     let raf = 0;
     let previous: number | null = null;
     const duration = (clip.frames.length * 1000) / clip.fps;
     const animate = (now: number) => {
+      if (!activeRef.current) return;
       if (document.hidden) {
         setPlaying(false);
         return;
@@ -144,9 +164,10 @@ export default function GarmentCandidatePreview({
     };
     raf = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(raf);
-  }, [playing, applying, invalid, clip]);
+  }, [active, playing, applying, invalid, clip]);
 
   useLayoutEffect(() => {
+    if (!active) return;
     const clear = () => {
       for (const target of [beforeCanvas.current, afterCanvas.current]) {
         if (!target) continue;
@@ -211,10 +232,10 @@ export default function GarmentCandidatePreview({
       setPlaying(false);
       setRenderError(describe(cause));
     }
-  }, [aligned, frameId, position, action, facing, width, height]);
+  }, [active, aligned, frameId, position, action, facing, width, height]);
 
   async function applyCandidate() {
-    if (applyingNow.current || invalid) return;
+    if (!activeRef.current || applyingNow.current || invalid) return;
     applyingNow.current = true;
     setApplying(true);
     setPlaying(false);
@@ -280,13 +301,13 @@ export default function GarmentCandidatePreview({
       ? undefined
       : { width: width * Number(zoom), height: height * Number(zoom) };
   const close = () => {
-    if (!applyingNow.current) onClose();
+    if (activeRef.current && !applyingNow.current) onClose();
   };
   return (
     <dialog
       ref={dialog}
       className="appearance-update-dialog"
-      aria-labelledby="garment-candidate-title"
+      aria-labelledby={titleId}
       onCancel={(event) => {
         event.preventDefault();
         close();
@@ -294,7 +315,7 @@ export default function GarmentCandidatePreview({
     >
       <div className="appearance-update-heading">
         <div>
-          <h2 id="garment-candidate-title">Preview imported clothing</h2>
+          <h2 id={titleId}>Preview imported clothing</h2>
           <p>
             Both looks use the same source pose, scale and attachment point.
             Your accepted clothing stays unchanged until you apply this
@@ -407,12 +428,12 @@ export default function GarmentCandidatePreview({
         </figure>
       </div>
       <div className="wardrobe-timeline">
-        <label htmlFor="garment-candidate-frame">
+        <label htmlFor={frameInputId}>
           Frame {position + 1} / {clip?.frames.length ?? 0} · {clip?.fps ?? 0}{" "}
           FPS · source {frameId ?? "unavailable"}
         </label>
         <input
-          id="garment-candidate-frame"
+          id={frameInputId}
           type="range"
           aria-label="Candidate preview frame"
           min={0}
@@ -562,8 +583,10 @@ export default function GarmentCandidatePreview({
         )}
         <p>
           Preview action and direction are inspection controls. Applying keeps
-          the accepted project's saved playback settings and can be undone
-          through styling history.
+          the accepted project's saved playback settings.{" "}
+          {historyAvailable
+            ? "Changes can be undone through styling history."
+            : "Save the original project before applying; save the revised project separately to keep both versions."}
         </p>
         <button
           type="button"

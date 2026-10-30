@@ -1,0 +1,67 @@
+[WebServer] (node:95366) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:95394) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 13 tests using 2 workers
+
+(node:95414) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:95415) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 tests/e2e/side-polish.spec.ts:35:3 › male: previous tailored project preserves embedded art and bindings across polish (1.2m)
+  ✓   1 tests/e2e/side-expansion.spec.ts:44:3 › male: separate real-cut edition, exact mirror, hair mix and self-contained reopen (2.1m)
+  ✓   3 tests/e2e/side-polish.spec.ts:35:3 › female: previous tailored project preserves embedded art and bindings across polish (1.1m)
+  ✓   4 tests/e2e/side-expansion.spec.ts:44:3 › female: separate real-cut edition, exact mirror, hair mix and self-contained reopen (1.7m)
+  ✓   6 tests/e2e/side-expansion.spec.ts:152:1 › legacy material stays the default and its project switches back from the new edition (36.7s)
+  ✓   7 tests/e2e/side-expansion.spec.ts:189:1 › paused explicit facing clears a left turn queued during the full jump (13.5s)
+  ✓   8 tests/e2e/side-expansion.spec.ts:219:1 › failed new collection load retains material session and retries the requested collection (15.7s)
+  ✓   9 tests/e2e/side-view.spec.ts:50:3 › male: native side frames, guide-free exports, mixed outfit and project reopen (27.1s)
+  ✘   5 tests/e2e/side-review.spec.ts:25:1 › review slow playback preserves exported pixels and native GIF timing; detail crops mirror exactly (3.5m)
+(node:100110) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 tests/e2e/side-view.spec.ts:50:3 › female: native side frames, guide-free exports, mixed outfit and project reopen (27.5s)
+  ✓  12 tests/e2e/side-view.spec.ts:160:1 › side keyboard travel retains source timing and the full two-jump one-shot (17.8s)
+  ✓  13 tests/e2e/side-view.spec.ts:214:1 › side source load failure retries and character preparation disables stale exports (15.9s)
+  ✓  11 tests/e2e/side-review.spec.ts:99:1 › review bookmarks persist per source with look context, restore a paused pose, and fit mobile (42.4s)
+
+
+  1) tests/e2e/side-review.spec.ts:25:1 › review slow playback preserves exported pixels and native GIF timing; detail crops mirror exactly 
+
+    TimeoutError: page.waitForEvent: Timeout 180000ms exceeded while waiting for event "download"
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+      14 | }
+      15 | async function download(page: Page, id: string) {
+    > 16 |   const waiting = page.waitForEvent("download", { timeout: 180_000 });
+         |                        ^
+      17 |   await page.getByTestId(id).click();
+      18 |   const result = await waiting;
+      19 |   expect(await result.failure()).toBeNull();
+        at download (/workspace/gathria-character/tests/e2e/side-review.spec.ts:16:24)
+        at /workspace/gathria-character/tests/e2e/side-review.spec.ts:38:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../tmp/side-polish/e2e-results/side-review-review-slow-pl-12258-detail-crops-mirror-exactly/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../tmp/side-polish/e2e-results/side-review-review-slow-pl-12258-detail-crops-mirror-exactly/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../tmp/side-polish/e2e-results/side-review-review-slow-pl-12258-detail-crops-mirror-exactly/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../tmp/side-polish/e2e-results/side-review-review-slow-pl-12258-detail-crops-mirror-exactly/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/side-review.spec.ts:25:1 › review slow playback preserves exported pixels and native GIF timing; detail crops mirror exactly 
+  12 passed (6.5m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

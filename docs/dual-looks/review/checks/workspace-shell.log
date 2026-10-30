@@ -1,0 +1,23 @@
+[WebServer] (node:304941) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:304954) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:304972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/workspace-shell.spec.ts:4:1 › library has three primary destinations, original previews and lazy character loading (1.2s)
+  ✓  2 tests/e2e/workspace-shell.spec.ts:53:1 › workbench keeps native joint edits and undo history alive across tabs (4.1s)
+  ✓  3 tests/e2e/workspace-shell.spec.ts:125:1 › workbench follows trusted player selection without reloading the retained player (2.6s)
+  ✓  4 tests/e2e/workspace-shell.spec.ts:212:1 › mobile library and workbench navigation stay within the viewport and support keyboard tabs (2.5s)
+  ✓  5 tests/e2e/workspace-shell.spec.ts:249:1 › female library entry and character changes retain separate male and female joint edits (5.6s)
+  ✓  6 tests/e2e/workspace-shell.spec.ts:353:1 › an embedded cross-import updates the outer identity without replacing either retained session (5.7s)
+  ✓  7 tests/e2e/workspace-shell.spec.ts:520:1 › first opening the skeleton follows the visible wardrobe character (4.7s)
+
+  7 passed (28.8s)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

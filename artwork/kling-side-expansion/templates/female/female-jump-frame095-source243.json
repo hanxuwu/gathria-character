@@ -1,0 +1,597 @@
+{
+  "frameId": 95,
+  "sourceFrame": 243,
+  "sourceVideo": "female-2394",
+  "action": "jump",
+  "position": 43,
+  "sourceRgbaSha256": "f723f81327b8cf232b477c0669f2e0f39a8454632be4b461435c0f3883feb2da",
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+  "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+  "reviewedSeed": "female-2394/243",
+  "trackedSteps": 0,
+  "anchors": {
+    "neck": {
+      "x": 270.0,
+      "y": 386.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "nearShoulder": {
+      "x": 218.0,
+      "y": 410.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "farShoulder": {
+      "x": 306.0,
+      "y": 409.0,
+      "visibility": "occluded",
+      "confidence": 0.33,
+      "method": "visually-inspected-native-keypose; hidden attachment estimate"
+    },
+    "waistLeft": {
+      "x": 229.8,
+      "y": 488.0,
+      "visibility": "visible",
+      "confidence": 0.85,
+      "method": "actual-frame visible tank lower-contour attachment estimate"
+    },
+    "waistRight": {
+      "x": 297.2,
+      "y": 490.0,
+      "visibility": "visible",
+      "confidence": 0.85,
+      "method": "actual-frame visible tank lower-contour attachment estimate"
+    },
+    "nearHip": {
+      "x": 225.0,
+      "y": 527.0,
+      "visibility": "occluded",
+      "confidence": 0.33,
+      "method": "visually-inspected-native-keypose; hidden attachment estimate"
+    },
+    "farHip": {
+      "x": 279.0,
+      "y": 526.0,
+      "visibility": "occluded",
+      "confidence": 0.33,
+      "method": "visually-inspected-native-keypose; hidden attachment estimate"
+    },
+    "nearElbow": {
+      "x": 157.0,
+      "y": 377.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "farElbow": {
+      "x": 350.0,
+      "y": 395.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "nearWrist": {
+      "x": 169,
+      "y": 342,
+      "visibility": "visible",
+      "confidence": 0.8,
+      "method": "Independently observed native source wrist/hand junction; no interpolation."
+    },
+    "farWrist": {
+      "x": 369,
+      "y": 348,
+      "visibility": "visible",
+      "confidence": 0.8,
+      "method": "Independently observed native source wrist/hand junction; no interpolation."
+    },
+    "nearKnee": {
+      "x": 220.0,
+      "y": 577.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "farKnee": {
+      "x": 292.0,
+      "y": 578.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "nearAnkle": {
+      "x": 212.0,
+      "y": 628.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "farAnkle": {
+      "x": 288.0,
+      "y": 621.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "nearToe": {
+      "x": 247.0,
+      "y": 656.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    },
+    "farToe": {
+      "x": 334.0,
+      "y": 645.0,
+      "visibility": "visible",
+      "confidence": 0.72,
+      "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+    }
+  },
+  "protected": [
+    {
+      "label": "head",
+      "polygon": [
+        {
+          "x": 172,
+          "y": 211
+        },
+        {
+          "x": 163,
+          "y": 226
+        },
+        {
+          "x": 162,
+          "y": 224
+        },
+        {
+          "x": 159,
+          "y": 234
+        },
+        {
+          "x": 158,
+          "y": 232
+        },
+        {
+          "x": 151,
+          "y": 256
+        },
+        {
+          "x": 151,
+          "y": 287
+        },
+        {
+          "x": 158,
+          "y": 307
+        },
+        {
+          "x": 161,
+          "y": 307
+        },
+        {
+          "x": 161,
+          "y": 312
+        },
+        {
+          "x": 168,
+          "y": 321
+        },
+        {
+          "x": 196,
+          "y": 346
+        },
+        {
+          "x": 223,
+          "y": 357
+        },
+        {
+          "x": 239,
+          "y": 358
+        },
+        {
+          "x": 239,
+          "y": 366
+        },
+        {
+          "x": 251,
+          "y": 380
+        },
+        {
+          "x": 270,
+          "y": 395
+        },
+        {
+          "x": 290,
+          "y": 401
+        },
+        {
+          "x": 299,
+          "y": 396
+        },
+        {
+          "x": 292,
+          "y": 376
+        },
+        {
+          "x": 311,
+          "y": 381
+        },
+        {
+          "x": 335,
+          "y": 380
+        },
+        {
+          "x": 356,
+          "y": 369
+        },
+        {
+          "x": 370,
+          "y": 352
+        },
+        {
+          "x": 368,
+          "y": 327
+        },
+        {
+          "x": 365,
+          "y": 313
+        },
+        {
+          "x": 374,
+          "y": 297
+        },
+        {
+          "x": 375,
+          "y": 282
+        },
+        {
+          "x": 380,
+          "y": 271
+        },
+        {
+          "x": 381,
+          "y": 235
+        },
+        {
+          "x": 377,
+          "y": 221
+        },
+        {
+          "x": 376,
+          "y": 223
+        },
+        {
+          "x": 366,
+          "y": 204
+        },
+        {
+          "x": 349,
+          "y": 188
+        },
+        {
+          "x": 340,
+          "y": 184
+        },
+        {
+          "x": 342,
+          "y": 183
+        },
+        {
+          "x": 326,
+          "y": 177
+        },
+        {
+          "x": 329,
+          "y": 176
+        },
+        {
+          "x": 301,
+          "y": 170
+        },
+        {
+          "x": 304,
+          "y": 169
+        },
+        {
+          "x": 251,
+          "y": 169
+        },
+        {
+          "x": 254,
+          "y": 170
+        },
+        {
+          "x": 224,
+          "y": 176
+        },
+        {
+          "x": 226,
+          "y": 177
+        },
+        {
+          "x": 197,
+          "y": 189
+        },
+        {
+          "x": 183,
+          "y": 200
+        },
+        {
+          "x": 185,
+          "y": 201
+        },
+        {
+          "x": 180,
+          "y": 206
+        },
+        {
+          "x": 179,
+          "y": 204
+        },
+        {
+          "x": 173,
+          "y": 213
+        }
+      ]
+    },
+    {
+      "label": "nearHand",
+      "polygon": [
+        {
+          "x": 114,
+          "y": 314
+        },
+        {
+          "x": 132,
+          "y": 307
+        },
+        {
+          "x": 153,
+          "y": 306
+        },
+        {
+          "x": 171,
+          "y": 314
+        },
+        {
+          "x": 182,
+          "y": 331
+        },
+        {
+          "x": 180,
+          "y": 349
+        },
+        {
+          "x": 170,
+          "y": 361
+        },
+        {
+          "x": 151,
+          "y": 366
+        },
+        {
+          "x": 130,
+          "y": 358
+        },
+        {
+          "x": 117,
+          "y": 346
+        }
+      ]
+    },
+    {
+      "label": "farHand",
+      "polygon": [
+        {
+          "x": 368,
+          "y": 313
+        },
+        {
+          "x": 405,
+          "y": 313
+        },
+        {
+          "x": 421,
+          "y": 327
+        },
+        {
+          "x": 420,
+          "y": 369
+        },
+        {
+          "x": 406,
+          "y": 384
+        },
+        {
+          "x": 365,
+          "y": 377
+        },
+        {
+          "x": 360,
+          "y": 361
+        },
+        {
+          "x": 360,
+          "y": 332
+        }
+      ]
+    }
+  ],
+  "segmentLabels": {
+    "1": "nearUpperArm",
+    "2": "nearForearm",
+    "3": "farUpperArm",
+    "4": "farForearm",
+    "5": "nearThigh",
+    "6": "nearShin",
+    "7": "farThigh",
+    "8": "farShin"
+  },
+  "segments": {
+    "nearUpperArm": {
+      "from": "nearShoulder",
+      "to": "nearElbow",
+      "searchRadius": 28,
+      "endpointVisibility": [
+        "visible",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.72,
+        0.72
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 3845,
+      "uncertainPixels": 0
+    },
+    "nearForearm": {
+      "from": "nearElbow",
+      "to": "nearWrist",
+      "searchRadius": 27,
+      "endpointVisibility": [
+        "visible",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.72,
+        0.8
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 761,
+      "uncertainPixels": 0
+    },
+    "farUpperArm": {
+      "from": "farShoulder",
+      "to": "farElbow",
+      "searchRadius": 28,
+      "endpointVisibility": [
+        "occluded",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.33,
+        0.72
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 1406,
+      "uncertainPixels": 633
+    },
+    "farForearm": {
+      "from": "farElbow",
+      "to": "farWrist",
+      "searchRadius": 27,
+      "endpointVisibility": [
+        "visible",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.72,
+        0.8
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 870,
+      "uncertainPixels": 0
+    },
+    "nearThigh": {
+      "from": "nearHip",
+      "to": "nearKnee",
+      "searchRadius": 34,
+      "endpointVisibility": [
+        "occluded",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.33,
+        0.72
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 2754,
+      "uncertainPixels": 1243
+    },
+    "nearShin": {
+      "from": "nearKnee",
+      "to": "nearAnkle",
+      "searchRadius": 28,
+      "endpointVisibility": [
+        "visible",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.72,
+        0.72
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 2548,
+      "uncertainPixels": 0
+    },
+    "farThigh": {
+      "from": "farHip",
+      "to": "farKnee",
+      "searchRadius": 34,
+      "endpointVisibility": [
+        "occluded",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.33,
+        0.72
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 2608,
+      "uncertainPixels": 1059
+    },
+    "farShin": {
+      "from": "farKnee",
+      "to": "farAnkle",
+      "searchRadius": 28,
+      "endpointVisibility": [
+        "visible",
+        "visible"
+      ],
+      "endpointConfidence": [
+        0.72,
+        0.72
+      ],
+      "method": "partial source warm-skin proof, nearest estimated anchor segment",
+      "sourceVisibleHintPixels": 1907,
+      "uncertainPixels": 0
+    }
+  },
+  "limitations": "Partial source-visible skin hints only. Pale/blurred skin may be absent; near/far labels and hidden attachment anchors are estimates. These masks do not authorize edits and do not establish limb depth order.",
+  "anchorNumberKey": {
+    "1": "neck",
+    "2": "nearShoulder",
+    "3": "farShoulder",
+    "4": "waistLeft",
+    "5": "waistRight",
+    "6": "nearHip",
+    "7": "farHip",
+    "8": "nearElbow",
+    "9": "farElbow",
+    "10": "nearWrist",
+    "11": "farWrist",
+    "12": "nearKnee",
+    "13": "farKnee",
+    "14": "nearAnkle",
+    "15": "farAnkle",
+    "16": "nearToe",
+    "17": "farToe"
+  },
+  "paintingInstructions": [
+    "Keep the source as a locked native layer. Paint cloth on the blank transparent layer.",
+    "Author explicit ownership for new cloth and erased old cloth; render final native RGBA before packing.",
+    "Green protected source pixels must stay exact. Cloth may cover arm/leg skin or extend source silhouette within the native canvas.",
+    "Inspect crossings and overlaps in this actual source pose; near/far labels do not prove a universal depth order.",
+    "Orange and hatched hints are uncertain, not recovered anatomy. Do not move or reshape source body parts."
+  ],
+  "files": {
+    "source": "female-jump-frame095-source243-source.png",
+    "guide": "female-jump-frame095-source243-guides.png",
+    "paintLayer": "female-jump-frame095-source243-paint.png",
+    "segmentLabels": "female-jump-frame095-source243-segments.png",
+    "uncertainty": "female-jump-frame095-source243-uncertain.png",
+    "metadata": "female-jump-frame095-source243.json"
+  }
+}

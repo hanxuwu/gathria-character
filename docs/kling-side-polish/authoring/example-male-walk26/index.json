@@ -1,0 +1,66 @@
+{
+  "format": "gathria-side-painting-templates",
+  "version": 1,
+  "identity": "male",
+  "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+  "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+  "frameWidth": 512,
+  "frameHeight": 768,
+  "anchor": {
+    "x": 256,
+    "y": 710
+  },
+  "frames": [
+    {
+      "frameId": 26,
+      "sourceFrame": 52,
+      "action": "walk",
+      "sourceVideo": "male-2067",
+      "files": {
+        "source": "male-walk-frame026-source52-source.png",
+        "guide": "male-walk-frame026-source52-guides.png",
+        "paintLayer": "male-walk-frame026-source52-paint.png",
+        "segmentLabels": "male-walk-frame026-source52-segments.png",
+        "uncertainty": "male-walk-frame026-source52-uncertain.png",
+        "metadata": "male-walk-frame026-source52.json"
+      },
+      "sourceRgbaSha256": "e82721c8ed7edcbcff289713a8b9dfbf59bdbfd507910f0cb20fdf05181f788b",
+      "protection": {
+        "rule": "Runtime pixel-center polygon raster AND original source alpha > 0; 255 means do not own.",
+        "masks": {
+          "head": {
+            "file": "male-walk-frame026-source52-protect-head.png",
+            "sha256": "f0012ee080eaaa33f8978bc3d9b79216c9ed180095e7591befaddf22afac26d9",
+            "pixels": 34611,
+            "maskSha256": "7f1ebb0c75209fbc6a6f7888b7d6150c5124f8a2d38d75c302b7fe3e154bece3"
+          },
+          "nearHand": {
+            "file": "male-walk-frame026-source52-protect-nearHand.png",
+            "sha256": "4367d1ca44c1ea5550313a34a384d2c726294e4bb542cf3d897dd439e9f7953b",
+            "pixels": 2083,
+            "maskSha256": "c80b9b17a19dc6a79c5cc4885a5098b144aff7335d1cee39eb931faf26d730f6"
+          },
+          "farHand": {
+            "file": "male-walk-frame026-source52-protect-farHand.png",
+            "sha256": "b6f5e29f58b3eb1f27a1de61cc5c89246b87314b4e33be0d28e2c4c08577d995",
+            "pixels": 0,
+            "maskSha256": "a6619f482fee91a315f76cdcd8705d39b6ce11077c435ccc696142e130c27762"
+          }
+        },
+        "overlay": "male-walk-frame026-source52-protection-overlay.png",
+        "unionPixels": 36694,
+        "unionMaskSha256": "617c8c73d45106bb972470404d4ee4dae65c5f7558fc87782f44842082b5f48a"
+      },
+      "fileSha256": {
+        "source": "d759e58918d32df7e8b88c8a65aac9605a2e1d1760e3ab2af73dd4ec6ad2508d",
+        "guide": "79181e00bc009d9699a40951e0652cf7a05ebcf4598e03f6a32aef7e79455698",
+        "paintLayer": "7138ad669a23013b7bc6215dc1bdd69844cf30f2dfff8b5e7fa7de8f12158f8e",
+        "segmentLabels": "eb8f1a0e8567f53966ddadd3c758f45a7d1db272adb66491e2acc9794797705b",
+        "uncertainty": "f725de4194c8b1476c5ad7b225da171666287ee0d22dd1a6bf10add8045f1f97",
+        "metadata": "7b0166c26477931723e41852faadfa8712c9c2aae14fcfdbbd6b3f50621bd220"
+      }
+    }
+  ],
+  "limitations": "Preflight checks declared V1 structure, source binding and observable ownership. It cannot establish correct anatomy, cloth continuity, depth ordering or visual quality. Open the package in the application, inspect complete loops and verify actual exports.",
+  "selection": "Pack frame IDs in original action order; source video frame IDs are separately recorded."
+}

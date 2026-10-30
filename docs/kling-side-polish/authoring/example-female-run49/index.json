@@ -1,0 +1,66 @@
+{
+  "format": "gathria-side-painting-templates",
+  "version": 1,
+  "identity": "female",
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+  "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+  "frameWidth": 512,
+  "frameHeight": 768,
+  "anchor": {
+    "x": 256,
+    "y": 710
+  },
+  "frames": [
+    {
+      "frameId": 49,
+      "sourceFrame": 150,
+      "action": "run",
+      "sourceVideo": "female-1927",
+      "files": {
+        "source": "female-run-frame049-source150-source.png",
+        "guide": "female-run-frame049-source150-guides.png",
+        "paintLayer": "female-run-frame049-source150-paint.png",
+        "segmentLabels": "female-run-frame049-source150-segments.png",
+        "uncertainty": "female-run-frame049-source150-uncertain.png",
+        "metadata": "female-run-frame049-source150.json"
+      },
+      "sourceRgbaSha256": "b7fad3019e1f40481acabfc87ded7af7bf38d3331865510c92a60d40be1f5519",
+      "protection": {
+        "rule": "Runtime pixel-center polygon raster AND original source alpha > 0; 255 means do not own.",
+        "masks": {
+          "head": {
+            "file": "female-run-frame049-source150-protect-head.png",
+            "sha256": "7fa5dfc660c7a99869fcc5f240a730821e62aab32b047c4b878062f561324c9e",
+            "pixels": 34480,
+            "maskSha256": "636c39f2177bbf432c2fb1889a3308ebb237ad379b7b13b16a65ebe57998cc7d"
+          },
+          "nearHand": {
+            "file": "female-run-frame049-source150-protect-nearHand.png",
+            "sha256": "bf24a0fee40b4ee137601c82dd37c92d57e0482d12719aae99b99b13be798a72",
+            "pixels": 1181,
+            "maskSha256": "4dc3964bd8b711e5058ec2c3684dba6aafa20e5ee94441883e3915693843ca6d"
+          },
+          "farHand": {
+            "file": "female-run-frame049-source150-protect-farHand.png",
+            "sha256": "033dea5a84070ebecc2856ec5db07f094b9bd8635ba596ea7fdbe1ec4b83e41b",
+            "pixels": 973,
+            "maskSha256": "c24e758d842b19e1774e97807891860b73980cb615a5495b510aa9e96736eaac"
+          }
+        },
+        "overlay": "female-run-frame049-source150-protection-overlay.png",
+        "unionPixels": 36618,
+        "unionMaskSha256": "e423e710197351d7ec3d801644322d3f8769f284450f66f47b9d1904fac76529"
+      },
+      "fileSha256": {
+        "source": "b1d62f09c998304c23ef960af4e13356c291e2d1e936f95d1456e1b0d5b1631b",
+        "guide": "31f25b6b5bbd56efe900075a8514533b83a9bf568c84b897755707646824644b",
+        "paintLayer": "7138ad669a23013b7bc6215dc1bdd69844cf30f2dfff8b5e7fa7de8f12158f8e",
+        "segmentLabels": "8de30d1656f3b0b3139009866d3ccbe964ada9d3427384e71617556729fd6279",
+        "uncertainty": "2cec8bad22b79335dc5f2a740601e581de42b5c12f65d43e4a0a5a1987bada30",
+        "metadata": "2bdc26a255058dbfccac677486cef700bc886a62569e51930e1d7a7b4b0650f4"
+      }
+    }
+  ],
+  "limitations": "Preflight checks declared V1 structure, source binding and observable ownership. It cannot establish correct anatomy, cloth continuity, depth ordering or visual quality. Open the package in the application, inspect complete loops and verify actual exports.",
+  "selection": "Pack frame IDs in original action order; source video frame IDs are separately recorded."
+}

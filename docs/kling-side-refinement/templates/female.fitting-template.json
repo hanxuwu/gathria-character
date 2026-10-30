@@ -1,0 +1,3539 @@
+{
+  "format": "gathria-side-fitting-template",
+  "version": 1,
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+  "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+  "characterId": "kling-female-side-workspace-v1",
+  "frameWidth": 512,
+  "frameHeight": 768,
+  "nativeFacing": "right",
+  "donor": {
+    "id": "side-female-cream-blouse-v1",
+    "name": "Cream puff-sleeve blouse",
+    "sha256": "71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201",
+    "slot": "top"
+  },
+  "frameIds": [
+    0,
+    38,
+    39,
+    40,
+    49,
+    60,
+    67
+  ],
+  "reviewAnchors": [
+    "neck",
+    "nearShoulder",
+    "farShoulder",
+    "waistLeft",
+    "waistRight",
+    "nearElbow",
+    "farElbow",
+    "nearWrist",
+    "farWrist"
+  ],
+  "actions": [
+    {
+      "action": "idle",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "fps": 24,
+      "loop": true
+    },
+    {
+      "action": "walk",
+      "frames": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "fps": 24,
+      "loop": true
+    },
+    {
+      "action": "run",
+      "frames": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "fps": 24,
+      "loop": true
+    },
+    {
+      "action": "jump",
+      "frames": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101
+      ],
+      "fps": 24,
+      "loop": false
+    }
+  ],
+  "guides": [
+    {
+      "frameId": 0,
+      "sourceFrame": 243,
+      "points": {
+        "neck": {
+          "x": 265,
+          "y": 452,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 228,
+          "y": 480,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 299,
+          "y": 478,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 244.3,
+          "y": 532,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "waistRight": {
+          "x": 303.7,
+          "y": 533,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "nearHip": {
+          "x": 247,
+          "y": 574,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 284,
+          "y": 575,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 203,
+          "y": 527,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 318,
+          "y": 540,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 197,
+          "y": 570,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 321,
+          "y": 551,
+          "visibility": "visible",
+          "confidence": 0.8,
+          "method": "Independently observed native source wrist/hand junction; no interpolation."
+        },
+        "nearKnee": {
+          "x": 223,
+          "y": 628,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 281,
+          "y": 626,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 210,
+          "y": 681,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 284,
+          "y": 673,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 249,
+          "y": 707,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 324,
+          "y": 693,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 206,
+              "y": 237
+            },
+            {
+              "x": 174,
+              "y": 255
+            },
+            {
+              "x": 162,
+              "y": 269
+            },
+            {
+              "x": 159,
+              "y": 270
+            },
+            {
+              "x": 152,
+              "y": 281
+            },
+            {
+              "x": 144,
+              "y": 300
+            },
+            {
+              "x": 143,
+              "y": 299
+            },
+            {
+              "x": 139,
+              "y": 319
+            },
+            {
+              "x": 140,
+              "y": 340
+            },
+            {
+              "x": 143,
+              "y": 352
+            },
+            {
+              "x": 145,
+              "y": 352
+            },
+            {
+              "x": 152,
+              "y": 370
+            },
+            {
+              "x": 171,
+              "y": 391
+            },
+            {
+              "x": 184,
+              "y": 398
+            },
+            {
+              "x": 189,
+              "y": 403
+            },
+            {
+              "x": 206,
+              "y": 409
+            },
+            {
+              "x": 235,
+              "y": 416
+            },
+            {
+              "x": 237,
+              "y": 418
+            },
+            {
+              "x": 237,
+              "y": 429
+            },
+            {
+              "x": 232,
+              "y": 434
+            },
+            {
+              "x": 233,
+              "y": 436
+            },
+            {
+              "x": 245,
+              "y": 440
+            },
+            {
+              "x": 264,
+              "y": 455
+            },
+            {
+              "x": 280,
+              "y": 460
+            },
+            {
+              "x": 287,
+              "y": 459
+            },
+            {
+              "x": 290,
+              "y": 456
+            },
+            {
+              "x": 289,
+              "y": 450
+            },
+            {
+              "x": 278,
+              "y": 438
+            },
+            {
+              "x": 278,
+              "y": 436
+            },
+            {
+              "x": 272,
+              "y": 433
+            },
+            {
+              "x": 274,
+              "y": 423
+            },
+            {
+              "x": 278,
+              "y": 422
+            },
+            {
+              "x": 285,
+              "y": 424
+            },
+            {
+              "x": 310,
+              "y": 424
+            },
+            {
+              "x": 317,
+              "y": 421
+            },
+            {
+              "x": 318,
+              "y": 422
+            },
+            {
+              "x": 327,
+              "y": 417
+            },
+            {
+              "x": 334,
+              "y": 410
+            },
+            {
+              "x": 336,
+              "y": 410
+            },
+            {
+              "x": 342,
+              "y": 404
+            },
+            {
+              "x": 346,
+              "y": 395
+            },
+            {
+              "x": 346,
+              "y": 373
+            },
+            {
+              "x": 341,
+              "y": 366
+            },
+            {
+              "x": 344,
+              "y": 343
+            },
+            {
+              "x": 351,
+              "y": 338
+            },
+            {
+              "x": 348,
+              "y": 338
+            },
+            {
+              "x": 345,
+              "y": 335
+            },
+            {
+              "x": 349,
+              "y": 318
+            },
+            {
+              "x": 349,
+              "y": 298
+            },
+            {
+              "x": 346,
+              "y": 284
+            },
+            {
+              "x": 337,
+              "y": 265
+            },
+            {
+              "x": 323,
+              "y": 250
+            },
+            {
+              "x": 316,
+              "y": 247
+            },
+            {
+              "x": 308,
+              "y": 240
+            },
+            {
+              "x": 293,
+              "y": 234
+            },
+            {
+              "x": 275,
+              "y": 230
+            },
+            {
+              "x": 244,
+              "y": 229
+            },
+            {
+              "x": 219,
+              "y": 233
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 176,
+              "y": 558
+            },
+            {
+              "x": 177,
+              "y": 559
+            },
+            {
+              "x": 175,
+              "y": 560
+            },
+            {
+              "x": 172,
+              "y": 569
+            },
+            {
+              "x": 172,
+              "y": 579
+            },
+            {
+              "x": 173,
+              "y": 580
+            },
+            {
+              "x": 172,
+              "y": 582
+            },
+            {
+              "x": 176,
+              "y": 588
+            },
+            {
+              "x": 180,
+              "y": 589
+            },
+            {
+              "x": 184,
+              "y": 593
+            },
+            {
+              "x": 193,
+              "y": 594
+            },
+            {
+              "x": 195,
+              "y": 596
+            },
+            {
+              "x": 205,
+              "y": 596
+            },
+            {
+              "x": 211,
+              "y": 598
+            },
+            {
+              "x": 218,
+              "y": 592
+            },
+            {
+              "x": 219,
+              "y": 589
+            },
+            {
+              "x": 221,
+              "y": 589
+            },
+            {
+              "x": 224,
+              "y": 586
+            },
+            {
+              "x": 226,
+              "y": 582
+            },
+            {
+              "x": 225,
+              "y": 578
+            },
+            {
+              "x": 226,
+              "y": 568
+            },
+            {
+              "x": 225,
+              "y": 565
+            },
+            {
+              "x": 212,
+              "y": 564
+            },
+            {
+              "x": 211,
+              "y": 563
+            },
+            {
+              "x": 205,
+              "y": 563
+            },
+            {
+              "x": 204,
+              "y": 562
+            },
+            {
+              "x": 198,
+              "y": 562
+            },
+            {
+              "x": 197,
+              "y": 561
+            },
+            {
+              "x": 191,
+              "y": 561
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 311,
+              "y": 546
+            },
+            {
+              "x": 327,
+              "y": 548
+            },
+            {
+              "x": 341,
+              "y": 558
+            },
+            {
+              "x": 343,
+              "y": 573
+            },
+            {
+              "x": 335,
+              "y": 585
+            },
+            {
+              "x": 323,
+              "y": 590
+            },
+            {
+              "x": 311,
+              "y": 583
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": 38,
+      "sourceFrame": 139,
+      "points": {
+        "neck": {
+          "x": 268,
+          "y": 449,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 234,
+          "y": 473,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 291,
+          "y": 479,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 261.4,
+          "y": 499.5,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "waistRight": {
+          "x": 303.6,
+          "y": 503.5,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "nearHip": {
+          "x": 236,
+          "y": 566,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 277,
+          "y": 567,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 235,
+          "y": 515,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 307,
+          "y": 532,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearWrist": {
+          "x": 282,
+          "y": 531,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 305,
+          "y": 547,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearKnee": {
+          "x": 237,
+          "y": 623,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 284,
+          "y": 617,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 173,
+          "y": 607,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 266,
+          "y": 675,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 143,
+          "y": 652,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 309,
+          "y": 696,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 220,
+              "y": 241
+            },
+            {
+              "x": 220,
+              "y": 243
+            },
+            {
+              "x": 206,
+              "y": 247
+            },
+            {
+              "x": 190,
+              "y": 255
+            },
+            {
+              "x": 169,
+              "y": 273
+            },
+            {
+              "x": 162,
+              "y": 286
+            },
+            {
+              "x": 159,
+              "y": 287
+            },
+            {
+              "x": 151,
+              "y": 305
+            },
+            {
+              "x": 148,
+              "y": 321
+            },
+            {
+              "x": 150,
+              "y": 353
+            },
+            {
+              "x": 159,
+              "y": 374
+            },
+            {
+              "x": 164,
+              "y": 378
+            },
+            {
+              "x": 169,
+              "y": 387
+            },
+            {
+              "x": 186,
+              "y": 402
+            },
+            {
+              "x": 199,
+              "y": 409
+            },
+            {
+              "x": 215,
+              "y": 414
+            },
+            {
+              "x": 218,
+              "y": 417
+            },
+            {
+              "x": 239,
+              "y": 422
+            },
+            {
+              "x": 241,
+              "y": 424
+            },
+            {
+              "x": 241,
+              "y": 431
+            },
+            {
+              "x": 236,
+              "y": 436
+            },
+            {
+              "x": 249,
+              "y": 442
+            },
+            {
+              "x": 266,
+              "y": 458
+            },
+            {
+              "x": 287,
+              "y": 458
+            },
+            {
+              "x": 286,
+              "y": 455
+            },
+            {
+              "x": 289,
+              "y": 451
+            },
+            {
+              "x": 277,
+              "y": 442
+            },
+            {
+              "x": 279,
+              "y": 429
+            },
+            {
+              "x": 291,
+              "y": 431
+            },
+            {
+              "x": 321,
+              "y": 430
+            },
+            {
+              "x": 338,
+              "y": 422
+            },
+            {
+              "x": 353,
+              "y": 405
+            },
+            {
+              "x": 355,
+              "y": 396
+            },
+            {
+              "x": 353,
+              "y": 389
+            },
+            {
+              "x": 354,
+              "y": 382
+            },
+            {
+              "x": 348,
+              "y": 378
+            },
+            {
+              "x": 348,
+              "y": 368
+            },
+            {
+              "x": 352,
+              "y": 352
+            },
+            {
+              "x": 358,
+              "y": 347
+            },
+            {
+              "x": 354,
+              "y": 345
+            },
+            {
+              "x": 358,
+              "y": 324
+            },
+            {
+              "x": 358,
+              "y": 305
+            },
+            {
+              "x": 354,
+              "y": 288
+            },
+            {
+              "x": 344,
+              "y": 271
+            },
+            {
+              "x": 336,
+              "y": 262
+            },
+            {
+              "x": 335,
+              "y": 263
+            },
+            {
+              "x": 324,
+              "y": 252
+            },
+            {
+              "x": 300,
+              "y": 242
+            },
+            {
+              "x": 302,
+              "y": 241
+            },
+            {
+              "x": 271,
+              "y": 235
+            },
+            {
+              "x": 255,
+              "y": 235
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 285,
+              "y": 503
+            },
+            {
+              "x": 282,
+              "y": 504
+            },
+            {
+              "x": 269,
+              "y": 543
+            },
+            {
+              "x": 279,
+              "y": 549
+            },
+            {
+              "x": 286,
+              "y": 550
+            },
+            {
+              "x": 287,
+              "y": 553
+            },
+            {
+              "x": 290,
+              "y": 555
+            },
+            {
+              "x": 293,
+              "y": 562
+            },
+            {
+              "x": 296,
+              "y": 565
+            },
+            {
+              "x": 295,
+              "y": 566
+            },
+            {
+              "x": 304,
+              "y": 561
+            },
+            {
+              "x": 312,
+              "y": 553
+            },
+            {
+              "x": 316,
+              "y": 544
+            },
+            {
+              "x": 318,
+              "y": 543
+            },
+            {
+              "x": 318,
+              "y": 536
+            },
+            {
+              "x": 316,
+              "y": 534
+            },
+            {
+              "x": 313,
+              "y": 536
+            },
+            {
+              "x": 311,
+              "y": 535
+            },
+            {
+              "x": 312,
+              "y": 532
+            },
+            {
+              "x": 315,
+              "y": 530
+            },
+            {
+              "x": 315,
+              "y": 525
+            },
+            {
+              "x": 316,
+              "y": 524
+            },
+            {
+              "x": 315,
+              "y": 520
+            },
+            {
+              "x": 317,
+              "y": 517
+            },
+            {
+              "x": 317,
+              "y": 512
+            },
+            {
+              "x": 311,
+              "y": 506
+            },
+            {
+              "x": 296,
+              "y": 503
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": 39,
+      "sourceFrame": 140,
+      "points": {
+        "neck": {
+          "x": 268,
+          "y": 449,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 229,
+          "y": 470,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 294,
+          "y": 475,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 250.5,
+          "y": 513.5,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "waistRight": {
+          "x": 295.5,
+          "y": 513.5,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "nearHip": {
+          "x": 234,
+          "y": 568,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 269,
+          "y": 570,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 205,
+          "y": 514,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 301,
+          "y": 540,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 263,
+          "y": 540,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 296,
+          "y": 541,
+          "visibility": "visible",
+          "confidence": 0.8,
+          "method": "Independently observed native source wrist/hand junction; no interpolation."
+        },
+        "nearKnee": {
+          "x": 251,
+          "y": 617,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farKnee": {
+          "x": 264,
+          "y": 626,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "nearAnkle": {
+          "x": 181,
+          "y": 611,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farAnkle": {
+          "x": 232,
+          "y": 670,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "nearToe": {
+          "x": 177,
+          "y": 666,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farToe": {
+          "x": 283,
+          "y": 692,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 223,
+              "y": 239
+            },
+            {
+              "x": 187,
+              "y": 256
+            },
+            {
+              "x": 168,
+              "y": 273
+            },
+            {
+              "x": 167,
+              "y": 277
+            },
+            {
+              "x": 158,
+              "y": 287
+            },
+            {
+              "x": 156,
+              "y": 291
+            },
+            {
+              "x": 157,
+              "y": 292
+            },
+            {
+              "x": 152,
+              "y": 300
+            },
+            {
+              "x": 148,
+              "y": 317
+            },
+            {
+              "x": 148,
+              "y": 341
+            },
+            {
+              "x": 151,
+              "y": 356
+            },
+            {
+              "x": 157,
+              "y": 370
+            },
+            {
+              "x": 166,
+              "y": 380
+            },
+            {
+              "x": 168,
+              "y": 385
+            },
+            {
+              "x": 176,
+              "y": 393
+            },
+            {
+              "x": 177,
+              "y": 392
+            },
+            {
+              "x": 185,
+              "y": 398
+            },
+            {
+              "x": 186,
+              "y": 401
+            },
+            {
+              "x": 201,
+              "y": 409
+            },
+            {
+              "x": 218,
+              "y": 414
+            },
+            {
+              "x": 218,
+              "y": 416
+            },
+            {
+              "x": 239,
+              "y": 421
+            },
+            {
+              "x": 241,
+              "y": 423
+            },
+            {
+              "x": 241,
+              "y": 427
+            },
+            {
+              "x": 236,
+              "y": 436
+            },
+            {
+              "x": 250,
+              "y": 444
+            },
+            {
+              "x": 263,
+              "y": 458
+            },
+            {
+              "x": 287,
+              "y": 458
+            },
+            {
+              "x": 283,
+              "y": 451
+            },
+            {
+              "x": 283,
+              "y": 445
+            },
+            {
+              "x": 276,
+              "y": 439
+            },
+            {
+              "x": 276,
+              "y": 432
+            },
+            {
+              "x": 279,
+              "y": 428
+            },
+            {
+              "x": 292,
+              "y": 430
+            },
+            {
+              "x": 322,
+              "y": 429
+            },
+            {
+              "x": 339,
+              "y": 420
+            },
+            {
+              "x": 352,
+              "y": 406
+            },
+            {
+              "x": 354,
+              "y": 400
+            },
+            {
+              "x": 353,
+              "y": 380
+            },
+            {
+              "x": 348,
+              "y": 377
+            },
+            {
+              "x": 347,
+              "y": 373
+            },
+            {
+              "x": 349,
+              "y": 358
+            },
+            {
+              "x": 350,
+              "y": 357
+            },
+            {
+              "x": 351,
+              "y": 359
+            },
+            {
+              "x": 352,
+              "y": 349
+            },
+            {
+              "x": 358,
+              "y": 346
+            },
+            {
+              "x": 355,
+              "y": 346
+            },
+            {
+              "x": 353,
+              "y": 344
+            },
+            {
+              "x": 358,
+              "y": 323
+            },
+            {
+              "x": 358,
+              "y": 304
+            },
+            {
+              "x": 355,
+              "y": 291
+            },
+            {
+              "x": 344,
+              "y": 270
+            },
+            {
+              "x": 325,
+              "y": 252
+            },
+            {
+              "x": 305,
+              "y": 243
+            },
+            {
+              "x": 305,
+              "y": 241
+            },
+            {
+              "x": 279,
+              "y": 235
+            },
+            {
+              "x": 246,
+              "y": 235
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 299,
+              "y": 513
+            },
+            {
+              "x": 297,
+              "y": 511
+            },
+            {
+              "x": 295,
+              "y": 513
+            },
+            {
+              "x": 294,
+              "y": 517
+            },
+            {
+              "x": 288,
+              "y": 522
+            },
+            {
+              "x": 284,
+              "y": 522
+            },
+            {
+              "x": 281,
+              "y": 519
+            },
+            {
+              "x": 278,
+              "y": 518
+            },
+            {
+              "x": 277,
+              "y": 516
+            },
+            {
+              "x": 271,
+              "y": 514
+            },
+            {
+              "x": 267,
+              "y": 514
+            },
+            {
+              "x": 266,
+              "y": 516
+            },
+            {
+              "x": 264,
+              "y": 516
+            },
+            {
+              "x": 246,
+              "y": 558
+            },
+            {
+              "x": 253,
+              "y": 562
+            },
+            {
+              "x": 263,
+              "y": 565
+            },
+            {
+              "x": 267,
+              "y": 565
+            },
+            {
+              "x": 271,
+              "y": 563
+            },
+            {
+              "x": 274,
+              "y": 560
+            },
+            {
+              "x": 274,
+              "y": 558
+            },
+            {
+              "x": 281,
+              "y": 553
+            },
+            {
+              "x": 282,
+              "y": 549
+            },
+            {
+              "x": 285,
+              "y": 547
+            },
+            {
+              "x": 289,
+              "y": 552
+            },
+            {
+              "x": 293,
+              "y": 553
+            },
+            {
+              "x": 302,
+              "y": 561
+            },
+            {
+              "x": 306,
+              "y": 553
+            },
+            {
+              "x": 307,
+              "y": 541
+            },
+            {
+              "x": 308,
+              "y": 540
+            },
+            {
+              "x": 307,
+              "y": 539
+            },
+            {
+              "x": 306,
+              "y": 527
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 290,
+              "y": 528
+            },
+            {
+              "x": 295,
+              "y": 515
+            },
+            {
+              "x": 315,
+              "y": 513
+            },
+            {
+              "x": 322,
+              "y": 513
+            },
+            {
+              "x": 328,
+              "y": 515
+            },
+            {
+              "x": 341,
+              "y": 524
+            },
+            {
+              "x": 346,
+              "y": 530
+            },
+            {
+              "x": 346,
+              "y": 533
+            },
+            {
+              "x": 344,
+              "y": 545
+            },
+            {
+              "x": 337,
+              "y": 558
+            },
+            {
+              "x": 328,
+              "y": 569
+            },
+            {
+              "x": 325,
+              "y": 570
+            },
+            {
+              "x": 318,
+              "y": 570
+            },
+            {
+              "x": 296,
+              "y": 565
+            },
+            {
+              "x": 290,
+              "y": 554
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": 40,
+      "sourceFrame": 141,
+      "points": {
+        "neck": {
+          "x": 268,
+          "y": 446,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 222,
+          "y": 465,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 302,
+          "y": 477,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 250.9,
+          "y": 526,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "waistRight": {
+          "x": 286.1,
+          "y": 538,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "nearHip": {
+          "x": 234,
+          "y": 561,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 273,
+          "y": 564,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 190,
+          "y": 499,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 317,
+          "y": 518,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 232,
+          "y": 535,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 327,
+          "y": 519,
+          "visibility": "visible",
+          "confidence": 0.8,
+          "method": "Independently observed native source wrist/hand junction; no interpolation."
+        },
+        "nearKnee": {
+          "x": 266,
+          "y": 588,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farKnee": {
+          "x": 246,
+          "y": 644,
+          "visibility": "visible",
+          "confidence": 0.35,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "nearAnkle": {
+          "x": 217,
+          "y": 622,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farAnkle": {
+          "x": 222,
+          "y": 676,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "nearToe": {
+          "x": 223,
+          "y": 674,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farToe": {
+          "x": 253,
+          "y": 698,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 218,
+              "y": 236
+            },
+            {
+              "x": 205,
+              "y": 241
+            },
+            {
+              "x": 205,
+              "y": 243
+            },
+            {
+              "x": 185,
+              "y": 253
+            },
+            {
+              "x": 167,
+              "y": 270
+            },
+            {
+              "x": 164,
+              "y": 277
+            },
+            {
+              "x": 159,
+              "y": 281
+            },
+            {
+              "x": 152,
+              "y": 296
+            },
+            {
+              "x": 148,
+              "y": 313
+            },
+            {
+              "x": 148,
+              "y": 339
+            },
+            {
+              "x": 151,
+              "y": 353
+            },
+            {
+              "x": 158,
+              "y": 366
+            },
+            {
+              "x": 158,
+              "y": 369
+            },
+            {
+              "x": 163,
+              "y": 373
+            },
+            {
+              "x": 170,
+              "y": 382
+            },
+            {
+              "x": 169,
+              "y": 383
+            },
+            {
+              "x": 175,
+              "y": 389
+            },
+            {
+              "x": 201,
+              "y": 405
+            },
+            {
+              "x": 238,
+              "y": 417
+            },
+            {
+              "x": 240,
+              "y": 419
+            },
+            {
+              "x": 240,
+              "y": 424
+            },
+            {
+              "x": 235,
+              "y": 430
+            },
+            {
+              "x": 251,
+              "y": 443
+            },
+            {
+              "x": 252,
+              "y": 446
+            },
+            {
+              "x": 261,
+              "y": 455
+            },
+            {
+              "x": 287,
+              "y": 455
+            },
+            {
+              "x": 286,
+              "y": 451
+            },
+            {
+              "x": 279,
+              "y": 441
+            },
+            {
+              "x": 279,
+              "y": 437
+            },
+            {
+              "x": 275,
+              "y": 433
+            },
+            {
+              "x": 279,
+              "y": 424
+            },
+            {
+              "x": 297,
+              "y": 427
+            },
+            {
+              "x": 312,
+              "y": 427
+            },
+            {
+              "x": 323,
+              "y": 425
+            },
+            {
+              "x": 339,
+              "y": 416
+            },
+            {
+              "x": 338,
+              "y": 415
+            },
+            {
+              "x": 352,
+              "y": 401
+            },
+            {
+              "x": 354,
+              "y": 395
+            },
+            {
+              "x": 353,
+              "y": 377
+            },
+            {
+              "x": 348,
+              "y": 372
+            },
+            {
+              "x": 349,
+              "y": 354
+            },
+            {
+              "x": 351,
+              "y": 354
+            },
+            {
+              "x": 352,
+              "y": 345
+            },
+            {
+              "x": 358,
+              "y": 342
+            },
+            {
+              "x": 354,
+              "y": 339
+            },
+            {
+              "x": 354,
+              "y": 331
+            },
+            {
+              "x": 358,
+              "y": 318
+            },
+            {
+              "x": 358,
+              "y": 302
+            },
+            {
+              "x": 356,
+              "y": 291
+            },
+            {
+              "x": 351,
+              "y": 278
+            },
+            {
+              "x": 349,
+              "y": 278
+            },
+            {
+              "x": 345,
+              "y": 268
+            },
+            {
+              "x": 337,
+              "y": 258
+            },
+            {
+              "x": 325,
+              "y": 248
+            },
+            {
+              "x": 303,
+              "y": 236
+            },
+            {
+              "x": 287,
+              "y": 232
+            },
+            {
+              "x": 269,
+              "y": 230
+            },
+            {
+              "x": 244,
+              "y": 231
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 243,
+              "y": 517
+            },
+            {
+              "x": 242,
+              "y": 518
+            },
+            {
+              "x": 236,
+              "y": 517
+            },
+            {
+              "x": 207,
+              "y": 551
+            },
+            {
+              "x": 214,
+              "y": 558
+            },
+            {
+              "x": 224,
+              "y": 564
+            },
+            {
+              "x": 230,
+              "y": 564
+            },
+            {
+              "x": 235,
+              "y": 560
+            },
+            {
+              "x": 239,
+              "y": 559
+            },
+            {
+              "x": 257,
+              "y": 541
+            },
+            {
+              "x": 257,
+              "y": 536
+            },
+            {
+              "x": 253,
+              "y": 528
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 321,
+              "y": 506
+            },
+            {
+              "x": 326,
+              "y": 493
+            },
+            {
+              "x": 342,
+              "y": 491
+            },
+            {
+              "x": 357,
+              "y": 493
+            },
+            {
+              "x": 362,
+              "y": 495
+            },
+            {
+              "x": 366,
+              "y": 501
+            },
+            {
+              "x": 369,
+              "y": 511
+            },
+            {
+              "x": 369,
+              "y": 524
+            },
+            {
+              "x": 364,
+              "y": 539
+            },
+            {
+              "x": 358,
+              "y": 546
+            },
+            {
+              "x": 336,
+              "y": 547
+            },
+            {
+              "x": 327,
+              "y": 542
+            },
+            {
+              "x": 321,
+              "y": 531
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": 49,
+      "sourceFrame": 150,
+      "points": {
+        "neck": {
+          "x": 269,
+          "y": 447,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 231,
+          "y": 469,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 301,
+          "y": 477,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 250.8,
+          "y": 508.5,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "waistRight": {
+          "x": 300.2,
+          "y": 506.5,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "nearHip": {
+          "x": 236,
+          "y": 565,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 275,
+          "y": 565,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 211,
+          "y": 510,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 309,
+          "y": 536,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearWrist": {
+          "x": 269,
+          "y": 534,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farWrist": {
+          "x": 299,
+          "y": 529,
+          "visibility": "visible",
+          "confidence": 0.8,
+          "method": "Independently observed native source wrist/hand junction; no interpolation."
+        },
+        "nearKnee": {
+          "x": 236,
+          "y": 622,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farKnee": {
+          "x": 291,
+          "y": 610,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "nearAnkle": {
+          "x": 218,
+          "y": 677,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farAnkle": {
+          "x": 242,
+          "y": 649,
+          "visibility": "occluded",
+          "confidence": 0.35,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "nearToe": {
+          "x": 251,
+          "y": 697,
+          "visibility": "visible",
+          "confidence": 0.76,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        },
+        "farToe": {
+          "x": 241,
+          "y": 677,
+          "visibility": "occluded",
+          "confidence": 0.35,
+          "method": "additional native run-crossing visual review; contour-guided estimate"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 224,
+              "y": 235
+            },
+            {
+              "x": 209,
+              "y": 240
+            },
+            {
+              "x": 207,
+              "y": 243
+            },
+            {
+              "x": 187,
+              "y": 252
+            },
+            {
+              "x": 169,
+              "y": 268
+            },
+            {
+              "x": 162,
+              "y": 280
+            },
+            {
+              "x": 159,
+              "y": 281
+            },
+            {
+              "x": 150,
+              "y": 302
+            },
+            {
+              "x": 147,
+              "y": 318
+            },
+            {
+              "x": 147,
+              "y": 334
+            },
+            {
+              "x": 150,
+              "y": 352
+            },
+            {
+              "x": 159,
+              "y": 372
+            },
+            {
+              "x": 162,
+              "y": 373
+            },
+            {
+              "x": 168,
+              "y": 383
+            },
+            {
+              "x": 176,
+              "y": 391
+            },
+            {
+              "x": 187,
+              "y": 397
+            },
+            {
+              "x": 188,
+              "y": 400
+            },
+            {
+              "x": 193,
+              "y": 403
+            },
+            {
+              "x": 239,
+              "y": 418
+            },
+            {
+              "x": 241,
+              "y": 422
+            },
+            {
+              "x": 236,
+              "y": 433
+            },
+            {
+              "x": 247,
+              "y": 439
+            },
+            {
+              "x": 264,
+              "y": 456
+            },
+            {
+              "x": 288,
+              "y": 456
+            },
+            {
+              "x": 284,
+              "y": 446
+            },
+            {
+              "x": 279,
+              "y": 442
+            },
+            {
+              "x": 281,
+              "y": 438
+            },
+            {
+              "x": 276,
+              "y": 435
+            },
+            {
+              "x": 276,
+              "y": 428
+            },
+            {
+              "x": 279,
+              "y": 425
+            },
+            {
+              "x": 297,
+              "y": 428
+            },
+            {
+              "x": 322,
+              "y": 426
+            },
+            {
+              "x": 340,
+              "y": 416
+            },
+            {
+              "x": 339,
+              "y": 415
+            },
+            {
+              "x": 352,
+              "y": 401
+            },
+            {
+              "x": 354,
+              "y": 394
+            },
+            {
+              "x": 353,
+              "y": 378
+            },
+            {
+              "x": 347,
+              "y": 372
+            },
+            {
+              "x": 349,
+              "y": 351
+            },
+            {
+              "x": 351,
+              "y": 352
+            },
+            {
+              "x": 350,
+              "y": 346
+            },
+            {
+              "x": 358,
+              "y": 342
+            },
+            {
+              "x": 353,
+              "y": 340
+            },
+            {
+              "x": 358,
+              "y": 312
+            },
+            {
+              "x": 355,
+              "y": 290
+            },
+            {
+              "x": 351,
+              "y": 280
+            },
+            {
+              "x": 349,
+              "y": 280
+            },
+            {
+              "x": 345,
+              "y": 270
+            },
+            {
+              "x": 336,
+              "y": 258
+            },
+            {
+              "x": 306,
+              "y": 238
+            },
+            {
+              "x": 277,
+              "y": 231
+            },
+            {
+              "x": 248,
+              "y": 231
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 292,
+              "y": 516
+            },
+            {
+              "x": 291,
+              "y": 517
+            },
+            {
+              "x": 286,
+              "y": 516
+            },
+            {
+              "x": 284,
+              "y": 514
+            },
+            {
+              "x": 278,
+              "y": 512
+            },
+            {
+              "x": 277,
+              "y": 510
+            },
+            {
+              "x": 271,
+              "y": 508
+            },
+            {
+              "x": 268,
+              "y": 513
+            },
+            {
+              "x": 251,
+              "y": 556
+            },
+            {
+              "x": 260,
+              "y": 559
+            },
+            {
+              "x": 266,
+              "y": 559
+            },
+            {
+              "x": 272,
+              "y": 557
+            },
+            {
+              "x": 275,
+              "y": 554
+            },
+            {
+              "x": 276,
+              "y": 548
+            },
+            {
+              "x": 279,
+              "y": 545
+            },
+            {
+              "x": 282,
+              "y": 544
+            },
+            {
+              "x": 286,
+              "y": 539
+            },
+            {
+              "x": 287,
+              "y": 533
+            },
+            {
+              "x": 292,
+              "y": 524
+            },
+            {
+              "x": 293,
+              "y": 519
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 290,
+              "y": 517
+            },
+            {
+              "x": 305,
+              "y": 519
+            },
+            {
+              "x": 324,
+              "y": 534
+            },
+            {
+              "x": 330,
+              "y": 550
+            },
+            {
+              "x": 320,
+              "y": 561
+            },
+            {
+              "x": 310,
+              "y": 567
+            },
+            {
+              "x": 296,
+              "y": 553
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": 60,
+      "sourceFrame": 208,
+      "points": {
+        "neck": {
+          "x": 290,
+          "y": 475.9,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "nearShoulder": {
+          "x": 215.8,
+          "y": 449.8,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "farShoulder": {
+          "x": 319.3,
+          "y": 503,
+          "visibility": "occluded",
+          "confidence": 0.2,
+          "method": "local optical-flow proposal from inspected source keypose; occluded attachment estimate"
+        },
+        "waistLeft": {
+          "x": 205.3,
+          "y": 559,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "waistRight": {
+          "x": 283.6,
+          "y": 566.5,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "nearHip": {
+          "x": 240,
+          "y": 585.6,
+          "visibility": "occluded",
+          "confidence": 0.2,
+          "method": "local optical-flow proposal from inspected source keypose; occluded attachment estimate"
+        },
+        "farHip": {
+          "x": 290,
+          "y": 583.8,
+          "visibility": "occluded",
+          "confidence": 0.2,
+          "method": "local optical-flow proposal from inspected source keypose; occluded attachment estimate"
+        },
+        "nearElbow": {
+          "x": 150.4,
+          "y": 438.5,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "farElbow": {
+          "x": 352.3,
+          "y": 514.8,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "nearWrist": {
+          "x": 129.2,
+          "y": 451,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "farWrist": {
+          "x": 404,
+          "y": 467,
+          "visibility": "visible",
+          "confidence": 0.8,
+          "method": "Independently observed native source wrist/hand junction; no interpolation."
+        },
+        "nearKnee": {
+          "x": 256.4,
+          "y": 615.9,
+          "visibility": "visible",
+          "confidence": 0.57,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "farKnee": {
+          "x": 307.2,
+          "y": 609.4,
+          "visibility": "visible",
+          "confidence": 0.57,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "nearAnkle": {
+          "x": 227,
+          "y": 664.3,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "farAnkle": {
+          "x": 278.2,
+          "y": 653.1,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "nearToe": {
+          "x": 271.7,
+          "y": 689.9,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        },
+        "farToe": {
+          "x": 317.6,
+          "y": 675,
+          "visibility": "visible",
+          "confidence": 0.65,
+          "method": "local optical-flow proposal from inspected source keypose; visible-region estimate"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 231,
+              "y": 307
+            },
+            {
+              "x": 220,
+              "y": 322
+            },
+            {
+              "x": 210,
+              "y": 345
+            },
+            {
+              "x": 210,
+              "y": 354
+            },
+            {
+              "x": 208,
+              "y": 355
+            },
+            {
+              "x": 209,
+              "y": 385
+            },
+            {
+              "x": 213,
+              "y": 398
+            },
+            {
+              "x": 221,
+              "y": 412
+            },
+            {
+              "x": 223,
+              "y": 411
+            },
+            {
+              "x": 223,
+              "y": 415
+            },
+            {
+              "x": 235,
+              "y": 429
+            },
+            {
+              "x": 245,
+              "y": 436
+            },
+            {
+              "x": 256,
+              "y": 446
+            },
+            {
+              "x": 269,
+              "y": 477
+            },
+            {
+              "x": 281,
+              "y": 497
+            },
+            {
+              "x": 299,
+              "y": 502
+            },
+            {
+              "x": 310,
+              "y": 496
+            },
+            {
+              "x": 308,
+              "y": 479
+            },
+            {
+              "x": 327,
+              "y": 485
+            },
+            {
+              "x": 355,
+              "y": 492
+            },
+            {
+              "x": 381,
+              "y": 488
+            },
+            {
+              "x": 401,
+              "y": 475
+            },
+            {
+              "x": 413,
+              "y": 439
+            },
+            {
+              "x": 415,
+              "y": 440
+            },
+            {
+              "x": 440,
+              "y": 394
+            },
+            {
+              "x": 441,
+              "y": 382
+            },
+            {
+              "x": 443,
+              "y": 382
+            },
+            {
+              "x": 443,
+              "y": 359
+            },
+            {
+              "x": 433,
+              "y": 332
+            },
+            {
+              "x": 432,
+              "y": 334
+            },
+            {
+              "x": 423,
+              "y": 319
+            },
+            {
+              "x": 409,
+              "y": 305
+            },
+            {
+              "x": 407,
+              "y": 306
+            },
+            {
+              "x": 392,
+              "y": 294
+            },
+            {
+              "x": 366,
+              "y": 283
+            },
+            {
+              "x": 357,
+              "y": 282
+            },
+            {
+              "x": 357,
+              "y": 280
+            },
+            {
+              "x": 345,
+              "y": 279
+            },
+            {
+              "x": 346,
+              "y": 277
+            },
+            {
+              "x": 303,
+              "y": 275
+            },
+            {
+              "x": 283,
+              "y": 277
+            },
+            {
+              "x": 286,
+              "y": 278
+            },
+            {
+              "x": 263,
+              "y": 284
+            },
+            {
+              "x": 265,
+              "y": 285
+            },
+            {
+              "x": 252,
+              "y": 290
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 119,
+              "y": 419
+            },
+            {
+              "x": 118,
+              "y": 421
+            },
+            {
+              "x": 114,
+              "y": 422
+            },
+            {
+              "x": 110,
+              "y": 426
+            },
+            {
+              "x": 109,
+              "y": 431
+            },
+            {
+              "x": 108,
+              "y": 432
+            },
+            {
+              "x": 107,
+              "y": 431
+            },
+            {
+              "x": 108,
+              "y": 436
+            },
+            {
+              "x": 106,
+              "y": 438
+            },
+            {
+              "x": 105,
+              "y": 442
+            },
+            {
+              "x": 106,
+              "y": 446
+            },
+            {
+              "x": 105,
+              "y": 447
+            },
+            {
+              "x": 108,
+              "y": 451
+            },
+            {
+              "x": 109,
+              "y": 460
+            },
+            {
+              "x": 112,
+              "y": 463
+            },
+            {
+              "x": 112,
+              "y": 465
+            },
+            {
+              "x": 116,
+              "y": 471
+            },
+            {
+              "x": 126,
+              "y": 472
+            },
+            {
+              "x": 130,
+              "y": 476
+            },
+            {
+              "x": 132,
+              "y": 476
+            },
+            {
+              "x": 133,
+              "y": 477
+            },
+            {
+              "x": 132,
+              "y": 478
+            },
+            {
+              "x": 140,
+              "y": 478
+            },
+            {
+              "x": 142,
+              "y": 476
+            },
+            {
+              "x": 148,
+              "y": 475
+            },
+            {
+              "x": 150,
+              "y": 472
+            },
+            {
+              "x": 151,
+              "y": 473
+            },
+            {
+              "x": 152,
+              "y": 472
+            },
+            {
+              "x": 123,
+              "y": 423
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 404,
+              "y": 440
+            },
+            {
+              "x": 427,
+              "y": 440
+            },
+            {
+              "x": 443,
+              "y": 455
+            },
+            {
+              "x": 443,
+              "y": 479
+            },
+            {
+              "x": 428,
+              "y": 495
+            },
+            {
+              "x": 400,
+              "y": 488
+            },
+            {
+              "x": 395,
+              "y": 472
+            },
+            {
+              "x": 395,
+              "y": 459
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": 67,
+      "sourceFrame": 215,
+      "points": {
+        "neck": {
+          "x": 259,
+          "y": 269,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearShoulder": {
+          "x": 205,
+          "y": 298,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farShoulder": {
+          "x": 286,
+          "y": 301,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 195.8,
+          "y": 371,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "waistRight": {
+          "x": 281.2,
+          "y": 373,
+          "visibility": "visible",
+          "confidence": 0.85,
+          "method": "actual-frame visible tank lower-contour attachment estimate"
+        },
+        "nearHip": {
+          "x": 229,
+          "y": 404,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 281,
+          "y": 414,
+          "visibility": "occluded",
+          "confidence": 0.33,
+          "method": "visually-inspected-native-keypose; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 149,
+          "y": 331,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farElbow": {
+          "x": 298,
+          "y": 358,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearWrist": {
+          "x": 159,
+          "y": 347,
+          "visibility": "visible",
+          "confidence": 0.8,
+          "method": "Independently observed native source wrist/hand junction; no interpolation."
+        },
+        "farWrist": {
+          "x": 318,
+          "y": 344,
+          "visibility": "visible",
+          "confidence": 0.8,
+          "method": "Independently observed native source wrist/hand junction; no interpolation."
+        },
+        "nearKnee": {
+          "x": 252,
+          "y": 433,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farKnee": {
+          "x": 328,
+          "y": 423,
+          "visibility": "visible",
+          "confidence": 0.7,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearAnkle": {
+          "x": 188,
+          "y": 456,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farAnkle": {
+          "x": 272,
+          "y": 466,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "nearToe": {
+          "x": 198,
+          "y": 514,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        },
+        "farToe": {
+          "x": 287,
+          "y": 506,
+          "visibility": "visible",
+          "confidence": 0.78,
+          "method": "visually-inspected-native-keypose; contour-guided joint estimate"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 183,
+              "y": 64
+            },
+            {
+              "x": 151,
+              "y": 85
+            },
+            {
+              "x": 138,
+              "y": 98
+            },
+            {
+              "x": 123,
+              "y": 123
+            },
+            {
+              "x": 116,
+              "y": 147
+            },
+            {
+              "x": 116,
+              "y": 169
+            },
+            {
+              "x": 124,
+              "y": 197
+            },
+            {
+              "x": 127,
+              "y": 199
+            },
+            {
+              "x": 127,
+              "y": 203
+            },
+            {
+              "x": 129,
+              "y": 202
+            },
+            {
+              "x": 134,
+              "y": 214
+            },
+            {
+              "x": 135,
+              "y": 212
+            },
+            {
+              "x": 147,
+              "y": 227
+            },
+            {
+              "x": 149,
+              "y": 226
+            },
+            {
+              "x": 158,
+              "y": 234
+            },
+            {
+              "x": 166,
+              "y": 236
+            },
+            {
+              "x": 171,
+              "y": 241
+            },
+            {
+              "x": 194,
+              "y": 246
+            },
+            {
+              "x": 193,
+              "y": 248
+            },
+            {
+              "x": 215,
+              "y": 248
+            },
+            {
+              "x": 216,
+              "y": 255
+            },
+            {
+              "x": 221,
+              "y": 260
+            },
+            {
+              "x": 226,
+              "y": 261
+            },
+            {
+              "x": 247,
+              "y": 277
+            },
+            {
+              "x": 274,
+              "y": 278
+            },
+            {
+              "x": 267,
+              "y": 268
+            },
+            {
+              "x": 268,
+              "y": 254
+            },
+            {
+              "x": 269,
+              "y": 256
+            },
+            {
+              "x": 270,
+              "y": 253
+            },
+            {
+              "x": 305,
+              "y": 253
+            },
+            {
+              "x": 322,
+              "y": 248
+            },
+            {
+              "x": 340,
+              "y": 234
+            },
+            {
+              "x": 344,
+              "y": 222
+            },
+            {
+              "x": 346,
+              "y": 222
+            },
+            {
+              "x": 344,
+              "y": 196
+            },
+            {
+              "x": 337,
+              "y": 194
+            },
+            {
+              "x": 337,
+              "y": 174
+            },
+            {
+              "x": 339,
+              "y": 176
+            },
+            {
+              "x": 339,
+              "y": 167
+            },
+            {
+              "x": 343,
+              "y": 163
+            },
+            {
+              "x": 344,
+              "y": 128
+            },
+            {
+              "x": 339,
+              "y": 103
+            },
+            {
+              "x": 338,
+              "y": 105
+            },
+            {
+              "x": 332,
+              "y": 89
+            },
+            {
+              "x": 331,
+              "y": 91
+            },
+            {
+              "x": 329,
+              "y": 85
+            },
+            {
+              "x": 315,
+              "y": 71
+            },
+            {
+              "x": 291,
+              "y": 58
+            },
+            {
+              "x": 264,
+              "y": 52
+            },
+            {
+              "x": 267,
+              "y": 51
+            },
+            {
+              "x": 228,
+              "y": 51
+            },
+            {
+              "x": 230,
+              "y": 52
+            },
+            {
+              "x": 213,
+              "y": 54
+            },
+            {
+              "x": 216,
+              "y": 55
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 124,
+              "y": 346
+            },
+            {
+              "x": 144,
+              "y": 337
+            },
+            {
+              "x": 179,
+              "y": 340
+            },
+            {
+              "x": 194,
+              "y": 355
+            },
+            {
+              "x": 194,
+              "y": 370
+            },
+            {
+              "x": 183,
+              "y": 384
+            },
+            {
+              "x": 166,
+              "y": 392
+            },
+            {
+              "x": 138,
+              "y": 387
+            },
+            {
+              "x": 124,
+              "y": 375
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 312,
+              "y": 330
+            },
+            {
+              "x": 317,
+              "y": 317
+            },
+            {
+              "x": 334,
+              "y": 315
+            },
+            {
+              "x": 361,
+              "y": 315
+            },
+            {
+              "x": 368,
+              "y": 321
+            },
+            {
+              "x": 374,
+              "y": 332
+            },
+            {
+              "x": 375,
+              "y": 352
+            },
+            {
+              "x": 372,
+              "y": 364
+            },
+            {
+              "x": 368,
+              "y": 369
+            },
+            {
+              "x": 360,
+              "y": 373
+            },
+            {
+              "x": 344,
+              "y": 374
+            },
+            {
+              "x": 318,
+              "y": 369
+            },
+            {
+              "x": 312,
+              "y": 358
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

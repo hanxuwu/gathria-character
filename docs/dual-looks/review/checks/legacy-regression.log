@@ -1,0 +1,38 @@
+[WebServer] (node:308222) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:308235) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 3 workers
+
+(node:308254) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:308253) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:308255) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 tests/e2e/dual-view-daily-outfits.spec.ts:440:3 › male: new garments mixed with original clothing roundtrip while legacy pair bytes and failed-input state stay exact (3.1m)
+(node:309668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 tests/e2e/dual-view-daily-outfits.spec.ts:122:3 › male: tailored shirt or blouse and trousers or skirt preserve native actions and independent playback (3.5m)
+(node:309727) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/dual-view-daily-outfits.spec.ts:122:3 › female: tailored shirt or blouse and trousers or skirt preserve native actions and independent playback (3.7m)
+  ✓  6 tests/e2e/unified-workbench.spec.ts:244:1 › unified workbench exports unchanged GIF and CharacterPack with independent playback (1.0m)
+(node:310535) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 tests/e2e/dual-view-wardrobe.spec.ts:119:3 › male: shared cotton outfit keeps each native view and exports all actions independently (2.5m)
+  ✓  4 tests/e2e/dual-view-daily-outfits.spec.ts:440:3 › female: new garments mixed with original clothing roundtrip while legacy pair bytes and failed-input state stay exact (2.9m)
+(node:310903) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 tests/e2e/dual-view-wardrobe.spec.ts:119:3 › female: shared cotton outfit keeps each native view and exports all actions independently (2.1m)
+  ✓  8 tests/e2e/dual-view-wardrobe.spec.ts:377:1 › mixed shared choices reopen atomically and a damaged embedded view leaves the current pair intact (1.2m)
+
+  Slow test file: tests/e2e/dual-view-wardrobe.spec.ts (5.8m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  8 passed (9.4m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

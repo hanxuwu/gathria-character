@@ -1,5 +1,6 @@
 import { decodeSourceRgbaPngAsync } from "./baked-source";
 import { readPortableCharacterPackArchive } from "./pack";
+import { readBoundedArchive } from "./bounded-archive";
 import type {
   SourcePreparationRequest,
   SourcePreparationResponse,
@@ -33,6 +34,18 @@ scope.onmessage = async ({ data: request }) => {
       scope.postMessage(
         { kind: request.kind, ok: true, value },
         buffers([value.png, ...(value.additionalPngs ?? [])]),
+      );
+    } else if (request.kind === "bounded-archive") {
+      const files = readBoundedArchive(request.bytes, request.policy);
+      const value = Object.fromEntries(
+        Object.entries(files).map(([name, file]) => [
+          name,
+          new Uint8Array(file),
+        ]),
+      );
+      scope.postMessage(
+        { kind: request.kind, ok: true, value },
+        buffers(Object.values(value)),
       );
     } else if (request.kind === "png") {
       const value = await decodeSourceRgbaPngAsync(

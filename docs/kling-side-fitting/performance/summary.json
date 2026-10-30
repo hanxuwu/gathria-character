@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "startedAt": "2026-10-29T12:50:38.373Z",
+  "finishedAt": "2026-10-29T12:52:53.862Z",
+  "rawReportSha256": "a066e41ad2ad2612c88c503c1071776553edab4ff3a6122c95d2a611f22599f4",
+  "samplesPerCharacterPerVersion": 2,
+  "uiContexts": 8,
+  "pipelineContexts": 8,
+  "nativeFramesComparedPerPair": 209,
+  "measurements": {
+    "male": {
+      "before": {
+        "firstCanvasMedianMs": 8819.599999999627,
+        "firstCanvasMs": [
+          9113.800000000745,
+          8525.39999999851
+        ],
+        "largestMainThreadTaskMs": 806,
+        "largestHeartbeatGapMs": 836.6000000014901,
+        "heapBytes": [
+          397649712,
+          498629944
+        ],
+        "stageMedianMs": {
+          "load": 3900.2999999988824,
+          "compositor": 634.0499999988824,
+          "allPoseValidation": 2071.5999999996275
+        }
+      },
+      "after": {
+        "firstCanvasMedianMs": 6872.5,
+        "firstCanvasMs": [
+          6947,
+          6798
+        ],
+        "largestMainThreadTaskMs": 832,
+        "largestHeartbeatGapMs": 862.0999999977648,
+        "heapBytes": [
+          503338882,
+          503304256
+        ],
+        "stageMedianMs": {
+          "load": 2976.10000000149,
+          "compositor": 621.6999999992549,
+          "allPoseValidation": 1709.25
+        }
+      },
+      "reductionPercent": 22.07696494171742
+    },
+    "female": {
+      "before": {
+        "firstCanvasMedianMs": 8993.250000001863,
+        "firstCanvasMs": [
+          8850.20000000298,
+          9136.300000000745
+        ],
+        "largestMainThreadTaskMs": 1023,
+        "largestHeartbeatGapMs": 1050.4000000022352,
+        "heapBytes": [
+          514898952,
+          514837003
+        ],
+        "stageMedianMs": {
+          "load": 4302.9000000003725,
+          "compositor": 738.8499999996275,
+          "allPoseValidation": 1928.0499999988824
+        }
+      },
+      "after": {
+        "firstCanvasMedianMs": 7785.4000000003725,
+        "firstCanvasMs": [
+          7747.400000002235,
+          7823.39999999851
+        ],
+        "largestMainThreadTaskMs": 1009,
+        "largestHeartbeatGapMs": 1033,
+        "heapBytes": [
+          514988889,
+          515026677
+        ],
+        "stageMedianMs": {
+          "load": 3774.6500000003725,
+          "compositor": 774.2999999988824,
+          "allPoseValidation": 1618.5000000018626
+        }
+      },
+      "reductionPercent": 13.430628526964556
+    }
+  }
+}

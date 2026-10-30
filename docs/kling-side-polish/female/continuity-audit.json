@@ -1,0 +1,1390 @@
+{
+  "baselineCommit": "4fd27f9f21009af556734ae87e52d82b94c6d5f4",
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+  "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+  "scope": "cloth-only offline donor continuity; no source/body/face/frame/timing/registration changes",
+  "assets": {
+    "top": {
+      "sha256": "c704a50b87e581c8b29fd24daee8b0d6d53f00667a94f71ea418e80decccc01d",
+      "bytes": 2390959,
+      "baselineSha256": "9381e29ee99a4f9c6d4aabc895eebd1d71b5ce56db88ba38ba1882fc7093e677"
+    },
+    "bottom": {
+      "sha256": "04ec7d1ec4868974f5946766e81f1f92ee185846689585f4c8222883ee92df2c",
+      "bytes": 2756035,
+      "baselineSha256": "74b475d0b1ac43d1eb377bff3d8cf2236ab2594ce7cd97a0cd1140ed4136feca"
+    }
+  },
+  "frames": {
+    "top": {
+      "changed": [
+        40,
+        47
+      ],
+      "unchangedCount": 100,
+      "protectedChanged": 0
+    },
+    "bottom": {
+      "changed": [
+        16,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        51,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        60,
+        63,
+        64,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        92,
+        94,
+        95,
+        96,
+        101
+      ],
+      "unchangedCount": 45,
+      "protectedChanged": 0
+    }
+  },
+  "actions": {
+    "idle": {
+      "before": {
+        "meanAlignedSilhouetteXor": 0.00274,
+        "maxAlignedSilhouetteXor": 0.01754,
+        "meanAlignedRgbMAE": 0.517,
+        "pairs": [
+          {
+            "from": 0,
+            "to": 1,
+            "silhouetteXor": 0.01692271699290338,
+            "rgbMAE": 3.714210164471944
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "silhouetteXor": 0.0016500353579005265,
+            "rgbMAE": 0.1625478776431082
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "silhouetteXor": 0.0009436187780136825,
+            "rgbMAE": 0.07438016528925619
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "silhouetteXor": 0.0008653241032095658,
+            "rgbMAE": 0.01816129963519933
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "silhouetteXor": 0.0007864726700747149,
+            "rgbMAE": 0.038619965892693155
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "silhouetteXor": 0.0007863489816780688,
+            "rgbMAE": 0.03189842868760001
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "silhouetteXor": 0.0007076584368611417,
+            "rgbMAE": 0.038660267002386756
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "silhouetteXor": 0.0005504010064475547,
+            "rgbMAE": 0.13757113261479556
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "silhouetteXor": 0.0003146138115463269,
+            "rgbMAE": 0.024075531077891423
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "silhouetteXor": 0.0001573440327275588,
+            "rgbMAE": 0.01222230964932987
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "silhouetteXor": 0.00039323633503735744,
+            "rgbMAE": 0.12499344348282192
+          },
+          {
+            "from": 11,
+            "to": 12,
+            "silhouetteXor": 7.864108210128971e-05,
+            "rgbMAE": 0.0022021234762092017
+          },
+          {
+            "from": 12,
+            "to": 13,
+            "silhouetteXor": 0.0011793379982703042,
+            "rgbMAE": 0.0043555835432409745
+          },
+          {
+            "from": 13,
+            "to": 14,
+            "silhouetteXor": 0.0005505741702060721,
+            "rgbMAE": 0.03884997770257863
+          },
+          {
+            "from": 14,
+            "to": 15,
+            "silhouetteXor": 0.0004716981132075472,
+            "rgbMAE": 0.12285669340884064
+          },
+          {
+            "from": 15,
+            "to": 0,
+            "silhouetteXor": 0.017538389586094005,
+            "rgbMAE": 3.720670686554533
+          }
+        ]
+      },
+      "after": {
+        "meanAlignedSilhouetteXor": 0.00274,
+        "maxAlignedSilhouetteXor": 0.01754,
+        "meanAlignedRgbMAE": 0.517,
+        "pairs": [
+          {
+            "from": 0,
+            "to": 1,
+            "silhouetteXor": 0.01692271699290338,
+            "rgbMAE": 3.714210164471944
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "silhouetteXor": 0.0016500353579005265,
+            "rgbMAE": 0.1625478776431082
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "silhouetteXor": 0.0009436187780136825,
+            "rgbMAE": 0.07438016528925619
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "silhouetteXor": 0.0008653241032095658,
+            "rgbMAE": 0.01816129963519933
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "silhouetteXor": 0.0007864726700747149,
+            "rgbMAE": 0.038619965892693155
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "silhouetteXor": 0.0007863489816780688,
+            "rgbMAE": 0.03189842868760001
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "silhouetteXor": 0.0007076584368611417,
+            "rgbMAE": 0.038660267002386756
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "silhouetteXor": 0.0005504010064475547,
+            "rgbMAE": 0.13757113261479556
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "silhouetteXor": 0.0003146138115463269,
+            "rgbMAE": 0.024075531077891423
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "silhouetteXor": 0.0001573440327275588,
+            "rgbMAE": 0.01222230964932987
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "silhouetteXor": 0.00039323633503735744,
+            "rgbMAE": 0.12499344348282192
+          },
+          {
+            "from": 11,
+            "to": 12,
+            "silhouetteXor": 7.864108210128971e-05,
+            "rgbMAE": 0.0022021234762092017
+          },
+          {
+            "from": 12,
+            "to": 13,
+            "silhouetteXor": 0.0011793379982703042,
+            "rgbMAE": 0.0043555835432409745
+          },
+          {
+            "from": 13,
+            "to": 14,
+            "silhouetteXor": 0.0005505741702060721,
+            "rgbMAE": 0.03884997770257863
+          },
+          {
+            "from": 14,
+            "to": 15,
+            "silhouetteXor": 0.0004716981132075472,
+            "rgbMAE": 0.12285669340884064
+          },
+          {
+            "from": 15,
+            "to": 0,
+            "silhouetteXor": 0.017538389586094005,
+            "rgbMAE": 3.720670686554533
+          }
+        ]
+      },
+      "donorSwitchesBefore": 0,
+      "donorSwitchesAfter": 0,
+      "actionDonors": [
+        0
+      ]
+    },
+    "walk": {
+      "before": {
+        "meanAlignedSilhouetteXor": 0.24983,
+        "maxAlignedSilhouetteXor": 0.52248,
+        "meanAlignedRgbMAE": 24.563,
+        "pairs": [
+          {
+            "from": 16,
+            "to": 17,
+            "silhouetteXor": 0.3106291574279379,
+            "rgbMAE": 33.40476429791939
+          },
+          {
+            "from": 17,
+            "to": 18,
+            "silhouetteXor": 0.12715692809005405,
+            "rgbMAE": 7.692601391481419
+          },
+          {
+            "from": 18,
+            "to": 19,
+            "silhouetteXor": 0.33082395193038194,
+            "rgbMAE": 40.17180995630784
+          },
+          {
+            "from": 19,
+            "to": 20,
+            "silhouetteXor": 0.2724867724867725,
+            "rgbMAE": 16.843737373737373
+          },
+          {
+            "from": 20,
+            "to": 21,
+            "silhouetteXor": 0.290431015163965,
+            "rgbMAE": 24.60420395129312
+          },
+          {
+            "from": 21,
+            "to": 22,
+            "silhouetteXor": 0.13053250345781467,
+            "rgbMAE": 11.410088155365546
+          },
+          {
+            "from": 22,
+            "to": 23,
+            "silhouetteXor": 0.38800999167360534,
+            "rgbMAE": 37.98658352229781
+          },
+          {
+            "from": 23,
+            "to": 24,
+            "silhouetteXor": 0.5224813657129117,
+            "rgbMAE": 35.02844914400806
+          },
+          {
+            "from": 24,
+            "to": 25,
+            "silhouetteXor": 0.3746115702479339,
+            "rgbMAE": 32.91334531486767
+          },
+          {
+            "from": 25,
+            "to": 26,
+            "silhouetteXor": 0.12003256123732702,
+            "rgbMAE": 15.661648866089198
+          },
+          {
+            "from": 26,
+            "to": 27,
+            "silhouetteXor": 0.3653724146681893,
+            "rgbMAE": 37.8717718017928
+          },
+          {
+            "from": 27,
+            "to": 28,
+            "silhouetteXor": 0.2470971684660827,
+            "rgbMAE": 21.107623857623857
+          },
+          {
+            "from": 28,
+            "to": 29,
+            "silhouetteXor": 0.05096479599351893,
+            "rgbMAE": 11.37604118164416
+          },
+          {
+            "from": 29,
+            "to": 30,
+            "silhouetteXor": 0.053320514716757875,
+            "rgbMAE": 10.642970601255112
+          },
+          {
+            "from": 30,
+            "to": 31,
+            "silhouetteXor": 0.23199455411844794,
+            "rgbMAE": 36.72209419133723
+          },
+          {
+            "from": 31,
+            "to": 32,
+            "silhouetteXor": 0.15272409014659763,
+            "rgbMAE": 17.89257123181544
+          },
+          {
+            "from": 32,
+            "to": 33,
+            "silhouetteXor": 0.12806184935701165,
+            "rgbMAE": 15.895882714423667
+          },
+          {
+            "from": 33,
+            "to": 16,
+            "silhouetteXor": 0.40029286474973375,
+            "rgbMAE": 34.907029226785056
+          }
+        ]
+      },
+      "after": {
+        "meanAlignedSilhouetteXor": 0.1589,
+        "maxAlignedSilhouetteXor": 0.28058,
+        "meanAlignedRgbMAE": 13.179,
+        "pairs": [
+          {
+            "from": 16,
+            "to": 17,
+            "silhouetteXor": 0.15418535127055305,
+            "rgbMAE": 8.701569909575564
+          },
+          {
+            "from": 17,
+            "to": 18,
+            "silhouetteXor": 0.12715692809005405,
+            "rgbMAE": 7.692601391481419
+          },
+          {
+            "from": 18,
+            "to": 19,
+            "silhouetteXor": 0.1696345562468712,
+            "rgbMAE": 17.900869864783395
+          },
+          {
+            "from": 19,
+            "to": 20,
+            "silhouetteXor": 0.22954530324212769,
+            "rgbMAE": 18.73763645266281
+          },
+          {
+            "from": 20,
+            "to": 21,
+            "silhouetteXor": 0.25867381111855325,
+            "rgbMAE": 23.61528731478135
+          },
+          {
+            "from": 21,
+            "to": 22,
+            "silhouetteXor": 0.11480479319675299,
+            "rgbMAE": 9.712459970887918
+          },
+          {
+            "from": 22,
+            "to": 23,
+            "silhouetteXor": 0.22962604548282298,
+            "rgbMAE": 19.3925228054434
+          },
+          {
+            "from": 23,
+            "to": 24,
+            "silhouetteXor": 0.2569605953883979,
+            "rgbMAE": 9.671972813450187
+          },
+          {
+            "from": 24,
+            "to": 25,
+            "silhouetteXor": 0.28057947246139125,
+            "rgbMAE": 12.077824214792301
+          },
+          {
+            "from": 25,
+            "to": 26,
+            "silhouetteXor": 0.12003256123732702,
+            "rgbMAE": 15.661648866089198
+          },
+          {
+            "from": 26,
+            "to": 27,
+            "silhouetteXor": 0.16656547257640153,
+            "rgbMAE": 10.067778317414062
+          },
+          {
+            "from": 27,
+            "to": 28,
+            "silhouetteXor": 0.18595300917200652,
+            "rgbMAE": 15.860523743376032
+          },
+          {
+            "from": 28,
+            "to": 29,
+            "silhouetteXor": 0.03922088246985557,
+            "rgbMAE": 8.445179975175838
+          },
+          {
+            "from": 29,
+            "to": 30,
+            "silhouetteXor": 0.03923272289800829,
+            "rgbMAE": 9.858434782608695
+          },
+          {
+            "from": 30,
+            "to": 31,
+            "silhouetteXor": 0.053623681524328004,
+            "rgbMAE": 7.173533712039499
+          },
+          {
+            "from": 31,
+            "to": 32,
+            "silhouetteXor": 0.1290170132325142,
+            "rgbMAE": 12.614241790042117
+          },
+          {
+            "from": 32,
+            "to": 33,
+            "silhouetteXor": 0.1173137460650577,
+            "rgbMAE": 18.711602472658107
+          },
+          {
+            "from": 33,
+            "to": 16,
+            "silhouetteXor": 0.18813005821382933,
+            "rgbMAE": 11.331788504138975
+          }
+        ]
+      },
+      "donorSwitchesBefore": 8,
+      "donorSwitchesAfter": 0,
+      "actionDonors": [
+        0
+      ]
+    },
+    "run": {
+      "before": {
+        "meanAlignedSilhouetteXor": 0.19463,
+        "maxAlignedSilhouetteXor": 0.5488,
+        "meanAlignedRgbMAE": 21.652,
+        "pairs": [
+          {
+            "from": 34,
+            "to": 35,
+            "silhouetteXor": 0.01206414594674121,
+            "rgbMAE": 5.234971456937204
+          },
+          {
+            "from": 35,
+            "to": 36,
+            "silhouetteXor": 0.02837243401759531,
+            "rgbMAE": 12.299856636233306
+          },
+          {
+            "from": 36,
+            "to": 37,
+            "silhouetteXor": 0.2025537982888255,
+            "rgbMAE": 34.47012923677152
+          },
+          {
+            "from": 37,
+            "to": 38,
+            "silhouetteXor": 0.5488048981514189,
+            "rgbMAE": 39.69176235212248
+          },
+          {
+            "from": 38,
+            "to": 39,
+            "silhouetteXor": 0.15413899955732624,
+            "rgbMAE": 10.174551671202288
+          },
+          {
+            "from": 39,
+            "to": 40,
+            "silhouetteXor": 0.4421059991609565,
+            "rgbMAE": 40.045369093871415
+          },
+          {
+            "from": 40,
+            "to": 41,
+            "silhouetteXor": 0.28648233486943164,
+            "rgbMAE": 37.45699187787455
+          },
+          {
+            "from": 41,
+            "to": 42,
+            "silhouetteXor": 0.26317583691279745,
+            "rgbMAE": 36.47719070972518
+          },
+          {
+            "from": 42,
+            "to": 43,
+            "silhouetteXor": 0.030656039239730228,
+            "rgbMAE": 9.87787265443812
+          },
+          {
+            "from": 43,
+            "to": 44,
+            "silhouetteXor": 0.008821047787067576,
+            "rgbMAE": 4.657818707114481
+          },
+          {
+            "from": 44,
+            "to": 45,
+            "silhouetteXor": 0.021789166794537365,
+            "rgbMAE": 9.56711111111111
+          },
+          {
+            "from": 45,
+            "to": 46,
+            "silhouetteXor": 0.03320719746698587,
+            "rgbMAE": 12.368985808238143
+          },
+          {
+            "from": 46,
+            "to": 47,
+            "silhouetteXor": 0.058172177167810354,
+            "rgbMAE": 6.92741623889165
+          },
+          {
+            "from": 47,
+            "to": 48,
+            "silhouetteXor": 0.4564956021008669,
+            "rgbMAE": 36.417782434897354
+          },
+          {
+            "from": 48,
+            "to": 49,
+            "silhouetteXor": 0.36197734582575863,
+            "rgbMAE": 31.57764383561644
+          },
+          {
+            "from": 49,
+            "to": 50,
+            "silhouetteXor": 0.20774748923959827,
+            "rgbMAE": 10.655469032959072
+          },
+          {
+            "from": 50,
+            "to": 51,
+            "silhouetteXor": 0.35187960908927396,
+            "rgbMAE": 38.8354301572618
+          },
+          {
+            "from": 51,
+            "to": 34,
+            "silhouetteXor": 0.03492884864165589,
+            "rgbMAE": 13.003028497666566
+          }
+        ]
+      },
+      "after": {
+        "meanAlignedSilhouetteXor": 0.11248,
+        "maxAlignedSilhouetteXor": 0.34888,
+        "meanAlignedRgbMAE": 11.153,
+        "pairs": [
+          {
+            "from": 34,
+            "to": 35,
+            "silhouetteXor": 0.013235875148162782,
+            "rgbMAE": 3.9518852185518853
+          },
+          {
+            "from": 35,
+            "to": 36,
+            "silhouetteXor": 0.027856437273625287,
+            "rgbMAE": 10.593031657860273
+          },
+          {
+            "from": 36,
+            "to": 37,
+            "silhouetteXor": 0.0644847067991428,
+            "rgbMAE": 17.371535008561246
+          },
+          {
+            "from": 37,
+            "to": 38,
+            "silhouetteXor": 0.3488843813387424,
+            "rgbMAE": 24.655545506314276
+          },
+          {
+            "from": 38,
+            "to": 39,
+            "silhouetteXor": 0.15413899955732624,
+            "rgbMAE": 10.174551671202288
+          },
+          {
+            "from": 39,
+            "to": 40,
+            "silhouetteXor": 0.2401500938086304,
+            "rgbMAE": 7.017349794238682
+          },
+          {
+            "from": 40,
+            "to": 41,
+            "silhouetteXor": 0.12981282470998506,
+            "rgbMAE": 16.912161609552633
+          },
+          {
+            "from": 41,
+            "to": 42,
+            "silhouetteXor": 0.09273828587342477,
+            "rgbMAE": 14.460235847849999
+          },
+          {
+            "from": 42,
+            "to": 43,
+            "silhouetteXor": 0.026952123605625995,
+            "rgbMAE": 7.567217317003703
+          },
+          {
+            "from": 43,
+            "to": 44,
+            "silhouetteXor": 0.0058831672203765225,
+            "rgbMAE": 2.911346283274154
+          },
+          {
+            "from": 44,
+            "to": 45,
+            "silhouetteXor": 0.0200624783061437,
+            "rgbMAE": 8.058869368092944
+          },
+          {
+            "from": 45,
+            "to": 46,
+            "silhouetteXor": 0.02553820177289996,
+            "rgbMAE": 8.826438524294273
+          },
+          {
+            "from": 46,
+            "to": 47,
+            "silhouetteXor": 0.0631712832108536,
+            "rgbMAE": 5.189118519635942
+          },
+          {
+            "from": 47,
+            "to": 48,
+            "silhouetteXor": 0.16441761363636365,
+            "rgbMAE": 13.563422581102138
+          },
+          {
+            "from": 48,
+            "to": 49,
+            "silhouetteXor": 0.22489869428185502,
+            "rgbMAE": 9.277890728369963
+          },
+          {
+            "from": 49,
+            "to": 50,
+            "silhouetteXor": 0.20774748923959827,
+            "rgbMAE": 10.655469032959072
+          },
+          {
+            "from": 50,
+            "to": 51,
+            "silhouetteXor": 0.1751742324354869,
+            "rgbMAE": 19.362462256730357
+          },
+          {
+            "from": 51,
+            "to": 34,
+            "silhouetteXor": 0.039467763707655715,
+            "rgbMAE": 10.209150326797385
+          }
+        ]
+      },
+      "donorSwitchesBefore": 8,
+      "donorSwitchesAfter": 0,
+      "actionDonors": [
+        0
+      ]
+    },
+    "jump": {
+      "before": {
+        "meanAlignedSilhouetteXor": 0.15094,
+        "maxAlignedSilhouetteXor": 0.50828,
+        "meanAlignedRgbMAE": 21.541,
+        "pairs": [
+          {
+            "from": 52,
+            "to": 53,
+            "silhouetteXor": 0.5082787373436569,
+            "rgbMAE": 38.82800387596899
+          },
+          {
+            "from": 53,
+            "to": 54,
+            "silhouetteXor": 0.34032501889644745,
+            "rgbMAE": 23.997135491263247
+          },
+          {
+            "from": 54,
+            "to": 55,
+            "silhouetteXor": 0.2913623634067322,
+            "rgbMAE": 37.15430711610487
+          },
+          {
+            "from": 55,
+            "to": 56,
+            "silhouetteXor": 0.03060583207642031,
+            "rgbMAE": 12.34701242571583
+          },
+          {
+            "from": 56,
+            "to": 57,
+            "silhouetteXor": 0.023847275956110865,
+            "rgbMAE": 7.58919714984948
+          },
+          {
+            "from": 57,
+            "to": 58,
+            "silhouetteXor": 0.03282077787827885,
+            "rgbMAE": 9.509285237140949
+          },
+          {
+            "from": 58,
+            "to": 59,
+            "silhouetteXor": 0.26702293743244865,
+            "rgbMAE": 33.31569318150788
+          },
+          {
+            "from": 59,
+            "to": 60,
+            "silhouetteXor": 0.25059605973145943,
+            "rgbMAE": 32.96723599017638
+          },
+          {
+            "from": 60,
+            "to": 61,
+            "silhouetteXor": 0.2528823491942162,
+            "rgbMAE": 32.60073322533891
+          },
+          {
+            "from": 61,
+            "to": 62,
+            "silhouetteXor": 0.04972972972972973,
+            "rgbMAE": 9.089748451523196
+          },
+          {
+            "from": 62,
+            "to": 63,
+            "silhouetteXor": 0.29524386549530446,
+            "rgbMAE": 36.00716414488767
+          },
+          {
+            "from": 63,
+            "to": 64,
+            "silhouetteXor": 0.04633360193392425,
+            "rgbMAE": 14.459371919447962
+          },
+          {
+            "from": 64,
+            "to": 65,
+            "silhouetteXor": 0.2945509893455099,
+            "rgbMAE": 36.09176951180922
+          },
+          {
+            "from": 65,
+            "to": 66,
+            "silhouetteXor": 0.08975705384022964,
+            "rgbMAE": 13.388149629515679
+          },
+          {
+            "from": 66,
+            "to": 67,
+            "silhouetteXor": 0.07516826071555083,
+            "rgbMAE": 10.748123180634288
+          },
+          {
+            "from": 67,
+            "to": 68,
+            "silhouetteXor": 0.09913793103448276,
+            "rgbMAE": 15.152764486975014
+          },
+          {
+            "from": 68,
+            "to": 69,
+            "silhouetteXor": 0.26072030055706696,
+            "rgbMAE": 32.61903092964164
+          },
+          {
+            "from": 69,
+            "to": 70,
+            "silhouetteXor": 0.06907010408768181,
+            "rgbMAE": 20.036406269282978
+          },
+          {
+            "from": 70,
+            "to": 71,
+            "silhouetteXor": 0.06247940420483754,
+            "rgbMAE": 14.376496777973054
+          },
+          {
+            "from": 71,
+            "to": 72,
+            "silhouetteXor": 0.1103647435495009,
+            "rgbMAE": 34.70881847905346
+          },
+          {
+            "from": 72,
+            "to": 73,
+            "silhouetteXor": 0.026546919368685203,
+            "rgbMAE": 4.981977703909731
+          },
+          {
+            "from": 73,
+            "to": 74,
+            "silhouetteXor": 0.08736875596563792,
+            "rgbMAE": 34.403291033328685
+          },
+          {
+            "from": 74,
+            "to": 75,
+            "silhouetteXor": 0.2748313010536285,
+            "rgbMAE": 32.806682447691344
+          },
+          {
+            "from": 75,
+            "to": 76,
+            "silhouetteXor": 0.037532939249341216,
+            "rgbMAE": 12.741428641902226
+          },
+          {
+            "from": 76,
+            "to": 77,
+            "silhouetteXor": 0.04230180147326964,
+            "rgbMAE": 9.246058944482522
+          },
+          {
+            "from": 77,
+            "to": 78,
+            "silhouetteXor": 0.04647071758410907,
+            "rgbMAE": 10.605170779204142
+          },
+          {
+            "from": 78,
+            "to": 79,
+            "silhouetteXor": 0.023213239601640304,
+            "rgbMAE": 3.0576754879176344
+          },
+          {
+            "from": 79,
+            "to": 80,
+            "silhouetteXor": 0.028152578221865655,
+            "rgbMAE": 4.469218261413383
+          },
+          {
+            "from": 80,
+            "to": 81,
+            "silhouetteXor": 0.2717303760609628,
+            "rgbMAE": 32.67052318162484
+          },
+          {
+            "from": 81,
+            "to": 82,
+            "silhouetteXor": 0.019693654266958426,
+            "rgbMAE": 8.780110677083332
+          },
+          {
+            "from": 82,
+            "to": 83,
+            "silhouetteXor": 0.0180063871712985,
+            "rgbMAE": 5.946351139404005
+          },
+          {
+            "from": 83,
+            "to": 84,
+            "silhouetteXor": 0.03334672559260747,
+            "rgbMAE": 12.31176687909855
+          },
+          {
+            "from": 84,
+            "to": 85,
+            "silhouetteXor": 0.20526189620040752,
+            "rgbMAE": 33.57617575346253
+          },
+          {
+            "from": 85,
+            "to": 86,
+            "silhouetteXor": 0.18783574071863435,
+            "rgbMAE": 32.72308370691556
+          },
+          {
+            "from": 86,
+            "to": 87,
+            "silhouetteXor": 0.06910805399470386,
+            "rgbMAE": 3.569902171650593
+          },
+          {
+            "from": 87,
+            "to": 88,
+            "silhouetteXor": 0.18842711781292143,
+            "rgbMAE": 31.972809667673715
+          },
+          {
+            "from": 88,
+            "to": 89,
+            "silhouetteXor": 0.22329683698296837,
+            "rgbMAE": 33.192262510768266
+          },
+          {
+            "from": 89,
+            "to": 90,
+            "silhouetteXor": 0.29129408842523596,
+            "rgbMAE": 32.936563567861214
+          },
+          {
+            "from": 90,
+            "to": 91,
+            "silhouetteXor": 0.08220188902007083,
+            "rgbMAE": 14.211770381090208
+          },
+          {
+            "from": 91,
+            "to": 92,
+            "silhouetteXor": 0.25442258000397533,
+            "rgbMAE": 32.01448502621523
+          },
+          {
+            "from": 92,
+            "to": 93,
+            "silhouetteXor": 0.24858646909728993,
+            "rgbMAE": 31.45248803551865
+          },
+          {
+            "from": 93,
+            "to": 94,
+            "silhouetteXor": 0.26868054276416775,
+            "rgbMAE": 32.68340189740576
+          },
+          {
+            "from": 94,
+            "to": 95,
+            "silhouetteXor": 0.20425787106446777,
+            "rgbMAE": 33.21131961715276
+          },
+          {
+            "from": 95,
+            "to": 96,
+            "silhouetteXor": 0.043594248161884314,
+            "rgbMAE": 11.661020024037915
+          },
+          {
+            "from": 96,
+            "to": 97,
+            "silhouetteXor": 0.29054702495201534,
+            "rgbMAE": 32.96463194679292
+          },
+          {
+            "from": 97,
+            "to": 98,
+            "silhouetteXor": 0.09149568621764663,
+            "rgbMAE": 13.665469635304445
+          },
+          {
+            "from": 98,
+            "to": 99,
+            "silhouetteXor": 0.04699478687519166,
+            "rgbMAE": 4.850695841042555
+          },
+          {
+            "from": 99,
+            "to": 100,
+            "silhouetteXor": 0.07641391483415459,
+            "rgbMAE": 11.696050326485109
+          },
+          {
+            "from": 100,
+            "to": 101,
+            "silhouetteXor": 0.2640668173825672,
+            "rgbMAE": 32.09989475780072
+          }
+        ]
+      },
+      "after": {
+        "meanAlignedSilhouetteXor": 0.06481,
+        "maxAlignedSilhouetteXor": 0.34537,
+        "meanAlignedRgbMAE": 11.787,
+        "pairs": [
+          {
+            "from": 52,
+            "to": 53,
+            "silhouetteXor": 0.3048577376821652,
+            "rgbMAE": 10.855578849289541
+          },
+          {
+            "from": 53,
+            "to": 54,
+            "silhouetteXor": 0.3453748588883724,
+            "rgbMAE": 19.019442753770203
+          },
+          {
+            "from": 54,
+            "to": 55,
+            "silhouetteXor": 0.06283828382838284,
+            "rgbMAE": 15.357350800582243
+          },
+          {
+            "from": 55,
+            "to": 56,
+            "silhouetteXor": 0.027132303559435862,
+            "rgbMAE": 11.938009112246307
+          },
+          {
+            "from": 56,
+            "to": 57,
+            "silhouetteXor": 0.02236335382744409,
+            "rgbMAE": 6.980142824234047
+          },
+          {
+            "from": 57,
+            "to": 58,
+            "silhouetteXor": 0.031380609797875984,
+            "rgbMAE": 9.058145292494872
+          },
+          {
+            "from": 58,
+            "to": 59,
+            "silhouetteXor": 0.044652201213981724,
+            "rgbMAE": 11.91341074514959
+          },
+          {
+            "from": 59,
+            "to": 60,
+            "silhouetteXor": 0.052040889270140826,
+            "rgbMAE": 11.481436794610762
+          },
+          {
+            "from": 60,
+            "to": 61,
+            "silhouetteXor": 0.01569905213270142,
+            "rgbMAE": 6.361445480991072
+          },
+          {
+            "from": 61,
+            "to": 62,
+            "silhouetteXor": 0.04972972972972973,
+            "rgbMAE": 9.089748451523196
+          },
+          {
+            "from": 62,
+            "to": 63,
+            "silhouetteXor": 0.0729849799026867,
+            "rgbMAE": 14.060018256503879
+          },
+          {
+            "from": 63,
+            "to": 64,
+            "silhouetteXor": 0.05516705516705517,
+            "rgbMAE": 16.639628189792663
+          },
+          {
+            "from": 64,
+            "to": 65,
+            "silhouetteXor": 0.05930091834555421,
+            "rgbMAE": 13.304475051712828
+          },
+          {
+            "from": 65,
+            "to": 66,
+            "silhouetteXor": 0.08975705384022964,
+            "rgbMAE": 13.388149629515679
+          },
+          {
+            "from": 66,
+            "to": 67,
+            "silhouetteXor": 0.07516826071555083,
+            "rgbMAE": 10.748123180634288
+          },
+          {
+            "from": 67,
+            "to": 68,
+            "silhouetteXor": 0.09913793103448276,
+            "rgbMAE": 15.152764486975014
+          },
+          {
+            "from": 68,
+            "to": 69,
+            "silhouetteXor": 0.023105776444111027,
+            "rgbMAE": 8.184431474939844
+          },
+          {
+            "from": 69,
+            "to": 70,
+            "silhouetteXor": 0.06592146746918888,
+            "rgbMAE": 17.926613480617775
+          },
+          {
+            "from": 70,
+            "to": 71,
+            "silhouetteXor": 0.06049627452320733,
+            "rgbMAE": 12.128783469150175
+          },
+          {
+            "from": 71,
+            "to": 72,
+            "silhouetteXor": 0.07715365567574613,
+            "rgbMAE": 18.960292802334884
+          },
+          {
+            "from": 72,
+            "to": 73,
+            "silhouetteXor": 0.024193548387096774,
+            "rgbMAE": 4.145299729071329
+          },
+          {
+            "from": 73,
+            "to": 74,
+            "silhouetteXor": 0.05620827770360481,
+            "rgbMAE": 15.339557693214505
+          },
+          {
+            "from": 74,
+            "to": 75,
+            "silhouetteXor": 0.052805053903728624,
+            "rgbMAE": 11.631941423807453
+          },
+          {
+            "from": 75,
+            "to": 76,
+            "silhouetteXor": 0.037532939249341216,
+            "rgbMAE": 12.741428641902226
+          },
+          {
+            "from": 76,
+            "to": 77,
+            "silhouetteXor": 0.04230180147326964,
+            "rgbMAE": 9.246058944482522
+          },
+          {
+            "from": 77,
+            "to": 78,
+            "silhouetteXor": 0.04647071758410907,
+            "rgbMAE": 10.605170779204142
+          },
+          {
+            "from": 78,
+            "to": 79,
+            "silhouetteXor": 0.023213239601640304,
+            "rgbMAE": 3.0576754879176344
+          },
+          {
+            "from": 79,
+            "to": 80,
+            "silhouetteXor": 0.028152578221865655,
+            "rgbMAE": 4.469218261413383
+          },
+          {
+            "from": 80,
+            "to": 81,
+            "silhouetteXor": 0.062388718752225625,
+            "rgbMAE": 12.662412963666288
+          },
+          {
+            "from": 81,
+            "to": 82,
+            "silhouetteXor": 0.02206145691569372,
+            "rgbMAE": 8.51829878659147
+          },
+          {
+            "from": 82,
+            "to": 83,
+            "silhouetteXor": 0.016177309007981755,
+            "rgbMAE": 5.529566582156224
+          },
+          {
+            "from": 83,
+            "to": 84,
+            "silhouetteXor": 0.03315575494181971,
+            "rgbMAE": 12.068585514391359
+          },
+          {
+            "from": 84,
+            "to": 85,
+            "silhouetteXor": 0.05179994503984611,
+            "rgbMAE": 15.204149157126986
+          },
+          {
+            "from": 85,
+            "to": 86,
+            "silhouetteXor": 0.03812457221081451,
+            "rgbMAE": 11.461253824806091
+          },
+          {
+            "from": 86,
+            "to": 87,
+            "silhouetteXor": 0.056770366282679174,
+            "rgbMAE": 3.9987080103359176
+          },
+          {
+            "from": 87,
+            "to": 88,
+            "silhouetteXor": 0.04306356324293544,
+            "rgbMAE": 11.028042249330557
+          },
+          {
+            "from": 88,
+            "to": 89,
+            "silhouetteXor": 0.08772298006295907,
+            "rgbMAE": 15.779745929504385
+          },
+          {
+            "from": 89,
+            "to": 90,
+            "silhouetteXor": 0.09046087888531619,
+            "rgbMAE": 14.622960693429702
+          },
+          {
+            "from": 90,
+            "to": 91,
+            "silhouetteXor": 0.08220188902007083,
+            "rgbMAE": 14.211770381090208
+          },
+          {
+            "from": 91,
+            "to": 92,
+            "silhouetteXor": 0.022555241226393456,
+            "rgbMAE": 10.479401335002088
+          },
+          {
+            "from": 92,
+            "to": 93,
+            "silhouetteXor": 0.08826928633342965,
+            "rgbMAE": 17.108144509586435
+          },
+          {
+            "from": 93,
+            "to": 94,
+            "silhouetteXor": 0.07693381736944988,
+            "rgbMAE": 13.873443251147078
+          },
+          {
+            "from": 94,
+            "to": 95,
+            "silhouetteXor": 0.051520794537554315,
+            "rgbMAE": 12.623182082606167
+          },
+          {
+            "from": 95,
+            "to": 96,
+            "silhouetteXor": 0.03979335381178442,
+            "rgbMAE": 13.301003344481606
+          },
+          {
+            "from": 96,
+            "to": 97,
+            "silhouetteXor": 0.053895599350144804,
+            "rgbMAE": 12.768752177591958
+          },
+          {
+            "from": 97,
+            "to": 98,
+            "silhouetteXor": 0.09149568621764663,
+            "rgbMAE": 13.665469635304445
+          },
+          {
+            "from": 98,
+            "to": 99,
+            "silhouetteXor": 0.04699478687519166,
+            "rgbMAE": 4.850695841042555
+          },
+          {
+            "from": 99,
+            "to": 100,
+            "silhouetteXor": 0.07641391483415459,
+            "rgbMAE": 11.696050326485109
+          },
+          {
+            "from": 100,
+            "to": 101,
+            "silhouetteXor": 0.09893893612536013,
+            "rgbMAE": 18.346512776521354
+          }
+        ]
+      },
+      "donorSwitchesBefore": 23,
+      "donorSwitchesAfter": 0,
+      "actionDonors": [
+        79
+      ]
+    }
+  },
+  "limitations": "Continuity proxy aligns cloth to the rounded source waist and measures RGBA changes inside the actual changed-pixel garment masks; it is not a physical cloth metric or visual acceptance. Blouse donor transitions and inter-action skirt-shape changes remain."
+}

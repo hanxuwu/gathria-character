@@ -87,9 +87,12 @@ async function runtimeHashes() {
 report.runtimeInputHashes = await runtimeHashes();
 let browser, server, origin, failure, activePage;
 const button = (page, name) => page.getByRole("button", { name, exact: true });
-const side = (page) => page.getByTestId("side-playground");
-const canvas = (page) => page.getByTestId("side-stage");
+// Retained inactive sessions keep their DOM; all editor actions address the
+// single visible session. This also works against older TARGET_REPO snapshots.
+const side = (page) => page.locator('[data-testid="side-playground"]:visible');
+const canvas = (page) => side(page).getByTestId("side-stage");
 async function ready(page) {
+  await expect(side(page)).toHaveCount(1, { timeout: 180000 });
   await expect(side(page)).toHaveAttribute("aria-busy", "false", {
     timeout: 180000,
   });
@@ -130,7 +133,7 @@ async function capture(page, name, locator = page) {
 }
 async function download(page, name, filename) {
   const pending = page.waitForEvent("download", { timeout: 180000 });
-  await page.getByTestId(name).click();
+  await side(page).getByTestId(name).click();
   const d = await pending;
   assert.equal(await d.failure(), null);
   const path = join(output, filename);
@@ -198,12 +201,12 @@ function inspectGif(bytes, clip) {
 }
 async function pauseSide(page) {
   if ((await canvas(page).getAttribute("data-paused")) === "false")
-    await page.getByTestId("side-play-pause").click();
+    await side(page).getByTestId("side-play-pause").click();
   await expect(canvas(page)).toHaveAttribute("data-paused", "true");
 }
 async function playSide(page) {
   if ((await canvas(page).getAttribute("data-paused")) === "true")
-    await page.getByTestId("side-play-pause").click();
+    await side(page).getByTestId("side-play-pause").click();
   await expect(canvas(page)).toHaveAttribute("data-paused", "false");
 }
 async function setFrame(page, action, position, facing = "right") {
@@ -221,14 +224,14 @@ async function setFrame(page, action, position, facing = "right") {
       });
     }
     await pauseSide(page);
-    await page.getByTestId("side-action-idle").click();
+    await side(page).getByTestId("side-action-idle").click();
     await expect(canvas(page)).toHaveAttribute("data-action", "idle");
-    await page.getByTestId(`side-facing-${facing}`).click();
-    await page.getByTestId(`side-action-${action}`).click();
+    await side(page).getByTestId(`side-facing-${facing}`).click();
+    await side(page).getByTestId(`side-action-${action}`).click();
     await expect(canvas(page)).toHaveAttribute("data-action", action);
   }
   await pauseSide(page);
-  const scrub = page.getByTestId("side-frame");
+  const scrub = side(page).getByTestId("side-frame");
   const intermediate = position === 0 ? "1" : "0";
   await scrub.fill(intermediate);
   await expect(canvas(page)).toHaveAttribute(
@@ -540,11 +543,11 @@ async function verifyIndependent(character, outfit, path, manifest) {
 }
 async function verifyStageControls(page, character, manifest) {
   await setFrame(page, "walk", 0);
-  await page.getByTestId("side-mode-travel").click();
+  await side(page).getByTestId("side-mode-travel").click();
   await expect(canvas(page)).toHaveAttribute("data-camera", "follow");
-  await page.getByTestId("side-walk-speed").fill("120");
-  await page.getByTestId("side-run-speed").fill("240");
-  await page.getByTestId("side-center").click();
+  await side(page).getByTestId("side-walk-speed").fill("120");
+  await side(page).getByTestId("side-run-speed").fill("240");
+  await side(page).getByTestId("side-center").click();
   await playSide(page);
   await expect
     .poll(async () => Number(await canvas(page).getAttribute("data-position")))
@@ -580,10 +583,10 @@ async function verifyStageControls(page, character, manifest) {
     )
     .toBeGreaterThan(400);
   await pauseSide(page);
-  await page.getByTestId("side-ground").check();
+  await side(page).getByTestId("side-ground").check();
   await capture(page, `${character}-daily-camera-follow`, side(page));
-  await page.getByTestId("side-ground").uncheck();
-  await page.getByTestId("side-mode-in-place").click();
+  await side(page).getByTestId("side-ground").uncheck();
+  await side(page).getByTestId("side-mode-in-place").click();
   await expect(canvas(page)).toHaveAttribute("data-camera", "fixed");
   await playSide(page);
   const inPlaceX = await canvas(page).getAttribute("data-position");
@@ -608,9 +611,9 @@ async function verifyStageControls(page, character, manifest) {
   });
   await pauseSide(page);
   await setFrame(page, "idle", 0);
-  await page.getByTestId("side-step-forward").click();
+  await side(page).getByTestId("side-step-forward").click();
   await expect(canvas(page)).toHaveAttribute("data-frame-position", "1");
-  await page.getByTestId("side-step-back").click();
+  await side(page).getByTestId("side-step-back").click();
   await expect(canvas(page)).toHaveAttribute("data-frame-position", "0");
   await expect(canvas(page)).toHaveAttribute(
     "data-fps",
@@ -670,36 +673,44 @@ try {
     const page = await context.newPage();
     activePage = page;
     await page.goto(`${origin}/`, { waitUntil: "networkidle" });
-    const sideLinks = page.getByRole("link", {
-      name: "侧视动作与换装",
+    const unifiedLinks = page.getByRole("link", {
+      name: "编辑人物",
       exact: true,
     });
-    await expect(sideLinks).toHaveCount(2);
+    const unified = (await unifiedLinks.count()) > 0;
+    const entries = unified
+      ? unifiedLinks
+      : page.getByRole("link", { name: "侧视动作与换装", exact: true });
+    await expect(entries).toHaveCount(2);
     if (character === "male") await capture(page, "library-side-links");
-    const route = page.locator(
-      `a[href*="mode=side-view"][href*="character=${character}"]`,
-    );
+    const href = unified
+      ? `/workbench.html?character=${character}`
+      : `/workbench.html?character=${character}&mode=side-view`;
+    const route = page.locator(`a[href="${href}"]`);
     await expect(route).toHaveCount(1);
-    const href = await route.getAttribute("href");
     await route.click();
     await page.waitForURL(/workbench\.html\?/);
+    if (unified)
+      await page.getByTestId("workbench-source").selectOption("side-view");
     report.libraryRoutes.push({
       character,
       href,
-      source: "Clicked visible library side-view link",
+      targetHref: new URL(page.url()).pathname + new URL(page.url()).search,
+      source: unified
+        ? "Clicked visible library character entry, then selected side-view material in the unified workbench"
+        : "Clicked visible library side-view link",
     });
     await ready(page);
     await expect(canvas(page)).toHaveAttribute("data-character", character);
-    await page.getByTestId("side-ground").uncheck();
+    await side(page).getByTestId("side-ground").uncheck();
     const exports = {};
     const pngs = {};
     for (const outfit of ["original", "daily"]) {
-      await page.getByTestId(`side-look-${outfit}`).click();
+      await side(page).getByTestId(`side-look-${outfit}`).click();
       await ready(page);
-      await expect(page.getByTestId(`side-look-${outfit}`)).toHaveAttribute(
-        "aria-pressed",
-        "true",
-      );
+      await expect(
+        side(page).getByTestId(`side-look-${outfit}`),
+      ).toHaveAttribute("aria-pressed", "true");
       await setFrame(page, "idle", 0);
       await capture(page, `${character}-${outfit}-workspace`);
       for (const action of actions) {
@@ -796,16 +807,16 @@ try {
     }
     await verifyStageControls(page, character, source.manifest);
     await setFrame(page, "run", 4, "left");
-    await page.getByTestId("side-anchors").check();
-    await page.getByTestId("side-comparison").check();
+    await side(page).getByTestId("side-anchors").check();
+    await side(page).getByTestId("side-comparison").check();
     await capture(page, `${character}-daily-comparison-anchors`, canvas(page));
-    await page.getByTestId("side-anchors").uncheck();
-    await page.getByTestId("side-comparison").uncheck();
+    await side(page).getByTestId("side-anchors").uncheck();
+    await side(page).getByTestId("side-comparison").uncheck();
     const dailySelection = JSON.parse(
       await canvas(page).getAttribute("data-selection"),
     );
     assert(dailySelection.top && dailySelection.bottom && dailySelection.shoes);
-    await page.getByTestId("side-top").selectOption("");
+    await side(page).getByTestId("side-top").selectOption("");
     await ready(page);
     const mixedSelection = JSON.parse(
       await canvas(page).getAttribute("data-selection"),
@@ -829,7 +840,7 @@ try {
     // Reload discards the in-memory project. Reopening must recover saved mix and preview.
     await page.reload({ waitUntil: "networkidle" });
     await ready(page);
-    await page
+    await side(page)
       .getByTestId("side-project-input")
       .setInputFiles(mixedProject.path);
     await ready(page);

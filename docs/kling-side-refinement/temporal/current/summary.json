@@ -1,0 +1,526 @@
+{
+  "checkedAt": "2026-10-29T18:18:12.073Z",
+  "method": "Strict runtime project import and auditFitting via isolated Vite SSR; descriptive inspection priorities, not visual acceptance or UI export evidence.",
+  "inputs": [
+    {
+      "path": "docs/kling-side-workspace/assets/male.source.zip",
+      "bytes": 12927575,
+      "sha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42"
+    },
+    {
+      "path": "artwork/kling-side-expansion/templates/male.registration.json",
+      "bytes": 484053,
+      "sha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/male-shirt.garment.zip",
+      "bytes": 1627282,
+      "sha256": "df6c89d62ee3017e695f790a3cec775ca231e3fa7cdfe4bc87d396bca3c2c11d"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/male-trousers.garment.zip",
+      "bytes": 1995969,
+      "sha256": "502856755a84fd05f26fb929a3dafdf6fff4f7758ceb213433eb8d64988935bf"
+    },
+    {
+      "path": "docs/kling-side-workspace/assets/female.source.zip",
+      "bytes": 12659941,
+      "sha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d"
+    },
+    {
+      "path": "artwork/kling-side-expansion/templates/female.registration.json",
+      "bytes": 442187,
+      "sha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/female-blouse.garment.zip",
+      "bytes": 2394332,
+      "sha256": "71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/female-skirt.garment.zip",
+      "bytes": 2493114,
+      "sha256": "8a16669c49822e4c442560db6948278e8dd7b4b5c708146fbb87ee9be1c60e7b"
+    }
+  ],
+  "garments": [
+    {
+      "gender": "male",
+      "id": "side-male-oxford-shirt-v1",
+      "sha256": "df6c89d62ee3017e695f790a3cec775ca231e3fa7cdfe4bc87d396bca3c2c11d",
+      "file": "male-shirt.audit.json",
+      "reportSha256": "85917535f9090da39e5da54a03d23ef827bfbf3f1eb746c2de568cca6894d034",
+      "durationMs": 1187,
+      "rows": 107,
+      "temporalReviewFrames": [
+        {
+          "action": "walk",
+          "frameId": 38,
+          "nextFrameId": 21,
+          "regions": [
+            "farCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 57,
+          "nextFrameId": 58,
+          "regions": [
+            "farCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 58,
+          "nextFrameId": 59,
+          "regions": [
+            "farCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 61,
+          "nextFrameId": 62,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 63,
+          "nextFrameId": 64,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 71,
+          "nextFrameId": 72,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 103,
+          "nextFrameId": 104,
+          "regions": [
+            "nearCuff"
+          ]
+        }
+      ],
+      "sourceMotionRows": 47,
+      "regionTotals": {
+        "collar:stable": 98,
+        "nearSleeve:stable": 98,
+        "nearCuff:insufficient": 79,
+        "farSleeve:stable": 91,
+        "farCuff:stable": 48,
+        "hem:stable": 75,
+        "farCuff:insufficient": 45,
+        "hem:source-motion": 31,
+        "farSleeve:source-motion": 15,
+        "nearCuff:stable": 19,
+        "farCuff:source-motion": 10,
+        "farCuff:review": 3,
+        "collar:source-motion": 8,
+        "nearCuff:source-motion": 7,
+        "nearSleeve:source-motion": 5,
+        "nearSleeve:review": 3,
+        "nearCuff:review": 1
+      },
+      "seams": [
+        {
+          "action": "idle",
+          "from": 20,
+          "to": 0
+        },
+        {
+          "action": "walk",
+          "from": 38,
+          "to": 21
+        },
+        {
+          "action": "run",
+          "from": 56,
+          "to": 39
+        }
+      ],
+      "jumpEndUnpaired": true
+    },
+    {
+      "gender": "male",
+      "id": "side-male-stone-trousers-v1",
+      "sha256": "502856755a84fd05f26fb929a3dafdf6fff4f7758ceb213433eb8d64988935bf",
+      "file": "male-trousers.audit.json",
+      "reportSha256": "3af66140299c2a1c2ca13620f85d73ccaad8aeee8cef652c0f60db9e9c54a76a",
+      "durationMs": 1149,
+      "rows": 107,
+      "temporalReviewFrames": [],
+      "sourceMotionRows": 38,
+      "regionTotals": {
+        "hem:stable": 68,
+        "hem:source-motion": 38
+      },
+      "seams": [
+        {
+          "action": "idle",
+          "from": 20,
+          "to": 0
+        },
+        {
+          "action": "walk",
+          "from": 38,
+          "to": 21
+        },
+        {
+          "action": "run",
+          "from": 56,
+          "to": 39
+        }
+      ],
+      "jumpEndUnpaired": true
+    },
+    {
+      "gender": "female",
+      "id": "side-female-cream-blouse-v1",
+      "sha256": "71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201",
+      "file": "female-blouse.audit.json",
+      "reportSha256": "bb152a88dfc307c6171f08508482399b3a5c394bf864f6956bc26daa404896f3",
+      "durationMs": 1415,
+      "rows": 102,
+      "temporalReviewFrames": [
+        {
+          "action": "walk",
+          "frameId": 20,
+          "nextFrameId": 21,
+          "regions": [
+            "nearSleeve",
+            "farSleeve"
+          ]
+        },
+        {
+          "action": "walk",
+          "frameId": 21,
+          "nextFrameId": 22,
+          "regions": [
+            "nearSleeve",
+            "nearCuff"
+          ]
+        },
+        {
+          "action": "walk",
+          "frameId": 24,
+          "nextFrameId": 25,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "walk",
+          "frameId": 26,
+          "nextFrameId": 27,
+          "regions": [
+            "farSleeve"
+          ]
+        },
+        {
+          "action": "walk",
+          "frameId": 31,
+          "nextFrameId": 32,
+          "regions": [
+            "nearSleeve",
+            "farSleeve"
+          ]
+        },
+        {
+          "action": "run",
+          "frameId": 40,
+          "nextFrameId": 41,
+          "regions": [
+            "farSleeve"
+          ]
+        },
+        {
+          "action": "run",
+          "frameId": 49,
+          "nextFrameId": 50,
+          "regions": [
+            "hem"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 52,
+          "nextFrameId": 53,
+          "regions": [
+            "farCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 53,
+          "nextFrameId": 54,
+          "regions": [
+            "farCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 54,
+          "nextFrameId": 55,
+          "regions": [
+            "collar",
+            "farSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 55,
+          "nextFrameId": 56,
+          "regions": [
+            "collar",
+            "farSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 56,
+          "nextFrameId": 57,
+          "regions": [
+            "collar"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 61,
+          "nextFrameId": 62,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 62,
+          "nextFrameId": 63,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 64,
+          "nextFrameId": 65,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 66,
+          "nextFrameId": 67,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 69,
+          "nextFrameId": 70,
+          "regions": [
+            "nearCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 76,
+          "nextFrameId": 77,
+          "regions": [
+            "nearCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 77,
+          "nextFrameId": 78,
+          "regions": [
+            "nearSleeve",
+            "farCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 79,
+          "nextFrameId": 80,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 80,
+          "nextFrameId": 81,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 84,
+          "nextFrameId": 85,
+          "regions": [
+            "nearSleeve",
+            "nearCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 86,
+          "nextFrameId": 87,
+          "regions": [
+            "nearSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 90,
+          "nextFrameId": 91,
+          "regions": [
+            "nearCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 92,
+          "nextFrameId": 93,
+          "regions": [
+            "nearSleeve",
+            "nearCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 97,
+          "nextFrameId": 98,
+          "regions": [
+            "nearSleeve",
+            "nearCuff",
+            "farSleeve"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 98,
+          "nextFrameId": 99,
+          "regions": [
+            "nearSleeve",
+            "farSleeve",
+            "farCuff"
+          ]
+        },
+        {
+          "action": "jump",
+          "frameId": 100,
+          "nextFrameId": 101,
+          "regions": [
+            "nearSleeve"
+          ]
+        }
+      ],
+      "sourceMotionRows": 57,
+      "regionTotals": {
+        "collar:stable": 76,
+        "nearSleeve:stable": 70,
+        "nearCuff:insufficient": 43,
+        "farSleeve:stable": 79,
+        "farCuff:stable": 51,
+        "hem:stable": 72,
+        "nearCuff:stable": 38,
+        "farSleeve:source-motion": 14,
+        "farCuff:source-motion": 28,
+        "collar:source-motion": 22,
+        "hem:source-motion": 28,
+        "nearSleeve:review": 17,
+        "farSleeve:review": 8,
+        "farCuff:insufficient": 18,
+        "nearCuff:review": 7,
+        "nearSleeve:source-motion": 14,
+        "nearCuff:source-motion": 13,
+        "hem:review": 1,
+        "farCuff:review": 4,
+        "collar:review": 3
+      },
+      "seams": [
+        {
+          "action": "idle",
+          "from": 15,
+          "to": 0
+        },
+        {
+          "action": "walk",
+          "from": 33,
+          "to": 16
+        },
+        {
+          "action": "run",
+          "from": 51,
+          "to": 34
+        }
+      ],
+      "jumpEndUnpaired": true
+    },
+    {
+      "gender": "female",
+      "id": "side-female-rose-skirt-v1",
+      "sha256": "8a16669c49822e4c442560db6948278e8dd7b4b5c708146fbb87ee9be1c60e7b",
+      "file": "female-skirt.audit.json",
+      "reportSha256": "dafa1f0f65b617600bae640e55a65263baf30a7a61224f224be613ce8d01221d",
+      "durationMs": 1211,
+      "rows": 102,
+      "temporalReviewFrames": [
+        {
+          "action": "walk",
+          "frameId": 19,
+          "nextFrameId": 20,
+          "regions": [
+            "hem"
+          ]
+        },
+        {
+          "action": "walk",
+          "frameId": 20,
+          "nextFrameId": 21,
+          "regions": [
+            "hem"
+          ]
+        }
+      ],
+      "sourceMotionRows": 21,
+      "regionTotals": {
+        "hem:stable": 78,
+        "hem:source-motion": 21,
+        "hem:review": 2
+      },
+      "seams": [
+        {
+          "action": "idle",
+          "from": 15,
+          "to": 0
+        },
+        {
+          "action": "walk",
+          "from": 33,
+          "to": 16
+        },
+        {
+          "action": "run",
+          "from": 51,
+          "to": 34
+        }
+      ],
+      "jumpEndUnpaired": true
+    }
+  ],
+  "inputsUnchanged": true
+}

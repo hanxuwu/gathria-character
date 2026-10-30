@@ -1,0 +1,115 @@
+{
+  "recordedAt": "2026-10-29T13:19:47.441164+00:00",
+  "baseline": "220ea2fd7588c1fe784c8454d66469d60fba096a",
+  "unit": {
+    "command": "npx vitest run src/side-view/fitting-analysis.test.ts src/wardrobe/mask-edit.test.ts src/wardrobe/repair-candidate.test.ts",
+    "passed": 22,
+    "files": 3
+  },
+  "browser": {
+    "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test (seven side-view specs; checks/browser-final.log)",
+    "scopedCasesPassed": 2,
+    "testSeconds": [
+      55.8,
+      17.5
+    ],
+    "pageErrors": [],
+    "note": "Both fitting cases passed with final frozen assets inside the combined suite. Its separate PR53 test race is documented in parent QA.md."
+  },
+  "observed": [
+    "Native exported PNG exact with guides toggled",
+    "Keyboard movement/jump blocked while fitting panel open",
+    "All 107 male poses diagnosed; protected overlap and unowned paint both zero",
+    "Jump final frame has no artificial next frame",
+    "Exact source-bound neighbor guide export",
+    "Undo and reset return to zero changed pixels",
+    "5-pixel restore saved/reopened as bound draft; incompatible hash rejected while retaining draft",
+    "Corrected candidate preview in both directions; explicit apply changes exactly five native exported pixels",
+    "Saved/reopened wardrobe reproduces corrected PNG exactly; immutable source ZIP and registration bytes exact",
+    "Female jump source frame249, cancel preserves exported PNG",
+    "390px layout and native2x panes have no horizontal body overflow"
+  ],
+  "limitations": [
+    "Five-pixel correction is a deliberate workflow test, not shipped artwork",
+    "Geometry diagnostics do not establish aesthetic quality",
+    "Mask tools limit each draft to eight poses and preserve original source alpha"
+  ],
+  "inputs": [
+    {
+      "path": "docs/kling-side-expansion/assets/female-blouse.garment.zip",
+      "sha256": "71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/female-skirt.garment.zip",
+      "sha256": "a8c0e3da13a2aed31f1457ef30015a352e39aa135aaffed06dc3710ada3f03e1"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/female.appearance.zip",
+      "sha256": "e09b5bdd06aed7053198ada973f657aef34ea6767d732a9a3d7da532b16784af"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/male-shirt.garment.zip",
+      "sha256": "a81374bf56cf6a66f256d331468888246ad7084a55ed9cd95b1f5370d5a3ad28"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/male-trousers.garment.zip",
+      "sha256": "502856755a84fd05f26fb929a3dafdf6fff4f7758ceb213433eb8d64988935bf"
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/male.appearance.zip",
+      "sha256": "cda6233af07c89d7614060b51b89a3201d01866d9fe5487da2e8b5e1091f3c99"
+    },
+    {
+      "path": "src/side-view/SideViewPlayground.tsx",
+      "sha256": "5d99d0ed1bd22dd357771470f62faca71ce75515885f64bca543c45c67e78f2f"
+    },
+    {
+      "path": "src/side-view/fitting-analysis.test.ts",
+      "sha256": "e9d172a54a54864229adec31647b2c6cef3930f3959102026faa9a417c7067d6"
+    },
+    {
+      "path": "src/side-view/fitting-analysis.ts",
+      "sha256": "c5c8efc70e8a082dee5ce6298f801cb7d1eb5ad75a20f48a07445ed9b3f9f605"
+    },
+    {
+      "path": "src/side-view/fitting-workbench.css",
+      "sha256": "c4f56f4dcd3abf51f1b268ee8d93ba6514150c3d94ef1aa8568b23c871cb0572"
+    },
+    {
+      "path": "src/side-view/fitting-workbench.tsx",
+      "sha256": "1d659310dbe9ba12bf71cd06e6c7ab38700115c803770ceb3c3864c7a7d187fc"
+    },
+    {
+      "path": "src/wardrobe/GarmentCandidatePreview.tsx",
+      "sha256": "fa65f9e3653130e830198b7d09d53dc57c1b9570ab4bc074507c435348d506b4"
+    },
+    {
+      "path": "tests/e2e/side-fitting.spec.ts",
+      "sha256": "659baf64988b24145a94e3ee8455e315f805745e9b91c37c62df47fb3c994ff0"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "female-fitting-mobile.png",
+      "sha256": "351b56f1ad3bca215c2fd1e802766d0c66fa26d5927393856e8816a877f6d48c"
+    },
+    {
+      "path": "male-corrected-candidate.png",
+      "sha256": "78c8e2ff2fe21cc1066e867ac342cdd0811a773cf20f442d630f7057e6f1d0e9"
+    },
+    {
+      "path": "male-fitting-desktop.png",
+      "sha256": "f4042bf11dd3032b9f4d096b97c2ba4fbfd0854326d522a1bb5d894633ccd3c6"
+    }
+  ],
+  "initialBrowserRun": {
+    "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/side-fitting.spec.ts --output=/tmp/side-fitting/workbench/test-results",
+    "passed": 2,
+    "attempt": 1,
+    "testSeconds": [
+      56.7,
+      16.6
+    ],
+    "pageErrors": []
+  }
+}
