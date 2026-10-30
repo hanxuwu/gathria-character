@@ -60,6 +60,12 @@ and repeated jump requests cannot interrupt or restart an airborne character.
 carry the selected clip and reviewed transition routes for the independent player.
 [Single-jump controls, actual exports and transition limits](docs/kling-single-jump/README.md).
 
+Moving landings now use a separate reviewed Jump → Run exit. The original view
+skips a 375ms standing recovery tail; the side view avoids the next rebound and
+enters a better matched running pose. Stationary jumps still complete their
+recovery, and previously exported motion profiles retain their original timing.
+[Landing-to-run comparisons and validation](docs/kling-landing-run/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

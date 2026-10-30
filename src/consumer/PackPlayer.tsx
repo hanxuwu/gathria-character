@@ -72,6 +72,10 @@ import {
   type GameplayState,
 } from "../core/gameplay-motion";
 import { MainNavigation } from "../workspace/MainNavigation";
+import {
+  samplePlaybackClock,
+  type PlaybackClockSample,
+} from "./playback-clock";
 
 const SpriteActionEditor = lazy(() => import("./SpriteActionEditor"));
 
@@ -138,6 +142,7 @@ export function PackPlayer() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const elapsedRef = useRef(0);
+  const playbackClockRef = useRef<PlaybackClockSample | null>(null);
   const requestRef = useRef(0);
   const pendingFetchRef = useRef<AbortController | null>(null);
   const frameRef = useRef(-1);
@@ -261,6 +266,16 @@ export function PackPlayer() {
   }, [motionEnabled, motionProfile, gameplayProfile, clearPendingMotion]);
 
   useEffect(() => {
+    // Browsers can suspend RAF without painting a hidden frame first. Reset
+    // at both visibility boundaries so hidden wall time cannot skip a landing.
+    const resetClock = () => {
+      playbackClockRef.current = null;
+    };
+    document.addEventListener("visibilitychange", resetClock);
+    return () => document.removeEventListener("visibilitychange", resetClock);
+  }, []);
+
+  useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
     const observer = new ResizeObserver((entries) =>
@@ -314,19 +329,25 @@ export function PackPlayer() {
     if (canvas.width !== width) canvas.width = width;
     if (canvas.height !== height) canvas.height = height;
     if (pixelPreviewBlocked) {
+      playbackClockRef.current = null;
       context.setTransform(1, 0, 0, 1, 0, 0);
       context.clearRect(0, 0, width, height);
       return;
     }
-    let previous: number | undefined;
     let request = 0;
     function draw(now: number) {
       if (!context || !canvas) return;
       let activeAnimation = animation;
-      const delta =
-        previous !== undefined && playing && presentationActive
-          ? (now - previous) * speed
-          : 0;
+      const clock = samplePlaybackClock(playbackClockRef.current, now, {
+        source: pack,
+        comparison: comparisonPack,
+        motion: motionEnabled ? (gameplayProfile ?? motionProfile) : null,
+        revision: playbackRevision,
+        running: !!pack && playing && presentationActive && !document.hidden,
+        speed,
+      });
+      playbackClockRef.current = clock.sample;
+      const delta = clock.deltaMs;
       if (motionEnabled && gameplayProfile) {
         const before = gameplayStateRef.current ?? {
           ...createGameplayState(animation),
@@ -363,7 +384,6 @@ export function PackPlayer() {
         }
         if (before.pending !== next.pending) setPendingAction(next.pending);
       } else elapsedRef.current += delta;
-      previous = now;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
       context.clearRect(0, 0, canvasRenderWidth, canvasHeight);
       const attachment = {

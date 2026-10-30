@@ -27,9 +27,49 @@ const sources = {
 };
 
 // Independently reconstruct the documented review sequence from declarations:
-// full run cycle, next reviewed takeoff boundary, complete jump, one full run
-// cycle starting at the reviewed landing exit. Native 24 FPS never changes.
+// full run cycle, next reviewed takeoff boundary, reviewed jump prefix, one
+// full run cycle at the landing exit. V1 retains its complete jump; V2 resumes
+// running after contact/rebound, before the standing recovery. Both keep 24 FPS.
+function assertKnownRoutes(profile) {
+  const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
+  assert(
+    profile.id === `${prefix}v1` || profile.id === `${prefix}v2`,
+    `Unknown reviewed motion profile: ${profile.id}`,
+  );
+  const isV2 = profile.id === `${prefix}v2`;
+  const original = profile.view === "original";
+  const male = profile.characterId === "male";
+  const takeoffs = original ? [5, 13] : [male ? 16 : 13];
+  const complete = {
+    from: "jump",
+    to: "run",
+    exit: original ? 39 : 28,
+    entry: original ? 4 : male ? 11 : 8,
+  };
+  const early = {
+    from: "jump",
+    to: "run",
+    exit: original ? 30 : 27,
+    entry: original ? 4 : male ? 16 : 13,
+  };
+  const routes = (from, to) =>
+    profile.routes
+      .filter((route) => route.from === from && route.to === to)
+      .sort((a, b) => a.exit - b.exit);
+  assert.deepEqual(
+    routes("run", "jump"),
+    takeoffs.map((exit) => ({ from: "run", to: "jump", exit, entry: 0 })),
+    "Run takeoff routes differ from the reviewed native frames",
+  );
+  assert.deepEqual(
+    routes("jump", "run"),
+    isV2 ? [early, complete] : [complete],
+    "Landing routes differ from the reviewed V1/V2 boundaries",
+  );
+}
+
 function expectedFlow(profile) {
+  assertKnownRoutes(profile);
   const run = profile.actions.run,
     jump = profile.actions.jump;
   assert.equal(run.fps, jump.fps);
@@ -41,29 +81,29 @@ function expectedFlow(profile) {
   const landing = profile.routes.filter(
     (r) => r.from === "jump" && r.to === "run",
   );
-  assert.equal(landing.length, 1);
+  const firstLanding = landing.reduce((a, b) => (a.exit < b.exit ? a : b));
   assert.equal(takeoff.entry, 0);
-  assert.equal(landing[0].exit, jump.frames.length);
   assert(takeoff.exit >= 0 && takeoff.exit <= run.frames.length);
+  assert(firstLanding.exit > 0 && firstLanding.exit <= jump.frames.length);
   const recovery = Array.from(
     { length: run.frames.length },
-    (_, i) => run.frames[(landing[0].entry + i) % run.frames.length],
+    (_, i) => run.frames[(firstLanding.entry + i) % run.frames.length],
   );
   return {
     fps: run.fps,
     frames: [
       ...run.frames,
       ...run.frames.slice(0, takeoff.exit),
-      ...jump.frames,
+      ...jump.frames.slice(0, firstLanding.exit),
       ...recovery,
     ],
     phases: {
       runBefore: run.frames.length + takeoff.exit,
-      jump: jump.frames.length,
+      jump: firstLanding.exit,
       runAfter: recovery.length,
     },
     takeoff,
-    landing: landing[0],
+    landing: firstLanding,
   };
 }
 

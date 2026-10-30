@@ -44,7 +44,7 @@
     "profile": {
       "format": "gathria-gameplay-motion",
       "version": 1,
-      "id": "kling-male-original-single-jump-v1",
+      "id": "kling-male-original-single-jump-v2",
       "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
       "characterId": "male",
       "view": "original",
@@ -185,6 +185,12 @@
           "to": "walk",
           "exit": 39,
           "entry": 10
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 30,
+          "entry": 4
         },
         {
           "from": "jump",
@@ -379,7 +385,7 @@
     "profile": {
       "format": "gathria-gameplay-motion",
       "version": 1,
-      "id": "kling-female-original-single-jump-v1",
+      "id": "kling-female-original-single-jump-v2",
       "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
       "characterId": "female",
       "view": "original",
@@ -532,6 +538,12 @@
           "to": "walk",
           "exit": 39,
           "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 30,
+          "entry": 4
         },
         {
           "from": "jump",
@@ -706,7 +718,7 @@
     "profile": {
       "format": "gathria-gameplay-motion",
       "version": 1,
-      "id": "kling-male-side-single-jump-v1",
+      "id": "kling-male-side-single-jump-v2",
       "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
       "characterId": "male",
       "view": "side",
@@ -814,6 +826,12 @@
         {
           "from": "jump",
           "to": "run",
+          "exit": 27,
+          "entry": 16
+        },
+        {
+          "from": "jump",
+          "to": "run",
           "exit": 28,
           "entry": 11
         }
@@ -855,7 +873,7 @@
     "profile": {
       "format": "gathria-gameplay-motion",
       "version": 1,
-      "id": "kling-female-side-single-jump-v1",
+      "id": "kling-female-side-single-jump-v2",
       "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
       "characterId": "female",
       "view": "side",
@@ -956,6 +974,12 @@
           "to": "walk",
           "exit": 28,
           "entry": 11
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 27,
+          "entry": 13
         },
         {
           "from": "jump",

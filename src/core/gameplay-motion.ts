@@ -1,4 +1,5 @@
 import specifications from "./gameplay-motion-profiles.json";
+import legacySpecifications from "./gameplay-motion-legacy-profiles.json";
 import type {
   Animation,
   BakedCharacterRecipe,
@@ -49,7 +50,12 @@ interface Specification {
   sourceActions: GameplayMotion["actions"];
   profile: GameplayMotion;
 }
-const reviewed = specifications as Specification[];
+// New sessions use the current routes. Already exported V1 motion profiles
+// remain playable with their original full-recovery timing.
+const reviewed = [
+  ...specifications,
+  ...legacySpecifications,
+] as Specification[];
 const EPSILON = 1e-7;
 const locomotion = (
   action: PortableAnimationName,
@@ -289,6 +295,13 @@ function nextTransition(profile: GameplayMotion, state: GameplayState) {
     throw Error("A gameplay action cannot queue itself.");
   const next = profile.routes
     .filter((route) => route.from === state.action && route.to === target)
+    // A late request must use a later reviewed pose, not rewind to a landing
+    // seam that the character has already passed. One-shots retain a final
+    // recovery route for these late requests; loops can wait for the next lap.
+    .filter(
+      (route) =>
+        clip.loop || (route.exit * 1000) / clip.fps >= elapsed - EPSILON,
+    )
     .map((route) => {
       let boundary = (route.exit * 1000) / clip.fps;
       if (clip.loop && boundary < elapsed - EPSILON) boundary += duration;

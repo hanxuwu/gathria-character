@@ -7,7 +7,9 @@ import { unzipSync } from "fflate";
 // Deliberately serial: source-bound wardrobe preparation and atlas export are
 // memory-heavy. These are actual UI downloads, never generated fixture images.
 test.describe.configure({ mode: "default" });
-const outputRoot = "/tmp/single-jump/exports";
+// Keep historical review downloads intact when verifying a newer revision.
+const outputRoot =
+  process.env.GATHRIA_SINGLE_JUMP_EXPORT_ROOT ?? "/tmp/single-jump/exports";
 const sha = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
 const json = (bytes: Uint8Array) =>
@@ -275,6 +277,35 @@ for (const character of ["male", "female"] as const) {
       );
       expect(config.sourceMetadata.gameplayMotion.jumpReturn).toBe(
         "previous-locomotion",
+      );
+      expect(config.sourceMetadata.gameplayMotion.id).toBe(
+        `kling-${character}-${source}-single-jump-v2`,
+      );
+      expect(
+        config.sourceMetadata.gameplayMotion.routes
+          .filter(
+            (route: { from: string; to: string }) =>
+              route.from === "jump" && route.to === "run",
+          )
+          .map((route: { exit: number; entry: number }) => [
+            route.exit,
+            route.entry,
+          ]),
+      ).toEqual(
+        source === "original"
+          ? [
+              [30, 4],
+              [39, 4],
+            ]
+          : character === "male"
+            ? [
+                [27, 16],
+                [28, 11],
+              ]
+            : [
+                [27, 13],
+                [28, 8],
+              ],
       );
       expect(manifest.animations.jump.loop).toBe(false);
       expect(manifest.animations.jump.fps).toBe(24);

@@ -1,0 +1,523 @@
+{
+  "format": "gathria-landing-run-source-review",
+  "version": 1,
+  "reviewedAt": "2026-10-30",
+  "status": "source-and-composed-pose-reviewed-not-a-seamlessness-guarantee",
+  "indexConvention": "exitFrame is the boundary after N source playback ticks; entryFrame is the zero-based target playback index. Native IDs are source atlas IDs, not timeline positions.",
+  "scope": "Only queued Jump-to-Run gains an earlier reviewed exit. Full standalone Jump, Jump-to-Idle and Jump-to-Walk are unchanged. Late run intent uses the full-clip fallback.",
+  "timing": "Retained source ticks stay at 24 fps. No speed-up, added frames, interpolation, crossfade, re-registration, redraw or source-pixel mutation.",
+  "contactSheets": "Top row is native source; bottom row is the existing exported daily-outfit composition. Each sheet uses one fixed crop/scale across all cells; images are review previews, not replacement artwork.",
+  "measurementCaveat": "Alpha bounds are supporting height evidence, not joint estimates or sufficient proof of foot contact. Contact/compression/limb phase were also visually inspected.",
+  "profiles": [
+    {
+      "characterId": "male",
+      "view": "original",
+      "sourceArchive": "docs/kling-motion/exports/male.character.zip",
+      "sourceArchiveSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "previousComposedManifest": "docs/kling-single-jump/review/male/original.manifest.json",
+      "contactSheet": "male-original-landing-selection.png",
+      "fps": 24,
+      "standaloneJumpNativeIdsInclusive": [
+        83,
+        121
+      ],
+      "standaloneJumpTicks": 39,
+      "landingContactNativeId": 102,
+      "landingCompressionNativeIdsInclusive": [
+        103,
+        108
+      ],
+      "earlyRunRoute": {
+        "exitFrame": 30,
+        "lastJumpNativeId": 112,
+        "entryFrame": 4,
+        "firstRunNativeId": 55
+      },
+      "fullClipFallbackRunRoute": {
+        "exitFrame": 39,
+        "lastJumpNativeId": 121,
+        "entryFrame": 4,
+        "firstRunNativeId": 55
+      },
+      "contactUntilRun": {
+        "previousDisplayedTicks": 20,
+        "reviewedDisplayedTicks": 11,
+        "previousDurationMs": 833.3333333333334,
+        "reviewedDurationMs": 458.3333333333333,
+        "savedTicks": 9,
+        "savedDurationMs": 375.0
+      },
+      "sourceAlphaTopDeltaAtSeamPx": {
+        "previousSigned": 14,
+        "reviewedSigned": 2
+      },
+      "illustratedFrames": [
+        {
+          "nativeFrameId": 55,
+          "alpha128Bounds": [
+            188,
+            190,
+            570,
+            996
+          ],
+          "decodedSourceRgbaSha256": "131c3656c8fdc712f4e65fd89ec6aa45e9d45ac6ca928d8495a799a0138cacd1",
+          "decodedComposedRgbaSha256": "c26bf09ba501c8bdccb4c130202c2627158553b50e6014b110b993bd4a2a88d7"
+        },
+        {
+          "nativeFrameId": 102,
+          "alpha128Bounds": [
+            60,
+            200,
+            656,
+            996
+          ],
+          "decodedSourceRgbaSha256": "c64b64ae5ac2483a1c08ade0a597063231d59de21c22b895dcffedeb67cb8639",
+          "decodedComposedRgbaSha256": "1bb1337b666e018350360eff24dc40d2aba05e0f59b4d49fa2ba2203bf023eca"
+        },
+        {
+          "nativeFrameId": 106,
+          "alpha128Bounds": [
+            182,
+            306,
+            606,
+            996
+          ],
+          "decodedSourceRgbaSha256": "5d4ee64eaa110f23160cabd6d798a9d60182797cbdc027d765c1c6d457a8715f",
+          "decodedComposedRgbaSha256": "5d03daafae8e59e2d2a39630074e6d732d4df727e08bacb6a423832b68289c54"
+        },
+        {
+          "nativeFrameId": 108,
+          "alpha128Bounds": [
+            184,
+            280,
+            604,
+            996
+          ],
+          "decodedSourceRgbaSha256": "5113e853b42cc5dc32a6ccf31ac7cb568760e676dc25dbcd640c1765554f70e9",
+          "decodedComposedRgbaSha256": "8c7f7c8dd79ebd72dbc5564b354440adedb23056ef90bc43772e25dfc0d397b8"
+        },
+        {
+          "nativeFrameId": 110,
+          "alpha128Bounds": [
+            176,
+            228,
+            592,
+            996
+          ],
+          "decodedSourceRgbaSha256": "a8ef01dba129e0e06485774f4d7482185e8f8dc45996473a13caeb5b11e01de0",
+          "decodedComposedRgbaSha256": "ef348011ce15c6d775043060a3d6126822acae450b4a6ae91b45e952efe11f0a"
+        },
+        {
+          "nativeFrameId": 112,
+          "alpha128Bounds": [
+            170,
+            188,
+            600,
+            996
+          ],
+          "decodedSourceRgbaSha256": "b0102cd4a6e02789a65e65be07e9083262beb7949db644d1432fb72f95ef66a7",
+          "decodedComposedRgbaSha256": "2452d2c829df132b5fb670b205067f0e73852eb35a72723ad970f87eae6483a7"
+        },
+        {
+          "nativeFrameId": 121,
+          "alpha128Bounds": [
+            144,
+            176,
+            552,
+            996
+          ],
+          "decodedSourceRgbaSha256": "18046a3756080fe025d4cfd9f8d20bb21e4698b5c4f75261acf0d66fc2933ab9",
+          "decodedComposedRgbaSha256": "19e9faf92a24acb9a8b28b92201a727d28c1ee5c2b529dacafd958f8efca8773"
+        }
+      ]
+    },
+    {
+      "characterId": "male",
+      "view": "side",
+      "sourceArchive": "docs/kling-side-workspace/assets/male.source.zip",
+      "sourceArchiveSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "previousComposedManifest": "docs/kling-single-jump/review/male/side.manifest.json",
+      "contactSheet": "male-side-landing-selection.png",
+      "fps": 24,
+      "standaloneJumpNativeIdsInclusive": [
+        63,
+        90
+      ],
+      "standaloneJumpTicks": 28,
+      "landingContactNativeId": 79,
+      "landingCompressionNativeIdsInclusive": [
+        80,
+        82
+      ],
+      "earlyRunRoute": {
+        "exitFrame": 27,
+        "lastJumpNativeId": 89,
+        "entryFrame": 16,
+        "firstRunNativeId": 55
+      },
+      "fullClipFallbackRunRoute": {
+        "exitFrame": 28,
+        "lastJumpNativeId": 90,
+        "entryFrame": 11,
+        "firstRunNativeId": 50
+      },
+      "contactUntilRun": {
+        "previousDisplayedTicks": 12,
+        "reviewedDisplayedTicks": 11,
+        "previousDurationMs": 500.0,
+        "reviewedDurationMs": 458.3333333333333,
+        "savedTicks": 1,
+        "savedDurationMs": 41.666666666666664
+      },
+      "sourceAlphaTopDeltaAtSeamPx": {
+        "previousSigned": 3,
+        "reviewedSigned": -8
+      },
+      "illustratedFrames": [
+        {
+          "nativeFrameId": 50,
+          "alpha128Bounds": [
+            122,
+            221,
+            377,
+            697
+          ],
+          "decodedSourceRgbaSha256": "39b767cdd2052ccc96a8e6da11a967cac1cb99caa491a7cd4a411b06d9a92872",
+          "decodedComposedRgbaSha256": "9c88dc3fb4774d913828da619b8740d38703d6f1609aecf8e8f1d2ddcbcc82d0"
+        },
+        {
+          "nativeFrameId": 55,
+          "alpha128Bounds": [
+            131,
+            237,
+            357,
+            703
+          ],
+          "decodedSourceRgbaSha256": "6a241c2840671b576b292ab0b1103509b3b2013baa62496462c8e480275de301",
+          "decodedComposedRgbaSha256": "d30c93bb48618a8b7f565bb6ad8473ed5c28b5abb0b6ab95c232ebc2841c3c4a"
+        },
+        {
+          "nativeFrameId": 79,
+          "alpha128Bounds": [
+            100,
+            264,
+            452,
+            707
+          ],
+          "decodedSourceRgbaSha256": "10b3be3cb2a43affba1742cdf286a11413fd81ac403a2250f63a84c0ef3220fe",
+          "decodedComposedRgbaSha256": "a92cef53eeacd57538649f5d9764e17371d8275fca20dc795daf24a83a999c87"
+        },
+        {
+          "nativeFrameId": 81,
+          "alpha128Bounds": [
+            135,
+            306,
+            442,
+            709
+          ],
+          "decodedSourceRgbaSha256": "cf4be35f8d8f373bcdf59f9e840780c9ea26ed7fa49460b7db51b2d0b408ea1a",
+          "decodedComposedRgbaSha256": "8aa00a3982664aa9f0a30f8561739bb19ff44d022500c85c1ca5808a5ac3524f"
+        },
+        {
+          "nativeFrameId": 82,
+          "alpha128Bounds": [
+            157,
+            299,
+            438,
+            709
+          ],
+          "decodedSourceRgbaSha256": "0f6e7942230549d9916d5646d9453c1bc0dfd4eb3e0b98ff30524e01264d1a1c",
+          "decodedComposedRgbaSha256": "9c1c4d309bd8c9fdc429413aa29d6c58a880438a47100cc886583cc9e0dcf336"
+        },
+        {
+          "nativeFrameId": 87,
+          "alpha128Bounds": [
+            150,
+            261,
+            407,
+            709
+          ],
+          "decodedSourceRgbaSha256": "9f2df4ee86c34353a21763cb89197507a6b40fefaf32a80f2a3712d9587d1581",
+          "decodedComposedRgbaSha256": "93d40fb272a60a4354943b322c9ce874985a588fa1324eb4f175b0993618d8ff"
+        },
+        {
+          "nativeFrameId": 89,
+          "alpha128Bounds": [
+            146,
+            245,
+            392,
+            709
+          ],
+          "decodedSourceRgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+          "decodedComposedRgbaSha256": "00ade68244ccfd0b46f5667085bd1a3d68b078fabdea738843eff60c3c0d86da"
+        },
+        {
+          "nativeFrameId": 90,
+          "alpha128Bounds": [
+            139,
+            218,
+            380,
+            709
+          ],
+          "decodedSourceRgbaSha256": "eb967495150e60e8f6256b1b03de4d7278580dcb5ac010bf2f3eb1da4786cef1",
+          "decodedComposedRgbaSha256": "b5a6fa07caf35318228613e0ec0da83e307a39ac86eb2a2abf4b2910a5925580"
+        }
+      ]
+    },
+    {
+      "characterId": "female",
+      "view": "original",
+      "sourceArchive": "docs/kling-motion/exports/female.character.zip",
+      "sourceArchiveSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "previousComposedManifest": "docs/kling-single-jump/review/female/original.manifest.json",
+      "contactSheet": "female-original-landing-selection.png",
+      "fps": 24,
+      "standaloneJumpNativeIdsInclusive": [
+        83,
+        121
+      ],
+      "standaloneJumpTicks": 39,
+      "landingContactNativeId": 102,
+      "landingCompressionNativeIdsInclusive": [
+        103,
+        108
+      ],
+      "earlyRunRoute": {
+        "exitFrame": 30,
+        "lastJumpNativeId": 112,
+        "entryFrame": 4,
+        "firstRunNativeId": 55
+      },
+      "fullClipFallbackRunRoute": {
+        "exitFrame": 39,
+        "lastJumpNativeId": 121,
+        "entryFrame": 4,
+        "firstRunNativeId": 55
+      },
+      "contactUntilRun": {
+        "previousDisplayedTicks": 20,
+        "reviewedDisplayedTicks": 11,
+        "previousDurationMs": 833.3333333333334,
+        "reviewedDurationMs": 458.3333333333333,
+        "savedTicks": 9,
+        "savedDurationMs": 375.0
+      },
+      "sourceAlphaTopDeltaAtSeamPx": {
+        "previousSigned": 12,
+        "reviewedSigned": -6
+      },
+      "illustratedFrames": [
+        {
+          "nativeFrameId": 55,
+          "alpha128Bounds": [
+            178,
+            162,
+            570,
+            998
+          ],
+          "decodedSourceRgbaSha256": "13c3721d7a559070e934a67782ca740fee74a8a72528715cb0013ab91a0297d1",
+          "decodedComposedRgbaSha256": "b0d9aa688f4fc4899f4f1aaf4d0f933ad248f7ad820162be665fbfd9ae65c7a3"
+        },
+        {
+          "nativeFrameId": 102,
+          "alpha128Bounds": [
+            58,
+            182,
+            656,
+            998
+          ],
+          "decodedSourceRgbaSha256": "a62bae821b9a21c8deec183b85b5ee86ca8320f10be2ae47a7f863a2a7225967",
+          "decodedComposedRgbaSha256": "cd1ccf6a3ba68d4a79f6dc23d805e732f1627a6536ff70bd300bbe0cc97a29d7"
+        },
+        {
+          "nativeFrameId": 106,
+          "alpha128Bounds": [
+            182,
+            290,
+            606,
+            998
+          ],
+          "decodedSourceRgbaSha256": "247aad3f3977c0669ec2dbea49b4455867038c4751f422f9ac6520a85e993e29",
+          "decodedComposedRgbaSha256": "0aca1a06355a2e338d3eb311c68737a214eed0e52de0b04f6d9fecd1835fd11d"
+        },
+        {
+          "nativeFrameId": 108,
+          "alpha128Bounds": [
+            184,
+            264,
+            602,
+            998
+          ],
+          "decodedSourceRgbaSha256": "30bc2a04eca64e124a198a61dd61f9bfa48f5467d517986e38445cf7d204be50",
+          "decodedComposedRgbaSha256": "7cc1b9705978d0ebaab4487caf9b464d1ca4a5e1084f2a705709db734615f439"
+        },
+        {
+          "nativeFrameId": 110,
+          "alpha128Bounds": [
+            178,
+            212,
+            592,
+            998
+          ],
+          "decodedSourceRgbaSha256": "32d7d1d44ec4fbd592a37099689ac2180c7630d3aea60b365cbf47f40a955fca",
+          "decodedComposedRgbaSha256": "18f32cb8343a758197f63e1eca2a4ce59200053ffa859a1301eb92931c750144"
+        },
+        {
+          "nativeFrameId": 112,
+          "alpha128Bounds": [
+            168,
+            168,
+            600,
+            998
+          ],
+          "decodedSourceRgbaSha256": "08c1ed59cc184f0c92bf14e799a296789903ec8951ac4831380c87b2513e4288",
+          "decodedComposedRgbaSha256": "2530810bf658304414d14077258a3e3ac72a62422d88a36a7083c2fba7022429"
+        },
+        {
+          "nativeFrameId": 121,
+          "alpha128Bounds": [
+            146,
+            150,
+            550,
+            998
+          ],
+          "decodedSourceRgbaSha256": "34c2347a464050c0939b577f3e0843b91fbee11ac7da0d895a8b48a650c50da7",
+          "decodedComposedRgbaSha256": "b4d1a6373d296fef841dc79fec40094dbb3ebe1cc7ad3feed00aa8b95787387b"
+        }
+      ]
+    },
+    {
+      "characterId": "female",
+      "view": "side",
+      "sourceArchive": "docs/kling-side-workspace/assets/female.source.zip",
+      "sourceArchiveSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "previousComposedManifest": "docs/kling-single-jump/review/female/side.manifest.json",
+      "contactSheet": "female-side-landing-selection.png",
+      "fps": 24,
+      "standaloneJumpNativeIdsInclusive": [
+        58,
+        85
+      ],
+      "standaloneJumpTicks": 28,
+      "landingContactNativeId": 74,
+      "landingCompressionNativeIdsInclusive": [
+        75,
+        77
+      ],
+      "earlyRunRoute": {
+        "exitFrame": 27,
+        "lastJumpNativeId": 84,
+        "entryFrame": 13,
+        "firstRunNativeId": 47
+      },
+      "fullClipFallbackRunRoute": {
+        "exitFrame": 28,
+        "lastJumpNativeId": 85,
+        "entryFrame": 8,
+        "firstRunNativeId": 42
+      },
+      "contactUntilRun": {
+        "previousDisplayedTicks": 12,
+        "reviewedDisplayedTicks": 11,
+        "previousDurationMs": 500.0,
+        "reviewedDurationMs": 458.3333333333333,
+        "savedTicks": 1,
+        "savedDurationMs": 41.666666666666664
+      },
+      "sourceAlphaTopDeltaAtSeamPx": {
+        "previousSigned": 16,
+        "reviewedSigned": 5
+      },
+      "illustratedFrames": [
+        {
+          "nativeFrameId": 42,
+          "alpha128Bounds": [
+            126,
+            219,
+            385,
+            706
+          ],
+          "decodedSourceRgbaSha256": "d14b499145012ec620337df68c8f49491003cfcfb8942e507aee9be77c4bbf82",
+          "decodedComposedRgbaSha256": "aabb475eb8b2035ce0fcbf461fcc840d4b304ea00fce685ef06a867bfc75a3f4"
+        },
+        {
+          "nativeFrameId": 47,
+          "alpha128Bounds": [
+            136,
+            236,
+            365,
+            709
+          ],
+          "decodedSourceRgbaSha256": "4149bf08d59d852990cc3389b19871738e9f8a47f23f9c1dd5e7ecc6ff8b7926",
+          "decodedComposedRgbaSha256": "b71c3dfd25b6f9fd434a65ccf3156eda9a75925ef91373b8509a6380f714146d"
+        },
+        {
+          "nativeFrameId": 74,
+          "alpha128Bounds": [
+            98,
+            251,
+            460,
+            710
+          ],
+          "decodedSourceRgbaSha256": "b07778b139f8667d680230866fadff335d9a8b959bbe923e6b79e12ad0e1658b",
+          "decodedComposedRgbaSha256": "b9e3e0847cb4b8ba39fe2cde4ce6d1ac80608d46c2aaca92d0e8bd8c1c728550"
+        },
+        {
+          "nativeFrameId": 76,
+          "alpha128Bounds": [
+            133,
+            295,
+            452,
+            710
+          ],
+          "decodedSourceRgbaSha256": "02032512cbf65b1f71b4324e61e9183dafacd502947804bbcae5804a69fb9080",
+          "decodedComposedRgbaSha256": "46bb33467e6b649fd4159fbc67bb65db17e26eb161e0d1227094a4c4f465aa0b"
+        },
+        {
+          "nativeFrameId": 77,
+          "alpha128Bounds": [
+            156,
+            289,
+            446,
+            710
+          ],
+          "decodedSourceRgbaSha256": "ca068463c943fd5d9877d62b7334b223c6ac4d306757b48a030d4f3d092d2967",
+          "decodedComposedRgbaSha256": "4f145b1ef9957a6afffb803cb29c6c084749cf75be922e93ed500ba2981e41f0"
+        },
+        {
+          "nativeFrameId": 82,
+          "alpha128Bounds": [
+            150,
+            250,
+            414,
+            710
+          ],
+          "decodedSourceRgbaSha256": "d1ee6cd56d34037881cecd06a3daefb9b0cff6ae626d55986adca16dca6bcba3",
+          "decodedComposedRgbaSha256": "24cbd34ca7c25d7b3746f2ae8b9c28f2c6656012c2a5eb32b9453f4bd0ab340c"
+        },
+        {
+          "nativeFrameId": 84,
+          "alpha128Bounds": [
+            144,
+            231,
+            398,
+            710
+          ],
+          "decodedSourceRgbaSha256": "f3eeb28229576e24440df1e2738d02f116bf1d743715b5be4af5aaa20afd26c7",
+          "decodedComposedRgbaSha256": "0f4e8a2bbca5d366ff7b208d6b2a3c58e638dd6c5e89e7f5ecbe7a94030690d0"
+        },
+        {
+          "nativeFrameId": 85,
+          "alpha128Bounds": [
+            139,
+            203,
+            387,
+            710
+          ],
+          "decodedSourceRgbaSha256": "d61623d693a85605e48fc236a41ad6daedffef5d98bc5f03c4f21acc9bf6bb87",
+          "decodedComposedRgbaSha256": "8d8664d05c2e9f382ce50e1e5105e0f4e945946f5455febd64d5f5bccb6538f0"
+        }
+      ]
+    }
+  ]
+}

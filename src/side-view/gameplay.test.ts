@@ -63,7 +63,12 @@ for (const character of ["male", "female"] as const) {
           profile,
         );
       }
-      expect([...new Set(jumpFrames)]).toEqual(profile.actions.jump.frames);
+      const landingExit = profile.routes.find(
+        (r) => r.from === "jump" && r.to === "run",
+      )!.exit;
+      expect([...new Set(jumpFrames)]).toEqual(
+        profile.actions.jump.frames.slice(0, landingExit),
+      );
       expect(state.action).toBe("run");
       expect(state.worldX - fromX).toBeCloseTo(240 * 5);
       expect(state.returnAction).toBe("run");

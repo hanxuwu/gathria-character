@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { unzipSync } from "fflate";
 import { describe, expect, it } from "vitest";
+import legacySpecifications from "./gameplay-motion-legacy-profiles.json";
 import type {
   BakedCharacterRecipe,
   PortableCharacterPackManifest,
@@ -108,7 +109,15 @@ describe("source-bound single-jump gameplay profiles", () => {
           expect(from.frames[route.exit - 1]).not.toBe(from.frames[route.exit]);
         if (route.entry > 0)
           expect(to.frames[route.entry - 1]).not.toBe(to.frames[route.entry]);
-        if (route.from === "jump") expect(route.exit).toBe(from.frames.length);
+        if (route.from === "jump") {
+          // Independent pose review: compression is complete before native112
+          // (original), 89 (male side), or 84 (female side). Run can leave here;
+          // all other destinations keep the complete original recovery.
+          const movingExit = view === "original" ? 30 : 27;
+          if (route.to === "run")
+            expect([movingExit, from.frames.length]).toContain(route.exit);
+          else expect(route.exit).toBe(from.frames.length);
+        }
         if (route.to === "jump") expect(route.entry).toBe(0);
         pairs.add(`${route.from}:${route.to}`);
         const key = `${route.from}:${route.to}:${route.exit}`;
@@ -209,7 +218,7 @@ describe("single jump and continuous source-pose transitions", () => {
     expect(jumping.returnAction).toBe("walk");
   });
 
-  it("plays all landing/recovery frames then returns to the previous run at its matched phase", () => {
+  it("finishes landing before returning to running without the rebound-preparation tail", () => {
     const requested = requestGameplayAction(
       { ...createGameplayState("run"), elapsedMs: 20 },
       "jump",
@@ -220,9 +229,9 @@ describe("single jump and continuous source-pose transitions", () => {
       requested,
       gameplayTransitionWait(profile, requested)!,
     );
-    const beforeLanding = advanceGameplayMotion(profile, jumping, 27 * TICK);
+    const beforeLanding = advanceGameplayMotion(profile, jumping, 26 * TICK);
     expect(beforeLanding.action).toBe("jump");
-    expect(gameplayFrameId(profile, beforeLanding)).toBe(90);
+    expect(gameplayFrameId(profile, beforeLanding)).toBe(89);
     const resumed = advanceGameplayMotion(profile, beforeLanding, TICK + 7);
     const route = profile.routes.find(
       (r) => r.from === "jump" && r.to === "run",
@@ -268,7 +277,7 @@ describe("single jump and continuous source-pose transitions", () => {
       4000,
       8,
     );
-    expect(segments[1].durationMs).toBeCloseTo(28 * TICK, 8);
+    expect(segments[1].durationMs).toBeCloseTo(27 * TICK, 8);
     expect(segments[1].jumpFrom).toBe("run");
     let chunked = start;
     for (const delta of [17, 100, 31, 1700, 16, 2136])
@@ -277,7 +286,7 @@ describe("single jump and continuous source-pose transitions", () => {
     expect(chunked.elapsedMs).toBeCloseTo(final.elapsedMs, 7);
   });
 
-  it("preserves the original view's reviewed route timing and optional celebration", () => {
+  it("preserves original takeoff timing and celebration, and skips standing settle only for running", () => {
     const original = source("female", "original").profile;
     const state = requestGameplayAction(
       { ...createGameplayState("run"), elapsedMs: 4 * TICK },
@@ -286,7 +295,7 @@ describe("single jump and continuous source-pose transitions", () => {
     );
     expect(gameplayTransitionWait(original, state)).toBeCloseTo(TICK, 7);
     const jumping = advanceGameplayMotion(original, state, TICK);
-    const resumed = advanceGameplayMotion(original, jumping, 39 * TICK);
+    const resumed = advanceGameplayMotion(original, jumping, 30 * TICK);
     expect(resumed.action).toBe("run");
     expect(resumed.elapsedMs).toBeCloseTo(4 * TICK, 7);
     expect(
@@ -320,4 +329,93 @@ describe("single jump and continuous source-pose transitions", () => {
     const rounded = { ...state, elapsedMs: 750 - 1e-10 };
     expect(gameplayFramePosition(profile, rounded)).toBe(0);
   });
+});
+
+describe("target-specific grounded landing exits", () => {
+  it.each(sources)(
+    "keeps $character $view standing recovery for idle and late run requests",
+    ({ character, view }) => {
+      const { profile } = source(character, view);
+      const early = view === "original" ? 30 : 27;
+      const full = view === "original" ? 39 : 28;
+      const idleJump = createGameplayState("jump");
+      const settling = advanceGameplayMotion(
+        profile,
+        idleJump,
+        (full - 1) * TICK,
+      );
+      expect(settling.action).toBe("jump");
+      expect(advanceGameplayMotion(profile, settling, TICK).action).toBe(
+        "idle",
+      );
+
+      // Request after the early seam has passed: wait for its own final recovery
+      // pose. Selecting a past route here would snap back down to the wrong gait.
+      const late = advanceGameplayMotion(
+        profile,
+        idleJump,
+        (early + 0.5) * TICK,
+      );
+      const requested = requestGameplayAction(late, "run", profile);
+      expect(gameplayTransitionWait(profile, requested)).toBeCloseTo(
+        (full - early - 0.5) * TICK,
+        6,
+      );
+      expect(advanceGameplayMotion(profile, requested, 0).action).toBe("jump");
+      const resumed = advanceGameplayMotion(
+        profile,
+        requested,
+        (full - early - 0.5) * TICK,
+      );
+      expect(resumed.action).toBe("run");
+      expect(gameplayFrameId(profile, resumed)).toBe(
+        view === "original" ? 55 : character === "male" ? 50 : 42,
+      );
+
+      const runningJump = {
+        ...idleJump,
+        returnAction: "run" as const,
+        jumpFrom: "run" as const,
+      };
+      const contact = advanceGameplayMotion(
+        profile,
+        runningJump,
+        (early - 1) * TICK,
+      );
+      expect(contact.action).toBe("jump");
+      expect(gameplayFrameId(profile, contact)).toBe(
+        view === "original" ? 112 : character === "male" ? 89 : 84,
+      );
+      const moving = advanceGameplayMotion(profile, contact, TICK);
+      expect(moving.action).toBe("run");
+      expect(gameplayFrameId(profile, moving)).toBe(
+        view === "original" || character === "male" ? 55 : 47,
+      );
+    },
+  );
+
+  it.each(sources)(
+    "still reads $character $view previously exported V1 metadata without retiming it",
+    ({ character, view }) => {
+      const { manifest, profile } = source(character, view);
+      const old = legacySpecifications.find(
+        (row) =>
+          row.profile.characterId === character && row.profile.view === view,
+      )!.profile as GameplayMotion;
+      expect(profile.id).toMatch(/-v2$/);
+      const archived = readGameplayMotion(gameplayManifest(manifest, old), {
+        sourceMetadata: { gameplayMotion: gameplayMotionMetadata(old) },
+      });
+      expect(archived).toEqual(old);
+      const state = {
+        ...createGameplayState("jump"),
+        returnAction: "run" as const,
+      };
+      const full = old.actions.jump.frames.length;
+      const last = advanceGameplayMotion(archived!, state, (full - 1) * TICK);
+      expect(last.action).toBe("jump");
+      expect(gameplayFrameId(old, last)).toBe(old.actions.jump.frames.at(-1));
+      expect(advanceGameplayMotion(old, last, TICK).action).toBe("run");
+    },
+  );
 });
