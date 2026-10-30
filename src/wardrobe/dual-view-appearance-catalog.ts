@@ -1,4 +1,4 @@
-import catalog from "../../docs/dual-looks/assets/catalog.json";
+import catalog from "../../docs/matched-hair/assets/catalog.json";
 import { APPEARANCE_MAX_BYTES } from "../appearance/contract";
 import { sha256 } from "../core/sha256";
 import {
@@ -20,7 +20,10 @@ interface CatalogAppearance extends DualViewAppearanceRepresentation {
 }
 
 const bundled = import.meta.glob<string>(
-  "../../docs/dual-looks/assets/**/*.zip",
+  [
+    "../../docs/dual-looks/assets/**/*.zip",
+    "../../docs/matched-hair/assets/**/*.zip",
+  ],
   { query: "?url&no-inline", import: "default", eager: true },
 );
 const urls = new Map(

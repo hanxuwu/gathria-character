@@ -11,9 +11,19 @@ import { parseGIF, decompressFrames } from "gifuct-js";
 assert(process.argv[2], "Pass an actual UI exports.json file.");
 const input = resolve(process.argv[2]);
 const rows = JSON.parse(await readFile(input, "utf8"));
-const catalog = JSON.parse(
-  await readFile("docs/dual-looks/assets/catalog.json", "utf8"),
-);
+// Match the archive being audited, rather than assuming that today's active
+// catalog authored every historical export. Prior review evidence stays valid.
+const catalogs = [];
+for (const path of [
+  "docs/dual-looks/assets/catalog.json",
+  "docs/matched-hair/assets/catalog.json",
+]) {
+  try {
+    catalogs.push({ path, ...JSON.parse(await readFile(path, "utf8")) });
+  } catch (error) {
+    if (error.code !== "ENOENT" || path.includes("dual-looks")) throw error;
+  }
+}
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const json = (bytes) => JSON.parse(Buffer.from(bytes).toString("utf8"));
 
@@ -71,6 +81,43 @@ assert dm['anchor']=={**sm['anchor'],'x':sm['anchor']['x']+L,'y':sm['anchor']['y
 meta=dc['sourceMetadata']['appearance'];assert meta['padding']==padding and meta['selection']==sel and meta['sourcePixelsRescaled'] is False and meta['actionTimingUnchanged'] is True
 ap=[(image(ab,p['file']),image(ab,p['maskFile'])) for p in am['pages']]
 poses={p['frameId']:p for p in am['poses']};regs={f['frameId']:f for f in reg['frames']};output_frames={f['id']:f for f in dm['frames']}
+prior=None;extra_neck={}
+if row.get('referenceAppearanceBank'):
+ prior_bytes=open(row['referenceAppearanceBank'],'rb').read();prior_bank=opened(io.BytesIO(prior_bytes));prior=json.loads(prior_bank.read('manifest.json'))
+ prior_complete=opened(row['referenceCompletePack']);prior_config=json.loads(prior_complete.read('character.json'))
+ assert prior_config['sourceMetadata']['wardrobe']==dc['sourceMetadata']['wardrobe'],'Existing clothing bank hashes, selection or provenance changed'
+ if row['view']=='original':
+  assert prior_bytes==bank_bytes,'Approved original appearance bank changed'
+  assert open(row['referenceCompletePack'],'rb').read()==open(row['pack'],'rb').read(),'Approved original CharacterPack changed'
+ else:
+  assert sha(prior_bytes)!=sha(bank_bytes),'Side appearance still uses the rejected prior hair bank'
+  for key in ['sourceSha256','registrationSha256','characterId','frameWidth','frameHeight','padding']:
+   assert prior[key]==am[key],f'New hair changed {key}'
+  prior_poses={p['frameId']:p for p in prior['poses']};assert set(prior_poses)==set(poses)
+  binding=json.load(open(row['neckBinding']));assert binding['sourceSha256']==doc['sourceSha256'] and binding['registrationSha256']==doc['registrationSha256']
+  binding_frames={p['frameId']:p for p in binding['frameProof']};assert set(binding_frames)==set(poses)
+  for fid,p in poses.items():
+   old=prior_poses[fid]
+   for key in old:
+    if key not in ['hairBounds','foreground']:assert old[key]==p[key],f'New hair changed source pose {fid}/{key}'
+   assert p['foreground'][:len(old['foreground'])]==old['foreground'],f'Original foreground changed {fid}'
+   extra_neck[fid]=p['foreground'][len(old['foreground']):]
+   assert extra_neck[fid],f'Missing explicit neck foreground {fid}'
+   assert extra_neck[fid]==[binding_frames[fid]['neckForeground']],f'Actual bank differs from reviewed neck binding {fid}'
+  prior_pages=[(image(prior_bank,p['file']),image(prior_bank,p['maskFile'])) for p in prior['pages']]
+  old_faces={s['id']:s for s in prior['styles'] if s['slot']=='face'};new_faces={s['id']:s for s in am['styles'] if s['slot']=='face'}
+  assert old_faces.keys()==new_faces.keys(),'Face styles changed'
+  for sid,style in old_faces.items():
+   new_style=new_faces[sid];assert len(style['layers'])==len(new_style['layers'])
+   for layer,new_layer in zip(style['layers'],new_style['layers']):
+    assert layer['role']==new_layer['role']=='face';new_frames={f['frameId']:f for f in new_layer['frames']}
+    assert {f['frameId'] for f in layer['frames']}==set(new_frames)
+    for f in layer['frames']:
+     nf=new_frames[f['frameId']]
+     assert {k:v for k,v in f.items() if k not in ['rect','page']}=={k:v for k,v in nf.items() if k not in ['rect','page']},f'Face binding changed {f["frameId"]}'
+     if f['mode']=='paint':
+      op,om=part(prior_pages,f);np_,nm=part(ap,nf)
+      assert np.array_equal(op,np_) and np.array_equal(om,nm),f'Face source pixels changed {f["frameId"]}'
 layers=[]
 for style in am['styles']:
  if style['id'] in [sel['hairId'],sel['faceId']]:
@@ -140,6 +187,15 @@ for sf in sm['frames']:
    actual_mask=np.zeros((h,w),bool);actual_mask[region]=active;hair_covered|=actual_mask;allowed|=actual_mask
    if back:back_contribution|=actual_mask
  actual=frame(dp,output_frames[fid]);assert np.array_equal(actual,expected),f'Independent raw-layer composite differs at native ID {fid}: '+str(np.any(actual!=expected,axis=2).sum())
+ neck_pixels=0
+ if fid in extra_neck:
+  neck=np.zeros((h,w),bool)
+  for p in extra_neck[fid]:neck|=polygon(p,w,h,L,T)
+  neck&=(original_pad[:,:,3]==255)&(dressed_pad[:,:,3]==255);neck_pixels=int(neck.sum())
+  assert np.array_equal(actual[neck],dressed_pad[neck]),f'Hair covers reviewed opaque neck/collar {fid}'
+  if row['character']=='female' and fid==77:
+   assert neck[T+505,L+304],'Known neckline defect escaped the explicit neck guard'
+   assert np.array_equal(actual[T+505,L+304],dressed[505,304]),'Female native77 still has front hair over the neckline'
  changed=np.any(actual!=original_pad,axis=2);assert not np.any(changed&~allowed),f'Pixels outside authored ownership changed {fid}'
  preserved_foreground=foreground&~back_contribution
  assert np.array_equal(actual[preserved_foreground],dressed_pad[preserved_foreground]),f'Appearance changed foreground without declared back-hair contribution {fid}'
@@ -158,7 +214,7 @@ for sf in sm['frames']:
  if fid==row['png']['frameId']:
   assert np.array_equal(np.array(Image.open(row['png']['right']).convert('RGBA')),actual),'UI PNG differs from exported pack'
   assert np.array_equal(np.array(Image.open(row['png']['left']).convert('RGBA')),actual[:,::-1]),'UI PNG is not exact native mirror'
- results.append({'frameId':fid,'changedPixels':int(changed.sum()),'clothOwnedPixels':int(cloth_owned.sum()),'hairCompositedPixels':int(hair_covered.sum()),'faceOwnedPixels':int(face_covered.sum()),'protectedForegroundPixels':int(foreground.sum()),'backHairBehindTranslucentForegroundPixels':int((foreground&back_contribution).sum()),'reviewedHandPixels':reviewed_hand_pixels})
+ results.append({'frameId':fid,'changedPixels':int(changed.sum()),'clothOwnedPixels':int(cloth_owned.sum()),'hairCompositedPixels':int(hair_covered.sum()),'faceOwnedPixels':int(face_covered.sum()),'protectedForegroundPixels':int(foreground.sum()),'backHairBehindTranslucentForegroundPixels':int((foreground&back_contribution).sum()),'reviewedHandPixels':reviewed_hand_pixels,'reviewedNeckPixels':neck_pixels})
 if row['character']=='female' and row['view']=='side':
  assert {f['frameId'] for f in clothing_changes}=={32,92},'Cloth repair escaped approved two poses'
  approved={32:(292,581,300,590),92:(253,382,270,405)}
@@ -184,7 +240,7 @@ for action,paths in row['gifs'].items():
   assert np.array_equal(left,right[:,::-1]),f'GIF mirror differs {action}/{position}'
   hashes.append(sha(right.tobytes()))
  gif_results.append({'action':action,'frames':len(hashes),'exactQuantizedPackPixelsAndOrder':True,'exactLeftMirror':True,'frameRgbSha256':hashes})
-print(json.dumps({'framesChecked':len(results),'nativeSourceSize':[sw,sh],'outputSize':[w,h],'padding':padding,'sourcePixelsRescaled':False,'exactSourceTiming':True,'exactIndependentLayerComposition':True,'exactOutsideOwnershipRgba':True,'appearancePreservesOpaqueForegroundRgba':True,'translucentForegroundUsesExactDestinationOverOnly':True,'sourceOpaqueProtectedHandsExact':True,'exactNativePngAndMirror':True,'sourceModeAppearanceFrames':source_modes,'clothingChangesVersusPR58':clothing_changes,'frames':results,'gifs':gif_results}))
+print(json.dumps({'framesChecked':len(results),'nativeSourceSize':[sw,sh],'outputSize':[w,h],'padding':padding,'sourcePixelsRescaled':False,'exactSourceTiming':True,'exactIndependentLayerComposition':True,'exactOutsideOwnershipRgba':True,'appearancePreservesOpaqueForegroundRgba':True,'translucentForegroundUsesExactDestinationOverOnly':True,'sourceOpaqueProtectedHandsExact':True,'exactNativePngAndMirror':True,'sourceModeAppearanceFrames':source_modes,'clothingChangesVersusPR58':clothing_changes,'priorAppearance':None if prior is None else {'bankSha256':sha(prior_bytes),'originalBankAndPackByteExact':row['view']=='original','clothingMetadataAndBanksExact':True,'sideFacePixelsAndBindingsExact':row['view']=='side','sideNeckForegroundFrames':len(extra_neck),'female77KnownNeckPixelRestored':row['character']=='female' and row['view']=='side'},'frames':results,'gifs':gif_results}))
 `;
 
 const report = {
@@ -194,13 +250,40 @@ const report = {
   results: [],
 };
 for (const row of rows) {
-  const spec = catalog.representations.find(
-    (r) => r.character === row.character && r.view === row.view,
-  );
-  assert(spec, "Missing source-bound appearance catalog row");
   const nativeBytes = await readFile(row.project),
     native = unzipSync(nativeBytes),
     document = json(native["document.json"]);
+  const matches = catalogs.flatMap((catalog) =>
+    catalog.representations
+      .filter(
+        (r) =>
+          r.character === row.character &&
+          r.view === row.view &&
+          r.bankSha256 === sha(native["appearance.zip"]) &&
+          r.sourceSha256 === document.sourceSha256 &&
+          r.registrationSha256 === document.registrationSha256,
+      )
+      .map((spec) => ({ spec, path: catalog.path })),
+  );
+  assert(
+    matches.length,
+    "Missing catalog row bound to this exact appearance archive",
+  );
+  const spec = matches[0].spec;
+  for (const match of matches)
+    for (const key of [
+      "hairId",
+      "faceId",
+      "frameCount",
+      "frameWidth",
+      "frameHeight",
+      "padding",
+    ])
+      assert.deepEqual(
+        match.spec[key],
+        spec[key],
+        `Ambiguous catalog binding: ${key}`,
+      );
   const packBytes = await readFile(row.pack),
     pack = unzipSync(packBytes),
     manifest = json(pack["manifest.json"]);
@@ -263,6 +346,7 @@ for (const row of rows) {
     sourceSha256: spec.sourceSha256,
     registrationSha256: spec.registrationSha256,
     appearanceSha256: spec.bankSha256,
+    matchedCatalogs: matches.map((match) => match.path),
     projectSha256: sha(nativeBytes),
     packSha256: sha(packBytes),
     ...pixels,

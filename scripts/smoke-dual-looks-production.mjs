@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { chromium, expect } from "@playwright/test";
 import { preview } from "vite";
 
-const directory = "docs/dual-looks/review/production";
+const directory = process.argv[2] || "docs/dual-looks/review/production";
+const catalogPath = "docs/matched-hair/assets/catalog.json";
+const catalog = JSON.parse(await readFile(catalogPath, "utf8"));
 await mkdir(directory, { recursive: true });
 const server = await preview({
   preview: { host: "127.0.0.1", port: 5195, strictPort: true },
@@ -34,6 +36,13 @@ try {
     await apply.click();
     await expect(apply).toBeEnabled({ timeout: 240000 });
     for (const view of ["original", "side"]) {
+      const representation = catalog.representations.find(
+        (entry) => entry.character === character && entry.view === view,
+      );
+      assert(
+        representation,
+        `Missing active catalog row: ${character}/${view}`,
+      );
       await page
         .getByTestId("workbench-source")
         .selectOption(view === "side" ? "side-view" : "original");
@@ -47,7 +56,7 @@ try {
       await expect(stage).toHaveAttribute("data-face", "gentle");
       await expect(stage).toHaveAttribute(
         "data-appearance-sha",
-        /^[a-f0-9]{64}$/,
+        representation.bankSha256,
       );
       await page.getByTestId("dual-action").selectOption("run");
       await expect(stage).toHaveAttribute("data-action", "run");
@@ -60,6 +69,7 @@ try {
         view,
         outfit: await stage.getAttribute("data-outfit"),
         appearanceSha256: await stage.getAttribute("data-appearance-sha"),
+        activeCatalogBankExact: true,
         errors: [...errors],
       });
     }
@@ -81,7 +91,11 @@ try {
   }
   await writeFile(
     `${directory}/verification.json`,
-    JSON.stringify({ build: "vite production", results }, null, 2) + "\n",
+    JSON.stringify(
+      { build: "vite production", catalogPath, results },
+      null,
+      2,
+    ) + "\n",
   );
   console.log(
     "Complete-look production smoke passed: both characters/views, native appearance URLs, preserved cotton defaults, mobile layout; no HTTP/page errors.",

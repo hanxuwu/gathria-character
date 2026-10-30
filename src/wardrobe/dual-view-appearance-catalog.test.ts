@@ -10,7 +10,7 @@ import {
 const registry = vi.hoisted(() => ({
   representations: [] as Array<Record<string, unknown>>,
 }));
-vi.mock("../../docs/dual-looks/assets/catalog.json", () => ({
+vi.mock("../../docs/matched-hair/assets/catalog.json", () => ({
   default: registry,
 }));
 const payload = new Uint8Array([41, 72, 99]);

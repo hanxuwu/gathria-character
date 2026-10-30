@@ -1,0 +1,24 @@
+{
+  "command": "PYTHONPATH=/tmp/dual-side-face/python python scripts/prepare-kling-matched-hair.py --build-bank --output /tmp/kling-hair-match/reproduction",
+  "banks": [
+    {
+      "character": "male",
+      "sha256": "43b8bcb61be0fb6185bc12581a0d011cc299b730646f368422188c2e78aadb79",
+      "bytes": 8486216,
+      "reproducedByteExact": true
+    },
+    {
+      "character": "female",
+      "sha256": "8b394def4ea02f97e72b1a2f1248af496cf1025e6566c8689913b93a74541e62",
+      "bytes": 8305097,
+      "reproducedByteExact": true
+    }
+  ],
+  "toolVersions": {
+    "python": "3.12.14",
+    "opencv": "5.0.0",
+    "numpy": "2.3.5",
+    "pillow": "12.3.0",
+    "node": "v24.19.0"
+  }
+}

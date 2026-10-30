@@ -39,6 +39,12 @@ without replacing older clothing. The original character pixels and native
 action clocks remain the reference.
 [Complete looks, actual GIFs, portable packs and limitations](docs/dual-looks/README.md).
 
+The paired daily look now uses side-view hair drawn to match the original
+male side part and female short bob. Older projects keep their embedded styles;
+explicitly applying the complete look selects the revision. Review comparisons
+use one fixed body-height scale per source, without changing native exports.
+[Matched hair, before/after GIFs and validation](docs/matched-hair/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

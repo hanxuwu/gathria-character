@@ -1,0 +1,203 @@
+{
+  "note": "References are exact existing native crops/decodes and copied renderer results. No new artwork, body transforms, smoothing, or face replacement. Donor design imagery is separately labelled authored source, not runtime evidence.",
+  "records": [
+    {
+      "character": "male",
+      "original": {
+        "image": "male-original-natural-standing.png",
+        "imageSha256": "0a1c750c2eebe0d85d00891bd88544af9a6385b2b157cf77d3472827769ba19a",
+        "sourcePack": "docs/kling-motion/exports/male.character.zip",
+        "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+        "frameId": 0,
+        "sourceFrame": {
+          "frameId": 0,
+          "sourceFrame": 336,
+          "timeSeconds": 14
+        },
+        "hairId": "side-part",
+        "sourceCanvas": [
+          704,
+          1056
+        ],
+        "renderCanvas": [
+          768,
+          1184
+        ],
+        "padding": {
+          "left": 32,
+          "top": 128,
+          "right": 32,
+          "bottom": 0
+        },
+        "headCropFile": "male-original-head-native.png",
+        "headCropInRenderedFrame": [
+          70,
+          235,
+          665,
+          750
+        ],
+        "layers": [
+          {
+            "role": "hair-back",
+            "file": "male-original-hair-back-native.png",
+            "nativeOffset": {
+              "x": 149,
+              "y": 378
+            },
+            "atlasRect": {
+              "x": 212,
+              "y": 1522,
+              "width": 209,
+              "height": 116
+            },
+            "cropInPaddedFrame": [
+              70,
+              235,
+              665,
+              750
+            ]
+          },
+          {
+            "role": "hair-front",
+            "file": "male-original-hair-front-native.png",
+            "nativeOffset": {
+              "x": 82,
+              "y": 141
+            },
+            "atlasRect": {
+              "x": 1068,
+              "y": 7206,
+              "width": 530,
+              "height": 294
+            },
+            "cropInPaddedFrame": [
+              70,
+              235,
+              665,
+              750
+            ]
+          }
+        ]
+      },
+      "sideTarget": {
+        "image": "male-side-bald-standing.png",
+        "imageSha256": "6d601d4c1d5f74b431d5c8fb34e5c1a154a65b5605d8ae3fbf49b38e9909e066",
+        "sourcePack": "docs/kling-side-workspace/assets/male.source.zip",
+        "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+        "frameId": 0,
+        "sourceFrame": {
+          "frameId": 0,
+          "sourceFrame": 240,
+          "timeSeconds": 10.0
+        },
+        "canvas": [
+          512,
+          768
+        ],
+        "headCropFile": "male-side-bald-head-native.png",
+        "headCropInSourceFrame": [
+          95,
+          195,
+          390,
+          510
+        ],
+        "roomyHeadCropFile": "male-side-bald-head-roomy-native.png",
+        "roomyHeadCropInSourceFrame": [
+          60,
+          150,
+          430,
+          520
+        ]
+      }
+    },
+    {
+      "character": "female",
+      "original": {
+        "image": "female-original-natural-standing.png",
+        "imageSha256": "5d7d0372dbd93baf46f938da01062570058210000f5478d9f7cea4e080f83dec",
+        "sourcePack": "docs/kling-motion/exports/female.character.zip",
+        "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "frameId": 0,
+        "sourceFrame": {
+          "frameId": 0,
+          "sourceFrame": 336,
+          "timeSeconds": 14
+        },
+        "hairId": "soft-bob",
+        "sourceCanvas": [
+          704,
+          1056
+        ],
+        "renderCanvas": [
+          768,
+          1184
+        ],
+        "padding": {
+          "left": 32,
+          "top": 128,
+          "right": 32,
+          "bottom": 0
+        },
+        "headCropFile": "female-original-head-native.png",
+        "headCropInRenderedFrame": [
+          70,
+          220,
+          665,
+          750
+        ],
+        "layers": [
+          {
+            "role": "hair-front",
+            "file": "female-original-hair-front-native.png",
+            "nativeOffset": {
+              "x": 95,
+              "y": 137
+            },
+            "atlasRect": {
+              "x": 485,
+              "y": 5622,
+              "width": 482,
+              "height": 331
+            },
+            "cropInPaddedFrame": [
+              70,
+              220,
+              665,
+              750
+            ]
+          }
+        ]
+      },
+      "sideTarget": {
+        "image": "female-side-bald-standing.png",
+        "imageSha256": "9a1e89f7de939d33a74dc0814f99ca5936e1e64e2f9cf8f587ada872b7441e8c",
+        "sourcePack": "docs/kling-side-workspace/assets/female.source.zip",
+        "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+        "frameId": 0,
+        "sourceFrame": {
+          "frameId": 0,
+          "sourceFrame": 243,
+          "timeSeconds": 10.125
+        },
+        "canvas": [
+          512,
+          768
+        ],
+        "headCropFile": "female-side-bald-head-native.png",
+        "headCropInSourceFrame": [
+          95,
+          195,
+          390,
+          510
+        ],
+        "roomyHeadCropFile": "female-side-bald-head-roomy-native.png",
+        "roomyHeadCropInSourceFrame": [
+          60,
+          150,
+          430,
+          520
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "format": "gathria-matched-hair-checks",
+  "version": 1,
+  "date": "2026-10-30",
+  "referenceCommit": "f6fb2471b07390fc8b9a9b81caed84c536a72c2f",
+  "activeCatalogSha256": "3eac6ab9638447a761a6b8f1fac06445beb179bfcedb0a61cd5afdff071b714f",
+  "checks": {
+    "unit": {
+      "passed": true,
+      "files": 60,
+      "tests": 590,
+      "log": "unit.log",
+      "afterFinalAssets": true
+    },
+    "typecheck": {
+      "passed": true,
+      "log": "typecheck.log"
+    },
+    "catalogSourceAndArchiveBindings": {
+      "passed": true,
+      "logs": ["catalog-write.log", "catalog-check.log"]
+    },
+    "productionBuild": {
+      "passed": true,
+      "log": "build.log",
+      "afterFinalAssets": true
+    },
+    "browser": {
+      "passed": true,
+      "cases": 4,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "durationMs": 848804.516,
+      "report": "e2e-complete-results.json"
+    },
+    "productionPreview": {
+      "passed": true,
+      "views": 4,
+      "allActiveCatalogHashesExact": true,
+      "noPageOrHttpErrors": true,
+      "mobileViewportWidth": 390,
+      "report": "../production/verification.json"
+    },
+    "independentRawPixelAudit": {
+      "passed": true,
+      "nativeFrames": 393,
+      "actualGifs": 36,
+      "exactOriginalPacks": 2,
+      "unchangedSideFaceEntries": 209,
+      "sideNeckForegroundFrames": 209,
+      "female77KnownNeckPixelRestored": true,
+      "clothingBankHashesAndMetadataUnchanged": true
+    },
+    "standalonePlayer": {
+      "passed": true,
+      "packs": 4,
+      "editorClosed": true,
+      "newBrowserContexts": true,
+      "playingAndFacingChecked": true,
+      "reexportsByteExact": true
+    },
+    "roundtrip": {
+      "passed": true,
+      "characters": 2,
+      "newMixedProjectsByteExact": true,
+      "legacyClothingV1ByteExact": true,
+      "legacyAppearanceV2PixelsAndBytesExact": true,
+      "oldAppearanceUpgradeExplicit": true,
+      "atomicFailureAndCorruptionPreserveAccepted": true
+    },
+    "deliveredMedia": {
+      "passed": true,
+      "files": 135,
+      "png": 79,
+      "gif": 52,
+      "characterPacks": 4,
+      "bytes": 292834353,
+      "nativeCopiesByteExact": true,
+      "report": "review-integrity.json"
+    }
+  },
+  "nativeOutputs": [
+    {
+      "character": "male",
+      "view": "original",
+      "framesChecked": 88,
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d",
+      "appearanceSha256": "d0d1bf7efdebcb6b8ec1777b56375c22c571a8e2cb2c157dcc34547b4ef32b6b",
+      "packSha256": "2eff7798c83d62327e4f34018fdf3d69d77868982acaf6950596cb7982beefd4",
+      "priorAppearance": {
+        "bankSha256": "d0d1bf7efdebcb6b8ec1777b56375c22c571a8e2cb2c157dcc34547b4ef32b6b",
+        "originalBankAndPackByteExact": true,
+        "clothingMetadataAndBanksExact": true,
+        "sideFacePixelsAndBindingsExact": false,
+        "sideNeckForegroundFrames": 0,
+        "female77KnownNeckPixelRestored": false
+      }
+    },
+    {
+      "character": "male",
+      "view": "side",
+      "framesChecked": 107,
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+      "appearanceSha256": "43b8bcb61be0fb6185bc12581a0d011cc299b730646f368422188c2e78aadb79",
+      "packSha256": "c094df9fa06f3817c77e2902f3be9b0326d121cb8d3c5c31755bf79da1d4ca7d",
+      "priorAppearance": {
+        "bankSha256": "a6f4ff93cf3803bb7a9eeaa5d29fc5f6e051432ac8c5368e3900ce85928e129a",
+        "originalBankAndPackByteExact": false,
+        "clothingMetadataAndBanksExact": true,
+        "sideFacePixelsAndBindingsExact": true,
+        "sideNeckForegroundFrames": 107,
+        "female77KnownNeckPixelRestored": false
+      }
+    },
+    {
+      "character": "female",
+      "view": "original",
+      "framesChecked": 96,
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "appearanceSha256": "419c9f5827e33045071fd6416fd3d9a3cadbbf0d45b13baea8c395517e42edd8",
+      "packSha256": "37385feb47dd3840939d6993072cb1d3fbc34085ff850d6e986979983040c4de",
+      "priorAppearance": {
+        "bankSha256": "419c9f5827e33045071fd6416fd3d9a3cadbbf0d45b13baea8c395517e42edd8",
+        "originalBankAndPackByteExact": true,
+        "clothingMetadataAndBanksExact": true,
+        "sideFacePixelsAndBindingsExact": false,
+        "sideNeckForegroundFrames": 0,
+        "female77KnownNeckPixelRestored": false
+      }
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "framesChecked": 102,
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "appearanceSha256": "8b394def4ea02f97e72b1a2f1248af496cf1025e6566c8689913b93a74541e62",
+      "packSha256": "19d549eb69f6c3b1b6586d2ed3a36fa507a8152d08816916f743ff7d6a8a67e1",
+      "priorAppearance": {
+        "bankSha256": "a35fb16d5069ae4f094a03266f4885312ced315eae6c967f4ef2f266d523d993",
+        "originalBankAndPackByteExact": false,
+        "clothingMetadataAndBanksExact": true,
+        "sideFacePixelsAndBindingsExact": true,
+        "sideNeckForegroundFrames": 102,
+        "female77KnownNeckPixelRestored": true
+      }
+    }
+  ],
+  "visualStatus": "Improved matching hair and neck connection; known source/protection/clothing limits remain. This is not a claim of artifact-free artwork.",
+  "knownVisualLimits": [
+    "female side native95 opaque scalp retained by existing near-hand protection",
+    "minor male side native100 ear/scalp edge and retained source green-screen fringes",
+    "male side native82 shoulder garment notch",
+    "female side native97 forearm garment speck",
+    "existing stepped female blouse rear-shoulder edge exposed by shorter bob"
+  ],
+  "excludedFromFinalPassCount": [
+    "unit-pre-final-assets.log is a separately preserved earlier unit run",
+    "one production preview startup was voluntarily interrupted before producing results to avoid concurrent browser memory pressure"
+  ]
+}

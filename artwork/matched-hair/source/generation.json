@@ -1,0 +1,43 @@
+{
+  "tool": "image_gen.imagegen",
+  "date": "2026-10-30",
+  "baselineCommit": "f6fb2471b07390fc8b9a9b81caed84c536a72c2f",
+  "purpose": "Source-specific side-view turnaround donors for the existing original-view side-part and soft-bob designs. Generated face, ears, neck, clothes and body are discarded; original Kling source pixels are preserved.",
+  "transparentBackground": true,
+  "images": [
+    {
+      "file": "male-side-design-v1.png",
+      "sha256": "f2ec3a90a64243f0794c9de4b1bd25c437578c5b53bfcb1dff5fdf55414a3063",
+      "originalToolOutput": "/workspace/generated_images/exec-52f75c10-8a3f-41d4-bc1f-e5d4eb1b1147.png",
+      "selectedForHairExtraction": false,
+      "rejectionReason": "Hair style matched but ear opening did not fit the fixed source anatomy; discarded before runtime publication."
+    },
+    {
+      "file": "female-side-design-v1.png",
+      "sha256": "1859b3c5b4116b792a4576fe33b0fbe7f54346ebddd4e46477ac4cf9a8962bc8",
+      "originalToolOutput": "/workspace/generated_images/exec-0b1ed713-0faf-428d-b249-df377243d525.png",
+      "selectedForHairExtraction": true
+    },
+    {
+      "file": "male-side-design-v2.png",
+      "sha256": "cc2e5fdb9f3c9fac440c17fb11eced8d8b6ad930749f889ce035c61240744d4f",
+      "originalToolOutput": "image_gen.imagegen data:image/png;base64 response; decoded without modification",
+      "purpose": "Second male hair fit with source-sized ear opening; v1 rejected after native fitting.",
+      "selectedForHairExtraction": true
+    }
+  ],
+  "references": {
+    "male": [
+      "references/male-original-head-native.png",
+      "references/male-side-bald-head-native.png"
+    ],
+    "female": [
+      "references/female-original-head-native.png",
+      "references/female-side-bald-head-native.png"
+    ],
+    "male-v2": [
+      "references/male-side-bald-head-roomy-native.png",
+      "references/male-original-head-native.png"
+    ]
+  }
+}
