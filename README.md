@@ -72,6 +72,11 @@ the previous landing return and all artwork. Original-view routes and historical
 exported profiles retain their existing behavior.
 [Side takeoff review and actual before/after GIFs](docs/kling-takeoff-refine/README.md).
 
+The paired workbench reuses bounded native display surfaces for repeated frames
+and preserves the current jump when returning from a background tab. Artwork,
+motion profiles and exports retain their reviewed contents.
+[Playback measurements, diagnostic GIFs and validation](docs/paired-playback/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

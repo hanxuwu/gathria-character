@@ -1,0 +1,3389 @@
+{
+  "format": "gathria-browser-trace-presentation",
+  "version": 1,
+  "scope": "Diagnostic reconstruction from DOM frame-ID observations, not a screen recording, actual app GIF export, mobile-device benchmark or frame-rate guarantee.",
+  "before": {
+    "file": "/tmp/motion-continuity/before.json",
+    "sha256": "fdc357f4a3c1007ce3676d196cd377642a84ff250a8ce26302c23b5a83fe9a33",
+    "workspaceModuleSha256": "609c707e51d11466c2ac34c69e2a6bf5a0c9532342aaf41b60a076e3e18c0e32"
+  },
+  "after": {
+    "file": "/tmp/motion-continuity/after.json",
+    "sha256": "3dbf3d07a13c2b4bfb450e811979fe489f2ffc97893f83d5be8b8f8bee9d1825",
+    "workspaceModuleSha256": "0a3cfac5a8a5bc7f529256856da4e7dbda360bd075cc5361a0443f564e7171bf"
+  },
+  "artwork": "Both panels share the exact same native atlas frames. Uniform crop, scale, matte and shared 256-color palette are presentation only; no pose retouching or interpolation.",
+  "comparisons": [
+    {
+      "character": "male",
+      "view": "original",
+      "cpuRate": 4,
+      "alignment": "Earliest before sample with a matching after ID and a full observed window; no speed/phase retiming.",
+      "windows": [
+        {
+          "firstSampleIndex": 0,
+          "originTimestampMs": 55629.80000001192,
+          "samples": [
+            {
+              "at": 55629.80000001192,
+              "view": "original",
+              "action": "run",
+              "id": 59,
+              "relativeMs": 0.0
+            },
+            {
+              "at": 55755.5,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 125.69999998807907
+            },
+            {
+              "at": 55868.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 238.89999997615814
+            },
+            {
+              "at": 56007.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 377.5
+            },
+            {
+              "at": 56140,
+              "view": "original",
+              "action": "run",
+              "id": 51,
+              "relativeMs": 510.19999998807907
+            },
+            {
+              "at": 56267.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 637.8999999761581
+            },
+            {
+              "at": 56393.80000001192,
+              "view": "original",
+              "action": "run",
+              "id": 58,
+              "relativeMs": 764.0
+            },
+            {
+              "at": 56515.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 885.8999999761581
+            },
+            {
+              "at": 56635.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 1005.5
+            },
+            {
+              "at": 56756,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 1126.199999988079
+            },
+            {
+              "at": 56890,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 1260.199999988079
+            },
+            {
+              "at": 57017.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 56,
+              "relativeMs": 1387.3999999761581
+            },
+            {
+              "at": 57144.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 60,
+              "relativeMs": 1514.5
+            },
+            {
+              "at": 57277.09999999404,
+              "view": "original",
+              "action": "run",
+              "id": 63,
+              "relativeMs": 1647.2999999821186
+            },
+            {
+              "at": 57415.40000000596,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 1785.5999999940395
+            },
+            {
+              "at": 57551.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 53,
+              "relativeMs": 1921.3999999761581
+            }
+          ],
+          "fullTraceSamples": 24,
+          "fullTraceWallDurationMs": 3102,
+          "presentationAudit": {
+            "allSelectedObservationsShown": true,
+            "maximumPresentationDelayMs": 19.80000001192093,
+            "observationsInWindow": 16
+          }
+        },
+        {
+          "firstSampleIndex": 0,
+          "originTimestampMs": 56416.69999998808,
+          "samples": [
+            {
+              "at": 56416.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 59,
+              "relativeMs": 0.0
+            },
+            {
+              "at": 56480.29999998212,
+              "view": "original",
+              "action": "run",
+              "id": 60,
+              "relativeMs": 63.599999994039536
+            },
+            {
+              "at": 56540.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 124.0
+            },
+            {
+              "at": 56614.89999997616,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 198.19999998807907
+            },
+            {
+              "at": 56670.59999999404,
+              "view": "original",
+              "action": "run",
+              "id": 63,
+              "relativeMs": 253.90000000596046
+            },
+            {
+              "at": 56721.39999997616,
+              "view": "original",
+              "action": "run",
+              "id": 65,
+              "relativeMs": 304.69999998807907
+            },
+            {
+              "at": 56776.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 359.5
+            },
+            {
+              "at": 56838.39999997616,
+              "view": "original",
+              "action": "run",
+              "id": 51,
+              "relativeMs": 421.69999998807907
+            },
+            {
+              "at": 56900.89999997616,
+              "view": "original",
+              "action": "run",
+              "id": 53,
+              "relativeMs": 484.19999998807907
+            },
+            {
+              "at": 56960.39999997616,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 543.6999999880791
+            },
+            {
+              "at": 57032.09999999404,
+              "view": "original",
+              "action": "run",
+              "id": 56,
+              "relativeMs": 615.4000000059605
+            },
+            {
+              "at": 57117.5,
+              "view": "original",
+              "action": "run",
+              "id": 57,
+              "relativeMs": 700.8000000119209
+            },
+            {
+              "at": 57188.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 59,
+              "relativeMs": 772.0
+            },
+            {
+              "at": 57250.5,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 833.8000000119209
+            },
+            {
+              "at": 57315.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 63,
+              "relativeMs": 899.0
+            },
+            {
+              "at": 57388.79999998212,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 972.0999999940395
+            },
+            {
+              "at": 57474.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 1057.5
+            },
+            {
+              "at": 57555.39999997616,
+              "view": "original",
+              "action": "run",
+              "id": 52,
+              "relativeMs": 1138.699999988079
+            },
+            {
+              "at": 57623.39999997616,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 1206.699999988079
+            },
+            {
+              "at": 57690.89999997616,
+              "view": "original",
+              "action": "run",
+              "id": 56,
+              "relativeMs": 1274.199999988079
+            },
+            {
+              "at": 57754.69999998808,
+              "view": "original",
+              "action": "run",
+              "id": 57,
+              "relativeMs": 1338.0
+            },
+            {
+              "at": 57810.89999997616,
+              "view": "original",
+              "action": "run",
+              "id": 59,
+              "relativeMs": 1394.199999988079
+            },
+            {
+              "at": 57873,
+              "view": "original",
+              "action": "run",
+              "id": 60,
+              "relativeMs": 1456.300000011921
+            },
+            {
+              "at": 57943.79999998212,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 1527.0999999940395
+            },
+            {
+              "at": 58010.39999997616,
+              "view": "original",
+              "action": "run",
+              "id": 63,
+              "relativeMs": 1593.699999988079
+            },
+            {
+              "at": 58075.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 65,
+              "relativeMs": 1658.5
+            },
+            {
+              "at": 58129.29999998212,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 1712.5999999940395
+            },
+            {
+              "at": 58182.39999997616,
+              "view": "original",
+              "action": "run",
+              "id": 52,
+              "relativeMs": 1765.699999988079
+            },
+            {
+              "at": 58259.29999998212,
+              "view": "original",
+              "action": "run",
+              "id": 53,
+              "relativeMs": 1842.5999999940395
+            },
+            {
+              "at": 58324,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 1907.300000011921
+            },
+            {
+              "at": 58392.5,
+              "view": "original",
+              "action": "run",
+              "id": 56,
+              "relativeMs": 1975.800000011921
+            }
+          ],
+          "fullTraceSamples": 45,
+          "fullTraceWallDurationMs": 3055,
+          "presentationAudit": {
+            "allSelectedObservationsShown": true,
+            "maximumPresentationDelayMs": 19.19999998807907,
+            "observationsInWindow": 31
+          }
+        }
+      ],
+      "atlas": {
+        "file": "/tmp/landing-run/exports/male/original.character.zip",
+        "sha256": "4be640be3620abdf284bc498f5955570b03a8d83b8e1da93fcc0d9635d985633",
+        "committedDownloadReceipt": "docs/kling-landing-run/review/male/original.character.zip.receipt.json",
+        "committedDownloadReceiptSha256": "5b8f1d40ad6ef988a045fac314da2a2ffdbba1673f6969b94caf901fe2dfbd13",
+        "manifestSha256": "d1df629aa71e8c79cd01508c8233e2e27aabd4bf4da365a01084ad19ba47ae8f",
+        "atlasPageSha256": {
+          "spritesheet.png": "9bad77c27568e1c36f6829af056a567ff46036155641ba3a1ba20e63ac73861f",
+          "spritesheet-1.png": "16a97dc09790c211b82e550c477b69dc0b0deada078e3e23ce22985a36bb8352"
+        },
+        "frameRgbaSha256": {
+          "51": "5f9746f8ef1edf7c69516294fa814a962bb23c515ce46859c7af8b5cd128f0dd",
+          "52": "eb5209168f48eae98e27cf2e84f5551fb150b0d8564cf798623ac1bc362e4f0f",
+          "53": "737bc990dddbe1960930f322dadd9ea4e4bed34bee8110713f401f91dfe4fed9",
+          "54": "9c940bd8264e8534f1d5dcdbf455d489144df7b89c9587318cdb624c2ff7a2cf",
+          "56": "495e1517f92ab5fb07c0b970f0234fb9367d3ebfd4bd94082a9c05e9ea0642f4",
+          "57": "472671c7a28eb49b692111373bb33ba7e6d3d51667726c3ebb2b05402cc5baaf",
+          "58": "27a4160ca87d29dea3dbc3e69287865a37c8ed92dff8c464337cc2153c666a8e",
+          "59": "39bc1ad27f3c9c12254ab16f0651b7226a4cf1dc628f686eb88b7a75e1510dbe",
+          "60": "a4e20a0c3e2ffb1c80f5b7fd4da55ae80dd5e42132d1b5d7f688f2b0b2172658",
+          "61": "d5cebc58ba201cdd5c8864bf6b2d79c950214dae2fc0292e6338a3fba5a0875b",
+          "62": "b528b3b72d0c4104fee439fec07631a1a58116893f1aa0fe0959958e80426845",
+          "63": "d8f1337487f740ef00b1093ea643b1212229e285da8ce3a23af3c1903f13dfb4",
+          "64": "2f19170fef9bb080751a2b9bb524cb5b83cbbb8995bc9d3203b36ee991f931d1",
+          "65": "236d3644d6a87311aa071b387e99c0943b930f0fff33be45ce5fbb8a07cfd25c",
+          "66": "d185286eb0fe27ce4fb5585461ea71c64f1369be81e459f4800e7721a1c3fa5c"
+        },
+        "anchor": {
+          "x": 384,
+          "y": 1126,
+          "units": "pixels",
+          "origin": "top-left"
+        },
+        "provenance": "Actual previously downloaded composed CharacterPack; shared by both panels."
+      },
+      "presentation": {
+        "file": "male-original-cpu4-trace-before-after.gif",
+        "bytes": 976370,
+        "sha256": "f7d01d29110aaf1f4fec479e9eda4f9b37b750acf443af25adca7ea9fe5c31db",
+        "fixedCrop": [
+          82,
+          232,
+          685,
+          1136
+        ],
+        "uniformScale": 0.21017699115044247,
+        "durationMs": 2000,
+        "gridMs": 20,
+        "quantization": "Latest observed drawing at each grid point; each event is shown less than 20ms late. No 10ms frames, which GIF viewers may clamp.",
+        "reviewPauseMs": 800,
+        "loop": true,
+        "events": [
+          {
+            "presentationMs": 0,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 20,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 40,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 60,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 80,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              60
+            ],
+            "sourceObservationMs": [
+              0.0,
+              63.599999994039536
+            ]
+          },
+          {
+            "presentationMs": 100,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              60
+            ],
+            "sourceObservationMs": [
+              0.0,
+              63.599999994039536
+            ]
+          },
+          {
+            "presentationMs": 120,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              60
+            ],
+            "sourceObservationMs": [
+              0.0,
+              63.599999994039536
+            ]
+          },
+          {
+            "presentationMs": 140,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              61
+            ],
+            "sourceObservationMs": [
+              125.69999998807907,
+              124.0
+            ]
+          },
+          {
+            "presentationMs": 160,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              61
+            ],
+            "sourceObservationMs": [
+              125.69999998807907,
+              124.0
+            ]
+          },
+          {
+            "presentationMs": 180,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              61
+            ],
+            "sourceObservationMs": [
+              125.69999998807907,
+              124.0
+            ]
+          },
+          {
+            "presentationMs": 200,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              62
+            ],
+            "sourceObservationMs": [
+              125.69999998807907,
+              198.19999998807907
+            ]
+          },
+          {
+            "presentationMs": 220,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              62
+            ],
+            "sourceObservationMs": [
+              125.69999998807907,
+              198.19999998807907
+            ]
+          },
+          {
+            "presentationMs": 240,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              62
+            ],
+            "sourceObservationMs": [
+              238.89999997615814,
+              198.19999998807907
+            ]
+          },
+          {
+            "presentationMs": 260,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              63
+            ],
+            "sourceObservationMs": [
+              238.89999997615814,
+              253.90000000596046
+            ]
+          },
+          {
+            "presentationMs": 280,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              63
+            ],
+            "sourceObservationMs": [
+              238.89999997615814,
+              253.90000000596046
+            ]
+          },
+          {
+            "presentationMs": 300,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              63
+            ],
+            "sourceObservationMs": [
+              238.89999997615814,
+              253.90000000596046
+            ]
+          },
+          {
+            "presentationMs": 320,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              65
+            ],
+            "sourceObservationMs": [
+              238.89999997615814,
+              304.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 340,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              65
+            ],
+            "sourceObservationMs": [
+              238.89999997615814,
+              304.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 360,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              66
+            ],
+            "sourceObservationMs": [
+              238.89999997615814,
+              359.5
+            ]
+          },
+          {
+            "presentationMs": 380,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              377.5,
+              359.5
+            ]
+          },
+          {
+            "presentationMs": 400,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              377.5,
+              359.5
+            ]
+          },
+          {
+            "presentationMs": 420,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              377.5,
+              359.5
+            ]
+          },
+          {
+            "presentationMs": 440,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              51
+            ],
+            "sourceObservationMs": [
+              377.5,
+              421.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 460,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              51
+            ],
+            "sourceObservationMs": [
+              377.5,
+              421.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 480,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              51
+            ],
+            "sourceObservationMs": [
+              377.5,
+              421.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 500,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              53
+            ],
+            "sourceObservationMs": [
+              377.5,
+              484.19999998807907
+            ]
+          },
+          {
+            "presentationMs": 520,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              53
+            ],
+            "sourceObservationMs": [
+              510.19999998807907,
+              484.19999998807907
+            ]
+          },
+          {
+            "presentationMs": 540,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              53
+            ],
+            "sourceObservationMs": [
+              510.19999998807907,
+              484.19999998807907
+            ]
+          },
+          {
+            "presentationMs": 560,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              510.19999998807907,
+              543.6999999880791
+            ]
+          },
+          {
+            "presentationMs": 580,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              510.19999998807907,
+              543.6999999880791
+            ]
+          },
+          {
+            "presentationMs": 600,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              510.19999998807907,
+              543.6999999880791
+            ]
+          },
+          {
+            "presentationMs": 620,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              56
+            ],
+            "sourceObservationMs": [
+              510.19999998807907,
+              615.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 640,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              637.8999999761581,
+              615.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 660,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              637.8999999761581,
+              615.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 680,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              637.8999999761581,
+              615.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 700,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              637.8999999761581,
+              615.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 720,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              637.8999999761581,
+              700.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 740,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              637.8999999761581,
+              700.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 760,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              637.8999999761581,
+              700.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 780,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              59
+            ],
+            "sourceObservationMs": [
+              764.0,
+              772.0
+            ]
+          },
+          {
+            "presentationMs": 800,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              59
+            ],
+            "sourceObservationMs": [
+              764.0,
+              772.0
+            ]
+          },
+          {
+            "presentationMs": 820,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              59
+            ],
+            "sourceObservationMs": [
+              764.0,
+              772.0
+            ]
+          },
+          {
+            "presentationMs": 840,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              61
+            ],
+            "sourceObservationMs": [
+              764.0,
+              833.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 860,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              61
+            ],
+            "sourceObservationMs": [
+              764.0,
+              833.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 880,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              61
+            ],
+            "sourceObservationMs": [
+              764.0,
+              833.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 900,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              63
+            ],
+            "sourceObservationMs": [
+              885.8999999761581,
+              899.0
+            ]
+          },
+          {
+            "presentationMs": 920,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              63
+            ],
+            "sourceObservationMs": [
+              885.8999999761581,
+              899.0
+            ]
+          },
+          {
+            "presentationMs": 940,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              63
+            ],
+            "sourceObservationMs": [
+              885.8999999761581,
+              899.0
+            ]
+          },
+          {
+            "presentationMs": 960,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              63
+            ],
+            "sourceObservationMs": [
+              885.8999999761581,
+              899.0
+            ]
+          },
+          {
+            "presentationMs": 980,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              64
+            ],
+            "sourceObservationMs": [
+              885.8999999761581,
+              972.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1000,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              64
+            ],
+            "sourceObservationMs": [
+              885.8999999761581,
+              972.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1020,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              64
+            ],
+            "sourceObservationMs": [
+              1005.5,
+              972.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1040,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              64
+            ],
+            "sourceObservationMs": [
+              1005.5,
+              972.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1060,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              1005.5,
+              1057.5
+            ]
+          },
+          {
+            "presentationMs": 1080,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              1005.5,
+              1057.5
+            ]
+          },
+          {
+            "presentationMs": 1100,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              1005.5,
+              1057.5
+            ]
+          },
+          {
+            "presentationMs": 1120,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              1005.5,
+              1057.5
+            ]
+          },
+          {
+            "presentationMs": 1140,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              52
+            ],
+            "sourceObservationMs": [
+              1126.199999988079,
+              1138.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1160,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              52
+            ],
+            "sourceObservationMs": [
+              1126.199999988079,
+              1138.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1180,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              52
+            ],
+            "sourceObservationMs": [
+              1126.199999988079,
+              1138.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1200,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              52
+            ],
+            "sourceObservationMs": [
+              1126.199999988079,
+              1138.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1220,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              54
+            ],
+            "sourceObservationMs": [
+              1126.199999988079,
+              1206.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1240,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              54
+            ],
+            "sourceObservationMs": [
+              1126.199999988079,
+              1206.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1260,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              54
+            ],
+            "sourceObservationMs": [
+              1126.199999988079,
+              1206.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1280,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              1260.199999988079,
+              1274.199999988079
+            ]
+          },
+          {
+            "presentationMs": 1300,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              1260.199999988079,
+              1274.199999988079
+            ]
+          },
+          {
+            "presentationMs": 1320,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              1260.199999988079,
+              1274.199999988079
+            ]
+          },
+          {
+            "presentationMs": 1340,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              1260.199999988079,
+              1338.0
+            ]
+          },
+          {
+            "presentationMs": 1360,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              1260.199999988079,
+              1338.0
+            ]
+          },
+          {
+            "presentationMs": 1380,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              1260.199999988079,
+              1338.0
+            ]
+          },
+          {
+            "presentationMs": 1400,
+            "durationMs": 20,
+            "frameIds": [
+              56,
+              59
+            ],
+            "sourceObservationMs": [
+              1387.3999999761581,
+              1394.199999988079
+            ]
+          },
+          {
+            "presentationMs": 1420,
+            "durationMs": 20,
+            "frameIds": [
+              56,
+              59
+            ],
+            "sourceObservationMs": [
+              1387.3999999761581,
+              1394.199999988079
+            ]
+          },
+          {
+            "presentationMs": 1440,
+            "durationMs": 20,
+            "frameIds": [
+              56,
+              59
+            ],
+            "sourceObservationMs": [
+              1387.3999999761581,
+              1394.199999988079
+            ]
+          },
+          {
+            "presentationMs": 1460,
+            "durationMs": 20,
+            "frameIds": [
+              56,
+              60
+            ],
+            "sourceObservationMs": [
+              1387.3999999761581,
+              1456.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1480,
+            "durationMs": 20,
+            "frameIds": [
+              56,
+              60
+            ],
+            "sourceObservationMs": [
+              1387.3999999761581,
+              1456.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1500,
+            "durationMs": 20,
+            "frameIds": [
+              56,
+              60
+            ],
+            "sourceObservationMs": [
+              1387.3999999761581,
+              1456.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1520,
+            "durationMs": 20,
+            "frameIds": [
+              60,
+              60
+            ],
+            "sourceObservationMs": [
+              1514.5,
+              1456.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1540,
+            "durationMs": 20,
+            "frameIds": [
+              60,
+              62
+            ],
+            "sourceObservationMs": [
+              1514.5,
+              1527.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1560,
+            "durationMs": 20,
+            "frameIds": [
+              60,
+              62
+            ],
+            "sourceObservationMs": [
+              1514.5,
+              1527.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1580,
+            "durationMs": 20,
+            "frameIds": [
+              60,
+              62
+            ],
+            "sourceObservationMs": [
+              1514.5,
+              1527.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1600,
+            "durationMs": 20,
+            "frameIds": [
+              60,
+              63
+            ],
+            "sourceObservationMs": [
+              1514.5,
+              1593.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1620,
+            "durationMs": 20,
+            "frameIds": [
+              60,
+              63
+            ],
+            "sourceObservationMs": [
+              1514.5,
+              1593.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1640,
+            "durationMs": 20,
+            "frameIds": [
+              60,
+              63
+            ],
+            "sourceObservationMs": [
+              1514.5,
+              1593.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1660,
+            "durationMs": 20,
+            "frameIds": [
+              63,
+              65
+            ],
+            "sourceObservationMs": [
+              1647.2999999821186,
+              1658.5
+            ]
+          },
+          {
+            "presentationMs": 1680,
+            "durationMs": 20,
+            "frameIds": [
+              63,
+              65
+            ],
+            "sourceObservationMs": [
+              1647.2999999821186,
+              1658.5
+            ]
+          },
+          {
+            "presentationMs": 1700,
+            "durationMs": 20,
+            "frameIds": [
+              63,
+              65
+            ],
+            "sourceObservationMs": [
+              1647.2999999821186,
+              1658.5
+            ]
+          },
+          {
+            "presentationMs": 1720,
+            "durationMs": 20,
+            "frameIds": [
+              63,
+              66
+            ],
+            "sourceObservationMs": [
+              1647.2999999821186,
+              1712.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1740,
+            "durationMs": 20,
+            "frameIds": [
+              63,
+              66
+            ],
+            "sourceObservationMs": [
+              1647.2999999821186,
+              1712.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1760,
+            "durationMs": 20,
+            "frameIds": [
+              63,
+              66
+            ],
+            "sourceObservationMs": [
+              1647.2999999821186,
+              1712.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1780,
+            "durationMs": 20,
+            "frameIds": [
+              63,
+              52
+            ],
+            "sourceObservationMs": [
+              1647.2999999821186,
+              1765.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1800,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              52
+            ],
+            "sourceObservationMs": [
+              1785.5999999940395,
+              1765.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1820,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              52
+            ],
+            "sourceObservationMs": [
+              1785.5999999940395,
+              1765.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1840,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              52
+            ],
+            "sourceObservationMs": [
+              1785.5999999940395,
+              1765.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1860,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              53
+            ],
+            "sourceObservationMs": [
+              1785.5999999940395,
+              1842.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1880,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              53
+            ],
+            "sourceObservationMs": [
+              1785.5999999940395,
+              1842.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1900,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              53
+            ],
+            "sourceObservationMs": [
+              1785.5999999940395,
+              1842.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1920,
+            "durationMs": 20,
+            "frameIds": [
+              66,
+              54
+            ],
+            "sourceObservationMs": [
+              1785.5999999940395,
+              1907.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1940,
+            "durationMs": 20,
+            "frameIds": [
+              53,
+              54
+            ],
+            "sourceObservationMs": [
+              1921.3999999761581,
+              1907.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1960,
+            "durationMs": 20,
+            "frameIds": [
+              53,
+              54
+            ],
+            "sourceObservationMs": [
+              1921.3999999761581,
+              1907.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1980,
+            "durationMs": 20,
+            "frameIds": [
+              53,
+              56
+            ],
+            "sourceObservationMs": [
+              1921.3999999761581,
+              1975.800000011921
+            ]
+          }
+        ],
+        "decodedFrames": 40,
+        "decodedDurationsMs": [
+          80,
+          60,
+          60,
+          40,
+          20,
+          60,
+          40,
+          20,
+          60,
+          60,
+          20,
+          40,
+          60,
+          20,
+          80,
+          60,
+          60,
+          60,
+          80,
+          40,
+          40,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          20,
+          60,
+          60,
+          60,
+          60,
+          20,
+          60,
+          60,
+          20,
+          40,
+          20,
+          800
+        ]
+      }
+    },
+    {
+      "character": "female",
+      "view": "original",
+      "cpuRate": 4,
+      "alignment": "Earliest before sample with a matching after ID and a full observed window; no speed/phase retiming.",
+      "windows": [
+        {
+          "firstSampleIndex": 0,
+          "originTimestampMs": 50699.30000001192,
+          "samples": [
+            {
+              "at": 50699.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 59,
+              "relativeMs": 0.0
+            },
+            {
+              "at": 50814.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 115.0
+            },
+            {
+              "at": 50929,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 229.69999998807907
+            },
+            {
+              "at": 51058.5,
+              "view": "original",
+              "action": "run",
+              "id": 51,
+              "relativeMs": 359.19999998807907
+            },
+            {
+              "at": 51212.60000002384,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 513.3000000119209
+            },
+            {
+              "at": 51341.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 58,
+              "relativeMs": 642.0
+            },
+            {
+              "at": 51464.60000002384,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 765.3000000119209
+            },
+            {
+              "at": 51592.90000000596,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 893.5999999940395
+            },
+            {
+              "at": 51750,
+              "view": "original",
+              "action": "run",
+              "id": 51,
+              "relativeMs": 1050.699999988079
+            },
+            {
+              "at": 51890.20000001788,
+              "view": "original",
+              "action": "run",
+              "id": 55,
+              "relativeMs": 1190.9000000059605
+            },
+            {
+              "at": 52024.20000001788,
+              "view": "original",
+              "action": "run",
+              "id": 58,
+              "relativeMs": 1324.9000000059605
+            },
+            {
+              "at": 52145.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 1446.0
+            },
+            {
+              "at": 52266.10000002384,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 1566.800000011921
+            },
+            {
+              "at": 52415.60000002384,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 1716.300000011921
+            },
+            {
+              "at": 52552.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 51,
+              "relativeMs": 1853.0
+            },
+            {
+              "at": 52665.5,
+              "view": "original",
+              "action": "run",
+              "id": 55,
+              "relativeMs": 1966.199999988079
+            }
+          ],
+          "fullTraceSamples": 24,
+          "fullTraceWallDurationMs": 3153,
+          "presentationAudit": {
+            "allSelectedObservationsShown": true,
+            "maximumPresentationDelayMs": 18.0,
+            "observationsInWindow": 16
+          }
+        },
+        {
+          "firstSampleIndex": 13,
+          "originTimestampMs": 53370.5,
+          "samples": [
+            {
+              "at": 53370.5,
+              "view": "original",
+              "action": "run",
+              "id": 59,
+              "relativeMs": 0.0
+            },
+            {
+              "at": 53440.09999999404,
+              "view": "original",
+              "action": "run",
+              "id": 60,
+              "relativeMs": 69.59999999403954
+            },
+            {
+              "at": 53493,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 122.5
+            },
+            {
+              "at": 53545.59999999404,
+              "view": "original",
+              "action": "run",
+              "id": 63,
+              "relativeMs": 175.09999999403954
+            },
+            {
+              "at": 53595.80000001192,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 225.30000001192093
+            },
+            {
+              "at": 53646.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 275.80000001192093
+            },
+            {
+              "at": 53695.90000000596,
+              "view": "original",
+              "action": "run",
+              "id": 51,
+              "relativeMs": 325.40000000596046
+            },
+            {
+              "at": 53749.59999999404,
+              "view": "original",
+              "action": "run",
+              "id": 52,
+              "relativeMs": 379.09999999403954
+            },
+            {
+              "at": 53800.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 429.69999998807907
+            },
+            {
+              "at": 53851.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 55,
+              "relativeMs": 480.80000001192093
+            },
+            {
+              "at": 53901.5,
+              "view": "original",
+              "action": "run",
+              "id": 56,
+              "relativeMs": 531.0
+            },
+            {
+              "at": 53954.80000001192,
+              "view": "original",
+              "action": "run",
+              "id": 57,
+              "relativeMs": 584.3000000119209
+            },
+            {
+              "at": 54009.5,
+              "view": "original",
+              "action": "run",
+              "id": 58,
+              "relativeMs": 639.0
+            },
+            {
+              "at": 54057.59999999404,
+              "view": "original",
+              "action": "run",
+              "id": 60,
+              "relativeMs": 687.0999999940395
+            },
+            {
+              "at": 54112.90000000596,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 742.4000000059605
+            },
+            {
+              "at": 54170.90000000596,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 800.4000000059605
+            },
+            {
+              "at": 54229.40000000596,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 858.9000000059605
+            },
+            {
+              "at": 54278.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 65,
+              "relativeMs": 907.8000000119209
+            },
+            {
+              "at": 54332.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 961.6999999880791
+            },
+            {
+              "at": 54388.59999999404,
+              "view": "original",
+              "action": "run",
+              "id": 52,
+              "relativeMs": 1018.0999999940395
+            },
+            {
+              "at": 54454,
+              "view": "original",
+              "action": "run",
+              "id": 53,
+              "relativeMs": 1083.5
+            },
+            {
+              "at": 54514.40000000596,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 1143.9000000059605
+            },
+            {
+              "at": 54564.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 56,
+              "relativeMs": 1193.800000011921
+            },
+            {
+              "at": 54612.09999999404,
+              "view": "original",
+              "action": "run",
+              "id": 57,
+              "relativeMs": 1241.5999999940395
+            },
+            {
+              "at": 54667.09999999404,
+              "view": "original",
+              "action": "run",
+              "id": 58,
+              "relativeMs": 1296.5999999940395
+            },
+            {
+              "at": 54725.30000001192,
+              "view": "original",
+              "action": "run",
+              "id": 60,
+              "relativeMs": 1354.800000011921
+            },
+            {
+              "at": 54772.80000001192,
+              "view": "original",
+              "action": "run",
+              "id": 61,
+              "relativeMs": 1402.300000011921
+            },
+            {
+              "at": 54822.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 62,
+              "relativeMs": 1451.699999988079
+            },
+            {
+              "at": 54869.09999999404,
+              "view": "original",
+              "action": "run",
+              "id": 63,
+              "relativeMs": 1498.5999999940395
+            },
+            {
+              "at": 54919,
+              "view": "original",
+              "action": "run",
+              "id": 64,
+              "relativeMs": 1548.5
+            },
+            {
+              "at": 54987.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 66,
+              "relativeMs": 1616.699999988079
+            },
+            {
+              "at": 55042,
+              "view": "original",
+              "action": "run",
+              "id": 51,
+              "relativeMs": 1671.5
+            },
+            {
+              "at": 55105.5,
+              "view": "original",
+              "action": "run",
+              "id": 52,
+              "relativeMs": 1735.0
+            },
+            {
+              "at": 55169.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 54,
+              "relativeMs": 1798.699999988079
+            },
+            {
+              "at": 55225.5,
+              "view": "original",
+              "action": "run",
+              "id": 55,
+              "relativeMs": 1855.0
+            },
+            {
+              "at": 55281.59999999404,
+              "view": "original",
+              "action": "run",
+              "id": 57,
+              "relativeMs": 1911.0999999940395
+            },
+            {
+              "at": 55343.19999998808,
+              "view": "original",
+              "action": "run",
+              "id": 58,
+              "relativeMs": 1972.699999988079
+            }
+          ],
+          "fullTraceSamples": 55,
+          "fullTraceWallDurationMs": 3037,
+          "presentationAudit": {
+            "allSelectedObservationsShown": true,
+            "maximumPresentationDelayMs": 19.599999994039536,
+            "observationsInWindow": 37
+          }
+        }
+      ],
+      "atlas": {
+        "file": "/tmp/landing-run/exports/female/original.character.zip",
+        "sha256": "8c85a0f403beb3fb89e02078f52a45f363797150e013da02bdc9e07d3e1ea952",
+        "committedDownloadReceipt": "docs/kling-landing-run/review/female/original.character.zip.receipt.json",
+        "committedDownloadReceiptSha256": "0c55aac1cf58f1215c2c438e8e17d83dedefa52ca37a5e9efa3f38657cf73fa6",
+        "manifestSha256": "9756e330f039df6e1223c054add1182578f8fd23e600480612c654f20af869eb",
+        "atlasPageSha256": {
+          "spritesheet.png": "2c950aa0af938afcadd411e83b760a3df9d5ce53d8da84a6820a02dc4e3dcb49",
+          "spritesheet-1.png": "4901d85b850a897bf2f69c332fd35900f0879042ae596692c9e2de4b3e0cb573"
+        },
+        "frameRgbaSha256": {
+          "51": "d094dbe0f1d696b5c406fd4986d2e611ac3508f2da8d5211304f1362407b3232",
+          "52": "f1bf70672ad6e292ecf08425b7f893e10a92552ba0d98fd539c9fa9e2126e184",
+          "53": "aac93f67aa53015ef6b17d285f6cdd294f11e52f21608f00e38daebef176bf80",
+          "54": "f45d04b4491609f5bca0932f4eb3e5dbc02b7ec250d97be45d9502e026a22bbf",
+          "55": "b0d9aa688f4fc4899f4f1aaf4d0f933ad248f7ad820162be665fbfd9ae65c7a3",
+          "56": "b7d0343db7eb209aff985ef1ff62adc9fa513e5817ffd57b4c6e9a130eaba37e",
+          "57": "3ea1f381242f413258edbfd56ff068a88ae7f63a08f35ba47312f8ae7635792a",
+          "58": "d1800ac89a7b68ca1fa5c36f57c708fc82348195f45f152f3e3f8ce3c898a6a5",
+          "59": "ab066fa772a4e5ace60f38d01136ae1a04125e59cc7c17a03c7f574de4319a44",
+          "60": "750a9db31cba8ec181ad0d378cab4fbd3b59f8cf178a55932ccdf546c5a1dd75",
+          "61": "42957ca546499b24f578c21c4f6aecf7f7c38063aff77b34ee254e7bd596a968",
+          "62": "1b65de57e24ae6038573b5f54fd2d7e30abc9fa8e72736906d5052e0a722b4d1",
+          "63": "cc2fb417bb9d2165ba8de3204f7ea09c0c9b5c820bd8e54f2326b529cee7f9e1",
+          "64": "2eb85342c94f396681fbf6242eeafdcb26e80b14be2f05b7f5b2824eba02b187",
+          "65": "1844a912f6b6d7f457e617a05eae26212037808e41ce36ad308b283e3cb7a0ed",
+          "66": "5e0f7206eb76fa93deef951ab89519467136fb08ddf40c538340fe23db559dfe"
+        },
+        "anchor": {
+          "x": 384,
+          "y": 1126,
+          "units": "pixels",
+          "origin": "top-left"
+        },
+        "provenance": "Actual previously downloaded composed CharacterPack; shared by both panels."
+      },
+      "presentation": {
+        "file": "female-original-cpu4-trace-before-after.gif",
+        "bytes": 1198611,
+        "sha256": "0dfedfd65b728e9a33ba580209ed0086eef71eb5b2f45f9d7556a8595319f2d6",
+        "fixedCrop": [
+          86,
+          216,
+          676,
+          1136
+        ],
+        "uniformScale": 0.20652173913043478,
+        "durationMs": 2000,
+        "gridMs": 20,
+        "quantization": "Latest observed drawing at each grid point; each event is shown less than 20ms late. No 10ms frames, which GIF viewers may clamp.",
+        "reviewPauseMs": 800,
+        "loop": true,
+        "events": [
+          {
+            "presentationMs": 0,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 20,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 40,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 60,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              59
+            ],
+            "sourceObservationMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "presentationMs": 80,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              60
+            ],
+            "sourceObservationMs": [
+              0.0,
+              69.59999999403954
+            ]
+          },
+          {
+            "presentationMs": 100,
+            "durationMs": 20,
+            "frameIds": [
+              59,
+              60
+            ],
+            "sourceObservationMs": [
+              0.0,
+              69.59999999403954
+            ]
+          },
+          {
+            "presentationMs": 120,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              60
+            ],
+            "sourceObservationMs": [
+              115.0,
+              69.59999999403954
+            ]
+          },
+          {
+            "presentationMs": 140,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              62
+            ],
+            "sourceObservationMs": [
+              115.0,
+              122.5
+            ]
+          },
+          {
+            "presentationMs": 160,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              62
+            ],
+            "sourceObservationMs": [
+              115.0,
+              122.5
+            ]
+          },
+          {
+            "presentationMs": 180,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              63
+            ],
+            "sourceObservationMs": [
+              115.0,
+              175.09999999403954
+            ]
+          },
+          {
+            "presentationMs": 200,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              63
+            ],
+            "sourceObservationMs": [
+              115.0,
+              175.09999999403954
+            ]
+          },
+          {
+            "presentationMs": 220,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              63
+            ],
+            "sourceObservationMs": [
+              115.0,
+              175.09999999403954
+            ]
+          },
+          {
+            "presentationMs": 240,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              64
+            ],
+            "sourceObservationMs": [
+              229.69999998807907,
+              225.30000001192093
+            ]
+          },
+          {
+            "presentationMs": 260,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              64
+            ],
+            "sourceObservationMs": [
+              229.69999998807907,
+              225.30000001192093
+            ]
+          },
+          {
+            "presentationMs": 280,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              229.69999998807907,
+              275.80000001192093
+            ]
+          },
+          {
+            "presentationMs": 300,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              229.69999998807907,
+              275.80000001192093
+            ]
+          },
+          {
+            "presentationMs": 320,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              229.69999998807907,
+              275.80000001192093
+            ]
+          },
+          {
+            "presentationMs": 340,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              51
+            ],
+            "sourceObservationMs": [
+              229.69999998807907,
+              325.40000000596046
+            ]
+          },
+          {
+            "presentationMs": 360,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              51
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              325.40000000596046
+            ]
+          },
+          {
+            "presentationMs": 380,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              52
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              379.09999999403954
+            ]
+          },
+          {
+            "presentationMs": 400,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              52
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              379.09999999403954
+            ]
+          },
+          {
+            "presentationMs": 420,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              52
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              379.09999999403954
+            ]
+          },
+          {
+            "presentationMs": 440,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              429.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 460,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              429.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 480,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              429.69999998807907
+            ]
+          },
+          {
+            "presentationMs": 500,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              55
+            ],
+            "sourceObservationMs": [
+              359.19999998807907,
+              480.80000001192093
+            ]
+          },
+          {
+            "presentationMs": 520,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              55
+            ],
+            "sourceObservationMs": [
+              513.3000000119209,
+              480.80000001192093
+            ]
+          },
+          {
+            "presentationMs": 540,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              513.3000000119209,
+              531.0
+            ]
+          },
+          {
+            "presentationMs": 560,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              513.3000000119209,
+              531.0
+            ]
+          },
+          {
+            "presentationMs": 580,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              56
+            ],
+            "sourceObservationMs": [
+              513.3000000119209,
+              531.0
+            ]
+          },
+          {
+            "presentationMs": 600,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              513.3000000119209,
+              584.3000000119209
+            ]
+          },
+          {
+            "presentationMs": 620,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              57
+            ],
+            "sourceObservationMs": [
+              513.3000000119209,
+              584.3000000119209
+            ]
+          },
+          {
+            "presentationMs": 640,
+            "durationMs": 20,
+            "frameIds": [
+              54,
+              58
+            ],
+            "sourceObservationMs": [
+              513.3000000119209,
+              639.0
+            ]
+          },
+          {
+            "presentationMs": 660,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              58
+            ],
+            "sourceObservationMs": [
+              642.0,
+              639.0
+            ]
+          },
+          {
+            "presentationMs": 680,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              58
+            ],
+            "sourceObservationMs": [
+              642.0,
+              639.0
+            ]
+          },
+          {
+            "presentationMs": 700,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              60
+            ],
+            "sourceObservationMs": [
+              642.0,
+              687.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 720,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              60
+            ],
+            "sourceObservationMs": [
+              642.0,
+              687.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 740,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              60
+            ],
+            "sourceObservationMs": [
+              642.0,
+              687.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 760,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              61
+            ],
+            "sourceObservationMs": [
+              642.0,
+              742.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 780,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              61
+            ],
+            "sourceObservationMs": [
+              765.3000000119209,
+              742.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 800,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              61
+            ],
+            "sourceObservationMs": [
+              765.3000000119209,
+              742.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 820,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              62
+            ],
+            "sourceObservationMs": [
+              765.3000000119209,
+              800.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 840,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              62
+            ],
+            "sourceObservationMs": [
+              765.3000000119209,
+              800.4000000059605
+            ]
+          },
+          {
+            "presentationMs": 860,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              64
+            ],
+            "sourceObservationMs": [
+              765.3000000119209,
+              858.9000000059605
+            ]
+          },
+          {
+            "presentationMs": 880,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              64
+            ],
+            "sourceObservationMs": [
+              765.3000000119209,
+              858.9000000059605
+            ]
+          },
+          {
+            "presentationMs": 900,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              64
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              858.9000000059605
+            ]
+          },
+          {
+            "presentationMs": 920,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              65
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              907.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 940,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              65
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              907.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 960,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              65
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              907.8000000119209
+            ]
+          },
+          {
+            "presentationMs": 980,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              961.6999999880791
+            ]
+          },
+          {
+            "presentationMs": 1000,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              66
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              961.6999999880791
+            ]
+          },
+          {
+            "presentationMs": 1020,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              52
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              1018.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1040,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              52
+            ],
+            "sourceObservationMs": [
+              893.5999999940395,
+              1018.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1060,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              52
+            ],
+            "sourceObservationMs": [
+              1050.699999988079,
+              1018.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1080,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              52
+            ],
+            "sourceObservationMs": [
+              1050.699999988079,
+              1018.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1100,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              53
+            ],
+            "sourceObservationMs": [
+              1050.699999988079,
+              1083.5
+            ]
+          },
+          {
+            "presentationMs": 1120,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              53
+            ],
+            "sourceObservationMs": [
+              1050.699999988079,
+              1083.5
+            ]
+          },
+          {
+            "presentationMs": 1140,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              53
+            ],
+            "sourceObservationMs": [
+              1050.699999988079,
+              1083.5
+            ]
+          },
+          {
+            "presentationMs": 1160,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              1050.699999988079,
+              1143.9000000059605
+            ]
+          },
+          {
+            "presentationMs": 1180,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              54
+            ],
+            "sourceObservationMs": [
+              1050.699999988079,
+              1143.9000000059605
+            ]
+          },
+          {
+            "presentationMs": 1200,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              56
+            ],
+            "sourceObservationMs": [
+              1190.9000000059605,
+              1193.800000011921
+            ]
+          },
+          {
+            "presentationMs": 1220,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              56
+            ],
+            "sourceObservationMs": [
+              1190.9000000059605,
+              1193.800000011921
+            ]
+          },
+          {
+            "presentationMs": 1240,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              56
+            ],
+            "sourceObservationMs": [
+              1190.9000000059605,
+              1193.800000011921
+            ]
+          },
+          {
+            "presentationMs": 1260,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              57
+            ],
+            "sourceObservationMs": [
+              1190.9000000059605,
+              1241.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1280,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              57
+            ],
+            "sourceObservationMs": [
+              1190.9000000059605,
+              1241.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1300,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              58
+            ],
+            "sourceObservationMs": [
+              1190.9000000059605,
+              1296.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1320,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              58
+            ],
+            "sourceObservationMs": [
+              1190.9000000059605,
+              1296.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1340,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              58
+            ],
+            "sourceObservationMs": [
+              1324.9000000059605,
+              1296.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1360,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              60
+            ],
+            "sourceObservationMs": [
+              1324.9000000059605,
+              1354.800000011921
+            ]
+          },
+          {
+            "presentationMs": 1380,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              60
+            ],
+            "sourceObservationMs": [
+              1324.9000000059605,
+              1354.800000011921
+            ]
+          },
+          {
+            "presentationMs": 1400,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              60
+            ],
+            "sourceObservationMs": [
+              1324.9000000059605,
+              1354.800000011921
+            ]
+          },
+          {
+            "presentationMs": 1420,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              61
+            ],
+            "sourceObservationMs": [
+              1324.9000000059605,
+              1402.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1440,
+            "durationMs": 20,
+            "frameIds": [
+              58,
+              61
+            ],
+            "sourceObservationMs": [
+              1324.9000000059605,
+              1402.300000011921
+            ]
+          },
+          {
+            "presentationMs": 1460,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              62
+            ],
+            "sourceObservationMs": [
+              1446.0,
+              1451.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1480,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              62
+            ],
+            "sourceObservationMs": [
+              1446.0,
+              1451.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1500,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              63
+            ],
+            "sourceObservationMs": [
+              1446.0,
+              1498.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1520,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              63
+            ],
+            "sourceObservationMs": [
+              1446.0,
+              1498.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1540,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              63
+            ],
+            "sourceObservationMs": [
+              1446.0,
+              1498.5999999940395
+            ]
+          },
+          {
+            "presentationMs": 1560,
+            "durationMs": 20,
+            "frameIds": [
+              61,
+              64
+            ],
+            "sourceObservationMs": [
+              1446.0,
+              1548.5
+            ]
+          },
+          {
+            "presentationMs": 1580,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              64
+            ],
+            "sourceObservationMs": [
+              1566.800000011921,
+              1548.5
+            ]
+          },
+          {
+            "presentationMs": 1600,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              64
+            ],
+            "sourceObservationMs": [
+              1566.800000011921,
+              1548.5
+            ]
+          },
+          {
+            "presentationMs": 1620,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              66
+            ],
+            "sourceObservationMs": [
+              1566.800000011921,
+              1616.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1640,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              66
+            ],
+            "sourceObservationMs": [
+              1566.800000011921,
+              1616.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1660,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              66
+            ],
+            "sourceObservationMs": [
+              1566.800000011921,
+              1616.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1680,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              51
+            ],
+            "sourceObservationMs": [
+              1566.800000011921,
+              1671.5
+            ]
+          },
+          {
+            "presentationMs": 1700,
+            "durationMs": 20,
+            "frameIds": [
+              62,
+              51
+            ],
+            "sourceObservationMs": [
+              1566.800000011921,
+              1671.5
+            ]
+          },
+          {
+            "presentationMs": 1720,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              51
+            ],
+            "sourceObservationMs": [
+              1716.300000011921,
+              1671.5
+            ]
+          },
+          {
+            "presentationMs": 1740,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              52
+            ],
+            "sourceObservationMs": [
+              1716.300000011921,
+              1735.0
+            ]
+          },
+          {
+            "presentationMs": 1760,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              52
+            ],
+            "sourceObservationMs": [
+              1716.300000011921,
+              1735.0
+            ]
+          },
+          {
+            "presentationMs": 1780,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              52
+            ],
+            "sourceObservationMs": [
+              1716.300000011921,
+              1735.0
+            ]
+          },
+          {
+            "presentationMs": 1800,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              54
+            ],
+            "sourceObservationMs": [
+              1716.300000011921,
+              1798.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1820,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              54
+            ],
+            "sourceObservationMs": [
+              1716.300000011921,
+              1798.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1840,
+            "durationMs": 20,
+            "frameIds": [
+              64,
+              54
+            ],
+            "sourceObservationMs": [
+              1716.300000011921,
+              1798.699999988079
+            ]
+          },
+          {
+            "presentationMs": 1860,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              55
+            ],
+            "sourceObservationMs": [
+              1853.0,
+              1855.0
+            ]
+          },
+          {
+            "presentationMs": 1880,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              55
+            ],
+            "sourceObservationMs": [
+              1853.0,
+              1855.0
+            ]
+          },
+          {
+            "presentationMs": 1900,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              55
+            ],
+            "sourceObservationMs": [
+              1853.0,
+              1855.0
+            ]
+          },
+          {
+            "presentationMs": 1920,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              57
+            ],
+            "sourceObservationMs": [
+              1853.0,
+              1911.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1940,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              57
+            ],
+            "sourceObservationMs": [
+              1853.0,
+              1911.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1960,
+            "durationMs": 20,
+            "frameIds": [
+              51,
+              57
+            ],
+            "sourceObservationMs": [
+              1853.0,
+              1911.0999999940395
+            ]
+          },
+          {
+            "presentationMs": 1980,
+            "durationMs": 20,
+            "frameIds": [
+              55,
+              58
+            ],
+            "sourceObservationMs": [
+              1966.199999988079,
+              1972.699999988079
+            ]
+          }
+        ],
+        "decodedFrames": 48,
+        "decodedDurationsMs": [
+          80,
+          40,
+          20,
+          40,
+          60,
+          40,
+          60,
+          20,
+          20,
+          60,
+          60,
+          20,
+          20,
+          60,
+          40,
+          20,
+          40,
+          60,
+          20,
+          40,
+          40,
+          40,
+          20,
+          60,
+          40,
+          40,
+          40,
+          60,
+          40,
+          60,
+          40,
+          40,
+          20,
+          60,
+          40,
+          40,
+          60,
+          20,
+          40,
+          60,
+          40,
+          20,
+          60,
+          60,
+          60,
+          60,
+          20,
+          800
+        ]
+      }
+    }
+  ]
+}

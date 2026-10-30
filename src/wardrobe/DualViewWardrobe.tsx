@@ -64,6 +64,7 @@ import {
   comparisonLayout,
   type BodyCalibration,
 } from "./dual-view-comparison";
+import { DisplayFrameCache } from "./display-frame-cache";
 import "./dual-view-wardrobe.css";
 
 const VIEWS: DualView[] = ["original", "side"];
@@ -177,7 +178,13 @@ export default function DualViewWardrobe({
   >({});
   const calibrations = useRef(new Map<string, BodyCalibration>());
   const canvas = useRef<HTMLCanvasElement>(null);
-  const sourceCanvas = useRef<HTMLCanvasElement | null>(null);
+  const [displayFrames] = useState(
+    () =>
+      new DisplayFrameCache<HTMLCanvasElement>((surface) => {
+        surface.width = 0;
+        surface.height = 0;
+      }),
+  );
   const fileInput = useRef<HTMLInputElement>(null);
   const current = useRef<Session | null>(null);
   // Retain portable data for both characters; only the current character keeps
@@ -284,105 +291,120 @@ export default function DualViewWardrobe({
     const clip = open.manifests[source].animations[preview.action];
     const id = clip?.frames[preview.position];
     if (id === undefined) throw Error("当前动作没有可显示的原始帧。");
-    const image = renderer.renderFrame(id);
-    const width = comparison ? open.comparison.width : image.width;
-    const height = comparison ? open.comparison.height : image.height;
-    if (target.width !== width) target.width = width;
-    if (target.height !== height) target.height = height;
-    const sourceTarget = (sourceCanvas.current ??=
-      document.createElement("canvas"));
-    if (sourceTarget.width !== image.width) sourceTarget.width = image.width;
-    if (sourceTarget.height !== image.height)
-      sourceTarget.height = image.height;
-    sourceTarget
-      .getContext("2d")!
-      .putImageData(
-        new ImageData(
-          new Uint8ClampedArray(image.pixels),
-          image.width,
-          image.height,
-        ),
-        0,
-        0,
-      );
-    const context = target.getContext("2d")!;
-    context.setTransform(1, 0, 0, 1, 0, 0);
-    context.clearRect(0, 0, target.width, target.height);
-    context.save();
-    if (preview.facing === "left") {
-      context.translate(target.width, 0);
-      context.scale(-1, 1);
-    }
-    if (comparison) {
-      const transform = open.comparison.transforms[VIEWS.indexOf(source)];
-      context.imageSmoothingEnabled = true;
-      context.imageSmoothingQuality = "high";
-      context.drawImage(
-        sourceTarget,
-        transform.x,
-        transform.y,
-        image.width * transform.scale,
-        image.height * transform.scale,
-      );
-    } else context.drawImage(sourceTarget, 0, 0);
-    context.restore();
-    const headCatalog =
-      compatiblePairedAppearance(open.pair) ??
-      pairedAppearanceCatalog(open.pair.character);
-    const head = headCatalog
-      ? describeDualViewAppearance(open.pair, headCatalog)
-      : null;
-    const nativeHead = getWardrobeAppearanceSelection(
-      open.pair.projects[source],
+    displayFrames.withFrame(
+      renderer,
+      id,
+      () => {
+        const image = renderer.renderFrame(id);
+        const surface = document.createElement("canvas");
+        surface.width = image.width;
+        surface.height = image.height;
+        const context = surface.getContext("2d");
+        if (!context) {
+          surface.width = 0;
+          surface.height = 0;
+          throw Error("当前浏览器无法创建预览画布。");
+        }
+        context.putImageData(
+          new ImageData(
+            new Uint8ClampedArray(image.pixels),
+            image.width,
+            image.height,
+          ),
+          0,
+          0,
+        );
+        return surface;
+      },
+      (image) => {
+        const width = comparison ? open.comparison.width : image.width;
+        const height = comparison ? open.comparison.height : image.height;
+        if (target.width !== width) target.width = width;
+        if (target.height !== height) target.height = height;
+        const context = target.getContext("2d")!;
+        context.setTransform(1, 0, 0, 1, 0, 0);
+        context.clearRect(0, 0, target.width, target.height);
+        context.save();
+        if (preview.facing === "left") {
+          context.translate(target.width, 0);
+          context.scale(-1, 1);
+        }
+        if (comparison) {
+          const transform = open.comparison.transforms[VIEWS.indexOf(source)];
+          context.imageSmoothingEnabled = true;
+          context.imageSmoothingQuality = "high";
+          context.drawImage(
+            image,
+            transform.x,
+            transform.y,
+            image.width * transform.scale,
+            image.height * transform.scale,
+          );
+        } else context.drawImage(image, 0, 0);
+        context.restore();
+        const headCatalog =
+          compatiblePairedAppearance(open.pair) ??
+          pairedAppearanceCatalog(open.pair.character);
+        const head = headCatalog
+          ? describeDualViewAppearance(open.pair, headCatalog)
+          : null;
+        const nativeHead = getWardrobeAppearanceSelection(
+          open.pair.projects[source],
+        );
+        Object.assign(target.dataset, {
+          displayScale: String(
+            comparison
+              ? open.comparison.transforms[VIEWS.indexOf(source)].scale
+              : 1,
+          ),
+          displayBaseline: String(comparison ? open.comparison.baselineY : ""),
+          displayBodyHeight: String(
+            comparison ? open.comparison.bodyHeight : "",
+          ),
+          view: source,
+          character: open.pair.character,
+          outfit: open.pair.selection.outfitId,
+          palette: open.pair.selection.paletteId,
+          top: open.pair.selection.topId ?? "original",
+          bottom: open.pair.selection.bottomId ?? "original",
+          hair:
+            head?.status === "custom"
+              ? "custom"
+              : (head?.selection?.hairId ?? "original"),
+          face:
+            head?.status === "custom"
+              ? "custom"
+              : (head?.selection?.faceId ?? "original"),
+          hairColor: nativeHead.hairColor,
+          nativeHair: nativeHead.hairId ?? "original",
+          nativeFace: nativeHead.faceId ?? "original",
+          appearanceSha:
+            open.pair.projects[source].appearanceBank?.sha256 ?? "",
+          action: preview.action,
+          motionMode: open.pair.motionMode,
+          profileId: open.profiles[source]?.id ?? "",
+          pendingAction: motion.current[source].pending ?? "",
+          returnAction: motion.current[source].returnAction,
+          jumpFrom: motion.current[source].jumpFrom ?? "",
+          elapsedMs: String(
+            open.profiles[source]
+              ? motion.current[source].elapsedMs
+              : elapsed.current[source],
+          ),
+          framePosition: String(preview.position),
+          frameId: String(id),
+          facing: preview.facing,
+          paused: String(!playingRef.current[source]),
+          frameWidth: String(image.width),
+          frameHeight: String(image.height),
+          fps: String(clip!.fps),
+          frameCount: String(clip!.frames.length),
+          sourceSha: open.pair.projects[source].document.sourceSha256,
+          registrationSha:
+            open.pair.projects[source].document.registrationSha256,
+        });
+      },
     );
-    Object.assign(target.dataset, {
-      displayScale: String(
-        comparison
-          ? open.comparison.transforms[VIEWS.indexOf(source)].scale
-          : 1,
-      ),
-      displayBaseline: String(comparison ? open.comparison.baselineY : ""),
-      displayBodyHeight: String(comparison ? open.comparison.bodyHeight : ""),
-      view: source,
-      character: open.pair.character,
-      outfit: open.pair.selection.outfitId,
-      palette: open.pair.selection.paletteId,
-      top: open.pair.selection.topId ?? "original",
-      bottom: open.pair.selection.bottomId ?? "original",
-      hair:
-        head?.status === "custom"
-          ? "custom"
-          : (head?.selection?.hairId ?? "original"),
-      face:
-        head?.status === "custom"
-          ? "custom"
-          : (head?.selection?.faceId ?? "original"),
-      hairColor: nativeHead.hairColor,
-      nativeHair: nativeHead.hairId ?? "original",
-      nativeFace: nativeHead.faceId ?? "original",
-      appearanceSha: open.pair.projects[source].appearanceBank?.sha256 ?? "",
-      action: preview.action,
-      motionMode: open.pair.motionMode,
-      profileId: open.profiles[source]?.id ?? "",
-      pendingAction: motion.current[source].pending ?? "",
-      returnAction: motion.current[source].returnAction,
-      jumpFrom: motion.current[source].jumpFrom ?? "",
-      elapsedMs: String(
-        open.profiles[source]
-          ? motion.current[source].elapsedMs
-          : elapsed.current[source],
-      ),
-      framePosition: String(preview.position),
-      frameId: String(id),
-      facing: preview.facing,
-      paused: String(!playingRef.current[source]),
-      frameWidth: String(image.width),
-      frameHeight: String(image.height),
-      fps: String(clip!.fps),
-      frameCount: String(clip!.frames.length),
-      sourceSha: open.pair.projects[source].document.sourceSha256,
-      registrationSha: open.pair.projects[source].document.registrationSha256,
-    });
   }
 
   async function prepare(
@@ -448,6 +470,9 @@ export default function DualViewWardrobe({
         );
       }
       const replaced = current.current ?? undefined;
+      // Clear only after both replacement renderers and previews validate.
+      // Rejected/cancelled imports retain the accepted look's warm surfaces.
+      displayFrames.clear();
       remember(next);
       synchronizeClocks(nextPair, next.manifests);
       if (restoreView) callbacks.current.onViewChange(pair.activeView);
@@ -849,11 +874,22 @@ export default function DualViewWardrobe({
       alive.current = false;
       serial.current++;
       operation.current?.controller.abort();
+      displayFrames.clear();
       dispose(current.current ?? undefined);
       cached.current.clear();
       current.current = null;
     };
   }, [initialCharacter]);
+
+  useEffect(() => {
+    // A hidden tab may suspend RAF before a hidden tick is delivered. Reset
+    // at both boundaries so hidden wall time never skips takeoff or landing.
+    const resetClock = () => {
+      previousTime.current = null;
+    };
+    document.addEventListener("visibilitychange", resetClock);
+    return () => document.removeEventListener("visibilitychange", resetClock);
+  }, []);
 
   useEffect(() => {
     previousTime.current = null;

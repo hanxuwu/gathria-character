@@ -19,6 +19,13 @@ type Sample = {
   position: number;
   frame: number;
   elapsed: number;
+  pending: string;
+};
+type AirborneInput = {
+  at: number;
+  action: string;
+  position: number;
+  target: "run" | "idle";
 };
 
 async function ready(page: Page) {
@@ -80,12 +87,14 @@ async function observe(canvas: Locator) {
         position: Number(node.dataset.framePosition),
         frame: Number(node.dataset.frameId),
         elapsed: Number(node.dataset.elapsedMs),
+        pending: node.dataset.pendingAction ?? "",
       };
       const previous = win.landingSamples.at(-1);
       if (
         !previous ||
         previous.action !== value.action ||
-        previous.position !== value.position
+        previous.position !== value.position ||
+        previous.pending !== value.pending
       )
         win.landingSamples.push(value);
     };
@@ -93,6 +102,66 @@ async function observe(canvas: Locator) {
     win.landingObserver.observe(node, { attributes: true });
     capture();
   });
+}
+async function armAirborneInput(
+  canvas: Locator,
+  target: AirborneInput["target"],
+  landingExit: number,
+) {
+  // Observe and press the real control in the same browser task. Awaiting a
+  // Playwright poll, then observe(), then click() can consume the airborne
+  // interval on a loaded runner before the transient pending state is checked.
+  await canvas.evaluate(
+    (node, { target, landingExit }) => {
+      const win = window as unknown as {
+        landingInput: AirborneInput | null;
+        landingInputObserver?: MutationObserver;
+      };
+      win.landingInputObserver?.disconnect();
+      win.landingInput = null;
+      const button = document.querySelector<HTMLButtonElement>(
+        `[data-testid="dual-${target}"]`,
+      );
+      if (!button) throw Error(`Missing ${target} movement control`);
+      const trigger = () => {
+        const position = Number(node.dataset.framePosition);
+        if (
+          win.landingInput ||
+          node.dataset.action !== "jump" ||
+          position < 9 ||
+          position >= landingExit
+        )
+          return;
+        win.landingInput = {
+          at: performance.now(),
+          action: node.dataset.action,
+          position,
+          target,
+        };
+        win.landingInputObserver?.disconnect();
+        button.click();
+      };
+      win.landingInputObserver = new MutationObserver(trigger);
+      win.landingInputObserver.observe(node, { attributes: true });
+      trigger();
+    },
+    { target, landingExit },
+  );
+}
+async function airborneInput(canvas: Locator): Promise<AirborneInput> {
+  const input = await canvas.evaluate(() => {
+    const win = window as unknown as {
+      landingInput: AirborneInput | null;
+      landingInputObserver?: MutationObserver;
+    };
+    win.landingInputObserver?.disconnect();
+    return win.landingInput;
+  });
+  expect(
+    input,
+    "Movement request must be dispatched while airborne",
+  ).not.toBeNull();
+  return input!;
 }
 async function samples(canvas: Locator): Promise<Sample[]> {
   return canvas.evaluate(() => {
@@ -223,27 +292,26 @@ for (const character of ["male", "female"] as const) {
 
       // A new Run request while airborne is buffered until the reviewed landing.
       await pose(page, "idle");
-      await page.getByTestId("dual-jump-once").click();
-      await expect(stage(page)).toHaveAttribute("data-action", "jump", {
-        timeout: 5000,
-      });
-      await page.waitForFunction(() => {
-        const canvas = document.querySelector<HTMLCanvasElement>(
-          '[data-testid="dual-stage"]',
-        )!;
-        return (
-          canvas.dataset.action === "jump" &&
-          Number(canvas.dataset.framePosition) >= 9
-        );
-      });
       await observe(stage(page));
-      await page.getByTestId("dual-run").click();
-      await expect(stage(page)).toHaveAttribute("data-action", "jump");
-      await expect(stage(page)).toHaveAttribute("data-pending-action", "run");
+      await armAirborneInput(stage(page), "run", landing.exit);
+      await page.getByTestId("dual-jump-once").click();
       await expect(stage(page)).toHaveAttribute("data-action", "run", {
         timeout: 5000,
       });
-      const bufferedRecords = await samples(stage(page));
+      const runInput = await airborneInput(stage(page));
+      expect(runInput.action).toBe("jump");
+      expect(runInput.target).toBe("run");
+      expect(runInput.position).toBeGreaterThanOrEqual(9);
+      expect(runInput.position).toBeLessThan(landing.exit);
+      const bufferedRecords = (await samples(stage(page))).filter(
+        (record) => record.at >= runInput.at,
+      );
+      expect(
+        bufferedRecords.some(
+          (record) => record.action === "jump" && record.pending === "run",
+        ),
+        "Run must remain visibly queued during Jump before the landing",
+      ).toBe(true);
       expect(phases(bufferedRecords)).toEqual(["jump", "run"]);
       const bufferedPositions = bufferedRecords
         .filter((r) => r.action === "jump")
@@ -255,26 +323,26 @@ for (const character of ["male", "female"] as const) {
 
       // An idle request during the airborne interval still keeps the complete
       // standing recovery; only an explicitly requested moving exit is shortened.
-      await page.getByTestId("dual-jump-once").click();
-      await expect(stage(page)).toHaveAttribute("data-action", "jump", {
-        timeout: 5000,
-      });
-      await page.waitForFunction(() => {
-        const canvas = document.querySelector<HTMLCanvasElement>(
-          '[data-testid="dual-stage"]',
-        )!;
-        return (
-          canvas.dataset.action === "jump" &&
-          Number(canvas.dataset.framePosition) >= 9
-        );
-      });
       await observe(stage(page));
-      await page.getByTestId("dual-idle").click();
-      await expect(stage(page)).toHaveAttribute("data-action", "jump");
+      await armAirborneInput(stage(page), "idle", landing.exit);
+      await page.getByTestId("dual-jump-once").click();
       await expect(stage(page)).toHaveAttribute("data-action", "idle", {
         timeout: 5000,
       });
-      const idleRecords = await samples(stage(page));
+      const idleInput = await airborneInput(stage(page));
+      expect(idleInput.action).toBe("jump");
+      expect(idleInput.target).toBe("idle");
+      expect(idleInput.position).toBeGreaterThanOrEqual(9);
+      expect(idleInput.position).toBeLessThan(landing.exit);
+      const idleRecords = (await samples(stage(page))).filter(
+        (record) => record.at >= idleInput.at,
+      );
+      expect(
+        idleRecords.some(
+          (record) => record.action === "jump" && record.pending === "idle",
+        ),
+        "Idle must remain visibly queued while Jump completes its recovery",
+      ).toBe(true);
       expect(
         Math.max(
           ...idleRecords
@@ -315,6 +383,7 @@ for (const character of ["male", "female"] as const) {
         records,
         idleRecords,
         bufferedRecords,
+        airborneInputs: [runInput, idleInput],
         lateRecords,
         lateCase:
           view === "original"
