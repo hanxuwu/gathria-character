@@ -283,8 +283,8 @@ async function checkLandingRecovery(
   character: "male" | "female",
   directory: string,
 ) {
-  const frames = character === "male" ? [63, 62] : [58, 57];
-  const entry = character === "male" ? 14 : 11;
+  const frames = character === "male" ? [88, 89] : [83, 84];
+  const entry = character === "male" ? 10 : 7;
   await pauseBoth(page);
   await page.getByTestId("dual-compare-action").selectOption("jump");
   await page.getByTestId("dual-compare-frame-side").fill("22");
@@ -313,26 +313,31 @@ async function checkLandingRecovery(
     `${directory}/side-landing-checkpoint.png`,
   );
   expect(checkpoint.leadInElapsedMs).toBeCloseTo(10, 6);
-  const downloading = page.waitForEvent("download", { timeout: 180_000 });
-  await page.getByTestId("dual-save-project").click();
-  const download = await downloading;
-  expect(await download.failure()).toBeNull();
-  const path = `${directory}/landing-project.zip`;
-  await download.saveAs(path);
-  const bytes = await readFile(path);
-  const receipt = {
-    bytes: bytes.length,
-    sha256: createHash("sha256").update(bytes).digest("hex"),
-    filename: download.suggestedFilename(),
+  const reopenCheckpoint = async (name: string) => {
+    const expected = await painted(page, "side");
+    const downloading = page.waitForEvent("download", { timeout: 180_000 });
+    await page.getByTestId("dual-save-project").click();
+    const download = await downloading;
+    expect(await download.failure()).toBeNull();
+    const path = `${directory}/${name}.zip`;
+    await download.saveAs(path);
+    const bytes = await readFile(path);
+    const receipt = {
+      bytes: bytes.length,
+      sha256: createHash("sha256").update(bytes).digest("hex"),
+      filename: download.suggestedFilename(),
+    };
+    await ready(page);
+    await page.getByTestId("dual-compare-action").selectOption("idle");
+    await page.getByTestId("dual-project-input").setInputFiles(path);
+    await ready(page);
+    await expectBoth(page, "data-paused", "true");
+    const reopened = await painted(page, "side");
+    expect(reopened).toEqual(expected);
+    await rm(path);
+    return { reopened, receipt };
   };
-  await ready(page);
-  await page.getByTestId("dual-compare-action").selectOption("idle");
-  await page.getByTestId("dual-project-input").setInputFiles(path);
-  await ready(page);
-  await expectBoth(page, "data-paused", "true");
-  const reopened = await painted(page, "side");
-  expect(reopened).toEqual(checkpoint);
-  await rm(path);
+  const { reopened, receipt } = await reopenCheckpoint("landing-project");
   await page.getByTestId("dual-compare-play-all").click();
   await advance(page, 0);
   await backgroundWithoutRaf(page);
@@ -352,7 +357,17 @@ async function checkLandingRecovery(
   expect(second.leadInElapsedMs).toBeCloseTo(TICK, 6);
   await page.getByTestId("dual-jump-once").click();
   expect(await painted(page, "side")).toEqual(second);
-  await advance(page, TICK);
+  // Both recovery drawings are real checkpointable states. Preserve the second
+  // native image and its fractional elapsed time, not just the first drawing.
+  await advance(page, 10);
+  await pauseBoth(page);
+  const secondCheckpoint = await painted(page, "side");
+  expect(secondCheckpoint.frameId).toBe(frames[1]);
+  expect(secondCheckpoint.leadInElapsedMs).toBeCloseTo(TICK + 10, 6);
+  const secondRestore = await reopenCheckpoint("landing-second-project");
+  await page.getByTestId("dual-compare-play-all").click();
+  await advance(page, 0);
+  await advance(page, TICK - 10);
   const running = await painted(
     page,
     "side",
@@ -361,7 +376,7 @@ async function checkLandingRecovery(
   expect(running.action).toBe("run");
   expect(running.leadIn).toBe("false");
   expect(running.position).toBe(entry);
-  expect(running.frameId).toBe(character === "male" ? 53 : 45);
+  expect(running.frameId).toBe(character === "male" ? 49 : 41);
   expect(running.elapsedMs).toBeCloseTo(entry * TICK, 6);
   await advance(page, 18 * TICK);
   expect((await painted(page, "side")).action).toBe("run");
@@ -373,8 +388,11 @@ async function checkLandingRecovery(
     checkpoint,
     reopened,
     second,
+    secondCheckpoint,
+    secondReopened: secondRestore.reopened,
     running,
     download: receipt,
+    secondDownload: secondRestore.receipt,
     repeatJumpIgnored: true,
     fullRunCycleAfterRecovery: true,
   };

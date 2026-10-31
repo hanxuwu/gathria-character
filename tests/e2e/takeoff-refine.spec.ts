@@ -202,14 +202,14 @@ for (const character of ["male", "female"] as const) {
     const files = unzipSync(pack),
       manifest = json(files["manifest.json"]);
     const profile = json(files["character.json"]).sourceMetadata.gameplayMotion;
-    expect(profile.id).toBe(`kling-${character}-side-single-jump-v5`);
+    expect(profile.id).toBe(`kling-${character}-side-single-jump-v6`);
     expect(
       profile.routes.filter(
         (r: { from: string; to: string }) =>
           r.from === "run" && r.to === "jump",
       ),
     ).toEqual(reviewedRoutes);
-    // V5 retains the exact V4 takeoff routes above, and changes only the early
+    // V6 retains the exact V4 takeoff routes above, and changes only the early
     // moving landing. All other routes and source bindings retain their values.
     expect(
       profile.routes.filter(
@@ -221,8 +221,8 @@ for (const character of ["male", "female"] as const) {
         from: "jump",
         to: "run",
         exit: 23,
-        entry: character === "male" ? 14 : 11,
-        leadIn: character === "male" ? [63, 62] : [58, 57],
+        entry: character === "male" ? 10 : 7,
+        leadIn: character === "male" ? [88, 89] : [83, 84],
       },
       {
         from: "jump",
@@ -405,21 +405,24 @@ for (const character of ["male", "female"] as const) {
         "historical-v2",
         "historical-v3",
         "historical-v4",
+        "historical-v5",
       ] as const) {
         let file = packPath;
         if (variant !== "current") {
           const archived = unzipSync(await readFile(baseline));
-          const review =
+          const archiveDirectory =
             variant === "historical-v2"
-              ? "kling-landing-run"
+              ? "docs/kling-landing-run/review"
               : variant === "historical-v3"
-                ? "kling-takeoff-refine"
-                : "kling-takeoff-bridge";
+                ? "docs/kling-takeoff-refine/review"
+                : variant === "historical-v4"
+                  ? "docs/kling-takeoff-bridge/review"
+                  : "docs/kling-landing-posture/checks";
           archived["manifest.json"] = await readFile(
-            `docs/${review}/review/${character}/side.manifest.json`,
+            `${archiveDirectory}/${character}/side.manifest.json`,
           );
           archived["character.json"] = await readFile(
-            `docs/${review}/review/${character}/side.character.json`,
+            `${archiveDirectory}/${character}/side.character.json`,
           );
           file = `${directory}/side-${variant}.character.zip`;
           await writeFile(

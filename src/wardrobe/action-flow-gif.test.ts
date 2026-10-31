@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { decompressFrames, parseGIF } from "gifuct-js";
 import profiles from "../core/gameplay-motion-profiles.json";
+import legacyProfiles from "../core/gameplay-motion-legacy-profiles.json";
 import type { GameplayMotion } from "../core/gameplay-motion";
 import type { WardrobeCompositor } from "./compositor";
 import { exportWardrobeActionGif, gifDelays } from "./action-gif";
@@ -40,6 +41,101 @@ function fixture(row: (typeof profiles)[number]) {
 const read = (bytes: Uint8Array) => parseGIF(new Uint8Array(bytes).buffer);
 
 describe("single native jump exports", () => {
+  it.each(["male", "female"] as const)(
+    "%s V6 exports forward recovery and a complete run cycle while retaining the V5 basic jump",
+    async (character) => {
+      const row = profiles.find(
+        (entry) =>
+          entry.profile.view === "side" &&
+          entry.profile.characterId === character,
+      )!;
+      const { renderer, calls, profile } = fixture(row);
+      const previous = legacyProfiles.find(
+        (entry) =>
+          entry.profile.id === `kling-${character}-side-single-jump-v5`,
+      )!.profile as GameplayMotion;
+      expect(profile.id).toBe(`kling-${character}-side-single-jump-v6`);
+      expect(profile.actions).toEqual(previous.actions);
+      const recovery = character === "male" ? [88, 89] : [83, 84];
+      const entry = character === "male" ? 10 : 7;
+      expect(
+        profile.routes.find(
+          (route) => route.from === "jump" && route.to === "run",
+        ),
+      ).toEqual({
+        from: "jump",
+        to: "run",
+        exit: 23,
+        entry,
+        leadIn: recovery,
+      });
+      const sequence = buildWardrobeRunJumpSequence(profile);
+      const recoveryStart = sequence.frames.findIndex(
+        (frame, index) =>
+          index > 0 &&
+          frame.action === "run" &&
+          sequence.frames[index - 1].action === "jump",
+      );
+      expect(recoveryStart).toBeGreaterThan(0);
+      expect(
+        sequence.frames
+          .slice(recoveryStart, recoveryStart + 2)
+          .map((frame) => frame.frameId),
+      ).toEqual(recovery);
+      const nativeJumpPositions = sequence.frames
+        .slice(recoveryStart - 1, recoveryStart + 2)
+        .map((frame) => row.sourceActions.jump.frames.indexOf(frame.frameId));
+      expect(nativeJumpPositions[0]).toBeGreaterThanOrEqual(0);
+      expect(nativeJumpPositions[1]).toBeGreaterThan(nativeJumpPositions[0]);
+      expect(nativeJumpPositions[2]).toBeGreaterThan(nativeJumpPositions[1]);
+      const run = profile.actions.run;
+      const resumedRun = [
+        ...run.frames.slice(entry),
+        ...run.frames.slice(0, entry),
+      ];
+      expect(
+        sequence.frames.slice(recoveryStart + 2).map((frame) => frame.frameId),
+      ).toEqual(resumedRun);
+      expect(resumedRun[0]).toBe(character === "male" ? 49 : 41);
+      expect(sequence.returnRunTicks).toBe(run.frames.length);
+      expect(
+        sequence.frames.every((frame) => frame.durationMs === 1000 / 24),
+      ).toBe(true);
+
+      const exported = await exportWardrobeRunJumpGif(
+        renderer,
+        profile,
+        "right",
+      );
+      expect(calls.slice(recoveryStart)).toEqual([...recovery, ...resumedRun]);
+      const decoded = decompressFrames(read(exported), true);
+      expect(decoded).toHaveLength(sequence.frames.length);
+      expect(decoded.map((frame) => frame.delay)).toEqual(
+        gifDelays(sequence.frames.length, 24),
+      );
+
+      const basicJump = await exportWardrobeActionGif(
+        renderer,
+        "jump",
+        "right",
+        { gameplayMotion: profile },
+      );
+      const previousJump = await exportWardrobeActionGif(
+        renderer,
+        "jump",
+        "right",
+        { gameplayMotion: previous },
+      );
+      expect(basicJump).toEqual(previousJump);
+      const oldSequence = buildWardrobeRunJumpSequence(previous);
+      expect(
+        oldSequence.frames
+          .slice(recoveryStart, recoveryStart + 2)
+          .map((frame) => frame.frameId),
+      ).toEqual(character === "male" ? [63, 62] : [58, 57]);
+    },
+  );
+
   it.each(profiles)(
     "exports one complete run/jump/run sequence for $profile.id",
     async (row) => {

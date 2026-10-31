@@ -79,11 +79,12 @@ Paused approach poses can be saved and reopened in the paired project.
 The [previous V3 two-window review](docs/kling-takeoff-refine/README.md) remains
 available as a comparison; historical exported profiles retain that behavior.
 
-Side-view Jump → Run now leaves the standing tail after full landing compression,
-shows two native forward-stride drawings, and resumes a complete running cycle.
-Recovery checkpoints can be paused, saved and reopened without queuing another
-jump. This improves the first running step; the source arm/foot seam remains
-visible and is documented in the [actual V4/V5 GIF review](docs/kling-landing-posture/README.md).
+Side-view Jump → Run retains source-forward recovery order and enters a low
+passing-leg Run phase. It replaces the rejected V5 reverse-takeoff bridge while
+keeping the same 24 FPS and duration. Recovery checkpoints can be paused,
+saved and reopened; historical profiles remain readable. This is a conservative
+existing-art candidate with documented head/contact seams, not a seamless-motion
+claim. See the [V5/V6 actual GIF review](docs/kling-landing-forward/README.md).
 
 ## Open the app
 

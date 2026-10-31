@@ -31,15 +31,16 @@ const sources = {
 // full run cycle at the landing exit. V1 retains its complete jump; V2 resumes
 // running after contact/rebound, before the standing recovery. Side V3 adds a
 // second reviewed takeoff boundary. Side V4 adds phase-matched source lead-ins
-// at three evenly spaced boundaries. Side V5 adds two source recovery poses
-// before its running entry. Every revision keeps native 24 FPS.
+// at three evenly spaced boundaries. Side V5 reuses two source takeoff poses
+// in reverse before running. Side V6 replaces that rejected reverse approach
+// with forward landing recovery drawings. Every revision keeps native 24 FPS.
 function assertKnownRoutes(profile) {
   const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
   const original = profile.view === "original";
   const revision = Number(profile.id.slice(prefix.length).replace(/^v/, ""));
   assert(
     profile.id === `${prefix}v${revision}` &&
-      (original ? [1, 2] : [1, 2, 3, 4, 5]).includes(revision),
+      (original ? [1, 2] : [1, 2, 3, 4, 5, 6]).includes(revision),
     `Unknown reviewed motion profile: ${profile.id}`,
   );
   const male = profile.characterId === "male";
@@ -63,9 +64,32 @@ function assertKnownRoutes(profile) {
   const early = {
     from: "jump",
     to: "run",
-    exit: original ? 30 : revision === 5 ? 23 : 27,
-    entry: original ? 4 : revision === 5 ? (male ? 14 : 11) : male ? 16 : 13,
-    ...(revision === 5 ? { leadIn: male ? [63, 62] : [58, 57] } : {}),
+    exit: original ? 30 : revision >= 5 ? 23 : 27,
+    entry: original
+      ? 4
+      : revision === 6
+        ? male
+          ? 10
+          : 7
+        : revision === 5
+          ? male
+            ? 14
+            : 11
+          : male
+            ? 16
+            : 13,
+    ...(revision >= 5
+      ? {
+          leadIn:
+            revision === 6
+              ? male
+                ? [88, 89]
+                : [83, 84]
+              : male
+                ? [63, 62]
+                : [58, 57],
+        }
+      : {}),
   };
   const routes = (from, to) =>
     profile.routes
@@ -93,6 +117,18 @@ function assertKnownRoutes(profile) {
     revision >= 2 ? [early, complete] : [complete],
     "Landing routes differ from the reviewed revision boundaries",
   );
+  assert.equal(profile.actions.jump.fps, 24, "Jump cadence changed");
+  assert.equal(profile.actions.run.fps, 24, "Run cadence changed");
+  if (revision === 6) {
+    const forwardRecovery = [
+      ...profile.actions.jump.frames.slice(0, early.exit),
+      ...early.leadIn,
+    ];
+    assert(
+      forwardRecovery.every((id, i) => i === 0 || id > forwardRecovery[i - 1]),
+      "V6 landing recovery must advance in source order",
+    );
+  }
   return revision;
 }
 
@@ -256,17 +292,21 @@ for (const row of rows) {
         }
       : row.character === "male"
         ? {
-            exit: revision === 5 ? 23 : 27,
-            entry: revision === 5 ? 14 : 16,
-            ...(revision === 5 ? { leadIn: [63, 62] } : {}),
+            exit: revision >= 5 ? 23 : 27,
+            entry: revision === 6 ? 10 : revision === 5 ? 14 : 16,
+            ...(revision >= 5
+              ? { leadIn: revision === 6 ? [88, 89] : [63, 62] }
+              : {}),
             fallback: 28,
             fallbackEntry: 11,
             compressionEnd: 82,
           }
         : {
-            exit: revision === 5 ? 23 : 27,
-            entry: revision === 5 ? 11 : 13,
-            ...(revision === 5 ? { leadIn: [58, 57] } : {}),
+            exit: revision >= 5 ? 23 : 27,
+            entry: revision === 6 ? 7 : revision === 5 ? 11 : 13,
+            ...(revision >= 5
+              ? { leadIn: revision === 6 ? [83, 84] : [58, 57] }
+              : {}),
             fallback: 28,
             fallbackEntry: 8,
             compressionEnd: 77,

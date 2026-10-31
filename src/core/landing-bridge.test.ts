@@ -19,19 +19,19 @@ import type { PortableCharacterPackManifest } from "./types";
 
 const TICK = 1000 / 24;
 
-describe("V5 source-drawn running recovery", () => {
+describe("V6 forward source-drawn running recovery", () => {
   for (const character of ["male", "female"] as const) {
     const specification = currentSpecifications.find(
-      (row) => row.profile.id === `kling-${character}-side-single-jump-v5`,
+      (row) => row.profile.id === `kling-${character}-side-single-jump-v6`,
     )!;
     const profile = specification.profile as GameplayMotion;
     const old = legacySpecifications.find(
-      (row) => row.profile.id === `kling-${character}-side-single-jump-v4`,
+      (row) => row.profile.id === `kling-${character}-side-single-jump-v5`,
     )!.profile as GameplayMotion;
-    const recovery = character === "male" ? [63, 62] : [58, 57];
-    const entry = character === "male" ? 14 : 11;
+    const recovery = character === "male" ? [88, 89] : [83, 84];
+    const entry = character === "male" ? 10 : 7;
     const lastLandingFrame = character === "male" ? 85 : 80;
-    const entryFrame = character === "male" ? 53 : 45;
+    const entryFrame = character === "male" ? 49 : 41;
     const jumping = {
       ...createGameplayState("jump"),
       returnAction: "run" as const,
@@ -48,13 +48,13 @@ describe("V5 source-drawn running recovery", () => {
       ].map((id) => ({ id })),
     } as PortableCharacterPackManifest;
 
-    it(`${character}: changes only the moving landing route and preserves exact V4 imports`, () => {
+    it(`${character}: changes only moving recovery and retains historical V5 imports without endorsing their artwork`, () => {
       const normalized = structuredClone(profile);
       normalized.id = old.id;
       normalized.routes = normalized.routes.map((route) =>
         route.from === "jump" && route.to === "run" && route.exit === 23
           ? old.routes.find(
-              (r) => r.from === "jump" && r.to === "run" && r.exit === 27,
+              (r) => r.from === "jump" && r.to === "run" && r.exit === 23,
             )!
           : route,
       );
@@ -64,13 +64,39 @@ describe("V5 source-drawn running recovery", () => {
         sourceMetadata: { gameplayMotion: gameplayMotionMetadata(old) },
       });
       expect(imported).toEqual(old);
-      const oldContact = advanceGameplayMotion(old, jumping, 26 * TICK);
-      expect(gameplayFrameId(old, oldContact)).toBe(
-        character === "male" ? 89 : 84,
+      const oldContact = advanceGameplayMotion(old, jumping, 22 * TICK);
+      expect(gameplayFrameId(old, oldContact)).toBe(lastLandingFrame);
+      const oldRecovery = advanceGameplayMotion(old, oldContact, TICK);
+      expect(gameplayFrameId(old, oldRecovery)).toBe(
+        character === "male" ? 63 : 58,
       );
-      const oldRun = advanceGameplayMotion(old, oldContact, TICK);
+      expect(
+        gameplayFrameId(old, advanceGameplayMotion(old, oldRecovery, TICK)),
+      ).toBe(character === "male" ? 62 : 57);
+      const oldRun = advanceGameplayMotion(old, oldRecovery, 2 * TICK);
       expect(oldRun.leadIn).toBeUndefined();
-      expect(gameplayFrameId(old, oldRun)).toBe(character === "male" ? 55 : 47);
+      expect(gameplayFrameId(old, oldRun)).toBe(character === "male" ? 53 : 45);
+    });
+
+    it(`${character}: keeps landing drawings in source order at native cadence before entering the narrow running stride`, () => {
+      const ids: number[] = [];
+      let state = jumping as GameplayState;
+      for (let tick = 0; tick < 25; tick++) {
+        ids.push(gameplayFrameId(profile, state));
+        state = advanceGameplayMotion(profile, state, TICK);
+      }
+      const expected = [
+        ...profile.actions.jump.frames.slice(0, 23),
+        ...recovery,
+      ];
+      expect(ids).toEqual(expected);
+      expect(ids.every((id, index) => index === 0 || id > ids[index - 1])).toBe(
+        true,
+      );
+      expect(profile.actions.jump.fps).toBe(24);
+      expect(profile.actions.run.fps).toBe(24);
+      expect(state.leadIn).toBeUndefined();
+      expect(gameplayFrameId(profile, state)).toBe(entryFrame);
     });
 
     it(`${character}: finishes contact, shows both recovery drawings, and carries fractional time into the run entry`, () => {

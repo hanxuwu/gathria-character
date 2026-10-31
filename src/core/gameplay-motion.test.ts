@@ -402,7 +402,7 @@ describe("target-specific grounded landing exits", () => {
       const moving = advanceGameplayMotion(profile, contact, TICK);
       expect(moving.action).toBe("run");
       expect(gameplayFrameId(profile, moving)).toBe(
-        view === "original" ? 55 : character === "male" ? 63 : 58,
+        view === "original" ? 55 : character === "male" ? 88 : 83,
       );
     },
   );
@@ -415,7 +415,7 @@ describe("target-specific grounded landing exits", () => {
         (row) =>
           row.profile.characterId === character && row.profile.view === view,
       )!.profile as GameplayMotion;
-      expect(profile.id).toMatch(view === "side" ? /-v5$/ : /-v2$/);
+      expect(profile.id).toMatch(view === "side" ? /-v6$/ : /-v2$/);
       const archived = readGameplayMotion(gameplayManifest(manifest, old), {
         sourceMetadata: { gameplayMotion: gameplayMotionMetadata(old) },
       });

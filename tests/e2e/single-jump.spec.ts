@@ -280,7 +280,7 @@ for (const character of ["male", "female"] as const) {
         "previous-locomotion",
       );
       expect(config.sourceMetadata.gameplayMotion.id).toBe(
-        `kling-${character}-${source}-single-jump-${source === "side" ? "v5" : "v2"}`,
+        `kling-${character}-${source}-single-jump-${source === "side" ? "v6" : "v2"}`,
       );
       expect(
         config.sourceMetadata.gameplayMotion.routes
@@ -329,11 +329,11 @@ for (const character of ["male", "female"] as const) {
             ]
           : character === "male"
             ? [
-                [23, 14],
+                [23, 10],
                 [28, 11],
               ]
             : [
-                [23, 11],
+                [23, 7],
                 [28, 8],
               ],
       );
@@ -345,8 +345,8 @@ for (const character of ["male", "female"] as const) {
       ).toEqual(
         source === "side"
           ? character === "male"
-            ? [63, 62]
-            : [58, 57]
+            ? [88, 89]
+            : [83, 84]
           : undefined,
       );
       expect(manifest.animations.jump.loop).toBe(false);

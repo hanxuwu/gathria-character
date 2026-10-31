@@ -6,6 +6,7 @@ import { createBakedCharacterPack } from "../core/pack";
 import specifications from "../core/gameplay-motion-profiles.json";
 import legacySpecifications from "../core/gameplay-motion-legacy-profiles.json";
 import {
+  advanceGameplayMotion,
   createGameplayState,
   gameplayFrameId,
   type GameplayMotion,
@@ -322,6 +323,8 @@ describe("source-bound dual-view wardrobe persistence", () => {
     ["female", "landing"],
     ["male", "legacy-takeoff"],
     ["female", "legacy-takeoff"],
+    ["male", "legacy-landing"],
+    ["female", "legacy-landing"],
   ] as const)(
     "%s preserves a reviewed %s checkpoint and rejects altered or foreign state",
     async (character, phase) => {
@@ -352,11 +355,18 @@ describe("source-bound dual-view wardrobe persistence", () => {
           ),
         ].map((id) => ({ ...sample, id }));
       }
-      const profile = (
+      const legacyRevision =
         phase === "legacy-takeoff"
+          ? "v4"
+          : phase === "legacy-landing"
+            ? "v5"
+            : null;
+      const profile = (
+        legacyRevision
           ? legacySpecifications.find(
               (row) =>
-                row.profile.id === `kling-${character}-side-single-jump-v4`,
+                row.profile.id ===
+                `kling-${character}-side-single-jump-${legacyRevision}`,
             )
           : specifications.find(
               (row) =>
@@ -364,7 +374,7 @@ describe("source-bound dual-view wardrobe persistence", () => {
                 row.profile.characterId === character,
             )
       )!.profile as GameplayMotion;
-      const recovering = phase === "landing";
+      const recovering = phase === "landing" || phase === "legacy-landing";
       const from = recovering ? "jump" : "run";
       const action = recovering ? "run" : "jump";
       const route = profile.routes.find(
@@ -394,7 +404,10 @@ describe("source-bound dual-view wardrobe persistence", () => {
           },
         },
       };
-      const accepted = createDualViewWardrobe(projects, selected);
+      const accepted = createDualViewWardrobe(
+        projects,
+        JSON.parse(JSON.stringify(selected)),
+      );
       expect(accepted.previews.side).toEqual(selected.previews.side);
       expect(accepted.previews.side.takeoff).not.toBe(
         selected.previews.side.takeoff,
@@ -405,6 +418,18 @@ describe("source-bound dual-view wardrobe persistence", () => {
           accepted.previews.side.takeoff!.state,
         ),
       ).toBe(route.leadIn![0]);
+      const checkpoint = accepted.previews.side.takeoff!;
+      const resumed = advanceGameplayMotion(
+        checkpoint.profile,
+        checkpoint.state,
+        (route.leadIn!.length * 1000) / profile.actions[action].fps - 7.5,
+      );
+      expect(resumed.leadIn).toBeUndefined();
+      expect(gameplayFrameId(checkpoint.profile, resumed)).toBe(
+        profile.actions[action].frames[route.entry],
+      );
+      expect(checkpoint.profile.id).toBe(profile.id);
+      expect(checkpoint.state.leadIn!.elapsedMs).toBe(7.5);
       const mutations = [
         (value: DualViewSettings) => {
           value.motionMode = "source";
