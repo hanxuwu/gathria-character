@@ -21,6 +21,21 @@ import {
 import { encodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
 import type { Facing } from "../core/types";
 import {
+  gameplayManifest,
+  gameplayTransitionWait,
+  resolveGameplayMotion,
+  type GameplayMode,
+  type GameplayMotion,
+} from "../core/gameplay-motion";
+import {
+  advanceSidePlayback,
+  createSideGameplayState,
+  requestSidePlayback,
+  sideGameplayState,
+  sidePlaybackFrameId,
+  type SideGameplayState,
+} from "./gameplay";
+import {
   APPEARANCE_HAIR_COLORS,
   type AppearanceSelection,
 } from "../appearance/contract";
@@ -55,17 +70,13 @@ import {
   type SideCollection,
 } from "./catalog";
 import {
-  advanceSideMotion,
-  createSideMotionState,
-  requestSideAction,
   sideActionEnded,
-  sideFrameId,
   sideMotionFeedback,
   type SideAction,
-  type SideMotionState,
   type SideStageMode,
 } from "./motion";
 import { sideKeyboardIntent } from "./input";
+import { sideInspectionPose } from "./inspection-pose";
 import SideReviewPanel from "./SideReviewPanel";
 import { type ReviewNote, type ReviewRate } from "./review";
 import "./side-view.css";
@@ -80,7 +91,7 @@ const ACTION_LABELS: Record<SideAction, string> = {
   idle: "待机",
   walk: "行走",
   run: "跑步",
-  jump: "连续跳跃（原片两次）",
+  jump: "单次跳跃",
 };
 const ORIGINAL: WardrobeSelection = {
   top: null,
@@ -90,6 +101,7 @@ const ORIGINAL: WardrobeSelection = {
 };
 const PREFS_KEY = "gathria-side-stage-v1";
 type Preferences = {
+  playbackMode: GameplayMode;
   mode: SideStageMode;
   walkSpeed: number;
   runSpeed: number;
@@ -98,6 +110,7 @@ type Preferences = {
   comparison: boolean;
 };
 const DEFAULT_PREFS: Preferences = {
+  playbackMode: "single-jump",
   mode: "in-place",
   walkSpeed: 530,
   runSpeed: 700,
@@ -109,6 +122,8 @@ type Session = {
   character: SideCharacterId;
   project: WardrobeProject;
   renderer: WardrobeCompositor;
+  gameplay: GameplayMotion | null;
+  gameplayManifest: WardrobeCompositor["manifest"];
   currentFrames: Map<number, HTMLCanvasElement>;
   sourceFrames: Map<number, HTMLCanvasElement>;
 };
@@ -122,6 +137,7 @@ type Readout = {
   paused: boolean;
   pending: SideAction | null;
   ended: boolean;
+  bridge: "takeoff" | "landing-recovery" | null;
   transitionMs: number | null;
 };
 const INITIAL_READOUT: Readout = {
@@ -134,6 +150,7 @@ const INITIAL_READOUT: Readout = {
   paused: false,
   pending: null,
   ended: false,
+  bridge: null,
   transitionMs: null,
 };
 
@@ -142,6 +159,7 @@ function readPreferences(): Preferences {
     const value = JSON.parse(localStorage.getItem(PREFS_KEY) ?? "null");
     if (!value || typeof value !== "object") return DEFAULT_PREFS;
     return {
+      playbackMode: value.playbackMode === "source" ? "source" : "single-jump",
       mode: value.mode === "travel" ? "travel" : "in-place",
       walkSpeed: Number.isFinite(value.walkSpeed)
         ? Math.max(0, Math.min(1000, value.walkSpeed))
@@ -277,7 +295,7 @@ export default function SideViewPlayground({
   const travelReadoutRef = useRef<HTMLOutputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const sessionRef = useRef<Session | null>(null);
-  const motionRef = useRef<SideMotionState>(createSideMotionState());
+  const motionRef = useRef<SideGameplayState>(createSideGameplayState());
   const preferencesRef = useRef(preferences);
   const activeRef = useRef(active);
   const busyRef = useRef(true);
@@ -307,25 +325,79 @@ export default function SideViewPlayground({
     setEditingLocked(locked);
   }, []);
 
+  function playbackProfile(open: Session): GameplayMotion | null {
+    return preferencesRef.current.playbackMode === "single-jump"
+      ? open.gameplay
+      : null;
+  }
+
+  function playbackManifest(open: Session) {
+    return playbackProfile(open)
+      ? open.gameplayManifest
+      : open.renderer.manifest;
+  }
+
+  function actionLabel(action: SideAction) {
+    return action === "jump" && preferences.playbackMode === "source"
+      ? "原片连续两跳"
+      : ACTION_LABELS[action];
+  }
+
+  function changePlaybackMode(playbackMode: GameplayMode) {
+    const next = { ...preferencesRef.current, playbackMode };
+    preferencesRef.current = next;
+    setPreferences(next);
+    keysRef.current.clear();
+    pendingFacingRef.current = null;
+    keyboardJumpRef.current = false;
+    keyboardResumeRef.current = null;
+    motionRef.current = {
+      ...createSideGameplayState(),
+      worldX: motionRef.current.worldX,
+      facing: motionRef.current.facing,
+      paused: motionRef.current.paused,
+    };
+    lastTimeRef.current = null;
+    dirtyRef.current = true;
+  }
+
+  function inspectionPose(open: Session, action: SideAction, frameId: number) {
+    const source = sideInspectionPose(open.renderer.manifest, action, frameId);
+    if (!source) {
+      setError("当前素材中找不到该审阅帧，无法定位；当前姿势保持不变。");
+      return null;
+    }
+    const clip = playbackManifest(open).animations[source.action];
+    const position = clip?.frames.indexOf(frameId) ?? -1;
+    if (clip && position >= 0)
+      return { action: source.action, position, fps: clip.fps };
+    changePlaybackMode("source");
+    setStatus(
+      "该审阅帧位于完整原片中，已切换为原片动作。可在动作模式中返回单次跳跃。",
+    );
+    return source;
+  }
+
   const locateFittingPose = useCallback(
     (action: SideAction, frameId: number) => {
       const open = sessionRef.current;
       if (!open || !activeRef.current || busyRef.current) return;
-      const clip = open.renderer.manifest.animations[action];
-      const index = clip?.frames.indexOf(frameId) ?? -1;
-      if (!clip || index < 0) return;
+      const pose = inspectionPose(open, action, frameId);
+      if (!pose) return;
       keysRef.current.clear();
       pendingFacingRef.current = null;
       keyboardJumpRef.current = false;
       keyboardResumeRef.current = null;
       motionRef.current = {
         ...motionRef.current,
-        action,
+        action: pose.action,
         paused: true,
         pending: null,
         jumpFrom: null,
-        elapsedMs: (index * 1000) / clip.fps + 0.000001,
+        returnAction: pose.action === "jump" ? "idle" : pose.action,
+        elapsedMs: (pose.position * 1000) / pose.fps + 0.000001,
       };
+      delete motionRef.current.leadIn;
       lastTimeRef.current = null;
       dirtyRef.current = true;
     },
@@ -378,10 +450,18 @@ export default function SideViewPlayground({
         renderer.dispose();
         return;
       }
+      const gameplay = resolveGameplayMotion(
+        renderer.manifest,
+        candidate.document.sourceSha256,
+      );
       const next: Session = {
         character,
         project: candidate,
         renderer,
+        gameplay,
+        gameplayManifest: gameplay
+          ? gameplayManifest(renderer.manifest, gameplay)
+          : renderer.manifest,
         currentFrames: new Map(),
         sourceFrames: new Map(),
       };
@@ -393,7 +473,7 @@ export default function SideViewPlayground({
           ? (saved.action as SideAction)
           : "idle";
         motionRef.current = {
-          ...createSideMotionState(),
+          ...createSideGameplayState(),
           action,
           facing: saved.facing,
           paused: reviewRef.current.open,
@@ -584,24 +664,32 @@ export default function SideViewPlayground({
       keyboardResumeRef.current = null;
     }
     // A paused action button selects a review pose immediately. Playing jumps
-    // still complete the original two-jump clip before consuming an exit.
+    // still complete the selected jump and its landing before consuming an exit.
     if (inspect && current.paused) {
       motionRef.current = {
         ...current,
         action,
         elapsedMs: 0,
         pending: null,
+        returnAction:
+          action === "jump"
+            ? current.action === "jump"
+              ? current.returnAction
+              : current.action
+            : action,
         jumpFrom:
           action === "jump" &&
           (current.action === "walk" || current.action === "run")
             ? current.action
             : null,
       };
+      delete motionRef.current.leadIn;
     } else
-      motionRef.current = requestSideAction(
+      motionRef.current = requestSidePlayback(
         current,
         action,
-        open.renderer.manifest,
+        playbackManifest(open),
+        playbackProfile(open),
       );
     dirtyRef.current = true;
   }
@@ -613,7 +701,7 @@ export default function SideViewPlayground({
     if (
       motion.action === "jump" &&
       !motion.paused &&
-      !sideActionEnded(motion, open.renderer.manifest)
+      !sideActionEnded(motion, playbackManifest(open))
     )
       pendingFacingRef.current = facing;
     else {
@@ -630,7 +718,13 @@ export default function SideViewPlayground({
     // A locomotion seam may still be waiting to start the requested jump.
     // Preserve that request while remembering the latest held-key intent.
     if (keyboardJumpRef.current && motionRef.current.pending === "jump") {
-      keyboardResumeRef.current = requested;
+      const open = sessionRef.current;
+      if (open && playbackProfile(open)) {
+        // Record the landing intent before advancing time. A delayed RAF can
+        // cross both takeoff and landing in one tick without losing a keyup.
+        requestAction(requested);
+        keyboardResumeRef.current = null;
+      } else keyboardResumeRef.current = requested;
       return;
     }
     if (keyboardJumpRef.current && motionRef.current.action === "jump")
@@ -642,8 +736,12 @@ export default function SideViewPlayground({
     const open = sessionRef.current;
     if (!open || busyRef.current) return;
     const current = motionRef.current;
-    const clip = open.renderer.manifest.animations[current.action]!;
-    const frame = sideFrameId(current, open.renderer.manifest);
+    const clip = playbackManifest(open).animations[current.action]!;
+    const frame = sidePlaybackFrameId(
+      current,
+      playbackManifest(open),
+      playbackProfile(open),
+    );
     const index = Math.max(0, clip.frames.indexOf(frame));
     const next = clip.loop
       ? (index + direction + clip.frames.length) % clip.frames.length
@@ -655,7 +753,7 @@ export default function SideViewPlayground({
     const open = sessionRef.current;
     if (!open || busyRef.current || editingLockedRef.current) return;
     const current = motionRef.current;
-    const clip = open.renderer.manifest.animations[current.action]!;
+    const clip = playbackManifest(open).animations[current.action]!;
     const next = Math.max(0, Math.min(clip.frames.length - 1, index));
     motionRef.current = {
       ...current,
@@ -663,6 +761,7 @@ export default function SideViewPlayground({
       pending: null,
       elapsedMs: (next * 1000) / clip.fps + 0.000001,
     };
+    delete motionRef.current.leadIn;
     dirtyRef.current = true;
   }
 
@@ -690,22 +789,23 @@ export default function SideViewPlayground({
   function locateReviewNote(note: ReviewNote) {
     const open = sessionRef.current;
     if (!open || busyRef.current || editingLockedRef.current) return;
-    const clip = open.renderer.manifest.animations[note.action];
-    const index = clip?.frames.indexOf(note.frame) ?? -1;
-    if (!clip || index < 0) return;
+    const pose = inspectionPose(open, note.action, note.frame);
+    if (!pose) return;
     keysRef.current.clear();
     pendingFacingRef.current = null;
     keyboardJumpRef.current = false;
     keyboardResumeRef.current = null;
     motionRef.current = {
       ...motionRef.current,
-      action: note.action,
+      action: pose.action,
       facing: note.facing,
       paused: true,
       pending: null,
       jumpFrom: null,
-      elapsedMs: (index * 1000) / clip.fps + 0.000001,
+      returnAction: pose.action === "jump" ? "idle" : pose.action,
+      elapsedMs: (pose.position * 1000) / pose.fps + 0.000001,
     };
+    delete motionRef.current.leadIn;
     lastTimeRef.current = null;
     dirtyRef.current = true;
   }
@@ -744,6 +844,7 @@ export default function SideViewPlayground({
         filename = `${stem}.wardrobe.zip`;
       } else if (kind === "pack") {
         bytes = await exportWardrobeCharacterPack(project, {
+          gameplayMotion: playbackProfile(open) ?? undefined,
           onProgress: ({ completedPages, totalPages }) => {
             if (live(token, controller))
               setStatus(
@@ -762,6 +863,7 @@ export default function SideViewPlayground({
           motion.facing,
           {
             signal: controller.signal,
+            gameplayMotion: playbackProfile(open) ?? undefined,
             onProgress: (done, total) => {
               if (live(token, controller))
                 setStatus(`正在生成动作 GIF · ${done} / ${total}`);
@@ -771,7 +873,11 @@ export default function SideViewPlayground({
         filename = `${stem}-${motion.action}-${motion.facing}.gif`;
         mime = "image/gif";
       } else {
-        const frame = sideFrameId(motion, open.renderer.manifest);
+        const frame = sidePlaybackFrameId(
+          motion,
+          playbackManifest(open),
+          playbackProfile(open),
+        );
         const image = open.renderer.renderFrame(frame);
         bytes = encodeSourceRgbaPng(
           motion.facing === "left" ? mirrored(image) : image,
@@ -876,7 +982,7 @@ export default function SideViewPlayground({
           motionRef.current.action === "jump" &&
           !sideActionEnded(
             motionRef.current,
-            sessionRef.current.renderer.manifest,
+            playbackManifest(sessionRef.current),
           )
         )
           return;
@@ -885,6 +991,10 @@ export default function SideViewPlayground({
         keyboardResumeRef.current =
           intent.action === "idle" ? null : intent.action;
         requestAction("jump");
+        if (playbackProfile(sessionRef.current)) {
+          if (intent.action !== "idle") requestAction(intent.action);
+          keyboardResumeRef.current = null;
+        }
         return;
       }
       synchronizeKeys();
@@ -930,12 +1040,12 @@ export default function SideViewPlayground({
       const rate = reviewRef.current.open ? reviewRef.current.rate : 1;
       lastTimeRef.current = now;
       try {
-        const manifest = open.renderer.manifest;
+        const manifest = playbackManifest(open);
         // Travel uses a following camera. These finite bounds protect numeric
         // precision without stopping ordinary playback at the screen edges.
         const bounds = { min: -10_000_000, max: 10_000_000 };
         if (!busyRef.current)
-          motionRef.current = advanceSideMotion(
+          motionRef.current = advanceSidePlayback(
             motionRef.current,
             delta * rate,
             manifest,
@@ -945,6 +1055,7 @@ export default function SideViewPlayground({
               runSpeed: prefs.runSpeed,
               bounds,
             },
+            playbackProfile(open),
           );
         let motion = motionRef.current;
         if (
@@ -952,10 +1063,11 @@ export default function SideViewPlayground({
           motion.action === "jump" &&
           keyboardResumeRef.current !== null
         ) {
-          motion = requestSideAction(
+          motion = requestSidePlayback(
             motion,
             keyboardResumeRef.current,
             manifest,
+            playbackProfile(open),
           );
           keyboardResumeRef.current = null;
           motionRef.current = motion;
@@ -976,11 +1088,22 @@ export default function SideViewPlayground({
           pendingFacingRef.current = null;
           motionRef.current = motion;
         }
-        const frame = sideFrameId(motion, manifest);
+        const frame = sidePlaybackFrameId(
+          motion,
+          manifest,
+          playbackProfile(open),
+        );
         const clip = manifest.animations[motion.action]!;
         const index = Math.max(0, clip.frames.indexOf(frame));
         const ended = sideActionEnded(motion, manifest);
         const feedback = sideMotionFeedback(motion, manifest);
+        const gameplay = playbackProfile(open);
+        const pending =
+          motion.pending ??
+          (gameplay && motion.action === "jump" ? motion.returnAction : null);
+        const transitionMs = gameplay
+          ? gameplayTransitionWait(gameplay, sideGameplayState(motion))
+          : (feedback.transition?.remainingMs ?? null);
         canvas.dataset.action = motion.action;
         canvas.dataset.frame = String(frame);
         canvas.dataset.frameIndex = String(index);
@@ -996,15 +1119,24 @@ export default function SideViewPlayground({
         if (travelReadoutRef.current)
           travelReadoutRef.current.textContent = `${motion.worldX >= 0 ? "+" : ""}${Math.round(motion.worldX).toLocaleString()} px`;
         canvas.dataset.elapsedMs = motion.elapsedMs.toFixed(3);
+        canvas.dataset.leadIn = String(!!motion.leadIn);
+        canvas.dataset.leadInElapsedMs = String(motion.leadIn?.elapsedMs ?? 0);
         canvas.dataset.fps = String(clip.fps);
         canvas.dataset.timing = rate === 1 ? "native-1x" : `review-${rate}x`;
         canvas.dataset.previewRate = String(rate);
         canvas.dataset.paused = String(motion.paused);
-        canvas.dataset.pending = motion.pending ?? "";
+        canvas.dataset.pending = pending ?? "";
+        canvas.dataset.playbackMode = gameplay ? "single-jump" : "source";
+        canvas.dataset.frameCount = String(clip.frames.length);
         canvas.dataset.ended = String(ended);
         canvas.dataset.character = open.character;
         canvas.dataset.collection = sideProjectCollection(open.project);
-        canvas.dataset.phase = feedback.phase;
+        const bridge = motion.leadIn
+          ? motion.leadIn.from === "jump"
+            ? "landing-recovery"
+            : "takeoff"
+          : null;
+        canvas.dataset.phase = bridge ?? feedback.phase;
         canvas.dataset.appearance = JSON.stringify(
           getWardrobeAppearanceSelection(open.project),
         );
@@ -1019,11 +1151,10 @@ export default function SideViewPlayground({
           frame,
           motion.facing,
           motion.paused,
-          motion.pending,
+          pending,
           ended,
-          feedback.transition
-            ? Math.ceil(feedback.transition.remainingMs / 100)
-            : null,
+          bridge,
+          transitionMs === null ? null : Math.ceil(transitionMs / 100),
         ].join(":");
         if (readoutKey !== lastReadout) {
           lastReadout = readoutKey;
@@ -1035,9 +1166,10 @@ export default function SideViewPlayground({
             fps: clip.fps,
             facing: motion.facing,
             paused: motion.paused,
-            pending: motion.pending,
+            pending,
             ended,
-            transitionMs: feedback.transition?.remainingMs ?? null,
+            bridge,
+            transitionMs,
           });
         }
         const drawKey = `${readoutKey}:${prefs.mode === "travel" ? motion.worldX : 0}`;
@@ -1167,6 +1299,13 @@ export default function SideViewPlayground({
     );
   const jumpLocked =
     readout.action === "jump" && !readout.ended && !readout.paused;
+  const inspectedPose = session
+    ? sideInspectionPose(
+        session.renderer.manifest,
+        readout.action,
+        readout.frame,
+      )
+    : null;
   function setPreference<K extends keyof Preferences>(
     key: K,
     value: Preferences[K],
@@ -1250,7 +1389,7 @@ export default function SideViewPlayground({
               className="side-stage"
               data-testid="side-stage"
               tabIndex={0}
-              aria-label="侧视角色舞台。方向键或 A、D 移动，Shift 跑步，空格连续跳跃。"
+              aria-label={`侧视角色舞台。方向键或 A、D 移动，Shift 跑步，空格${preferences.playbackMode === "single-jump" ? "跳跃一次" : "播放原片连续两跳"}。`}
             />
             {preferences.mode === "travel" && (
               <div
@@ -1304,6 +1443,27 @@ export default function SideViewPlayground({
           </div>
 
           <div className="side-playback">
+            <label>
+              动作模式{" "}
+              <select
+                data-testid="side-playback-mode"
+                value={preferences.playbackMode}
+                disabled={!session || controlsLocked}
+                onChange={(event) =>
+                  changePlaybackMode(event.target.value as GameplayMode)
+                }
+              >
+                <option value="single-jump" disabled={!session?.gameplay}>
+                  基础动作 · 单次跳跃
+                </option>
+                <option value="source">完整原片 · 连续两跳</option>
+              </select>
+            </label>
+            <p className="side-pending" data-testid="side-playback-description">
+              {preferences.playbackMode === "single-jump"
+                ? "每次触发只跳一次，落地后接回待机、行走或跑步。按住空格不会连跳。"
+                : "完整保留原片的连续两跳，播完后停在原片末帧。"}
+            </p>
             <div className="side-actions" aria-label="动作选择">
               {ACTIONS.map((action) => (
                 <button
@@ -1314,7 +1474,7 @@ export default function SideViewPlayground({
                   aria-pressed={readout.action === action}
                   onClick={() => requestAction(action, true)}
                 >
-                  {ACTION_LABELS[action]}
+                  {actionLabel(action)}
                 </button>
               ))}
             </div>
@@ -1370,11 +1530,21 @@ export default function SideViewPlayground({
                 className="side-frame-readout"
                 data-testid="side-frame-status"
               >
-                <strong>{ACTION_LABELS[readout.action]}</strong>
+                <strong>
+                  {readout.bridge === "landing-recovery"
+                    ? "落地接跑步"
+                    : readout.bridge
+                      ? "起跳准备"
+                      : actionLabel(readout.action)}
+                </strong>
                 <span>
-                  {readout.count
-                    ? `${readout.index + 1} / ${readout.count} 帧`
-                    : "准备中"}
+                  {readout.bridge === "landing-recovery"
+                    ? "落地姿态接入跑步"
+                    : readout.bridge
+                      ? "跑步接入跳跃"
+                      : readout.count
+                        ? `${readout.index + 1} / ${readout.count} 帧`
+                        : "准备中"}
                   {readout.ended
                     ? " · 原片末帧停留"
                     : readout.paused
@@ -1408,9 +1578,11 @@ export default function SideViewPlayground({
             {readout.pending && (
               <p className="side-pending" data-testid="side-pending">
                 {readout.action === "jump"
-                  ? "两次跳跃完整播放后"
-                  : "本轮动作结束后"}
-                切换为{ACTION_LABELS[readout.pending]}
+                  ? "落地恢复后"
+                  : preferences.playbackMode === "single-jump"
+                    ? "到达衔接姿势后"
+                    : "本轮动作结束后"}
+                切换为{actionLabel(readout.pending)}
                 {readout.transitionMs !== null &&
                   `（剩余约 ${(Math.ceil(readout.transitionMs / (reviewOpen ? reviewRate : 1) / 100) / 10).toFixed(1)} 秒${readout.paused ? "，已暂停" : ""}）`}
                 。
@@ -1418,7 +1590,9 @@ export default function SideViewPlayground({
             )}
             {readout.ended && (
               <p className="side-pending" data-testid="side-endpoint-note">
-                原片停在浅蹲末帧，尚未回到自然站立。可选择待机或再次播放跳跃。
+                {preferences.playbackMode === "source"
+                  ? "原片停在浅蹲末帧，尚未回到自然站立。可选择待机或再次播放跳跃。"
+                  : "单次跳跃已完成。继续播放即可返回之前的待机、行走或跑步。"}
               </p>
             )}
           </div>
@@ -1427,7 +1601,7 @@ export default function SideViewPlayground({
             <button
               type="button"
               data-testid="side-review-toggle"
-              disabled={!session || controlsLocked}
+              disabled={!inspectedPose || controlsLocked}
               aria-expanded={reviewOpen}
               onClick={toggleReview}
             >
@@ -1439,12 +1613,12 @@ export default function SideViewPlayground({
                 : "暂停到当前帧，并排对比、放大局部、记录问题。"}
             </span>
           </div>
-          {reviewOpen && session && (
+          {reviewOpen && session && inspectedPose && (
             <SideReviewPanel
               key={`${session.character}:${session.project.document.sourceSha256}`}
               project={session.project}
               character={session.character}
-              action={readout.action}
+              action={inspectedPose.action}
               frame={readout.frame}
               facing={readout.facing}
               busy={busy}
@@ -1462,7 +1636,7 @@ export default function SideViewPlayground({
             <button
               type="button"
               data-testid="side-fitting-toggle"
-              disabled={!session || controlsLocked}
+              disabled={!inspectedPose || controlsLocked}
               aria-expanded={fittingOpen}
               onClick={toggleFitting}
             >
@@ -1470,14 +1644,14 @@ export default function SideViewPlayground({
             </button>
             <span>检查定位与遮挡，局部修正服装并保存为独立版本。</span>
           </div>
-          {fittingOpen && session && (
+          {fittingOpen && session && inspectedPose && (
             <Suspense fallback={<p role="status">正在打开服装校正工具…</p>}>
               <FittingWorkbench
                 key={`${session.character}:${session.project.document.sourceSha256}`}
                 project={session.project}
                 savedProject={savedProject}
                 renderer={session.renderer}
-                action={readout.action}
+                action={inspectedPose.action}
                 frameId={readout.frame}
                 disabled={busy}
                 active={active}
@@ -1516,7 +1690,7 @@ export default function SideViewPlayground({
           <details className="side-source-note">
             <summary>关于这组侧视动作</summary>
             <p>
-              男女角色来自各自的侧视原片，与角色库默认动作的取帧不同。行走、跑步按完整片段循环；跳跃保留原片的连续两次跳起，结束停在浅蹲末帧。横向移动采用镜头跟随与滚动地面，跳跃高度来自原片。
+              男女角色来自各自的侧视原片，与角色库默认动作的取帧不同。行走、跑步按完整片段循环；基础跳跃选择一次完整起落，原片对照保留连续两跳。横向移动采用镜头跟随与滚动地面，跳跃高度来自原片。
             </p>
             <p>
               17

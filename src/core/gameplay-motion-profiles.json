@@ -1,0 +1,1026 @@
+[
+  {
+    "sourceActions": {
+      "idle": {
+        "frames": [
+          0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 18, 18,
+          18, 18, 18, 18
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "walk": {
+        "frames": [
+          24, 24, 26, 26, 28, 28, 30, 30, 32, 32, 34, 34, 36, 37, 37, 39, 40,
+          40, 42, 43, 43, 45, 46, 46, 48, 48, 50
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "run": {
+        "frames": [
+          51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "jump": {
+        "frames": [
+          83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+          100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113,
+          114, 115, 116, 117, 118, 119, 120, 121
+        ],
+        "fps": 24,
+        "loop": false
+      },
+      "celebrate": {
+        "frames": [
+          67, 67, 67, 70, 71, 72, 73, 74, 75, 75, 77, 78, 79, 80, 81, 82
+        ],
+        "fps": 24,
+        "loop": true
+      }
+    },
+    "profile": {
+      "format": "gathria-gameplay-motion",
+      "version": 1,
+      "id": "kling-male-original-single-jump-v2",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "characterId": "male",
+      "view": "original",
+      "actions": {
+        "idle": {
+          "frames": [
+            0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 18, 18,
+            18, 18, 18, 18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24, 24, 26, 26, 28, 28, 30, 30, 32, 32, 34, 34, 36, 37, 37, 39, 40,
+            40, 42, 43, 43, 45, 46, 46, 48, 48, 50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+            100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112,
+            113, 114, 115, 116, 117, 118, 119, 120, 121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67, 67, 67, 70, 71, 72, 73, 74, 75, 75, 77, 78, 79, 80, 81, 82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 6,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 6,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 12,
+          "entry": 4
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 26,
+          "entry": 12
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 5,
+          "entry": 10
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 13,
+          "entry": 24
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exit": 39,
+          "entry": 10
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 30,
+          "entry": 4
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 39,
+          "entry": 4
+        },
+        {
+          "from": "jump",
+          "to": "celebrate",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "idle",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "walk",
+          "exit": 16,
+          "entry": 10
+        },
+        {
+          "from": "celebrate",
+          "to": "run",
+          "exit": 16,
+          "entry": 4
+        },
+        {
+          "from": "celebrate",
+          "to": "jump",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 12,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 18,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 24,
+          "entry": 10
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 12,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 18,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 24,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 26,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 26,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exit": 26,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exit": 13,
+          "entry": 0
+        }
+      ],
+      "jumpReturn": "previous-locomotion"
+    }
+  },
+  {
+    "sourceActions": {
+      "idle": {
+        "frames": [
+          0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 18, 18,
+          18, 18, 18, 18
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "walk": {
+        "frames": [
+          24, 25, 26, 27, 28, 28, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+          41, 41, 43, 44, 45, 46, 47, 48, 49, 50
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "run": {
+        "frames": [
+          51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "jump": {
+        "frames": [
+          83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+          100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113,
+          114, 115, 116, 117, 118, 119, 120, 121
+        ],
+        "fps": 24,
+        "loop": false
+      },
+      "celebrate": {
+        "frames": [
+          67, 67, 67, 70, 71, 72, 73, 74, 75, 75, 75, 78, 79, 80, 81, 82
+        ],
+        "fps": 24,
+        "loop": true
+      }
+    },
+    "profile": {
+      "format": "gathria-gameplay-motion",
+      "version": 1,
+      "id": "kling-female-original-single-jump-v2",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "characterId": "female",
+      "view": "original",
+      "actions": {
+        "idle": {
+          "frames": [
+            0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 18, 18,
+            18, 18, 18, 18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24, 25, 26, 27, 28, 28, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+            41, 41, 43, 44, 45, 46, 47, 48, 49, 50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+            100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112,
+            113, 114, 115, 116, 117, 118, 119, 120, 121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67, 67, 67, 70, 71, 72, 73, 74, 75, 75, 75, 78, 79, 80, 81, 82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "routes": [
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 11,
+          "entry": 4
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 23,
+          "entry": 12
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 5,
+          "entry": 11
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 13,
+          "entry": 23
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 6,
+          "entry": 4
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 25,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 25,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "jump",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 30,
+          "entry": 4
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 39,
+          "entry": 4
+        },
+        {
+          "from": "jump",
+          "to": "celebrate",
+          "exit": 39,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "celebrate",
+          "exit": 25,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exit": 5,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "celebrate",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "idle",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "walk",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "celebrate",
+          "to": "run",
+          "exit": 16,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 12,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 18,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 24,
+          "entry": 4
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 24,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "celebrate",
+          "exit": 24,
+          "entry": 0
+        }
+      ],
+      "jumpReturn": "previous-locomotion"
+    }
+  },
+  {
+    "sourceActions": {
+      "idle": {
+        "frames": [
+          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+          20
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "walk": {
+        "frames": [
+          21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "run": {
+        "frames": [
+          39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "jump": {
+        "frames": [
+          57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73,
+          74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+          91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106
+        ],
+        "fps": 24,
+        "loop": false
+      }
+    },
+    "profile": {
+      "format": "gathria-gameplay-motion",
+      "version": 1,
+      "id": "kling-male-side-single-jump-v6",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "characterId": "male",
+      "view": "side",
+      "actions": {
+        "idle": {
+          "frames": [
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+            19, 20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
+            80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 21,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 21,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 21,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 4,
+          "entry": 0,
+          "leadIn": [60, 61, 62]
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 10,
+          "entry": 0,
+          "leadIn": [59, 60, 61, 62]
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 16,
+          "entry": 0,
+          "leadIn": [62]
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exit": 28,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exit": 28,
+          "entry": 7
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 23,
+          "entry": 10,
+          "leadIn": [88, 89]
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 28,
+          "entry": 11
+        }
+      ],
+      "jumpReturn": "previous-locomotion"
+    }
+  },
+  {
+    "sourceActions": {
+      "idle": {
+        "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        "fps": 24,
+        "loop": true
+      },
+      "walk": {
+        "frames": [
+          16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "run": {
+        "frames": [
+          34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "jump": {
+        "frames": [
+          52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68,
+          69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85,
+          86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101
+        ],
+        "fps": 24,
+        "loop": false
+      }
+    },
+    "profile": {
+      "format": "gathria-gameplay-motion",
+      "version": 1,
+      "id": "kling-female-side-single-jump-v6",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "characterId": "female",
+      "view": "side",
+      "actions": {
+        "idle": {
+          "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+            75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 15,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 1,
+          "entry": 0,
+          "leadIn": [55, 56, 57]
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 7,
+          "entry": 0,
+          "leadIn": [54, 55, 56, 57]
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 13,
+          "entry": 0,
+          "leadIn": [57]
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exit": 28,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exit": 28,
+          "entry": 11
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 23,
+          "entry": 7,
+          "leadIn": [83, 84]
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 28,
+          "entry": 8
+        }
+      ],
+      "jumpReturn": "previous-locomotion"
+    }
+  }
+]

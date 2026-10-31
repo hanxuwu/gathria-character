@@ -45,6 +45,47 @@ explicitly applying the complete look selects the revision. Review comparisons
 use one fixed body-height scale per source, without changing native exports.
 [Matched hair, before/after GIFs and validation](docs/matched-hair/README.md).
 
+The explicit complete-look action now selects **日常造型 · 接缝修订**.
+It corrects the reviewed side-view shoulder/forearm cuts and one mistaken
+hand/scalp overlap while preserving previously saved looks. **并排比较** shows
+both views at a fixed equal standing height, with independent native playback,
+frame stepping and export selection. Display alignment does not resize exports.
+[Polished seams, same-frame evidence and comparison guide](docs/paired-polish/README.md).
+
+**单次跳跃** is the default for new paired and side-view sessions. It selects
+one complete side-view takeoff and landing from the existing source frames;
+the original-view jump stays intact. Running or walking resumes after landing,
+and repeated jump requests cannot interrupt or restart an airborne character.
+**原片对照** retains the uncut source clip. Exported gameplay CharacterPacks
+carry the selected clip and reviewed transition routes for the independent player.
+[Single-jump controls, actual exports and transition limits](docs/kling-single-jump/README.md).
+
+Moving landings now use a separate reviewed Jump → Run exit. The original view
+skips a 375ms standing recovery tail; the side view avoids the next rebound and
+enters a better matched running pose. Stationary jumps still complete their
+recovery, and previously exported motion profiles retain their original timing.
+[Landing-to-run comparisons and validation](docs/kling-landing-run/README.md).
+
+The paired workbench reuses bounded native display surfaces for repeated frames
+and preserves the current jump when returning from a background tab. Display
+caching does not modify the rendered artwork or exported frames.
+[Playback measurements, diagnostic GIFs and validation](docs/paired-playback/README.md).
+
+Side-view Run → Jump now uses three phase-matched approach routes from the
+existing source drawings. The controller waits at most 250ms to begin the
+approach; standalone Jump and original-view animation stay unchanged.
+Paused approach poses can be saved and reopened in the paired project.
+[Native takeoff bridges, actual comparison GIFs and checks](docs/kling-takeoff-bridge/README.md).
+The [previous V3 two-window review](docs/kling-takeoff-refine/README.md) remains
+available as a comparison; historical exported profiles retain that behavior.
+
+Side-view Jump → Run retains source-forward recovery order and enters a low
+passing-leg Run phase. It replaces the rejected V5 reverse-takeoff bridge while
+keeping the same 24 FPS and duration. Recovery checkpoints can be paused,
+saved and reopened; historical profiles remain readable. This is a conservative
+existing-art candidate with documented head/contact seams, not a seamless-motion
+claim. See the [V5/V6 actual GIF review](docs/kling-landing-forward/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):
@@ -56,12 +97,13 @@ npm run dev
 
 Open the address Vite prints. In **Character library**, use **编辑人物** on either
 card. The workbench keeps original actions, wardrobe, paired wardrobe, themes
-and optional skeletal tools together. The default action settings preserve the
-original video playback; direct links below still open the corresponding tools.
+and optional skeletal tools together. Original playback remains available;
+paired and side-view tools also offer single-jump controls. Direct links below
+still open the corresponding tools.
 
 **侧视动作与换装** on either character card opens the independent side-view
 candidate: `/workbench.html?character=male&mode=side-view` (or `female`).
-It includes source-timed idle/walk/run, the original two-jump clip, keyboard
+It includes source-timed idle/walk/run, single-jump and original-clip modes, keyboard
 controls, camera-follow travel, per-frame fitting guides and two same-cut daily
 material studies. Existing characters and wardrobe defaults remain unchanged.
 [Side-view usage, actual exports and limitations](docs/kling-side-workspace/README.md).
@@ -80,11 +122,11 @@ painting-guide/preflight commands. The loader reuses verified compressed source
 bytes while revalidating current clothing and hair. Original source frames and
 export timing remain unchanged.
 
-| Main destination                             | Available now                                                           |
-| -------------------------------------------- | ----------------------------------------------------------------------- |
-| `/`                                          | Two originals, one **编辑人物** entry per character                   |
-| `/workbench.html?character=male` or `female` | Original/side-view tools, wardrobe, themes and retained skeletal sessions       |
-| `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export |
+| Main destination                             | Available now                                                             |
+| -------------------------------------------- | ------------------------------------------------------------------------- |
+| `/`                                          | Two originals, one **编辑人物** entry per character                       |
+| `/workbench.html?character=male` or `female` | Original/side-view tools, wardrobe, themes and retained skeletal sessions |
+| `/player.html`                               | Independent CharacterPack V2/V3/V4 and Kling source ZIP playback/export   |
 
 `/workbench.html?character=male&mode=themes` opens **Character themes** directly;
 use `character=female` for the other character. Choose **Kling original** or

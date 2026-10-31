@@ -1,0 +1,51 @@
+{
+  "scope": "Side V3 verifier and historical E2E compatibility",
+  "files": [
+    "scripts/verify-single-jump-exports.mjs",
+    "scripts/verify-landing-run-exports.mjs",
+    "tests/e2e/single-jump.spec.ts",
+    "tests/e2e/landing-run.spec.ts"
+  ],
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "toolChunk": "e9513e"
+    },
+    {
+      "command": "node --check scripts/verify-single-jump-exports.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check scripts/verify-landing-run-exports.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "npx playwright test tests/e2e/single-jump.spec.ts tests/e2e/landing-run.spec.ts --list",
+      "exitCode": 0,
+      "testsListed": 6,
+      "browserExecuted": false,
+      "toolChunk": "b00d4c"
+    },
+    {
+      "method": "Executed verifier assertKnownRoutes/expectedFlow functions independently in node:vm against all 10 current/legacy profile declarations; rejected a corrupted takeoff exit for each profile.",
+      "exitCode": 0,
+      "toolChunk": "67ac45",
+      "observedStdoutLines": [
+        "scripts/verify-single-jump-exports.mjs: 10 reviewed profiles and 10 corrupt takeoff negative cases passed",
+        "scripts/verify-landing-run-exports.mjs: 10 reviewed profiles and 10 corrupt takeoff negative cases passed"
+      ]
+    },
+    {
+      "method": "Executed landing verifier unchanged-route assertion block for male/female V1/V2→V3, accepting only the explicit added takeoff route and rejecting a changed walk→run entry.",
+      "exitCode": 0,
+      "toolChunk": "29eff3",
+      "combinationsPassed": 4
+    }
+  ],
+  "currentFlowFrames": {
+    "maleSideV3": 72,
+    "femaleSideV3": 69
+  },
+  "limits": "These checks validate profile reconstruction, rejected mutations and test compilation/listing. No heavy browser tests or full exported-GIF pixel audit were executed by this agent in this turn; QA owns actual downloads and pixels."
+}

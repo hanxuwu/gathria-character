@@ -2,6 +2,7 @@ import { GIFEncoder, quantize, applyPalette } from "gifenc";
 import type { Facing, PortableAnimationName } from "../core/types";
 import type { RgbaPng } from "../core/baked-source";
 import type { WardrobeCompositor } from "./compositor";
+import { gameplayManifest, type GameplayMotion } from "../core/gameplay-motion";
 import {
   joinGifComparison,
   GIF_COMPARISON_GAP,
@@ -62,12 +63,16 @@ export async function exportWardrobeActionGif(
   facing: Facing,
   options: {
     signal?: AbortSignal;
+    gameplayMotion?: GameplayMotion;
     onProgress?: (done: number, total: number) => void;
     comparison?: boolean;
     referenceLabel?: "ORIGINAL" | "PINNED";
   } = {},
 ): Promise<Uint8Array> {
-  const clip = renderer.manifest.animations[action];
+  const manifest = options.gameplayMotion
+    ? gameplayManifest(renderer.manifest, options.gameplayMotion)
+    : renderer.manifest;
+  const clip = manifest.animations[action];
   if (!clip) throw Error("This character has no requested action.");
   const delays = gifDelays(clip.frames.length, clip.fps);
   const comparison = options.comparison === true;

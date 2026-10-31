@@ -3,8 +3,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { chromium, expect } from "@playwright/test";
 import { preview } from "vite";
 
-const directory = process.argv[2] || "docs/dual-looks/review/production";
-const catalogPath = "docs/matched-hair/assets/catalog.json";
+const directory = process.argv[2] || "docs/paired-polish/review/production";
+const catalogPath = "docs/paired-polish/assets/appearance-catalog.json";
 const catalog = JSON.parse(await readFile(catalogPath, "utf8"));
 await mkdir(directory, { recursive: true });
 const server = await preview({
@@ -32,6 +32,9 @@ try {
     );
     const apply = page.getByTestId("dual-complete-look");
     await expect(apply).toBeEnabled({ timeout: 120000 });
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue(
+      "single-jump",
+    );
     await expect(page.getByTestId("dual-outfit")).toHaveValue("cotton-day");
     await apply.click();
     await expect(apply).toBeEnabled({ timeout: 240000 });
@@ -48,10 +51,7 @@ try {
         .selectOption(view === "side" ? "side-view" : "original");
       const stage = page.getByTestId("dual-stage");
       await expect(stage).toHaveAttribute("data-view", view);
-      await expect(stage).toHaveAttribute(
-        "data-outfit",
-        character === "female" ? "complete-day" : "tailored-day",
-      );
+      await expect(stage).toHaveAttribute("data-outfit", "polished-day");
       await expect(stage).toHaveAttribute("data-hair", "daily-hair");
       await expect(stage).toHaveAttribute("data-face", "gentle");
       await expect(stage).toHaveAttribute(
@@ -60,6 +60,17 @@ try {
       );
       await page.getByTestId("dual-action").selectOption("run");
       await expect(stage).toHaveAttribute("data-action", "run");
+      await page.getByTestId("dual-run").click();
+      await page.getByTestId("dual-jump-once").click();
+      await expect(stage).toHaveAttribute("data-action", "jump", {
+        timeout: 5000,
+      });
+      await expect(stage).toHaveAttribute("data-motion-mode", "single-jump");
+      await expect(stage).toHaveAttribute("data-return-action", "run");
+      await expect(stage).toHaveAttribute("data-action", "run", {
+        timeout: 5000,
+      });
+      await page.getByTestId("dual-play-pause").click();
       await page.screenshot({
         path: `${directory}/${character}-${view}.png`,
         fullPage: true,
@@ -70,10 +81,21 @@ try {
         outfit: await stage.getAttribute("data-outfit"),
         appearanceSha256: await stage.getAttribute("data-appearance-sha"),
         activeCatalogBankExact: true,
+        singleJumpReturnsToRun: true,
         errors: [...errors],
       });
     }
-    if (character === "female") {
+    await page.getByTestId("dual-compare-toggle").click();
+    for (const view of ["original", "side"]) {
+      const stage = page.getByTestId(`dual-compare-stage-${view}`);
+      await expect(stage).toHaveAttribute("data-display-body-height", "460");
+      await expect(stage).toHaveAttribute("data-outfit", "polished-day");
+    }
+    await page.screenshot({
+      path: `${directory}/${character}-comparison.png`,
+      fullPage: true,
+    });
+    {
       await page.setViewportSize({ width: 390, height: 844 });
       assert(
         await page.evaluate(
@@ -82,7 +104,7 @@ try {
         "Mobile horizontal overflow",
       );
       await page.screenshot({
-        path: `${directory}/female-side-mobile.png`,
+        path: `${directory}/${character}-comparison-mobile.png`,
         fullPage: true,
       });
     }
@@ -98,7 +120,7 @@ try {
     ) + "\n",
   );
   console.log(
-    "Complete-look production smoke passed: both characters/views, native appearance URLs, preserved cotton defaults, mobile layout; no HTTP/page errors.",
+    "Complete-look production smoke passed: both characters/views, single jump returns to run, native appearance URLs, preserved cotton defaults, mobile layout; no HTTP/page errors.",
   );
 } finally {
   await browser.close();

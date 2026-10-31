@@ -1,0 +1,114 @@
+[WebServer] (node:387906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:387919) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 2 workers
+
+(node:387937) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:387938) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:388426) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:389263) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/dual-view-complete-looks.spec.ts:161:3 › male: complete paired look exports every native action and plays independently (4.3m)
+  ✘  3 tests/e2e/dual-view-complete-looks.spec.ts:161:3 › female: complete paired look exports every native action and plays independently (23.5s)
+(node:389752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/e2e/dual-view-complete-looks.spec.ts:461:3 › female: paired appearance is atomic, independently resettable and reopens with mixed clothes offline (33.3s)
+(node:390038) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:390308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 tests/e2e/paired-polish.spec.ts:35:3 › male: equal-height comparison retains independent clocks and native exports (52.8s)
+  ✘  6 tests/e2e/paired-polish.spec.ts:35:3 › female: equal-height comparison retains independent clocks and native exports (28.0s)
+  ✓  2 tests/e2e/dual-view-complete-looks.spec.ts:461:3 › male: paired appearance is atomic, independently resettable and reopens with mixed clothes offline (7.7m)
+
+
+  1) tests/e2e/dual-view-complete-looks.spec.ts:161:3 › female: complete paired look exports every native action and plays independently 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "polished-day"
+    Received: "cotton-day"
+
+      176 |     await ready(page);
+      177 |     const completeOutfit = await page.getByTestId("dual-outfit").inputValue();
+    > 178 |     expect(completeOutfit).toBe("polished-day");
+          |                            ^
+      179 |     await page.getByTestId("dual-reset-appearance").click();
+      180 |     await ready(page);
+      181 |     const baselines: Partial<
+        at /workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts:178:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../tmp/paired-polish/playwright-results/dual-view-complete-looks-f-35948-ion-and-plays-independently/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../tmp/paired-polish/playwright-results/dual-view-complete-looks-f-35948-ion-and-plays-independently/error-context.md
+
+  2) tests/e2e/dual-view-complete-looks.spec.ts:461:3 › female: paired appearance is atomic, independently resettable and reopens with mixed clothes offline 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      505 |     await page.getByTestId("dual-complete-look").click();
+      506 |     await ready(page);
+    > 507 |     expect(blockedRequests).toBeGreaterThan(0);
+          |                             ^
+      508 |     await expect(page.getByTestId("dual-hair")).toHaveValue("");
+      509 |     await expect(page.getByTestId("dual-outfit")).toHaveValue("tailored-day");
+      510 |     await expect(
+        at /workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts:507:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../tmp/paired-polish/playwright-results/dual-view-complete-looks-f-24f0d--with-mixed-clothes-offline/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../tmp/paired-polish/playwright-results/dual-view-complete-looks-f-24f0d--with-mixed-clothes-offline/error-context.md
+
+  3) tests/e2e/paired-polish.spec.ts:35:3 › female: equal-height comparison retains independent clocks and native exports 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByTestId('dual-outfit')
+    Expected: "polished-day"
+    Received: "cotton-day"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByTestId('dual-outfit') with timeout 5000ms
+      - waiting for getByTestId('dual-outfit')
+        14 × locator resolved to <select data-testid="dual-outfit">…</select>
+           - unexpected value "cotton-day"
+
+
+      46 |     await page.getByTestId("dual-complete-look").click();
+      47 |     await ready(page);
+    > 48 |     await expect(page.getByTestId("dual-outfit")).toHaveValue("polished-day");
+         |                                                   ^
+      49 |
+      50 |     const before: Record<string, Buffer> = {};
+      51 |     for (const view of views) {
+        at /workspace/gathria-character/tests/e2e/paired-polish.spec.ts:48:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../tmp/paired-polish/playwright-results/paired-polish-female-equal-b9ca8-t-clocks-and-native-exports/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../tmp/paired-polish/playwright-results/paired-polish-female-equal-b9ca8-t-clocks-and-native-exports/error-context.md
+
+  3 failed
+    tests/e2e/dual-view-complete-looks.spec.ts:161:3 › female: complete paired look exports every native action and plays independently 
+    tests/e2e/dual-view-complete-looks.spec.ts:461:3 › female: paired appearance is atomic, independently resettable and reopens with mixed clothes offline 
+    tests/e2e/paired-polish.spec.ts:35:3 › female: equal-height comparison retains independent clocks and native exports 
+  3 passed (7.8m)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

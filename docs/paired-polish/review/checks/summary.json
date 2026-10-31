@@ -1,0 +1,123 @@
+{
+  "format": "gathria-paired-polish-browser-validation",
+  "version": 1,
+  "passed": true,
+  "uniqueFinalCases": 6,
+  "cases": [
+    {
+      "file": "dual-view-complete-looks.spec.ts",
+      "title": "male: complete paired look exports every native action and plays independently",
+      "status": "passed",
+      "durationMs": 256324,
+      "report": "attempt1-e2e-results.json"
+    },
+    {
+      "file": "dual-view-complete-looks.spec.ts",
+      "title": "male: paired appearance is atomic, independently resettable and reopens with mixed clothes offline",
+      "status": "passed",
+      "durationMs": 462923,
+      "report": "attempt1-e2e-results.json"
+    },
+    {
+      "file": "dual-view-complete-looks.spec.ts",
+      "title": "female: complete paired look exports every native action and plays independently",
+      "status": "passed",
+      "durationMs": 209795,
+      "report": "e2e-female-export-results.json"
+    },
+    {
+      "file": "dual-view-complete-looks.spec.ts",
+      "title": "female: paired appearance is atomic, independently resettable and reopens with mixed clothes offline",
+      "status": "passed",
+      "durationMs": 404064,
+      "report": "e2e-female-results.json"
+    },
+    {
+      "file": "paired-polish.spec.ts",
+      "title": "male: equal-height comparison retains independent clocks and native exports",
+      "status": "passed",
+      "durationMs": 52755,
+      "report": "attempt1-e2e-results.json"
+    },
+    {
+      "file": "paired-polish.spec.ts",
+      "title": "female: equal-height comparison retains independent clocks and native exports",
+      "status": "passed",
+      "durationMs": 52054,
+      "report": "e2e-female-results.json"
+    }
+  ],
+  "attempts": [
+    {
+      "report": "attempt1-e2e-results.json",
+      "stats": {
+        "startTime": "2026-10-30T07:26:17.300Z",
+        "duration": 465439.948,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 3,
+        "flaky": 0
+      },
+      "failedCases": [
+        "female: complete paired look exports every native action and plays independently",
+        "female: paired appearance is atomic, independently resettable and reopens with mixed clothes offline",
+        "female: equal-height comparison retains independent clocks and native exports"
+      ]
+    },
+    {
+      "report": "e2e-female-results.json",
+      "stats": {
+        "startTime": "2026-10-30T07:36:49.204Z",
+        "duration": 406825.611,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "failedCases": [
+        "female: complete paired look exports every native action and plays independently"
+      ]
+    },
+    {
+      "report": "e2e-female-export-results.json",
+      "stats": {
+        "startTime": "2026-10-30T07:49:51.109Z",
+        "duration": 213083.109,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "failedCases": []
+    }
+  ],
+  "history": [
+    "Initial full run: male three cases passed; female three cases failed because formatted registration exceeded the existing 1 MiB loader limit. Compact serialization and exact asset rebinding fixed this without changing pixels.",
+    "Female rerun: comparison and roundtrip passed; export UI and independent player completed, but the offline audit incorrectly compared a broad hand/sleeve review polygon directly to bare source. Diagnostic: 471 raw differences already existed in accepted baseline (470 sleeve pixels, one hair-edge pixel); actual before/after changes were zero.",
+    "Audit now preserves the full actual hand/sleeve baseline, asserts true registered opaque hand pixels equal source, and retains exact ownership/protection checks. The female export case was rerun and passed; all 18 project/pack/PNG/GIF inputs checked remain byte-identical to the earlier actual exports used for review."
+  ],
+  "sourceBoundAuditsMatchFinalPublishedCatalog": true,
+  "nativeFramesChecked": 393,
+  "actualGifsChecked": 20,
+  "femaleRerunIdenticalExports": 18,
+  "checks": {
+    "originalCharacterPacksByteExact": true,
+    "sideChangesRestrictedToReviewedMasks": true,
+    "nativeSourceAndAnimationTimingExact": true,
+    "independentPlayersAfterEditorClosed": 4,
+    "legacyMatchedProjectsByteExact": true,
+    "comparisonPreservesNativePngBytes": true
+  },
+  "offlineScope": "The existing roundtrip test blocks appearance/clothing bank downloads after loading the workbench; it proves embedded-project reopening and exact resaving. It does not claim an uncached application can bootstrap without a network.",
+  "femaleHandReview": {
+    "frameId": 95,
+    "actualBaselineRgbaExact": true,
+    "reviewedSourcePixels": 4108,
+    "registeredOpaqueHandPixelsExact": 1714,
+    "previouslyRawPixelsExact": 3512,
+    "baselineAlreadyOccludedOpaquePixels": 471,
+    "baselineClothingPixels": 470,
+    "baselineHairEdgePixels": 1,
+    "newChangesWithinBroadHandReview": 0
+  }
+}
