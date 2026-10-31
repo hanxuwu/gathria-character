@@ -1,0 +1,45 @@
+{
+  "finalFocusedCasesPassed": 4,
+  "actualBrowserExportCases": {
+    "passed": 2,
+    "log": "focused-e2e.log",
+    "note": "Combined initial run also contained two controlled-case fixture failures; both real-clock export cases passed."
+  },
+  "controlledBrowserCases": {
+    "passed": 2,
+    "exitCode": 0,
+    "log": "clock-e2e.log",
+    "duration": "2.6 minutes"
+  },
+  "initialFixtureFailures": {
+    "logs": [
+      "focused-e2e.log",
+      "clock-e2e-attempt2.log"
+    ],
+    "cause": "New test setup expected selecting Run to pause. During playback, action selectors queue transitions. An intermediate idle\u2192run selection-only fix was insufficient. Final fixture explicitly pauses both panes before resetting inspected poses. No runtime behavior or timing assertions were relaxed."
+  },
+  "nativeOrderChecks": "native-order-verification.json",
+  "testSources": [
+    {
+      "file": "tests/e2e/takeoff-refine.spec.ts",
+      "sha256": "643882c724d16dc5928f2b0b9845f2cf88094df47067da8af397f4aa57ec8cc7"
+    },
+    {
+      "file": "tests/e2e/paired-playback-cache.spec.ts",
+      "sha256": "fd4b611b65939fa60be5853f9d3d7e21ad984a65424690e20bb45660c615c539"
+    },
+    {
+      "file": "tests/e2e/landing-run.spec.ts",
+      "sha256": "4f91042cb78db3c439a9507350ad03fa4ef3d9d410b2ca4767dcd932c9d22acd"
+    },
+    {
+      "file": "tests/e2e/single-jump.spec.ts",
+      "sha256": "ed984727810d3b0d4026da70f4456de768cdb5887762efb96b0f93f1f3754a48"
+    }
+  ],
+  "proof": {
+    "clock": "../clock/{male,female}/visibility-playback.json",
+    "exports": "../exports/{male,female}/pixel-verification.json"
+  },
+  "runtimeBugsDiscovered": []
+}

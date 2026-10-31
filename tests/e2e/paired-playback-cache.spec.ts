@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { expect, test, type Page } from "@playwright/test";
 
 // Use actual paired-character assets. Only the animation clock is controlled;
@@ -7,6 +7,7 @@ import { expect, test, type Page } from "@playwright/test";
 test.describe.configure({ mode: "default" });
 const output =
   process.env.GATHRIA_PAIRED_PLAYBACK_EVIDENCE ?? "/tmp/paired-playback";
+const TICK = 1000 / 24;
 const views = ["original", "side"] as const;
 type View = (typeof views)[number];
 type ControlledClock = {
@@ -92,6 +93,8 @@ async function painted(page: Page, view: View, path?: string) {
       position: Number(target.dataset.framePosition),
       frameId: Number(target.dataset.frameId),
       elapsedMs: Number(target.dataset.elapsedMs),
+      leadIn: target.dataset.leadIn,
+      leadInElapsedMs: Number(target.dataset.leadInElapsedMs ?? 0),
       pending: target.dataset.pendingAction,
       returnAction: target.dataset.returnAction,
       paused: target.dataset.paused,
@@ -132,8 +135,151 @@ async function backgroundWithoutRaf(page: Page) {
   await advance(page, 16);
 }
 
+async function pauseBoth(page: Page) {
+  const paused = await Promise.all(
+    views.map((view) => canvas(page, view).getAttribute("data-paused")),
+  );
+  if (paused.some((value) => value === "false"))
+    await page.getByTestId("dual-compare-play-all").click();
+  await expectBoth(page, "data-paused", "true");
+}
+
+async function checkRunningApproaches(
+  page: Page,
+  character: "male" | "female",
+  directory: string,
+) {
+  // Native IDs were reviewed from source artwork, independently of controller
+  // frame resolution. Step each real canvas drawing, including the one-frame
+  // route that an unpaced CI browser could otherwise skip in its observer.
+  const routes =
+    character === "male"
+      ? [
+          { exit: 4, frames: [60, 61, 62] },
+          { exit: 10, frames: [59, 60, 61, 62] },
+          { exit: 16, frames: [62] },
+        ]
+      : [
+          { exit: 1, frames: [55, 56, 57] },
+          { exit: 7, frames: [54, 55, 56, 57] },
+          { exit: 13, frames: [57] },
+        ];
+  const results: Array<Record<string, unknown>> = [];
+  for (const [index, route] of routes.entries()) {
+    // During playback action selection queues a transition. Pause explicitly
+    // before selecting a fresh inspected pose; re-selecting Run alone cannot
+    // reset either its clock or its playing state.
+    await pauseBoth(page);
+    await page.getByTestId("dual-compare-action").selectOption("idle");
+    await page.getByTestId("dual-compare-action").selectOption("run");
+    await page
+      .getByTestId("dual-compare-frame-side")
+      .fill(String(route.exit - 1));
+    await page.getByTestId("dual-jump-once").click();
+    await advance(page, 0);
+    await advance(page, TICK);
+    const first = await painted(page, "side");
+    expect(first.action).toBe("jump");
+    expect(first.frameId).toBe(route.frames[0]);
+    expect(first.position).toBe(0);
+    expect(first.elapsedMs).toBe(0);
+    expect(first.leadIn).toBe("true");
+    expect(first.leadInElapsedMs).toBeCloseTo(0, 6);
+    const target = index === 1 ? "idle" : "run";
+    await page.getByTestId(`dual-${target}`).click();
+    await expect(canvas(page, "side")).toHaveAttribute(
+      "data-pending-action",
+      target,
+    );
+    const queued = await painted(page, "side");
+    await page.getByTestId("dual-jump-once").click();
+    expect(await painted(page, "side")).toEqual(queued);
+
+    let restored = null;
+    if (index === 1) {
+      // Save an actual approach drawing at a fractional clock. The paired
+      // checkpoint must reopen that exact image and pending landing intent.
+      await advance(page, 10);
+      await page.getByTestId("dual-compare-play-all").click();
+      await expectBoth(page, "data-paused", "true");
+      const beforeSave = await painted(
+        page,
+        "side",
+        `${directory}/side-approach-checkpoint.png`,
+      );
+      const pending = page.waitForEvent("download", { timeout: 180_000 });
+      await page.getByTestId("dual-save-project").click();
+      const download = await pending;
+      expect(await download.failure()).toBeNull();
+      const path = `${directory}/approach-project.zip`;
+      await download.saveAs(path);
+      const bytes = await readFile(path);
+      const receipt = {
+        bytes: bytes.length,
+        sha256: createHash("sha256").update(bytes).digest("hex"),
+        filename: download.suggestedFilename(),
+      };
+      await ready(page);
+      await page.getByTestId("dual-compare-action").selectOption("idle");
+      await page.getByTestId("dual-project-input").setInputFiles(path);
+      await ready(page);
+      await expectBoth(page, "data-paused", "true");
+      const reopened = await painted(page, "side");
+      expect(reopened).toEqual(beforeSave);
+      await rm(path);
+      await page.getByTestId("dual-compare-play-all").click();
+      await advance(page, 0);
+      await backgroundWithoutRaf(page);
+      const resumed = await painted(page, "side");
+      expect(resumed).toEqual({ ...beforeSave, paused: "false" });
+      restored = { beforeSave, reopened, resumed, download: receipt };
+      await advance(page, TICK - 10);
+    } else {
+      await backgroundWithoutRaf(page);
+      expect(await painted(page, "side")).toEqual(queued);
+      await advance(page, TICK);
+    }
+    const shown = [first];
+    for (let i = 1; i < route.frames.length; i++) {
+      const drawing = await painted(page, "side");
+      expect(drawing.frameId).toBe(route.frames[i]);
+      expect(drawing.position).toBe(0);
+      expect(drawing.elapsedMs).toBe(0);
+      expect(drawing.leadIn).toBe("true");
+      expect(drawing.leadInElapsedMs).toBeCloseTo(i * TICK, 6);
+      shown.push(drawing);
+      await advance(page, TICK);
+    }
+    const baseJump = await painted(page, "side");
+    expect(baseJump.action).toBe("jump");
+    expect(baseJump.frameId).toBe(character === "male" ? 63 : 58);
+    expect(baseJump.elapsedMs).toBeCloseTo(0, 6);
+    expect(baseJump.leadIn).toBe("false");
+    expect(baseJump.pending).toBe(target);
+    expect(baseJump.returnAction).toBe(target);
+    await advance(page, (target === "idle" ? 28 : 27) * TICK);
+    await expect(canvas(page, "side")).toHaveAttribute("data-action", target);
+    await advance(page, 2000);
+    await expect(canvas(page, "side")).toHaveAttribute("data-action", target);
+    results.push({
+      ...route,
+      first,
+      queued,
+      shown,
+      baseJump,
+      restored,
+      returnAction: target,
+    });
+  }
+  await pauseBoth(page);
+  await page.getByTestId("dual-compare-action").selectOption("idle");
+  await page.getByTestId("dual-compare-action").selectOption("run");
+  await expectBoth(page, "data-paused", "true");
+  return results;
+}
+
 for (const character of ["male", "female"] as const) {
-  test(`${character}: paired playback retains airborne frames and return intent across a suspended tab`, async ({
+  test(`${character}: paired approach frames, saved checkpoints and airborne state retain native timing`, async ({
     page,
   }, testInfo) => {
     test.setTimeout(300_000);
@@ -153,6 +299,12 @@ for (const character of ["male", "female"] as const) {
       "single-jump",
     );
 
+    const runningApproaches = await checkRunningApproaches(
+      page,
+      character,
+      directory,
+    );
+
     // Start both native run clips at frame0, then request exactly one jump.
     // The two views enter Jump on their own reviewed clocks.
     await page.getByTestId("dual-compare-action").selectOption("run");
@@ -163,7 +315,12 @@ for (const character of ["male", "female"] as const) {
     await expectBoth(page, "data-return-action", "run");
     const airborne = await snapshot(page, directory);
     expect(airborne.original.position).toBe(11);
-    expect(airborne.side.position).toBe(character === "male" ? 7 : 10);
+    // The first side route has three approach drawings before base Jump0.
+    const sideMainElapsed = 700 - ((character === "male" ? 4 : 1) + 3) * TICK;
+    expect(airborne.side.position).toBe(
+      Math.floor((sideMainElapsed + 1e-7) / TICK),
+    );
+    expect(airborne.side.elapsedMs).toBeCloseTo(sideMainElapsed, 6);
 
     await backgroundWithoutRaf(page);
     await expectBoth(page, "data-action", "jump");
@@ -252,6 +409,7 @@ for (const character of ["male", "female"] as const) {
     const proof = {
       character,
       actualAssets: true,
+      runningApproaches,
       deterministicAppClock: true,
       hiddenMillisecondsIgnored: 5000,
       noHiddenRafRequired: true,

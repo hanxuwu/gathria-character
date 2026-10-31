@@ -3,6 +3,12 @@ import { describe, expect, it } from "vitest";
 import { strToU8, unzipSync, zipSync } from "fflate";
 import { encodeSourceRgbaPng } from "../core/baked-source";
 import { createBakedCharacterPack } from "../core/pack";
+import specifications from "../core/gameplay-motion-profiles.json";
+import {
+  createGameplayState,
+  gameplayFrameId,
+  type GameplayMotion,
+} from "../core/gameplay-motion";
 import type {
   BakedCharacterRecipe,
   CharacterPackV2Manifest,
@@ -306,6 +312,113 @@ describe("source-bound dual-view wardrobe persistence", () => {
       } as unknown as DualViewSettings),
     ).toThrow(/motion mode/);
     expect(initial.motionMode).toBe("source");
+  });
+
+  it("preserves a reviewed approach checkpoint and rejects altered or foreign playback state", async () => {
+    const initial = await pair();
+    // Exercise the lightweight metadata constructor. Actual source checks and
+    // save/reopen byte preservation are covered by browser export tests.
+    const projects = structuredClone(initial.projects);
+    for (const view of ["original", "side"] as const) {
+      const spec = specifications.find(
+        (row) =>
+          row.profile.view === view && row.profile.characterId === "male",
+      )!;
+      projects[view].document.sourceSha256 = spec.profile.sourceSha256;
+      projects[view].registration.sourceSha256 = spec.profile.sourceSha256;
+      projects[view].archive.manifest.animations = structuredClone(
+        spec.sourceActions,
+      );
+      const sample = projects[view].archive.manifest.frames[0];
+      projects[view].archive.manifest.frames = [
+        ...new Set(
+          Object.values(spec.sourceActions).flatMap((clip) => clip.frames),
+        ),
+      ].map((id) => ({ ...sample, id }));
+    }
+    const profile = specifications.find(
+      (row) =>
+        row.profile.view === "side" && row.profile.characterId === "male",
+    )!.profile as GameplayMotion;
+    const route = profile.routes.find(
+      (row) => row.from === "run" && row.to === "jump" && row.leadIn,
+    )!;
+    const selected = settings();
+    selected.motionMode = "single-jump";
+    selected.previews.original = {
+      action: "idle",
+      facing: "right",
+      position: 0,
+    };
+    selected.previews.side = {
+      action: "jump",
+      facing: "left",
+      position: 0,
+      takeoff: {
+        profile,
+        state: {
+          ...createGameplayState("jump"),
+          returnAction: "walk",
+          pending: "walk",
+          jumpFrom: "run",
+          leadIn: { from: "run", exit: route.exit, elapsedMs: 7.5 },
+        },
+      },
+    };
+    const accepted = createDualViewWardrobe(projects, selected);
+    expect(accepted.previews.side).toEqual(selected.previews.side);
+    expect(accepted.previews.side.takeoff).not.toBe(
+      selected.previews.side.takeoff,
+    );
+    expect(
+      gameplayFrameId(
+        accepted.previews.side.takeoff!.profile,
+        accepted.previews.side.takeoff!.state,
+      ),
+    ).toBe(route.leadIn![0]);
+    const mutations = [
+      (value: DualViewSettings) => {
+        value.motionMode = "source";
+      },
+      (value: DualViewSettings) => {
+        value.previews.side.position = 1;
+      },
+      (value: DualViewSettings) => {
+        value.previews.side.takeoff!.profile.id = "unreviewed";
+      },
+      (value: DualViewSettings) => {
+        value.previews.side.takeoff!.state.pending = "jump";
+      },
+      (value: DualViewSettings) => {
+        value.previews.side.takeoff!.state.elapsedMs = 1;
+      },
+      (value: DualViewSettings) => {
+        value.previews.side.takeoff!.state.leadIn!.elapsedMs = 5000;
+      },
+      (value: DualViewSettings) => {
+        value.previews.side.takeoff!.state.leadIn!.exit = -1;
+      },
+      (value: DualViewSettings) => {
+        (
+          value.previews.side.takeoff!.state as unknown as Record<
+            string,
+            unknown
+          >
+        ).frameId = 999;
+      },
+      (value: DualViewSettings) => {
+        value.previews.side.takeoff!.profile = specifications.find(
+          (row) =>
+            row.profile.view === "side" && row.profile.characterId === "female",
+        )!.profile as GameplayMotion;
+      },
+    ];
+    for (const mutate of mutations) {
+      const changed = structuredClone(selected);
+      mutate(changed);
+      expect(() => createDualViewWardrobe(projects, changed)).toThrow();
+    }
+    expect(initial.previews.side).not.toHaveProperty("takeoff");
   });
 
   it("rejects swapped sources, a different character and missing view variants instead of using a fallback", async () => {

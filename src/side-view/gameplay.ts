@@ -1,6 +1,7 @@
 import {
   advanceGameplayMotion,
   createGameplayState,
+  gameplayFrameId,
   requestGameplayAction,
   type GameplayMotion,
   type GameplayState,
@@ -10,6 +11,7 @@ import {
   advanceSideMotion,
   createSideMotionState,
   requestSideAction,
+  sideFrameId,
   type SideAction,
   type SideMotionOptions,
   type SideMotionState,
@@ -18,6 +20,7 @@ import {
 /** Stage position and facing remain outside the authored animation controller. */
 export interface SideGameplayState extends SideMotionState {
   returnAction: GameplayState["returnAction"];
+  leadIn?: GameplayState["leadIn"];
 }
 
 export function createSideGameplayState(): SideGameplayState {
@@ -32,6 +35,7 @@ export function sideGameplayState(state: SideGameplayState): GameplayState {
     pending: state.pending,
     returnAction: state.returnAction,
     jumpFrom: state.jumpFrom,
+    ...(state.leadIn ? { leadIn: { ...state.leadIn } } : {}),
   };
 }
 
@@ -41,8 +45,9 @@ function mergeState(
 ): SideGameplayState {
   if (motion.action === "celebrate" || motion.pending === "celebrate")
     throw Error("The side-view stage does not include celebration.");
+  const { leadIn: _leadIn, ...position } = stage;
   return {
-    ...stage,
+    ...position,
     ...motion,
     action: motion.action,
     pending: motion.pending,
@@ -105,4 +110,15 @@ export function advanceSidePlayback(
     },
   );
   return { ...mergeState(state, motion), worldX };
+}
+
+/** Resolve the actual approach drawing; its pose is outside the base Jump clip. */
+export function sidePlaybackFrameId(
+  state: SideGameplayState,
+  manifest: BakedCharacterPackManifest,
+  profile: GameplayMotion | null,
+): number {
+  return profile
+    ? gameplayFrameId(profile, sideGameplayState(state))
+    : sideFrameId(state, manifest);
 }

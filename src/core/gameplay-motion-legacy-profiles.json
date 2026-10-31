@@ -1276,5 +1276,327 @@
       ],
       "jumpReturn": "previous-locomotion"
     }
+  },
+  {
+    "sourceActions": {
+      "idle": {
+        "frames": [
+          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+          20
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "walk": {
+        "frames": [
+          21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "run": {
+        "frames": [
+          39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "jump": {
+        "frames": [
+          57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73,
+          74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+          91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106
+        ],
+        "fps": 24,
+        "loop": false
+      }
+    },
+    "profile": {
+      "format": "gathria-gameplay-motion",
+      "version": 1,
+      "id": "kling-male-side-single-jump-v3",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "characterId": "male",
+      "view": "side",
+      "actions": {
+        "idle": {
+          "frames": [
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+            19, 20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
+            80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 21,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 21,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 21,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 12,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 9,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exit": 28,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exit": 28,
+          "entry": 7
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 27,
+          "entry": 16
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 28,
+          "entry": 11
+        }
+      ],
+      "jumpReturn": "previous-locomotion"
+    }
+  },
+  {
+    "sourceActions": {
+      "idle": {
+        "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        "fps": 24,
+        "loop": true
+      },
+      "walk": {
+        "frames": [
+          16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "run": {
+        "frames": [
+          34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51
+        ],
+        "fps": 24,
+        "loop": true
+      },
+      "jump": {
+        "frames": [
+          52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68,
+          69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85,
+          86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101
+        ],
+        "fps": 24,
+        "loop": false
+      }
+    },
+    "profile": {
+      "format": "gathria-gameplay-motion",
+      "version": 1,
+      "id": "kling-female-side-single-jump-v3",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "characterId": "female",
+      "view": "side",
+      "actions": {
+        "idle": {
+          "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+            75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 15,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 6,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exit": 28,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exit": 28,
+          "entry": 11
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 27,
+          "entry": 13
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 28,
+          "entry": 8
+        }
+      ],
+      "jumpReturn": "previous-locomotion"
+    }
   }
 ]

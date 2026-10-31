@@ -32,6 +32,7 @@ import {
   createSideGameplayState,
   requestSidePlayback,
   sideGameplayState,
+  sidePlaybackFrameId,
   type SideGameplayState,
 } from "./gameplay";
 import {
@@ -70,7 +71,6 @@ import {
 } from "./catalog";
 import {
   sideActionEnded,
-  sideFrameId,
   sideMotionFeedback,
   type SideAction,
   type SideStageMode,
@@ -136,6 +136,7 @@ type Readout = {
   paused: boolean;
   pending: SideAction | null;
   ended: boolean;
+  preparing: boolean;
   transitionMs: number | null;
 };
 const INITIAL_READOUT: Readout = {
@@ -148,6 +149,7 @@ const INITIAL_READOUT: Readout = {
   paused: false,
   pending: null,
   ended: false,
+  preparing: false,
   transitionMs: null,
 };
 
@@ -391,6 +393,7 @@ export default function SideViewPlayground({
         returnAction: action === "jump" ? "idle" : action,
         elapsedMs: (index * 1000) / clip.fps + 0.000001,
       };
+      delete motionRef.current.leadIn;
       lastTimeRef.current = null;
       dirtyRef.current = true;
     },
@@ -676,6 +679,7 @@ export default function SideViewPlayground({
             ? current.action
             : null,
       };
+      delete motionRef.current.leadIn;
     } else
       motionRef.current = requestSidePlayback(
         current,
@@ -729,7 +733,11 @@ export default function SideViewPlayground({
     if (!open || busyRef.current) return;
     const current = motionRef.current;
     const clip = playbackManifest(open).animations[current.action]!;
-    const frame = sideFrameId(current, playbackManifest(open));
+    const frame = sidePlaybackFrameId(
+      current,
+      playbackManifest(open),
+      playbackProfile(open),
+    );
     const index = Math.max(0, clip.frames.indexOf(frame));
     const next = clip.loop
       ? (index + direction + clip.frames.length) % clip.frames.length
@@ -749,6 +757,7 @@ export default function SideViewPlayground({
       pending: null,
       elapsedMs: (next * 1000) / clip.fps + 0.000001,
     };
+    delete motionRef.current.leadIn;
     dirtyRef.current = true;
   }
 
@@ -793,6 +802,7 @@ export default function SideViewPlayground({
       returnAction: note.action === "jump" ? "idle" : note.action,
       elapsedMs: (index * 1000) / clip.fps + 0.000001,
     };
+    delete motionRef.current.leadIn;
     lastTimeRef.current = null;
     dirtyRef.current = true;
   }
@@ -860,7 +870,11 @@ export default function SideViewPlayground({
         filename = `${stem}-${motion.action}-${motion.facing}.gif`;
         mime = "image/gif";
       } else {
-        const frame = sideFrameId(motion, playbackManifest(open));
+        const frame = sidePlaybackFrameId(
+          motion,
+          playbackManifest(open),
+          playbackProfile(open),
+        );
         const image = open.renderer.renderFrame(frame);
         bytes = encodeSourceRgbaPng(
           motion.facing === "left" ? mirrored(image) : image,
@@ -1071,7 +1085,11 @@ export default function SideViewPlayground({
           pendingFacingRef.current = null;
           motionRef.current = motion;
         }
-        const frame = sideFrameId(motion, manifest);
+        const frame = sidePlaybackFrameId(
+          motion,
+          manifest,
+          playbackProfile(open),
+        );
         const clip = manifest.animations[motion.action]!;
         const index = Math.max(0, clip.frames.indexOf(frame));
         const ended = sideActionEnded(motion, manifest);
@@ -1098,6 +1116,8 @@ export default function SideViewPlayground({
         if (travelReadoutRef.current)
           travelReadoutRef.current.textContent = `${motion.worldX >= 0 ? "+" : ""}${Math.round(motion.worldX).toLocaleString()} px`;
         canvas.dataset.elapsedMs = motion.elapsedMs.toFixed(3);
+        canvas.dataset.leadIn = String(!!motion.leadIn);
+        canvas.dataset.leadInElapsedMs = String(motion.leadIn?.elapsedMs ?? 0);
         canvas.dataset.fps = String(clip.fps);
         canvas.dataset.timing = rate === 1 ? "native-1x" : `review-${rate}x`;
         canvas.dataset.previewRate = String(rate);
@@ -1108,7 +1128,7 @@ export default function SideViewPlayground({
         canvas.dataset.ended = String(ended);
         canvas.dataset.character = open.character;
         canvas.dataset.collection = sideProjectCollection(open.project);
-        canvas.dataset.phase = feedback.phase;
+        canvas.dataset.phase = motion.leadIn ? "takeoff" : feedback.phase;
         canvas.dataset.appearance = JSON.stringify(
           getWardrobeAppearanceSelection(open.project),
         );
@@ -1139,6 +1159,7 @@ export default function SideViewPlayground({
             paused: motion.paused,
             pending,
             ended,
+            preparing: !!motion.leadIn,
             transitionMs,
           });
         }
@@ -1493,11 +1514,15 @@ export default function SideViewPlayground({
                 className="side-frame-readout"
                 data-testid="side-frame-status"
               >
-                <strong>{actionLabel(readout.action)}</strong>
+                <strong>
+                  {readout.preparing ? "起跳准备" : actionLabel(readout.action)}
+                </strong>
                 <span>
-                  {readout.count
-                    ? `${readout.index + 1} / ${readout.count} 帧`
-                    : "准备中"}
+                  {readout.preparing
+                    ? "跑步接入跳跃"
+                    : readout.count
+                      ? `${readout.index + 1} / ${readout.count} 帧`
+                      : "准备中"}
                   {readout.ended
                     ? " · 原片末帧停留"
                     : readout.paused

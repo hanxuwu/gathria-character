@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import currentSpecifications from "./gameplay-motion-profiles.json";
 import legacySpecifications from "./gameplay-motion-legacy-profiles.json";
 import {
   advanceGameplayMotion,
@@ -16,11 +15,10 @@ import type { PortableCharacterPackManifest } from "./types";
 
 const TICK = 1000 / 24;
 
-describe("reviewed side takeoff response windows", () => {
+describe("historical V3 side takeoff response windows", () => {
   for (const character of ["male", "female"] as const) {
-    const current = currentSpecifications.find(
-      (item) =>
-        item.profile.characterId === character && item.profile.view === "side",
+    const current = legacySpecifications.find(
+      (item) => item.profile.id === `kling-${character}-side-single-jump-v3`,
     )!;
     const profile = current.profile as GameplayMotion;
     const previous = legacySpecifications.find(

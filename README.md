@@ -66,16 +66,18 @@ enters a better matched running pose. Stationary jumps still complete their
 recovery, and previously exported motion profiles retain their original timing.
 [Landing-to-run comparisons and validation](docs/kling-landing-run/README.md).
 
-Side-view running now has a second reviewed takeoff window. Its maximum native
-input wait drops from almost 750ms to 458ms while preserving the complete jump,
-the previous landing return and all artwork. Original-view routes and historical
-exported profiles retain their existing behavior.
-[Side takeoff review and actual before/after GIFs](docs/kling-takeoff-refine/README.md).
-
 The paired workbench reuses bounded native display surfaces for repeated frames
-and preserves the current jump when returning from a background tab. Artwork,
-motion profiles and exports retain their reviewed contents.
+and preserves the current jump when returning from a background tab. Display
+caching does not modify the rendered artwork or exported frames.
 [Playback measurements, diagnostic GIFs and validation](docs/paired-playback/README.md).
+
+Side-view Run → Jump now uses three phase-matched approach routes from the
+existing source drawings. The controller waits at most 250ms to begin the
+approach; standalone Jump, landing and original-view animation stay unchanged.
+Paused approach poses can be saved and reopened in the paired project.
+[Native takeoff bridges, actual comparison GIFs and checks](docs/kling-takeoff-bridge/README.md).
+The [previous V3 two-window review](docs/kling-takeoff-refine/README.md) remains
+available as a comparison; historical exported profiles retain that behavior.
 
 ## Open the app
 

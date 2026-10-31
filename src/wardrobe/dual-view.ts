@@ -2,6 +2,11 @@ import { strToU8, zipSync } from "fflate";
 import { sha256 } from "../core/sha256";
 import {
   gameplayManifest,
+  gameplayFrameId,
+  gameplayFramePosition,
+  gameplayMotionMetadata,
+  type GameplayMotion,
+  type GameplayState,
   resolveGameplayMotion,
   type GameplayMode,
 } from "../core/gameplay-motion";
@@ -45,6 +50,8 @@ export interface DualViewPreview {
   facing: Facing;
   /** Position within this view's action, not a shared source-frame ID. */
   position: number;
+  /** A paused, reviewed run-up is outside the standalone Jump clip. */
+  takeoff?: { profile: GameplayMotion; state: GameplayState };
 }
 
 export interface DualViewWardrobe {
@@ -154,10 +161,15 @@ function readSettings(value: unknown): NormalizedDualViewSettings {
   const raw = object(data.previews, "Dual-view previews", DUAL_VIEWS);
   const previews = {} as Record<DualView, DualViewPreview>;
   for (const view of DUAL_VIEWS) {
+    const hasTakeoff =
+      !!raw[view] &&
+      typeof raw[view] === "object" &&
+      Object.hasOwn(raw[view] as object, "takeoff");
     const preview = object(raw[view], `${view} preview`, [
       "action",
       "facing",
       "position",
+      ...(hasTakeoff ? ["takeoff"] : []),
     ]);
     if (!ACTIONS.includes(preview.action as PortableAnimationName))
       throw Error(`Unsupported ${view} action.`);
@@ -168,10 +180,51 @@ function readSettings(value: unknown): NormalizedDualViewSettings {
       (preview.position as number) < 0
     )
       throw Error(`Invalid ${view} action position.`);
+    let takeoff: DualViewPreview["takeoff"];
+    if (hasTakeoff) {
+      if (data.motionMode !== "single-jump")
+        throw Error("A takeoff checkpoint requires single-jump playback.");
+      const checkpoint = object(preview.takeoff, `${view} takeoff`, [
+        "profile",
+        "state",
+      ]);
+      const profile = checkpoint.profile as GameplayMotion;
+      gameplayMotionMetadata(profile); // Exact reviewed current or historical profile.
+      const state = object(checkpoint.state, `${view} takeoff state`, [
+        "action",
+        "elapsedMs",
+        "pending",
+        "returnAction",
+        "jumpFrom",
+        "leadIn",
+      ]);
+      const leadIn = object(state.leadIn, `${view} takeoff approach`, [
+        "from",
+        "exit",
+        "elapsedMs",
+      ]);
+      if (
+        state.action !== "jump" ||
+        state.action !== preview.action ||
+        leadIn.from !== "run" ||
+        state.jumpFrom !== "run" ||
+        state.pending === "jump" ||
+        !["idle", "walk", "run"].includes(state.returnAction as string) ||
+        (state.pending !== null &&
+          !ACTIONS.includes(state.pending as PortableAnimationName))
+      )
+        throw Error(`Invalid ${view} takeoff state.`);
+      const checked = state as unknown as GameplayState;
+      gameplayFrameId(profile, checked);
+      if (gameplayFramePosition(profile, checked) !== preview.position)
+        throw Error(`Invalid ${view} takeoff position.`);
+      takeoff = structuredClone({ profile, state: checked });
+    }
     previews[view] = {
       action: preview.action as PortableAnimationName,
       facing: preview.facing,
       position: preview.position as number,
+      ...(takeoff ? { takeoff } : {}),
     };
   }
   return {
@@ -231,13 +284,21 @@ function assertProject(
   const preview = settings.previews[view];
   const profile =
     settings.motionMode === "single-jump"
-      ? resolveGameplayMotion(
+      ? (preview.takeoff?.profile ??
+        resolveGameplayMotion(
           project.archive.manifest,
           project.document.sourceSha256,
-        )
+        ))
       : null;
   if (settings.motionMode === "single-jump" && !profile)
     throw Error(`${view} source has no reviewed single-jump profile.`);
+  if (
+    profile &&
+    (profile.characterId !== settings.character ||
+      profile.view !== view ||
+      profile.sourceSha256 !== project.document.sourceSha256)
+  )
+    throw Error(`${view} takeoff profile does not match its source.`);
   const manifest = profile
     ? gameplayManifest(project.archive.manifest, profile)
     : project.archive.manifest;

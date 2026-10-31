@@ -12,6 +12,7 @@ import {
   createSideGameplayState,
   requestSidePlayback,
   sideGameplayState,
+  sidePlaybackFrameId,
   type SideGameplayState,
 } from "./gameplay";
 
@@ -52,9 +53,18 @@ for (const character of ["male", "female"] as const) {
       state = requestSidePlayback(state, "jump", effective, profile);
       const fromX = state.worldX;
       const jumpFrames: number[] = [];
+      let approach: number[] = [];
       for (let tick = 0; tick < 120; tick++) {
-        if (state.action === "jump")
-          jumpFrames.push(sideFrameId(state, effective));
+        if (state.action === "jump") {
+          jumpFrames.push(sidePlaybackFrameId(state, effective, profile));
+          if (state.leadIn)
+            approach = profile.routes.find(
+              (route) =>
+                route.from === state.leadIn!.from &&
+                route.to === state.action &&
+                route.exit === state.leadIn!.exit,
+            )!.leadIn!;
+        }
         state = advanceSidePlayback(
           state,
           1000 / 24,
@@ -66,9 +76,10 @@ for (const character of ["male", "female"] as const) {
       const landingExit = profile.routes.find(
         (r) => r.from === "jump" && r.to === "run",
       )!.exit;
-      expect([...new Set(jumpFrames)]).toEqual(
-        profile.actions.jump.frames.slice(0, landingExit),
-      );
+      expect([...new Set(jumpFrames)]).toEqual([
+        ...approach,
+        ...profile.actions.jump.frames.slice(0, landingExit),
+      ]);
       expect(state.action).toBe("run");
       expect(state.worldX - fromX).toBeCloseTo(240 * 5);
       expect(state.returnAction).toBe("run");
@@ -117,6 +128,55 @@ for (const character of ["male", "female"] as const) {
       expect(
         advanceSidePlayback(state, 5000, effective, options, profile),
       ).toEqual(state);
+      expect(state.facing).toBe("left");
+    });
+
+    it("retains the native approach across pause and removes it at its exact end", () => {
+      const route = profile.routes.find(
+        (r) => r.from === "run" && r.to === "jump" && r.leadIn,
+      )!;
+      let state: SideGameplayState = {
+        ...createSideGameplayState(),
+        action: "run",
+        returnAction: "run",
+        elapsedMs: (route.exit * 1000) / profile.actions.run.fps,
+        facing: "left",
+        worldX: 500,
+      };
+      state = requestSidePlayback(state, "jump", effective, profile);
+      state = advanceSidePlayback(state, 7, effective, options, profile);
+      expect(state.leadIn?.elapsedMs).toBeCloseTo(7);
+      expect(sidePlaybackFrameId(state, effective, profile)).toBe(
+        route.leadIn![0],
+      );
+      const paused = { ...state, paused: true };
+      expect(
+        advanceSidePlayback(paused, 5000, effective, options, profile),
+      ).toEqual(paused);
+      const remaining =
+        (route.leadIn!.length * 1000) / profile.actions.jump.fps - 7;
+      state = advanceSidePlayback(
+        state,
+        remaining,
+        effective,
+        options,
+        profile,
+      );
+      expect(state).not.toHaveProperty("leadIn");
+      expect(sidePlaybackFrameId(state, effective, profile)).toBe(
+        profile.actions.jump.frames[0],
+      );
+      expect(state.elapsedMs).toBeCloseTo(0);
+      state = advanceSidePlayback(
+        state,
+        1000 / 24,
+        effective,
+        options,
+        profile,
+      );
+      expect(sidePlaybackFrameId(state, effective, profile)).toBe(
+        profile.actions.jump.frames[1],
+      );
       expect(state.facing).toBe("left");
     });
 

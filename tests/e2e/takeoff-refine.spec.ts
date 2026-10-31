@@ -6,7 +6,7 @@ import { unzipSync, zipSync } from "fflate";
 
 test.describe.configure({ mode: "default" });
 const root =
-  process.env.GATHRIA_TAKEOFF_EXPORT_ROOT ?? "/tmp/motion-refine/exports";
+  process.env.GATHRIA_TAKEOFF_EXPORT_ROOT ?? "/tmp/takeoff-bridge/exports";
 const sha = (bytes: Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
 const json = (bytes: Uint8Array) => JSON.parse(Buffer.from(bytes).toString());
@@ -94,7 +94,8 @@ async function observe(canvas: Locator) {
       if (
         !prior ||
         prior.action !== value.action ||
-        prior.position !== value.position
+        prior.position !== value.position ||
+        prior.frame !== value.frame
       )
         win.takeoffSamples.push(value);
     };
@@ -134,7 +135,7 @@ function phases(records: Sample[]) {
 }
 
 for (const character of ["male", "female"] as const) {
-  test(`${character}: two reviewed running takeoffs preserve all landing and artwork behavior`, async ({
+  test(`${character}: source approach frames connect all three running takeoffs without changing the base jump`, async ({
     page,
     browser,
   }) => {
@@ -154,52 +155,88 @@ for (const character of ["male", "female"] as const) {
       "single-jump",
     );
 
-    const previousMetadata = `docs/kling-landing-run/review/${character}/side.character.json`;
-    const previousManifest = `docs/kling-landing-run/review/${character}/side.manifest.json`;
+    const previousMetadata = `docs/kling-takeoff-refine/review/${character}/side.character.json`;
+    const previousManifest = `docs/kling-takeoff-refine/review/${character}/side.manifest.json`;
     const baseline = `docs/paired-polish/review/${character}/side.character.zip`;
     const oldProfile = json(await readFile(previousMetadata)).sourceMetadata
       .gameplayMotion;
-    const addedExit = character === "male" ? 9 : 6;
-    const oldExit = character === "male" ? 16 : 13;
+    const reviewedRoutes =
+      character === "male"
+        ? [
+            {
+              from: "run",
+              to: "jump",
+              exit: 4,
+              entry: 0,
+              leadIn: [60, 61, 62],
+            },
+            {
+              from: "run",
+              to: "jump",
+              exit: 10,
+              entry: 0,
+              leadIn: [59, 60, 61, 62],
+            },
+            { from: "run", to: "jump", exit: 16, entry: 0, leadIn: [62] },
+          ]
+        : [
+            {
+              from: "run",
+              to: "jump",
+              exit: 1,
+              entry: 0,
+              leadIn: [55, 56, 57],
+            },
+            {
+              from: "run",
+              to: "jump",
+              exit: 7,
+              entry: 0,
+              leadIn: [54, 55, 56, 57],
+            },
+            { from: "run", to: "jump", exit: 13, entry: 0, leadIn: [57] },
+          ];
     await pose(page, "jump");
     const packPath = `${directory}/side.character.zip`;
     const pack = await exported(page, "dual-export-pack", packPath);
     const files = unzipSync(pack),
       manifest = json(files["manifest.json"]);
     const profile = json(files["character.json"]).sourceMetadata.gameplayMotion;
-    expect(profile.id).toBe(`kling-${character}-side-single-jump-v3`);
-    const addedRoute = { from: "run", to: "jump", exit: addedExit, entry: 0 };
+    expect(profile.id).toBe(`kling-${character}-side-single-jump-v4`);
     expect(
       profile.routes.filter(
         (r: { from: string; to: string }) =>
           r.from === "run" && r.to === "jump",
       ),
-    ).toEqual([
-      addedRoute,
-      { from: "run", to: "jump", exit: oldExit, entry: 0 },
-    ]);
-    // The new revision adds exactly one supported run exit. The complete jump,
-    // landing, all other routes and source binding remain byte-for-byte values.
-    expect({
-      ...profile,
+    ).toEqual(reviewedRoutes);
+    // Only the reviewed running approach routes are new. The complete base
+    // jump, landing, all other routes and source binding retain their values.
+    const withoutRunningTakeoff = (value: typeof profile) => ({
+      ...value,
       id: oldProfile.id,
-      routes: profile.routes.filter(
-        (r: { from: string; to: string; exit: number }) =>
-          !(r.from === "run" && r.to === "jump" && r.exit === addedExit),
+      routes: value.routes.filter(
+        (r: { from: string; to: string }) =>
+          !(r.from === "run" && r.to === "jump"),
       ),
-    }).toEqual(oldProfile);
+    });
+    expect(withoutRunningTakeoff(profile)).toEqual(
+      withoutRunningTakeoff(oldProfile),
+    );
     expect(manifest).toEqual(json(await readFile(previousManifest)));
 
     const playback: Array<Record<string, unknown>> = [];
-    const cases = [
-      { name: "additional exit", start: 0, exit: addedExit },
-      { name: "retained exit", start: addedExit + 1, exit: oldExit },
-      {
-        name: "next-cycle additional exit",
-        start: oldExit + 1,
-        exit: addedExit + 18,
-      },
-    ];
+    const cases = reviewedRoutes.map((route) => ({
+      name: `exit ${route.exit}`,
+      start: route.exit - 1,
+      exit: route.exit,
+      approachFrames: route.leadIn,
+    }));
+    cases.push({
+      name: "next-cycle first exit",
+      start: reviewedRoutes.at(-1)!.exit + 1,
+      exit: reviewedRoutes[0].exit + 18,
+      approachFrames: reviewedRoutes[0].leadIn,
+    });
     for (const item of cases) {
       await pose(page, "run", item.start);
       await observe(stage(page));
@@ -220,11 +257,40 @@ for (const character of ["male", "female"] as const) {
       const result = await observations(stage(page));
       expect(phases(result.records)).toEqual(["run", "jump", "run"]);
       const firstJump = result.records.find((row) => row.action === "jump")!;
+      const approachFrames = item.approachFrames;
+      const shownApproach = result.records.filter(
+        (row) => row.action === "jump" && approachFrames.includes(row.frame),
+      );
+      // An unpaced browser may miss a one-tick drawing under CI load. The
+      // controlled-clock case checks every approach image; here every observed
+      // drawing must still belong to this exact source sequence and advance.
+      const jumpDrawings = [...approachFrames, ...profile.actions.jump.frames];
+      const observedJump = result.records.filter(
+        (row) => row.action === "jump",
+      );
+      const observedOrder = observedJump.map((row) =>
+        jumpDrawings.indexOf(row.frame),
+      );
+      expect(
+        observedOrder.every(
+          (order, i) => order >= 0 && (i === 0 || order > observedOrder[i - 1]),
+        ),
+      ).toBe(true);
+      expect(
+        observedJump.every((row) =>
+          approachFrames.includes(row.frame)
+            ? row.position === 0 && row.elapsed === 0
+            : profile.actions.jump.frames[row.position] === row.frame,
+        ),
+      ).toBe(true);
+      expect(
+        shownApproach.every((row) => row.position === 0 && row.elapsed === 0),
+      ).toBe(true);
       const expectedWaitMs = ((item.exit - item.start) * 1000) / 24;
-      expect(expectedWaitMs).toBeLessThanOrEqual((11 * 1000) / 24);
+      expect(expectedWaitMs).toBeLessThanOrEqual((6 * 1000) / 24);
       const observedWaitMs = firstJump.at - result.requestedAt;
       // A real browser can be late by a display tick or scheduling delay. This
-      // threshold detects the old extra-cycle wait; the exact 458⅓ms bound is
+      // threshold detects the old extra-cycle wait; the exact 250ms bound is
       // proven for every input phase by controller tests, not a wall-clock SLA.
       expect(observedWaitMs).toBeGreaterThanOrEqual(expectedWaitMs - 30);
       expect(observedWaitMs).toBeLessThan(expectedWaitMs + 250);
@@ -241,7 +307,16 @@ for (const character of ["male", "female"] as const) {
         .map((row) => row.position);
       expect(Math.max(...jumpPositions)).toBeGreaterThanOrEqual(24);
       expect(Math.max(...jumpPositions)).toBeLessThan(27);
-      playback.push({ ...item, expectedWaitMs, observedWaitMs, ...result });
+      playback.push({
+        ...item,
+        approachFrames,
+        shownApproach,
+        approachObserved: shownApproach.length > 0,
+        observedOrder,
+        expectedWaitMs,
+        observedWaitMs,
+        ...result,
+      });
     }
 
     const gifs: Record<string, Record<string, string>> = { jump: {}, flow: {} };
@@ -304,13 +379,25 @@ for (const character of ["male", "female"] as const) {
         requests.push(request.url());
     });
     try {
-      for (const variant of ["current", "historical-v2"] as const) {
+      for (const variant of [
+        "current",
+        "historical-v2",
+        "historical-v3",
+      ] as const) {
         let file = packPath;
-        if (variant === "historical-v2") {
+        if (variant !== "current") {
           const archived = unzipSync(await readFile(baseline));
-          archived["manifest.json"] = await readFile(previousManifest);
-          archived["character.json"] = await readFile(previousMetadata);
-          file = `${directory}/side-historical-v2.character.zip`;
+          const review =
+            variant === "historical-v2"
+              ? "kling-landing-run"
+              : "kling-takeoff-refine";
+          archived["manifest.json"] = await readFile(
+            `docs/${review}/review/${character}/side.manifest.json`,
+          );
+          archived["character.json"] = await readFile(
+            `docs/${review}/review/${character}/side.character.json`,
+          );
+          file = `${directory}/side-${variant}.character.zip`;
           await writeFile(
             file,
             zipSync(archived, { level: 0, mtime: new Date(2020, 0, 1) }),
@@ -368,7 +455,7 @@ for (const character of ["male", "female"] as const) {
             {
               profileId: imported.id,
               eligibleLastRunPositions: eligible,
-              historicalProfileRetained: variant === "historical-v2",
+              historicalProfileRetained: variant !== "current",
               ...result,
             },
             null,

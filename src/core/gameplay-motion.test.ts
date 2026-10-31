@@ -229,7 +229,8 @@ describe("single jump and continuous source-pose transitions", () => {
       requested,
       gameplayTransitionWait(profile, requested)!,
     );
-    const beforeLanding = advanceGameplayMotion(profile, jumping, 26 * TICK);
+    // Three contextual approach poses precede the unchanged single jump.
+    const beforeLanding = advanceGameplayMotion(profile, jumping, 29 * TICK);
     expect(beforeLanding.action).toBe("jump");
     expect(gameplayFrameId(profile, beforeLanding)).toBe(89);
     const resumed = advanceGameplayMotion(profile, beforeLanding, TICK + 7);
@@ -251,7 +252,7 @@ describe("single jump and continuous source-pose transitions", () => {
     state = advanceGameplayMotion(
       profile,
       state,
-      gameplayTransitionWait(profile, state)! + 4 * TICK,
+      gameplayTransitionWait(profile, state)! + 7 * TICK,
     );
     state = requestGameplayAction(state, "walk", profile);
     state = requestGameplayAction(state, "idle", profile);
@@ -272,12 +273,18 @@ describe("single jump and continuous source-pose transitions", () => {
       segments.push(s),
     );
     expect(final.action).toBe("run");
-    expect(segments.map((s) => s.action)).toEqual(["run", "jump", "run"]);
+    expect(segments.map((s) => s.action)).toEqual([
+      "run",
+      "jump",
+      "jump",
+      "run",
+    ]);
     expect(segments.reduce((sum, s) => sum + s.durationMs, 0)).toBeCloseTo(
       4000,
       8,
     );
-    expect(segments[1].durationMs).toBeCloseTo(27 * TICK, 8);
+    expect(segments[1].durationMs).toBeCloseTo(3 * TICK, 8);
+    expect(segments[2].durationMs).toBeCloseTo(27 * TICK, 8);
     expect(segments[1].jumpFrom).toBe("run");
     let chunked = start;
     for (const delta of [17, 100, 31, 1700, 16, 2136])
@@ -402,7 +409,7 @@ describe("target-specific grounded landing exits", () => {
         (row) =>
           row.profile.characterId === character && row.profile.view === view,
       )!.profile as GameplayMotion;
-      expect(profile.id).toMatch(view === "side" ? /-v3$/ : /-v2$/);
+      expect(profile.id).toMatch(view === "side" ? /-v4$/ : /-v2$/);
       const archived = readGameplayMotion(gameplayManifest(manifest, old), {
         sourceMetadata: { gameplayMotion: gameplayMotionMetadata(old) },
       });

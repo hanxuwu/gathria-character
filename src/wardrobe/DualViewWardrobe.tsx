@@ -6,6 +6,7 @@ import { encodeSourceRgbaPng, type RgbaPng } from "../core/baked-source";
 import {
   advanceGameplayMotion,
   createGameplayState,
+  gameplayFrameId,
   gameplayFramePosition,
   gameplayManifest,
   requestGameplayAction,
@@ -102,10 +103,11 @@ function motionSources(
   for (const source of VIEWS) {
     const profile =
       pair.motionMode === "single-jump"
-        ? resolveGameplayMotion(
+        ? (pair.previews[source].takeoff?.profile ??
+          resolveGameplayMotion(
             pair.projects[source].archive.manifest,
             pair.projects[source].document.sourceSha256,
-          )
+          ))
         : null;
     if (pair.motionMode === "single-jump" && !profile)
       throw Error(`${viewName(source)}缺少经过检查的单次跳跃动作。`);
@@ -119,6 +121,22 @@ function motionSources(
 
 function motionPosition(state: GameplayState, profile: GameplayMotion): number {
   return gameplayFramePosition(profile, state);
+}
+
+function motionPreview(
+  preview: DualViewPreview,
+  state: GameplayState,
+  profile: GameplayMotion,
+): DualViewPreview {
+  const { takeoff: _takeoff, ...pose } = preview;
+  return {
+    ...pose,
+    action: state.action,
+    position: motionPosition(state, profile),
+    ...(state.leadIn
+      ? { takeoff: { profile, state: structuredClone(state) } }
+      : {}),
+  };
 }
 
 function dispose(session: Session | undefined) {
@@ -273,10 +291,13 @@ export default function DualViewWardrobe({
       const preview = pair.previews[source];
       const clip = manifests[source].animations[preview.action]!;
       elapsed.current[source] = (preview.position * 1000) / clip.fps;
-      motion.current[source] = {
-        ...createGameplayState(preview.action),
-        elapsedMs: elapsed.current[source],
-      };
+      motion.current[source] = preview.takeoff
+        ? structuredClone(preview.takeoff.state)
+        : {
+            ...createGameplayState(preview.action),
+            elapsedMs: elapsed.current[source],
+          };
+      elapsed.current[source] = motion.current[source].elapsedMs;
     }
     previousTime.current = null;
   }
@@ -289,7 +310,10 @@ export default function DualViewWardrobe({
     const preview = open.pair.previews[source];
     const renderer = open.renderers[source];
     const clip = open.manifests[source].animations[preview.action];
-    const id = clip?.frames[preview.position];
+    const profile = open.profiles[source];
+    const id = profile
+      ? gameplayFrameId(profile, motion.current[source])
+      : clip?.frames[preview.position];
     if (id === undefined) throw Error("当前动作没有可显示的原始帧。");
     displayFrames.withFrame(
       renderer,
@@ -386,6 +410,10 @@ export default function DualViewWardrobe({
           pendingAction: motion.current[source].pending ?? "",
           returnAction: motion.current[source].returnAction,
           jumpFrom: motion.current[source].jumpFrom ?? "",
+          leadIn: String(!!motion.current[source].leadIn),
+          leadInElapsedMs: String(
+            motion.current[source].leadIn?.elapsedMs ?? 0,
+          ),
           elapsedMs: String(
             open.profiles[source]
               ? motion.current[source].elapsedMs
@@ -464,9 +492,11 @@ export default function DualViewWardrobe({
       for (const source of VIEWS) {
         const preview = nextPair.previews[source];
         next.renderers[source].renderFrame(
-          next.manifests[source].animations[preview.action]!.frames[
-            preview.position
-          ],
+          preview.takeoff
+            ? gameplayFrameId(preview.takeoff.profile, preview.takeoff.state)
+            : next.manifests[source].animations[preview.action]!.frames[
+                preview.position
+              ],
         );
       }
       const replaced = current.current ?? undefined;
@@ -618,6 +648,8 @@ export default function DualViewWardrobe({
       return;
     }
     const preview = { ...open.pair.previews[source], ...change };
+    if (Object.hasOwn(change, "action") || Object.hasOwn(change, "position"))
+      delete preview.takeoff;
     const clip = open.manifests[source].animations[preview.action];
     if (!clip || !Number.isSafeInteger(preview.position)) return;
     preview.position = Math.max(
@@ -629,11 +661,13 @@ export default function DualViewWardrobe({
       previews: { ...open.pair.previews, [source]: preview },
     };
     remember({ ...open, pair });
-    elapsed.current[source] = (preview.position * 1000) / clip.fps;
-    motion.current[source] = {
-      ...createGameplayState(preview.action),
-      elapsedMs: elapsed.current[source],
-    };
+    if (Object.hasOwn(change, "action") || Object.hasOwn(change, "position")) {
+      elapsed.current[source] = (preview.position * 1000) / clip.fps;
+      motion.current[source] = {
+        ...createGameplayState(preview.action),
+        elapsedMs: elapsed.current[source],
+      };
+    }
     previousTime.current = null;
     setPlaying((previous) => ({ ...previous, [source]: false }));
     playingRef.current = { ...playingRef.current, [source]: false };
@@ -664,11 +698,7 @@ export default function DualViewWardrobe({
         elapsed.current[source] = state.elapsedMs;
         const previews = {
           ...open.pair.previews,
-          [source]: {
-            ...open.pair.previews[source],
-            action: state.action,
-            position: motionPosition(state, profile),
-          },
+          [source]: motionPreview(open.pair.previews[source], state, profile),
         };
         remember({ ...open, pair: { ...open.pair, previews } });
       } else changePreview({ action, position: 0 }, source);
@@ -685,15 +715,27 @@ export default function DualViewWardrobe({
     const open = current.current;
     if (!open || busyRef.current || mode === open.pair.motionMode) return;
     try {
-      const pair = { ...open.pair, motionMode: mode };
+      const pair = {
+        ...open.pair,
+        motionMode: mode,
+        previews: Object.fromEntries(
+          VIEWS.map((source) => {
+            const { takeoff: _takeoff, ...preview } =
+              open.pair.previews[source];
+            return [source, preview];
+          }),
+        ) as PairedProject["previews"],
+      };
       const nextMotion = motionSources(pair, open.renderers);
       const previews = { ...pair.previews };
       for (const source of VIEWS) {
         const preview = previews[source];
-        const frameId =
-          open.manifests[source].animations[preview.action]!.frames[
-            preview.position
-          ];
+        const profile = open.profiles[source];
+        const frameId = profile
+          ? gameplayFrameId(profile, motion.current[source])
+          : open.manifests[source].animations[preview.action]!.frames[
+              preview.position
+            ];
         const nextClip =
           nextMotion.manifests[source].animations[preview.action]!;
         previews[source] = {
@@ -771,8 +813,19 @@ export default function DualViewWardrobe({
     );
     try {
       const { projects, ...settings } = open.pair;
+      const previews = { ...settings.previews };
+      for (const view of VIEWS) {
+        const profile = open.profiles[view];
+        if (profile)
+          previews[view] = motionPreview(
+            previews[view],
+            motion.current[view],
+            profile,
+          );
+      }
       const pair = createDualViewWardrobe(projects, {
         ...settings,
+        previews,
         activeView: source,
       });
       const project = updateWardrobePreview(pair.projects[source], {
@@ -838,10 +891,11 @@ export default function DualViewWardrobe({
         name = `${prefix}-run-jump-run-${preview.facing}.gif`;
         mime = "image/gif";
       } else {
-        const id =
-          open.manifests[source].animations[preview.action]!.frames[
-            preview.position
-          ];
+        const id = profile
+          ? gameplayFrameId(profile, motion.current[source])
+          : open.manifests[source].animations[preview.action]!.frames[
+              preview.position
+            ];
         const image = renderer.renderFrame(id);
         bytes = encodeSourceRgbaPng(
           preview.facing === "left" ? mirror(image) : image,
@@ -899,9 +953,12 @@ export default function DualViewWardrobe({
   }, [view, active]);
 
   useLayoutEffect(() => {
-    if (!active || !session) return;
+    const open = current.current;
+    if (!active || !open) return;
     try {
-      for (const source of comparing ? VIEWS : [view]) paint(session, source);
+      // A React commit may follow another clock tick. Read the same accepted
+      // session as the live approach state so labels and native pixels agree.
+      for (const source of comparing ? VIEWS : [view]) paint(open, source);
     } catch (failure) {
       setError(failure instanceof Error ? failure.message : String(failure));
     }
@@ -950,6 +1007,8 @@ export default function DualViewWardrobe({
         const preview = previews[source];
         const profile = open.profiles[source];
         if (profile) {
+          const before = motion.current[source];
+          const previousFrame = gameplayFrameId(profile, before);
           const state = advanceGameplayMotion(
             profile,
             motion.current[source],
@@ -966,10 +1025,15 @@ export default function DualViewWardrobe({
               (actionClip.frames.length * 1000) / actionClip.fps
           )
             nextPlaying = { ...nextPlaying, [source]: false };
-          if (state.action !== preview.action || position !== preview.position)
+          if (
+            state.action !== preview.action ||
+            position !== preview.position ||
+            gameplayFrameId(profile, state) !== previousFrame ||
+            !!state.leadIn !== !!before.leadIn
+          )
             previews = {
               ...previews,
-              [source]: { ...preview, action: state.action, position },
+              [source]: motionPreview(preview, state, profile),
             };
           continue;
         }
@@ -1152,7 +1216,7 @@ export default function DualViewWardrobe({
                       const state = motion.current[source];
                       const label = (action: PortableAnimationName) =>
                         ACTIONS.find(([id]) => id === action)?.[1] ?? action;
-                      return `${comparing ? `${source === "original" ? "原版" : "侧视"}：` : ""}${label(state.action)}${state.pending ? ` → ${label(state.pending)}${state.action === "jump" ? "（落地后）" : ""}` : state.action === "jump" ? ` → ${label(state.returnAction)}（落地后）` : ""}`;
+                      return `${comparing ? `${source === "original" ? "原版" : "侧视"}：` : ""}${state.leadIn ? "起跳准备" : label(state.action)}${state.pending ? ` → ${label(state.pending)}${state.action === "jump" ? "（落地后）" : ""}` : state.action === "jump" ? ` → ${label(state.returnAction)}（落地后）` : ""}`;
                     })
                     .join(" · ")}
                 </p>
@@ -1345,9 +1409,10 @@ export default function DualViewWardrobe({
                         </label>
                       </div>
                       <label className="dual-frame-control">
-                        {viewName(source)} · 第{" "}
-                        {nativePreview ? nativePreview.position + 1 : 0} /{" "}
-                        {nativeClip?.frames.length ?? 0} 帧
+                        {viewName(source)} ·{" "}
+                        {motion.current[source].leadIn
+                          ? "起跳准备"
+                          : `第 ${nativePreview ? nativePreview.position + 1 : 0} / ${nativeClip?.frames.length ?? 0} 帧`}
                         <input
                           type="range"
                           data-testid={`dual-compare-frame-${source}`}
@@ -1499,8 +1564,9 @@ export default function DualViewWardrobe({
                 </label>
               </div>
               <label className="dual-frame-control">
-                当前动作帧 {preview ? preview.position + 1 : 0} /{" "}
-                {clip?.frames.length ?? 0}
+                {motion.current[view].leadIn
+                  ? "起跳准备 · 可继续播放或选择基础动作帧"
+                  : `当前动作帧 ${preview ? preview.position + 1 : 0} / ${clip?.frames.length ?? 0}`}
                 <input
                   data-testid="dual-frame"
                   type="range"

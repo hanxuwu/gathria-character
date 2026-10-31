@@ -419,6 +419,10 @@ export function PackPlayer() {
         );
         canvas.dataset.returnAction =
           gameplayStateRef.current?.returnAction ?? "";
+        canvas.dataset.leadIn = String(!!gameplayState?.leadIn);
+        canvas.dataset.leadInElapsedMs = String(
+          gameplayState?.leadIn?.elapsedMs ?? 0,
+        );
         canvas.dataset.frameId = String(frame.id);
         canvas.dataset.framePage = String(frame.page ?? 0);
         drawCharacterFrame(

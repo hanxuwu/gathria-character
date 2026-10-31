@@ -51,6 +51,13 @@ describe("single native jump exports", () => {
           .filter((route) => route.from === "run" && route.to === "jump")
           .map((route) => route.exit),
       );
+      const leadIn =
+        profile.routes.find(
+          (route) =>
+            route.from === "run" &&
+            route.to === "jump" &&
+            route.exit === firstExit,
+        )?.leadIn ?? [];
       const landing = profile.routes.find(
         (route) => route.from === "jump" && route.to === "run",
       )!;
@@ -59,6 +66,7 @@ describe("single native jump exports", () => {
       const expected = [
         ...run.frames,
         ...run.frames.slice(0, firstExit),
+        ...leadIn,
         ...landingFrames,
         ...run.frames.slice(returnEntry),
         ...run.frames.slice(0, returnEntry),
@@ -68,7 +76,7 @@ describe("single native jump exports", () => {
         sequence.frames
           .filter((frame) => frame.action === "jump")
           .map((frame) => frame.frameId),
-      ).toEqual(landingFrames);
+      ).toEqual([...leadIn, ...landingFrames]);
       expect(sequence.jumpRequestTick).toBe(run.frames.length);
       expect(sequence.returnRunTicks).toBe(run.frames.length);
       expect(sequence.durationMs).toBe((expected.length * 1000) / run.fps);

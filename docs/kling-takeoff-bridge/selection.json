@@ -1,0 +1,966 @@
+{
+  "format": "gathria-takeoff-bridge-selection",
+  "version": 1,
+  "baselineCommit": "e2d58db86f7aeed9f0c5c7892c4eb348b73d0b27",
+  "purpose": "Native-pixel selection evidence, not proof of new runtime or application exports",
+  "artworkEdited": false,
+  "fps": 24,
+  "framesInterpolated": false,
+  "anchorsChanged": false,
+  "scope": "Side-view Run to Jump context-specific approach; basic Jump and original-view actions unchanged",
+  "latency": {
+    "oldMaxQueueTicks": 11,
+    "newMaxQueueTicks": 6,
+    "newMaxQueueMs": 250,
+    "newMaxUntilBasicJumpTicks": 10,
+    "newMaxUntilBasicJumpMs": 416.6666666666667,
+    "basicJumpAnticipationTicks": 6,
+    "newMaxUntilMainJumpAirborneTicks": 16,
+    "newMaxUntilMainJumpAirborneMs": 666.6666666666666,
+    "excludes": "Browser scheduling and painting delay; approach may contain an ordinary running flight pose, not the main jump"
+  },
+  "characters": [
+    {
+      "character": "male",
+      "view": "side",
+      "assets": {
+        "source": {
+          "archive": "docs/kling-side-workspace/assets/male.source.zip",
+          "archiveSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+          "anchor": {
+            "x": 256,
+            "y": 710,
+            "units": "pixels",
+            "origin": "top-left"
+          },
+          "frameWidth": 512,
+          "frameHeight": 768
+        },
+        "composed": {
+          "archive": "Actual application export of e2d58db86f7aeed9f0c5c7892c4eb348b73d0b27: male/side.character.zip",
+          "archiveSha256": "04ca201ee29ee0bb501a9dacd47fa3631870a3d85c124ea44328fa2dd559f6e9",
+          "anchor": {
+            "x": 256,
+            "y": 710,
+            "units": "pixels",
+            "origin": "top-left"
+          },
+          "frameWidth": 512,
+          "frameHeight": 768
+        }
+      },
+      "routes": [
+        {
+          "exit": 4,
+          "lastRunNative": 42,
+          "leadIn": [
+            60,
+            61,
+            62
+          ],
+          "entry": 0,
+          "firstJumpNative": 63,
+          "leadInDurationMs": 125.0
+        },
+        {
+          "exit": 10,
+          "lastRunNative": 48,
+          "leadIn": [
+            59,
+            60,
+            61,
+            62
+          ],
+          "entry": 0,
+          "firstJumpNative": 63,
+          "leadInDurationMs": 166.66666666666666
+        },
+        {
+          "exit": 16,
+          "lastRunNative": 54,
+          "leadIn": [
+            62
+          ],
+          "entry": 0,
+          "firstJumpNative": 63,
+          "leadInDurationMs": 41.666666666666664
+        }
+      ],
+      "reviewedFrameMeasurements": {
+        "source": {
+          "42": {
+            "rgbaSha256": "baf988cf217c59ece703aebda8a3603d8c5e6416514e1fe1f0dda1b4bbe158fd",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              96,
+              220,
+              367,
+              702
+            ],
+            "alpha128Bounds": [
+              97,
+              221,
+              366,
+              702
+            ]
+          },
+          "47": {
+            "rgbaSha256": "1aa990f9a1801de3474807275fcd7a3269551ebad2d3364c5bb743bd1154ac7a",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              138,
+              236,
+              351,
+              700
+            ],
+            "alpha128Bounds": [
+              138,
+              236,
+              351,
+              699
+            ]
+          },
+          "48": {
+            "rgbaSha256": "4a7bf714896e22494510ac91425185bb450c50aef1fe60dedd22b2eb956a7c83",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              138,
+              231,
+              360,
+              700
+            ],
+            "alpha128Bounds": [
+              138,
+              231,
+              359,
+              699
+            ]
+          },
+          "54": {
+            "rgbaSha256": "75ff1e416118774d65b5e531d708af48124a4dee1f263eb0bafdb02af25c7f40",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              110,
+              233,
+              369,
+              702
+            ],
+            "alpha128Bounds": [
+              110,
+              233,
+              369,
+              701
+            ]
+          },
+          "58": {
+            "rgbaSha256": "31536d6f87ca58d12dd1680ad089a7cd70f9458617a966e5f9ca349b3836cb73",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              152,
+              242,
+              373,
+              705
+            ],
+            "alpha128Bounds": [
+              154,
+              242,
+              373,
+              703
+            ]
+          },
+          "59": {
+            "rgbaSha256": "9bd6af31ff5834388616e1a03e1ac753afac8c7cac4bfb8e3c5beaeeebcd9c6e",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              132,
+              235,
+              376,
+              705
+            ],
+            "alpha128Bounds": [
+              132,
+              237,
+              376,
+              705
+            ]
+          },
+          "60": {
+            "rgbaSha256": "720bc268d7ea8ea4707f8d67f31dd336f8308a0fdafde4e44e811257e80b4589",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              92,
+              227,
+              379,
+              704
+            ],
+            "alpha128Bounds": [
+              93,
+              227,
+              378,
+              703
+            ]
+          },
+          "61": {
+            "rgbaSha256": "ca7fe2af36647ef6a08f4486103ea48eed68cc57c88ebfee7752ffd16455e490",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              82,
+              226,
+              400,
+              682
+            ],
+            "alpha128Bounds": [
+              82,
+              226,
+              399,
+              680
+            ]
+          },
+          "62": {
+            "rgbaSha256": "6a8865c7581bfc5ff588f25cd306d99ea7b65a8b757610df3cf841f7d8de9cdc",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              84,
+              236,
+              417,
+              698
+            ],
+            "alpha128Bounds": [
+              85,
+              237,
+              415,
+              698
+            ]
+          },
+          "63": {
+            "rgbaSha256": "9f57b3e9761b98881b347fea217122ae6be729a3815f9b332c5edb0c279de7a8",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              97,
+              254,
+              428,
+              707
+            ],
+            "alpha128Bounds": [
+              98,
+              256,
+              427,
+              706
+            ]
+          }
+        },
+        "composed": {
+          "42": {
+            "rgbaSha256": "d8e1d400c259eb455d49423403c50ab40e87726df17cf789b36942a0d3e08dfe",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              96,
+              143,
+              409,
+              702
+            ],
+            "alpha128Bounds": [
+              97,
+              179,
+              408,
+              702
+            ]
+          },
+          "47": {
+            "rgbaSha256": "b61e894aa771d24f8e334050125f17dca17f143cdfffab7b1412cfbeed2993c4",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              73,
+              158,
+              407,
+              700
+            ],
+            "alpha128Bounds": [
+              111,
+              195,
+              406,
+              699
+            ]
+          },
+          "48": {
+            "rgbaSha256": "4221e3850fb64503f74fc0a156777698bd875a3072036f2011a1a2294eede713",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              75,
+              154,
+              408,
+              700
+            ],
+            "alpha128Bounds": [
+              111,
+              190,
+              406,
+              699
+            ]
+          },
+          "54": {
+            "rgbaSha256": "01a745968d26059a94f91aed164a24ea574d1d613c0634271f202ed0e216af8b",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              107,
+              156,
+              416,
+              702
+            ],
+            "alpha128Bounds": [
+              109,
+              192,
+              403,
+              701
+            ]
+          },
+          "58": {
+            "rgbaSha256": "a0c3e6d858289c78978156bdaad9a73a35ab409024da3b7d4030077694f39723",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              108,
+              200,
+              430,
+              705
+            ],
+            "alpha128Bounds": [
+              128,
+              201,
+              429,
+              703
+            ]
+          },
+          "59": {
+            "rgbaSha256": "03aea701092b1b9a5a8461524cc8d1ea306ca75643c348deaa7e33b3dfebe13b",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              121,
+              154,
+              453,
+              705
+            ],
+            "alpha128Bounds": [
+              129,
+              194,
+              431,
+              705
+            ]
+          },
+          "60": {
+            "rgbaSha256": "7090e0ac9f41809de0d9ed8fe0a2501b435d960810a03f4114dd0df1dbf5ffbd",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              92,
+              145,
+              435,
+              704
+            ],
+            "alpha128Bounds": [
+              93,
+              186,
+              434,
+              703
+            ]
+          },
+          "61": {
+            "rgbaSha256": "58a7ac8459757e77b1c0711caae343c76640b11af56fb92331a371f5eaf12fc5",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              80,
+              141,
+              448,
+              682
+            ],
+            "alpha128Bounds": [
+              80,
+              186,
+              446,
+              680
+            ]
+          },
+          "62": {
+            "rgbaSha256": "243d517f2446ff58cdd927b68b39b546cff8a893ac0e94ec1b78b78beae62bf2",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              84,
+              164,
+              486,
+              698
+            ],
+            "alpha128Bounds": [
+              85,
+              199,
+              461,
+              698
+            ]
+          },
+          "63": {
+            "rgbaSha256": "44d67a88ce240de587d5749c0e187dc0bf43efbbdb9c9f42bad84fb913b052e2",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              97,
+              192,
+              481,
+              707
+            ],
+            "alpha128Bounds": [
+              98,
+              218,
+              479,
+              707
+            ]
+          }
+        }
+      },
+      "presentation": {
+        "file": "male-side-takeoff-selection.png",
+        "sha256": "ff70a1088c1be72841e5fd6a58f3d8cd260c7a6f101bedd08835d9e5cda75c0f",
+        "bytes": 238342,
+        "fixedNativeCrop": [
+          70,
+          136,
+          491,
+          712
+        ],
+        "scale": 0.3298611111111111,
+        "tileSize": [
+          139,
+          190
+        ],
+        "paletteColors": 256,
+        "resampling": "LANCZOS for inspection only; no source asset modified"
+      }
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "assets": {
+        "source": {
+          "archive": "docs/kling-side-workspace/assets/female.source.zip",
+          "archiveSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+          "anchor": {
+            "x": 256,
+            "y": 710,
+            "units": "pixels",
+            "origin": "top-left"
+          },
+          "frameWidth": 512,
+          "frameHeight": 768
+        },
+        "composed": {
+          "archive": "Actual application export of e2d58db86f7aeed9f0c5c7892c4eb348b73d0b27: female/side.character.zip",
+          "archiveSha256": "c7455104699c02e14f3fb581ff250243803633d87f33bbbb24a4b7c588278a62",
+          "anchor": {
+            "x": 256,
+            "y": 710,
+            "units": "pixels",
+            "origin": "top-left"
+          },
+          "frameWidth": 512,
+          "frameHeight": 768
+        }
+      },
+      "routes": [
+        {
+          "exit": 1,
+          "lastRunNative": 34,
+          "leadIn": [
+            55,
+            56,
+            57
+          ],
+          "entry": 0,
+          "firstJumpNative": 58,
+          "leadInDurationMs": 125.0
+        },
+        {
+          "exit": 7,
+          "lastRunNative": 40,
+          "leadIn": [
+            54,
+            55,
+            56,
+            57
+          ],
+          "entry": 0,
+          "firstJumpNative": 58,
+          "leadInDurationMs": 166.66666666666666
+        },
+        {
+          "exit": 13,
+          "lastRunNative": 46,
+          "leadIn": [
+            57
+          ],
+          "entry": 0,
+          "firstJumpNative": 58,
+          "leadInDurationMs": 41.666666666666664
+        }
+      ],
+      "reviewedFrameMeasurements": {
+        "source": {
+          "34": {
+            "rgbaSha256": "755bd4d45cb3796b04b89868e7f5b194231e2425e5c0644f1316f67b0435b455",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              100,
+              218,
+              374,
+              709
+            ],
+            "alpha128Bounds": [
+              101,
+              218,
+              374,
+              708
+            ]
+          },
+          "39": {
+            "rgbaSha256": "3338dbd26b77b3a2416dd2c555b9789df5043620ef1ce175a03041e2dbc38da4",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              148,
+              235,
+              359,
+              706
+            ],
+            "alpha128Bounds": [
+              148,
+              235,
+              359,
+              705
+            ]
+          },
+          "40": {
+            "rgbaSha256": "f71c16f1e736678b364082d7467bc4a6c4f825b4c28a88ed1df3086c678a6278",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              148,
+              230,
+              369,
+              706
+            ],
+            "alpha128Bounds": [
+              148,
+              230,
+              367,
+              706
+            ]
+          },
+          "46": {
+            "rgbaSha256": "8f3e667cd13685b17fdcc729edd16ecf554d4c8aa16f4b8481f1861418196b19",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              113,
+              232,
+              377,
+              709
+            ],
+            "alpha128Bounds": [
+              114,
+              232,
+              377,
+              708
+            ]
+          },
+          "53": {
+            "rgbaSha256": "20a8bc477aef87ced730a9ab8dd35e33994f35fe4d3b3a33eed67ca4ecf484b6",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              155,
+              230,
+              379,
+              706
+            ],
+            "alpha128Bounds": [
+              157,
+              230,
+              379,
+              704
+            ]
+          },
+          "54": {
+            "rgbaSha256": "cab77a390718c2b3a0f6e44cbb84cf818dcdb05cdac90528b9cbb957ded1fa59",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              129,
+              223,
+              382,
+              705
+            ],
+            "alpha128Bounds": [
+              130,
+              223,
+              380,
+              704
+            ]
+          },
+          "55": {
+            "rgbaSha256": "587716deb67227b0fa30ddab9b49bffc7f753ce0daba8174170dc5e0bf8de461",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              88,
+              213,
+              385,
+              706
+            ],
+            "alpha128Bounds": [
+              90,
+              213,
+              383,
+              704
+            ]
+          },
+          "56": {
+            "rgbaSha256": "b3176b0fb0f4f0113611ccd869abd8d587933597078f57ce4be99edc8ba3d2a4",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              77,
+              211,
+              406,
+              682
+            ],
+            "alpha128Bounds": [
+              78,
+              212,
+              404,
+              681
+            ]
+          },
+          "57": {
+            "rgbaSha256": "3c523cdca235b3c96b81719ba387942185542309f191c17faa353ca7b622e9a6",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              81,
+              224,
+              427,
+              698
+            ],
+            "alpha128Bounds": [
+              83,
+              224,
+              425,
+              697
+            ]
+          },
+          "58": {
+            "rgbaSha256": "c18b22112c398d247dd30dcb75da606d178cfb876cc325c240c3ecf470f04001",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              94,
+              242,
+              435,
+              708
+            ],
+            "alpha128Bounds": [
+              95,
+              243,
+              435,
+              707
+            ]
+          }
+        },
+        "composed": {
+          "34": {
+            "rgbaSha256": "34541f5fb239dca132e0773ac6f089bad7996f0888ae491c0b86160f30054bab",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              61,
+              185,
+              400,
+              709
+            ],
+            "alpha128Bounds": [
+              101,
+              201,
+              379,
+              708
+            ]
+          },
+          "39": {
+            "rgbaSha256": "297af1b6790ed2d85027af2c5d76b10feffbc493bf0fb425e2f95c6f693b016a",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              101,
+              205,
+              387,
+              706
+            ],
+            "alpha128Bounds": [
+              103,
+              217,
+              377,
+              705
+            ]
+          },
+          "40": {
+            "rgbaSha256": "e47914285cad6abfabbf27da98dee61198e7d233793890d14538b99c7f3cc981",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              100,
+              201,
+              388,
+              706
+            ],
+            "alpha128Bounds": [
+              103,
+              212,
+              378,
+              706
+            ]
+          },
+          "46": {
+            "rgbaSha256": "514ac7548fd749852b4aacea541f10ee42ea6d4c409bc3d694c975f462d94645",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              57,
+              203,
+              385,
+              709
+            ],
+            "alpha128Bounds": [
+              101,
+              215,
+              377,
+              708
+            ]
+          },
+          "53": {
+            "rgbaSha256": "2bcc8b5a93cd391edf777ece95b6b4bbb2ff4d65862f32c8949edcea385fe0b9",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              77,
+              194,
+              421,
+              706
+            ],
+            "alpha128Bounds": [
+              109,
+              211,
+              399,
+              704
+            ]
+          },
+          "54": {
+            "rgbaSha256": "8528b643318ce2ebb3d7974555437d86a5b7f90b68feeb51b499f5f7cb997515",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              63,
+              184,
+              416,
+              705
+            ],
+            "alpha128Bounds": [
+              110,
+              203,
+              403,
+              704
+            ]
+          },
+          "55": {
+            "rgbaSha256": "2dc180e445f0f45d2f89ccd31b29314acf82db4e199c69f593f3b7c424373a8e",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              65,
+              173,
+              427,
+              706
+            ],
+            "alpha128Bounds": [
+              90,
+              193,
+              405,
+              704
+            ]
+          },
+          "56": {
+            "rgbaSha256": "68e3d107f0f9e0f9868506cab63c6242d20d7999b6ec1e44adca443fdcfeeb50",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              71,
+              189,
+              435,
+              682
+            ],
+            "alpha128Bounds": [
+              78,
+              190,
+              417,
+              681
+            ]
+          },
+          "57": {
+            "rgbaSha256": "352895ade95edb8b12716971e28d47296167c3f91da36253181e944f57b8b6f3",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              81,
+              200,
+              450,
+              698
+            ],
+            "alpha128Bounds": [
+              83,
+              201,
+              430,
+              697
+            ]
+          },
+          "58": {
+            "rgbaSha256": "09ca921ebf57db93cd1dcd33b0b90c90adf687fbb1f6fedce778a4c40befa87e",
+            "size": [
+              512,
+              768
+            ],
+            "alphaBounds": [
+              93,
+              186,
+              479,
+              708
+            ],
+            "alpha128Bounds": [
+              95,
+              217,
+              451,
+              707
+            ]
+          }
+        }
+      },
+      "presentation": {
+        "file": "female-side-takeoff-selection.png",
+        "sha256": "e56ab9c0434f657be8aa25649a9163936bc81be596c8718c46b8c3fc34875979",
+        "bytes": 271991,
+        "fixedNativeCrop": [
+          52,
+          168,
+          484,
+          714
+        ],
+        "scale": 0.34798534798534797,
+        "tileSize": [
+          151,
+          190
+        ],
+        "paletteColors": 256,
+        "resampling": "LANCZOS for inspection only; no source asset modified"
+      }
+    }
+  ]
+}

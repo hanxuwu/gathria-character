@@ -30,24 +30,29 @@ const sources = {
 // full run cycle, next reviewed takeoff boundary, reviewed jump prefix, one
 // full run cycle at the landing exit. V1 retains its complete jump; V2 resumes
 // running after contact/rebound, before the standing recovery. Side V3 adds a
-// second reviewed takeoff boundary. Every revision keeps native 24 FPS.
+// second reviewed takeoff boundary. Side V4 adds phase-matched source lead-ins
+// at three evenly spaced boundaries. Every revision keeps native 24 FPS.
 function assertKnownRoutes(profile) {
   const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
   const original = profile.view === "original";
   const revision = Number(profile.id.slice(prefix.length).replace(/^v/, ""));
   assert(
     profile.id === `${prefix}v${revision}` &&
-      (original ? [1, 2] : [1, 2, 3]).includes(revision),
+      (original ? [1, 2] : [1, 2, 3, 4]).includes(revision),
     `Unknown reviewed motion profile: ${profile.id}`,
   );
   const male = profile.characterId === "male";
   const takeoffs = original
     ? [5, 13]
-    : revision === 3
+    : revision === 4
       ? male
-        ? [9, 16]
-        : [6, 13]
-      : [male ? 16 : 13];
+        ? [4, 10, 16]
+        : [1, 7, 13]
+      : revision === 3
+        ? male
+          ? [9, 16]
+          : [6, 13]
+        : [male ? 16 : 13];
   const complete = {
     from: "jump",
     to: "run",
@@ -66,7 +71,19 @@ function assertKnownRoutes(profile) {
       .sort((a, b) => a.exit - b.exit);
   assert.deepEqual(
     routes("run", "jump"),
-    takeoffs.map((exit) => ({ from: "run", to: "jump", exit, entry: 0 })),
+    takeoffs.map((exit, index) => ({
+      from: "run",
+      to: "jump",
+      exit,
+      entry: 0,
+      ...(revision === 4
+        ? {
+            leadIn: (male
+              ? [[60, 61, 62], [59, 60, 61, 62], [62]]
+              : [[55, 56, 57], [54, 55, 56, 57], [57]])[index],
+          }
+        : {}),
+    })),
     "Run takeoff routes differ from the reviewed native frames",
   );
   assert.deepEqual(
@@ -103,11 +120,13 @@ function expectedFlow(profile) {
     frames: [
       ...run.frames,
       ...run.frames.slice(0, takeoff.exit),
+      ...(takeoff.leadIn ?? []),
       ...jump.frames.slice(0, firstLanding.exit),
       ...recovery,
     ],
     phases: {
       runBefore: run.frames.length + takeoff.exit,
+      leadIn: takeoff.leadIn?.length ?? 0,
       jump: firstLanding.exit,
       runAfter: recovery.length,
     },

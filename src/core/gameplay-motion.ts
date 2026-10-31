@@ -18,6 +18,9 @@ export interface GameplayRoute {
   /** First tick of the chosen target pose. Run/walk↔jump seams are reviewed;
    * other side-view pairs conservatively retain cycle-boundary fallbacks. */
   entry: number;
+  /** Native approach drawings specific to this seam, held at target FPS before
+   * entry. They do not become part of the standalone target animation. */
+  leadIn?: number[];
 }
 export interface GameplayMotion {
   format: "gathria-gameplay-motion";
@@ -39,6 +42,13 @@ export interface GameplayState {
   returnAction: GameplayLocomotion;
   /** Travel velocity inherited at takeoff; source frames supply all height. */
   jumpFrom: "walk" | "run" | null;
+  /** The target action has been accepted, but its clock waits while these
+   * route-specific approach drawings play. No source pixels are synthesized. */
+  leadIn?: {
+    from: PortableAnimationName;
+    exit: number;
+    elapsedMs: number;
+  };
 }
 export interface GameplaySegment {
   action: PortableAnimationName;
@@ -97,11 +107,27 @@ function specification(profile: GameplayMotion): Specification | undefined {
 
 function framesExist(
   manifest: PortableCharacterPackManifest,
-  actions: GameplayMotion["actions"],
+  profile: GameplayMotion,
 ): boolean {
   const frames = new Set(manifest.frames.map((frame) => frame.id));
-  return Object.values(actions).every((clip) =>
-    clip.frames.every((frame) => frames.has(frame)),
+  return (
+    Object.values(profile.actions).every((clip) =>
+      clip.frames.every((frame) => frames.has(frame)),
+    ) &&
+    profile.routes.every((route) =>
+      (route.leadIn ?? []).every((frame) => frames.has(frame)),
+    )
+  );
+}
+
+function matchesSpecification(
+  manifest: PortableCharacterPackManifest,
+  item: Specification,
+): boolean {
+  return (
+    (equal(manifest.animations, item.sourceActions) ||
+      equal(manifest.animations, item.profile.actions)) &&
+    framesExist(manifest, item.profile)
   );
 }
 
@@ -115,13 +141,7 @@ export function resolveGameplayMotion(
   const item = reviewed.find(
     (row) => row.profile.sourceSha256 === sourceSha256,
   );
-  if (
-    !item ||
-    (!equal(manifest.animations, item.sourceActions) &&
-      !equal(manifest.animations, item.profile.actions)) ||
-    !framesExist(manifest, item.profile.actions)
-  )
-    return null;
+  if (!item || !matchesSpecification(manifest, item)) return null;
   return structuredClone(item.profile);
 }
 
@@ -133,7 +153,7 @@ export function gameplayManifest<T extends PortableCharacterPackManifest>(
   profile: GameplayMotion,
 ): T {
   const item = specification(profile);
-  if (!item || !resolveGameplayMotion(manifest, item.profile.sourceSha256))
+  if (!item || !matchesSpecification(manifest, item))
     throw Error("Gameplay profile does not match this source's action frames.");
   return { ...manifest, animations: structuredClone(profile.actions) };
 }
@@ -156,7 +176,7 @@ export function readGameplayMotion(
   if (
     !item ||
     !equal(manifest.animations, item.profile.actions) ||
-    !framesExist(manifest, item.profile.actions)
+    !framesExist(manifest, item.profile)
   )
     return null;
   return structuredClone(item.profile);
@@ -201,6 +221,49 @@ function checkState(profile: GameplayMotion, state: GameplayState): void {
       state.jumpFrom !== "run")
   )
     throw Error("Gameplay state is invalid.");
+  if (state.leadIn) {
+    if (
+      !object(state.leadIn) ||
+      Object.keys(state.leadIn).length !== 3 ||
+      !["from", "exit", "elapsedMs"].every((key) =>
+        Object.hasOwn(state.leadIn!, key),
+      )
+    )
+      throw Error("Gameplay approach state is invalid.");
+    const route = leadInRoute(profile, state);
+    const duration =
+      (route.leadIn!.length * 1000) / clipFor(profile, state.action).fps;
+    if (
+      !Number.isFinite(state.leadIn.elapsedMs) ||
+      state.leadIn.elapsedMs < 0 ||
+      state.leadIn.elapsedMs >= duration ||
+      state.jumpFrom !==
+        (state.action === "jump" &&
+        (route.from === "run" || route.from === "walk")
+          ? route.from
+          : null) ||
+      Math.abs(
+        state.elapsedMs -
+          (route.entry * 1000) / clipFor(profile, state.action).fps,
+      ) > EPSILON
+    )
+      throw Error("Gameplay approach state is invalid.");
+  }
+}
+
+function leadInRoute(
+  profile: GameplayMotion,
+  state: GameplayState,
+): GameplayRoute {
+  const route = profile.routes.find(
+    (row) =>
+      row.from === state.leadIn?.from &&
+      row.to === state.action &&
+      row.exit === state.leadIn?.exit,
+  );
+  if (!route?.leadIn?.length)
+    throw Error("Gameplay approach route is unavailable.");
+  return route;
 }
 
 function enter(
@@ -208,6 +271,7 @@ function enter(
   target: PortableAnimationName,
   entry: number,
   profile: GameplayMotion,
+  route?: GameplayRoute,
 ): GameplayState {
   return {
     action: target,
@@ -218,6 +282,9 @@ function enter(
       target === "jump" && (state.action === "walk" || state.action === "run")
         ? state.action
         : null,
+    ...(route?.leadIn?.length
+      ? { leadIn: { from: state.action, exit: route.exit, elapsedMs: 0 } }
+      : {}),
   };
 }
 
@@ -258,7 +325,7 @@ export function requestGameplayAction(
     (row) => row.from === "idle" && row.to === target,
   );
   if (!route) throw Error("Gameplay transition is unavailable.");
-  return enter(next, target, route.entry, profile);
+  return enter(next, target, route.entry, profile, route);
 }
 
 export function gameplayFramePosition(
@@ -279,6 +346,17 @@ export function gameplayFrameId(
   profile: GameplayMotion,
   state: GameplayState,
 ): number {
+  checkState(profile, state);
+  if (state.leadIn) {
+    const frames = leadInRoute(profile, state).leadIn!;
+    const fps = clipFor(profile, state.action).fps;
+    return frames[
+      Math.min(
+        frames.length - 1,
+        Math.floor(((state.leadIn.elapsedMs + EPSILON) * fps) / 1000),
+      )
+    ];
+  }
   return clipFor(profile, state.action).frames[
     gameplayFramePosition(profile, state)
   ];
@@ -319,7 +397,16 @@ export function gameplayTransitionWait(
   state: GameplayState,
 ): number | null {
   checkState(profile, state);
-  return nextTransition(profile, state)?.wait ?? null;
+  const wait = nextTransition(profile, state)?.wait;
+  if (wait === undefined) return null;
+  return (
+    wait +
+    (state.leadIn
+      ? (leadInRoute(profile, state).leadIn!.length * 1000) /
+          clipFor(profile, state.action).fps -
+        state.leadIn.elapsedMs
+      : 0)
+  );
 }
 
 /** Advance an already speed-scaled source clock. Discrete authored frames are
@@ -340,6 +427,29 @@ export function advanceGameplayMotion(
   // occur per tick. Looping locomotion never invents another jump request.
   for (let transitions = 0; transitions < 3; transitions++) {
     const clip = clipFor(profile, state.action);
+    if (state.leadIn) {
+      const duration =
+        (leadInRoute(profile, state).leadIn!.length * 1000) / clip.fps;
+      const wait = duration - state.leadIn.elapsedMs;
+      const consumed = Math.min(remaining, wait);
+      if (consumed > 0)
+        onAdvance?.({
+          action: state.action,
+          durationMs: consumed,
+          jumpFrom: state.jumpFrom,
+        });
+      if (remaining + EPSILON < wait)
+        return {
+          ...state,
+          leadIn: {
+            ...state.leadIn,
+            elapsedMs: state.leadIn.elapsedMs + consumed,
+          },
+        };
+      remaining = Math.max(0, remaining - wait);
+      const { leadIn: _completed, ...afterApproach } = state;
+      state = afterApproach;
+    }
     const duration = (clip.frames.length * 1000) / clip.fps;
     const elapsed = clockTime(state.elapsedMs, duration, clip.loop);
     const next = nextTransition(profile, state);
@@ -371,7 +481,7 @@ export function advanceGameplayMotion(
         elapsedMs: clockTime(elapsed + remaining, duration, clip.loop),
       };
     remaining = Math.max(0, remaining - next.wait);
-    state = enter(state, next.target, next.route.entry, profile);
+    state = enter(state, next.target, next.route.entry, profile, next.route);
   }
   throw Error("Unexpected cyclic gameplay transition.");
 }
