@@ -104,6 +104,7 @@ async function collectPlayback(page: Page) {
         !previous ||
         previous.action !== row.action ||
         previous.position !== row.position ||
+        previous.frameId !== row.frameId ||
         previous.pending !== row.pending
       )
         records.push(row);
@@ -209,13 +210,13 @@ for (const character of ["male", "female"] as const) {
       .map((row) => row.action)
       .filter((action, i, all) => i === 0 || action !== all[i - 1]);
     expect(actions).toEqual(["run", "jump", "run"]);
-    expect(
-      Math.max(
-        ...runningJump
-          .filter((r) => r.action === "jump")
-          .map((r) => Number(r.position)),
-      ),
-    ).toBeGreaterThanOrEqual(25);
+    const lastMovingJump = Math.max(
+      ...runningJump
+        .filter((r) => r.action === "jump")
+        .map((r) => Number(r.position)),
+    );
+    expect(lastMovingJump).toBeGreaterThanOrEqual(20);
+    expect(lastMovingJump).toBeLessThan(23);
 
     // An idle request during flight must wait for the authored full landing.
     await page.getByTestId("dual-jump-once").click();
@@ -279,7 +280,7 @@ for (const character of ["male", "female"] as const) {
         "previous-locomotion",
       );
       expect(config.sourceMetadata.gameplayMotion.id).toBe(
-        `kling-${character}-${source}-single-jump-${source === "side" ? "v4" : "v2"}`,
+        `kling-${character}-${source}-single-jump-${source === "side" ? "v5" : "v2"}`,
       );
       expect(
         config.sourceMetadata.gameplayMotion.routes
@@ -328,13 +329,25 @@ for (const character of ["male", "female"] as const) {
             ]
           : character === "male"
             ? [
-                [27, 16],
+                [23, 14],
                 [28, 11],
               ]
             : [
-                [27, 13],
+                [23, 11],
                 [28, 8],
               ],
+      );
+      expect(
+        config.sourceMetadata.gameplayMotion.routes.find(
+          (route: { from: string; to: string }) =>
+            route.from === "jump" && route.to === "run",
+        ).leadIn,
+      ).toEqual(
+        source === "side"
+          ? character === "male"
+            ? [63, 62]
+            : [58, 57]
+          : undefined,
       );
       expect(manifest.animations.jump.loop).toBe(false);
       expect(manifest.animations.jump.fps).toBe(24);

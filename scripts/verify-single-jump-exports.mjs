@@ -31,20 +31,21 @@ const sources = {
 // full run cycle at the landing exit. V1 retains its complete jump; V2 resumes
 // running after contact/rebound, before the standing recovery. Side V3 adds a
 // second reviewed takeoff boundary. Side V4 adds phase-matched source lead-ins
-// at three evenly spaced boundaries. Every revision keeps native 24 FPS.
+// at three evenly spaced boundaries. Side V5 adds two source recovery poses
+// before its running entry. Every revision keeps native 24 FPS.
 function assertKnownRoutes(profile) {
   const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
   const original = profile.view === "original";
   const revision = Number(profile.id.slice(prefix.length).replace(/^v/, ""));
   assert(
     profile.id === `${prefix}v${revision}` &&
-      (original ? [1, 2] : [1, 2, 3, 4]).includes(revision),
+      (original ? [1, 2] : [1, 2, 3, 4, 5]).includes(revision),
     `Unknown reviewed motion profile: ${profile.id}`,
   );
   const male = profile.characterId === "male";
   const takeoffs = original
     ? [5, 13]
-    : revision === 4
+    : revision >= 4
       ? male
         ? [4, 10, 16]
         : [1, 7, 13]
@@ -62,8 +63,9 @@ function assertKnownRoutes(profile) {
   const early = {
     from: "jump",
     to: "run",
-    exit: original ? 30 : 27,
-    entry: original ? 4 : male ? 16 : 13,
+    exit: original ? 30 : revision === 5 ? 23 : 27,
+    entry: original ? 4 : revision === 5 ? (male ? 14 : 11) : male ? 16 : 13,
+    ...(revision === 5 ? { leadIn: male ? [63, 62] : [58, 57] } : {}),
   };
   const routes = (from, to) =>
     profile.routes
@@ -76,7 +78,7 @@ function assertKnownRoutes(profile) {
       to: "jump",
       exit,
       entry: 0,
-      ...(revision === 4
+      ...(revision >= 4
         ? {
             leadIn: (male
               ? [[60, 61, 62], [59, 60, 61, 62], [62]]
@@ -122,12 +124,14 @@ function expectedFlow(profile) {
       ...run.frames.slice(0, takeoff.exit),
       ...(takeoff.leadIn ?? []),
       ...jump.frames.slice(0, firstLanding.exit),
+      ...(firstLanding.leadIn ?? []),
       ...recovery,
     ],
     phases: {
       runBefore: run.frames.length + takeoff.exit,
       leadIn: takeoff.leadIn?.length ?? 0,
       jump: firstLanding.exit,
+      landingLeadIn: firstLanding.leadIn?.length ?? 0,
       runAfter: recovery.length,
     },
     takeoff,

@@ -123,6 +123,11 @@ function motionPosition(state: GameplayState, profile: GameplayMotion): number {
   return gameplayFramePosition(profile, state);
 }
 
+function leadInLabel(state: GameplayState): string | null {
+  if (!state.leadIn) return null;
+  return state.leadIn.from === "jump" ? "落地接跑步" : "起跳准备";
+}
+
 function motionPreview(
   preview: DualViewPreview,
   state: GameplayState,
@@ -1216,7 +1221,7 @@ export default function DualViewWardrobe({
                       const state = motion.current[source];
                       const label = (action: PortableAnimationName) =>
                         ACTIONS.find(([id]) => id === action)?.[1] ?? action;
-                      return `${comparing ? `${source === "original" ? "原版" : "侧视"}：` : ""}${state.leadIn ? "起跳准备" : label(state.action)}${state.pending ? ` → ${label(state.pending)}${state.action === "jump" ? "（落地后）" : ""}` : state.action === "jump" ? ` → ${label(state.returnAction)}（落地后）` : ""}`;
+                      return `${comparing ? `${source === "original" ? "原版" : "侧视"}：` : ""}${leadInLabel(state) ?? label(state.action)}${state.pending ? ` → ${label(state.pending)}${state.action === "jump" ? "（落地后）" : ""}` : state.action === "jump" ? ` → ${label(state.returnAction)}（落地后）` : ""}`;
                     })
                     .join(" · ")}
                 </p>
@@ -1410,9 +1415,8 @@ export default function DualViewWardrobe({
                       </div>
                       <label className="dual-frame-control">
                         {viewName(source)} ·{" "}
-                        {motion.current[source].leadIn
-                          ? "起跳准备"
-                          : `第 ${nativePreview ? nativePreview.position + 1 : 0} / ${nativeClip?.frames.length ?? 0} 帧`}
+                        {leadInLabel(motion.current[source]) ??
+                          `第 ${nativePreview ? nativePreview.position + 1 : 0} / ${nativeClip?.frames.length ?? 0} 帧`}
                         <input
                           type="range"
                           data-testid={`dual-compare-frame-${source}`}
@@ -1565,7 +1569,7 @@ export default function DualViewWardrobe({
               </div>
               <label className="dual-frame-control">
                 {motion.current[view].leadIn
-                  ? "起跳准备 · 可继续播放或选择基础动作帧"
+                  ? `${leadInLabel(motion.current[view])} · 可继续播放或选择基础动作帧`
                   : `当前动作帧 ${preview ? preview.position + 1 : 0} / ${clip?.frames.length ?? 0}`}
                 <input
                   data-testid="dual-frame"

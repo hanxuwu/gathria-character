@@ -30,24 +30,30 @@ const sources = {
 // full run cycle, next reviewed takeoff boundary, reviewed jump prefix, one
 // full run cycle at the landing exit. V1 retains its complete jump; V2 resumes
 // running after contact/rebound, before the standing recovery. Side V3 adds a
-// second reviewed takeoff boundary. Every revision keeps native 24 FPS.
+// second reviewed takeoff boundary. Side V4 adds phase-matched source lead-ins
+// at three evenly spaced boundaries. Side V5 adds two source recovery poses
+// before its running entry. Every revision keeps native 24 FPS.
 function assertKnownRoutes(profile) {
   const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
   const original = profile.view === "original";
   const revision = Number(profile.id.slice(prefix.length).replace(/^v/, ""));
   assert(
     profile.id === `${prefix}v${revision}` &&
-      (original ? [1, 2] : [1, 2, 3]).includes(revision),
+      (original ? [1, 2] : [1, 2, 3, 4, 5]).includes(revision),
     `Unknown reviewed motion profile: ${profile.id}`,
   );
   const male = profile.characterId === "male";
   const takeoffs = original
     ? [5, 13]
-    : revision === 3
+    : revision >= 4
       ? male
-        ? [9, 16]
-        : [6, 13]
-      : [male ? 16 : 13];
+        ? [4, 10, 16]
+        : [1, 7, 13]
+      : revision === 3
+        ? male
+          ? [9, 16]
+          : [6, 13]
+        : [male ? 16 : 13];
   const complete = {
     from: "jump",
     to: "run",
@@ -57,8 +63,9 @@ function assertKnownRoutes(profile) {
   const early = {
     from: "jump",
     to: "run",
-    exit: original ? 30 : 27,
-    entry: original ? 4 : male ? 16 : 13,
+    exit: original ? 30 : revision === 5 ? 23 : 27,
+    entry: original ? 4 : revision === 5 ? (male ? 14 : 11) : male ? 16 : 13,
+    ...(revision === 5 ? { leadIn: male ? [63, 62] : [58, 57] } : {}),
   };
   const routes = (from, to) =>
     profile.routes
@@ -66,7 +73,19 @@ function assertKnownRoutes(profile) {
       .sort((a, b) => a.exit - b.exit);
   assert.deepEqual(
     routes("run", "jump"),
-    takeoffs.map((exit) => ({ from: "run", to: "jump", exit, entry: 0 })),
+    takeoffs.map((exit, index) => ({
+      from: "run",
+      to: "jump",
+      exit,
+      entry: 0,
+      ...(revision >= 4
+        ? {
+            leadIn: (male
+              ? [[60, 61, 62], [59, 60, 61, 62], [62]]
+              : [[55, 56, 57], [54, 55, 56, 57], [57]])[index],
+          }
+        : {}),
+    })),
     "Run takeoff routes differ from the reviewed native frames",
   );
   assert.deepEqual(
@@ -103,12 +122,16 @@ function expectedFlow(profile) {
     frames: [
       ...run.frames,
       ...run.frames.slice(0, takeoff.exit),
+      ...(takeoff.leadIn ?? []),
       ...jump.frames.slice(0, firstLanding.exit),
+      ...(firstLanding.leadIn ?? []),
       ...recovery,
     ],
     phases: {
       runBefore: run.frames.length + takeoff.exit,
+      leadIn: takeoff.leadIn?.length ?? 0,
       jump: firstLanding.exit,
+      landingLeadIn: firstLanding.leadIn?.length ?? 0,
       runAfter: recovery.length,
     },
     takeoff,
@@ -207,21 +230,18 @@ for (const row of rows) {
           entry: 0,
         }
       : null;
-  const unchangedRoutes = (value, omitAddedTakeoff = false) =>
+  // Both revisions' Run→Jump and Jump→Run routes were checked against exact
+  // independent declarations above, including every V4 lead-in frame. Compare
+  // all remaining routes unchanged instead of treating V4 as a single extra
+  // takeoff: its three reviewed exits replace the older takeoff boundaries.
+  const unchangedRoutes = (value) =>
     value.routes.filter(
       (r) =>
         (r.from !== "jump" || r.to !== "run") &&
-        !(
-          omitAddedTakeoff &&
-          addedTakeoff &&
-          r.from === addedTakeoff.from &&
-          r.to === addedTakeoff.to &&
-          r.exit === addedTakeoff.exit &&
-          r.entry === addedTakeoff.entry
-        ),
+        (r.from !== "run" || r.to !== "jump"),
     );
   assert.deepEqual(
-    unchangedRoutes(profile, true),
+    unchangedRoutes(profile),
     unchangedRoutes(previousProfile),
     "An unrelated transition changed",
   );
@@ -236,15 +256,17 @@ for (const row of rows) {
         }
       : row.character === "male"
         ? {
-            exit: 27,
-            entry: 16,
+            exit: revision === 5 ? 23 : 27,
+            entry: revision === 5 ? 14 : 16,
+            ...(revision === 5 ? { leadIn: [63, 62] } : {}),
             fallback: 28,
             fallbackEntry: 11,
             compressionEnd: 82,
           }
         : {
-            exit: 27,
-            entry: 13,
+            exit: revision === 5 ? 23 : 27,
+            entry: revision === 5 ? 11 : 13,
+            ...(revision === 5 ? { leadIn: [58, 57] } : {}),
             fallback: 28,
             fallbackEntry: 8,
             compressionEnd: 77,
@@ -260,6 +282,7 @@ for (const row of rows) {
             to: "run",
             exit: reviewed.exit,
             entry: reviewed.entry,
+            ...(reviewed.leadIn ? { leadIn: reviewed.leadIn } : {}),
           },
         ]
       : []),
@@ -412,9 +435,16 @@ for (const row of rows) {
     previousExpectedFlow.phases.jump - flow.phases.jump;
   const takeoffWaitFramesRemoved =
     previousExpectedFlow.phases.runBefore - flow.phases.runBefore;
+  const takeoffLeadInFramesAdded =
+    flow.phases.leadIn - previousExpectedFlow.phases.leadIn;
+  const landingLeadInFramesAdded =
+    flow.phases.landingLeadIn - previousExpectedFlow.phases.landingLeadIn;
   assert.equal(
     priorFlow.length - flow.frames.length,
-    recoveryFramesRemoved + takeoffWaitFramesRemoved,
+    recoveryFramesRemoved +
+      takeoffWaitFramesRemoved -
+      takeoffLeadInFramesAdded -
+      landingLeadInFramesAdded,
   );
   const pixels = JSON.parse(
     execFileSync(
@@ -437,9 +467,14 @@ for (const row of rows) {
     standaloneJumpGifByteIdentical: true,
     unchangedUnrelatedRoutes: true,
     reviewedAddedTakeoffRoute: addedTakeoff,
+    reviewedTakeoffRoutes: profile.routes.filter(
+      (r) => r.from === "run" && r.to === "jump",
+    ),
     reviewedLandingCompressionComplete: true,
     flowRecoveryFramesRemoved: recoveryFramesRemoved,
     flowTakeoffWaitFramesRemoved: takeoffWaitFramesRemoved,
+    flowTakeoffLeadInFramesAdded: takeoffLeadInFramesAdded,
+    flowLandingLeadInFramesAdded: landingLeadInFramesAdded,
     flowFramesRemoved: priorFlow.length - flow.frames.length,
     priorFlowDurationMs: priorFlow.reduce(
       (total, frame) => total + frame.delay,

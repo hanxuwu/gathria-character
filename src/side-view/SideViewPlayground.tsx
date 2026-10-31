@@ -76,6 +76,7 @@ import {
   type SideStageMode,
 } from "./motion";
 import { sideKeyboardIntent } from "./input";
+import { sideInspectionPose } from "./inspection-pose";
 import SideReviewPanel from "./SideReviewPanel";
 import { type ReviewNote, type ReviewRate } from "./review";
 import "./side-view.css";
@@ -136,7 +137,7 @@ type Readout = {
   paused: boolean;
   pending: SideAction | null;
   ended: boolean;
-  preparing: boolean;
+  bridge: "takeoff" | "landing-recovery" | null;
   transitionMs: number | null;
 };
 const INITIAL_READOUT: Readout = {
@@ -149,7 +150,7 @@ const INITIAL_READOUT: Readout = {
   paused: false,
   pending: null,
   ended: false,
-  preparing: false,
+  bridge: null,
   transitionMs: null,
 };
 
@@ -360,38 +361,41 @@ export default function SideViewPlayground({
     dirtyRef.current = true;
   }
 
-  function inspectionClip(open: Session, action: SideAction, frameId: number) {
-    const clip = playbackManifest(open).animations[action];
-    if (clip?.frames.includes(frameId)) return clip;
-    const sourceClip = open.renderer.manifest.animations[action];
-    if (sourceClip?.frames.includes(frameId)) {
-      changePlaybackMode("source");
-      setStatus(
-        "该审阅帧位于完整原片中，已切换为原片动作。可在动作模式中返回单次跳跃。",
-      );
+  function inspectionPose(open: Session, action: SideAction, frameId: number) {
+    const source = sideInspectionPose(open.renderer.manifest, action, frameId);
+    if (!source) {
+      setError("当前素材中找不到该审阅帧，无法定位；当前姿势保持不变。");
+      return null;
     }
-    return sourceClip;
+    const clip = playbackManifest(open).animations[source.action];
+    const position = clip?.frames.indexOf(frameId) ?? -1;
+    if (clip && position >= 0)
+      return { action: source.action, position, fps: clip.fps };
+    changePlaybackMode("source");
+    setStatus(
+      "该审阅帧位于完整原片中，已切换为原片动作。可在动作模式中返回单次跳跃。",
+    );
+    return source;
   }
 
   const locateFittingPose = useCallback(
     (action: SideAction, frameId: number) => {
       const open = sessionRef.current;
       if (!open || !activeRef.current || busyRef.current) return;
-      const clip = inspectionClip(open, action, frameId);
-      const index = clip?.frames.indexOf(frameId) ?? -1;
-      if (!clip || index < 0) return;
+      const pose = inspectionPose(open, action, frameId);
+      if (!pose) return;
       keysRef.current.clear();
       pendingFacingRef.current = null;
       keyboardJumpRef.current = false;
       keyboardResumeRef.current = null;
       motionRef.current = {
         ...motionRef.current,
-        action,
+        action: pose.action,
         paused: true,
         pending: null,
         jumpFrom: null,
-        returnAction: action === "jump" ? "idle" : action,
-        elapsedMs: (index * 1000) / clip.fps + 0.000001,
+        returnAction: pose.action === "jump" ? "idle" : pose.action,
+        elapsedMs: (pose.position * 1000) / pose.fps + 0.000001,
       };
       delete motionRef.current.leadIn;
       lastTimeRef.current = null;
@@ -785,22 +789,21 @@ export default function SideViewPlayground({
   function locateReviewNote(note: ReviewNote) {
     const open = sessionRef.current;
     if (!open || busyRef.current || editingLockedRef.current) return;
-    const clip = inspectionClip(open, note.action, note.frame);
-    const index = clip?.frames.indexOf(note.frame) ?? -1;
-    if (!clip || index < 0) return;
+    const pose = inspectionPose(open, note.action, note.frame);
+    if (!pose) return;
     keysRef.current.clear();
     pendingFacingRef.current = null;
     keyboardJumpRef.current = false;
     keyboardResumeRef.current = null;
     motionRef.current = {
       ...motionRef.current,
-      action: note.action,
+      action: pose.action,
       facing: note.facing,
       paused: true,
       pending: null,
       jumpFrom: null,
-      returnAction: note.action === "jump" ? "idle" : note.action,
-      elapsedMs: (index * 1000) / clip.fps + 0.000001,
+      returnAction: pose.action === "jump" ? "idle" : pose.action,
+      elapsedMs: (pose.position * 1000) / pose.fps + 0.000001,
     };
     delete motionRef.current.leadIn;
     lastTimeRef.current = null;
@@ -1128,7 +1131,12 @@ export default function SideViewPlayground({
         canvas.dataset.ended = String(ended);
         canvas.dataset.character = open.character;
         canvas.dataset.collection = sideProjectCollection(open.project);
-        canvas.dataset.phase = motion.leadIn ? "takeoff" : feedback.phase;
+        const bridge = motion.leadIn
+          ? motion.leadIn.from === "jump"
+            ? "landing-recovery"
+            : "takeoff"
+          : null;
+        canvas.dataset.phase = bridge ?? feedback.phase;
         canvas.dataset.appearance = JSON.stringify(
           getWardrobeAppearanceSelection(open.project),
         );
@@ -1145,6 +1153,7 @@ export default function SideViewPlayground({
           motion.paused,
           pending,
           ended,
+          bridge,
           transitionMs === null ? null : Math.ceil(transitionMs / 100),
         ].join(":");
         if (readoutKey !== lastReadout) {
@@ -1159,7 +1168,7 @@ export default function SideViewPlayground({
             paused: motion.paused,
             pending,
             ended,
-            preparing: !!motion.leadIn,
+            bridge,
             transitionMs,
           });
         }
@@ -1290,6 +1299,13 @@ export default function SideViewPlayground({
     );
   const jumpLocked =
     readout.action === "jump" && !readout.ended && !readout.paused;
+  const inspectedPose = session
+    ? sideInspectionPose(
+        session.renderer.manifest,
+        readout.action,
+        readout.frame,
+      )
+    : null;
   function setPreference<K extends keyof Preferences>(
     key: K,
     value: Preferences[K],
@@ -1515,14 +1531,20 @@ export default function SideViewPlayground({
                 data-testid="side-frame-status"
               >
                 <strong>
-                  {readout.preparing ? "起跳准备" : actionLabel(readout.action)}
+                  {readout.bridge === "landing-recovery"
+                    ? "落地接跑步"
+                    : readout.bridge
+                      ? "起跳准备"
+                      : actionLabel(readout.action)}
                 </strong>
                 <span>
-                  {readout.preparing
-                    ? "跑步接入跳跃"
-                    : readout.count
-                      ? `${readout.index + 1} / ${readout.count} 帧`
-                      : "准备中"}
+                  {readout.bridge === "landing-recovery"
+                    ? "落地姿态接入跑步"
+                    : readout.bridge
+                      ? "跑步接入跳跃"
+                      : readout.count
+                        ? `${readout.index + 1} / ${readout.count} 帧`
+                        : "准备中"}
                   {readout.ended
                     ? " · 原片末帧停留"
                     : readout.paused
@@ -1579,7 +1601,7 @@ export default function SideViewPlayground({
             <button
               type="button"
               data-testid="side-review-toggle"
-              disabled={!session || controlsLocked}
+              disabled={!inspectedPose || controlsLocked}
               aria-expanded={reviewOpen}
               onClick={toggleReview}
             >
@@ -1591,12 +1613,12 @@ export default function SideViewPlayground({
                 : "暂停到当前帧，并排对比、放大局部、记录问题。"}
             </span>
           </div>
-          {reviewOpen && session && (
+          {reviewOpen && session && inspectedPose && (
             <SideReviewPanel
               key={`${session.character}:${session.project.document.sourceSha256}`}
               project={session.project}
               character={session.character}
-              action={readout.action}
+              action={inspectedPose.action}
               frame={readout.frame}
               facing={readout.facing}
               busy={busy}
@@ -1614,7 +1636,7 @@ export default function SideViewPlayground({
             <button
               type="button"
               data-testid="side-fitting-toggle"
-              disabled={!session || controlsLocked}
+              disabled={!inspectedPose || controlsLocked}
               aria-expanded={fittingOpen}
               onClick={toggleFitting}
             >
@@ -1622,14 +1644,14 @@ export default function SideViewPlayground({
             </button>
             <span>检查定位与遮挡，局部修正服装并保存为独立版本。</span>
           </div>
-          {fittingOpen && session && (
+          {fittingOpen && session && inspectedPose && (
             <Suspense fallback={<p role="status">正在打开服装校正工具…</p>}>
               <FittingWorkbench
                 key={`${session.character}:${session.project.document.sourceSha256}`}
                 project={session.project}
                 savedProject={savedProject}
                 renderer={session.renderer}
-                action={readout.action}
+                action={inspectedPose.action}
                 frameId={readout.frame}
                 disabled={busy}
                 active={active}

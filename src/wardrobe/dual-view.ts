@@ -50,7 +50,8 @@ export interface DualViewPreview {
   facing: Facing;
   /** Position within this view's action, not a shared source-frame ID. */
   position: number;
-  /** A paused, reviewed run-up is outside the standalone Jump clip. */
+  /** A paused, reviewed transition uses drawings outside the action clip.
+   * The legacy `takeoff` field also stores landing recovery checkpoints. */
   takeoff?: { profile: GameplayMotion; state: GameplayState };
 }
 
@@ -183,14 +184,14 @@ function readSettings(value: unknown): NormalizedDualViewSettings {
     let takeoff: DualViewPreview["takeoff"];
     if (hasTakeoff) {
       if (data.motionMode !== "single-jump")
-        throw Error("A takeoff checkpoint requires single-jump playback.");
-      const checkpoint = object(preview.takeoff, `${view} takeoff`, [
+        throw Error("A transition checkpoint requires single-jump playback.");
+      const checkpoint = object(preview.takeoff, `${view} transition`, [
         "profile",
         "state",
       ]);
       const profile = checkpoint.profile as GameplayMotion;
       gameplayMotionMetadata(profile); // Exact reviewed current or historical profile.
-      const state = object(checkpoint.state, `${view} takeoff state`, [
+      const state = object(checkpoint.state, `${view} transition state`, [
         "action",
         "elapsedMs",
         "pending",
@@ -198,26 +199,34 @@ function readSettings(value: unknown): NormalizedDualViewSettings {
         "jumpFrom",
         "leadIn",
       ]);
-      const leadIn = object(state.leadIn, `${view} takeoff approach`, [
+      const leadIn = object(state.leadIn, `${view} transition approach`, [
         "from",
         "exit",
         "elapsedMs",
       ]);
+      const preparing =
+        state.action === "jump" &&
+        leadIn.from === "run" &&
+        state.jumpFrom === "run";
+      const recovering =
+        state.action === "run" &&
+        leadIn.from === "jump" &&
+        state.jumpFrom === null &&
+        state.returnAction === "run";
       if (
-        state.action !== "jump" ||
+        (!preparing && !recovering) ||
         state.action !== preview.action ||
-        leadIn.from !== "run" ||
-        state.jumpFrom !== "run" ||
         state.pending === "jump" ||
+        state.pending === state.action ||
         !["idle", "walk", "run"].includes(state.returnAction as string) ||
         (state.pending !== null &&
           !ACTIONS.includes(state.pending as PortableAnimationName))
       )
-        throw Error(`Invalid ${view} takeoff state.`);
+        throw Error(`Invalid ${view} transition state.`);
       const checked = state as unknown as GameplayState;
       gameplayFrameId(profile, checked);
       if (gameplayFramePosition(profile, checked) !== preview.position)
-        throw Error(`Invalid ${view} takeoff position.`);
+        throw Error(`Invalid ${view} transition position.`);
       takeoff = structuredClone({ profile, state: checked });
     }
     previews[view] = {
@@ -298,7 +307,7 @@ function assertProject(
       profile.view !== view ||
       profile.sourceSha256 !== project.document.sourceSha256)
   )
-    throw Error(`${view} takeoff profile does not match its source.`);
+    throw Error(`${view} transition profile does not match its source.`);
   const manifest = profile
     ? gameplayManifest(project.archive.manifest, profile)
     : project.archive.manifest;

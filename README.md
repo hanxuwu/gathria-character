@@ -73,11 +73,17 @@ caching does not modify the rendered artwork or exported frames.
 
 Side-view Run → Jump now uses three phase-matched approach routes from the
 existing source drawings. The controller waits at most 250ms to begin the
-approach; standalone Jump, landing and original-view animation stay unchanged.
+approach; standalone Jump and original-view animation stay unchanged.
 Paused approach poses can be saved and reopened in the paired project.
 [Native takeoff bridges, actual comparison GIFs and checks](docs/kling-takeoff-bridge/README.md).
 The [previous V3 two-window review](docs/kling-takeoff-refine/README.md) remains
 available as a comparison; historical exported profiles retain that behavior.
+
+Side-view Jump → Run now leaves the standing tail after full landing compression,
+shows two native forward-stride drawings, and resumes a complete running cycle.
+Recovery checkpoints can be paused, saved and reopened without queuing another
+jump. This improves the first running step; the source arm/foot seam remains
+visible and is documented in the [actual V4/V5 GIF review](docs/kling-landing-posture/README.md).
 
 ## Open the app
 

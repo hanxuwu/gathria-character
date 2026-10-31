@@ -202,25 +202,46 @@ for (const character of ["male", "female"] as const) {
     const files = unzipSync(pack),
       manifest = json(files["manifest.json"]);
     const profile = json(files["character.json"]).sourceMetadata.gameplayMotion;
-    expect(profile.id).toBe(`kling-${character}-side-single-jump-v4`);
+    expect(profile.id).toBe(`kling-${character}-side-single-jump-v5`);
     expect(
       profile.routes.filter(
         (r: { from: string; to: string }) =>
           r.from === "run" && r.to === "jump",
       ),
     ).toEqual(reviewedRoutes);
-    // Only the reviewed running approach routes are new. The complete base
-    // jump, landing, all other routes and source binding retain their values.
-    const withoutRunningTakeoff = (value: typeof profile) => ({
+    // V5 retains the exact V4 takeoff routes above, and changes only the early
+    // moving landing. All other routes and source bindings retain their values.
+    expect(
+      profile.routes.filter(
+        (r: { from: string; to: string }) =>
+          r.from === "jump" && r.to === "run",
+      ),
+    ).toEqual([
+      {
+        from: "jump",
+        to: "run",
+        exit: 23,
+        entry: character === "male" ? 14 : 11,
+        leadIn: character === "male" ? [63, 62] : [58, 57],
+      },
+      {
+        from: "jump",
+        to: "run",
+        exit: 28,
+        entry: character === "male" ? 11 : 8,
+      },
+    ]);
+    const withoutRunningSeams = (value: typeof profile) => ({
       ...value,
       id: oldProfile.id,
       routes: value.routes.filter(
         (r: { from: string; to: string }) =>
-          !(r.from === "run" && r.to === "jump"),
+          !(r.from === "run" && r.to === "jump") &&
+          !(r.from === "jump" && r.to === "run"),
       ),
     });
-    expect(withoutRunningTakeoff(profile)).toEqual(
-      withoutRunningTakeoff(oldProfile),
+    expect(withoutRunningSeams(profile)).toEqual(
+      withoutRunningSeams(oldProfile),
     );
     expect(manifest).toEqual(json(await readFile(previousManifest)));
 
@@ -305,8 +326,8 @@ for (const character of ["male", "female"] as const) {
       const jumpPositions = result.records
         .filter((row) => row.action === "jump")
         .map((row) => row.position);
-      expect(Math.max(...jumpPositions)).toBeGreaterThanOrEqual(24);
-      expect(Math.max(...jumpPositions)).toBeLessThan(27);
+      expect(Math.max(...jumpPositions)).toBeGreaterThanOrEqual(20);
+      expect(Math.max(...jumpPositions)).toBeLessThan(23);
       playback.push({
         ...item,
         approachFrames,
@@ -383,6 +404,7 @@ for (const character of ["male", "female"] as const) {
         "current",
         "historical-v2",
         "historical-v3",
+        "historical-v4",
       ] as const) {
         let file = packPath;
         if (variant !== "current") {
@@ -390,7 +412,9 @@ for (const character of ["male", "female"] as const) {
           const review =
             variant === "historical-v2"
               ? "kling-landing-run"
-              : "kling-takeoff-refine";
+              : variant === "historical-v3"
+                ? "kling-takeoff-refine"
+                : "kling-takeoff-bridge";
           archived["manifest.json"] = await readFile(
             `docs/${review}/review/${character}/side.manifest.json`,
           );

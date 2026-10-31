@@ -18,7 +18,7 @@ export interface GameplayRoute {
   /** First tick of the chosen target pose. Run/walk↔jump seams are reviewed;
    * other side-view pairs conservatively retain cycle-boundary fallbacks. */
   entry: number;
-  /** Native approach drawings specific to this seam, held at target FPS before
+  /** Native approach/recovery drawings specific to this seam, held at target FPS before
    * entry. They do not become part of the standalone target animation. */
   leadIn?: number[];
 }
@@ -237,6 +237,7 @@ function checkState(profile: GameplayMotion, state: GameplayState): void {
       !Number.isFinite(state.leadIn.elapsedMs) ||
       state.leadIn.elapsedMs < 0 ||
       state.leadIn.elapsedMs >= duration ||
+      (route.from === "jump" && state.pending === "jump") ||
       state.jumpFrom !==
         (state.action === "jump" &&
         (route.from === "run" || route.from === "walk")
@@ -289,7 +290,7 @@ function enter(
 }
 
 /** A press triggers one jump. Key-repeat/click-repeat cannot restart takeoff,
- * queue a second jump, or cancel a pending landing exit. Locomotion changes
+ * queue a second jump through landing recovery, or cancel a pending landing exit. Locomotion changes
  * during a queued jump update its return intent without swallowing the jump. */
 export function requestGameplayAction(
   state: GameplayState,
@@ -299,7 +300,11 @@ export function requestGameplayAction(
   checkState(profile, state);
   clipFor(profile, target);
   if (target === "jump") {
-    if (state.action === "jump" || state.pending === "jump")
+    if (
+      state.action === "jump" ||
+      state.pending === "jump" ||
+      state.leadIn?.from === "jump"
+    )
       return { ...state };
     const next = {
       ...state,

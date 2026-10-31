@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import currentSpecifications from "./gameplay-motion-profiles.json";
 import legacySpecifications from "./gameplay-motion-legacy-profiles.json";
 import {
   advanceGameplayMotion,
@@ -19,9 +18,9 @@ import type { PortableCharacterPackManifest } from "./types";
 
 const TICK = 1000 / 24;
 
-describe("source-drawn running approaches", () => {
+describe("historical V4 source-drawn running approaches", () => {
   for (const character of ["male", "female"] as const) {
-    const specification = currentSpecifications.find(
+    const specification = legacySpecifications.find(
       (row) => row.profile.id === `kling-${character}-side-single-jump-v4`,
     )!;
     const profile = specification.profile as GameplayMotion;

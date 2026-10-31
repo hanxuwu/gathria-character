@@ -111,9 +111,9 @@ describe("source-bound single-jump gameplay profiles", () => {
           expect(to.frames[route.entry - 1]).not.toBe(to.frames[route.entry]);
         if (route.from === "jump") {
           // Independent pose review: compression is complete before native112
-          // (original), 89 (male side), or 84 (female side). Run can leave here;
+          // (original), 85 (male side), or 80 (female side). Run can leave here;
           // all other destinations keep the complete original recovery.
-          const movingExit = view === "original" ? 30 : 27;
+          const movingExit = view === "original" ? 30 : 23;
           if (route.to === "run")
             expect([movingExit, from.frames.length]).toContain(route.exit);
           else expect(route.exit).toBe(from.frames.length);
@@ -230,10 +230,14 @@ describe("single jump and continuous source-pose transitions", () => {
       gameplayTransitionWait(profile, requested)!,
     );
     // Three contextual approach poses precede the unchanged single jump.
-    const beforeLanding = advanceGameplayMotion(profile, jumping, 29 * TICK);
+    const beforeLanding = advanceGameplayMotion(profile, jumping, 25 * TICK);
     expect(beforeLanding.action).toBe("jump");
-    expect(gameplayFrameId(profile, beforeLanding)).toBe(89);
-    const resumed = advanceGameplayMotion(profile, beforeLanding, TICK + 7);
+    expect(gameplayFrameId(profile, beforeLanding)).toBe(85);
+    const recovering = advanceGameplayMotion(profile, beforeLanding, TICK + 7);
+    expect(recovering.action).toBe("run");
+    expect(recovering.leadIn).toMatchObject({ from: "jump", exit: 23 });
+    expect(recovering.leadIn!.elapsedMs).toBeCloseTo(7, 7);
+    const resumed = advanceGameplayMotion(profile, recovering, 2 * TICK);
     const route = profile.routes.find(
       (r) => r.from === "jump" && r.to === "run",
     )!;
@@ -278,13 +282,15 @@ describe("single jump and continuous source-pose transitions", () => {
       "jump",
       "jump",
       "run",
+      "run",
     ]);
     expect(segments.reduce((sum, s) => sum + s.durationMs, 0)).toBeCloseTo(
       4000,
       8,
     );
     expect(segments[1].durationMs).toBeCloseTo(3 * TICK, 8);
-    expect(segments[2].durationMs).toBeCloseTo(27 * TICK, 8);
+    expect(segments[2].durationMs).toBeCloseTo(23 * TICK, 8);
+    expect(segments[3].durationMs).toBeCloseTo(2 * TICK, 8);
     expect(segments[1].jumpFrom).toBe("run");
     let chunked = start;
     for (const delta of [17, 100, 31, 1700, 16, 2136])
@@ -343,7 +349,7 @@ describe("target-specific grounded landing exits", () => {
     "keeps $character $view standing recovery for idle and late run requests",
     ({ character, view }) => {
       const { profile } = source(character, view);
-      const early = view === "original" ? 30 : 27;
+      const early = view === "original" ? 30 : 23;
       const full = view === "original" ? 39 : 28;
       const idleJump = createGameplayState("jump");
       const settling = advanceGameplayMotion(
@@ -391,12 +397,12 @@ describe("target-specific grounded landing exits", () => {
       );
       expect(contact.action).toBe("jump");
       expect(gameplayFrameId(profile, contact)).toBe(
-        view === "original" ? 112 : character === "male" ? 89 : 84,
+        view === "original" ? 112 : character === "male" ? 85 : 80,
       );
       const moving = advanceGameplayMotion(profile, contact, TICK);
       expect(moving.action).toBe("run");
       expect(gameplayFrameId(profile, moving)).toBe(
-        view === "original" || character === "male" ? 55 : 47,
+        view === "original" ? 55 : character === "male" ? 63 : 58,
       );
     },
   );
@@ -409,7 +415,7 @@ describe("target-specific grounded landing exits", () => {
         (row) =>
           row.profile.characterId === character && row.profile.view === view,
       )!.profile as GameplayMotion;
-      expect(profile.id).toMatch(view === "side" ? /-v4$/ : /-v2$/);
+      expect(profile.id).toMatch(view === "side" ? /-v5$/ : /-v2$/);
       const archived = readGameplayMotion(gameplayManifest(manifest, old), {
         sourceMetadata: { gameplayMotion: gameplayMotionMetadata(old) },
       });

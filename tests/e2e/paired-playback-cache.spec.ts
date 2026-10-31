@@ -257,7 +257,7 @@ async function checkRunningApproaches(
     expect(baseJump.leadIn).toBe("false");
     expect(baseJump.pending).toBe(target);
     expect(baseJump.returnAction).toBe(target);
-    await advance(page, (target === "idle" ? 28 : 27) * TICK);
+    await advance(page, (target === "idle" ? 28 : 25) * TICK);
     await expect(canvas(page, "side")).toHaveAttribute("data-action", target);
     await advance(page, 2000);
     await expect(canvas(page, "side")).toHaveAttribute("data-action", target);
@@ -276,6 +276,108 @@ async function checkRunningApproaches(
   await page.getByTestId("dual-compare-action").selectOption("run");
   await expectBoth(page, "data-paused", "true");
   return results;
+}
+
+async function checkLandingRecovery(
+  page: Page,
+  character: "male" | "female",
+  directory: string,
+) {
+  const frames = character === "male" ? [63, 62] : [58, 57];
+  const entry = character === "male" ? 14 : 11;
+  await pauseBoth(page);
+  await page.getByTestId("dual-compare-action").selectOption("jump");
+  await page.getByTestId("dual-compare-frame-side").fill("22");
+  await page.getByTestId("dual-run").click();
+  await advance(page, 0);
+  await advance(page, TICK);
+  const first = await painted(page, "side");
+  expect(first.action).toBe("run");
+  expect(first.position).toBe(entry);
+  expect(first.frameId).toBe(frames[0]);
+  expect(first.leadIn).toBe("true");
+  expect(first.elapsedMs).toBeCloseTo(entry * TICK, 6);
+  expect(first.leadInElapsedMs).toBeCloseTo(0, 6);
+  await expect(
+    page.getByTestId("dual-compare-stage-side").locator("../.."),
+  ).toContainText("落地接跑步");
+  // Recovery belongs to this single jump. Repeat input must not schedule a
+  // second jump just because its target action is already labelled Run.
+  await page.getByTestId("dual-jump-once").click();
+  expect(await painted(page, "side")).toEqual(first);
+  await advance(page, 10);
+  await pauseBoth(page);
+  const checkpoint = await painted(
+    page,
+    "side",
+    `${directory}/side-landing-checkpoint.png`,
+  );
+  expect(checkpoint.leadInElapsedMs).toBeCloseTo(10, 6);
+  const downloading = page.waitForEvent("download", { timeout: 180_000 });
+  await page.getByTestId("dual-save-project").click();
+  const download = await downloading;
+  expect(await download.failure()).toBeNull();
+  const path = `${directory}/landing-project.zip`;
+  await download.saveAs(path);
+  const bytes = await readFile(path);
+  const receipt = {
+    bytes: bytes.length,
+    sha256: createHash("sha256").update(bytes).digest("hex"),
+    filename: download.suggestedFilename(),
+  };
+  await ready(page);
+  await page.getByTestId("dual-compare-action").selectOption("idle");
+  await page.getByTestId("dual-project-input").setInputFiles(path);
+  await ready(page);
+  await expectBoth(page, "data-paused", "true");
+  const reopened = await painted(page, "side");
+  expect(reopened).toEqual(checkpoint);
+  await rm(path);
+  await page.getByTestId("dual-compare-play-all").click();
+  await advance(page, 0);
+  await backgroundWithoutRaf(page);
+  expect(await painted(page, "side")).toEqual({
+    ...checkpoint,
+    paused: "false",
+  });
+  await advance(page, TICK - 10);
+  const second = await painted(
+    page,
+    "side",
+    `${directory}/side-landing-second.png`,
+  );
+  expect(second.frameId).toBe(frames[1]);
+  expect(second.leadIn).toBe("true");
+  expect(second.elapsedMs).toBeCloseTo(entry * TICK, 6);
+  expect(second.leadInElapsedMs).toBeCloseTo(TICK, 6);
+  await page.getByTestId("dual-jump-once").click();
+  expect(await painted(page, "side")).toEqual(second);
+  await advance(page, TICK);
+  const running = await painted(
+    page,
+    "side",
+    `${directory}/side-resumed-run.png`,
+  );
+  expect(running.action).toBe("run");
+  expect(running.leadIn).toBe("false");
+  expect(running.position).toBe(entry);
+  expect(running.frameId).toBe(character === "male" ? 53 : 45);
+  expect(running.elapsedMs).toBeCloseTo(entry * TICK, 6);
+  await advance(page, 18 * TICK);
+  expect((await painted(page, "side")).action).toBe("run");
+  await pauseBoth(page);
+  await page.getByTestId("dual-compare-action").selectOption("idle");
+  await page.getByTestId("dual-compare-action").selectOption("run");
+  return {
+    first,
+    checkpoint,
+    reopened,
+    second,
+    running,
+    download: receipt,
+    repeatJumpIgnored: true,
+    fullRunCycleAfterRecovery: true,
+  };
 }
 
 for (const character of ["male", "female"] as const) {
@@ -300,6 +402,11 @@ for (const character of ["male", "female"] as const) {
     );
 
     const runningApproaches = await checkRunningApproaches(
+      page,
+      character,
+      directory,
+    );
+    const landingRecovery = await checkLandingRecovery(
       page,
       character,
       directory,
@@ -410,6 +517,7 @@ for (const character of ["male", "female"] as const) {
       character,
       actualAssets: true,
       runningApproaches,
+      landingRecovery,
       deterministicAppClock: true,
       hiddenMillisecondsIgnored: 5000,
       noHiddenRafRequired: true,

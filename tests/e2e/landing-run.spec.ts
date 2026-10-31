@@ -20,6 +20,7 @@ type Sample = {
   frame: number;
   elapsed: number;
   pending: string;
+  leadIn: boolean;
 };
 type AirborneInput = {
   at: number;
@@ -88,12 +89,15 @@ async function observe(canvas: Locator) {
         frame: Number(node.dataset.frameId),
         elapsed: Number(node.dataset.elapsedMs),
         pending: node.dataset.pendingAction ?? "",
+        leadIn: node.dataset.leadIn === "true",
       };
       const previous = win.landingSamples.at(-1);
       if (
         !previous ||
         previous.action !== value.action ||
         previous.position !== value.position ||
+        previous.frame !== value.frame ||
+        previous.leadIn !== value.leadIn ||
         previous.pending !== value.pending
       )
         win.landingSamples.push(value);
@@ -227,7 +231,7 @@ for (const character of ["male", "female"] as const) {
       const profile = json(files["character.json"]).sourceMetadata
         .gameplayMotion;
       expect(profile.id).toBe(
-        `kling-${character}-${view}-single-jump-${view === "side" ? "v4" : "v2"}`,
+        `kling-${character}-${view}-single-jump-${view === "side" ? "v5" : "v2"}`,
       );
       expect(
         profile.routes
@@ -262,6 +266,17 @@ for (const character of ["male", "female"] as const) {
         (r: { from: string; to: string }) =>
           r.from === "jump" && r.to === "run",
       );
+      expect(landing).toEqual(
+        view === "side"
+          ? {
+              from: "jump",
+              to: "run",
+              exit: 23,
+              entry: character === "male" ? 14 : 11,
+              leadIn: character === "male" ? [63, 62] : [58, 57],
+            }
+          : { from: "jump", to: "run", exit: 30, entry: 4 },
+      );
       expect(landing.exit).toBeLessThan(profile.actions.jump.frames.length);
       expect(manifest.animations.jump.frames).toHaveLength(
         view === "side" ? 28 : 39,
@@ -291,6 +306,20 @@ for (const character of ["male", "female"] as const) {
       expect(
         Math.max(...jumpRecords.map((r) => r.position)),
       ).toBeGreaterThanOrEqual(landing.exit - 3);
+      const recovery = records.filter((r) => r.action === "run" && r.leadIn);
+      const recoveryFrames: number[] = landing.leadIn ?? [];
+      expect(
+        recovery.every(
+          (r, index) =>
+            r.position === landing.entry &&
+            recoveryFrames.includes(r.frame) &&
+            (index === 0 ||
+              recoveryFrames.indexOf(r.frame) >
+                recoveryFrames.indexOf(recovery[index - 1].frame)),
+        ),
+      ).toBe(true);
+      // Real-time RAF may skip a short bridge under load. Controlled-clock
+      // coverage checks each native drawing; every observed drawing stays valid.
 
       // A new Run request while airborne is buffered until the reviewed landing.
       await pose(page, "idle");
@@ -323,6 +352,9 @@ for (const character of ["male", "female"] as const) {
         landing.exit - 3,
       );
 
+      // Finish this landing bridge before requesting a separate jump. A Jump
+      // press during recovery is intentionally ignored, just like one in flight.
+      await expect(stage(page)).toHaveAttribute("data-lead-in", "false");
       // An idle request during the airborne interval still keeps the complete
       // standing recovery; only an explicitly requested moving exit is shortened.
       await observe(stage(page));
@@ -352,10 +384,8 @@ for (const character of ["male", "female"] as const) {
             .map((r) => r.position),
         ),
       ).toBeGreaterThanOrEqual(profile.actions.jump.frames.length - 3);
-      // Original: request after the early seam and finish the remaining tail.
-      // Side: only its final frame remains, exactly at the available seam;
-      // this checks the boundary request, not a fractional past-seam fallback.
-      // Fractional side fallback is covered by the core controller tests.
+      // Request after the early seam and finish the remaining authored tail.
+      // Neither view may rewind into the missed recovery bridge.
       await pose(page, "jump");
       await page
         .getByTestId("dual-frame")
@@ -387,10 +417,7 @@ for (const character of ["male", "female"] as const) {
         bufferedRecords,
         airborneInputs: [runInput, idleInput],
         lateRecords,
-        lateCase:
-          view === "original"
-            ? "strictly-after-seam fallback"
-            : "final-frame boundary request",
+        lateCase: "strictly-after-seam fallback",
       });
 
       const gifs: Record<string, Record<string, string>> = {

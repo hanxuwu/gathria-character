@@ -61,8 +61,12 @@ export function buildWardrobeRunJumpSequence(
     else if (jumped) {
       if (state.action !== "run")
         throw Error("The reviewed jump did not return to running.");
-      if (returnedRunTicks === runTicks) break;
-      returnedRunTicks++;
+      // Landing recovery drawings belong to the transition, not the requested
+      // complete run cycle. Its clock starts only at the route's entry pose.
+      if (!state.leadIn) {
+        if (returnedRunTicks === runTicks) break;
+        returnedRunTicks++;
+      }
     }
     sample();
   }

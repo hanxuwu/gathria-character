@@ -68,10 +68,21 @@ describe("single native jump exports", () => {
         ...run.frames.slice(0, firstExit),
         ...leadIn,
         ...landingFrames,
+        ...(landing.leadIn ?? []),
         ...run.frames.slice(returnEntry),
         ...run.frames.slice(0, returnEntry),
       ];
       expect(sequence.frames.map((frame) => frame.frameId)).toEqual(expected);
+      expect(sequence.frames.slice(-run.frames.length)).toEqual(
+        [
+          ...run.frames.slice(returnEntry),
+          ...run.frames.slice(0, returnEntry),
+        ].map((frameId) => ({
+          action: "run",
+          frameId,
+          durationMs: 1000 / run.fps,
+        })),
+      );
       expect(
         sequence.frames
           .filter((frame) => frame.action === "jump")

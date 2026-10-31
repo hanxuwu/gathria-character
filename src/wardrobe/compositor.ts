@@ -773,6 +773,14 @@ export async function exportWardrobeCharacterPack(
         "Source body scale, action timing and source-frame mappings are preserved.",
         "Source body scale, native frame cadence and source-frame mappings are preserved; the gameplay profile selects the basic action clips.",
       );
+    if (gameplayMotion.routes.some((route) => route.leadIn?.length)) {
+      text["INTEGRATION.md"] = text["INTEGRATION.md"].replace(
+        "Ignore repeated jump requests until landing, complete the whole jump, then return to the latest requested locomotion (or the previous one).",
+        "Ignore repeated jump requests through takeoff, flight and landing recovery. Complete the jump up to the selected target-specific landing exit, then return to the latest requested locomotion (or the previous one).",
+      );
+      text["INTEGRATION.md"] +=
+        "\nA route may declare leadIn: ordered native atlas frame IDs that play before its target entry. Render every leadIn frame once at the target action FPS while its main clock remains frozen at entry; then continue the target clip from that entry, preserving fractional time. Run-to-Jump leadIn is takeoff preparation; Jump-to-Run leadIn is landing recovery. Do not count recovery drawings toward a complete resumed run cycle or accept another Jump during recovery. Lead-ins are contextual transitions, not additions to the standalone action clips.\n";
+    }
   }
   for (const [name, content] of Object.entries(text)) {
     const bytes = strToU8(content);
