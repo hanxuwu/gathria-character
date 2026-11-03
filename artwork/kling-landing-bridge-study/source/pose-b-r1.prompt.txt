@@ -1,0 +1,13 @@
+Apply ONE VERY LOCAL correction to the FIRST reference body-only sprite, pose B. Keep its entire upper body, neck stump, torso, teal shirt, collar, buttons, creases, both arms, both hands, waistband, hips, and FAR SUPPORTING LEG AND SHOE exactly unchanged. Do not redraw, resize, shift or relight those regions. This is ONLY a correction to the NEAR raised lower leg and shoe, the screen-left folded-up foot.
+
+The current raised foot in reference 1 is folded backward and upward too much. LOWER and bring that raised foot toward SCREEN RIGHT so it is only just off the ground, preparing to move into the SECOND reference's low running pose male-48.png. The new foot should be LOWER and less folded than the second reference's foot, not lifted higher. Keep the original supporting shoe absolutely still at its existing ground position. There must be exactly two legs and two shoes, no duplicated feet.
+
+Precise desired landmarks in a 512x768 coordinate cell (references and output may be 1024x1536 at 2x, double coordinates accordingly):
+- Near knee about (248,601).
+- Near ankle about (195,638).
+- Near raised shoe TOE about (230,689), just above the ground baseline. Currently that toe is far too high and left around (185,653). The main change is toe moving DOWN AND RIGHT toward (230,689).
+- Far weight-bearing shoe remains centered around (239,682), its flat sole lowest point y=696. DO NOT MOVE THIS SUPPORTING SHOE OR ITS LEG.
+- Do not change hips, hands, collar, or any upper-body pixels.
+The near shoe is angled toe-down and extends diagonally down-right from the ankle, close in front of the supporting shin, as the last moment before the next run frame. Small knee bend, compact calf, natural anatomical connection, no stretching. Do not fold the foot up behind the buttocks. Preserve the original shoe outline, colors, small size and existing light shading while repositioning this local foot.
+
+Retain the original pose B body size and position on the full 1024x1536 transparent canvas. Keep the top/head area empty transparent; no head, face, hair or ears. All shading stays inside character shapes. Same original rendering, skin, teal shirt, khaki trousers and white shoes. No background, no ground, no cast shadow, no markers or text. Make the smallest local drawing edit needed for this lowered near foot. Everything else remains as reference 1.

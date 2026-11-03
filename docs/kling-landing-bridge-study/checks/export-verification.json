@@ -1,0 +1,69 @@
+{
+  "fixtureOnly": false,
+  "artAccepted": false,
+  "method": "Read-only PNG/GIF decode; no artwork edits",
+  "gifVerification": [
+    {
+      "kind": "baseline",
+      "gifMetadata": [
+        {
+          "facing": "right",
+          "frames": 68,
+          "durationMs": 2830,
+          "delaysMs": [
+            40,
+            50
+          ],
+          "loopExtensionPresent": false
+        },
+        {
+          "facing": "left",
+          "frames": 68,
+          "durationMs": 2830,
+          "delaysMs": [
+            40,
+            50
+          ],
+          "loopExtensionPresent": false
+        }
+      ],
+      "leftRightMirroredFrameMismatchCount": 0
+    },
+    {
+      "kind": "candidate",
+      "gifMetadata": [
+        {
+          "facing": "right",
+          "frames": 70,
+          "durationMs": 2920,
+          "delaysMs": [
+            40,
+            50
+          ],
+          "loopExtensionPresent": false
+        },
+        {
+          "facing": "left",
+          "frames": 70,
+          "durationMs": 2920,
+          "delaysMs": [
+            40,
+            50
+          ],
+          "loopExtensionPresent": false
+        }
+      ],
+      "leftRightMirroredFrameMismatchCount": 0
+    }
+  ],
+  "newAtlasVerification": [
+    {
+      "frameId": 107,
+      "newAtlasVersusSuppliedPngRgbaMismatchChannels": 0
+    },
+    {
+      "frameId": 108,
+      "newAtlasVersusSuppliedPngRgbaMismatchChannels": 0
+    }
+  ]
+}

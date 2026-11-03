@@ -35,3 +35,7 @@
 工作台选择男版、侧视、单次跳跃模式，先跑步再点“跳一次”。新会话使用男版 V7；保存的 V6 过渡状态和历史独立包仍保留原入口。
 
 [技术验证记录](verification.md)与上述视觉判断分别记录。实际导出的检查凭据保存在 `checks/`，比较图生成方法见 `scripts/build-landing-first-step-review.py`。
+
+## 后续补绘试验
+
+[两张落地接跑补绘与实际播放器审阅](../kling-landing-bridge-study/README.md)已单独完成。它仍是未通过美术验收的固定造型候选，不改变本页 V7 默认路线。
