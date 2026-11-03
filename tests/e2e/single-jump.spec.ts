@@ -280,7 +280,7 @@ for (const character of ["male", "female"] as const) {
         "previous-locomotion",
       );
       expect(config.sourceMetadata.gameplayMotion.id).toBe(
-        `kling-${character}-${source}-single-jump-${source === "side" ? "v6" : "v2"}`,
+        `kling-${character}-${source}-single-jump-${source === "side" ? (character === "male" ? "v7" : "v6") : "v2"}`,
       );
       expect(
         config.sourceMetadata.gameplayMotion.routes
@@ -329,7 +329,7 @@ for (const character of ["male", "female"] as const) {
             ]
           : character === "male"
             ? [
-                [23, 10],
+                [23, 9],
                 [28, 11],
               ]
             : [

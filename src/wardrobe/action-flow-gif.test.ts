@@ -42,7 +42,7 @@ const read = (bytes: Uint8Array) => parseGIF(new Uint8Array(bytes).buffer);
 
 describe("single native jump exports", () => {
   it.each(["male", "female"] as const)(
-    "%s V6 exports forward recovery and a complete run cycle while retaining the V5 basic jump",
+    "%s exports forward recovery and a complete run cycle while retaining the historical basic jump",
     async (character) => {
       const row = profiles.find(
         (entry) =>
@@ -52,12 +52,15 @@ describe("single native jump exports", () => {
       const { renderer, calls, profile } = fixture(row);
       const previous = legacyProfiles.find(
         (entry) =>
-          entry.profile.id === `kling-${character}-side-single-jump-v5`,
+          entry.profile.id ===
+          `kling-${character}-side-single-jump-${character === "male" ? "v6" : "v5"}`,
       )!.profile as GameplayMotion;
-      expect(profile.id).toBe(`kling-${character}-side-single-jump-v6`);
+      expect(profile.id).toBe(
+        `kling-${character}-side-single-jump-${character === "male" ? "v7" : "v6"}`,
+      );
       expect(profile.actions).toEqual(previous.actions);
       const recovery = character === "male" ? [88, 89] : [83, 84];
-      const entry = character === "male" ? 10 : 7;
+      const entry = character === "male" ? 9 : 7;
       expect(
         profile.routes.find(
           (route) => route.from === "jump" && route.to === "run",
@@ -96,7 +99,7 @@ describe("single native jump exports", () => {
       expect(
         sequence.frames.slice(recoveryStart + 2).map((frame) => frame.frameId),
       ).toEqual(resumedRun);
-      expect(resumedRun[0]).toBe(character === "male" ? 49 : 41);
+      expect(resumedRun[0]).toBe(character === "male" ? 48 : 41);
       expect(sequence.returnRunTicks).toBe(run.frames.length);
       expect(
         sequence.frames.every((frame) => frame.durationMs === 1000 / 24),
@@ -132,7 +135,13 @@ describe("single native jump exports", () => {
         oldSequence.frames
           .slice(recoveryStart, recoveryStart + 2)
           .map((frame) => frame.frameId),
-      ).toEqual(character === "male" ? [63, 62] : [58, 57]);
+      ).toEqual(character === "male" ? [88, 89] : [58, 57]);
+      expect(oldSequence.frames[recoveryStart + 2].frameId).toBe(
+        character === "male" ? 49 : 45,
+      );
+      expect(sequence.frames.map((frame) => frame.durationMs)).toEqual(
+        oldSequence.frames.map((frame) => frame.durationMs),
+      );
     },
   );
 

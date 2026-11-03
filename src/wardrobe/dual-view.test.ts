@@ -325,6 +325,7 @@ describe("source-bound dual-view wardrobe persistence", () => {
     ["female", "legacy-takeoff"],
     ["male", "legacy-landing"],
     ["female", "legacy-landing"],
+    ["male", "legacy-forward-landing"],
   ] as const)(
     "%s preserves a reviewed %s checkpoint and rejects altered or foreign state",
     async (character, phase) => {
@@ -360,7 +361,9 @@ describe("source-bound dual-view wardrobe persistence", () => {
           ? "v4"
           : phase === "legacy-landing"
             ? "v5"
-            : null;
+            : phase === "legacy-forward-landing"
+              ? "v6"
+              : null;
       const profile = (
         legacyRevision
           ? legacySpecifications.find(
@@ -374,7 +377,10 @@ describe("source-bound dual-view wardrobe persistence", () => {
                 row.profile.characterId === character,
             )
       )!.profile as GameplayMotion;
-      const recovering = phase === "landing" || phase === "legacy-landing";
+      const recovering =
+        phase === "landing" ||
+        phase === "legacy-landing" ||
+        phase === "legacy-forward-landing";
       const from = recovering ? "jump" : "run";
       const action = recovering ? "run" : "jump";
       const route = profile.routes.find(
@@ -428,6 +434,10 @@ describe("source-bound dual-view wardrobe persistence", () => {
       expect(gameplayFrameId(checkpoint.profile, resumed)).toBe(
         profile.actions[action].frames[route.entry],
       );
+      if (phase === "legacy-forward-landing") {
+        expect(checkpoint.profile.id).toBe("kling-male-side-single-jump-v6");
+        expect(gameplayFrameId(checkpoint.profile, resumed)).toBe(49);
+      }
       expect(checkpoint.profile.id).toBe(profile.id);
       expect(checkpoint.state.leadIn!.elapsedMs).toBe(7.5);
       const mutations = [

@@ -19,19 +19,21 @@ import type { PortableCharacterPackManifest } from "./types";
 
 const TICK = 1000 / 24;
 
-describe("V6 forward source-drawn running recovery", () => {
+describe("Forward source-drawn running recovery", () => {
   for (const character of ["male", "female"] as const) {
     const specification = currentSpecifications.find(
-      (row) => row.profile.id === `kling-${character}-side-single-jump-v6`,
+      (row) =>
+        row.profile.id ===
+        `kling-${character}-side-single-jump-${character === "male" ? "v7" : "v6"}`,
     )!;
     const profile = specification.profile as GameplayMotion;
     const old = legacySpecifications.find(
       (row) => row.profile.id === `kling-${character}-side-single-jump-v5`,
     )!.profile as GameplayMotion;
     const recovery = character === "male" ? [88, 89] : [83, 84];
-    const entry = character === "male" ? 10 : 7;
+    const entry = character === "male" ? 9 : 7;
     const lastLandingFrame = character === "male" ? 85 : 80;
-    const entryFrame = character === "male" ? 49 : 41;
+    const entryFrame = character === "male" ? 48 : 41;
     const jumping = {
       ...createGameplayState("jump"),
       returnAction: "run" as const,

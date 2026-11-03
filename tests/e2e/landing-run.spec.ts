@@ -231,7 +231,7 @@ for (const character of ["male", "female"] as const) {
       const profile = json(files["character.json"]).sourceMetadata
         .gameplayMotion;
       expect(profile.id).toBe(
-        `kling-${character}-${view}-single-jump-${view === "side" ? "v6" : "v2"}`,
+        `kling-${character}-${view}-single-jump-${view === "side" ? (character === "male" ? "v7" : "v6") : "v2"}`,
       );
       expect(
         profile.routes
@@ -272,7 +272,7 @@ for (const character of ["male", "female"] as const) {
               from: "jump",
               to: "run",
               exit: 23,
-              entry: character === "male" ? 10 : 7,
+              entry: character === "male" ? 9 : 7,
               leadIn: character === "male" ? [88, 89] : [83, 84],
             }
           : { from: "jump", to: "run", exit: 30, entry: 4 },

@@ -128,6 +128,56 @@ async function observations(canvas: Locator) {
     return { records: win.takeoffSamples, requestedAt: win.takeoffRequestedAt };
   });
 }
+// Only the independent player's animation clock is controlled. Asset loading,
+// React commits, canvas rendering and UI interaction still use the real browser.
+// A busy RAF must not skip the very boundary that this compatibility check audits.
+type PlayerClockWindow = Window & {
+  takeoffPlayerClock: { now: number; advance: (milliseconds: number) => void };
+};
+async function installPlayerClock(page: Page) {
+  await page.addInitScript(() => {
+    const callbacks = new Map<number, FrameRequestCallback>();
+    let nextId = 0;
+    const clock = {
+      now: 1000,
+      advance(milliseconds: number) {
+        this.now += milliseconds;
+        const pending = [...callbacks.values()];
+        callbacks.clear();
+        for (const callback of pending) callback(this.now);
+      },
+    };
+    (window as unknown as PlayerClockWindow).takeoffPlayerClock = clock;
+    Object.defineProperty(performance, "now", { value: () => clock.now });
+    window.requestAnimationFrame = (callback) => {
+      const id = ++nextId;
+      callbacks.set(id, callback);
+      return id;
+    };
+    window.cancelAnimationFrame = (id) => callbacks.delete(id);
+  });
+}
+async function advancePlayerClock(page: Page, milliseconds: number) {
+  await page.evaluate(
+    (delta) =>
+      (window as unknown as PlayerClockWindow).takeoffPlayerClock.advance(
+        delta,
+      ),
+    milliseconds,
+  );
+  await page.evaluate(
+    () => new Promise<void>((resolve) => window.setTimeout(resolve, 0)),
+  );
+}
+async function playerSample(canvas: Locator): Promise<Sample> {
+  return canvas.evaluate((node) => ({
+    at: performance.now(),
+    action: node.dataset.action ?? "",
+    position: Number(node.dataset.framePosition),
+    frame: Number(node.dataset.frameId),
+    elapsed: Number(node.dataset.elapsedMs),
+  }));
+}
 function phases(records: Sample[]) {
   return records
     .map((row) => row.action)
@@ -202,15 +252,17 @@ for (const character of ["male", "female"] as const) {
     const files = unzipSync(pack),
       manifest = json(files["manifest.json"]);
     const profile = json(files["character.json"]).sourceMetadata.gameplayMotion;
-    expect(profile.id).toBe(`kling-${character}-side-single-jump-v6`);
+    expect(profile.id).toBe(
+      `kling-${character}-side-single-jump-${character === "male" ? "v7" : "v6"}`,
+    );
     expect(
       profile.routes.filter(
         (r: { from: string; to: string }) =>
           r.from === "run" && r.to === "jump",
       ),
     ).toEqual(reviewedRoutes);
-    // V6 retains the exact V4 takeoff routes above, and changes only the early
-    // moving landing. All other routes and source bindings retain their values.
+    // V7 male / V6 female retain the V4 takeoff routes above. Only the early
+    // moving landing is refined; other routes and source bindings stay intact.
     expect(
       profile.routes.filter(
         (r: { from: string; to: string }) =>
@@ -221,7 +273,7 @@ for (const character of ["male", "female"] as const) {
         from: "jump",
         to: "run",
         exit: 23,
-        entry: character === "male" ? 10 : 7,
+        entry: character === "male" ? 9 : 7,
         leadIn: character === "male" ? [88, 89] : [83, 84],
       },
       {
@@ -388,6 +440,7 @@ for (const character of ["male", "female"] as const) {
       viewport: { width: 1280, height: 900 },
     });
     const player = await context.newPage();
+    await installPlayerClock(player);
     const playerErrors: string[] = [];
     const requests: string[] = [];
     player.on("pageerror", (error) => playerErrors.push(error.message));
@@ -406,6 +459,7 @@ for (const character of ["male", "female"] as const) {
         "historical-v3",
         "historical-v4",
         "historical-v5",
+        ...(character === "male" ? ["historical-v6" as const] : []),
       ] as const) {
         let file = packPath;
         if (variant !== "current") {
@@ -417,7 +471,9 @@ for (const character of ["male", "female"] as const) {
                 ? "docs/kling-takeoff-refine/review"
                 : variant === "historical-v4"
                   ? "docs/kling-takeoff-bridge/review"
-                  : "docs/kling-landing-posture/checks";
+                  : variant === "historical-v5"
+                    ? "docs/kling-landing-posture/checks"
+                    : "docs/kling-landing-forward/checks";
           archived["manifest.json"] = await readFile(
             `${archiveDirectory}/${character}/side.manifest.json`,
           );
@@ -442,40 +498,79 @@ for (const character of ["male", "female"] as const) {
         const canvas = player.getByTestId("consumer-canvas");
         await expect(canvas).toHaveAttribute("data-gameplay-motion", "true");
         await player.getByRole("button", { name: "Run", exact: true }).click();
+        // Run may be queued at the initial Idle cycle boundary. Advance the
+        // real controller to Run's first drawing without wall-clock races.
+        const tick = 1000 / imported.actions.run.fps;
+        await advancePlayerClock(player, 0);
+        for (
+          let i = 0;
+          i <= imported.actions.idle.frames.length &&
+          (await canvas.getAttribute("data-action")) !== "run";
+          i++
+        )
+          await advancePlayerClock(player, tick);
         await expect(canvas).toHaveAttribute("data-action", "run");
-        await observe(canvas);
+        await expect(canvas).toHaveAttribute("data-frame-position", "0");
+        const takeoff = imported.routes
+          .filter(
+            (route: { from: string; to: string }) =>
+              route.from === "run" && route.to === "jump",
+          )
+          .sort(
+            (a: { exit: number }, b: { exit: number }) => a.exit - b.exit,
+          )[0];
+        const landing = imported.routes
+          .filter(
+            (route: { from: string; to: string }) =>
+              route.from === "jump" && route.to === "run",
+          )
+          .sort(
+            (a: { exit: number }, b: { exit: number }) => a.exit - b.exit,
+          )[0];
+        const native = (action: string, frames: number[]) =>
+          frames.map((frame) => ({ action, frame }));
+        // Build the expected sequence from the declared archived contract,
+        // independently of the runtime's state/frame resolver. Include both
+        // bridges and the first actual Run drawing after recovery, not merely
+        // the transitional Run label while a Jump drawing is still displayed.
+        const expected = [
+          ...native("run", imported.actions.run.frames.slice(0, takeoff.exit)),
+          ...native("jump", takeoff.leadIn ?? []),
+          ...native(
+            "jump",
+            imported.actions.jump.frames.slice(takeoff.entry, landing.exit),
+          ),
+          ...native("run", landing.leadIn ?? []),
+          ...native("run", [imported.actions.run.frames[landing.entry]]),
+        ];
+        const records = [await playerSample(canvas)];
         const jumpButton = player.getByRole("button", {
           name: "Jump",
           exact: true,
         });
         await markRequest(jumpButton);
         await jumpButton.click();
-        await expect(canvas).toHaveAttribute("data-action", "jump", {
-          timeout: 5000,
-        });
-        await expect(canvas).toHaveAttribute("data-action", "run", {
-          timeout: 5000,
-        });
-        const result = await observations(canvas);
-        expect(phases(result.records)).toEqual(["run", "jump", "run"]);
-        const firstJump = result.records.find((row) => row.action === "jump")!;
-        const beforeJump = result.records
-          .slice(0, result.records.indexOf(firstJump))
-          .filter((row) => row.action === "run")
-          .at(-1)!;
+        for (let i = 1; i < expected.length; i++) {
+          await advancePlayerClock(player, tick);
+          records.push(await playerSample(canvas));
+        }
+        const result = {
+          records,
+          requestedAt: await player.evaluate(
+            () =>
+              (window as unknown as { takeoffRequestedAt: number })
+                .takeoffRequestedAt,
+          ),
+        };
+        const finalLeadIn = await canvas.getAttribute("data-lead-in");
         const eligible = imported.routes
           .filter(
-            (r: { from: string; to: string }) =>
-              r.from === "run" && r.to === "jump",
+            (route: { from: string; to: string }) =>
+              route.from === "run" && route.to === "jump",
           )
-          .map((r: { exit: number }) => r.exit - 1);
-        expect(
-          eligible.some(
-            (position: number) =>
-              beforeJump.position >= position - 2 &&
-              beforeJump.position <= position,
-          ),
-        ).toBe(true);
+          .map((route: { exit: number }) => route.exit - 1);
+        // Always preserve observations before motion assertions so a failure
+        // identifies the exact variant, declared frames and actual canvas state.
         await writeFile(
           `${directory}/side-${variant}-player.json`,
           JSON.stringify(
@@ -483,12 +578,26 @@ for (const character of ["male", "female"] as const) {
               profileId: imported.id,
               eligibleLastRunPositions: eligible,
               historicalProfileRetained: variant !== "current",
+              animationClock: "controlled-native-ticks",
+              tickMs: tick,
+              expected,
+              finalLeadIn,
               ...result,
             },
             null,
             2,
           ) + "\n",
         );
+        expect(phases(result.records)).toEqual(["run", "jump", "run"]);
+        expect(records.map(({ action, frame }) => ({ action, frame }))).toEqual(
+          expected,
+        );
+        const firstJump = records.findIndex((row) => row.action === "jump");
+        expect(records[firstJump - 1].position).toBe(takeoff.exit - 1);
+        expect(records[firstJump].position).toBe(takeoff.entry);
+        expect(records.at(-1)!.position).toBe(landing.entry);
+        expect(records.at(-1)!.elapsed).toBeCloseTo(landing.entry * tick, 6);
+        expect(finalLeadIn).toBe("false");
         if (variant === "current") {
           await player.screenshot({
             path: `${directory}/side-independent-player.png`,

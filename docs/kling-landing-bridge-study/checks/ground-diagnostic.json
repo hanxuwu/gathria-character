@@ -1,0 +1,69 @@
+{
+  "experimental": true,
+  "actualGameplayIntegration": false,
+  "characterFramesUnwarped": true,
+  "atlas": "/tmp/landing-bridge-study/final-pack/male-landing-bridge-study.character.zip",
+  "sequence": [
+    89,
+    107,
+    108,
+    48,
+    49,
+    50,
+    51
+  ],
+  "canvas": [
+    512,
+    864
+  ],
+  "nativePoseCanvas": [
+    512,
+    768
+  ],
+  "headerTranslationY": 48,
+  "poseScale": 1,
+  "groundLineNativeY": 710,
+  "sourceFPS": 24,
+  "simulatedCameraSpeedNativePixelsPerSecond": 700,
+  "groundScrollNativePixelsPerTick": 29.166666666666668,
+  "reviewLoop": true,
+  "reviewPausesMs": {
+    "before": 500,
+    "after": 500
+  },
+  "simulationDurationMs": 291.6666666666667,
+  "approximateSupportShoeMeasurement": {
+    "method": "Parent visual toe/sole support-point estimates in native frame coordinates; not tracked landmarks or a foot-lock solver",
+    "observations": [
+      {
+        "frameId": 89,
+        "estimatedSupportShoeScreenX": 285,
+        "simulationCameraX": 0,
+        "estimatedSupportShoeWorldX": 285
+      },
+      {
+        "frameId": 107,
+        "estimatedSupportShoeScreenX": 267,
+        "simulationCameraX": 29.166666666666668,
+        "estimatedSupportShoeWorldX": 296.1666666666667
+      },
+      {
+        "frameId": 108,
+        "estimatedSupportShoeScreenX": 242,
+        "simulationCameraX": 58.333333333333336,
+        "estimatedSupportShoeWorldX": 300.3333333333333
+      },
+      {
+        "frameId": 48,
+        "estimatedSupportShoeScreenX": 215,
+        "simulationCameraX": 87.5,
+        "estimatedSupportShoeWorldX": 302.5
+      }
+    ],
+    "spanTicks": 3,
+    "worldShift": 87.5,
+    "screenShift": -70,
+    "netDrift": 17.5,
+    "limitation": "Approximate landmark consistency is unverified; this demonstrates remaining slip, not a validated gait measurement. Pauses freeze both pose and ground and are review-only."
+  }
+}
