@@ -86,6 +86,13 @@ saved and reopened; historical profiles remain readable. This is a conservative
 existing-art candidate with documented head/contact seams, not a seamless-motion
 claim. See the [V5/V6 actual GIF review](docs/kling-landing-forward/README.md).
 
+Male side V7 starts the resumed run one native phase earlier, at Run48, so a
+lower support pose precedes the leg pickup. Its recovery bridge, resume time,
+24 FPS and complete sequence duration remain unchanged. Female side V6 and
+historical male V6 packs keep their exact behavior. This is a small first-step
+adjustment; the source still lacks a complete landing weight-transfer drawing.
+[Current first-step GIFs and limits](docs/kling-landing-first-step/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

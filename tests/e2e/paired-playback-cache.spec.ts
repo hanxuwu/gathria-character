@@ -284,7 +284,7 @@ async function checkLandingRecovery(
   directory: string,
 ) {
   const frames = character === "male" ? [88, 89] : [83, 84];
-  const entry = character === "male" ? 10 : 7;
+  const entry = character === "male" ? 9 : 7;
   await pauseBoth(page);
   await page.getByTestId("dual-compare-action").selectOption("jump");
   await page.getByTestId("dual-compare-frame-side").fill("22");
@@ -376,7 +376,7 @@ async function checkLandingRecovery(
   expect(running.action).toBe("run");
   expect(running.leadIn).toBe("false");
   expect(running.position).toBe(entry);
-  expect(running.frameId).toBe(character === "male" ? 49 : 41);
+  expect(running.frameId).toBe(character === "male" ? 48 : 41);
   expect(running.elapsedMs).toBeCloseTo(entry * TICK, 6);
   await advance(page, 18 * TICK);
   expect((await painted(page, "side")).action).toBe("run");

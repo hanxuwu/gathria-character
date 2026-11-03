@@ -408,6 +408,54 @@ describe("target-specific grounded landing exits", () => {
   );
 
   it.each(sources)(
+    "limits the V7 change to the male side first running pose and reads the actual previous $character $view export",
+    ({ character, view }) => {
+      const directory =
+        view === "side"
+          ? "docs/kling-landing-forward/checks"
+          : "docs/kling-landing-run/review";
+      const previous = JSON.parse(
+        readFileSync(
+          `${directory}/${character}/${view}.character.json`,
+          "utf8",
+        ),
+      ) as BakedCharacterRecipe;
+      const old = previous.sourceMetadata!
+        .gameplayMotion as unknown as GameplayMotion;
+      const { manifest, profile } = source(character, view);
+      const imported = readGameplayMotion(
+        gameplayManifest(manifest, old),
+        previous,
+      );
+      expect(imported).toEqual(old);
+      if (character === "male" && view === "side") {
+        expect(old.id).toBe("kling-male-side-single-jump-v6");
+        const expected = structuredClone(old);
+        expected.id = "kling-male-side-single-jump-v7";
+        expected.routes.find(
+          (route) =>
+            route.from === "jump" && route.to === "run" && route.exit === 23,
+        )!.entry = 9;
+        expect(profile).toEqual(expected);
+        const starting = {
+          ...createGameplayState("jump"),
+          returnAction: "run" as const,
+        };
+        const resumed = advanceGameplayMotion(
+          imported!,
+          starting,
+          25 * TICK + 7.5,
+        );
+        expect(resumed.leadIn).toBeUndefined();
+        expect(resumed.elapsedMs).toBeCloseTo(10 * TICK + 7.5, 7);
+        expect(gameplayFrameId(imported!, resumed)).toBe(49);
+      } else {
+        expect(profile).toEqual(old);
+      }
+    },
+  );
+
+  it.each(sources)(
     "still reads $character $view previously exported V1 metadata without retiming it",
     ({ character, view }) => {
       const { manifest, profile } = source(character, view);
@@ -415,7 +463,9 @@ describe("target-specific grounded landing exits", () => {
         (row) =>
           row.profile.characterId === character && row.profile.view === view,
       )!.profile as GameplayMotion;
-      expect(profile.id).toMatch(view === "side" ? /-v6$/ : /-v2$/);
+      expect(profile.id).toMatch(
+        view === "side" ? (character === "male" ? /-v7$/ : /-v6$/) : /-v2$/,
+      );
       const archived = readGameplayMotion(gameplayManifest(manifest, old), {
         sourceMetadata: { gameplayMotion: gameplayMotionMetadata(old) },
       });

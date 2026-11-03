@@ -1,0 +1,24 @@
+
+ RUN  v3.2.7 /workspace/gathria-character
+
+ ✓ src/core/gameplay-motion.test.ts (30 tests) 450ms
+ ✓ src/core/landing-bridge.test.ts (14 tests) 13ms
+ ✓ src/wardrobe/dual-view.test.ts (19 tests) 574ms
+ ✓ src/wardrobe/action-flow-gif.test.ts (11 tests) 2818ms
+   ✓ single native jump exports > male exports forward recovery and a complete run cycle while retaining the historical basic jump  333ms
+   ✓ single native jump exports > female exports forward recovery and a complete run cycle while retaining the historical basic jump  319ms
+   ✓ single native jump exports > exports one complete run/jump/run sequence for 'kling-male-original-single-jump-v2'  340ms
+   ✓ single native jump exports > exports one complete run/jump/run sequence for 'kling-female-original-single-jump-v2'  340ms
+   ✓ single native jump exports > exports one complete run/jump/run sequence for 'kling-male-side-single-jump-v7'  349ms
+   ✓ single native jump exports > exports one complete run/jump/run sequence for 'kling-female-side-single-jump-v6'  334ms
+
+ Test Files  4 passed (4)
+      Tests  74 passed (74)
+   Start at  21:58:11
+   Duration  4.06s (transform 362ms, setup 0ms, collect 575ms, tests 3.85s, environment 1ms, prepare 233ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

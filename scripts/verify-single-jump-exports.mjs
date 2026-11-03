@@ -33,17 +33,23 @@ const sources = {
 // second reviewed takeoff boundary. Side V4 adds phase-matched source lead-ins
 // at three evenly spaced boundaries. Side V5 reuses two source takeoff poses
 // in reverse before running. Side V6 replaces that rejected reverse approach
-// with forward landing recovery drawings. Every revision keeps native 24 FPS.
+// with forward landing recovery drawings. Male-only V7 starts Run one native
+// pose earlier; female stays V6. Every revision keeps native 24 FPS.
 function assertKnownRoutes(profile) {
   const prefix = `kling-${profile.characterId}-${profile.view}-single-jump-`;
   const original = profile.view === "original";
   const revision = Number(profile.id.slice(prefix.length).replace(/^v/, ""));
+  const male = profile.characterId === "male";
   assert(
     profile.id === `${prefix}v${revision}` &&
-      (original ? [1, 2] : [1, 2, 3, 4, 5, 6]).includes(revision),
+      (original
+        ? [1, 2]
+        : male
+          ? [1, 2, 3, 4, 5, 6, 7]
+          : [1, 2, 3, 4, 5, 6]
+      ).includes(revision),
     `Unknown reviewed motion profile: ${profile.id}`,
   );
-  const male = profile.characterId === "male";
   const takeoffs = original
     ? [5, 13]
     : revision >= 4
@@ -67,21 +73,23 @@ function assertKnownRoutes(profile) {
     exit: original ? 30 : revision >= 5 ? 23 : 27,
     entry: original
       ? 4
-      : revision === 6
-        ? male
-          ? 10
-          : 7
-        : revision === 5
+      : revision === 7
+        ? 9
+        : revision === 6
           ? male
-            ? 14
-            : 11
-          : male
-            ? 16
-            : 13,
+            ? 10
+            : 7
+          : revision === 5
+            ? male
+              ? 14
+              : 11
+            : male
+              ? 16
+              : 13,
     ...(revision >= 5
       ? {
           leadIn:
-            revision === 6
+            revision >= 6
               ? male
                 ? [88, 89]
                 : [83, 84]
@@ -119,14 +127,14 @@ function assertKnownRoutes(profile) {
   );
   assert.equal(profile.actions.jump.fps, 24, "Jump cadence changed");
   assert.equal(profile.actions.run.fps, 24, "Run cadence changed");
-  if (revision === 6) {
+  if (revision >= 6) {
     const forwardRecovery = [
       ...profile.actions.jump.frames.slice(0, early.exit),
       ...early.leadIn,
     ];
     assert(
       forwardRecovery.every((id, i) => i === 0 || id > forwardRecovery[i - 1]),
-      "V6 landing recovery must advance in source order",
+      "Forward landing recovery must advance in source order",
     );
   }
   return revision;
