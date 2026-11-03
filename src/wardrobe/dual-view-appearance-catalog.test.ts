@@ -10,14 +10,21 @@ import {
 const registry = vi.hoisted(() => ({
   representations: [] as Array<Record<string, unknown>>,
 }));
-vi.mock("../../docs/matched-hair/assets/catalog.json", () => ({
+const legacy = vi.hoisted(() => ({
+  representations: [] as Array<Record<string, unknown>>,
+}));
+vi.mock("../../docs/paired-polish/assets/appearance-catalog.json", () => ({
   default: registry,
+}));
+vi.mock("../../docs/matched-hair/assets/catalog.json", () => ({
+  default: legacy,
 }));
 const payload = new Uint8Array([41, 72, 99]);
 const digest = createHash("sha256").update(payload).digest("hex");
 const fetcher = vi.fn();
 
 beforeEach(() => {
+  legacy.representations = [];
   registry.representations = ["original", "side"].map((view) => ({
     character: "male",
     view,
@@ -62,6 +69,38 @@ describe("paired appearance asset delivery", () => {
     expect(pairedAppearanceCatalog("male")).toBeNull();
     registry.representations = registry.representations.slice(0, 1);
     expect(pairedAppearanceCatalog("male")).toBeNull();
+  });
+
+  it("keeps legacy registration contracts usable without reassigning saved head banks", async () => {
+    const current = pairedAppearanceCatalog("male")!;
+    legacy.representations = structuredClone(registry.representations);
+    legacy.representations[1].registrationSha256 = "e".repeat(64);
+    legacy.representations[1].bankId = "older-side";
+    legacy.representations[1].hairId = "older-hair";
+    const pair = {
+      character: "male",
+      projects: Object.fromEntries(
+        legacy.representations.map((row) => [
+          row.view,
+          {
+            document: {
+              sourceSha256: row.sourceSha256,
+              registrationSha256: row.registrationSha256,
+            },
+          },
+        ]),
+      ),
+    } as DualViewWardrobe;
+    const frozen = structuredClone(pair);
+    const entries = compatiblePairedAppearance(pair)!;
+    expect(entries.side.registrationSha256).toBe("e".repeat(64));
+    expect(entries.side.hairId).toBe("older-hair");
+    expect(pairedAppearanceCatalog("male")).toEqual(current);
+    expect(pair).toEqual(frozen);
+    fetcher.mockResolvedValueOnce(new Response(payload));
+    expect(await loadPairedAppearanceBank(entries.side)).toEqual(payload);
+    legacy.representations.push({ ...legacy.representations[1] });
+    expect(compatiblePairedAppearance(pair)).toBeNull();
   });
 
   it("verifies streamed size and hash before returning any bank", async () => {

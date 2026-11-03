@@ -1,4 +1,5 @@
-import catalog from "../../docs/matched-hair/assets/catalog.json";
+import catalog from "../../docs/paired-polish/assets/appearance-catalog.json";
+import legacyCatalog from "../../docs/matched-hair/assets/catalog.json";
 import { APPEARANCE_MAX_BYTES } from "../appearance/contract";
 import { sha256 } from "../core/sha256";
 import {
@@ -23,6 +24,7 @@ const bundled = import.meta.glob<string>(
   [
     "../../docs/dual-looks/assets/**/*.zip",
     "../../docs/matched-hair/assets/**/*.zip",
+    "../../docs/paired-polish/assets/**/*.zip",
   ],
   { query: "?url&no-inline", import: "default", eager: true },
 );
@@ -35,10 +37,13 @@ const urls = new Map(
 
 /** Only an exact native source/registration pair receives these head choices.
  * Loading an older or custom project never relabels its embedded artwork. */
-export function pairedAppearanceCatalog(character: DualViewCharacter) {
+function catalogEntries(
+  character: DualViewCharacter,
+  rows: readonly CatalogAppearance[],
+) {
   const result = {} as Record<DualView, CatalogAppearance>;
   for (const view of DUAL_VIEWS) {
-    const matches = (catalog.representations as CatalogAppearance[]).filter(
+    const matches = rows.filter(
       (item) => item.character === character && item.view === view,
     );
     if (matches.length !== 1) return null;
@@ -47,25 +52,47 @@ export function pairedAppearanceCatalog(character: DualViewCharacter) {
   return result;
 }
 
+/** The newest reviewed pair is offered only by explicit appearance/complete-look actions. */
+export function pairedAppearanceCatalog(character: DualViewCharacter) {
+  return catalogEntries(
+    character,
+    catalog.representations as CatalogAppearance[],
+  );
+}
+
 export function compatiblePairedAppearance(pair: DualViewWardrobe) {
-  const entries = pairedAppearanceCatalog(pair.character);
-  if (!entries) return null;
-  for (const view of DUAL_VIEWS) {
-    const project = pair.projects[view];
+  // Registrations are asset contracts. An older saved project may use the exact
+  // legacy contract; do not reinterpret its hand masks as the new revision.
+  for (const revision of [catalog, legacyCatalog]) {
+    const entries = catalogEntries(
+      pair.character,
+      revision.representations as CatalogAppearance[],
+    );
     if (
-      entries[view].sourceSha256 !== project.document.sourceSha256 ||
-      entries[view].registrationSha256 !== project.document.registrationSha256
+      entries &&
+      DUAL_VIEWS.every(
+        (view) =>
+          entries[view].sourceSha256 ===
+            pair.projects[view].document.sourceSha256 &&
+          entries[view].registrationSha256 ===
+            pair.projects[view].document.registrationSha256,
+      )
     )
-      return null;
+      return entries;
   }
-  return entries;
+  return null;
 }
 
 export async function loadPairedAppearanceBank(
   representation: DualViewAppearanceRepresentation,
   options: SourcePreparationOptions = {},
 ): Promise<Uint8Array> {
-  const entry = (catalog.representations as CatalogAppearance[]).find(
+  const entry = (
+    [
+      ...catalog.representations,
+      ...legacyCatalog.representations,
+    ] as CatalogAppearance[]
+  ).find(
     (item) =>
       item.character === representation.character &&
       item.view === representation.view &&

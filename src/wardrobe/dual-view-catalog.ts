@@ -1,6 +1,7 @@
 import catalog from "../../docs/dual-view-wardrobe/assets/catalog.json";
 import tailoredCatalog from "../../docs/dual-tailored/assets/catalog.json";
 import completeCatalog from "../../docs/dual-looks-cloth/assets/catalog.json";
+import polishedCatalog from "../../docs/paired-polish/assets/catalog.json";
 import { sha256 } from "../core/sha256";
 import {
   assertSourcePreparationActive,
@@ -48,7 +49,7 @@ interface Representation {
   items: RepresentationItem[];
 }
 export interface DualOutfit {
-  id: "cotton-day" | "tailored-day" | "complete-day";
+  id: "cotton-day" | "tailored-day" | "complete-day" | "polished-day";
   name: string;
   topId: string;
   bottomId: string;
@@ -74,6 +75,8 @@ const bundled = import.meta.glob<string>(
     "../../docs/dual-tailored/assets/**/*.zip",
     "../../docs/dual-tailored/assets/**/*.registration.json",
     "../../docs/dual-looks-cloth/assets/**/*.zip",
+    "../../docs/paired-polish/assets/**/*.zip",
+    "../../artwork/paired-polish/*.registration.json",
     "../../docs/kling-side-workspace/assets/*.source.zip",
     "../../docs/kling-side-workspace/assets/*.registration.json",
     "../../artwork/kling-side-expansion/templates/*.registration.json",
@@ -100,7 +103,7 @@ export function dualViewOutfit(
   const cottonBottoms = [{ id: DUAL_OUTFIT.bottomId, name: "棉质短裤" }];
   if (id === DUAL_OUTFIT.id)
     return { ...DUAL_OUTFIT, tops: cottonTops, bottoms: cottonBottoms };
-  if (id !== "tailored-day" && id !== "complete-day")
+  if (id !== "tailored-day" && id !== "complete-day" && id !== "polished-day")
     throw Error("这套服装尚未提供经过检查的双视角版本。");
   const male = character === "male";
   const top = {
@@ -114,11 +117,13 @@ export function dualViewOutfit(
   return {
     id,
     name:
-      id === "complete-day"
-        ? "短袖上衣与短裙 · 裙摆修订"
-        : male
-          ? "休闲衬衫与长裤"
-          : "短袖上衣与短裙",
+      id === "polished-day"
+        ? "日常造型 · 接缝修订"
+        : id === "complete-day"
+          ? "短袖上衣与短裙 · 裙摆修订"
+          : male
+            ? "休闲衬衫与长裤"
+            : "短袖上衣与短裙",
     topId: top.id,
     bottomId: bottom.id,
     tops: [
@@ -157,7 +162,9 @@ export function dualViewRepresentation(
         ? tailoredCatalog.representations
         : outfitId === "complete-day"
           ? completeCatalog.representations
-          : [];
+          : outfitId === "polished-day"
+            ? polishedCatalog.representations
+            : [];
   const matches = (rows as Representation[]).filter(
     (row) => row.character === character && row.view === view,
   );
@@ -236,7 +243,12 @@ function completeLogicalPart(
 export function availableDualViewOutfits(
   character: DualViewCharacter,
 ): DualOutfit[] {
-  return [DUAL_OUTFIT.id, "tailored-day", "complete-day"].flatMap((id) => {
+  return [
+    DUAL_OUTFIT.id,
+    "tailored-day",
+    "complete-day",
+    "polished-day",
+  ].flatMap((id) => {
     const outfit = dualViewOutfit(character, id);
     try {
       for (const view of DUAL_VIEWS) {
@@ -398,7 +410,7 @@ async function loadProjects(
       before.document.registrationSha256 !== spec.registrationSha256
     )
       throw Error(
-        "当前项目保存的发型或表情使用另一套定位，不能自动迁移到此服装组。原项目已保留。",
+        "当前项目保存的发型或表情使用另一套定位，不能自动迁移到此服装组。可应用完整日常造型，或先恢复原片头部再选服装。原项目已保留。",
       );
     // Resolve every requested logical part before doing any network work.
     for (const slot of ["top", "bottom"] as const)

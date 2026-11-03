@@ -6,7 +6,8 @@ import { unzipSync, zipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 import { readPortableCharacterPackArchive } from "../../src/core/pack";
 
-const evidence = "/tmp/dual-view-wardrobe";
+const evidence =
+  process.env.GATHRIA_DUAL_WARDROBE_EVIDENCE ?? "/tmp/dual-view-wardrobe";
 type View = "original" | "side";
 const views: View[] = ["original", "side"];
 const stage = (page: Page) => page.getByTestId("dual-stage");
@@ -129,6 +130,10 @@ for (const character of ["male", "female"] as const) {
       `/workbench.html?mode=paired&character=${character}&view=original`,
     );
     await ready(page);
+    // This regression compares published source animations and legacy ZIPs.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await ready(page);
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     await expect(stage(page)).toHaveAttribute("data-character", character);
     await expect(page.getByTestId("dual-palette")).toHaveValue(
       character === "male" ? "sea" : "apricot",
@@ -382,6 +387,10 @@ test("mixed shared choices reopen atomically and a damaged embedded view leaves 
   await mkdir(output, { recursive: true });
   await page.goto("/workbench.html?mode=paired&character=female&view=original");
   await ready(page);
+  // The legacy archive contract deliberately retains the complete source clips.
+  await page.getByTestId("dual-motion-mode").selectOption("source");
+  await ready(page);
+  await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
   await page.getByTestId("dual-palette").selectOption("sea");
   await ready(page);
   await page.getByTestId("dual-bottom").selectOption("");

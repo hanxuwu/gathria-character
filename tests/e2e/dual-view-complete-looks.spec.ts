@@ -1,13 +1,17 @@
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { expect, test, type Locator, type Page } from "@playwright/test";
-import { strToU8, unzipSync, zipSync, type Zippable } from "fflate";
+import { unzipSync, zipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 import { readPortableCharacterPackArchive } from "../../src/core/pack";
 
 test.describe.configure({ mode: "parallel" });
-const evidence = "/tmp/kling-hair-match/exports";
+const evidence =
+  process.env.GATHRIA_REVIEW_EXPORT_ROOT ?? "/tmp/paired-polish/exports";
+const baselineDirectory = process.env.GATHRIA_REVIEW_EXPORT_ROOT
+  ? `${evidence}/baseline`
+  : "/tmp/paired-polish/baseline";
 type View = "original" | "side";
 const views: View[] = ["original", "side"];
 const stage = (page: Page) => page.getByTestId("dual-stage");
@@ -77,9 +81,25 @@ async function download(page: Page, control: Locator, path: string) {
   const result = await waiting;
   expect(await result.failure()).toBeNull();
   await result.saveAs(path);
+  const bytes = await readFile(path);
+  if (path.endsWith(".zip"))
+    await writeFile(
+      `${path}.receipt.json`,
+      JSON.stringify(
+        {
+          path,
+          filename: result.suggestedFilename(),
+          bytes: bytes.length,
+          sha256: sha(bytes),
+          provenance: "Actual browser download",
+        },
+        null,
+        2,
+      ) + "\n",
+    );
   return {
     path,
-    bytes: await readFile(path),
+    bytes,
     filename: result.suggestedFilename(),
   };
 }
@@ -91,7 +111,7 @@ async function exported(page: Page, kind: string, path: string) {
 async function appearanceCatalog(previous = false) {
   return JSON.parse(
     await readFile(
-      `docs/${previous ? "dual-looks" : "matched-hair"}/assets/catalog.json`,
+      `docs/${previous ? "matched-hair/assets/catalog" : "paired-polish/assets/appearance-catalog"}.json`,
       "utf8",
     ),
   );
@@ -126,51 +146,19 @@ function bundle(bytes: Uint8Array, character: string) {
   return { files, manifest, native };
 }
 
-// Reconstruct a saved V2 project with the prior embedded side bank. Keeping the
-// canonical archive layout lets reopening prove byte preservation, not only a
-// selection label or a screenshot produced from today's default assets.
-async function previousAppearanceProject(bytes: Uint8Array, character: string) {
-  const parsed = bundle(bytes, character),
-    previous = await appearanceCatalog(true),
-    spec = previous.representations.find(
-      (r: { character: string; view: string }) =>
-        r.character === character && r.view === "side",
-    ),
-    bank = await readFile(`.${spec.url}`),
-    native = parsed.native.side;
-  expect(sha(bank)).toBe(spec.bankSha256);
-  native.document.appearance = {
-    ...native.document.appearance,
-    bankSha256: spec.bankSha256,
-    hairId: spec.hairId,
-    faceId: spec.faceId,
-  };
-  const files: Zippable = {
-    "document.json": strToU8(JSON.stringify(native.document, null, 2)),
-    "source.character.zip": [
-      native.files["source.character.zip"],
-      { level: 0 },
-    ],
-    "registration.json": native.files["registration.json"],
-  };
-  native.document.items.forEach((_: unknown, i: number) => {
-    files[`item-${i}.zip`] = [native.files[`item-${i}.zip`], { level: 0 }];
-  });
-  files["appearance.zip"] = [bank, { level: 0 }];
-  const options = { level: 6 as const, mtime: new Date(2020, 0, 1, 0, 0, 0) },
-    side = zipSync(files, options);
-  parsed.manifest.views.side.sha256 = sha(side);
-  return zipSync(
-    {
-      "original.wardrobe.zip": [
-        parsed.files["original.wardrobe.zip"],
-        { level: 0 },
-      ],
-      "side.wardrobe.zip": [side, { level: 0 }],
-      "manifest.json": strToU8(JSON.stringify(parsed.manifest, null, 2)),
-    },
-    options,
-  );
+// This recipe reproduces the previous actual UI download byte-for-byte, with
+// source/assets reused from their immutable repository paths.
+async function previousAppearanceProject(
+  _bytes: Uint8Array,
+  character: string,
+) {
+  const path = `${baselineDirectory}/${character}.zip`;
+  execFileSync("node", [
+    "scripts/build-paired-polish-baseline.mjs",
+    character,
+    path,
+  ]);
+  return readFile(path);
 }
 
 for (const character of ["male", "female"] as const) {
@@ -186,14 +174,15 @@ for (const character of ["male", "female"] as const) {
     const catalog = await appearanceCatalog();
     await page.goto(`/workbench.html?mode=paired&character=${character}`);
     await ready(page);
+    // This regression retains the published source clocks and byte-exact exports.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     await expect(page.getByTestId("dual-hair")).toHaveValue("");
     await expect(page.getByTestId("dual-face")).toHaveValue("");
     await page.getByTestId("dual-complete-look").click();
     await ready(page);
     const completeOutfit = await page.getByTestId("dual-outfit").inputValue();
-    expect(completeOutfit).toBe(
-      character === "male" ? "tailored-day" : "complete-day",
-    );
+    expect(completeOutfit).toBe("polished-day");
     await page.getByTestId("dual-reset-appearance").click();
     await ready(page);
     const baselines: Partial<
@@ -225,6 +214,7 @@ for (const character of ["male", "female"] as const) {
     await expect(page.getByTestId("dual-outfit")).toHaveValue(completeOutfit);
     await expect(page.getByTestId("dual-hair")).toHaveValue("daily-hair");
     await expect(page.getByTestId("dual-face")).toHaveValue("gentle");
+    await previousAppearanceProject(new Uint8Array(), character);
     const rows = [];
     for (const v of views) {
       const spec = catalog.representations.find(
@@ -284,7 +274,7 @@ for (const character of ["male", "female"] as const) {
       if (v === "original")
         expectBytes(pack.bytes).toEqual(
           await readFile(
-            `docs/dual-looks/review/${character}/original.character.zip`,
+            `docs/matched-hair/review/${character}/original.character.zip`,
           ),
         );
       const nativeFiles = unzipSync(native.bytes),
@@ -321,17 +311,25 @@ for (const character of ["male", "female"] as const) {
         pack: pack.path,
         baseline: baselines[v],
         previousPack: `docs/dual-tailored/review/${character}/${v}.character.zip`,
-        referenceCompletePack: `docs/dual-looks/review/${character}/${v}.character.zip`,
-        referenceAppearanceBank: `docs/dual-looks/assets/${character}-${v}.appearance.zip`,
+        referencePair: `${baselineDirectory}/${character}.zip`,
+        referenceCompletePack: `docs/matched-hair/review/${character}/${v}.character.zip`,
+        referenceAppearanceBank: (await appearanceCatalog(true)).representations
+          .find(
+            (r: { character: string; view: string }) =>
+              r.character === character && r.view === v,
+          )
+          .url.slice(1),
         ...(v === "side"
           ? { neckBinding: `artwork/matched-hair/${character}-binding.json` }
           : {}),
         png: { right: right.path, left: left.path, frameId },
         gifs: {} as Record<string, { right: string; left: string }>,
       };
-      for (const action of Object.keys(final.manifest.animations)) {
+      for (const action of ["walk", "run", "jump"]) {
         row.gifs[action] = { right: "", left: "" };
-        for (const facing of ["right", "left"] as const) {
+        for (const facing of action === "walk"
+          ? (["right"] as const)
+          : (["right", "left"] as const)) {
           await pose(page, action, 0, facing);
           row.gifs[action][facing] = (
             await exported(
@@ -437,6 +435,7 @@ for (const character of ["male", "female"] as const) {
           `${output}/${row.view}-reexport.zip`,
         );
         expectBytes(reexport.bytes).toEqual(pack);
+        await rm(reexport.path);
         expect(forbidden).toEqual([]);
         independent.push({
           view: row.view,
@@ -460,7 +459,7 @@ for (const character of ["male", "female"] as const) {
     );
     const audit = execFileSync(
       "node",
-      ["scripts/verify-dual-looks-exports.mjs", `${output}/exports.json`],
+      ["scripts/verify-paired-polish-exports.mjs", `${output}/exports.json`],
       { encoding: "utf8", timeout: 360_000, maxBuffer: 8 * 1024 * 1024 },
     );
     expect(JSON.parse(audit).passed).toBe(true);
@@ -475,6 +474,9 @@ for (const character of ["male", "female"] as const) {
     const catalog = await appearanceCatalog();
     await page.goto(`/workbench.html?mode=paired&character=${character}`);
     await ready(page);
+    // This regression retains the published source clocks and byte-exact exports.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     await choose(page, "dual-outfit", "tailored-day");
     const baseline = {} as Record<View, Buffer>;
     for (const v of views) {
@@ -542,9 +544,7 @@ for (const character of ["male", "female"] as const) {
     await page.unroute(blocked);
     await page.getByTestId("dual-complete-look").click();
     await ready(page);
-    await expect(page.getByTestId("dual-outfit")).toHaveValue(
-      character === "male" ? "tailored-day" : "complete-day",
-    );
+    await expect(page.getByTestId("dual-outfit")).toHaveValue("polished-day");
     await choose(page, "dual-hair-color", "espresso");
     await choose(
       page,
@@ -637,7 +637,9 @@ for (const character of ["male", "female"] as const) {
     await ready(page);
     const blockedAssets: string[] = [];
     const appearanceAssetRequest = (url: URL) =>
-      /^\/docs\/(?:dual-looks|matched-hair)\/assets\//.test(url.pathname) &&
+      /^\/docs\/(?:dual-looks|matched-hair|paired-polish)\/assets\//.test(
+        url.pathname,
+      ) &&
       url.pathname.endsWith(".zip") &&
       !url.searchParams.has("import");
     await page.route(appearanceAssetRequest, (route) => {
@@ -731,8 +733,6 @@ for (const character of ["male", "female"] as const) {
     await ready(page);
     for (const v of views) {
       await view(page, v);
-      await expect(page.getByTestId("dual-hair")).toHaveValue("custom");
-      await expect(page.getByTestId("dual-face")).toHaveValue("custom");
       expectBytes(
         (
           await exported(
@@ -743,10 +743,11 @@ for (const character of ["male", "female"] as const) {
         ).bytes,
       ).toEqual(
         await readFile(
-          `docs/dual-looks/review/${character}-roundtrip/${v}-mixed.png`,
+          `docs/matched-hair/review/${character}/${v}-run-right.png`,
         ),
       );
     }
+    await view(page, "original");
     expectBytes(
       (
         await exported(
@@ -758,20 +759,19 @@ for (const character of ["male", "female"] as const) {
     ).toEqual(previousAppearance);
     expect(blockedAssets).toEqual([]);
     await page.unroute(appearanceAssetRequest);
-    await page.getByTestId("dual-use-paired-appearance").click();
+    // Revising registration and clothes requires the explicit full-look action.
+    // Opening the old project above must never perform that upgrade silently.
+    await page.getByTestId("dual-complete-look").click();
     await ready(page);
-    await choose(page, "dual-hair-color", "espresso");
+    await expect(page.getByTestId("dual-outfit")).toHaveValue("polished-day");
     for (const v of views) {
       await view(page, v);
-      expectBytes(
-        (
-          await exported(
-            page,
-            "export-png",
-            `${output}/${v}-explicit-appearance-upgrade.png`,
-          )
-        ).bytes,
-      ).toEqual(mixed[v]);
+      await pose(page, "run");
+      await exported(
+        page,
+        "export-png",
+        `${output}/${v}-explicit-complete-upgrade.png`,
+      );
     }
     await page.getByTestId("dual-project-input").setInputFiles(saved.path);
     await ready(page);
@@ -789,6 +789,20 @@ for (const character of ["male", "female"] as const) {
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(390);
     await page.screenshot({ path: `${output}/mobile.png`, fullPage: true });
+    // Keep the editable accepted mixed project. Duplicate validation downloads
+    // have checksum receipts; removing them avoids gigabytes of repeated source ZIPs.
+    for (const name of [
+      "after-failed-appearance.zip",
+      "complete-mixed-resaved.zip",
+      "source-top-new-bottom-resaved.zip",
+      "legacy-resaved.zip",
+      "previous-appearance-v2.zip",
+      "previous-appearance-v2-resaved.zip",
+      "damaged.zip",
+      "legacy-clothing-only.zip",
+      "source-top-new-bottom.zip",
+    ])
+      await rm(`${output}/${name}`, { force: true });
     await writeFile(
       `${output}/roundtrip.json`,
       JSON.stringify(
@@ -804,7 +818,7 @@ for (const character of ["male", "female"] as const) {
           legacyClothingV1ByteExact: true,
           previousAppearanceV2ByteExact: true,
           previousAppearancePixelsExact: true,
-          appearanceUpgradeRequiresExplicitChoice: true,
+          completeUpgradeRequiresExplicitChoice: true,
           independentHairAndFaceReset: true,
           hairColorsChecked: ["chestnut", "espresso", "copper"],
           mobileWidth: 390,

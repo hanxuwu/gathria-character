@@ -1,0 +1,67 @@
+[WebServer] (node:561719) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:561732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:561780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/paired-playback-cache.spec.ts:384:3 › male: paired approach frames, saved checkpoints and airborne state retain native timing (2ms)
+(node:561794) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/paired-playback-cache.spec.ts:384:3 › female: paired approach frames, saved checkpoints and airborne state retain native timing (2ms)
+
+
+  1) tests/e2e/paired-playback-cache.spec.ts:384:3 › male: paired approach frames, saved checkpoints and airborne state retain native timing
+
+    Error: browserType.launch: Executable doesn't exist at /home/agent/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: ../../tmp/landing-posture/browser-controlled/paired-playback-cache-male-75246--state-retain-native-timing/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../tmp/landing-posture/browser-controlled/paired-playback-cache-male-75246--state-retain-native-timing/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../tmp/landing-posture/browser-controlled/paired-playback-cache-male-75246--state-retain-native-timing/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/paired-playback-cache.spec.ts:384:3 › female: paired approach frames, saved checkpoints and airborne state retain native timing
+
+    Error: browserType.launch: Executable doesn't exist at /home/agent/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: ../../tmp/landing-posture/browser-controlled/paired-playback-cache-fema-ebcde--state-retain-native-timing/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../tmp/landing-posture/browser-controlled/paired-playback-cache-fema-ebcde--state-retain-native-timing/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../tmp/landing-posture/browser-controlled/paired-playback-cache-fema-ebcde--state-retain-native-timing/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/paired-playback-cache.spec.ts:384:3 › male: paired approach frames, saved checkpoints and airborne state retain native timing
+    tests/e2e/paired-playback-cache.spec.ts:384:3 › female: paired approach frames, saved checkpoints and airborne state retain native timing
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

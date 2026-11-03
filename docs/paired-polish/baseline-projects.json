@@ -1,0 +1,74 @@
+{
+  "format": "gathria-reviewed-project-recipe",
+  "version": 1,
+  "baselineCommit": "8961a363450bbc9a6ae1f65cd7239bb32cfed921",
+  "provenance": "Exact reconstruction recipes for actual UI downloads saved during matched-hair review. Embedded bytes are referenced by checked repository paths; no new rendering is used.",
+  "projects": [
+    {
+      "character": "male",
+      "sha256": "681551f7f66ee169bfdf11589696ad2677ce425cc23daddfe07098d1b7abdead",
+      "manifest": "{\n  \"format\": \"gathria-dual-view-wardrobe\",\n  \"version\": 1,\n  \"character\": \"male\",\n  \"selection\": {\n    \"outfitId\": \"tailored-day\",\n    \"paletteId\": \"sea\",\n    \"topId\": \"daily-shirt\",\n    \"bottomId\": \"daily-trousers\"\n  },\n  \"activeView\": \"original\",\n  \"previews\": {\n    \"original\": {\n      \"action\": \"run\",\n      \"facing\": \"right\",\n      \"position\": 3\n    },\n    \"side\": {\n      \"action\": \"run\",\n      \"facing\": \"right\",\n      \"position\": 3\n    }\n  },\n  \"views\": {\n    \"original\": {\n      \"file\": \"original.wardrobe.zip\",\n      \"sha256\": \"f2d91c5fc9e49ea5ff7434c2b82216d3329c64daadf37c6e0322227a0f6669c8\",\n      \"sourceSha256\": \"ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1\",\n      \"registrationSha256\": \"035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d\",\n      \"characterId\": \"kling-male-motion-v1\",\n      \"frameWidth\": 704,\n      \"frameHeight\": 1056\n    },\n    \"side\": {\n      \"file\": \"side.wardrobe.zip\",\n      \"sha256\": \"b00b44c72e2b61b55fada81f86bcfe4c88df69c497ceed9efb293b7943ca400c\",\n      \"sourceSha256\": \"7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42\",\n      \"registrationSha256\": \"e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31\",\n      \"characterId\": \"kling-male-side-workspace-v1\",\n      \"frameWidth\": 512,\n      \"frameHeight\": 768\n    }\n  }\n}",
+      "views": {
+        "original": {
+          "sha256": "f2d91c5fc9e49ea5ff7434c2b82216d3329c64daadf37c6e0322227a0f6669c8",
+          "document": "{\n  \"format\": \"gathria-wardrobe-project\",\n  \"version\": 2,\n  \"sourceSha256\": \"ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1\",\n  \"registrationSha256\": \"035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d\",\n  \"items\": [\n    {\n      \"id\": \"dual-tailored-male-original-apricot-bottom-v1\",\n      \"sha256\": \"b3f7d9e2513526e72056ca147a2de1ed28b727c15a2a5c7be12e35d135588dad\"\n    },\n    {\n      \"id\": \"dual-tailored-male-original-apricot-top-v1\",\n      \"sha256\": \"45b6a8092c9ce982a81c9be33e9201bf8cbc83187d56e19faef8b848273f2dc0\"\n    },\n    {\n      \"id\": \"dual-tailored-male-original-sea-bottom-v1\",\n      \"sha256\": \"f5c12dc9704790cce28d1e88e4aae154caf25fbda01b3905e8e347e329e50a1f\"\n    },\n    {\n      \"id\": \"dual-tailored-male-original-sea-top-v1\",\n      \"sha256\": \"3c4f8479ea3965e5ad6673b81297de788885e4027d920dac38d9278137a4261f\"\n    }\n  ],\n  \"selection\": {\n    \"top\": \"dual-tailored-male-original-sea-top-v1\",\n    \"bottom\": \"dual-tailored-male-original-sea-bottom-v1\",\n    \"fullBody\": null,\n    \"shoes\": null\n  },\n  \"preview\": {\n    \"action\": \"run\",\n    \"facing\": \"right\"\n  },\n  \"appearance\": {\n    \"bankSha256\": \"d0d1bf7efdebcb6b8ec1777b56375c22c571a8e2cb2c157dcc34547b4ef32b6b\",\n    \"hairId\": \"side-part\",\n    \"faceId\": \"gentle-v2\",\n    \"hairColor\": \"chestnut\"\n  }\n}",
+          "files": {
+            "source.character.zip": "docs/kling-motion/exports/male.character.zip",
+            "registration.json": "docs/dual-tailored/assets/male/male-ankle-reviewed-v1.registration.json",
+            "item-0.zip": "docs/dual-tailored/assets/male/dual-tailored-male-original-apricot-bottom-v1.garment.zip",
+            "item-1.zip": "docs/dual-tailored/assets/male/dual-tailored-male-original-apricot-top-v1.garment.zip",
+            "item-2.zip": "docs/dual-tailored/assets/male/dual-tailored-male-original-sea-bottom-v1.garment.zip",
+            "item-3.zip": "docs/dual-tailored/assets/male/dual-tailored-male-original-sea-top-v1.garment.zip",
+            "appearance.zip": "docs/dual-looks/assets/male-original.appearance.zip"
+          }
+        },
+        "side": {
+          "sha256": "b00b44c72e2b61b55fada81f86bcfe4c88df69c497ceed9efb293b7943ca400c",
+          "document": "{\n  \"format\": \"gathria-wardrobe-project\",\n  \"version\": 2,\n  \"sourceSha256\": \"7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42\",\n  \"registrationSha256\": \"e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31\",\n  \"items\": [\n    {\n      \"id\": \"dual-tailored-male-side-apricot-bottom-v1\",\n      \"sha256\": \"67efd72ae4b6b5221eb0252a48c99b7e0967277052f3435f526f446a6926beaa\"\n    },\n    {\n      \"id\": \"dual-tailored-male-side-apricot-top-v1\",\n      \"sha256\": \"c36e997ee83d40338df86e9864884016cc90bca585adff31c8a11926066fe4b2\"\n    },\n    {\n      \"id\": \"dual-tailored-male-side-sea-bottom-v1\",\n      \"sha256\": \"1c1070424b9d09b5633640a0f766173c02984f8f66ba4ac403762e74ed59464e\"\n    },\n    {\n      \"id\": \"dual-tailored-male-side-sea-top-v1\",\n      \"sha256\": \"368d7643f5a0ec4db3691e53ad8389d7bd1a77021c9ea57fa6213c783c8b7e76\"\n    }\n  ],\n  \"selection\": {\n    \"top\": \"dual-tailored-male-side-sea-top-v1\",\n    \"bottom\": \"dual-tailored-male-side-sea-bottom-v1\",\n    \"fullBody\": null,\n    \"shoes\": null\n  },\n  \"preview\": {\n    \"action\": \"run\",\n    \"facing\": \"right\"\n  },\n  \"appearance\": {\n    \"bankSha256\": \"43b8bcb61be0fb6185bc12581a0d011cc299b730646f368422188c2e78aadb79\",\n    \"hairId\": \"side-part-matched-v1\",\n    \"faceId\": \"gentle-side-v1\",\n    \"hairColor\": \"chestnut\"\n  }\n}",
+          "files": {
+            "source.character.zip": "docs/kling-side-workspace/assets/male.source.zip",
+            "registration.json": "artwork/kling-side-expansion/templates/male.registration.json",
+            "item-0.zip": "docs/dual-tailored/assets/male/dual-tailored-male-side-apricot-bottom-v1.garment.zip",
+            "item-1.zip": "docs/dual-tailored/assets/male/dual-tailored-male-side-apricot-top-v1.garment.zip",
+            "item-2.zip": "docs/dual-tailored/assets/male/dual-tailored-male-side-sea-bottom-v1.garment.zip",
+            "item-3.zip": "docs/dual-tailored/assets/male/dual-tailored-male-side-sea-top-v1.garment.zip",
+            "appearance.zip": "docs/matched-hair/assets/male-side.appearance.zip"
+          }
+        }
+      }
+    },
+    {
+      "character": "female",
+      "sha256": "fa862f1dd8b2b3101187cd65a2422dbfcaf022e60869f5c39d2fbf6622596fdc",
+      "manifest": "{\n  \"format\": \"gathria-dual-view-wardrobe\",\n  \"version\": 1,\n  \"character\": \"female\",\n  \"selection\": {\n    \"outfitId\": \"complete-day\",\n    \"paletteId\": \"apricot\",\n    \"topId\": \"daily-blouse\",\n    \"bottomId\": \"daily-skirt\"\n  },\n  \"activeView\": \"original\",\n  \"previews\": {\n    \"original\": {\n      \"action\": \"run\",\n      \"facing\": \"right\",\n      \"position\": 3\n    },\n    \"side\": {\n      \"action\": \"run\",\n      \"facing\": \"right\",\n      \"position\": 3\n    }\n  },\n  \"views\": {\n    \"original\": {\n      \"file\": \"original.wardrobe.zip\",\n      \"sha256\": \"3f879e2b880833a158bf192fafae26c1247946d89ad0c02ba3e7df45e5807a09\",\n      \"sourceSha256\": \"90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23\",\n      \"registrationSha256\": \"4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21\",\n      \"characterId\": \"kling-female-motion-v1\",\n      \"frameWidth\": 704,\n      \"frameHeight\": 1056\n    },\n    \"side\": {\n      \"file\": \"side.wardrobe.zip\",\n      \"sha256\": \"b0128409af09bd074ca863ddf6c2ad6fe2bfedfd047d5d92920ef6b2f2060efc\",\n      \"sourceSha256\": \"ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d\",\n      \"registrationSha256\": \"7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef\",\n      \"characterId\": \"kling-female-side-workspace-v1\",\n      \"frameWidth\": 512,\n      \"frameHeight\": 768\n    }\n  }\n}",
+      "views": {
+        "original": {
+          "sha256": "3f879e2b880833a158bf192fafae26c1247946d89ad0c02ba3e7df45e5807a09",
+          "document": "{\n  \"format\": \"gathria-wardrobe-project\",\n  \"version\": 2,\n  \"sourceSha256\": \"90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23\",\n  \"registrationSha256\": \"4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21\",\n  \"items\": [\n    {\n      \"id\": \"dual-tailored-female-original-apricot-bottom-v1\",\n      \"sha256\": \"badb04f7d2004874fa92fb36f78082d8e0bc1437bdfaae7b75116426809a8f09\"\n    },\n    {\n      \"id\": \"dual-tailored-female-original-apricot-top-v1\",\n      \"sha256\": \"bc469c4984bae85df4094816adeb7a4b9ba606a87f1ceed36f1a0f3f80028aa8\"\n    },\n    {\n      \"id\": \"dual-tailored-female-original-sea-bottom-v1\",\n      \"sha256\": \"67e299650a2bb81287228f9c1d15f26b0f428182f5c6d7223dd621cdf3698859\"\n    },\n    {\n      \"id\": \"dual-tailored-female-original-sea-top-v1\",\n      \"sha256\": \"8542f7ff86e5ffab781a5c8b96ed4d723563792e9385bb285e11fcb9ee3a7372\"\n    }\n  ],\n  \"selection\": {\n    \"top\": \"dual-tailored-female-original-apricot-top-v1\",\n    \"bottom\": \"dual-tailored-female-original-apricot-bottom-v1\",\n    \"fullBody\": null,\n    \"shoes\": null\n  },\n  \"preview\": {\n    \"action\": \"run\",\n    \"facing\": \"right\"\n  },\n  \"appearance\": {\n    \"bankSha256\": \"419c9f5827e33045071fd6416fd3d9a3cadbbf0d45b13baea8c395517e42edd8\",\n    \"hairId\": \"soft-bob\",\n    \"faceId\": \"gentle-v2\",\n    \"hairColor\": \"chestnut\"\n  }\n}",
+          "files": {
+            "source.character.zip": "docs/kling-motion/exports/female.character.zip",
+            "registration.json": "docs/dual-tailored/assets/female/original-tailored-v1.registration.json",
+            "item-0.zip": "docs/dual-tailored/assets/female/dual-tailored-female-original-apricot-bottom-v1.garment.zip",
+            "item-1.zip": "docs/dual-tailored/assets/female/dual-tailored-female-original-apricot-top-v1.garment.zip",
+            "item-2.zip": "docs/dual-tailored/assets/female/dual-tailored-female-original-sea-bottom-v1.garment.zip",
+            "item-3.zip": "docs/dual-tailored/assets/female/dual-tailored-female-original-sea-top-v1.garment.zip",
+            "appearance.zip": "docs/dual-looks/assets/female-original.appearance.zip"
+          }
+        },
+        "side": {
+          "sha256": "b0128409af09bd074ca863ddf6c2ad6fe2bfedfd047d5d92920ef6b2f2060efc",
+          "document": "{\n  \"format\": \"gathria-wardrobe-project\",\n  \"version\": 2,\n  \"sourceSha256\": \"ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d\",\n  \"registrationSha256\": \"7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef\",\n  \"items\": [\n    {\n      \"id\": \"dual-complete-female-side-apricot-bottom-v1\",\n      \"sha256\": \"8ce907c685b6095fc1fc6fa889bfc9f51683860a5b7f05eeb5ffa8ffebc1232c\"\n    },\n    {\n      \"id\": \"dual-complete-female-side-apricot-top-v1\",\n      \"sha256\": \"08307a173e116e9e8fdb7db2935d8ec0a4bc972f0197e6949dcec9d7a6dbe09f\"\n    },\n    {\n      \"id\": \"dual-complete-female-side-sea-bottom-v1\",\n      \"sha256\": \"572272c8e3fd7ab1965f37c5dd659eaaba0373c972ca42765629dc62146b32d6\"\n    },\n    {\n      \"id\": \"dual-complete-female-side-sea-top-v1\",\n      \"sha256\": \"35edcc35ce4647d67ea1ba7483b622ab8b3ee23727aa13d81a3169f76bb2ab54\"\n    }\n  ],\n  \"selection\": {\n    \"top\": \"dual-complete-female-side-apricot-top-v1\",\n    \"bottom\": \"dual-complete-female-side-apricot-bottom-v1\",\n    \"fullBody\": null,\n    \"shoes\": null\n  },\n  \"preview\": {\n    \"action\": \"run\",\n    \"facing\": \"right\"\n  },\n  \"appearance\": {\n    \"bankSha256\": \"8b394def4ea02f97e72b1a2f1248af496cf1025e6566c8689913b93a74541e62\",\n    \"hairId\": \"soft-bob-matched-v1\",\n    \"faceId\": \"gentle-side-v1\",\n    \"hairColor\": \"chestnut\"\n  }\n}",
+          "files": {
+            "source.character.zip": "docs/kling-side-workspace/assets/female.source.zip",
+            "registration.json": "artwork/kling-side-expansion/templates/female.registration.json",
+            "item-0.zip": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-apricot-bottom-v1.garment.zip",
+            "item-1.zip": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-apricot-top-v1.garment.zip",
+            "item-2.zip": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-sea-bottom-v1.garment.zip",
+            "item-3.zip": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-sea-top-v1.garment.zip",
+            "appearance.zip": "docs/matched-hair/assets/female-side.appearance.zip"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1038 @@
+{
+  "format": "gathria-baked-character",
+  "schemaVersion": 1,
+  "name": "Kling female · 侧视 · 横版动作 · 日常造型 · 接缝修订",
+  "characterId": "kling-female-side-workspace-v1",
+  "source": {
+    "kind": "video-extraction",
+    "name": "female-1927.mp4",
+    "sha256": "0ca58779c306b82ca5406af8dcfba7fcd9e940c76bdd159ed3bf5192144bdd66"
+  },
+  "provenance": "User-uploaded Kling side-view videos. Separate mixed-source REVIEW CANDIDATE; no default replacement or visual acceptance. Original consecutive frames at 24 fps. Technical chroma-key alpha and edge unmix/despill, followed by a fixed uniform premultiplied affine registration per source. Opaque RGB is exact before resampling; normalized frames intentionally resample source pixels. No new artwork, skeleton fitting, body deformation, temporal interpolation, per-frame stabilization, crossfade or forced jump loop. Primary source below is not the only source; sourceMetadata maps EVERY frame to its video hash. Walk quality and jump-to-idle continuity remain under review. Clothing is baked and cannot use existing wardrobe masks.\n\nWardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands and the dressed body remain protected. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame pixels, frame IDs, native FPS and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project. Gameplay profile kling-female-side-single-jump-v1: the basic jump uses one reviewed complete native takeoff/landing sequence. The complete original source archive remains unchanged in the editable project. Action frame selection and transitions follow sourceMetadata.gameplayMotion; no interpolated, blended or re-centered frame artwork is introduced.\n\n暖杏色 · 褶裥短裙 · 局部修订 · 侧视: Two source-reviewed local ownership additions to side-female-rose-skirt-v1. Native walk32 33px donor-alpha pinhole uses existing neighboring cloth; jump92 315px hard-clipping hole restores the original unclipped painted donor sample. Existing owned RGBA, registration, source, timing and all other100 frames remain exact. Recipe scripts/prepare-dual-looks-cloth.py; artwork/dual-looks-cloth/audit.json. Browser clothing variant owned-chromatic-ratio-v1; base SHA256 9419e1c88c1a6a178d0d1ea88ce6751c428bef09c36a468d46a81cd32d5842bf; design SHA256 90406202f08f86539901964f5e4e16ca439253e8ec0cc290d75f31323e6b5e6e. Owned opaque RGB only, ties-to-even rounding; source, ownership, alpha, anchors, pose geometry and timing retained. Reference none is palette/design context only, never auto-fitted artwork.\nReviewed frame 95 hand-attribution registration. Garment patches, ownership, offsets and frame coverage are unchanged by this offline binding.\n\n暖杏色 · 圆领短袖上衣 · 侧视 · 接缝修订: Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. A coherent painted skirt donor is retained for each full action (idle/walk/run 0, jump 79), with continuous source-guided cloth scale/shear. Blouse frames40 and47 use adjacent backward-arm cloth to remove isolated sleeve/collar jumps. No runtime body deformation, frame interpolation or AI. Follow-up: near puff sleeve and cuff isolated from the existing forward donor and fitted independently through all 18 running poses. Original source arm released from erroneous local cloth ownership, existing torso/neckline fit retained. No new painted body, source warp, retiming, registration change or runtime AI. Reproduce with scripts/polish-kling-side-female-sleeves.py. Browser clothing variant owned-chromatic-ratio-v1; base SHA256 71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201; design SHA256 7fe31c4a7ba01e6c4eaed8cd58d69e1cd602b1acafe00747a65419e67e7f954d. Owned opaque RGB only, ties-to-even rounding; source, ownership, alpha, anchors, pose geometry and timing retained. Reference none is palette/design context only, never auto-fitted artwork. Bounded paired-polish ownership/edge revision; scripts/prepare-paired-polish-clothing.py and artwork/paired-polish/clothing/audit.json. Native source, registration and timing unchanged.\nReviewed frame 95 hand-attribution registration. Garment patches, ownership, offsets and frame coverage are unchanged by this offline binding.\n\nAppearance: Same-style side-view hair authored from the accepted original side-part (male) or soft-bob (female) visual authority. Generated portrait skin/face/ears/neck/clothes are discarded by reviewed donor hair boundaries. Semantic rear nape and far-face locks stay hair-back. Source-bound persisted head transforms move only new hair. Female near-ear aperture uses a continuous local blend toward the feature transform so scalp refinement cannot enlarge its ear hole; both semantic layers share the same field. Front samples blocked by protected source matte with 0<alpha<255 move to hair-back only at those pixels, providing normal destination-over backing without double-alpha outer edges. Opaque source protection is unchanged; legacy hand/scalp overlaps remain explicitly documented. All original source/registration references, anchors, headBounds, facePolygon, frame mapping and timing are retained. The existing gentle-side-v1 face patches/ownership/offsets/source modes are copied losslessly. Added feature-registered neck foreground protects the actual source neck and collar; no scalp/face/body edits. Source and audit: artwork/matched-hair; review: docs/matched-hair. Paired-polish revision: native95 nearHand polygon is clipped only at its reviewed empty-space boundary above the real fist (y>=x+160), removing a false scalp assignment. Released hair samples return to their original semantic front/back roles; no new artwork or anatomy is generated. The other101 native hair poses, all102 face entries (92 painted patches and10 source fallbacks), pose metadata and source pixels remain exact. Audit: artwork/paired-polish/female-head-review.json.",
+  "derivation": {
+    "method": "User-uploaded Kling side-view videos. Separate mixed-source REVIEW CANDIDATE; no default replacement or visual acceptance. Original consecutive frames at 24 fps. Technical chroma-key alpha and edge unmix/despill, followed by a fixed uniform premultiplied affine registration per source. Opaque RGB is exact before resampling; normalized frames intentionally resample source pixels. No new artwork, skeleton fitting, body deformation, temporal interpolation, per-frame stabilization, crossfade or forced jump loop. Primary source below is not the only source; sourceMetadata maps EVERY frame to its video hash. Walk quality and jump-to-idle continuity remain under review. Clothing is baked and cannot use existing wardrobe masks.\n\nWardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands and the dressed body remain protected. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame pixels, frame IDs, native FPS and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project. Gameplay profile kling-female-side-single-jump-v1: the basic jump uses one reviewed complete native takeoff/landing sequence. The complete original source archive remains unchanged in the editable project. Action frame selection and transitions follow sourceMetadata.gameplayMotion; no interpolated, blended or re-centered frame artwork is introduced.",
+    "frames": [
+      {
+        "frameId": 0,
+        "sourceFrame": 243,
+        "timeSeconds": 10.125
+      },
+      {
+        "frameId": 1,
+        "sourceFrame": 244,
+        "timeSeconds": 10.166666666666666
+      },
+      {
+        "frameId": 2,
+        "sourceFrame": 245,
+        "timeSeconds": 10.208333333333334
+      },
+      {
+        "frameId": 3,
+        "sourceFrame": 246,
+        "timeSeconds": 10.25
+      },
+      {
+        "frameId": 4,
+        "sourceFrame": 247,
+        "timeSeconds": 10.291666666666666
+      },
+      {
+        "frameId": 5,
+        "sourceFrame": 248,
+        "timeSeconds": 10.333333333333334
+      },
+      {
+        "frameId": 6,
+        "sourceFrame": 249,
+        "timeSeconds": 10.375
+      },
+      {
+        "frameId": 7,
+        "sourceFrame": 250,
+        "timeSeconds": 10.416666666666666
+      },
+      {
+        "frameId": 8,
+        "sourceFrame": 251,
+        "timeSeconds": 10.458333333333334
+      },
+      {
+        "frameId": 9,
+        "sourceFrame": 252,
+        "timeSeconds": 10.5
+      },
+      {
+        "frameId": 10,
+        "sourceFrame": 253,
+        "timeSeconds": 10.541666666666666
+      },
+      {
+        "frameId": 11,
+        "sourceFrame": 254,
+        "timeSeconds": 10.583333333333334
+      },
+      {
+        "frameId": 12,
+        "sourceFrame": 255,
+        "timeSeconds": 10.625
+      },
+      {
+        "frameId": 13,
+        "sourceFrame": 256,
+        "timeSeconds": 10.666666666666666
+      },
+      {
+        "frameId": 14,
+        "sourceFrame": 257,
+        "timeSeconds": 10.708333333333334
+      },
+      {
+        "frameId": 15,
+        "sourceFrame": 258,
+        "timeSeconds": 10.75
+      },
+      {
+        "frameId": 16,
+        "sourceFrame": 42,
+        "timeSeconds": 1.75
+      },
+      {
+        "frameId": 17,
+        "sourceFrame": 43,
+        "timeSeconds": 1.7916666666666667
+      },
+      {
+        "frameId": 18,
+        "sourceFrame": 44,
+        "timeSeconds": 1.8333333333333333
+      },
+      {
+        "frameId": 19,
+        "sourceFrame": 45,
+        "timeSeconds": 1.875
+      },
+      {
+        "frameId": 20,
+        "sourceFrame": 46,
+        "timeSeconds": 1.9166666666666667
+      },
+      {
+        "frameId": 21,
+        "sourceFrame": 47,
+        "timeSeconds": 1.9583333333333333
+      },
+      {
+        "frameId": 22,
+        "sourceFrame": 48,
+        "timeSeconds": 2
+      },
+      {
+        "frameId": 23,
+        "sourceFrame": 49,
+        "timeSeconds": 2.0416666666666665
+      },
+      {
+        "frameId": 24,
+        "sourceFrame": 50,
+        "timeSeconds": 2.0833333333333335
+      },
+      {
+        "frameId": 25,
+        "sourceFrame": 51,
+        "timeSeconds": 2.125
+      },
+      {
+        "frameId": 26,
+        "sourceFrame": 52,
+        "timeSeconds": 2.1666666666666665
+      },
+      {
+        "frameId": 27,
+        "sourceFrame": 53,
+        "timeSeconds": 2.2083333333333335
+      },
+      {
+        "frameId": 28,
+        "sourceFrame": 54,
+        "timeSeconds": 2.25
+      },
+      {
+        "frameId": 29,
+        "sourceFrame": 55,
+        "timeSeconds": 2.2916666666666665
+      },
+      {
+        "frameId": 30,
+        "sourceFrame": 56,
+        "timeSeconds": 2.3333333333333335
+      },
+      {
+        "frameId": 31,
+        "sourceFrame": 57,
+        "timeSeconds": 2.375
+      },
+      {
+        "frameId": 32,
+        "sourceFrame": 58,
+        "timeSeconds": 2.4166666666666665
+      },
+      {
+        "frameId": 33,
+        "sourceFrame": 59,
+        "timeSeconds": 2.4583333333333335
+      },
+      {
+        "frameId": 34,
+        "sourceFrame": 135,
+        "timeSeconds": 5.625
+      },
+      {
+        "frameId": 35,
+        "sourceFrame": 136,
+        "timeSeconds": 5.666666666666667
+      },
+      {
+        "frameId": 36,
+        "sourceFrame": 137,
+        "timeSeconds": 5.708333333333333
+      },
+      {
+        "frameId": 37,
+        "sourceFrame": 138,
+        "timeSeconds": 5.75
+      },
+      {
+        "frameId": 38,
+        "sourceFrame": 139,
+        "timeSeconds": 5.791666666666667
+      },
+      {
+        "frameId": 39,
+        "sourceFrame": 140,
+        "timeSeconds": 5.833333333333333
+      },
+      {
+        "frameId": 40,
+        "sourceFrame": 141,
+        "timeSeconds": 5.875
+      },
+      {
+        "frameId": 41,
+        "sourceFrame": 142,
+        "timeSeconds": 5.916666666666667
+      },
+      {
+        "frameId": 42,
+        "sourceFrame": 143,
+        "timeSeconds": 5.958333333333333
+      },
+      {
+        "frameId": 43,
+        "sourceFrame": 144,
+        "timeSeconds": 6
+      },
+      {
+        "frameId": 44,
+        "sourceFrame": 145,
+        "timeSeconds": 6.041666666666667
+      },
+      {
+        "frameId": 45,
+        "sourceFrame": 146,
+        "timeSeconds": 6.083333333333333
+      },
+      {
+        "frameId": 46,
+        "sourceFrame": 147,
+        "timeSeconds": 6.125
+      },
+      {
+        "frameId": 47,
+        "sourceFrame": 148,
+        "timeSeconds": 6.166666666666667
+      },
+      {
+        "frameId": 48,
+        "sourceFrame": 149,
+        "timeSeconds": 6.208333333333333
+      },
+      {
+        "frameId": 49,
+        "sourceFrame": 150,
+        "timeSeconds": 6.25
+      },
+      {
+        "frameId": 50,
+        "sourceFrame": 151,
+        "timeSeconds": 6.291666666666667
+      },
+      {
+        "frameId": 51,
+        "sourceFrame": 152,
+        "timeSeconds": 6.333333333333333
+      },
+      {
+        "frameId": 52,
+        "sourceFrame": 200,
+        "timeSeconds": 8.333333333333334
+      },
+      {
+        "frameId": 53,
+        "sourceFrame": 201,
+        "timeSeconds": 8.375
+      },
+      {
+        "frameId": 54,
+        "sourceFrame": 202,
+        "timeSeconds": 8.416666666666666
+      },
+      {
+        "frameId": 55,
+        "sourceFrame": 203,
+        "timeSeconds": 8.458333333333334
+      },
+      {
+        "frameId": 56,
+        "sourceFrame": 204,
+        "timeSeconds": 8.5
+      },
+      {
+        "frameId": 57,
+        "sourceFrame": 205,
+        "timeSeconds": 8.541666666666666
+      },
+      {
+        "frameId": 58,
+        "sourceFrame": 206,
+        "timeSeconds": 8.583333333333334
+      },
+      {
+        "frameId": 59,
+        "sourceFrame": 207,
+        "timeSeconds": 8.625
+      },
+      {
+        "frameId": 60,
+        "sourceFrame": 208,
+        "timeSeconds": 8.666666666666666
+      },
+      {
+        "frameId": 61,
+        "sourceFrame": 209,
+        "timeSeconds": 8.708333333333334
+      },
+      {
+        "frameId": 62,
+        "sourceFrame": 210,
+        "timeSeconds": 8.75
+      },
+      {
+        "frameId": 63,
+        "sourceFrame": 211,
+        "timeSeconds": 8.791666666666666
+      },
+      {
+        "frameId": 64,
+        "sourceFrame": 212,
+        "timeSeconds": 8.833333333333334
+      },
+      {
+        "frameId": 65,
+        "sourceFrame": 213,
+        "timeSeconds": 8.875
+      },
+      {
+        "frameId": 66,
+        "sourceFrame": 214,
+        "timeSeconds": 8.916666666666666
+      },
+      {
+        "frameId": 67,
+        "sourceFrame": 215,
+        "timeSeconds": 8.958333333333334
+      },
+      {
+        "frameId": 68,
+        "sourceFrame": 216,
+        "timeSeconds": 9
+      },
+      {
+        "frameId": 69,
+        "sourceFrame": 217,
+        "timeSeconds": 9.041666666666666
+      },
+      {
+        "frameId": 70,
+        "sourceFrame": 218,
+        "timeSeconds": 9.083333333333334
+      },
+      {
+        "frameId": 71,
+        "sourceFrame": 219,
+        "timeSeconds": 9.125
+      },
+      {
+        "frameId": 72,
+        "sourceFrame": 220,
+        "timeSeconds": 9.166666666666666
+      },
+      {
+        "frameId": 73,
+        "sourceFrame": 221,
+        "timeSeconds": 9.208333333333334
+      },
+      {
+        "frameId": 74,
+        "sourceFrame": 222,
+        "timeSeconds": 9.25
+      },
+      {
+        "frameId": 75,
+        "sourceFrame": 223,
+        "timeSeconds": 9.291666666666666
+      },
+      {
+        "frameId": 76,
+        "sourceFrame": 224,
+        "timeSeconds": 9.333333333333334
+      },
+      {
+        "frameId": 77,
+        "sourceFrame": 225,
+        "timeSeconds": 9.375
+      },
+      {
+        "frameId": 78,
+        "sourceFrame": 226,
+        "timeSeconds": 9.416666666666666
+      },
+      {
+        "frameId": 79,
+        "sourceFrame": 227,
+        "timeSeconds": 9.458333333333334
+      },
+      {
+        "frameId": 80,
+        "sourceFrame": 228,
+        "timeSeconds": 9.5
+      },
+      {
+        "frameId": 81,
+        "sourceFrame": 229,
+        "timeSeconds": 9.541666666666666
+      },
+      {
+        "frameId": 82,
+        "sourceFrame": 230,
+        "timeSeconds": 9.583333333333334
+      },
+      {
+        "frameId": 83,
+        "sourceFrame": 231,
+        "timeSeconds": 9.625
+      },
+      {
+        "frameId": 84,
+        "sourceFrame": 232,
+        "timeSeconds": 9.666666666666666
+      },
+      {
+        "frameId": 85,
+        "sourceFrame": 233,
+        "timeSeconds": 9.708333333333334
+      },
+      {
+        "frameId": 86,
+        "sourceFrame": 234,
+        "timeSeconds": 9.75
+      },
+      {
+        "frameId": 87,
+        "sourceFrame": 235,
+        "timeSeconds": 9.791666666666666
+      },
+      {
+        "frameId": 88,
+        "sourceFrame": 236,
+        "timeSeconds": 9.833333333333334
+      },
+      {
+        "frameId": 89,
+        "sourceFrame": 237,
+        "timeSeconds": 9.875
+      },
+      {
+        "frameId": 90,
+        "sourceFrame": 238,
+        "timeSeconds": 9.916666666666666
+      },
+      {
+        "frameId": 91,
+        "sourceFrame": 239,
+        "timeSeconds": 9.958333333333334
+      },
+      {
+        "frameId": 92,
+        "sourceFrame": 240,
+        "timeSeconds": 10
+      },
+      {
+        "frameId": 93,
+        "sourceFrame": 241,
+        "timeSeconds": 10.041666666666666
+      },
+      {
+        "frameId": 94,
+        "sourceFrame": 242,
+        "timeSeconds": 10.083333333333334
+      },
+      {
+        "frameId": 95,
+        "sourceFrame": 243,
+        "timeSeconds": 10.125
+      },
+      {
+        "frameId": 96,
+        "sourceFrame": 244,
+        "timeSeconds": 10.166666666666666
+      },
+      {
+        "frameId": 97,
+        "sourceFrame": 245,
+        "timeSeconds": 10.208333333333334
+      },
+      {
+        "frameId": 98,
+        "sourceFrame": 246,
+        "timeSeconds": 10.25
+      },
+      {
+        "frameId": 99,
+        "sourceFrame": 247,
+        "timeSeconds": 10.291666666666666
+      },
+      {
+        "frameId": 100,
+        "sourceFrame": 248,
+        "timeSeconds": 10.333333333333334
+      },
+      {
+        "frameId": 101,
+        "sourceFrame": 249,
+        "timeSeconds": 10.375
+      }
+    ]
+  },
+  "sourceMetadata": {
+    "status": "review-candidate-not-user-approved",
+    "sources": {
+      "female-1721": {
+        "video": "artwork/kling-side-selection/source/female-1721.mp4",
+        "originalFilename": "kling_20261029_VIDEO_以上传图片中的人物为_1721_0.mp4",
+        "sha256": "b36a6f3219bf3da56ebd4d365052b5cf9b053efc795dae9c2669437713a98276",
+        "fps": 24,
+        "matte": {
+          "greenStart": 0.035,
+          "greenEnd": 0.48
+        },
+        "sourceKind": "user-uploaded-kling-video"
+      },
+      "female-1927": {
+        "video": "artwork/kling-side-selection/source/female-1927.mp4",
+        "originalFilename": "kling_20261029_VIDEO_请帮我生成一个女生版_1927_0.mp4",
+        "sha256": "0ca58779c306b82ca5406af8dcfba7fcd9e940c76bdd159ed3bf5192144bdd66",
+        "fps": 24,
+        "matte": {
+          "greenStart": 0.035,
+          "greenEnd": 0.48
+        },
+        "sourceKind": "user-uploaded-kling-video"
+      },
+      "female-2394": {
+        "video": "artwork/kling-side-selection/source/female-2394.mp4",
+        "originalFilename": "kling_20261029_VIDEO_请帮我生成一个女生版_2394_0.mp4",
+        "sha256": "9d4dfa8803023cdb3bc0a14f2380095f9c34ceeaa0000964e4ba3ece5ef0aa9d",
+        "fps": 24,
+        "matte": {
+          "greenStart": 0.035,
+          "greenEnd": 0.48
+        },
+        "sourceKind": "user-uploaded-kling-video"
+      }
+    },
+    "frameSources": {
+      "0": "female-1927",
+      "1": "female-1927",
+      "2": "female-1927",
+      "3": "female-1927",
+      "4": "female-1927",
+      "5": "female-1927",
+      "6": "female-1927",
+      "7": "female-1927",
+      "8": "female-1927",
+      "9": "female-1927",
+      "10": "female-1927",
+      "11": "female-1927",
+      "12": "female-1927",
+      "13": "female-1927",
+      "14": "female-1927",
+      "15": "female-1927",
+      "16": "female-1721",
+      "17": "female-1721",
+      "18": "female-1721",
+      "19": "female-1721",
+      "20": "female-1721",
+      "21": "female-1721",
+      "22": "female-1721",
+      "23": "female-1721",
+      "24": "female-1721",
+      "25": "female-1721",
+      "26": "female-1721",
+      "27": "female-1721",
+      "28": "female-1721",
+      "29": "female-1721",
+      "30": "female-1721",
+      "31": "female-1721",
+      "32": "female-1721",
+      "33": "female-1721",
+      "34": "female-1927",
+      "35": "female-1927",
+      "36": "female-1927",
+      "37": "female-1927",
+      "38": "female-1927",
+      "39": "female-1927",
+      "40": "female-1927",
+      "41": "female-1927",
+      "42": "female-1927",
+      "43": "female-1927",
+      "44": "female-1927",
+      "45": "female-1927",
+      "46": "female-1927",
+      "47": "female-1927",
+      "48": "female-1927",
+      "49": "female-1927",
+      "50": "female-1927",
+      "51": "female-1927",
+      "52": "female-2394",
+      "53": "female-2394",
+      "54": "female-2394",
+      "55": "female-2394",
+      "56": "female-2394",
+      "57": "female-2394",
+      "58": "female-2394",
+      "59": "female-2394",
+      "60": "female-2394",
+      "61": "female-2394",
+      "62": "female-2394",
+      "63": "female-2394",
+      "64": "female-2394",
+      "65": "female-2394",
+      "66": "female-2394",
+      "67": "female-2394",
+      "68": "female-2394",
+      "69": "female-2394",
+      "70": "female-2394",
+      "71": "female-2394",
+      "72": "female-2394",
+      "73": "female-2394",
+      "74": "female-2394",
+      "75": "female-2394",
+      "76": "female-2394",
+      "77": "female-2394",
+      "78": "female-2394",
+      "79": "female-2394",
+      "80": "female-2394",
+      "81": "female-2394",
+      "82": "female-2394",
+      "83": "female-2394",
+      "84": "female-2394",
+      "85": "female-2394",
+      "86": "female-2394",
+      "87": "female-2394",
+      "88": "female-2394",
+      "89": "female-2394",
+      "90": "female-2394",
+      "91": "female-2394",
+      "92": "female-2394",
+      "93": "female-2394",
+      "94": "female-2394",
+      "95": "female-2394",
+      "96": "female-2394",
+      "97": "female-2394",
+      "98": "female-2394",
+      "99": "female-2394",
+      "100": "female-2394",
+      "101": "female-2394"
+    },
+    "selection": {
+      "idle": {
+        "source": "female-1927",
+        "start": 243,
+        "endExclusive": 259,
+        "loop": true,
+        "reason": "Quiet standing interval before the blink/celebration transition. Almost static breathing; no artificial ping-pong or repeated frames.",
+        "limitations": [
+          "No complete blink in this selected loop.",
+          "Tiny source-pixel fluctuations remain."
+        ]
+      },
+      "walk": {
+        "source": "female-1721",
+        "start": 42,
+        "endExclusive": 60,
+        "loop": true,
+        "reason": "Best existing female early-gait candidate with comparatively relaxed arms, both alternating support/pass phases, and matching start/end phase. This is a fast-walk candidate, not a fully accepted ordinary walk.",
+        "limitations": [
+          "Some extended-foot poses appear briefly light or airborne; cannot certify continuous single-foot ground contact.",
+          "Face/torso viewpoint differs slightly from 1927 and 2394; uniform anchor/scale normalization cannot remove it.",
+          "Do not claim a complete production-quality ordinary walk from these sources."
+        ]
+      },
+      "run": {
+        "source": "female-1927",
+        "start": 135,
+        "endExclusive": 153,
+        "loop": true,
+        "reason": "One full left/right gait cycle, with near and far arm/leg alternation and the same phase returning after 18 frames. Preserves original 0.75-second cadence.",
+        "limitations": [
+          "Generated shape/hand/foot fluctuations persist.",
+          "Loop selection does not prove in-game foot-speed/world-speed alignment."
+        ]
+      },
+      "jump": {
+        "source": "female-2394",
+        "start": 200,
+        "endExclusive": 250,
+        "loop": false,
+        "reason": "Original uninterrupted run-to-crouch approach, two consecutive jumps, and second landing compression. Preview as a two-hop action, not one jump.",
+        "limitations": [
+          "Ends in shallow crouch. No neutral idle recovery or seamless repeated-jump loop is supplied.",
+          "Source blur, green spill and cross-source drawing differences remain."
+        ]
+      }
+    },
+    "registration": {
+      "female-1721": {
+        "referenceFrame": 0,
+        "sourceHeadTop": 102,
+        "sourceGroundY": 1002,
+        "sourceFootCenterX": 938,
+        "scale": 0.5333333333333333,
+        "targetStandingHeight": 480,
+        "targetAnchor": [
+          256,
+          710
+        ],
+        "method": "one_uniform_affine_per_source_from_opening_stance; no per-frame recentering",
+        "inverseAffine": [
+          1.875,
+          0,
+          458,
+          0,
+          1.875,
+          -329.25
+        ]
+      },
+      "female-1927": {
+        "referenceFrame": 0,
+        "sourceHeadTop": 106,
+        "sourceGroundY": 1008,
+        "sourceFootCenterX": 923,
+        "scale": 0.532150776053215,
+        "targetStandingHeight": 480,
+        "targetAnchor": [
+          256,
+          710
+        ],
+        "method": "one_uniform_affine_per_source_from_opening_stance; no per-frame recentering",
+        "inverseAffine": [
+          1.8791666666666669,
+          0,
+          441.9333333333333,
+          0,
+          1.8791666666666669,
+          -326.2083333333335
+        ]
+      },
+      "female-2394": {
+        "referenceFrame": 0,
+        "sourceHeadTop": 346,
+        "sourceGroundY": 1030,
+        "sourceFootCenterX": 947,
+        "scale": 0.7017543859649122,
+        "targetStandingHeight": 480,
+        "targetAnchor": [
+          256,
+          710
+        ],
+        "method": "one_uniform_affine_per_source_from_opening_stance; no per-frame recentering",
+        "inverseAffine": [
+          1.425,
+          0,
+          582.2,
+          0,
+          1.425,
+          18.25
+        ]
+      }
+    },
+    "limitations": [
+      "Independent side-view review candidate; defaults unchanged.",
+      "Walk is a brisk/fast-walk candidate, not approved ordinary walking.",
+      "Cross-source face/pose differences survive uniform registration.",
+      "Jump lacks a settled neutral entry and exit; it plays once and holds its last pose.",
+      "Baked video artwork cannot reuse old wardrobe pose masks."
+    ],
+    "purpose": "Frozen four-action source for registered silhouette-preserving wardrobe tests; not a new skeleton or replacement for original defaults.",
+    "wardrobe": {
+      "format": "gathria-baked-wardrobe",
+      "version": 1,
+      "sourcePackSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "selection": {
+        "top": "polished-female-side-apricot-top-bound-v1",
+        "bottom": "polished-female-side-apricot-bottom-bound-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "items": [
+        {
+          "id": "polished-female-side-apricot-bottom-bound-v1",
+          "sha256": "3785258a5b9d19f905a13d1f12768ea7e23c75633c6b5dfc4b9d9ed7107dec0d",
+          "slot": "bottom",
+          "name": "暖杏色 · 褶裥短裙 · 局部修订 · 侧视",
+          "provenance": "Two source-reviewed local ownership additions to side-female-rose-skirt-v1. Native walk32 33px donor-alpha pinhole uses existing neighboring cloth; jump92 315px hard-clipping hole restores the original unclipped painted donor sample. Existing owned RGBA, registration, source, timing and all other100 frames remain exact. Recipe scripts/prepare-dual-looks-cloth.py; artwork/dual-looks-cloth/audit.json. Browser clothing variant owned-chromatic-ratio-v1; base SHA256 9419e1c88c1a6a178d0d1ea88ce6751c428bef09c36a468d46a81cd32d5842bf; design SHA256 90406202f08f86539901964f5e4e16ca439253e8ec0cc290d75f31323e6b5e6e. Owned opaque RGB only, ties-to-even rounding; source, ownership, alpha, anchors, pose geometry and timing retained. Reference none is palette/design context only, never auto-fitted artwork.\nReviewed frame 95 hand-attribution registration. Garment patches, ownership, offsets and frame coverage are unchanged by this offline binding."
+        },
+        {
+          "id": "polished-female-side-apricot-top-bound-v1",
+          "sha256": "6eec8fa9949ac0db4b62f9f8305c355c900071051d44eddf383edb5560490313",
+          "slot": "top",
+          "name": "暖杏色 · 圆领短袖上衣 · 侧视 · 接缝修订",
+          "provenance": "Original painted eight-pose cream blouse donors and six complete rose skirt sprites made using OpenAI image generation. Exact prompts, source art, SHA256 values and cloth-only masks are saved in artwork/kling-side-expansion/female/source. Generated heads, skin, shoes and background are discarded. Complete skirts were repainted as isolated cloth to replace donor-hand occlusions with continuous painted folds. Separate cloth-only masks are fitted offline to each frozen source pose, with original source head/hands and uncovered body retained exactly. A coherent painted skirt donor is retained for each full action (idle/walk/run 0, jump 79), with continuous source-guided cloth scale/shear. Blouse frames40 and47 use adjacent backward-arm cloth to remove isolated sleeve/collar jumps. No runtime body deformation, frame interpolation or AI. Follow-up: near puff sleeve and cuff isolated from the existing forward donor and fitted independently through all 18 running poses. Original source arm released from erroneous local cloth ownership, existing torso/neckline fit retained. No new painted body, source warp, retiming, registration change or runtime AI. Reproduce with scripts/polish-kling-side-female-sleeves.py. Browser clothing variant owned-chromatic-ratio-v1; base SHA256 71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201; design SHA256 7fe31c4a7ba01e6c4eaed8cd58d69e1cd602b1acafe00747a65419e67e7f954d. Owned opaque RGB only, ties-to-even rounding; source, ownership, alpha, anchors, pose geometry and timing retained. Reference none is palette/design context only, never auto-fitted artwork. Bounded paired-polish ownership/edge revision; scripts/prepare-paired-polish-clothing.py and artwork/paired-polish/clothing/audit.json. Native source, registration and timing unchanged.\nReviewed frame 95 hand-attribution registration. Garment patches, ownership, offsets and frame coverage are unchanged by this offline binding."
+        }
+      ],
+      "preservedOutsideOwnership": true,
+      "frameGeometryAndTimingUnchanged": false
+    },
+    "appearance": {
+      "format": "gathria-baked-appearance",
+      "version": 1,
+      "bankSha256": "ce0724d8f5c19f489a3c6b9be388ab71bf60deba6a77dcd3383633a7ef83ca82",
+      "sourcePackSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "selection": {
+        "bankSha256": "ce0724d8f5c19f489a3c6b9be388ab71bf60deba6a77dcd3383633a7ef83ca82",
+        "hairId": "soft-bob-matched-v1",
+        "faceId": "gentle-side-v1",
+        "hairColor": "chestnut"
+      },
+      "padding": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "sourceFrameWidth": 512,
+      "sourceFrameHeight": 768,
+      "sourceAnchor": {
+        "x": 256,
+        "y": 710,
+        "units": "pixels",
+        "origin": "top-left"
+      },
+      "sourcePixelsRescaled": false,
+      "actionTimingUnchanged": false,
+      "provenance": "Same-style side-view hair authored from the accepted original side-part (male) or soft-bob (female) visual authority. Generated portrait skin/face/ears/neck/clothes are discarded by reviewed donor hair boundaries. Semantic rear nape and far-face locks stay hair-back. Source-bound persisted head transforms move only new hair. Female near-ear aperture uses a continuous local blend toward the feature transform so scalp refinement cannot enlarge its ear hole; both semantic layers share the same field. Front samples blocked by protected source matte with 0<alpha<255 move to hair-back only at those pixels, providing normal destination-over backing without double-alpha outer edges. Opaque source protection is unchanged; legacy hand/scalp overlaps remain explicitly documented. All original source/registration references, anchors, headBounds, facePolygon, frame mapping and timing are retained. The existing gentle-side-v1 face patches/ownership/offsets/source modes are copied losslessly. Added feature-registered neck foreground protects the actual source neck and collar; no scalp/face/body edits. Source and audit: artwork/matched-hair; review: docs/matched-hair. Paired-polish revision: native95 nearHand polygon is clipped only at its reviewed empty-space boundary above the real fist (y>=x+160), removing a false scalp assignment. Released hair samples return to their original semantic front/back roles; no new artwork or anatomy is generated. The other101 native hair poses, all102 face entries (92 painted patches and10 source fallbacks), pose metadata and source pixels remain exact. Audit: artwork/paired-polish/female-head-review.json."
+    },
+    "gameplayMotion": {
+      "format": "gathria-gameplay-motion",
+      "version": 1,
+      "id": "kling-female-side-single-jump-v1",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "characterId": "female",
+      "view": "side",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "routes": [
+        {
+          "from": "idle",
+          "to": "walk",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "run",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "idle",
+          "to": "jump",
+          "exit": 16,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "run",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "walk",
+          "to": "jump",
+          "exit": 15,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "idle",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "walk",
+          "exit": 18,
+          "entry": 0
+        },
+        {
+          "from": "run",
+          "to": "jump",
+          "exit": 13,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "idle",
+          "exit": 28,
+          "entry": 0
+        },
+        {
+          "from": "jump",
+          "to": "walk",
+          "exit": 28,
+          "entry": 11
+        },
+        {
+          "from": "jump",
+          "to": "run",
+          "exit": 28,
+          "entry": 8
+        }
+      ],
+      "jumpReturn": "previous-locomotion"
+    }
+  }
+}

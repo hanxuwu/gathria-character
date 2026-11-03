@@ -1,0 +1,81 @@
+{
+  "baseline": "2ed5a193556bc42c4d3aa3709577260250a08140",
+  "unit": {
+    "files": 65,
+    "tests": 634,
+    "passed": true
+  },
+  "browser": {
+    "uniquePassed": 14,
+    "singleJumpAndSide": 8,
+    "legacyPaired": 6,
+    "attempt1": "male passed; female interrupted for workspace download space",
+    "femaleFilterAttempt": "no tests matched; corrected and rerun",
+    "final": "all selected cases passed"
+  },
+  "build": {
+    "typescript": true,
+    "vite": true
+  },
+  "production": {
+    "characters": 2,
+    "viewsPerCharacter": 2,
+    "singleJumpReturnsToRun": true,
+    "desktopAndMobile": true,
+    "httpAndPageErrors": []
+  },
+  "art": {
+    "nativeFrames": 393,
+    "atlasByteExact": true,
+    "uiGifs": 16,
+    "decodedGifFramesChecked": 886,
+    "sourcePixelsModified": false
+  },
+  "limitations": [
+    "Source head/arm pose discontinuity remains at some action seams.",
+    "One reviewed run exit can wait almost 750 ms.",
+    "External players need gameplayMotion support for automatic locomotion return."
+  ],
+  "logs": [
+    {
+      "file": "build-final.log.gz",
+      "rawBytes": 33529,
+      "rawSha256": "4f208b18ad45348cb91c29233e80aa24a613a286b223b2273e41ac81221aa60e"
+    },
+    {
+      "file": "e2e-attempt1.log.gz",
+      "rawBytes": 5744,
+      "rawSha256": "c6279e15350e545483b916c89f703edab8bc241015eb07615c20d7186d9bccf2"
+    },
+    {
+      "file": "e2e-female-and-resume-final.log.gz",
+      "rawBytes": 1541,
+      "rawSha256": "afaf43b6bc4a9c837823cc49641abc18fea129ba71e0c90920caaacbaa617924"
+    },
+    {
+      "file": "e2e-female-final.log.gz",
+      "rawBytes": 922,
+      "rawSha256": "a3db480b3af24332369483265757a2c35b241e20fd6d4d81cda325da17625078"
+    },
+    {
+      "file": "e2e-legacy-final.log.gz",
+      "rawBytes": 2870,
+      "rawSha256": "fda075ed30006ae51084b8c041adf101203655059676e164503595a295790f20"
+    },
+    {
+      "file": "e2e-side-final.log.gz",
+      "rawBytes": 1583,
+      "rawSha256": "87f48f3cdaf3f313f2374720bf0455b217f2be0b6bf538a0b36e08cb02afaed0"
+    },
+    {
+      "file": "production-final.log.gz",
+      "rawBytes": 177,
+      "rawSha256": "ef757a76426ffc22dc05050000caf7454ccfc7818de129f19b344a1b8cc32c4a"
+    },
+    {
+      "file": "unit-final.log.gz",
+      "rawBytes": 7422,
+      "rawSha256": "0a6d05977d739e5d29440cd568a77382329b73a4b4aa96790247ef4c8735371c"
+    }
+  ]
+}

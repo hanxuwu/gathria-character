@@ -20,6 +20,10 @@ async function ready(page: Page) {
     side(page).getByTestId("side-playground").getByRole("alert"),
   ).toHaveCount(0);
   await expect(stage(page)).toBeVisible();
+  // This suite pins the complete native source and its historical frame indices.
+  const playback = side(page).getByTestId("side-playback-mode");
+  if ((await playback.inputValue()) !== "source")
+    await playback.selectOption("source");
 }
 async function pause(page: Page) {
   if ((await stage(page).getAttribute("data-paused")) === "false")

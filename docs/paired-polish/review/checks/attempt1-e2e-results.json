@@ -1,0 +1,450 @@
+{
+  "config": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/gathria-character/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/dual-view-complete-looks.spec.ts",
+      "tests/e2e/paired-polish.spec.ts",
+      "--workers=2",
+      "--trace=off",
+      "--output=/tmp/paired-polish/playwright-results",
+      "--reporter=list,json"
+    ],
+    "configFile": "/workspace/gathria-character/playwright.config.ts",
+    "rootDir": "/workspace/gathria-character/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/tmp/paired-polish/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/workspace/gathria-character/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/tmp/paired-polish/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "",
+        "testDir": "/workspace/gathria-character/tests/e2e",
+        "snapshotDir": "/workspace/gathria-character/tests/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5175",
+          "headless": true,
+          "launchOptions": {
+            "executablePath": "/usr/bin/chromium",
+            "args": []
+          },
+          "screenshot": "only-on-failure",
+          "trace": "off"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 5175 --strictPort",
+      "url": "http://127.0.0.1:5175",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "dual-view-complete-looks.spec.ts",
+      "file": "dual-view-complete-looks.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "male: complete paired look exports every native action and plays independently",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 256324,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "buffer": "KG5vZGU6Mzg4NDI2KSBXYXJuaW5nOiBUaGUgJ05PX0NPTE9SJyBlbnYgaXMgaWdub3JlZCBkdWUgdG8gdGhlICdGT1JDRV9DT0xPUicgZW52IGJlaW5nIHNldC4KKFVzZSBgbm9kZSAtLXRyYWNlLXdhcm5pbmdzIC4uLmAgdG8gc2hvdyB3aGVyZSB0aGUgd2FybmluZyB3YXMgY3JlYXRlZCkK"
+                    },
+                    {
+                      "text": "(node:389263) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-30T07:26:19.188Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f485db343232fb5593ff-6d3f0543f16240c3790f",
+          "file": "dual-view-complete-looks.spec.ts",
+          "line": 161,
+          "column": 3
+        },
+        {
+          "title": "male: paired appearance is atomic, independently resettable and reopens with mixed clothes offline",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 750000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 462923,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "buffer": "KG5vZGU6MzkwMzA4KSBXYXJuaW5nOiBUaGUgJ05PX0NPTE9SJyBlbnYgaXMgaWdub3JlZCBkdWUgdG8gdGhlICdGT1JDRV9DT0xPUicgZW52IGJlaW5nIHNldC4KKFVzZSBgbm9kZSAtLXRyYWNlLXdhcm5pbmdzIC4uLmAgdG8gc2hvdyB3aGVyZSB0aGUgd2FybmluZyB3YXMgY3JlYXRlZCkK"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2026-10-30T07:26:19.195Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f485db343232fb5593ff-51f3e414293a46fa30c5",
+          "file": "dual-view-complete-looks.spec.ts",
+          "line": 461,
+          "column": 3
+        },
+        {
+          "title": "female: complete paired look exports every native action and plays independently",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 23454,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mpolished\u001b[27m-day\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mcotton\u001b[27m-day\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mpolished\u001b[27m-day\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mcotton\u001b[27m-day\"\u001b[39m\n    at /workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts:178:28",
+                    "location": {
+                      "file": "/workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts",
+                      "column": 28,
+                      "line": 178
+                    },
+                    "snippet": "  176 |     await ready(page);\n  177 |     const completeOutfit = await page.getByTestId(\"dual-outfit\").inputValue();\n> 178 |     expect(completeOutfit).toBe(\"polished-day\");\n      |                            ^\n  179 |     await page.getByTestId(\"dual-reset-appearance\").click();\n  180 |     await ready(page);\n  181 |     const baselines: Partial<"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts",
+                        "column": 28,
+                        "line": 178
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mpolished\u001b[27m-day\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mcotton\u001b[27m-day\"\u001b[39m\n\n  176 |     await ready(page);\n  177 |     const completeOutfit = await page.getByTestId(\"dual-outfit\").inputValue();\n> 178 |     expect(completeOutfit).toBe(\"polished-day\");\n      |                            ^\n  179 |     await page.getByTestId(\"dual-reset-appearance\").click();\n  180 |     await ready(page);\n  181 |     const baselines: Partial<\n    at /workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts:178:28"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T07:30:35.829Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/paired-polish/playwright-results/dual-view-complete-looks-f-35948-ion-and-plays-independently/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/paired-polish/playwright-results/dual-view-complete-looks-f-35948-ion-and-plays-independently/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts",
+                    "column": 28,
+                    "line": 178
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f485db343232fb5593ff-9152b6633f3630b4c921",
+          "file": "dual-view-complete-looks.spec.ts",
+          "line": 161,
+          "column": 3
+        },
+        {
+          "title": "female: paired appearance is atomic, independently resettable and reopens with mixed clothes offline",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 750000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 33274,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts:507:29",
+                    "location": {
+                      "file": "/workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts",
+                      "column": 29,
+                      "line": 507
+                    },
+                    "snippet": "  505 |     await page.getByTestId(\"dual-complete-look\").click();\n  506 |     await ready(page);\n> 507 |     expect(blockedRequests).toBeGreaterThan(0);\n      |                             ^\n  508 |     await expect(page.getByTestId(\"dual-hair\")).toHaveValue(\"\");\n  509 |     await expect(page.getByTestId(\"dual-outfit\")).toHaveValue(\"tailored-day\");\n  510 |     await expect("
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts",
+                        "column": 29,
+                        "line": 507
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  505 |     await page.getByTestId(\"dual-complete-look\").click();\n  506 |     await ready(page);\n> 507 |     expect(blockedRequests).toBeGreaterThan(0);\n      |                             ^\n  508 |     await expect(page.getByTestId(\"dual-hair\")).toHaveValue(\"\");\n  509 |     await expect(page.getByTestId(\"dual-outfit\")).toHaveValue(\"tailored-day\");\n  510 |     await expect(\n    at /workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts:507:29"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T07:30:59.881Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/paired-polish/playwright-results/dual-view-complete-looks-f-24f0d--with-mixed-clothes-offline/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/paired-polish/playwright-results/dual-view-complete-looks-f-24f0d--with-mixed-clothes-offline/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/workspace/gathria-character/tests/e2e/dual-view-complete-looks.spec.ts",
+                    "column": 29,
+                    "line": 507
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f485db343232fb5593ff-bf473e57798a2d23c0b9",
+          "file": "dual-view-complete-looks.spec.ts",
+          "line": 461,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "paired-polish.spec.ts",
+      "file": "paired-polish.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "male: equal-height comparison retains independent clocks and native exports",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 52755,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T07:31:33.940Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1490acfba5bbfcffc340-67661de59fa429c8e3f2",
+          "file": "paired-polish.spec.ts",
+          "line": 35,
+          "column": 3
+        },
+        {
+          "title": "female: equal-height comparison retains independent clocks and native exports",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 28003,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('dual-outfit')\nExpected: \u001b[32m\"\u001b[7mpolished\u001b[27m-day\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mcotton\u001b[27m-day\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByTestId('dual-outfit') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('dual-outfit')\u001b[22m\n\u001b[2m    14 × locator resolved to <select data-testid=\"dual-outfit\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"cotton-day\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('dual-outfit')\nExpected: \u001b[32m\"\u001b[7mpolished\u001b[27m-day\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mcotton\u001b[27m-day\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByTestId('dual-outfit') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('dual-outfit')\u001b[22m\n\u001b[2m    14 × locator resolved to <select data-testid=\"dual-outfit\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"cotton-day\"\u001b[22m\n\n    at /workspace/gathria-character/tests/e2e/paired-polish.spec.ts:48:51",
+                    "location": {
+                      "file": "/workspace/gathria-character/tests/e2e/paired-polish.spec.ts",
+                      "column": 51,
+                      "line": 48
+                    },
+                    "snippet": "  46 |     await page.getByTestId(\"dual-complete-look\").click();\n  47 |     await ready(page);\n> 48 |     await expect(page.getByTestId(\"dual-outfit\")).toHaveValue(\"polished-day\");\n     |                                                   ^\n  49 |\n  50 |     const before: Record<string, Buffer> = {};\n  51 |     for (const view of views) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/workspace/gathria-character/tests/e2e/paired-polish.spec.ts",
+                        "column": 51,
+                        "line": 48
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('dual-outfit')\nExpected: \u001b[32m\"\u001b[7mpolished\u001b[27m-day\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mcotton\u001b[27m-day\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByTestId('dual-outfit') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('dual-outfit')\u001b[22m\n\u001b[2m    14 × locator resolved to <select data-testid=\"dual-outfit\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"cotton-day\"\u001b[22m\n\n\n  46 |     await page.getByTestId(\"dual-complete-look\").click();\n  47 |     await ready(page);\n> 48 |     await expect(page.getByTestId(\"dual-outfit\")).toHaveValue(\"polished-day\");\n     |                                                   ^\n  49 |\n  50 |     const before: Record<string, Buffer> = {};\n  51 |     for (const view of views) {\n    at /workspace/gathria-character/tests/e2e/paired-polish.spec.ts:48:51"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T07:32:26.959Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/tmp/paired-polish/playwright-results/paired-polish-female-equal-b9ca8-t-clocks-and-native-exports/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/tmp/paired-polish/playwright-results/paired-polish-female-equal-b9ca8-t-clocks-and-native-exports/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/workspace/gathria-character/tests/e2e/paired-polish.spec.ts",
+                    "column": 51,
+                    "line": 48
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1490acfba5bbfcffc340-33147c5cbd14bf4966a3",
+          "file": "paired-polish.spec.ts",
+          "line": 35,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T07:26:17.300Z",
+    "duration": 465439.948,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

@@ -11,6 +11,8 @@ import {
   readPortableCharacterPackArchive,
 } from "../core/pack";
 import { crc32 } from "../core/bounded-archive";
+import profiles from "../core/gameplay-motion-profiles.json";
+import type { GameplayMotion } from "../core/gameplay-motion";
 import type { AppearanceBankManifest } from "../appearance/contract";
 import type {
   BakedCharacterPackManifest,
@@ -971,4 +973,14 @@ describe("registered wardrobe composition", () => {
     expect(() => restored.renderFrame(7)).not.toThrow();
     restored.dispose();
   });
+});
+
+it("does not bypass gameplay source validation when an undressed project could otherwise return its source bytes", async () => {
+  const original = await fixture(false);
+  await expect(
+    exportWardrobeCharacterPack(original, {
+      gameplayMotion: profiles[0].profile as GameplayMotion,
+    }),
+  ).rejects.toThrow(/reviewed source binding/);
+  expect(await exportWardrobeCharacterPack(original)).toEqual(original.source);
 });

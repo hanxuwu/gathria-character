@@ -16,6 +16,7 @@ for (const character of ["male", "female"]) {
       "false",
       { timeout: 90_000 },
     );
+    await page.getByTestId("side-playback-mode").selectOption("source");
     await page.getByTestId("side-mode-travel").click();
     await stage.focus();
     await page.keyboard.down("ArrowRight");

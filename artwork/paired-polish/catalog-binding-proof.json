@@ -1,0 +1,134 @@
+{
+  "format": "gathria-paired-polish-offline-binding-proof",
+  "version": 1,
+  "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+  "registrationChanges": [
+    {
+      "frameId": 95,
+      "label": "nearHand",
+      "field": "polygon"
+    }
+  ],
+  "appearanceChanges": [
+    {
+      "character": "female",
+      "frameId": 95,
+      "field": "hair-front/back within released nearHand mask"
+    }
+  ],
+  "headPixelProof": {
+    "exactDecodedCrops": 588,
+    "releasedMaskPixels": 373,
+    "changes": [
+      {
+        "frameId": 95,
+        "role": "hair-back",
+        "kind": "rgba",
+        "changedPixels": 53
+      },
+      {
+        "frameId": 95,
+        "role": "hair-back",
+        "kind": "ownership",
+        "changedPixels": 53
+      },
+      {
+        "frameId": 95,
+        "role": "hair-front",
+        "kind": "rgba",
+        "changedPixels": 53
+      },
+      {
+        "frameId": 95,
+        "role": "hair-front",
+        "kind": "ownership",
+        "changedPixels": 53
+      }
+    ],
+    "allFaceEntriesExact": true,
+    "allOtherHairFramesExact": true,
+    "appearancePosesExact": true
+  },
+  "bindings": [
+    {
+      "from": "/docs/paired-polish/assets/female/polished-female-side-sea-top-v1.garment.zip",
+      "fromSha256": "fc6f9384de4823c56f5680cc358025f2f338eba3f13e7bb1cf69e08810dbd3d8",
+      "to": "/docs/paired-polish/assets/female/polished-female-side-sea-top-bound-v1.garment.zip",
+      "toSha256": "f0ee7b711690836f4d9a1907afd15b4074dec2b3ac3641038b5024c7a7f675e3",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "unchangedFiles": [
+        {
+          "name": "ownership-0.png",
+          "sha256": "cf86cfff10a84d3e9c2285bbe7050b7ff0e97515897a3b52dc28f180ef98db4e",
+          "bytes": 76046
+        },
+        {
+          "name": "patches-0.png",
+          "sha256": "6c53c0f8abefbe0c36d7be09d369435891102b734c6f1cb5160f9ad3d6e3adff",
+          "bytes": 2052724
+        }
+      ],
+      "exactFrameMetadata": true
+    },
+    {
+      "from": "/docs/dual-looks-cloth/assets/female/dual-complete-female-side-sea-bottom-v1.garment.zip",
+      "fromSha256": "572272c8e3fd7ab1965f37c5dd659eaaba0373c972ca42765629dc62146b32d6",
+      "to": "/docs/paired-polish/assets/female/polished-female-side-sea-bottom-bound-v1.garment.zip",
+      "toSha256": "346d93c2f5fcb991e09558262ba111378d3bffc9a92537dff6cee2a841a9ba7f",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "unchangedFiles": [
+        {
+          "name": "patches-0.png",
+          "sha256": "295e17d4a6c58c42308f9110f44a533c384b6fe23115b302cf512027be633508",
+          "bytes": 2365139
+        },
+        {
+          "name": "ownership-0.png",
+          "sha256": "132f858a82e13efa90b09f4f94097650ce8020c782970d7f967150d385cf9445",
+          "bytes": 51714
+        }
+      ],
+      "exactFrameMetadata": true
+    },
+    {
+      "from": "/docs/paired-polish/assets/female/polished-female-side-apricot-top-v1.garment.zip",
+      "fromSha256": "f109e7e0bd6fb91acfb7e051b2ebf56213dde83d9b258d7c2ce9edbe85216724",
+      "to": "/docs/paired-polish/assets/female/polished-female-side-apricot-top-bound-v1.garment.zip",
+      "toSha256": "6eec8fa9949ac0db4b62f9f8305c355c900071051d44eddf383edb5560490313",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "unchangedFiles": [
+        {
+          "name": "ownership-0.png",
+          "sha256": "cf86cfff10a84d3e9c2285bbe7050b7ff0e97515897a3b52dc28f180ef98db4e",
+          "bytes": 76046
+        },
+        {
+          "name": "patches-0.png",
+          "sha256": "fa072a0e430bb4f47cca338a3eb2f3e0e8b20048664dbbf9947ee5120d39ba61",
+          "bytes": 2102954
+        }
+      ],
+      "exactFrameMetadata": true
+    },
+    {
+      "from": "/docs/dual-looks-cloth/assets/female/dual-complete-female-side-apricot-bottom-v1.garment.zip",
+      "fromSha256": "8ce907c685b6095fc1fc6fa889bfc9f51683860a5b7f05eeb5ffa8ffebc1232c",
+      "to": "/docs/paired-polish/assets/female/polished-female-side-apricot-bottom-bound-v1.garment.zip",
+      "toSha256": "3785258a5b9d19f905a13d1f12768ea7e23c75633c6b5dfc4b9d9ed7107dec0d",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "unchangedFiles": [
+        {
+          "name": "patches-0.png",
+          "sha256": "a78ea44f9a24ef2ed3821d74071f74363c6afe061bd32bed6a68fc4deaee7949",
+          "bytes": 2356897
+        },
+        {
+          "name": "ownership-0.png",
+          "sha256": "132f858a82e13efa90b09f4f94097650ce8020c782970d7f967150d385cf9445",
+          "bytes": 51714
+        }
+      ],
+      "exactFrameMetadata": true
+    }
+  ]
+}

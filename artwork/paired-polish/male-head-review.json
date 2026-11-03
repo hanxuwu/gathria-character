@@ -1,0 +1,33 @@
+{
+  "character": "male",
+  "view": "side",
+  "frameId": 100,
+  "decision": "retained",
+  "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+  "bankSha256": "43b8bcb61be0fb6185bc12581a0d011cc299b730646f368422188c2e78aadb79",
+  "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+  "sourceRgbaSha256": "debea92da56303911c9a0d97b1ad060d84a45d7b3d0a14b73b9b8f8b3ee05db0",
+  "hairOnlyRgbaSha256": "571ba1c85549ddc8be028d613863ab928f23e66791ab9d7334acf020589339c5",
+  "reviewCrop": [
+    175,
+    315,
+    251,
+    385
+  ],
+  "reviewScale": 8,
+  "changedRegistrationFrames": [],
+  "changedAppearanceFrames": [],
+  "reason": "The small peach/yellow-green sliver below the near ear is the existing neck contour and green-matte edge in the original source; it is not the female95 false scalp/hand assignment. The matched hair preserves the source ear shape. Covering it would conceal actual ear/neck or require separate source matte cleanup, outside this bounded occlusion correction. No male100 repair is claimed.",
+  "relatedRegressionFrames": [
+    66,
+    67,
+    68,
+    78,
+    79,
+    80,
+    99,
+    100,
+    101
+  ],
+  "note": "Diagnostic source/hair-only rendering, not an actual application export. Compare application-export native100 before/after to confirm unchanged head pixels; only garments may change in this release."
+}

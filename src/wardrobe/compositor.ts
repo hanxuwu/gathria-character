@@ -1,6 +1,12 @@
 import { strToU8, zipSync } from "fflate";
 import { createCooperativeYield } from "../core/cooperative-yield";
 import {
+  gameplayManifest,
+  gameplayMotionMetadata,
+  resolveGameplayMotion,
+  type GameplayMotion,
+} from "../core/gameplay-motion";
+import {
   decodeSourceRgbaPng,
   encodeSourceRgbaPng,
   encodeSourceRgbaPngAsync,
@@ -538,6 +544,8 @@ export async function exportWardrobeFramePng(
 
 export interface WardrobeExportOptions {
   name?: string;
+  /** Reviewed clip selection and transitions; never rewrites the bound source. */
+  gameplayMotion?: GameplayMotion;
   onProgress?: (progress: {
     completedPages: number;
     totalPages: number;
@@ -548,6 +556,7 @@ function exportMetadata(
   project: WardrobeProject,
   name?: string,
   outputManifest: BakedCharacterPackManifest = project.archive.manifest,
+  gameplayMotion?: GameplayMotion,
 ): {
   manifest: BakedCharacterPackManifest;
   config: BakedCharacterRecipe;
@@ -563,7 +572,11 @@ function exportMetadata(
     project.document.version === 2 ? project.document.appearance : undefined;
   const hasAppearance = appearanceIsActive(headSelection);
   const manifest = validatePortableManifest({
-    ...structuredClone(outputManifest),
+    ...structuredClone(
+      gameplayMotion
+        ? gameplayManifest(outputManifest, gameplayMotion)
+        : outputManifest,
+    ),
     name: exportName,
     generator: hasAppearance
       ? "gathria-kling-wardrobe-appearance-v1"
@@ -575,9 +588,12 @@ function exportMetadata(
   const handNote = selected.some((item) => item.manifest.version === 2)
     ? `${originalNote} Selected V2 garment hand-boundary reviews explicitly reassign proximal forearm pixels to sleeves while retaining the reviewed distal hand; details are recorded per item below.`
     : originalNote;
-  const note = selected.some((item) => item.manifest.version === 3)
+  const clothingNote = selected.some((item) => item.manifest.version === 3)
     ? `${handNote} Selected V3 garments explicitly opt into a shipped source-bound neckline cloth permission profile. Only reviewed cloth pixels accidentally enclosed by the original head polygon may be replaced; all remaining head pixels and applicable hand protection stay intact. Profile IDs and any item-scoped hand reviews are recorded below. Shared source registration and appearance protection remain unchanged.`
     : handNote;
+  const note = gameplayMotion
+    ? `${clothingNote.replace(/Frame IDs, action order, FPS, loop flags and source-frame\/time mapping are unchanged\./, "Frame pixels, frame IDs, native FPS and source-frame/time mapping are unchanged.").replace(/Original frame rectangles, action frame order, FPS, loop flags, source-frame\/time mapping and anchor are unchanged\./, "Original frame rectangles, frame pixels, native FPS, source-frame/time mapping and anchor are unchanged.")} Gameplay profile ${gameplayMotion.id}: the basic jump uses one reviewed complete native takeoff/landing sequence. The complete original source archive remains unchanged in the editable project. Action frame selection and transitions follow sourceMetadata.gameplayMotion; no interpolated, blended or re-centered frame artwork is introduced.`
+    : clothingNote;
   const wardrobeMetadata: { [key: string]: JsonValue } = {
     format: "gathria-baked-wardrobe",
     version: 1,
@@ -614,7 +630,7 @@ function exportMetadata(
         : {}),
     })),
     preservedOutsideOwnership: true,
-    frameGeometryAndTimingUnchanged: !hasAppearance,
+    frameGeometryAndTimingUnchanged: !hasAppearance && !gameplayMotion,
   };
   const appearanceMetadata: { [key: string]: JsonValue } | undefined =
     hasAppearance && project.appearanceBank
@@ -630,7 +646,7 @@ function exportMetadata(
           sourceFrameHeight: project.archive.manifest.spritesheet.frameHeight,
           sourceAnchor: { ...project.archive.manifest.anchor },
           sourcePixelsRescaled: false,
-          actionTimingUnchanged: true,
+          actionTimingUnchanged: !gameplayMotion,
           provenance: project.appearanceBank.manifest.provenance,
         }
       : undefined;
@@ -647,6 +663,9 @@ function exportMetadata(
         ...structuredClone(project.archive.config.sourceMetadata ?? {}),
         wardrobe: wardrobeMetadata,
         ...(appearanceMetadata ? { appearance: appearanceMetadata } : {}),
+        ...(gameplayMotion
+          ? { gameplayMotion: gameplayMotionMetadata(gameplayMotion) }
+          : {}),
       },
     },
     manifest,
@@ -661,19 +680,42 @@ export async function exportWardrobeCharacterPack(
   options: WardrobeExportOptions = {},
 ): Promise<Uint8Array> {
   const verified = await validateWardrobeProject(project);
+  const gameplayMotion = options.gameplayMotion;
+  if (gameplayMotion) {
+    const expected = resolveGameplayMotion(
+      verified.archive.manifest,
+      verified.document.sourceSha256,
+    );
+    if (
+      !expected ||
+      gameplayMotion.sourceSha256 !== verified.document.sourceSha256
+    )
+      throw Error(
+        "Gameplay export profile does not match the reviewed source binding.",
+      );
+    // The core validates all clip and route fields against its exact reviewed
+    // declaration, independent of property order in imported JSON.
+    gameplayManifest(verified.archive.manifest, gameplayMotion);
+  }
   const selected = Object.values(verified.document.selection).some(
     (id) => id !== null,
   );
   const headSelection =
     verified.document.version === 2 ? verified.document.appearance : undefined;
   const hasAppearance = appearanceIsActive(headSelection);
-  if (!selected && !hasAppearance && options.name === undefined)
+  if (
+    !selected &&
+    !hasAppearance &&
+    options.name === undefined &&
+    !gameplayMotion
+  )
     return new Uint8Array(verified.source);
   const compositor = new RegisteredWardrobeCompositor(verified);
   const { manifest, config } = exportMetadata(
     verified,
     options.name,
     compositor.manifest,
+    gameplayMotion,
   );
   const sheets = [
     manifest.spritesheet,
@@ -720,6 +762,25 @@ export async function exportWardrobeCharacterPack(
       `\nAppearance bank SHA-256: ${verified.appearanceBank!.sha256}\nAppearance padding: ${JSON.stringify(verified.appearanceBank!.manifest.padding)}\nOriginal artwork remains exact outside declared appearance/garment ownership, translated into the padded frame. Hair and face patches are authored derivatives.\n`;
     text["INTEGRATION.md"] +=
       "\nThis pack also contains baked head appearance. Render the exported padded dimensions and translated anchor; do not use the source frame geometry. Source body scale, action timing and source-frame mappings are preserved. The original CharacterPack is retained in the editable project.\n";
+  }
+  if (gameplayMotion) {
+    text["INTEGRATION.md"] +=
+      `\nGameplay profile: ${gameplayMotion.id}. The manifest jump is a single non-looping jump; sourceMetadata.gameplayMotion provides the source-bound transition routes. A jump request during idle/walk/run remembers that locomotion state. Ignore repeated jump requests until landing, complete the whole jump, then return to the latest requested locomotion (or the previous one). Use each route's source exit/target entry tick and preserve fractional clock carry. Frame pixels and atlas IDs are unchanged. Existing sourceMetadata.motionFlow, when present, is legacy source playback; gameplayMotion takes precedence.\n`;
+    text["PROVENANCE.txt"] +=
+      `\nGameplay profile: ${gameplayMotion.id}\nBound source archive SHA-256: ${gameplayMotion.sourceSha256}\nSingle jump frame IDs: ${gameplayMotion.actions.jump.frames.join(",")}\nNative jump FPS: ${gameplayMotion.actions.jump.fps}\nNative artwork is unchanged by this selection. The full original source sequence remains available in the editable project.\n`;
+    if (hasAppearance)
+      text["INTEGRATION.md"] = text["INTEGRATION.md"].replace(
+        "Source body scale, action timing and source-frame mappings are preserved.",
+        "Source body scale, native frame cadence and source-frame mappings are preserved; the gameplay profile selects the basic action clips.",
+      );
+    if (gameplayMotion.routes.some((route) => route.leadIn?.length)) {
+      text["INTEGRATION.md"] = text["INTEGRATION.md"].replace(
+        "Ignore repeated jump requests until landing, complete the whole jump, then return to the latest requested locomotion (or the previous one).",
+        "Ignore repeated jump requests through takeoff, flight and landing recovery. Complete the jump up to the selected target-specific landing exit, then return to the latest requested locomotion (or the previous one).",
+      );
+      text["INTEGRATION.md"] +=
+        "\nA route may declare leadIn: ordered native atlas frame IDs that play before its target entry. Render every leadIn frame once at the target action FPS while its main clock remains frozen at entry; then continue the target clip from that entry, preserving fractional time. Run-to-Jump leadIn is takeoff preparation; Jump-to-Run leadIn is landing recovery. Do not count recovery drawings toward a complete resumed run cycle or accept another Jump during recovery. Lead-ins are contextual transitions, not additions to the standalone action clips.\n";
+    }
   }
   for (const [name, content] of Object.entries(text)) {
     const bytes = strToU8(content);

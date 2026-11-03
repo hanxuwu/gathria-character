@@ -62,7 +62,20 @@ import {
   requestMotionAction,
   type MotionState,
 } from "./motion-flow";
+import {
+  advanceGameplayMotion,
+  createGameplayState,
+  gameplayFrameId,
+  gameplayFramePosition,
+  readGameplayMotion,
+  requestGameplayAction,
+  type GameplayState,
+} from "../core/gameplay-motion";
 import { MainNavigation } from "../workspace/MainNavigation";
+import {
+  samplePlaybackClock,
+  type PlaybackClockSample,
+} from "./playback-clock";
 
 const SpriteActionEditor = lazy(() => import("./SpriteActionEditor"));
 
@@ -115,6 +128,7 @@ export function PackPlayer() {
   const [pendingAction, setPendingAction] =
     useState<PortableAnimationName | null>(null);
   const motionStateRef = useRef<MotionState | null>(null);
+  const gameplayStateRef = useRef<GameplayState | null>(null);
   const sourceEntries = useRef(new Map<string, SourceEntry>());
   const retainedImages = useRef(new Set<LoadedCharacterImage>());
   const ownedImages = useRef(new Set<LoadedCharacterImage>());
@@ -128,6 +142,7 @@ export function PackPlayer() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const elapsedRef = useRef(0);
+  const playbackClockRef = useRef<PlaybackClockSample | null>(null);
   const requestRef = useRef(0);
   const pendingFetchRef = useRef<AbortController | null>(null);
   const frameRef = useRef(-1);
@@ -147,8 +162,12 @@ export function PackPlayer() {
     () => (pack ? readMotionFlow(pack.manifest, pack.config) : null),
     [pack],
   );
+  const gameplayProfile = useMemo(
+    () => (pack ? readGameplayMotion(pack.manifest, pack.config) : null),
+    [pack],
+  );
   const motionEnabled =
-    !!motionProfile &&
+    !!(gameplayProfile || motionProfile) &&
     waitForPose &&
     !authoring &&
     !comparisonRequested &&
@@ -160,17 +179,19 @@ export function PackPlayer() {
     studyMetadata.format === "gathria-kling-keyframe-study";
   const originalCharacterId = isKlingCharacterId(characterId)
     ? characterId
-    : motionProfile
-      ? motionProfile.characterId
-      : keyframeStudy &&
-          typeof studyMetadata === "object" &&
-          studyMetadata !== null &&
-          !Array.isArray(studyMetadata) &&
-          isKlingCharacterId(studyMetadata.characterId)
-        ? studyMetadata.characterId
-        : isKlingCharacterId(pack?.config?.characterId)
-          ? pack.config.characterId
-          : null;
+    : gameplayProfile
+      ? gameplayProfile.characterId
+      : motionProfile
+        ? motionProfile.characterId
+        : keyframeStudy &&
+            typeof studyMetadata === "object" &&
+            studyMetadata !== null &&
+            !Array.isArray(studyMetadata) &&
+            isKlingCharacterId(studyMetadata.characterId)
+          ? studyMetadata.characterId
+          : isKlingCharacterId(pack?.config?.characterId)
+            ? pack.config.characterId
+            : null;
   const selectedClip = pack
     ? animationFor(pack.manifest, animation)
     : undefined;
@@ -225,6 +246,7 @@ export function PackPlayer() {
 
   const clearPendingMotion = useCallback(() => {
     motionStateRef.current = null;
+    gameplayStateRef.current = null;
     setPendingAction(null);
   }, []);
 
@@ -241,7 +263,17 @@ export function PackPlayer() {
 
   useEffect(() => {
     clearPendingMotion();
-  }, [motionEnabled, motionProfile, clearPendingMotion]);
+  }, [motionEnabled, motionProfile, gameplayProfile, clearPendingMotion]);
+
+  useEffect(() => {
+    // Browsers can suspend RAF without painting a hidden frame first. Reset
+    // at both visibility boundaries so hidden wall time cannot skip a landing.
+    const resetClock = () => {
+      playbackClockRef.current = null;
+    };
+    document.addEventListener("visibilitychange", resetClock);
+    return () => document.removeEventListener("visibilitychange", resetClock);
+  }, []);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -297,20 +329,44 @@ export function PackPlayer() {
     if (canvas.width !== width) canvas.width = width;
     if (canvas.height !== height) canvas.height = height;
     if (pixelPreviewBlocked) {
+      playbackClockRef.current = null;
       context.setTransform(1, 0, 0, 1, 0, 0);
       context.clearRect(0, 0, width, height);
       return;
     }
-    let previous: number | undefined;
     let request = 0;
     function draw(now: number) {
       if (!context || !canvas) return;
       let activeAnimation = animation;
-      const delta =
-        previous !== undefined && playing && presentationActive
-          ? (now - previous) * speed
-          : 0;
-      if (motionEnabled && motionProfile) {
+      const clock = samplePlaybackClock(playbackClockRef.current, now, {
+        source: pack,
+        comparison: comparisonPack,
+        motion: motionEnabled ? (gameplayProfile ?? motionProfile) : null,
+        revision: playbackRevision,
+        running: !!pack && playing && presentationActive && !document.hidden,
+        speed,
+      });
+      playbackClockRef.current = clock.sample;
+      const delta = clock.deltaMs;
+      if (motionEnabled && gameplayProfile) {
+        const before = gameplayStateRef.current ?? {
+          ...createGameplayState(animation),
+          elapsedMs: elapsedRef.current,
+        };
+        const next =
+          delta > 0
+            ? advanceGameplayMotion(gameplayProfile, before, delta)
+            : before;
+        gameplayStateRef.current = next;
+        elapsedRef.current = next.elapsedMs;
+        activeAnimation = next.action;
+        if (next.action !== animation) {
+          frameRef.current = -1;
+          setAnimation(next.action);
+          setCompleted(false);
+        }
+        if (before.pending !== next.pending) setPendingAction(next.pending);
+      } else if (motionEnabled && motionProfile) {
         const before = motionStateRef.current ?? {
           action: animation,
           elapsedMs: elapsedRef.current,
@@ -328,7 +384,6 @@ export function PackPlayer() {
         }
         if (before.pending !== next.pending) setPendingAction(next.pending);
       } else elapsedRef.current += delta;
-      previous = now;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
       context.clearRect(0, 0, canvasRenderWidth, canvasHeight);
       const attachment = {
@@ -344,14 +399,30 @@ export function PackPlayer() {
       context.stroke();
       context.setLineDash([]);
       if (pack) {
-        const frame = frameAtTime(
-          pack.manifest,
-          activeAnimation,
-          elapsedRef.current,
-        );
+        const gameplayState =
+          motionEnabled && gameplayProfile ? gameplayStateRef.current : null;
+        const frame =
+          gameplayProfile && gameplayState
+            ? pack.manifest.frames.find(
+                (row) =>
+                  row.id === gameplayFrameId(gameplayProfile, gameplayState),
+              )!
+            : frameAtTime(pack.manifest, activeAnimation, elapsedRef.current);
         canvas.dataset.action = activeAnimation;
         canvas.dataset.elapsedMs = String(elapsedRef.current);
-        canvas.dataset.pendingAction = motionStateRef.current?.pending ?? "";
+        canvas.dataset.pendingAction =
+          (gameplayProfile
+            ? gameplayStateRef.current?.pending
+            : motionStateRef.current?.pending) ?? "";
+        canvas.dataset.gameplayMotion = String(
+          !!gameplayProfile && motionEnabled,
+        );
+        canvas.dataset.returnAction =
+          gameplayStateRef.current?.returnAction ?? "";
+        canvas.dataset.leadIn = String(!!gameplayState?.leadIn);
+        canvas.dataset.leadInElapsedMs = String(
+          gameplayState?.leadIn?.elapsedMs ?? 0,
+        );
         canvas.dataset.frameId = String(frame.id);
         canvas.dataset.framePage = String(frame.page ?? 0);
         drawCharacterFrame(
@@ -390,9 +461,12 @@ export function PackPlayer() {
         const position = Math.floor(
           (Math.max(0, elapsedRef.current) * clip.fps) / 1000,
         );
-        const framePosition = clip.loop
-          ? position % clip.frames.length
-          : Math.min(position, clip.frames.length - 1);
+        const framePosition =
+          gameplayProfile && gameplayState
+            ? gameplayFramePosition(gameplayProfile, gameplayState)
+            : clip.loop
+              ? position % clip.frames.length
+              : Math.min(position, clip.frames.length - 1);
         // Keep RAF/recording observers on the exact pixels painted this tick;
         // React's labels may commit a render later than the canvas bitmap.
         canvas.dataset.framePosition = String(framePosition);
@@ -453,6 +527,7 @@ export function PackPlayer() {
     playbackRevision,
     motionEnabled,
     motionProfile,
+    gameplayProfile,
     pixelPreviewBlocked,
   ]);
 
@@ -518,7 +593,12 @@ export function PackPlayer() {
         frameRef.current = -1;
         setFrameId(loaded.manifest.animations.idle.frames[0]);
         setPack(loaded);
-        setWaitForPose(!!readMotionFlow(loaded.manifest, loaded.config));
+        setWaitForPose(
+          !!(
+            readGameplayMotion(loaded.manifest, loaded.config) ||
+            readMotionFlow(loaded.manifest, loaded.config)
+          ),
+        );
         setEditorBasePack(loaded);
         setModifiedActions(false);
         modifiedActionsRef.current = false;
@@ -688,9 +768,12 @@ export function PackPlayer() {
         setCharacterId(id);
         setPack(entry.pack);
         setWaitForPose(
-          !!readMotionFlow(entry.pack.manifest, entry.pack.config),
+          !!(
+            readGameplayMotion(entry.pack.manifest, entry.pack.config) ||
+            readMotionFlow(entry.pack.manifest, entry.pack.config)
+          ),
         );
-        if (motionStudy) elapsedRef.current = 0;
+        if (motionStudy || gameplayProfile) elapsedRef.current = 0;
         setEditorBasePack(entry.pack);
         setModifiedActions(false);
         modifiedActionsRef.current = false;
@@ -751,7 +834,25 @@ export function PackPlayer() {
   function chooseAnimation(value: PortableAnimationName, immediate = false) {
     const clip = pack ? animationFor(pack.manifest, value) : undefined;
     if (!clip) return;
-    if (motionEnabled && playing && !immediate) {
+    if (motionEnabled && gameplayProfile && playing && !immediate) {
+      const before = gameplayStateRef.current ?? {
+        ...createGameplayState(animation),
+        elapsedMs: elapsedRef.current,
+      };
+      if (
+        value === "jump" &&
+        (before.action === "jump" || before.pending === "jump")
+      )
+        return;
+      const state = requestGameplayAction(before, value, gameplayProfile);
+      gameplayStateRef.current = state;
+      elapsedRef.current = state.elapsedMs;
+      setAnimation(state.action);
+      setPendingAction(state.pending);
+      setCompleted(false);
+      return;
+    }
+    if (motionEnabled && motionProfile && playing && !immediate) {
       const state = requestMotionAction(
         motionStateRef.current ?? {
           action: animation,
@@ -1184,6 +1285,18 @@ export function PackPlayer() {
                   }
                   data-comparison={Boolean(comparisonPack)}
                   data-motion-flow={motionEnabled}
+                  tabIndex={gameplayProfile ? 0 : undefined}
+                  onKeyDown={(event) => {
+                    if (
+                      event.code !== "Space" ||
+                      !gameplayProfile ||
+                      !motionEnabled ||
+                      !playing
+                    )
+                      return;
+                    event.preventDefault();
+                    if (!event.repeat) chooseAnimation("jump");
+                  }}
                   aria-label={
                     pack
                       ? `${pack.manifest.name}, ${animation}, facing ${facing}, frame ${frameId}`
@@ -1320,7 +1433,7 @@ export function PackPlayer() {
                   )}
                 </button>
               </div>
-              {motionStudy && (
+              {(motionStudy || gameplayProfile) && (
                 <div
                   className="player-motion-note"
                   data-testid="motion-flow-controls"
@@ -1330,7 +1443,7 @@ export function PackPlayer() {
                       type="checkbox"
                       checked={waitForPose}
                       disabled={
-                        !motionProfile ||
+                        !(gameplayProfile || motionProfile) ||
                         authoring ||
                         comparisonRequested ||
                         !!comparisonPack
@@ -1340,9 +1453,11 @@ export function PackPlayer() {
                         setWaitForPose(event.target.checked);
                       }}
                     />{" "}
-                    Wait for a matching pose
+                    {gameplayProfile
+                      ? "Single jump · match action transitions"
+                      : "Wait for a matching pose"}
                   </label>
-                  {!motionProfile ? (
+                  {!(gameplayProfile || motionProfile) ? (
                     <p>
                       Matching-pose switching is unavailable: this pack’s action
                       settings no longer match its reviewed routes.
@@ -1361,7 +1476,9 @@ export function PackPlayer() {
                   ) : (
                     <p>
                       {waitForPose
-                        ? "During playback, action requests wait for a reviewed exit. Paused selections switch immediately."
+                        ? gameplayProfile
+                          ? "Jump plays once, then resumes your previous or requested movement. Click the preview and press Space to jump; holding it cannot repeat the jump."
+                          : "During playback, action requests wait for a reviewed exit. Paused selections switch immediately."
                         : "Actions switch immediately. Enable matching poses to compare the reviewed transitions."}
                     </p>
                   )}
@@ -1394,7 +1511,9 @@ export function PackPlayer() {
                   {completed
                     ? "Finished · Holding the final frame. Replay to start again."
                     : motionEnabled && animation === "jump"
-                      ? "Plays the complete jump once, including recovery, then follows the waiting action or returns to Idle."
+                      ? gameplayProfile
+                        ? "Plays one complete jump and landing, then resumes the previous or requested movement."
+                        : "Plays the complete jump once, including recovery, then follows the waiting action or returns to Idle."
                       : "Plays once · Holds the final frame until you replay or choose another action."}
                 </p>
               )}

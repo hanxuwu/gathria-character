@@ -1,0 +1,35 @@
+{
+  "headSha": "e5c5520a05b59f6a7185268451b8018f473c0cb5",
+  "push": {
+    "runId": 41048661181,
+    "jobId": 124038981335,
+    "conclusion": "failure",
+    "e2ePassed": 173,
+    "e2eFailed": 1,
+    "e2eDuration": "47.0m",
+    "log": "push-job.log.gz"
+  },
+  "pullRequest": {
+    "runId": 41048672732,
+    "jobId": 124039017919,
+    "conclusion": "success",
+    "e2ePassed": 174,
+    "e2eFailed": 0,
+    "e2eDuration": "40.0m",
+    "log": "pr-job.log.gz"
+  },
+  "failure": {
+    "file": "tests/e2e/landing-run.spec.ts",
+    "line": 241,
+    "case": "male: landing carries movement without the standing tail and preserves old exports",
+    "view": "original",
+    "assertion": "After an airborne Run input, canvas action is still jump and pending action is run",
+    "expected": "jump",
+    "received": "run",
+    "timeoutMs": 5000
+  },
+  "diagnosis": "The test waited for any Jump position >=9, then awaited separate observer setup, a Playwright click and a transient-attribute assertion. The source clock continues through those round trips, allowing landing before the assertion. Matching SHA passes the entire PR suite. This is evidence of a test scheduling race, not an export/frame/route failure; the log alone does not establish a device-level performance cause.",
+  "fix": "Arm an in-page MutationObserver before takeoff. At the first painted airborne pose >=9 and before the reviewed landing, click the existing Run/Idle control once in that browser task. Capture input action/position/time, then assert the recorded Jump+pending target state and original landing-frame/phase assertions after completion. No native clock mocking, increased waits or relaxed expected frames.",
+  "changedFile": "tests/e2e/landing-run.spec.ts",
+  "validation": "Both modified landing-run browser cases passed locally (5.7m), including actual airborne Run/Idle pending samples, both views, current/historical imports and exact export comparison. See landing-e2e.log.gz and export-equivalence.json."
+}

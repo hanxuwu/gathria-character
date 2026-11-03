@@ -1,0 +1,73 @@
+{
+  "headSha": "a7fbdcece1d6ef7c40b64e71b3b9f40f0a1a8070",
+  "runs": [
+    {
+      "id": 41037457084,
+      "event": "pull_request",
+      "conclusion": "failure",
+      "log": "previous-ci-41037457084.log"
+    },
+    {
+      "id": 41037447574,
+      "event": "push",
+      "conclusion": "failure",
+      "log": "previous-ci-41037447574.log"
+    }
+  ],
+  "succeededSteps": [
+    "Python validation",
+    "npm run typecheck",
+    "npm test",
+    "npm run build"
+  ],
+  "failedStep": "npm run test:e2e",
+  "e2eSummary": {
+    "passed": 164,
+    "failed": 8
+  },
+  "failures": [
+    {
+      "file": "tests/e2e/dual-view-daily-outfits.spec.ts",
+      "line": 259,
+      "cases": 2,
+      "assertion": "Native animation manifest equals source",
+      "observed": "Expected full source jump50 frames; received reviewed singlejump28 frames"
+    },
+    {
+      "file": "tests/e2e/dual-view-daily-outfits.spec.ts",
+      "line": 475,
+      "cases": 2,
+      "assertion": "Legacy paired archive SHA equals published source archive",
+      "observed": "Hash differs with new default singlejump archive mode"
+    },
+    {
+      "file": "tests/e2e/dual-view-wardrobe.spec.ts",
+      "line": 203,
+      "cases": 2,
+      "assertion": "Native animation manifest equals source",
+      "observed": "Expected full source jump50 frames; received reviewed singlejump28 frames"
+    },
+    {
+      "file": "tests/e2e/dual-view-wardrobe.spec.ts",
+      "line": 84,
+      "cases": 1,
+      "assertion": "Paired archive manifest version1",
+      "observed": "Received version2 containing singlejump mode"
+    },
+    {
+      "file": "tests/e2e/unified-workbench.spec.ts",
+      "line": 309,
+      "cases": 1,
+      "assertion": "Exported source jump50 frames",
+      "observed": "Received reviewed singlejump28 frames"
+    }
+  ],
+  "diagnosis": "All eight legacy/source-only test cases leave the newly default single-jump mode selected. Their assertions continue to expect historical source animations and archives. Current sideV3 only changes takeoff routes and does not resolve these mode preconditions.",
+  "proposedFix": "Explicitly select source playback mode only in these legacy regression cases; retain exact source animation, pixel, SHA and archive-version assertions. Separate single-jump/landing/takeoff tests continue to exercise default gameplay mode.",
+  "validationStatus": "All eight source-mode regressions passed locally after correcting their mode preconditions; see legacy-summary.json and legacy-regressions.log.gz. Original assertions retained.",
+  "testOutputOverrides": {
+    "GATHRIA_DUAL_TAILORED_EVIDENCE": "/tmp/motion-refine/legacy-evidence/dual-tailored",
+    "GATHRIA_DUAL_WARDROBE_EVIDENCE": "/tmp/motion-refine/legacy-evidence/dual-wardrobe",
+    "GATHRIA_UNIFIED_WORKBENCH_EVIDENCE": "/tmp/motion-refine/legacy-evidence/unified"
+  }
+}

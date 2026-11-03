@@ -9,7 +9,8 @@ import { readPortableCharacterPackArchive } from "../../src/core/pack";
 // Cases use separate browser contexts and character-specific output folders.
 test.describe.configure({ mode: "parallel" });
 
-const evidence = "/tmp/dual-tailored";
+const evidence =
+  process.env.GATHRIA_DUAL_TAILORED_EVIDENCE ?? "/tmp/dual-tailored";
 type View = "original" | "side";
 const views: View[] = ["original", "side"];
 const stage = (page: Page) => page.getByTestId("dual-stage");
@@ -132,6 +133,10 @@ for (const character of ["male", "female"] as const) {
       `/workbench.html?mode=paired&character=${character}&view=original`,
     );
     await ready(page);
+    // This regression compares published source animations and legacy ZIPs.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await ready(page);
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     await expect(stage(page)).toHaveAttribute("data-character", character);
     await expect(page.getByTestId("dual-palette")).toHaveValue(
       character === "male" ? "sea" : "apricot",
@@ -445,6 +450,10 @@ for (const character of ["male", "female"] as const) {
     await mkdir(output, { recursive: true });
     await page.goto(`/workbench.html?mode=paired&character=${character}`);
     await ready(page);
+    // Keep the full-source archive mode for the byte-exact legacy comparison.
+    await page.getByTestId("dual-motion-mode").selectOption("source");
+    await ready(page);
+    await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
     const legacyPng: Partial<Record<View, Uint8Array>> = {};
     const legacyRegistrations: Partial<Record<View, string>> = {};
     for (const v of views) {

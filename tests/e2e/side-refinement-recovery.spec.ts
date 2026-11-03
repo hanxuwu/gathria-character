@@ -17,6 +17,10 @@ async function ready(page: Page) {
     timeout: 180_000,
   });
   await expect(panel(page).getByRole("alert")).toHaveCount(0);
+  // This suite pins the complete native source and its historical frame indices.
+  const playback = side(page).getByTestId("side-playback-mode");
+  if ((await playback.inputValue()) !== "source")
+    await playback.selectOption("source");
 }
 async function download(page: Page, id: string) {
   const waiting = page.waitForEvent("download", { timeout: 180_000 });

@@ -56,6 +56,7 @@ const data = vi.hoisted(() => ({
   cotton: { representations: [] as Representation[] },
   tailored: { representations: [] as Representation[] },
   complete: { representations: [] as Representation[] },
+  polished: { representations: [] as Representation[] },
 }));
 vi.mock("../../docs/dual-view-wardrobe/assets/catalog.json", () => ({
   default: data.cotton,
@@ -65,6 +66,10 @@ vi.mock("../../docs/dual-tailored/assets/catalog.json", () => ({
 }));
 vi.mock("../../docs/dual-looks-cloth/assets/catalog.json", () => ({
   default: data.complete,
+}));
+
+vi.mock("../../docs/paired-polish/assets/catalog.json", () => ({
+  default: data.polished,
 }));
 
 const sha = (bytes: Uint8Array) =>
@@ -274,6 +279,7 @@ beforeEach(async () => {
   data.cotton.representations.length = 0;
   data.tailored.representations.length = 0;
   data.complete.representations.length = 0;
+  data.polished.representations.length = 0;
   files.clear();
   requests.length = 0;
   await fixture("original");
@@ -331,6 +337,67 @@ describe("paired collection source and inventory transitions", () => {
     const returned = await prepareDualViewLook(complete, tailored);
     expect(await exportDualViewWardrobe(returned)).toEqual(saved);
   });
+  it("publishes polished-day separately and never changes old outfits while migrating a bare project", async () => {
+    const before = await loadDualViewWardrobe("male", {}, tailored);
+    const saved = await exportDualViewWardrobe(before);
+    data.polished.representations = structuredClone(
+      data.tailored.representations,
+    );
+    const side = data.polished.representations.find(
+      (row) => row.view === "side",
+    )!;
+    const registration = JSON.parse(
+      new TextDecoder().decode(files.get(side.registrationUrl)!),
+    );
+    registration.frames[0].protected[0].polygon[2].x = 7;
+    // A distinct reviewed registration is bound to each bank offline. Neither
+    // prepareDualViewLook nor loading an old saved ZIP may infer this binding.
+    const registrationBytes = json(registration);
+    side.registrationUrl = "/test/polished-side.registration.json";
+    side.registrationSha256 = sha(registrationBytes);
+    files.set(side.registrationUrl, registrationBytes);
+    for (const item of side.items) {
+      const entries = unzipSync(files.get(item.url)!);
+      const manifest = JSON.parse(
+        new TextDecoder().decode(entries["manifest.json"]),
+      );
+      manifest.id = `polished-${manifest.id}`;
+      manifest.registrationSha256 = side.registrationSha256;
+      entries["manifest.json"] = json(manifest);
+      const bytes = zipSync(entries);
+      item.id = manifest.id;
+      item.url = `/test/${manifest.id}.zip`;
+      item.sha256 = sha(bytes);
+      item.bytes = bytes.length;
+      files.set(item.url, bytes);
+    }
+    const next = await prepareDualViewLook(before, {
+      ...tailored,
+      outfitId: "polished-day",
+    });
+    validateDualViewLook(next);
+    expect(next.projects.side.document.registrationSha256).toBe(
+      side.registrationSha256,
+    );
+    expect(next.projects.original.source).toEqual(
+      before.projects.original.source,
+    );
+    expect(next.projects.side.archive.manifest.animations).toEqual(
+      before.projects.side.archive.manifest.animations,
+    );
+    expect(await exportDualViewWardrobe(before)).toEqual(saved);
+    const reopened = await importDualViewWardrobe(saved);
+    validateDualViewLook(reopened);
+    expect(await exportDualViewWardrobe(reopened)).toEqual(saved);
+    expect(availableDualViewOutfits("male").map((item) => item.id)).toContain(
+      "polished-day",
+    );
+    side.items.pop();
+    expect(
+      availableDualViewOutfits("male").map((item) => item.id),
+    ).not.toContain("polished-day");
+  });
+
   it("keeps legacy cotton defaults and portable bytes through an unchanged selection", async () => {
     const old = await loadDualViewWardrobe("male");
     expect(old.selection).toEqual({

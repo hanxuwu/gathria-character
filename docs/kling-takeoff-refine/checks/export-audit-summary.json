@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "browserCases": 2,
+  "browserDuration": "2.8m",
+  "packs": 2,
+  "gifs": 8,
+  "nativeFramesUnchanged": 209,
+  "decodedGifFramesChecked": 394,
+  "exactNativeControllerMaxWaitMs": 458.3333333333333,
+  "controllerBoundVerifiedBy": "Separate core tests; browser timings include handler startup and display scheduling",
+  "browserIsWallClockSLA": false,
+  "results": [
+    {
+      "character": "male",
+      "profileId": "kling-male-side-single-jump-v3",
+      "nativeFramesUnchanged": 107,
+      "gifs": [
+        {
+          "name": "jump",
+          "facing": "right",
+          "frames": 28,
+          "durationMs": 1170
+        },
+        {
+          "name": "jump",
+          "facing": "left",
+          "frames": 28,
+          "durationMs": 1170
+        },
+        {
+          "name": "run-jump-run",
+          "facing": "right",
+          "frames": 72,
+          "durationMs": 3000
+        },
+        {
+          "name": "run-jump-run",
+          "facing": "left",
+          "frames": 72,
+          "durationMs": 3000
+        }
+      ],
+      "standaloneJumpBothDirectionsByteIdenticalToV1": true,
+      "profileChangesFromV2OnlyAddedRunExit": true,
+      "manifestExactPreviousV2": true,
+      "currentAndHistoricalPlayerImports": 2,
+      "currentReexportByteIdentical": true,
+      "phaseRequests": [
+        {
+          "name": "additional exit",
+          "start": 0,
+          "exit": 9,
+          "sourceExpectedWaitMs": 375,
+          "browserObservedWaitMs": 410.59999999403954
+        },
+        {
+          "name": "retained exit",
+          "start": 10,
+          "exit": 16,
+          "sourceExpectedWaitMs": 250,
+          "browserObservedWaitMs": 280.19999998807907
+        },
+        {
+          "name": "next-cycle additional exit",
+          "start": 17,
+          "exit": 27,
+          "sourceExpectedWaitMs": 416.6666666666667,
+          "browserObservedWaitMs": 463.79999999701977
+        }
+      ]
+    },
+    {
+      "character": "female",
+      "profileId": "kling-female-side-single-jump-v3",
+      "nativeFramesUnchanged": 102,
+      "gifs": [
+        {
+          "name": "jump",
+          "facing": "right",
+          "frames": 28,
+          "durationMs": 1170
+        },
+        {
+          "name": "jump",
+          "facing": "left",
+          "frames": 28,
+          "durationMs": 1170
+        },
+        {
+          "name": "run-jump-run",
+          "facing": "right",
+          "frames": 69,
+          "durationMs": 2880
+        },
+        {
+          "name": "run-jump-run",
+          "facing": "left",
+          "frames": 69,
+          "durationMs": 2880
+        }
+      ],
+      "standaloneJumpBothDirectionsByteIdenticalToV1": true,
+      "profileChangesFromV2OnlyAddedRunExit": true,
+      "manifestExactPreviousV2": true,
+      "currentAndHistoricalPlayerImports": 2,
+      "currentReexportByteIdentical": true,
+      "phaseRequests": [
+        {
+          "name": "additional exit",
+          "start": 0,
+          "exit": 6,
+          "sourceExpectedWaitMs": 250,
+          "browserObservedWaitMs": 278.29999999701977
+        },
+        {
+          "name": "retained exit",
+          "start": 7,
+          "exit": 13,
+          "sourceExpectedWaitMs": 250,
+          "browserObservedWaitMs": 279.3999999910593
+        },
+        {
+          "name": "next-cycle additional exit",
+          "start": 14,
+          "exit": 24,
+          "sourceExpectedWaitMs": 416.6666666666667,
+          "browserObservedWaitMs": 444.5
+        }
+      ]
+    }
+  ]
+}

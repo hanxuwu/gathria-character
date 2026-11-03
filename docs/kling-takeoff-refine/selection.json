@@ -1,0 +1,299 @@
+{
+  "format": "gathria-takeoff-pose-selection",
+  "version": 1,
+  "baselineCommit": "a7fbdcece1d6ef7c40b64e71b3b9f40f0a1a8070",
+  "scope": "Additional side-view Run \u2192 Jump boundaries; original routes and all Jump \u2192 Run routes remain unchanged",
+  "artworkEdited": false,
+  "fpsChanged": false,
+  "profileRevision": {
+    "side": "single-jump-v3",
+    "original": "single-jump-v2"
+  },
+  "runtimeVerification": "Recorded separately; these sheets are existing source/composed drawings, not proof of new playback",
+  "characters": [
+    {
+      "character": "male",
+      "view": "side",
+      "sourceArchive": "docs/kling-side-workspace/assets/male.source.zip",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "composedArchiveProvenance": "Actual UI export of a7fbdce; unchanged artwork used only for pose review",
+      "composedArchiveSha256": "ed3c314ba2be3eef6b04c4662f0ad23d89e1c6481baceca9b64e34f02ce00cc9",
+      "retainedRoute": {
+        "from": "run",
+        "to": "jump",
+        "exit": 16,
+        "entry": 0,
+        "lastRunNative": 54,
+        "firstJumpNative": 63
+      },
+      "addedRoute": {
+        "from": "run",
+        "to": "jump",
+        "exit": 9,
+        "entry": 0,
+        "lastRunNative": 47,
+        "firstJumpNative": 63
+      },
+      "frameIdsReviewed": [
+        53,
+        54,
+        46,
+        47,
+        63,
+        64
+      ],
+      "nativeBounds": {
+        "source": {
+          "53": [
+            100,
+            228,
+            374,
+            693
+          ],
+          "54": [
+            110,
+            233,
+            369,
+            702
+          ],
+          "46": [
+            119,
+            236,
+            352,
+            699
+          ],
+          "47": [
+            138,
+            236,
+            351,
+            700
+          ],
+          "63": [
+            97,
+            254,
+            428,
+            707
+          ],
+          "64": [
+            106,
+            273,
+            432,
+            708
+          ]
+        },
+        "composed": {
+          "53": [
+            86,
+            151,
+            406,
+            693
+          ],
+          "54": [
+            107,
+            156,
+            416,
+            702
+          ],
+          "46": [
+            108,
+            159,
+            408,
+            699
+          ],
+          "47": [
+            73,
+            158,
+            407,
+            700
+          ],
+          "63": [
+            97,
+            192,
+            481,
+            707
+          ],
+          "64": [
+            106,
+            205,
+            510,
+            708
+          ]
+        }
+      },
+      "nativeRgbaSha256": {
+        "source": {
+          "53": "352a2723be5f9013f512e80cceca9ab64a9ca74b93d2aecdad831d516af6cf0a",
+          "54": "75ff1e416118774d65b5e531d708af48124a4dee1f263eb0bafdb02af25c7f40",
+          "46": "aaa9701e28dac6511433722613b3d2ee689604732d702d0ed9f97227dffd2b25",
+          "47": "1aa990f9a1801de3474807275fcd7a3269551ebad2d3364c5bb743bd1154ac7a",
+          "63": "9f57b3e9761b98881b347fea217122ae6be729a3815f9b332c5edb0c279de7a8",
+          "64": "b187e8ec6e743a91bc90a87458fb9db11003623135b2a4f94ccb3043cd0b7e3e"
+        },
+        "composed": {
+          "53": "5b0876f8a292e9276f9396ae257039edc6b348c9309fe66a0deeefae057b48f6",
+          "54": "01a745968d26059a94f91aed164a24ea574d1d613c0634271f202ed0e216af8b",
+          "46": "e8049fdc9d6a641509774372ea0234f0f3389f029fb7d8010964152fff8b6982",
+          "47": "b61e894aa771d24f8e334050125f17dca17f143cdfffab7b1412cfbeed2993c4",
+          "63": "44d67a88ce240de587d5749c0e187dc0bf43efbbdb9c9f42bad84fb913b052e2",
+          "64": "1d842be0177c2c5af644ed11a3d187065a9d73b2e1ecf747687f42a8e2933ce3"
+        }
+      },
+      "sheet": "male-side-takeoff-selection.png",
+      "fixedNativeCrop": [
+        68,
+        146,
+        515,
+        713
+      ],
+      "sheetPaletteColors": 256,
+      "sourceFps": 24,
+      "loopTicks": 18,
+      "priorMaxWaitLimitTicks": 18,
+      "newMaxWaitLimitTicks": 11,
+      "priorMaxWaitLimitMs": 750,
+      "newMaxWaitLimitMs": 458.3333333333333
+    },
+    {
+      "character": "female",
+      "view": "side",
+      "sourceArchive": "docs/kling-side-workspace/assets/female.source.zip",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "composedArchiveProvenance": "Actual UI export of a7fbdce; unchanged artwork used only for pose review",
+      "composedArchiveSha256": "5da659c97446383f9cd98c78e1132c586fd0c7407d3873a524e8f02b183b875c",
+      "retainedRoute": {
+        "from": "run",
+        "to": "jump",
+        "exit": 13,
+        "entry": 0,
+        "lastRunNative": 46,
+        "firstJumpNative": 58
+      },
+      "addedRoute": {
+        "from": "run",
+        "to": "jump",
+        "exit": 6,
+        "entry": 0,
+        "lastRunNative": 39,
+        "firstJumpNative": 58
+      },
+      "frameIdsReviewed": [
+        45,
+        46,
+        38,
+        39,
+        58,
+        59
+      ],
+      "nativeBounds": {
+        "source": {
+          "45": [
+            103,
+            227,
+            382,
+            700
+          ],
+          "46": [
+            113,
+            232,
+            377,
+            709
+          ],
+          "38": [
+            122,
+            235,
+            359,
+            705
+          ],
+          "39": [
+            148,
+            235,
+            359,
+            706
+          ],
+          "58": [
+            94,
+            242,
+            435,
+            708
+          ],
+          "59": [
+            103,
+            261,
+            440,
+            709
+          ]
+        },
+        "composed": {
+          "45": [
+            100,
+            198,
+            385,
+            700
+          ],
+          "46": [
+            57,
+            203,
+            385,
+            709
+          ],
+          "38": [
+            59,
+            202,
+            387,
+            705
+          ],
+          "39": [
+            101,
+            205,
+            387,
+            706
+          ],
+          "58": [
+            93,
+            186,
+            479,
+            708
+          ],
+          "59": [
+            103,
+            189,
+            493,
+            709
+          ]
+        }
+      },
+      "nativeRgbaSha256": {
+        "source": {
+          "45": "3f2d8da9e1bb382177fd7f224d3792b848ff1ec7cd388582ee0b97cce6f137f7",
+          "46": "8f3e667cd13685b17fdcc729edd16ecf554d4c8aa16f4b8481f1861418196b19",
+          "38": "8be64fae094d57361fd0e36b128a5d3c3497c9a1f4e0e72b53daf89a2b65eea7",
+          "39": "3338dbd26b77b3a2416dd2c555b9789df5043620ef1ce175a03041e2dbc38da4",
+          "58": "c18b22112c398d247dd30dcb75da606d178cfb876cc325c240c3ecf470f04001",
+          "59": "6881b9d370178d9a71cc869c05d6343115adda19f8c2f0b83b5192d0d5a8edd4"
+        },
+        "composed": {
+          "45": "48ba839995af805b65b24119fd96067a71f5c699b35b6a9c571294eccda351b9",
+          "46": "514ac7548fd749852b4aacea541f10ee42ea6d4c409bc3d694c975f462d94645",
+          "38": "6c96eda88218fd1efc6b8a5cb3092fc97a727d2d138881c0593b5963ed83eac4",
+          "39": "297af1b6790ed2d85027af2c5d76b10feffbc493bf0fb425e2f95c6f693b016a",
+          "58": "09ca921ebf57db93cd1dcd33b0b90c90adf687fbb1f6fedce778a4c40befa87e",
+          "59": "5d585dcefaf22e81b9390ca795ffd3207df5aec9bf765ac7bbf6786b249d2e9b"
+        }
+      },
+      "sheet": "female-side-takeoff-selection.png",
+      "fixedNativeCrop": [
+        52,
+        181,
+        498,
+        714
+      ],
+      "sheetPaletteColors": 256,
+      "sourceFps": 24,
+      "loopTicks": 18,
+      "priorMaxWaitLimitTicks": 18,
+      "newMaxWaitLimitTicks": 11,
+      "priorMaxWaitLimitMs": 750,
+      "newMaxWaitLimitMs": 458.3333333333333
+    }
+  ]
+}

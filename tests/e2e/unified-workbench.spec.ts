@@ -6,7 +6,9 @@ import { parseGIF, decompressFrames } from "gifuct-js";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
 import { readPortableCharacterPackArchive } from "../../src/core/pack";
 
-const evidence = "/tmp/unified-workbench/browser";
+const evidence =
+  process.env.GATHRIA_UNIFIED_WORKBENCH_EVIDENCE ??
+  "/tmp/unified-workbench/browser";
 const activeSide = (page: Page) =>
   page.locator('[data-testid="side-session"][data-active="true"]');
 const stage = (page: Page) => activeSide(page).getByTestId("side-stage");
@@ -251,6 +253,14 @@ test("unified workbench exports unchanged GIF and CharacterPack with independent
     "/workbench.html?character=female&mode=side-view&collection=tailored",
   );
   await ready(page);
+  // Compare the historical full-source export, including its 50-frame jump.
+  await activeSide(page)
+    .getByTestId("side-playback-mode")
+    .selectOption("source");
+  await ready(page);
+  await expect(activeSide(page).getByTestId("side-playback-mode")).toHaveValue(
+    "source",
+  );
   await seek(page, "run", 4);
   const before = await exportSide(
     page,
