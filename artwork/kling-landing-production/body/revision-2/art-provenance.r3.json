@@ -1,0 +1,251 @@
+{
+  "origin": "imagegen bounded upperbody revision of supplemental candidate108",
+  "classification": "Experimental candidate; original source default unchanged",
+  "generationCalls": 1,
+  "generator": "image_gen.imagegen",
+  "transparentBackgroundRequested": true,
+  "rawSize": [
+    1024,
+    1536
+  ],
+  "nativeSize": [
+    512,
+    768
+  ],
+  "preparation": "Browser Canvas uniform0.5x generated body resampling only. No source head/body resampling. Root must copy owned RGBA from R3 over tracked R2 body and restore exact source89 head.",
+  "inputs": [
+    "/tmp/gathria-landing-production/artwork/kling-landing-production/body/pose-b-r2.native.png",
+    "/tmp/landing-production/references/side-original-48.png",
+    "/tmp/landing-upper-body-refine/108-upper-target-guide.png"
+  ],
+  "files": {
+    "pose-108-r3.original.png": {
+      "path": "/tmp/landing-upper-body-refine/pose-108-r3.original.png",
+      "sha256": "54546386058cfee5ec833db3ae1d084220470fc1d73c8511a738024eebecab3b"
+    },
+    "pose-108-r3.native.png": {
+      "path": "/tmp/landing-upper-body-refine/pose-108-r3.native.png",
+      "sha256": "6bd076542307f65ef32253d31df42282181058ca494fbc553f83553d695c512d"
+    },
+    "pose-108-r3.matte.png": {
+      "path": "/tmp/landing-upper-body-refine/pose-108-r3.matte.png",
+      "sha256": "3c3cca930d314ba6bd474f28b60a585501d28746ace14ce995ebf0f9ec7ee04a"
+    },
+    "pose-108-r3.prompt.txt": {
+      "path": "/tmp/landing-upper-body-refine/pose-108-r3.prompt.txt",
+      "sha256": "9016a1c802dc0aae151b1388f57ece009e999437addacc9a66f7bc0c26fc3fcd"
+    },
+    "108-upper-target-guide.png": {
+      "path": "/tmp/landing-upper-body-refine/108-upper-target-guide.png",
+      "sha256": "721e950ad4040af6e76e902a8ff8f66c1c4c22c8891b8cea43025b4507346bb8"
+    },
+    "108-upper-ownership.png": {
+      "path": "/tmp/landing-upper-body-refine/108-upper-ownership.png",
+      "sha256": "5d248e6df4f46caa939b535246d54acdbc6bd65d2b185c14e41a15e4face444c"
+    },
+    "ownership.json": {
+      "path": "/tmp/landing-upper-body-refine/ownership.json",
+      "sha256": "a3a5be2c68ac79ec46e294bbe9cc773e53a70e130327ba088df238d172b82484"
+    },
+    "new-frame-registration.r3.json": {
+      "path": "/tmp/landing-upper-body-refine/new-frame-registration.r3.json",
+      "sha256": "2ba4c3b05bfb2a98b6edeefd95b35a8839f8914913d46b43f8a0c0a8053b0a73"
+    }
+  },
+  "ownership": {
+    "format": "gathria-local-art-ownership",
+    "version": 1,
+    "frameId": 108,
+    "canvas": [
+      512,
+      768
+    ],
+    "method": "Binary pixel-center polygon union; owned RGBA copied from generated R3 native body; all other RGBA copied exactly from tracked R2 headless body; original89 head reattached separately",
+    "polygons": [
+      {
+        "label": "upperTorsoAndNearArm",
+        "points": [
+          [
+            135,
+            400
+          ],
+          [
+            312,
+            400
+          ],
+          [
+            312,
+            486
+          ],
+          [
+            306,
+            486
+          ],
+          [
+            304,
+            493
+          ],
+          [
+            300,
+            501
+          ],
+          [
+            295,
+            511
+          ],
+          [
+            288,
+            523
+          ],
+          [
+            284,
+            532
+          ],
+          [
+            284,
+            542
+          ],
+          [
+            135,
+            542
+          ]
+        ]
+      },
+      {
+        "label": "lowerNearHandOverlap",
+        "points": [
+          [
+            193,
+            534
+          ],
+          [
+            247,
+            534
+          ],
+          [
+            244,
+            540
+          ],
+          [
+            238,
+            545
+          ],
+          [
+            232,
+            549
+          ],
+          [
+            226,
+            553
+          ],
+          [
+            219,
+            556
+          ],
+          [
+            212,
+            557
+          ],
+          [
+            205,
+            555
+          ],
+          [
+            199,
+            552
+          ],
+          [
+            195,
+            547
+          ]
+        ]
+      }
+    ],
+    "protectedConstraints": {
+      "allRowsAtOrBelow": 570,
+      "farHandMinX": 323,
+      "head": "Recopy exact original89 head using unchanged108 head mask/translation after ownedbody assembly"
+    },
+    "notes": [
+      "Main ownership clears the old backward elbow silhouette as well as accepting the new arm.",
+      "Hand-only lower lobe includes the generated outline and a narrow shorts overlap; no feet, legs or hip anchors are inside it.",
+      "Right edge follows torso/far-arm attachment. Far hand is entirely excluded. Inspect the short far-arm boundary and tank hem after exact RGBA composition."
+    ]
+  },
+  "maskAudit": {
+    "count": 24577,
+    "bbox": [
+      135,
+      400,
+      312,
+      557
+    ]
+  },
+  "manualMeasurements": {
+    "nearShoulder": [
+      213,
+      449
+    ],
+    "nearElbow": [
+      176,
+      486
+    ],
+    "nearWristAttachment": [
+      212,
+      521
+    ],
+    "nearFistCenter": [
+      221,
+      534
+    ],
+    "nearHandLowestVisibleY": 554,
+    "chestFrontAtY480": 302,
+    "tankHemY": [
+      539,
+      543
+    ]
+  },
+  "anchorChanges": {
+    "nearShoulder": {
+      "before": [
+        213,
+        448
+      ],
+      "after": [
+        213,
+        449
+      ]
+    },
+    "nearElbow": {
+      "before": [
+        164,
+        477
+      ],
+      "after": [
+        176,
+        486
+      ]
+    },
+    "nearWrist": {
+      "before": [
+        202,
+        507
+      ],
+      "after": [
+        212,
+        521
+      ]
+    }
+  },
+  "review": {
+    "localMatte": "Clean on white/gray; upper arm visibly swings down/right, chest narrows towardRun48.",
+    "independentVisualAuditor": "landing_followup_visual_audit reviewed native comparison and supports proceeding to exact masked assembly.",
+    "acceptance": "Generated patch is recommended for root composition review; final composite not yet accepted by this report."
+  },
+  "remainingChecks": [
+    "Inspect near-hand/shorts seam to~y555, tank waist539\u2013543 and neck under exact unchanged head.",
+    "Far arm attachment boundary follows torso edge; root must inspect whether narrow cut preserves a continuous outline.",
+    "R3 painting remains slightly softer than native48. This is supplementary animation art, not an original extracted frame.",
+    "Prompt preservation is not pixel identity. Exact lowerbody/farhand retention comes from ownership composition, not from raw generator output."
+  ]
+}

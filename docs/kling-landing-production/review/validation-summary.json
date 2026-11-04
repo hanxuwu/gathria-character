@@ -1,12 +1,12 @@
 {
   "format": "gathria-landing-validation-summary",
   "version": 1,
-  "sourceSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
+  "sourceSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
   "technical": {
-    "status": "passed",
+    "status": "local-checks-passed",
     "unitTests": {
-      "files": 74,
-      "tests": 747
+      "files": 75,
+      "tests": 757
     },
     "typecheck": true,
     "productionBuild": true,
@@ -25,7 +25,10 @@
       "originalFrames": 107,
       "originalAtlasPages": 3,
       "byteExact": true,
-      "newHeadVisiblePixelsExactPerFrame": 37158
+      "newHeadVisiblePixelsExactPerFrame": 37158,
+      "v1Frames0Through107RgbaExact": true,
+      "frame108ChangedPixels": 15962,
+      "frame108PixelsFromY557Exact": true
     },
     "standalonePlayer": {
       "looks": 3,
@@ -45,20 +48,41 @@
       "combinations": 2,
       "actualGifExports": true,
       "paused108SaveReopen": true
-    }
+    },
+    "completeBrowserDiscovery": {
+      "files": 54,
+      "tests": 179,
+      "result": "passed after explicit JSON import attributes"
+    },
+    "githubCI": "Reported separately by PR checks; full hosted E2E suite is not included in the local pass claim.",
+    "deterministicAssetRebuild": true,
+    "crossEditionAudit": "../checks/edition-v1-v2.json",
+    "v1BackwardCompatibility": {
+      "actualSavedProjectReopen": true,
+      "frames107108RgbaExact": true,
+      "oldSourceAndProfileRetained": true,
+      "newAssetFetches": 0,
+      "oldStandaloneReexportBytesExact": true,
+      "evidence": "v1-backward-compatibility.json"
+    },
+    "executionNote": "An initial unit run concurrent with multiple browser/export/build jobs hit two 5-second timeouts. A clean rerun of the full suite passed all757 tests in35.07s without changing test timeouts."
   },
   "visual": {
     "status": "pending-review",
     "improvements": [
-      "The support shoe no longer overshoots backwards and reverses into native Run48.",
-      "Two reusable bare-body drawings support original, daily and wedding looks.",
-      "Shoulder sampling and shoe guards were corrected in the new wedding candidate."
+      "Frame108 near arm and torso advance toward native Run48 instead of retaining the crouched arm position.",
+      "Daily and wedding frame108 garment layers follow the revised arm while preserving original head, far hand, legs and shoes.",
+      "Sixteen raised wedding near sleeves use painted curved cuffs and folds; frame78 enclosed clothing hole closed."
     ],
     "remaining": [
-      "Residual horizontal ground-relative drift and a few pixels of sole height change; no exact foot-lock claim.",
-      "Generated body shading and hand contour differ slightly from native source.",
-      "Some raised wedding sleeves remain flat; small protected shoulder/nape slivers and variable cuffs remain."
+      "Residual horizontal ground-relative drift and sole-height change remain; legs and timing unchanged.",
+      "The painted transition still differs somewhat in shading and contour from native Run48.",
+      "Wedding74/97 skin notches, high cuffs100/101 and old far-sleeve rectangular edges remain.",
+      "Full demonstration GIF replay resets Run47 toRun39; it is not a seamless locomotion loop."
     ],
-    "defaultChanged": false
-  }
+    "defaultChanged": false,
+    "independentReview": "visual-review-v2.md"
+  },
+  "edition": 2,
+  "registrationSha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab"
 }

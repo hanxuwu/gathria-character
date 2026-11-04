@@ -8,6 +8,11 @@ builder does not generate, resize, warp, or repaint character pixels.
 Use --source-only as soon as frames and registration are authored. The final
 source and registration bytes do not depend on garment input availability.
 The companion TypeScript reader validates the resulting production contracts.
+
+Later candidate editions set input.edition and input.previousEdition (the prior
+edition number and exact source/registration SHA-256). Logical character and
+garment IDs stay stable; archive hashes distinguish the immutable editions.
+Omitting these fields preserves the original edition's exact output bytes.
 """
 from __future__ import annotations
 
@@ -17,6 +22,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import re
 import zipfile
 
 from PIL import Image, ImageChops
@@ -49,6 +55,20 @@ ANCHORS = (
 
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def edition_metadata(spec: dict) -> dict:
+    if "edition" not in spec:
+        assert "previousEdition" not in spec, "A previous edition requires an explicit new edition number"
+        return {}
+    edition = spec["edition"]
+    assert type(edition) is int and edition >= 2, "Explicit edition numbers begin at 2; legacy inputs are edition 1"
+    previous = spec.get("previousEdition")
+    assert isinstance(previous, dict) and set(previous) == {"edition", "sourceSha256", "registrationSha256"}
+    assert type(previous["edition"]) is int and previous["edition"] == edition - 1
+    for key in ("sourceSha256", "registrationSha256"):
+        assert isinstance(previous[key], str) and re.fullmatch(r"[0-9a-f]{64}", previous[key]), f"Invalid previous edition {key}"
+    return {"edition": edition, "previousEdition": copy.deepcopy(previous)}
 
 
 def encoded(value, *, compact=False) -> bytes:
@@ -177,6 +197,7 @@ def verify_head_copy(spec: dict, relative, files: dict[str, bytes], manifest: di
 
 
 def source_assets(spec: dict, relative, fixture: bool):
+    edition = edition_metadata(spec)
     base_bytes, base_files, before = opened(BASE_SOURCE)
     base_recipe = json.loads(base_files["character.json"])
     old_registration_bytes = BASE_REGISTRATION.read_bytes()
@@ -201,6 +222,7 @@ def source_assets(spec: dict, relative, fixture: bool):
     source_index = {
         "format": "gathria-landing-candidate-source-index", "version": 1,
         "status": status,
+        **edition,
         "indexMeaning": "Archive collection entries, not video frame numbers; timeSeconds=0 means no single source timeline.",
         "entries": [
             {"index": frame_id, "kind": "unchanged-native-source-frame", "archive": "original.character.zip",
@@ -255,6 +277,7 @@ def source_assets(spec: dict, relative, fixture: bool):
         },
         "sourceMetadata": {"landingCandidate": {
             "format": "gathria-landing-production-candidate", "version": 1, "status": status,
+            **edition,
             "visualAcceptance": "pending", "baseSourceSha256": sha(base_bytes),
             "baseRegistrationSha256": sha(old_registration_bytes),
             "originalFrameIds": OLD_IDS, "generatedFrameIds": NEW_IDS,
@@ -418,11 +441,13 @@ def main():
     parser.add_argument("--fixture-only", action="store_true", help="Mark technical schema inputs explicitly; never accepted artwork")
     args = parser.parse_args()
     spec = json.loads(args.input.read_bytes())
+    edition = edition_metadata(spec)
     relative = lambda path: (args.input.resolve().parent / path).resolve()
     source, registration, reference, manifest, old_registration, head_copy = source_assets(spec, relative, args.fixture_only)
     source_hash, registration_hash = sha(source), sha(registration)
     output = {"male.source.zip": source, "male.registration.json": registration, "male-landing-reference.zip": reference}
     report = {"format": "gathria-landing-production-build", "version": 1,
+              **edition,
               "fixtureOnly": args.fixture_only, "visualAcceptance": "pending", "sourceSha256": source_hash,
               "registrationSha256": registration_hash, "sourceReferenceSha256": sha(reference),
               "sourceFrames": 109, "originalFrames": 107, "originalSourcePagesByteExact": True,
@@ -439,6 +464,7 @@ def main():
     report["appearance"] = appearance_audit
     selection = lambda top=None, bottom=None: {"top": top, "bottom": bottom, "shoes": None, "fullBody": None}
     catalog = {"format": "gathria-landing-production-catalog", "version": 1,
+               **edition,
                "status": "schema-fixture-only" if args.fixture_only else "source-ready" if args.source_only else "generated-review-candidate",
                "visualAcceptance": "pending", "characterId": CHARACTER,
                "sourceSha256": source_hash, "registrationSha256": registration_hash,

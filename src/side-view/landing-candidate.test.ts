@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { unzipSync } from "fflate";
 import { beforeAll, describe, expect, it } from "vitest";
 import specifications from "../core/gameplay-motion-profiles.json";
+import landingCatalog from "../../docs/kling-landing-production/assets/catalog.json";
 import {
   gameplayManifest,
   gameplayMotionMetadata,
@@ -34,14 +35,16 @@ import {
   updateWardrobePreview,
 } from "../wardrobe/project";
 
-const ID = "kling-male-side-landing-candidate-v1";
+const CHARACTER_ID = "kling-male-side-landing-candidate-v1";
 const TICK = 1000 / 24;
-const candidate = specifications.find((row) => row.profile.id === ID)!;
+const candidate = specifications.find(
+  (row) => row.profile.sourceSha256 === landingCatalog.sourceSha256,
+)!;
 const previous = specifications.find(
   (row) => row.profile.id === "kling-male-side-single-jump-v7",
 )!;
 const profile = candidate.profile as GameplayMotion;
-const config = { characterId: ID };
+const config = { characterId: CHARACTER_ID };
 const manifest = {
   animations: candidate.sourceActions,
   frames: Array.from({ length: 109 }, (_, id) => ({ id })),
@@ -133,7 +136,7 @@ describe("independent male landing candidate source binding", () => {
     ) as BakedCharacterRecipe;
     const hash = createHash("sha256").update(bytes).digest("hex");
     expect(hash).toBe(profile.sourceSha256);
-    expect(actualConfig.characterId).toBe(ID);
+    expect(actualConfig.characterId).toBe(CHARACTER_ID);
     expect(actualManifest.frames).toHaveLength(109);
     expect(actualManifest.animations).toEqual(candidate.sourceActions);
     expect(resolveGameplayMotion(actualManifest, hash, actualConfig)).toEqual(

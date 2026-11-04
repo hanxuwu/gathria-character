@@ -3,18 +3,19 @@
     "origin": "generated-art-candidate",
     "visualAcceptance": "pending",
     "status": "selected-experimental-candidate",
-    "selectedBodyIteration": "r2",
+    "selectedBodyIteration": "107 R2; 108 R3 owned upper-body revision with corrected arm interface",
     "generatedBodyNativeSize": [
       512,
       768
     ],
     "originalSourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
     "sourceHeadFrameId": 89,
-    "method": "Image generation of two new gray tank and shorts body poses, then uniform 0.5x browser Canvas body preparation. Original source frame 89 head is copied losslessly at integer translations; head pixels are never resized or repainted. Source frames 0..106 stay unchanged. Final R2 is selected for experimental interactive review only, not approved as the production default.",
+    "method": "Retain frame 107 exactly. For frame 108, copy generated R3 RGBA only inside the reviewed upper-torso and near-arm ownership mask over the original R2 generated body. Preserve every unowned pixel and all rows at or below y=557 exactly. Reattach the same original source frame 89 head without resampling, repainting or translation changes. All original native frames 0..106, action clips and timing remain unchanged. This second edition is selected for experimental interactive review only; production visual acceptance remains pending.",
     "promptHistory": [
       "initial body proposal",
       "R1localleg correction",
-      "R2supportshoe correction"
+      "R2supportshoe correction",
+      "R3 localized frame 108 torso and near-arm correction; bounded owned RGBA assembly"
     ],
     "frames": {
       "107": {
@@ -32,25 +33,36 @@
         }
       },
       "108": {
-        "rawGeneratedPng": "pose-b-r2.original.png",
-        "rawGeneratedSha256": "81bf609cb520380421512a95842c959e87bb05e14318d1e17d6deaea966d5b86",
-        "nativeBodyPng": "pose-b-r2.native.png",
-        "nativeBodySha256": "db5fa5c5967201b7921d3cd7b7eb11ebb9a527a89ed17c4d0fb3b4a5fa5a6247",
-        "assembledPng": "108.png",
-        "assembledSha256": "a6121e90acdf38f8e66c9d145c8b37143998af73447b2ceac2dc452869bd3b74",
-        "finalPrompt": "pose-b-r2.prompt.txt",
-        "finalPromptSha256": "17c2f3de1d8549b9b2a05f198a4e8fae106a46bbe349970cb9f080e8c3fb1b35",
+        "rawGeneratedPng": "revision-2/pose-108-r3.original.png",
+        "rawGeneratedSha256": "54546386058cfee5ec833db3ae1d084220470fc1d73c8511a738024eebecab3b",
+        "nativeBodyPng": "revision-2/pose-108-owned.native.png",
+        "nativeBodySha256": "3d8ea0c24f05580d8c54d6df7dc39e7228551ac15a8fa83f4df583e839582a41",
+        "assembledPng": "revision-2/108.png",
+        "assembledSha256": "b9de75353ef921cd163f31e259c3e13988a49a98b54b6340497de692c95cb52a",
+        "finalPrompt": "revision-2/pose-108-r3.prompt.txt",
+        "finalPromptSha256": "9016a1c802dc0aae151b1388f57ece009e999437addacc9a66f7bc0c26fc3fcd",
         "headTranslation": {
           "x": -18,
           "y": -14
-        }
+        },
+        "generatedNativePng": "revision-2/pose-108-r3.native.png",
+        "generatedNativeSha256": "6bd076542307f65ef32253d31df42282181058ca494fbc553f83553d695c512d",
+        "previousNativeBodyPng": "pose-b-r2.native.png",
+        "previousNativeBodySha256": "db5fa5c5967201b7921d3cd7b7eb11ebb9a527a89ed17c4d0fb3b4a5fa5a6247",
+        "bodyOwnershipMask": "revision-2/108-upper-ownership-v2.png",
+        "bodyOwnershipMaskSha256": "284c5ba5b9b23e0c9fd946be7d34e59f4bf5f7967703269ec1265edc70a0fbc6"
       }
     },
-    "headAssemblyAudit": "head-copy-audit.json",
+    "headAssemblyAudit": "revision-2/head-copy-audit.json",
     "headAssemblyMask": "source89-head-mask.png",
-    "registration": "new-frame-registration.json",
-    "bodyReview": "final-generation-review.json",
-    "registrationStatus": "Manually observed candidate anchors and protected hand polygons; anatomical placement remains subject to visual review."
+    "registration": "revision-2/new-frame-registration.r3.json",
+    "bodyReview": "revision-2/art-provenance.r3.json",
+    "registrationStatus": "Manually revised frame 108 near shoulder, elbow, wrist and hand protection. Frame 107 and the frame 108 head polygon, neck, far hand and leg anchors retain their previous values; these are authoring guides, not a recovered skeleton.",
+    "candidateEdition": 2,
+    "assetPathBase": "artwork/kling-landing-production/body",
+    "experimentalSelection": "Root and independent visual review selected the corrected upper-body seam for experimental freeze; dressed frame and interactive sequence review follow.",
+    "upperOwnership": "revision-2/ownership.v2.json",
+    "localPreservationAudit": "revision-2/local-preservation-audit.json"
   },
   "headCopy": {
     "mask": "source89-head-mask.png"
@@ -519,7 +531,7 @@
     },
     {
       "frameId": 108,
-      "image": "108.png",
+      "image": "revision-2/108.png",
       "registration": {
         "frameId": 108,
         "points": {
@@ -532,10 +544,10 @@
           },
           "nearShoulder": {
             "x": 213,
-            "y": 448,
+            "y": 449,
             "visibility": "visible",
-            "confidence": 0.72,
-            "method": "manual final R2 contour/attachment estimate; approximately ±4 px, not recovered skeleton"
+            "confidence": 0.75,
+            "method": "Manual R3 final native contour/attachment estimate, audited against native48; approximately±4px, not recovered skeleton"
           },
           "farShoulder": {
             "x": 297,
@@ -547,9 +559,9 @@
           "waistLeft": {
             "x": 211,
             "y": 538,
-            "visibility": "visible",
-            "confidence": 0.72,
-            "method": "manual final R2 contour/attachment estimate; approximately ±4 px, not recovered skeleton"
+            "visibility": "occluded",
+            "confidence": 0.42,
+            "method": "Retained waist attachment below lowered near-hand occlusion; lowerbody remains exact R2"
           },
           "waistRight": {
             "x": 283,
@@ -573,11 +585,11 @@
             "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
           },
           "nearElbow": {
-            "x": 164,
-            "y": 477,
+            "x": 176,
+            "y": 486,
             "visibility": "visible",
-            "confidence": 0.72,
-            "method": "manual final R2 contour/attachment estimate; approximately ±4 px, not recovered skeleton"
+            "confidence": 0.75,
+            "method": "Manual R3 final native contour/attachment estimate, audited against native48; approximately±4px, not recovered skeleton"
           },
           "farElbow": {
             "x": 303,
@@ -587,11 +599,11 @@
             "method": "manual final R2 contour/attachment estimate; approximately ±4 px, not recovered skeleton"
           },
           "nearWrist": {
-            "x": 202,
-            "y": 507,
+            "x": 212,
+            "y": 521,
             "visibility": "visible",
-            "confidence": 0.72,
-            "method": "manual final R2 contour/attachment estimate; approximately ±4 px, not recovered skeleton"
+            "confidence": 0.75,
+            "method": "Manual R3 final native contour/attachment estimate, audited against native48; approximately±4px, not recovered skeleton"
           },
           "farWrist": {
             "x": 326,
@@ -857,56 +869,56 @@
             "label": "nearHand",
             "polygon": [
               {
-                "x": 182,
-                "y": 513
+                "x": 194,
+                "y": 528
               },
               {
-                "x": 202,
-                "y": 493
-              },
-              {
-                "x": 215,
-                "y": 493
-              },
-              {
-                "x": 227,
-                "y": 498
-              },
-              {
-                "x": 237,
-                "y": 506
-              },
-              {
-                "x": 242,
-                "y": 514
+                "x": 230,
+                "y": 510
               },
               {
                 "x": 238,
-                "y": 522
+                "y": 515
               },
               {
-                "x": 231,
-                "y": 529
+                "x": 244,
+                "y": 521
               },
               {
-                "x": 222,
-                "y": 535
+                "x": 247,
+                "y": 527
               },
               {
-                "x": 213,
-                "y": 541
+                "x": 245,
+                "y": 534
+              },
+              {
+                "x": 241,
+                "y": 540
+              },
+              {
+                "x": 234,
+                "y": 546
+              },
+              {
+                "x": 226,
+                "y": 552
+              },
+              {
+                "x": 218,
+                "y": 556
+              },
+              {
+                "x": 210,
+                "y": 556
               },
               {
                 "x": 202,
-                "y": 541
+                "y": 552
               },
               {
-                "x": 192,
-                "y": 537
-              },
-              {
-                "x": 186,
-                "y": 529
+                "x": 197,
+                "y": 546
               }
             ]
           },
@@ -1070,5 +1082,11 @@
         }
       ]
     }
+  },
+  "edition": 2,
+  "previousEdition": {
+    "edition": 1,
+    "sourceSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
+    "registrationSha256": "42c96cf360027ce02bf4e2034fd0e3f02a72c7b65b41fb2903fc00a604b1d2a7"
   }
 }

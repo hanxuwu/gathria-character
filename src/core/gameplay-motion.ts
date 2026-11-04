@@ -1,5 +1,5 @@
-import specifications from "./gameplay-motion-profiles.json";
-import legacySpecifications from "./gameplay-motion-legacy-profiles.json";
+import specifications from "./gameplay-motion-profiles.json" with { type: "json" };
+import legacySpecifications from "./gameplay-motion-legacy-profiles.json" with { type: "json" };
 import type {
   Animation,
   BakedCharacterRecipe,

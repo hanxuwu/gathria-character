@@ -1,5 +1,6 @@
-import bindings from "../../docs/kling-side-workspace/assets/source-bindings.json";
-import landingCatalog from "../../docs/kling-landing-production/assets/catalog.json";
+import bindings from "../../docs/kling-side-workspace/assets/source-bindings.json" with { type: "json" };
+import landingCatalog from "../../docs/kling-landing-production/assets/catalog.json" with { type: "json" };
+import landingEditions from "./landing-candidate-editions.json" with { type: "json" };
 import type { WardrobeProject, WardrobeSelection } from "../wardrobe/contract";
 import {
   addWardrobeAppearanceBank,
@@ -153,16 +154,31 @@ const landing = {
   ).href,
 } as const;
 
-/** The candidate belongs to one appended source and one registration edition.
- * Matching garment names never grants candidate identity to another project. */
+/** Saved projects embed their own source and garment bytes. Recognize only
+ * frozen source/registration pairs, including previous candidate editions;
+ * matching character or garment names alone never grant candidate identity. */
 function isLandingCandidateProject(project: WardrobeProject): boolean {
   return (
-    landingCatalog.characterId === LANDING_CHARACTER_ID &&
     project.archive.config.characterId === LANDING_CHARACTER_ID &&
-    project.document.sourceSha256 === landingCatalog.sourceSha256 &&
-    project.document.registrationSha256 === landingCatalog.registrationSha256 &&
     project.registration.characterId === LANDING_CHARACTER_ID &&
-    project.registration.sourceSha256 === landingCatalog.sourceSha256
+    landingEditions.editions.some(
+      (edition) =>
+        edition.characterId === LANDING_CHARACTER_ID &&
+        project.document.sourceSha256 === edition.sourceSha256 &&
+        project.document.registrationSha256 === edition.registrationSha256 &&
+        project.registration.sourceSha256 === edition.sourceSha256,
+    )
+  );
+}
+
+/** A fresh catalog load must use the current published pair, even though an
+ * older, self-contained saved project remains valid for import. */
+function isCurrentLandingCandidateProject(project: WardrobeProject): boolean {
+  return (
+    isLandingCandidateProject(project) &&
+    landingCatalog.characterId === LANDING_CHARACTER_ID &&
+    project.document.sourceSha256 === landingCatalog.sourceSha256 &&
+    project.document.registrationSha256 === landingCatalog.registrationSha256
   );
 }
 
@@ -238,7 +254,7 @@ export async function loadSideProject(
       },
     );
     if (candidate) {
-      if (!isLandingCandidateProject(project))
+      if (!isCurrentLandingCandidateProject(project))
         throw Error("落地补帧候选的原片或定位绑定不匹配。");
       const expected = Object.values(landingCatalog.garmentIds);
       if (

@@ -245,6 +245,185 @@ def fit_bottom(ctx,fid,masks,limbs,baseline):
 
 
 
+# Raised sleeve revision: actual painted arm cloth, source-visible controls,
+# and an authored curved cuff. These guides never move source body pixels.
+RAISED_SLEEVE_FRAMES=(63,64,65,66,74,75,76,77,78,79,80,97,98,99,100,101)
+RAISED_DONOR=ART/'sleeve-refinement/raised-arm-donor.png'
+RAISED_TRACE=[(406,511),(418,525),(427,551),(426,579),(415,609),(403,636),(379,642),(347,637),(322,629),(296,621),(279,622),(274,635),(263,628),(264,611),(251,593),(231,582),(209,576),(188,579),(184,570),(193,554),(210,539),(236,526),(264,517),(294,512),(320,515),(340,517),(358,511),(384,508)]
+RAISED_DONOR_CONTROLS=np.array([[188,574],[230,578],[268,605],[274,627],[300,513],[406,511],[424,574],[409,642],[340,634]],float)
+RAISED_SOURCE_CONTROLS={
+ 75:[[153,282],[160,287],[164,305],[158,325],[181,278],[208,278],[221,310],[221,344],[185,328]],
+ 76:[[155,284],[162,291],[167,317],[160,340],[185,294],[223,313],[231,343],[207,373],[183,349]],
+ 77:[[146,307],[153,314],[158,340],[152,365],[181,322],[232,350],[238,380],[212,409],[180,379]],
+ 100:[[193,356],[201,364],[205,389],[200,416],[213,369],[228,372],[242,407],[219,442],[216,428]],
+ 101:[[184,412],[193,420],[197,445],[191,473],[209,421],[229,424],[244,459],[220,493],[211,480]],
+ 78:[[160,361],[168,367],[172,387],[166,407],[193,369],[229,387],[245,419],[234,458],[198,418]],
+}
+
+@lru_cache(maxsize=1)
+def raised_sleeve_texture():
+ raw=np.asarray(Image.open(RAISED_DONOR).convert('RGBA'))
+ mask=Image.new('L',(1024,1536));ImageDraw.Draw(mask).polygon(RAISED_TRACE,fill=255)
+ valid=np.array(mask)>0;r,g,b=raw[:,:,:3].astype(float).transpose(2,0,1)
+ # The manual trace selects cloth; exclude warm hand anti-aliasing at its cuff.
+ skin=(r-g>40)&(r-b>55)&(r>140);valid &= ~skin&(raw[:,:,3]>100)
+ plain=nd.binary_erosion(valid,iterations=4)&(b>r+5)&(g>r-5)
+ _,idx=nd.distance_transform_edt(~plain,return_indices=True)
+ tex=raw[:,:,:3][tuple(idx)].astype(float);tex[valid]=raw[valid,:3]
+ return nd.gaussian_filter(tex,sigma=(.45,.45,0)),valid
+
+
+def raised_source_controls(region,hand_mask,torso,fid):
+ if fid in RAISED_SOURCE_CONTROLS:return np.array(RAISED_SOURCE_CONTROLS[fid],float)
+ cuff=region&(nd.distance_transform_edt(~hand_mask)<=2.1)
+ edge=region&(nd.distance_transform_edt(~torso)<=2.1)
+ if cuff.sum()<8:cuff=region&(nd.distance_transform_edt(~hand_mask)<=5)
+ if edge.sum()<8:edge=region&(nd.distance_transform_edt(~torso)<=5)
+ assert cuff.sum()>=4 and edge.sum()>=4,(fid,'No observed sleeve attachment')
+ def endpoint(mask,high):
+  ys=YY[mask];limit=np.percentile(ys,95 if high else 5)
+  selected=mask&((YY>=limit) if high else (YY<=limit))
+  return np.array([np.mean(XX[selected]),np.mean(YY[selected])])
+ ct,cb=endpoint(cuff,False),endpoint(cuff,True);cm=(ct+cb)/2
+ st,sb=endpoint(edge,False),endpoint(edge,True)
+ st += [-3,-4];sb += [-1,0]
+ midy=(st[1]+sb[1])/2;mid=edge&(abs(YY-midy)<5)
+ sm=np.array([np.mean(XX[mid]) if mid.any() else (st[0]+sb[0])/2,midy])
+ def contour(x,lower):
+  local=region&(abs(XX-x)<4)
+  if not local.any():return np.array([x,(ct[1]+st[1])/2])
+  return np.array([x,np.percentile(YY[local],97 if lower else 3)])
+ crown=contour(ct[0]+.4*(st[0]-ct[0]),False)
+ lower=contour(cb[0]+.45*(sb[0]-cb[0]),True)
+ return np.array([ct+[-5,-6],ct+[3,0],cm+[7,0],cb+[1,0],crown,st,sm,sb,lower])
+
+
+def refine_raised_sleeve(ctx,fid,masks,limbs,baseline):
+ """Transfer the painted raised sleeve only within the existing arm passage.
+
+ The curved cut is the donor's actual cloth contour. It releases old ownership
+ beside the wrist to restore exact source skin. A reviewed 32-pixel enclosed
+ classification hole in frame78 also receives cloth. Neither operation can
+ cover a protected hand, change source geometry, or change unrelated cloth.
+ """
+ from scipy.interpolate import RBFInterpolator
+ patch,owned=baseline
+ if fid not in RAISED_SLEEVE_FRAMES:return (patch.copy(),owned.copy()),None
+ source=ctx.frames[fid];arms=limbs['nearArm']|limbs['farArm']
+ labels,count=nd.label(arms)
+ components=[labels==i for i in range(1,count+1) if (labels==i).sum()>80]
+ assert components,(fid,'Missing source-visible raised arm')
+ # Some old guides call both disconnected arms nearArm. Visible component
+ # ownership is unchanged; only the left/near cloth sampling domain is chosen.
+ left=[m for m in components if float(np.mean(XX[m]))<ctx.registered[fid]['points']['neck']['x']]
+ region=max(left or components,key=lambda m:int(m.sum()))
+ hand_mask=np.zeros((H,W),bool)
+ for rec in ctx.registered[fid]['protected']:
+  if rec['label'].endswith('Hand'):hand_mask |= cloth.runtime_raster(rec['polygon'])
+ hand_mask &= source[:,:,3]>0
+ points=raised_source_controls(region,hand_mask,masks['top'],fid)
+ tex,valid=raised_sleeve_texture()
+ coords=RBFInterpolator(points,RAISED_DONOR_CONTROLS,kernel='thin_plate_spline',smoothing=.2)(np.column_stack((XX.ravel(),YY.ravel()))).reshape(H,W,2)
+ rgb=np.stack([nd.map_coordinates(tex[:,:,i],[coords[:,:,1],coords[:,:,0]],order=1,mode='nearest') for i in range(3)],axis=-1)
+ inside=nd.map_coordinates(valid.astype(float),[coords[:,:,1],coords[:,:,0]],order=1,mode='constant')>.5
+ distance=nd.distance_transform_edt(~region)
+ domain=owned&(region|((distance<=3)&~masks['top']))
+ # Frame78 has a small source-skin classification hole fully enclosed by the
+ # jacket. Close only that reviewed hole with this same real donor texture.
+ added=np.zeros_like(owned)
+ if fid==78:
+  reviewed=(XX>=208)&(XX<=219)&(YY>=451)&(YY<=462)
+  added=nd.binary_fill_holes(owned)&~owned&reviewed&(source[:,:,3]>0)&~ctx.protected_mask(fid)
+  assert 0<int(added.sum())<80
+ domain |= added
+ # Confine donor-contour release to the cuff's actual hand-side boundary.
+ # Clipping its underarm edge would leave an unrelated bare skin wedge.
+ cuff_zone=(XX<points[2,0]+1)&(YY<=points[3,1]+2)
+ removed=domain&cuff_zone&~inside
+ result=patch.copy();after_owned=owned|added;after_owned[removed]=False;result[removed]=0
+ result[added,3]=source[added,3]
+ use=domain&after_owned
+ blend=np.clip(nd.distance_transform_edt(~masks['top'])/8,.3,1)
+ fitted=rgb*blend[:,:,None]+patch[:,:,:3]*(1-blend[:,:,None]);fitted[added]=rgb[added]
+ result[use,:3]=np.rint(np.clip(fitted[use],0,255)).astype(np.uint8)
+ assert not (after_owned&ctx.protected_mask(fid)).any()
+ assert not result[~after_owned].any()
+ assert np.array_equal(result[~domain],patch[~domain])
+ assert np.array_equal(after_owned[~domain],owned[~domain])
+ assert np.array_equal(result[use&owned,3],patch[use&owned,3])
+ restored=np.where(removed[:,:,None],source,0)
+ ys,xs=np.where(domain)
+ record={'frameId':fid,'clothSamplingControls':points.tolist(),'domainPixels':int(domain.sum()),'domainBounds':[int(xs.min()),int(ys.min()),int(xs.max()+1),int(ys.max()+1)],'restoredSourceHandAndWristPixels':int(removed.sum()),'newOwnershipPixels':int(added.sum()),'closedSourceClassificationHoleBounds':([208,451,220,463] if added.any() else None),'protectedChanges':0,'outsideSleeveDomainExact':True,'retainedOwnedAlphaExact':True,'restoredSourceRgbaSha256':sha(restored.tobytes())}
+ return (result,after_owned),record
+
+
+def refine_raised_sleeve_bank(output,baseline_top=None):
+ """Bounded, reproducible revision from the immutable PR62 V1 top bank."""
+ import subprocess
+ output=Path(output);output.mkdir(parents=True,exist_ok=True)
+ if baseline_top is None:
+  data=subprocess.run(['git','show','f67235d:artwork/kling-landing-production/wedding/bases/male-wedding-top.garment.zip'],cwd=ROOT,check=True,stdout=subprocess.PIPE).stdout
+  baseline_top=output/'before-top.garment.zip';baseline_top.write_bytes(data)
+ else:baseline_top=Path(baseline_top);data=baseline_top.read_bytes()
+ assert sha(data)=='e2237caebaa728128fee2e0a77e2b96ef6d88e3b60e7b0440fbaee866893254b','Expected immutable PR62 V1 wedding top'
+ ctx=cloth.NativeContext(ROOT/'artwork/kling-side-expansion/templates/male.registration.json')
+ manifest,before=unpack_bank(baseline_top)
+ _,bottom=unpack_bank(ART/'bases/male-wedding-bottom.garment.zip')
+ after={fid:(p.copy(),m.copy()) for fid,(p,m) in before.items()};records=[]
+ for fid in RAISED_SLEEVE_FRAMES:
+  masks=ctx.masks(fid);limbs=cloth.limbs(ctx,fid,masks)
+  after[fid],record=refine_raised_sleeve(ctx,fid,masks,limbs,before[fid]);records.append(record)
+ composites={};changed=[]
+ for fid in ctx.frames:
+  a=compose(ctx.frames[fid],before[fid],bottom[fid]);b=compose(ctx.frames[fid],after[fid],bottom[fid])
+  assert np.array_equal(a[ctx.protected_mask(fid)],b[ctx.protected_mask(fid)])
+  if not np.array_equal(a,b):changed.append(fid)
+  composites[fid]=(a,b)
+  if fid in RAISED_SLEEVE_FRAMES:
+   for name,im in [('before',a),('after',b)]:Image.fromarray(im,'RGBA').save(output/f'{fid}-{name}.png')
+   Image.fromarray(after[fid][0],'RGBA').save(output/f'{fid}-patch.png')
+   mask=np.zeros_like(after[fid][0]);mask[:,:,3]=after[fid][1].astype(np.uint8)*255;Image.fromarray(mask,'RGBA').save(output/f'{fid}-ownership.png')
+ assert changed==list(RAISED_SLEEVE_FRAMES),changed
+ for record in records:
+  fid=record['frameId'];record['artifactSha256']={name:sha((output/f'{fid}-{name}.png').read_bytes()) for name in ('before','after','patch','ownership')}
+  record['patchRgbaSha256']=sha(after[fid][0].tobytes());record['ownershipBinarySha256']=sha(after[fid][1].tobytes())
+ shared=load_context('male',root=ROOT,registration_path=ctx.registration_path)
+ path=output/'male-wedding-top.garment.zip'
+ provenance=manifest['provenance']+' Raised-arm sleeve revision uses a separately generated and manually traced cloth-only donor, source-visible cuff/shoulder controls and its actual curved cloth edge. Source wrist skin is restored where prior ownership formed a squared flap; a reviewed 32-pixel enclosed source-classification hole in frame78 receives cloth. No body, joint, head, hand or source-timing change; unaffected poses remain pixel exact. Reproduce with --refine-raised-sleeves.'
+ report=pack_garment(shared,manifest['id'],manifest['name'],manifest['slot'],{fid:v[0] for fid,v in after.items()},path,provenance,ownership={fid:v[1] for fid,v in after.items()},painting_mode='patch')
+ lint=lint_garment(shared,path);assert lint['ok'],lint
+ _,decoded=unpack_bank(path)
+ for fid,(patch,own) in after.items():assert np.array_equal(decoded[fid][0],patch) and np.array_equal(decoded[fid][1],own)
+ # Native same-frame contacts include the actual original source for context.
+ for index in range(0,len(changed),4):
+  ids=changed[index:index+4];sheet=Image.new('RGB',(360*len(ids),3*360),'#eee8dd');draw=ImageDraw.Draw(sheet)
+  for col,fid in enumerate(ids):
+   points=ctx.registered[fid]['points'];y0=int(points['neck']['y'])-100;box=(60,y0,420,y0+330)
+   for row,pixels in enumerate((ctx.frames[fid],*composites[fid])):
+    im=Image.fromarray(pixels).crop(box);sheet.paste(im,(col*360,row*360+24),im);draw.text((col*360+6,row*360+5),f'{fid} '+['source','before','after'][row],fill='#171717')
+  sheet.save(output/f'contact-{index//4}.png')
+ for fid in (75,78):
+  y0=int(records[changed.index(fid)]['clothSamplingControls'][0][1])-18;box=(80,y0,280,y0+180)
+  sheet=Image.new('RGB',(1200,390),'#eee8dd');draw=ImageDraw.Draw(sheet)
+  for col,pixels in enumerate((ctx.frames[fid],*composites[fid])):
+   im=Image.fromarray(pixels).crop(box).resize((400,360),Image.Resampling.NEAREST);sheet.paste(im,(col*400,30),im);draw.text((col*400+8,8),f'{fid} '+['source','before','after'][col],fill='#171717')
+  sheet.save(output/f'{fid}-comparison-2x.png')
+ clip=ctx.manifest['animations']['jump'];frames=[]
+ for fid in clip['frames']:
+  panel=Image.new('RGB',(512,408),'#eee8dd');draw=ImageDraw.Draw(panel)
+  for col,pixels in enumerate(composites[fid]):
+   im=Image.fromarray(pixels).resize((256,384),Image.Resampling.LANCZOS);panel.paste(im,(col*256,24),im);draw.text((col*256+6,6),f'{"Before" if col==0 else "After"} / {fid} / 24fps',fill='#171717')
+  frames.append(panel)
+ palette_board=Image.new('RGB',(512,408*len(frames)))
+ for i,im in enumerate(frames):palette_board.paste(im,(0,i*408))
+ palette=palette_board.quantize(colors=256);encoded=[im.quantize(palette=palette,dither=Image.Dither.NONE) for im in frames]
+ durations=[round((i+1)*100/24)*10-round(i*100/24)*10 for i in range(len(frames))]
+ encoded[0].save(output/'jump-before-after-24fps.gif',save_all=True,append_images=encoded[1:],duration=durations,loop=0,disposal=2,optimize=False)
+ audit={'format':'gathria-wedding-raised-sleeve-refinement','version':1,'baselineCommit':'f67235d','baselineTopSha256':sha(data),'resultTopSha256':report['sha256'],'sourceSha256':sha(ctx.source_bytes),'registrationSha256':sha(ctx.registration_bytes),'donorSha256':sha(RAISED_DONOR.read_bytes()),'changedFrameIds':changed,'unchangedFrameIds':[fid for fid in ctx.frames if fid not in changed],'bottomUnchanged':True,'bottomSha256':sha((ART/'bases/male-wedding-bottom.garment.zip').read_bytes()),'sourceAnatomyAndProtectedPixelsExact':True,'newOwnershipPixels':sum(r['newOwnershipPixels'] for r in records),'records':records,'pack':report,'lint':lint,'gif':{'file':'jump-before-after-24fps.gif','frames':len(frames),'fps':24,'durationMs':sum(durations),'comparisonOnly':True}}
+ (output/'audit.json').write_text(json.dumps(audit,indent=2)+'\n')
+ print(json.dumps({'changed':changed,'sha256':report['sha256'],'lint':lint['ok'],'output':str(output)}),flush=True)
+
+
 class ExtensionContext:
  """Native garment context for explicitly supplied new poses only.
 
@@ -340,7 +519,10 @@ def board(ctx,frames,ids,path):
 
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--output',type=Path,default=Path('/tmp/landing-production/wedding'));ap.add_argument('--preview',action='store_true');ap.add_argument('--frames',type=int,nargs='+');ap.add_argument('--extension-daily',type=Path);ap.add_argument('--registration',type=Path);args=ap.parse_args();args.output.mkdir(parents=True,exist_ok=True)
+ ap=argparse.ArgumentParser();ap.add_argument('--output',type=Path,default=Path('/tmp/landing-production/wedding'));ap.add_argument('--preview',action='store_true');ap.add_argument('--frames',type=int,nargs='+');ap.add_argument('--extension-daily',type=Path);ap.add_argument('--registration',type=Path);ap.add_argument('--refine-raised-sleeves',action='store_true');ap.add_argument('--baseline-top',type=Path);args=ap.parse_args();args.output.mkdir(parents=True,exist_ok=True)
+ if args.refine_raised_sleeves:
+  refine_raised_sleeve_bank(args.output,args.baseline_top)
+  return
  if args.extension_daily:
   assert args.registration,'--extension-daily requires the frozen candidate --registration'
   daily=args.extension_daily;registration=json.loads(args.registration.read_text());ctx=ExtensionContext({fid:daily/f'source-{fid}.png' for fid in (107,108)},registration,masks_dir=daily/'masks')

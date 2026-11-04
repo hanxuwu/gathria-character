@@ -1,11 +1,17 @@
 {
   "format": "gathria-landing-production-build",
   "version": 1,
+  "edition": 2,
+  "previousEdition": {
+    "edition": 1,
+    "sourceSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
+    "registrationSha256": "42c96cf360027ce02bf4e2034fd0e3f02a72c7b65b41fb2903fc00a604b1d2a7"
+  },
   "fixtureOnly": false,
   "visualAcceptance": "pending",
-  "sourceSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
-  "registrationSha256": "42c96cf360027ce02bf4e2034fd0e3f02a72c7b65b41fb2903fc00a604b1d2a7",
-  "sourceReferenceSha256": "c2d4826d20823812d758f62b49fbedc94e8fc8d0e84e7cafd28c4bbb7cf2d457",
+  "sourceSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
+  "registrationSha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab",
+  "sourceReferenceSha256": "c36ce06d33bdc787e6525034f7fc779d6b24b48dbd2029c8621debe748049183",
   "sourceFrames": 109,
   "originalFrames": 107,
   "originalSourcePagesByteExact": true,
@@ -39,7 +45,7 @@
   "garments": {
     "dailyTop": {
       "id": "landing-male-daily-top-v1",
-      "sha256": "ed93afbb773dfb4932b7db3fa1761266f5c2d31deacaa6d9a5abe3cb16dd5b6c",
+      "sha256": "57d0c981005127e2491bad3d92502e16f0fdc4dc1b058b9470238801b6ffecac",
       "baseSha256": "b11b825feecb4c6e179cc1c759ca165dff64a25a6668407ac315a3893e7e69ef",
       "unchangedBasePngs": {
         "ownership-0.png": "90523bb96a60374a602903c71326d87368108c32f9563a4153e18bf1cb134768",
@@ -53,15 +59,15 @@
         },
         {
           "frameId": 108,
-          "patchSha256": "c8ec51252689a7de2b08bf9cf95b1f38ab86e38a2bbc49180fee687f9ccf699c",
-          "ownershipSha256": "a94d62ac71c3847bf4f4b792afe10d0d939c36a6ff05dec9aa853283b7fc5295"
+          "patchSha256": "44d25130c5ec0d69da7009e89ff206ccd7e2ab8b43838eeeb812dabece1b3afd",
+          "ownershipSha256": "9594a66f685a9e1c5b242f8e60a7d8540508e36901b3ffbac9de72b86c9af022"
         }
       ],
       "frameCount": 109
     },
     "dailyBottom": {
       "id": "landing-male-daily-bottom-v1",
-      "sha256": "a769e0c82d9582cd5d4f4c3053e942ce36dfb138220dc267cf709482e9242680",
+      "sha256": "9fa7985d7e799974ee1121e91536800ee10f86692f3ee7b93bb3c89179490924",
       "baseSha256": "1c1070424b9d09b5633640a0f766173c02984f8f66ba4ac403762e74ed59464e",
       "unchangedBasePngs": {
         "patches-0.png": "75b7bba81c71eff5edf704beb885fe140c930de6f6ca1850292dcb86ea528193",
@@ -75,19 +81,19 @@
         },
         {
           "frameId": 108,
-          "patchSha256": "1d7eba2d86114de320f4abed5d6c260992a319f799c9fa67243ed1fad1cf3546",
-          "ownershipSha256": "d157fd158e5196c43dfebff66f9b50fa0fe634f8cadc6415a6bcf44058b3a327"
+          "patchSha256": "0bf07725eefa7c2d6b0acdb24ae926d5e26137da83ce020c9c3988da17843c10",
+          "ownershipSha256": "cbbbb8ed66e26524095213a18accdb60977fd8495e65fd52df87b9af9a7a755b"
         }
       ],
       "frameCount": 109
     },
     "weddingTop": {
       "id": "landing-male-wedding-top-v1",
-      "sha256": "962fa1f49d7ae2e2615f3db3468d99021497cba6cc288c781c7e53881e0d88eb",
-      "baseSha256": "e2237caebaa728128fee2e0a77e2b96ef6d88e3b60e7b0440fbaee866893254b",
+      "sha256": "f40aec2eab630889d9b02ae78f606846dad1e55cbbcd68879761521ea042144a",
+      "baseSha256": "091b163020b4a3552f43a7be3d9b6aee61a89569329ed69555beff1bf55a2bd0",
       "unchangedBasePngs": {
-        "ownership-0.png": "89ebeb03298d4b0e539d8c3963021ad1f98f7ccf1698779a73c5ad2003ac8d09",
-        "patches-0.png": "d3e20b238c1ba46ccc39491b851e8e476ab86163bfd7bf2b2fc971a5623dd9d2"
+        "ownership-0.png": "4197ae1a7e67247ea9eff216a6464e939fcba30eedb08799be9b671122d3b5cf",
+        "patches-0.png": "f417416ffd96cb7a5742214abe72beb4745ec3527ae30b567152765c80050629"
       },
       "newInputs": [
         {
@@ -97,15 +103,15 @@
         },
         {
           "frameId": 108,
-          "patchSha256": "a9e42fad7e7ea4b9be982a53be32dd6e53a69647e6d0cb229b1d45c3419f0361",
-          "ownershipSha256": "daf4f918baaab61a74b8d947489005e45eb0b5740d510faa240c101741842841"
+          "patchSha256": "68b4227b1f1d4a5374a17769703865763025b2f635ac55c19bf0d75f4aae9ee3",
+          "ownershipSha256": "464bae437d596a1b56eacb55dffc99a40f1e758a2b992d1d8248ec4eaa122e84"
         }
       ],
       "frameCount": 109
     },
     "weddingBottom": {
       "id": "landing-male-wedding-bottom-v1",
-      "sha256": "361fd677807eac93d98fcc95b17d8e4bcc0b1ed1defe52eb667c2b306133ca04",
+      "sha256": "eb46131b43b99338d7b541623b21653ebdb3a9d13ec2259a044637c64ab7cc43",
       "baseSha256": "194bfa9477df2ae2be1166343fd849c9ff446a96e6a1ca1d9d6546a555f1872f",
       "unchangedBasePngs": {
         "ownership-0.png": "c98f85070d2a7581a8772039c219fae5a183b0252f1c2bd0e20bf01675ff6684",
@@ -119,15 +125,15 @@
         },
         {
           "frameId": 108,
-          "patchSha256": "0d36ee45ef1680f2911f414deaaa2d014d31f9b1d484340f7d943947cbb9992d",
-          "ownershipSha256": "16ce05e2738c333762be77617fdb23433f4295f5346fb07c5e506441992d3aee"
+          "patchSha256": "6d84c633a4e54989db3f720cef49a514769297a4450b04c51152788e01ab7094",
+          "ownershipSha256": "c9ab5741ca2133af3123a169e66fca122194dafe58b5ccfc2627189816ac3e11"
         }
       ],
       "frameCount": 109
     }
   },
   "appearance": {
-    "sha256": "82b406488c01b9a2954055a951b8979b2bc228e350b7660e7051cb7f22f7c08c",
+    "sha256": "39eb96e7aabc078b17b48934e1f177c431442d9195643f3389f4e2c5d2dfac3e",
     "baseSha256": "43b8bcb61be0fb6185bc12581a0d011cc299b730646f368422188c2e78aadb79",
     "styles": [
       "side-part-matched-v1",
@@ -141,40 +147,40 @@
   },
   "outputs": {
     "male.source.zip": {
-      "bytes": 13139834,
-      "sha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a"
+      "bytes": 13139082,
+      "sha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5"
     },
     "male.registration.json": {
-      "bytes": 492951,
-      "sha256": "42c96cf360027ce02bf4e2034fd0e3f02a72c7b65b41fb2903fc00a604b1d2a7"
+      "bytes": 493043,
+      "sha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab"
     },
     "male-landing-reference.zip": {
-      "bytes": 13205227,
-      "sha256": "c2d4826d20823812d758f62b49fbedc94e8fc8d0e84e7cafd28c4bbb7cf2d457"
+      "bytes": 13203760,
+      "sha256": "c36ce06d33bdc787e6525034f7fc779d6b24b48dbd2029c8621debe748049183"
     },
     "male-daily-top.garment.zip": {
-      "bytes": 1635316,
-      "sha256": "ed93afbb773dfb4932b7db3fa1761266f5c2d31deacaa6d9a5abe3cb16dd5b6c"
+      "bytes": 1635582,
+      "sha256": "57d0c981005127e2491bad3d92502e16f0fdc4dc1b058b9470238801b6ffecac"
     },
     "male-daily-bottom.garment.zip": {
-      "bytes": 1772529,
-      "sha256": "a769e0c82d9582cd5d4f4c3053e942ce36dfb138220dc267cf709482e9242680"
+      "bytes": 1772038,
+      "sha256": "9fa7985d7e799974ee1121e91536800ee10f86692f3ee7b93bb3c89179490924"
     },
     "male-wedding-top.garment.zip": {
-      "bytes": 2446108,
-      "sha256": "962fa1f49d7ae2e2615f3db3468d99021497cba6cc288c781c7e53881e0d88eb"
+      "bytes": 2479824,
+      "sha256": "f40aec2eab630889d9b02ae78f606846dad1e55cbbcd68879761521ea042144a"
     },
     "male-wedding-bottom.garment.zip": {
-      "bytes": 1944369,
-      "sha256": "361fd677807eac93d98fcc95b17d8e4bcc0b1ed1defe52eb667c2b306133ca04"
+      "bytes": 1943941,
+      "sha256": "eb46131b43b99338d7b541623b21653ebdb3a9d13ec2259a044637c64ab7cc43"
     },
     "male.appearance.zip": {
       "bytes": 8530953,
-      "sha256": "82b406488c01b9a2954055a951b8979b2bc228e350b7660e7051cb7f22f7c08c"
+      "sha256": "39eb96e7aabc078b17b48934e1f177c431442d9195643f3389f4e2c5d2dfac3e"
     },
     "catalog.json": {
-      "bytes": 1069,
-      "sha256": "059ecbe6dbb5c9b34e3967b73edb67724e504f614daa33caf5889cb0074b40c3"
+      "bytes": 1312,
+      "sha256": "172dd01d1090c1e3f84b2031f53a07ab9e6941a2b86b26dd7f89137b5ec7089a"
     }
   }
 }

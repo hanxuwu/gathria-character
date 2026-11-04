@@ -62,3 +62,11 @@ frames. Original source frames 0–106 and their registration remain unchanged.
 These are experimental candidate assets. Structural validation proves source
 binding, complete coverage and protected-pixel preservation; visual quality and
 the actual run→jump→run transition are reviewed through the production UI.
+
+## PR62 raised-sleeve revision
+
+The current base now includes a bounded raised-sleeve improvement at frames
+63–66, 74–80 and 97–101. See [sleeve-refinement/README.md](sleeve-refinement/README.md)
+for the actual painted donor, exact reproduction command, same-frame comparisons
+and preservation audit. Run the `--refine-raised-sleeves` pass to reproduce that
+revision; the original full authoring command above reproduces the earlier base.

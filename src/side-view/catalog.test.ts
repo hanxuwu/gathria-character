@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import bindings from "../../docs/kling-side-workspace/assets/source-bindings.json";
 import landingCatalog from "../../docs/kling-landing-production/assets/catalog.json";
+import landingEditions from "./landing-candidate-editions.json";
 import type { WardrobeProject } from "../wardrobe/contract";
 
 const mocked = vi.hoisted(() => ({
@@ -29,16 +30,21 @@ import {
   sideProjectCollection,
 } from "./catalog";
 
-function candidate(): WardrobeProject {
+function candidate(
+  edition: Pick<
+    typeof landingCatalog,
+    "characterId" | "sourceSha256" | "registrationSha256"
+  > = landingCatalog,
+): WardrobeProject {
   return {
-    archive: { config: { characterId: landingCatalog.characterId } },
+    archive: { config: { characterId: edition.characterId } },
     document: {
-      sourceSha256: landingCatalog.sourceSha256,
-      registrationSha256: landingCatalog.registrationSha256,
+      sourceSha256: edition.sourceSha256,
+      registrationSha256: edition.registrationSha256,
     },
     registration: {
-      characterId: landingCatalog.characterId,
-      sourceSha256: landingCatalog.sourceSha256,
+      characterId: edition.characterId,
+      sourceSha256: edition.sourceSha256,
     },
     items: Object.values(landingCatalog.garmentIds).map((id) => ({
       manifest: { id },
@@ -142,6 +148,33 @@ describe("optional landing candidate catalog", () => {
       expect(sideIdentityOf(project)).toBe(id);
       expect(sideProjectCollection(project)).toBe("material");
     }
+  });
+
+  it.each(landingEditions.editions)(
+    "recognizes self-contained $profileId imports only with their own registration",
+    (edition) => {
+      const project = candidate(edition);
+      expect(sideIdentityOf(project)).toBe("male");
+      expect(sideProjectCollection(project)).toBe("landing-candidate");
+      for (const other of landingEditions.editions) {
+        if (other.registrationSha256 === edition.registrationSha256) continue;
+        const mixed = candidate(edition);
+        mixed.document.registrationSha256 = other.registrationSha256;
+        expect(() => sideIdentityOf(mixed)).toThrow(/不属于/);
+        expect(sideProjectCollection(mixed)).not.toBe("landing-candidate");
+      }
+    },
+  );
+
+  it("rejects an archived edition returned by the current catalog loader", async () => {
+    for (const edition of landingEditions.editions) {
+      if (edition.sourceSha256 === landingCatalog.sourceSha256) continue;
+      mocked.create.mockResolvedValueOnce(candidate(edition));
+      await expect(
+        loadSideProject("male", undefined, "landing-candidate"),
+      ).rejects.toThrow(/绑定不匹配/);
+    }
+    expect(mocked.appearance).not.toHaveBeenCalled();
   });
 
   it("loads the separate source, four garment banks, registration, and appearance", async () => {
