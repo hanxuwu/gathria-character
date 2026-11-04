@@ -21,6 +21,7 @@ type SlotKey = `${SideCharacterId}:${SideCollection}`;
 const SLOT_KEYS: readonly SlotKey[] = [
   "male:material",
   "male:tailored",
+  "male:landing-candidate",
   "female:material",
   "female:tailored",
 ];
@@ -106,7 +107,7 @@ export default function SideWorkspace({
     );
     if (!key) {
       setNotice(
-        "当前已保留 4 个侧视项目。请先保存需要保留的项目，再刷新工作台打开另一组素材。",
+        "当前已保留 5 个侧视项目。请先保存需要保留的项目，再刷新工作台打开另一组素材。",
       );
       return;
     }
@@ -140,9 +141,11 @@ export default function SideWorkspace({
                 <option key={slot.key} value={slot.key}>
                   Kling {slot.loaded.character === "male" ? "男版" : "女版"}
                   {" · "}
-                  {slot.loaded.collection === "tailored"
-                    ? "新款试装"
-                    : "原版型配色"}
+                  {slot.loaded.collection === "landing-candidate"
+                    ? "落地衔接实验 · 待美术验收"
+                    : slot.loaded.collection === "tailored"
+                      ? "新款试装"
+                      : "原版型配色"}
                   {" · 项目 "}
                   {index + 1}
                 </option>

@@ -1,0 +1,53 @@
+{
+  "origin": "generated-art-candidate",
+  "visualAcceptance": "pending",
+  "status": "selected-experimental-candidate",
+  "selectedBodyIteration": "r2",
+  "generatedBodyNativeSize": [
+    512,
+    768
+  ],
+  "originalSourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+  "sourceHeadFrameId": 89,
+  "method": "Image generation of two new gray tank and shorts body poses, then uniform 0.5x browser Canvas body preparation. Original source frame 89 head is copied losslessly at integer translations; head pixels are never resized or repainted. Source frames 0..106 stay unchanged. Final R2 is selected for experimental interactive review only, not approved as the production default.",
+  "promptHistory": [
+    "initial body proposal",
+    "R1localleg correction",
+    "R2supportshoe correction"
+  ],
+  "frames": {
+    "107": {
+      "rawGeneratedPng": "pose-a-r2.original.png",
+      "rawGeneratedSha256": "b0b6ea047226c6511fc92439c4f940b322b718a2e3c76b378ac663c2c399c756",
+      "nativeBodyPng": "pose-a-r2.native.png",
+      "nativeBodySha256": "8830eb50c5cf0e47c318140eb10fa475e25fe3fdc441e46185900a66ab0e3a7f",
+      "assembledPng": "107.png",
+      "assembledSha256": "7a941f28b5b6ebafcddd42f3ae849a4a1fc87a9baeb9ead86776d827dbb074d1",
+      "finalPrompt": "pose-a-r2.prompt.txt",
+      "finalPromptSha256": "3411cef51ab018112fc446fe13befc1723afe34d2e04c1c55279851e0518171d",
+      "headTranslation": {
+        "x": -9,
+        "y": -7
+      }
+    },
+    "108": {
+      "rawGeneratedPng": "pose-b-r2.original.png",
+      "rawGeneratedSha256": "81bf609cb520380421512a95842c959e87bb05e14318d1e17d6deaea966d5b86",
+      "nativeBodyPng": "pose-b-r2.native.png",
+      "nativeBodySha256": "db5fa5c5967201b7921d3cd7b7eb11ebb9a527a89ed17c4d0fb3b4a5fa5a6247",
+      "assembledPng": "108.png",
+      "assembledSha256": "a6121e90acdf38f8e66c9d145c8b37143998af73447b2ceac2dc452869bd3b74",
+      "finalPrompt": "pose-b-r2.prompt.txt",
+      "finalPromptSha256": "17c2f3de1d8549b9b2a05f198a4e8fae106a46bbe349970cb9f080e8c3fb1b35",
+      "headTranslation": {
+        "x": -18,
+        "y": -14
+      }
+    }
+  },
+  "headAssemblyAudit": "head-copy-audit.json",
+  "headAssemblyMask": "source89-head-mask.png",
+  "registration": "new-frame-registration.json",
+  "bodyReview": "final-generation-review.json",
+  "registrationStatus": "Manually observed candidate anchors and protected hand polygons; anatomical placement remains subject to visual review."
+}

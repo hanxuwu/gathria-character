@@ -1,0 +1,64 @@
+{
+  "format": "gathria-landing-validation-summary",
+  "version": 1,
+  "sourceSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
+  "technical": {
+    "status": "passed",
+    "unitTests": {
+      "files": 74,
+      "tests": 747
+    },
+    "typecheck": true,
+    "productionBuild": true,
+    "missingRuntimeAssetWarnings": 0,
+    "browserRegressions": {
+      "candidateWorkflowAndDefaultEntry": 2,
+      "legacyMaleFemaleSingleJump": 2,
+      "directionReleaseDuringSave": 1
+    },
+    "runtimeComposition": {
+      "looks": 3,
+      "headCombinationsPerLook": 4,
+      "framesPerCombination": 109
+    },
+    "sourcePreservation": {
+      "originalFrames": 107,
+      "originalAtlasPages": 3,
+      "byteExact": true,
+      "newHeadVisiblePixelsExactPerFrame": 37158
+    },
+    "standalonePlayer": {
+      "looks": 3,
+      "newFramesSeen": [
+        107,
+        108
+      ],
+      "runJumpRun": true,
+      "reexportBytesExact": true,
+      "editorModuleRequests": 0
+    },
+    "actualTravel": {
+      "runSpeedPxPerSecond": 700,
+      "sameControllerAsInteraction": true
+    },
+    "mixedWardrobe": {
+      "combinations": 2,
+      "actualGifExports": true,
+      "paused108SaveReopen": true
+    }
+  },
+  "visual": {
+    "status": "pending-review",
+    "improvements": [
+      "The support shoe no longer overshoots backwards and reverses into native Run48.",
+      "Two reusable bare-body drawings support original, daily and wedding looks.",
+      "Shoulder sampling and shoe guards were corrected in the new wedding candidate."
+    ],
+    "remaining": [
+      "Residual horizontal ground-relative drift and a few pixels of sole height change; no exact foot-lock claim.",
+      "Generated body shading and hand contour differ slightly from native source.",
+      "Some raised wedding sleeves remain flat; small protected shoulder/nape slivers and variable cuffs remain."
+    ],
+    "defaultChanged": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format": "gathria-painted-cloth-donor",
+  "version": 1,
+  "tool": "image_gen.imagegen",
+  "generationDate": "2026-11-03",
+  "transparent_background": true,
+  "promptFile": "donor-prompt.txt",
+  "outputFile": "painted-donor.png",
+  "outputSha256": "13346cc15688e5c41f0acf79b0218b2bacb4eba5bfc108a993a56063ce67b9f2",
+  "size": [
+    1024,
+    1536
+  ],
+  "references": [
+    {
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "frameId": 0,
+      "exactReferencePngSha256": "6d601d4c1d5f74b431d5c8fb34e5c1a154a65b5605d8ae3fbf49b38e9909e066"
+    },
+    {
+      "source": "artwork/kling-wardrobe/source/full-outfits-v1/designs.png",
+      "sourceSha256": "0c6d2169b8daf2a8277ff0613978d0cc7929699fb34aeb591b009779bc172d4c",
+      "use": "wedding costume design only"
+    }
+  ],
+  "sampling": "Manually traced cloth RGB only; generated head, neck, skin, hands, shoes, body geometry and backdrop are discarded. Source-native frame pixels and pose timing are never transformed."
+}

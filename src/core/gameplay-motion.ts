@@ -57,6 +57,8 @@ export interface GameplaySegment {
 }
 
 interface Specification {
+  /** New independent source candidates also bind character.json identity. */
+  sourceCharacterId?: string;
   sourceActions: GameplayMotion["actions"];
   profile: GameplayMotion;
 }
@@ -123,25 +125,29 @@ function framesExist(
 function matchesSpecification(
   manifest: PortableCharacterPackManifest,
   item: Specification,
+  config?: Pick<BakedCharacterRecipe, "characterId">,
 ): boolean {
   return (
+    (!item.sourceCharacterId ||
+      config?.characterId === item.sourceCharacterId) &&
     (equal(manifest.animations, item.sourceActions) ||
       equal(manifest.animations, item.profile.actions)) &&
     framesExist(manifest, item.profile)
   );
 }
 
-/** Resolve only the four immutable, reviewed source archives. Garments retain
+/** Resolve only immutable, reviewed source archives. Garments retain
  * their original source SHA; neither source pages nor registration are changed.
  * An already-derived manifest is accepted for callers rendering an exported pack. */
 export function resolveGameplayMotion(
   manifest: PortableCharacterPackManifest,
   sourceSha256: string,
+  config?: Pick<BakedCharacterRecipe, "characterId">,
 ): GameplayMotion | null {
   const item = reviewed.find(
     (row) => row.profile.sourceSha256 === sourceSha256,
   );
-  if (!item || !matchesSpecification(manifest, item)) return null;
+  if (!item || !matchesSpecification(manifest, item, config)) return null;
   return structuredClone(item.profile);
 }
 
@@ -151,9 +157,10 @@ export function resolveGameplayMotion(
 export function gameplayManifest<T extends PortableCharacterPackManifest>(
   manifest: T,
   profile: GameplayMotion,
+  config?: Pick<BakedCharacterRecipe, "characterId">,
 ): T {
   const item = specification(profile);
-  if (!item || !matchesSpecification(manifest, item))
+  if (!item || !matchesSpecification(manifest, item, config))
     throw Error("Gameplay profile does not match this source's action frames.");
   return { ...manifest, animations: structuredClone(profile.actions) };
 }
@@ -169,12 +176,15 @@ export function gameplayMotionMetadata(profile: GameplayMotion): JsonValue {
  * ordinary source playback instead of guessing frame transitions. */
 export function readGameplayMotion(
   manifest: PortableCharacterPackManifest,
-  config?: Pick<BakedCharacterRecipe, "sourceMetadata">,
+  config?: Pick<BakedCharacterRecipe, "sourceMetadata"> &
+    Partial<Pick<BakedCharacterRecipe, "characterId">>,
 ): GameplayMotion | null {
   const value = config?.sourceMetadata?.gameplayMotion;
   const item = reviewed.find((row) => equal(row.profile, value));
   if (
     !item ||
+    (item.sourceCharacterId !== undefined &&
+      config?.characterId !== item.sourceCharacterId) ||
     !equal(manifest.animations, item.profile.actions) ||
     !framesExist(manifest, item.profile)
   )

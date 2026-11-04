@@ -1,4 +1,5 @@
 import bindings from "../../docs/kling-side-workspace/assets/source-bindings.json";
+import landingCatalog from "../../docs/kling-landing-production/assets/catalog.json";
 import type { WardrobeProject, WardrobeSelection } from "../wardrobe/contract";
 import {
   addWardrobeAppearanceBank,
@@ -7,7 +8,13 @@ import {
 import { fetchSideAsset, SideSourceCache } from "./source-cache";
 
 export type SideCharacterId = "male" | "female";
-export type SideCollection = "material" | "tailored";
+export type SideCollection = "material" | "tailored" | "landing-candidate";
+export type SideLookId = "original" | "daily" | "wedding";
+export interface SideLookPreset {
+  id: SideLookId;
+  name: string;
+  selection: WardrobeSelection;
+}
 export const SIDE_CHARACTERS: ReadonlyArray<{
   id: SideCharacterId;
   name: string;
@@ -112,7 +119,74 @@ const tailored = {
   },
 } as const;
 
-// The two source packs are immutable and hash-bound. Garments and registration
+const LANDING_CHARACTER_ID = "kling-male-side-landing-candidate-v1";
+const landing = {
+  source: new URL(
+    "../../docs/kling-landing-production/assets/male.source.zip",
+    import.meta.url,
+  ).href,
+  registration: new URL(
+    "../../docs/kling-landing-production/assets/male.registration.json",
+    import.meta.url,
+  ).href,
+  garments: [
+    new URL(
+      "../../docs/kling-landing-production/assets/male-daily-top.garment.zip",
+      import.meta.url,
+    ).href,
+    new URL(
+      "../../docs/kling-landing-production/assets/male-daily-bottom.garment.zip",
+      import.meta.url,
+    ).href,
+    new URL(
+      "../../docs/kling-landing-production/assets/male-wedding-top.garment.zip",
+      import.meta.url,
+    ).href,
+    new URL(
+      "../../docs/kling-landing-production/assets/male-wedding-bottom.garment.zip",
+      import.meta.url,
+    ).href,
+  ],
+  appearance: new URL(
+    "../../docs/kling-landing-production/assets/male.appearance.zip",
+    import.meta.url,
+  ).href,
+} as const;
+
+/** The candidate belongs to one appended source and one registration edition.
+ * Matching garment names never grants candidate identity to another project. */
+function isLandingCandidateProject(project: WardrobeProject): boolean {
+  return (
+    landingCatalog.characterId === LANDING_CHARACTER_ID &&
+    project.archive.config.characterId === LANDING_CHARACTER_ID &&
+    project.document.sourceSha256 === landingCatalog.sourceSha256 &&
+    project.document.registrationSha256 === landingCatalog.registrationSha256 &&
+    project.registration.characterId === LANDING_CHARACTER_ID &&
+    project.registration.sourceSha256 === landingCatalog.sourceSha256
+  );
+}
+
+export function sideCollectionAvailable(
+  id: SideCharacterId,
+  collection: SideCollection,
+): boolean {
+  return (
+    (id === "male" || id === "female") &&
+    (collection === "material" ||
+      collection === "tailored" ||
+      (collection === "landing-candidate" && id === "male"))
+  );
+}
+
+function assertSideCollection(id: SideCharacterId, collection: SideCollection) {
+  if (id !== "male" && id !== "female") throw Error("无法识别这个侧视人物。");
+  if (collection === "landing-candidate" && id !== "male")
+    throw Error("落地补帧候选目前仅提供男版。");
+  if (!sideCollectionAvailable(id, collection))
+    throw Error("无法识别这组服装。");
+}
+
+// Source packs are immutable and hash-bound. Garments and registration
 // stay outside this cache so a newly published fitting edition is revalidated.
 const sourceBytes = new SideSourceCache();
 
@@ -122,11 +196,19 @@ export async function loadSideProject(
   signal?: AbortSignal,
   collection: SideCollection = "material",
 ): Promise<WardrobeProject> {
-  if (id !== "male" && id !== "female") throw Error("无法识别这个侧视人物。");
-  if (collection !== "material" && collection !== "tailored")
-    throw Error("无法识别这组服装。");
+  assertSideCollection(id, collection);
   signal?.throwIfAborted();
-  const asset = collection === "tailored" ? tailored[id] : files[id];
+  const candidate = collection === "landing-candidate";
+  const asset = candidate
+    ? landing
+    : collection === "tailored"
+      ? tailored[id]
+      : files[id];
+  const appearanceUrl = candidate
+    ? landing.appearance
+    : collection === "tailored"
+      ? tailored[id].appearance
+      : undefined;
   const controller = new AbortController();
   const cancel = () => controller.abort(signal?.reason);
   signal?.addEventListener("abort", cancel, { once: true });
@@ -134,13 +216,17 @@ export async function loadSideProject(
     // Fetch independent compressed assets together. Strict source, garment and
     // appearance validation below remains serial to bound decoded memory.
     const [source, registration, garments, appearance] = await Promise.all([
-      sourceBytes.get(files[id].source, bindings[id].sha256, controller.signal),
+      sourceBytes.get(
+        candidate ? landing.source : files[id].source,
+        candidate ? landingCatalog.sourceSha256 : bindings[id].sha256,
+        controller.signal,
+      ),
       fetchSideAsset(asset.registration, controller.signal),
       Promise.all(
         asset.garments.map((url) => fetchSideAsset(url, controller.signal)),
       ),
-      collection === "tailored"
-        ? fetchSideAsset(tailored[id].appearance, controller.signal)
+      appearanceUrl
+        ? fetchSideAsset(appearanceUrl, controller.signal)
         : undefined,
     ]);
     const project = await createWardrobeProject(
@@ -151,6 +237,20 @@ export async function loadSideProject(
         signal: controller.signal,
       },
     );
+    if (candidate) {
+      if (!isLandingCandidateProject(project))
+        throw Error("落地补帧候选的原片或定位绑定不匹配。");
+      const expected = Object.values(landingCatalog.garmentIds);
+      if (
+        project.items.length !== expected.length ||
+        expected.some(
+          (itemId) =>
+            project.items.filter((item) => item.manifest.id === itemId)
+              .length !== 1,
+        )
+      )
+        throw Error("落地补帧候选的服装素材不完整。");
+    }
     return appearance
       ? await addWardrobeAppearanceBank(project, appearance, {
           signal: controller.signal,
@@ -167,8 +267,17 @@ export async function loadSideProject(
 export function sideLookSelection(
   id: SideCharacterId,
   collection: SideCollection = "material",
+  look: SideLookId = "daily",
 ): WardrobeSelection {
-  if (id !== "male" && id !== "female") throw Error("无法识别这个侧视人物。");
+  assertSideCollection(id, collection);
+  if (collection === "landing-candidate") {
+    const selection = landingCatalog.presets[look];
+    if (!selection) throw Error("无法识别这个候选搭配。");
+    return { ...selection };
+  }
+  if (look === "original")
+    return { top: null, bottom: null, shoes: null, fullBody: null };
+  if (look !== "daily") throw Error("这组服装没有对应的婚礼搭配。");
   if (collection === "tailored")
     return {
       top:
@@ -191,10 +300,32 @@ export function sideLookSelection(
   };
 }
 
+export function sideLookPresets(
+  id: SideCharacterId,
+  collection: SideCollection = "material",
+): SideLookPreset[] {
+  assertSideCollection(id, collection);
+  const looks: SideLookId[] =
+    collection === "landing-candidate"
+      ? ["original", "daily", "wedding"]
+      : ["original", "daily"];
+  const names: Record<SideLookId, string> = {
+    original: "原版基础造型",
+    daily: "日常搭配",
+    wedding: "婚礼搭配",
+  };
+  return looks.map((look) => ({
+    id: look,
+    name: names[look],
+    selection: sideLookSelection(id, collection, look),
+  }));
+}
+
 /** Display classification only; imports are validated by the project parser. */
 export function sideProjectCollection(
   project: WardrobeProject,
 ): SideCollection {
+  if (isLandingCandidateProject(project)) return "landing-candidate";
   return project.items.some((item) =>
     [
       "side-male-oxford-shirt-v1",
@@ -209,6 +340,7 @@ export function sideProjectCollection(
 
 /** Call after the existing project importer has verified embedded bytes. */
 export function sideIdentityOf(project: WardrobeProject): SideCharacterId {
+  if (isLandingCandidateProject(project)) return "male";
   for (const { id } of SIDE_CHARACTERS) {
     if (
       project.document.sourceSha256 === bindings[id].sha256 &&

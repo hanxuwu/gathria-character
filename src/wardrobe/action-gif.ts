@@ -58,7 +58,9 @@ export function gifDelays(frameCount: number, fps: number): number[] {
 const yieldTask = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 export async function exportWardrobeActionGif(
   renderer: Pick<WardrobeCompositor, "manifest" | "renderFrame"> &
-    Partial<Pick<WardrobeCompositor, "renderSourceFrame">>,
+    Partial<
+      Pick<WardrobeCompositor, "renderSourceFrame" | "sourceCharacterId">
+    >,
   action: PortableAnimationName,
   facing: Facing,
   options: {
@@ -70,7 +72,13 @@ export async function exportWardrobeActionGif(
   } = {},
 ): Promise<Uint8Array> {
   const manifest = options.gameplayMotion
-    ? gameplayManifest(renderer.manifest, options.gameplayMotion)
+    ? gameplayManifest(
+        renderer.manifest,
+        options.gameplayMotion,
+        renderer.sourceCharacterId
+          ? { characterId: renderer.sourceCharacterId }
+          : undefined,
+      )
     : renderer.manifest;
   const clip = manifest.animations[action];
   if (!clip) throw Error("This character has no requested action.");
