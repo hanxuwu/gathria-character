@@ -110,6 +110,7 @@ class RegisteredWardrobeCompositor {
   private readonly project: WardrobeProject;
   readonly manifest: BakedCharacterPackManifest;
   readonly sourceManifest: BakedCharacterPackManifest;
+  readonly sourceCharacterId: string;
   readonly padding: Readonly<AppearancePadding>;
   private readonly headAppearance?: AppearanceRenderer;
   private readonly frames: Map<number, SpriteFrame>;
@@ -123,6 +124,7 @@ class RegisteredWardrobeCompositor {
   constructor(project: WardrobeProject) {
     this.project = project;
     this.sourceManifest = project.archive.manifest;
+    this.sourceCharacterId = project.archive.config.characterId;
     const headSelection =
       project.document.version === 2 ? project.document.appearance : undefined;
     if (appearanceIsActive(headSelection)) {
@@ -574,7 +576,11 @@ function exportMetadata(
   const manifest = validatePortableManifest({
     ...structuredClone(
       gameplayMotion
-        ? gameplayManifest(outputManifest, gameplayMotion)
+        ? gameplayManifest(
+            outputManifest,
+            gameplayMotion,
+            project.archive.config,
+          )
         : outputManifest,
     ),
     name: exportName,
@@ -685,6 +691,7 @@ export async function exportWardrobeCharacterPack(
     const expected = resolveGameplayMotion(
       verified.archive.manifest,
       verified.document.sourceSha256,
+      verified.archive.config,
     );
     if (
       !expected ||
@@ -695,7 +702,11 @@ export async function exportWardrobeCharacterPack(
       );
     // The core validates all clip and route fields against its exact reviewed
     // declaration, independent of property order in imported JSON.
-    gameplayManifest(verified.archive.manifest, gameplayMotion);
+    gameplayManifest(
+      verified.archive.manifest,
+      gameplayMotion,
+      verified.archive.config,
+    );
   }
   const selected = Object.values(verified.document.selection).some(
     (id) => id !== null,

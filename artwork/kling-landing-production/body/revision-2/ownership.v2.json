@@ -1,0 +1,162 @@
+{
+  "format": "gathria-local-art-ownership",
+  "version": 1,
+  "frameId": 108,
+  "canvas": [
+    512,
+    768
+  ],
+  "method": "Binary pixel-center polygon union; owned RGBA copied from generated R3 native body; all other RGBA copied exactly from tracked R2 headless body; original89 head reattached separately",
+  "polygons": [
+    {
+      "label": "upperTorsoAndNearArm",
+      "points": [
+        [
+          135,
+          400
+        ],
+        [
+          312,
+          400
+        ],
+        [
+          312,
+          486
+        ],
+        [
+          306,
+          486
+        ],
+        [
+          304,
+          493
+        ],
+        [
+          300,
+          501
+        ],
+        [
+          295,
+          511
+        ],
+        [
+          288,
+          523
+        ],
+        [
+          284,
+          532
+        ],
+        [
+          284,
+          542
+        ],
+        [
+          135,
+          542
+        ]
+      ]
+    },
+    {
+      "label": "lowerNearHandOverlap",
+      "points": [
+        [
+          193,
+          534
+        ],
+        [
+          247,
+          534
+        ],
+        [
+          244,
+          540
+        ],
+        [
+          238,
+          545
+        ],
+        [
+          232,
+          549
+        ],
+        [
+          226,
+          553
+        ],
+        [
+          219,
+          556
+        ],
+        [
+          212,
+          557
+        ],
+        [
+          205,
+          555
+        ],
+        [
+          199,
+          552
+        ],
+        [
+          195,
+          547
+        ]
+      ]
+    },
+    {
+      "label": "oldTorsoContourRepair",
+      "points": [
+        [
+          301,
+          485
+        ],
+        [
+          316,
+          485
+        ],
+        [
+          317,
+          493
+        ],
+        [
+          314,
+          502
+        ],
+        [
+          308,
+          513
+        ],
+        [
+          301,
+          523
+        ],
+        [
+          294,
+          529
+        ],
+        [
+          291,
+          520
+        ],
+        [
+          299,
+          502
+        ]
+      ]
+    }
+  ],
+  "protectedConstraints": {
+    "allRowsAtOrBelow": 570,
+    "farHandMinX": 323,
+    "head": "Recopy exact original89 head using unchanged108 head mask/translation after ownedbody assembly"
+  },
+  "notes": [
+    "Main ownership clears the old backward elbow silhouette as well as accepting the new arm.",
+    "Hand-only lower lobe includes the generated outline and a narrow shorts overlap; no feet, legs or hip anchors are inside it.",
+    "Right edge follows torso/far-arm attachment. Far hand is entirely excluded. Inspect the short far-arm boundary and tank hem after exact RGBA composition.",
+    "Second review: include the old torso contour next to far forearm. This removes a double contour from mixing old and R3 interfaces; far wrist/fist remain unowned."
+  ]
+}

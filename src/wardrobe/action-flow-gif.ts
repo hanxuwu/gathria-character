@@ -87,7 +87,9 @@ export function buildWardrobeRunJumpSequence(
 
 export async function exportWardrobeRunJumpGif(
   renderer: Pick<WardrobeCompositor, "manifest" | "renderFrame"> &
-    Partial<Pick<WardrobeCompositor, "renderSourceFrame">>,
+    Partial<
+      Pick<WardrobeCompositor, "renderSourceFrame" | "sourceCharacterId">
+    >,
   profile: GameplayMotion,
   facing: Facing,
   options: Omit<
@@ -95,7 +97,13 @@ export async function exportWardrobeRunJumpGif(
     "gameplayMotion"
   > = {},
 ): Promise<Uint8Array> {
-  const manifest = gameplayManifest(renderer.manifest, profile);
+  const manifest = gameplayManifest(
+    renderer.manifest,
+    profile,
+    renderer.sourceCharacterId
+      ? { characterId: renderer.sourceCharacterId }
+      : undefined,
+  );
   const sequence = buildWardrobeRunJumpSequence(profile);
   return exportWardrobeActionGif(
     {

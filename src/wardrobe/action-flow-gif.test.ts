@@ -13,10 +13,16 @@ import {
 function fixture(row: (typeof profiles)[number]) {
   const profile = row.profile as GameplayMotion;
   const all = [
-    ...new Set(Object.values(row.sourceActions).flatMap((clip) => clip.frames)),
+    ...new Set([
+      ...Object.values(row.sourceActions).flatMap((clip) => clip.frames),
+      ...profile.routes.flatMap((route) => route.leadIn ?? []),
+    ]),
   ];
   const calls: number[] = [];
   const renderer = {
+    ...("sourceCharacterId" in row
+      ? { sourceCharacterId: row.sourceCharacterId as string }
+      : {}),
     manifest: {
       spritesheet: { frameWidth: 4, frameHeight: 2 },
       frames: all.map((id) => ({ id, x: 0, y: 0, width: 4, height: 2 })),

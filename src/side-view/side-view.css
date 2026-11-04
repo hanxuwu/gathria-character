@@ -805,3 +805,38 @@
     max-height: 280px;
   }
 }
+
+.side-candidate-note {
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  border: 1px solid #d9c89d;
+  border-radius: 12px;
+  background: #fbf6e9;
+  color: #625337;
+}
+.side-candidate-note p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.side-candidate-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.side-candidate-flow button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 10px;
+  border: 1px solid #cad0c3;
+  border-radius: 8px;
+  background: #f7f8f3;
+  color: #43503d;
+  cursor: pointer;
+}
+.side-candidate-flow p {
+  flex-basis: 100%;
+  margin: 0;
+}

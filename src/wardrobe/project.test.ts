@@ -57,7 +57,7 @@ function withAnimationControl(image: Uint8Array) {
   return output;
 }
 
-async function fixture() {
+async function fixture(sourceEdition = 0) {
   const manifest: CharacterPackV2Manifest = {
     schemaVersion: 2,
     format: "gathria-character-pack",
@@ -110,7 +110,7 @@ async function fixture() {
   };
   const pixels = new Uint8Array(16 * 8 * 4);
   for (let i = 0; i < pixels.length; i += 4)
-    pixels.set([60 + (i % 40), 80, 100, 255], i);
+    pixels.set([60 + (i % 40), 80 + sourceEdition, 100, 255], i);
   const source = new Uint8Array(
     await (
       await createBakedCharacterPack(
@@ -216,6 +216,71 @@ function garment(
 }
 
 describe("source-bound wardrobe registration and assets", () => {
+  it("keeps editions with shared character and garment IDs independent across ZIP reopen", async () => {
+    const first = await fixture(),
+      second = await fixture(1);
+    const firstGarment = garment(first.registration, first.registrationBytes);
+    const secondGarment = garment(
+      second.registration,
+      second.registrationBytes,
+    );
+    const original = await createWardrobeProject(
+      first.source,
+      first.registrationBytes,
+      [firstGarment.bytes],
+    );
+    const saved = await exportWardrobeProject(original);
+    const current = await createWardrobeProject(
+      second.source,
+      second.registrationBytes,
+      [secondGarment.bytes],
+    );
+    const reopened = await importWardrobeProject(saved);
+    expect(current.archive.config.characterId).toBe(
+      reopened.archive.config.characterId,
+    );
+    expect(current.items[0].manifest.id).toBe(reopened.items[0].manifest.id);
+    expect(current.document.sourceSha256).not.toBe(
+      reopened.document.sourceSha256,
+    );
+    expect(current.document.registrationSha256).not.toBe(
+      reopened.document.registrationSha256,
+    );
+    expect(sha(reopened.source)).toBe(sha(first.source));
+    expect(reopened.items[0].sha256).toBe(sha(firstGarment.bytes));
+    expect(reopened.archive.png).toEqual(original.archive.png);
+    expect(reopened.archive.png).not.toEqual(current.archive.png);
+    const oldRenderer = await createWardrobeCompositor(reopened);
+    const newRenderer = await createWardrobeCompositor(current);
+    try {
+      const oldPixels = oldRenderer.renderFrame(7).pixels;
+      expect(newRenderer.renderFrame(7).pixels).not.toEqual(oldPixels);
+      expect(oldRenderer.renderFrame(7).pixels).toEqual(oldPixels);
+    } finally {
+      oldRenderer.dispose();
+      newRenderer.dispose();
+    }
+    await expect(
+      addWardrobeGarment(reopened, secondGarment.bytes),
+    ).rejects.toThrow(/source|registration/i);
+    await expect(
+      addWardrobeGarment(current, firstGarment.bytes),
+    ).rejects.toThrow(/source|registration/i);
+    const mismatchedRegistration = {
+      ...secondGarment.files,
+      "manifest.json": json({
+        ...secondGarment.manifest,
+        sourceSha256: reopened.document.sourceSha256,
+      }),
+    };
+    await expect(
+      addWardrobeGarment(
+        reopened,
+        zipSync(mismatchedRegistration, { mtime: zipTime }),
+      ),
+    ).rejects.toThrow(/registration/i);
+  });
+
   it("exports only worn clothing with its exact source-bound authoring inputs", async () => {
     const f = await fixture();
     const asset = garment(f.registration, f.registrationBytes);

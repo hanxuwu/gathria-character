@@ -1,0 +1,73 @@
+{
+  "format": "gathria-wedding-candidate-visual-review",
+  "version": 1,
+  "scope": "Native source107 + two appended landing poses; independent read-only artwork review",
+  "strictValidation": {
+    "baseFrameCount": 107,
+    "topLintPassed": true,
+    "bottomLintPassed": true,
+    "protectedAndUnownedSourcePixelsExact": true,
+    "originalSourceAndRegistrationUnchanged": true
+  },
+  "baseGarmentSha256": {
+    "top": "e2237caebaa728128fee2e0a77e2b96ef6d88e3b60e7b0440fbaee866893254b",
+    "bottom": "194bfa9477df2ae2be1166343fd849c9ff446a96e6a1ca1d9d6546a555f1872f"
+  },
+  "newLandingFrames": [
+    107,
+    108
+  ],
+  "newLandingFinding": "Shoulder-to-torso and waist joins consistent; no new material garment blocker observed. Exact source head/hands/unowned pixels preserved.",
+  "resolved": [
+    "Sloped source and donor neckline coordinate mapping removes padded false collar bands.",
+    "Cloth-only source-observed102103 arm guide corrects black/white sleeve blocks without changing registration or source anatomy.",
+    "Original source shoe-edge restorations remove navy cloth protrusions from prior daily ownership."
+  ],
+  "remainingCandidateLimitations": [
+    {
+      "frames": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        97,
+        98,
+        99,
+        100,
+        101
+      ],
+      "finding": "Some raised-arm sleeve sections still look flat/squared; source silhouette and protection unchanged."
+    },
+    {
+      "frames": [
+        50,
+        51,
+        52,
+        53,
+        92,
+        93,
+        94,
+        95
+      ],
+      "finding": "Small original nape/shoulder skin slivers retained under conservative immutable protection."
+    },
+    {
+      "finding": "Ivory cuff visibility varies with pose and protected wrist/hand coverage."
+    }
+  ],
+  "frame43ForearmCheck": {
+    "sourceVisibleWarmNearForearmPixelsOutsideProtection": 1780,
+    "unchangedPixels": 0,
+    "exposedArea": "Exact protected palm/fist source pixels"
+  },
+  "status": "Experimental visual candidate, not production-perfect; final run\u2192jump\u2192run UI/export review is separate."
+}
