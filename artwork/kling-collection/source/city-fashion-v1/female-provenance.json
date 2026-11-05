@@ -1,0 +1,51 @@
+{
+  "format": "gathria-clothing-donor-provenance",
+  "version": 1,
+  "created": "2026-10-27",
+  "character": "female",
+  "stages": [
+    {
+      "tool": "OpenAI image generation",
+      "reference": {
+        "path": "artwork/kling-appearance/source/female-reference.png",
+        "sha256": "b20b8f7c7b7e32974ab9ac986ebde7b9360b9cfe5177fe070af2117644da6408",
+        "bytes": 295815
+      },
+      "prompt": {
+        "path": "artwork/kling-collection/source/city-fashion-v1/female-prompt.txt",
+        "sha256": "cb7b1f0d5888e5c02093382916676aeddf29549356e08ae5d3a00f97de26311b",
+        "bytes": 2406
+      },
+      "output": {
+        "path": "artwork/kling-collection/source/city-fashion-v1/female-designs-initial.png",
+        "sha256": "820c018eba03d780fba0a13063da9968f278ecf42b5b0ff589c395cb945d4fcb",
+        "bytes": 1407380
+      }
+    },
+    {
+      "tool": "OpenAI image edit",
+      "reference": {
+        "path": "artwork/kling-collection/source/city-fashion-v1/female-designs-initial.png",
+        "sha256": "820c018eba03d780fba0a13063da9968f278ecf42b5b0ff589c395cb945d4fcb",
+        "bytes": 1407380
+      },
+      "prompt": {
+        "path": "artwork/kling-collection/source/city-fashion-v1/female-bow-edit-prompt.txt",
+        "sha256": "8ce5e94a33c38b90297d722ec2a694be7fe16d0d801b6798a90a05699be3a08e",
+        "bytes": 718
+      },
+      "output": {
+        "path": "artwork/kling-collection/source/city-fashion-v1/female-designs.png",
+        "sha256": "bd8fc686622495abe0748e17c075f79a7bfd3e1b53bfd967189833513586b116",
+        "bytes": 1383203
+      },
+      "purpose": "Reduce the oversized retro bow and restore the large gingham underneath."
+    }
+  ],
+  "donorTrace": {
+    "path": "artwork/kling-collection/source/city-fashion-v1/female-donors.json",
+    "sha256": "3f135a40bdf3f3cfaac3421f13400473fbd9021a61ac8ba77e7682f69d2f6b56",
+    "bytes": 3113
+  },
+  "runtimeUse": "Only manually delimited cloth RGB; generated anatomy and alpha are discarded. Exact per-item baseline alpha, binary ownership, frame and source bindings remain authoritative."
+}

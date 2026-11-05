@@ -2103,6 +2103,9 @@ export default function WardrobeEditor({
           "butter-bookshop",
           "apricot-garden",
           "teal-evening",
+          "city-ink",
+          "campus-periwinkle",
+          "retro-cherry",
         ]
       : [
           entry?.presets.some((p) => p.id === "day-soft-cuff")
@@ -2120,6 +2123,9 @@ export default function WardrobeEditor({
           "cocoa-bookshop",
           "rose-weekend",
           "ink-cafe",
+          "city-ivory",
+          "campus-sky",
+          "retro-burgundy",
         ];
   const hasRecommended = outfitPresets.some((p) =>
     recommendedIds.includes(p.id),
