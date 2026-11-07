@@ -1,22 +1,41 @@
-// Usage: node scripts/review-landing-production-legacy.mjs <V1 fixture root> [report directory]
-// The fixture root retains actual PR62 assets and UI downloads outside Git.
+// Usage: node scripts/review-landing-production-legacy.mjs <fixture root> [report directory]
+// Default: original V1 assets + actual UI downloads under that fixture root.
+// A later edition can use --edition 2 --project <saved.wardrobe.zip> --export-pack.
+// The explicit seed may come from the project writer; browser imports, paused
+// saves/reopens and standalone pack exports are exercised below.
 import { chromium, expect } from "@playwright/test";
 import { unzipSync } from "fflate";
 import { build } from "esbuild";
 import { createServer } from "vite";
 import { tmpdir } from "node:os";
+import { parseArgs } from "node:util";
 import { join, resolve } from "node:path";
 import { readFile, writeFile, mkdir, mkdtemp } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 const root = process.cwd();
-if (!process.argv[2])
+const { values, positionals } = parseArgs({
+  allowPositionals: true,
+  options: {
+    edition: { type: "string", default: "1" },
+    project: { type: "string" },
+    "export-pack": { type: "boolean", default: false },
+  },
+});
+const edition = Number(values.edition);
+assert(
+  Number.isInteger(edition) && edition > 0,
+  "Expected a positive edition number.",
+);
+const prefix = `v${edition}`;
+const expectedProfileId = `kling-male-side-landing-candidate-${prefix}`;
+if (!positionals[0])
   throw Error(
-    "Provide the external V1 fixture root, e.g. /tmp/landing-pr62-v1.",
+    "Provide an external fixture root containing docs/kling-landing-production/assets.",
   );
 const output = await build({
   stdin: {
-    contents: `export {decodeSourceRgbaPng} from './src/core/baked-source'; export {readGameplayMotion} from './src/core/gameplay-motion';`,
+    contents: `export {decodeSourceRgbaPng} from './src/core/baked-source'; export {readGameplayMotion, resolveGameplayMotion} from './src/core/gameplay-motion';`,
     loader: "ts",
     resolveDir: root,
   },
@@ -25,14 +44,18 @@ const output = await build({
   platform: "node",
   format: "esm",
 });
-const { decodeSourceRgbaPng, readGameplayMotion } = await import(
-  "data:text/javascript;base64," +
-    Buffer.from(output.outputFiles[0].text).toString("base64")
-);
+const { decodeSourceRgbaPng, readGameplayMotion, resolveGameplayMotion } =
+  await import(
+    "data:text/javascript;base64," +
+      Buffer.from(output.outputFiles[0].text).toString("base64")
+  );
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const json = (bytes) => JSON.parse(Buffer.from(bytes).toString());
-const oldRoot = resolve(process.argv[2]);
-const out = resolve(process.argv[3] ?? "docs/kling-landing-production/review");
+const oldRoot = resolve(positionals[0]);
+const out = resolve(positionals[1] ?? "docs/kling-landing-production/review");
+const projectPath = resolve(
+  values.project ?? oldRoot + "/ui-review/original.wardrobe.zip",
+);
 const scratch = await mkdtemp(join(tmpdir(), "gathria-landing-legacy-"));
 // Downloads stay outside the repository; only JSON and screenshot evidence is published.
 await mkdir(out, { recursive: true });
@@ -48,7 +71,20 @@ const currentCatalog = json(
 assert.notEqual(
   currentCatalog.sourceSha256,
   oldHash,
-  "Run after the V2 source is published.",
+  "Run after a newer source edition is published.",
+);
+const sourceProfile = resolveGameplayMotion(
+  oldManifest,
+  oldHash,
+  json(oldFiles["character.json"]),
+);
+assert.equal(sourceProfile?.id, expectedProfileId);
+const expectedLandingLeadIn = [88, 89, 107, 108];
+assert.deepEqual(
+  sourceProfile.routes.find(
+    (route) => route.from === "jump" && route.to === "run",
+  )?.leadIn,
+  expectedLandingLeadIn,
 );
 function sourceFrameHash(frameId) {
   const frame = oldManifest.frames.find((row) => row.id === frameId);
@@ -106,10 +142,15 @@ async function download(id, name) {
 const report = {
   format: "gathria-landing-legacy-review",
   version: 1,
+  edition,
+  seedProjectSha256: sha(await readFile(projectPath)),
+  seedProvenance: values.project
+    ? "Explicit external project fixture; subsequent saves/reopens/pack export use the actual UI"
+    : "Actual prior workbench download",
   oldSourceSha256: oldHash,
   currentSourceSha256: currentCatalog.sourceSha256,
   wardrobe: [],
-  currentAssetRequestsDuringV1Import: null,
+  currentAssetRequestsDuringImport: null,
   player: null,
 };
 try {
@@ -122,34 +163,50 @@ try {
     if (request.url().includes("/docs/kling-landing-production/assets/"))
       fetched.push(request.url());
   });
-  await side()
-    .getByTestId("side-project-input")
-    .setInputFiles(oldRoot + "/ui-review/original.wardrobe.zip");
+  await side().getByTestId("side-project-input").setInputFiles(projectPath);
   await ready();
   await expect(stage()).toHaveAttribute("data-collection", "landing-candidate");
-  await expect(stage()).toHaveAttribute("data-frame-id", "107");
-  await expect(stage()).toHaveAttribute("data-paused", "true");
+  if (!values.project) {
+    await expect(stage()).toHaveAttribute("data-frame-id", "107");
+    await expect(stage()).toHaveAttribute("data-paused", "true");
+  }
   for (const frameId of [107, 108]) {
     await side()
       .getByTestId("side-inspect-landing-" + frameId)
       .click();
     await expect(stage()).toHaveAttribute("data-frame-id", String(frameId));
-    const png = await download("side-export-png", "v1-" + frameId + ".png");
+    const png = await download(
+      "side-export-png",
+      prefix + "-" + frameId + ".png",
+    );
     const pixelHash = sha(decodeSourceRgbaPng(png).pixels);
     assert.equal(pixelHash, sourceFrameHash(frameId));
     const zip = unzipSync(
-      await download("side-save-project", "v1-" + frameId + ".wardrobe.zip"),
+      await download(
+        "side-save-project",
+        prefix + "-" + frameId + ".wardrobe.zip",
+      ),
     );
     const document = json(zip["document.json"]);
     assert.equal(sha(zip["source.character.zip"]), oldHash);
     assert.equal(document.sourceSha256, oldHash);
-    assert.equal(
-      document.preview.playback.profileId,
-      "kling-male-side-landing-candidate-v1",
-    );
+    assert.equal(document.preview.playback.profileId, expectedProfileId);
     assert.equal(document.preview.playback.state.paused, true);
+    await side().getByTestId("side-action-idle").click();
+    await side()
+      .getByTestId("side-project-input")
+      .setInputFiles(scratch + "/" + prefix + "-" + frameId + ".wardrobe.zip");
+    await ready();
+    await expect(stage()).toHaveAttribute("data-frame-id", String(frameId));
+    await expect(stage()).toHaveAttribute("data-paused", "true");
+    const reopened = await download(
+      "side-export-png",
+      prefix + "-" + frameId + "-reopened.png",
+    );
+    assert.equal(sha(decodeSourceRgbaPng(reopened).pixels), pixelHash);
     report.wardrobe.push({
       frameId,
+      savedPausedReopenedPixelsExact: true,
       pixelSha256: pixelHash,
       profileId: document.preview.playback.profileId,
       sourceSha256: document.sourceSha256,
@@ -158,17 +215,37 @@ try {
   assert.deepEqual(
     fetched,
     [],
-    "Importing and saving V1 must not fetch current source or garment banks.",
+    "Importing and saving an old edition must not fetch current source or garment banks.",
   );
-  report.currentAssetRequestsDuringV1Import = fetched.length;
-  await page.screenshot({ path: out + "/v1-reopened-108.png", fullPage: true });
-  const oldPackPath = oldRoot + "/ui-review/original.character.zip";
-  const oldPack = await readFile(oldPackPath),
+  report.currentAssetRequestsDuringImport = fetched.length;
+  if (edition === 1) report.currentAssetRequestsDuringV1Import = fetched.length;
+  await page.screenshot({
+    path: out + "/" + prefix + "-reopened-108.png",
+    fullPage: true,
+  });
+  const oldPackPath = values["export-pack"]
+    ? scratch + "/" + prefix + ".character.zip"
+    : oldRoot + "/ui-review/original.character.zip";
+  const oldPack = values["export-pack"]
+      ? await download("side-export-pack", prefix + ".character.zip")
+      : await readFile(oldPackPath),
     packFiles = unzipSync(oldPack),
     packManifest = json(packFiles["manifest.json"]),
     packConfig = json(packFiles["character.json"]);
   const oldProfile = readGameplayMotion(packManifest, packConfig);
-  assert.equal(oldProfile?.id, "kling-male-side-landing-candidate-v1");
+  assert.equal(oldProfile?.id, expectedProfileId);
+  assert.equal(oldProfile.sourceSha256, oldHash);
+  assert.deepEqual(
+    oldProfile.routes.find(
+      (route) => route.from === "jump" && route.to === "run",
+    )?.leadIn,
+    expectedLandingLeadIn,
+  );
+  assert.deepEqual(
+    fetched,
+    [],
+    "Exporting the imported edition must remain self-contained.",
+  );
   const player = await browser.newPage({ acceptDownloads: true });
   player.on("pageerror", (e) => errors.push(String(e)));
   const playerAssets = [];
@@ -183,38 +260,59 @@ try {
   });
   const canvas = player.getByTestId("consumer-canvas");
   await expect(canvas).toHaveAttribute("data-gameplay-motion", "true");
+  await canvas.evaluate((canvas) => {
+    window.__legacySamples = [];
+    const capture = () =>
+      window.__legacySamples.push({
+        frameId: Number(canvas.dataset.frameId),
+        action: canvas.dataset.action,
+        leadIn: canvas.dataset.leadIn === "true",
+      });
+    window.__legacyObserver = new MutationObserver(capture);
+    window.__legacyObserver.observe(canvas, { attributes: true });
+    capture();
+  });
   await player.getByRole("button", { name: "Run", exact: true }).click();
   await expect(canvas).toHaveAttribute("data-action", "run");
   await player.getByRole("button", { name: "Jump", exact: true }).click();
-  const observed = await canvas.evaluate(async (canvas) => {
-    const frames = [],
-      start = performance.now();
-    await new Promise((resolve) => {
-      const sample = () => {
-        frames.push(Number(canvas.dataset.frameId));
-        if (performance.now() - start > 2500) resolve();
-        else requestAnimationFrame(sample);
-      };
-      requestAnimationFrame(sample);
-    });
-    return frames;
+  await expect(canvas).toHaveAttribute("data-action", "jump", {
+    timeout: 5000,
   });
-  assert(observed.includes(107));
-  assert(observed.includes(108));
-  await expect(canvas).toHaveAttribute("data-action", "run");
+  await expect(canvas).toHaveAttribute("data-action", "run", { timeout: 5000 });
+  await expect(canvas).toHaveAttribute("data-lead-in", "false", {
+    timeout: 5000,
+  });
+  const observed = await player.evaluate(() => {
+    window.__legacyObserver.disconnect();
+    return window.__legacySamples;
+  });
+  const landingFrames = observed
+    .filter((frame) => frame.leadIn && frame.action === "run")
+    .map((frame) => frame.frameId);
+  const landingUnique = landingFrames.filter(
+    (frame, index) => !index || frame !== landingFrames[index - 1],
+  );
+  assert.deepEqual(
+    landingUnique,
+    expectedLandingLeadIn,
+    "Standalone playback must retain the old landing route.",
+  );
   const pending = player.waitForEvent("download");
   await player
     .getByRole("button", { name: "Export selected CharacterPack", exact: true })
     .click();
   const saved = await pending;
-  await saved.saveAs(scratch + "/v1-reexport.character.zip");
+  await saved.saveAs(scratch + "/" + prefix + "-reexport.character.zip");
   assert.equal(
-    sha(await readFile(scratch + "/v1-reexport.character.zip")),
+    sha(await readFile(scratch + "/" + prefix + "-reexport.character.zip")),
     sha(oldPack),
   );
   assert.deepEqual(playerAssets, []);
   report.player = {
     profileId: oldProfile.id,
+    sourceSha256: oldProfile.sourceSha256,
+    exportedThroughCurrentWorkbench: values["export-pack"],
+    observedLandingLeadIn: landingUnique,
     saw107: true,
     saw108: true,
     reexportSha256: sha(oldPack),
@@ -222,7 +320,7 @@ try {
   };
   assert.deepEqual(errors, []);
   await writeFile(
-    out + "/v1-backward-compatibility.json",
+    out + "/" + prefix + "-backward-compatibility.json",
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(JSON.stringify(report));

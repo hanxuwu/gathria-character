@@ -942,7 +942,7 @@ export default function SideViewPlayground({
         );
       } else {
         setStatus(
-          "正在预览跑 → 跳 → 跑：跑一轮、跳跃一次、落地接跑一轮后暂停。",
+          "正在预览跑 → 跳 → 跑：跳跃一次，落地继续跑步，完整播放后暂停。",
         );
       }
       lastTimeRef.current = null;

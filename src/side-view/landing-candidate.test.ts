@@ -84,7 +84,7 @@ function recovery(index: number, fraction = 0) {
 }
 
 describe("independent male landing candidate source binding", () => {
-  it("adds only two recovery drawings and keeps V7 and all basic clips intact", () => {
+  it("retains two recovery drawings, removes one grounded hold and keeps V7 basic clips intact", () => {
     const normalized = structuredClone(profile);
     normalized.id = previous.profile.id;
     normalized.sourceSha256 = previous.profile.sourceSha256;
@@ -97,7 +97,7 @@ describe("independent male landing candidate source binding", () => {
       to: "run",
       exit: 23,
       entry: 9,
-      leadIn: [88, 89, 107, 108],
+      leadIn: [88, 107, 108],
     });
     landing.leadIn = [88, 89];
     expect(normalized).toEqual(previous.profile);
@@ -211,7 +211,7 @@ describe("landing candidate project ZIP checkpoints", () => {
     );
   }, 60_000);
 
-  it.each([2, 3])(
+  it.each([1, 2])(
     "saves and reopens paused recovery tick%s without losing release intent",
     async (index) => {
       const state = {
@@ -238,11 +238,11 @@ describe("landing candidate project ZIP checkpoints", () => {
         restoredProfile,
       )!;
       expect(restored).toEqual(state);
-      expect(frame(restored)).toBe(index === 2 ? 107 : 108);
+      expect(frame(restored)).toBe(index === 1 ? 107 : 108);
       expect(advance(restored, 5000)).toEqual(state);
       const resumed = advance(
         { ...restored, paused: false },
-        (4 - index) * TICK - 7.25,
+        (3 - index) * TICK - 7.25,
       );
       expect(frame(resumed)).toBe(48);
       expect(resumed.pending).toBe("idle");
@@ -284,7 +284,6 @@ describe("landing candidate through the actual side controller", () => {
             ...route.leadIn!,
             ...Array.from({ length: 23 }, (_, i) => 63 + i),
             88,
-            89,
             107,
             108,
             48,
@@ -334,16 +333,16 @@ describe("landing candidate through the actual side controller", () => {
     expect(advance(state, 1000).worldX).toBe(state.worldX);
   });
 
-  it.each([2, 3])(
+  it.each([1, 2])(
     "keeps release and repeated jump intent stable during recovery tick %s",
     (index) => {
       let state = request(recovery(index, 7), "idle");
-      expect(frame(state)).toBe(index === 2 ? 107 : 108);
+      expect(frame(state)).toBe(index === 1 ? 107 : 108);
       const before = structuredClone(state);
       for (let repeat = 0; repeat < 20; repeat++)
         state = request(state, "jump");
       expect(state).toEqual(before);
-      state = advance(state, (4 - index) * TICK - 7);
+      state = advance(state, (3 - index) * TICK - 7);
       expect(frame(state)).toBe(48);
       expect(state.pending).toBe("idle");
       expect(state.leadIn).toBeUndefined();
@@ -353,7 +352,7 @@ describe("landing candidate through the actual side controller", () => {
     },
   );
 
-  it.each([2, 3])(
+  it.each([1, 2])(
     "restores a paused fractional checkpoint at recovery tick %s and resumes exact next pose",
     (index) => {
       const state = {
@@ -368,7 +367,7 @@ describe("landing candidate through the actual side controller", () => {
       )!;
       expect(restored).toEqual(state);
       expect(restored).not.toBe(state);
-      expect(frame(restored)).toBe(index === 2 ? 107 : 108);
+      expect(frame(restored)).toBe(index === 1 ? 107 : 108);
       expect(advance(restored, 5000)).toEqual(state);
       expect(
         restoreSidePlaybackCheckpoint(
@@ -377,7 +376,7 @@ describe("landing candidate through the actual side controller", () => {
         ),
       ).toBeNull();
       const resumed = advance({ ...restored, paused: false }, TICK - 7.25);
-      expect(frame(resumed)).toBe(index === 2 ? 108 : 48);
+      expect(frame(resumed)).toBe(index === 1 ? 108 : 48);
       expect(resumed.pending).toBe("idle");
       expect(resumed.facing).toBe("left");
       expect(resumed.worldX).toBeCloseTo(

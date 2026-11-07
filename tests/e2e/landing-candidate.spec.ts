@@ -88,6 +88,9 @@ test("male landing candidate: three looks, controller flow, paused landing reope
   expect(observed.some((frame) => frame.action === "jump")).toBe(true);
   await expect(stage(page)).toHaveAttribute("data-action", "run");
   await expect(stage(page)).toHaveAttribute("data-paused", "true");
+  // The real controller reaches the initial run phase after the final native
+  // Run56 pose, matching the export's last-to-first replay boundary.
+  await expect(stage(page)).toHaveAttribute("data-frame-id", "39");
   await expect(side(page).getByTestId("side-status")).toContainText("预览完成");
 
   for (const frame of [107, 108]) {

@@ -42,7 +42,20 @@ test("library has three primary destinations, original previews and lazy charact
   for (const character of ["male", "female"])
     await expect(
       page.locator(`.library-character--${character}`).getByRole("link"),
-    ).toHaveCount(1);
+    ).toHaveCount(character === "male" ? 2 : 1);
+  await expect(
+    page
+      .locator(".library-character--male")
+      .getByTestId("library-landing-candidate"),
+  ).toHaveAttribute(
+    "href",
+    "/workbench.html?character=male&mode=side-view&collection=landing-candidate",
+  );
+  await expect(
+    page
+      .locator(".library-character--female")
+      .getByTestId("library-landing-candidate"),
+  ).toHaveCount(0);
   await expect(
     page.locator(
       'a[href="/editor.html"], a[href="/rig-lab.html"], a[href="/mother-study.html"]',

@@ -58,11 +58,35 @@
     "registration": "revision-2/new-frame-registration.r3.json",
     "bodyReview": "revision-2/art-provenance.r3.json",
     "registrationStatus": "Manually revised frame 108 near shoulder, elbow, wrist and hand protection. Frame 107 and the frame 108 head polygon, neck, far hand and leg anchors retain their previous values; these are authoring guides, not a recovered skeleton.",
-    "candidateEdition": 2,
+    "candidateEdition": 3,
     "assetPathBase": "artwork/kling-landing-production/body",
     "experimentalSelection": "Root and independent visual review selected the corrected upper-body seam for experimental freeze; dressed frame and interactive sequence review follow.",
     "upperOwnership": "revision-2/ownership.v2.json",
-    "localPreservationAudit": "revision-2/local-preservation-audit.json"
+    "localPreservationAudit": "revision-2/local-preservation-audit.json",
+    "motionSelection": {
+      "kind": "metadata-only-contact-recovery",
+      "previousProfileId": "kling-male-side-landing-candidate-v2",
+      "profileId": "kling-male-side-landing-candidate-v3",
+      "jumpToRun": {
+        "exit": 23,
+        "entry": 9,
+        "leadIn": [
+          88,
+          107,
+          108
+        ]
+      },
+      "unchanged": [
+        "all 109 source RGBA frames",
+        "all garment patches and ownership",
+        "appearance pixels and crops",
+        "registration geometry",
+        "all basic clips and native 24 FPS",
+        "700 px/s travel speed"
+      ],
+      "rationale": "Remove the additional grounded source89 recovery hold while retaining source88 as the initial rising pose. This removes one 41.667 ms recovery tick and 29.167 native pixels of avoidable ground-relative travel at 700 px/s; it does not establish exact foot lock.",
+      "artwork": "No new painting, resampling, pose deformation or changed source pixels in this edition."
+    }
   },
   "headCopy": {
     "mask": "source89-head-mask.png"
@@ -1083,10 +1107,10 @@
       ]
     }
   },
-  "edition": 2,
+  "edition": 3,
   "previousEdition": {
-    "edition": 1,
-    "sourceSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
-    "registrationSha256": "42c96cf360027ce02bf4e2034fd0e3f02a72c7b65b41fb2903fc00a604b1d2a7"
+    "edition": 2,
+    "sourceSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
+    "registrationSha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab"
   }
 }

@@ -1,0 +1,144 @@
+{
+  "format": "gathria-landing-candidate-edition-audit",
+  "version": 1,
+  "before": "/tmp/landing-contact-baseline/docs/kling-landing-production/assets",
+  "after": "/workspace/gathria-character/docs/kling-landing-production/assets",
+  "visualAcceptance": "not-assessed",
+  "pixelComparison": "Exact decoded RGBA; changedPixels counts pixels with any differing channel; bbox is [left,top,right,bottom] with exclusive right/bottom.",
+  "garmentOwnershipComparison": "Binary alpha in native coordinates; ownership RGB has no runtime meaning.",
+  "policy": {
+    "sourceAllowedFrames": [
+      108
+    ],
+    "lowerFromY": 0,
+    "allowedGarmentChanges": {
+      "male-daily-top.garment.zip": [],
+      "male-daily-bottom.garment.zip": [],
+      "male-wedding-top.garment.zip": [],
+      "male-wedding-bottom.garment.zip": []
+    }
+  },
+  "source": {
+    "beforeSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
+    "afterSha256": "0353ca3bb4c333fbab9a2f089ade15b777ed75a45e90a28bf62a8fef34221326",
+    "changedFrames": [],
+    "frameChanges": [],
+    "originalSheets": [
+      {
+        "page": 0,
+        "file": "spritesheet.png",
+        "byteExact": true
+      },
+      {
+        "page": 1,
+        "file": "spritesheet-1.png",
+        "byteExact": true
+      },
+      {
+        "page": 2,
+        "file": "spritesheet-2.png",
+        "byteExact": true
+      }
+    ],
+    "frame108LowerBand": {
+      "fromY": 0,
+      "changedPixels": 0,
+      "bbox": null
+    },
+    "sourceActionsFpsLoopsFacingAnchorExact": true
+  },
+  "head": {
+    "sourceFrameId": 89,
+    "sourceFrameRgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+    "sourceCoordinateMaskSha256": "3488405042b181ba4b5895206e0e4a2b374cbc2665626ead261c53d149283b51",
+    "maskBytesUnchanged": true,
+    "translation": {
+      "x": -18,
+      "y": -14
+    },
+    "visibleHeadPixels": 37158,
+    "editions": [
+      {
+        "edition": "before",
+        "frameId": 108,
+        "copiedHeadPixels": 37158,
+        "clippedPixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      },
+      {
+        "edition": "after",
+        "frameId": 108,
+        "copiedHeadPixels": 37158,
+        "clippedPixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      }
+    ]
+  },
+  "registration": {
+    "beforeSha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab",
+    "afterSha256": "1f68c394bfc3380cf42282ebfb6be0b69d1eb70647557ab0cad72dffdaa92078",
+    "changedFrames": [],
+    "frameChanges": []
+  },
+  "appearance": {
+    "beforeSha256": "39eb96e7aabc078b17b48934e1f177c431442d9195643f3389f4e2c5d2dfac3e",
+    "afterSha256": "f107f9dba4e8a12ad464db6d9646956ff7a34ab33b56d61d8811e75f57de67c6",
+    "changedManifestPaths": [],
+    "changedPngFiles": [],
+    "pngChanges": []
+  },
+  "garments": {
+    "male-daily-top.garment.zip": {
+      "logicalKey": "dailyTop",
+      "beforeSha256": "57d0c981005127e2491bad3d92502e16f0fdc4dc1b058b9470238801b6ffecac",
+      "afterSha256": "f1b65f982b2a9ec144793b740647eb9b69402057185195b1992464c2360eed38",
+      "allowedFrames": [],
+      "changedFrames": [],
+      "frameChanges": [],
+      "changedMetadataPaths": []
+    },
+    "male-daily-bottom.garment.zip": {
+      "logicalKey": "dailyBottom",
+      "beforeSha256": "9fa7985d7e799974ee1121e91536800ee10f86692f3ee7b93bb3c89179490924",
+      "afterSha256": "1d95f2040ea838fcf082d2edaa823a30c1d047de3cf5d2893b80587c39bffe86",
+      "allowedFrames": [],
+      "changedFrames": [],
+      "frameChanges": [],
+      "changedMetadataPaths": []
+    },
+    "male-wedding-top.garment.zip": {
+      "logicalKey": "weddingTop",
+      "beforeSha256": "f40aec2eab630889d9b02ae78f606846dad1e55cbbcd68879761521ea042144a",
+      "afterSha256": "a125c295c78c4c8f2d5bf8648d900a66b37a11c7fa36bbafc721aaf2c1cf62e6",
+      "allowedFrames": [],
+      "changedFrames": [],
+      "frameChanges": [],
+      "changedMetadataPaths": []
+    },
+    "male-wedding-bottom.garment.zip": {
+      "logicalKey": "weddingBottom",
+      "beforeSha256": "eb46131b43b99338d7b541623b21653ebdb3a9d13ec2259a044637c64ab7cc43",
+      "afterSha256": "fea580fa17f5880effc7b6c830c681afabdf8e7b3d94cc4a5ec9fa261354d35c",
+      "allowedFrames": [],
+      "changedFrames": [],
+      "frameChanges": [],
+      "changedMetadataPaths": []
+    }
+  },
+  "catalog": {
+    "changedIdentityOrPresetFields": [],
+    "beforeEdition": 2,
+    "afterEdition": 3,
+    "bindingsChanged": true,
+    "expectedPreviousEdition": {
+      "edition": 2,
+      "sourceSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
+      "registrationSha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab"
+    },
+    "lineageVerified": true
+  },
+  "errors": [],
+  "passed": true
+}

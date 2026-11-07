@@ -8,16 +8,28 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--input", type=Path, required=True)
 ap.add_argument("--out", type=Path, required=True)
 ap.add_argument("--before", type=Path, help="Actual prior workbench GIF exports for same-clock comparisons")
+ap.add_argument("--phase-continuous", action="store_true", help="Verify and label the native run last-to-first replay boundary")
 args = ap.parse_args()
 args.out.mkdir(parents=True, exist_ok=True)
+sequence_data = json.loads((args.out / "runtime-sequence.json").read_text())
+sequence = sequence_data["frames"]
+if args.phase_continuous:
+    profiles = json.loads((Path(__file__).resolve().parents[1] / "src/core/gameplay-motion-profiles.json").read_text())
+    profile = next(row["profile"] for row in profiles if row["profile"]["id"] == sequence_data["profileId"])
+    run = profile["actions"]["run"]["frames"]
+    assert sequence[0]["action"] == sequence[-1]["action"] == "run"
+    assert (sequence[-1]["frameId"], sequence[0]["frameId"]) == (run[-1], run[0])
 looks = ("original", "daily", "wedding")
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 13)
 report = {"source": "Actual workbench GIF downloads", "visualAcceptance": "pending", "outputs": []}
+if args.phase_continuous:
+    report["replayBoundary"] = {"last": sequence[-1]["frameId"], "first": sequence[0]["frameId"], "nativeRunAdjacent": True}
 for facing in ("right", "left"):
     images = [Image.open(args.input / f"{look}-run-jump-run-{facing}.gif") for look in looks]
     frames = [[frame.convert("RGB") for frame in ImageSequence.Iterator(im)] for im in images]
     durations = [[frame.info.get("duration", 0) for frame in ImageSequence.Iterator(im)] for im in images]
     assert len({len(rows) for rows in frames}) == 1
+    assert len(frames[0]) == len(sequence)
     assert durations[0] == durations[1] == durations[2]
     w, h = images[0].size
     assert all(im.size == (w, h) for im in images)
@@ -28,7 +40,8 @@ for facing in ("right", "left"):
         for column, look in enumerate(looks):
             canvas.paste(frames[column][index], (column * w, 44))
             draw.text((column * w + 10, 6), look.title(), fill="#263e34", font=font)
-        draw.text((10, 25), f"Run > one jump > run / {facing} / replay resets phase", fill="#625e55", font=font)
+        boundary_label = "native run loop boundary" if args.phase_continuous else "replay resets phase"
+        draw.text((10, 25), f"Run > one jump > run / {facing} / {boundary_label}", fill="#625e55", font=font)
         combined.append(canvas)
     name = f"three-looks-run-jump-run-{facing}.gif"
     combined[0].save(args.out / name, save_all=True, append_images=combined[1:], duration=durations[0], loop=0, disposal=2, optimize=False)
@@ -36,7 +49,6 @@ for facing in ("right", "left"):
     if facing == "right":
         strip = Image.new("RGB", (w * 7, (h + 30) * 3), "#eee8dc")
         draw = ImageDraw.Draw(strip)
-        sequence = json.loads((args.out / "runtime-sequence.json").read_text())["frames"]
         ticks = list(range(47, 54))
         source_ids = [sequence[tick]["frameId"] for tick in ticks]
         for row, look in enumerate(looks):
@@ -44,7 +56,8 @@ for facing in ("right", "left"):
                 strip.paste(frames[row][tick], (column*w, row*(h+30)+30))
                 draw.text((column*w+8,row*(h+30)+7),f"{look} / {frame_id}",fill="#263e34",font=font)
         strip.save(args.out / "three-looks-landing-contact.png")
-        combined[51].save(args.out / "three-looks-landing108.png")
+        landing108_tick = next(index for index, frame in enumerate(sequence) if frame["frameId"] == 108)
+        combined[landing108_tick].save(args.out / "three-looks-landing108.png")
         if args.before:
             for row, look in enumerate(looks):
                 old = Image.open(args.before / f"{look}-run-jump-run-right.gif")

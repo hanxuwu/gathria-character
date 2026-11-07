@@ -1,0 +1,3646 @@
+{
+  "format": "gathria-fixed-ground-landing-review",
+  "version": 1,
+  "source": "Actual WardrobeCompositor RGBA and advanceSidePlayback world coordinates",
+  "visualAcceptance": "pending",
+  "sourceAssetsModified": false,
+  "candidateChanged": true,
+  "sharedNativePoseComparison": {
+    "compared": 27,
+    "changed": [],
+    "meaning": "Compare matching source frame IDs across editions, independent of which wall-clock tick displays them."
+  },
+  "options": {
+    "mode": "travel",
+    "walkSpeed": 300,
+    "runSpeed": 700,
+    "bounds": {
+      "min": -100000,
+      "max": 100000
+    }
+  },
+  "camera": {
+    "mode": "fixed-per-window",
+    "origin": "A single constant world-origin offset chosen at the first reviewed tick; identical for before and after. No per-frame camera tracking or foot alignment.",
+    "groundY": "Source manifest anchor.y, not estimated shoe height.",
+    "displayScale": 0.5,
+    "left": "Exact horizontal mirror of native compositor output; world velocity sign changes through actual controller."
+  },
+  "nativeFramesDirectory": "/tmp/landing-contact-evidence/final/native",
+  "editions": [
+    {
+      "edition": "before",
+      "sourceSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
+      "registrationSha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab",
+      "profileId": "kling-male-side-landing-candidate-v2",
+      "anchor": {
+        "x": 256,
+        "y": 710,
+        "units": "pixels",
+        "origin": "top-left"
+      },
+      "sequence": {
+        "fps": 24,
+        "frames": 79,
+        "durationMs": 3291.6666666666665,
+        "jumpRequestTick": 18,
+        "window": {
+          "startTick": 47,
+          "endTickExclusive": 57,
+          "gifDurationsMs": [
+            40,
+            40,
+            40,
+            50,
+            40,
+            40,
+            40,
+            40,
+            40,
+            50
+          ]
+        }
+      },
+      "samples": {
+        "right": [
+          {
+            "tick": 0,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 0,
+            "leadIn": null
+          },
+          {
+            "tick": 1,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": 29.166666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 2,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": 58.33333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 3,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 87.5,
+            "leadIn": null
+          },
+          {
+            "tick": 4,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": 116.66666666666666,
+            "leadIn": null
+          },
+          {
+            "tick": 5,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": 145.83333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 6,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": 174.99999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 7,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": 204.16666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 8,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": 233.3333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 9,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 262.49999999999994,
+            "leadIn": null
+          },
+          {
+            "tick": 10,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 291.66666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 11,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 320.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 12,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 350,
+            "leadIn": null
+          },
+          {
+            "tick": 13,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 379.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 14,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 408.33333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 15,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 437.50000000000006,
+            "leadIn": null
+          },
+          {
+            "tick": 16,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 466.66666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 17,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 495.8333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 18,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 525.0000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 19,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": 554.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 20,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": 583.3333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 21,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 612.5,
+            "leadIn": null
+          },
+          {
+            "tick": 22,
+            "action": "jump",
+            "frameId": 60,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 641.6666666666666,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 7.105427357601002e-15
+            }
+          },
+          {
+            "tick": 23,
+            "action": "jump",
+            "frameId": 61,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 670.8333333333333,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 41.66666666666667
+            }
+          },
+          {
+            "tick": 24,
+            "action": "jump",
+            "frameId": 62,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 699.9999999999999,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 83.33333333333334
+            }
+          },
+          {
+            "tick": 25,
+            "action": "jump",
+            "frameId": 63,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 7.105427357601002e-15,
+            "worldX": 729.1666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 26,
+            "action": "jump",
+            "frameId": 64,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.66666666666667,
+            "worldX": 758.3333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 27,
+            "action": "jump",
+            "frameId": 65,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333334,
+            "worldX": 787.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 28,
+            "action": "jump",
+            "frameId": 66,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 816.6666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 29,
+            "action": "jump",
+            "frameId": 67,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": 845.833333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 30,
+            "action": "jump",
+            "frameId": 68,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": 874.9999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 31,
+            "action": "jump",
+            "frameId": 69,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": 904.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 32,
+            "action": "jump",
+            "frameId": 70,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": 933.3333333333329,
+            "leadIn": null
+          },
+          {
+            "tick": 33,
+            "action": "jump",
+            "frameId": 71,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": 962.4999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 34,
+            "action": "jump",
+            "frameId": 72,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 991.6666666666662,
+            "leadIn": null
+          },
+          {
+            "tick": 35,
+            "action": "jump",
+            "frameId": 73,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 1020.8333333333328,
+            "leadIn": null
+          },
+          {
+            "tick": 36,
+            "action": "jump",
+            "frameId": 74,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 1049.9999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 37,
+            "action": "jump",
+            "frameId": 75,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 1079.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 38,
+            "action": "jump",
+            "frameId": 76,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 1108.333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 39,
+            "action": "jump",
+            "frameId": 77,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 1137.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 40,
+            "action": "jump",
+            "frameId": 78,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 1166.6666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 41,
+            "action": "jump",
+            "frameId": 79,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 1195.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 42,
+            "action": "jump",
+            "frameId": 80,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 1225,
+            "leadIn": null
+          },
+          {
+            "tick": 43,
+            "action": "jump",
+            "frameId": 81,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 749.9999999999999,
+            "worldX": 1254.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 44,
+            "action": "jump",
+            "frameId": 82,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 791.6666666666665,
+            "worldX": 1283.3333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 45,
+            "action": "jump",
+            "frameId": 83,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 833.3333333333331,
+            "worldX": 1312.5000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 46,
+            "action": "jump",
+            "frameId": 84,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 874.9999999999998,
+            "worldX": 1341.666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 47,
+            "action": "jump",
+            "frameId": 85,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 916.6666666666664,
+            "worldX": 1370.8333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 48,
+            "action": "run",
+            "frameId": 88,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1400.0000000000005,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 0
+            }
+          },
+          {
+            "tick": 49,
+            "action": "run",
+            "frameId": 89,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1429.1666666666672,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 41.666666666666664
+            }
+          },
+          {
+            "tick": 50,
+            "action": "run",
+            "frameId": 107,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1458.333333333334,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 83.33333333333333
+            }
+          },
+          {
+            "tick": 51,
+            "action": "run",
+            "frameId": 108,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1487.5000000000007,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 125
+            }
+          },
+          {
+            "tick": 52,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1516.6666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 53,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 1545.8333333333342,
+            "leadIn": null
+          },
+          {
+            "tick": 54,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 1575.000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 55,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 1604.1666666666677,
+            "leadIn": null
+          },
+          {
+            "tick": 56,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 1633.3333333333344,
+            "leadIn": null
+          },
+          {
+            "tick": 57,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 1662.5000000000011,
+            "leadIn": null
+          },
+          {
+            "tick": 58,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 1691.6666666666679,
+            "leadIn": null
+          },
+          {
+            "tick": 59,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 1720.8333333333346,
+            "leadIn": null
+          },
+          {
+            "tick": 60,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 1750.0000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 61,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 1779.166666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 62,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": 1808.3333333333348,
+            "leadIn": null
+          },
+          {
+            "tick": 63,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": 1837.5000000000016,
+            "leadIn": null
+          },
+          {
+            "tick": 64,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 1866.6666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 65,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": 1895.833333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 66,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": 1925.0000000000018,
+            "leadIn": null
+          },
+          {
+            "tick": 67,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": 1954.1666666666686,
+            "leadIn": null
+          },
+          {
+            "tick": 68,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": 1983.3333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 69,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": 2012.500000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 70,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 2041.6666666666688,
+            "leadIn": null
+          },
+          {
+            "tick": 71,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 2070.8333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 72,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 2100.000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 73,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 2129.1666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 74,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 2158.333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 75,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 2187.5000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 76,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 2216.666666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 77,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 2245.8333333333344,
+            "leadIn": null
+          },
+          {
+            "tick": 78,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 2275.000000000001,
+            "leadIn": null
+          }
+        ],
+        "left": [
+          {
+            "tick": 0,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 0,
+            "leadIn": null
+          },
+          {
+            "tick": 1,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": -29.166666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 2,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": -58.33333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 3,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -87.5,
+            "leadIn": null
+          },
+          {
+            "tick": 4,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": -116.66666666666666,
+            "leadIn": null
+          },
+          {
+            "tick": 5,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": -145.83333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 6,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": -174.99999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 7,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": -204.16666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 8,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": -233.3333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 9,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -262.49999999999994,
+            "leadIn": null
+          },
+          {
+            "tick": 10,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -291.66666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 11,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -320.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 12,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -350,
+            "leadIn": null
+          },
+          {
+            "tick": 13,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -379.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 14,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -408.33333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 15,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -437.50000000000006,
+            "leadIn": null
+          },
+          {
+            "tick": 16,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -466.66666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 17,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -495.8333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 18,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -525.0000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 19,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": -554.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 20,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": -583.3333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 21,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -612.5,
+            "leadIn": null
+          },
+          {
+            "tick": 22,
+            "action": "jump",
+            "frameId": 60,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -641.6666666666666,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 7.105427357601002e-15
+            }
+          },
+          {
+            "tick": 23,
+            "action": "jump",
+            "frameId": 61,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -670.8333333333333,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 41.66666666666667
+            }
+          },
+          {
+            "tick": 24,
+            "action": "jump",
+            "frameId": 62,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -699.9999999999999,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 83.33333333333334
+            }
+          },
+          {
+            "tick": 25,
+            "action": "jump",
+            "frameId": 63,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 7.105427357601002e-15,
+            "worldX": -729.1666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 26,
+            "action": "jump",
+            "frameId": 64,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.66666666666667,
+            "worldX": -758.3333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 27,
+            "action": "jump",
+            "frameId": 65,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333334,
+            "worldX": -787.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 28,
+            "action": "jump",
+            "frameId": 66,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -816.6666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 29,
+            "action": "jump",
+            "frameId": 67,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": -845.833333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 30,
+            "action": "jump",
+            "frameId": 68,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": -874.9999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 31,
+            "action": "jump",
+            "frameId": 69,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": -904.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 32,
+            "action": "jump",
+            "frameId": 70,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": -933.3333333333329,
+            "leadIn": null
+          },
+          {
+            "tick": 33,
+            "action": "jump",
+            "frameId": 71,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": -962.4999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 34,
+            "action": "jump",
+            "frameId": 72,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -991.6666666666662,
+            "leadIn": null
+          },
+          {
+            "tick": 35,
+            "action": "jump",
+            "frameId": 73,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -1020.8333333333328,
+            "leadIn": null
+          },
+          {
+            "tick": 36,
+            "action": "jump",
+            "frameId": 74,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -1049.9999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 37,
+            "action": "jump",
+            "frameId": 75,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -1079.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 38,
+            "action": "jump",
+            "frameId": 76,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -1108.333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 39,
+            "action": "jump",
+            "frameId": 77,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -1137.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 40,
+            "action": "jump",
+            "frameId": 78,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -1166.6666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 41,
+            "action": "jump",
+            "frameId": 79,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -1195.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 42,
+            "action": "jump",
+            "frameId": 80,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -1225,
+            "leadIn": null
+          },
+          {
+            "tick": 43,
+            "action": "jump",
+            "frameId": 81,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 749.9999999999999,
+            "worldX": -1254.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 44,
+            "action": "jump",
+            "frameId": 82,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 791.6666666666665,
+            "worldX": -1283.3333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 45,
+            "action": "jump",
+            "frameId": 83,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 833.3333333333331,
+            "worldX": -1312.5000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 46,
+            "action": "jump",
+            "frameId": 84,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 874.9999999999998,
+            "worldX": -1341.666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 47,
+            "action": "jump",
+            "frameId": 85,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 916.6666666666664,
+            "worldX": -1370.8333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 48,
+            "action": "run",
+            "frameId": 88,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1400.0000000000005,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 0
+            }
+          },
+          {
+            "tick": 49,
+            "action": "run",
+            "frameId": 89,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1429.1666666666672,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 41.666666666666664
+            }
+          },
+          {
+            "tick": 50,
+            "action": "run",
+            "frameId": 107,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1458.333333333334,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 83.33333333333333
+            }
+          },
+          {
+            "tick": 51,
+            "action": "run",
+            "frameId": 108,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1487.5000000000007,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 125
+            }
+          },
+          {
+            "tick": 52,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1516.6666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 53,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -1545.8333333333342,
+            "leadIn": null
+          },
+          {
+            "tick": 54,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -1575.000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 55,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -1604.1666666666677,
+            "leadIn": null
+          },
+          {
+            "tick": 56,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -1633.3333333333344,
+            "leadIn": null
+          },
+          {
+            "tick": 57,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -1662.5000000000011,
+            "leadIn": null
+          },
+          {
+            "tick": 58,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -1691.6666666666679,
+            "leadIn": null
+          },
+          {
+            "tick": 59,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -1720.8333333333346,
+            "leadIn": null
+          },
+          {
+            "tick": 60,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -1750.0000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 61,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -1779.166666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 62,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": -1808.3333333333348,
+            "leadIn": null
+          },
+          {
+            "tick": 63,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": -1837.5000000000016,
+            "leadIn": null
+          },
+          {
+            "tick": 64,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -1866.6666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 65,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": -1895.833333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 66,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": -1925.0000000000018,
+            "leadIn": null
+          },
+          {
+            "tick": 67,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": -1954.1666666666686,
+            "leadIn": null
+          },
+          {
+            "tick": 68,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": -1983.3333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 69,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": -2012.500000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 70,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -2041.6666666666688,
+            "leadIn": null
+          },
+          {
+            "tick": 71,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -2070.8333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 72,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -2100.000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 73,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -2129.1666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 74,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -2158.333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 75,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -2187.5000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 76,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -2216.666666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 77,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -2245.8333333333344,
+            "leadIn": null
+          },
+          {
+            "tick": 78,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -2275.000000000001,
+            "leadIn": null
+          }
+        ]
+      },
+      "frames": [
+        {
+          "look": "original",
+          "tick": 47,
+          "frameId": 85,
+          "file": "before-original-47-85.png",
+          "pngSha256": "48eedb50c3324dc75166b7c6d427c93004bd3663b0aff2ed9bab39c5c09314e5",
+          "rgbaSha256": "242952f302062d30780287487affa04fd377d781e7f1ca3f1f88b83748280a4f",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 48,
+          "frameId": 88,
+          "file": "before-original-48-88.png",
+          "pngSha256": "fbc4c92a85b4611339a70bbeac0333b7a95720e981f1269ec92a132574c781e3",
+          "rgbaSha256": "8fd8b600aa99a58389ded6c21cc07b2f5b63747b88107a289046d098a157a5f7",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 49,
+          "frameId": 89,
+          "file": "before-original-49-89.png",
+          "pngSha256": "a6da158cf4ceeb96ef6edbd6b315ec5616b6f746d26b236226a388f25cb709a9",
+          "rgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 50,
+          "frameId": 107,
+          "file": "before-original-50-107.png",
+          "pngSha256": "7a941f28b5b6ebafcddd42f3ae849a4a1fc87a9baeb9ead86776d827dbb074d1",
+          "rgbaSha256": "76f87f9aa5150f1037f61c786855f827a413da8c87e4d543f551e77e4b1173a9",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 51,
+          "frameId": 108,
+          "file": "before-original-51-108.png",
+          "pngSha256": "b9de75353ef921cd163f31e259c3e13988a49a98b54b6340497de692c95cb52a",
+          "rgbaSha256": "cec0c920c7c9f7c29c26d21a40c89afddd081e53fe3b5af5d9117899a85211db",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 52,
+          "frameId": 48,
+          "file": "before-original-52-48.png",
+          "pngSha256": "350071a1829a2a55df29509398933d1482fc06536fefa9fa28bb2d01c1d152a8",
+          "rgbaSha256": "4a7bf714896e22494510ac91425185bb450c50aef1fe60dedd22b2eb956a7c83",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 53,
+          "frameId": 49,
+          "file": "before-original-53-49.png",
+          "pngSha256": "e97ec2b57b37e04fa7354f10695b5ca4062360d582b746ab9d7c50b3cc59e6c5",
+          "rgbaSha256": "57f6c31c1d216ba9328f3e0292b0b7c02815d43e927c719dcc535b5501b6ec17",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 54,
+          "frameId": 50,
+          "file": "before-original-54-50.png",
+          "pngSha256": "31059f122821802f5088ced32a687415399ae9166de970d2234a6d0effa8a684",
+          "rgbaSha256": "39b767cdd2052ccc96a8e6da11a967cac1cb99caa491a7cd4a411b06d9a92872",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 55,
+          "frameId": 51,
+          "file": "before-original-55-51.png",
+          "pngSha256": "3481d94a1ca9a1204e178041cd18d989b7f40b3eafd1c8f7e7f4eda76b3473cb",
+          "rgbaSha256": "88d1c7fc937129306bac60704927a00b16ddd4a23e8581105ba09c1b555a2703",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 56,
+          "frameId": 52,
+          "file": "before-original-56-52.png",
+          "pngSha256": "790426dc3eab39d5d31c495d0d850824197532fe019997a3bfa90ffd4a146864",
+          "rgbaSha256": "ced7d231b129329ed64c297b3ec80c949ba28da30bff3636e59caf5383f0bd87",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 47,
+          "frameId": 85,
+          "file": "before-daily-47-85.png",
+          "pngSha256": "99a3eb8e40cf4e8062d3d12d43cfc76a465807deb276d78772858df16fb54ded",
+          "rgbaSha256": "a0c084f1acfa11f00905f0e9fccb1e54d8617a5ddead3c1ec9e850056144e6f2",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 48,
+          "frameId": 88,
+          "file": "before-daily-48-88.png",
+          "pngSha256": "fb5a7539305e3828d09319dbf3f92a3ca372813210ac984827abd82affde7021",
+          "rgbaSha256": "0da48f1ac21b80a67fa8d3a78feb21095a994dc33bdc1fea508e1374e291c9ae",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 49,
+          "frameId": 89,
+          "file": "before-daily-49-89.png",
+          "pngSha256": "1713f58059df5af4378211b7182c3ed2c20f1b1fdc380bb21dd576e2d24635d7",
+          "rgbaSha256": "7067b99f526b5962d526a287484b9767ca1df5dd262be26e0ac16499214505ba",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 50,
+          "frameId": 107,
+          "file": "before-daily-50-107.png",
+          "pngSha256": "752d2f7cb7e2d0ac4b2a533bd8726f4019572544020b0d022af387c85d899f95",
+          "rgbaSha256": "4f70b64a7c1865667fdaba015ebdb7e9f300084391b679642e4d1e37035be530",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 51,
+          "frameId": 108,
+          "file": "before-daily-51-108.png",
+          "pngSha256": "31f296186f085e834fc0294336138182198035d17924f852f24af737df6ac0a1",
+          "rgbaSha256": "2e3f23ced457323357da65ab9dfa19ca1e2eebfeb2a7e5262c0a389e5f9d89f1",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 52,
+          "frameId": 48,
+          "file": "before-daily-52-48.png",
+          "pngSha256": "43c4480c357782f428d22fdaabe0b2467a1c15ddf041a29c8fa1afdeec3275d7",
+          "rgbaSha256": "d1c4c793b312603750de022e6bc916d6f095cd8a84a6f36b22813b9d32a4ad1b",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 53,
+          "frameId": 49,
+          "file": "before-daily-53-49.png",
+          "pngSha256": "6081620c7339d223e390035346e3cf82d1b285d6d59ddf18a7b39172db047c9c",
+          "rgbaSha256": "703b9acec58970d8c29c12558442ae3e3bb18d6f9ebb5702621c573ba24b7b8d",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 54,
+          "frameId": 50,
+          "file": "before-daily-54-50.png",
+          "pngSha256": "f50718105940090ffb59c936e8560b7dc8c28324308fa538ddde0145b8c248b2",
+          "rgbaSha256": "a7ec38fc43eb723d9eecbae2b656e66ee3f8dd36ff8f22cab5454dc27fb55c67",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 55,
+          "frameId": 51,
+          "file": "before-daily-55-51.png",
+          "pngSha256": "3016757ae97b057f8173ada51afaea2dd2d917f0567db3e5cbf1711474312dbd",
+          "rgbaSha256": "faed46df38fbf02a5c331d9c44067ae24431160be00d5c4cbbb5366816bd8dc9",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 56,
+          "frameId": 52,
+          "file": "before-daily-56-52.png",
+          "pngSha256": "4f9a7ddfc9971b486f3dca13f2be34649e7d0d03ca20877c322bf304b385bddc",
+          "rgbaSha256": "0a3ea405707c7253bfcc874207974ef448f23e6a1a0c6659d195c5f8e8bafaf4",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 47,
+          "frameId": 85,
+          "file": "before-wedding-47-85.png",
+          "pngSha256": "0ab6a5098f656063f0926f2080616c7e18e775b602964f9f7020c21f772d3ff7",
+          "rgbaSha256": "b255d69dfe834827745ac7a1c9af42075bb99860d25471c6c6f448489abcccdc",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 48,
+          "frameId": 88,
+          "file": "before-wedding-48-88.png",
+          "pngSha256": "6f5e28401a3cacf754cd6fa5b3505b3f319ad2121fbc9b64441858249dd4d8db",
+          "rgbaSha256": "4b705379f2e4d322ec418ae83bb7851bbbf59ba1ba2b5476d32c934cb55bf0ad",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 49,
+          "frameId": 89,
+          "file": "before-wedding-49-89.png",
+          "pngSha256": "559ab971f815aa26f02fb09e207bcb8f07880100c369df178c3b1be018195939",
+          "rgbaSha256": "6a7c65dcce4d1b9e88d3d44134c151843122afc269fa4724da9c94e0342374af",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 50,
+          "frameId": 107,
+          "file": "before-wedding-50-107.png",
+          "pngSha256": "6f15003867fcc8061195e57d2b36a800baf7a27d1459955def9e686033ed9eb4",
+          "rgbaSha256": "ada4462d8429b586ee7881f56d83275cead16c97910fbf2544299080be749265",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 51,
+          "frameId": 108,
+          "file": "before-wedding-51-108.png",
+          "pngSha256": "efd3d88243f1e13b5bb7280c09e0780bbbedad43d849bc454e5858b66e4b1b22",
+          "rgbaSha256": "a543a3466d076374fdadd58826efaeb62063f69009e2e2e8c4732f77ae0a7ccb",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 52,
+          "frameId": 48,
+          "file": "before-wedding-52-48.png",
+          "pngSha256": "bba36ae4bf9a9ec018cbe365848ed7c0c2858c04cbf42aef18069b6b283a8286",
+          "rgbaSha256": "91b03a858101f3bfdef393a6c0514be07644a1a6028d720d8de9303efdc117a6",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 53,
+          "frameId": 49,
+          "file": "before-wedding-53-49.png",
+          "pngSha256": "7198f47e29e47ddcb3129803717476ad8a008c4aff2aca0fae6e8b9c68359e73",
+          "rgbaSha256": "7666b23df0b8298639d0243d8ef0b1ebc7ec71b46195e5ecf48d86f064994c1b",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 54,
+          "frameId": 50,
+          "file": "before-wedding-54-50.png",
+          "pngSha256": "4d5f899558fa6519197d2866705ea633378573cb53cdce798637f188d0cb0d5c",
+          "rgbaSha256": "0716f7c57d9c47f577357257c2f1f48e85e6331aa481fc209bd24d15483fb84e",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 55,
+          "frameId": 51,
+          "file": "before-wedding-55-51.png",
+          "pngSha256": "a9277b261d5479c685bb9cb690ead938b894891b5e081548f7c33462bd8ff7aa",
+          "rgbaSha256": "63a1506046d35ef6161bdd263d200ea258b68be54718b0b3d1af2785c758880a",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 56,
+          "frameId": 52,
+          "file": "before-wedding-56-52.png",
+          "pngSha256": "39dc0da4c52741c786af6bc9c8089e9cefa1724a16147946fe935a0a56d42354",
+          "rgbaSha256": "4100ad21d86915a5930c2cd82dd4d44daf9d81f39f36e2ac7abd185b39324e0b",
+          "width": 512,
+          "height": 768
+        }
+      ]
+    },
+    {
+      "edition": "after",
+      "sourceSha256": "0353ca3bb4c333fbab9a2f089ade15b777ed75a45e90a28bf62a8fef34221326",
+      "registrationSha256": "1f68c394bfc3380cf42282ebfb6be0b69d1eb70647557ab0cad72dffdaa92078",
+      "profileId": "kling-male-side-landing-candidate-v3",
+      "anchor": {
+        "x": 256,
+        "y": 710,
+        "units": "pixels",
+        "origin": "top-left"
+      },
+      "sequence": {
+        "fps": 24,
+        "frames": 78,
+        "durationMs": 3250,
+        "jumpRequestTick": 18,
+        "window": {
+          "startTick": 47,
+          "endTickExclusive": 57,
+          "gifDurationsMs": [
+            40,
+            40,
+            40,
+            50,
+            40,
+            40,
+            40,
+            40,
+            40,
+            50
+          ]
+        }
+      },
+      "samples": {
+        "right": [
+          {
+            "tick": 0,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 0,
+            "leadIn": null
+          },
+          {
+            "tick": 1,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": 29.166666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 2,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": 58.33333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 3,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 87.5,
+            "leadIn": null
+          },
+          {
+            "tick": 4,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": 116.66666666666666,
+            "leadIn": null
+          },
+          {
+            "tick": 5,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": 145.83333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 6,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": 174.99999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 7,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": 204.16666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 8,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": 233.3333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 9,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 262.49999999999994,
+            "leadIn": null
+          },
+          {
+            "tick": 10,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 291.66666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 11,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 320.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 12,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 350,
+            "leadIn": null
+          },
+          {
+            "tick": 13,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 379.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 14,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 408.33333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 15,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 437.50000000000006,
+            "leadIn": null
+          },
+          {
+            "tick": 16,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 466.66666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 17,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 495.8333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 18,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 525.0000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 19,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": 554.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 20,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": 583.3333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 21,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 612.5,
+            "leadIn": null
+          },
+          {
+            "tick": 22,
+            "action": "jump",
+            "frameId": 60,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 641.6666666666666,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 7.105427357601002e-15
+            }
+          },
+          {
+            "tick": 23,
+            "action": "jump",
+            "frameId": 61,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 670.8333333333333,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 41.66666666666667
+            }
+          },
+          {
+            "tick": 24,
+            "action": "jump",
+            "frameId": 62,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 699.9999999999999,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 83.33333333333334
+            }
+          },
+          {
+            "tick": 25,
+            "action": "jump",
+            "frameId": 63,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 7.105427357601002e-15,
+            "worldX": 729.1666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 26,
+            "action": "jump",
+            "frameId": 64,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.66666666666667,
+            "worldX": 758.3333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 27,
+            "action": "jump",
+            "frameId": 65,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333334,
+            "worldX": 787.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 28,
+            "action": "jump",
+            "frameId": 66,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 816.6666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 29,
+            "action": "jump",
+            "frameId": 67,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": 845.833333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 30,
+            "action": "jump",
+            "frameId": 68,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": 874.9999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 31,
+            "action": "jump",
+            "frameId": 69,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": 904.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 32,
+            "action": "jump",
+            "frameId": 70,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": 933.3333333333329,
+            "leadIn": null
+          },
+          {
+            "tick": 33,
+            "action": "jump",
+            "frameId": 71,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": 962.4999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 34,
+            "action": "jump",
+            "frameId": 72,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 991.6666666666662,
+            "leadIn": null
+          },
+          {
+            "tick": 35,
+            "action": "jump",
+            "frameId": 73,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 1020.8333333333328,
+            "leadIn": null
+          },
+          {
+            "tick": 36,
+            "action": "jump",
+            "frameId": 74,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 1049.9999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 37,
+            "action": "jump",
+            "frameId": 75,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 1079.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 38,
+            "action": "jump",
+            "frameId": 76,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 1108.333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 39,
+            "action": "jump",
+            "frameId": 77,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 1137.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 40,
+            "action": "jump",
+            "frameId": 78,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 1166.6666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 41,
+            "action": "jump",
+            "frameId": 79,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 1195.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 42,
+            "action": "jump",
+            "frameId": 80,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 1225,
+            "leadIn": null
+          },
+          {
+            "tick": 43,
+            "action": "jump",
+            "frameId": 81,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 749.9999999999999,
+            "worldX": 1254.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 44,
+            "action": "jump",
+            "frameId": 82,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 791.6666666666665,
+            "worldX": 1283.3333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 45,
+            "action": "jump",
+            "frameId": 83,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 833.3333333333331,
+            "worldX": 1312.5000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 46,
+            "action": "jump",
+            "frameId": 84,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 874.9999999999998,
+            "worldX": 1341.666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 47,
+            "action": "jump",
+            "frameId": 85,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 916.6666666666664,
+            "worldX": 1370.8333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 48,
+            "action": "run",
+            "frameId": 88,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1400.0000000000005,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 0
+            }
+          },
+          {
+            "tick": 49,
+            "action": "run",
+            "frameId": 107,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1429.1666666666672,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 41.666666666666664
+            }
+          },
+          {
+            "tick": 50,
+            "action": "run",
+            "frameId": 108,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1458.333333333334,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 83.33333333333333
+            }
+          },
+          {
+            "tick": 51,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 1487.5000000000007,
+            "leadIn": null
+          },
+          {
+            "tick": 52,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 1516.6666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 53,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 1545.8333333333342,
+            "leadIn": null
+          },
+          {
+            "tick": 54,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 1575.000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 55,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 1604.1666666666677,
+            "leadIn": null
+          },
+          {
+            "tick": 56,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 1633.3333333333344,
+            "leadIn": null
+          },
+          {
+            "tick": 57,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 1662.5000000000011,
+            "leadIn": null
+          },
+          {
+            "tick": 58,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 1691.6666666666679,
+            "leadIn": null
+          },
+          {
+            "tick": 59,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 1720.8333333333346,
+            "leadIn": null
+          },
+          {
+            "tick": 60,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 1750.0000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 61,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": 1779.166666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 62,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": 1808.3333333333348,
+            "leadIn": null
+          },
+          {
+            "tick": 63,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": 1837.5000000000016,
+            "leadIn": null
+          },
+          {
+            "tick": 64,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": 1866.6666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 65,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": 1895.833333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 66,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": 1925.0000000000018,
+            "leadIn": null
+          },
+          {
+            "tick": 67,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": 1954.1666666666686,
+            "leadIn": null
+          },
+          {
+            "tick": 68,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": 1983.3333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 69,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": 2012.500000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 70,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": 2041.6666666666688,
+            "leadIn": null
+          },
+          {
+            "tick": 71,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": 2070.8333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 72,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": 2100.000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 73,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": 2129.1666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 74,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": 2158.333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 75,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": 2187.5000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 76,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": 2216.666666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 77,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": 2245.8333333333344,
+            "leadIn": null
+          }
+        ],
+        "left": [
+          {
+            "tick": 0,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": 0,
+            "leadIn": null
+          },
+          {
+            "tick": 1,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": -29.166666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 2,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": -58.33333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 3,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -87.5,
+            "leadIn": null
+          },
+          {
+            "tick": 4,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": -116.66666666666666,
+            "leadIn": null
+          },
+          {
+            "tick": 5,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": -145.83333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 6,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": -174.99999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 7,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": -204.16666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 8,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": -233.3333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 9,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -262.49999999999994,
+            "leadIn": null
+          },
+          {
+            "tick": 10,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -291.66666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 11,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -320.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 12,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -350,
+            "leadIn": null
+          },
+          {
+            "tick": 13,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -379.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 14,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -408.33333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 15,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -437.50000000000006,
+            "leadIn": null
+          },
+          {
+            "tick": 16,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -466.66666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 17,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -495.8333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 18,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -525.0000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 19,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": -554.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 20,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": -583.3333333333334,
+            "leadIn": null
+          },
+          {
+            "tick": 21,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -612.5,
+            "leadIn": null
+          },
+          {
+            "tick": 22,
+            "action": "jump",
+            "frameId": 60,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -641.6666666666666,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 7.105427357601002e-15
+            }
+          },
+          {
+            "tick": 23,
+            "action": "jump",
+            "frameId": 61,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -670.8333333333333,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 41.66666666666667
+            }
+          },
+          {
+            "tick": 24,
+            "action": "jump",
+            "frameId": 62,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -699.9999999999999,
+            "leadIn": {
+              "from": "run",
+              "exit": 4,
+              "elapsedMs": 83.33333333333334
+            }
+          },
+          {
+            "tick": 25,
+            "action": "jump",
+            "frameId": 63,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 7.105427357601002e-15,
+            "worldX": -729.1666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 26,
+            "action": "jump",
+            "frameId": 64,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.66666666666667,
+            "worldX": -758.3333333333331,
+            "leadIn": null
+          },
+          {
+            "tick": 27,
+            "action": "jump",
+            "frameId": 65,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333334,
+            "worldX": -787.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 28,
+            "action": "jump",
+            "frameId": 66,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -816.6666666666664,
+            "leadIn": null
+          },
+          {
+            "tick": 29,
+            "action": "jump",
+            "frameId": 67,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": -845.833333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 30,
+            "action": "jump",
+            "frameId": 68,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": -874.9999999999997,
+            "leadIn": null
+          },
+          {
+            "tick": 31,
+            "action": "jump",
+            "frameId": 69,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": -904.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 32,
+            "action": "jump",
+            "frameId": 70,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": -933.3333333333329,
+            "leadIn": null
+          },
+          {
+            "tick": 33,
+            "action": "jump",
+            "frameId": 71,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": -962.4999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 34,
+            "action": "jump",
+            "frameId": 72,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -991.6666666666662,
+            "leadIn": null
+          },
+          {
+            "tick": 35,
+            "action": "jump",
+            "frameId": 73,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -1020.8333333333328,
+            "leadIn": null
+          },
+          {
+            "tick": 36,
+            "action": "jump",
+            "frameId": 74,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -1049.9999999999995,
+            "leadIn": null
+          },
+          {
+            "tick": 37,
+            "action": "jump",
+            "frameId": 75,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -1079.1666666666663,
+            "leadIn": null
+          },
+          {
+            "tick": 38,
+            "action": "jump",
+            "frameId": 76,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -1108.333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 39,
+            "action": "jump",
+            "frameId": 77,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -1137.4999999999998,
+            "leadIn": null
+          },
+          {
+            "tick": 40,
+            "action": "jump",
+            "frameId": 78,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -1166.6666666666665,
+            "leadIn": null
+          },
+          {
+            "tick": 41,
+            "action": "jump",
+            "frameId": 79,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -1195.8333333333333,
+            "leadIn": null
+          },
+          {
+            "tick": 42,
+            "action": "jump",
+            "frameId": 80,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -1225,
+            "leadIn": null
+          },
+          {
+            "tick": 43,
+            "action": "jump",
+            "frameId": 81,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 749.9999999999999,
+            "worldX": -1254.1666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 44,
+            "action": "jump",
+            "frameId": 82,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 791.6666666666665,
+            "worldX": -1283.3333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 45,
+            "action": "jump",
+            "frameId": 83,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 833.3333333333331,
+            "worldX": -1312.5000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 46,
+            "action": "jump",
+            "frameId": 84,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 874.9999999999998,
+            "worldX": -1341.666666666667,
+            "leadIn": null
+          },
+          {
+            "tick": 47,
+            "action": "jump",
+            "frameId": 85,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 916.6666666666664,
+            "worldX": -1370.8333333333337,
+            "leadIn": null
+          },
+          {
+            "tick": 48,
+            "action": "run",
+            "frameId": 88,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1400.0000000000005,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 0
+            }
+          },
+          {
+            "tick": 49,
+            "action": "run",
+            "frameId": 107,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1429.1666666666672,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 41.666666666666664
+            }
+          },
+          {
+            "tick": 50,
+            "action": "run",
+            "frameId": 108,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1458.333333333334,
+            "leadIn": {
+              "from": "jump",
+              "exit": 23,
+              "elapsedMs": 83.33333333333333
+            }
+          },
+          {
+            "tick": 51,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -1487.5000000000007,
+            "leadIn": null
+          },
+          {
+            "tick": 52,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -1516.6666666666674,
+            "leadIn": null
+          },
+          {
+            "tick": 53,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -1545.8333333333342,
+            "leadIn": null
+          },
+          {
+            "tick": 54,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -1575.000000000001,
+            "leadIn": null
+          },
+          {
+            "tick": 55,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -1604.1666666666677,
+            "leadIn": null
+          },
+          {
+            "tick": 56,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -1633.3333333333344,
+            "leadIn": null
+          },
+          {
+            "tick": 57,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -1662.5000000000011,
+            "leadIn": null
+          },
+          {
+            "tick": 58,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -1691.6666666666679,
+            "leadIn": null
+          },
+          {
+            "tick": 59,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -1720.8333333333346,
+            "leadIn": null
+          },
+          {
+            "tick": 60,
+            "action": "run",
+            "frameId": 39,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 0,
+            "worldX": -1750.0000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 61,
+            "action": "run",
+            "frameId": 40,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 41.666666666666664,
+            "worldX": -1779.166666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 62,
+            "action": "run",
+            "frameId": 41,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 83.33333333333333,
+            "worldX": -1808.3333333333348,
+            "leadIn": null
+          },
+          {
+            "tick": 63,
+            "action": "run",
+            "frameId": 42,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 125,
+            "worldX": -1837.5000000000016,
+            "leadIn": null
+          },
+          {
+            "tick": 64,
+            "action": "run",
+            "frameId": 43,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 166.66666666666666,
+            "worldX": -1866.6666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 65,
+            "action": "run",
+            "frameId": 44,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 208.33333333333331,
+            "worldX": -1895.833333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 66,
+            "action": "run",
+            "frameId": 45,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 249.99999999999997,
+            "worldX": -1925.0000000000018,
+            "leadIn": null
+          },
+          {
+            "tick": 67,
+            "action": "run",
+            "frameId": 46,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 291.66666666666663,
+            "worldX": -1954.1666666666686,
+            "leadIn": null
+          },
+          {
+            "tick": 68,
+            "action": "run",
+            "frameId": 47,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 333.3333333333333,
+            "worldX": -1983.3333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 69,
+            "action": "run",
+            "frameId": 48,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 375,
+            "worldX": -2012.500000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 70,
+            "action": "run",
+            "frameId": 49,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 416.6666666666667,
+            "worldX": -2041.6666666666688,
+            "leadIn": null
+          },
+          {
+            "tick": 71,
+            "action": "run",
+            "frameId": 50,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 458.33333333333337,
+            "worldX": -2070.8333333333353,
+            "leadIn": null
+          },
+          {
+            "tick": 72,
+            "action": "run",
+            "frameId": 51,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 500.00000000000006,
+            "worldX": -2100.000000000002,
+            "leadIn": null
+          },
+          {
+            "tick": 73,
+            "action": "run",
+            "frameId": 52,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 541.6666666666667,
+            "worldX": -2129.1666666666683,
+            "leadIn": null
+          },
+          {
+            "tick": 74,
+            "action": "run",
+            "frameId": 53,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 583.3333333333334,
+            "worldX": -2158.333333333335,
+            "leadIn": null
+          },
+          {
+            "tick": 75,
+            "action": "run",
+            "frameId": 54,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 625,
+            "worldX": -2187.5000000000014,
+            "leadIn": null
+          },
+          {
+            "tick": 76,
+            "action": "run",
+            "frameId": 55,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 666.6666666666666,
+            "worldX": -2216.666666666668,
+            "leadIn": null
+          },
+          {
+            "tick": 77,
+            "action": "run",
+            "frameId": 56,
+            "durationMs": 41.666666666666664,
+            "elapsedMs": 708.3333333333333,
+            "worldX": -2245.8333333333344,
+            "leadIn": null
+          }
+        ]
+      },
+      "frames": [
+        {
+          "look": "original",
+          "tick": 47,
+          "frameId": 85,
+          "file": "after-original-47-85.png",
+          "pngSha256": "48eedb50c3324dc75166b7c6d427c93004bd3663b0aff2ed9bab39c5c09314e5",
+          "rgbaSha256": "242952f302062d30780287487affa04fd377d781e7f1ca3f1f88b83748280a4f",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 48,
+          "frameId": 88,
+          "file": "after-original-48-88.png",
+          "pngSha256": "fbc4c92a85b4611339a70bbeac0333b7a95720e981f1269ec92a132574c781e3",
+          "rgbaSha256": "8fd8b600aa99a58389ded6c21cc07b2f5b63747b88107a289046d098a157a5f7",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 49,
+          "frameId": 107,
+          "file": "after-original-49-107.png",
+          "pngSha256": "7a941f28b5b6ebafcddd42f3ae849a4a1fc87a9baeb9ead86776d827dbb074d1",
+          "rgbaSha256": "76f87f9aa5150f1037f61c786855f827a413da8c87e4d543f551e77e4b1173a9",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 50,
+          "frameId": 108,
+          "file": "after-original-50-108.png",
+          "pngSha256": "b9de75353ef921cd163f31e259c3e13988a49a98b54b6340497de692c95cb52a",
+          "rgbaSha256": "cec0c920c7c9f7c29c26d21a40c89afddd081e53fe3b5af5d9117899a85211db",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 51,
+          "frameId": 48,
+          "file": "after-original-51-48.png",
+          "pngSha256": "350071a1829a2a55df29509398933d1482fc06536fefa9fa28bb2d01c1d152a8",
+          "rgbaSha256": "4a7bf714896e22494510ac91425185bb450c50aef1fe60dedd22b2eb956a7c83",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 52,
+          "frameId": 49,
+          "file": "after-original-52-49.png",
+          "pngSha256": "e97ec2b57b37e04fa7354f10695b5ca4062360d582b746ab9d7c50b3cc59e6c5",
+          "rgbaSha256": "57f6c31c1d216ba9328f3e0292b0b7c02815d43e927c719dcc535b5501b6ec17",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 53,
+          "frameId": 50,
+          "file": "after-original-53-50.png",
+          "pngSha256": "31059f122821802f5088ced32a687415399ae9166de970d2234a6d0effa8a684",
+          "rgbaSha256": "39b767cdd2052ccc96a8e6da11a967cac1cb99caa491a7cd4a411b06d9a92872",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 54,
+          "frameId": 51,
+          "file": "after-original-54-51.png",
+          "pngSha256": "3481d94a1ca9a1204e178041cd18d989b7f40b3eafd1c8f7e7f4eda76b3473cb",
+          "rgbaSha256": "88d1c7fc937129306bac60704927a00b16ddd4a23e8581105ba09c1b555a2703",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 55,
+          "frameId": 52,
+          "file": "after-original-55-52.png",
+          "pngSha256": "790426dc3eab39d5d31c495d0d850824197532fe019997a3bfa90ffd4a146864",
+          "rgbaSha256": "ced7d231b129329ed64c297b3ec80c949ba28da30bff3636e59caf5383f0bd87",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "original",
+          "tick": 56,
+          "frameId": 53,
+          "file": "after-original-56-53.png",
+          "pngSha256": "fe1702d353c22dc9c2a4b77b92b75d4c5576a80c424400f7b65f1ae76f865a52",
+          "rgbaSha256": "352a2723be5f9013f512e80cceca9ab64a9ca74b93d2aecdad831d516af6cf0a",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 47,
+          "frameId": 85,
+          "file": "after-daily-47-85.png",
+          "pngSha256": "99a3eb8e40cf4e8062d3d12d43cfc76a465807deb276d78772858df16fb54ded",
+          "rgbaSha256": "a0c084f1acfa11f00905f0e9fccb1e54d8617a5ddead3c1ec9e850056144e6f2",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 48,
+          "frameId": 88,
+          "file": "after-daily-48-88.png",
+          "pngSha256": "fb5a7539305e3828d09319dbf3f92a3ca372813210ac984827abd82affde7021",
+          "rgbaSha256": "0da48f1ac21b80a67fa8d3a78feb21095a994dc33bdc1fea508e1374e291c9ae",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 49,
+          "frameId": 107,
+          "file": "after-daily-49-107.png",
+          "pngSha256": "752d2f7cb7e2d0ac4b2a533bd8726f4019572544020b0d022af387c85d899f95",
+          "rgbaSha256": "4f70b64a7c1865667fdaba015ebdb7e9f300084391b679642e4d1e37035be530",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 50,
+          "frameId": 108,
+          "file": "after-daily-50-108.png",
+          "pngSha256": "31f296186f085e834fc0294336138182198035d17924f852f24af737df6ac0a1",
+          "rgbaSha256": "2e3f23ced457323357da65ab9dfa19ca1e2eebfeb2a7e5262c0a389e5f9d89f1",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 51,
+          "frameId": 48,
+          "file": "after-daily-51-48.png",
+          "pngSha256": "43c4480c357782f428d22fdaabe0b2467a1c15ddf041a29c8fa1afdeec3275d7",
+          "rgbaSha256": "d1c4c793b312603750de022e6bc916d6f095cd8a84a6f36b22813b9d32a4ad1b",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 52,
+          "frameId": 49,
+          "file": "after-daily-52-49.png",
+          "pngSha256": "6081620c7339d223e390035346e3cf82d1b285d6d59ddf18a7b39172db047c9c",
+          "rgbaSha256": "703b9acec58970d8c29c12558442ae3e3bb18d6f9ebb5702621c573ba24b7b8d",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 53,
+          "frameId": 50,
+          "file": "after-daily-53-50.png",
+          "pngSha256": "f50718105940090ffb59c936e8560b7dc8c28324308fa538ddde0145b8c248b2",
+          "rgbaSha256": "a7ec38fc43eb723d9eecbae2b656e66ee3f8dd36ff8f22cab5454dc27fb55c67",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 54,
+          "frameId": 51,
+          "file": "after-daily-54-51.png",
+          "pngSha256": "3016757ae97b057f8173ada51afaea2dd2d917f0567db3e5cbf1711474312dbd",
+          "rgbaSha256": "faed46df38fbf02a5c331d9c44067ae24431160be00d5c4cbbb5366816bd8dc9",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 55,
+          "frameId": 52,
+          "file": "after-daily-55-52.png",
+          "pngSha256": "4f9a7ddfc9971b486f3dca13f2be34649e7d0d03ca20877c322bf304b385bddc",
+          "rgbaSha256": "0a3ea405707c7253bfcc874207974ef448f23e6a1a0c6659d195c5f8e8bafaf4",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "daily",
+          "tick": 56,
+          "frameId": 53,
+          "file": "after-daily-56-53.png",
+          "pngSha256": "888c62f473f5f6f689a4c5c373ee2ea944fcb84e4ee08464cca49ff65aa6f635",
+          "rgbaSha256": "ad846292b08243b0a35fe2e36f23b6ed9ebbb57c5e261b326ba43e7e3478cc30",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 47,
+          "frameId": 85,
+          "file": "after-wedding-47-85.png",
+          "pngSha256": "0ab6a5098f656063f0926f2080616c7e18e775b602964f9f7020c21f772d3ff7",
+          "rgbaSha256": "b255d69dfe834827745ac7a1c9af42075bb99860d25471c6c6f448489abcccdc",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 48,
+          "frameId": 88,
+          "file": "after-wedding-48-88.png",
+          "pngSha256": "6f5e28401a3cacf754cd6fa5b3505b3f319ad2121fbc9b64441858249dd4d8db",
+          "rgbaSha256": "4b705379f2e4d322ec418ae83bb7851bbbf59ba1ba2b5476d32c934cb55bf0ad",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 49,
+          "frameId": 107,
+          "file": "after-wedding-49-107.png",
+          "pngSha256": "6f15003867fcc8061195e57d2b36a800baf7a27d1459955def9e686033ed9eb4",
+          "rgbaSha256": "ada4462d8429b586ee7881f56d83275cead16c97910fbf2544299080be749265",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 50,
+          "frameId": 108,
+          "file": "after-wedding-50-108.png",
+          "pngSha256": "efd3d88243f1e13b5bb7280c09e0780bbbedad43d849bc454e5858b66e4b1b22",
+          "rgbaSha256": "a543a3466d076374fdadd58826efaeb62063f69009e2e2e8c4732f77ae0a7ccb",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 51,
+          "frameId": 48,
+          "file": "after-wedding-51-48.png",
+          "pngSha256": "bba36ae4bf9a9ec018cbe365848ed7c0c2858c04cbf42aef18069b6b283a8286",
+          "rgbaSha256": "91b03a858101f3bfdef393a6c0514be07644a1a6028d720d8de9303efdc117a6",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 52,
+          "frameId": 49,
+          "file": "after-wedding-52-49.png",
+          "pngSha256": "7198f47e29e47ddcb3129803717476ad8a008c4aff2aca0fae6e8b9c68359e73",
+          "rgbaSha256": "7666b23df0b8298639d0243d8ef0b1ebc7ec71b46195e5ecf48d86f064994c1b",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 53,
+          "frameId": 50,
+          "file": "after-wedding-53-50.png",
+          "pngSha256": "4d5f899558fa6519197d2866705ea633378573cb53cdce798637f188d0cb0d5c",
+          "rgbaSha256": "0716f7c57d9c47f577357257c2f1f48e85e6331aa481fc209bd24d15483fb84e",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 54,
+          "frameId": 51,
+          "file": "after-wedding-54-51.png",
+          "pngSha256": "a9277b261d5479c685bb9cb690ead938b894891b5e081548f7c33462bd8ff7aa",
+          "rgbaSha256": "63a1506046d35ef6161bdd263d200ea258b68be54718b0b3d1af2785c758880a",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 55,
+          "frameId": 52,
+          "file": "after-wedding-55-52.png",
+          "pngSha256": "39dc0da4c52741c786af6bc9c8089e9cefa1724a16147946fe935a0a56d42354",
+          "rgbaSha256": "4100ad21d86915a5930c2cd82dd4d44daf9d81f39f36e2ac7abd185b39324e0b",
+          "width": 512,
+          "height": 768
+        },
+        {
+          "look": "wedding",
+          "tick": 56,
+          "frameId": 53,
+          "file": "after-wedding-56-53.png",
+          "pngSha256": "c72f55c8733a79a0c5b591b0467af4de1e74f952abe2da2df1d4376398a9fdca",
+          "rgbaSha256": "d7796074e035dd4a21cd1dc3842e248d2c7de9b39c5811d5bbd8a1f1ba3c97fa",
+          "width": 512,
+          "height": 768
+        }
+      ]
+    }
+  ]
+}
