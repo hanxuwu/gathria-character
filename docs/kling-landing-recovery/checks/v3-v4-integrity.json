@@ -1,0 +1,793 @@
+{
+  "format": "gathria-landing-recovery-art-audit",
+  "version": 1,
+  "before": "/tmp/landing-recovery-v3-baseline/docs/kling-landing-production/assets",
+  "after": "/workspace/gathria-character/docs/kling-landing-production/assets",
+  "visualAcceptance": "not-assessed",
+  "pixelComparison": "Exact decoded RGBA; changedPixels counts pixels with any differing channel; bbox is [left,top,right,bottom] with exclusive right/bottom.",
+  "garmentOwnershipComparison": "Binary alpha in native coordinates; ownership RGB has no runtime meaning.",
+  "policy": {
+    "sourceAllowedFrames": [
+      107,
+      108
+    ],
+    "lowerFromY": null,
+    "allowedGarmentChanges": {
+      "male-daily-top.garment.zip": [
+        107,
+        108
+      ],
+      "male-daily-bottom.garment.zip": [
+        107,
+        108
+      ],
+      "male-wedding-top.garment.zip": [
+        107,
+        108
+      ],
+      "male-wedding-bottom.garment.zip": [
+        107,
+        108
+      ]
+    },
+    "registrationAllowedFrames": [
+      107,
+      108
+    ],
+    "head": "Exact source89 masked RGBA at declared integer translations; no resampling",
+    "appearance": "Unchanged PNG entries/crops;107/108 offsets and geometry follow copied heads"
+  },
+  "source": {
+    "beforeSha256": "0353ca3bb4c333fbab9a2f089ade15b777ed75a45e90a28bf62a8fef34221326",
+    "afterSha256": "704698872f3a4f621f3d4de53d3fa6a28ef930f6a390c63fb35982d95e51a430",
+    "changedFrames": [
+      107,
+      108
+    ],
+    "frameChanges": [
+      {
+        "frameId": 107,
+        "changedPixels": 82019,
+        "bbox": [
+          91,
+          238,
+          434,
+          768
+        ]
+      },
+      {
+        "frameId": 108,
+        "changedPixels": 72601,
+        "bbox": [
+          149,
+          231,
+          378,
+          699
+        ]
+      }
+    ],
+    "sourceActionsFpsLoopsFacingAnchorExact": true
+  },
+  "head": {
+    "sourceFrameId": 89,
+    "sourceFrameRgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+    "sourceCoordinateMaskSha256": "3488405042b181ba4b5895206e0e4a2b374cbc2665626ead261c53d149283b51",
+    "visibleHeadPixels": 37158,
+    "maskBytesUnchanged": true,
+    "frames": [
+      {
+        "edition": "before",
+        "frameId": 107,
+        "translation": {
+          "x": -9,
+          "y": -7
+        },
+        "visibleHeadPixels": 37158,
+        "checkedMaskedPixelsIncludingTransparent": 213527,
+        "clippedVisiblePixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      },
+      {
+        "edition": "before",
+        "frameId": 108,
+        "translation": {
+          "x": -18,
+          "y": -14
+        },
+        "visibleHeadPixels": 37158,
+        "checkedMaskedPixelsIncludingTransparent": 206307,
+        "clippedVisiblePixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      },
+      {
+        "edition": "after",
+        "frameId": 107,
+        "translation": {
+          "x": 4,
+          "y": 11
+        },
+        "visibleHeadPixels": 37158,
+        "checkedMaskedPixelsIncludingTransparent": 219173,
+        "clippedVisiblePixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      },
+      {
+        "edition": "after",
+        "frameId": 108,
+        "translation": {
+          "x": -16,
+          "y": -2
+        },
+        "visibleHeadPixels": 37158,
+        "checkedMaskedPixelsIncludingTransparent": 213081,
+        "clippedVisiblePixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      }
+    ]
+  },
+  "registration": {
+    "beforeSha256": "1f68c394bfc3380cf42282ebfb6be0b69d1eb70647557ab0cad72dffdaa92078",
+    "afterSha256": "980a5eae5d20fea6e94a6399a9500aabe763785f21f5d07ab26210110209a34a",
+    "changedFrames": [
+      107,
+      108
+    ],
+    "frameChanges": [
+      {
+        "frameId": 107,
+        "changedPaths": [
+          "points.farAnkle.confidence",
+          "points.farAnkle.method",
+          "points.farAnkle.x",
+          "points.farAnkle.y",
+          "points.farElbow.confidence",
+          "points.farElbow.method",
+          "points.farElbow.x",
+          "points.farElbow.y",
+          "points.farHip.confidence",
+          "points.farHip.method",
+          "points.farHip.x",
+          "points.farHip.y",
+          "points.farKnee.confidence",
+          "points.farKnee.method",
+          "points.farKnee.x",
+          "points.farKnee.y",
+          "points.farShoulder.confidence",
+          "points.farShoulder.method",
+          "points.farShoulder.x",
+          "points.farShoulder.y",
+          "points.farToe.confidence",
+          "points.farToe.method",
+          "points.farToe.y",
+          "points.farWrist.confidence",
+          "points.farWrist.method",
+          "points.farWrist.x",
+          "points.farWrist.y",
+          "points.nearAnkle.confidence",
+          "points.nearAnkle.method",
+          "points.nearAnkle.x",
+          "points.nearAnkle.y",
+          "points.nearElbow.confidence",
+          "points.nearElbow.method",
+          "points.nearElbow.x",
+          "points.nearElbow.y",
+          "points.nearHip.confidence",
+          "points.nearHip.method",
+          "points.nearHip.x",
+          "points.nearHip.y",
+          "points.nearKnee.confidence",
+          "points.nearKnee.method",
+          "points.nearKnee.x",
+          "points.nearKnee.y",
+          "points.nearShoulder.confidence",
+          "points.nearShoulder.method",
+          "points.nearShoulder.x",
+          "points.nearShoulder.y",
+          "points.nearToe.confidence",
+          "points.nearToe.method",
+          "points.nearToe.x",
+          "points.nearToe.y",
+          "points.nearWrist.confidence",
+          "points.nearWrist.method",
+          "points.nearWrist.x",
+          "points.nearWrist.y",
+          "points.neck.confidence",
+          "points.neck.method",
+          "points.neck.x",
+          "points.neck.y",
+          "points.waistLeft.confidence",
+          "points.waistLeft.method",
+          "points.waistLeft.visibility",
+          "points.waistLeft.x",
+          "points.waistLeft.y",
+          "points.waistRight.confidence",
+          "points.waistRight.method",
+          "points.waistRight.x",
+          "points.waistRight.y",
+          "protected[0].polygon[0].x",
+          "protected[0].polygon[0].y",
+          "protected[0].polygon[1].x",
+          "protected[0].polygon[1].y",
+          "protected[0].polygon[2].x",
+          "protected[0].polygon[2].y",
+          "protected[0].polygon[3].x",
+          "protected[0].polygon[3].y",
+          "protected[0].polygon[4].x",
+          "protected[0].polygon[4].y",
+          "protected[0].polygon[5].x",
+          "protected[0].polygon[5].y",
+          "protected[0].polygon[6].x",
+          "protected[0].polygon[6].y",
+          "protected[0].polygon[7].x",
+          "protected[0].polygon[7].y",
+          "protected[0].polygon[8].x",
+          "protected[0].polygon[8].y",
+          "protected[0].polygon[9].x",
+          "protected[0].polygon[9].y",
+          "protected[0].polygon[10].x",
+          "protected[0].polygon[10].y",
+          "protected[0].polygon[11].x",
+          "protected[0].polygon[11].y",
+          "protected[0].polygon[12].x",
+          "protected[0].polygon[12].y",
+          "protected[0].polygon[13].x",
+          "protected[0].polygon[13].y",
+          "protected[0].polygon[14].x",
+          "protected[0].polygon[14].y",
+          "protected[0].polygon[15].x",
+          "protected[0].polygon[15].y",
+          "protected[0].polygon[16].x",
+          "protected[0].polygon[16].y",
+          "protected[0].polygon[17].x",
+          "protected[0].polygon[17].y",
+          "protected[0].polygon[18].x",
+          "protected[0].polygon[18].y",
+          "protected[0].polygon[19].x",
+          "protected[0].polygon[19].y",
+          "protected[0].polygon[20].x",
+          "protected[0].polygon[20].y",
+          "protected[0].polygon[21].x",
+          "protected[0].polygon[21].y",
+          "protected[0].polygon[22].x",
+          "protected[0].polygon[22].y",
+          "protected[0].polygon[23].x",
+          "protected[0].polygon[23].y",
+          "protected[0].polygon[24].x",
+          "protected[0].polygon[24].y",
+          "protected[0].polygon[25].x",
+          "protected[0].polygon[25].y",
+          "protected[0].polygon[26].x",
+          "protected[0].polygon[26].y",
+          "protected[0].polygon[27].x",
+          "protected[0].polygon[27].y",
+          "protected[0].polygon[28].x",
+          "protected[0].polygon[28].y",
+          "protected[0].polygon[29].x",
+          "protected[0].polygon[29].y",
+          "protected[0].polygon[30].x",
+          "protected[0].polygon[30].y",
+          "protected[0].polygon[31].x",
+          "protected[0].polygon[31].y",
+          "protected[0].polygon[32].x",
+          "protected[0].polygon[32].y",
+          "protected[0].polygon[33].x",
+          "protected[0].polygon[33].y",
+          "protected[0].polygon[34].x",
+          "protected[0].polygon[34].y",
+          "protected[0].polygon[35].x",
+          "protected[0].polygon[35].y",
+          "protected[0].polygon[36].x",
+          "protected[0].polygon[36].y",
+          "protected[0].polygon[37].x",
+          "protected[0].polygon[37].y",
+          "protected[0].polygon[38].x",
+          "protected[0].polygon[38].y",
+          "protected[0].polygon[39].x",
+          "protected[0].polygon[39].y",
+          "protected[0].polygon[40].x",
+          "protected[0].polygon[40].y",
+          "protected[0].polygon[41].x",
+          "protected[0].polygon[41].y",
+          "protected[0].polygon[42].x",
+          "protected[0].polygon[42].y",
+          "protected[0].polygon[43].x",
+          "protected[0].polygon[43].y",
+          "protected[0].polygon[44].x",
+          "protected[0].polygon[44].y",
+          "protected[0].polygon[45].x",
+          "protected[0].polygon[45].y",
+          "protected[0].polygon[46].x",
+          "protected[0].polygon[46].y",
+          "protected[0].polygon[47].x",
+          "protected[0].polygon[47].y",
+          "protected[0].polygon[48].x",
+          "protected[0].polygon[48].y",
+          "protected[0].polygon[49].x",
+          "protected[0].polygon[49].y",
+          "protected[0].polygon[50].x",
+          "protected[0].polygon[50].y",
+          "protected[1].polygon.length",
+          "protected[2].polygon.length"
+        ]
+      },
+      {
+        "frameId": 108,
+        "changedPaths": [
+          "points.farAnkle.confidence",
+          "points.farAnkle.method",
+          "points.farAnkle.x",
+          "points.farAnkle.y",
+          "points.farElbow.confidence",
+          "points.farElbow.method",
+          "points.farElbow.x",
+          "points.farElbow.y",
+          "points.farHip.method",
+          "points.farHip.x",
+          "points.farHip.y",
+          "points.farKnee.confidence",
+          "points.farKnee.method",
+          "points.farKnee.visibility",
+          "points.farKnee.x",
+          "points.farKnee.y",
+          "points.farShoulder.confidence",
+          "points.farShoulder.method",
+          "points.farShoulder.x",
+          "points.farShoulder.y",
+          "points.farToe.confidence",
+          "points.farToe.method",
+          "points.farToe.x",
+          "points.farToe.y",
+          "points.farWrist.confidence",
+          "points.farWrist.method",
+          "points.farWrist.x",
+          "points.farWrist.y",
+          "points.nearAnkle.confidence",
+          "points.nearAnkle.method",
+          "points.nearAnkle.y",
+          "points.nearElbow.confidence",
+          "points.nearElbow.method",
+          "points.nearElbow.x",
+          "points.nearElbow.y",
+          "points.nearHip.confidence",
+          "points.nearHip.method",
+          "points.nearHip.x",
+          "points.nearHip.y",
+          "points.nearKnee.method",
+          "points.nearKnee.y",
+          "points.nearShoulder.confidence",
+          "points.nearShoulder.method",
+          "points.nearShoulder.x",
+          "points.nearShoulder.y",
+          "points.nearToe.confidence",
+          "points.nearToe.method",
+          "points.nearToe.x",
+          "points.nearToe.y",
+          "points.nearWrist.confidence",
+          "points.nearWrist.method",
+          "points.nearWrist.x",
+          "points.nearWrist.y",
+          "points.neck.confidence",
+          "points.neck.method",
+          "points.neck.x",
+          "points.neck.y",
+          "points.waistLeft.confidence",
+          "points.waistLeft.method",
+          "points.waistLeft.y",
+          "points.waistRight.confidence",
+          "points.waistRight.method",
+          "points.waistRight.x",
+          "points.waistRight.y",
+          "protected[0].polygon[0].x",
+          "protected[0].polygon[0].y",
+          "protected[0].polygon[1].x",
+          "protected[0].polygon[1].y",
+          "protected[0].polygon[2].x",
+          "protected[0].polygon[2].y",
+          "protected[0].polygon[3].x",
+          "protected[0].polygon[3].y",
+          "protected[0].polygon[4].x",
+          "protected[0].polygon[4].y",
+          "protected[0].polygon[5].x",
+          "protected[0].polygon[5].y",
+          "protected[0].polygon[6].x",
+          "protected[0].polygon[6].y",
+          "protected[0].polygon[7].x",
+          "protected[0].polygon[7].y",
+          "protected[0].polygon[8].x",
+          "protected[0].polygon[8].y",
+          "protected[0].polygon[9].x",
+          "protected[0].polygon[9].y",
+          "protected[0].polygon[10].x",
+          "protected[0].polygon[10].y",
+          "protected[0].polygon[11].x",
+          "protected[0].polygon[11].y",
+          "protected[0].polygon[12].x",
+          "protected[0].polygon[12].y",
+          "protected[0].polygon[13].x",
+          "protected[0].polygon[13].y",
+          "protected[0].polygon[14].x",
+          "protected[0].polygon[14].y",
+          "protected[0].polygon[15].x",
+          "protected[0].polygon[15].y",
+          "protected[0].polygon[16].x",
+          "protected[0].polygon[16].y",
+          "protected[0].polygon[17].x",
+          "protected[0].polygon[17].y",
+          "protected[0].polygon[18].x",
+          "protected[0].polygon[18].y",
+          "protected[0].polygon[19].x",
+          "protected[0].polygon[19].y",
+          "protected[0].polygon[20].x",
+          "protected[0].polygon[20].y",
+          "protected[0].polygon[21].x",
+          "protected[0].polygon[21].y",
+          "protected[0].polygon[22].x",
+          "protected[0].polygon[22].y",
+          "protected[0].polygon[23].x",
+          "protected[0].polygon[23].y",
+          "protected[0].polygon[24].x",
+          "protected[0].polygon[24].y",
+          "protected[0].polygon[25].x",
+          "protected[0].polygon[25].y",
+          "protected[0].polygon[26].x",
+          "protected[0].polygon[26].y",
+          "protected[0].polygon[27].x",
+          "protected[0].polygon[27].y",
+          "protected[0].polygon[28].x",
+          "protected[0].polygon[28].y",
+          "protected[0].polygon[29].x",
+          "protected[0].polygon[29].y",
+          "protected[0].polygon[30].x",
+          "protected[0].polygon[30].y",
+          "protected[0].polygon[31].x",
+          "protected[0].polygon[31].y",
+          "protected[0].polygon[32].x",
+          "protected[0].polygon[32].y",
+          "protected[0].polygon[33].x",
+          "protected[0].polygon[33].y",
+          "protected[0].polygon[34].x",
+          "protected[0].polygon[34].y",
+          "protected[0].polygon[35].x",
+          "protected[0].polygon[35].y",
+          "protected[0].polygon[36].x",
+          "protected[0].polygon[36].y",
+          "protected[0].polygon[37].x",
+          "protected[0].polygon[37].y",
+          "protected[0].polygon[38].x",
+          "protected[0].polygon[38].y",
+          "protected[0].polygon[39].x",
+          "protected[0].polygon[39].y",
+          "protected[0].polygon[40].x",
+          "protected[0].polygon[40].y",
+          "protected[0].polygon[41].x",
+          "protected[0].polygon[41].y",
+          "protected[0].polygon[42].x",
+          "protected[0].polygon[42].y",
+          "protected[0].polygon[43].x",
+          "protected[0].polygon[43].y",
+          "protected[0].polygon[44].x",
+          "protected[0].polygon[44].y",
+          "protected[0].polygon[45].x",
+          "protected[0].polygon[45].y",
+          "protected[0].polygon[46].x",
+          "protected[0].polygon[46].y",
+          "protected[0].polygon[47].x",
+          "protected[0].polygon[47].y",
+          "protected[0].polygon[48].x",
+          "protected[0].polygon[48].y",
+          "protected[0].polygon[49].x",
+          "protected[0].polygon[49].y",
+          "protected[0].polygon[50].x",
+          "protected[0].polygon[50].y",
+          "protected[1].polygon.length",
+          "protected[2].polygon.length"
+        ]
+      }
+    ]
+  },
+  "appearance": {
+    "beforeSha256": "f107f9dba4e8a12ad464db6d9646956ff7a34ab33b56d61d8811e75f57de67c6",
+    "afterSha256": "d7eb9ca4d824e61a47483dc53f487795277de40a946c3dba1b7bfbe46add2c47",
+    "changedUnexpectedPaths": [],
+    "changedPayloads": [],
+    "checkedLayers": 3,
+    "allowedPoseFrames": [
+      107,
+      108
+    ]
+  },
+  "garments": {
+    "male-daily-top.garment.zip": {
+      "logicalKey": "dailyTop",
+      "beforeSha256": "f1b65f982b2a9ec144793b740647eb9b69402057185195b1992464c2360eed38",
+      "afterSha256": "d273fa785766820f58559339aff6923bc97b15708bab3725805a1a01adbe3f43",
+      "allowedFrames": [
+        107,
+        108
+      ],
+      "changedFrames": [
+        107,
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 107,
+          "patchRgba": {
+            "changedPixels": 13222,
+            "bbox": [
+              165,
+              420,
+              377,
+              564
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 5993,
+            "bbox": [
+              165,
+              420,
+              377,
+              564
+            ]
+          }
+        },
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 9777,
+            "bbox": [
+              168,
+              418,
+              341,
+              549
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 1975,
+            "bbox": [
+              168,
+              418,
+              341,
+              549
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    },
+    "male-daily-bottom.garment.zip": {
+      "logicalKey": "dailyBottom",
+      "beforeSha256": "1d95f2040ea838fcf082d2edaa823a30c1d047de3cf5d2893b80587c39bffe86",
+      "afterSha256": "f31b95f009222d873fbdeda9b1096ad463d226b8b798eef9aeb75dfbf13467d6",
+      "allowedFrames": [
+        107,
+        108
+      ],
+      "changedFrames": [
+        107,
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 107,
+          "patchRgba": {
+            "changedPixels": 16267,
+            "bbox": [
+              151,
+              513,
+              324,
+              665
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 5320,
+            "bbox": [
+              151,
+              513,
+              324,
+              665
+            ]
+          }
+        },
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 12274,
+            "bbox": [
+              169,
+              517,
+              305,
+              668
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 4198,
+            "bbox": [
+              169,
+              517,
+              305,
+              668
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    },
+    "male-wedding-top.garment.zip": {
+      "logicalKey": "weddingTop",
+      "beforeSha256": "a125c295c78c4c8f2d5bf8648d900a66b37a11c7fa36bbafc721aaf2c1cf62e6",
+      "afterSha256": "8cf0d431962e6fb7b5d0a5755fd6bf92da6c589851ae10a747974b6f4bab6b2c",
+      "allowedFrames": [
+        107,
+        108
+      ],
+      "changedFrames": [
+        107,
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 107,
+          "patchRgba": {
+            "changedPixels": 17917,
+            "bbox": [
+              144,
+              420,
+              377,
+              564
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 7431,
+            "bbox": [
+              144,
+              420,
+              377,
+              564
+            ]
+          }
+        },
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 14390,
+            "bbox": [
+              152,
+              418,
+              375,
+              549
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 2221,
+            "bbox": [
+              152,
+              418,
+              375,
+              549
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    },
+    "male-wedding-bottom.garment.zip": {
+      "logicalKey": "weddingBottom",
+      "beforeSha256": "fea580fa17f5880effc7b6c830c681afabdf8e7b3d94cc4a5ec9fa261354d35c",
+      "afterSha256": "e5e4b3d933b70b46e3a504b51531cd5bbd16c97841dc5c9a22f9738e154fc68e",
+      "allowedFrames": [
+        107,
+        108
+      ],
+      "changedFrames": [
+        107,
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 107,
+          "patchRgba": {
+            "changedPixels": 16279,
+            "bbox": [
+              151,
+              513,
+              324,
+              665
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 5314,
+            "bbox": [
+              151,
+              513,
+              324,
+              665
+            ]
+          }
+        },
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 12262,
+            "bbox": [
+              169,
+              517,
+              305,
+              663
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 4277,
+            "bbox": [
+              169,
+              517,
+              305,
+              663
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    }
+  },
+  "catalog": {
+    "changedIdentityOrPresetFields": [],
+    "beforeEdition": 3,
+    "afterEdition": 4,
+    "bindingsChanged": true,
+    "expectedPreviousEdition": {
+      "edition": 3,
+      "sourceSha256": "0353ca3bb4c333fbab9a2f089ade15b777ed75a45e90a28bf62a8fef34221326",
+      "registrationSha256": "1f68c394bfc3380cf42282ebfb6be0b69d1eb70647557ab0cad72dffdaa92078"
+    },
+    "lineageVerified": true
+  },
+  "errors": [],
+  "input": "/workspace/gathria-character/artwork/kling-landing-production/body/inputs.json",
+  "runtimeProfile": {
+    "status": "checked",
+    "path": "/workspace/gathria-character/src/core/gameplay-motion-profiles.json",
+    "beforeId": "kling-male-side-landing-candidate-v3",
+    "afterId": "kling-male-side-landing-candidate-v4",
+    "basicActionsExact": true,
+    "jump": {
+      "frames": [
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "fps": 24,
+      "loop": false
+    }
+  },
+  "passed": true
+}

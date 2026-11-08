@@ -1,0 +1,128 @@
+{
+  "format": "gathria-low-recovery-contact-measurements",
+  "fps": 24,
+  "runSpeed": 700,
+  "pixelThreshold": "alpha >= 128 (midpoint contour; excludes very faint antialiasing)",
+  "footMeasure": "Rightmost visible pixel below native y=650 in bare original look; manual review confirms far support shoe. Not an anatomical joint or exact contact constraint.",
+  "editions": [
+    {
+      "edition": "before",
+      "sourceSha256": "0353ca3bb4c333fbab9a2f089ade15b777ed75a45e90a28bf62a8fef34221326",
+      "profileId": "kling-male-side-landing-candidate-v3",
+      "samples": [
+        {
+          "tick": 47,
+          "frameId": 85,
+          "headTop": 269,
+          "farShoeTipX": 328,
+          "worldX": 1370.8333333333337,
+          "worldShoeTipX": 1698.8333333333337,
+          "nativePngSha256": "48eedb50c3324dc75166b7c6d427c93004bd3663b0aff2ed9bab39c5c09314e5"
+        },
+        {
+          "tick": 48,
+          "frameId": 88,
+          "headTop": 260,
+          "farShoeTipX": 327,
+          "worldX": 1400.0000000000005,
+          "worldShoeTipX": 1727.0000000000005,
+          "nativePngSha256": "fbc4c92a85b4611339a70bbeac0333b7a95720e981f1269ec92a132574c781e3"
+        },
+        {
+          "tick": 49,
+          "frameId": 107,
+          "headTop": 238,
+          "farShoeTipX": 304,
+          "worldX": 1429.1666666666672,
+          "worldShoeTipX": 1733.1666666666672,
+          "nativePngSha256": "7a941f28b5b6ebafcddd42f3ae849a4a1fc87a9baeb9ead86776d827dbb074d1"
+        },
+        {
+          "tick": 50,
+          "frameId": 108,
+          "headTop": 231,
+          "farShoeTipX": 271,
+          "worldX": 1458.333333333334,
+          "worldShoeTipX": 1729.333333333334,
+          "nativePngSha256": "b9de75353ef921cd163f31e259c3e13988a49a98b54b6340497de692c95cb52a"
+        },
+        {
+          "tick": 51,
+          "frameId": 48,
+          "headTop": 231,
+          "farShoeTipX": 259,
+          "worldX": 1487.5000000000007,
+          "worldShoeTipX": 1746.5000000000007,
+          "nativePngSha256": "350071a1829a2a55df29509398933d1482fc06536fefa9fa28bb2d01c1d152a8"
+        }
+      ],
+      "worldShoeSteps": [
+        28.166666666666742,
+        6.1666666666667425,
+        -3.8333333333332575,
+        17.166666666666742
+      ],
+      "totalWorldShoeDrift": 47.66666666666697,
+      "maximumHeadRise": 22,
+      "sensitivityAlphaAbove32": {
+        "totalWorldShoeDrift": 46.66666666666697,
+        "maximumHeadRise": 20
+      }
+    },
+    {
+      "edition": "after",
+      "sourceSha256": "704698872f3a4f621f3d4de53d3fa6a28ef930f6a390c63fb35982d95e51a430",
+      "profileId": "kling-male-side-landing-candidate-v4",
+      "samples": [
+        {
+          "tick": 47,
+          "frameId": 85,
+          "headTop": 269,
+          "farShoeTipX": 328,
+          "worldX": 1370.8333333333337,
+          "worldShoeTipX": 1698.8333333333337,
+          "nativePngSha256": "48eedb50c3324dc75166b7c6d427c93004bd3663b0aff2ed9bab39c5c09314e5"
+        },
+        {
+          "tick": 48,
+          "frameId": 107,
+          "headTop": 256,
+          "farShoeTipX": 307,
+          "worldX": 1400.0000000000005,
+          "worldShoeTipX": 1707.0000000000005,
+          "nativePngSha256": "07fa693539c2c77e6b8e1af046eb94cdcf694c526b6f9697c2c1b00487c0b898"
+        },
+        {
+          "tick": 49,
+          "frameId": 108,
+          "headTop": 243,
+          "farShoeTipX": 279,
+          "worldX": 1429.1666666666672,
+          "worldShoeTipX": 1708.1666666666672,
+          "nativePngSha256": "c0c3e8645a1d441736171426b744b68740c9cbf90bd19d38dbdbb070e01c3ce4"
+        },
+        {
+          "tick": 50,
+          "frameId": 48,
+          "headTop": 231,
+          "farShoeTipX": 259,
+          "worldX": 1458.333333333334,
+          "worldShoeTipX": 1717.333333333334,
+          "nativePngSha256": "350071a1829a2a55df29509398933d1482fc06536fefa9fa28bb2d01c1d152a8"
+        }
+      ],
+      "worldShoeSteps": [
+        8.166666666666742,
+        1.1666666666667425,
+        9.166666666666742
+      ],
+      "totalWorldShoeDrift": 18.500000000000227,
+      "maximumHeadRise": 13,
+      "sensitivityAlphaAbove32": {
+        "totalWorldShoeDrift": 17.500000000000227,
+        "maximumHeadRise": 13
+      }
+    }
+  ],
+  "visualAcceptance": "pending user review; metrics do not establish perfect contact or polished clothing"
+}

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import frozenV1 from "./test-fixtures/landing-candidate-v1.json";
 import frozenV2 from "./test-fixtures/landing-candidate-v2.json";
+import frozenV3 from "./test-fixtures/landing-candidate-v3.json";
 import editions from "./landing-candidate-editions.json";
 import {
   gameplayManifest,
@@ -25,6 +26,7 @@ import { sideIdentityOf, sideProjectCollection } from "./catalog";
 describe.each([
   { label: "V1", frozen: frozenV1 },
   { label: "V2", frozen: frozenV2 },
+  { label: "V3", frozen: frozenV3 },
 ])("frozen landing candidate $label compatibility", ({ frozen }) => {
   // The frozen metadata comes from published source editions. This small parsed contract
   // fixture exercises edition selection without duplicating a 14 MiB atlas ZIP.
@@ -194,6 +196,39 @@ describe("contact recovery edition V3", () => {
       leadIn: [88, 107, 108],
     });
     route.leadIn = [88, 89, 107, 108];
+    expect(normalized).toEqual(old);
+    expect(current.actions).toEqual(old.actions);
+    expect(current.sourceSha256).not.toBe(old.sourceSha256);
+  });
+});
+
+describe("painted low recovery edition V4", () => {
+  it("uses two lower moving poses while preserving every basic action and historical route", () => {
+    const edition = editions.editions.find(
+      (row) => row.profileId === "kling-male-side-landing-candidate-v4",
+    )!;
+    const manifest = {
+      animations: frozenV3.sourceActions,
+      frames: Array.from({ length: 109 }, (_, id) => ({ id })),
+    } as BakedCharacterPackManifest;
+    const current = resolveGameplayMotion(manifest, edition.sourceSha256, {
+      characterId: edition.characterId,
+    })!;
+    const old = frozenV3.profile as GameplayMotion;
+    const normalized = structuredClone(current);
+    normalized.id = old.id;
+    normalized.sourceSha256 = old.sourceSha256;
+    const route = normalized.routes.find(
+      (row) => row.from === "jump" && row.to === "run",
+    )!;
+    expect(route).toEqual({
+      from: "jump",
+      to: "run",
+      exit: 23,
+      entry: 9,
+      leadIn: [107, 108],
+    });
+    route.leadIn = [88, 107, 108];
     expect(normalized).toEqual(old);
     expect(current.actions).toEqual(old.actions);
     expect(current.sourceSha256).not.toBe(old.sourceSha256);

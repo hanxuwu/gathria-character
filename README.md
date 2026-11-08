@@ -93,6 +93,13 @@ historical male V6 packs keep their exact behavior. This is a small first-step
 adjustment; the source still lacks a complete landing weight-transfer drawing.
 [Current first-step GIFs and limits](docs/kling-landing-first-step/README.md).
 
+A separate male landing candidate now adds two painted low recovery poses with
+the original source head copied exactly. Its V4 route begins stepping while low,
+then rises into Run48; original, daily and wedding looks share the same poses.
+Open `/workbench.html?character=male&mode=side-view&collection=landing-candidate`.
+This remains experimental and does not replace the default male V7 or female V6.
+[Actual GIF exports, artwork provenance and remaining slide](docs/kling-landing-recovery/README.md).
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

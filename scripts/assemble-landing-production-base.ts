@@ -15,6 +15,7 @@ const { values } = parseArgs({
     "body-b": { type: "string" },
     out: { type: "string" },
     "repo-root": { type: "string" },
+    input: { type: "string" },
   },
   strict: true,
 });
@@ -22,6 +23,50 @@ for (const key of ["body-a", "body-b", "out"] as const)
   if (!values[key]) throw Error(`Missing --${key}`);
 const root = resolve(values["repo-root"] ?? process.cwd());
 const out = resolve(values.out!);
+const defaults = {
+  107: { x: -9, y: -7 },
+  108: { x: -18, y: -14 },
+} as const;
+const shifts: Record<107 | 108, { x: number; y: number }> = {
+  107: { ...defaults[107] },
+  108: { ...defaults[108] },
+};
+if (values.input) {
+  const spec = JSON.parse(readFileSync(resolve(values.input), "utf8"));
+  if (!Array.isArray(spec.frames) || spec.frames.length !== 2)
+    throw Error(
+      "Head translation input must contain frames107 and108 exactly once",
+    );
+  for (const id of [107, 108] as const) {
+    const rows = spec.frames.filter((row: any) => row?.frameId === id);
+    if (rows.length !== 1)
+      throw Error(
+        `Head translation input must contain frame${id} exactly once`,
+      );
+    const row = rows[0];
+    if (!("headTranslation" in row)) continue;
+    const translation = row.headTranslation;
+    if (
+      !translation ||
+      typeof translation !== "object" ||
+      Object.keys(translation).sort().join(",") !== "x,y" ||
+      ![translation.x, translation.y].every(
+        (value) => Number.isInteger(value) && value >= -128 && value <= 128,
+      )
+    )
+      throw Error(
+        `Frame${id} headTranslation requires integer x/y offsets within ±128 native pixels`,
+      );
+    if (
+      (translation.x !== defaults[id].x || translation.y !== defaults[id].y) &&
+      (!Number.isInteger(spec.edition) || spec.edition < 4)
+    )
+      throw Error(
+        "Changed head placement requires a separately bound V4+ edition",
+      );
+    shifts[id] = { x: translation.x, y: translation.y };
+  }
+}
 mkdirSync(out, { recursive: true });
 const sha = (v: Uint8Array) => createHash("sha256").update(v).digest("hex");
 const sourceBytes = new Uint8Array(
@@ -112,10 +157,11 @@ writeFileSync(
   encodeSourceRgbaPng(image(sourceMaskRgba)),
 );
 const variants: any[] = [];
-for (const [id, key, dx, dy] of [
-  [107, "body-a", -9, -7],
-  [108, "body-b", -18, -14],
+for (const [id, key] of [
+  [107, "body-a"],
+  [108, "body-b"],
 ] as const) {
+  const { x: dx, y: dy } = shifts[id];
   const bodyBytes = new Uint8Array(readFileSync(resolve(values[key]!)));
   const body = decodeSourceRgbaPng(bodyBytes, { width: 512, height: 768 });
   const result = new Uint8Array(body.pixels);

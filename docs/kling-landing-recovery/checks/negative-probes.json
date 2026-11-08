@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "probes": [
+    {
+      "probe": "old-source",
+      "rejected": true,
+      "expectedError": "source-frame-unexpected-change",
+      "actualErrors": [
+        "original-source-sheet-changed",
+        "source-frame-unexpected-change",
+        "registration-source-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch"
+      ]
+    },
+    {
+      "probe": "copied-head",
+      "rejected": true,
+      "expectedError": "head-copy-rgba-changed",
+      "actualErrors": [
+        "source-authored-input-mismatch",
+        "head-copy-rgba-changed",
+        "registration-source-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch"
+      ]
+    },
+    {
+      "probe": "old-garment",
+      "rejected": true,
+      "expectedError": "garment-frame-unexpected-change",
+      "actualErrors": [
+        "garment-frame-unexpected-change"
+      ]
+    },
+    {
+      "probe": "appearance-offset",
+      "rejected": true,
+      "expectedError": "appearance-transform-or-crop-changed",
+      "actualErrors": [
+        "appearance-transform-or-crop-changed"
+      ]
+    },
+    {
+      "probe": "invalid-anchor",
+      "rejected": true,
+      "expectedError": "registration-anchor-invalid",
+      "actualErrors": [
+        "registration-input-mismatch",
+        "registration-anchor-invalid",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch"
+      ]
+    },
+    {
+      "probe": "overlong-anchor-method",
+      "rejected": true,
+      "expectedError": "registration-anchor-metadata-invalid",
+      "actualErrors": [
+        "registration-input-mismatch",
+        "registration-anchor-metadata-invalid",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch",
+        "asset-binding-mismatch"
+      ]
+    },
+    {
+      "probe": "runtime-loop",
+      "rejected": true,
+      "expectedError": "runtime-single-jump-changed",
+      "actualErrors": [
+        "runtime-basic-actions-changed",
+        "runtime-single-jump-changed"
+      ]
+    },
+    {
+      "probe": "non-object-input",
+      "rejected": true,
+      "expectedError": "recovery-input-error",
+      "actualErrors": [
+        "recovery-input-error"
+      ]
+    },
+    {
+      "probe": "null-frame-input",
+      "rejected": true,
+      "expectedError": "recovery-input-error",
+      "actualErrors": [
+        "recovery-input-error"
+      ]
+    },
+    {
+      "probe": "report-overwrite-input-mask",
+      "rejected": true,
+      "inputBytesPreserved": true,
+      "exitCode": 2
+    }
+  ],
+  "format": "gathria-landing-recovery-audit-negative-probes",
+  "version": 1,
+  "auditScript": "scripts/verify-landing-recovery-assets.py",
+  "baselineCommit": "262e13d66fdabce43bcb50b3cffc2b5b6eb42d57",
+  "fixture": "V3 pixels rebound as explicit V4 lineage using unchanged head translations; isolated temporary archives only",
+  "positiveFixturePassed": true,
+  "visualAcceptance": "not-assessed"
+}

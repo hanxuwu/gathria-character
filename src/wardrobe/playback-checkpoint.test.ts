@@ -212,6 +212,9 @@ describe("source-bound wardrobe playback checkpoints", () => {
       importWardrobeProject(
         zipSync({
           ...files,
+          // Match the exporter: the 13 MiB source ZIP is already compressed.
+          // Re-deflating it adds no checkpoint coverage and can exhaust the CI budget.
+          "source.character.zip": [files["source.character.zip"], { level: 0 }],
           "document.json": strToU8(JSON.stringify(document)),
         }),
       ),

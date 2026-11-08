@@ -1,0 +1,69 @@
+{
+  "frameId": 108,
+  "status": "manual authoring proposal pending parent visual review",
+  "sourcePng": "/tmp/landing-recovery-v4/art108/assembled-r3/108.png",
+  "sourcePngSha256": "c0c3e8645a1d441736171426b744b68740c9cbf90bd19d38dbdbb070e01c3ce4",
+  "rawBodyPng": "/tmp/landing-recovery-v4/art108/r3.native.png",
+  "headAudit": "/tmp/landing-recovery-v4/art108/assembled-r3/head-copy-audit.json",
+  "headTranslation": {
+    "x": -16,
+    "y": -2
+  },
+  "headPolygonMethod": "Copied protectedHeadPolygon directly from exact assembly audit; not re-estimated. Source89 visible RGBA head pixels37,158, zero clipping/mismatch.",
+  "anchorSemantics": "Attachment/joint centers except toe points; all native top-left coordinates. Near means foreground/leftmost arm and diagonal raised shoe. Far means forward fist and flatter planted shoe.",
+  "uncertainty": "Visible anchors approximately \u00b14 native px. Hidden far shoulder, both hips, and waistLeft are appearance/cloth attachment guides only; their true joints may differ more. Near wrist is inferred from silhouette volume without a complete crease.",
+  "handProtection": "Conservative hand silhouette polygons include roughly 1\u20133 px margin and small proximal wrist overlap. They are intended to protect all visible fist/outline pixels but are not claimed pixel-perfect until independent review and garment-mask validation.",
+  "anatomyNotes": [
+    "The near knee bends around(248,596), then the near calf travels down-left into(192,628). It must not be mapped as a straight vertical leg.",
+    "The far knee volume is now visible at(281,611); do not reuse previous108 farKnee(241,618), which belonged to a different leg topology.",
+    "Far shoe has visible maximum x279 at y680..685; lowest visible row y696 at alpha>32. The target x282 was a pose guide, not a reason to move actual art/anchors.",
+    "Raised near shoe points diagonally down-right and overlaps far ankle/rear shoe; nearToe(216,674) is not a ground contact."
+  ],
+  "measuredRowsAlphaAbove32": {
+    "620": [
+      176,
+      299
+    ],
+    "630": [
+      163,
+      293
+    ],
+    "640": [
+      162,
+      279
+    ],
+    "650": [
+      167,
+      263
+    ],
+    "660": [
+      174,
+      254
+    ],
+    "670": [
+      183,
+      272
+    ],
+    "675": [
+      188,
+      277
+    ],
+    "680": [
+      197,
+      279
+    ],
+    "685": [
+      197,
+      279
+    ],
+    "690": [
+      198,
+      278
+    ],
+    "695": [
+      211,
+      267
+    ]
+  },
+  "shoeMeasurementLimit": "Row extents are whole visible character silhouettes in shoe/leg region, not automatically segmented shoe-only masks. Shoulder/hip widths are posed projections and do not establish body proportion changes."
+}

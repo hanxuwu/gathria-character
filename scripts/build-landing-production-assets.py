@@ -71,6 +71,34 @@ def edition_metadata(spec: dict) -> dict:
     return {"edition": edition, "previousEdition": copy.deepcopy(previous)}
 
 
+def head_translations(spec: dict) -> dict[int, tuple[int, int]]:
+    """Use one explicit integer transform for copied heads and appearance layers.
+
+    Missing per-frame fields reproduce the published V1–V3 asset bytes. A new
+    transform is an authored V4+ choice, not an implicit migration of old art.
+    The pixel-copy verifier separately rejects any visible head clipping.
+    """
+    rows = {frame["frameId"]: frame for frame in spec["frames"]}
+    assert set(rows) == set(NEW_IDS) and len(spec["frames"]) == len(NEW_IDS)
+    result = {}
+    for frame_id in NEW_IDS:
+        frame = rows[frame_id]
+        if "headTranslation" not in frame:
+            result[frame_id] = SHIFTS[frame_id]
+            continue
+        value = frame["headTranslation"]
+        assert isinstance(value, dict) and set(value) == {"x", "y"}, f"Frame {frame_id}: headTranslation requires x and y only"
+        assert all(type(value[key]) is int and -128 <= value[key] <= 128 for key in ("x", "y")), (
+            f"Frame {frame_id}: headTranslation must use reviewed integer offsets within ±128 native pixels"
+        )
+        result[frame_id] = (value["x"], value["y"])
+        edition = spec.get("edition", 1)
+        assert result[frame_id] == SHIFTS[frame_id] or (type(edition) is int and edition >= 4), (
+            "Changed head placement requires a separately bound V4+ edition"
+        )
+    return result
+
+
 def encoded(value, *, compact=False) -> bytes:
     options = {"separators": (",", ":")} if compact else {"indent": 2}
     return (json.dumps(value, ensure_ascii=False, **options) + "\n").encode()
@@ -178,8 +206,9 @@ def verify_head_copy(spec: dict, relative, files: dict[str, bytes], manifest: di
     positions = [position for position, owned in enumerate(mask_pixels) if owned and source[position * 4 + 3]]
     assert len(positions) >= 10000, "Head assembly mask must cover the visible source head, not a token sample"
     frames = []
+    shifts = head_translations(spec)
     for frame_id in NEW_IDS:
-        dx, dy = SHIFTS[frame_id]
+        dx, dy = shifts[frame_id]
         target = inputs[frame_id][1].tobytes()
         for position in positions:
             x, y = position % 512, position // 512
@@ -198,6 +227,7 @@ def verify_head_copy(spec: dict, relative, files: dict[str, bytes], manifest: di
 
 def source_assets(spec: dict, relative, fixture: bool):
     edition = edition_metadata(spec)
+    shifts = head_translations(spec)
     base_bytes, base_files, before = opened(BASE_SOURCE)
     base_recipe = json.loads(base_files["character.json"])
     old_registration_bytes = BASE_REGISTRATION.read_bytes()
@@ -284,7 +314,7 @@ def source_assets(spec: dict, relative, fixture: bool):
             "sourceIndexMeaning": "Archive collection entry; never interpret generated IDs as video frames",
             "sourceIndexFile": f"{reference_name}/source-index.json",
             "headSourceFrameId": 89,
-            "headTranslations": {str(frame_id): {"x": SHIFTS[frame_id][0], "y": SHIFTS[frame_id][1]} for frame_id in NEW_IDS},
+            "headTranslations": {str(frame_id): {"x": shifts[frame_id][0], "y": shifts[frame_id][1]} for frame_id in NEW_IDS},
             "headCopyVerification": head_copy,
             "artProvenance": provenance,
             "originalAtlasSha256": {sheet["file"]: sha(base_files[sheet["file"]])
@@ -382,7 +412,7 @@ def extend_garment(key: str, value: dict, relative, source_hash: str, registrati
                             "newInputs": audits, "frameCount": 109}
 
 
-def extend_appearance(source_hash: str, registration_hash: str, old_registration: dict):
+def extend_appearance(source_hash: str, registration_hash: str, old_registration: dict, shifts: dict[int, tuple[int, int]]):
     base_bytes, files, before = opened(BASE_APPEARANCE)
     assert before["sourceSha256"] == old_registration["sourceSha256"]
     assert before["registrationSha256"] == sha(BASE_REGISTRATION.read_bytes())
@@ -394,7 +424,7 @@ def extend_appearance(source_hash: str, registration_hash: str, old_registration
     for pose in manifest["poses"]:
         pose["sourceFrame"] = pose["frameId"]
     for frame_id in NEW_IDS:
-        pose = translate_geometry(reference, *SHIFTS[frame_id])
+        pose = translate_geometry(reference, *shifts[frame_id])
         pose.update({"frameId": frame_id, "sourceFrame": frame_id})
         manifest["poses"].append(pose)
     for style in manifest["styles"]:
@@ -405,7 +435,7 @@ def extend_appearance(source_hash: str, registration_hash: str, old_registration
                 frame = copy.deepcopy(reference_frame)
                 frame["frameId"] = frame_id
                 if frame["mode"] == "paint":
-                    dx, dy = SHIFTS[frame_id]
+                    dx, dy = shifts[frame_id]
                     frame["offset"]["x"] += dx
                     frame["offset"]["y"] += dy
                 else:
@@ -413,9 +443,10 @@ def extend_appearance(source_hash: str, registration_hash: str, old_registration
                     # as a missing-frame fallback for the appended poses.
                     assert frame["mode"] == "source"
                 layer["frames"].append(frame)
+    offset_description = "/".join(f"({shifts[frame_id][0]},{shifts[frame_id][1]})" for frame_id in NEW_IDS)
     manifest["provenance"] += (
         "\nExperimental landing candidate binding; original PNG pages and every existing style/layer crop are byte-exact. "
-        "All styles explicitly extend to107/108 using source89's existing crops with integer offsets(-9,-7)/(-18,-14), "
+        f"All styles explicitly extend to107/108 using source89's existing crops with integer offsets{offset_description}, "
         "matching the exact copied source89 head in the authored bare poses. Head anchors, bounds, foreground and face polygons "
         "translate by the same offsets. No head resampling, newly painted face or missing-style fallback. "
         "Source-frame fields now denote archive collection IDs; original video maps remain in the reference source ZIP."
@@ -459,7 +490,7 @@ def main():
             filename, data, audit = extend_garment(key, spec["garments"][key], relative, source_hash, registration_hash, old_registration)
             output[filename] = data
             report["garments"][key] = audit
-    appearance, appearance_audit = extend_appearance(source_hash, registration_hash, old_registration)
+    appearance, appearance_audit = extend_appearance(source_hash, registration_hash, old_registration, head_translations(spec))
     output["male.appearance.zip"] = appearance
     report["appearance"] = appearance_audit
     selection = lambda top=None, bottom=None: {"top": top, "bottom": bottom, "shoes": None, "fullBody": None}

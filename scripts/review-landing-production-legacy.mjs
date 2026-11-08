@@ -1,6 +1,6 @@
 // Usage: node scripts/review-landing-production-legacy.mjs <fixture root> [report directory]
 // Default: original V1 assets + actual UI downloads under that fixture root.
-// A later edition can use --edition 2 --project <saved.wardrobe.zip> --export-pack.
+// A later edition can use --edition 2/3 --project <saved.wardrobe.zip> --export-pack.
 // The explicit seed may come from the project writer; browser imports, paused
 // saves/reopens and standalone pack exports are exercised below.
 import { chromium, expect } from "@playwright/test";
@@ -23,9 +23,15 @@ const { values, positionals } = parseArgs({
   },
 });
 const edition = Number(values.edition);
+// These are immutable historical routes, not expectations derived from current code.
+const historicalLandingLeadIns = {
+  1: [88, 89, 107, 108],
+  2: [88, 89, 107, 108],
+  3: [88, 107, 108],
+};
 assert(
-  Number.isInteger(edition) && edition > 0,
-  "Expected a positive edition number.",
+  Number.isInteger(edition) && Object.hasOwn(historicalLandingLeadIns, edition),
+  "Expected a reviewed historical edition (1, 2 or 3).",
 );
 const prefix = `v${edition}`;
 const expectedProfileId = `kling-male-side-landing-candidate-${prefix}`;
@@ -79,7 +85,7 @@ const sourceProfile = resolveGameplayMotion(
   json(oldFiles["character.json"]),
 );
 assert.equal(sourceProfile?.id, expectedProfileId);
-const expectedLandingLeadIn = [88, 89, 107, 108];
+const expectedLandingLeadIn = historicalLandingLeadIns[edition];
 assert.deepEqual(
   sourceProfile.routes.find(
     (route) => route.from === "jump" && route.to === "run",
