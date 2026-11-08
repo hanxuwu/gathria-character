@@ -1,0 +1,133 @@
+{
+  "format": "gathria-wardrobe-coverage-validation-summary",
+  "version": 1,
+  "technicalStatus": "passed",
+  "visualAcceptance": "pending-user-review",
+  "scope": "Current built-in runtime-selectable garments, both native views, all listed legacy versions/palettes, and current male landing candidate. This is a metadata/hash/frame-binding inventory, NOT a visual pass. User-imported projects, non-catalog archives, hair/face banks, and embedded historical exports are outside garment visual-coverage claims.",
+  "activeInventory": {
+    "activeGarmentReferenceCount": 127,
+    "uniqueActiveGarmentFiles": 113,
+    "uniqueGarmentFramePairs": 10903,
+    "groups": 21,
+    "sourcePacks": 5,
+    "registrationFiles": 10,
+    "originalGarments": 57,
+    "sideStandaloneGarments": 14,
+    "dualGarmentReferences": 56,
+    "dualUniqueGarmentFiles": 42,
+    "originalPresetsIncludingBare": 49,
+    "sidePresetsIncludingBare": 11,
+    "dualPairedOutfitPalettes": 14,
+    "dualRepresentationPresets": 28,
+    "archivedNonCatalogGarmentFiles": 42,
+    "bindingOrFrameIssues": 0,
+    "originalViewUniqueFiles": 73,
+    "sideViewUniqueFilesIncludingLanding": 40
+  },
+  "assetChanges": {
+    "changed": 87,
+    "unchanged": 26,
+    "evidence": "preservation.json"
+  },
+  "runtime": {
+    "summary": {
+      "groups": 21,
+      "uniqueGarments": 113,
+      "garmentFrames": 10903,
+      "presetFrames": 8437
+    },
+    "evidence": "runtime.json",
+    "snapshot": "runtime-inventory.json",
+    "snapshotSha256": "3459222a703a11623d58bbab7ae8345b356d27bc6e0a586b2ea650d6c189375e",
+    "currentInventorySha256": "3434ee3fc4a78d113facf9372d5378a77c4b63d7e4fe0142acac125fa7013c96",
+    "activeInputsAndCodeStillExact": true,
+    "onlyInventoryScopeDifference": "One additional non-catalog frozen wedding-bottom authoring fixture; no active runtime inputs changed."
+  },
+  "tests": [
+    {
+      "command": "npm test",
+      "passed": 782,
+      "files": 76
+    },
+    {
+      "command": "npm run build",
+      "result": "passed (includes TypeScript and production build)"
+    },
+    {
+      "command": "CHROMIUM_PATH=/usr/bin/chromium npx playwright test tests/e2e/landing-candidate.spec.ts --workers=1",
+      "passed": 2,
+      "scope": "Targeted landing UI/browser regression, not the complete E2E suite"
+    },
+    {
+      "command": "python scripts/test_kling_{dress_fit,hair_ear_fit,hair_ear_overlap,hair_expansion,garment_recipe}.py (five separate invocations)",
+      "passed": 28
+    },
+    {
+      "command": "python scripts/verify-kling-male-repair.py",
+      "result": "passed: retained historical assertions plus exact current source-cloth layer"
+    },
+    {
+      "command": "python scripts/verify-kling-female-repair.py",
+      "result": "passed: retained historical assertions plus exact current source-cloth layer"
+    },
+    {
+      "command": "python scripts/verify-kling-contour-assets.py",
+      "result": "passed: 101 historical archives, 4 sources/registrations, 3 historical garments, 39 current coverage bindings and 3 current candidate coverage checks"
+    },
+    {
+      "command": "node scripts/assemble-paired-polish-catalog.mjs --check",
+      "result": "passed: 4 historical bindings and 22 current paired garments / 2234 native frames"
+    },
+    {
+      "command": "python scripts/build-landing-production-assets.py --input artwork/kling-landing-production/body/inputs.json --check",
+      "result": "passed: 10 generated files byte-exact"
+    },
+    {
+      "command": "python scripts/propagate-landing-trouser-coverage.py --check",
+      "result": "passed: 52 frames, 2208 original-cloth pixels, 53 reviewed hand boundaries"
+    },
+    {
+      "command": "python scripts/refresh-wardrobe-coverage-catalogs.py --check",
+      "result": "passed: 5 catalogs, 99 unique archives, zero stale fields"
+    },
+    {
+      "command": "python scripts/inventory-wardrobe-coverage.py --check",
+      "result": "passed: zero binding or frame issues"
+    },
+    {
+      "command": "python scripts/build-wardrobe-neckline-profiles.py --check",
+      "result": "passed"
+    }
+  ],
+  "thumbnailRevalidation": {
+    "presets": 47,
+    "exactNativeRgba": 47,
+    "evidence": "thumbnail-revalidation.json"
+  },
+  "actualLandingUiAndExports": {
+    "looks": 3,
+    "facings": [
+      "right",
+      "left"
+    ],
+    "eachExportedFrameMatchesSavedProject": 109,
+    "sourceFps": 24,
+    "gifFrames": 77,
+    "gifDurationMs": 3210,
+    "evidence": [
+      "landing/review/actual-workbench-review.json",
+      "landing/review/standalone-player-review.json",
+      "landing/review/controlled-player-review.json",
+      "landing/review/presentation.json"
+    ],
+    "scope": "UI export/save/reopen and standalone import/reexport. Strict wall-clock and explicit controlled-clock playback both passed; neither is sustained device performance certification."
+  },
+  "limits": [
+    "Technical checks do not certify absence of every visual artifact. Selected difficult poses were visually inspected; all scoped frames were rendered and checked mechanically.",
+    "Some original video gray/green soft edges and conservative skin/cloth boundary pixels remain. Several sleeve cuffs and cloth folds are still stiff.",
+    "Arbitrary outfit combinations were not exhaustively visually accepted; the full runtime sweep renders declared presets and reopens the last preset of each group.",
+    "Old user projects retain embedded old artwork; they are not silently migrated. Non-catalog authoring/history archives are inventoried separately, not certified as current selectable artwork.",
+    "Hosted full CI status is separate from these completed local checks.",
+    "Landing wedding raised-arm cuff joins remain visibly hard/stepped; frame 101 has five warm source-edge pixels outside retained hand protection. See landing/review/remaining-cuff-findings.json."
+  ]
+}

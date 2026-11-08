@@ -1,0 +1,699 @@
+{
+  "baselineCommit": "863d761bbdc927ea65080250c765b9c5c78c8fc4",
+  "sourceAndRegistrationBytesExact": {
+    "sources": [
+      {
+        "path": "docs/kling-motion/exports/male.character.zip",
+        "sha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-motion/exports/female.character.zip",
+        "sha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-side-workspace/assets/male.source.zip",
+        "sha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-side-workspace/assets/female.source.zip",
+        "sha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-landing-production/assets/male.source.zip",
+        "sha256": "704698872f3a4f621f3d4de53d3fa6a28ef930f6a390c63fb35982d95e51a430",
+        "byteExact": true
+      }
+    ],
+    "registrations": [
+      {
+        "path": "docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+        "sha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-wardrobe/registration/female.json",
+        "sha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-side-workspace/assets/male.registration.json",
+        "sha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+        "byteExact": true
+      },
+      {
+        "path": "artwork/kling-side-expansion/templates/male.registration.json",
+        "sha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-side-workspace/assets/female.registration.json",
+        "sha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e",
+        "byteExact": true
+      },
+      {
+        "path": "artwork/kling-side-expansion/templates/female.registration.json",
+        "sha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+        "byteExact": true
+      },
+      {
+        "path": "docs/kling-landing-production/assets/male.registration.json",
+        "sha256": "980a5eae5d20fea6e94a6399a9500aabe763785f21f5d07ab26210110209a34a",
+        "byteExact": true
+      },
+      {
+        "path": "docs/dual-tailored/assets/male/male-ankle-reviewed-v1.registration.json",
+        "sha256": "035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d",
+        "byteExact": true
+      },
+      {
+        "path": "docs/dual-tailored/assets/female/original-tailored-v1.registration.json",
+        "sha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+        "byteExact": true
+      },
+      {
+        "path": "artwork/paired-polish/female-side.registration.json",
+        "sha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+        "byteExact": true
+      }
+    ]
+  },
+  "allGarmentSourceBindingsFrameIdsAndCountsUnchanged": true,
+  "changedActiveGarments": 87,
+  "unchangedActiveGarments": 26,
+  "changes": [
+    {
+      "path": "docs/kling-wardrobe/garments/male-full-outfits-v1/teal-top.zip",
+      "id": "teal-top",
+      "beforeSha256": "1fcbd1c92d5511da107973d9d8b43f40bb7a2999c9c628e24f5b90271963c5dc",
+      "sha256": "60386af5c46a193bc63bf42718dc9d2cb81414f1f249bbe99ef1aa58a5d690a2",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-waistcoat.zip",
+      "id": "navy-waistcoat",
+      "beforeSha256": "de0b42bcb3d3e2361779c4aa81b6ebc34a5cab050db920b8054be0e2be45b8f1",
+      "sha256": "45b62508e479334c06af744ec28eb5a3579ca0827c27fd6a91a1916da3755c3d",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/teal-camp-shirt-v2.zip",
+      "id": "teal-camp-shirt-v2",
+      "beforeSha256": "c3b738d35fc92bccaedd130a7f7cf98f5c882a5615f18e24cfe710272ab81f49",
+      "sha256": "0c419f116041c5a8e63546646b639da2eac1cf61dc0a8b7215bdd0365669fbeb",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/navy-suit-jacket-v2.zip",
+      "id": "navy-suit-jacket-v2",
+      "beforeSha256": "0b0bfaa112b9c17f161adb498a6b99d28fc5407768f5d0eecc6740c2ef0a1a9c",
+      "sha256": "a45231b83ad49a357022f4ee023aa1fcb3aab54ed4159ae00d8b3d84f47e0205",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/cream-camp-shirt-v1.zip",
+      "id": "cream-camp-shirt-v1",
+      "beforeSha256": "db5b45e87e7813d7767aa501f7ad297637cf92acd8ff50f5d6c58b7955982b40",
+      "sha256": "4760a0ad099995ce99306a2641bb037b07cda9abb1cf3d81b28602b5c7229b11",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/forest-work-shirt-v1.zip",
+      "id": "forest-work-shirt-v1",
+      "beforeSha256": "4406d0c1bb5ef7cf0be59f39a304c1a2370d86cd3df1f7e1286858cbd09441ad",
+      "sha256": "aad0f9550de9152fe5cf26f1b0f75f18dad7dca4200be38b2e5cd52b004bb1ac",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/oat-henley-v1.zip",
+      "id": "oat-henley-v1",
+      "beforeSha256": "f2e9fd751283455dc399e511abedc824b31033835b38414ce0137dc1522c35c0",
+      "sha256": "611cb0151aac61d564fc05e58cd29fca5e78f6789e55dd7edc1bd38877c6bdb9",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/harbor-polo-v1.zip",
+      "id": "harbor-polo-v1",
+      "beforeSha256": "3e5847bd96214360800588cdc0ebf2ab03b4bd29c119d9f2b4823639bd29eb8a",
+      "sha256": "7708906c3301da8e133b1b7f79817ff6ecb8dd8818b511a52c7eef8b20b2deb5",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/terracotta-overshirt-v1.zip",
+      "id": "terracotta-overshirt-v1",
+      "beforeSha256": "937ce2ff2537a3a5fdaa852e9836e966487e3d18d8b1ee8eeaebb2e402dedfaa",
+      "sha256": "cd37ce2b7db302798e20cb72817478110b59dd6b925314b04f42e2a2ee8b25d7",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/moss-knit-vest-v1.zip",
+      "id": "moss-knit-vest-v1",
+      "beforeSha256": "a844131d3f32823b8da0e7518dc7a30d0c2a811846e374bc953303d5fba5ccd9",
+      "sha256": "60c1b3edbbe494e100b9a7311d26d3adc84ac565ae840f0d8918fb3026417a62",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/teal-camp-shirt-v3.zip",
+      "id": "teal-camp-shirt-v3",
+      "beforeSha256": "6eb43299318b6cbad7ca10fa9e7ee29de89af5e05b89a66dac450c9caa6695a4",
+      "sha256": "2d60fed3fe742c25be6bbdf73be79cfe78d209ceb98c05d490a45e8999b6fcd2",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/navy-suit-jacket-v3.zip",
+      "id": "navy-suit-jacket-v3",
+      "beforeSha256": "a974e130bddb146c7d4b4e3a25903c00a5ed3a90e7d85f6d75b7b2d1049938ce",
+      "sha256": "1e74176c0135824460dfd79c39176e569f174590ba07ed54f17714e23be4efc6",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/ocean-linen-shirt-v1.zip",
+      "id": "ocean-linen-shirt-v1",
+      "beforeSha256": "8caf12e71e110418c9736dbaa76d70c09a532d139d5f3c16677af86691f6a104",
+      "sha256": "d5bc23fb6fe04025e046356013d4c4ab0ed0129340921d333ec387049c1b0690",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/teal-camp-shirt-v4.zip",
+      "id": "teal-camp-shirt-v4",
+      "beforeSha256": "6d5d229351ab269687f24571a2b548e069adab6ada417c218569f9d89c3e5557",
+      "sha256": "2d37c9fcaafdceb33e292c477267884b7f895229bcf9b4b4b4e292287f93edf8",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/navy-suit-jacket-v4.zip",
+      "id": "navy-suit-jacket-v4",
+      "beforeSha256": "14a17138b1911e3e76a6b10d8ef37adb1ea30faa339c04caa0a181b57bc0b38f",
+      "sha256": "24efd3a5666303694c21fe0ae814b02f8efaeb4a8af0c54a745819ef57fff880",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/navy-suit-jacket-v5.zip",
+      "id": "navy-suit-jacket-v5",
+      "beforeSha256": "b30f61eaec15bbd2a1c119bc78819ca7455d0d22f1cf36f474268fe1e42271fa",
+      "sha256": "16f83a8d3618e154725bbf1b242401c6bcfab04a535d384176e421272d288d1c",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/navy-suit-jacket-v6.zip",
+      "id": "navy-suit-jacket-v6",
+      "beforeSha256": "0b698489e15f5562d78d0c6663e2eadf02d04ca47f40fce4491e866cc32dc6cc",
+      "sha256": "2e45232a19f5f9eec0e8f4b4681a1c3dd8941a9cdb204b0f3e24dcb15dfc38a9",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/teal-camp-shirt-v5.zip",
+      "id": "teal-camp-shirt-v5",
+      "beforeSha256": "a41b45869fe0a3b63c613f8ade0b188a7e8b9040fee618fb3e9800c05543145e",
+      "sha256": "7f1061da764078597c7f4ac0683f5bb8405710646372766ff75c3ef2c95c07d8",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/midnight-sailor-v1.zip",
+      "id": "midnight-sailor-v1",
+      "beforeSha256": "6aecf0278c93d7afafc3d0c082784cb3aabf0d743670a3715a062b935a6173e9",
+      "sha256": "d914d09bf24379fa57881ffcad5cdbc72e0431b6279c66a444623f4120f0df5f",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/midnight-sailor-v2.zip",
+      "id": "midnight-sailor-v2",
+      "beforeSha256": "1c0f7f2cb3538f87d1bf659f9dc96cae615ec64de4606e0278cc4cd2176604d3",
+      "sha256": "51e040906ffc7febc60fc3b5a82d932b5ec4c8c7fd7e344f9f05af476088f15b",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/cocoa-cardigan-v1.zip",
+      "id": "cocoa-cardigan-v1",
+      "beforeSha256": "6ee57ea1112ecb9e1d70f6f383c9d88500851a5fdd324055dd6fcf8fcd7b6b7c",
+      "sha256": "e5d39512c588a73e2b1900fc62729270136f515d22c495c32c15f0f837495573",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/dusty-rose-shirt-v1.zip",
+      "id": "dusty-rose-shirt-v1",
+      "beforeSha256": "580c2931b9dc72aa1d5dedd164ebcf71d692077703e618b8c08283f6b3cb259a",
+      "sha256": "262d82c96b1ae36fe050692a157ce346579ad0eda703b640e1a7bc9008b01674",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/male/ink-plum-knit-polo-v1.zip",
+      "id": "ink-plum-knit-polo-v1",
+      "beforeSha256": "dd8cedf66f672f6771bc51d9d80395c82d2baac73474d7c99d3cce3135e77ae4",
+      "sha256": "331a6d8603cb50a675aecde26a6f9a02015e2747d465658169bdec87c73f7b8b",
+      "frames": 88
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/teal-top.zip",
+      "id": "teal-top",
+      "beforeSha256": "3acc92634991e983e6d761a7f6e4468c0507577235dd70cb3e66bf22057620d7",
+      "sha256": "b640f316447f2f79d1801a8d5dbab9da74f8437ba8d8b3b256583ae5b16904c1",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ochre-shorts.zip",
+      "id": "ochre-shorts",
+      "beforeSha256": "4e48ef9eed303b220320e73bdf0a428c8ee29467505b7912219d1a1286f76b2e",
+      "sha256": "ca6efd01755febcfa2a4607268e8ac1a2820ad6d536a1d27a99414e547344c7a",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/navy-waistcoat.zip",
+      "id": "navy-waistcoat",
+      "beforeSha256": "b5ab6f95830f381e26560def9e7654396ed336bbebb1115aa9e0c107d237a997",
+      "sha256": "dc388f0141f2b469e93e2a52578ad84fa018de81b0af9e9c8ce59eee35e513df",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/navy-shorts.zip",
+      "id": "navy-shorts",
+      "beforeSha256": "443069207301deb7f920f897d9fadc18b441cb6f20dfa8f2f5c1e5370188bb85",
+      "sha256": "07e8af2aebf2bbc4a9a386da071b6f2a60e54a5a8355f26b190bf4f34b9fbc25",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/coral-daydress-v4.zip",
+      "id": "coral-daydress-v4",
+      "beforeSha256": "3cbbced4480a55dcd931244cdebc275fc62a021e470832bd06f7b192e164c046",
+      "sha256": "5efafa256b809cf86ffa7f74dca1266de3db466e2e60b7322f53a85c24fe50b1",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v4.zip",
+      "id": "ivory-wedding-dress-v4",
+      "beforeSha256": "0b904c7bf0778222a00fd7189246a117785c672e51c5b529986a041da67665ee",
+      "sha256": "84b77d071298909b4760ec39a7705e7464def22d998cae322043de4a676d8b44",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/mist-blue-dress-v1.zip",
+      "id": "mist-blue-dress-v1",
+      "beforeSha256": "c80080e68f7e54419f29b9488509e47c407feb8f93c5818c1f4d681507f7d690",
+      "sha256": "0bd2a49c1af6dd7b5247a1018b32eda31cd45444b909e57f93af5d13ff8d80f0",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/lavender-pleat-dress-v1.zip",
+      "id": "lavender-pleat-dress-v1",
+      "beforeSha256": "f33565ddc483736085b55a129002d2f81f7a2399f0e9e85676037bebbbb814ab",
+      "sha256": "7b6681321efac8d6b9c65446e7dc3af7769943b0dbfbdb8278f399dd5dd2479d",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/honey-garden-dress-v1.zip",
+      "id": "honey-garden-dress-v1",
+      "beforeSha256": "621b11401e6f18fc06550edd25ca8af6d092d3fe81ad70d807db7c23b42e24be",
+      "sha256": "dcc0161c742e7a4b42e86516e787f276009e3a984ed4b2c48b34a1e975e8b405",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/harbor-sailor-dress-v1.zip",
+      "id": "harbor-sailor-dress-v1",
+      "beforeSha256": "721e6eaf1eaa09a5f54676e20c4e73e556d6110de312a39505727cf9137623d4",
+      "sha256": "4191aa5e8b63b0c8615fe272fe24d86efd627b7224c1c33d7af824812ca71a3f",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/rose-picnic-dress-v1.zip",
+      "id": "rose-picnic-dress-v1",
+      "beforeSha256": "9b0fd59b077fabb715a5f1847a85dbc739796c1fb19c4f7d636cf27c290ef2f4",
+      "sha256": "e5e63bb413d50598bd18631c33f877ad4048e3d023e0de5d6807c44f1ba03b6e",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-celebration-dress-v1.zip",
+      "id": "ivory-celebration-dress-v1",
+      "beforeSha256": "aced8327670849145c8c8cc832cf723041d91a6030efda067985675e66954fc3",
+      "sha256": "54046356cfddd6ed582b72ef077ff428b2cae3de22b9c72c74db05b80c2e111d",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/sage-pinafore-v1.zip",
+      "id": "sage-pinafore-v1",
+      "beforeSha256": "5bf10070690b3d629800b253bf51222029c5230d441327dba084cfabc7f32a03",
+      "sha256": "39c94ab39e9d86de61deb2028b42716cbdce978ee1f84a9c9471bfa63758b1f0",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-celebration-dress-v3.zip",
+      "id": "ivory-celebration-dress-v3",
+      "beforeSha256": "2b553a2b7ec433fc7fd3756e79d5f9a7c8efb708b710d51fc6faa6015e1cb676",
+      "sha256": "b852b9bc478098f1eceecaeca6a7a49d46396d7ca5f12eaeca03723b01aaa0ec",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/coral-daydress-v5.zip",
+      "id": "coral-daydress-v5",
+      "beforeSha256": "1385a1be250e31afdc5270903944ecf18d6fe9c706bfa7206a397cbf4daf31da",
+      "sha256": "81393159fdead37b3772db1edec58cde8bc3f8a23b7f92b375e72d76091939b5",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v5.zip",
+      "id": "ivory-wedding-dress-v5",
+      "beforeSha256": "8044019ae60a826dd055dc618bdd70b68d89d6aa650e4af6eab37f602b2e880f",
+      "sha256": "c66417b4b880ecdf25ddc8764fe8846b653391d42b4c7a3fe6af6ea947164722",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/coral-daydress-v6.zip",
+      "id": "coral-daydress-v6",
+      "beforeSha256": "de50d587eeccb76e528aa5c84a1dc5e22bb49617bce5f990cacf179b82a8e8fb",
+      "sha256": "2139b343521252021fc321d8c09c80dc7be9023df361bf484bb6296c404f5256",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v6.zip",
+      "id": "ivory-wedding-dress-v6",
+      "beforeSha256": "71834f3bbbca8b30c54a2ad54badaf8c7869e11c7750ddc335a41a8daff653a9",
+      "sha256": "1d90190c3a8facc7df95d2a35e73cd0fe97777c48a24f864fa32d04a96b3c061",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/coral-daydress-v7.zip",
+      "id": "coral-daydress-v7",
+      "beforeSha256": "5013470a8d191ff8690751b9eee78d8f6a861d29c0927ce70891727a39f846be",
+      "sha256": "58509ac15cde87a83a583dcbce78d850ec1122a9a5edb74b367b9abb04d7cc9d",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v7.zip",
+      "id": "ivory-wedding-dress-v7",
+      "beforeSha256": "e87468d96da96c5c2e6ddb2644377d3b0cba6706f7e9af8da434a133ca39dc22",
+      "sha256": "aa35a9e1dbd00f82f59e5e78d9d9f788711e5a71fee25ed51fa528a07edf55c0",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/coral-daydress-v8.zip",
+      "id": "coral-daydress-v8",
+      "beforeSha256": "abad0ecea7db3607408368d48424bab843fb786e383982dd06478ca0c2673ab0",
+      "sha256": "50107801b1a535897ef7c6af20292d5135c2528aeda8cd6b380b279da6eba624",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v8.zip",
+      "id": "ivory-wedding-dress-v8",
+      "beforeSha256": "e788b1666ee4fee9665030aa897dbd1d3cfed93ae99f625435fa875f8826c5c3",
+      "sha256": "daaadda6dec132c435c1473c77bd270d82434846f44a4933712367ca770bdb3f",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/coral-daydress-v9.zip",
+      "id": "coral-daydress-v9",
+      "beforeSha256": "1e8a4c9ed25bd19eef2a8a00560bfb6ba8daffc963aecdc46745fd278eef87f6",
+      "sha256": "f7cd2a322155cf8446af1a5977d44b35639533477d388e9004af3480884eda43",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/ivory-wedding-dress-v9.zip",
+      "id": "ivory-wedding-dress-v9",
+      "beforeSha256": "bfd8aaa11cdcff5e314110b313f26619270b2dfc4b8c7bfebb24e79ef2b35c1f",
+      "sha256": "d287cdb48013d01b770cfef460d71b8f6f2fe4d480e108b0dadd9608f711c2b1",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/plum-pintuck-top-v1.zip",
+      "id": "plum-pintuck-top-v1",
+      "beforeSha256": "547d1493690e4909b14dd84f8433dbe7ba3808caf144971a357b50612dc4455c",
+      "sha256": "b40f01a49f78d1544c094a7947d8ba9608f3cad5e6a21db7ae0f8a8e023675aa",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/butter-collar-dress-v1.zip",
+      "id": "butter-collar-dress-v1",
+      "beforeSha256": "569b904e23488dec1b0b7096a3ebbd63c4f172c480c14d93bda5ebc219d0acda",
+      "sha256": "c330f1ce8028ffab209bca3b32489b676901e6174fc430e81cfb1f868c6de0f2",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/apricot-garden-dress-v1.zip",
+      "id": "apricot-garden-dress-v1",
+      "beforeSha256": "931e449d6400c0739b25ce8d7ad9dfe705c0bb0327db2f8f238e879faf6b2edd",
+      "sha256": "972209ad13708208c9312704dd3a45ef764524af66ccb0db334669c9b4a62132",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-wardrobe/garments/female/deep-teal-date-dress-v1.zip",
+      "id": "deep-teal-date-dress-v1",
+      "beforeSha256": "8714db2cab29c683b694c3b8137eee73a2496e6220c875ba955d08ea8c115b41",
+      "sha256": "a2ddc9d4035631aa9aed1bae55f895714bc34c618a0d435516390ee7e426a2ec",
+      "frames": 96
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/male-shirt.garment.zip",
+      "id": "side-male-oxford-shirt-v1",
+      "beforeSha256": "df6c89d62ee3017e695f790a3cec775ca231e3fa7cdfe4bc87d396bca3c2c11d",
+      "sha256": "b1c590003f67749d30badfb002e137130eef620d699f503071ee200efcc712f1",
+      "frames": 107
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/male-trousers.garment.zip",
+      "id": "side-male-stone-trousers-v1",
+      "beforeSha256": "502856755a84fd05f26fb929a3dafdf6fff4f7758ceb213433eb8d64988935bf",
+      "sha256": "940112faf3a77ff8c5bdba0e43c98c4d40e5098916a53f5389c97aeae8426458",
+      "frames": 107
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/female-blouse.garment.zip",
+      "id": "side-female-cream-blouse-v1",
+      "beforeSha256": "71dddecaa90bcb229dbd19a2e69b1cad59e68992ed75d261a3684d78bbea5201",
+      "sha256": "ea880e9f37b4e122806de0b496a3a3b18e4f297f24909520fbc78552e01bd420",
+      "frames": 102
+    },
+    {
+      "path": "docs/kling-side-expansion/assets/female-skirt.garment.zip",
+      "id": "side-female-rose-skirt-v1",
+      "beforeSha256": "8a16669c49822e4c442560db6948278e8dd7b4b5c708146fbb87ee9be1c60e7b",
+      "sha256": "e20dcf19cb7d685eb905d7d544199e866776009f6669d92f3542b19012de0075",
+      "frames": 102
+    },
+    {
+      "path": "docs/kling-landing-production/assets/male-daily-top.garment.zip",
+      "id": "landing-male-daily-top-v1",
+      "beforeSha256": "d273fa785766820f58559339aff6923bc97b15708bab3725805a1a01adbe3f43",
+      "sha256": "dfb0170e19293531f46903ad49703ea2624b95fe02295ccea50508b5e57837df",
+      "frames": 109
+    },
+    {
+      "path": "docs/kling-landing-production/assets/male-daily-bottom.garment.zip",
+      "id": "landing-male-daily-bottom-v1",
+      "beforeSha256": "f31b95f009222d873fbdeda9b1096ad463d226b8b798eef9aeb75dfbf13467d6",
+      "sha256": "ceae59b1c94de627d7cdb7dae6ebaad3f0be6ff2eb1b694e12fa03860ccc14f7",
+      "frames": 109
+    },
+    {
+      "path": "docs/kling-landing-production/assets/male-wedding-top.garment.zip",
+      "id": "landing-male-wedding-top-v1",
+      "beforeSha256": "8cf0d431962e6fb7b5d0a5755fd6bf92da6c589851ae10a747974b6f4bab6b2c",
+      "sha256": "6d8dbbe6e8f48cca5473f79b4074339be4dc461fc986568af2bbedc04857537b",
+      "frames": 109
+    },
+    {
+      "path": "docs/kling-landing-production/assets/male-wedding-bottom.garment.zip",
+      "id": "landing-male-wedding-bottom-v1",
+      "beforeSha256": "e5e4b3d933b70b46e3a504b51531cd5bbd16c97841dc5c9a22f9738e154fc68e",
+      "sha256": "795a2f0142f17b631f3d95fe7bc8ae22dcc6dad8f9ad37832da350538888ab95",
+      "frames": 109
+    },
+    {
+      "path": "docs/dual-view-wardrobe/assets/dual-male-original-sea-top-v1.garment.zip",
+      "id": "dual-male-original-sea-top-v1",
+      "beforeSha256": "37f5bceb4964ce33b569ce447f932e2c4b7d08885894cdba9a6c3ab57220baf9",
+      "sha256": "bad9e2ae3eb5319dbf5c6e25e984a6b9108c7a97543c8530c8c5581d245e2906",
+      "frames": 88
+    },
+    {
+      "path": "docs/dual-view-wardrobe/assets/dual-male-original-apricot-top-v1.garment.zip",
+      "id": "dual-male-original-apricot-top-v1",
+      "beforeSha256": "89414f293b31d13834657b0b55fb1c4cf5c4331fcbabcf3ff45f216b8fdcb009",
+      "sha256": "3095110b7001c70c91813320d37a9fe495165edc22d9f7906aca1455ab88b1fa",
+      "frames": 88
+    },
+    {
+      "path": "docs/dual-view-wardrobe/assets/dual-female-original-sea-top-v1.garment.zip",
+      "id": "dual-female-original-sea-top-v1",
+      "beforeSha256": "6ce3ed381e5a58988c48f6dd8b284ed9a41836ba184ae8a09533ff8d8dc9af0b",
+      "sha256": "11867470be436aec5d4851a6d8fb91b4be9acfa1d49092ff01d095da40a9a288",
+      "frames": 96
+    },
+    {
+      "path": "docs/dual-view-wardrobe/assets/dual-female-original-sea-bottom-v1.garment.zip",
+      "id": "dual-female-original-sea-bottom-v1",
+      "beforeSha256": "6bf04d8e2474842b988a5116a0fd3ed88f02031d0ec78619c73c60f0bc3a9d72",
+      "sha256": "198b28feb88d9ec088d2c8e9bae85c371049d47164787bb54389c84dccbb6f90",
+      "frames": 96
+    },
+    {
+      "path": "docs/dual-view-wardrobe/assets/dual-female-original-apricot-top-v1.garment.zip",
+      "id": "dual-female-original-apricot-top-v1",
+      "beforeSha256": "0a2aba3e75dd85d8cc6edde548405bb277a359f7c60e534be7e24a7bffcf4149",
+      "sha256": "ec721ee8d5187a381de3160668f209a2fc0780ca42582670e4fd218f9451b57b",
+      "frames": 96
+    },
+    {
+      "path": "docs/dual-view-wardrobe/assets/dual-female-original-apricot-bottom-v1.garment.zip",
+      "id": "dual-female-original-apricot-bottom-v1",
+      "beforeSha256": "cb5306d0a6abebddf120f16577646fe2d15792e332c8ba3715d88d9290582796",
+      "sha256": "4106873671d980f8a072a9ad2a312ba988c532f668a4f545f619ada825f572e0",
+      "frames": 96
+    },
+    {
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-original-sea-top-v1.garment.zip",
+      "id": "dual-tailored-male-original-sea-top-v1",
+      "beforeSha256": "3c4f8479ea3965e5ad6673b81297de788885e4027d920dac38d9278137a4261f",
+      "sha256": "1ff07f3e6a840a801bd43aebf1fc72dc55c902c7ff66defee7d911e455d075aa",
+      "frames": 88
+    },
+    {
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-original-apricot-top-v1.garment.zip",
+      "id": "dual-tailored-male-original-apricot-top-v1",
+      "beforeSha256": "45b6a8092c9ce982a81c9be33e9201bf8cbc83187d56e19faef8b848273f2dc0",
+      "sha256": "a61defd27878319e4776f22947d2d5aebc032c5183329f6cee7eaa1d19c8aaf4",
+      "frames": 88
+    },
+    {
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-sea-top-v1.garment.zip",
+      "id": "dual-tailored-male-side-sea-top-v1",
+      "beforeSha256": "368d7643f5a0ec4db3691e53ad8389d7bd1a77021c9ea57fa6213c783c8b7e76",
+      "sha256": "afe84be8526901586997c95bd5b4761b4fbb33ae4d42d62d4f98f53cb53ae483",
+      "frames": 107
+    },
+    {
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-sea-bottom-v1.garment.zip",
+      "id": "dual-tailored-male-side-sea-bottom-v1",
+      "beforeSha256": "1c1070424b9d09b5633640a0f766173c02984f8f66ba4ac403762e74ed59464e",
+      "sha256": "0706668d68791549ca09163ab2049fc80039325795e40d03fd5b737bce2de5f8",
+      "frames": 107
+    },
+    {
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-apricot-top-v1.garment.zip",
+      "id": "dual-tailored-male-side-apricot-top-v1",
+      "beforeSha256": "c36e997ee83d40338df86e9864884016cc90bca585adff31c8a11926066fe4b2",
+      "sha256": "ad4594e5e6462e1b4ee0e4c4265dcc9077b9d37de52cdd6db32fef92987ddaf0",
+      "frames": 107
+    },
+    {
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-apricot-bottom-v1.garment.zip",
+      "id": "dual-tailored-male-side-apricot-bottom-v1",
+      "beforeSha256": "67efd72ae4b6b5221eb0252a48c99b7e0967277052f3435f526f446a6926beaa",
+      "sha256": "5e64b73e07bc230797c26b03b6226e8e6166ced602c1ca80f58266d3065d6619",
+      "frames": 107
+    },
+    {
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-original-sea-top-v1.garment.zip",
+      "id": "dual-tailored-female-original-sea-top-v1",
+      "beforeSha256": "8542f7ff86e5ffab781a5c8b96ed4d723563792e9385bb285e11fcb9ee3a7372",
+      "sha256": "6d22012841f95002cea802ceead5046c86dbf1168e928bd8c33a7462b29e445e",
+      "frames": 96
+    },
+    {
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-original-apricot-top-v1.garment.zip",
+      "id": "dual-tailored-female-original-apricot-top-v1",
+      "beforeSha256": "bc469c4984bae85df4094816adeb7a4b9ba606a87f1ceed36f1a0f3f80028aa8",
+      "sha256": "8610f40ed6688915e547c77a3a6f7ac8d8cd3ccbc998bf2f759b665fc6fec608",
+      "frames": 96
+    },
+    {
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-sea-top-v1.garment.zip",
+      "id": "dual-tailored-female-side-sea-top-v1",
+      "beforeSha256": "64a479072f95984b88da901f6f4da14e858e077b2bf58eb6db2b03bdd2506dec",
+      "sha256": "72c5ff3a511e880edd2c4765899a9d0eb8b906bb86572bbf5d8f20de70d0ae69",
+      "frames": 102
+    },
+    {
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-sea-bottom-v1.garment.zip",
+      "id": "dual-tailored-female-side-sea-bottom-v1",
+      "beforeSha256": "658fb3641d78f4d5fef9019a6bf32be3fc38ea07e4f2ff4f090a1fb8ae5abad9",
+      "sha256": "ec874c8c280f780aae2c48dc4ba2f0adbed8a8374f409eff0775aee0c6b1b438",
+      "frames": 102
+    },
+    {
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-apricot-top-v1.garment.zip",
+      "id": "dual-tailored-female-side-apricot-top-v1",
+      "beforeSha256": "4441875877a2dfa293db5e44c436b71f492421da8459666e5202824d43c63557",
+      "sha256": "7cc132fd976ab95e8282ecf3f4011823375ed70afef5e261db59b81356ffcb19",
+      "frames": 102
+    },
+    {
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-apricot-bottom-v1.garment.zip",
+      "id": "dual-tailored-female-side-apricot-bottom-v1",
+      "beforeSha256": "2f8a4ed958d01c800315fd94e8cdbe1be669084b48a88c6b4c0ff0c619e13802",
+      "sha256": "ee862499218295d26cacd1dfcbfdfbb84e9f2537772a5c7f41f175a11959ba3e",
+      "frames": 102
+    },
+    {
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-sea-top-v1.garment.zip",
+      "id": "dual-complete-female-side-sea-top-v1",
+      "beforeSha256": "35edcc35ce4647d67ea1ba7483b622ab8b3ee23727aa13d81a3169f76bb2ab54",
+      "sha256": "611181acb5f5b1595e9373afe123594e186a56312d0dde009bd4c14fae3d70b2",
+      "frames": 102
+    },
+    {
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-sea-bottom-v1.garment.zip",
+      "id": "dual-complete-female-side-sea-bottom-v1",
+      "beforeSha256": "572272c8e3fd7ab1965f37c5dd659eaaba0373c972ca42765629dc62146b32d6",
+      "sha256": "9b187706f4c6e7e143936a23875456cfca230620d9f9daddb799ae546283985c",
+      "frames": 102
+    },
+    {
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-apricot-top-v1.garment.zip",
+      "id": "dual-complete-female-side-apricot-top-v1",
+      "beforeSha256": "08307a173e116e9e8fdb7db2935d8ec0a4bc972f0197e6949dcec9d7a6dbe09f",
+      "sha256": "9860495487bcdf952d636c53b1535ca827beef9f793263c4eaed1fb097382fd2",
+      "frames": 102
+    },
+    {
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-apricot-bottom-v1.garment.zip",
+      "id": "dual-complete-female-side-apricot-bottom-v1",
+      "beforeSha256": "8ce907c685b6095fc1fc6fa889bfc9f51683860a5b7f05eeb5ffa8ffebc1232c",
+      "sha256": "af59976bbf05516a6615e9183cec7618ffa04f78ad779b7706fd9d58968ae09b",
+      "frames": 102
+    },
+    {
+      "path": "docs/paired-polish/assets/male/polished-male-side-sea-top-v1.garment.zip",
+      "id": "polished-male-side-sea-top-v1",
+      "beforeSha256": "b11b825feecb4c6e179cc1c759ca165dff64a25a6668407ac315a3893e7e69ef",
+      "sha256": "afd5eec0b8ea1fa1a9aa4aae98af0c172a0e5c9164a9a7c48517e3c7b1a7fabe",
+      "frames": 107
+    },
+    {
+      "path": "docs/paired-polish/assets/male/polished-male-side-apricot-top-v1.garment.zip",
+      "id": "polished-male-side-apricot-top-v1",
+      "beforeSha256": "9ae03f1942a978b5b346a4c3781149bd08266e9a46b6d202a0b1ae3d50e9cf9b",
+      "sha256": "3ee12f7ec1568b755c49913a44217dbe961c5c4f69817614e88072a9d2b85b19",
+      "frames": 107
+    },
+    {
+      "path": "docs/paired-polish/assets/female/polished-female-side-sea-top-bound-v1.garment.zip",
+      "id": "polished-female-side-sea-top-bound-v1",
+      "beforeSha256": "f0ee7b711690836f4d9a1907afd15b4074dec2b3ac3641038b5024c7a7f675e3",
+      "sha256": "9ca187655fd8f2792231ee60ab366919831a222892951c08bff4f457f5ef2518",
+      "frames": 102
+    },
+    {
+      "path": "docs/paired-polish/assets/female/polished-female-side-sea-bottom-bound-v1.garment.zip",
+      "id": "polished-female-side-sea-bottom-bound-v1",
+      "beforeSha256": "346d93c2f5fcb991e09558262ba111378d3bffc9a92537dff6cee2a841a9ba7f",
+      "sha256": "3c6eb988076b1fce7169ebaa9d39ddbc9063faad5453e47c49b91180d39fb873",
+      "frames": 102
+    },
+    {
+      "path": "docs/paired-polish/assets/female/polished-female-side-apricot-top-bound-v1.garment.zip",
+      "id": "polished-female-side-apricot-top-bound-v1",
+      "beforeSha256": "6eec8fa9949ac0db4b62f9f8305c355c900071051d44eddf383edb5560490313",
+      "sha256": "bf379fba988e9667cc1beacc38d9e42b108bc0852b511f28a0b6bd0c2e6d24af",
+      "frames": 102
+    },
+    {
+      "path": "docs/paired-polish/assets/female/polished-female-side-apricot-bottom-bound-v1.garment.zip",
+      "id": "polished-female-side-apricot-bottom-bound-v1",
+      "beforeSha256": "3785258a5b9d19f905a13d1f12768ea7e23c75633c6b5dfc4b9d9ed7107dec0d",
+      "sha256": "7aeb2fd21ed7d6b3dc6ea0a112ccdf70adae4a761d5db9583983865f4a382861",
+      "frames": 102
+    }
+  ],
+  "limit": "Garment archives can repackage PNG atlases. Per-frame RGBA preservation outside reviewed repairs is checked in subgroup reports. This does not certify visual perfection."
+}

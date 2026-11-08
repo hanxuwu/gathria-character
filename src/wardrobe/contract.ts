@@ -61,7 +61,8 @@ export interface RegisteredFrame {
   protected: ProtectedRegion[];
 }
 /** Explicit garment-authoring correction, not a change to the source or anchors.
- * V2 may shrink a reviewed hand region for a long sleeve, never the head. */
+ * V2 may shrink a reviewed hand region where it incorrectly protects a sleeve,
+ * trouser or skirt surface. The actual hand stays protected; never the head. */
 export interface HandProtectionReview {
   frameId: number;
   label: "nearHand" | "farHand";
@@ -550,16 +551,27 @@ export function validateWardrobeGarmentManifest(
     data.version === 2 ||
     (data.version === 3 && data.handProtectionReviews !== undefined)
   ) {
-    if (data.slot !== "top" && data.slot !== "fullBody")
+    if (
+      data.slot !== "top" &&
+      data.slot !== "bottom" &&
+      data.slot !== "fullBody"
+    )
       fail(
-        "Only sleeved tops or full-body clothing may review hand protection.",
+        "Only tops, bottoms or full-body clothing may review hand protection.",
       );
     const reviewed = new Set<string>();
     handProtectionReviews = array(
       data.handProtectionReviews,
       "Hand protection reviews",
       1,
-      32,
+      // Each entry must identify a distinct registered hand below. The actual
+      // source bounds this list, including long clips that exceed 32 poses.
+      registration.frames.reduce(
+        (count, frame) =>
+          count +
+          frame.protected.filter((region) => region.label !== "head").length,
+        0,
+      ),
     ).map((raw) => {
       const review = wardrobeObject(raw, "Hand protection review", [
         "frameId",

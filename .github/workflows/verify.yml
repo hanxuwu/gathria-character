@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Fetch the immutable artwork review baseline
+        run: git fetch --no-tags --depth=1 origin 5d63ae233ca83e61dc354e122a8708044f4e2653
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -27,6 +29,9 @@ jobs:
       - run: python scripts/verify-kling-contour-assets.py
       - run: python scripts/verify-kling-male-repair.py
       - run: python scripts/verify-kling-female-repair.py
+      - run: python scripts/build-wardrobe-neckline-profiles.py --check
+      - run: python scripts/refresh-wardrobe-coverage-catalogs.py --check
+      - run: python scripts/inventory-wardrobe-coverage.py --check
       - run: npm ci
       - run: node scripts/assemble-paired-polish-catalog.mjs --check
       - run: npm run typecheck

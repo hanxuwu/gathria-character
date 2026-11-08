@@ -1,0 +1,1369 @@
+{
+  "format": "gathria-wardrobe-thumbnail-coverage-revalidation",
+  "version": 1,
+  "method": "Decode each retained actual-UI native PNG and compare dimensions and every RGBA byte against the current WardrobeCompositor at the recorded sourceFrame, original head, with only that preset's selected garments loaded. Verify retained thumbnail and native PNG digests. No image resampling, repainting, or new browser capture.",
+  "scope": "Standing outfit thumbnails only. Equality here does not certify other animation frames or clothing coverage; see the separate full runtime/visual reviews.",
+  "capture": {
+    "producedAt": "2026-10-24T03:00:51.493Z",
+    "commitAtCapture": "59505a0ee39075dffc434738913975beb2aa57c4",
+    "finishedAt": "2026-10-24T03:03:20.152Z",
+    "recipe": "Production UI Save current PNG at idle frame 0, right, original head. Browser Canvas draws the decoded download at width 176 with proportional height, smooth downsampling and unchanged transparency. No crop, recolor or repaint.",
+    "originalCaptureCatalogSha256": "ee0a2bc865c3b7fdb87b3386ea0dea4695b5bc79b64ee3d41c280620d7bcf34f"
+  },
+  "catalogSha256": "ee6a5ecf1aad2333c9a7dcac63e59c7a564dbf82d7951594d0c0e9e461bbc6b4",
+  "codeSha256": {
+    "src/wardrobe/contract.ts": "96ee0e957276f66812ab55592903e921081d885e0fc576176fbc322526298685",
+    "src/wardrobe/protection.ts": "eb37ff13e769eaa52150fb5beff12d1e71ce62a0fcb3c1da41cd8930984b80a5",
+    "src/wardrobe/compositor.ts": "44faf4d09f938ddef21eac3fb46f7a7294e60bc74cbead7fef889cc63bb3ed25",
+    "src/wardrobe/neckline-permissions.ts": "f625a4fe92fded4bd6bd8ae2415678011fc108de1d465dae4ea631246089f4bf",
+    "src/wardrobe/project.ts": "c190a6026201442324b25d0b7a553ce9d5d31f4a21969db194a61fb13a01f01b",
+    "src/core/baked-source.ts": "d6fa35129c188297e016bdb90a73543b9b71c91b0a28558774853ba9afc3399a"
+  },
+  "results": [
+    {
+      "character": "male",
+      "presetId": "day",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-day.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-day.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "teal-camp-shirt-v2",
+          "sha256": "0c419f116041c5a8e63546646b639da2eac1cf61dc0a8b7215bdd0365669fbeb"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        }
+      ],
+      "nativeSha256": "b69b15163258c7b612c77c961759fb91376a441f89fd1c8a8b0f4d8ef578c8c3",
+      "thumbnailSha256": "e5fec6db52cc1f92748b8fa778897ecf6692bb710dbdc272e7b73fae123a475b",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "f8e03aa5b6bed8a1fcff903dfae1ded5150bbfca9b0e4737851a3bb3b2339845",
+      "renderedRgbaSha256": "f8e03aa5b6bed8a1fcff903dfae1ded5150bbfca9b0e4737851a3bb3b2339845",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "wedding",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-wedding.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-wedding.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "navy-suit-jacket-v2",
+          "sha256": "a45231b83ad49a357022f4ee023aa1fcb3aab54ed4159ae00d8b3d84f47e0205"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "21e6be1f2c71f415490c667d2f8bc2a1b09f0f977904496a0de30b23c670fa4d",
+      "thumbnailSha256": "976a655ba4e21ed7f5683bced708f91b3b268e7c901f490c9421852bcf44c4bf",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "7962e986119b5eaf8b9815f38dabdea189f4162f3985cd34b1ac69dd9259f209",
+      "renderedRgbaSha256": "7962e986119b5eaf8b9815f38dabdea189f4162f3985cd34b1ac69dd9259f209",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "day-refined",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-day-refined.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-day-refined.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "teal-camp-shirt-v3",
+          "sha256": "2d60fed3fe742c25be6bbdf73be79cfe78d209ceb98c05d490a45e8999b6fcd2"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        }
+      ],
+      "nativeSha256": "350c9142b152f9aeb50b897e0a4d23c9ad9cce8fb82c5cba7736366f3e5e29a7",
+      "thumbnailSha256": "67d9a69a3bc950a908802474632f49da1cfb17ce5afc89932625656cdb492a49",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "19b73aaa21c7b9d8f180c3e7e462339c2482c863aea38efb7d5bbc105345d621",
+      "renderedRgbaSha256": "19b73aaa21c7b9d8f180c3e7e462339c2482c863aea38efb7d5bbc105345d621",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "wedding-refined",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-wedding-refined.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-wedding-refined.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "navy-suit-jacket-v3",
+          "sha256": "1e74176c0135824460dfd79c39176e569f174590ba07ed54f17714e23be4efc6"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "21e6be1f2c71f415490c667d2f8bc2a1b09f0f977904496a0de30b23c670fa4d",
+      "thumbnailSha256": "976a655ba4e21ed7f5683bced708f91b3b268e7c901f490c9421852bcf44c4bf",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "7962e986119b5eaf8b9815f38dabdea189f4162f3985cd34b1ac69dd9259f209",
+      "renderedRgbaSha256": "7962e986119b5eaf8b9815f38dabdea189f4162f3985cd34b1ac69dd9259f209",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "ocean-linen",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-ocean-linen.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-ocean-linen.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "ocean-linen-shirt-v1",
+          "sha256": "d5bc23fb6fe04025e046356013d4c4ab0ed0129340921d333ec387049c1b0690"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        }
+      ],
+      "nativeSha256": "e216ccc1f469299a15927379ce66d8866533970f34404c2a6de291368b7ee011",
+      "thumbnailSha256": "aba4d156110c41c6728ec328203db52812b8562b075d6447ced64bf8c1944e35",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "847a1349bc279904b677b5d72282f9541073818e53dde6f844729bdef71d14bf",
+      "renderedRgbaSha256": "847a1349bc279904b677b5d72282f9541073818e53dde6f844729bdef71d14bf",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "day-soft-cuff",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-day-soft-cuff.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-day-soft-cuff.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "teal-camp-shirt-v4",
+          "sha256": "2d37c9fcaafdceb33e292c477267884b7f895229bcf9b4b4b4e292287f93edf8"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        }
+      ],
+      "nativeSha256": "a1ef83bb6adc38857ddb2dcdc8b939e11edf6c21c9432103cdfd11027ac2a353",
+      "thumbnailSha256": "a5d51bc40c51acd20746dc9654c588a872fd57911029186d355d01e1b99bbaa0",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "de8dec5cdc879309141e4b28ed48b98cd2260355f51332791ac026e7b3d702d7",
+      "renderedRgbaSha256": "de8dec5cdc879309141e4b28ed48b98cd2260355f51332791ac026e7b3d702d7",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "wedding-soft-cuff",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-wedding-soft-cuff.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-wedding-soft-cuff.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "navy-suit-jacket-v4",
+          "sha256": "24efd3a5666303694c21fe0ae814b02f8efaeb4a8af0c54a745819ef57fff880"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "c4b9d9f5db9694fb7e717a23f38d51c3d869bcd9b9bd977e6e913839e38d341f",
+      "thumbnailSha256": "617852165827feeec77af477df93b6706d16e8ff83933e66c30fb585aac9e97c",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "9fc61debfdcc0042d25cdd625bf35a7c394e5ab19cd762140b0348ea5250f484",
+      "renderedRgbaSha256": "9fc61debfdcc0042d25cdd625bf35a7c394e5ab19cd762140b0348ea5250f484",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "wedding-reviewed-sleeve",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-wedding-reviewed-sleeve.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-wedding-reviewed-sleeve.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "navy-suit-jacket-v5",
+          "sha256": "16f83a8d3618e154725bbf1b242401c6bcfab04a535d384176e421272d288d1c"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "c4b9d9f5db9694fb7e717a23f38d51c3d869bcd9b9bd977e6e913839e38d341f",
+      "thumbnailSha256": "617852165827feeec77af477df93b6706d16e8ff83933e66c30fb585aac9e97c",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "9fc61debfdcc0042d25cdd625bf35a7c394e5ab19cd762140b0348ea5250f484",
+      "renderedRgbaSha256": "9fc61debfdcc0042d25cdd625bf35a7c394e5ab19cd762140b0348ea5250f484",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "wedding-curved-cuff",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-wedding-curved-cuff.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-wedding-curved-cuff.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "navy-suit-jacket-v6",
+          "sha256": "2e45232a19f5f9eec0e8f4b4681a1c3dd8941a9cdb204b0f3e24dcb15dfc38a9"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "c4b9d9f5db9694fb7e717a23f38d51c3d869bcd9b9bd977e6e913839e38d341f",
+      "thumbnailSha256": "617852165827feeec77af477df93b6706d16e8ff83933e66c30fb585aac9e97c",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "9fc61debfdcc0042d25cdd625bf35a7c394e5ab19cd762140b0348ea5250f484",
+      "renderedRgbaSha256": "9fc61debfdcc0042d25cdd625bf35a7c394e5ab19cd762140b0348ea5250f484",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "cream-navy",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-cream-navy.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-cream-navy.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "cream-camp-shirt-v1",
+          "sha256": "4760a0ad099995ce99306a2641bb037b07cda9abb1cf3d81b28602b5c7229b11"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        }
+      ],
+      "nativeSha256": "c979ae8689f57d166887a1a7dd3f8d5fa43a414b273a143886c357779090538f",
+      "thumbnailSha256": "21e93052937bec4c8fb481b551393186f37c0d15d1f87f3615bbb0370ba1d53c",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "e563dc57e87f5a3d5a8c3701e73b69f7074000f13bf4ca0af1e5b2bf9d7cdb43",
+      "renderedRgbaSha256": "e563dc57e87f5a3d5a8c3701e73b69f7074000f13bf4ca0af1e5b2bf9d7cdb43",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "forest-weekend",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-forest-weekend.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-forest-weekend.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "forest-work-shirt-v1",
+          "sha256": "aad0f9550de9152fe5cf26f1b0f75f18dad7dca4200be38b2e5cd52b004bb1ac"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "d9918bdd909eaa610f3524920924e02d6080cb092ba1123eeab4d8c74410ebd1",
+      "thumbnailSha256": "557db4625aaeaaeab62c47f5f2bb272879e7308d73c9a527e407647d094c26bd",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "b5045b00aff85d187791c8359655929e695bab0b53aa039f6972e5c4184c52f4",
+      "renderedRgbaSha256": "b5045b00aff85d187791c8359655929e695bab0b53aa039f6972e5c4184c52f4",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "separates",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-separates.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-separates.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "teal-top",
+          "sha256": "60386af5c46a193bc63bf42718dc9d2cb81414f1f249bbe99ef1aa58a5d690a2"
+        },
+        {
+          "id": "ochre-shorts",
+          "sha256": "b1fed8298cdaed38315a6bb195f8ae445229151d8ef81357e51b66b6e798087a"
+        }
+      ],
+      "nativeSha256": "b0e846f402bcede31cfafa86f8c1812b6d93d1f87ccba496062f315cc0e92136",
+      "thumbnailSha256": "eb3f49a8c79ab980a052552ae0dceb035f57464ec9049dd79b14569ac40d6190",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "366e1e2b1cf8e2970a770f9bbd3e23982d7c410b78fb37ee5e72c1024575ea21",
+      "renderedRgbaSha256": "366e1e2b1cf8e2970a770f9bbd3e23982d7c410b78fb37ee5e72c1024575ea21",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "formal-separates",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-formal-separates.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-formal-separates.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "navy-waistcoat",
+          "sha256": "45b62508e479334c06af744ec28eb5a3579ca0827c27fd6a91a1916da3755c3d"
+        },
+        {
+          "id": "navy-shorts",
+          "sha256": "131a5a8da2501f93509f8a253522cd890fe7020b4738db8631be4707c996079a"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "3863c1d40d630b14fa14ce13a8d5b2bcf5ca6caf42b6248a6d5d26c4e59b0e41",
+      "thumbnailSha256": "281e619b39462fd79f998ff032407ec2b63a68c3688bdcbe1674d8372aaefbc0",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "d3d3514cca41d68c16beb2a61a3a5c16a0c22f8ba6bf5fd88b7c8e9519b28877",
+      "renderedRgbaSha256": "d3d3514cca41d68c16beb2a61a3a5c16a0c22f8ba6bf5fd88b7c8e9519b28877",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "oat-weekend",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-oat-weekend.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-oat-weekend.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "oat-henley-v1",
+          "sha256": "611cb0151aac61d564fc05e58cd29fca5e78f6789e55dd7edc1bd38877c6bdb9"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        }
+      ],
+      "nativeSha256": "bf18e83b82d11eea5432f4ed78540171e7ab5f0283fb5c0d9429bf1e3b47b35c",
+      "thumbnailSha256": "552d603e5cff9013f16ae52a5d5aa1d95cbb6c19be530516bda6aba17cb7b608",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "78b57463a3320a4e78938ee3a7802191dd7611eaf751de28b7ec42b58c0b2e1c",
+      "renderedRgbaSha256": "78b57463a3320a4e78938ee3a7802191dd7611eaf751de28b7ec42b58c0b2e1c",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "harbor-day",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-harbor-day.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-harbor-day.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "harbor-polo-v1",
+          "sha256": "7708906c3301da8e133b1b7f79817ff6ecb8dd8818b511a52c7eef8b20b2deb5"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "c759808487d7afa4a193538b2b97d1bd743c2d14d4748c9b8d1bff39a9223bfc",
+      "thumbnailSha256": "1d89c8c293cee63dd0e909a70e54260ce8ea35fa544e3ce56ad2ea47797cc791",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "8ccf6b5cba520d081906dca0e2fba98dae267bcfbc71d47c36aa0a8b69eb6bec",
+      "renderedRgbaSha256": "8ccf6b5cba520d081906dca0e2fba98dae267bcfbc71d47c36aa0a8b69eb6bec",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "terracotta-layer",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-terracotta-layer.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-terracotta-layer.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "terracotta-overshirt-v1",
+          "sha256": "cd37ce2b7db302798e20cb72817478110b59dd6b925314b04f42e2a2ee8b25d7"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        }
+      ],
+      "nativeSha256": "42d7d944fe0499ee5ba389dafdeb500c10966185e09623befa1a9d12ac20a7ec",
+      "thumbnailSha256": "dd4c34a19ce283556b65b1bebc190c7a255294fd59f49b7b81422bbfa16cd549",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "50b69ae7678266a536e82c07223dd33bf034027e61ef1c2ea12dfa7b8f97d627",
+      "renderedRgbaSha256": "50b69ae7678266a536e82c07223dd33bf034027e61ef1c2ea12dfa7b8f97d627",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "moss-knit",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/male-moss-knit.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-moss-knit.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "moss-knit-vest-v1",
+          "sha256": "60c1b3edbbe494e100b9a7311d26d3adc84ac565ae840f0d8918fb3026417a62"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "6702d57784f45a0e5647d0fe1b982a143baa25e7a0322e3d912636d2ef82efae",
+      "thumbnailSha256": "393ca185eaaad23971b5a5c8f9ec0426275f0652eceaefca3b1e9781891cbb7a",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "c53efe36f49c5af1fc547c434f178701ea2d2ad090ac8eaec850de4b36b1c6ba",
+      "renderedRgbaSha256": "c53efe36f49c5af1fc547c434f178701ea2d2ad090ac8eaec850de4b36b1c6ba",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "day",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-day.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-day.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "coral-daydress-v4",
+          "sha256": "5efafa256b809cf86ffa7f74dca1266de3db466e2e60b7322f53a85c24fe50b1"
+        }
+      ],
+      "nativeSha256": "9dfac2f444f5d40952ee64b4ee5836bb897a23ead81c7bbf4a81edeadbc555ee",
+      "thumbnailSha256": "36302911e9adfd9bb069a685928db0220822678831f4487e4264e37afcecf4a1",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "e5c0ddc16b5e163af971dca5837e5c08d61bb916e832467e3671ee053791d633",
+      "renderedRgbaSha256": "e5c0ddc16b5e163af971dca5837e5c08d61bb916e832467e3671ee053791d633",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "wedding",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-wedding.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-wedding.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "ivory-wedding-dress-v4",
+          "sha256": "84b77d071298909b4760ec39a7705e7464def22d998cae322043de4a676d8b44"
+        }
+      ],
+      "nativeSha256": "e71479963272907abeb5bb8c553d56a15f8fa72815f9a137c6e9a461d70f40f5",
+      "thumbnailSha256": "11306eecb537d4cf78d878079f3622143b450733bd22a00eb0fae67d6c8a4a46",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "f241ace061bd3bc1fa6904f64118bd92a73a6aa56f5cef0191141ddd1c1304fb",
+      "renderedRgbaSha256": "f241ace061bd3bc1fa6904f64118bd92a73a6aa56f5cef0191141ddd1c1304fb",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "day-refined",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-day-refined.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-day-refined.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "coral-daydress-v5",
+          "sha256": "81393159fdead37b3772db1edec58cde8bc3f8a23b7f92b375e72d76091939b5"
+        }
+      ],
+      "nativeSha256": "ce21255f6a55275a1d872647ea99c8270999f1d843da32a548a36e7248933186",
+      "thumbnailSha256": "cbcde1fabf8debd47e197440554af073bfb420583acfbb37ff00426c2164868b",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "renderedRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "wedding-refined",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-wedding-refined.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-wedding-refined.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "ivory-wedding-dress-v5",
+          "sha256": "c66417b4b880ecdf25ddc8764fe8846b653391d42b4c7a3fe6af6ea947164722"
+        }
+      ],
+      "nativeSha256": "d5a89f6aa5c48caabd5f2ca24bdf84067d80f04db6a68d5694edc7a8c8cebc2a",
+      "thumbnailSha256": "d7d27033ff1b1078e4bfac52b1c7531a9bcbfa201540a072c325572abaaac697",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "renderedRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "day-soft-waist",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-day-soft-waist.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-day-soft-waist.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "coral-daydress-v6",
+          "sha256": "2139b343521252021fc321d8c09c80dc7be9023df361bf484bb6296c404f5256"
+        }
+      ],
+      "nativeSha256": "ce21255f6a55275a1d872647ea99c8270999f1d843da32a548a36e7248933186",
+      "thumbnailSha256": "cbcde1fabf8debd47e197440554af073bfb420583acfbb37ff00426c2164868b",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "renderedRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "wedding-soft-waist",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-wedding-soft-waist.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-wedding-soft-waist.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "ivory-wedding-dress-v6",
+          "sha256": "1d90190c3a8facc7df95d2a35e73cd0fe97777c48a24f864fa32d04a96b3c061"
+        }
+      ],
+      "nativeSha256": "d5a89f6aa5c48caabd5f2ca24bdf84067d80f04db6a68d5694edc7a8c8cebc2a",
+      "thumbnailSha256": "d7d27033ff1b1078e4bfac52b1c7531a9bcbfa201540a072c325572abaaac697",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "renderedRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "day-native-folds",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-day-native-folds.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-day-native-folds.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "coral-daydress-v7",
+          "sha256": "58509ac15cde87a83a583dcbce78d850ec1122a9a5edb74b367b9abb04d7cc9d"
+        }
+      ],
+      "nativeSha256": "ce21255f6a55275a1d872647ea99c8270999f1d843da32a548a36e7248933186",
+      "thumbnailSha256": "cbcde1fabf8debd47e197440554af073bfb420583acfbb37ff00426c2164868b",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "renderedRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "wedding-native-folds",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-wedding-native-folds.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-wedding-native-folds.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "ivory-wedding-dress-v7",
+          "sha256": "aa35a9e1dbd00f82f59e5e78d9d9f788711e5a71fee25ed51fa528a07edf55c0"
+        }
+      ],
+      "nativeSha256": "d5a89f6aa5c48caabd5f2ca24bdf84067d80f04db6a68d5694edc7a8c8cebc2a",
+      "thumbnailSha256": "d7d27033ff1b1078e4bfac52b1c7531a9bcbfa201540a072c325572abaaac697",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "renderedRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "day-smooth-waist",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-day-smooth-waist.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-day-smooth-waist.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "coral-daydress-v8",
+          "sha256": "50107801b1a535897ef7c6af20292d5135c2528aeda8cd6b380b279da6eba624"
+        }
+      ],
+      "nativeSha256": "ce21255f6a55275a1d872647ea99c8270999f1d843da32a548a36e7248933186",
+      "thumbnailSha256": "cbcde1fabf8debd47e197440554af073bfb420583acfbb37ff00426c2164868b",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "renderedRgbaSha256": "eac08a74367f286575989f6b52a450e9fa42e115307c0d3fcad694ea736299fb",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "wedding-smooth-waist",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-wedding-smooth-waist.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-wedding-smooth-waist.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "ivory-wedding-dress-v8",
+          "sha256": "daaadda6dec132c435c1473c77bd270d82434846f44a4933712367ca770bdb3f"
+        }
+      ],
+      "nativeSha256": "d5a89f6aa5c48caabd5f2ca24bdf84067d80f04db6a68d5694edc7a8c8cebc2a",
+      "thumbnailSha256": "d7d27033ff1b1078e4bfac52b1c7531a9bcbfa201540a072c325572abaaac697",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "renderedRgbaSha256": "0e38f7f4183f6c6a697c9decfb59fd60f7c7b94e3d26fb1d8d3db4dface1b5e3",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "mist-blue",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-mist-blue.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-mist-blue.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "mist-blue-dress-v1",
+          "sha256": "0bd2a49c1af6dd7b5247a1018b32eda31cd45444b909e57f93af5d13ff8d80f0"
+        }
+      ],
+      "nativeSha256": "6ba15194a77bd745d1deacfd71b29149fdf004fffc7d5b44e3ba279210532a5b",
+      "thumbnailSha256": "2fe0a36170ab03520255c58c7f026dcf9aa215c955ff8b871829314b321a7522",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "24305171078a4eef7834ff570fed4c2ef4e1764d4f9b91b96e26284310710b00",
+      "renderedRgbaSha256": "24305171078a4eef7834ff570fed4c2ef4e1764d4f9b91b96e26284310710b00",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "lavender-afternoon",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-lavender-afternoon.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-lavender-afternoon.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "lavender-pleat-dress-v1",
+          "sha256": "7b6681321efac8d6b9c65446e7dc3af7769943b0dbfbdb8278f399dd5dd2479d"
+        }
+      ],
+      "nativeSha256": "b9c7632e5ae5cd2c0adc2424bcc87f1122198f0989b1a6d48ea86bb3c7edd80c",
+      "thumbnailSha256": "9cc14c78a65fb7235a599583fdb270b8683e38f980819dcb8334c4c1e8f5697a",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "4b100dae2bbc55a1aa9725bf6e98f57b0e8ea46b0f6216d4de0a7f4d6a107350",
+      "renderedRgbaSha256": "4b100dae2bbc55a1aa9725bf6e98f57b0e8ea46b0f6216d4de0a7f4d6a107350",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "separates",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-separates.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-separates.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "teal-top",
+          "sha256": "b640f316447f2f79d1801a8d5dbab9da74f8437ba8d8b3b256583ae5b16904c1"
+        },
+        {
+          "id": "ochre-shorts",
+          "sha256": "ca6efd01755febcfa2a4607268e8ac1a2820ad6d536a1d27a99414e547344c7a"
+        }
+      ],
+      "nativeSha256": "dc3e9e102f811e03edc3f98b73dfed9730d89a9b85f3310e80b19af7e898e040",
+      "thumbnailSha256": "aa2eb7b1f1cfcb34b4e84d634e3ed6782d9de7394e22b50901c64f5ba902142f",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "ae5c8f86b1d4d3ed1460435bcbd5d405a76c9c857c3a9f2dc81cd963b4ed3ca6",
+      "renderedRgbaSha256": "ae5c8f86b1d4d3ed1460435bcbd5d405a76c9c857c3a9f2dc81cd963b4ed3ca6",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "formal-separates",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-formal-separates.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-formal-separates.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "navy-waistcoat",
+          "sha256": "dc388f0141f2b469e93e2a52578ad84fa018de81b0af9e9c8ce59eee35e513df"
+        },
+        {
+          "id": "navy-shorts",
+          "sha256": "07e8af2aebf2bbc4a9a386da071b6f2a60e54a5a8355f26b190bf4f34b9fbc25"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5"
+        }
+      ],
+      "nativeSha256": "a8fe956ad8a902215a959a8177c977315630142ddcf06d28b07bd5dab74451c1",
+      "thumbnailSha256": "1ea9e93b3286282d18760e1ef68403a602e7e891e7a7490e1d342687448ee2cc",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "1b8ce07fe44660c155dec28decef94c58d30276b0eedd625cb2c9723b44913fc",
+      "renderedRgbaSha256": "1b8ce07fe44660c155dec28decef94c58d30276b0eedd625cb2c9723b44913fc",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "honey-garden",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-honey-garden.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-honey-garden.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "honey-garden-dress-v1",
+          "sha256": "dcc0161c742e7a4b42e86516e787f276009e3a984ed4b2c48b34a1e975e8b405"
+        }
+      ],
+      "nativeSha256": "99a56b71e086c9dc7c71ee45384bb99c770ea05a6c45e9cdbcd5511aa3bef886",
+      "thumbnailSha256": "0eb48748c2ada9e2f65dcb5b3588f4f58202c445f7ca3f1f13fea4ccbca81570",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "50d1238abd4286f5d11d586034efd54719106f95b580982404344bce1a88f83a",
+      "renderedRgbaSha256": "50d1238abd4286f5d11d586034efd54719106f95b580982404344bce1a88f83a",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "harbor-sailor",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-harbor-sailor.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-harbor-sailor.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "harbor-sailor-dress-v1",
+          "sha256": "4191aa5e8b63b0c8615fe272fe24d86efd627b7224c1c33d7af824812ca71a3f"
+        }
+      ],
+      "nativeSha256": "eea08456079bab730c187a56ad09e8fb626cacaa50d774235569c05ade47d862",
+      "thumbnailSha256": "23eb1100f6e2704aad5a636c876ba418a89bcfaa296f6720b1b8da28be9a2937",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "14a4623f7b9d4bfe79dbde7dca2f771be6d5746fc74683ceba8e4fdf49fb2292",
+      "renderedRgbaSha256": "14a4623f7b9d4bfe79dbde7dca2f771be6d5746fc74683ceba8e4fdf49fb2292",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "rose-picnic",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-rose-picnic.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-rose-picnic.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "rose-picnic-dress-v1",
+          "sha256": "e5e63bb413d50598bd18631c33f877ad4048e3d023e0de5d6807c44f1ba03b6e"
+        }
+      ],
+      "nativeSha256": "d5fbb75b69ae1aad8624e227c6282ff40e509e22e3930213e9e6c39f2ab15014",
+      "thumbnailSha256": "f0265e263a110483b74578b304311424bc17f21a46b8044d63080c1fe41a02cd",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "c3ea509cf6f571af6991ae0a1d97fc779633d8d5733b652e67fe462a5ba55a84",
+      "renderedRgbaSha256": "c3ea509cf6f571af6991ae0a1d97fc779633d8d5733b652e67fe462a5ba55a84",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "ivory-celebration",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-ivory-celebration.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-ivory-celebration.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "ivory-celebration-dress-v1",
+          "sha256": "54046356cfddd6ed582b72ef077ff428b2cae3de22b9c72c74db05b80c2e111d"
+        }
+      ],
+      "nativeSha256": "43f0296d04cbef9b048835ca32375bd03e198dac47502b78d95dd809e750e29b",
+      "thumbnailSha256": "a47ec707e71cb2206b62f9e402acc2b982d533c561822adb5e078a0731045e6a",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "3e8cf31bb0c070ac3861c73e14a719f94f115fa3e3137b3945b5dbe433ea8ae1",
+      "renderedRgbaSha256": "3e8cf31bb0c070ac3861c73e14a719f94f115fa3e3137b3945b5dbe433ea8ae1",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "sage-pinafore",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-sage-pinafore.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-sage-pinafore.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "sage-pinafore-v1",
+          "sha256": "39c94ab39e9d86de61deb2028b42716cbdce978ee1f84a9c9471bfa63758b1f0"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5"
+        }
+      ],
+      "nativeSha256": "8c70fce4be85504eaa0c5ea6dd16db37ba4eba6dc990a75c0c63d3bc8a63b603",
+      "thumbnailSha256": "a441710e4d8a1de4906c0c40af9322492841e7bf8838d24f825f59894b6c6451",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "f91480c3d70e0ecfd6138bca89d167d6eb6fbec135008375748fd2797c079da7",
+      "renderedRgbaSha256": "f91480c3d70e0ecfd6138bca89d167d6eb6fbec135008375748fd2797c079da7",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "ivory-refined",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-look-workflow/thumbnails/native/female-ivory-refined.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-ivory-refined.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "ivory-celebration-dress-v3",
+          "sha256": "b852b9bc478098f1eceecaeca6a7a49d46396d7ca5f12eaeca03723b01aaa0ec"
+        }
+      ],
+      "nativeSha256": "2a29f3ed37380e05d5b45ba23ea84fc279f702b24f9cfcb7adc4e2107033bed3",
+      "thumbnailSha256": "6f936e474b3ff2d29e0d2f464c6841bf15f719ef24b438478540094409553f5c",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "7768474ea5a9b75726b883f148907ac424970b9a705744d6633a77efc701085a",
+      "renderedRgbaSha256": "7768474ea5a9b75726b883f148907ac424970b9a705744d6633a77efc701085a",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "midnight-sailor",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-expression-shirt/evidence/thumbnail-v1/male-midnight-sailor.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-midnight-sailor.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "midnight-sailor-v1",
+          "sha256": "d914d09bf24379fa57881ffcad5cdbc72e0431b6279c66a444623f4120f0df5f"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        }
+      ],
+      "nativeSha256": "2f241bd0c1d0298a60704f5086ad9af6cd2eda631f82d3bf1a2ee42d0dceee74",
+      "thumbnailSha256": "ffb3a99140cc7db794f8ff3e3ff4b196d451732d7c3b5d8340c08a227f41e972",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "50605ab4d06ab4c100bb69f56cab7bdc982fb6afa8db5d7c47c4c89c45dbc953",
+      "renderedRgbaSha256": "50605ab4d06ab4c100bb69f56cab7bdc982fb6afa8db5d7c47c4c89c45dbc953",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "midnight-sailor-refined",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-expression-fit/evidence/thumbnails-v3/native/male-midnight-sailor-refined.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-midnight-sailor-refined.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "midnight-sailor-v2",
+          "sha256": "51e040906ffc7febc60fc3b5a82d932b5ec4c8c7fd7e344f9f05af476088f15b"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        }
+      ],
+      "nativeSha256": "fe281420fcb217ca7b655d8eb91c60172607b1f9f46beab3e02da48377b73d05",
+      "thumbnailSha256": "d2e3a3d6efb92d2606aba588d51ddbaa446f45e2cbc88fc708a46f0e9d28ffdc",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "17fdd9055b35ab266a795b7331f7623ce7316cf64e4cdc121b86089d059df0a9",
+      "renderedRgbaSha256": "17fdd9055b35ab266a795b7331f7623ce7316cf64e4cdc121b86089d059df0a9",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "plum-pintuck-day",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-expression-fit/evidence/thumbnails-v3/native/female-plum-pintuck-day.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-plum-pintuck-day.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "plum-pintuck-top-v1",
+          "sha256": "b40f01a49f78d1544c094a7947d8ba9608f3cad5e6a21db7ae0f8a8e023675aa"
+        },
+        {
+          "id": "navy-shorts",
+          "sha256": "07e8af2aebf2bbc4a9a386da071b6f2a60e54a5a8355f26b190bf4f34b9fbc25"
+        }
+      ],
+      "nativeSha256": "e53c2d88e315c0da21f376567c6b108091aec3d622c1dfee19110e367b8b8945",
+      "thumbnailSha256": "9a3ff4887b129aca5bd88edff0ee1568a0c83273f8e09c3ff84d00e079881cdd",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "677e92ce4453e58997be091c068941654c3d5769ca11413a30ed82a1bd11a67a",
+      "renderedRgbaSha256": "677e92ce4453e58997be091c068941654c3d5769ca11413a30ed82a1bd11a67a",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "plum-pintuck-ochre",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-expression-fit/evidence/thumbnails-v3/native/female-plum-pintuck-ochre.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-plum-pintuck-ochre.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "plum-pintuck-top-v1",
+          "sha256": "b40f01a49f78d1544c094a7947d8ba9608f3cad5e6a21db7ae0f8a8e023675aa"
+        },
+        {
+          "id": "ochre-shorts",
+          "sha256": "ca6efd01755febcfa2a4607268e8ac1a2820ad6d536a1d27a99414e547344c7a"
+        }
+      ],
+      "nativeSha256": "b9094bf66182ced3a238aac76f6d3ad23371479f7e2045fb8cf2a647d734359a",
+      "thumbnailSha256": "fe8e8fed93a2095d89a7f27a79c1824c987d05d426f321f05a0f89af025fdce9",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "795ae6cbb6e97de913f123f33be73411a222be77925f619c2b00a26d7d8bb56c",
+      "renderedRgbaSha256": "795ae6cbb6e97de913f123f33be73411a222be77925f619c2b00a26d7d8bb56c",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "cocoa-bookshop",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-collection/warm-date-v1/evidence/thumbnails-v1/native/male-cocoa-bookshop.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-cocoa-bookshop.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "cocoa-cardigan-v1",
+          "sha256": "e5d39512c588a73e2b1900fc62729270136f515d22c495c32c15f0f837495573"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "45f6313d8c2f23f5708d519320517ea7b9d768ac1963f429d710ea6d135012cc",
+      "thumbnailSha256": "cacbca8e4137981b73f1ca12c6feb1ee4f7b348dadc029edb5cc1a63f418a0d5",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "17c42ac4acda9a57cef59727d46c55e7703bf466e9f8cdec9f91963e579754b5",
+      "renderedRgbaSha256": "17c42ac4acda9a57cef59727d46c55e7703bf466e9f8cdec9f91963e579754b5",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "rose-weekend",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-collection/warm-date-v1/evidence/thumbnails-v1/native/male-rose-weekend.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-rose-weekend.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "dusty-rose-shirt-v1",
+          "sha256": "262d82c96b1ae36fe050692a157ce346579ad0eda703b640e1a7bc9008b01674"
+        },
+        {
+          "id": "ochre-chinos-v1",
+          "sha256": "c3e5ba6f53748ee5dd39ff0954383f61f3e6dc01ec4370faffb80849ad0c2a33"
+        }
+      ],
+      "nativeSha256": "c619d5f08f2a3ef2c65a75be829eb7f1bbff763370eef9e75b00c3530b97db97",
+      "thumbnailSha256": "94405b3fd44b56250a9439431f87e5975263a42b7bfbdeafd4897c2d26950471",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "bee641335d85bd9ec2b5f29a4aa2a409f1215d2257c7c0776ecdbe4f8a5c7f21",
+      "renderedRgbaSha256": "bee641335d85bd9ec2b5f29a4aa2a409f1215d2257c7c0776ecdbe4f8a5c7f21",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "male",
+      "presetId": "ink-cafe",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-collection/warm-date-v1/evidence/thumbnails-v1/native/male-ink-cafe.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/male-ink-cafe.png",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "selectedItems": [
+        {
+          "id": "ink-plum-knit-polo-v1",
+          "sha256": "331a6d8603cb50a675aecde26a6f9a02015e2747d465658169bdec87c73f7b8b"
+        },
+        {
+          "id": "navy-suit-trousers-v1",
+          "sha256": "f76ef3c51fca9eaf46ccc1cff154b99cdcff0a169799be187dc4b794d7d2424c"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693"
+        }
+      ],
+      "nativeSha256": "9bc3403923dc543005ff2dd20094987cab648baa5c7d7711cef51892e5407495",
+      "thumbnailSha256": "1efd69e6c8698f484e900d201d67289fbc294040c150b430bfdd15c359d26fe2",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "6e2c75f138b08105aed6d61578b95597148094942ccaa6fe689a919d9f0da2c0",
+      "renderedRgbaSha256": "6e2c75f138b08105aed6d61578b95597148094942ccaa6fe689a919d9f0da2c0",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "butter-bookshop",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-collection/warm-date-v1/evidence/thumbnails-v1/native/female-butter-bookshop.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-butter-bookshop.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "butter-collar-dress-v1",
+          "sha256": "c330f1ce8028ffab209bca3b32489b676901e6174fc430e81cfb1f868c6de0f2"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5"
+        }
+      ],
+      "nativeSha256": "484caaf2c613ac8893ae9a08e10ce560afb569c3f5270b1fadc0ab78e9757530",
+      "thumbnailSha256": "1f60042383a33133d2c87a5a0166494b62294790872bce668b7bc3ce08eb0d50",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "3dff47824593940108851462b8450f22060325f4a3abbf3edeef098ff9d1c11a",
+      "renderedRgbaSha256": "3dff47824593940108851462b8450f22060325f4a3abbf3edeef098ff9d1c11a",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "apricot-garden",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-collection/warm-date-v1/evidence/thumbnails-v1/native/female-apricot-garden.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-apricot-garden.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "apricot-garden-dress-v1",
+          "sha256": "972209ad13708208c9312704dd3a45ef764524af66ccb0db334669c9b4a62132"
+        }
+      ],
+      "nativeSha256": "5773c1ba2c4d20144209420c3cded6a78fcd0169d77f9b5015f5d53d087d4483",
+      "thumbnailSha256": "bc0b151c7557596b8e7193d84c7a8c71095af3f1bdda4c11b6d13b769d67076c",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "859bf1ef7decc16f2de3d1a48478b5cba629d0ff7dca296f6ac4b80a90a61906",
+      "renderedRgbaSha256": "859bf1ef7decc16f2de3d1a48478b5cba629d0ff7dca296f6ac4b80a90a61906",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    },
+    {
+      "character": "female",
+      "presetId": "teal-evening",
+      "sourceFrame": 0,
+      "nativeFile": "docs/kling-collection/warm-date-v1/evidence/thumbnails-v1/native/female-teal-evening.png",
+      "thumbnailFile": "src/wardrobe/outfit-previews/female-teal-evening.png",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "selectedItems": [
+        {
+          "id": "deep-teal-date-dress-v1",
+          "sha256": "a2ddc9d4035631aa9aed1bae55f895714bc34c618a0d435516390ee7e426a2ec"
+        },
+        {
+          "id": "brown-shoes",
+          "sha256": "2ae00b10f6ce3d0c11f3fd38273f229b7641fd5a7722da01e4f319d15a2ea2e5"
+        }
+      ],
+      "nativeSha256": "8bfffa2fca4ffb2fa015f1ddfb200c412f62947ea53bcd185211b94a0cdde1e0",
+      "thumbnailSha256": "6bd4afbadebf1e9483a163cd9d83f89839afc151e1448b63df6ea6c26178ff5c",
+      "nativeWidth": 704,
+      "nativeHeight": 1056,
+      "renderedWidth": 704,
+      "renderedHeight": 1056,
+      "nativeRgbaSha256": "d2711de8575e93a12430d51904dbd677ca140bb556143517463a5574718db346",
+      "renderedRgbaSha256": "d2711de8575e93a12430d51904dbd677ca140bb556143517463a5574718db346",
+      "changedRgbaBytes": 0,
+      "nativeRgbaExact": true
+    }
+  ],
+  "summary": {
+    "presets": 47,
+    "exactNativeRgba": 47,
+    "differingNativeRgba": 0,
+    "retainedNativeAndThumbnailPngDigestsVerified": 47
+  }
+}

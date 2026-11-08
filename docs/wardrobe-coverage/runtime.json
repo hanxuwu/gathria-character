@@ -1,0 +1,2623 @@
+{
+  "format": "gathria-wardrobe-coverage-runtime-review",
+  "version": 1,
+  "scope": "Real runtime reader/compositor, every scoped garment and declared preset, all native frames, per-group saved project reopening. This does not certify visual coverage or perceptual absence of clipping. See separate source-cloth and hand-contour review evidence.",
+  "inventorySha256": "3459222a703a11623d58bbab7ae8345b356d27bc6e0a586b2ea650d6c189375e",
+  "codeSha256": {
+    "src/wardrobe/contract.ts": "96ee0e957276f66812ab55592903e921081d885e0fc576176fbc322526298685",
+    "src/wardrobe/protection.ts": "eb37ff13e769eaa52150fb5beff12d1e71ce62a0fcb3c1da41cd8930984b80a5",
+    "src/wardrobe/compositor.ts": "44faf4d09f938ddef21eac3fb46f7a7294e60bc74cbead7fef889cc63bb3ed25",
+    "src/wardrobe/neckline-permissions.ts": "f625a4fe92fded4bd6bd8ae2415678011fc108de1d465dae4ea631246089f4bf",
+    "src/wardrobe/project.ts": "c190a6026201442324b25d0b7a553ce9d5d31f4a21969db194a61fb13a01f01b"
+  },
+  "summary": {
+    "groups": 21,
+    "uniqueGarments": 113,
+    "garmentFrames": 10903,
+    "presetFrames": 8437
+  },
+  "groups": [
+    {
+      "id": "original-male",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "results": [
+        {
+          "kind": "item",
+          "id": "teal-top",
+          "selection": {
+            "top": "teal-top",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "c90e2feb0beb38338dbfa590a0aee70444d9aff5d483a97a0dee289ea393316e"
+        },
+        {
+          "kind": "item",
+          "id": "ochre-shorts",
+          "selection": {
+            "top": null,
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "50a4a276c9ffa2977086ae199b249887db463ff82cd4a31643951065128a9d17"
+        },
+        {
+          "kind": "item",
+          "id": "navy-waistcoat",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "2f019903811a23ff049dd4f78a29f979e2d1dfbc3ed36ef29a2af0359a702561"
+        },
+        {
+          "kind": "item",
+          "id": "navy-shorts",
+          "selection": {
+            "top": null,
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "664bd0b1d3d1d25c12462038cf5ea098d6ee18b9b13830364a7034afa34cf018"
+        },
+        {
+          "kind": "item",
+          "id": "brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "896984c4e932e07f304b687e372bca590a503360f723b0605cd8d7d03dae7f6c"
+        },
+        {
+          "kind": "item",
+          "id": "teal-camp-shirt-v2",
+          "selection": {
+            "top": "teal-camp-shirt-v2",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "7dde0a281c9c60c802aff14bcfc5b48ba0eb5b7d3f344010a504b9a5ea538f03"
+        },
+        {
+          "kind": "item",
+          "id": "navy-suit-jacket-v2",
+          "selection": {
+            "top": "navy-suit-jacket-v2",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "6490b60edcfcf7b595faf9e076b4d7fe63914ac1e6d68ded5eeee0f9f807e5af"
+        },
+        {
+          "kind": "item",
+          "id": "ochre-chinos-v1",
+          "selection": {
+            "top": null,
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "fa469717c00bfe2365cb869b0e96c27adb383b7f0b84db6fe72161ba2814fea8"
+        },
+        {
+          "kind": "item",
+          "id": "navy-suit-trousers-v1",
+          "selection": {
+            "top": null,
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "3a28485b70c93dbb077f29a36b8f0e74559a3961f36f791ee84b8eb738182f74"
+        },
+        {
+          "kind": "item",
+          "id": "cream-camp-shirt-v1",
+          "selection": {
+            "top": "cream-camp-shirt-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "64f90beeb2da33f82af972e15eebc408a3d3842f745862a186278290cd59bf2f"
+        },
+        {
+          "kind": "item",
+          "id": "forest-work-shirt-v1",
+          "selection": {
+            "top": "forest-work-shirt-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "3371926d9800b386fb0e6fcd6abeeec6f9ace12e6bd81250c95bb67e9c91a155"
+        },
+        {
+          "kind": "item",
+          "id": "oat-henley-v1",
+          "selection": {
+            "top": "oat-henley-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "4800378e677dc53fae757363172e6c189688b6df84cd51a7c7910a7252fc4fcb"
+        },
+        {
+          "kind": "item",
+          "id": "harbor-polo-v1",
+          "selection": {
+            "top": "harbor-polo-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "7f555ecfffbdd3451c001c774a880eab93f2ce25c8c7cc0b7e45623904ba6759"
+        },
+        {
+          "kind": "item",
+          "id": "terracotta-overshirt-v1",
+          "selection": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "6abbb664a5e4d6d4be917c0e51a6c240bc102a187457c71ad2e067605fcae715"
+        },
+        {
+          "kind": "item",
+          "id": "moss-knit-vest-v1",
+          "selection": {
+            "top": "moss-knit-vest-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "0fe4c0748c46a847f487c2f4a79b27568dbad84c0445a552861c58892d58d89e"
+        },
+        {
+          "kind": "item",
+          "id": "teal-camp-shirt-v3",
+          "selection": {
+            "top": "teal-camp-shirt-v3",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "fcccef5c18bf54516d2e139c5bda32563437cfe7139ad6b793d28f2b4b144a0c"
+        },
+        {
+          "kind": "item",
+          "id": "navy-suit-jacket-v3",
+          "selection": {
+            "top": "navy-suit-jacket-v3",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "2c76d694f9de574e5cf7df2e3e14bb0c329240ddd7f75e6d6958a0718c7a0f40"
+        },
+        {
+          "kind": "item",
+          "id": "ocean-linen-shirt-v1",
+          "selection": {
+            "top": "ocean-linen-shirt-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "66e797b1d273c5836410bb77a68a21d871e11a9632a57a171c5bd3b74b90d78c"
+        },
+        {
+          "kind": "item",
+          "id": "teal-camp-shirt-v4",
+          "selection": {
+            "top": "teal-camp-shirt-v4",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "6a2bcad6fdfed8b1a162e256af19a09892f7202cb8ec9d6a8bb2999b1a7b4efd"
+        },
+        {
+          "kind": "item",
+          "id": "navy-suit-jacket-v4",
+          "selection": {
+            "top": "navy-suit-jacket-v4",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "8b7f365a8ae2e762abbb7d2b62b8b0cec8b94bb2afdc03a35ae3500781bfe86b"
+        },
+        {
+          "kind": "item",
+          "id": "navy-suit-jacket-v5",
+          "selection": {
+            "top": "navy-suit-jacket-v5",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "d1099b1156ca038de8e7d30d7406cd9d1619985b915a8672660fc355f8ce2f11"
+        },
+        {
+          "kind": "item",
+          "id": "navy-suit-jacket-v6",
+          "selection": {
+            "top": "navy-suit-jacket-v6",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "88b85480508b3c26947dce458dd06863084b8433f353437effc5e18dc625bce5"
+        },
+        {
+          "kind": "item",
+          "id": "teal-camp-shirt-v5",
+          "selection": {
+            "top": "teal-camp-shirt-v5",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "990415fe14a5ad43e863d5cee2bfd66103a720b9d9df5838c0243ab0c344b0a3"
+        },
+        {
+          "kind": "item",
+          "id": "midnight-sailor-v1",
+          "selection": {
+            "top": "midnight-sailor-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "de402b7b6555d438f2d421407cabcd50a38cf80481a8fbbe493fb8cf0fbdcc75"
+        },
+        {
+          "kind": "item",
+          "id": "midnight-sailor-v2",
+          "selection": {
+            "top": "midnight-sailor-v2",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "076a636d73281279b75551badc55b1f8a41354a3ba1fe3871d6fa4e74100fdbd"
+        },
+        {
+          "kind": "item",
+          "id": "cocoa-cardigan-v1",
+          "selection": {
+            "top": "cocoa-cardigan-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "c5aa866014fe226e63bbee4d86d8e71f4830864e6897ed76957acffed8361315"
+        },
+        {
+          "kind": "item",
+          "id": "dusty-rose-shirt-v1",
+          "selection": {
+            "top": "dusty-rose-shirt-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "6f3c22e0ed1d65597f5ad9f0cbcc074b8450e48bc7bcb8344f064ff4b6d8cf77"
+        },
+        {
+          "kind": "item",
+          "id": "ink-plum-knit-polo-v1",
+          "selection": {
+            "top": "ink-plum-knit-polo-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "da458cd67e2fd08ba96f843d0e9067882a6473b3984a5f706b5dab9a23e2542c"
+        },
+        {
+          "kind": "preset",
+          "id": "original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "63ba04b2240b2818a6311bdf3961612ad6673278e2e81a408205711831484c7d"
+        },
+        {
+          "kind": "preset",
+          "id": "day",
+          "selection": {
+            "top": "teal-camp-shirt-v2",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "71a59a5a459b503499aa7504a1bbc31ebda838b6aa912b52da74c42a92b9da1f"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding",
+          "selection": {
+            "top": "navy-suit-jacket-v2",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "d1102a8d9d263c9ea97723fe2c01fc056c638ec88be94e4f537206c6223e24f1"
+        },
+        {
+          "kind": "preset",
+          "id": "day-refined",
+          "selection": {
+            "top": "teal-camp-shirt-v3",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "384017902bb860a1f8b02b32bfc87482076c56e377b2f3a51c34f8462f9cb514"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-refined",
+          "selection": {
+            "top": "navy-suit-jacket-v3",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "89659aff5acd714f0baeb7c4afefcba20979cb4c9b58e27c20cd9918a3e9af54"
+        },
+        {
+          "kind": "preset",
+          "id": "ocean-linen",
+          "selection": {
+            "top": "ocean-linen-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "98b05b1610a1e5ca2befc0690e6ae04704a2a78fe900bcc7165a74fdcc21b77c"
+        },
+        {
+          "kind": "preset",
+          "id": "day-soft-cuff",
+          "selection": {
+            "top": "teal-camp-shirt-v4",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "55bbfbe75cc38be9a8f011a237c76b72c279ef7ed8c08918d14cff6db689b6eb"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-soft-cuff",
+          "selection": {
+            "top": "navy-suit-jacket-v4",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "4ec3146388194f6cea6f25920e22d6376beb09d667085982127879a77fef85ea"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-reviewed-sleeve",
+          "selection": {
+            "top": "navy-suit-jacket-v5",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "17bc4482acc285d4da0acb62811b20a29ad38744f9df919f4794abee7ec78bab"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-curved-cuff",
+          "selection": {
+            "top": "navy-suit-jacket-v6",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "c2748b8936d35c0b2271e5715a4d750ef963db6571e9301004893ef4abfa7776"
+        },
+        {
+          "kind": "preset",
+          "id": "cream-navy",
+          "selection": {
+            "top": "cream-camp-shirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "ec7ede3472d7f8d15262fd2a64c0697e3e19717c31dcaa6f4632be942a807ee4"
+        },
+        {
+          "kind": "preset",
+          "id": "forest-weekend",
+          "selection": {
+            "top": "forest-work-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "d630c213525a8175b0d87fbda50466cfe3bf028bc43c4a2c35b6e4e8f8604e4e"
+        },
+        {
+          "kind": "preset",
+          "id": "separates",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "669523bd4cf9bdbf2dbb7fd06065616a16ad1562b48eb93c9fdc7d9b96a26b0a"
+        },
+        {
+          "kind": "preset",
+          "id": "formal-separates",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "3e6e6743de89fe7d98a17a598e8d280c10659d17bbfd0065cd00038e42b10877"
+        },
+        {
+          "kind": "preset",
+          "id": "oat-weekend",
+          "selection": {
+            "top": "oat-henley-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "80b45056609870deae2346822df0923b03a892169075d72cdbf9cce73ce690be"
+        },
+        {
+          "kind": "preset",
+          "id": "harbor-day",
+          "selection": {
+            "top": "harbor-polo-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "8b7f7c3eb9433f900481270685c1a01c9b9390a893ffb5b8c4b4466dbd073fce"
+        },
+        {
+          "kind": "preset",
+          "id": "terracotta-layer",
+          "selection": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "013d5820e59b40ecb14d4f46fe1782528551143d9ab59a8d72b79fcbb759f712"
+        },
+        {
+          "kind": "preset",
+          "id": "moss-knit",
+          "selection": {
+            "top": "moss-knit-vest-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "7590f59670b152c95413e43f40d017337dc48a7dbc64211d2abe6fd731eb2e9d"
+        },
+        {
+          "kind": "preset",
+          "id": "midnight-sailor",
+          "selection": {
+            "top": "midnight-sailor-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "938d3975f5752c20c7e4059766e781f73c984dfc63495c1f682d91cf87fabf4a"
+        },
+        {
+          "kind": "preset",
+          "id": "midnight-sailor-refined",
+          "selection": {
+            "top": "midnight-sailor-v2",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "65f8bc00777543dd3557928ff82963aeddfd1dc5639c24f3e3f64aaf3445ad69"
+        },
+        {
+          "kind": "preset",
+          "id": "cocoa-bookshop",
+          "selection": {
+            "top": "cocoa-cardigan-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "ea54727e433a8680ac9074bcd3604b69d9e524d3682b7cb9e9076d88bd9faea6"
+        },
+        {
+          "kind": "preset",
+          "id": "rose-weekend",
+          "selection": {
+            "top": "dusty-rose-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "10526d20d821146e6730cab194d7ba00c0777852a80b4b4b0aa756e50d66a800"
+        },
+        {
+          "kind": "preset",
+          "id": "ink-cafe",
+          "selection": {
+            "top": "ink-plum-knit-polo-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 88,
+          "rgbaSha256": "bf73f6c5e4d074f333c6b39c4ca6c9370a649dc3e3db73ea59d21d917a796006"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "original-female",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "results": [
+        {
+          "kind": "item",
+          "id": "teal-top",
+          "selection": {
+            "top": "teal-top",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "3c6c890607979c9293a77b7d98c1b5a17dd70a80fdb1a9b89ad54647524f5586"
+        },
+        {
+          "kind": "item",
+          "id": "ochre-shorts",
+          "selection": {
+            "top": null,
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "4b5667400cf999c2252bbd82dc3747f34eca7a96da7fd02bbe8aba5a482548d8"
+        },
+        {
+          "kind": "item",
+          "id": "navy-waistcoat",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "71d97c9921ac8df0b425f4b997c19aede9ef28ce50b2590e8687b86949bca62b"
+        },
+        {
+          "kind": "item",
+          "id": "navy-shorts",
+          "selection": {
+            "top": null,
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "39d429e0c71c26425d07556d90f0c3675b4d4558cef67b5a382b56f5930a5acb"
+        },
+        {
+          "kind": "item",
+          "id": "brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 96,
+          "rgbaSha256": "72be27d3c1238c42fab0d8bc1bd26ea69a8ff2711eeec07b6843ec6b2b8458e3"
+        },
+        {
+          "kind": "item",
+          "id": "coral-daydress-v4",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v4",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "a066a26f78aa927b9d2c6eba848bc85d588d5b2ea6b2efeeb6a237c06cd01845"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-wedding-dress-v4",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v4",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "6fec74a6af3a258844ffd13a497a68b7e647a93e286b93714a6221c96333b34a"
+        },
+        {
+          "kind": "item",
+          "id": "mist-blue-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "mist-blue-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "ba0e7e5d58fdd54dbebe17441c92243e1c1f100a3052b3d032fc5fc65d017afd"
+        },
+        {
+          "kind": "item",
+          "id": "lavender-pleat-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "lavender-pleat-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "faebd844ad30f894162ece78c584f24cc180027b70bf3d981dab0550ca757056"
+        },
+        {
+          "kind": "item",
+          "id": "honey-garden-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "honey-garden-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "ba950bff2e6ac96a7051aae88aeec5ae52dc09bca6f59010303f493d2eb13330"
+        },
+        {
+          "kind": "item",
+          "id": "harbor-sailor-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "harbor-sailor-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bcc9def916b3af52d1abb613353ffb4f9f3c1708d7df49afdb7ec47f2913b65a"
+        },
+        {
+          "kind": "item",
+          "id": "rose-picnic-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "rose-picnic-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "b700b1ef8db57b9a3747f5db55b9a5bceabde81a9042c2128ddb096927600030"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-celebration-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-celebration-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "8001a1f79b863283754b8d9d2dd1e3923efe094f32eabf9d682b0a03b47b5bb9"
+        },
+        {
+          "kind": "item",
+          "id": "sage-pinafore-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "sage-pinafore-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "105d064cc38330d0265c788b6a26c2e55dc78e9f150c768272f864470c139812"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-celebration-dress-v3",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-celebration-dress-v3",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "9be9b9ecdf8d88c754ff3a07f1cfa98e3a1299788bebea1db956d7e019ea176c"
+        },
+        {
+          "kind": "item",
+          "id": "coral-daydress-v5",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v5",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "95ca854c0093b669cabf783c8efd1da71b81105123982e45cbce5a220a4b611a"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-wedding-dress-v5",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v5",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "335729cde495eebb925260fa79a80c9da0ccd9f9d7d119ebda0c2cee9187fa99"
+        },
+        {
+          "kind": "item",
+          "id": "coral-daydress-v6",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v6",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "768e2a7b140a92f10b71b2b3631e346e84b29351e702ce98a8c2656d629546f3"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-wedding-dress-v6",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v6",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bf4ebb129deaf7c6473bcb9e56e4f1b8c56e69fc726ba87bdefd06251618c3b6"
+        },
+        {
+          "kind": "item",
+          "id": "coral-daydress-v7",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v7",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "87b5d39af198d5a8facb473bde3e4f0e2c1dd3edc6f687f31ebe7b968b098016"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-wedding-dress-v7",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v7",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "8f8ab0c2e73a79126ec727395fa92e763de3bb0d67b16068e2111a18493c1eb0"
+        },
+        {
+          "kind": "item",
+          "id": "coral-daydress-v8",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v8",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bed7c372b62962f0f2cf6d528b9ae6fdeedef370ac7628b8cf7635b038dafc15"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-wedding-dress-v8",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v8",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "4c746be6aa13b8fb0a12c76dda00fba36c9358dc46236010e6ba53ed55d44d1a"
+        },
+        {
+          "kind": "item",
+          "id": "coral-daydress-v9",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v9",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bd2eb4d9341b00b9d78a9c0aa3c3759c443f239d996260ea01d232ada00ab92a"
+        },
+        {
+          "kind": "item",
+          "id": "ivory-wedding-dress-v9",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v9",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "eba1fa97647de1d99c95e8aafcff174b9f6558720ac5428ceb33926ff8f942ac"
+        },
+        {
+          "kind": "item",
+          "id": "plum-pintuck-top-v1",
+          "selection": {
+            "top": "plum-pintuck-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "150f659af89d9b79e3f19545fc140391e05ccf2e123d814bab4ea9a53ce33bfd"
+        },
+        {
+          "kind": "item",
+          "id": "butter-collar-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "butter-collar-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "c10d22a3a36989ecdd2623448b7469b7421154fd699053cd5abd3fd434aa6f41"
+        },
+        {
+          "kind": "item",
+          "id": "apricot-garden-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "apricot-garden-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "f739e043f6c28aa8f389808b1cc819d8dbe8b17ef06a96b8796794bd01803236"
+        },
+        {
+          "kind": "item",
+          "id": "deep-teal-date-dress-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "deep-teal-date-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "be895133d61da4ef31545414dfda7fb8ecf2f98a876b31a1f805d5e2de7d5762"
+        },
+        {
+          "kind": "preset",
+          "id": "original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "ca8509a9d9ba6ec7e92a6e009c6b8e3399739499b0152258f4f77dabb2e9ce6c"
+        },
+        {
+          "kind": "preset",
+          "id": "day",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v4",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "a066a26f78aa927b9d2c6eba848bc85d588d5b2ea6b2efeeb6a237c06cd01845"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v4",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "6fec74a6af3a258844ffd13a497a68b7e647a93e286b93714a6221c96333b34a"
+        },
+        {
+          "kind": "preset",
+          "id": "day-refined",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v5",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "95ca854c0093b669cabf783c8efd1da71b81105123982e45cbce5a220a4b611a"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-refined",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v5",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "335729cde495eebb925260fa79a80c9da0ccd9f9d7d119ebda0c2cee9187fa99"
+        },
+        {
+          "kind": "preset",
+          "id": "day-soft-waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v6",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "768e2a7b140a92f10b71b2b3631e346e84b29351e702ce98a8c2656d629546f3"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-soft-waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v6",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bf4ebb129deaf7c6473bcb9e56e4f1b8c56e69fc726ba87bdefd06251618c3b6"
+        },
+        {
+          "kind": "preset",
+          "id": "day-native-folds",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v7",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "87b5d39af198d5a8facb473bde3e4f0e2c1dd3edc6f687f31ebe7b968b098016"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-native-folds",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v7",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "8f8ab0c2e73a79126ec727395fa92e763de3bb0d67b16068e2111a18493c1eb0"
+        },
+        {
+          "kind": "preset",
+          "id": "day-smooth-waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v8",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bed7c372b62962f0f2cf6d528b9ae6fdeedef370ac7628b8cf7635b038dafc15"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding-smooth-waist",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v8",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "4c746be6aa13b8fb0a12c76dda00fba36c9358dc46236010e6ba53ed55d44d1a"
+        },
+        {
+          "kind": "preset",
+          "id": "mist-blue",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "mist-blue-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "ba0e7e5d58fdd54dbebe17441c92243e1c1f100a3052b3d032fc5fc65d017afd"
+        },
+        {
+          "kind": "preset",
+          "id": "lavender-afternoon",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "lavender-pleat-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "faebd844ad30f894162ece78c584f24cc180027b70bf3d981dab0550ca757056"
+        },
+        {
+          "kind": "preset",
+          "id": "separates",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "f7b8539e0072b3584451be19aa6e82fe25f4b4c4addd837298e290920525c513"
+        },
+        {
+          "kind": "preset",
+          "id": "formal-separates",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "frames": 96,
+          "rgbaSha256": "8e4936c6123b5fa584b1ecf629ea4e4ce56799b33c66d809701e3644ebd0f345"
+        },
+        {
+          "kind": "preset",
+          "id": "honey-garden",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "honey-garden-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "ba950bff2e6ac96a7051aae88aeec5ae52dc09bca6f59010303f493d2eb13330"
+        },
+        {
+          "kind": "preset",
+          "id": "harbor-sailor",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "harbor-sailor-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bcc9def916b3af52d1abb613353ffb4f9f3c1708d7df49afdb7ec47f2913b65a"
+        },
+        {
+          "kind": "preset",
+          "id": "rose-picnic",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "rose-picnic-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "b700b1ef8db57b9a3747f5db55b9a5bceabde81a9042c2128ddb096927600030"
+        },
+        {
+          "kind": "preset",
+          "id": "ivory-celebration",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-celebration-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "8001a1f79b863283754b8d9d2dd1e3923efe094f32eabf9d682b0a03b47b5bb9"
+        },
+        {
+          "kind": "preset",
+          "id": "sage-pinafore",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "sage-pinafore-v1",
+            "shoes": "brown-shoes"
+          },
+          "frames": 96,
+          "rgbaSha256": "9fb119a0d69f431f7aef73a4cc384b5a614a9fe32bb88a961c2c752e5ffaa6d9"
+        },
+        {
+          "kind": "preset",
+          "id": "ivory-refined",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-celebration-dress-v3",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "9be9b9ecdf8d88c754ff3a07f1cfa98e3a1299788bebea1db956d7e019ea176c"
+        },
+        {
+          "kind": "preset",
+          "id": "plum-pintuck-day",
+          "selection": {
+            "top": "plum-pintuck-top-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "e203ced9cdf145bc203577dfc327467604c71b92efde36e577a16b9a819c1d09"
+        },
+        {
+          "kind": "preset",
+          "id": "plum-pintuck-ochre",
+          "selection": {
+            "top": "plum-pintuck-top-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "c5eab2c3cc41d09537a6b03cd5acf8fe2f4ddf8bdb9c3fe3fb53a4b877e1d1f9"
+        },
+        {
+          "kind": "preset",
+          "id": "butter-bookshop",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "butter-collar-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "frames": 96,
+          "rgbaSha256": "89c81211e9f570ae3260ed4e4ca45de46e44eadf8d615b74fc95681c31c8de36"
+        },
+        {
+          "kind": "preset",
+          "id": "apricot-garden",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "apricot-garden-dress-v1",
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "f739e043f6c28aa8f389808b1cc819d8dbe8b17ef06a96b8796794bd01803236"
+        },
+        {
+          "kind": "preset",
+          "id": "teal-evening",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "deep-teal-date-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "frames": 96,
+          "rgbaSha256": "7b1008047eb7c539ce26b2b5c94eb79614f97db4b48830a9c6e69964957ac924"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "side-material-male",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+      "results": [
+        {
+          "kind": "item",
+          "id": "side-male-seabreeze-top-v1",
+          "selection": {
+            "top": "side-male-seabreeze-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "2458733b74407a8bbc6c0e9bea3348dc55dc3fdeae0b15886e53ba1cf42228a6"
+        },
+        {
+          "kind": "item",
+          "id": "side-male-seabreeze-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "side-male-seabreeze-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "aa8e451be89276101004ae70ac990e80758b15c5a720015f5c1bdb111d593ac3"
+        },
+        {
+          "kind": "item",
+          "id": "side-male-seabreeze-shoes-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": "side-male-seabreeze-shoes-v1"
+          },
+          "frames": 107,
+          "rgbaSha256": "baa889ca33fb5bc5b393c797cea629043477ce773832a603aa2400fc01e47234"
+        },
+        {
+          "kind": "preset",
+          "id": "original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "4e6a1354c60359ba7f500514601a0f0df1f27b2b1b164d5bbb08a69d9eb17732"
+        },
+        {
+          "kind": "preset",
+          "id": "daily",
+          "selection": {
+            "top": "side-male-seabreeze-top-v1",
+            "bottom": "side-male-seabreeze-bottom-v1",
+            "fullBody": null,
+            "shoes": "side-male-seabreeze-shoes-v1"
+          },
+          "frames": 107,
+          "rgbaSha256": "dcd6c4a9e1c072017ea50918e40140e27e2e8eeb095f15ceef2283ebfb702521"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "side-tailored-male",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+      "results": [
+        {
+          "kind": "item",
+          "id": "side-male-oxford-shirt-v1",
+          "selection": {
+            "top": "side-male-oxford-shirt-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "fc54cc41ead5503eee780b4eb0193873f00edea6b222d02e2a91d74a8a77a9bf"
+        },
+        {
+          "kind": "item",
+          "id": "side-male-stone-trousers-v1",
+          "selection": {
+            "top": null,
+            "bottom": "side-male-stone-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "64b95df3d48d2c14fcec2ddba2bbd3a535a4113c8b8e48964f6652332a035203"
+        },
+        {
+          "kind": "preset",
+          "id": "original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "4e6a1354c60359ba7f500514601a0f0df1f27b2b1b164d5bbb08a69d9eb17732"
+        },
+        {
+          "kind": "preset",
+          "id": "daily",
+          "selection": {
+            "top": "side-male-oxford-shirt-v1",
+            "bottom": "side-male-stone-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "150815896ab0394f554360df297fe08dc411e3e8cb63c1512ce4f922044a929f"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "side-material-female",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e",
+      "results": [
+        {
+          "kind": "item",
+          "id": "side-female-apricot-top-v1",
+          "selection": {
+            "top": "side-female-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "95735f0a7b833fece74c4fd5e8e873c40bc6e10d1ef80bb9c9f1a68922f04b54"
+        },
+        {
+          "kind": "item",
+          "id": "side-female-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "side-female-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "fca93213e262da689630c6080eecaad383910b770f030e90c365fab99992576f"
+        },
+        {
+          "kind": "item",
+          "id": "side-female-apricot-shoes-v1",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": "side-female-apricot-shoes-v1"
+          },
+          "frames": 102,
+          "rgbaSha256": "bd775ec5a7d9205827a4ebaa82120b4191985f71c8c2980246322ef28cd12243"
+        },
+        {
+          "kind": "preset",
+          "id": "original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "75c65e63981506081ad935ce26059ca71cd5755c168489353aea428d24499cde"
+        },
+        {
+          "kind": "preset",
+          "id": "daily",
+          "selection": {
+            "top": "side-female-apricot-top-v1",
+            "bottom": "side-female-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": "side-female-apricot-shoes-v1"
+          },
+          "frames": 102,
+          "rgbaSha256": "bd60efb4763e3635ef084e1e864faf1859d4bd4c03db35689848d723fba0be90"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "side-tailored-female",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "results": [
+        {
+          "kind": "item",
+          "id": "side-female-cream-blouse-v1",
+          "selection": {
+            "top": "side-female-cream-blouse-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "3b369fd793f810cb716008c40a5fd5dc82c3c4334d57a8dd8274523bde5efcdd"
+        },
+        {
+          "kind": "item",
+          "id": "side-female-rose-skirt-v1",
+          "selection": {
+            "top": null,
+            "bottom": "side-female-rose-skirt-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "4e36602780decbd3c24df0dccd963e52c3a18613c81ada7c54dee929f0ce5b1e"
+        },
+        {
+          "kind": "preset",
+          "id": "original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "75c65e63981506081ad935ce26059ca71cd5755c168489353aea428d24499cde"
+        },
+        {
+          "kind": "preset",
+          "id": "daily",
+          "selection": {
+            "top": "side-female-cream-blouse-v1",
+            "bottom": "side-female-rose-skirt-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "93d14da0ae1a4f9e47968d3d5c4ce91377b0dd13e1492de4150f212bb298ae92"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "side-landing-candidate-male",
+      "sourceSha256": "704698872f3a4f621f3d4de53d3fa6a28ef930f6a390c63fb35982d95e51a430",
+      "registrationSha256": "980a5eae5d20fea6e94a6399a9500aabe763785f21f5d07ab26210110209a34a",
+      "results": [
+        {
+          "kind": "item",
+          "id": "landing-male-daily-top-v1",
+          "selection": {
+            "top": "landing-male-daily-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 109,
+          "rgbaSha256": "5799b504868955b97e25df95ff5ac77978512e268b215ddaf79705c3e9b0860c"
+        },
+        {
+          "kind": "item",
+          "id": "landing-male-daily-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "landing-male-daily-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 109,
+          "rgbaSha256": "e39387a2a0512ff728d3ebbec562d40adc0ba0079a5cc858565d47562636d2ff"
+        },
+        {
+          "kind": "item",
+          "id": "landing-male-wedding-top-v1",
+          "selection": {
+            "top": "landing-male-wedding-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 109,
+          "rgbaSha256": "5273a62ce956337171fdde2a2582a8a7a8bee9f013246e61f4a325033b8cbbd0"
+        },
+        {
+          "kind": "item",
+          "id": "landing-male-wedding-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "landing-male-wedding-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 109,
+          "rgbaSha256": "83060399ca0492a06c2d313b33fcf55055768f51bf3513d546a8815528ff1a5d"
+        },
+        {
+          "kind": "preset",
+          "id": "original",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "shoes": null,
+            "fullBody": null
+          },
+          "frames": 109,
+          "rgbaSha256": "08c2b7fb7eed6b0f3570bf7e9cafa2e78e8769eeee45cc99b0b6abe02da81b7b"
+        },
+        {
+          "kind": "preset",
+          "id": "daily",
+          "selection": {
+            "top": "landing-male-daily-top-v1",
+            "bottom": "landing-male-daily-bottom-v1",
+            "shoes": null,
+            "fullBody": null
+          },
+          "frames": 109,
+          "rgbaSha256": "1cc131ca150f89d93a59609c62707c817f9988b1786d13b056ab2938af8c9b06"
+        },
+        {
+          "kind": "preset",
+          "id": "wedding",
+          "selection": {
+            "top": "landing-male-wedding-top-v1",
+            "bottom": "landing-male-wedding-bottom-v1",
+            "shoes": null,
+            "fullBody": null
+          },
+          "frames": 109,
+          "rgbaSha256": "f4dfbd262aa019047d96635abc1aea0eeece41764a0dfcc516a50769932edcdc"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-cotton-day-male-original",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-male-original-sea-top-v1",
+          "selection": {
+            "top": "dual-male-original-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "37607d811dc8d771e2b8f66964ef8959eb78467b44347157c2f9ddb5be28f321"
+        },
+        {
+          "kind": "item",
+          "id": "dual-male-original-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "5f4f0426bf8949a0783cde61426e0570f2f4ce6efaf512d35e5507eb8d02202f"
+        },
+        {
+          "kind": "item",
+          "id": "dual-male-original-apricot-top-v1",
+          "selection": {
+            "top": "dual-male-original-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "e5d30e44f4f06dd5d38bd471dfa11b88b3d2286f4c355fc91de769b0fa221585"
+        },
+        {
+          "kind": "item",
+          "id": "dual-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "58ee1f12f91858526dd89e173100c26ae8f6da6fe9ed4929efec78c7690ce19f"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-sea",
+          "selection": {
+            "top": "dual-male-original-sea-top-v1",
+            "bottom": "dual-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "faee14f2368509cc971ab1bcdd582896184197fa2277668a8b008aac049d3c46"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-apricot",
+          "selection": {
+            "top": "dual-male-original-apricot-top-v1",
+            "bottom": "dual-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "387f96d2bc5acbc1a856773db3ae7a0020eb079db9d1f6590a33426b67b6302f"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-cotton-day-male-side",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-male-side-sea-top-v1",
+          "selection": {
+            "top": "dual-male-side-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "2458733b74407a8bbc6c0e9bea3348dc55dc3fdeae0b15886e53ba1cf42228a6"
+        },
+        {
+          "kind": "item",
+          "id": "dual-male-side-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "aa8e451be89276101004ae70ac990e80758b15c5a720015f5c1bdb111d593ac3"
+        },
+        {
+          "kind": "item",
+          "id": "dual-male-side-apricot-top-v1",
+          "selection": {
+            "top": "dual-male-side-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "0eaa140f1cf7b4ab70d51c69ed4163a22b15b9e0a18bb8bf01b7030cb995cc6a"
+        },
+        {
+          "kind": "item",
+          "id": "dual-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "0b1e1cccd65e2a0746ec43654973b825e2e5f2ac1182b61bebd2fc5882669656"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-sea",
+          "selection": {
+            "top": "dual-male-side-sea-top-v1",
+            "bottom": "dual-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "baf5c50e910db59b8ad0ed1801d82d120fcd9183e7a348309fcfa70ebc6e2fc7"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-apricot",
+          "selection": {
+            "top": "dual-male-side-apricot-top-v1",
+            "bottom": "dual-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "3b23bf4d2e60311a57f11a469fd70343cc5c0214f94ca39e323552b7fd2b8e2c"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-cotton-day-female-original",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-female-original-sea-top-v1",
+          "selection": {
+            "top": "dual-female-original-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "2fb32f5e1288f345ed1bf271459868489545edc3051acf178997e5ef6fc68082"
+        },
+        {
+          "kind": "item",
+          "id": "dual-female-original-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "962de99a43d789385a9e410e72421af5317707c9bbc0c3cf1b0352b561d9baca"
+        },
+        {
+          "kind": "item",
+          "id": "dual-female-original-apricot-top-v1",
+          "selection": {
+            "top": "dual-female-original-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "c17f4e23974392ae261ec19ccb11330cf3810ced2f65d2ec81a872a17bef29fc"
+        },
+        {
+          "kind": "item",
+          "id": "dual-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "91e673612da084857d25571e7ff6c0a036008cf375edcbe903146d649cfbe199"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-sea",
+          "selection": {
+            "top": "dual-female-original-sea-top-v1",
+            "bottom": "dual-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "11a85ce64da5a2fe8f31884f746dc90b0ad85f7cfe0afb7c0a7753d44ae91a9d"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-apricot",
+          "selection": {
+            "top": "dual-female-original-apricot-top-v1",
+            "bottom": "dual-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "cbf08c15e3287bdcff989c73806dc87615e8763b001ea7514b2d2229a4bb0385"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-cotton-day-female-side",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-female-side-sea-top-v1",
+          "selection": {
+            "top": "dual-female-side-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "c1b6b146f9ef31db66b70b854cf99f4b9d15e53c27890afb02f9bac75e6899a2"
+        },
+        {
+          "kind": "item",
+          "id": "dual-female-side-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "6623bfa65689ba6172fd89775cf60d7e44f866acbc0df71889881c18d89ba63f"
+        },
+        {
+          "kind": "item",
+          "id": "dual-female-side-apricot-top-v1",
+          "selection": {
+            "top": "dual-female-side-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "95735f0a7b833fece74c4fd5e8e873c40bc6e10d1ef80bb9c9f1a68922f04b54"
+        },
+        {
+          "kind": "item",
+          "id": "dual-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "fca93213e262da689630c6080eecaad383910b770f030e90c365fab99992576f"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-sea",
+          "selection": {
+            "top": "dual-female-side-sea-top-v1",
+            "bottom": "dual-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "c4eefe8b70e3c9659411ffc713b2f02709790b83e39cb1a631e6ed49ae309dc9"
+        },
+        {
+          "kind": "preset",
+          "id": "cotton-day-apricot",
+          "selection": {
+            "top": "dual-female-side-apricot-top-v1",
+            "bottom": "dual-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "aaf6637152256882571295a0f5c2ee2a8f0e8d3cb096a3717b7942668a005a08"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-tailored-day-male-original",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-original-sea-top-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "18fea5f7c8dc4c47ac6021b731077ab4a297e31066d5efc79aaf864a398f5ad9"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-original-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "43ca3207f54b73b9c83fd832e7a557c9f085702e094a0042e796ea327e04b26f"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-original-apricot-top-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "780ee4bcdd68c1c5f12aba5f12c92a44951579be274705f4674fa80a09904a3b"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "686f87501aec1794a8b60f938f97da97ad91aeab2d4771eecae31cb5aa8b225c"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-sea",
+          "selection": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "a60eeadc77dc33d8ef5f878501caa3bae0fe761cd3d4b2d394954fc4bbcd7272"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-apricot",
+          "selection": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "378b415939c910d00d5e8505aa048e8d401eb1aca023527a981472d85809b55b"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-tailored-day-male-side",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-side-sea-top-v1",
+          "selection": {
+            "top": "dual-tailored-male-side-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "77ccdcc0a80c90184db510bc72cf74250bef06bf4a35c898ebb58e9f518fb8f6"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-side-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "432d9a55e1ba4f3afba66cd50e640350e65d282bf8a69bc3226533922d7b5a14"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-side-apricot-top-v1",
+          "selection": {
+            "top": "dual-tailored-male-side-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "23432d3debc63814a2795ebe181c84b6451da6fcf8c662b176440d978078afb0"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "753afc91f1328cf466e75d9545446c3ebdc358474e44f03c56b75a95c41253d7"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-sea",
+          "selection": {
+            "top": "dual-tailored-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "d39b260148b788b4370f048e8a8f870ae71c04b793419259c23b0b3dca82cc84"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-apricot",
+          "selection": {
+            "top": "dual-tailored-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "f60da49a3f66e00e99ea77bb7d9022aa0e0b45649301652e86a3c78e12e7d0b6"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-tailored-day-female-original",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-original-sea-top-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "bc00b7fda29f49aa65291265ff3adb91c046e7f5be8cc5f9fe7c256626fcd6ad"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-original-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "89922b408793192ce907eb7884798a4b1bcae30dd8372752a14682d059317b56"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-original-apricot-top-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "cb3a7d9d63c9b1adb170fe28c4559ae06f97023aa11f4b7bb46dddde95ae652c"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "4f338a34962b127db4a5141317d12730b6870bd7addf499d0bb3e77f7f982d1f"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-sea",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "03035ab41ec049e776507db7418ad5f9d923b8c22f00c681a9c29520b81a8848"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-apricot",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "c5d154848e408a616f5d356c620b0419eb622345d7e537625b629d1769f39d08"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-tailored-day-female-side",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-side-sea-top-v1",
+          "selection": {
+            "top": "dual-tailored-female-side-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "aef6a306df6aa697947c99455641aed3fc8459b130c616a54a0cd0a01975654b"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-side-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "74b20490122bea9ad09e59031fea6750743cbcefc35992694e32ec258b066371"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-side-apricot-top-v1",
+          "selection": {
+            "top": "dual-tailored-female-side-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "45fb2dc990511b14daf0a8e3a9155b60be115b7ee7b8f8d7a04febf8c830d4be"
+        },
+        {
+          "kind": "item",
+          "id": "dual-tailored-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-tailored-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "0232fc5d7ca15bdc97cce79b2afe6e9163c13516a53c742c0b3964ea754bfede"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-sea",
+          "selection": {
+            "top": "dual-tailored-female-side-sea-top-v1",
+            "bottom": "dual-tailored-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "9b5c751bc1c930efbaa646431a788e323d57569e63b321e436fec8a3884d9ffd"
+        },
+        {
+          "kind": "preset",
+          "id": "tailored-day-apricot",
+          "selection": {
+            "top": "dual-tailored-female-side-apricot-top-v1",
+            "bottom": "dual-tailored-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "38771283846620b363cdfa74ec5258b762809b7247b1d22d358d81eb57521747"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-complete-day-female-original",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "results": [
+        {
+          "kind": "preset",
+          "id": "complete-day-sea",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "03035ab41ec049e776507db7418ad5f9d923b8c22f00c681a9c29520b81a8848"
+        },
+        {
+          "kind": "preset",
+          "id": "complete-day-apricot",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "c5d154848e408a616f5d356c620b0419eb622345d7e537625b629d1769f39d08"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-complete-day-female-side",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "results": [
+        {
+          "kind": "item",
+          "id": "dual-complete-female-side-sea-top-v1",
+          "selection": {
+            "top": "dual-complete-female-side-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "aef6a306df6aa697947c99455641aed3fc8459b130c616a54a0cd0a01975654b"
+        },
+        {
+          "kind": "item",
+          "id": "dual-complete-female-side-sea-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-complete-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "9f0f00e4e306d67223dbdb0095ac5a01f12e54993bf21f8e77c3488ae8a951d0"
+        },
+        {
+          "kind": "item",
+          "id": "dual-complete-female-side-apricot-top-v1",
+          "selection": {
+            "top": "dual-complete-female-side-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "45fb2dc990511b14daf0a8e3a9155b60be115b7ee7b8f8d7a04febf8c830d4be"
+        },
+        {
+          "kind": "item",
+          "id": "dual-complete-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": null,
+            "bottom": "dual-complete-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "21342983bc746436698fce68509b2ff030ad3b752ce20c4c854e0a468af838aa"
+        },
+        {
+          "kind": "preset",
+          "id": "complete-day-sea",
+          "selection": {
+            "top": "dual-complete-female-side-sea-top-v1",
+            "bottom": "dual-complete-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "8153a01179f8fb2ada05afc5bc1c8409fa4b092b970995208ebd0713c619b65f"
+        },
+        {
+          "kind": "preset",
+          "id": "complete-day-apricot",
+          "selection": {
+            "top": "dual-complete-female-side-apricot-top-v1",
+            "bottom": "dual-complete-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "68b29c2683661eeddb2ea870b26a7d480df1a5a7be7d4ca9c03198d6e577f9fe"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-polished-day-male-original",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d",
+      "results": [
+        {
+          "kind": "preset",
+          "id": "polished-day-sea",
+          "selection": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "a60eeadc77dc33d8ef5f878501caa3bae0fe761cd3d4b2d394954fc4bbcd7272"
+        },
+        {
+          "kind": "preset",
+          "id": "polished-day-apricot",
+          "selection": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 88,
+          "rgbaSha256": "378b415939c910d00d5e8505aa048e8d401eb1aca023527a981472d85809b55b"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-polished-day-male-side",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+      "results": [
+        {
+          "kind": "item",
+          "id": "polished-male-side-sea-top-v1",
+          "selection": {
+            "top": "polished-male-side-sea-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "3bec8292f8c83d938a02680ad4b567a9d1db19dd0fea29a88d5910b2fb0c51ad"
+        },
+        {
+          "kind": "item",
+          "id": "polished-male-side-apricot-top-v1",
+          "selection": {
+            "top": "polished-male-side-apricot-top-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "3f9257799ca31a9d05aa4a9b9ac0ce063147ba707a658eb79e82fb111ff0e151"
+        },
+        {
+          "kind": "preset",
+          "id": "polished-day-sea",
+          "selection": {
+            "top": "polished-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "c5c165582c484d93ba6328416f0b141dc4869c1e8067685eebc4652338eece14"
+        },
+        {
+          "kind": "preset",
+          "id": "polished-day-apricot",
+          "selection": {
+            "top": "polished-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 107,
+          "rgbaSha256": "625c711de0fd99ef43bcacef613a189afa52f1407ffc1f7690a41a63c4174579"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-polished-day-female-original",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "results": [
+        {
+          "kind": "preset",
+          "id": "polished-day-sea",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "03035ab41ec049e776507db7418ad5f9d923b8c22f00c681a9c29520b81a8848"
+        },
+        {
+          "kind": "preset",
+          "id": "polished-day-apricot",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 96,
+          "rgbaSha256": "c5d154848e408a616f5d356c620b0419eb622345d7e537625b629d1769f39d08"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    },
+    {
+      "id": "dual-polished-day-female-side",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "results": [
+        {
+          "kind": "item",
+          "id": "polished-female-side-sea-top-bound-v1",
+          "selection": {
+            "top": "polished-female-side-sea-top-bound-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "29d84111141e852b91f46df79648107c73157f6b5cfd2e5a89a0a602aae52d67"
+        },
+        {
+          "kind": "item",
+          "id": "polished-female-side-sea-bottom-bound-v1",
+          "selection": {
+            "top": null,
+            "bottom": "polished-female-side-sea-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "9f0f00e4e306d67223dbdb0095ac5a01f12e54993bf21f8e77c3488ae8a951d0"
+        },
+        {
+          "kind": "item",
+          "id": "polished-female-side-apricot-top-bound-v1",
+          "selection": {
+            "top": "polished-female-side-apricot-top-bound-v1",
+            "bottom": null,
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "c2c92f3609cadd97116361984870920501f918c6ef8b2fb46c8c5ed818d49555"
+        },
+        {
+          "kind": "item",
+          "id": "polished-female-side-apricot-bottom-bound-v1",
+          "selection": {
+            "top": null,
+            "bottom": "polished-female-side-apricot-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "21342983bc746436698fce68509b2ff030ad3b752ce20c4c854e0a468af838aa"
+        },
+        {
+          "kind": "preset",
+          "id": "polished-day-sea",
+          "selection": {
+            "top": "polished-female-side-sea-top-bound-v1",
+            "bottom": "polished-female-side-sea-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "f259ea0ad757ae0e5cf8e03ddcac49d6dee6d641eafd274f7a8fee7cff3e9d12"
+        },
+        {
+          "kind": "preset",
+          "id": "polished-day-apricot",
+          "selection": {
+            "top": "polished-female-side-apricot-top-bound-v1",
+            "bottom": "polished-female-side-apricot-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "frames": 102,
+          "rgbaSha256": "18a1cf3650f4b67e0932fd5c2de6d4e366c62741785325778b5c5d4fe485ea6d"
+        }
+      ],
+      "savedProjectReopenedWithExactEmbeddedAssets": true,
+      "reopenedEndpointFramesExact": true
+    }
+  ],
+  "inventorySnapshot": "runtime-inventory.json"
+}

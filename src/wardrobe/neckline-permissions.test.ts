@@ -46,6 +46,10 @@ const garmentFiles = unzipSync(
 const original = JSON.parse(
   new TextDecoder().decode(garmentFiles["manifest.json"]),
 ) as WardrobeGarmentManifest;
+// Exercise legacy semantics even if the built-in exemplar receives a later repair.
+original.version = 1;
+delete original.handProtectionReviews;
+delete original.necklinePermissionProfile;
 const candidate = (): WardrobeGarmentManifest => ({
   ...structuredClone(original),
   version: 3,

@@ -100,6 +100,12 @@ Open `/workbench.html?character=male&mode=side-view&collection=landing-candidate
 This remains experimental and does not replace the default male V7 or female V6.
 [Actual GIF exports, artwork provenance and remaining slide](docs/kling-landing-recovery/README.md).
 
+The [wardrobe coverage review](docs/wardrobe-coverage/README.md) checks every
+currently selectable garment bank in both views, including older selectable
+styles. It repairs reviewed source-shirt/shorts remnants and incorrect sleeve
+cutoffs without changing the source characters or action timing. Pixel and
+format checks are reported separately from the visual before/after review.
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

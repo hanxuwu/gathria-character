@@ -1,0 +1,127 @@
+{
+  "format": "gathria-original-male-coverage-audit",
+  "version": 1,
+  "scope": {
+    "uniqueGarmentBanks": 36,
+    "nativeFrames": 88,
+    "garmentFramePairs": 3168,
+    "originalCatalogPresets": 23,
+    "preRepairRuntimeScenarios": 59,
+    "preRepairRuntimeFrames": 5192,
+    "repairedTopBanks": 27,
+    "postRepairRuntimeFrames": 2376,
+    "nativeSize": [
+      704,
+      1056
+    ],
+    "actions": [
+      "idle",
+      "walk",
+      "run",
+      "jump",
+      "celebrate"
+    ]
+  },
+  "coverageChecks": {
+    "uncoveredUnprotectedOpaqueErodedClothCorePixels": 0,
+    "ownedOpaqueClothCoreClearedPixels": 0,
+    "handProtectedClothOverlapWasInspectedSeparately": true,
+    "longSuitSleeves": [
+      "navy-suit-jacket-v2",
+      "navy-suit-jacket-v3",
+      "navy-suit-jacket-v4",
+      "navy-suit-jacket-v5",
+      "navy-suit-jacket-v6"
+    ],
+    "suitSleeveUncoveredOpaqueErodedCorePixels": 0
+  },
+  "rankedFindings": [
+    {
+      "severity": "minor",
+      "status": "confirmed-and-repaired",
+      "region": "gray original undershirt just outside near-fist boundary",
+      "frameIds": [
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "affectedTopBanks": 27,
+      "reviewedClothPixelsPerTop": [
+        38,
+        55,
+        35,
+        106,
+        71
+      ],
+      "changedClothPixelsPerTop": 305,
+      "totalReviewedBankPixels": 8235,
+      "nativeProof": "near-fist-source-before-after-1x.png"
+    },
+    {
+      "severity": "diagnostic-only",
+      "status": "false-positive-native-reviewed",
+      "region": "original white shoe and dark sole outline, mislabeled by visible-leg semantic mask",
+      "frameIds": [
+        51,
+        61,
+        62,
+        108
+      ],
+      "largestFlaggedComponentPixels": 150,
+      "affectedItems": [
+        "ochre-chinos-v1",
+        "navy-suit-trousers-v1",
+        "dual-tailored-male-original-sea-bottom-v1",
+        "dual-tailored-male-original-apricot-bottom-v1"
+      ],
+      "decision": "Do not cover shoe outlines with trousers. Flags are retained and classified, not reported as zero."
+    },
+    {
+      "severity": "diagnostic-only",
+      "status": "intentional-exposed-skin",
+      "items": [
+        "terracotta-overshirt-v1",
+        "cocoa-cardigan-v1"
+      ],
+      "region": "forearms beneath authored short sleeves",
+      "decision": "Not a coverage defect; preserve source forearms."
+    },
+    {
+      "severity": "minor",
+      "status": "unresolved-source-quality",
+      "frameIds": [
+        57,
+        58,
+        59,
+        60
+      ],
+      "region": "muted green/gray source fringe at partly occluded far arm and video-soft contour",
+      "decision": "Source-existing pixels, not newly introduced body exposure. Not recolored in this coverage repair. Could merit separate source-alpha review."
+    }
+  ],
+  "visualReview": {
+    "sampledHardPoses": [
+      0,
+      57,
+      64,
+      87,
+      105,
+      110
+    ],
+    "allFlaggedNearFistPosesReviewedAtNativeScale": true,
+    "nativePixelCrops": [
+      "near-fist-source-before-after-1x.png",
+      "shoe-fringe-61.png",
+      "shoe-fringe-62.png"
+    ],
+    "limitation": "All native frames were scanned mechanically and rendered. Visual review used difficult-pose contact boards and flagged native crops; it is not frame-by-frame art approval of every outfit and every possible mix."
+  },
+  "motionProof": {
+    "sourceJumpFrames": 39,
+    "sourceFps": 24,
+    "sourceLoop": false,
+    "gifPlayback": "The complete single-jump clip repeats only for review; GIF centisecond rounding gives 1620 ms vs source1625 ms. Frame sequence is unchanged. Left view mirrors the exact composed right view, matching the supported sprite facing."
+  }
+}

@@ -8,6 +8,10 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { strToU8, unzipSync, zipSync } from "fflate";
+import {
+  COVERAGE_REVIEW_BASELINE,
+  readCoverageBaseline,
+} from "./coverage-review-baseline.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
@@ -16,7 +20,26 @@ const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const parse = (bytes) => JSON.parse(Buffer.from(bytes).toString("utf8"));
 const encoded = (value) => JSON.stringify(value, null, 2) + "\n";
 const local = (path) => resolve(root, path.replace(/^\//, ""));
-const read = (path) => readFile(local(path));
+const readCurrent = (path) => readFile(local(path));
+// This assembler documents the earlier seam/hair review. Its immutable audit
+// still has to reproduce that edition exactly. Coverage is a later, separate
+// layer; re-running historical publication must never overwrite current art.
+assert(
+  check,
+  "The paired-polish edition is frozen. Use --check to verify its historical proof plus the current coverage layer; do not republish old assets.",
+);
+const historicalCatalogs = new Set([
+  "docs/dual-tailored/assets/catalog.json",
+  "docs/dual-looks-cloth/assets/catalog.json",
+  "docs/paired-polish/assets/catalog.json",
+]);
+const historicalClothing = (path) =>
+  path.endsWith(".garment.zip") ||
+  historicalCatalogs.has(path.replace(/^\//, ""));
+const read = (path) =>
+  historicalClothing(path)
+    ? Promise.resolve(readCoverageBaseline(path, root))
+    : readCurrent(path);
 async function save(path, bytes) {
   if (check) assert.deepEqual(await read(path), Buffer.from(bytes), path);
   else {
@@ -81,6 +104,17 @@ for style,ns in zip(a['styles'],b['styles']):
 assert len(changed)==4 and {r['role'] for r in changed}=={'hair-front','hair-back'}
 print(json.dumps({'exactDecodedCrops':exact,'releasedMaskPixels':int(allowed.sum()),'changes':changed,'allFaceEntriesExact':True,'allOtherHairFramesExact':True,'appearancePosesExact':True}))
 `;
+// Historical receipts are immutable evidence, not versioned current outputs.
+for (const path of [
+  "artwork/paired-polish/clothing/audit.json",
+  "artwork/paired-polish/catalog-binding-proof.json",
+  "docs/matched-hair/assets/catalog.json",
+])
+  assert.deepEqual(
+    await readCurrent(path),
+    readCoverageBaseline(path, root),
+    `Historical review receipt changed: ${path}`,
+  );
 const tailored = parse(await read("docs/dual-tailored/assets/catalog.json"));
 const complete = parse(await read("docs/dual-looks-cloth/assets/catalog.json"));
 const headBaseline = parse(await read("docs/matched-hair/assets/catalog.json"));
@@ -342,4 +376,104 @@ await save(
 );
 console.log(
   `${check ? "Verified" : "Assembled"} polished-day: four native views; ${bindings.length} exact-image offline bindings.`,
+);
+
+// Current delivery is checked independently: only reviewed garment SHA/byte
+// fields may differ from the historical catalogs. Source, registration, IDs,
+// native dimensions/frame coverage, and every other catalog field stay exact.
+const coverageRows = [
+  ...parse(
+    await readCurrent("docs/wardrobe-coverage/side/repair-report.json"),
+  ).items.map((r) => ({
+    path: r.path,
+    before: r.baselineSha256,
+    after: r.sha256,
+    bytes: r.bytes,
+  })),
+  ...parse(
+    await readCurrent(
+      "docs/kling-coverage/review/original-male/repair-report.json",
+    ),
+  ).items.map((r) => ({
+    path: r.url.replace(/^\//, ""),
+    before: r.beforeSha256,
+    after: r.sha256,
+    bytes: r.bytes,
+  })),
+  ...parse(
+    await readCurrent(
+      "docs/wardrobe-coverage/original-female/repair-report.json",
+    ),
+  ).map((r) => ({
+    path: r.url.replace(/^\//, ""),
+    before: r.beforeSha256,
+    after: r.afterSha256,
+  })),
+];
+const coverage = new Map();
+for (const row of coverageRows) {
+  assert(!coverage.has(row.path), `Duplicate coverage review: ${row.path}`);
+  coverage.set(row.path, row);
+}
+const currentPaths = new Set();
+for (const path of historicalCatalogs) {
+  const historical = parse(readCoverageBaseline(path, root));
+  const expected = structuredClone(historical);
+  for (const row of expected.representations) {
+    const sourceBytes = await readCurrent(row.sourceUrl),
+      regBytes = await readCurrent(row.registrationUrl);
+    assert.equal(sha(sourceBytes), row.sourceSha256, row.sourceUrl);
+    assert.equal(sha(regBytes), row.registrationSha256, row.registrationUrl);
+    for (const item of row.items) {
+      const key = item.url.replace(/^\//, ""),
+        review = coverage.get(key);
+      const bytes = await readCurrent(item.url);
+      if (review) {
+        assert.equal(
+          item.sha256,
+          review.before,
+          `Coverage baseline mismatch: ${key}`,
+        );
+        assert.equal(
+          sha(bytes),
+          review.after,
+          `Coverage output mismatch: ${key}`,
+        );
+        if (review.bytes !== undefined)
+          assert.equal(bytes.length, review.bytes, key);
+        item.sha256 = review.after;
+        item.bytes = bytes.length;
+        currentPaths.add(key);
+      } else {
+        assert.equal(
+          sha(bytes),
+          item.sha256,
+          `Unreviewed garment changed: ${key}`,
+        );
+        assert.equal(bytes.length, item.bytes, key);
+      }
+      const bank = manifest(bytes);
+      assert.equal(bank.id, item.id, key);
+      assert.equal(bank.slot, item.slot, key);
+      assert.equal(bank.sourceSha256, row.sourceSha256, key);
+      assert.equal(bank.registrationSha256, row.registrationSha256, key);
+      assert.equal(bank.characterId, row.characterId, key);
+      assert.equal(bank.frameWidth, row.frameWidth, key);
+      assert.equal(bank.frameHeight, row.frameHeight, key);
+      assert.equal(bank.frames.length, row.frameCount, key);
+    }
+  }
+  assert.deepEqual(
+    parse(await readCurrent(path)),
+    expected,
+    `Current catalog changed outside reviewed SHA/bytes: ${path}`,
+  );
+}
+execFileSync("python", ["scripts/verify-paired-coverage-layers.py"], {
+  cwd: root,
+  stdio: "inherit",
+  maxBuffer: 1024 * 1024,
+});
+console.log(
+  `Verified current coverage layer: ${currentPaths.size} reviewed catalog garments over permanent main ${COVERAGE_REVIEW_BASELINE}. Historical artwork audits remain unchanged.`,
 );
