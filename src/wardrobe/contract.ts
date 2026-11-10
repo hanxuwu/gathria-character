@@ -5,6 +5,12 @@ import {
 } from "../appearance/contract";
 import type { PortableCharacterPackArchive } from "../core/pack";
 import type { Facing, PortableAnimationName } from "../core/types";
+import { resolveGameplayMotion } from "../core/gameplay-motion";
+import {
+  createSidePlaybackCheckpoint,
+  restoreSidePlaybackCheckpoint,
+  type SidePlaybackCheckpoint,
+} from "../side-view/gameplay";
 import { assertHandReviewSubset } from "./protection";
 import { assertNecklinePermissionProfile } from "./neckline-permissions";
 
@@ -55,7 +61,8 @@ export interface RegisteredFrame {
   protected: ProtectedRegion[];
 }
 /** Explicit garment-authoring correction, not a change to the source or anchors.
- * V2 may shrink a reviewed hand region for a long sleeve, never the head. */
+ * V2 may shrink a reviewed hand region where it incorrectly protects a sleeve,
+ * trouser or skirt surface. The actual hand stays protected; never the head. */
 export interface HandProtectionReview {
   frameId: number;
   label: "nearHand" | "farHand";
@@ -128,7 +135,12 @@ interface WardrobeDocumentBase {
   items: Array<{ id: string; sha256: string }>;
   /** fullBody is mutually exclusive with top and bottom. */
   selection: WardrobeSelection;
-  preview: { action: PortableAnimationName; facing: Facing };
+  preview: {
+    action: PortableAnimationName;
+    facing: Facing;
+    /** Exact source-bound controller clock for resuming an inspected seam. */
+    playback?: SidePlaybackCheckpoint;
+  };
 }
 /** V1 remains the original clothing-only document. Loading a head bank explicitly upgrades to V2. */
 export type WardrobeDocument =
@@ -539,16 +551,27 @@ export function validateWardrobeGarmentManifest(
     data.version === 2 ||
     (data.version === 3 && data.handProtectionReviews !== undefined)
   ) {
-    if (data.slot !== "top" && data.slot !== "fullBody")
+    if (
+      data.slot !== "top" &&
+      data.slot !== "bottom" &&
+      data.slot !== "fullBody"
+    )
       fail(
-        "Only sleeved tops or full-body clothing may review hand protection.",
+        "Only tops, bottoms or full-body clothing may review hand protection.",
       );
     const reviewed = new Set<string>();
     handProtectionReviews = array(
       data.handProtectionReviews,
       "Hand protection reviews",
       1,
-      32,
+      // Each entry must identify a distinct registered hand below. The actual
+      // source bounds this list, including long clips that exceed 32 poses.
+      registration.frames.reduce(
+        (count, frame) =>
+          count +
+          frame.protected.filter((region) => region.label !== "head").length,
+        0,
+      ),
     ).map((raw) => {
       const review = wardrobeObject(raw, "Hand protection review", [
         "frameId",
@@ -682,7 +705,11 @@ export function validateWardrobeDocument(
     fail(
       "A full-body outfit cannot be combined with a separate top or bottom.",
     );
-  const preview = wardrobeObject(data.preview, "Preview", ["action", "facing"]);
+  const preview = wardrobeObject(data.preview, "Preview", [
+    "action",
+    "facing",
+    "playback",
+  ]);
   if (
     !["idle", "walk", "run", "jump", "celebrate"].includes(
       preview.action as string,
@@ -694,6 +721,27 @@ export function validateWardrobeDocument(
     fail("Preview action is unavailable in the source pack.");
   if (preview.facing !== "right" && preview.facing !== "left")
     fail("Preview facing must be right or left.");
+  let playback: SidePlaybackCheckpoint | undefined;
+  if (Object.hasOwn(preview, "playback")) {
+    const profile = resolveGameplayMotion(
+      project.archive.manifest,
+      sourceSha256,
+      project.archive.config,
+    );
+    const state = profile
+      ? restoreSidePlaybackCheckpoint(preview.playback, profile)
+      : null;
+    if (
+      !profile ||
+      !state ||
+      state.action !== preview.action ||
+      state.facing !== preview.facing
+    )
+      fail(
+        "Preview playback checkpoint does not match its source and preview.",
+      );
+    playback = createSidePlaybackCheckpoint(state, profile);
+  }
   const document: WardrobeDocument = {
     format: "gathria-wardrobe-project",
     version: 1,
@@ -704,6 +752,7 @@ export function validateWardrobeDocument(
     preview: {
       action: preview.action as PortableAnimationName,
       facing: preview.facing,
+      ...(playback ? { playback } : {}),
     },
   };
   return appearance ? { ...document, version: 2, appearance } : document;

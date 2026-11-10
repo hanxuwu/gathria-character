@@ -297,6 +297,7 @@ function assertProject(
         resolveGameplayMotion(
           project.archive.manifest,
           project.document.sourceSha256,
+          project.archive.config,
         ))
       : null;
   if (settings.motionMode === "single-jump" && !profile)
@@ -309,7 +310,11 @@ function assertProject(
   )
     throw Error(`${view} transition profile does not match its source.`);
   const manifest = profile
-    ? gameplayManifest(project.archive.manifest, profile)
+    ? gameplayManifest(
+        project.archive.manifest,
+        profile,
+        project.archive.config,
+      )
     : project.archive.manifest;
   const clip = manifest.animations[preview.action];
   if (!clip || preview.position >= clip.frames.length)

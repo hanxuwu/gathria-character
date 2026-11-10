@@ -1,4 +1,5 @@
 import { mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { expect, test, type Page } from "@playwright/test";
 import { unzipSync } from "fflate";
 import { decodeSourceRgbaPng } from "../../src/core/baked-source";
@@ -114,7 +115,34 @@ for (const character of ["male", "female"] as const) {
       expect(document.selection).toEqual({ ...outfit, top: null });
       expect(document.appearance.hairId).toBe(hairIds[0]);
       expect(document.appearance.hairColor).toBe("espresso");
-      expect(document.preview).toEqual({ action: "run", facing: "left" });
+      expect(document.preview).toMatchObject({
+        action: "run",
+        facing: "left",
+        playback: {
+          format: "gathria-side-playback-checkpoint",
+          version: 1,
+          sourceSha256: createHash("sha256")
+            .update(entries["source.character.zip"])
+            .digest("hex"),
+          profileId:
+            character === "male"
+              ? "kling-male-side-single-jump-v7"
+              : "kling-female-side-single-jump-v6",
+          state: {
+            action: "run",
+            facing: "left",
+            paused: true,
+            pending: null,
+            returnAction: "run",
+            jumpFrom: null,
+            worldX: 0,
+          },
+        },
+      });
+      expect(document.preview.playback.sourceSha256).toBe(
+        document.sourceSha256,
+      );
+      expect(document.preview.playback.state.elapsedMs).toBeGreaterThan(0);
       expect(entries["source.character.zip"].length).toBeGreaterThan(1_000_000);
       expect(entries["appearance.zip"].length).toBeGreaterThan(0);
       const registration = JSON.parse(
@@ -134,7 +162,12 @@ for (const character of ["male", "female"] as const) {
       await expect(side(page).getByTestId("side-hair-color")).toHaveValue(
         "espresso",
       );
-      await pose(page, "run", 4, "left");
+      // Check the imported checkpoint before touching any playback controls:
+      // resetting the pose here would hide a failed frame/clock restoration.
+      await expect(stage(page)).toHaveAttribute("data-action", "run");
+      await expect(stage(page)).toHaveAttribute("data-facing", "left");
+      await expect(stage(page)).toHaveAttribute("data-paused", "true");
+      await expect(stage(page)).toHaveAttribute("data-frame-position", "4");
       expect(await download(page, "side-export-png")).toEqual(mixed);
       await side(page)
         .getByTestId("side-project-input")

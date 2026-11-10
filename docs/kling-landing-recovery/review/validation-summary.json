@@ -1,0 +1,108 @@
+{
+  "format": "gathria-landing-recovery-validation-summary",
+  "version": 1,
+  "candidateEdition": 4,
+  "sourceSha256": "704698872f3a4f621f3d4de53d3fa6a28ef930f6a390c63fb35982d95e51a430",
+  "registrationSha256": "980a5eae5d20fea6e94a6399a9500aabe763785f21f5d07ab26210110209a34a",
+  "profileId": "kling-male-side-landing-candidate-v4",
+  "technical": {
+    "unitTests": {
+      "passed": 773,
+      "files": 75,
+      "command": "npm test"
+    },
+    "typecheckAndProductionBuild": {
+      "passed": true,
+      "command": "npm run build (tsc -b && vite build)"
+    },
+    "targetedBrowserTests": {
+      "passed": 5,
+      "files": [
+        "landing-candidate.spec.ts",
+        "single-jump-side.spec.ts",
+        "side-busy-release.spec.ts"
+      ],
+      "workers": 1
+    },
+    "actualCompositions": {
+      "variants": 12,
+      "framesPerVariant": 109,
+      "projectRoundtripExact": true,
+      "evidence": "../checks/runtime-contract.json"
+    },
+    "publishedAssetIntegrity": {
+      "passed": true,
+      "errors": 0,
+      "evidence": "../checks/v3-v4-integrity.json"
+    },
+    "auditNegativeProbes": {
+      "rejected": 10,
+      "evidence": "../checks/negative-probes.json"
+    },
+    "deterministicAssetRebuild": {
+      "passed": true,
+      "command": "python scripts/build-landing-production-assets.py --input artwork/kling-landing-production/body/inputs.json --check"
+    },
+    "actualWorkbench": {
+      "completeLooks": 3,
+      "facingsPerLook": 2,
+      "pngs107108": 12,
+      "paused107SaveReopens": 3,
+      "mixedPaused108SaveReopens": 2,
+      "fullGifFrames": 77,
+      "fullGifDurationMs": 3210,
+      "evidence": [
+        "actual-workbench-review.json",
+        "actual-mixed-review.json",
+        "presentation-receipt.json"
+      ]
+    },
+    "independentCharacterPacks": {
+      "passed": 3,
+      "allReexportByteExact": true,
+      "evidence": "standalone-player-review.json"
+    },
+    "oldV3ActualProject": {
+      "sourceSha256": "0353ca3bb4c333fbab9a2f089ade15b777ed75a45e90a28bf62a8fef34221326",
+      "frames107108Exact": true,
+      "oldRoute": [
+        88,
+        107,
+        108
+      ],
+      "currentAssetRequests": 0,
+      "oldPackReexportSha256": "8a24368790de52c425f409e47907ec6d6289d2cca69421188f8cf9fe172be83b",
+      "priorPublishedV3PackMatches": true,
+      "evidence": "v3-backward-compatibility.json"
+    },
+    "historicalProfilesUnchanged": true,
+    "hostedCI": "Check GitHub for the final pushed commit; local checks do not imply hosted CI completion"
+  },
+  "visual": {
+    "status": "experimental candidate; final user acceptance pending",
+    "headRiseBeforeAfter": [
+      22,
+      13
+    ],
+    "farToeWorldDriftBeforeAfter": [
+      47.66666666666697,
+      18.500000000000227
+    ],
+    "measurementAlphaThreshold": 128,
+    "speed": 700,
+    "fps": 24,
+    "limits": [
+      "Residual foot slide remains; shoe silhouette is not an exact physical contact point",
+      "Source85/48 head-angle and shading differences remain",
+      "Authored107 crouch has a fuller thigh silhouette",
+      "Wedding waistcoat diagonal stretch, hard trouser folds and rough cuff contours remain"
+    ],
+    "evidence": [
+      "visual-review.md",
+      "contact-measurements.json",
+      "fixed-ground-review.json"
+    ]
+  },
+  "defaultMaleV7AndFemaleV6Unchanged": true,
+  "mergePerformed": false
+}

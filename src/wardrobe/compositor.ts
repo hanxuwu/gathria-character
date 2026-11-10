@@ -1,5 +1,6 @@
 import { strToU8, zipSync } from "fflate";
 import { createCooperativeYield } from "../core/cooperative-yield";
+import { sha256 } from "../core/sha256";
 import {
   gameplayManifest,
   gameplayMotionMetadata,
@@ -54,7 +55,7 @@ import {
   type ProtectionRows,
 } from "./protection";
 import { decodedGarmentPage, type DecodedGarmentPage } from "./garment-pages";
-import { FEMALE_NECKLINE_PERMISSION_SHA256 } from "./neckline-permissions";
+import { necklinePermissionProfileSha256 } from "./neckline-permissions";
 import { SourcePageCache } from "./source-page-cache";
 
 const MAX_TEXT_BYTES = 256 * 1024;
@@ -110,6 +111,7 @@ class RegisteredWardrobeCompositor {
   private readonly project: WardrobeProject;
   readonly manifest: BakedCharacterPackManifest;
   readonly sourceManifest: BakedCharacterPackManifest;
+  readonly sourceCharacterId: string;
   readonly padding: Readonly<AppearancePadding>;
   private readonly headAppearance?: AppearanceRenderer;
   private readonly frames: Map<number, SpriteFrame>;
@@ -123,6 +125,7 @@ class RegisteredWardrobeCompositor {
   constructor(project: WardrobeProject) {
     this.project = project;
     this.sourceManifest = project.archive.manifest;
+    this.sourceCharacterId = project.archive.config.characterId;
     const headSelection =
       project.document.version === 2 ? project.document.appearance : undefined;
     if (appearanceIsActive(headSelection)) {
@@ -552,16 +555,16 @@ export interface WardrobeExportOptions {
   }) => void;
 }
 
-function exportMetadata(
+async function exportMetadata(
   project: WardrobeProject,
   name?: string,
   outputManifest: BakedCharacterPackManifest = project.archive.manifest,
   gameplayMotion?: GameplayMotion,
-): {
+): Promise<{
   manifest: BakedCharacterPackManifest;
   config: BakedCharacterRecipe;
   selected: WardrobeGarment[];
-} {
+}> {
   const selected = WARDROBE_COMPOSITION_ORDER.flatMap((slot) => {
     const id = project.document.selection[slot];
     return id ? [project.items.find((item) => item.manifest.id === id)!] : [];
@@ -574,7 +577,11 @@ function exportMetadata(
   const manifest = validatePortableManifest({
     ...structuredClone(
       gameplayMotion
-        ? gameplayManifest(outputManifest, gameplayMotion)
+        ? gameplayManifest(
+            outputManifest,
+            gameplayMotion,
+            project.archive.config,
+          )
         : outputManifest,
     ),
     name: exportName,
@@ -585,8 +592,10 @@ function exportMetadata(
   const originalNote = hasAppearance
     ? "Wardrobe and appearance: registered garment patches replace only clothing ownership. Per-pose hair uses transparent source-over/front and destination-over/back layers; face replacement is restricted to the authored inner-face ownership and retains source alpha. Source hands and the dressed body remain protected. Declared transparent padding translates every source pixel and the anchor by the same integer offset without scaling; atlas rectangles are repacked. Frame IDs, action order, FPS, loop flags and source-frame/time mapping are unchanged. This is baked playback, with editable assets retained separately in the wardrobe project."
     : "Wardrobe V1: registered per-frame garment RGBA patches replace only their declared ownership pixels. Body pixels outside garment ownership are retained exactly from the source CharacterPack. Garment silhouettes are authored derivatives, not clothing extracted from the Kling source video. Head/hand protection is checked in every composed frame. Original frame rectangles, action frame order, FPS, loop flags, source-frame/time mapping and anchor are unchanged. The output is baked playback; editable wardrobe data belongs in the separate self-contained wardrobe project.";
-  const handNote = selected.some((item) => item.manifest.version === 2)
-    ? `${originalNote} Selected V2 garment hand-boundary reviews explicitly reassign proximal forearm pixels to sleeves while retaining the reviewed distal hand; details are recorded per item below.`
+  const handNote = selected.some(
+    (item) => item.manifest.handProtectionReviews?.length,
+  )
+    ? `${originalNote} Selected garment hand-boundary reviews permit clothing only in the reviewed part of an oversized hand region while retaining the actual hand. These item-scoped boundaries can cover a sleeve, trousers or a skirt; details are recorded per item below. Shared source registration and other garments keep their original protection.`
     : originalNote;
   const clothingNote = selected.some((item) => item.manifest.version === 3)
     ? `${handNote} Selected V3 garments explicitly opt into a shipped source-bound neckline cloth permission profile. Only reviewed cloth pixels accidentally enclosed by the original head polygon may be replaced; all remaining head pixels and applicable hand protection stay intact. Profile IDs and any item-scoped hand reviews are recorded below. Shared source registration and appearance protection remain unchanged.`
@@ -594,38 +603,65 @@ function exportMetadata(
   const note = gameplayMotion
     ? `${clothingNote.replace(/Frame IDs, action order, FPS, loop flags and source-frame\/time mapping are unchanged\./, "Frame pixels, frame IDs, native FPS and source-frame/time mapping are unchanged.").replace(/Original frame rectangles, action frame order, FPS, loop flags, source-frame\/time mapping and anchor are unchanged\./, "Original frame rectangles, frame pixels, native FPS, source-frame/time mapping and anchor are unchanged.")} Gameplay profile ${gameplayMotion.id}: the basic jump uses one reviewed complete native takeoff/landing sequence. The complete original source archive remains unchanged in the editable project. Action frame selection and transitions follow sourceMetadata.gameplayMotion; no interpolated, blended or re-centered frame artwork is introduced.`
     : clothingNote;
+  // The editable project retains every exact garment manifest. A baked player
+  // does not need polygon coordinates, and copying two long reviewed clips
+  // into sourceMetadata can exceed its strict 10,000-node/64 KiB budget.
+  const reviewSummaries = await Promise.all(
+    selected.map(async (item) => {
+      const reviews = item.manifest.handProtectionReviews;
+      if (!reviews?.length) return undefined;
+      const canonical = {
+        format: "gathria-hand-protection-reviews",
+        version: 1,
+        reviews: [...reviews]
+          .sort(
+            (a, b) =>
+              a.frameId - b.frameId ||
+              (a.label < b.label ? -1 : a.label > b.label ? 1 : 0),
+          )
+          .map((review) => ({
+            frameId: review.frameId,
+            label: review.label,
+            polygon: review.polygon.map(({ x, y }) => ({ x, y })),
+            reason: review.reason,
+          })),
+      };
+      return {
+        count: reviews.length,
+        sha256: await sha256(strToU8(JSON.stringify(canonical))),
+        encoding: "gathria-hand-protection-reviews-v1",
+        details:
+          "Full reviews remain in the editable wardrobe project's original garment manifest.json.",
+      };
+    }),
+  );
   const wardrobeMetadata: { [key: string]: JsonValue } = {
     format: "gathria-baked-wardrobe",
     version: 1,
     sourcePackSha256: project.document.sourceSha256,
     registrationSha256: project.document.registrationSha256,
     selection: { ...project.document.selection },
-    items: selected.map((item) => ({
+    items: selected.map((item, index) => ({
       id: item.manifest.id,
       sha256: item.sha256,
       slot: item.manifest.slot,
       name: item.manifest.name,
       provenance: item.manifest.provenance,
+      ...(reviewSummaries[index]
+        ? { handProtectionReviewSummary: reviewSummaries[index] }
+        : {}),
       ...(item.manifest.version === 2
         ? {
             garmentVersion: 2,
-            handProtectionReviews: JSON.parse(
-              JSON.stringify(item.manifest.handProtectionReviews),
-            ),
           }
         : {}),
       ...(item.manifest.version === 3
         ? {
             garmentVersion: 3,
             necklinePermissionProfile: item.manifest.necklinePermissionProfile!,
-            necklinePermissionProfileSha256: FEMALE_NECKLINE_PERMISSION_SHA256,
-            ...(item.manifest.handProtectionReviews
-              ? {
-                  handProtectionReviews: JSON.parse(
-                    JSON.stringify(item.manifest.handProtectionReviews),
-                  ),
-                }
-              : {}),
+            necklinePermissionProfileSha256: necklinePermissionProfileSha256(
+              item.manifest.necklinePermissionProfile!,
+            ),
           }
         : {}),
     })),
@@ -685,6 +721,7 @@ export async function exportWardrobeCharacterPack(
     const expected = resolveGameplayMotion(
       verified.archive.manifest,
       verified.document.sourceSha256,
+      verified.archive.config,
     );
     if (
       !expected ||
@@ -695,7 +732,11 @@ export async function exportWardrobeCharacterPack(
       );
     // The core validates all clip and route fields against its exact reviewed
     // declaration, independent of property order in imported JSON.
-    gameplayManifest(verified.archive.manifest, gameplayMotion);
+    gameplayManifest(
+      verified.archive.manifest,
+      gameplayMotion,
+      verified.archive.config,
+    );
   }
   const selected = Object.values(verified.document.selection).some(
     (id) => id !== null,
@@ -711,7 +752,7 @@ export async function exportWardrobeCharacterPack(
   )
     return new Uint8Array(verified.source);
   const compositor = new RegisteredWardrobeCompositor(verified);
-  const { manifest, config } = exportMetadata(
+  const { manifest, config } = await exportMetadata(
     verified,
     options.name,
     compositor.manifest,

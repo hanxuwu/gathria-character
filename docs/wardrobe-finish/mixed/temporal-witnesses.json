@@ -1,0 +1,456 @@
+{
+  "format": "gathria-wardrobe-temporal-witnesses",
+  "version": 1,
+  "selection": "For each character/view: highest-risk actual gameplay pair, then highest-risk distinct remaining pair including retained native source clips. Duplicate palettes of the same frame pair do not consume both slots.",
+  "temporalReportSha256": "c3aa3e709a44cc5f76c623029a62d61070311569c26cfca5b71a6ac8a94331c4",
+  "results": [
+    {
+      "index": 0,
+      "group": "original-male",
+      "character": "male",
+      "view": "original",
+      "edge": {
+        "clipSet": "gameplay",
+        "action": "walk",
+        "fromPosition": 25,
+        "toPosition": 26,
+        "fromFrameId": 48,
+        "toFrameId": 50,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.294288,
+        "rgbHistogramChange": 0.39292,
+        "sampledOwnershipBoundaryChange": 0.68623,
+        "sampledSourceMotion": 0.729305,
+        "sampledDressedMotion": 0.720094,
+        "sampledSourceRelativeResidual": 0.211989,
+        "sampledResidualAbove8": 1290,
+        "sampledMaxResidual": 0.34902,
+        "triageScore": 0.34168,
+        "assetPath": "docs/kling-wardrobe/garments/male-full-outfits-v1/brown-shoes.zip",
+        "garmentId": "brown-shoes",
+        "group": "original-male"
+      },
+      "garmentSha256": "cec06c062690d12134c485f85a9e413e1d4311cc219b4c5e2f404ca7e24b5693",
+      "frames": [
+        {
+          "frameId": 48,
+          "sourceRgbaSha256": "f865986ae9efaadbdf5379bc58f3ce7849e9d77d469da77749324aa61d116539",
+          "currentRgbaSha256": "89a208619011bf34cfe810c097efcb25bc5f2e7c51856bc917ff39f1589a933e",
+          "nativeBounds": [
+            202,
+            826,
+            482,
+            984
+          ]
+        },
+        {
+          "frameId": 50,
+          "sourceRgbaSha256": "2321d5a585745eee37904e5261af5b2b1b965c44e0141e61a86b65f08279d7d2",
+          "currentRgbaSha256": "31731ab26361d46d52852efbb2a7d0807a8dd5a94ff4329823e8996da7757a34",
+          "nativeBounds": [
+            262,
+            863,
+            430,
+            988
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/0",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    },
+    {
+      "index": 1,
+      "group": "original-male",
+      "character": "male",
+      "view": "original",
+      "edge": {
+        "clipSet": "gameplay",
+        "action": "run",
+        "fromPosition": 11,
+        "toPosition": 12,
+        "fromFrameId": 62,
+        "toFrameId": 63,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.371281,
+        "rgbHistogramChange": 0.32413,
+        "sampledOwnershipBoundaryChange": 0.552577,
+        "sampledSourceMotion": 0.243613,
+        "sampledDressedMotion": 0.484081,
+        "sampledSourceRelativeResidual": 0.179269,
+        "sampledResidualAbove8": 1184,
+        "sampledMaxResidual": 0.439216,
+        "triageScore": 0.33922,
+        "assetPath": "docs/kling-wardrobe/garments/male-full-outfits-v1/navy-waistcoat.zip",
+        "garmentId": "navy-waistcoat",
+        "group": "original-male"
+      },
+      "garmentSha256": "45b62508e479334c06af744ec28eb5a3579ca0827c27fd6a91a1916da3755c3d",
+      "frames": [
+        {
+          "frameId": 62,
+          "sourceRgbaSha256": "72e7a36bdb4c563f8ca5719c3c8263a15426a53fa12a575da3470b48bcafe533",
+          "currentRgbaSha256": "9afb7be3b8f41e313df40b7c999a1ea0b91919ad6954501fe6acc1fc42f62964",
+          "nativeBounds": [
+            262,
+            530,
+            472,
+            736
+          ]
+        },
+        {
+          "frameId": 63,
+          "sourceRgbaSha256": "4ee656a4100b8b7855ef643080e999ef8b4ebbe15dae0cb34759968363ace1ec",
+          "currentRgbaSha256": "e67f1e969a3f1de17ed2cf0e016bd778890eb68f28816a2f4ab70874bc4a6633",
+          "nativeBounds": [
+            288,
+            524,
+            472,
+            730
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/1",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    },
+    {
+      "index": 2,
+      "group": "side-material-male",
+      "character": "male",
+      "view": "side",
+      "edge": {
+        "clipSet": "gameplay",
+        "action": "walk",
+        "fromPosition": 14,
+        "toPosition": 15,
+        "fromFrameId": 35,
+        "toFrameId": 36,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.482263,
+        "rgbHistogramChange": 0.0605,
+        "sampledOwnershipBoundaryChange": 0.628378,
+        "sampledSourceMotion": 0.577083,
+        "sampledDressedMotion": 0.568803,
+        "sampledSourceRelativeResidual": 0.026395,
+        "sampledResidualAbove8": 208,
+        "sampledMaxResidual": 0.066667,
+        "triageScore": 0.30026,
+        "assetPath": "docs/kling-side-workspace/assets/male-shoes.garment.zip",
+        "garmentId": "side-male-seabreeze-shoes-v1",
+        "group": "side-material-male"
+      },
+      "garmentSha256": "54f4619f8831ad23cf94e5c31efa678116aa04a62e70ad1e297e098c48ff37f8",
+      "frames": [
+        {
+          "frameId": 35,
+          "sourceRgbaSha256": "bfe6156f83bb6246d984a6fe10b31324cf446c3105bb0253f260e39486d17844",
+          "currentRgbaSha256": "532db93e2eced534f1cbe6e29c7f8cd8f3155ba346063dbb49ab30d96ff5f298",
+          "nativeBounds": [
+            200,
+            664,
+            293,
+            703
+          ]
+        },
+        {
+          "frameId": 36,
+          "sourceRgbaSha256": "0ee47e9354535005fe9c592ce2fbb75ada49c6dcd41b700bfebfa7758cd62eb3",
+          "currentRgbaSha256": "63465ea01caa05bb42ea978ff5af755a9b69762d21e6a8eb2d8c983d3b24482a",
+          "nativeBounds": [
+            178,
+            636,
+            305,
+            704
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/2",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    },
+    {
+      "index": 3,
+      "group": "dual-cotton-day-male-side",
+      "character": "male",
+      "view": "side",
+      "edge": {
+        "clipSet": "nativeSourceSupplement",
+        "action": "jump",
+        "fromPosition": 41,
+        "toPosition": 42,
+        "fromFrameId": 98,
+        "toFrameId": 99,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.400759,
+        "rgbHistogramChange": 0.456395,
+        "sampledOwnershipBoundaryChange": 0.948925,
+        "sampledSourceMotion": 0.694552,
+        "sampledDressedMotion": 0.649327,
+        "sampledSourceRelativeResidual": 0.102507,
+        "sampledResidualAbove8": 320,
+        "sampledMaxResidual": 0.341176,
+        "triageScore": 0.409834,
+        "assetPath": "docs/dual-view-wardrobe/assets/dual-male-side-apricot-bottom-v1.garment.zip",
+        "garmentId": "dual-male-side-apricot-bottom-v1",
+        "group": "dual-cotton-day-male-side"
+      },
+      "garmentSha256": "3c6f14ea349a200b30244b22098abe3d741fa02ae8f1898d30f45db4b9486ddf",
+      "frames": [
+        {
+          "frameId": 98,
+          "sourceRgbaSha256": "5e1e891d27326d152c317ad66a8bf735583aa2bd86fb9043ae04a0572af52f60",
+          "currentRgbaSha256": "949c9a412f0dbe67d4106cc8a580b13a2392a4a7427f820da606d0ccc8e85ca0",
+          "nativeBounds": [
+            177,
+            406,
+            312,
+            486
+          ]
+        },
+        {
+          "frameId": 99,
+          "sourceRgbaSha256": "0e4ee290dfa262631b1957c1bad069b0da6ac1d72fc298d481a480fd5f598979",
+          "currentRgbaSha256": "2c71ee73d5321bd7a154f161625357a718445d9aab964fba8d6b4b0fec455a3c",
+          "nativeBounds": [
+            181,
+            444,
+            312,
+            501
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/3",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    },
+    {
+      "index": 4,
+      "group": "original-female",
+      "character": "female",
+      "view": "original",
+      "edge": {
+        "clipSet": "gameplay",
+        "action": "run",
+        "fromPosition": 11,
+        "toPosition": 12,
+        "fromFrameId": 62,
+        "toFrameId": 63,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.515354,
+        "rgbHistogramChange": 0.303353,
+        "sampledOwnershipBoundaryChange": 0.637447,
+        "sampledSourceMotion": 0.277944,
+        "sampledDressedMotion": 0.509897,
+        "sampledSourceRelativeResidual": 0.177722,
+        "sampledResidualAbove8": 1010,
+        "sampledMaxResidual": 0.566667,
+        "triageScore": 0.407037,
+        "assetPath": "docs/kling-wardrobe/garments/female/navy-waistcoat.zip",
+        "garmentId": "navy-waistcoat",
+        "group": "original-female"
+      },
+      "garmentSha256": "56f053dc8c93392c78b93f84ccf025af48d3048ccdcfac352bcc665ba8718932",
+      "frames": [
+        {
+          "frameId": 62,
+          "sourceRgbaSha256": "a068199b022e8926ff563db97ed63ec8327a375e2715d944374b11ddb5dfab1e",
+          "currentRgbaSha256": "553d0650da2b6a070607431056d409026179f3ff995f71df423a156c333c9fb0",
+          "nativeBounds": [
+            294,
+            526,
+            472,
+            719
+          ]
+        },
+        {
+          "frameId": 63,
+          "sourceRgbaSha256": "7bc09e46199424196547b1b96defdacb6ddf4ecffc52af25a1cbbf92bc0923d9",
+          "currentRgbaSha256": "0fd7456175361acf096dd2bf3bb5db1ea6a19506f87c08e01891e12a9648ffb9",
+          "nativeBounds": [
+            304,
+            520,
+            474,
+            719
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/4",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    },
+    {
+      "index": 5,
+      "group": "dual-cotton-day-female-original",
+      "character": "female",
+      "view": "original",
+      "edge": {
+        "clipSet": "gameplay",
+        "action": "run",
+        "fromPosition": 4,
+        "toPosition": 5,
+        "fromFrameId": 55,
+        "toFrameId": 56,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.503616,
+        "rgbHistogramChange": 0.281707,
+        "sampledOwnershipBoundaryChange": 0.688343,
+        "sampledSourceMotion": 0.286644,
+        "sampledDressedMotion": 0.278427,
+        "sampledSourceRelativeResidual": 0.05919,
+        "sampledResidualAbove8": 1230,
+        "sampledMaxResidual": 0.194118,
+        "triageScore": 0.377726,
+        "assetPath": "docs/dual-view-wardrobe/assets/dual-female-original-apricot-top-v1.garment.zip",
+        "garmentId": "dual-female-original-apricot-top-v1",
+        "group": "dual-cotton-day-female-original"
+      },
+      "garmentSha256": "94e2aafc5a0dd3a2fd37762f4b5f907e7b3a27e4992324b51017d8d20d9fd426",
+      "frames": [
+        {
+          "frameId": 55,
+          "sourceRgbaSha256": "13c3721d7a559070e934a67782ca740fee74a8a72528715cb0013ab91a0297d1",
+          "currentRgbaSha256": "c0d36d277580fb5fd5d0bf4c3f5ee12fe1f99cb4d3bb0fccf15f04a5fd3fb6cf",
+          "nativeBounds": [
+            308,
+            522,
+            474,
+            719
+          ]
+        },
+        {
+          "frameId": 56,
+          "sourceRgbaSha256": "cacd3594d7bc5fe08441f74169e1052118a979aedfea7b122daa00d215e74d8e",
+          "currentRgbaSha256": "01666fdd697602d57311af0c1de88370f17b9743d4808488702026f0c057cbfe",
+          "nativeBounds": [
+            340,
+            522,
+            476,
+            631
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/5",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    },
+    {
+      "index": 6,
+      "group": "dual-cotton-day-female-side",
+      "character": "female",
+      "view": "side",
+      "edge": {
+        "clipSet": "gameplay",
+        "action": "run",
+        "fromPosition": 5,
+        "toPosition": 6,
+        "fromFrameId": 39,
+        "toFrameId": 40,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.377235,
+        "rgbHistogramChange": 0.258648,
+        "sampledOwnershipBoundaryChange": 0.699552,
+        "sampledSourceMotion": 0.554586,
+        "sampledDressedMotion": 0.539501,
+        "sampledSourceRelativeResidual": 0.085662,
+        "sampledResidualAbove8": 171,
+        "sampledMaxResidual": 0.313726,
+        "triageScore": 0.321505,
+        "assetPath": "docs/dual-view-wardrobe/assets/dual-female-side-sea-bottom-v1.garment.zip",
+        "garmentId": "dual-female-side-sea-bottom-v1",
+        "group": "dual-cotton-day-female-side"
+      },
+      "garmentSha256": "cef6995c43a69aef71fdfc43e5ee9b32deac935794f25f7245ae63f635ea5923",
+      "frames": [
+        {
+          "frameId": 39,
+          "sourceRgbaSha256": "3338dbd26b77b3a2416dd2c555b9789df5043620ef1ce175a03041e2dbc38da4",
+          "currentRgbaSha256": "a4b1282bf130afdbab311766f7b85c1f431eaadab0792df02084dd8b046a0c55",
+          "nativeBounds": [
+            187,
+            531,
+            291,
+            593
+          ]
+        },
+        {
+          "frameId": 40,
+          "sourceRgbaSha256": "f71c16f1e736678b364082d7467bc4a6c4f825b4c28a88ed1df3086c678a6278",
+          "currentRgbaSha256": "2a03f6b02dceefb3fcfa812d37b5eaa5f8022463be01cb37fa4b58dc9bb000cd",
+          "nativeBounds": [
+            186,
+            535,
+            286,
+            598
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/6",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    },
+    {
+      "index": 7,
+      "group": "dual-cotton-day-female-side",
+      "character": "female",
+      "view": "side",
+      "edge": {
+        "clipSet": "nativeSourceSupplement",
+        "action": "jump",
+        "fromPosition": 41,
+        "toPosition": 42,
+        "fromFrameId": 93,
+        "toFrameId": 94,
+        "loopClosure": false,
+        "hold": false,
+        "durationMs": 41.666666666666664,
+        "ownershipAreaChange": 0.395907,
+        "rgbHistogramChange": 0.325539,
+        "sampledOwnershipBoundaryChange": 0.91224,
+        "sampledSourceMotion": 0.681953,
+        "sampledDressedMotion": 0.530197,
+        "sampledSourceRelativeResidual": 0.112558,
+        "sampledResidualAbove8": 359,
+        "sampledMaxResidual": 0.321569,
+        "triageScore": 0.373278,
+        "assetPath": "docs/dual-view-wardrobe/assets/dual-female-side-sea-bottom-v1.garment.zip",
+        "garmentId": "dual-female-side-sea-bottom-v1",
+        "group": "dual-cotton-day-female-side"
+      },
+      "garmentSha256": "cef6995c43a69aef71fdfc43e5ee9b32deac935794f25f7245ae63f635ea5923",
+      "frames": [
+        {
+          "frameId": 93,
+          "sourceRgbaSha256": "b946b4ab77bf94982575e738d731208ccd11b6343816c0e6df86647c28704a15",
+          "currentRgbaSha256": "352a9805c683bbde891c41de991a67cf078eb0dc9ce58d3692225b3c80b912ba",
+          "nativeBounds": [
+            177,
+            380,
+            313,
+            489
+          ]
+        },
+        {
+          "frameId": 94,
+          "sourceRgbaSha256": "3c6f3059cb2f2775ab65c4008e862ab598d0260d872e3801fda290632c1adfd7",
+          "currentRgbaSha256": "d2f33a9332085b7df3e7523c5de13e32a02648436fa1e7f98c9a7c7ad980b158",
+          "nativeBounds": [
+            178,
+            433,
+            318,
+            498
+          ]
+        }
+      ],
+      "localPngDirectory": "/tmp/wardrobe-finish/mixed/temporal-witnesses/7",
+      "interpretation": "Standalone garment over its own source, not a complete outfit. Compare both native poses to the same source motion. Triage score alone is not a defect."
+    }
+  ]
+}

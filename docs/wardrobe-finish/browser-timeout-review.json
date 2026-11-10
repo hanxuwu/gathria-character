@@ -1,0 +1,79 @@
+{
+  "format": "gathria-browser-timeout-review",
+  "version": 1,
+  "testFile": "tests/e2e/appearance-upgrade.spec.ts",
+  "testName": "leaving the wardrobe cancels a pending update and cannot open a stale modal",
+  "firstFullSuiteAttempt": {
+    "result": "failed",
+    "testSeconds": 14.7,
+    "assertion": "appearance-update-after visible after explicit retry",
+    "timeoutMs": 5000,
+    "error": "Expected visible; element not yet found while asynchronous preparation was still active.",
+    "traceFile": "test-results/appearance-upgrade-leaving-0c6ad-d-cannot-open-a-stale-modal/trace.zip",
+    "traceSha256": "e6b1079a6a20f54cf2027832de44cfc96079e2f1d90abe54b03a0fadb962cd1d",
+    "passedBeforeFailure": [
+      "Appearance preview canceled status",
+      "No stale update dialog",
+      "Accepted canvas bytes unchanged"
+    ],
+    "retryNetwork": [
+      {
+        "path": "/fixture-appearance/male.zip",
+        "requestStartMs": 82917.699,
+        "durationMs": 141.089,
+        "status": 200
+      },
+      {
+        "path": "/src/core/source-preparation.worker.ts?worker_file&type=module",
+        "requestStartMs": 82963.725,
+        "durationMs": 96.765,
+        "status": 200
+      },
+      {
+        "path": "/src/wardrobe/garment-page-preparation.worker.ts?worker_file&type=module",
+        "requestStartMs": 83290.197,
+        "durationMs": 2743.996,
+        "status": 200
+      },
+      {
+        "path": "/src/core/source-preparation.worker.ts?worker_file&type=module",
+        "requestStartMs": 87594.71,
+        "durationMs": 1315.101,
+        "status": 200
+      }
+    ],
+    "interpretation": "Retry artwork returned HTTP 200; fresh worker modules took 2.744 s and 1.315 s to load. Preparation outlasted the 5 s visibility assertion. No runtime error or erroneous stale modal was found in the trace."
+  },
+  "unmodifiedIsolatedRerun": {
+    "result": "passed",
+    "testSeconds": 8.7,
+    "suiteSeconds": 11.9,
+    "productionOrTestChanges": false,
+    "port": 5187,
+    "log": "/tmp/dual-e2e-fix/appearance-cancel-repro.log"
+  },
+  "fix": {
+    "scope": "Only the final asynchronous retry-preview visibility assertion",
+    "timeoutMs": 30000,
+    "productionCodeChanged": false,
+    "preserved": [
+      "Cancellation timing assertions",
+      "No stale modal assertion",
+      "Exact accepted canvas comparison",
+      "Existing test/error behavior"
+    ],
+    "reason": "Wait for asynchronous worker preparation under parallel CI load without broadening cancellation or pixel guarantees."
+  },
+  "fixedIsolatedRerun": {
+    "result": "passed",
+    "port": 5187,
+    "workers": 1,
+    "browser": "/usr/bin/chromium",
+    "log": "/tmp/dual-e2e-fix/appearance-cancel-fixed.log",
+    "reportedResult": [
+      "\u2713  1 tests/e2e/appearance-upgrade.spec.ts:429:1 \u203a leaving the wardrobe cancels a pending update and cannot open a stale modal (13.1s)",
+      "1 passed (16.6s)"
+    ]
+  },
+  "suiteAccounting": "The original full-suite attempt contains this failure. Isolated reruns are reported separately; they do not turn the first full-suite run into a zero-failure run."
+}

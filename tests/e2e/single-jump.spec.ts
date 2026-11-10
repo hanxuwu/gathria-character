@@ -243,6 +243,10 @@ for (const character of ["male", "female"] as const) {
     expect(savedManifest.version).toBe(2);
     expect(savedManifest.motionMode).toBe("single-jump");
     for (const source of ["original", "side"] as const) {
+      await writeFile(
+        `${dir}/${source}.wardrobe.zip`,
+        savedFiles[`${source}.wardrobe.zip`],
+      );
       const native = unzipSync(savedFiles[`${source}.wardrobe.zip`]);
       const document = json(native["document.json"]);
       expect(sha(native["source.character.zip"])).toBe(document.sourceSha256);
@@ -371,6 +375,14 @@ for (const character of ["male", "female"] as const) {
         character,
         view: source,
         pack: packPath,
+        project: `${dir}/${source}.wardrobe.zip`,
+        closeRunCycle: true,
+        historicalJumpGifs: Object.fromEntries(
+          ["right", "left"].map((facing) => [
+            facing,
+            `docs/kling-single-jump/review/${character}/${source}-jump-${facing}.gif`,
+          ]),
+        ),
         gifs,
         baseline:
           source === "side"

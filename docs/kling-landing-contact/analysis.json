@@ -1,0 +1,499 @@
+{
+  "format": "gathria-landing-contact-diagnostic",
+  "sourceSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
+  "fps": 24,
+  "runSpeed": 700,
+  "worldAdvancePerTick": 29.166666666666668,
+  "frames": [
+    {
+      "frameId": 85,
+      "reviewTick": 0,
+      "roi": [
+        249,
+        650,
+        335,
+        705
+      ],
+      "toeTipX": 328,
+      "soleBottomY": 699,
+      "lowestRidgeX": [
+        250,
+        250
+      ],
+      "toeWorldXAt700": 328.0,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 88,
+      "reviewTick": 1,
+      "roi": [
+        249,
+        650,
+        335,
+        705
+      ],
+      "toeTipX": 327,
+      "soleBottomY": 693,
+      "lowestRidgeX": [
+        289,
+        307
+      ],
+      "toeWorldXAt700": 356.167,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 89,
+      "reviewTick": 2,
+      "roi": [
+        249,
+        650,
+        335,
+        705
+      ],
+      "toeTipX": 327,
+      "soleBottomY": 693,
+      "lowestRidgeX": [
+        287,
+        307
+      ],
+      "toeWorldXAt700": 385.333,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 107,
+      "reviewTick": 3,
+      "roi": [
+        233,
+        650,
+        310,
+        705
+      ],
+      "toeTipX": 304,
+      "soleBottomY": 693,
+      "lowestRidgeX": [
+        233,
+        292
+      ],
+      "toeWorldXAt700": 391.5,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 108,
+      "reviewTick": 4,
+      "roi": [
+        224,
+        650,
+        277,
+        705
+      ],
+      "toeTipX": 271,
+      "soleBottomY": 697,
+      "lowestRidgeX": [
+        224,
+        255
+      ],
+      "toeWorldXAt700": 387.667,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 48,
+      "reviewTick": 5,
+      "roi": [
+        215,
+        650,
+        265,
+        705
+      ],
+      "toeTipX": 259,
+      "soleBottomY": 698,
+      "lowestRidgeX": [
+        215,
+        244
+      ],
+      "toeWorldXAt700": 404.833,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 49,
+      "reviewTick": 6,
+      "roi": [
+        175,
+        650,
+        235,
+        705
+      ],
+      "toeTipX": 234,
+      "soleBottomY": 698,
+      "lowestRidgeX": [
+        186,
+        220
+      ],
+      "toeWorldXAt700": 409.0,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 50,
+      "reviewTick": 7,
+      "roi": [
+        155,
+        650,
+        208,
+        705
+      ],
+      "toeTipX": 203,
+      "soleBottomY": 696,
+      "lowestRidgeX": [
+        169,
+        199
+      ],
+      "toeWorldXAt700": 407.167,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    },
+    {
+      "frameId": 51,
+      "reviewTick": 8,
+      "roi": [
+        130,
+        650,
+        180,
+        705
+      ],
+      "toeTipX": 175,
+      "soleBottomY": 694,
+      "lowestRidgeX": [
+        148,
+        169
+      ],
+      "toeWorldXAt700": 408.333,
+      "method": "Visible far-shoe outer silhouette; alpha>128 inside manually identified shoe ROI. Toe remains visible through overlap; lowest ridge is diagnostic, not a recovered material contact point."
+    }
+  ],
+  "caveats": [
+    "These are shoe contour features, not skeleton/IK ground-contact truth.",
+    "The near and far shoes have different ground heights due to the source perspective; do not align both soles to one scanline.",
+    "Shoe rolling and silhouette deformation move lowest-ridge coordinates even at a planted material point."
+  ],
+  "findings": {
+    "preBridge85to89ToeWorldDrift": 57.333,
+    "bridge89to48ToeWorldDrift": 19.5,
+    "baselineFlowSourceFrames": [
+      85,
+      88,
+      89,
+      107,
+      108,
+      48,
+      49,
+      50,
+      51
+    ]
+  },
+  "routes": [
+    {
+      "label": "Current:85,88,89,107,108,48",
+      "framesThrough48": [
+        85,
+        88,
+        89,
+        107,
+        108,
+        48
+      ],
+      "headSamples": [
+        {
+          "frameId": 85,
+          "headTopY": 269,
+          "headClippedBboxX": [
+            192,
+            415
+          ],
+          "headClippedBboxCenterWorldX": 303.5
+        },
+        {
+          "frameId": 88,
+          "headTopY": 260,
+          "headClippedBboxX": [
+            177,
+            401
+          ],
+          "headClippedBboxCenterWorldX": 318.167
+        },
+        {
+          "frameId": 89,
+          "headTopY": 245,
+          "headClippedBboxX": [
+            168,
+            391
+          ],
+          "headClippedBboxCenterWorldX": 337.833
+        },
+        {
+          "frameId": 107,
+          "headTopY": 238,
+          "headClippedBboxX": [
+            159,
+            382
+          ],
+          "headClippedBboxCenterWorldX": 358.0
+        },
+        {
+          "frameId": 108,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            150,
+            373
+          ],
+          "headClippedBboxCenterWorldX": 378.167
+        },
+        {
+          "frameId": 48,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            138,
+            350
+          ],
+          "headClippedBboxCenterWorldX": 389.833
+        }
+      ],
+      "headTopDeltas": [
+        -9,
+        -15,
+        -7,
+        -7,
+        0
+      ],
+      "headCenterWorldDeltas": [
+        14.666999999999973,
+        19.666000000000054,
+        20.166999999999973,
+        20.166999999999973,
+        11.666000000000054
+      ],
+      "farToeWorldDrift85to48": 76.833
+    },
+    {
+      "label": "Skip88+89:85,107,108,48",
+      "framesThrough48": [
+        85,
+        107,
+        108,
+        48
+      ],
+      "headSamples": [
+        {
+          "frameId": 85,
+          "headTopY": 269,
+          "headClippedBboxX": [
+            192,
+            415
+          ],
+          "headClippedBboxCenterWorldX": 303.5
+        },
+        {
+          "frameId": 107,
+          "headTopY": 238,
+          "headClippedBboxX": [
+            159,
+            382
+          ],
+          "headClippedBboxCenterWorldX": 299.667
+        },
+        {
+          "frameId": 108,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            150,
+            373
+          ],
+          "headClippedBboxCenterWorldX": 319.833
+        },
+        {
+          "frameId": 48,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            138,
+            350
+          ],
+          "headClippedBboxCenterWorldX": 331.5
+        }
+      ],
+      "headTopDeltas": [
+        -31,
+        -7,
+        0
+      ],
+      "headCenterWorldDeltas": [
+        -3.833000000000027,
+        20.166000000000054,
+        11.666999999999973
+      ],
+      "farToeWorldDrift85to48": 18.5
+    },
+    {
+      "label": "Keep89:85,89,107,108,48",
+      "framesThrough48": [
+        85,
+        89,
+        107,
+        108,
+        48
+      ],
+      "headSamples": [
+        {
+          "frameId": 85,
+          "headTopY": 269,
+          "headClippedBboxX": [
+            192,
+            415
+          ],
+          "headClippedBboxCenterWorldX": 303.5
+        },
+        {
+          "frameId": 89,
+          "headTopY": 245,
+          "headClippedBboxX": [
+            168,
+            391
+          ],
+          "headClippedBboxCenterWorldX": 308.667
+        },
+        {
+          "frameId": 107,
+          "headTopY": 238,
+          "headClippedBboxX": [
+            159,
+            382
+          ],
+          "headClippedBboxCenterWorldX": 328.833
+        },
+        {
+          "frameId": 108,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            150,
+            373
+          ],
+          "headClippedBboxCenterWorldX": 349.0
+        },
+        {
+          "frameId": 48,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            138,
+            350
+          ],
+          "headClippedBboxCenterWorldX": 360.667
+        }
+      ],
+      "headTopDeltas": [
+        -24,
+        -7,
+        -7,
+        0
+      ],
+      "headCenterWorldDeltas": [
+        5.166999999999973,
+        20.166000000000054,
+        20.166999999999973,
+        11.666999999999973
+      ],
+      "farToeWorldDrift85to48": 47.667
+    },
+    {
+      "label": "Keep88:85,88,107,108,48",
+      "framesThrough48": [
+        85,
+        88,
+        107,
+        108,
+        48
+      ],
+      "headSamples": [
+        {
+          "frameId": 85,
+          "headTopY": 269,
+          "headClippedBboxX": [
+            192,
+            415
+          ],
+          "headClippedBboxCenterWorldX": 303.5
+        },
+        {
+          "frameId": 88,
+          "headTopY": 260,
+          "headClippedBboxX": [
+            177,
+            401
+          ],
+          "headClippedBboxCenterWorldX": 318.167
+        },
+        {
+          "frameId": 107,
+          "headTopY": 238,
+          "headClippedBboxX": [
+            159,
+            382
+          ],
+          "headClippedBboxCenterWorldX": 328.833
+        },
+        {
+          "frameId": 108,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            150,
+            373
+          ],
+          "headClippedBboxCenterWorldX": 349.0
+        },
+        {
+          "frameId": 48,
+          "headTopY": 231,
+          "headClippedBboxX": [
+            138,
+            350
+          ],
+          "headClippedBboxCenterWorldX": 360.667
+        }
+      ],
+      "headTopDeltas": [
+        -9,
+        -22,
+        -7,
+        0
+      ],
+      "headCenterWorldDeltas": [
+        14.666999999999973,
+        10.666000000000054,
+        20.166999999999973,
+        11.666999999999973
+      ],
+      "farToeWorldDrift85to48": 47.667
+    }
+  ],
+  "recommendation": "Keep88/drop89 is the lowest-risk no-new-art trial: removes one grounded repeated-pose tick (~29.167px skid) with headtop rise22px versus current15pxmax. Omitting both88/89 removes58.333px skid but creates31px headrise and3.833px backward worldhead displacement at85\u2192107. Do not accept it on foot metrics alone.",
+  "decision": {
+    "acceptedLeadIn": [
+      88,
+      107,
+      108
+    ],
+    "previousLeadIn": [
+      88,
+      89,
+      107,
+      108
+    ],
+    "nativeFrameCadenceUnchanged": true,
+    "nativeRunSpeedUnchanged": true,
+    "recoveryDurationReductionMs": 41.666666666666664,
+    "avoidableFarToeWorldDriftRemovedPx": 29.166666666666668,
+    "recoveryDriftReductionPercent": 37.96,
+    "headTopMaximumStepBeforePx": 15,
+    "headTopMaximumStepAcceptedPx": 22,
+    "headTopMaximumStepRejectedFullSkipPx": 31,
+    "sourcePixelsEdited": false,
+    "qualification": "A bounded stationary-hold reduction, not exact foot locking. Head rise at88\u2192107 grows7nativepx compared with the former maximum; keep as experimental and check actual clothed playback."
+  },
+  "evidenceKind": "Read-only native source-frame diagnostic with analytically constant root translation; final runtime evidence is produced separately.",
+  "measurementUncertainty": "The extracted contour pixels are deterministic for the listed ROI/alpha threshold. Their use as physical ground contact is approximate; shoe rolling and changed silhouette can move them. Head-clipped bbox centers are approximate silhouette diagnostics, not recovered head-joint positions."
+}

@@ -1,0 +1,89 @@
+{
+  "format": "gathria-landing-contact-validation",
+  "version": 1,
+  "candidateEdition": 3,
+  "sourceSha256": "0353ca3bb4c333fbab9a2f089ade15b777ed75a45e90a28bf62a8fef34221326",
+  "registrationSha256": "1f68c394bfc3380cf42282ebfb6be0b69d1eb70647557ab0cad72dffdaa92078",
+  "technical": {
+    "status": "local-checks-passed",
+    "unitTests": {
+      "files": 75,
+      "tests": 765
+    },
+    "typecheck": true,
+    "productionBuild": true,
+    "missingRuntimeAssetWarnings": 0,
+    "browserTests": {
+      "candidateAndDefaultEntrances": 2,
+      "maleFemaleSingleJump": 2,
+      "releaseDuringSave": 1,
+      "previousCIStaleAssertionsUpdatedAndPassing": 3
+    },
+    "runtimeCompositions": {
+      "combinations": 12,
+      "frames": 109,
+      "projectRoundtrip": true
+    },
+    "deterministicAssetRebuild": true,
+    "motionOnlyAudit": "../checks/motion-only-v2-v3.json",
+    "sourceRgbaFramesUnchanged": 109,
+    "pngEntriesByteExact": 22,
+    "registrationGeometryUnchanged": true,
+    "standalonePlayer": {
+      "looks": 3,
+      "saw107108": true,
+      "runJumpRun": true,
+      "reexportByteExact": true
+    },
+    "mixedWardrobe": {
+      "combinations": 2,
+      "actualGifExport": true,
+      "paused108SaveReopen": true
+    },
+    "v2SavedProject": "v2-backward-compatibility.json",
+    "githubCI": "See current PR checks; full hosted suite is separate from local results."
+  },
+  "playback": {
+    "fps": 24,
+    "runSpeedNativePxPerSecond": 700,
+    "jumpRequestTick": 18,
+    "basicJumpFrames": 28,
+    "basicJumpChanged": false,
+    "candidateRouteLeadIn": [
+      88,
+      107,
+      108
+    ],
+    "previousRouteLeadIn": [
+      88,
+      89,
+      107,
+      108
+    ],
+    "recoveryReductionMs": 41.666666666666664,
+    "flowGifFrames": 78,
+    "flowGifDurationMs": 3250,
+    "nativeReplayBoundary": [
+      56,
+      39
+    ],
+    "extraNativeRunFramesForLoopClosure": 9
+  },
+  "visual": {
+    "status": "experimental-review",
+    "evidence": "visual-review.md",
+    "source85To48FarToeDiagnostic": {
+      "beforeWorldDriftPx": 76.8333333333,
+      "afterWorldDriftPx": 47.6666666667,
+      "removedWorldDriftPx": 29.166666666666668,
+      "approxReductionPercent": 38
+    },
+    "limitations": [
+      "Foot-outline drift remains; this is not a physical foot-lock solver.",
+      "Maximum observed head-top rise per tick increases from15to22 native pixels; faster recovery remains a visual tradeoff.",
+      "Short fixed-ground diagnostic windows reset at the end, explicitly labeled."
+    ],
+    "defaultChanged": false,
+    "artworkChanged": false
+  }
+}

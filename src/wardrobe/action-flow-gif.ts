@@ -2,6 +2,7 @@ import {
   advanceGameplayMotion,
   createGameplayState,
   gameplayFrameId,
+  gameplayFramePosition,
   gameplayManifest,
   gameplayMotionMetadata,
   requestGameplayAction,
@@ -21,6 +22,9 @@ export interface WardrobeRunJumpSequence {
   jumpRequestTick: number;
   /** A full run cycle after the automatic landing return, from its entry pose. */
   returnRunTicks: number;
+  /** Native run frames after that cycle, ending just before the initial phase.
+   * Replaying the review then follows the run clip's real last-to-first edge. */
+  loopClosureTicks: number;
   durationMs: number;
   frames: Array<{
     action: PortableAnimationName;
@@ -30,7 +34,8 @@ export interface WardrobeRunJumpSequence {
 }
 
 /** Exercise exactly the same native-clock controller as interactive playback:
- * one run cycle, one jump request, complete landing and one more run cycle.
+ * one run cycle, one jump request, complete landing and at least one more run
+ * cycle, followed through to the phase immediately before the initial pose.
  * No repeated jump requests, pose blending or separate export-only transition. */
 export function buildWardrobeRunJumpSequence(
   profile: GameplayMotion,
@@ -64,13 +69,27 @@ export function buildWardrobeRunJumpSequence(
       // Landing recovery drawings belong to the transition, not the requested
       // complete run cycle. Its clock starts only at the route's entry pose.
       if (!state.leadIn) {
-        if (returnedRunTicks === runTicks) break;
+        // Returning at a nonzero run phase means one complete cycle ends just
+        // before that same phase, not before the review's initial phase. Keep
+        // exercising the controller until phase zero; never skip/reorder poses
+        // or append a duplicate first pose to conceal the replay boundary.
+        if (
+          returnedRunTicks >= runTicks &&
+          gameplayFramePosition(profile, state) === 0
+        )
+          break;
         returnedRunTicks++;
       }
     }
     sample();
   }
-  if (!jumped || returnedRunTicks !== runTicks || frames.length >= 600)
+  if (
+    !jumped ||
+    returnedRunTicks < runTicks ||
+    returnedRunTicks >= 2 * runTicks ||
+    gameplayFramePosition(profile, state) !== 0 ||
+    frames.length >= 600
+  )
     throw Error("The reviewed run/jump sequence exceeded its frame budget.");
   return {
     format: "gathria-gameplay-review-sequence",
@@ -80,6 +99,7 @@ export function buildWardrobeRunJumpSequence(
     fps,
     jumpRequestTick: runTicks,
     returnRunTicks: runTicks,
+    loopClosureTicks: returnedRunTicks - runTicks,
     durationMs: (frames.length * 1000) / fps,
     frames,
   };
@@ -87,7 +107,9 @@ export function buildWardrobeRunJumpSequence(
 
 export async function exportWardrobeRunJumpGif(
   renderer: Pick<WardrobeCompositor, "manifest" | "renderFrame"> &
-    Partial<Pick<WardrobeCompositor, "renderSourceFrame">>,
+    Partial<
+      Pick<WardrobeCompositor, "renderSourceFrame" | "sourceCharacterId">
+    >,
   profile: GameplayMotion,
   facing: Facing,
   options: Omit<
@@ -95,7 +117,13 @@ export async function exportWardrobeRunJumpGif(
     "gameplayMotion"
   > = {},
 ): Promise<Uint8Array> {
-  const manifest = gameplayManifest(renderer.manifest, profile);
+  const manifest = gameplayManifest(
+    renderer.manifest,
+    profile,
+    renderer.sourceCharacterId
+      ? { characterId: renderer.sourceCharacterId }
+      : undefined,
+  );
   const sequence = buildWardrobeRunJumpSequence(profile);
   return exportWardrobeActionGif(
     {

@@ -1,0 +1,2608 @@
+{
+  "format": "gathria-side-clothing-coverage-audit",
+  "version": 1,
+  "baselineCommit": "5d63ae233ca83e61dc354e122a8708044f4e2653",
+  "scope": "All36 current non-landing side garment banks: material,tailored,cotton-day,tailored-day,complete-day,polished-day. All107male and102female native frames. Landing separately reviewed.",
+  "bankCount": 36,
+  "bankFrameCount": 3747,
+  "uniqueOwnershipAndAlphaGeometries": 13,
+  "nativeWidth": 512,
+  "nativeHeight": 768,
+  "reviewMethod": "All-frame semantic guide coverage scan plus independent actual WardrobeCompositor RGBA verification. Native same-frame visual review distinguishes skin/hand ink/footwear from old clothes. Source skin proof is partial: pink shoes and sole edges can be false positive skin candidates.",
+  "limitations": [
+    "Counts are diagnostic candidates, not a claim that every exposed skin pixel is defective. Sleeveless cuts and short skirts intentionally expose arms/legs.",
+    "Retained1px guide boundaries preserve original hand/skin ink and antialiasing; residual source-cloth guide pixels are reported, not hidden.",
+    "Original video green matte fringe, variable body artwork, and existing sleeve/cloth donor distortions are outside this cloth-coverage correction.",
+    "Left renders mirror the whole native composite, not separately retargeted clothing."
+  ],
+  "items": [
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "docs/kling-side-workspace/assets/male.registration.json",
+      "collections": [
+        "material"
+      ],
+      "id": "side-male-seabreeze-top-v1",
+      "slot": "top",
+      "path": "docs/kling-side-workspace/assets/male-top.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "d947fc55f065aa894c62a5f8a059e39d81c8752ece8cc68a2b09f34fdd0d4ab7",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 14,
+        "pixels": 109,
+        "max": 49
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "docs/kling-side-workspace/assets/male.registration.json",
+      "collections": [
+        "material"
+      ],
+      "id": "side-male-seabreeze-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/kling-side-workspace/assets/male-bottom.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "a916e762e8c54e99fcd49d78d5163f507a07c891267847f9d1f5bff45e1d720a",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "docs/kling-side-workspace/assets/male.registration.json",
+      "collections": [
+        "material"
+      ],
+      "id": "side-male-seabreeze-shoes-v1",
+      "slot": "shoes",
+      "path": "docs/kling-side-workspace/assets/male-shoes.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "6d682b535c4f05239371339e8f813dd362ad0b3c497892c9fce1e3b5b8ecf63b",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 104,
+        "pixels": 5835,
+        "max": 313
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "tailored"
+      ],
+      "id": "side-male-oxford-shirt-v1",
+      "slot": "top",
+      "path": "docs/kling-side-expansion/assets/male-shirt.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "16d9e9ae04b54e56d6176f5146e53e3e520f0e96154d9c6f658e62337784e4e1",
+      "oldClothUnowned": {
+        "frames": 49,
+        "pixels": 3625,
+        "max": 451
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 39,
+        "pixels": 2563,
+        "max": 396
+      },
+      "enclosedSourceSkin": {
+        "frames": 41,
+        "pixels": 356,
+        "max": 81
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1070,
+        "copiedClothPixels": 2555,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          25,
+          30,
+          31,
+          34,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          63,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          81,
+          82,
+          84,
+          86,
+          102,
+          103,
+          106
+        ]
+      }
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "tailored"
+      ],
+      "id": "side-male-stone-trousers-v1",
+      "slot": "bottom",
+      "path": "docs/kling-side-expansion/assets/male-trousers.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "2139b7c833572398095724906f2fef437aec02bec0958896e86f6d6c51a03bab",
+      "oldClothUnowned": {
+        "frames": 57,
+        "pixels": 3968,
+        "max": 269
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 51,
+        "pixels": 2166,
+        "max": 210
+      },
+      "enclosedSourceSkin": {
+        "frames": 50,
+        "pixels": 199,
+        "max": 26
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 107,
+        "pixels": 5331,
+        "max": 381
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1760,
+        "copiedClothPixels": 2208,
+        "restoredShoePixels": 226,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          42,
+          43,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          68,
+          69,
+          70,
+          71,
+          72,
+          74,
+          81,
+          82,
+          84,
+          85,
+          91,
+          92,
+          96,
+          97,
+          102,
+          103,
+          105
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "docs/kling-side-workspace/assets/female.registration.json",
+      "collections": [
+        "material"
+      ],
+      "id": "side-female-apricot-top-v1",
+      "slot": "top",
+      "path": "docs/kling-side-workspace/assets/female-top.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "c7940716e6b2a7e01944d015aeff558b16e426b575cb8890e0fb6461e97ef832",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 27,
+        "pixels": 263,
+        "max": 72
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "docs/kling-side-workspace/assets/female.registration.json",
+      "collections": [
+        "material"
+      ],
+      "id": "side-female-apricot-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/kling-side-workspace/assets/female-bottom.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "95acfe876d0c886666ca8054166e73fe69fd80a3299c94d2f4692bca22063827",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "docs/kling-side-workspace/assets/female.registration.json",
+      "collections": [
+        "material"
+      ],
+      "id": "side-female-apricot-shoes-v1",
+      "slot": "shoes",
+      "path": "docs/kling-side-workspace/assets/female-shoes.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "e956e15f1c801c727a8ad186faf885db19b3de890a4e84299713e2dcc0d28e50",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 84,
+        "pixels": 2486,
+        "max": 210
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "tailored"
+      ],
+      "id": "side-female-cream-blouse-v1",
+      "slot": "top",
+      "path": "docs/kling-side-expansion/assets/female-blouse.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "91a803475f8074ed160bf8d5406997e50cb5e48ecaaa34474bd3b343fc0ca200",
+      "oldClothUnowned": {
+        "frames": 60,
+        "pixels": 7048,
+        "max": 776
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 52,
+        "pixels": 5047,
+        "max": 681
+      },
+      "enclosedSourceSkin": {
+        "frames": 85,
+        "pixels": 3448,
+        "max": 1018
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1965,
+        "copiedClothPixels": 5083,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          22,
+          23,
+          31,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "tailored"
+      ],
+      "id": "side-female-rose-skirt-v1",
+      "slot": "bottom",
+      "path": "docs/kling-side-expansion/assets/female-skirt.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "e5cd8694a6d9313a2c17234ce0ed137c477977e52187f115b32bbb39fab2e914",
+      "oldClothUnowned": {
+        "frames": 46,
+        "pixels": 4167,
+        "max": 502
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 42,
+        "pixels": 2864,
+        "max": 427
+      },
+      "enclosedSourceSkin": {
+        "frames": 10,
+        "pixels": 98,
+        "max": 39
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1336,
+        "copiedClothPixels": 2831,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          39,
+          40,
+          48,
+          49,
+          63,
+          64,
+          65,
+          67,
+          78,
+          79,
+          80,
+          87,
+          88,
+          89,
+          90,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "docs/kling-side-workspace/assets/male.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-male-side-sea-top-v1",
+      "slot": "top",
+      "path": "docs/dual-view-wardrobe/assets/dual-male-side-sea-top-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "d947fc55f065aa894c62a5f8a059e39d81c8752ece8cc68a2b09f34fdd0d4ab7",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 14,
+        "pixels": 109,
+        "max": 49
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "docs/kling-side-workspace/assets/male.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-male-side-sea-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-view-wardrobe/assets/dual-male-side-sea-bottom-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "a916e762e8c54e99fcd49d78d5163f507a07c891267847f9d1f5bff45e1d720a",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "docs/kling-side-workspace/assets/male.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-male-side-apricot-top-v1",
+      "slot": "top",
+      "path": "docs/dual-view-wardrobe/assets/dual-male-side-apricot-top-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "d947fc55f065aa894c62a5f8a059e39d81c8752ece8cc68a2b09f34fdd0d4ab7",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 14,
+        "pixels": 109,
+        "max": 49
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "docs/kling-side-workspace/assets/male.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-male-side-apricot-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-view-wardrobe/assets/dual-male-side-apricot-bottom-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "a916e762e8c54e99fcd49d78d5163f507a07c891267847f9d1f5bff45e1d720a",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "docs/kling-side-workspace/assets/female.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-female-side-sea-top-v1",
+      "slot": "top",
+      "path": "docs/dual-view-wardrobe/assets/dual-female-side-sea-top-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "c7940716e6b2a7e01944d015aeff558b16e426b575cb8890e0fb6461e97ef832",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 27,
+        "pixels": 263,
+        "max": 72
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "docs/kling-side-workspace/assets/female.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-female-side-sea-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-view-wardrobe/assets/dual-female-side-sea-bottom-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "95acfe876d0c886666ca8054166e73fe69fd80a3299c94d2f4692bca22063827",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "docs/kling-side-workspace/assets/female.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-female-side-apricot-top-v1",
+      "slot": "top",
+      "path": "docs/dual-view-wardrobe/assets/dual-female-side-apricot-top-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "c7940716e6b2a7e01944d015aeff558b16e426b575cb8890e0fb6461e97ef832",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 27,
+        "pixels": 263,
+        "max": 72
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "docs/kling-side-workspace/assets/female.registration.json",
+      "collections": [
+        "dual-view-wardrobe"
+      ],
+      "id": "dual-female-side-apricot-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-view-wardrobe/assets/dual-female-side-apricot-bottom-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "95acfe876d0c886666ca8054166e73fe69fd80a3299c94d2f4692bca22063827",
+      "oldClothUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "enclosedSourceSkin": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": false
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "dual-tailored"
+      ],
+      "id": "dual-tailored-male-side-sea-top-v1",
+      "slot": "top",
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-sea-top-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "16d9e9ae04b54e56d6176f5146e53e3e520f0e96154d9c6f658e62337784e4e1",
+      "oldClothUnowned": {
+        "frames": 49,
+        "pixels": 3625,
+        "max": 451
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 39,
+        "pixels": 2563,
+        "max": 396
+      },
+      "enclosedSourceSkin": {
+        "frames": 41,
+        "pixels": 356,
+        "max": 81
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1070,
+        "copiedClothPixels": 2555,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          25,
+          30,
+          31,
+          34,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          63,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          81,
+          82,
+          84,
+          86,
+          102,
+          103,
+          106
+        ]
+      }
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "dual-tailored",
+        "paired-polish"
+      ],
+      "id": "dual-tailored-male-side-sea-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-sea-bottom-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "2139b7c833572398095724906f2fef437aec02bec0958896e86f6d6c51a03bab",
+      "oldClothUnowned": {
+        "frames": 57,
+        "pixels": 3968,
+        "max": 269
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 51,
+        "pixels": 2166,
+        "max": 210
+      },
+      "enclosedSourceSkin": {
+        "frames": 50,
+        "pixels": 199,
+        "max": 26
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 107,
+        "pixels": 5331,
+        "max": 381
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1760,
+        "copiedClothPixels": 2208,
+        "restoredShoePixels": 226,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          42,
+          43,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          68,
+          69,
+          70,
+          71,
+          72,
+          74,
+          81,
+          82,
+          84,
+          85,
+          91,
+          92,
+          96,
+          97,
+          102,
+          103,
+          105
+        ]
+      }
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "dual-tailored"
+      ],
+      "id": "dual-tailored-male-side-apricot-top-v1",
+      "slot": "top",
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-apricot-top-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "16d9e9ae04b54e56d6176f5146e53e3e520f0e96154d9c6f658e62337784e4e1",
+      "oldClothUnowned": {
+        "frames": 49,
+        "pixels": 3625,
+        "max": 451
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 39,
+        "pixels": 2563,
+        "max": 396
+      },
+      "enclosedSourceSkin": {
+        "frames": 41,
+        "pixels": 356,
+        "max": 81
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1070,
+        "copiedClothPixels": 2555,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          25,
+          30,
+          31,
+          34,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          63,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          81,
+          82,
+          84,
+          86,
+          102,
+          103,
+          106
+        ]
+      }
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "dual-tailored",
+        "paired-polish"
+      ],
+      "id": "dual-tailored-male-side-apricot-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-tailored/assets/male/dual-tailored-male-side-apricot-bottom-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "2139b7c833572398095724906f2fef437aec02bec0958896e86f6d6c51a03bab",
+      "oldClothUnowned": {
+        "frames": 57,
+        "pixels": 3968,
+        "max": 269
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 51,
+        "pixels": 2166,
+        "max": 210
+      },
+      "enclosedSourceSkin": {
+        "frames": 50,
+        "pixels": 199,
+        "max": 26
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 107,
+        "pixels": 5331,
+        "max": 381
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1760,
+        "copiedClothPixels": 2208,
+        "restoredShoePixels": 226,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          42,
+          43,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          68,
+          69,
+          70,
+          71,
+          72,
+          74,
+          81,
+          82,
+          84,
+          85,
+          91,
+          92,
+          96,
+          97,
+          102,
+          103,
+          105
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-tailored"
+      ],
+      "id": "dual-tailored-female-side-sea-top-v1",
+      "slot": "top",
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-sea-top-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "91a803475f8074ed160bf8d5406997e50cb5e48ecaaa34474bd3b343fc0ca200",
+      "oldClothUnowned": {
+        "frames": 60,
+        "pixels": 7048,
+        "max": 776
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 52,
+        "pixels": 5047,
+        "max": 681
+      },
+      "enclosedSourceSkin": {
+        "frames": 85,
+        "pixels": 3448,
+        "max": 1018
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1965,
+        "copiedClothPixels": 5083,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          22,
+          23,
+          31,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-tailored"
+      ],
+      "id": "dual-tailored-female-side-sea-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-sea-bottom-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "e5cd8694a6d9313a2c17234ce0ed137c477977e52187f115b32bbb39fab2e914",
+      "oldClothUnowned": {
+        "frames": 46,
+        "pixels": 4167,
+        "max": 502
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 42,
+        "pixels": 2864,
+        "max": 427
+      },
+      "enclosedSourceSkin": {
+        "frames": 10,
+        "pixels": 98,
+        "max": 39
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1336,
+        "copiedClothPixels": 2831,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          39,
+          40,
+          48,
+          49,
+          63,
+          64,
+          65,
+          67,
+          78,
+          79,
+          80,
+          87,
+          88,
+          89,
+          90,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-tailored"
+      ],
+      "id": "dual-tailored-female-side-apricot-top-v1",
+      "slot": "top",
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-apricot-top-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "91a803475f8074ed160bf8d5406997e50cb5e48ecaaa34474bd3b343fc0ca200",
+      "oldClothUnowned": {
+        "frames": 60,
+        "pixels": 7048,
+        "max": 776
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 52,
+        "pixels": 5047,
+        "max": 681
+      },
+      "enclosedSourceSkin": {
+        "frames": 85,
+        "pixels": 3448,
+        "max": 1018
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1965,
+        "copiedClothPixels": 5083,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          22,
+          23,
+          31,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-tailored"
+      ],
+      "id": "dual-tailored-female-side-apricot-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-tailored/assets/female/dual-tailored-female-side-apricot-bottom-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "e5cd8694a6d9313a2c17234ce0ed137c477977e52187f115b32bbb39fab2e914",
+      "oldClothUnowned": {
+        "frames": 46,
+        "pixels": 4167,
+        "max": 502
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 42,
+        "pixels": 2864,
+        "max": 427
+      },
+      "enclosedSourceSkin": {
+        "frames": 10,
+        "pixels": 98,
+        "max": 39
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1336,
+        "copiedClothPixels": 2831,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          39,
+          40,
+          48,
+          49,
+          63,
+          64,
+          65,
+          67,
+          78,
+          79,
+          80,
+          87,
+          88,
+          89,
+          90,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-looks-cloth"
+      ],
+      "id": "dual-complete-female-side-sea-top-v1",
+      "slot": "top",
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-sea-top-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "91a803475f8074ed160bf8d5406997e50cb5e48ecaaa34474bd3b343fc0ca200",
+      "oldClothUnowned": {
+        "frames": 60,
+        "pixels": 7048,
+        "max": 776
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 52,
+        "pixels": 5047,
+        "max": 681
+      },
+      "enclosedSourceSkin": {
+        "frames": 85,
+        "pixels": 3448,
+        "max": 1018
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1965,
+        "copiedClothPixels": 5083,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          22,
+          23,
+          31,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-looks-cloth"
+      ],
+      "id": "dual-complete-female-side-sea-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-sea-bottom-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "1c00b895d221880940564d0988aad94829d58840c94cceab33ac852e789fa9a3",
+      "oldClothUnowned": {
+        "frames": 46,
+        "pixels": 4167,
+        "max": 502
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 42,
+        "pixels": 2864,
+        "max": 427
+      },
+      "enclosedSourceSkin": {
+        "frames": 9,
+        "pixels": 74,
+        "max": 39
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1336,
+        "copiedClothPixels": 2831,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          39,
+          40,
+          48,
+          49,
+          63,
+          64,
+          65,
+          67,
+          78,
+          79,
+          80,
+          87,
+          88,
+          89,
+          90,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-looks-cloth"
+      ],
+      "id": "dual-complete-female-side-apricot-top-v1",
+      "slot": "top",
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-apricot-top-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "91a803475f8074ed160bf8d5406997e50cb5e48ecaaa34474bd3b343fc0ca200",
+      "oldClothUnowned": {
+        "frames": 60,
+        "pixels": 7048,
+        "max": 776
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 52,
+        "pixels": 5047,
+        "max": 681
+      },
+      "enclosedSourceSkin": {
+        "frames": 85,
+        "pixels": 3448,
+        "max": 1018
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1965,
+        "copiedClothPixels": 5083,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          22,
+          23,
+          31,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/female.registration.json",
+      "collections": [
+        "dual-looks-cloth"
+      ],
+      "id": "dual-complete-female-side-apricot-bottom-v1",
+      "slot": "bottom",
+      "path": "docs/dual-looks-cloth/assets/female/dual-complete-female-side-apricot-bottom-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "1c00b895d221880940564d0988aad94829d58840c94cceab33ac852e789fa9a3",
+      "oldClothUnowned": {
+        "frames": 46,
+        "pixels": 4167,
+        "max": 502
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 42,
+        "pixels": 2864,
+        "max": 427
+      },
+      "enclosedSourceSkin": {
+        "frames": 9,
+        "pixels": 74,
+        "max": 39
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1336,
+        "copiedClothPixels": 2831,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          39,
+          40,
+          48,
+          49,
+          63,
+          64,
+          65,
+          67,
+          78,
+          79,
+          80,
+          87,
+          88,
+          89,
+          90,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "paired-polish"
+      ],
+      "id": "polished-male-side-sea-top-v1",
+      "slot": "top",
+      "path": "docs/paired-polish/assets/male/polished-male-side-sea-top-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "fe9c19faf16d298a99f19e38efe734f4b91fc91150d1b9e48c3bbac132c06831",
+      "oldClothUnowned": {
+        "frames": 49,
+        "pixels": 3625,
+        "max": 451
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 39,
+        "pixels": 2563,
+        "max": 396
+      },
+      "enclosedSourceSkin": {
+        "frames": 41,
+        "pixels": 356,
+        "max": 81
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1070,
+        "copiedClothPixels": 2555,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          25,
+          30,
+          31,
+          34,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          63,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          81,
+          82,
+          84,
+          86,
+          102,
+          103,
+          106
+        ]
+      }
+    },
+    {
+      "identity": "male",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "registration": "artwork/kling-side-expansion/templates/male.registration.json",
+      "collections": [
+        "paired-polish"
+      ],
+      "id": "polished-male-side-apricot-top-v1",
+      "slot": "top",
+      "path": "docs/paired-polish/assets/male/polished-male-side-apricot-top-v1.garment.zip",
+      "frames": 107,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "fe9c19faf16d298a99f19e38efe734f4b91fc91150d1b9e48c3bbac132c06831",
+      "oldClothUnowned": {
+        "frames": 49,
+        "pixels": 3625,
+        "max": 451
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 39,
+        "pixels": 2563,
+        "max": 396
+      },
+      "enclosedSourceSkin": {
+        "frames": 41,
+        "pixels": 356,
+        "max": 81
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1070,
+        "copiedClothPixels": 2555,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          21,
+          22,
+          23,
+          25,
+          30,
+          31,
+          34,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          63,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          81,
+          82,
+          84,
+          86,
+          102,
+          103,
+          106
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/paired-polish/female-side.registration.json",
+      "collections": [
+        "paired-polish"
+      ],
+      "id": "polished-female-side-sea-top-bound-v1",
+      "slot": "top",
+      "path": "docs/paired-polish/assets/female/polished-female-side-sea-top-bound-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "061d657648a179f522755ec563f189ac4fd99804052ab2c08afdcf9399cc1bab",
+      "oldClothUnowned": {
+        "frames": 60,
+        "pixels": 7048,
+        "max": 776
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 52,
+        "pixels": 5047,
+        "max": 681
+      },
+      "enclosedSourceSkin": {
+        "frames": 85,
+        "pixels": 3448,
+        "max": 1018
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1965,
+        "copiedClothPixels": 5083,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          22,
+          23,
+          31,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/paired-polish/female-side.registration.json",
+      "collections": [
+        "paired-polish"
+      ],
+      "id": "polished-female-side-sea-bottom-bound-v1",
+      "slot": "bottom",
+      "path": "docs/paired-polish/assets/female/polished-female-side-sea-bottom-bound-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "1c00b895d221880940564d0988aad94829d58840c94cceab33ac852e789fa9a3",
+      "oldClothUnowned": {
+        "frames": 46,
+        "pixels": 4167,
+        "max": 502
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 42,
+        "pixels": 2864,
+        "max": 427
+      },
+      "enclosedSourceSkin": {
+        "frames": 9,
+        "pixels": 74,
+        "max": 39
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1336,
+        "copiedClothPixels": 2831,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          39,
+          40,
+          48,
+          49,
+          63,
+          64,
+          65,
+          67,
+          78,
+          79,
+          80,
+          87,
+          88,
+          89,
+          90,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/paired-polish/female-side.registration.json",
+      "collections": [
+        "paired-polish"
+      ],
+      "id": "polished-female-side-apricot-top-bound-v1",
+      "slot": "top",
+      "path": "docs/paired-polish/assets/female/polished-female-side-apricot-top-bound-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "061d657648a179f522755ec563f189ac4fd99804052ab2c08afdcf9399cc1bab",
+      "oldClothUnowned": {
+        "frames": 60,
+        "pixels": 7048,
+        "max": 776
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 52,
+        "pixels": 5047,
+        "max": 681
+      },
+      "enclosedSourceSkin": {
+        "frames": 85,
+        "pixels": 3448,
+        "max": 1018
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1965,
+        "copiedClothPixels": 5083,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          22,
+          23,
+          31,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          45,
+          46,
+          47,
+          48,
+          49,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      }
+    },
+    {
+      "identity": "female",
+      "source": "docs/kling-side-workspace/assets/female.source.zip",
+      "registration": "artwork/paired-polish/female-side.registration.json",
+      "collections": [
+        "paired-polish"
+      ],
+      "id": "polished-female-side-apricot-bottom-bound-v1",
+      "slot": "bottom",
+      "path": "docs/paired-polish/assets/female/polished-female-side-apricot-bottom-bound-v1.garment.zip",
+      "frames": 102,
+      "nativeSize": [
+        512,
+        768
+      ],
+      "ownershipGeometrySha256": "1c00b895d221880940564d0988aad94829d58840c94cceab33ac852e789fa9a3",
+      "oldClothUnowned": {
+        "frames": 46,
+        "pixels": 4167,
+        "max": 502
+      },
+      "oldClothInteriorUnowned": {
+        "frames": 42,
+        "pixels": 2864,
+        "max": 427
+      },
+      "enclosedSourceSkin": {
+        "frames": 9,
+        "pixels": 74,
+        "max": 39
+      },
+      "trouserLegSkinCandidate": {
+        "frames": 0,
+        "pixels": 0,
+        "max": 0
+      },
+      "repaired": true,
+      "after": {
+        "remainingSourceClothPixels": 1336,
+        "copiedClothPixels": 2831,
+        "restoredShoePixels": 0,
+        "changedFrameIds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          39,
+          40,
+          48,
+          49,
+          63,
+          64,
+          65,
+          67,
+          78,
+          79,
+          80,
+          87,
+          88,
+          89,
+          90,
+          97,
+          98,
+          99,
+          100
+        ]
+      }
+    }
+  ]
+}

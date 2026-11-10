@@ -1,0 +1,196 @@
+{
+  "format": "gathria-bounded-cloth-area-comparison",
+  "note": "Owned visible cloth area measures shape change, not pose correctness. Same source frames and timing on both sides; no pass threshold.",
+  "edges": [
+    {
+      "slot": "top",
+      "fromFrameId": 20,
+      "toFrameId": 21,
+      "before": {
+        "visiblePixels": [
+          6944,
+          4124
+        ],
+        "symmetricAreaChange": 0.50958
+      },
+      "after": {
+        "visiblePixels": [
+          6944,
+          6950
+        ],
+        "symmetricAreaChange": 0.00086
+      }
+    },
+    {
+      "slot": "top",
+      "fromFrameId": 21,
+      "toFrameId": 22,
+      "before": {
+        "visiblePixels": [
+          4124,
+          7658
+        ],
+        "symmetricAreaChange": 0.5999
+      },
+      "after": {
+        "visiblePixels": [
+          6950,
+          7658
+        ],
+        "symmetricAreaChange": 0.09693
+      }
+    },
+    {
+      "slot": "top",
+      "fromFrameId": 37,
+      "toFrameId": 38,
+      "before": {
+        "visiblePixels": [
+          6274,
+          5894
+        ],
+        "symmetricAreaChange": 0.06246
+      },
+      "after": {
+        "visiblePixels": [
+          6274,
+          6193
+        ],
+        "symmetricAreaChange": 0.01299
+      }
+    },
+    {
+      "slot": "top",
+      "fromFrameId": 38,
+      "toFrameId": 39,
+      "before": {
+        "visiblePixels": [
+          5894,
+          7369
+        ],
+        "symmetricAreaChange": 0.22242
+      },
+      "after": {
+        "visiblePixels": [
+          6193,
+          7739
+        ],
+        "symmetricAreaChange": 0.22194
+      }
+    },
+    {
+      "slot": "top",
+      "fromFrameId": 39,
+      "toFrameId": 40,
+      "before": {
+        "visiblePixels": [
+          7369,
+          10713
+        ],
+        "symmetricAreaChange": 0.36987
+      },
+      "after": {
+        "visiblePixels": [
+          7739,
+          10713
+        ],
+        "symmetricAreaChange": 0.32235
+      }
+    },
+    {
+      "slot": "bottom",
+      "fromFrameId": 20,
+      "toFrameId": 21,
+      "before": {
+        "visiblePixels": [
+          13829,
+          12084
+        ],
+        "symmetricAreaChange": 0.13468
+      },
+      "after": {
+        "visiblePixels": [
+          13829,
+          13578
+        ],
+        "symmetricAreaChange": 0.01832
+      }
+    },
+    {
+      "slot": "bottom",
+      "fromFrameId": 21,
+      "toFrameId": 22,
+      "before": {
+        "visiblePixels": [
+          12084,
+          12222
+        ],
+        "symmetricAreaChange": 0.01136
+      },
+      "after": {
+        "visiblePixels": [
+          13578,
+          12222
+        ],
+        "symmetricAreaChange": 0.10512
+      }
+    },
+    {
+      "slot": "bottom",
+      "fromFrameId": 37,
+      "toFrameId": 38,
+      "before": {
+        "visiblePixels": [
+          15345,
+          10359
+        ],
+        "symmetricAreaChange": 0.38796
+      },
+      "after": {
+        "visiblePixels": [
+          15345,
+          14342
+        ],
+        "symmetricAreaChange": 0.06757
+      }
+    },
+    {
+      "slot": "bottom",
+      "fromFrameId": 38,
+      "toFrameId": 39,
+      "before": {
+        "visiblePixels": [
+          10359,
+          10367
+        ],
+        "symmetricAreaChange": 0.00077
+      },
+      "after": {
+        "visiblePixels": [
+          14342,
+          12807
+        ],
+        "symmetricAreaChange": 0.11308
+      }
+    },
+    {
+      "slot": "bottom",
+      "fromFrameId": 39,
+      "toFrameId": 40,
+      "before": {
+        "visiblePixels": [
+          10367,
+          12662
+        ],
+        "symmetricAreaChange": 0.19931
+      },
+      "after": {
+        "visiblePixels": [
+          12807,
+          12662
+        ],
+        "symmetricAreaChange": 0.01139
+      }
+    }
+  ]
+}

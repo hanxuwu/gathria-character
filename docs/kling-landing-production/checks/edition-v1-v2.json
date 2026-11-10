@@ -1,0 +1,701 @@
+{
+  "format": "gathria-landing-candidate-edition-audit",
+  "version": 1,
+  "before": "/tmp/landing-pr62-v1/docs/kling-landing-production/assets",
+  "after": "/tmp/gathria-landing-production/docs/kling-landing-production/assets",
+  "visualAcceptance": "not-assessed",
+  "pixelComparison": "Exact decoded RGBA; changedPixels counts pixels with any differing channel; bbox is [left,top,right,bottom] with exclusive right/bottom.",
+  "garmentOwnershipComparison": "Binary alpha in native coordinates; ownership RGB has no runtime meaning.",
+  "policy": {
+    "sourceAllowedFrames": [
+      108
+    ],
+    "lowerFromY": 557,
+    "allowedGarmentChanges": {
+      "male-daily-top.garment.zip": [
+        108
+      ],
+      "male-daily-bottom.garment.zip": [
+        108
+      ],
+      "male-wedding-top.garment.zip": [
+        63,
+        64,
+        65,
+        66,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        97,
+        98,
+        99,
+        100,
+        101,
+        108
+      ],
+      "male-wedding-bottom.garment.zip": [
+        108
+      ]
+    }
+  },
+  "source": {
+    "beforeSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
+    "afterSha256": "7ad4a85358fc67acfde96e56c3b0040a01289e231b91731dd1055f7f84eae9e5",
+    "changedFrames": [
+      108
+    ],
+    "frameChanges": [
+      {
+        "frameId": 108,
+        "changedPixels": 15962,
+        "bbox": [
+          142,
+          420,
+          317,
+          557
+        ]
+      }
+    ],
+    "originalSheets": [
+      {
+        "page": 0,
+        "file": "spritesheet.png",
+        "byteExact": true
+      },
+      {
+        "page": 1,
+        "file": "spritesheet-1.png",
+        "byteExact": true
+      },
+      {
+        "page": 2,
+        "file": "spritesheet-2.png",
+        "byteExact": true
+      }
+    ],
+    "frame108LowerBand": {
+      "fromY": 557,
+      "changedPixels": 0,
+      "bbox": null
+    },
+    "sourceActionsFpsLoopsFacingAnchorExact": true
+  },
+  "head": {
+    "sourceFrameId": 89,
+    "sourceFrameRgbaSha256": "b31d4dcee6732aa71b41675a92d06c72e27fa0fc6c1da4ad54a6709cd1017eed",
+    "sourceCoordinateMaskSha256": "3488405042b181ba4b5895206e0e4a2b374cbc2665626ead261c53d149283b51",
+    "maskBytesUnchanged": true,
+    "translation": {
+      "x": -18,
+      "y": -14
+    },
+    "visibleHeadPixels": 37158,
+    "editions": [
+      {
+        "edition": "before",
+        "frameId": 108,
+        "copiedHeadPixels": 37158,
+        "clippedPixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      },
+      {
+        "edition": "after",
+        "frameId": 108,
+        "copiedHeadPixels": 37158,
+        "clippedPixels": 0,
+        "changedPixels": 0,
+        "bbox": null
+      }
+    ]
+  },
+  "registration": {
+    "beforeSha256": "42c96cf360027ce02bf4e2034fd0e3f02a72c7b65b41fb2903fc00a604b1d2a7",
+    "afterSha256": "239e7396ae1d2f8984d6df39484a16e86eea7683c90176a2de5071a562a81eab",
+    "changedFrames": [
+      108
+    ],
+    "frameChanges": [
+      {
+        "frameId": 108,
+        "changedPaths": [
+          "points.nearElbow.confidence",
+          "points.nearElbow.method",
+          "points.nearElbow.x",
+          "points.nearElbow.y",
+          "points.nearShoulder.confidence",
+          "points.nearShoulder.method",
+          "points.nearShoulder.y",
+          "points.nearWrist.confidence",
+          "points.nearWrist.method",
+          "points.nearWrist.x",
+          "points.nearWrist.y",
+          "points.waistLeft.confidence",
+          "points.waistLeft.method",
+          "points.waistLeft.visibility",
+          "protected[1].polygon[0].x",
+          "protected[1].polygon[0].y",
+          "protected[1].polygon[1].x",
+          "protected[1].polygon[1].y",
+          "protected[1].polygon[2].x",
+          "protected[1].polygon[2].y",
+          "protected[1].polygon[3].x",
+          "protected[1].polygon[3].y",
+          "protected[1].polygon[4].x",
+          "protected[1].polygon[4].y",
+          "protected[1].polygon[5].x",
+          "protected[1].polygon[5].y",
+          "protected[1].polygon[6].x",
+          "protected[1].polygon[6].y",
+          "protected[1].polygon[7].x",
+          "protected[1].polygon[7].y",
+          "protected[1].polygon[8].x",
+          "protected[1].polygon[8].y",
+          "protected[1].polygon[9].x",
+          "protected[1].polygon[9].y",
+          "protected[1].polygon[10].x",
+          "protected[1].polygon[10].y",
+          "protected[1].polygon[11].x",
+          "protected[1].polygon[11].y",
+          "protected[1].polygon[12].x",
+          "protected[1].polygon[12].y"
+        ]
+      }
+    ]
+  },
+  "appearance": {
+    "beforeSha256": "82b406488c01b9a2954055a951b8979b2bc228e350b7660e7051cb7f22f7c08c",
+    "afterSha256": "39eb96e7aabc078b17b48934e1f177c431442d9195643f3389f4e2c5d2dfac3e",
+    "changedManifestPaths": [],
+    "changedPngFiles": [],
+    "pngChanges": []
+  },
+  "garments": {
+    "male-daily-top.garment.zip": {
+      "logicalKey": "dailyTop",
+      "beforeSha256": "ed93afbb773dfb4932b7db3fa1761266f5c2d31deacaa6d9a5abe3cb16dd5b6c",
+      "afterSha256": "57d0c981005127e2491bad3d92502e16f0fdc4dc1b058b9470238801b6ffecac",
+      "allowedFrames": [
+        108
+      ],
+      "changedFrames": [
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 5547,
+            "bbox": [
+              166,
+              418,
+              317,
+              543
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 1296,
+            "bbox": [
+              166,
+              418,
+              316,
+              542
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    },
+    "male-daily-bottom.garment.zip": {
+      "logicalKey": "dailyBottom",
+      "beforeSha256": "a769e0c82d9582cd5d4f4c3053e942ce36dfb138220dc267cf709482e9242680",
+      "afterSha256": "9fa7985d7e799974ee1121e91536800ee10f86692f3ee7b93bb3c89179490924",
+      "allowedFrames": [
+        108
+      ],
+      "changedFrames": [
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 1518,
+            "bbox": [
+              175,
+              511,
+              293,
+              642
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 698,
+            "bbox": [
+              175,
+              511,
+              293,
+              556
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    },
+    "male-wedding-top.garment.zip": {
+      "logicalKey": "weddingTop",
+      "beforeSha256": "962fa1f49d7ae2e2615f3db3468d99021497cba6cc288c781c7e53881e0d88eb",
+      "afterSha256": "f40aec2eab630889d9b02ae78f606846dad1e55cbbcd68879761521ea042144a",
+      "allowedFrames": [
+        63,
+        64,
+        65,
+        66,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        97,
+        98,
+        99,
+        100,
+        101,
+        108
+      ],
+      "changedFrames": [
+        63,
+        64,
+        65,
+        66,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        97,
+        98,
+        99,
+        100,
+        101,
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 63,
+          "patchRgba": {
+            "changedPixels": 6172,
+            "bbox": [
+              141,
+              411,
+              264,
+              502
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 100,
+            "bbox": [
+              141,
+              418,
+              158,
+              433
+            ]
+          }
+        },
+        {
+          "frameId": 64,
+          "patchRgba": {
+            "changedPixels": 5988,
+            "bbox": [
+              145,
+              414,
+              262,
+              512
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 56,
+            "bbox": [
+              145,
+              423,
+              160,
+              429
+            ]
+          }
+        },
+        {
+          "frameId": 65,
+          "patchRgba": {
+            "changedPixels": 5779,
+            "bbox": [
+              163,
+              417,
+              261,
+              521
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 99,
+            "bbox": [
+              163,
+              419,
+              178,
+              468
+            ]
+          }
+        },
+        {
+          "frameId": 66,
+          "patchRgba": {
+            "changedPixels": 5514,
+            "bbox": [
+              152,
+              423,
+              257,
+              522
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 53,
+            "bbox": [
+              152,
+              425,
+              174,
+              467
+            ]
+          }
+        },
+        {
+          "frameId": 74,
+          "patchRgba": {
+            "changedPixels": 4738,
+            "bbox": [
+              112,
+              267,
+              229,
+              334
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 492,
+            "bbox": [
+              112,
+              271,
+              163,
+              305
+            ]
+          }
+        },
+        {
+          "frameId": 75,
+          "patchRgba": {
+            "changedPixels": 4661,
+            "bbox": [
+              121,
+              274,
+              243,
+              350
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 442,
+            "bbox": [
+              121,
+              275,
+              165,
+              328
+            ]
+          }
+        },
+        {
+          "frameId": 76,
+          "patchRgba": {
+            "changedPixels": 4771,
+            "bbox": [
+              113,
+              291,
+              233,
+              374
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 573,
+            "bbox": [
+              113,
+              291,
+              168,
+              343
+            ]
+          }
+        },
+        {
+          "frameId": 77,
+          "patchRgba": {
+            "changedPixels": 6334,
+            "bbox": [
+              87,
+              314,
+              240,
+              410
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 882,
+            "bbox": [
+              87,
+              314,
+              157,
+              364
+            ]
+          }
+        },
+        {
+          "frameId": 78,
+          "patchRgba": {
+            "changedPixels": 6532,
+            "bbox": [
+              96,
+              351,
+              260,
+              462
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 1106,
+            "bbox": [
+              96,
+              351,
+              220,
+              462
+            ]
+          }
+        },
+        {
+          "frameId": 79,
+          "patchRgba": {
+            "changedPixels": 6211,
+            "bbox": [
+              143,
+              411,
+              271,
+              514
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 39,
+            "bbox": [
+              143,
+              411,
+              158,
+              415
+            ]
+          }
+        },
+        {
+          "frameId": 80,
+          "patchRgba": {
+            "changedPixels": 5603,
+            "bbox": [
+              147,
+              467,
+              282,
+              538
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 52,
+            "bbox": [
+              147,
+              472,
+              162,
+              477
+            ]
+          }
+        },
+        {
+          "frameId": 97,
+          "patchRgba": {
+            "changedPixels": 5531,
+            "bbox": [
+              120,
+              273,
+              237,
+              347
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 817,
+            "bbox": [
+              120,
+              280,
+              171,
+              321
+            ]
+          }
+        },
+        {
+          "frameId": 98,
+          "patchRgba": {
+            "changedPixels": 3604,
+            "bbox": [
+              180,
+              290,
+              240,
+              369
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 283,
+            "bbox": [
+              180,
+              294,
+              190,
+              350
+            ]
+          }
+        },
+        {
+          "frameId": 99,
+          "patchRgba": {
+            "changedPixels": 4244,
+            "bbox": [
+              182,
+              314,
+              276,
+              405
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 277,
+            "bbox": [
+              183,
+              314,
+              192,
+              374
+            ]
+          }
+        },
+        {
+          "frameId": 100,
+          "patchRgba": {
+            "changedPixels": 3424,
+            "bbox": [
+              175,
+              361,
+              244,
+              444
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 614,
+            "bbox": [
+              175,
+              362,
+              206,
+              419
+            ]
+          }
+        },
+        {
+          "frameId": 101,
+          "patchRgba": {
+            "changedPixels": 3648,
+            "bbox": [
+              143,
+              419,
+              246,
+              495
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 495,
+            "bbox": [
+              143,
+              421,
+              198,
+              476
+            ]
+          }
+        },
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 12933,
+            "bbox": [
+              142,
+              418,
+              375,
+              544
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 2949,
+            "bbox": [
+              142,
+              418,
+              316,
+              542
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    },
+    "male-wedding-bottom.garment.zip": {
+      "logicalKey": "weddingBottom",
+      "beforeSha256": "361fd677807eac93d98fcc95b17d8e4bcc0b1ed1defe52eb667c2b306133ca04",
+      "afterSha256": "eb46131b43b99338d7b541623b21653ebdb3a9d13ec2259a044637c64ab7cc43",
+      "allowedFrames": [
+        108
+      ],
+      "changedFrames": [
+        108
+      ],
+      "frameChanges": [
+        {
+          "frameId": 108,
+          "patchRgba": {
+            "changedPixels": 2029,
+            "bbox": [
+              175,
+              511,
+              293,
+              645
+            ]
+          },
+          "ownershipAlpha": {
+            "changedPixels": 698,
+            "bbox": [
+              175,
+              511,
+              293,
+              556
+            ]
+          }
+        }
+      ],
+      "changedMetadataPaths": []
+    }
+  },
+  "catalog": {
+    "changedIdentityOrPresetFields": [],
+    "beforeEdition": 1,
+    "afterEdition": 2,
+    "bindingsChanged": true,
+    "expectedPreviousEdition": {
+      "edition": 1,
+      "sourceSha256": "567a164bf7ace2225354b05e2530d9273c446dbe98e7f95eb81ec4f343845f2a",
+      "registrationSha256": "42c96cf360027ce02bf4e2034fd0e3f02a72c7b65b41fb2903fc00a604b1d2a7"
+    },
+    "lineageVerified": true
+  },
+  "errors": [],
+  "passed": true
+}

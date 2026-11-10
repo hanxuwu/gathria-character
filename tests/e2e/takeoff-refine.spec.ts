@@ -396,14 +396,9 @@ for (const character of ["male", "female"] as const) {
     for (const facing of ["right", "left"]) {
       await pose(page, "jump", 0, facing);
       gifs.jump[facing] = `${directory}/side-jump-${facing}.gif`;
-      const basic = await exported(page, "dual-export-gif", gifs.jump[facing]);
-      expect(sha(basic)).toBe(
-        sha(
-          await readFile(
-            `docs/kling-single-jump/review/${character}/side-jump-${facing}.gif`,
-          ),
-        ),
-      );
+      // The garment coverage layer changes pixels, not the basic jump. The
+      // independent verifier checks old/new GIFs against their own raw artwork.
+      await exported(page, "dual-export-gif", gifs.jump[facing]);
       gifs.flow[facing] = `${directory}/side-run-jump-run-${facing}.gif`;
       await exported(page, "dual-export-run-jump-gif", gifs.flow[facing]);
     }
@@ -413,10 +408,29 @@ for (const character of ["male", "female"] as const) {
       fullPage: true,
     });
     expect(errors).toEqual([]);
+    const savedPair = unzipSync(
+      await exported(
+        page,
+        "dual-save-project",
+        `${directory}/current.dual.zip`,
+      ),
+    );
+    await writeFile(
+      `${directory}/side.wardrobe.zip`,
+      savedPair["side.wardrobe.zip"],
+    );
     const row = {
       character,
       view: "side",
       pack: packPath,
+      project: `${directory}/side.wardrobe.zip`,
+      closeRunCycle: true,
+      historicalJumpGifs: Object.fromEntries(
+        ["right", "left"].map((facing) => [
+          facing,
+          `docs/kling-single-jump/review/${character}/side-jump-${facing}.gif`,
+        ]),
+      ),
       baseline,
       gifs,
       previousMetadata,

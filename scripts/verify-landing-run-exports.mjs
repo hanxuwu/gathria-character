@@ -140,7 +140,7 @@ function assertKnownRoutes(profile) {
   return revision;
 }
 
-function expectedFlow(profile) {
+function expectedFlow(profile, closeRunCycle = false) {
   assertKnownRoutes(profile);
   const run = profile.actions.run,
     jump = profile.actions.jump;
@@ -161,6 +161,12 @@ function expectedFlow(profile) {
     { length: run.frames.length },
     (_, i) => run.frames[(firstLanding.entry + i) % run.frames.length],
   );
+  // New review exports continue through the native last-to-first boundary.
+  // Historical review GIFs intentionally retain their original shorter tail.
+  const closure =
+    closeRunCycle && firstLanding.entry > 0
+      ? run.frames.slice(firstLanding.entry)
+      : [];
   return {
     fps: run.fps,
     frames: [
@@ -170,6 +176,7 @@ function expectedFlow(profile) {
       ...jump.frames.slice(0, firstLanding.exit),
       ...(firstLanding.leadIn ?? []),
       ...recovery,
+      ...closure,
     ],
     phases: {
       runBefore: run.frames.length + takeoff.exit,
@@ -177,6 +184,7 @@ function expectedFlow(profile) {
       jump: firstLanding.exit,
       landingLeadIn: firstLanding.leadIn?.length ?? 0,
       runAfter: recovery.length,
+      loopClosure: closure.length,
     },
     takeoff,
     landing: firstLanding,
@@ -353,11 +361,12 @@ for (const row of rows) {
     "Moving exit skipped reviewed landing compression",
   );
   const previousExpectedFlow = expectedFlow(previousProfile);
-  assert.equal(
-    sha(await readFile(row.gifs.jump.right)),
-    sha(await readFile(row.previousBasic)),
-    "Standalone Jump GIF must stay byte-identical",
-  );
+  if (!row.project)
+    assert.equal(
+      sha(await readFile(row.gifs.jump.right)),
+      sha(await readFile(row.previousBasic)),
+      "Historical standalone Jump GIF must stay byte-identical",
+    );
   assert.equal(profile.format, "gathria-gameplay-motion");
   assert.equal(profile.version, 1);
   assert.equal(profile.characterId, row.character);
@@ -396,11 +405,52 @@ for (const row of rows) {
       .filter((key) => key.endsWith(".png"))
       .sort(),
   );
+  const coverageArtwork = row.project
+    ? JSON.parse(
+        execFileSync(
+          "python",
+          ["scripts/verify-motion-coverage-artwork.py", JSON.stringify(row)],
+          {
+            encoding: "utf8",
+            timeout: 300_000,
+            maxBuffer: 8 * 1024 * 1024,
+          },
+        ),
+      )
+    : null;
+  const historicalJumpPixels = row.historicalJumpGifs
+    ? JSON.parse(
+        execFileSync(
+          "python",
+          [
+            "-c",
+            independentlyDecode,
+            JSON.stringify({
+              ...row,
+              pack: row.baseline,
+              sequences: [
+                {
+                  name: "historical-jump",
+                  frames: manifest.animations.jump.frames,
+                  fps: 24,
+                  paths: row.historicalJumpGifs,
+                },
+              ],
+            }),
+          ],
+          { encoding: "utf8", timeout: 300_000, maxBuffer: 8 * 1024 * 1024 },
+        ),
+      )
+    : null;
   const atlas = atlasFiles.map((file) => {
-    assert(
-      Buffer.from(files[file]).equals(Buffer.from(baseline[file])),
-      `Native atlas pixels/encoding changed: ${file}`,
-    );
+    // Historical inputs without an editable-project witness retain the old
+    // byte-exact check. Current exports must prove their garment-only changes
+    // independently from saved raw layers below.
+    if (!row.project)
+      assert(
+        Buffer.from(files[file]).equals(Buffer.from(baseline[file])),
+        `Native atlas pixels/encoding changed: ${file}`,
+      );
     return { file, bytes: files[file].length, sha256: sha(files[file]) };
   });
   const start =
@@ -418,7 +468,7 @@ for (const row of rows) {
         clip,
         `${action} cadence/selection changed`,
       );
-  const flow = expectedFlow(profile);
+  const flow = expectedFlow(profile, row.closeRunCycle === true);
   const sequences = [
     {
       name: "jump",
@@ -494,12 +544,15 @@ for (const row of rows) {
     flow.phases.leadIn - previousExpectedFlow.phases.leadIn;
   const landingLeadInFramesAdded =
     flow.phases.landingLeadIn - previousExpectedFlow.phases.landingLeadIn;
+  const loopClosureFramesAdded =
+    flow.phases.loopClosure - previousExpectedFlow.phases.loopClosure;
   assert.equal(
     priorFlow.length - flow.frames.length,
     recoveryFramesRemoved +
       takeoffWaitFramesRemoved -
       takeoffLeadInFramesAdded -
-      landingLeadInFramesAdded,
+      landingLeadInFramesAdded -
+      loopClosureFramesAdded,
   );
   const pixels = JSON.parse(
     execFileSync(
@@ -519,7 +572,10 @@ for (const row of rows) {
     packSha256: sha(actualBytes),
     baselinePackSha256: sha(baselineBytes),
     previousProfileId: previousProfile.id,
-    standaloneJumpGifByteIdentical: true,
+    standaloneJumpGifByteIdentical:
+      sha(await readFile(row.gifs.jump.right)) ===
+      sha(await readFile(row.previousBasic)),
+    standaloneJumpFramesAndCadenceUnchanged: true,
     unchangedUnrelatedRoutes: true,
     reviewedAddedTakeoffRoute: addedTakeoff,
     reviewedTakeoffRoutes: profile.routes.filter(
@@ -530,6 +586,7 @@ for (const row of rows) {
     flowTakeoffWaitFramesRemoved: takeoffWaitFramesRemoved,
     flowTakeoffLeadInFramesAdded: takeoffLeadInFramesAdded,
     flowLandingLeadInFramesAdded: landingLeadInFramesAdded,
+    flowLoopClosureFramesAdded: loopClosureFramesAdded,
     flowFramesRemoved: priorFlow.length - flow.frames.length,
     priorFlowDurationMs: priorFlow.reduce(
       (total, frame) => total + frame.delay,
@@ -537,7 +594,11 @@ for (const row of rows) {
     ),
     sourceSha256: profile.sourceSha256,
     nativeFrameCount: manifest.frames.length,
-    nativeAtlasBytesUnchanged: true,
+    nativeAtlasBytesUnchanged: atlasFiles.every((file) =>
+      Buffer.from(files[file]).equals(Buffer.from(baseline[file])),
+    ),
+    coverageArtwork,
+    historicalJumpPixels,
     anchorsAndDimensionsUnchanged: true,
     otherActionsAndFpsUnchanged: true,
     singleJumpNativeFrames: manifest.animations.jump.frames,
@@ -556,7 +617,7 @@ process.stdout.write(
   JSON.stringify({
     passed: true,
     packs: report.results.length,
-    nativeFramesUnchanged: report.results.reduce(
+    nativeFramesVerified: report.results.reduce(
       (n, row) => n + row.nativeFrameCount,
       0,
     ),

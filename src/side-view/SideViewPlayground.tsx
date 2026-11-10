@@ -29,8 +29,10 @@ import {
 } from "../core/gameplay-motion";
 import {
   advanceSidePlayback,
+  createSidePlaybackCheckpoint,
   createSideGameplayState,
   requestSidePlayback,
+  restoreSidePlaybackCheckpoint,
   sideGameplayState,
   sidePlaybackFrameId,
   type SideGameplayState,
@@ -65,6 +67,7 @@ import {
   loadSideProject,
   sideIdentityOf,
   sideLookSelection,
+  sideLookPresets,
   sideProjectCollection,
   type SideCharacterId,
   type SideCollection,
@@ -139,6 +142,12 @@ type Readout = {
   ended: boolean;
   bridge: "takeoff" | "landing-recovery" | null;
   transitionMs: number | null;
+};
+type RunJumpPreview = {
+  elapsedMs: number;
+  jumpAtMs: number;
+  durationMs: number;
+  jumpRequested: boolean;
 };
 const INITIAL_READOUT: Readout = {
   action: "idle",
@@ -296,6 +305,7 @@ export default function SideViewPlayground({
   const fileRef = useRef<HTMLInputElement>(null);
   const sessionRef = useRef<Session | null>(null);
   const motionRef = useRef<SideGameplayState>(createSideGameplayState());
+  const runJumpPreviewRef = useRef<RunJumpPreview | null>(null);
   const preferencesRef = useRef(preferences);
   const activeRef = useRef(active);
   const busyRef = useRef(true);
@@ -306,6 +316,7 @@ export default function SideViewPlayground({
   const dirtyRef = useRef(true);
   const mountedRef = useRef(true);
   const keysRef = useRef(new Set<string>());
+  const pendingKeyboardSyncRef = useRef(false);
   const loadTargetRef = useRef({
     character: initialCharacter,
     collection: initialCollection,
@@ -344,6 +355,7 @@ export default function SideViewPlayground({
   }
 
   function changePlaybackMode(playbackMode: GameplayMode) {
+    runJumpPreviewRef.current = null;
     const next = { ...preferencesRef.current, playbackMode };
     preferencesRef.current = next;
     setPreferences(next);
@@ -384,6 +396,7 @@ export default function SideViewPlayground({
       if (!open || !activeRef.current || busyRef.current) return;
       const pose = inspectionPose(open, action, frameId);
       if (!pose) return;
+      runJumpPreviewRef.current = null;
       keysRef.current.clear();
       pendingFacingRef.current = null;
       keyboardJumpRef.current = false;
@@ -408,6 +421,10 @@ export default function SideViewPlayground({
     busyRef.current = value;
     setBusy(value);
     lastTimeRef.current = null;
+    if (!value && pendingKeyboardSyncRef.current) {
+      pendingKeyboardSyncRef.current = false;
+      synchronizeKeys();
+    }
   }
   function beginPreparation() {
     preparationRef.current?.abort();
@@ -453,6 +470,7 @@ export default function SideViewPlayground({
       const gameplay = resolveGameplayMotion(
         renderer.manifest,
         candidate.document.sourceSha256,
+        candidate.archive.config,
       );
       const next: Session = {
         character,
@@ -460,7 +478,11 @@ export default function SideViewPlayground({
         renderer,
         gameplay,
         gameplayManifest: gameplay
-          ? gameplayManifest(renderer.manifest, gameplay)
+          ? gameplayManifest(
+              renderer.manifest,
+              gameplay,
+              candidate.archive.config,
+            )
           : renderer.manifest,
         currentFrames: new Map(),
         sourceFrames: new Map(),
@@ -472,12 +494,25 @@ export default function SideViewPlayground({
         const action = ACTIONS.includes(saved.action as SideAction)
           ? (saved.action as SideAction)
           : "idle";
-        motionRef.current = {
+        const restored = gameplay
+          ? restoreSidePlaybackCheckpoint(saved.playback, gameplay)
+          : null;
+        if (restored) {
+          const nextPreferences = {
+            ...preferencesRef.current,
+            playbackMode: "single-jump" as const,
+          };
+          preferencesRef.current = nextPreferences;
+          setPreferences(nextPreferences);
+        }
+        motionRef.current = restored ?? {
           ...createSideGameplayState(),
           action,
           facing: saved.facing,
           paused: reviewRef.current.open,
         };
+        runJumpPreviewRef.current = null;
+        pendingKeyboardSyncRef.current = false;
         keysRef.current.clear();
         pendingFacingRef.current = null;
         keyboardJumpRef.current = false;
@@ -607,7 +642,9 @@ export default function SideViewPlayground({
       );
       await prepare(candidate, controller, token, true);
       if (live(token, controller))
-        setStatus("项目已打开，搭配、动作和朝向已恢复。");
+        setStatus(
+          "项目已打开，搭配、动作和朝向已恢复；保存的单次跳跃帧位与暂停状态会一同恢复。",
+        );
     } catch (failure) {
       if (live(token, controller))
         setError(failure instanceof Error ? failure.message : String(failure));
@@ -640,6 +677,7 @@ export default function SideViewPlayground({
 
   function toggleFitting() {
     if (editingLockedRef.current) return;
+    runJumpPreviewRef.current = null;
     const next = !fittingOpen;
     fittingRef.current = next;
     setFittingOpen(next);
@@ -658,6 +696,7 @@ export default function SideViewPlayground({
   function requestAction(action: SideAction, inspect = false) {
     const open = sessionRef.current;
     if (!open || busyRef.current || editingLockedRef.current) return;
+    runJumpPreviewRef.current = null;
     const current = motionRef.current;
     if (inspect) {
       keyboardJumpRef.current = false;
@@ -732,10 +771,50 @@ export default function SideViewPlayground({
     requestAction(requested);
   }
 
+  function synchronizeKeysWhenReady() {
+    // Saving and applying a look freeze playback, but a release still changes
+    // landing intent. Only deferred key changes resynchronize on completion;
+    // an export with no keyboard input leaves scripted review flows alone.
+    if (busyRef.current) pendingKeyboardSyncRef.current = true;
+    else synchronizeKeys();
+  }
+
   function step(direction: number) {
     const open = sessionRef.current;
     if (!open || busyRef.current) return;
     const current = motionRef.current;
+    const profile = playbackProfile(open);
+    if (current.leadIn && profile) {
+      runJumpPreviewRef.current = null;
+      const durationMs = 1000 / profile.actions[current.action].fps;
+      motionRef.current =
+        direction > 0
+          ? {
+              ...advanceSidePlayback(
+                { ...current, paused: false },
+                durationMs,
+                playbackManifest(open),
+                {
+                  mode: "in-place",
+                  walkSpeed: 0,
+                  runSpeed: 0,
+                  bounds: { min: -10_000_000, max: 10_000_000 },
+                },
+                profile,
+              ),
+              paused: true,
+            }
+          : {
+              ...current,
+              paused: true,
+              leadIn: {
+                ...current.leadIn,
+                elapsedMs: Math.max(0, current.leadIn.elapsedMs - durationMs),
+              },
+            };
+      dirtyRef.current = true;
+      return;
+    }
     const clip = playbackManifest(open).animations[current.action]!;
     const frame = sidePlaybackFrameId(
       current,
@@ -752,6 +831,7 @@ export default function SideViewPlayground({
   function seekFrame(index: number) {
     const open = sessionRef.current;
     if (!open || busyRef.current || editingLockedRef.current) return;
+    runJumpPreviewRef.current = null;
     const current = motionRef.current;
     const clip = playbackManifest(open).animations[current.action]!;
     const next = Math.max(0, Math.min(clip.frames.length - 1, index));
@@ -767,6 +847,7 @@ export default function SideViewPlayground({
 
   function toggleReview() {
     if (editingLockedRef.current) return;
+    runJumpPreviewRef.current = null;
     const next = !reviewOpen;
     setReviewOpen(next);
     setReviewRate(1);
@@ -791,6 +872,7 @@ export default function SideViewPlayground({
     if (!open || busyRef.current || editingLockedRef.current) return;
     const pose = inspectionPose(open, note.action, note.frame);
     if (!pose) return;
+    runJumpPreviewRef.current = null;
     keysRef.current.clear();
     pendingFacingRef.current = null;
     keyboardJumpRef.current = false;
@@ -818,24 +900,132 @@ export default function SideViewPlayground({
     [session],
   );
 
-  async function save(kind: "project" | "png" | "gif" | "pack") {
+  async function startRunJumpPreview(landingFrame?: number) {
+    const open = sessionRef.current;
+    if (!open?.gameplay || busyRef.current || editingLockedRef.current) return;
+    try {
+      const { buildWardrobeRunJumpSequence } = await import(
+        "../wardrobe/action-flow-gif"
+      );
+      if (open !== sessionRef.current || busyRef.current) return;
+      const sequence = buildWardrobeRunJumpSequence(open.gameplay);
+      changePlaybackMode("single-jump");
+      keysRef.current.clear();
+      motionRef.current = {
+        ...createSideGameplayState(),
+        action: "run",
+        returnAction: "run",
+        facing: motionRef.current.facing,
+        worldX: motionRef.current.worldX,
+      };
+      const jumpAtMs = (sequence.jumpRequestTick * 1000) / sequence.fps;
+      runJumpPreviewRef.current = {
+        elapsedMs: 0,
+        jumpAtMs,
+        durationMs: sequence.durationMs,
+        jumpRequested: false,
+      };
+      if (landingFrame !== undefined) {
+        const position = sequence.frames.findIndex(
+          (frame) => frame.frameId === landingFrame,
+        );
+        if (position < 0) {
+          runJumpPreviewRef.current = null;
+          setError("当前候选动作中找不到这张落地衔接帧。");
+          return;
+        }
+        advancePreview(open, (position * 1000) / sequence.fps + 0.000001);
+        motionRef.current = { ...motionRef.current, paused: true };
+        runJumpPreviewRef.current = null;
+        setStatus(
+          `已暂停在落地衔接帧 ${landingFrame}。可逐帧检查、保存后重新打开，或继续接回跑步。`,
+        );
+      } else {
+        setStatus(
+          "正在预览跑 → 跳 → 跑：跳跃一次，落地继续跑步，完整播放后暂停。",
+        );
+      }
+      lastTimeRef.current = null;
+      dirtyRef.current = true;
+    } catch (failure) {
+      runJumpPreviewRef.current = null;
+      setError(failure instanceof Error ? failure.message : String(failure));
+    }
+  }
+
+  // Split at the native run-cycle boundary so a slow browser still submits
+  // exactly one jump request at the same point as the exported controller flow.
+  function advancePreview(open: Session, deltaMs: number) {
+    const flow = runJumpPreviewRef.current;
+    const prefs = preferencesRef.current;
+    const advance = (durationMs: number) => {
+      motionRef.current = advanceSidePlayback(
+        motionRef.current,
+        durationMs,
+        playbackManifest(open),
+        {
+          mode: prefs.mode,
+          walkSpeed: prefs.walkSpeed,
+          runSpeed: prefs.runSpeed,
+          bounds: { min: -10_000_000, max: 10_000_000 },
+        },
+        playbackProfile(open),
+      );
+    };
+    if (!flow || motionRef.current.paused) {
+      advance(deltaMs);
+      return;
+    }
+    const end = Math.min(flow.elapsedMs + deltaMs, flow.durationMs);
+    if (!flow.jumpRequested && end >= flow.jumpAtMs) {
+      advance(flow.jumpAtMs - flow.elapsedMs);
+      flow.elapsedMs = flow.jumpAtMs;
+      motionRef.current = requestSidePlayback(
+        motionRef.current,
+        "jump",
+        playbackManifest(open),
+        playbackProfile(open),
+      );
+      flow.jumpRequested = true;
+    }
+    advance(end - flow.elapsedMs);
+    flow.elapsedMs = end;
+    if (end >= flow.durationMs) {
+      motionRef.current = { ...motionRef.current, paused: true };
+      runJumpPreviewRef.current = null;
+      setStatus("跑 → 跳 → 跑预览完成，已暂停。可重播或导出同一动作流程 GIF。");
+    }
+  }
+
+  async function save(kind: "project" | "png" | "gif" | "flow-gif" | "pack") {
     const open = sessionRef.current;
     if (!open || busyRef.current || editingLockedRef.current) return;
     const { controller, token } = beginPreparation();
     const motion = { ...motionRef.current };
-    const project = updateWardrobePreview(open.project, {
-      action: motion.action,
-      facing: motion.facing,
-    });
-    const stem = `kling-${open.character}-side-view`;
+
+    const stem = `kling-${open.character}-side-view${sideProjectCollection(open.project) === "landing-candidate" ? "-landing-candidate" : ""}`;
     setStatus(
       kind === "pack"
         ? "正在生成完整角色包…"
-        : kind === "gif"
-          ? "正在生成当前动作 GIF…"
-          : "正在准备下载…",
+        : kind === "flow-gif"
+          ? "正在生成跑 → 跳 → 跑 GIF…"
+          : kind === "gif"
+            ? "正在生成当前动作 GIF…"
+            : "正在准备下载…",
     );
     try {
+      const project = updateWardrobePreview(open.project, {
+        action: motion.action,
+        facing: motion.facing,
+        ...(playbackProfile(open)
+          ? {
+              playback: createSidePlaybackCheckpoint(
+                motion,
+                playbackProfile(open)!,
+              ),
+            }
+          : {}),
+      });
       let bytes: Uint8Array;
       let filename: string;
       let mime = "application/zip";
@@ -853,6 +1043,25 @@ export default function SideViewPlayground({
           },
         });
         filename = `${stem}.character.zip`;
+      } else if (kind === "flow-gif") {
+        if (!open.gameplay) throw Error("当前项目没有可用的单次跳跃动作。");
+        const { exportWardrobeRunJumpGif } = await import(
+          "../wardrobe/action-flow-gif"
+        );
+        bytes = await exportWardrobeRunJumpGif(
+          open.renderer,
+          open.gameplay,
+          motion.facing,
+          {
+            signal: controller.signal,
+            onProgress: (done, total) => {
+              if (live(token, controller))
+                setStatus(`正在生成跑 → 跳 → 跑 GIF · ${done} / ${total}`);
+            },
+          },
+        );
+        filename = `${stem}-run-jump-run-${motion.facing}.gif`;
+        mime = "image/gif";
       } else if (kind === "gif") {
         const { exportWardrobeActionGif } = await import(
           "../wardrobe/action-gif"
@@ -890,12 +1099,14 @@ export default function SideViewPlayground({
       if (kind === "project") setSavedProject(open.project);
       setStatus(
         kind === "project"
-          ? "项目已保存，包含原片、服装、当前搭配及动作朝向；可在此重新打开。"
+          ? "项目已保存，包含原片、服装、当前搭配及动作朝向；单次跳跃帧位、衔接与暂停状态可在此恢复。"
           : kind === "pack"
             ? "角色包已导出，包含当前搭配的全部动作，可独立播放。"
-            : kind === "gif"
-              ? "GIF 已导出：当前搭配与朝向、原生节奏、半尺寸米色背景。"
-              : "透明 PNG 已导出，保留当前搭配、帧和朝向。",
+            : kind === "flow-gif"
+              ? "跑 → 跳 → 跑 GIF 已导出，包含一次完整起落、落地衔接和返回跑步。候选美术仍待验收。"
+              : kind === "gif"
+                ? "GIF 已导出：当前搭配与朝向、原生节奏、半尺寸米色背景。"
+                : "透明 PNG 已导出，保留当前搭配、帧和朝向。",
       );
     } catch (failure) {
       if (live(token, controller))
@@ -936,7 +1147,7 @@ export default function SideViewPlayground({
         (key) => keysRef.current.has(key),
       );
       keysRef.current.clear();
-      if (hadMovement && !busyRef.current) synchronizeKeys();
+      if (hadMovement) synchronizeKeysWhenReady();
       pendingFacingRef.current = null;
     }
     dirtyRef.current = true;
@@ -948,7 +1159,7 @@ export default function SideViewPlayground({
         ["ArrowLeft", "ArrowRight", "KeyA", "KeyD"].includes(key),
       );
       keysRef.current.clear();
-      if (hadMovement && !busyRef.current) synchronizeKeys();
+      if (hadMovement) synchronizeKeysWhenReady();
       lastTimeRef.current = null;
     }
     function visibility() {
@@ -1002,8 +1213,8 @@ export default function SideViewPlayground({
     function keyup(event: KeyboardEvent) {
       if (!keysRef.current.has(event.code)) return;
       keysRef.current.delete(event.code);
-      if (event.code !== "Space" && activeRef.current && !busyRef.current)
-        synchronizeKeys();
+      if (event.code !== "Space" && activeRef.current)
+        synchronizeKeysWhenReady();
     }
     window.addEventListener("keydown", keydown);
     window.addEventListener("keyup", keyup);
@@ -1041,22 +1252,7 @@ export default function SideViewPlayground({
       lastTimeRef.current = now;
       try {
         const manifest = playbackManifest(open);
-        // Travel uses a following camera. These finite bounds protect numeric
-        // precision without stopping ordinary playback at the screen edges.
-        const bounds = { min: -10_000_000, max: 10_000_000 };
-        if (!busyRef.current)
-          motionRef.current = advanceSidePlayback(
-            motionRef.current,
-            delta * rate,
-            manifest,
-            {
-              mode: prefs.mode,
-              walkSpeed: prefs.walkSpeed,
-              runSpeed: prefs.runSpeed,
-              bounds,
-            },
-            playbackProfile(open),
-          );
+        if (!busyRef.current) advancePreview(open, delta * rate);
         let motion = motionRef.current;
         if (
           keyboardJumpRef.current &&
@@ -1131,6 +1327,7 @@ export default function SideViewPlayground({
         canvas.dataset.ended = String(ended);
         canvas.dataset.character = open.character;
         canvas.dataset.collection = sideProjectCollection(open.project);
+        canvas.dataset.flow = runJumpPreviewRef.current ? "run-jump-run" : "";
         const bridge = motion.leadIn
           ? motion.leadIn.from === "jump"
             ? "landing-recovery"
@@ -1277,6 +1474,7 @@ export default function SideViewPlayground({
   const collection = session
     ? sideProjectCollection(session.project)
     : initialCollection;
+  const landingCandidate = collection === "landing-candidate";
   const appearance = session
     ? getWardrobeAppearanceSelection(session.project)
     : null;
@@ -1297,6 +1495,9 @@ export default function SideViewPlayground({
     (["top", "bottom", "shoes", "fullBody"] as WardrobeSlot[]).every(
       (slot) => selection[slot] === preset[slot],
     );
+  const candidatePresets = landingCandidate
+    ? sideLookPresets("male", "landing-candidate")
+    : [];
   const jumpLocked =
     readout.action === "jump" && !readout.ended && !readout.paused;
   const inspectedPose = session
@@ -1362,6 +1563,21 @@ export default function SideViewPlayground({
           />
         </div>
       </header>
+
+      {landingCandidate && (
+        <div
+          className="side-candidate-note"
+          data-testid="side-candidate-notice"
+        >
+          <strong>落地衔接实验 · 男版三套造型 · 待美术验收</strong>
+          <p>
+            原版、日常与婚礼造型各自覆盖候选动作。落地新增画面仍需检查人体、服装和接跑是否自然；默认侧视素材保持原版本。
+          </p>
+          <p>
+            这组候选保留原片默认脸部与发型。服装仅适用于这组动作与定位版本。
+          </p>
+        </div>
+      )}
 
       <div className="side-layout">
         <div className="side-preview-column">
@@ -1478,6 +1694,40 @@ export default function SideViewPlayground({
                 </button>
               ))}
             </div>
+            {landingCandidate && (
+              <div
+                className="side-candidate-flow"
+                aria-label="落地衔接实验操作"
+              >
+                <button
+                  type="button"
+                  data-testid="side-preview-run-jump"
+                  disabled={!session?.gameplay || controlsLocked}
+                  onClick={() => void startRunJumpPreview()}
+                >
+                  <Play size={15} aria-hidden="true" /> 跑 → 跳 → 跑
+                </button>
+                <button
+                  type="button"
+                  data-testid="side-inspect-landing-107"
+                  disabled={!session?.gameplay || controlsLocked}
+                  onClick={() => void startRunJumpPreview(107)}
+                >
+                  检查落地帧 107
+                </button>
+                <button
+                  type="button"
+                  data-testid="side-inspect-landing-108"
+                  disabled={!session?.gameplay || controlsLocked}
+                  onClick={() => void startRunJumpPreview(108)}
+                >
+                  检查落地帧 108
+                </button>
+                <p className="side-small-note">
+                  完整预览会在落地接跑一轮后暂停。落地检查可保存当前暂停帧，再打开项目继续跑步。
+                </p>
+              </div>
+            )}
             <input
               className="side-frame-range"
               type="range"
@@ -1630,6 +1880,7 @@ export default function SideViewPlayground({
               }}
               onPose={locateReviewNote}
               getFrame={reviewFrame}
+              onExportPng={() => void save("png")}
             />
           )}
           <div className="side-review-toggle">
@@ -1714,7 +1965,9 @@ export default function SideViewPlayground({
                 onChange={(event) =>
                   navigate(
                     event.currentTarget.value as SideCharacterId,
-                    collection,
+                    landingCandidate && event.currentTarget.value === "female"
+                      ? "material"
+                      : collection,
                   )
                 }
               >
@@ -1740,6 +1993,11 @@ export default function SideViewPlayground({
               >
                 <option value="material">原版型配色</option>
                 <option value="tailored">新款试装 · 上衣与下装</option>
+                {(session?.character ?? initialCharacter) === "male" && (
+                  <option value="landing-candidate">
+                    落地衔接实验 · 待美术验收
+                  </option>
+                )}
               </select>
             </label>
             <p className="side-small-note">
@@ -1748,28 +2006,60 @@ export default function SideViewPlayground({
                 : "切换服装组会打开对应项目；当前搭配可先保存。"}
             </p>
             <div className="side-look-presets">
-              <button
-                type="button"
-                disabled={!session || controlsLocked}
-                aria-pressed={originalSelected}
-                data-testid="side-look-original"
-                onClick={() => void changeSelection(ORIGINAL)}
-              >
-                <span className="side-swatch side-swatch-original" />
-                {collection === "tailored" ? "原片服装" : "原片造型"}
-              </button>
-              <button
-                type="button"
-                disabled={!presetAvailable || controlsLocked}
-                aria-pressed={dailySelected}
-                data-testid="side-look-daily"
-                onClick={() => session && void changeSelection(preset)}
-              >
-                <span
-                  className={`side-swatch side-swatch-${session?.character ?? initialCharacter}`}
-                />
-                {collection === "tailored" ? "新款搭配" : "日常搭配"}
-              </button>
+              {landingCandidate ? (
+                candidatePresets.map((look) => (
+                  <button
+                    key={look.id}
+                    type="button"
+                    data-testid={`side-look-${look.id}`}
+                    disabled={
+                      !session ||
+                      controlsLocked ||
+                      Object.values(look.selection).some(
+                        (id) =>
+                          id !== null &&
+                          !session.project.items.some(
+                            (item) => item.manifest.id === id,
+                          ),
+                      )
+                    }
+                    aria-pressed={(
+                      Object.keys(selection) as WardrobeSlot[]
+                    ).every((slot) => selection[slot] === look.selection[slot])}
+                    onClick={() => void changeSelection(look.selection)}
+                  >
+                    <span
+                      className={`side-swatch side-swatch-${look.id === "original" ? "original" : "male"}`}
+                    />
+                    {look.name}
+                  </button>
+                ))
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    disabled={!session || controlsLocked}
+                    aria-pressed={originalSelected}
+                    data-testid="side-look-original"
+                    onClick={() => void changeSelection(ORIGINAL)}
+                  >
+                    <span className="side-swatch side-swatch-original" />
+                    {collection === "tailored" ? "原片服装" : "原片造型"}
+                  </button>
+                  <button
+                    type="button"
+                    disabled={!presetAvailable || controlsLocked}
+                    aria-pressed={dailySelected}
+                    data-testid="side-look-daily"
+                    onClick={() => session && void changeSelection(preset)}
+                  >
+                    <span
+                      className={`side-swatch side-swatch-${session?.character ?? initialCharacter}`}
+                    />
+                    {collection === "tailored" ? "新款搭配" : "日常搭配"}
+                  </button>
+                </>
+              )}
             </div>
             {(
               [
@@ -1804,7 +2094,9 @@ export default function SideViewPlayground({
               </label>
             ))}
             <p className="side-small-note">
-              每件服装跟随原片逐帧对齐，试试混搭后再跑几步。
+              {landingCandidate
+                ? "三套造型使用各自适配的候选服装，包含新增落地帧。混搭与发型修改需单独检查。"
+                : "每件服装跟随原片逐帧对齐，试试混搭后再跑几步。"}
             </p>
             {session?.project.appearanceBank && appearance && (
               <>
@@ -2026,6 +2318,19 @@ export default function SideViewPlayground({
                 CharacterPack<small>完整动作 · 可独立播放</small>
               </span>
             </button>
+            {landingCandidate && (
+              <button
+                type="button"
+                disabled={!session?.gameplay || controlsLocked}
+                data-testid="side-export-run-jump-gif"
+                onClick={() => void save("flow-gif")}
+              >
+                <Download size={14} />
+                <span>
+                  跑 → 跳 → 跑 GIF<small>完整起落与接跑 · 当前搭配</small>
+                </span>
+              </button>
+            )}
             <p className="side-small-note">
               导出使用当前搭配和朝向。继续换装请保存项目。
             </p>

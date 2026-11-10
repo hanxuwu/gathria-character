@@ -1,0 +1,28 @@
+{
+  "format": "gathria-painted-cloth-donor",
+  "version": 1,
+  "tool": "image_gen.imagegen",
+  "generationDate": "2026-11-04",
+  "transparent_background": true,
+  "promptFile": "donor-prompt.txt",
+  "outputFile": "raised-arm-donor.png",
+  "outputSha256": "fe0fbf00b5d9a4948354709d2d2a20450fbf950ee35813aa43724d9153633851",
+  "size": [
+    1024,
+    1536
+  ],
+  "references": [
+    {
+      "file": "reference-source-75.png",
+      "sha256": "2e2d87808ce8ba704ead5a1e6a247c747f2ce781a287d0a85f2197f2251757f1",
+      "source": "docs/kling-side-workspace/assets/male.source.zip",
+      "frameId": 75
+    },
+    {
+      "file": "../painted-donor.png",
+      "sha256": "13346cc15688e5c41f0acf79b0218b2bacb4eba5bfc108a993a56063ce67b9f2",
+      "use": "costume design and painted fabric only"
+    }
+  ],
+  "sampling": "Only manually traced navy sleeve and ivory cuff pixels enter output. Generated head, hand, skin, anatomy, shoes and background are discarded."
+}

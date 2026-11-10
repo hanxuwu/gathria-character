@@ -2,6 +2,7 @@ import catalog from "../../docs/dual-view-wardrobe/assets/catalog.json";
 import tailoredCatalog from "../../docs/dual-tailored/assets/catalog.json";
 import completeCatalog from "../../docs/dual-looks-cloth/assets/catalog.json";
 import polishedCatalog from "../../docs/paired-polish/assets/catalog.json";
+import historicalRevisions from "../../artwork/wardrobe-finish/paired-garment-revisions.json";
 import { sha256 } from "../core/sha256";
 import {
   assertSourcePreparationActive,
@@ -23,7 +24,7 @@ import {
   type DualViewSelection,
   type DualViewWardrobe,
 } from "./dual-view";
-import type { WardrobeProject } from "./contract";
+import type { WardrobeGarment, WardrobeProject } from "./contract";
 
 type ClothingSlot = "top" | "bottom";
 interface RepresentationItem {
@@ -290,6 +291,40 @@ function assertBinding(
     );
 }
 
+/** Published old projects keep their embedded artwork. A known item ID alone
+ * is insufficient: all native, logical and collection bindings plus the exact
+ * archive hash must match an explicitly shipped revision. Deep archive/manifest
+ * validation still happens in importWardrobeProject/createWardrobeCompositor. */
+function publishedGarment(
+  item: WardrobeGarment | undefined,
+  expected: RepresentationItem,
+  specification: Representation,
+  outfitId: string,
+): boolean {
+  if (
+    !item ||
+    item.manifest.id !== expected.id ||
+    item.manifest.slot !== expected.slot ||
+    item.manifest.sourceSha256 !== specification.sourceSha256 ||
+    item.manifest.registrationSha256 !== specification.registrationSha256
+  )
+    return false;
+  if (item.sha256 === expected.sha256) return true;
+  return historicalRevisions.entries.some(
+    (revision) =>
+      revision.outfitId === outfitId &&
+      revision.character === specification.character &&
+      revision.view === specification.view &&
+      revision.id === expected.id &&
+      revision.logicalId === expected.logicalId &&
+      revision.slot === expected.slot &&
+      revision.palette === expected.palette &&
+      revision.sourceSha256 === specification.sourceSha256 &&
+      revision.registrationSha256 === specification.registrationSha256 &&
+      revision.sha256.includes(item.sha256),
+  );
+}
+
 /** Check logical labels against actual source-bound items on import. */
 export function validateDualViewLook(pair: DualViewWardrobe): void {
   assertSelection(pair.character, pair.selection);
@@ -315,9 +350,12 @@ export function validateDualViewLook(pair: DualViewWardrobe): void {
           (item) => item.manifest.id === expected.id,
         );
         if (
-          !item ||
-          item.sha256 !== expected.sha256 ||
-          item.manifest.slot !== slot
+          !publishedGarment(
+            item,
+            expected,
+            specification,
+            pair.selection.outfitId,
+          )
         )
           throw Error(
             "对应视角的服装素材缺失或已被修改，请打开完整的双视角项目。",
@@ -351,7 +389,7 @@ export function selectDualViewLook(
         const loaded = project.items.find(
           (value) => value.manifest.id === item.id,
         );
-        if (!loaded || loaded.sha256 !== item.sha256)
+        if (!publishedGarment(loaded, item, specification, selection.outfitId))
           throw Error("项目缺少这件衣服的对应视角版本。两边的搭配都未更改。");
         project = selectWardrobeGarment(project, slot, item.id);
       }
@@ -440,9 +478,8 @@ async function loadProjects(
     ]);
     const garments: Uint8Array[] = [];
     for (const item of spec.items) {
-      const existing = before?.items.find(
-        (candidate) =>
-          candidate.manifest.id === item.id && candidate.sha256 === item.sha256,
+      const existing = before?.items.find((candidate) =>
+        publishedGarment(candidate, item, spec, selection.outfitId),
       );
       garments.push(
         existing

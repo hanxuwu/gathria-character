@@ -1,0 +1,65 @@
+{
+  "origin": "generated-art-candidate",
+  "visualAcceptance": "pending",
+  "status": "selected-experimental-candidate",
+  "selectedBodyIteration": "107 R2; 108 R3 owned upper-body revision with corrected arm interface",
+  "generatedBodyNativeSize": [
+    512,
+    768
+  ],
+  "originalSourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+  "sourceHeadFrameId": 89,
+  "method": "Retain frame 107 exactly. For frame 108, copy generated R3 RGBA only inside the reviewed upper-torso and near-arm ownership mask over the original R2 generated body. Preserve every unowned pixel and all rows at or below y=557 exactly. Reattach the same original source frame 89 head without resampling, repainting or translation changes. All original native frames 0..106, action clips and timing remain unchanged. This second edition is selected for experimental interactive review only; production visual acceptance remains pending.",
+  "promptHistory": [
+    "initial body proposal",
+    "R1localleg correction",
+    "R2supportshoe correction",
+    "R3 localized frame 108 torso and near-arm correction; bounded owned RGBA assembly"
+  ],
+  "frames": {
+    "107": {
+      "rawGeneratedPng": "pose-a-r2.original.png",
+      "rawGeneratedSha256": "b0b6ea047226c6511fc92439c4f940b322b718a2e3c76b378ac663c2c399c756",
+      "nativeBodyPng": "pose-a-r2.native.png",
+      "nativeBodySha256": "8830eb50c5cf0e47c318140eb10fa475e25fe3fdc441e46185900a66ab0e3a7f",
+      "assembledPng": "107.png",
+      "assembledSha256": "7a941f28b5b6ebafcddd42f3ae849a4a1fc87a9baeb9ead86776d827dbb074d1",
+      "finalPrompt": "pose-a-r2.prompt.txt",
+      "finalPromptSha256": "3411cef51ab018112fc446fe13befc1723afe34d2e04c1c55279851e0518171d",
+      "headTranslation": {
+        "x": -9,
+        "y": -7
+      }
+    },
+    "108": {
+      "rawGeneratedPng": "revision-2/pose-108-r3.original.png",
+      "rawGeneratedSha256": "54546386058cfee5ec833db3ae1d084220470fc1d73c8511a738024eebecab3b",
+      "nativeBodyPng": "revision-2/pose-108-owned.native.png",
+      "nativeBodySha256": "3d8ea0c24f05580d8c54d6df7dc39e7228551ac15a8fa83f4df583e839582a41",
+      "assembledPng": "revision-2/108.png",
+      "assembledSha256": "b9de75353ef921cd163f31e259c3e13988a49a98b54b6340497de692c95cb52a",
+      "finalPrompt": "revision-2/pose-108-r3.prompt.txt",
+      "finalPromptSha256": "9016a1c802dc0aae151b1388f57ece009e999437addacc9a66f7bc0c26fc3fcd",
+      "headTranslation": {
+        "x": -18,
+        "y": -14
+      },
+      "generatedNativePng": "revision-2/pose-108-r3.native.png",
+      "generatedNativeSha256": "6bd076542307f65ef32253d31df42282181058ca494fbc553f83553d695c512d",
+      "previousNativeBodyPng": "pose-b-r2.native.png",
+      "previousNativeBodySha256": "db5fa5c5967201b7921d3cd7b7eb11ebb9a527a89ed17c4d0fb3b4a5fa5a6247",
+      "bodyOwnershipMask": "revision-2/108-upper-ownership-v2.png",
+      "bodyOwnershipMaskSha256": "284c5ba5b9b23e0c9fd946be7d34e59f4bf5f7967703269ec1265edc70a0fbc6"
+    }
+  },
+  "headAssemblyAudit": "revision-2/head-copy-audit.json",
+  "headAssemblyMask": "source89-head-mask.png",
+  "registration": "revision-2/new-frame-registration.r3.json",
+  "bodyReview": "revision-2/art-provenance.r3.json",
+  "registrationStatus": "Manually revised frame 108 near shoulder, elbow, wrist and hand protection. Frame 107 and the frame 108 head polygon, neck, far hand and leg anchors retain their previous values; these are authoring guides, not a recovered skeleton.",
+  "candidateEdition": 2,
+  "assetPathBase": "artwork/kling-landing-production/body",
+  "experimentalSelection": "Root and independent visual review selected the corrected upper-body seam for experimental freeze; dressed frame and interactive sequence review follow.",
+  "upperOwnership": "revision-2/ownership.v2.json",
+  "localPreservationAudit": "revision-2/local-preservation-audit.json"
+}

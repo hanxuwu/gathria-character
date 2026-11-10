@@ -1,0 +1,167 @@
+{
+  "source": "fixed-ground-review.json",
+  "transform": "Exact left mirror then uniform half-size display only; world origin remains constant through each pass.",
+  "cameraRecenterPerFrame": false,
+  "placement": {
+    "panelWidth": 480,
+    "panelHeight": 438,
+    "scale": 0.5,
+    "spriteOriginXAtWindowStart": {
+      "right": 40,
+      "left": 184
+    },
+    "formula": "round(originX + (actualWorldX[tick] - actualWorldX[startTick]) * 0.5)",
+    "worldReferenceTick": 47,
+    "groundSourceY": 710,
+    "groundPanelY": 397.0
+  },
+  "normalSpeed": true,
+  "gifTiming": "Exact matching window from the application's gifDelays helper at 24 FPS; 10 ms GIF quantization.",
+  "replay": "Short diagnostic windows reset at end; not advertised as seamless animation.",
+  "outputs": [
+    {
+      "gif": "original-fixed-ground-before-after-right.gif",
+      "contact": "original-fixed-ground-contact-right.png",
+      "frames": 10,
+      "durationMs": 420,
+      "ticks": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "contactTicks": [
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    {
+      "gif": "original-fixed-ground-before-after-left.gif",
+      "contact": "original-fixed-ground-contact-left.png",
+      "frames": 10,
+      "durationMs": 420,
+      "ticks": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "contactTicks": [
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    {
+      "gif": "daily-fixed-ground-before-after-right.gif",
+      "contact": "daily-fixed-ground-contact-right.png",
+      "frames": 10,
+      "durationMs": 420,
+      "ticks": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "contactTicks": [
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    {
+      "gif": "daily-fixed-ground-before-after-left.gif",
+      "contact": "daily-fixed-ground-contact-left.png",
+      "frames": 10,
+      "durationMs": 420,
+      "ticks": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "contactTicks": [
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    {
+      "gif": "wedding-fixed-ground-before-after-right.gif",
+      "contact": "wedding-fixed-ground-contact-right.png",
+      "frames": 10,
+      "durationMs": 420,
+      "ticks": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "contactTicks": [
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    {
+      "gif": "wedding-fixed-ground-before-after-left.gif",
+      "contact": "wedding-fixed-ground-contact-left.png",
+      "frames": 10,
+      "durationMs": 420,
+      "ticks": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "contactTicks": [
+        47,
+        48,
+        49,
+        50
+      ]
+    }
+  ]
+}

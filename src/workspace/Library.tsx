@@ -85,6 +85,15 @@ export function CharacterLibrary() {
                   >
                     编辑人物 <ArrowRight size={16} aria-hidden="true" />
                   </a>
+                  {character.id === "male" && (
+                    <a
+                      className="library-character__capability"
+                      href="/workbench.html?character=male&mode=side-view&collection=landing-candidate"
+                      data-testid="library-landing-candidate"
+                    >
+                      落地衔接实验 · 三套造型 · 待美术验收
+                    </a>
+                  )}
                   <span className="library-character__capability">
                     原版与侧视 · 服装与发型 · 动作与检查
                   </span>

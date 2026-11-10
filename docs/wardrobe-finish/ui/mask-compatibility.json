@@ -1,0 +1,106 @@
+{
+  "format": "gathria-mask-v2-browser-compatibility",
+  "version": 1,
+  "result": "passed",
+  "scope": "Actual Chromium UI, real published teal-top V2, no mocks. Behavior proof only; test brush edit remains a temporary candidate and is not published art.",
+  "url": "http://127.0.0.1:5188/workbench.html?mode=wardrobe&character=female",
+  "sourcePose": 103,
+  "action": "jump",
+  "position": 20,
+  "profile": "female-neckline-cloth-v2",
+  "events": [
+    "Loaded real female teal-top; source pose 103; original project saved.",
+    "Actual MaskEditWorkbench session retained V2 in downloaded draft binding.",
+    "Built strict garment candidate from accepted real V2-only edge edit.",
+    "Applied, saved, reopened, then reselected source pose 103: pixels and re-save archive exact."
+  ],
+  "edit": {
+    "sample": {
+      "x": 430,
+      "y": 650
+    },
+    "target": {
+      "x": 431,
+      "y": 656
+    },
+    "radius": 1,
+    "accepted": [
+      {
+        "frameId": 103,
+        "decision": "accepted",
+        "stats": {
+          "changedPixels": 5,
+          "addedPixels": 0,
+          "restoredPixels": 0,
+          "blockedPixels": 0
+        },
+        "warnings": [],
+        "origin": "manual",
+        "canUndo": true,
+        "beforeSha256": "2567cc5520aa3d705175042bd31693c0e50823ff82a7b48b444aa061878ee1e0",
+        "afterSha256": "34d49b840cc7be4235c998faf80e2ba2b2e3449b43e42ef5cc5ea74da5ee93d6",
+        "ownershipSha256": "a8ffed8884c9c11d09e7d5f5c28c7f1e1bfec2ad6eead355677c9df53bef2d11"
+      }
+    ],
+    "reason": "Target is a reviewed V2-only neckline cloth pixel excluded by V1."
+  },
+  "checks": {
+    "inheritedSessionProfileV2": true,
+    "candidateManifestV2": true,
+    "onlyAcceptedFrame103": true,
+    "originalLookUnchangedUntilApply": true,
+    "embeddedSourceExact": true,
+    "embeddedRegistrationExact": true,
+    "candidateArchiveExact": true,
+    "reopenedCanvasRgbaExact": true,
+    "resavedProjectByteExact": true,
+    "reopenedMaskSessionProfileV2": true,
+    "noPageErrors": true
+  },
+  "before": {
+    "width": 704,
+    "height": 1056,
+    "sha256": "7fcfab0e127a3b80852ab56f17985a8a0b5ab022db4804e9db84b6de85f93270"
+  },
+  "after": {
+    "width": 704,
+    "height": 1056,
+    "sha256": "fc2cdac4a6b89548da30b08e2d9e662a03ab3147b1b3ad223c9e4bc642a77bb4"
+  },
+  "reopened": {
+    "width": 704,
+    "height": 1056,
+    "sha256": "fc2cdac4a6b89548da30b08e2d9e662a03ab3147b1b3ad223c9e4bc642a77bb4"
+  },
+  "hashes": {
+    "inputGarment": "59071bf109f8e9e6fc7c1829d780a0f9cd31c0fbfaf95469ee2276b2d715c4ca",
+    "candidate": "7141b10090981f12ec51b2e13803b0dc335a89b93966efe7ee92100179e14780",
+    "savedProject": "96093dab27b6135174a55da3644ebaf050b0a9cadd3da0575fdcf36f4c67ac16",
+    "source": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+    "registration": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953"
+  },
+  "artifacts": "/tmp/wardrobe-mask-v2-ui",
+  "limits": [
+    "The saved project restores action, not an arbitrary source-frame index; pose 103 was explicitly reselected before comparing pixels.",
+    "This test does not approve the intentionally small test paint as final artwork."
+  ],
+  "independentCandidateAudit": {
+    "framesChecked": 96,
+    "changedFrames": [
+      {
+        "frameId": 103,
+        "pixels": 5
+      }
+    ],
+    "allOwnershipMasksExact": true,
+    "allAlphaExact": true,
+    "allOtherFrameRgbaExact": true,
+    "targetAllowedOnlyByV2": true
+  },
+  "command": "node /tmp/wardrobe-mask-v2-ui/check.mjs",
+  "codeSha256": {
+    "src/wardrobe/mask-edit.ts": "72eaf5936b331d3862f63b6bf606f1cddf5881726e6ad96e998646adc8d68567",
+    "src/wardrobe/MaskEditWorkbench.tsx": "c9eb6a4e1ed8ce5c8476aee0e62498727e1cedca8900e9ca104a60f2fbdf5a04",
+    "src/wardrobe/neckline-permissions.ts": "5cad1e706ed896362713d95f47a2834ad5b5bb06de367c6ff98661d193b1c7a8"
+  }
+}

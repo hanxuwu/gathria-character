@@ -107,13 +107,18 @@ function motionSources(
           resolveGameplayMotion(
             pair.projects[source].archive.manifest,
             pair.projects[source].document.sourceSha256,
+            pair.projects[source].archive.config,
           ))
         : null;
     if (pair.motionMode === "single-jump" && !profile)
       throw Error(`${viewName(source)}缺少经过检查的单次跳跃动作。`);
     profiles[source] = profile;
     manifests[source] = profile
-      ? gameplayManifest(renderers[source].manifest, profile)
+      ? gameplayManifest(
+          renderers[source].manifest,
+          profile,
+          pair.projects[source].archive.config,
+        )
       : renderers[source].manifest;
   }
   return { profiles, manifests };

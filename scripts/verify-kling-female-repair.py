@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 """Read-only regression guard for the additive female V9 forearm repair.
 
-This does not invoke the authoring script or write assets. It decodes the
-published candidate, V8 baseline and V1 donor independently, and checks the
-reviewed delta and original protection rules for all registered poses.
+This does not invoke authoring scripts or write assets. It preserves the pinned
+historical V8 -> V9 forearm proof, then verifies the separately reviewed coverage
+addition in the currently served V8/V9 archives. Historical V8 bytes are read
+from a pinned merged ancestor (CI explicitly checks out full history); no
+pre-existing temporary workspace or authoring output is required.
 """
 import hashlib
 import io
 import json
+import subprocess
+import tempfile
 import zipfile
 from contextlib import ExitStack
+from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from kling_wardrobe_common import ROOT, protected_mask
+from wardrobe_finish_layers import (
+    is_finished, asset_revision, validated_previous_manifest, undo_finish_frame,
+)
 
 SOURCE_SHA = "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23"
 REGISTRATION_SHA = "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953"
@@ -32,6 +40,12 @@ PINS = {
 }
 EXPECTED = {55: (451, [324, 668, 388, 685]), 63: (320, [328, 662, 384, 676])}
 FRAME_SHAPE = (1056, 704, 4)
+NECKLINE_SHA = "9a24590ab1434480c822a577379de7d92479ee1871e44e11d688ab9ef1d5185c"
+ISLAND_TRACE_SHA = "69a98fc256d51e84b5430c57c56365266e07d6b0f5300974ed107b80aa9fcc23"
+# Canonical JSON pin tolerates formatting only, never review/mask/hash changes.
+COVERAGE_REVIEW_SHA = "b70a4719b460baa8b29b6e85a6b2a499d504d12015f8fa774363059b2312427a"
+COVERAGE_POSES = {62, 89, 90, 93, 101, 102, 103, 112}
+HISTORICAL_REVISION = "5d63ae233ca83e61dc354e122a8708044f4e2653"
 
 
 def require(condition, message):
@@ -103,6 +117,194 @@ def catalog_items(value):
             yield from catalog_items(child)
 
 
+def coverage_evidence():
+    profile_path = ROOT / "artwork/kling-mask-workbench/female-neckline-cloth-v1.json"
+    trace_path = ROOT / "artwork/kling-female-top/source/ownership-repairs.json"
+    require(file_sha(profile_path) == NECKLINE_SHA, "Approved neckline cloth map changed")
+    require(file_sha(trace_path) == ISLAND_TRACE_SHA, "Approved cloth island traces changed")
+    profile, traces = json.loads(profile_path.read_text()), json.loads(trace_path.read_text())
+    for data in [profile, traces]:
+        require(data["sourceSha256"] == SOURCE_SHA and
+                data["registrationSha256"] == REGISTRATION_SHA,
+                "Coverage review source/registration binding changed")
+    require(profile["id"] == "female-neckline-cloth-v1", "Wrong neckline profile")
+    review = json.loads((ROOT / "docs/wardrobe-coverage/original-female/repair-report.json").read_text())
+    canonical = json.dumps(review, sort_keys=True, separators=(",", ":")).encode()
+    require(hashlib.sha256(canonical).hexdigest() == COVERAGE_REVIEW_SHA,
+            "Frozen coverage review changed")
+    permissions = {}
+    for frame in profile["frames"]:
+        mask = np.zeros(FRAME_SHAPE[:2], bool)
+        for run in frame["runs"]:
+            mask[run["y"], run["x0"]:run["x1"] + 1] = True
+        permissions[frame["frameId"]] = mask
+    require(set(permissions) == {89, 90, 93, 101, 102, 103}, "Neckline review pose scope")
+    return {item["itemId"]: item for item in review}, permissions, traces
+
+
+def current_revision_sha(path, coverage_sha):
+    """Keep the first coverage proof pinned while checking a later named layer."""
+    if not is_finished(path):
+        return coverage_sha
+    revision = asset_revision(path)
+    require(revision["beforeSha256"] == coverage_sha,
+            f"{path}: finish is not based on the frozen coverage edition")
+    require(Path(path).stat().st_size == revision["bytes"],
+            f"{path}: finished archive size changed")
+    return revision["sha256"]
+
+
+class CoverageLayerReader:
+    """Read current atlas coordinates, then verify/undo only the later finish.
+
+    Historical assertions below still see the exact prior native pixels and
+    permission manifest. No old report, source, or forearm assertion is changed.
+    """
+    def __init__(self, archive, path):
+        self.current = GarmentReader(archive)
+        self.path = path
+        self.finished = is_finished(path)
+        self.manifest = (validated_previous_manifest(path, self.current.manifest)
+                         if self.finished else self.current.manifest)
+        self.frames = {frame["frameId"]: frame for frame in self.manifest["frames"]}
+
+    def frame(self, frame_id):
+        rgba, owned = self.current.frame(frame_id)
+        return (undo_finish_frame(self.path, frame_id, rgba, owned)
+                if self.finished else (rgba, owned))
+
+
+def verify_served_coverage(item_id, historical_path, historical_pin, served_path,
+                           catalog_entries, review, permissions, traces, rows,
+                           protections, original_frames, template):
+    """Independent decode/mask proof; never call the authoring/repair builder."""
+    entry = review[item_id]
+    require(entry["beforeSha256"] == historical_pin and file_sha(historical_path) == historical_pin,
+            f"{item_id}: historical coverage input changed")
+    expected_sha = current_revision_sha(served_path, entry["afterSha256"])
+    require(file_sha(served_path) == expected_sha, f"{item_id}: served coverage archive changed")
+    matches = [item for item in catalog_entries if item["id"] == item_id]
+    require(len(matches) == 1, f"{item_id}: expected one selectable catalog entry")
+    require(matches[0]["url"] == entry["url"] == "/" + str(served_path.relative_to(ROOT)),
+            f"{item_id}: catalog URL changed")
+    # Legacy V8 catalog descriptors never carried an optional byte-count field.
+    # V9's required historical/current byte counts are checked in main below.
+    require(matches[0]["sha256"] == expected_sha and
+            ("bytes" not in matches[0] or matches[0]["bytes"] == served_path.stat().st_size),
+            f"{item_id}: catalog coverage integrity metadata")
+    reviewed = {frame["frameId"]: frame for frame in entry["changedFrames"]}
+    require(set(reviewed) == COVERAGE_POSES, f"{item_id}: coverage pose scope changed")
+    polygons = {frame["frameId"]: frame["polygon"] for frame in traces["repairs"]}
+    rule = traces["sourceClothRule"]
+    added_total = 0
+    with zipfile.ZipFile(historical_path) as old_zip, zipfile.ZipFile(served_path) as new_zip:
+        old, new = GarmentReader(old_zip), CoverageLayerReader(new_zip, served_path)
+        require(old.manifest["version"] == 1 and new.manifest["version"] == 3,
+                f"{item_id}: expected explicit V1 -> V3 coverage opt-in")
+        require(new.manifest.get("necklinePermissionProfile") == "female-neckline-cloth-v1" and
+                not new.manifest.get("handProtectionReviews"),
+                f"{item_id}: unexpected protection exception")
+        for key in ["format", "id", "name", "slot", "characterId", "sourceSha256",
+                    "registrationSha256", "frameWidth", "frameHeight"]:
+            require(old.manifest[key] == new.manifest[key], f"{item_id}: {key} changed")
+        require(set(old.frames) == set(new.frames) == set(rows), f"{item_id}: native frame set changed")
+        for fid in sorted(rows):
+            before, old_owned = old.frame(fid)
+            after, new_owned = new.frame(fid)
+            require(not np.any(old_owned & ~new_owned), f"{item_id}/{fid}: historical ownership removed")
+            added = new_owned & ~old_owned
+            if fid not in reviewed:
+                require(not added.any() and np.array_equal(before, after),
+                        f"{item_id}/{fid}: unrelated pose changed")
+                continue
+            original = original_frames[fid]
+            expected = np.zeros(FRAME_SHAPE[:2], bool)
+            if fid in polygons:
+                image = Image.new("L", (704, 1056))
+                ImageDraw.Draw(image).polygon([tuple(point) for point in polygons[fid]], fill=255)
+                r, g, b = np.moveaxis(original[:, :, :3].astype(np.int16), 2, 0)
+                cloth = ((original[:, :, 3] > rule["minimumAlpha"]) &
+                         (r - g < rule["redMinusGreenMaximum"]) &
+                         (r - b < rule["redMinusBlueMaximum"]) &
+                         (r - b > rule["redMinusBlueMinimum"]) &
+                         (r > rule["redMinimum"]) & (r < rule["redMaximum"]))
+                shorts = np.asarray(Image.open(io.BytesIO(template.read(f"masks/{fid:03d}/shorts.png")))) > 0
+                expected |= ((np.asarray(image) > 0) & cloth & ~old_owned & ~shorts &
+                             ~protected_mask(rows[fid]))
+            permission = permissions.get(fid, np.zeros(FRAME_SHAPE[:2], bool))
+            expected |= permission & ~old_owned
+            proof = reviewed[fid]
+            require(np.array_equal(added, expected), f"{item_id}/{fid}: coverage escaped exact cloth review")
+            require(hashlib.sha256(added.tobytes()).hexdigest() == proof["maskSha256"],
+                    f"{item_id}/{fid}: reviewed addition mask changed")
+            require(int(added.sum()) == proof["addedPixels"], f"{item_id}/{fid}: addition count changed")
+            require(np.array_equal(before[~added], after[~added]),
+                    f"{item_id}/{fid}: paint outside reviewed addition changed")
+            require(not np.any(new_owned & protections[fid] & ~permission),
+                    f"{item_id}/{fid}: source skin/head/hand protection expanded")
+            require(np.array_equal(after[added, 3], original[added, 3]),
+                    f"{item_id}/{fid}: added cloth source alpha changed")
+            old_composite, new_composite = original.copy(), original.copy()
+            old_composite[old_owned], new_composite[new_owned] = before[old_owned], after[new_owned]
+            require(np.array_equal(old_composite[:, :, 3], new_composite[:, :, 3]),
+                    f"{item_id}/{fid}: composed alpha changed")
+            require(np.array_equal(old_composite[~added], new_composite[~added]),
+                    f"{item_id}/{fid}: source pixels outside reviewed cloth changed")
+            for label, pixels in [("beforeRgbaSha256", old_composite), ("afterRgbaSha256", new_composite)]:
+                require(hashlib.sha256(pixels.tobytes()).hexdigest() == proof[label],
+                        f"{item_id}/{fid}: reviewed composed RGB changed")
+            added_total += int(added.sum())
+    return {"id": item_id, "decodedFrames": 96, "unchangedRgbaFrames": 88,
+            "reviewedClothFrames": sorted(reviewed), "addedClothPixels": added_total,
+            "sourceAlphaAndOutsideClothExact": True, "approvedClothMasksExact": True,
+            "historicalForearmRepairUntouched": True,
+            "laterFinishLayerVerified": is_finished(served_path)}
+
+
+def verify_current_coverage_pair(item_id, historical_path, served_path):
+    """Shared read-only guard for the contour verifier's pinned V8 archives.
+
+    The caller supplies historical bytes; this wrapper neither fetches history
+    nor writes files. Both inputs are independently checked against fixed pins.
+    """
+    prefix, version = item_id.rsplit("-v", 1)
+    require(prefix in PINS and version in ("8", "9"), "Unsupported coverage chain")
+    historical_pin = PINS[prefix]["baseline" if version == "8" else "candidate"]
+    review, permissions, traces = coverage_evidence()
+    source_path = ROOT / "docs/kling-motion/exports/female.character.zip"
+    require(file_sha(source_path) == SOURCE_SHA, "Original female CharacterPack changed")
+    catalog = json.loads((ROOT / "docs/kling-wardrobe/catalog.json").read_text())
+    originals = {}
+    with zipfile.ZipFile(source_path) as source, zipfile.ZipFile(
+            ROOT / "docs/kling-wardrobe/templates/female.wardrobe-template.zip") as template:
+        registration_bytes = template.read("registration.json")
+        require(hashlib.sha256(registration_bytes).hexdigest() == REGISTRATION_SHA,
+                "Registration bytes changed")
+        rows = {row["frameId"]: row for row in json.loads(registration_bytes)["frames"]}
+        manifest = json.loads(source.read("manifest.json"))
+        require(len(rows) == 96 and set(rows) == {row["id"] for row in manifest["frames"]},
+                "Expected all96 registered source poses")
+        pages = [manifest["spritesheet"], *manifest.get("additionalSheets", [])]
+        for index, page in enumerate(pages):
+            needed = [frame for frame in manifest["frames"]
+                      if frame.get("page", 0) == index and frame["id"] in COVERAGE_POSES]
+            if not needed:
+                continue
+            with Image.open(io.BytesIO(source.read(page["file"]))) as image:
+                for frame in needed:
+                    x, y, w, h = frame["x"], frame["y"], frame["width"], frame["height"]
+                    require((h, w, 4) == FRAME_SHAPE, "Source native frame dimensions")
+                    originals[frame["id"]] = np.asarray(
+                        image.crop((x, y, x + w, y + h)).convert("RGBA")).copy()
+        require(set(originals) == COVERAGE_POSES, "Missing reviewed source frame")
+        protections = {fid: protected_mask(rows[fid]) & (pixels[:, :, 3] > 0)
+                       for fid, pixels in originals.items()}
+        return verify_served_coverage(
+            item_id, Path(historical_path), historical_pin, Path(served_path),
+            list(catalog_items(catalog)), review, permissions, traces, rows,
+            protections, originals, template)
+
+
 def main():
     source_path = ROOT / "docs/kling-motion/exports/female.character.zip"
     require(file_sha(source_path) == SOURCE_SHA, "Original female CharacterPack changed")
@@ -114,9 +316,12 @@ def main():
     audit = json.loads((ROOT / "artwork/kling-repair-handoff/female/asset-audit.json").read_text())
     require(audit["sourceSha256"] == SOURCE_SHA and audit["registrationSha256"] == REGISTRATION_SHA,
             "Authoring audit source pins differ from approved baseline")
-    results = []
+    results, coverage_results = [], []
+    coverage_review, permissions, traces = coverage_evidence()
+    original_frames = {}
 
-    with zipfile.ZipFile(ROOT / "docs/kling-wardrobe/templates/female.wardrobe-template.zip") as template:
+    with zipfile.ZipFile(ROOT / "docs/kling-wardrobe/templates/female.wardrobe-template.zip") as template, \
+            tempfile.TemporaryDirectory(prefix="female-repair-history-") as historical_directory:
         registration_bytes = template.read("registration.json")
         require(hashlib.sha256(registration_bytes).hexdigest() == REGISTRATION_SHA,
                 "Registration bytes changed")
@@ -133,6 +338,11 @@ def main():
             for page_index, page in enumerate(source_pages):
                 with Image.open(io.BytesIO(source.read(page["file"]))) as image:
                     alpha = np.asarray(image.getchannel("A"))
+                    for frame in source_manifest["frames"]:
+                        if frame.get("page", 0) == page_index and frame["id"] in COVERAGE_POSES:
+                            x, y, w, h = frame["x"], frame["y"], frame["width"], frame["height"]
+                            original_frames[frame["id"]] = np.asarray(
+                                image.crop((x, y, x + w, y + h)).convert("RGBA")).copy()
                 require(alpha.shape == (page["height"], page["width"]), "Source page dimensions")
                 for frame in source_manifest["frames"]:
                     if frame.get("page", 0) != page_index:
@@ -148,21 +358,35 @@ def main():
 
         for prefix, pins in PINS.items():
             folder = ROOT / "docs/kling-wardrobe/garments/female"
-            paths = {"baseline": folder / f"{prefix}-v8.zip", "donor": folder / f"{prefix}.zip",
-                     "candidate": folder / f"{prefix}-v9.zip"}
+            authored = ROOT / f"artwork/kling-repair-handoff/female/{prefix}-v9.zip"
+            baseline_url = f"docs/kling-wardrobe/garments/female/{prefix}-v8.zip"
+            historical_bytes = subprocess.check_output(
+                ["git", "show", f"{HISTORICAL_REVISION}:{baseline_url}"], cwd=ROOT)
+            require(hashlib.sha256(historical_bytes).hexdigest() == pins["baseline"],
+                    f"{prefix}: merged historical baseline differs from original pin")
+            historical_path = Path(historical_directory) / f"{prefix}-v8.zip"
+            historical_path.write_bytes(historical_bytes)
+            del historical_bytes
+            paths = {"baseline": historical_path, "donor": folder / f"{prefix}.zip",
+                     "candidate": authored}
             for role, path in paths.items():
                 require(file_sha(path) == pins[role], f"{prefix} {role} SHA256 changed")
-            authored = ROOT / f"artwork/kling-repair-handoff/female/{prefix}-v9.zip"
             require(file_sha(authored) == pins["candidate"], f"{prefix} published/authored ZIP differ")
             entries = [entry for entry in catalog_entries if entry["id"] == f"{prefix}-v9"]
             require(len(entries) == 1, f"{prefix} candidate must appear once in catalog")
             entry = entries[0]
-            require(entry["url"] == "/" + str(paths["candidate"].relative_to(ROOT)), "Catalog candidate URL")
-            require(entry["sha256"] == pins["candidate"] and entry["bytes"] == authored.stat().st_size,
+            served_candidate = folder / f"{prefix}-v9.zip"
+            require(entry["url"] == "/" + str(served_candidate.relative_to(ROOT)), "Catalog candidate URL")
+            require(entry["sha256"] == current_revision_sha(
+                        served_candidate, coverage_review[entry["id"]]["afterSha256"]) and
+                    entry["bytes"] == served_candidate.stat().st_size,
                     "Catalog candidate integrity metadata")
             audit_entry = next(item for item in audit["items"] if item["id"] == entry["id"])
             require(audit_entry["baselineSha256"] == pins["baseline"] and
                     audit_entry["donorSha256"] == pins["donor"], "Authoring audit baseline/donor drift")
+            require(audit_entry["item"]["sha256"] == pins["candidate"] and
+                    audit_entry["item"]["bytes"] == authored.stat().st_size,
+                    "Historical published candidate integrity metadata changed")
             changes = []
             with ExitStack() as stack:
                 readers = {role: GarmentReader(stack.enter_context(zipfile.ZipFile(path)))
@@ -196,9 +420,18 @@ def main():
                     changes.append({"frameId": fid, "changedRgbPixels": count, "bounds": actual_bounds})
             results.append({"id": entry["id"], "decodedFrames": 96, "unchangedRgbaFrames": 94,
                             "alphaAndOwnershipExact": True, "protectedSourceHeadHandsUntouched": True,
-                            "publishedCopyExact": True, "changes": changes})
+                            "historicalPublishedCopyExact": True, "changes": changes})
+            for version, role in [(8, "baseline"), (9, "candidate")]:
+                item_id = f"{prefix}-v{version}"
+                coverage_results.append(verify_served_coverage(
+                    item_id, paths[role], pins[role], folder / f"{item_id}.zip",
+                    catalog_entries, coverage_review, permissions, traces, rows,
+                    protections, original_frames, template))
     print(json.dumps({"status": "passed", "readOnly": True, "sourceAndRegistrationPinned": True,
-                      "garmentFramesDecoded": 576, "items": results}, indent=2))
+                      "historicalRevision": HISTORICAL_REVISION,
+                      "garmentFramesDecoded": 576, "items": results,
+                      "coverageGarmentFramesDecoded": 768,
+                      "servedCoverageChain": coverage_results}, indent=2))
 
 
 if __name__ == "__main__":

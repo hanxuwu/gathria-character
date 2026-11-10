@@ -1,0 +1,84 @@
+{
+  "format": "gathria-garment-only-fit-controls",
+  "version": 1,
+  "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+  "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+  "scope": "Reviewed offline blouse/skirt attachments only. Source registration, body, face and action timing stay byte exact.",
+  "topWaist": {
+    "21": [
+      [
+        225,
+        524
+      ],
+      [
+        308,
+        524
+      ]
+    ],
+    "38": [
+      [
+        215,
+        542
+      ],
+      [
+        302,
+        542
+      ]
+    ],
+    "39": [
+      [
+        207,
+        540
+      ],
+      [
+        295,
+        540
+      ]
+    ]
+  },
+  "waist": {
+    "21": [
+      266.5,
+      524
+    ],
+    "38": [
+      266,
+      542
+    ],
+    "39": [
+      267,
+      540
+    ]
+  },
+  "frames": {
+    "top": [
+      21,
+      38,
+      39
+    ],
+    "bottom": [
+      21,
+      38,
+      39
+    ]
+  },
+  "rationale": {
+    "21": "A forward forearm hides the torso seam. The old waistLeft follows the foreground arm, narrowing the entire blouse for one pose. Use adjacent visible torso boundaries.",
+    "38": "The old waist lies on the crossing forearm, about 40 native pixels above the anatomical waist. Attach cloth to the lower torso at the shorts boundary, guided by poses37/40.",
+    "39": "Continue the reviewed waist attachment through the crossing-arm exit before the visible waist returns at40."
+  },
+  "localBounds": {
+    "top": [
+      140,
+      420,
+      360,
+      585
+    ],
+    "bottom": [
+      125,
+      490,
+      365,
+      665
+    ]
+  }
+}

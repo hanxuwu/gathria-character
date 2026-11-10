@@ -12,6 +12,7 @@ import {
   type KlingCharacterId,
 } from "../consumer/kling-catalog";
 import { MainNavigation } from "./MainNavigation";
+import type { SideWorkspaceIdentity } from "./SideWorkspace";
 import "./workspace.css";
 
 const WardrobeEditor = lazy(() => import("../wardrobe/WardrobeEditor"));
@@ -81,12 +82,14 @@ export function CharacterWorkbench() {
   const [themeCharacter, setThemeCharacter] = useState<KlingCharacterId>(
     character.id,
   );
-  const [sideEntry, setSideEntry] = useState({
+  const [sideEntry, setSideEntry] = useState<SideWorkspaceIdentity>({
     character: character.id,
     collection:
-      query.get("collection") === "tailored"
-        ? ("tailored" as const)
-        : ("material" as const),
+      query.get("collection") === "landing-candidate" && character.id === "male"
+        ? "landing-candidate"
+        : query.get("collection") === "tailored"
+          ? ("tailored" as const)
+          : ("material" as const),
   });
   const [sideIdentity, setSideIdentity] = useState(sideEntry);
   const lastOriginalTool = useRef<"original" | "wardrobe">(

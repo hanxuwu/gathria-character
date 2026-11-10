@@ -1,0 +1,943 @@
+{
+  "format": "gathria-supplemental-pose-registration",
+  "version": 1,
+  "characterId": "kling-male-side-workspace-v1",
+  "frameWidth": 512,
+  "frameHeight": 768,
+  "anchor": {
+    "x": 256,
+    "y": 710
+  },
+  "sourceSha256": null,
+  "sourceSha256Note": "Set by source-pack builder after adding the two exact assembled frames; not the old107-frame source hash.",
+  "headPolygonSource": "/tmp/landing-production/base-final/head-copy-audit.json variants[].protectedHeadPolygon",
+  "reviewStatus": "Experimental candidate; manual garment-placement references, not final seamless-motion acceptance.",
+  "frames": [
+    {
+      "frameId": 107,
+      "sourceFrame": null,
+      "origin": "supplemental-imagegen-body-with-exact-source89-head",
+      "bodyFile": "/tmp/landing-production/generated-base/pose-a-r2.native.png",
+      "points": {
+        "neck": {
+          "x": 275,
+          "y": 450,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearShoulder": {
+          "x": 215,
+          "y": 451,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farShoulder": {
+          "x": 299,
+          "y": 460,
+          "visibility": "occluded",
+          "confidence": 0.42,
+          "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 213,
+          "y": 539,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "waistRight": {
+          "x": 284,
+          "y": 543,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearHip": {
+          "x": 218,
+          "y": 560,
+          "visibility": "occluded",
+          "confidence": 0.42,
+          "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 266,
+          "y": 563,
+          "visibility": "occluded",
+          "confidence": 0.42,
+          "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 166,
+          "y": 479,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farElbow": {
+          "x": 304,
+          "y": 513,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearWrist": {
+          "x": 203,
+          "y": 508,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farWrist": {
+          "x": 327,
+          "y": 515,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearKnee": {
+          "x": 246,
+          "y": 613,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farKnee": {
+          "x": 287,
+          "y": 611,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearAnkle": {
+          "x": 197,
+          "y": 654,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farAnkle": {
+          "x": 250,
+          "y": 657,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearToe": {
+          "x": 231,
+          "y": 692,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farToe": {
+          "x": 303,
+          "y": 683,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 359,
+              "y": 265
+            },
+            {
+              "x": 339,
+              "y": 251
+            },
+            {
+              "x": 308,
+              "y": 242
+            },
+            {
+              "x": 309,
+              "y": 240
+            },
+            {
+              "x": 264,
+              "y": 238
+            },
+            {
+              "x": 244,
+              "y": 240
+            },
+            {
+              "x": 247,
+              "y": 241
+            },
+            {
+              "x": 232,
+              "y": 243
+            },
+            {
+              "x": 214,
+              "y": 250
+            },
+            {
+              "x": 181,
+              "y": 274
+            },
+            {
+              "x": 167,
+              "y": 298
+            },
+            {
+              "x": 166,
+              "y": 296
+            },
+            {
+              "x": 159,
+              "y": 325
+            },
+            {
+              "x": 158,
+              "y": 322
+            },
+            {
+              "x": 158,
+              "y": 343
+            },
+            {
+              "x": 159,
+              "y": 341
+            },
+            {
+              "x": 162,
+              "y": 361
+            },
+            {
+              "x": 163,
+              "y": 358
+            },
+            {
+              "x": 169,
+              "y": 376
+            },
+            {
+              "x": 185,
+              "y": 395
+            },
+            {
+              "x": 205,
+              "y": 409
+            },
+            {
+              "x": 234,
+              "y": 419
+            },
+            {
+              "x": 233,
+              "y": 423
+            },
+            {
+              "x": 234,
+              "y": 426
+            },
+            {
+              "x": 238,
+              "y": 430
+            },
+            {
+              "x": 242,
+              "y": 435
+            },
+            {
+              "x": 245,
+              "y": 439
+            },
+            {
+              "x": 250,
+              "y": 444
+            },
+            {
+              "x": 255,
+              "y": 449
+            },
+            {
+              "x": 259,
+              "y": 454
+            },
+            {
+              "x": 264,
+              "y": 458
+            },
+            {
+              "x": 272,
+              "y": 462
+            },
+            {
+              "x": 275,
+              "y": 464
+            },
+            {
+              "x": 282,
+              "y": 461
+            },
+            {
+              "x": 282,
+              "y": 448
+            },
+            {
+              "x": 288,
+              "y": 444
+            },
+            {
+              "x": 333,
+              "y": 441
+            },
+            {
+              "x": 338,
+              "y": 438
+            },
+            {
+              "x": 339,
+              "y": 440
+            },
+            {
+              "x": 363,
+              "y": 424
+            },
+            {
+              "x": 367,
+              "y": 414
+            },
+            {
+              "x": 367,
+              "y": 394
+            },
+            {
+              "x": 363,
+              "y": 392
+            },
+            {
+              "x": 363,
+              "y": 384
+            },
+            {
+              "x": 365,
+              "y": 385
+            },
+            {
+              "x": 366,
+              "y": 374
+            },
+            {
+              "x": 370,
+              "y": 371
+            },
+            {
+              "x": 380,
+              "y": 341
+            },
+            {
+              "x": 382,
+              "y": 306
+            },
+            {
+              "x": 373,
+              "y": 281
+            },
+            {
+              "x": 372,
+              "y": 283
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 183,
+              "y": 514
+            },
+            {
+              "x": 203,
+              "y": 494
+            },
+            {
+              "x": 216,
+              "y": 494
+            },
+            {
+              "x": 228,
+              "y": 499
+            },
+            {
+              "x": 238,
+              "y": 507
+            },
+            {
+              "x": 243,
+              "y": 515
+            },
+            {
+              "x": 239,
+              "y": 523
+            },
+            {
+              "x": 232,
+              "y": 530
+            },
+            {
+              "x": 223,
+              "y": 536
+            },
+            {
+              "x": 214,
+              "y": 542
+            },
+            {
+              "x": 203,
+              "y": 542
+            },
+            {
+              "x": 193,
+              "y": 538
+            },
+            {
+              "x": 187,
+              "y": 530
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 323,
+              "y": 501
+            },
+            {
+              "x": 331,
+              "y": 492
+            },
+            {
+              "x": 342,
+              "y": 490
+            },
+            {
+              "x": 350,
+              "y": 493
+            },
+            {
+              "x": 357,
+              "y": 492
+            },
+            {
+              "x": 365,
+              "y": 495
+            },
+            {
+              "x": 370,
+              "y": 501
+            },
+            {
+              "x": 373,
+              "y": 510
+            },
+            {
+              "x": 371,
+              "y": 520
+            },
+            {
+              "x": 368,
+              "y": 530
+            },
+            {
+              "x": 365,
+              "y": 538
+            },
+            {
+              "x": 350,
+              "y": 540
+            },
+            {
+              "x": 339,
+              "y": 537
+            },
+            {
+              "x": 331,
+              "y": 533
+            },
+            {
+              "x": 326,
+              "y": 525
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": 108,
+      "sourceFrame": null,
+      "origin": "supplemental-imagegen-body-with-exact-source89-head",
+      "bodyFile": "/tmp/landing-production/generated-base/pose-b-r2.native.png",
+      "points": {
+        "neck": {
+          "x": 267,
+          "y": 443,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearShoulder": {
+          "x": 213,
+          "y": 448,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farShoulder": {
+          "x": 297,
+          "y": 456,
+          "visibility": "occluded",
+          "confidence": 0.42,
+          "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
+        },
+        "waistLeft": {
+          "x": 211,
+          "y": 538,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "waistRight": {
+          "x": 283,
+          "y": 540,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearHip": {
+          "x": 216,
+          "y": 557,
+          "visibility": "occluded",
+          "confidence": 0.42,
+          "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
+        },
+        "farHip": {
+          "x": 263,
+          "y": 559,
+          "visibility": "occluded",
+          "confidence": 0.42,
+          "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
+        },
+        "nearElbow": {
+          "x": 164,
+          "y": 477,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farElbow": {
+          "x": 303,
+          "y": 512,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearWrist": {
+          "x": 202,
+          "y": 507,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farWrist": {
+          "x": 326,
+          "y": 514,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearKnee": {
+          "x": 248,
+          "y": 600,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farKnee": {
+          "x": 241,
+          "y": 618,
+          "visibility": "occluded",
+          "confidence": 0.42,
+          "method": "manual review of final R2 native body and exact-head composite; hidden attachment estimate"
+        },
+        "nearAnkle": {
+          "x": 192,
+          "y": 639,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farAnkle": {
+          "x": 237,
+          "y": 664,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "nearToe": {
+          "x": 230,
+          "y": 682,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        },
+        "farToe": {
+          "x": 270,
+          "y": 687,
+          "visibility": "visible",
+          "confidence": 0.72,
+          "method": "manual final R2 contour/attachment estimate; approximately \u00b14 px, not recovered skeleton"
+        }
+      },
+      "protected": [
+        {
+          "label": "head",
+          "polygon": [
+            {
+              "x": 350,
+              "y": 258
+            },
+            {
+              "x": 330,
+              "y": 244
+            },
+            {
+              "x": 299,
+              "y": 235
+            },
+            {
+              "x": 300,
+              "y": 233
+            },
+            {
+              "x": 255,
+              "y": 231
+            },
+            {
+              "x": 235,
+              "y": 233
+            },
+            {
+              "x": 238,
+              "y": 234
+            },
+            {
+              "x": 223,
+              "y": 236
+            },
+            {
+              "x": 205,
+              "y": 243
+            },
+            {
+              "x": 172,
+              "y": 267
+            },
+            {
+              "x": 158,
+              "y": 291
+            },
+            {
+              "x": 157,
+              "y": 289
+            },
+            {
+              "x": 150,
+              "y": 318
+            },
+            {
+              "x": 149,
+              "y": 315
+            },
+            {
+              "x": 149,
+              "y": 336
+            },
+            {
+              "x": 150,
+              "y": 334
+            },
+            {
+              "x": 153,
+              "y": 354
+            },
+            {
+              "x": 154,
+              "y": 351
+            },
+            {
+              "x": 160,
+              "y": 369
+            },
+            {
+              "x": 176,
+              "y": 388
+            },
+            {
+              "x": 196,
+              "y": 402
+            },
+            {
+              "x": 225,
+              "y": 412
+            },
+            {
+              "x": 224,
+              "y": 416
+            },
+            {
+              "x": 225,
+              "y": 419
+            },
+            {
+              "x": 229,
+              "y": 423
+            },
+            {
+              "x": 233,
+              "y": 428
+            },
+            {
+              "x": 236,
+              "y": 432
+            },
+            {
+              "x": 241,
+              "y": 437
+            },
+            {
+              "x": 246,
+              "y": 442
+            },
+            {
+              "x": 250,
+              "y": 447
+            },
+            {
+              "x": 255,
+              "y": 451
+            },
+            {
+              "x": 263,
+              "y": 455
+            },
+            {
+              "x": 266,
+              "y": 457
+            },
+            {
+              "x": 273,
+              "y": 454
+            },
+            {
+              "x": 273,
+              "y": 441
+            },
+            {
+              "x": 279,
+              "y": 437
+            },
+            {
+              "x": 324,
+              "y": 434
+            },
+            {
+              "x": 329,
+              "y": 431
+            },
+            {
+              "x": 330,
+              "y": 433
+            },
+            {
+              "x": 354,
+              "y": 417
+            },
+            {
+              "x": 358,
+              "y": 407
+            },
+            {
+              "x": 358,
+              "y": 387
+            },
+            {
+              "x": 354,
+              "y": 385
+            },
+            {
+              "x": 354,
+              "y": 377
+            },
+            {
+              "x": 356,
+              "y": 378
+            },
+            {
+              "x": 357,
+              "y": 367
+            },
+            {
+              "x": 361,
+              "y": 364
+            },
+            {
+              "x": 371,
+              "y": 334
+            },
+            {
+              "x": 373,
+              "y": 299
+            },
+            {
+              "x": 364,
+              "y": 274
+            },
+            {
+              "x": 363,
+              "y": 276
+            }
+          ]
+        },
+        {
+          "label": "nearHand",
+          "polygon": [
+            {
+              "x": 182,
+              "y": 513
+            },
+            {
+              "x": 202,
+              "y": 493
+            },
+            {
+              "x": 215,
+              "y": 493
+            },
+            {
+              "x": 227,
+              "y": 498
+            },
+            {
+              "x": 237,
+              "y": 506
+            },
+            {
+              "x": 242,
+              "y": 514
+            },
+            {
+              "x": 238,
+              "y": 522
+            },
+            {
+              "x": 231,
+              "y": 529
+            },
+            {
+              "x": 222,
+              "y": 535
+            },
+            {
+              "x": 213,
+              "y": 541
+            },
+            {
+              "x": 202,
+              "y": 541
+            },
+            {
+              "x": 192,
+              "y": 537
+            },
+            {
+              "x": 186,
+              "y": 529
+            }
+          ]
+        },
+        {
+          "label": "farHand",
+          "polygon": [
+            {
+              "x": 322,
+              "y": 500
+            },
+            {
+              "x": 330,
+              "y": 491
+            },
+            {
+              "x": 341,
+              "y": 489
+            },
+            {
+              "x": 349,
+              "y": 492
+            },
+            {
+              "x": 356,
+              "y": 491
+            },
+            {
+              "x": 364,
+              "y": 494
+            },
+            {
+              "x": 369,
+              "y": 500
+            },
+            {
+              "x": 372,
+              "y": 509
+            },
+            {
+              "x": 370,
+              "y": 519
+            },
+            {
+              "x": 367,
+              "y": 529
+            },
+            {
+              "x": 364,
+              "y": 537
+            },
+            {
+              "x": 349,
+              "y": 539
+            },
+            {
+              "x": 338,
+              "y": 536
+            },
+            {
+              "x": 330,
+              "y": 532
+            },
+            {
+              "x": 325,
+              "y": 524
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "17 points per frame measured from final R2 visible art, with occluded joints explicitly estimated. Do not reuse these anchors for other source frames.",
+    "nearWrist/farWrist mark wrist attachment rather than the original inaccurate center-of-fist estimates. Hands are intentionally protected independently.",
+    "Head polygons copied exactly from root assembled head audit; no reconstruction of neck boundary.",
+    "Source frame is null because these are newly generated supplemental drawings, not native video extractions."
+  ]
+}

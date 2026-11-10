@@ -22,6 +22,8 @@ const independent = String.raw`
 import hashlib,io,json,math,sys,zipfile
 import numpy as np
 from PIL import Image
+sys.path.insert(0,"scripts")
+from coverage_export_audit import validate_garment, protected_mask, historical
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def zopen(p):
  z=zipfile.ZipFile(p);assert z.testzip() is None;return z
@@ -65,7 +67,7 @@ if row['character']=='female' and row['view']=='original':
  assert authoring['handForegroundReviewSha256']==hand_review_sha,'Hand trace does not match accepted authoring audit'
  assert review['sourceSha256']==doc['sourceSha256'],'Hand trace source mismatch'
  for name,digest in authoring['sha256'].items():
-  assert sha(open('docs/dual-tailored/assets/female/'+name,'rb').read())==digest,'Hand audit seed/registration binding mismatch'
+  assert sha(historical('docs/dual-tailored/assets/female/'+name))==digest,'Historical hand audit seed/registration binding mismatch'
  hand_review={int(fid):points for fid,points in review['foregroundHand'].items()}
  assert set(hand_review)=={37,38,41,43,44,45,46,47},'Unexpected hand repair scope'
  assert sha(regbytes)==authoring['sha256']['original-tailored-v1.registration.json']
@@ -73,17 +75,7 @@ selected={v for v in doc['selection'].values() if v};garments={}
 for i,item in enumerate(doc['items']):
  b=project.read('item-'+str(i)+'.zip');assert sha(b)==item['sha256'];z=zopen(io.BytesIO(b));m=json.loads(z.read('manifest.json'))
  assert m['id']==item['id'] and m['sourceSha256']==doc['sourceSha256'] and m['registrationSha256']==doc['registrationSha256']
- if m.get('necklinePermissionProfile'):
-  assert m['version']==3 and m['slot'] in ('top','fullBody')
-  assert m['necklinePermissionProfile']=='female-neckline-cloth-v1'
-  assert m['sourceSha256']==neckline['sourceSha256'] and m['registrationSha256']==neckline['registrationSha256']
- for review in m.get('handProtectionReviews',[]):
-  assert m['version'] in (2,3) and m['slot'] in ('top','fullBody')
-  assert review['label'] in ('nearHand','farHand') and review['frameId'] in registered
-  canonical=next(r for r in registered[review['frameId']]['protected'] if r['label']==review['label'])
-  originalmask=poly(canonical['polygon'],reg['frameWidth'],reg['frameHeight'])
-  reviewedmask=poly(review['polygon'],reg['frameWidth'],reg['frameHeight'])
-  assert reviewedmask.any() and not np.any(reviewedmask&~originalmask),'Review escapes canonical protection'
+ validate_garment(b,reg)
  assert len(m['frames'])==len(sm['frames']) and {f['frameId'] for f in m['frames']}==set(registered)
  if m['id'] in selected:
   pages=[(Image.open(io.BytesIO(z.read(p['file']))).convert('RGBA'),Image.open(io.BytesIO(z.read(p['maskFile']))).convert('RGBA')) for p in m['pages']]
@@ -102,17 +94,10 @@ for f in sm['frames']:
   area=np.s_[o['y']:o['y']+r['height'],o['x']:o['x']+r['width']];own=mask==255
   ownmask=np.zeros((h,w),bool);ownmask[area]=own
   ownchange=np.zeros((h,w),bool);ownchange[area]=own&np.any(before[area]!=patch,axis=2)
-  for region in registered[fid]['protected']:
-   review=next((r for r in m.get('handProtectionReviews',[]) if r['frameId']==fid and r['label']==region['label']),None)
-   regionmask=poly((review or region)['polygon'],w,h)&(before[:,:,3]>0)
-   permitted=0
-   if region['label']=='head' and m.get('necklinePermissionProfile'):
-    for run in necklineframes.get(fid,[]):
-     permitted+=int(regionmask[run['y'],run['x0']:run['x1']+1].sum())
-     regionmask[run['y'],run['x0']:run['x1']+1]=False
-   assert not np.any(ownmask&regionmask),f"Ownership overlaps protected {slot}/{region['label']} at {fid}"
-   assert not np.any(ownchange&regionmask),f"Protected {slot}/{region['label']} changed {fid}"
-   protected[slot+':'+region['label']]={'pixels':int(regionmask.sum()),'reviewedHand':review is not None,'approvedNecklineClothPixels':permitted}
+  for label,regionmask,reviewed,permitted in protected_mask(m,registered[fid],before,poly):
+   assert not np.any(ownmask&regionmask),f'Ownership overlaps protected {slot}/{label} at {fid}'
+   assert not np.any(ownchange&regionmask),f'Protected {slot}/{label} changed {fid}'
+   protected[slot+':'+label]={'pixels':int(regionmask.sum()),'reviewedHand':reviewed,'approvedNecklineClothPixels':permitted}
   expected[area][own]=patch[own];owned[area]|=own;coverage[slot]=int(own.sum())
  assert np.array_equal(after,expected),f'Authored garment RGBA differs {fid}'
  assert not np.any(changed&~owned),f'Outside ownership changed {fid}'

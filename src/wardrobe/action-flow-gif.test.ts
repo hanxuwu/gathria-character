@@ -13,10 +13,16 @@ import {
 function fixture(row: (typeof profiles)[number]) {
   const profile = row.profile as GameplayMotion;
   const all = [
-    ...new Set(Object.values(row.sourceActions).flatMap((clip) => clip.frames)),
+    ...new Set([
+      ...Object.values(row.sourceActions).flatMap((clip) => clip.frames),
+      ...profile.routes.flatMap((route) => route.leadIn ?? []),
+    ]),
   ];
   const calls: number[] = [];
   const renderer = {
+    ...("sourceCharacterId" in row
+      ? { sourceCharacterId: row.sourceCharacterId as string }
+      : {}),
     manifest: {
       spritesheet: { frameWidth: 4, frameHeight: 2 },
       frames: all.map((id) => ({ id, x: 0, y: 0, width: 4, height: 2 })),
@@ -96,11 +102,13 @@ describe("single native jump exports", () => {
         ...run.frames.slice(entry),
         ...run.frames.slice(0, entry),
       ];
+      const closure = run.frames.slice(entry);
       expect(
         sequence.frames.slice(recoveryStart + 2).map((frame) => frame.frameId),
-      ).toEqual(resumedRun);
+      ).toEqual([...resumedRun, ...closure]);
       expect(resumedRun[0]).toBe(character === "male" ? 48 : 41);
       expect(sequence.returnRunTicks).toBe(run.frames.length);
+      expect(sequence.loopClosureTicks).toBe(closure.length);
       expect(
         sequence.frames.every((frame) => frame.durationMs === 1000 / 24),
       ).toBe(true);
@@ -110,7 +118,11 @@ describe("single native jump exports", () => {
         profile,
         "right",
       );
-      expect(calls.slice(recoveryStart)).toEqual([...recovery, ...resumedRun]);
+      expect(calls.slice(recoveryStart)).toEqual([
+        ...recovery,
+        ...resumedRun,
+        ...closure,
+      ]);
       const decoded = decompressFrames(read(exported), true);
       expect(decoded).toHaveLength(sequence.frames.length);
       expect(decoded.map((frame) => frame.delay)).toEqual(
@@ -139,9 +151,11 @@ describe("single native jump exports", () => {
       expect(oldSequence.frames[recoveryStart + 2].frameId).toBe(
         character === "male" ? 49 : 45,
       );
-      expect(sequence.frames.map((frame) => frame.durationMs)).toEqual(
-        oldSequence.frames.map((frame) => frame.durationMs),
-      );
+      // Different reviewed return phases need different closure tails, while
+      // both preserve every native frame's cadence and the basic jump bytes.
+      expect(
+        oldSequence.frames.every((frame) => frame.durationMs === 1000 / 24),
+      ).toBe(true);
     },
   );
 
@@ -168,7 +182,7 @@ describe("single native jump exports", () => {
       )!;
       const returnEntry = landing.entry;
       const landingFrames = profile.actions.jump.frames.slice(0, landing.exit);
-      const expected = [
+      const priorSequence = [
         ...run.frames,
         ...run.frames.slice(0, firstExit),
         ...leadIn,
@@ -177,12 +191,16 @@ describe("single native jump exports", () => {
         ...run.frames.slice(returnEntry),
         ...run.frames.slice(0, returnEntry),
       ];
+      const closure = returnEntry === 0 ? [] : run.frames.slice(returnEntry);
+      const expected = [...priorSequence, ...closure];
       expect(sequence.frames.map((frame) => frame.frameId)).toEqual(expected);
+      expect(
+        sequence.frames
+          .slice(0, priorSequence.length)
+          .map((frame) => frame.frameId),
+      ).toEqual(priorSequence);
       expect(sequence.frames.slice(-run.frames.length)).toEqual(
-        [
-          ...run.frames.slice(returnEntry),
-          ...run.frames.slice(0, returnEntry),
-        ].map((frameId) => ({
+        run.frames.map((frameId) => ({
           action: "run",
           frameId,
           durationMs: 1000 / run.fps,
@@ -195,6 +213,16 @@ describe("single native jump exports", () => {
       ).toEqual([...leadIn, ...landingFrames]);
       expect(sequence.jumpRequestTick).toBe(run.frames.length);
       expect(sequence.returnRunTicks).toBe(run.frames.length);
+      expect(sequence.loopClosureTicks).toBe(closure.length);
+      expect(sequence.frames[0].frameId).toBe(run.frames[0]);
+      expect(sequence.frames.at(-1)!.frameId).toBe(run.frames.at(-1));
+      expect(
+        sequence.frames.filter(
+          (frame, index) =>
+            frame.action === "jump" &&
+            sequence.frames[index - 1]?.action !== "jump",
+        ),
+      ).toHaveLength(1);
       expect(sequence.durationMs).toBe((expected.length * 1000) / run.fps);
       const bytes = await exportWardrobeRunJumpGif(renderer, profile, "right");
       expect(calls).toEqual(expected);

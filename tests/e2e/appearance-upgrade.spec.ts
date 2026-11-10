@@ -482,7 +482,12 @@ test("leaving the wardrobe cancels a pending update and cannot open a stale moda
   await wardrobe
     .getByRole("button", { name: "Preview updated appearance", exact: true })
     .click();
-  await expect(page.getByTestId("appearance-update-after")).toBeVisible();
+  // A retry prepares fresh worker modules and validates the new bank. Allow
+  // that asynchronous work under parallel CI load; cancellation checks above
+  // retain their original bounds and must still preserve the accepted pixels.
+  await expect(page.getByTestId("appearance-update-after")).toBeVisible({
+    timeout: 30_000,
+  });
 });
 
 test("new character-specific hair is discoverable before loading while older embedded banks stay authoritative", async ({

@@ -1,0 +1,76 @@
+{
+  "origin": "generated-and-painted-art-candidate",
+  "visualAcceptance": "pending",
+  "status": "selected-experimental-candidate",
+  "candidateEdition": 4,
+  "assetPathBase": "artwork/kling-landing-production/body/revision-4",
+  "selectedBodyIteration": "107 R6 and108 R3: lowered crouch and recovering first step with separately corrected supporting calf/shoe",
+  "generatedBodyNativeSize": [
+    512,
+    768
+  ],
+  "originalSourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+  "sourceHeadFrameId": 89,
+  "method": "Newly generated supplemental bodies only, uniform Canvas0.5x from1024x1536 to512x768. Copy the original source89 head RGBA at integer translation107(+4,+11),108(-16,-2), with no source head scaling, painting, morphing or interpolation. New bodies are authored artwork, not recovered source-video frames or skeleton deformation. Original native frames0..106 and all action clips remain unchanged. Refit actual existing painted cloth to new manual body anchors; no original garment PNG changed. Experimental candidate only; complete clothing and playback acceptance remain pending.",
+  "headAssemblyAudit": "head-copy-audit.json",
+  "headAssemblyMask": "source89-head-mask.png",
+  "registrationStatus": "Manual visible joint/attachment estimates approximately±4px and hidden points approximately±8px. Protected head polygons copied from exact-head assembly. No recovered skeleton claimed.",
+  "frames": {
+    "107": {
+      "rawGeneratedPng": "107.original.png",
+      "rawGeneratedSha256": "9c294ac8eb21d40ae78cac4e21ad316c7a362a53ddd2f26f2cecaab3671574a6",
+      "nativeBodyPng": "107.body.native.png",
+      "nativeBodySha256": "f239f87b69f8feaa505185b386b47702ddff64c9bc85533a3d8c247478179b56",
+      "assembledPng": "107.png",
+      "assembledSha256": "07fa693539c2c77e6b8e1af046eb94cdcf694c526b6f9697c2c1b00487c0b898",
+      "finalPrompt": "107.prompt.txt",
+      "finalPromptSha256": "7ca1ad94a91c14ce8bcb3a6bb94ce836e11c00ec52c4c53b054041c2ca5251c6",
+      "finalInput": "107.input.original.png",
+      "finalInputSha256": "1235f7de5c50f440a3817efdd957246cc614e57ff16be41e1dd7ad15a7c79ebf",
+      "placementGuide": "107.guide.png",
+      "placementGuideSha256": "77d6db0e080cfcd0bb4dc956ac14b87d9eab597af4b426f9d877c844708b9166",
+      "headTranslation": {
+        "x": 4,
+        "y": 11
+      }
+    },
+    "108": {
+      "rawGeneratedPng": "108.original.png",
+      "rawGeneratedSha256": "fbd1b7657d9c191e43f94ee63383f7f22be1b22a34163479f2783d5431f81f78",
+      "nativeBodyPng": "108.body.native.png",
+      "nativeBodySha256": "965742e5406bc408c09d339f84eafba0fd46892aee5abd157e489f085c3038ea",
+      "assembledPng": "108.png",
+      "assembledSha256": "c0c3e8645a1d441736171426b744b68740c9cbf90bd19d38dbdbb070e01c3ce4",
+      "finalPrompt": "108.prompt.txt",
+      "finalPromptSha256": "b15a46c03995fa9c68f768c89eebd383221ed6d0bcdf0e64ce5efb70e28a5afd",
+      "finalInput": "108.input.original.png",
+      "finalInputSha256": "eea189be64f0753fade427d8c2ebde5cc3e6af3ee1c32cb0d97aebe5e7753d86",
+      "placementGuide": "108.guide.png",
+      "placementGuideSha256": "519de87ef390bc77793479ece5c32c0fc93f9ce0218152c7e2f52065d8bd1c14",
+      "headTranslation": {
+        "x": -16,
+        "y": -2
+      }
+    }
+  },
+  "motionSelection": {
+    "previousProfileId": "kling-male-side-landing-candidate-v3",
+    "profileId": "kling-male-side-landing-candidate-v4",
+    "jumpToRun": {
+      "exit": 23,
+      "entry": 9,
+      "leadIn": [
+        107,
+        108
+      ]
+    },
+    "unchanged": [
+      "native24FPS",
+      "700px/s travel speed",
+      "original0..106source pixels",
+      "all basic action clips",
+      "production default male/female profiles"
+    ],
+    "rationale": "Replace redundant grounded88 recovery with lower107 and rising108. Head rise is distributed13/13/12 native pixels from source85 through107/108 toRun48. Original endpoint geometry and native cadence retain18.5px far-toe world drift; this is not a foot-lock or physics solution."
+  }
+}

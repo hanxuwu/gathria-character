@@ -19,6 +19,8 @@ const independent = String.raw`
 import hashlib,io,json,math,sys,zipfile
 import numpy as np
 from PIL import Image
+sys.path.insert(0,"scripts")
+from coverage_export_audit import validate_garment, protected_mask
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def zopen(p):
  z=zipfile.ZipFile(p);assert z.testzip() is None;return z
@@ -55,7 +57,7 @@ selected={v for v in doc['selection'].values() if v};garments={}
 for i,item in enumerate(doc['items']):
  b=project.read('item-'+str(i)+'.zip');assert sha(b)==item['sha256'];z=zopen(io.BytesIO(b));m=json.loads(z.read('manifest.json'))
  assert m['id']==item['id'] and m['sourceSha256']==doc['sourceSha256'] and m['registrationSha256']==doc['registrationSha256']
- assert not m.get('handProtectionReviews') and not m.get('necklinePermissionProfile'),'Cotton pair must not expand protection exceptions'
+ validate_garment(b,reg)
  assert len(m['frames'])==len(sm['frames']) and {f['frameId'] for f in m['frames']}==set(registered)
  if m['id'] in selected:
   pages=[(Image.open(io.BytesIO(z.read(p['file']))).convert('RGBA'),Image.open(io.BytesIO(z.read(p['maskFile']))).convert('RGBA')) for p in m['pages']]
@@ -72,16 +74,18 @@ for f in sm['frames']:
   patch=np.array(pages[g['page']][0].crop(box));mask=np.array(pages[g['page']][1].crop(box))[:,:,3]
   assert np.isin(mask,[0,255]).all();assert 0<=o['x']<=w-r['width'] and 0<=o['y']<=h-r['height']
   area=np.s_[o['y']:o['y']+r['height'],o['x']:o['x']+r['width']];own=mask==255
+  ownmask=np.zeros((h,w),bool);ownmask[area]=own
+  for label,guard,reviewed,permitted in protected_mask(m,registered[fid],before,poly):
+   assert not np.any(ownmask&guard),f'Published cotton garment owns protected {slot}/{label}/{fid}'
   expected[area][own]=patch[own];owned[area]|=own;coverage[slot]=int(own.sum())
  assert np.array_equal(after,expected),f'Authored garment RGBA differs {fid}'
  assert not np.any(changed&~owned),f'Outside ownership changed {fid}'
  assert np.array_equal(after[:,:,3],before[:,:,3]),f'Cotton recolor changed source silhouette {fid}'
  protected={}
- for region in registered[fid]['protected']:
-  regionmask=poly(region['polygon'],w,h)&(before[:,:,3]>0)
-  assert not np.any(changed&regionmask),f"Protected {region['label']} changed {fid}"
-  protected[region['label']]=int(regionmask.sum())
- assert protected.get('head',0)>0
+ for slot,(m,_,_) in garments.items():
+  for label,guard,reviewed,permitted in protected_mask(m,registered[fid],before,poly):
+   protected[slot+':'+label]={'pixels':int(guard.sum()),'reviewedHand':reviewed,'approvedNecklineClothPixels':permitted}
+ assert protected.get('top:head',{}).get('pixels',0)>0
  changed_total+=int(changed.sum())
  if fid==row['png']['frameId']:
   right=np.array(Image.open(row['png']['right']).convert('RGBA'));left=np.array(Image.open(row['png']['left']).convert('RGBA'))

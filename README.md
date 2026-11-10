@@ -93,6 +93,27 @@ historical male V6 packs keep their exact behavior. This is a small first-step
 adjustment; the source still lacks a complete landing weight-transfer drawing.
 [Current first-step GIFs and limits](docs/kling-landing-first-step/README.md).
 
+A separate male landing candidate now adds two painted low recovery poses with
+the original source head copied exactly. Its V4 route begins stepping while low,
+then rises into Run48; original, daily and wedding looks share the same poses.
+Open `/workbench.html?character=male&mode=side-view&collection=landing-candidate`.
+This remains experimental and does not replace the default male V7 or female V6.
+[Actual GIF exports, artwork provenance and remaining slide](docs/kling-landing-recovery/README.md).
+
+The [wardrobe coverage review](docs/wardrobe-coverage/README.md) checks every
+currently selectable garment bank in both views, including older selectable
+styles. It repairs reviewed source-shirt/shorts remnants and incorrect sleeve
+cutoffs without changing the source characters or action timing. Pixel and
+format checks are reported separately from the visual before/after review.
+
+The [seam and continuity follow-up](docs/wardrobe-finish/README.md) refines male
+wedding cuffs/waistcoat, female necklines and three unstable female side poses.
+Existing look-review panels now include source-bound checkpoints, same-frame
+comparisons and a display-only coverage overlay. Historical paired saves retain
+their embedded garments; the mask editor preserves each garment's reviewed
+neckline revision. Mixed-outfit and temporal coverage are documented separately
+from visual acceptance.
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):
