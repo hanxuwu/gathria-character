@@ -1,0 +1,57 @@
+{
+  "format": "gathria-coverage-review-ui-validation",
+  "version": 1,
+  "scope": "Existing original and side workbench review UI. Screenshots illustrate controls and masks; final clothing art acceptance is recorded separately.",
+  "checks": [
+    {
+      "command": "npx vitest run src/wardrobe/coverage-review.test.ts",
+      "passed": 6
+    },
+    {
+      "command": "npx tsc -b",
+      "result": "passed"
+    },
+    {
+      "command": "npx playwright test tests/e2e/coverage-checkpoints.spec.ts",
+      "passed": 3,
+      "environment": "Chromium /usr/bin/chromium, local isolated port 5188",
+      "details": [
+        "Original female source frame 62/90, actual teal top, source action location, current clothing/appearance retained, marker-free PNG exact bytes, mobile 2x scrolling without document overflow",
+        "Side male landing candidate source-only frames 100/101, actual wedding top/bottom + nonempty hair, paused native source action and facing retained, PNG exact before/after coverage overlay",
+        "Synthetic fixture only for exact +2/+2 appearance padding, integer offset and whole-panel artwork mirroring. Fixture is not art evidence."
+      ]
+    },
+    {
+      "command": "npx playwright test tests/e2e/review-workbench.spec.ts",
+      "passed": 2,
+      "scope": "Existing pinned-look notes, scan, diagnostic views and export bundle regressions"
+    }
+  ],
+  "codeSha256": {
+    "src/wardrobe/coverage-checkpoints.ts": "206760197a89d03dc6f8832d1e09484847bf6e564645ca2bab7a76a446b7f70e",
+    "src/wardrobe/CoverageCheckpoints.tsx": "25555288804a2f825a59ebde31eeaf41c839ebeafa93e1d31ffe9361918da274",
+    "src/wardrobe/coverage-overlay.ts": "3714e019a81ee811ac0a326a0b290abeddc54624164310b0975cc01a8c019d18",
+    "src/wardrobe/coverage-review.css": "e76b98f94d88ba6a9296b3c7fd35bff12a28714e3e8e74ed28c20a20c18c4c4a",
+    "src/wardrobe/coverage-review.test.ts": "2635e8cdc93d8354fc805f763295280a92d2d70a1f9bff4e39db93659936ecbd",
+    "src/wardrobe/ReviewCanvas.tsx": "8567ee2e1f9e33307bf9d809af1cc9cb3734285b4d9cb38003ac3daefbd6ce62",
+    "src/wardrobe/ReviewWorkbench.tsx": "2d44aebf2cc7cd8dd7a287706c9802bb8ac80d384de6ee3f22496c5b389169aa",
+    "src/side-view/SideReviewPanel.tsx": "50aeda79f1149bba2db838657314da8fc028e32b933ac101d6e7ae0cfc863a70",
+    "src/side-view/SideViewPlayground.tsx": "b077243f8a2fd8b7baa6903aa50d38549698c317d8c76d5ac27cad85c935f6a8",
+    "tests/e2e/coverage-checkpoints.spec.ts": "f239c879dfb5211070a0b01dba7f68fdaf33a3a96d786578772ec4482a30bcc9"
+  },
+  "screenshots": [
+    {
+      "file": "female-original-coverage-review.png",
+      "sha256": "be57143f1c6d5b0ab9fa2daa563482d087875289c9dea1ff15ca6704350e937d"
+    },
+    {
+      "file": "male-side-coverage-review.png",
+      "sha256": "bb0d8a2cdbcc80b3baf9e4aa1d673f899362824e521794259b0a58466a8afa05"
+    }
+  ],
+  "limits": [
+    "Checkpoints are reviewed locations bound to exact source hashes, not automatic current-outfit defect reports or visual pass labels.",
+    "Ownership tint represents selected clothing replacement, including transparent removal, not semantic skin/clothing classification or final hair occlusion.",
+    "Review display controls never alter character pixels, animations or project selection. Source-only side pose inspection may select the existing complete-source playback mode."
+  ]
+}

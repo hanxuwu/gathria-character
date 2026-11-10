@@ -22,7 +22,10 @@ import {
   type WardrobeGarmentManifest,
   type WardrobeProject,
 } from "./contract";
-import { availableNecklinePermissionProfile } from "./neckline-permissions";
+import {
+  assertNecklinePermissionProfile,
+  availableNecklinePermissionProfile,
+} from "./neckline-permissions";
 import { poseNeighborhood, type PoseNeighbor } from "./pose-neighborhood";
 import {
   prepareProtection,
@@ -516,13 +519,24 @@ export function compatibleNecklineProfile(
   itemId: string,
 ): string | undefined {
   const item = project.items.find((i) => i.manifest.id === itemId);
-  return item &&
-    (item.manifest.slot === "top" || item.manifest.slot === "fullBody")
-    ? availableNecklinePermissionProfile(
+  if (
+    !item ||
+    (item.manifest.slot !== "top" && item.manifest.slot !== "fullBody")
+  )
+    return undefined;
+  // Keep the garment's embedded revision. Selecting the first registration
+  // match would silently downgrade V2 repairs to V1 when opening this editor.
+  // Unreviewed garments still receive the existing opt-in default, not V2.
+  return item.manifest.necklinePermissionProfile !== undefined
+    ? assertNecklinePermissionProfile(
+        item.manifest.necklinePermissionProfile,
         project.registration,
         project.document.registrationSha256,
       )
-    : undefined;
+    : availableNecklinePermissionProfile(
+        project.registration,
+        project.document.registrationSha256,
+      );
 }
 
 export class MaskEditSession {

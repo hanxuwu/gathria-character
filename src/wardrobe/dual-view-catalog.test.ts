@@ -20,6 +20,7 @@ import {
   addWardrobeAppearanceBank,
   getWardrobeAppearanceSelection,
   selectWardrobeAppearance,
+  readWardrobeGarment,
 } from "./project";
 import {
   availableDualViewOutfits,
@@ -52,7 +53,20 @@ type Representation = {
   frameCount: number;
   items: Item[];
 };
+type HistoricalRevision = {
+  outfitId: string;
+  character: string;
+  view: string;
+  id: string;
+  logicalId: string;
+  slot: string;
+  palette: string;
+  sourceSha256: string;
+  registrationSha256: string;
+  sha256: string[];
+};
 const data = vi.hoisted(() => ({
+  revisions: { entries: [] as HistoricalRevision[] },
   cotton: { representations: [] as Representation[] },
   tailored: { representations: [] as Representation[] },
   complete: { representations: [] as Representation[] },
@@ -70,6 +84,10 @@ vi.mock("../../docs/dual-looks-cloth/assets/catalog.json", () => ({
 
 vi.mock("../../docs/paired-polish/assets/catalog.json", () => ({
   default: data.polished,
+}));
+
+vi.mock("../../artwork/wardrobe-finish/paired-garment-revisions.json", () => ({
+  default: data.revisions,
 }));
 
 const sha = (bytes: Uint8Array) =>
@@ -188,6 +206,15 @@ async function fixture(view: DualView, optionalCotton = false) {
         ) as WardrobeRegistration["frames"][number]["points"],
         protected: [
           {
+            label: "nearHand",
+            polygon: [
+              { x: 0, y: 4 },
+              { x: 2, y: 4 },
+              { x: 2, y: 6 },
+              { x: 0, y: 6 },
+            ],
+          },
+          {
             label: "head",
             polygon: [
               { x: 0, y: 0 },
@@ -275,7 +302,35 @@ async function fixture(view: DualView, optionalCotton = false) {
   }
 }
 
+/** Simulate a shipped asset repair while retaining the precise previous bindings.
+ * Old and new bytes are distinct, fully parsed archives, not forged SHA fields. */
+function republishTailored() {
+  for (const row of data.tailored.representations) {
+    for (const item of row.items) {
+      data.revisions.entries.push({
+        outfitId: "tailored-day",
+        character: row.character,
+        view: row.view,
+        id: item.id,
+        logicalId: item.logicalId,
+        slot: item.slot,
+        palette: item.palette,
+        sourceSha256: row.sourceSha256,
+        registrationSha256: row.registrationSha256,
+        sha256: [item.sha256],
+      });
+      const entries = unzipSync(files.get(item.url)!);
+      entries["patches-0.png"] = png(2, 1, [150, 80, 50, 255]);
+      const bytes = zipSync(entries);
+      item.sha256 = sha(bytes);
+      item.bytes = bytes.length;
+      files.set(item.url, bytes);
+    }
+  }
+}
+
 beforeEach(async () => {
+  data.revisions.entries.length = 0;
   data.cotton.representations.length = 0;
   data.tailored.representations.length = 0;
   data.complete.representations.length = 0;
@@ -298,6 +353,103 @@ beforeEach(async () => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("paired collection source and inventory transitions", () => {
+  it("reopens a shipped old pair offline and preserves embedded art through views, palettes and re-save", async () => {
+    const old = await loadDualViewWardrobe("male", {}, tailored);
+    const saved = await exportDualViewWardrobe(old);
+    const bytes = old.projects.side.items.map((item) => item.bytes);
+    republishTailored();
+    requests.length = 0;
+    const restored = await importDualViewWardrobe(saved);
+    validateDualViewLook(restored);
+    const changed = await prepareDualViewLook(restored, {
+      ...tailored,
+      paletteId: "sea",
+    });
+    changed.activeView = "side";
+    validateDualViewLook(changed);
+    expect(changed.projects.side.items.map((item) => item.bytes)).toEqual(
+      bytes,
+    );
+    const returned = await prepareDualViewLook(changed, tailored);
+    returned.activeView = old.activeView;
+    expect(await exportDualViewWardrobe(returned)).toEqual(saved);
+    expect(requests).toEqual([]);
+    const fresh = await loadDualViewWardrobe("male", {}, tailored);
+    expect(fresh.projects.side.items.map((item) => item.sha256)).not.toEqual(
+      old.projects.side.items.map((item) => item.sha256),
+    );
+    expect(fresh.projects.side.source).toEqual(old.projects.side.source);
+    expect(await exportDualViewWardrobe(old)).toEqual(saved);
+  });
+
+  it.each([
+    ["outfitId", "cotton-day"],
+    ["character", "female"],
+    ["view", "side"],
+    ["id", "unpublished"],
+    ["logicalId", "cotton-tank"],
+    ["slot", "bottom"],
+    ["palette", "sea"],
+    ["sourceSha256", "0".repeat(64)],
+    ["registrationSha256", "1".repeat(64)],
+    ["sha256", ["f".repeat(64)]],
+  ])(
+    "rejects a historical revision with a different %s binding",
+    async (key, value) => {
+      const old = await loadDualViewWardrobe("male", {}, tailored);
+      republishTailored();
+      const revision = data.revisions.entries.find(
+        (row) =>
+          row.view === "original" &&
+          row.slot === "top" &&
+          row.palette === "apricot",
+      )!;
+      Object.assign(revision, { [key as string]: value });
+      expect(() => validateDualViewLook(old)).toThrow(/已被修改/);
+      requests.length = 0;
+      await expect(prepareDualViewLook(old, tailored)).rejects.toThrow(
+        /已被修改/,
+      );
+      expect(requests).toEqual([]);
+    },
+  );
+
+  it("rejects a reparsed archive that adds unapproved hand-review permission despite an unchanged published ID", async () => {
+    const old = await loadDualViewWardrobe("male", {}, tailored);
+    republishTailored();
+    const native = old.projects.original;
+    const index = native.items.findIndex(
+      (item) => item.manifest.id === native.document.selection.top,
+    );
+    const entries = unzipSync(native.items[index].bytes);
+    const manifest = JSON.parse(
+      new TextDecoder().decode(entries["manifest.json"]),
+    );
+    manifest.version = 2;
+    manifest.handProtectionReviews = [
+      {
+        frameId: 7,
+        label: "nearHand",
+        reason: "Unapproved shrink fixture",
+        polygon: [
+          { x: 0, y: 4 },
+          { x: 1, y: 4 },
+          { x: 1, y: 5 },
+          { x: 0, y: 5 },
+        ],
+      },
+    ];
+    entries["manifest.json"] = json(manifest);
+    const forged = await readWardrobeGarment(
+      zipSync(entries),
+      native.registration,
+      native.document.registrationSha256,
+    );
+    expect(forged.manifest.handProtectionReviews).toHaveLength(1);
+    native.items[index] = forged;
+    expect(() => validateDualViewLook(old)).toThrow(/已被修改/);
+  });
+
   it("keeps the previous tailored project byte-exact when a reviewed collection changes garment revisions", async () => {
     const before = await loadDualViewWardrobe("male", {}, tailored);
     const saved = await exportDualViewWardrobe(before);
@@ -349,7 +501,9 @@ describe("paired collection source and inventory transitions", () => {
     const registration = JSON.parse(
       new TextDecoder().decode(files.get(side.registrationUrl)!),
     );
-    registration.frames[0].protected[0].polygon[2].x = 7;
+    registration.frames[0].protected.find(
+      (region: { label: string }) => region.label === "head",
+    ).polygon[2].x = 7;
     // A distinct reviewed registration is bound to each bank offline. Neither
     // prepareDualViewLook nor loading an old saved ZIP may infer this binding.
     const registrationBytes = json(registration);

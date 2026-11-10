@@ -426,9 +426,11 @@ for (const character of ["male", "female"] as const) {
       };
       await pose(page, "jump");
       gifs.jump.right = `${directory}/${view}-jump-right.gif`;
-      const basic = await exported(page, "dual-export-gif", gifs.jump.right);
+      await exported(page, "dual-export-gif", gifs.jump.right);
       const previousBasic = `docs/kling-single-jump/review/${character}/${view}-jump-right.gif`;
-      expect(sha(basic)).toBe(sha(await readFile(previousBasic)));
+      // Clothing revisions intentionally change the GIF palette/pixels. The
+      // independent audit below proves unchanged native jump timing and checks
+      // both the old GIF against its frozen pack and this GIF against this pack.
       for (const facing of ["right", "left"]) {
         await pose(page, "jump", facing);
         gifs.flow[facing] = `${directory}/${view}-run-jump-run-${facing}.gif`;
@@ -439,10 +441,17 @@ for (const character of ["male", "female"] as const) {
         path: `${directory}/${view}-workspace.png`,
         fullPage: true,
       });
+      await writeFile(
+        `${directory}/${view}.wardrobe.zip`,
+        saved[`${view}.wardrobe.zip`],
+      );
       rows.push({
         character,
         view,
         pack: packPath,
+        project: `${directory}/${view}.wardrobe.zip`,
+        closeRunCycle: true,
+        historicalJumpGifs: { right: previousBasic },
         gifs,
         previousBasic,
         previousMetadata: `docs/kling-single-jump/review/${character}/${view}.character.json`,

@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { strToU8, zipSync } from "fflate";
+import { readCoverageBaseline } from "./coverage-review-baseline.mjs";
 
 export async function rebuildReviewedPair(character, output) {
   const recipe = JSON.parse(
@@ -31,7 +32,7 @@ export async function rebuildReviewedPair(character, output) {
     const r = entry.views[view],
       inner = { "document.json": strToU8(r.document) };
     for (const [name, path] of Object.entries(r.files)) {
-      const bytes = await readFile(path);
+      const bytes = readCoverageBaseline(path, process.cwd());
       inner[name] = name.endsWith(".zip") ? [bytes, { level: 0 }] : bytes;
     }
     const bytes = zipSync(inner, options);

@@ -1,0 +1,200 @@
+{
+  "format": "gathria-wardrobe-finish-python-ci-validation",
+  "version": 1,
+  "status": "passed",
+  "startedAt": "2026-11-10T02:04:01.386958+00:00",
+  "scope": "Final sequential run of requested Python art/integrity tests and paired catalog verifier against frozen workspace. No production files or assets rewritten. Does not replace browser/visual acceptance.",
+  "environment": {
+    "pythonPath": "/tmp/landing-recovery-v4/python-deps",
+    "parallelCommands": 1
+  },
+  "checks": [
+    {
+      "command": "python scripts/test_kling_dress_fit.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.407,
+      "scriptSha256": "a562ad19e8d50d5e8a41bdd8b5e620262fc7ce87962ef85b03005114b1940b0b",
+      "log": "01-test_kling_dress_fit.log",
+      "logSha256": "d094b1bd2c8318c96097f80c50da282add5b2972970a77046de8db6c8935f6ca"
+    },
+    {
+      "command": "python scripts/test_kling_hair_ear_fit.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 3.806,
+      "scriptSha256": "15c4f9a2d918ee4b09b3abcd0c1988ed74b232abcfca7f25e5311b4088e5f0b9",
+      "log": "02-test_kling_hair_ear_fit.log",
+      "logSha256": "fccbe9d8f009c20d5c160acb5de576dc3ddec06b5d0bbab4380c2b99800ebe67"
+    },
+    {
+      "command": "python scripts/test_kling_hair_ear_overlap.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 4.308,
+      "scriptSha256": "b77448f6d2c366efd67c0ec6fcd7b603961a355489f59b507822b79fa157df37",
+      "log": "03-test_kling_hair_ear_overlap.log",
+      "logSha256": "5af5b913dbc68fbefcb36416b434274de55cf1d5ab95ada759f98f4f1a0fd791"
+    },
+    {
+      "command": "python scripts/test_kling_hair_expansion.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 5.552,
+      "scriptSha256": "584b934876dc213e870db291d779c4e1606f791e1e8185947255886ad6cca087",
+      "log": "04-test_kling_hair_expansion.log",
+      "logSha256": "8fe6872270131b22f1f2eca73f39f62cb01de0ddefa52c2d5f0577b7865f9abb"
+    },
+    {
+      "command": "python scripts/test_kling_garment_recipe.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.265,
+      "scriptSha256": "9584fe4d39e9ac1398976d02c7c0af668c9c420792f6167fe707c738e8a7de0f",
+      "log": "05-test_kling_garment_recipe.log",
+      "logSha256": "157a98b66d422569e68b74b61a228086ab2f2972218c5d9c3bd87f6a2820902a"
+    },
+    {
+      "command": "python scripts/test_coverage_export_audit.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.464,
+      "scriptSha256": "0b393bcdac28aede1499d3e1dd00d81840c4040e00e85d1db3dc06dbc8ccc838",
+      "log": "06-test_coverage_export_audit.log",
+      "logSha256": "0128ed60920a973c6da15388f7c6d038d3293a04af11a1c77a8ce3cfc8328f5a"
+    },
+    {
+      "command": "python scripts/test_wardrobe_finish_audit.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.51,
+      "scriptSha256": "2f6790750fda44ed449a5bafef5caab1ffdfa15a60ecd66d46621cd95e21d43c",
+      "log": "07-test_wardrobe_finish_audit.log",
+      "logSha256": "eecd28a8a8bde862cae5be1dda108c09314203808eccfc2a8adc8bf97098623f"
+    },
+    {
+      "command": "python scripts/verify-kling-contour-assets.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 55.105,
+      "scriptSha256": "adcf748b3bd6484d2ceecfb10b9861e9d2bf95800409ca688ed3d96643bcdaf5",
+      "log": "08-verify-kling-contour-assets.log",
+      "logSha256": "e6aa89d4c4c2314f55b6ed980a80e55eb9469bf060cb8d205d615d9f9be849e1"
+    },
+    {
+      "command": "python scripts/verify-kling-male-repair.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 8.089,
+      "scriptSha256": "406b80a1c68f8283724a24382f55d8eda04b79a7484994c76b2eacc13914f1e1",
+      "log": "09-verify-kling-male-repair.log",
+      "logSha256": "3dfc48a6ec66db46ee4fd34c8f83279c6d5c4fd3eadda9db601b61882e8aef54"
+    },
+    {
+      "command": "python scripts/verify-kling-female-repair.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 23.996,
+      "scriptSha256": "15737e3ed9bf4a186dba008036cc36af6d6cb35c246c6243c453b0b29d1e1f37",
+      "log": "10-verify-kling-female-repair.log",
+      "logSha256": "40db57f0b68def2c3d57eb757f514736e072a708343296f6955e3b1c8b85a26b"
+    },
+    {
+      "command": "python scripts/build-wardrobe-neckline-profiles.py --check",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 3.327,
+      "scriptSha256": "4c17aebd9f4fa9e2987b547c2bff86ccdd339d831b93360cfc001866f4d94919",
+      "log": "11-build-wardrobe-neckline-profiles.log",
+      "logSha256": "25a5bf78257f9f5ea28ac7cbe064c9c1898568b4a21505cfc0de0c391516e83c"
+    },
+    {
+      "command": "python scripts/refresh-wardrobe-coverage-catalogs.py --check",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.473,
+      "scriptSha256": "d0958280635f116415d04f70cc85f77d37a156975d5a6e160f9241a54b8569df",
+      "log": "12-refresh-wardrobe-coverage-catalogs.log",
+      "logSha256": "77636118f679217d2dfc8931f740acdb64bb133ec404ad779c9fb1a321e3fcdd"
+    },
+    {
+      "command": "python scripts/inventory-wardrobe-coverage.py --check",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.916,
+      "scriptSha256": "2117b02e945fa97245eb4ca280d32471887b2d281ee09f5525f4b9d3127b2955",
+      "log": "13-inventory-wardrobe-coverage.log",
+      "logSha256": "6e9d8b8ab1bafab3134419ed3b780da42061167c3602c66ca8c80c573ab9d1f5"
+    },
+    {
+      "command": "python scripts/verify-wardrobe-finish-preservation.py",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.759,
+      "scriptSha256": "d859c4b8f993808db8aa0ad595de2e4ca2d5e3f6468750d59f5802ff08a5034d",
+      "log": "14-verify-wardrobe-finish-preservation.log",
+      "logSha256": "af29fddf663ff9922e40ebf5b4164498a10e4460cb81d2bb1c182edef0e9d7ed"
+    },
+    {
+      "command": "python scripts/build-paired-garment-revisions.py --check",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 0.054,
+      "scriptSha256": "6f65aee5d3865eaca7371c200329648f1fa34897a8f725916e0047292a41b836",
+      "log": "15-build-paired-garment-revisions.log",
+      "logSha256": "12c5d1dd29e6ff19a47f285e1ce36e34221a952f1e0f215b6e16a50e711f665c"
+    },
+    {
+      "command": "node scripts/assemble-paired-polish-catalog.mjs --check",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 159.69,
+      "scriptSha256": "c454ab4ec8dd2f67fbe61e24afa10c98677c008fe436b37d98146538dd0e7c3f",
+      "log": "16-assemble-paired-polish-catalog.log",
+      "logSha256": "d39be377a34e9ee164bfa8f3eb685f7429ea33024fcda4f5ed89a9d01802fbe9"
+    }
+  ],
+  "summary": {
+    "passed": 16,
+    "failed": 0,
+    "checks": 16,
+    "independentlyPassed": 2
+  },
+  "completedAt": "2026-11-10T02:08:29.118942+00:00",
+  "logRoot": "/tmp/wardrobe-finish/ci-python-final",
+  "independentlyExecutedChecks": [
+    {
+      "command": "python scripts/build-landing-production-assets.py --input artwork/kling-landing-production/body/inputs.json --check",
+      "status": "passed",
+      "executedBy": "root",
+      "rerunByThisWorker": false,
+      "evidence": "Root reported exit success; existing log independently inspected and checked=true.",
+      "log": "/tmp/wardrobe-finish/landing-build-check.log",
+      "logSha256": "27688755247b5c4ed1b3cf7d417845c0bc6b597cf1da8bacacf29849a5f43c62",
+      "scriptSha256": "4ee01bc3a5b7559d284f9c5655e46ed705b72b0dc5c830b4cfc83da2d56fce2e",
+      "result": {
+        "status": "generated-review-candidate",
+        "sourceSha256": "704698872f3a4f621f3d4de53d3fa6a28ef930f6a390c63fb35982d95e51a430",
+        "registrationSha256": "980a5eae5d20fea6e94a6399a9500aabe763785f21f5d07ab26210110209a34a",
+        "files": 10,
+        "checked": true
+      }
+    },
+    {
+      "command": "python scripts/finish-landing-wedding-cuffs.py --check",
+      "status": "passed",
+      "executedBy": "finish_cuff_art",
+      "delegatedExecuted": true,
+      "verificationBasis": "agent-confirmed",
+      "rerunByThisWorker": false,
+      "evidence": "Root relayed finish_cuff_art final execution record confirming --check success. The log contains the audit, not command text; the command comes from the executing agent record rather than inference from the log. Recorded result SHA independently matches current served base.",
+      "log": "/tmp/wardrobe-finish/male/reproduce.log",
+      "logSha256": "ded4055bc5ce3c9b13bc8c81109a6469ea722cd34028140f1ba158dec8930007",
+      "scriptSha256": "1f7ce683b6cb850a3859ece283d159cca86b30d9f96ff51ca23cc111135298d0",
+      "resultSha256": "38d9a75f4bba8afde403c0af5e56514d62bbda2ea7457a4831ae7d106c0068b7",
+      "sourceAndRegistrationUnchanged": true,
+      "changedFrames": 27,
+      "unchangedFrames": 80
+    }
+  ]
+}

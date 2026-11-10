@@ -1,0 +1,225 @@
+{
+  "format": "gathria-motion-coverage-regression-review",
+  "version": 1,
+  "productionMotionChanged": false,
+  "localTargetedBrowserTestsPassed": 2,
+  "remainingFullSuite": "Female cases and full frozen-tree E2E are run by the integration pass. The first male single-jump run exposed the legacy closure-count assertion; its captured outputs subsequently passed the corrected full independent audit. This report does not label that original failing runner execution a passing E2E run.",
+  "results": [
+    {
+      "suite": "single",
+      "sex": "male",
+      "browserStatus": "download/save/reopen/player stages completed; final standalone audit passed after verifier correction",
+      "result": [
+        {
+          "view": "side",
+          "profileId": "kling-male-side-single-jump-v7",
+          "packSha256": "fcad5615ae4b6252b6f03f3795504b63e1298ecd608798562135aaca2525a041",
+          "nativeFrames": 107,
+          "clothingChangedFrames": 59,
+          "nativeSourceAndAppearancePreserved": true,
+          "exactOutsideReviewedCoverage": true,
+          "gifs": [
+            {
+              "name": "jump",
+              "facing": "right",
+              "sha256": "48ce3e978eb1ca40216e7c9addee57ed875147dcdfc7cdbcd74eb70e3f0d2828",
+              "frames": 28,
+              "durationMs": 1170
+            },
+            {
+              "name": "jump",
+              "facing": "left",
+              "sha256": "c0ce5c834d6c57a3ae8a62e2b443f210ad19e7c80a9092d09e9e767246781e47",
+              "frames": 28,
+              "durationMs": 1170
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "right",
+              "sha256": "885ec4ac8cddcd342dc0418d182d64e56e3f73cc1255368fab9b5fe47714fd63",
+              "frames": 77,
+              "durationMs": 3210
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "left",
+              "sha256": "6bc7850101565b4a90a0113611756709dcff8a928a20cda4e3eade47c4dfc666",
+              "frames": 77,
+              "durationMs": 3210
+            }
+          ],
+          "historicalGifFramesVerified": 56
+        },
+        {
+          "view": "original",
+          "profileId": "kling-male-original-single-jump-v2",
+          "packSha256": "a2395808cc7fd789aea1f61bca8f8f60572bf719d60763fdb338e89cf3207eed",
+          "nativeFrames": 88,
+          "clothingChangedFrames": 5,
+          "nativeSourceAndAppearancePreserved": true,
+          "exactOutsideReviewedCoverage": true,
+          "gifs": [
+            {
+              "name": "jump",
+              "facing": "right",
+              "sha256": "676d4739c75903a837619e51a65f5b33ff5578604ea75a10dd8e32b5132107a2",
+              "frames": 39,
+              "durationMs": 1630
+            },
+            {
+              "name": "jump",
+              "facing": "left",
+              "sha256": "c906cc759d64f2c894769763d2fdfa295477a5abc536939167ca7136fa7824e6",
+              "frames": 39,
+              "durationMs": 1630
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "right",
+              "sha256": "c070ff7187d162387715de7a08a48aaaa9047df37ed2ca212291b83df0d60f9f",
+              "frames": 79,
+              "durationMs": 3290
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "left",
+              "sha256": "0caa88ad3801de5287ddb7d596a356b3e98f1a907a798af19bfccac6adb9a2b4",
+              "frames": 79,
+              "durationMs": 3290
+            }
+          ],
+          "historicalGifFramesVerified": 78
+        }
+      ],
+      "localEvidence": "/tmp/wardrobe-finish/motion/single/male/pixel-verification.json",
+      "evidenceSha256": "f19bbd5d2fef8cddec81c2c92f8de9327b3401654d86db82d5b2869afe3a970a"
+    },
+    {
+      "suite": "landing",
+      "sex": "male",
+      "browserStatus": "passed",
+      "result": [
+        {
+          "view": "side",
+          "profileId": "kling-male-side-single-jump-v7",
+          "packSha256": "fcad5615ae4b6252b6f03f3795504b63e1298ecd608798562135aaca2525a041",
+          "nativeFrames": 107,
+          "clothingChangedFrames": 59,
+          "nativeSourceAndAppearancePreserved": true,
+          "exactOutsideReviewedCoverage": true,
+          "gifs": [
+            {
+              "name": "jump",
+              "facing": "right",
+              "sha256": "48ce3e978eb1ca40216e7c9addee57ed875147dcdfc7cdbcd74eb70e3f0d2828",
+              "frames": 28,
+              "durationMs": 1170
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "right",
+              "sha256": "885ec4ac8cddcd342dc0418d182d64e56e3f73cc1255368fab9b5fe47714fd63",
+              "frames": 77,
+              "durationMs": 3210
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "left",
+              "sha256": "6bc7850101565b4a90a0113611756709dcff8a928a20cda4e3eade47c4dfc666",
+              "frames": 77,
+              "durationMs": 3210
+            }
+          ],
+          "historicalGifFramesVerified": 28
+        },
+        {
+          "view": "original",
+          "profileId": "kling-male-original-single-jump-v2",
+          "packSha256": "a2395808cc7fd789aea1f61bca8f8f60572bf719d60763fdb338e89cf3207eed",
+          "nativeFrames": 88,
+          "clothingChangedFrames": 5,
+          "nativeSourceAndAppearancePreserved": true,
+          "exactOutsideReviewedCoverage": true,
+          "gifs": [
+            {
+              "name": "jump",
+              "facing": "right",
+              "sha256": "676d4739c75903a837619e51a65f5b33ff5578604ea75a10dd8e32b5132107a2",
+              "frames": 39,
+              "durationMs": 1630
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "right",
+              "sha256": "c070ff7187d162387715de7a08a48aaaa9047df37ed2ca212291b83df0d60f9f",
+              "frames": 79,
+              "durationMs": 3290
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "left",
+              "sha256": "0caa88ad3801de5287ddb7d596a356b3e98f1a907a798af19bfccac6adb9a2b4",
+              "frames": 79,
+              "durationMs": 3290
+            }
+          ],
+          "historicalGifFramesVerified": 39
+        }
+      ],
+      "localEvidence": "/tmp/wardrobe-finish/motion/landing/male/pixel-verification.json",
+      "evidenceSha256": "005fb2c036ff478fd619f3eea0f34f5efef49ed050ae45626dc53ae041ec82e7"
+    },
+    {
+      "suite": "takeoff",
+      "sex": "male",
+      "browserStatus": "passed",
+      "result": [
+        {
+          "view": "side",
+          "profileId": "kling-male-side-single-jump-v7",
+          "packSha256": "fcad5615ae4b6252b6f03f3795504b63e1298ecd608798562135aaca2525a041",
+          "nativeFrames": 107,
+          "clothingChangedFrames": 59,
+          "nativeSourceAndAppearancePreserved": true,
+          "exactOutsideReviewedCoverage": true,
+          "gifs": [
+            {
+              "name": "jump",
+              "facing": "right",
+              "sha256": "48ce3e978eb1ca40216e7c9addee57ed875147dcdfc7cdbcd74eb70e3f0d2828",
+              "frames": 28,
+              "durationMs": 1170
+            },
+            {
+              "name": "jump",
+              "facing": "left",
+              "sha256": "c0ce5c834d6c57a3ae8a62e2b443f210ad19e7c80a9092d09e9e767246781e47",
+              "frames": 28,
+              "durationMs": 1170
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "right",
+              "sha256": "885ec4ac8cddcd342dc0418d182d64e56e3f73cc1255368fab9b5fe47714fd63",
+              "frames": 77,
+              "durationMs": 3210
+            },
+            {
+              "name": "run-jump-run",
+              "facing": "left",
+              "sha256": "6bc7850101565b4a90a0113611756709dcff8a928a20cda4e3eade47c4dfc666",
+              "frames": 77,
+              "durationMs": 3210
+            }
+          ],
+          "historicalGifFramesVerified": 56
+        }
+      ],
+      "localEvidence": "/tmp/wardrobe-finish/motion/takeoff/male/pixel-verification.json",
+      "evidenceSha256": "9f6bd7c5f6f4407a0fe61571f9dbdcbcca9104c19565943714278dce4da63638"
+    }
+  ],
+  "negativeChecks": "destructive-guards.json",
+  "historicalFixtureCommit": "5d63ae233ca83e61dc354e122a8708044f4e2653",
+  "scope": "Current artwork is independently reconstructed from actual saved UI projects; historical fixture artwork is reconstructed from frozen raw layers. Motion, old player behavior, source/appearance bindings, frame geometry, and explicit clothing delta are checked separately."
+}

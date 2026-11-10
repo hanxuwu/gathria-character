@@ -454,6 +454,30 @@ for (const character of ["male", "female"] as const) {
     await page.getByTestId("dual-motion-mode").selectOption("source");
     await ready(page);
     await expect(page.getByTestId("dual-motion-mode")).toHaveValue("source");
+    // Fresh catalog projects contain reviewed coverage revisions. Reconstruct
+    // and import the actual old cotton download before asserting old-byte
+    // roundtrips; never equate a newly created project with historical artwork.
+    for (const v of views) {
+      await view(page, v);
+      await pose(page, "run", 3, "right");
+    }
+    await view(page, "original");
+    const current = await exported(
+      page,
+      "save-project",
+      `${output}/current-cotton.zip`,
+    );
+    const legacyPath = `${output}/legacy-cotton.zip`;
+    execFileSync("node", [
+      "scripts/build-reviewed-cotton-baseline.mjs",
+      character,
+      current.path,
+      legacyPath,
+    ]);
+    const legacy = { path: legacyPath, bytes: await readFile(legacyPath) };
+    await page.getByTestId("dual-project-input").setInputFiles(legacy.path);
+    await ready(page);
+    await expect(page.getByRole("alert")).not.toBeVisible();
     const legacyPng: Partial<Record<View, Uint8Array>> = {};
     const legacyRegistrations: Partial<Record<View, string>> = {};
     for (const v of views) {
@@ -467,11 +491,6 @@ for (const character of ["male", "female"] as const) {
       ))!;
     }
     await view(page, "original");
-    const legacy = await exported(
-      page,
-      "save-project",
-      `${output}/legacy-cotton.zip`,
-    );
     const publishedLegacy = JSON.parse(
       await readFile(
         `docs/dual-view-wardrobe/review/${character}/editable-archive-checksums.json`,
@@ -665,6 +684,7 @@ for (const character of ["male", "female"] as const) {
     }
     await page.getByTestId("dual-project-input").setInputFiles(legacy.path);
     await ready(page);
+    await expect(page.getByRole("alert")).not.toBeVisible();
     await expect(page.getByTestId("dual-outfit")).toHaveValue("cotton-day");
     for (const v of views) {
       await view(page, v);

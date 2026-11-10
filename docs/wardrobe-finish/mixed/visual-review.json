@@ -1,0 +1,309 @@
+{
+  "format": "gathria-wardrobe-human-visual-review",
+  "version": 1,
+  "method": "Manual inspection of the eight actual-compositor adjacent-frame boards and seven same-frame native seam boards. Exported GIFs are provided for playback review; their independent frame/timing/mirroring verification is technical evidence, not a claim that all motions look flawless.",
+  "temporalReportSha256": "c3aa3e709a44cc5f76c623029a62d61070311569c26cfca5b71a6ac8a94331c4",
+  "runtimeReportSha256": "c78f4d8c055eb8e793125723effb3e8da74d61e5111b2e03346ec41c6574b315",
+  "temporalWitnesses": [
+    {
+      "caseIndex": 0,
+      "character": "male",
+      "view": "original",
+      "garmentId": "brown-shoes",
+      "action": "walk",
+      "clipSet": "gameplay",
+      "frames": [
+        48,
+        50
+      ],
+      "file": "review/temporal-0-male-original.png",
+      "sha256": "00b0181a81d04691445ca2da960e07f7d4a5421455972c9b6b14f6a13d7dcc85",
+      "status": "source-motion-dominates",
+      "observation": "The two source feet change overlap and orientation. The brown shoe patch follows that same change; no new large coverage opening is visible in this pair."
+    },
+    {
+      "caseIndex": 1,
+      "character": "male",
+      "view": "original",
+      "garmentId": "navy-waistcoat",
+      "action": "run",
+      "clipSet": "gameplay",
+      "frames": [
+        62,
+        63
+      ],
+      "file": "review/temporal-1-male-original.png",
+      "sha256": "97c8140a29e5c96d95e75b7c4805057e3e82a01d23a33f91cab60b5e1fdccd70",
+      "status": "hard-edge-remains",
+      "observation": "The source forearm uncovers the torso between these poses. The waistcoat visible area grows accordingly; the forearm/cloth boundary remains hard and should not be called a polished seam."
+    },
+    {
+      "caseIndex": 2,
+      "character": "male",
+      "view": "side",
+      "garmentId": "side-male-seabreeze-shoes-v1",
+      "action": "walk",
+      "clipSet": "gameplay",
+      "frames": [
+        35,
+        36
+      ],
+      "file": "review/temporal-2-male-side.png",
+      "sha256": "fae441ef1fb3086895e2b3eeee09db3e6d75e3a523d510c084d5d754fd34cdb1",
+      "status": "source-motion-dominates",
+      "observation": "The far shoe becomes visible in the source as well as the colored shoe version; the area change is not sufficient evidence of a garment defect."
+    },
+    {
+      "caseIndex": 3,
+      "character": "male",
+      "view": "side",
+      "garmentId": "dual-male-side-apricot-bottom-v1",
+      "action": "jump",
+      "clipSet": "nativeSourceSupplement",
+      "frames": [
+        98,
+        99
+      ],
+      "file": "review/temporal-3-male-side.png",
+      "sha256": "2ff132ea2189e513b8226916b03861d7a736041c09ca33e7b216c4a79539d0e8",
+      "status": "retained-source-motion",
+      "observation": "This retained source jump edge is outside the basic gameplay jump. Both original and recolored shorts inherit the fast knee/torso motion and source edge softness."
+    },
+    {
+      "caseIndex": 4,
+      "character": "female",
+      "view": "original",
+      "garmentId": "navy-waistcoat",
+      "action": "run",
+      "clipSet": "gameplay",
+      "frames": [
+        62,
+        63
+      ],
+      "file": "review/temporal-4-female-original.png",
+      "sha256": "3661aa01809f07805b799bd639bc71ea8c94175da22aecdf13a5ce2c8a77d78c",
+      "status": "remaining-art-issue",
+      "observation": "The original-female waistcoat has a visibly jagged/hard edge above the crossing forearm at frame62. This pre-existing seam remains after the bounded repairs."
+    },
+    {
+      "caseIndex": 5,
+      "character": "female",
+      "view": "original",
+      "garmentId": "dual-female-original-apricot-top-v1",
+      "action": "run",
+      "clipSet": "gameplay",
+      "frames": [
+        55,
+        56
+      ],
+      "file": "review/temporal-5-female-original.png",
+      "sha256": "612c6f0b7a9d1f76fa94852ea4acf5aa3b5258c801412ac20d79d5bada644259",
+      "status": "source-motion-dominates",
+      "observation": "Source forearm occlusion and motion blur account for the main tank-top area change. The recolored top retains the original source cut; source blur is not repainted."
+    },
+    {
+      "caseIndex": 6,
+      "character": "female",
+      "view": "side",
+      "garmentId": "dual-female-side-sea-bottom-v1",
+      "action": "run",
+      "clipSet": "gameplay",
+      "frames": [
+        39,
+        40
+      ],
+      "file": "review/temporal-6-female-side.png",
+      "sha256": "b7d9e0df50f1084a5ef66d2e0aff97472fca93ffcb04a476e8635001a557b4e9",
+      "status": "source-motion-dominates",
+      "observation": "The crossing arm and raised thigh change the visible short-pants area in both source and clothed frames. Exposed leg skin follows the intended short cut."
+    },
+    {
+      "caseIndex": 7,
+      "character": "female",
+      "view": "side",
+      "garmentId": "dual-female-side-sea-bottom-v1",
+      "action": "jump",
+      "clipSet": "nativeSourceSupplement",
+      "frames": [
+        93,
+        94
+      ],
+      "file": "review/temporal-7-female-side.png",
+      "sha256": "3c7680d3a01bfb4330a388b073a8a409302ee84f1aa65e3c0259cb7cf672154c",
+      "status": "retained-source-motion",
+      "observation": "The retained source jump ending has the same large knee/waist movement; its source contours remain visible in the recolored cloth."
+    }
+  ],
+  "mixedNativeBoards": [
+    {
+      "group": "original-male",
+      "selection": {
+        "top": "navy-suit-jacket-v6",
+        "bottom": "ochre-shorts",
+        "fullBody": null,
+        "shoes": null
+      },
+      "file": "review/original-male-native-seams.png",
+      "sha256": "181e70484296e522e9e202431c758c360e9f7c2d2fb3239fcc2c46afd3134f69",
+      "frames": [
+        62,
+        89,
+        90,
+        102,
+        106,
+        108
+      ],
+      "status": "remaining-art-issues",
+      "observation": "Frame89 retains a diagonal, hard sleeve opening; 106/108 retain straight inner cuff edges. Short pants intentionally expose the thighs in this stress mix."
+    },
+    {
+      "group": "original-female",
+      "selection": {
+        "top": "plum-pintuck-top-v1",
+        "bottom": "ochre-shorts",
+        "fullBody": null,
+        "shoes": null
+      },
+      "file": "review/original-female-native-seams.png",
+      "sha256": "63610f0eee0030b4ed1190a30b21f5114213e202707e2a4f841559c1ffd6ec48",
+      "frames": [
+        62,
+        89,
+        90,
+        102,
+        106,
+        108
+      ],
+      "status": "remaining-art-issues",
+      "observation": "Plum+shorts retains hard forearm edges and irregular waist joins. Independent source/current pixel inspection confirms a warm-gray original tank neckline residue at90/102; it is not entirely normal neck shadow. The conservative reviewed color boundary leaves these mixed-edge pixels untouched.",
+      "confirmedSourceResidueExamples": [
+        {
+          "frameId": 90,
+          "x": 400,
+          "y": 569,
+          "rgb": [
+            189,
+            157,
+            139
+          ]
+        },
+        {
+          "frameId": 102,
+          "x": 400,
+          "y": 600,
+          "rgb": [
+            198,
+            170,
+            149
+          ]
+        }
+      ]
+    },
+    {
+      "group": "side-tailored-male",
+      "selection": {
+        "top": "side-male-oxford-shirt-v1",
+        "bottom": "side-male-stone-trousers-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "file": "review/side-tailored-male-native-seams.png",
+      "sha256": "2b740a7f070f74c4e81ea3964469ad9257a131b97d15315aeb9eda7234c4e01b",
+      "frames": [
+        59,
+        72,
+        85,
+        97,
+        100,
+        101
+      ],
+      "status": "remaining-art-issues",
+      "observation": "Frame72 has a striped armpit join;97/100 have flat sleeve ends. Skin outside the short sleeves is intentional; the local sleeve shape remains unpolished."
+    },
+    {
+      "group": "side-tailored-female",
+      "selection": {
+        "top": "side-female-cream-blouse-v1",
+        "bottom": "side-female-rose-skirt-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "file": "review/side-tailored-female-native-seams.png",
+      "sha256": "9124f5c1f0758ec2f719299e1f04f9c37a64d7b87979a746ef6a1789231a997d",
+      "frames": [
+        18,
+        23,
+        62,
+        66,
+        78,
+        80
+      ],
+      "status": "remaining-art-issues",
+      "observation": "The corrected21/38/39 poses are covered by the separate side before/after review. Existing23 waist edges and the flap-like near sleeve at jump62 remain visible."
+    },
+    {
+      "group": "side-landing-candidate-male",
+      "selection": {
+        "top": "landing-male-wedding-top-v1",
+        "bottom": "landing-male-daily-bottom-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "file": "review/side-landing-candidate-male-native-seams.png",
+      "sha256": "3796aecac6fd81543c1e19f40d79fd07ae7d351b47ab0d557c813c541bf554b8",
+      "frames": [
+        59,
+        72,
+        85,
+        97,
+        100,
+        101
+      ],
+      "status": "remaining-art-issues",
+      "observation": "The corrected wedding cuff is included with daily trousers; frame72 still has a flat sleeve opening. This mixed outfit does not establish that every sleeve pose is polished."
+    },
+    {
+      "group": "dual-tailored-day-male-side",
+      "selection": {
+        "top": "dual-tailored-male-side-sea-top-v1",
+        "bottom": "dual-tailored-male-side-sea-bottom-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "file": "review/dual-tailored-day-male-side-native-seams.png",
+      "sha256": "a8a6f8505e5d4f90af58e3dacd5282fcdfd9e7ba4d9182a61e2affd38ac2f033",
+      "frames": [
+        59,
+        72,
+        85,
+        97,
+        100,
+        101
+      ],
+      "status": "remaining-art-issues",
+      "observation": "The same source-bound shirt silhouette retains72 armpit striping and97/100 flat sleeve ends after palette changes."
+    },
+    {
+      "group": "dual-tailored-day-female-side",
+      "selection": {
+        "top": "dual-tailored-female-side-sea-top-v1",
+        "bottom": "dual-tailored-female-side-sea-bottom-v1",
+        "fullBody": null,
+        "shoes": null
+      },
+      "file": "review/dual-tailored-day-female-side-native-seams.png",
+      "sha256": "e2af7626267f713c550b286db3a436c439d24a3cb561e5c71313b3a1b7b3f4d9",
+      "frames": [
+        18,
+        23,
+        62,
+        66,
+        78,
+        80
+      ],
+      "status": "remaining-art-issues",
+      "observation": "The sea palette retains the same remaining23 waist join and62 near-sleeve shape as the base blouse/skirt."
+    }
+  ],
+  "conclusion": "The bounded side temporal fix improves the identified shrink/rise defects, and all scoped runtime/export tests pass. Several older sleeve/waist/occlusion shapes still need art refinement. No all-assets visual-pass label is issued."
+}

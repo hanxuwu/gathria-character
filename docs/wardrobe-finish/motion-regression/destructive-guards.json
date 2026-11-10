@@ -1,0 +1,29 @@
+{
+  "actualDownloadSha256": "fcad5615ae4b6252b6f03f3795504b63e1298ecd608798562135aaca2525a041",
+  "sourceBoundNativePixelMutation": {
+    "frameId": 0,
+    "x": 249,
+    "y": 230,
+    "before": [
+      41,
+      11,
+      1,
+      255
+    ],
+    "after": [
+      41,
+      10,
+      1,
+      255
+    ],
+    "rejected": true,
+    "reason": "AssertionError: Actual motion export differs from independent raw-layer composition 0"
+  },
+  "publishedAssetsChanged": false,
+  "jumpCadenceMutation": {
+    "fromFps": 24,
+    "toFps": 12,
+    "rejected": true,
+    "reason": "Manifest animation differs from its declared reviewed gameplay actions; no artwork/GIF baseline rebasing accepted."
+  }
+}

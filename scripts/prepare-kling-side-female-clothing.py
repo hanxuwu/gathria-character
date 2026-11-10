@@ -134,6 +134,10 @@ def point(rec,key):
     p=rec['points'][key];return np.array([p['x'],p['y']],float)
 
 def cloth_waist(ctx,fid):
+    # Optional offline garment-only fit controls. They never replace the bound
+    # source registration, and old builders retain their original behavior.
+    reviewed=getattr(ctx,'cloth_fit_controls',{}).get('waist',{}).get(str(fid))
+    if reviewed is not None:return np.array(reviewed,float)
     if fid==31:return np.array([258.5,540.0])
     rec=ctx.registered[fid]
     return (point(rec,'waistLeft')+point(rec,'waistRight'))*.5
@@ -193,6 +197,8 @@ def fit_top(ctx,fid,did,template):
     if len(xs)<12 or xs.max()-xs.min()<40 or xs.max()-xs.min()>(all_x.max()-all_x.min())*1.15:xs=all_x
     if len(xs):dstp[-2:]=[[xs.min(),wy],[xs.max(),wy]]
     if fid==31:dstp[-2:]=[[218,539],[299,541]]
+    reviewed=getattr(ctx,'cloth_fit_controls',{}).get('topWaist',{}).get(str(fid))
+    if reviewed is not None:dstp[-2:]=np.array(reviewed,float)
     # Skin landmarks only guide cloth; generated limb pixels are never sampled.
     # One bounded torso affine per authored pose. Keeping the original painted
     # folds coherent avoids the foldovers a global nonlinear inverse can create

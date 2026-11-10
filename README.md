@@ -106,6 +106,14 @@ styles. It repairs reviewed source-shirt/shorts remnants and incorrect sleeve
 cutoffs without changing the source characters or action timing. Pixel and
 format checks are reported separately from the visual before/after review.
 
+The [seam and continuity follow-up](docs/wardrobe-finish/README.md) refines male
+wedding cuffs/waistcoat, female necklines and three unstable female side poses.
+Existing look-review panels now include source-bound checkpoints, same-frame
+comparisons and a display-only coverage overlay. Historical paired saves retain
+their embedded garments; the mask editor preserves each garment's reviewed
+neckline revision. Mixed-outfit and temporal coverage are documented separately
+from visual acceptance.
+
 ## Open the app
 
 Use Node.js 22.12+ (Node 24 recommended):

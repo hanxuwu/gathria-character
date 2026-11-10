@@ -33,6 +33,8 @@ const independentlyDecode = String.raw`
 import hashlib,io,json,math,sys,zipfile
 import numpy as np
 from PIL import Image
+sys.path.insert(0,"scripts")
+from coverage_export_audit import validate_garment, protected_mask, allowed_coverage_mask
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def opened(path):
  z=zipfile.ZipFile(path);assert z.testzip() is None;return z
@@ -89,7 +91,7 @@ if row.get('referenceAppearanceBank'):
  assert prior_config['sourceMetadata']['wardrobe']['sourcePackSha256']==doc['sourceSha256'],'Source artwork changed'
  if row['view']=='original':
   assert prior_bytes==bank_bytes,'Approved original appearance bank changed'
-  assert open(row['referenceCompletePack'],'rb').read()==open(row['pack'],'rb').read(),'Approved original CharacterPack changed'
+  prior_m,_,prior_p=pack(prior_complete);prior_f={f['id']:f for f in prior_m['frames']}
  else:
   for key in ['sourceSha256','characterId','frameWidth','frameHeight','padding']:
    assert prior[key]==am[key],f'New hair changed {key}'
@@ -123,10 +125,12 @@ for style in am['styles']:
   for layer in style['layers']:layers.append((layer['role'],{f['frameId']:f for f in layer['frames']}))
 layers.sort(key=lambda x:['hair-back','face','hair-front'].index(x[0]))
 assert set(poses)==set(regs)==set(output_frames)
-garments={};selected={v for v in doc['selection'].values() if v}
+garments={};garment_refs={};selected={v for v in doc['selection'].values() if v}
 for i,item in enumerate(doc['items']):
  raw=project.read('item-'+str(i)+'.zip');assert sha(raw)==item['sha256'];z=opened(io.BytesIO(raw));m=json.loads(z.read('manifest.json'))
  assert m['sourceSha256']==doc['sourceSha256'] and m['registrationSha256']==doc['registrationSha256']
+ ref=validate_garment(raw,reg)
+ if m['id'] in selected:garment_refs[m['slot']]=ref
  if m['id'] in selected:garments[m['slot']]=(m,{f['frameId']:f for f in m['frames']},[(image(z,p['file']),image(z,p['maskFile'])) for p in m['pages']])
 assert {g[0]['id'] for g in garments.values()}==selected
 factors=np.array({'chestnut':[1,1,1],'espresso':[.63,.65,.69],'copper':[1.2,1.05,.83]}[sel['hairColor']])
@@ -190,16 +194,17 @@ if row['character']=='female' and row['view']=='original':
  hand_review={int(fid):[{'x':x,'y':y} for x,y in pts] for fid,pts in review['foregroundHand'].items()}
 for sf in sm['frames']:
  fid=sf['id'];original=frame(sp,sf);dressed=original.copy();cloth_owned=np.zeros((sh,sw),bool)
+ coverage_mask=np.zeros((sh,sw),bool)
+ for ref in garment_refs.values():
+  if not ref['historical']:coverage_mask|=allowed_coverage_mask(ref['path'],fid,sw,sh)
  for slot in ['shoes','bottom','top','fullBody']:
   if slot not in garments:continue
   m,frames,pages=garments[slot];f=frames[fid];patch,owned=part(pages,f);o=f['offset'];rh,rw=owned.shape
   assert 0<=o['x']<=sw-rw and 0<=o['y']<=sh-rh
   region=np.s_[o['y']:o['y']+rh,o['x']:o['x']+rw]
-  assert m['version']==1 and not m.get('handProtectionReviews') and not m.get('necklinePermissionProfile'),'This review expects the scoped V1 daily clothing banks'
   owned_native=np.zeros((sh,sw),bool);owned_native[region]=owned
-  for protected in regs[fid]['protected']:
-   guard=polygon(protected['polygon'],sw,sh)&(original[:,:,3]>0)
-   assert not np.any(owned_native&guard),f'Clothing owns protected {protected["label"]} pixels {fid}'
+  for label,guard,reviewed,permitted in protected_mask(m,regs[fid],original,polygon):
+   assert not np.any(owned_native&guard),f'Clothing owns protected {label} pixels {fid}'
   dressed[region][owned]=patch[owned];cloth_owned[region]|=owned
  assert np.array_equal(dressed,frame(cp,clothes_frames[fid])),f'Actual clothing-only baseline differs from saved garment pixels {fid}'
  old_dressed=original.copy()
@@ -209,11 +214,12 @@ for sf in sm['frames']:
   old_dressed[old_offset['y']:old_offset['y']+old_h,old_offset['x']:old_offset['x']+old_w][old_owned]=old_patch[old_owned]
  delta=np.any(dressed!=old_dressed,axis=2)
  if delta.any():
-  assert fid in cloth_review,'Clothing changed outside reviewed frames'
-  proof=cloth_review[fid];mask_bytes=open(proof['changedMask'],'rb').read()
-  assert sha(mask_bytes)==proof['changedMaskSha256']
-  approved_mask=np.array(Image.open(io.BytesIO(mask_bytes)).convert('RGBA'))[:,:,3]>0
-  assert not np.any(delta&~approved_mask),'Clothing escaped the exact reviewed changed-pixel mask'
+  approved_mask=coverage_mask.copy()
+  if fid in cloth_review:
+   proof=cloth_review[fid];mask_bytes=open(proof['changedMask'],'rb').read()
+   assert sha(mask_bytes)==proof['changedMaskSha256']
+   approved_mask|=np.array(Image.open(io.BytesIO(mask_bytes)).convert('RGBA'))[:,:,3]>0
+  assert not np.any(delta&~approved_mask),'Clothing escaped historical polish and exact published coverage changes'
   yy,xx=np.where(delta);clothing_changes.append({'frameId':fid,'changedPixels':int(delta.sum()),'bounds':[int(xx.min()),int(yy.min()),int(xx.max()+1),int(yy.max()+1)]})
  expected=np.zeros((h,w,4),np.uint8);native=np.s_[T:T+sh,L:L+sw];expected[native]=dressed
  original_pad=np.zeros((h,w,4),np.uint8);original_pad[native]=original
@@ -248,7 +254,12 @@ for sf in sm['frames']:
    dst[:,:,3][active]=np.floor(alpha*255+.5).astype(np.uint8)
    actual_mask=np.zeros((h,w),bool);actual_mask[region]=active;hair_covered|=actual_mask;allowed|=actual_mask
    if back:back_contribution|=actual_mask
- actual=frame(dp,output_frames[fid]);assert np.array_equal(actual,expected),f'Independent raw-layer composite differs at native ID {fid}: '+str(np.any(actual!=expected,axis=2).sum())
+ actual=frame(dp,output_frames[fid])
+ if row['view']=='original' and prior is not None:
+  coverage_pad=np.zeros((h,w),bool);coverage_pad[T:T+sh,L:L+sw]=coverage_mask
+  previous_pixels=frame(prior_p,prior_f[fid])
+  assert np.array_equal(actual[~coverage_pad],previous_pixels[~coverage_pad]),f'Original appearance pixels outside reviewed clothing changed {fid}'
+ assert np.array_equal(actual,expected),f'Independent raw-layer composite differs at native ID {fid}: '+str(np.any(actual!=expected,axis=2).sum())
  neck_pixels=0
  if fid in extra_neck:
   neck=np.zeros((h,w),bool)
@@ -264,7 +275,11 @@ for sf in sm['frames']:
  assert np.array_equal(actual[foreground&(dressed_pad[:,:,3]==255)],dressed_pad[foreground&(dressed_pad[:,:,3]==255)]),f'Appearance changed opaque foreground {fid}'
  for r in regs[fid]['protected']:
   if r['label']=='head':continue
-  guard=polygon(r['polygon'],w,h,L,T)&(original_pad[:,:,3]>0)
+  guard_native=polygon(r['polygon'],sw,sh)&(original[:,:,3]>0)
+  for m,_,_ in garments.values():
+   for label,reviewed_guard,_,_ in protected_mask(m,regs[fid],original,polygon):
+    if label==r['label']:guard_native&=reviewed_guard
+  guard=np.zeros((h,w),bool);guard[T:T+sh,L:L+sw]=guard_native
   exact=guard&~(back_contribution&(original_pad[:,:,3]<255))
   assert np.array_equal(actual[exact],original_pad[exact]),f'Protected source {r["label"]} changed without legitimate translucent back-hair blending {fid}'
  if head_review and fid==95:
@@ -275,14 +290,16 @@ for sf in sm['frames']:
   prior_pixels=np.array(prior_image.crop((pf['x'],pf['y'],pf['x']+pf['width'],pf['y']+pf['height'])))
   # This broad review polygon also contains the already clothed wrist/sleeve.
   # Preserve its entire actual baseline, rather than calling all of it bare skin.
-  assert np.array_equal(actual[reviewed],prior_pixels[reviewed]),'Reviewed hand/sleeve area regressed from actual accepted baseline'
-  true_hand=reviewed&polygon(head_review['changedRegistration'][0]['after'],w,h,L,T)&(original_pad[:,:,3]==255)
+  coverage_pad=np.zeros((h,w),bool);coverage_pad[T:T+sh,L:L+sw]=coverage_mask
+  preserved=reviewed&~coverage_pad
+  assert np.array_equal(actual[preserved],prior_pixels[preserved]),'Reviewed hand/sleeve area outside published cloth repairs regressed'
+  true_hand=reviewed&~coverage_pad&polygon(head_review['changedRegistration'][0]['after'],w,h,L,T)&(original_pad[:,:,3]==255)
   assert np.array_equal(actual[true_hand],original_pad[true_hand]),'Registered real opaque hand no longer equals source'
-  previously_raw=reviewed&np.all(prior_pixels==original_pad,axis=2)
+  previously_raw=reviewed&~coverage_pad&np.all(prior_pixels==original_pad,axis=2)
   assert np.array_equal(actual[previously_raw],original_pad[previously_raw]),'Previously untouched hand area changed'
   historical=reviewed&(original_pad[:,:,3]==255)&np.any(prior_pixels!=original_pad,axis=2)
   clothed=historical&np.all(prior_pixels==dressed_pad,axis=2)
-  reviewed_hand_area={'frameId':95,'actualBaselineRgbaExact':True,'reviewedSourcePixels':int(reviewed.sum()),'registeredOpaqueHandPixelsExact':int(true_hand.sum()),'previouslyRawPixelsExact':int(previously_raw.sum()),'baselineAlreadyOccludedOpaquePixels':int(historical.sum()),'baselineClothingPixels':int(clothed.sum()),'baselineHairEdgePixels':int((historical&~clothed).sum()),'newChangesWithinBroadHandReview':0}
+  reviewed_hand_area={'frameId':95,'actualBaselineOutsideCoverageRgbaExact':True,'reviewedSourcePixels':int(reviewed.sum()),'registeredOpaqueHandPixelsExact':int(true_hand.sum()),'previouslyRawPixelsExact':int(previously_raw.sum()),'baselineAlreadyOccludedOpaquePixels':int(historical.sum()),'baselineClothingPixels':int(clothed.sum()),'baselineHairEdgePixels':int((historical&~clothed).sum()),'reviewedCoveragePixelsWithinBroadHandReview':int((reviewed&coverage_pad).sum())}
  reviewed_hand_pixels=0
  if fid in hand_review:
   guard=polygon(hand_review[fid],w,h,L,T)&(original_pad[:,:,3]>0);reviewed_hand_pixels=int(guard.sum())
@@ -296,7 +313,8 @@ for sf in sm['frames']:
 # Clothes are intentionally revised in this iteration. Record every changed frame
 # against the old clothing-only control; the independent composition above still
 # enforces the source-bound ownership and exact protected source pixels.
-if row['view']=='original':assert not clothing_changes,'Approved original clothing changed'
+# Original-view clothing may use the separately audited coverage revisions;
+# original appearance and every pixel outside those exact garment deltas remain exact.
 gif_results=[]
 for action,paths in row['gifs'].items():
  a=Image.open(paths['right']);b=Image.open(paths['left']) if paths.get('left') else None;palette=np.array(a.getpalette(),np.int32).reshape(-1,3);clip=dm['animations'][action]
@@ -316,7 +334,7 @@ for action,paths in row['gifs'].items():
   if b is not None:assert np.array_equal(left,right[:,::-1]),f'GIF mirror differs {action}/{position}'
   hashes.append(sha(right.tobytes()))
  gif_results.append({'action':action,'frames':len(hashes),'exactQuantizedPackPixelsAndOrder':True,'exactLeftMirror':b is not None,'frameRgbSha256':hashes})
-print(json.dumps({'framesChecked':len(results),'nativeSourceSize':[sw,sh],'outputSize':[w,h],'padding':padding,'sourcePixelsRescaled':False,'exactSourceTiming':True,'exactIndependentLayerComposition':True,'exactOutsideOwnershipRgba':True,'appearancePreservesOpaqueForegroundRgba':True,'translucentForegroundUsesExactDestinationOverOnly':True,'sourceOpaqueProtectedHandsExact':True,'exactNativePngAndMirror':True,'sourceModeAppearanceFrames':source_modes,'clothingChangesVersusBaseline':clothing_changes,'registrationChanges':registration_changes,'reviewedHandArea':reviewed_hand_area,'hairChangesConfinedToReviewedHandMask':True,'priorAppearance':None if prior is None else {'bankSha256':sha(prior_bytes),'originalBankAndPackByteExact':row['view']=='original','sourcePackUnchanged':True,'sideFacePixelsAndBindingsExact':row['view']=='side','sideNeckForegroundFrames':len(extra_neck),'female77KnownNeckPixelRestored':row['character']=='female' and row['view']=='side'},'frames':results,'gifs':gif_results}))
+print(json.dumps({'framesChecked':len(results),'nativeSourceSize':[sw,sh],'outputSize':[w,h],'padding':padding,'sourcePixelsRescaled':False,'exactSourceTiming':True,'exactIndependentLayerComposition':True,'exactOutsideOwnershipRgba':True,'appearancePreservesOpaqueForegroundRgba':True,'translucentForegroundUsesExactDestinationOverOnly':True,'sourceOpaqueProtectedHandsExact':True,'exactNativePngAndMirror':True,'sourceModeAppearanceFrames':source_modes,'clothingChangesVersusBaseline':clothing_changes,'registrationChanges':registration_changes,'reviewedHandArea':reviewed_hand_area,'hairChangesConfinedToReviewedHandMask':True,'priorAppearance':None if prior is None else {'bankSha256':sha(prior_bytes),'originalBankByteExact':row['view']=='original','originalPackPixelsOutsideCoverageExact':row['view']=='original','sourcePackUnchanged':True,'sideFacePixelsAndBindingsExact':row['view']=='side','sideNeckForegroundFrames':len(extra_neck),'female77KnownNeckPixelRestored':row['character']=='female' and row['view']=='side'},'frames':results,'gifs':gif_results}))
 `;
 
 const report = {

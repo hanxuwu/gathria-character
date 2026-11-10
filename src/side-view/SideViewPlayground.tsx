@@ -1880,6 +1880,7 @@ export default function SideViewPlayground({
               }}
               onPose={locateReviewNote}
               getFrame={reviewFrame}
+              onExportPng={() => void save("png")}
             />
           )}
           <div className="side-review-toggle">

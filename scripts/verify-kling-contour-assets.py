@@ -11,6 +11,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 from kling_wardrobe_common import ROOT,load_source,protected_mask
+from wardrobe_finish_layers import is_finished,asset_revision
 sha=lambda b:hashlib.sha256(b).hexdigest()
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--write-report',action='store_true')
@@ -33,7 +34,11 @@ def check_current_revision(file,historical):
  current=(ROOT/file).read_bytes()
  if sha(current)==sha(historical):return
  change=coverage_changes[file];assert change['beforeSha256']==sha(historical),(file,'coverage baseline drift')
- assert change['sha256']==sha(current)==active_assets[file]['sha256'],(file,'current coverage/catalog inventory drift')
+ expected_sha=change['sha256']
+ if is_finished(file):
+  revision=asset_revision(file);assert revision['beforeSha256']==expected_sha,(file,'finish baseline drift')
+  expected_sha=revision['sha256'];assert len(current)==revision['bytes']
+ assert expected_sha==sha(current)==active_assets[file]['sha256'],(file,'current coverage/catalog inventory drift')
  with zipfile.ZipFile(io.BytesIO(historical)) as oldzip,zipfile.ZipFile(io.BytesIO(current)) as newzip:
   before=json.loads(oldzip.read('manifest.json'));after=json.loads(newzip.read('manifest.json'))
   for key in ['id','name','slot','characterId','sourceSha256','registrationSha256','frameWidth','frameHeight']:

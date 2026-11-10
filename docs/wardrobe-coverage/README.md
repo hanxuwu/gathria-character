@@ -3,6 +3,8 @@
 本轮围绕「衣服没有盖住原背心、原短裤或应当包住的手臂」检查当前衣橱。
 原人物的脸、身体、帧顺序、动作速度和两种视角的源图均保留。
 
+本页保留上一轮覆盖修订的历史记录。后续袖口、领口与侧视连续性修复、当前素材验收和工作台检查入口见[接缝修订](../wardrobe-finish/README.md)；本页旧 GIF 与审计记录没有替换成新图。
+
 ## 范围
 
 [可复现清单](inventory.json)覆盖当前界面的 113 个独立服装 ZIP、10,903 个服装与原生帧组合。
@@ -48,7 +50,7 @@ GIF 中 Before 在左、After 在右。它们是审阅用循环；单次跳跃�
 ## 复核
 
 [技术检查汇总](validation-summary.json)记录本轮测试范围；[全量实际渲染](runtime.json)覆盖 10,903 个服装帧和 8,437 个预设帧。
-运行记录绑定[当时的清单快照](runtime-inventory.json)；当前清单仅多了一份未上线的历史裤装夹具，活动素材、来源、关节配置和合成器代码仍完全一致。
+运行记录绑定[当时的清单快照](runtime-inventory.json)。`inventory.json` 跟随当前可选目录更新；后续接缝修订已更新其中部分衣物，不能把本页旧运行结果当作新版素材的验证。当前验证见[接缝与混搭验收](../wardrobe-finish/README.md)。
 落地候选另有[实际工作台保存／导出](landing/review/actual-workbench-review.json)与[独立播放器逐帧一致性验证](landing/review/standalone-player-review.json)。
 
 ```sh

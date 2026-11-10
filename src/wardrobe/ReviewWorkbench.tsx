@@ -7,6 +7,10 @@ import type { WardrobeProject, Rect } from "./contract";
 import type { WardrobeCompositor } from "./compositor";
 import type { LookComparison } from "./look-comparison";
 import ReviewCanvas from "./ReviewCanvas";
+import CoverageCheckpoints from "./CoverageCheckpoints";
+import { coverageOverlay } from "./coverage-overlay";
+import { encodeSourceRgbaPng } from "../core/baked-source";
+import { mirrorMotionFrame } from "./motion-bundle";
 import MotionReview from "./MotionReview";
 import { scanReviewAction } from "./review-analysis";
 import {
@@ -46,8 +50,8 @@ const regions: Region[] = [
 export default function ReviewWorkbench({
   project,
   renderer,
-  comparison,
-  referenceProject,
+  comparison: suppliedComparison,
+  referenceProject: suppliedReferenceProject,
   frameId,
   action,
   facing,
@@ -72,6 +76,32 @@ export default function ReviewWorkbench({
   const [message, setMessage] = useState("");
   const [mode, setMode] = useState<"split" | "overlay" | "difference">("split");
   const [region, setRegion] = useState<Region>("full");
+  const [coverage, setCoverage] = useState(false);
+  const [reviewScale, setReviewScale] = useState<1 | 2 | 3>(1);
+  const [sourceReference, setSourceReference] = useState(false);
+  const nativeComparison = useMemo<LookComparison>(
+    () => ({
+      manifest: renderer.manifest,
+      renderFrame: (id) => renderer.renderFrame(id),
+      renderSourceFrame: (id) => renderer.renderSourceFrame(id),
+    }),
+    [renderer],
+  );
+  const comparison = sourceReference ? nativeComparison : suppliedComparison;
+  const referenceProject = sourceReference
+    ? undefined
+    : suppliedReferenceProject;
+  const ownership = useMemo(
+    () =>
+      coverage
+        ? {
+            image: coverageOverlay(project, frameId),
+            x: comparison.manifest.anchor.x - project.registration.anchor.x,
+            y: comparison.manifest.anchor.y - project.registration.anchor.y,
+          }
+        : undefined,
+    [coverage, project, frameId, comparison],
+  );
   const [threshold, setThreshold] = useState(8);
   const [backdrop, setBackdrop] = useState<"cream" | "dark" | "checker">(
     "checker",
@@ -465,10 +495,90 @@ export default function ReviewWorkbench({
     >
       <h3>Look review workbench</h3>
       <p>
-        Reference: {referenceProject ? "Pinned look" : "Original character"}.
-        Inspect aligned drawings, record issues and export reproducible
+        Reference:{" "}
+        {!sourceReference && referenceProject
+          ? "Pinned look"
+          : "Original character"}
+        . Inspect aligned drawings, record issues and export reproducible
         evidence. A difference is not automatically a defect.
       </p>
+      <CoverageCheckpoints
+        project={project}
+        disabled={locked}
+        onLocate={(point) => {
+          setRegion(
+            point.region === "waist"
+              ? "waist"
+              : point.region === "hem"
+                ? "feet"
+                : point.region === "neck"
+                  ? "shoulders"
+                  : "hands",
+          );
+          setSourceReference(true);
+          setMode("split");
+          onSeek(point.action, point.position, facing);
+        }}
+      />
+      <div className="wardrobe-playback-controls">
+        <label>
+          <input
+            type="checkbox"
+            checked={sourceReference}
+            onChange={(e) => setSourceReference(e.target.checked)}
+          />
+          使用原人物作为对比
+        </label>
+        <label>
+          整数放大
+          <select
+            aria-label="Review integer zoom"
+            value={reviewScale}
+            onChange={(e) =>
+              setReviewScale(Number(e.target.value) as 1 | 2 | 3)
+            }
+          >
+            <option value={1}>1×</option>
+            <option value={2}>2×</option>
+            <option value={3}>3×</option>
+          </select>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            data-testid="coverage-overlay"
+            checked={coverage}
+            onChange={(e) => setCoverage(e.target.checked)}
+          />
+          显示服装覆盖区域
+        </label>
+        <button
+          type="button"
+          disabled={locked}
+          data-testid="coverage-export-png"
+          onClick={() => {
+            try {
+              const bytes = encodeSourceRgbaPng(
+                mirrorMotionFrame(renderer.renderFrame(frameId), facing),
+              );
+              downloadBlob(
+                new Blob([new Uint8Array(bytes)], { type: "image/png" }),
+                `coverage-${frameId}-${facing}.png`,
+              );
+            } catch (cause) {
+              setMessage(String(cause));
+            }
+          }}
+        >
+          下载本帧 PNG（无标记）
+        </button>
+      </div>
+      {coverage && (
+        <p className="wardrobe-hint">
+          青色为当前服装绘制区域，粉色为清除旧衣的透明替换区域。遮罩不是自动穿帮判定，也不会写入
+          PNG、GIF 或角色包。
+        </p>
+      )}
       <div className="wardrobe-playback-controls">
         <label>
           Review mode
@@ -534,6 +644,8 @@ export default function ReviewWorkbench({
         region={roi}
         threshold={threshold}
         backdrop={backdrop}
+        scale={reviewScale}
+        ownership={ownership}
       />
       <p>
         Pose {frameId} · {action} · {facing}. Region crops affect this view

@@ -1,5 +1,6 @@
 import authored from "../../artwork/kling-mask-workbench/female-neckline-cloth-v1.json" with { type: "json" };
 import coverage from "../../artwork/wardrobe-coverage/neckline-profiles-v1.json" with { type: "json" };
+import finish from "../../artwork/wardrobe-finish/female/neckline-profiles-v2.json" with { type: "json" };
 import type { WardrobeGarmentManifest, WardrobeRegistration } from "./contract";
 
 /** This is a shipped, source-bound review of visible cloth accidentally enclosed
@@ -41,26 +42,34 @@ if (
 export const COVERAGE_NECKLINE_PERMISSION_SHA256 =
   "1eb4ef33afebd223b0a825406514d796c611b03f40b33a5ac19c16f938d3a71e";
 
+/** Exact immutable V2 cloth-edge review; V1 permissions keep their meaning. */
+export const FINISH_NECKLINE_PERMISSION_SHA256 =
+  "41b94905eb00f7224091a4b75ec52ed1c00f5c0ddd5ae02df91aa4fdcc27675d";
+
 type PreparedProfile = Profile & {
   rows: Map<number, Map<number, Array<readonly [number, number]>>>;
 };
 // Private copies prevent imported JSON objects or consumers mutating permissions.
 const profiles = new Map<string, PreparedProfile>();
-const bindings = new Set<string>();
+const profileDigests = new Map<string, string>();
 if (
   coverage.format !== "gathria-neckline-cloth-profile-set" ||
   coverage.version !== 1 ||
   coverage.profiles.length !== 3
 )
   throw Error("The shipped neckline cloth review set is invalid.");
-for (const input of [profile, ...coverage.profiles]) {
-  const binding = `${input.sourceSha256}:${input.registrationSha256}`;
+if (
+  finish.format !== "gathria-neckline-cloth-profile-set" ||
+  finish.version !== 1 ||
+  finish.profiles.length !== 2
+)
+  throw Error("The shipped neckline finish review set is invalid.");
+for (const input of [profile, ...coverage.profiles, ...finish.profiles]) {
   if (
     input.format !== "gathria-neckline-cloth-permissions" ||
     input.version !== 1 ||
     !input.id ||
     profiles.has(input.id) ||
-    bindings.has(binding) ||
     !/^[a-f0-9]{64}$/.test(input.sourceSha256) ||
     !/^[a-f0-9]{64}$/.test(input.registrationSha256) ||
     ![input.frameWidth, input.frameHeight].every(
@@ -105,7 +114,14 @@ for (const input of [profile, ...coverage.profiles]) {
     rows.set(frame.frameId, raster);
   }
   profiles.set(input.id, { ...input, frames: [], rows });
-  bindings.add(binding);
+  profileDigests.set(
+    input.id,
+    input.id === FEMALE_NECKLINE_PERMISSION_PROFILE
+      ? FEMALE_NECKLINE_PERMISSION_SHA256
+      : finish.profiles.some((candidate) => candidate.id === input.id)
+        ? FINISH_NECKLINE_PERMISSION_SHA256
+        : COVERAGE_NECKLINE_PERMISSION_SHA256,
+  );
 }
 
 export function availableNecklinePermissionProfile(
@@ -128,16 +144,18 @@ export function assertNecklinePermissionProfile(
   registration: WardrobeRegistration,
   registrationSha256: string,
 ): string {
+  const candidate = typeof value === "string" ? profiles.get(value) : undefined;
   if (
-    typeof value !== "string" ||
-    !profiles.has(value) ||
-    availableNecklinePermissionProfile(registration, registrationSha256) !==
-      value
+    !candidate ||
+    candidate.sourceSha256 !== registration.sourceSha256 ||
+    candidate.registrationSha256 !== registrationSha256 ||
+    candidate.frameWidth !== registration.frameWidth ||
+    candidate.frameHeight !== registration.frameHeight
   )
     throw Error(
       "Neckline review requires the exact approved source and registration profile.",
     );
-  return value;
+  return candidate.id;
 }
 
 /** SHA-256 of the immutable shipped JSON containing this review. The original
@@ -146,9 +164,7 @@ export function assertNecklinePermissionProfile(
 export function necklinePermissionProfileSha256(profileId: string): string {
   if (!profiles.has(profileId))
     throw Error("Unknown neckline cloth permission profile.");
-  return profileId === FEMALE_NECKLINE_PERMISSION_PROFILE
-    ? FEMALE_NECKLINE_PERMISSION_SHA256
-    : COVERAGE_NECKLINE_PERMISSION_SHA256;
+  return profileDigests.get(profileId)!;
 }
 
 /** Native right-facing coordinates. Only explicit garment V3 can release an

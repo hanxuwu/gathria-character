@@ -16,6 +16,8 @@ export default function ReviewCanvas({
   mode,
   threshold = 8,
   backdrop = "checker",
+  scale = 1,
+  ownership,
 }: {
   comparison: LookComparison;
   frameId: number;
@@ -24,6 +26,8 @@ export default function ReviewCanvas({
   mode: ReviewCanvasMode;
   threshold?: number;
   backdrop?: "cream" | "dark" | "checker";
+  scale?: 1 | 2 | 3;
+  ownership?: { image: RgbaPng; x: number; y: number };
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [error, setError] = useState("");
@@ -107,6 +111,35 @@ export default function ReviewCanvas({
         draw(reference, 0);
         draw(current, 0, 0.5);
       }
+      if (ownership) {
+        const padded = new Uint8Array(sheet.frameWidth * sheet.frameHeight * 4);
+        for (let y = 0; y < ownership.image.height; y++)
+          for (let x = 0; x < ownership.image.width; x++) {
+            const tx = x + ownership.x,
+              ty = y + ownership.y;
+            if (
+              tx < 0 ||
+              ty < 0 ||
+              tx >= sheet.frameWidth ||
+              ty >= sheet.frameHeight
+            )
+              continue;
+            const from = (y * ownership.image.width + x) * 4;
+            padded.set(
+              ownership.image.pixels.subarray(from, from + 4),
+              (ty * sheet.frameWidth + tx) * 4,
+            );
+          }
+        draw(
+          {
+            width: sheet.frameWidth,
+            height: sheet.frameHeight,
+            pixels: padded,
+            colorChunks: [],
+          },
+          mode === "split" ? 1 : 0,
+        );
+      }
       context.fillStyle = backdrop === "dark" ? "#f0f0eb" : "#344b3f";
       context.font = "13px sans-serif";
       context.fillText(
@@ -127,6 +160,10 @@ export default function ReviewCanvas({
       target.dataset.crop = JSON.stringify(crop);
       target.dataset.anchor = JSON.stringify(comparison.manifest.anchor);
       target.dataset.threshold = String(threshold);
+      target.dataset.ownership = String(Boolean(ownership));
+      target.dataset.scale = String(scale);
+      target.style.width = scale === 1 ? "" : `${target.width * scale}px`;
+      target.style.height = scale === 1 ? "auto" : `${target.height * scale}px`;
       setError("");
     } catch (cause) {
       // Never leave stale successful pixels visible under a new pose label.
@@ -138,17 +175,31 @@ export default function ReviewCanvas({
         cause instanceof Error ? cause.message : "Unable to draw this review.",
       );
     }
-  }, [comparison, frameId, facing, region, mode, threshold, backdrop]);
+  }, [
+    comparison,
+    frameId,
+    facing,
+    region,
+    mode,
+    threshold,
+    backdrop,
+    ownership,
+    scale,
+  ]);
   return (
-    <div>
+    <div
+      className="coverage-review-scroll"
+      tabIndex={scale > 1 ? 0 : undefined}
+      aria-label="Review image, scroll when enlarged"
+    >
       {error && <p role="alert">{error}</p>}
       <canvas
         ref={canvas}
         role="img"
         aria-label={`Review ${mode}: source pose ${frameId}, ${facing}`}
         style={{
-          maxWidth: "100%",
-          height: "auto",
+          maxWidth: scale === 1 ? "100%" : "none",
+          imageRendering: scale === 1 ? undefined : "pixelated",
           display: error ? "none" : "block",
         }}
       />

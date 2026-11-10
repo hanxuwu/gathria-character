@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import type { Facing } from "../core/types";
 import type { WardrobeProject } from "../wardrobe/contract";
 import type { SideAction } from "./motion";
+import CoverageCheckpoints from "../wardrobe/CoverageCheckpoints";
+import { coverageOverlay } from "../wardrobe/coverage-overlay";
 import {
   MAX_REVIEW_NOTE_LENGTH,
   MAX_REVIEW_NOTES,
@@ -30,6 +32,7 @@ export default function SideReviewPanel({
   onRate,
   onPose,
   getFrame,
+  onExportPng,
 }: {
   project: WardrobeProject;
   character: string;
@@ -41,6 +44,7 @@ export default function SideReviewPanel({
   onRate: (rate: ReviewRate) => void;
   onPose: (note: ReviewNote) => void;
   getFrame: (frame: number, source: boolean) => HTMLCanvasElement;
+  onExportPng: () => void;
 }) {
   const scope = { character, sourceSha256: project.document.sourceSha256 };
   const storageKey = reviewStorageKey(scope);
@@ -53,6 +57,7 @@ export default function SideReviewPanel({
   });
   const [region, setRegion] = useState<ReviewRegion>("nearHand");
   const [scale, setScale] = useState<2 | 3>(2);
+  const [coverage, setCoverage] = useState(false);
   const [text, setText] = useState("");
   const [message, setMessage] = useState("");
   const sourceRef = useRef<HTMLCanvasElement>(null);
@@ -106,13 +111,42 @@ export default function SideReviewPanel({
         canvas.width,
         canvas.height,
       );
+      if (!source && coverage) {
+        const owned = coverageOverlay(project, frame);
+        const overlay = document.createElement("canvas");
+        overlay.width = owned.width;
+        overlay.height = owned.height;
+        overlay
+          .getContext("2d")!
+          .putImageData(
+            new ImageData(
+              new Uint8ClampedArray(owned.pixels),
+              owned.width,
+              owned.height,
+            ),
+            0,
+            0,
+          );
+        context.drawImage(
+          overlay,
+          crop.x,
+          crop.y,
+          crop.width,
+          crop.height,
+          0,
+          0,
+          canvas.width,
+          canvas.height,
+        );
+      }
       context.restore();
+      canvas.dataset.ownership = String(!source && coverage);
       canvas.dataset.frame = String(frame);
       canvas.dataset.crop = JSON.stringify(crop);
       canvas.dataset.scale = String(scale);
       canvas.dataset.facing = facing;
     }
-  }, [frame, facing, region, scale, project, busy, getFrame]);
+  }, [frame, facing, region, scale, coverage, project, busy, getFrame]);
 
   function persist(next: ReviewNote[]) {
     setNotes(next);
@@ -173,6 +207,53 @@ export default function SideReviewPanel({
         使用上方时间轴逐帧查看。慢放只改变本页预览，PNG、GIF
         和角色包仍使用原始画面与节奏。
       </p>
+      <CoverageCheckpoints
+        project={project}
+        disabled={busy}
+        onLocate={(point) => {
+          const selectedRegion: ReviewRegion =
+            point.region === "neck"
+              ? "head"
+              : point.region === "hem"
+                ? "knee"
+                : point.region;
+          setRegion(selectedRegion);
+          onPose({
+            action: point.action as SideAction,
+            frame: point.frameId,
+            facing,
+            region: selectedRegion,
+            text: point.detail,
+            lookKey,
+            updatedAt: new Date().toISOString(),
+          });
+        }}
+      />
+      <div className="side-review-options">
+        <label>
+          <input
+            type="checkbox"
+            data-testid="coverage-overlay"
+            checked={coverage}
+            disabled={busy}
+            onChange={(event) => setCoverage(event.currentTarget.checked)}
+          />
+          显示服装覆盖区域
+        </label>
+        <button
+          type="button"
+          data-testid="coverage-export-png"
+          disabled={busy}
+          onClick={onExportPng}
+        >
+          下载本帧 PNG（无标记）
+        </button>
+      </div>
+      {coverage && (
+        <p className="side-small-note">
+          青色为服装绘制区域，粉色为清除旧衣的透明替换区域。遮罩不是自动穿帮判定，也不会写入导出文件。
+        </p>
+      )}
       <div className="side-review-options">
         <label>
           预览速度

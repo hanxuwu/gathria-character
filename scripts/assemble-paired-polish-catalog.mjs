@@ -415,6 +415,19 @@ for (const row of coverageRows) {
   assert(!coverage.has(row.path), `Duplicate coverage review: ${row.path}`);
   coverage.set(row.path, row);
 }
+// Finish revisions are an additional, independently reversible layer. Keep
+// every earlier baseline/output pin; the Python proof below validates and peels
+// the final layer before re-running the historical exact-pixel assertions.
+const finish = parse(
+  await readCurrent("docs/wardrobe-finish/preservation.json"),
+);
+for (const revision of finish.changes) {
+  const row = coverage.get(revision.path);
+  if (!row) continue; // Landing candidate is verified by its own builder.
+  assert.equal(row.after, revision.beforeSha256, revision.path);
+  row.after = revision.sha256;
+  delete row.bytes; // The current catalog byte count is checked below.
+}
 const currentPaths = new Set();
 for (const path of historicalCatalogs) {
   const historical = parse(readCoverageBaseline(path, root));

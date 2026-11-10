@@ -20,6 +20,9 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from kling_wardrobe_common import ROOT, protected_mask
+from wardrobe_finish_layers import (
+    is_finished, asset_revision, validated_previous_manifest, undo_finish_frame,
+)
 
 SOURCE_SHA = "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23"
 REGISTRATION_SHA = "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953"
@@ -139,6 +142,38 @@ def coverage_evidence():
     return {item["itemId"]: item for item in review}, permissions, traces
 
 
+def current_revision_sha(path, coverage_sha):
+    """Keep the first coverage proof pinned while checking a later named layer."""
+    if not is_finished(path):
+        return coverage_sha
+    revision = asset_revision(path)
+    require(revision["beforeSha256"] == coverage_sha,
+            f"{path}: finish is not based on the frozen coverage edition")
+    require(Path(path).stat().st_size == revision["bytes"],
+            f"{path}: finished archive size changed")
+    return revision["sha256"]
+
+
+class CoverageLayerReader:
+    """Read current atlas coordinates, then verify/undo only the later finish.
+
+    Historical assertions below still see the exact prior native pixels and
+    permission manifest. No old report, source, or forearm assertion is changed.
+    """
+    def __init__(self, archive, path):
+        self.current = GarmentReader(archive)
+        self.path = path
+        self.finished = is_finished(path)
+        self.manifest = (validated_previous_manifest(path, self.current.manifest)
+                         if self.finished else self.current.manifest)
+        self.frames = {frame["frameId"]: frame for frame in self.manifest["frames"]}
+
+    def frame(self, frame_id):
+        rgba, owned = self.current.frame(frame_id)
+        return (undo_finish_frame(self.path, frame_id, rgba, owned)
+                if self.finished else (rgba, owned))
+
+
 def verify_served_coverage(item_id, historical_path, historical_pin, served_path,
                            catalog_entries, review, permissions, traces, rows,
                            protections, original_frames, template):
@@ -146,14 +181,15 @@ def verify_served_coverage(item_id, historical_path, historical_pin, served_path
     entry = review[item_id]
     require(entry["beforeSha256"] == historical_pin and file_sha(historical_path) == historical_pin,
             f"{item_id}: historical coverage input changed")
-    require(file_sha(served_path) == entry["afterSha256"], f"{item_id}: served coverage archive changed")
+    expected_sha = current_revision_sha(served_path, entry["afterSha256"])
+    require(file_sha(served_path) == expected_sha, f"{item_id}: served coverage archive changed")
     matches = [item for item in catalog_entries if item["id"] == item_id]
     require(len(matches) == 1, f"{item_id}: expected one selectable catalog entry")
     require(matches[0]["url"] == entry["url"] == "/" + str(served_path.relative_to(ROOT)),
             f"{item_id}: catalog URL changed")
     # Legacy V8 catalog descriptors never carried an optional byte-count field.
     # V9's required historical/current byte counts are checked in main below.
-    require(matches[0]["sha256"] == entry["afterSha256"] and
+    require(matches[0]["sha256"] == expected_sha and
             ("bytes" not in matches[0] or matches[0]["bytes"] == served_path.stat().st_size),
             f"{item_id}: catalog coverage integrity metadata")
     reviewed = {frame["frameId"]: frame for frame in entry["changedFrames"]}
@@ -162,7 +198,7 @@ def verify_served_coverage(item_id, historical_path, historical_pin, served_path
     rule = traces["sourceClothRule"]
     added_total = 0
     with zipfile.ZipFile(historical_path) as old_zip, zipfile.ZipFile(served_path) as new_zip:
-        old, new = GarmentReader(old_zip), GarmentReader(new_zip)
+        old, new = GarmentReader(old_zip), CoverageLayerReader(new_zip, served_path)
         require(old.manifest["version"] == 1 and new.manifest["version"] == 3,
                 f"{item_id}: expected explicit V1 -> V3 coverage opt-in")
         require(new.manifest.get("necklinePermissionProfile") == "female-neckline-cloth-v1" and
@@ -221,7 +257,8 @@ def verify_served_coverage(item_id, historical_path, historical_pin, served_path
     return {"id": item_id, "decodedFrames": 96, "unchangedRgbaFrames": 88,
             "reviewedClothFrames": sorted(reviewed), "addedClothPixels": added_total,
             "sourceAlphaAndOutsideClothExact": True, "approvedClothMasksExact": True,
-            "historicalForearmRepairUntouched": True}
+            "historicalForearmRepairUntouched": True,
+            "laterFinishLayerVerified": is_finished(served_path)}
 
 
 def verify_current_coverage_pair(item_id, historical_path, served_path):
@@ -340,7 +377,8 @@ def main():
             entry = entries[0]
             served_candidate = folder / f"{prefix}-v9.zip"
             require(entry["url"] == "/" + str(served_candidate.relative_to(ROOT)), "Catalog candidate URL")
-            require(entry["sha256"] == coverage_review[entry["id"]]["afterSha256"] and
+            require(entry["sha256"] == current_revision_sha(
+                        served_candidate, coverage_review[entry["id"]]["afterSha256"]) and
                     entry["bytes"] == served_candidate.stat().st_size,
                     "Catalog candidate integrity metadata")
             audit_entry = next(item for item in audit["items"] if item["id"] == entry["id"])

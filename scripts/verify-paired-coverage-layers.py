@@ -8,6 +8,7 @@ import hashlib,io,json,subprocess,zipfile
 from pathlib import Path
 import numpy as np
 from PIL import Image
+from wardrobe_finish_layers import is_finished,asset_revision,validated_previous_manifest,undo_finish_frame
 ROOT=Path(__file__).resolve().parents[1]
 BASE='5d63ae233ca83e61dc354e122a8708044f4e2653'
 sha=lambda b:hashlib.sha256(b).hexdigest()
@@ -16,8 +17,10 @@ load=lambda p:json.loads(read(p))
 side=load('artwork/wardrobe-coverage/side/recipe.json')
 assert side['baselineCommit']==BASE
 side={i['path']:i for i in side['items']}
+side_coverage={i['path']:i for i in load('docs/wardrobe-coverage/side/repair-report.json')['items']}
 male=load('artwork/kling-coverage/male-original-hand-cloth-review.json')
 male_items={i['url'].lstrip('/'):i for i in male['items']}
+male_coverage={i['url'].lstrip('/'):i for i in load('docs/kling-coverage/review/original-male/repair-report.json')['items']}
 female={i['url'].lstrip('/'):i for i in load('docs/wardrobe-coverage/original-female/repair-report.json')}
 paths={}
 for catalog in ['dual-tailored','dual-looks-cloth','paired-polish']:
@@ -54,7 +57,19 @@ def sources(path,expected):
 checked=0
 for path,row in sorted(paths.items(),key=lambda kv:(kv[1]['sourceUrl'],kv[0])):
  raw=subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT)
- old,op,om=opened(raw);new,npages,nmasks=opened(read(path))
+ served=read(path)
+ old,op,om=opened(raw);current,npages,nmasks=opened(served)
+ prior_sha=(female[path]['afterSha256'] if path in female else
+            side_coverage[path]['sha256'] if path in side_coverage else male_coverage[path]['sha256'])
+ finished=is_finished(path)
+ if finished:
+  revision=asset_revision(path)
+  assert sha(served)==revision['sha256'] and len(served)==revision['bytes'],(path,'finish archive mismatch')
+  assert revision['beforeSha256']==prior_sha,(path,'finish baseline drift')
+  new=validated_previous_manifest(path,current)
+ else:
+  assert sha(served)==prior_sha,(path,'unregistered finish or altered coverage archive')
+  new=current
  assert set(old)-{'pages','frames','provenance','version','handProtectionReviews','necklinePermissionProfile'}==set(new)-{'pages','frames','provenance','version','handProtectionReviews','necklinePermissionProfile'}
  for key in old:
   if key not in {'pages','frames','provenance','version','handProtectionReviews','necklinePermissionProfile'}:assert old[key]==new[key],(path,key)
@@ -84,8 +99,9 @@ for path,row in sorted(paths.items(),key=lambda kv:(kv[1]['sourceUrl'],kv[0])):
   assert sha(raw)==male_items[path]['baselineSha256'];edits={e['frameId']:e for e in male['frames']}
  else:
   review=female[path];assert sha(raw)==review['beforeSha256'];edits={e['frameId']:e for e in review['changedFrames']}
- for f,g in zip(old['frames'],new['frames']):
-  fid=f['frameId'];p,own=native(old,op,om,f);q,nown=native(new,npages,nmasks,g);src=source[fid]
+ for f,g in zip(old['frames'],current['frames']):
+  fid=f['frameId'];p,own=native(old,op,om,f);q,nown=native(current,npages,nmasks,g);src=source[fid]
+  if finished:q,nown=undo_finish_frame(path,fid,q,nown)
   before=src.copy();before[own]=p[own];after=src.copy();after[nown]=q[nown]
   edit=edits.get(fid);allowed=np.zeros(own.shape,bool);release=np.zeros_like(own)
   if edit is None:

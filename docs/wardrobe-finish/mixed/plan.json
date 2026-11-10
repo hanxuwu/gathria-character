@@ -1,0 +1,5441 @@
+{
+  "format": "gathria-mixed-outfit-review-plan",
+  "version": 1,
+  "generatorSha256": "c01ab807549fe7dcebcb7c3da01f9c8926eef705e1d0e6ad4caac8a34460eccd",
+  "inventorySha256": "8649b4a19b8203395b56c2d1ea7e0ebd653f015dd51a139c0fdca6bea5a301ea",
+  "codeSha256": {
+    "src/wardrobe/project.ts": "c190a6026201442324b25d0b7a553ce9d5d31f4a21969db194a61fb13a01f01b",
+    "src/wardrobe/compositor.ts": "44faf4d09f938ddef21eac3fb46f7a7294e60bc74cbead7fef889cc63bb3ed25",
+    "src/wardrobe/contract.ts": "96ee0e957276f66812ab55592903e921081d885e0fc576176fbc322526298685",
+    "src/wardrobe/protection.ts": "eb37ff13e769eaa52150fb5beff12d1e71ce62a0fcb3c1da41cd8930984b80a5",
+    "src/wardrobe/neckline-permissions.ts": "5cad1e706ed896362713d95f47a2834ad5b5bb06de367c6ff98661d193b1c7a8",
+    "src/wardrobe/action-gif.ts": "640832e84e48517bd9077e27f62327fe39bd7d01f16ac5670af323933ed8a6ac",
+    "src/core/gameplay-motion.ts": "b3b6977d8e453c4c9b92176bf524cb0fca56a737a4b58ceea0d2793469439775"
+  },
+  "scope": "All built-in groups. Top ID × bottom silhouette is covered; groups with at most 2 tops include every top × bottom ID. Dress/shoe pairs are included where available. Appearance styles and arbitrary external assets are outside this mix matrix.",
+  "groups": [
+    {
+      "id": "original-male",
+      "character": "male",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/male.character.zip",
+      "registrationUrl": "docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "motionProfile": "kling-male-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            24,
+            26,
+            26,
+            28,
+            28,
+            30,
+            30,
+            32,
+            32,
+            34,
+            34,
+            36,
+            37,
+            37,
+            39,
+            40,
+            40,
+            42,
+            43,
+            43,
+            45,
+            46,
+            46,
+            48,
+            48,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 92,
+        "selectedTopBottomIdPairs": 47,
+        "unselectedTopBottomIdPairs": [
+          "cocoa-cardigan-v1 + ochre-chinos-v1",
+          "cocoa-cardigan-v1 + ochre-shorts",
+          "cream-camp-shirt-v1 + navy-shorts",
+          "cream-camp-shirt-v1 + navy-suit-trousers-v1",
+          "dusty-rose-shirt-v1 + ochre-chinos-v1",
+          "dusty-rose-shirt-v1 + ochre-shorts",
+          "forest-work-shirt-v1 + navy-shorts",
+          "forest-work-shirt-v1 + navy-suit-trousers-v1",
+          "harbor-polo-v1 + ochre-chinos-v1",
+          "harbor-polo-v1 + ochre-shorts",
+          "ink-plum-knit-polo-v1 + navy-shorts",
+          "ink-plum-knit-polo-v1 + navy-suit-trousers-v1",
+          "midnight-sailor-v1 + ochre-chinos-v1",
+          "midnight-sailor-v1 + ochre-shorts",
+          "midnight-sailor-v2 + navy-shorts",
+          "midnight-sailor-v2 + navy-suit-trousers-v1",
+          "moss-knit-vest-v1 + ochre-chinos-v1",
+          "moss-knit-vest-v1 + ochre-shorts",
+          "navy-suit-jacket-v2 + navy-shorts",
+          "navy-suit-jacket-v2 + navy-suit-trousers-v1",
+          "navy-suit-jacket-v3 + ochre-chinos-v1",
+          "navy-suit-jacket-v3 + ochre-shorts",
+          "navy-suit-jacket-v4 + navy-shorts",
+          "navy-suit-jacket-v4 + navy-suit-trousers-v1",
+          "navy-suit-jacket-v5 + ochre-chinos-v1",
+          "navy-suit-jacket-v5 + ochre-shorts",
+          "navy-suit-jacket-v6 + navy-shorts",
+          "navy-suit-jacket-v6 + navy-suit-trousers-v1",
+          "navy-waistcoat + ochre-chinos-v1",
+          "navy-waistcoat + ochre-shorts",
+          "oat-henley-v1 + navy-shorts",
+          "oat-henley-v1 + navy-suit-trousers-v1",
+          "ocean-linen-shirt-v1 + ochre-chinos-v1",
+          "ocean-linen-shirt-v1 + ochre-shorts",
+          "teal-camp-shirt-v2 + navy-shorts",
+          "teal-camp-shirt-v2 + navy-suit-trousers-v1",
+          "teal-camp-shirt-v3 + ochre-chinos-v1",
+          "teal-camp-shirt-v3 + ochre-shorts",
+          "teal-camp-shirt-v4 + navy-shorts",
+          "teal-camp-shirt-v4 + navy-suit-trousers-v1",
+          "teal-camp-shirt-v5 + ochre-chinos-v1",
+          "teal-camp-shirt-v5 + ochre-shorts",
+          "teal-top + navy-shorts",
+          "teal-top + navy-suit-trousers-v1",
+          "terracotta-overshirt-v1 + ochre-chinos-v1"
+        ],
+        "topSilhouettePairs": 46,
+        "coveredTopSilhouettePairs": 46,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "cocoa-cardigan-v1--navy-shorts",
+          "selection": {
+            "top": "cocoa-cardigan-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "cocoa-cardigan-v1",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "cocoa-cardigan-v1--navy-suit-trousers-v1",
+          "selection": {
+            "top": "cocoa-cardigan-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "cocoa-cardigan-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "cream-camp-shirt-v1--ochre-shorts",
+          "selection": {
+            "top": "cream-camp-shirt-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "cream-camp-shirt-v1",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "cream-camp-shirt-v1--ochre-chinos-v1",
+          "selection": {
+            "top": "cream-camp-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "cream-camp-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dusty-rose-shirt-v1--navy-shorts",
+          "selection": {
+            "top": "dusty-rose-shirt-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "dusty-rose-shirt-v1",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dusty-rose-shirt-v1--navy-suit-trousers-v1",
+          "selection": {
+            "top": "dusty-rose-shirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "dusty-rose-shirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "forest-work-shirt-v1--ochre-shorts",
+          "selection": {
+            "top": "forest-work-shirt-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "forest-work-shirt-v1",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "forest-work-shirt-v1--ochre-chinos-v1",
+          "selection": {
+            "top": "forest-work-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "forest-work-shirt-v1",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "harbor-polo-v1--navy-shorts",
+          "selection": {
+            "top": "harbor-polo-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "harbor-polo-v1",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "harbor-polo-v1--navy-suit-trousers-v1",
+          "selection": {
+            "top": "harbor-polo-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "harbor-polo-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "ink-plum-knit-polo-v1--ochre-shorts",
+          "selection": {
+            "top": "ink-plum-knit-polo-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "ink-plum-knit-polo-v1",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "ink-plum-knit-polo-v1--ochre-chinos-v1",
+          "selection": {
+            "top": "ink-plum-knit-polo-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "ink-plum-knit-polo-v1",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "midnight-sailor-v1--navy-shorts",
+          "selection": {
+            "top": "midnight-sailor-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "midnight-sailor-v1",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "midnight-sailor-v1--navy-suit-trousers-v1",
+          "selection": {
+            "top": "midnight-sailor-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "midnight-sailor-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "midnight-sailor-v2--ochre-shorts",
+          "selection": {
+            "top": "midnight-sailor-v2",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "midnight-sailor-v2",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "midnight-sailor-v2--ochre-chinos-v1",
+          "selection": {
+            "top": "midnight-sailor-v2",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "midnight-sailor-v2",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "moss-knit-vest-v1--navy-shorts",
+          "selection": {
+            "top": "moss-knit-vest-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "moss-knit-vest-v1",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "moss-knit-vest-v1--navy-suit-trousers-v1",
+          "selection": {
+            "top": "moss-knit-vest-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "moss-knit-vest-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v2--ochre-shorts",
+          "selection": {
+            "top": "navy-suit-jacket-v2",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v2",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v2--ochre-chinos-v1",
+          "selection": {
+            "top": "navy-suit-jacket-v2",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v2",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v3--navy-shorts",
+          "selection": {
+            "top": "navy-suit-jacket-v3",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v3",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v3--navy-suit-trousers-v1",
+          "selection": {
+            "top": "navy-suit-jacket-v3",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v3",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v4--ochre-shorts",
+          "selection": {
+            "top": "navy-suit-jacket-v4",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v4",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v4--ochre-chinos-v1",
+          "selection": {
+            "top": "navy-suit-jacket-v4",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v4",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v5--navy-shorts",
+          "selection": {
+            "top": "navy-suit-jacket-v5",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v5",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v5--navy-suit-trousers-v1",
+          "selection": {
+            "top": "navy-suit-jacket-v5",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v5",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v6--ochre-shorts",
+          "selection": {
+            "top": "navy-suit-jacket-v6",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v6",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-suit-jacket-v6--ochre-chinos-v1",
+          "selection": {
+            "top": "navy-suit-jacket-v6",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-suit-jacket-v6",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-waistcoat--navy-shorts",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "navy-waistcoat--navy-suit-trousers-v1",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "oat-henley-v1--ochre-shorts",
+          "selection": {
+            "top": "oat-henley-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "oat-henley-v1",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "oat-henley-v1--ochre-chinos-v1",
+          "selection": {
+            "top": "oat-henley-v1",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "oat-henley-v1",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "ocean-linen-shirt-v1--navy-shorts",
+          "selection": {
+            "top": "ocean-linen-shirt-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "ocean-linen-shirt-v1",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "ocean-linen-shirt-v1--navy-suit-trousers-v1",
+          "selection": {
+            "top": "ocean-linen-shirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "ocean-linen-shirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v2--ochre-shorts",
+          "selection": {
+            "top": "teal-camp-shirt-v2",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v2",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v2--ochre-chinos-v1",
+          "selection": {
+            "top": "teal-camp-shirt-v2",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v2",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v3--navy-shorts",
+          "selection": {
+            "top": "teal-camp-shirt-v3",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v3",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v3--navy-suit-trousers-v1",
+          "selection": {
+            "top": "teal-camp-shirt-v3",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v3",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v4--ochre-shorts",
+          "selection": {
+            "top": "teal-camp-shirt-v4",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v4",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v4--ochre-chinos-v1",
+          "selection": {
+            "top": "teal-camp-shirt-v4",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v4",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v5--navy-shorts",
+          "selection": {
+            "top": "teal-camp-shirt-v5",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v5",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-camp-shirt-v5--navy-suit-trousers-v1",
+          "selection": {
+            "top": "teal-camp-shirt-v5",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-camp-shirt-v5",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-top--ochre-shorts",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-top--ochre-chinos-v1",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "ochre-chinos-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-top",
+            "bottom": "ochre-chinos-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "terracotta-overshirt-v1--navy-shorts",
+          "selection": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "terracotta-overshirt-v1--navy-suit-trousers-v1",
+          "selection": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": "navy-suit-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "terracotta-overshirt-v1--ochre-shorts--brown-shoes",
+          "selection": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "reason": "trouser/skirt hem with independent shoe edge",
+          "factors": {
+            "top": "terracotta-overshirt-v1",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": "brown-shoes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "original-female",
+      "character": "female",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "docs/kling-wardrobe/registration/female.json",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "motionProfile": "kling-female-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            75,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 6,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [
+          "navy-waistcoat + ochre-shorts",
+          "plum-pintuck-top-v1 + navy-shorts"
+        ],
+        "topSilhouettePairs": 3,
+        "coveredTopSilhouettePairs": 3,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "navy-waistcoat--navy-shorts",
+          "selection": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "navy-waistcoat",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "plum-pintuck-top-v1--ochre-shorts",
+          "selection": {
+            "top": "plum-pintuck-top-v1",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "plum-pintuck-top-v1",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "teal-top--navy-shorts",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "navy-shorts",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "top ID × bottom silhouette; palette alternates deterministically",
+          "factors": {
+            "top": "teal-top",
+            "bottom": "navy-shorts",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "apricot-garden-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "apricot-garden-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "apricot-garden-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "butter-collar-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "butter-collar-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "butter-collar-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "coral-daydress-v4--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v4",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "coral-daydress-v4",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "coral-daydress-v5--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v5",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "coral-daydress-v5",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "coral-daydress-v6--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v6",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "coral-daydress-v6",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "coral-daydress-v7--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v7",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "coral-daydress-v7",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "coral-daydress-v8--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v8",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "coral-daydress-v8",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "coral-daydress-v9--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "coral-daydress-v9",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "coral-daydress-v9",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "deep-teal-date-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "deep-teal-date-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "deep-teal-date-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "harbor-sailor-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "harbor-sailor-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "harbor-sailor-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "honey-garden-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "honey-garden-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "honey-garden-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-celebration-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-celebration-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-celebration-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-celebration-dress-v3--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-celebration-dress-v3",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-celebration-dress-v3",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-wedding-dress-v4--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v4",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-wedding-dress-v4",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-wedding-dress-v5--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v5",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-wedding-dress-v5",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-wedding-dress-v6--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v6",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-wedding-dress-v6",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-wedding-dress-v7--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v7",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-wedding-dress-v7",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-wedding-dress-v8--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v8",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-wedding-dress-v8",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "ivory-wedding-dress-v9--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "ivory-wedding-dress-v9",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "ivory-wedding-dress-v9",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "lavender-pleat-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "lavender-pleat-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "lavender-pleat-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "mist-blue-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "mist-blue-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "mist-blue-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "rose-picnic-dress-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "rose-picnic-dress-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "rose-picnic-dress-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "sage-pinafore-v1--brown-shoes",
+          "selection": {
+            "top": null,
+            "bottom": null,
+            "fullBody": "sage-pinafore-v1",
+            "shoes": "brown-shoes"
+          },
+          "reason": "full-body dress with independent shoes",
+          "factors": {
+            "fullBody": "sage-pinafore-v1",
+            "shoes": "brown-shoes"
+          }
+        },
+        {
+          "id": "teal-top--ochre-shorts--brown-shoes",
+          "selection": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "fullBody": null,
+            "shoes": "brown-shoes"
+          },
+          "reason": "trouser/skirt hem with independent shoe edge",
+          "factors": {
+            "top": "teal-top",
+            "bottom": "ochre-shorts",
+            "bottomShape": "shorts",
+            "shoes": "brown-shoes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "side-material-male",
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/male.source.zip",
+      "registrationUrl": "docs/kling-side-workspace/assets/male.registration.json",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+      "motionProfile": "kling-male-side-single-jump-v7",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 1,
+        "selectedTopBottomIdPairs": 1,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 1,
+        "coveredTopSilhouettePairs": 1,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "side-male-seabreeze-top-v1--side-male-seabreeze-bottom-v1",
+          "selection": {
+            "top": "side-male-seabreeze-top-v1",
+            "bottom": "side-male-seabreeze-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "side-male-seabreeze-top-v1",
+            "bottom": "side-male-seabreeze-bottom-v1",
+            "bottomShape": "source-cut",
+            "shoes": null
+          }
+        },
+        {
+          "id": "side-male-seabreeze-top-v1--side-male-seabreeze-bottom-v1--side-male-seabreeze-shoes-v1",
+          "selection": {
+            "top": "side-male-seabreeze-top-v1",
+            "bottom": "side-male-seabreeze-bottom-v1",
+            "fullBody": null,
+            "shoes": "side-male-seabreeze-shoes-v1"
+          },
+          "reason": "trouser/skirt hem with independent shoe edge",
+          "factors": {
+            "top": "side-male-seabreeze-top-v1",
+            "bottom": "side-male-seabreeze-bottom-v1",
+            "bottomShape": "source-cut",
+            "shoes": "side-male-seabreeze-shoes-v1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "side-tailored-male",
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/male.source.zip",
+      "registrationUrl": "artwork/kling-side-expansion/templates/male.registration.json",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+      "motionProfile": "kling-male-side-single-jump-v7",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 1,
+        "selectedTopBottomIdPairs": 1,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 1,
+        "coveredTopSilhouettePairs": 1,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "side-male-oxford-shirt-v1--side-male-stone-trousers-v1",
+          "selection": {
+            "top": "side-male-oxford-shirt-v1",
+            "bottom": "side-male-stone-trousers-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "side-male-oxford-shirt-v1",
+            "bottom": "side-male-stone-trousers-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "side-material-female",
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "docs/kling-side-workspace/assets/female.registration.json",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e",
+      "motionProfile": "kling-female-side-single-jump-v6",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 1,
+        "selectedTopBottomIdPairs": 1,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 1,
+        "coveredTopSilhouettePairs": 1,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "side-female-apricot-top-v1--side-female-apricot-bottom-v1",
+          "selection": {
+            "top": "side-female-apricot-top-v1",
+            "bottom": "side-female-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "side-female-apricot-top-v1",
+            "bottom": "side-female-apricot-bottom-v1",
+            "bottomShape": "source-cut",
+            "shoes": null
+          }
+        },
+        {
+          "id": "side-female-apricot-top-v1--side-female-apricot-bottom-v1--side-female-apricot-shoes-v1",
+          "selection": {
+            "top": "side-female-apricot-top-v1",
+            "bottom": "side-female-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": "side-female-apricot-shoes-v1"
+          },
+          "reason": "trouser/skirt hem with independent shoe edge",
+          "factors": {
+            "top": "side-female-apricot-top-v1",
+            "bottom": "side-female-apricot-bottom-v1",
+            "bottomShape": "source-cut",
+            "shoes": "side-female-apricot-shoes-v1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "side-tailored-female",
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "artwork/kling-side-expansion/templates/female.registration.json",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "motionProfile": "kling-female-side-single-jump-v6",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 1,
+        "selectedTopBottomIdPairs": 1,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 1,
+        "coveredTopSilhouettePairs": 1,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "side-female-cream-blouse-v1--side-female-rose-skirt-v1",
+          "selection": {
+            "top": "side-female-cream-blouse-v1",
+            "bottom": "side-female-rose-skirt-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "side-female-cream-blouse-v1",
+            "bottom": "side-female-rose-skirt-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "side-landing-candidate-male",
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "docs/kling-landing-production/assets/male.source.zip",
+      "registrationUrl": "docs/kling-landing-production/assets/male.registration.json",
+      "sourceSha256": "704698872f3a4f621f3d4de53d3fa6a28ef930f6a390c63fb35982d95e51a430",
+      "registrationSha256": "980a5eae5d20fea6e94a6399a9500aabe763785f21f5d07ab26210110209a34a",
+      "motionProfile": "kling-male-side-landing-candidate-v4",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "landing-male-daily-top-v1--landing-male-daily-bottom-v1",
+          "selection": {
+            "top": "landing-male-daily-top-v1",
+            "bottom": "landing-male-daily-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "landing-male-daily-top-v1",
+            "bottom": "landing-male-daily-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "landing-male-daily-top-v1--landing-male-wedding-bottom-v1",
+          "selection": {
+            "top": "landing-male-daily-top-v1",
+            "bottom": "landing-male-wedding-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "landing-male-daily-top-v1",
+            "bottom": "landing-male-wedding-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "landing-male-wedding-top-v1--landing-male-daily-bottom-v1",
+          "selection": {
+            "top": "landing-male-wedding-top-v1",
+            "bottom": "landing-male-daily-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "landing-male-wedding-top-v1",
+            "bottom": "landing-male-daily-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "landing-male-wedding-top-v1--landing-male-wedding-bottom-v1",
+          "selection": {
+            "top": "landing-male-wedding-top-v1",
+            "bottom": "landing-male-wedding-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "landing-male-wedding-top-v1",
+            "bottom": "landing-male-wedding-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-cotton-day-male-original",
+      "character": "male",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/male.character.zip",
+      "registrationUrl": "docs/kling-wardrobe/registration/male-full-outfits-v1.json",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "49230e86e853aad1e053db9ca8506828218f5e27ec1a54cc0e90e8a29cf89e48",
+      "motionProfile": "kling-male-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            24,
+            26,
+            26,
+            28,
+            28,
+            30,
+            30,
+            32,
+            32,
+            34,
+            34,
+            36,
+            37,
+            37,
+            39,
+            40,
+            40,
+            42,
+            43,
+            43,
+            45,
+            46,
+            46,
+            48,
+            48,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-male-original-apricot-top-v1--dual-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-male-original-apricot-top-v1",
+            "bottom": "dual-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-original-apricot-top-v1",
+            "bottom": "dual-male-original-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-male-original-apricot-top-v1--dual-male-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-male-original-apricot-top-v1",
+            "bottom": "dual-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-original-apricot-top-v1",
+            "bottom": "dual-male-original-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-male-original-sea-top-v1--dual-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-male-original-sea-top-v1",
+            "bottom": "dual-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-original-sea-top-v1",
+            "bottom": "dual-male-original-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-male-original-sea-top-v1--dual-male-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-male-original-sea-top-v1",
+            "bottom": "dual-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-original-sea-top-v1",
+            "bottom": "dual-male-original-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-cotton-day-male-side",
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/male.source.zip",
+      "registrationUrl": "docs/kling-side-workspace/assets/male.registration.json",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "678aaab17e209add4c349008cc400d028db241ec5607e8877b69c4aee98472f5",
+      "motionProfile": "kling-male-side-single-jump-v7",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-male-side-apricot-top-v1--dual-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-male-side-apricot-top-v1",
+            "bottom": "dual-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-side-apricot-top-v1",
+            "bottom": "dual-male-side-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-male-side-apricot-top-v1--dual-male-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-male-side-apricot-top-v1",
+            "bottom": "dual-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-side-apricot-top-v1",
+            "bottom": "dual-male-side-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-male-side-sea-top-v1--dual-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-male-side-sea-top-v1",
+            "bottom": "dual-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-side-sea-top-v1",
+            "bottom": "dual-male-side-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-male-side-sea-top-v1--dual-male-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-male-side-sea-top-v1",
+            "bottom": "dual-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-male-side-sea-top-v1",
+            "bottom": "dual-male-side-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-cotton-day-female-original",
+      "character": "female",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "docs/kling-wardrobe/registration/female.json",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "c2b19a7a63aa40619babcc23eaa97d1673e79e82e6f8aa157a733869c7a2f953",
+      "motionProfile": "kling-female-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            75,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-female-original-apricot-top-v1--dual-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-female-original-apricot-top-v1",
+            "bottom": "dual-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-original-apricot-top-v1",
+            "bottom": "dual-female-original-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-female-original-apricot-top-v1--dual-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-female-original-apricot-top-v1",
+            "bottom": "dual-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-original-apricot-top-v1",
+            "bottom": "dual-female-original-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-female-original-sea-top-v1--dual-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-female-original-sea-top-v1",
+            "bottom": "dual-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-original-sea-top-v1",
+            "bottom": "dual-female-original-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-female-original-sea-top-v1--dual-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-female-original-sea-top-v1",
+            "bottom": "dual-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-original-sea-top-v1",
+            "bottom": "dual-female-original-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-cotton-day-female-side",
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "docs/kling-side-workspace/assets/female.registration.json",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "32952ef432693553cf36ed6c257041e663ecdf33054265789dbdc6ec0e262f7e",
+      "motionProfile": "kling-female-side-single-jump-v6",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-female-side-apricot-top-v1--dual-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-female-side-apricot-top-v1",
+            "bottom": "dual-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-side-apricot-top-v1",
+            "bottom": "dual-female-side-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-female-side-apricot-top-v1--dual-female-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-female-side-apricot-top-v1",
+            "bottom": "dual-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-side-apricot-top-v1",
+            "bottom": "dual-female-side-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-female-side-sea-top-v1--dual-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-female-side-sea-top-v1",
+            "bottom": "dual-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-side-sea-top-v1",
+            "bottom": "dual-female-side-apricot-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-female-side-sea-top-v1--dual-female-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-female-side-sea-top-v1",
+            "bottom": "dual-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-female-side-sea-top-v1",
+            "bottom": "dual-female-side-sea-bottom-v1",
+            "bottomShape": "shorts",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-tailored-day-male-original",
+      "character": "male",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/male.character.zip",
+      "registrationUrl": "docs/dual-tailored/assets/male/male-ankle-reviewed-v1.registration.json",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d",
+      "motionProfile": "kling-male-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            24,
+            26,
+            26,
+            28,
+            28,
+            30,
+            30,
+            32,
+            32,
+            34,
+            34,
+            36,
+            37,
+            37,
+            39,
+            40,
+            40,
+            42,
+            43,
+            43,
+            45,
+            46,
+            46,
+            48,
+            48,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-tailored-male-original-apricot-top-v1--dual-tailored-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-original-apricot-top-v1--dual-tailored-male-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-original-sea-top-v1--dual-tailored-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-original-sea-top-v1--dual-tailored-male-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-tailored-day-male-side",
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/male.source.zip",
+      "registrationUrl": "artwork/kling-side-expansion/templates/male.registration.json",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+      "motionProfile": "kling-male-side-single-jump-v7",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-tailored-male-side-apricot-top-v1--dual-tailored-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-side-apricot-top-v1--dual-tailored-male-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-side-sea-top-v1--dual-tailored-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-side-sea-top-v1--dual-tailored-male-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-tailored-day-female-original",
+      "character": "female",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "docs/dual-tailored/assets/female/original-tailored-v1.registration.json",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "motionProfile": "kling-female-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            75,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-tailored-female-original-apricot-top-v1--dual-tailored-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-apricot-top-v1--dual-tailored-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-sea-top-v1--dual-tailored-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-sea-top-v1--dual-tailored-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-tailored-day-female-side",
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "artwork/kling-side-expansion/templates/female.registration.json",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "motionProfile": "kling-female-side-single-jump-v6",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-tailored-female-side-apricot-top-v1--dual-tailored-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-side-apricot-top-v1",
+            "bottom": "dual-tailored-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-side-apricot-top-v1",
+            "bottom": "dual-tailored-female-side-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-side-apricot-top-v1--dual-tailored-female-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-side-apricot-top-v1",
+            "bottom": "dual-tailored-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-side-apricot-top-v1",
+            "bottom": "dual-tailored-female-side-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-side-sea-top-v1--dual-tailored-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-side-sea-top-v1",
+            "bottom": "dual-tailored-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-side-sea-top-v1",
+            "bottom": "dual-tailored-female-side-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-side-sea-top-v1--dual-tailored-female-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-side-sea-top-v1",
+            "bottom": "dual-tailored-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-side-sea-top-v1",
+            "bottom": "dual-tailored-female-side-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-complete-day-female-original",
+      "character": "female",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "docs/dual-tailored/assets/female/original-tailored-v1.registration.json",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "motionProfile": "kling-female-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            75,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-tailored-female-original-apricot-top-v1--dual-tailored-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-apricot-top-v1--dual-tailored-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-sea-top-v1--dual-tailored-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-sea-top-v1--dual-tailored-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-complete-day-female-side",
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "artwork/kling-side-expansion/templates/female.registration.json",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "7f49437c617e01141622e1ca3d463347edf51adce068a344c01d545e58567cef",
+      "motionProfile": "kling-female-side-single-jump-v6",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-complete-female-side-apricot-top-v1--dual-complete-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-complete-female-side-apricot-top-v1",
+            "bottom": "dual-complete-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-complete-female-side-apricot-top-v1",
+            "bottom": "dual-complete-female-side-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-complete-female-side-apricot-top-v1--dual-complete-female-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-complete-female-side-apricot-top-v1",
+            "bottom": "dual-complete-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-complete-female-side-apricot-top-v1",
+            "bottom": "dual-complete-female-side-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-complete-female-side-sea-top-v1--dual-complete-female-side-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-complete-female-side-sea-top-v1",
+            "bottom": "dual-complete-female-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-complete-female-side-sea-top-v1",
+            "bottom": "dual-complete-female-side-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-complete-female-side-sea-top-v1--dual-complete-female-side-sea-bottom-v1",
+          "selection": {
+            "top": "dual-complete-female-side-sea-top-v1",
+            "bottom": "dual-complete-female-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-complete-female-side-sea-top-v1",
+            "bottom": "dual-complete-female-side-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-polished-day-male-original",
+      "character": "male",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/male.character.zip",
+      "registrationUrl": "docs/dual-tailored/assets/male/male-ankle-reviewed-v1.registration.json",
+      "sourceSha256": "ae589b93e234d17427b6680290a9b46df7d5fcd58f97446ed9fe314296d612d1",
+      "registrationSha256": "035971ffa8e1a1ac0fb9b707c1fa24bd3ac588fb6ed74495325fdaf5eeb8949d",
+      "motionProfile": "kling-male-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            24,
+            26,
+            26,
+            28,
+            28,
+            30,
+            30,
+            32,
+            32,
+            34,
+            34,
+            36,
+            37,
+            37,
+            39,
+            40,
+            40,
+            42,
+            43,
+            43,
+            45,
+            46,
+            46,
+            48,
+            48,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-tailored-male-original-apricot-top-v1--dual-tailored-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-original-apricot-top-v1--dual-tailored-male-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-apricot-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-original-sea-top-v1--dual-tailored-male-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-male-original-sea-top-v1--dual-tailored-male-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-male-original-sea-top-v1",
+            "bottom": "dual-tailored-male-original-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-polished-day-male-side",
+      "character": "male",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/male.source.zip",
+      "registrationUrl": "artwork/kling-side-expansion/templates/male.registration.json",
+      "sourceSha256": "7322f38e39f321fb2eb54afe33bdad456bff1bd2d9739358c278971a51bc5d42",
+      "registrationSha256": "e4dc7c47dd3111a6a4941174a020fbec8d45ab7ead3fba1db0d91cdbb4e1aa31",
+      "motionProfile": "kling-male-side-single-jump-v7",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "polished-male-side-apricot-top-v1--dual-tailored-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": "polished-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "polished-male-side-apricot-top-v1--dual-tailored-male-side-sea-bottom-v1",
+          "selection": {
+            "top": "polished-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-male-side-apricot-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "polished-male-side-sea-top-v1--dual-tailored-male-side-apricot-bottom-v1",
+          "selection": {
+            "top": "polished-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-apricot-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        },
+        {
+          "id": "polished-male-side-sea-top-v1--dual-tailored-male-side-sea-bottom-v1",
+          "selection": {
+            "top": "polished-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-male-side-sea-top-v1",
+            "bottom": "dual-tailored-male-side-sea-bottom-v1",
+            "bottomShape": "trousers",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-polished-day-female-original",
+      "character": "female",
+      "view": "original",
+      "sourceUrl": "docs/kling-motion/exports/female.character.zip",
+      "registrationUrl": "docs/dual-tailored/assets/female/original-tailored-v1.registration.json",
+      "sourceSha256": "90a7d2a227910a399dabab805ac1a335240684c06d8d8eb57e88f236a5cbad23",
+      "registrationSha256": "4d02f18a0a624fd3629cf2853d6c96e28d9cd554b28215a9b694aa56c55c9c21",
+      "motionProfile": "kling-female-original-single-jump-v2",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            18,
+            18,
+            18,
+            18,
+            18,
+            18
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            28,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121
+          ],
+          "fps": 24,
+          "loop": false
+        },
+        "celebrate": {
+          "frames": [
+            67,
+            67,
+            67,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            75,
+            75,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "fps": 24,
+          "loop": true
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "dual-tailored-female-original-apricot-top-v1--dual-tailored-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-apricot-top-v1--dual-tailored-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-apricot-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-sea-top-v1--dual-tailored-female-original-apricot-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-apricot-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "dual-tailored-female-original-sea-top-v1--dual-tailored-female-original-sea-bottom-v1",
+          "selection": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "dual-tailored-female-original-sea-top-v1",
+            "bottom": "dual-tailored-female-original-sea-bottom-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dual-polished-day-female-side",
+      "character": "female",
+      "view": "side",
+      "sourceUrl": "docs/kling-side-workspace/assets/female.source.zip",
+      "registrationUrl": "artwork/paired-polish/female-side.registration.json",
+      "sourceSha256": "ee6d20ac1b6c973043a28bc7b0508cf4f3b1ea4f373424b0de75d88d724f955d",
+      "registrationSha256": "82ea84d396c406163b822f4ac393160de268599c4c9d0a758b0686c6da5a7942",
+      "motionProfile": "kling-female-side-single-jump-v6",
+      "actions": {
+        "idle": {
+          "frames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "walk": {
+          "frames": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "run": {
+          "frames": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "fps": 24,
+          "loop": true
+        },
+        "jump": {
+          "frames": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "fps": 24,
+          "loop": false
+        }
+      },
+      "coverage": {
+        "availableTopBottomIdPairs": 4,
+        "selectedTopBottomIdPairs": 4,
+        "unselectedTopBottomIdPairs": [],
+        "topSilhouettePairs": 2,
+        "coveredTopSilhouettePairs": 2,
+        "facings": [
+          "right",
+          "left"
+        ]
+      },
+      "cases": [
+        {
+          "id": "polished-female-side-apricot-top-bound-v1--polished-female-side-apricot-bottom-bound-v1",
+          "selection": {
+            "top": "polished-female-side-apricot-top-bound-v1",
+            "bottom": "polished-female-side-apricot-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-female-side-apricot-top-bound-v1",
+            "bottom": "polished-female-side-apricot-bottom-bound-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "polished-female-side-apricot-top-bound-v1--polished-female-side-sea-bottom-bound-v1",
+          "selection": {
+            "top": "polished-female-side-apricot-top-bound-v1",
+            "bottom": "polished-female-side-sea-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-female-side-apricot-top-bound-v1",
+            "bottom": "polished-female-side-sea-bottom-bound-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "polished-female-side-sea-top-bound-v1--polished-female-side-apricot-bottom-bound-v1",
+          "selection": {
+            "top": "polished-female-side-sea-top-bound-v1",
+            "bottom": "polished-female-side-apricot-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-female-side-sea-top-bound-v1",
+            "bottom": "polished-female-side-apricot-bottom-bound-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        },
+        {
+          "id": "polished-female-side-sea-top-bound-v1--polished-female-side-sea-bottom-bound-v1",
+          "selection": {
+            "top": "polished-female-side-sea-top-bound-v1",
+            "bottom": "polished-female-side-sea-bottom-bound-v1",
+            "fullBody": null,
+            "shoes": null
+          },
+          "reason": "exhaustive top/bottom ID pair",
+          "factors": {
+            "top": "polished-female-side-sea-top-bound-v1",
+            "bottom": "polished-female-side-sea-bottom-bound-v1",
+            "bottomShape": "skirt",
+            "shoes": null
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "groups": 21,
+    "plannedCases": 140,
+    "topBottomIdPairs": 162,
+    "selectedTopBottomIdPairs": 115,
+    "unselectedTopBottomIdPairs": 47,
+    "topSilhouettePairs": 83,
+    "coveredTopSilhouettePairs": 83
+  }
+}
